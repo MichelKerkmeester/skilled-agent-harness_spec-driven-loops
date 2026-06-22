@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Targeted vitest files, fusion/summary suite, `npx tsc --noEmit`, strict spec validation |
 
 ### Overview
-Two paired retrieval-intelligence candidates over the already-built summary/community substrate. First, the built community/summaries are promoted from a weak-result post-pipeline fallback and a stage-1 candidate source into a first-class weighted RRF lane: add the channel to the union and all hardcoded channel-list sites, fuse it at the RRF `lists.push` site with a tuned weight, retire the two legacy inject paths to avoid double-counting, give the adaptive-weight model a per-channel slot, and re-tune the perturbed ablation-derived weights against a captured baseline. Second, a two-tier world-summary hierarchy (root world-summary + top-k subsections) is built and prepended as a coarse-to-fine grounding prelude before retrieved context. Both ship behind default-off shadow flags, with flags off the change is a no-op.
+Two paired retrieval-intelligence candidates over the already-built summary/community substrate. First, the built community/summaries are promoted from a weak-result post-pipeline fallback and a stage-1 candidate source into a first-class weighted RRF lane: add the channel to the union and all hardcoded channel-list sites, fuse it at the RRF `lists.push` site with a tuned weight, retire the two legacy inject paths to avoid double-counting, give the adaptive-weight model a per-channel slot and re-tune the perturbed ablation-derived weights against a captured baseline. Second, a two-tier world-summary hierarchy (root world-summary + top-k subsections) is built and prepended as a coarse-to-fine grounding prelude before retrieved context. Both ship behind default-off shadow flags, with flags off the change is a no-op.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -68,7 +68,7 @@ Two paired retrieval-intelligence candidates over the already-built summary/comm
 - [x] Adaptive-weight model carries a per-channel slot for the lane.
 - [x] World-summary grounding prelude prepends coarse-to-fine before retrieved context using existing summaries.
 - [x] Both candidates default-off shadow-gated, flags-off byte-identical to baseline - proven by deterministic test (NFR-R01), strict no-op on ordering and serialization. Baseline live-delta tracked separately above.
-- [x] Tests, TypeScript, strict spec validation, and comment hygiene ready.
+- [x] Tests, TypeScript, strict spec validation and comment hygiene ready.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -89,7 +89,7 @@ Promote-built-substrate-into-fusion + coarse-to-fine grounding prelude, both beh
 - **Shadow flags**: default-off flags for the fused lane and the prelude.
 
 ### Data Flow
-For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summary/community lane each produce a ranked list, the shared RRF fuser fuses by rank with per-channel weights, applying the convergence bonus once. The legacy fallback/stage-1 inject paths no longer add the same evidence. For grounding, the prelude provider reads the precomputed world-summary hierarchy, selects the relevant slice, and `memory-context.ts` prepends it ahead of the fused retrieval results. With the shadow flags off, the lane is absent and the prelude is empty, reproducing baseline output exactly.
+For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summary/community lane each produce a ranked list, the shared RRF fuser fuses by rank with per-channel weights, applying the convergence bonus once. The legacy fallback/stage-1 inject paths no longer add the same evidence. For grounding, the prelude provider reads the precomputed world-summary hierarchy, selects the relevant slice and `memory-context.ts` prepends it ahead of the fused retrieval results. With the shadow flags off, the lane is absent and the prelude is empty, reproducing baseline output exactly.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -121,7 +121,7 @@ For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summa
 - [ ] Capture the pre-change retrieval baseline (precision/recall/order) on the ~1000-memory corpus. - Pending: live benchmark/reindex/scan out of scope.
 - [x] Read the five hardcoded channel-list sites and the RRF `lists.push` fusion site.
 - [x] Read both legacy inject paths and the adaptive-weight model.
-- [x] Read `searchCommunities`, `querySummaryEmbeddings`, and the flat summaries index.
+- [x] Read `searchCommunities`, `querySummaryEmbeddings` and the flat summaries index.
 
 ### Phase 2: Fused Summary/Community Lane
 - [x] Add `summary`/`community` to the `ChannelName` union and all channel-list sites.
@@ -138,10 +138,10 @@ For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summa
 - [x] Prepend the coarse-to-fine prelude before retrieved context in `memory-context.ts`, behind a default-off shadow flag.
 
 ### Phase 4: Verification
-- [x] Add and run lane-fusion, double-count-avoidance, weight-wiring, and prelude tests.
+- [x] Add and run lane-fusion, double-count-avoidance, weight-wiring and prelude tests.
 - [ ] Confirm flags-off recall serialization is byte-identical to the baseline. - Pending: baseline proof out of scope.
 - [ ] Report the shadow before/after delta. - Pending: live benchmark/reindex/scan out of scope.
-- [x] Run `npx tsc --noEmit`, the requested suites, strict spec validation, and comment-hygiene checks.
+- [x] Run `npx tsc --noEmit`, the requested suites, strict spec validation and comment-hygiene checks.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -183,7 +183,7 @@ For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summa
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The captured delta shows a regression that cannot be retuned within scope, or TypeScript/tests/validation/comment-hygiene fail.
-- **Procedure**: Leave the default-off shadow flags off (instant neutralization), then revert the lane wiring, the inject-path retirements, the weight-slot edits, and the prelude edits.
+- **Procedure**: Leave the default-off shadow flags off (instant neutralization), then revert the lane wiring, the inject-path retirements, the weight-slot edits and the prelude edits.
 - **Data Reversal**: None. Tests use temp/in-memory fixtures, no live shard or world-summary store is mutated destructively (the hierarchy is additive and reproducible).
 <!-- /ANCHOR:rollback -->
 

@@ -65,7 +65,7 @@ Add an opt-in `agentic` strategy to `memory_context` that runs an LLM reason-act
 - [ ] Flag name reserved and default-off semantics agreed
 
 ### Definition of Done
-- [ ] Governor terminates under step-cap, cost-ceiling, and stop-condition (unit-proven)
+- [ ] Governor terminates under step-cap, cost-ceiling and stop-condition (unit-proven)
 - [ ] Flag-off output byte-identical to baseline, isolation test green
 - [ ] Deterministic core (`hybrid-search.ts`, Stage-2 fusion) unmodified (grep + diff)
 - [ ] Benchmark reports latency/cost/determinism numbers for the promotion decision
@@ -81,7 +81,7 @@ Add an opt-in `agentic` strategy to `memory_context` that runs an LLM reason-act
 ReAct agentic loop (Cognee `_run_tool_loop` shape) bounded by a tool-rule-DAG governor (Letta shape), surfaced as one additive strategy in an existing mode router. Deterministic core stays untouched, the agentic path is a side branch reachable only behind a flag.
 
 ### Key Components
-- **`agentic-loop-governor.ts`** (new): the bounded controller - owns `max_iter` (step-cap), `cost_ceiling` (token/cost budget), and the deterministic stop-condition (`Init→Child→Continue→Terminal`, no early bail before a terminal step). Returns a typed result (final | forced-final | aborted-partial).
+- **`agentic-loop-governor.ts`** (new): the bounded controller - owns `max_iter` (step-cap), `cost_ceiling` (token/cost budget) and the deterministic stop-condition (`Init→Child→Continue→Terminal`, no early bail before a terminal step). Returns a typed result (final | forced-final | aborted-partial).
 - **`executeStrategy` `case 'agentic'`** (handler change): builds the loop, dispatches existing memory tools (ACL-gated to the memory surface), appends observations, hands control to the governor.
 - **`SPECKIT_AGENTIC_RECALL` flag** (search-flags change): default-off gate, absent the flag, the case is unreachable and zero agentic code executes.
 - **Benchmark harness** (test): seeded N-run determinism + latency/cost measurement.

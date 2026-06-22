@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain)"
-description: "Verification gates for the longest Memory consolidation chain — receipt scoping regression gate, crash-safety invariants, and per-candidate test evidence. Planning-only: items are unchecked until implementation lands."
+description: "Verification gates for the longest Memory consolidation chain, receipt scoping regression gate, crash-safety invariants and per-candidate test evidence. Planning-only: items are unchecked until implementation lands."
 trigger_phrases:
   - "consolidation cursor checklist"
   - "c4-a regression gate"
@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level-3 verification checklist (planning-only, unchecked)"
-    next_safe_action: "Implement; check items with evidence as each candidate ships"
+    next_safe_action: "Implement, check items with evidence as each candidate ships"
     blockers: []
     key_files:
       - "spec.md"
@@ -35,7 +35,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-> **Planning-only re-plan.** This is the authored sub-phase spec; implementation has not started. All items below are unchecked until each candidate lands. None of these candidates shipped in the 030 Wave-0 record (C4-A was explicitly DEFERRED there).
+> **Planning-only re-plan.** This is the authored sub-phase spec. Implementation has not started. All items below are unchecked until each candidate lands. None of these candidates shipped in the 030 Wave-0 record (C4-A was explicitly DEFERRED there).
 
 ---
 
@@ -56,7 +56,7 @@ _memory:
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..010)
 - [ ] CHK-002 [P0] Technical approach + chain sequencing defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified (C4-A chain head; entity confidence scoring Red for the retention guard)
+- [ ] CHK-003 [P1] Dependencies identified (C4-A chain head, entity confidence scoring Red for the retention guard)
 - [ ] CHK-004 [P0] Baseline `handleMemoryUpdate` suite captured green (55/0) BEFORE flipping C4-A
 <!-- /ANCHOR:pre-impl -->
 
@@ -81,7 +81,7 @@ _memory:
 - [ ] CHK-022 [P0] Crash-safety: startup reset (`in_progress`→`raw`) + contiguous-prefix invariant tested
 - [ ] CHK-023 [P0] Dead-letter: poison-pill reaches terminal `failed` and is queue-excluded (no infinite replay)
 - [ ] CHK-024 [P1] Replay: commit-then-die re-derives the same content-addressed id (dedup no-op)
-- [ ] CHK-025 [P1] Transient/Fatal classification tested; LT turns_counter cadence gate tested
+- [ ] CHK-025 [P1] Transient/Fatal classification tested, LT turns_counter cadence gate tested
 <!-- /ANCHOR:testing -->
 
 ---
@@ -105,7 +105,7 @@ _memory:
 
 - [ ] CHK-030 [P0] No hardcoded secrets
 - [ ] CHK-031 [P0] No new untrusted-input surface (consolidation operates over already-stored rows)
-- [ ] CHK-032 [P1] N/A — recall-trust/escaper work is out of scope (sibling sub-phase)
+- [ ] CHK-032 [P1] N/A, recall-trust/escaper work is out of scope (sibling sub-phase)
 <!-- /ANCHOR:security -->
 
 ---
@@ -168,7 +168,7 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback documented: C4-A flag-reversible (inert residue); C-G1 driver disable-able
+- [ ] CHK-120 [P0] Rollback documented: C4-A flag-reversible (inert residue), C-G1 driver disable-able
 - [ ] CHK-121 [P0] C-G1 clock-driver flag-gated until idempotency is verified
 - [ ] CHK-122 [P1] Health gauges (lag/pending/failed) consistent if surfaced
 - [ ] CHK-123 [P2] Daemon recycle path for dist changes noted
@@ -181,7 +181,7 @@ _memory:
 ## L3+: COMPLIANCE VERIFICATION
 
 - [ ] CHK-130 [P1] Adversarial review of each shipped candidate (independent seat)
-- [ ] CHK-131 [P2] N/A — no new dependency licenses
+- [ ] CHK-131 [P2] N/A, no new dependency licenses
 - [ ] CHK-132 [P2] N/A
 - [ ] CHK-133 [P2] N/A
 <!-- /ANCHOR:compliance-verify -->
@@ -193,7 +193,7 @@ _memory:
 
 - [ ] CHK-140 [P1] All sub-phase docs synchronized + `validate.sh --strict` passes
 - [ ] CHK-141 [P2] Cross-references to 030 §14 (DONE evidence) and parent research accurate
-- [ ] CHK-142 [P2] N/A — no user-facing docs
+- [ ] CHK-142 [P2] N/A, no user-facing docs
 - [ ] CHK-143 [P2] implementation-summary.md authored when tasks complete (Level-3 requirement on completion)
 <!-- /ANCHOR:docs-verify -->
 

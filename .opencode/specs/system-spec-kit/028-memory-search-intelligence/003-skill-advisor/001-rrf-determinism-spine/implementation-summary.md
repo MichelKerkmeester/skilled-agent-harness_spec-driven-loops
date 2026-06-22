@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: RRF Determinism Spine (Skill Advisor)"
-description: "Implementation closeout for the advisor RRF determinism-spine sub-phase: C3 import, C2 folded deterministic order, and the conflict-suppression carrier are implemented default-off behind SPECKIT_ADVISOR_RRF_FUSION. The live/default flip remains gated on routing-agreement benchmark acceptance."
+description: "Implementation closeout for the advisor RRF determinism-spine sub-phase: C3 import, C2 folded deterministic order and the conflict-suppression carrier are implemented default-off behind SPECKIT_ADVISOR_RRF_FUSION. The live/default flip remains gated on routing-agreement benchmark acceptance."
 trigger_phrases:
   - "implementation summary advisor rrf determinism spine"
   - "skill advisor fuseResultsMulti import closeout"
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This pass implements the Skill Advisor RRF spine **default-off**. The default weighted-sum scorer remains byte-stable unless `SPECKIT_ADVISOR_RRF_FUSION=true`, the opt-in path imports Memory's already-shipped `fuseResultsMulti`, adapts scorer lanes into fixed-order `RankedList`s, passes advisor-specific `ADVISOR_RRF_K = 8`, and uses the shared RRF order plus an RRF rank map as the final post-bonus tiebreak. The graph_causal signed-score conflict suppression is preserved by splitting graph output into combined/positive/conflict matches and applying conflict mass as a post-fusion comparator demotion.
+This pass implements the Skill Advisor RRF spine **default-off**. The default weighted-sum scorer remains byte-stable unless `SPECKIT_ADVISOR_RRF_FUSION=true`, the opt-in path imports Memory's already-shipped `fuseResultsMulti`, adapts scorer lanes into fixed-order `RankedList`s, passes advisor-specific `ADVISOR_RRF_K = 8` and uses the shared RRF order plus an RRF rank map as the final post-bonus tiebreak. The graph_causal signed-score conflict suppression is preserved by splitting graph output into combined/positive/conflict matches and applying conflict mass as a post-fusion comparator demotion.
 
 The live/default flip is **not accepted yet**. Packet 030 remains untouched. The required top-1/top-3 routing-agreement benchmark was explicitly out of scope for this pass and remains the gate before enabling RRF by default.
 
@@ -72,7 +72,7 @@ The live/default flip is **not accepted yet**. Packet 030 remains untouched. The
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation follows the authoritative 028 research and the already-authored plan. The shared `fuseResultsMulti` signature was consumed through `@spec-kit/shared/algorithms/rrf-fusion.js`, the advisor code did not fork RRF. Code changes are limited to `fusion.ts`, `graph-causal.ts`, and a scorer Vitest file. Packet 030 was not modified.
+The implementation follows the authoritative 028 research and the already-authored plan. The shared `fuseResultsMulti` signature was consumed through `@spec-kit/shared/algorithms/rrf-fusion.js`, the advisor code did not fork RRF. Code changes are limited to `fusion.ts`, `graph-causal.ts` and a scorer Vitest file. Packet 030 was not modified.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,9 +103,9 @@ The implementation follows the authoritative 028 research and the already-author
 ## Known Limitations
 
 - **No live/default flip yet.** The RRF path is default-off until the routing-agreement benchmark is captured and accepted.
-- **No measured benefit number.** Every leverage/effort rating is structural inference, never a benchmarked delta (`synthesis/03` §B), the import's value is comparability + reproducibility + testability, and the live flip remains needs-benchmark.
+- **No measured benefit number.** Every leverage/effort rating is structural inference, never a benchmarked delta (`synthesis/03` §B), the import's value is comparability + reproducibility + testability and the live flip remains needs-benchmark.
 - **Conflict re-rank is a runtime no-op today.** `conflicts_with` is dormant (zero reciprocal declarations), so the carrier changes zero routing until a skill declares a reciprocal conflict, it exists so the import does not silently drop conflict suppression when data appears.
-- **Downstream consumers are separate sub-phases.** C1 (full split-conflict), C6, and the query-class router (QCR) are unblocked by this spine but are out of scope here.
+- **Downstream consumers are separate sub-phases.** C1 (full split-conflict), C6 and the query-class router (QCR) are unblocked by this spine but are out of scope here.
 <!-- /ANCHOR:limitations -->
 
 ---

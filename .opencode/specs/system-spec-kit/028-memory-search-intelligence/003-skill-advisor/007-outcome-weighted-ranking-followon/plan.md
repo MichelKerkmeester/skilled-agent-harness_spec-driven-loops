@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Skill Advisor Outcome-Weighted Ranking Follow-On"
-description: "Sequenced shadow-only build of the aionforge-procedural follow-on: a net-new execution-success emitter + skill-outcome store, an outcome-weighted shadow re-rank over the shared Beta primitive, an idempotent out-of-process ambient-tick cadence driver, and a prove-first BM25 query-length calibration."
+description: "Sequenced shadow-only build of the aionforge-procedural follow-on: a net-new execution-success emitter + skill-outcome store, an outcome-weighted shadow re-rank over the shared Beta primitive, an idempotent out-of-process ambient-tick cadence driver and a prove-first BM25 query-length calibration."
 trigger_phrases:
   - "advisor outcome ranking plan"
   - "advisor ambient tick plan"
@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Testing** | Vitest (existing advisor scorer test harness) |
 
 ### Overview
-The `aionforge-procedural` follow-on shipped shadow-only in `03d0b01eb6`. The skill-outcome store (`skill-outcome-store.ts`), the outcome-weighted shadow re-rank (`outcome-weighted-rerank.ts`), the execution-success record (`metrics.ts`), the out-of-process fold-tick (`skill-outcome-fold-tick.mjs`), and the default-off BM25 query-length calibration (`bm25.ts`) all landed. Two sub-gates stay pending: the emitter runtime seam (Q-001) and sibling 004's Beta primitive wiring, the live fused sort is byte-identical and promotion-to-live is NO-GO.
+The `aionforge-procedural` follow-on shipped shadow-only in `03d0b01eb6`. The skill-outcome store (`skill-outcome-store.ts`), the outcome-weighted shadow re-rank (`outcome-weighted-rerank.ts`), the execution-success record (`metrics.ts`), the out-of-process fold-tick (`skill-outcome-fold-tick.mjs`) and the default-off BM25 query-length calibration (`bm25.ts`) all landed. Two sub-gates stay pending: the emitter runtime seam (Q-001) and sibling 004's Beta primitive wiring, the live fused sort is byte-identical and promotion-to-live is NO-GO.
 <!-- /ANCHOR:summary -->
 
 ---

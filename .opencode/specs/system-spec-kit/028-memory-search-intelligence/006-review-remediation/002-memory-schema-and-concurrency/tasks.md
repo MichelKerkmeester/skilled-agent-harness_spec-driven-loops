@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Memory Schema and Concurrency Remediation"
-description: "PENDING task list for the derived-id, in-lock embedding, and retention spare-only fixes."
+description: "PENDING task list for the derived-id, in-lock embedding and retention spare-only fixes."
 trigger_phrases:
   - "028 memory schema concurrency tasks"
   - "derived-id consolidation retention tasks"

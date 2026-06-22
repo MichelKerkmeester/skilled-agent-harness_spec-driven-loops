@@ -67,9 +67,9 @@ _memory:
 
 > Keystone candidates (total-comparator tiebreaks + content-id primitives), shipped in Wave-0 / packet 030.
 
-- [x] T001 two-content-id-primitives — centralize content-body + canonical-field SHA-256 into `lib/content-id.ts` (`hashContentBody`, `hashCanonicalJson`) [Done, commit `18c8582e33`; byte-identical proven by parity test; no behavior change].
-- [x] T002 ANN-tie-stable-order — append `, m.id ASC` (COALESCE) to the 4 ranked ANN `ORDER BY distance` (`vector-index-queries.ts:169,199,458,570`) [Done, commit `bec0eed27f`].
-- [x] T003 C5-B content-derived tiebreak — `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts (`ranking-contract.ts`, `rrf-fusion.ts`, `hybrid-search.ts`) [Done, commit `bec0eed27f`; primary order unchanged, verified].
+- [x] T001 two-content-id-primitives, centralize content-body + canonical-field SHA-256 into `lib/content-id.ts` (`hashContentBody`, `hashCanonicalJson`) [Done, commit `18c8582e33`, byte-identical proven by parity test, no behavior change].
+- [x] T002 ANN-tie-stable-order, append `, m.id ASC` (COALESCE) to the 4 ranked ANN `ORDER BY distance` (`vector-index-queries.ts:169,199,458,570`) [Done, commit `bec0eed27f`].
+- [x] T003 C5-B content-derived tiebreak, `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts (`ranking-contract.ts`, `rrf-fusion.ts`, `hybrid-search.ts`) [Done, commit `bec0eed27f`, primary order unchanged, verified].
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -79,19 +79,19 @@ _memory:
 
 > Byte-identical-by-default seams (C-X1 `'active'`, C6-A clock), shipped in Wave-0 / packet 030.
 
-- [x] T004 C-X1 `'active'` — expose the active-channel bonus denominator as the `bonusOverChannels` param, default `'active'` (`rrf-fusion.ts:296-371,345-388`) [Done, commit `65cfcea513`; byte-identical traced arithmetically; opus SHIP].
-- [x] T005 C6-A rank-time decay clock — caller-`nowMs` rank-time decay vs the `trackAccess`-only path; restored the no-timestamp skip guard so it is a pure refactor (`stage2-fusion.ts:897-908`, `fsrs.ts:40-47`) [Done, commit `65cfcea513`; reinforcement stays a separate event].
+- [x] T004 C-X1 `'active'`, expose the active-channel bonus denominator as the `bonusOverChannels` param, default `'active'` (`rrf-fusion.ts:296-371,345-388`) [Done, commit `65cfcea513`, byte-identical traced arithmetically, opus SHIP].
+- [x] T005 C6-A rank-time decay clock, caller-`nowMs` rank-time decay vs the `trackAccess`-only path, restored the no-timestamp skip guard so it is a pure refactor (`stage2-fusion.ts:897-908`, `fsrs.ts:40-47`) [Done, commit `65cfcea513`, reinforcement stays a separate event].
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:residue -->
-## Gated residue (PENDING — dispositioned, not built this sub-phase)
+## Gated residue (PENDING, dispositioned, not built this sub-phase)
 
-- [x] T006 [B] C-X1-true-multichannel (`'configured'` mode) (`rrf-fusion.ts:345-388`) [Pending — gate: shared-infra-dep; build alongside the Wave-1 C2-B per-class weight consumer, after the fusion-bonus unit test lands; default stays `'active'`. C-X1 confirmed from-scratch — aionforge has no bonus term, agreement is emergent (`../research/iterations/iteration-031.md` H31-02)].
-- [x] T007 [B] C5-A render-order serialization stage (`formatters/search-results.ts:782`, `envelope.ts:99`) [Pending — gate: render-build; `serializationId = sha256(canonical fields)` re-sort at the render boundary, fuller-parity successor to the shipped C5-B stopgap; golden-file re-baseline once; render tiebreak separate from fusion tiebreak (`../research/iterations/iteration-003.md` C5-A; `iteration-031.md` H31-04)].
-- [x] T008 [B] M-dual-class-identity (`memory-index.ts:281`, `idempotency-receipts.ts:81-97`, `causal-edges.ts:140`) [Pending — gate: multi-writer (single-tenant-refuted); iter-14 PROMOTE → iter-23 PARTIAL/NO-GO: the capture-vs-content distinction already exists informally; formalizing pays off only for distributed/multi-writer merge (`../research/iterations/iteration-014.md` → `iteration-023.md`)].
-- [x] T009 [B] M-clock-skew-replay-window (`idempotency-receipts.ts:180,143-205`) [Pending — gate: multi-writer (single-tenant-refuted); iter-14 BUILD → iter-23 REFUTED/NO-GO: anti-replay clock-skew is a network/multi-writer threat; local writes have no adversarial replay + receipts already dedup (`../research/iterations/iteration-023.md`)].
+- [x] T006 [B] C-X1-true-multichannel (`'configured'` mode) (`rrf-fusion.ts:345-388`) [Pending, gate: shared-infra-dep. Build alongside the Wave-1 C2-B per-class weight consumer, after the fusion-bonus unit test lands, default stays `'active'`. C-X1 confirmed from-scratch, aionforge has no bonus term, agreement is emergent (`../research/iterations/iteration-031.md` H31-02)].
+- [x] T007 [B] C5-A render-order serialization stage (`formatters/search-results.ts:782`, `envelope.ts:99`) [Pending, gate: render-build. `serializationId = sha256(canonical fields)` re-sort at the render boundary, fuller-parity successor to the shipped C5-B stopgap, golden-file re-baseline once, render tiebreak separate from fusion tiebreak (`../research/iterations/iteration-003.md` C5-A, `iteration-031.md` H31-04)].
+- [x] T008 [B] M-dual-class-identity (`memory-index.ts:281`, `idempotency-receipts.ts:81-97`, `causal-edges.ts:140`) [Pending, gate: multi-writer (single-tenant-refuted). iter-14 PROMOTE → iter-23 PARTIAL/NO-GO: the capture-vs-content distinction already exists informally, formalizing pays off only for distributed/multi-writer merge (`../research/iterations/iteration-014.md` → `iteration-023.md`)].
+- [x] T009 [B] M-clock-skew-replay-window (`idempotency-receipts.ts:180,143-205`) [Pending, gate: multi-writer (single-tenant-refuted). iter-14 BUILD → iter-23 REFUTED/NO-GO: anti-replay clock-skew is a network/multi-writer threat, local writes have no adversarial replay + receipts already dedup (`../research/iterations/iteration-023.md`)].
 <!-- /ANCHOR:residue -->
 
 ---
@@ -112,7 +112,7 @@ _memory:
 
 - [x] All 9 candidates have a final status in `spec.md` section 13 (5 DONE-with-commit, 4 PENDING-with-gate).
 - [x] All 5 shipped candidates trace to a Wave-0 commit.
-- [x] Each gated residue task names its block reason and consuming sub-phase; none is disguised as incomplete in-flight work.
+- [x] Each gated residue task names its block reason and consuming sub-phase. None is disguised as incomplete in-flight work.
 - [ ] Byte-identity of the shipped default seams is re-confirmed by the still-open fusion-bonus unit test before any `'configured'` promotion (downstream verification, tracked).
 - [x] Strict validation passes for this sub-phase.
 <!-- /ANCHOR:completion -->

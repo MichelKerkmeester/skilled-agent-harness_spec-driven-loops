@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Memory Retention / Forgetting + Recall-Diversity Result-Shaping (028 Wave-1)"
-description: "Verification Date: 2026-06-19 (partial implementation — retention spare-only + live-edge allowlist done)"
+description: "Verification Date: 2026-06-19 (partial implementation, retention spare-only + live-edge allowlist done)"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -54,7 +54,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..006 with research-cited acceptance criteria)
 - [x] CHK-002 [P0] Technical approach defined in plan.md (sequencing + affected-surfaces + rollback)
-- [ ] CHK-003 [P1] Dependencies identified and available (forget-learning gate present; allowlist label column + recall baseline are Yellow — see plan §6)
+- [ ] CHK-003 [P1] Dependencies identified and available (forget-learning gate present, allowlist label column + recall baseline are Yellow, see plan §6)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -64,7 +64,7 @@ _memory:
 
 - [ ] CHK-010 [P0] Code passes lint/format checks
 - [ ] CHK-011 [P0] No console errors or warnings
-- [x] CHK-012 [P1] Error handling implemented (non-finite SPARE guard; both-floors-at-ceiling refusal)
+- [x] CHK-012 [P1] Error handling implemented (non-finite SPARE guard, both-floors-at-ceiling refusal)
 - [x] CHK-013 [P1] Code follows project patterns for the implemented reducer/sweep/schema/flag-gated conventions
 <!-- /ANCHOR:code-quality -->
 
@@ -75,8 +75,8 @@ _memory:
 
 - [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..006)
 - [ ] CHK-021 [P0] Manual testing complete (baseline-vs-delta recall for C7-A + never-truncate)
-- [ ] CHK-022 [P1] Edge cases tested (single-folder-dominance + spill; non-finite-spare; constitutional-starvation; trust>=0.7 gate)
-- [ ] CHK-023 [P1] Error scenarios validated (both-floors-at-ceiling refusal; missing allowlist column blocks rather than over-forgets)
+- [ ] CHK-022 [P1] Edge cases tested (single-folder-dominance + spill, non-finite-spare, constitutional-starvation, trust>=0.7 gate)
+- [ ] CHK-023 [P1] Error scenarios validated (both-floors-at-ceiling refusal, missing allowlist column blocks rather than over-forgets)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -84,13 +84,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each candidate has a finding class: spare-only = `algorithmic` (eligibility predicate); C7-A + never-truncate = `class-of-bug` (result-set shaping); forget-allowlist = `cross-consumer` (sweep vs edge store); quarantine = `algorithmic` (merge gate).
+- [ ] CHK-FIX-001 [P0] Each candidate has a finding class: spare-only = `algorithmic` (eligibility predicate), C7-A + never-truncate = `class-of-bug` (result-set shaping), forget-allowlist = `cross-consumer` (sweep vs edge store), quarantine = `algorithmic` (merge gate).
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed (`slice(0, config.limit)`, `EXTENDABLE_TIERS`, `referenced_count`, `reconsolidate(`) per plan affected-surfaces.
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed reducer/pipeline/policy symbols + response shape (recall envelope order).
-- [ ] CHK-FIX-004 [P0] Forget-eligibility + cap invariants table-tested: spare-only AND with finite-guards; spill-if-underfilled never drops below `config.limit` when fillable; quarantine reversible by edge delete.
-- [ ] CHK-FIX-005 [P1] Matrix axes listed before completion (eligibility 6-axis; cap per-folder × headroom; quarantine trust-side × edge-presence).
-- [ ] CHK-FIX-006 [P1] Flag/global-state variant executed (default-OFF shadow for spare-only; `SPECKIT_RECONSOLIDATION` off-by-default for quarantine).
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA / diff range, not a moving branch range; spec §6 STATUS reconciled to 030 §14.
+- [ ] CHK-FIX-004 [P0] Forget-eligibility + cap invariants table-tested: spare-only AND with finite-guards, spill-if-underfilled never drops below `config.limit` when fillable, quarantine reversible by edge delete.
+- [ ] CHK-FIX-005 [P1] Matrix axes listed before completion (eligibility 6-axis, cap per-folder × headroom, quarantine trust-side × edge-presence).
+- [ ] CHK-FIX-006 [P1] Flag/global-state variant executed (default-OFF shadow for spare-only, `SPECKIT_RECONSOLIDATION` off-by-default for quarantine).
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA / diff range, not a moving branch range, spec §6 STATUS reconciled to 030 §14.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -100,7 +100,7 @@ _memory:
 
 - [x] CHK-030 [P0] No hardcoded secrets
 - [x] CHK-031 [P0] Input validation implemented (non-finite eligibility inputs SPARE, never doom)
-- [x] CHK-032 [P1] Destructive-adjacent paths default-OFF for implemented retention behavior; no persistent deny-list of erased ids introduced
+- [x] CHK-032 [P1] Destructive-adjacent paths default-OFF for implemented retention behavior, no persistent deny-list of erased ids introduced
 <!-- /ANCHOR:security -->
 
 ---
@@ -108,8 +108,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized (authored together; per-candidate STATUS in spec §6)
-- [x] CHK-041 [P1] Code comments adequate (durable WHY only; no artifact-ID labels per comment-hygiene)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (authored together, per-candidate STATUS in spec §6)
+- [x] CHK-041 [P1] Code comments adequate (durable WHY only, no artifact-ID labels per comment-hygiene)
 - [ ] CHK-042 [P2] ENV_REFERENCE.md updated for the new default-OFF reconsolidation flag (if applicable)
 <!-- /ANCHOR:docs -->
 
@@ -133,5 +133,5 @@ _memory:
 | P1 Items | 12 | 5/12 |
 | P2 Items | 2 | 0/2 |
 
-**Verification Date**: 2026-06-19 (partial implementation — retention spare-only + live-edge allowlist done)
+**Verification Date**: 2026-06-19 (partial implementation, retention spare-only + live-edge allowlist done)
 <!-- /ANCHOR:summary -->

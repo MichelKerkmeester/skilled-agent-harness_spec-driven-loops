@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Advisor - Conflict Re-rank, Query-Class Routing & Semantic Exact-Rerank (C1/QCR/C6)"
-description: "Default-off Skill Advisor scorer seams implemented for C1 conflict demotion, QCR query-class lane weighting, and C6 top-K exact semantic rerank. Live/default promotion remains gated by conflict-edge and benchmark evidence."
+description: "Default-off Skill Advisor scorer seams implemented for C1 conflict demotion, QCR query-class lane weighting and C6 top-K exact semantic rerank. Live/default promotion remains gated by conflict-edge and benchmark evidence."
 trigger_phrases:
   - "advisor conflict rerank routing summary"
   - "C1 QCR C6 deferred implementation summary"
@@ -43,6 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing |
+| **Status** | complete |
 | **Completed** | 2026-06-19 - default-off code seams implemented, live promotion gates pending |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -52,7 +53,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Default-off scorer code shipped for the three routing refinements. The live scorer remains byte-identical with the new flags disabled, and packet 030 was not touched. The implementation keeps the original gate discipline: C1 needs real conflict-edge data before it has live effect, QCR needs held-out routing-quality evidence before any default/live weight change, and C6 needs RRF plus benchmark/recall acceptance before any default flip.
+Default-off scorer code shipped for the three routing refinements. The live scorer remains byte-identical with the new flags disabled, and packet 030 was not touched. The implementation keeps the original gate discipline: C1 needs real conflict-edge data before it has live effect, QCR needs held-out routing-quality evidence before any default/live weight change and C6 needs RRF plus benchmark/recall acceptance before any default flip.
+
+Status is complete for this phase: the scoped work (default-off scorer seams plus deterministic unit coverage) shipped. The enum stays complete even though all three candidates remain default-off and benchmark-gated, because live/default promotion is tracked as separate downstream gates, not as unfinished work in this phase.
 
 ### C1 - Conflict-suppression re-rank (DONE DEFAULT-OFF, live dormant-data gate)
 
@@ -70,7 +73,7 @@ C6 now adds `scoreSemanticShadowExactSubset`, which reuses full-precision vector
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Updated | Default-off implementation state, live promotion gates, and affected surfaces |
+| `spec.md` | Updated | Default-off implementation state, live promotion gates and affected surfaces |
 | `plan.md` | Updated | Gate-first promotion plan with implemented code seams |
 | `tasks.md` | Updated | Implemented tasks marked done, live evidence gates left pending |
 | `checklist.md` | Updated | Verification evidence and remaining no-commit/live-gate deferrals |
@@ -86,7 +89,7 @@ C6 now adds `scoreSemanticShadowExactSubset`, which reuses full-precision vector
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation reused the already-landed default-off RRF spine instead of changing the default weighted-sum path. QCR and C6 are new opt-in flags, C1's conflict demotion remains tied to the opt-in RRF path and real conflict mass. Tests use deterministic fixture projections and no live database, reindex, scan, benchmark, or schema migration.
+The implementation reused the already-landed default-off RRF spine instead of changing the default weighted-sum path. QCR and C6 are new opt-in flags, C1's conflict demotion remains tied to the opt-in RRF path and real conflict mass. Tests use deterministic fixture projections and no live database, reindex, scan, benchmark or schema migration.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,7 +103,7 @@ The implementation reused the already-landed default-off RRF spine instead of ch
 | Track each with a distinct named gate, not a single blanket "deferred" | The unblock conditions differ: C1 needs a declared reciprocal `conflicts_with` edge (dormant-data), QCR needs a held-out routing-quality benchmark + calibrated taxonomy (needs-benchmark), C6 needs the 001 RRF spine / C3 rank-based survivor set (shared-infra-dep). Naming each makes promotion auditable. |
 | Frame C1 as a post-fusion comparator demotion, not a fused rank term | The signed `conflicts_with: -0.35` mass has no rank-fusion meaning, a naive RRF port would silently drop conflict suppression. Lifting it into the deterministic comparator (the surface `primaryIntentBonus` already uses) preserves auditability and keeps it inert under empty edges. |
 | Do NOT fabricate skill `conflicts_with` edges to "unblock" C1 | Declaring reciprocal conflict relationships between skills is a separate authoring decision with its own routing consequences, this sub-phase documents the gate, it does not manufacture the data that opens it. |
-| Make QCR additive and `explicit_author`-dominant, default-off on first ship | The dominant explicit-author lane is the safety floor, QCR reweights lanes per class without replacing it, and the benchmark must run before any live/default change. |
+| Make QCR additive and `explicit_author`-dominant, default-off on first ship | The dominant explicit-author lane is the safety floor, QCR reweights lanes per class without replacing it and the benchmark must run before any live/default change. |
 | Make C6 a bounded rerank window, not an unbounded boost | Exact cosine can resolve close top-K survivors, but it should not overrule unrelated score gaps before recall/ranking evidence exists. |
 <!-- /ANCHOR:decisions -->
 

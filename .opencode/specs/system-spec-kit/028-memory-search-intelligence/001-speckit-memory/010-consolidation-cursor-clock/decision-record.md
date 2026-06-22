@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain)"
-description: "Architectural decisions for the longest Memory consolidation chain: how to default-on idempotency receipts without regressing the update path, whether durable-retry durability fights the intentional restart-self-heal design, and reusing the existing cursor rather than adopting an episode model."
+description: "Architectural decisions for the longest Memory consolidation chain: how to default-on idempotency receipts without regressing the update path, whether durable-retry durability fights the intentional restart-self-heal design and reusing the existing cursor rather than adopting an episode model."
 trigger_phrases:
   - "c4-a flag coupling decision"
   - "durable retry restart self-heal decision"
@@ -53,11 +53,11 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run proved this is not a clean flip: flipping it on activates the idempotency/near-dup path on `memory_update` and broke 11 of 55 `handleMemoryUpdate` tests (`030/spec.md §14`, candidate 6, DEFERRED → Wave-1+). The flag is overloaded — it also gates near-duplicate advisory hints (`near-duplicate.ts:95`) and a receipt path (`memory-index.ts:697`), so default-on turns on a second caller-visible change (005-revisit-027 iter-045 O5-02).
+C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run proved this is not a clean flip: flipping it on activates the idempotency/near-dup path on `memory_update` and broke 11 of 55 `handleMemoryUpdate` tests (`030/spec.md §14`, candidate 6, DEFERRED → Wave-1+). The flag is overloaded, it also gates near-duplicate advisory hints (`near-duplicate.ts:95`) and a receipt path (`memory-index.ts:697`), so default-on turns on a second caller-visible change (005-revisit-027 iter-045 O5-02).
 
 ### Constraints
-- The `handleMemoryUpdate` suite must stay 55/55 green — it is the regression gate.
-- The surviving value of C4-A is receipt-default-on + content-addressed ids; the "wire replay/conflict into the deferred/canonical save path" leg was REFUTED (001 iter-27 F27-02), so do NOT build it.
+- The `handleMemoryUpdate` suite must stay 55/55 green, it is the regression gate.
+- The surviving value of C4-A is receipt-default-on + content-addressed ids. The "wire replay/conflict into the deferred/canonical save path" leg was REFUTED (001 iter-27 F27-02), so do NOT build it.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -67,7 +67,7 @@ C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run prove
 
 **We chose**: scope receipts to the save path so default-on does not change update-path behavior, and decide the near-dup-hint coupling explicitly (split the flag, or accept the near-dup hint as an intentional part of default-on).
 
-**How it works**: gate receipt creation on the save handler only; the update path keeps its current behavior unless a maintainer accepts the near-dup hint emission. Verify replay re-derives the same content-addressed id (dedup no-op) and the update suite stays green.
+**How it works**: gate receipt creation on the save handler only. The update path keeps its current behavior unless a maintainer accepts the near-dup hint emission. Verify replay re-derives the same content-addressed id (dedup no-op) and the update suite stays green.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -77,9 +77,9 @@ C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run prove
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Scope to save path + explicit coupling decision** | Keeps update suite green; surgical | Needs the coupling call recorded | 8/10 |
-| Flip the flag as-is (the 030 attempt) | One-line | Regressed 11 update tests; refuted | 2/10 |
-| Split into two flags (receipts vs near-dup hints) | Cleanest separation | More surface; may be over-engineering for one consumer | 6/10 |
+| **Scope to save path + explicit coupling decision** | Keeps update suite green, surgical | Needs the coupling call recorded | 8/10 |
+| Flip the flag as-is (the 030 attempt) | One-line | Regressed 11 update tests, refuted | 2/10 |
+| Split into two flags (receipts vs near-dup hints) | Cleanest separation | More surface, may be over-engineering for one consumer | 6/10 |
 
 **Why this one**: it lands the surviving C4-A value (default-on receipts + content-addressed ids) while honoring the regression gate the 030 deferral established.
 <!-- /ANCHOR:adr-001-alternatives -->
@@ -111,7 +111,7 @@ C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run prove
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Crash-replay dedup is the chain head C-G1/Transport-idempotency depend on |
-| 2 | **Beyond Local Maxima?** | PASS | The naive flip was tried in 030 and refuted; this is the scoped alternative |
+| 2 | **Beyond Local Maxima?** | PASS | The naive flip was tried in 030 and refuted. This is the scoped alternative |
 | 3 | **Sufficient?** | PASS | Save-path scoping is the minimal change that keeps the update suite green |
 | 4 | **Fits Goal?** | PASS | C4-A is the documented chain head (J37-01 critical path) |
 | 5 | **Open Horizons?** | PASS | The receipt primitive is reused by the 003 advisor projection |
@@ -126,7 +126,7 @@ C4-A wants `SPECKIT_MEMORY_IDEMPOTENCY` default-on, but the 030 Wave-0 run prove
 
 **What changes**:
 - `idempotency-receipts.ts`: default-on, save-path-scoped.
-- `memory-save.ts:3547,3655`: receipt wiring; `near-duplicate.ts:95`: coupling split-or-accept.
+- `memory-save.ts:3547,3655`: receipt wiring. `near-duplicate.ts:95`: coupling split-or-accept.
 
 **How to roll back**: set `SPECKIT_MEMORY_IDEMPOTENCY` back off (the receipt table persists as inert TTL-pruned residue) and revert the scoped commit.
 <!-- /ANCHOR:adr-001-impl -->
@@ -154,7 +154,7 @@ M-durable-retry-budget proposes attempts counted from the store (not the in-memo
 
 ### Constraints
 - The Transient/Fatal split is clean and ships independently.
-- Bundled durability is the risk leg — it fights an intentional design choice.
+- Bundled durability is the risk leg, it fights an intentional design choice.
 <!-- /ANCHOR:adr-002-context -->
 
 ---
@@ -162,9 +162,9 @@ M-durable-retry-budget proposes attempts counted from the store (not the in-memo
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: ship the Transient/Fatal classification now; treat store-counted durability as a separate, maintainer-gated decision (task T051 is `[B]`-blocked on this ADR).
+**We chose**: ship the Transient/Fatal classification now. Treat store-counted durability as a separate, maintainer-gated decision (task T051 is `[B]`-blocked on this ADR).
 
-**How it works**: classify retry causes as Transient (re-attempt up to the cap) vs Fatal (escalate to terminal `failed`); leave attempt counting in-memory unless the maintainer explicitly chooses durability, in which case the dead-letter terminal state (Enrichment-retry-budget-deadletter) provides the durable poison-pill record instead.
+**How it works**: classify retry causes as Transient (re-attempt up to the cap) vs Fatal (escalate to terminal `failed`). Leave attempt counting in-memory unless the maintainer explicitly chooses durability, in which case the dead-letter terminal state (Enrichment-retry-budget-deadletter) provides the durable poison-pill record instead.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -174,7 +174,7 @@ M-durable-retry-budget proposes attempts counted from the store (not the in-memo
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Transient/Fatal split only** | Clean; no design conflict | Restart still grants a fresh in-memory budget | 8/10 |
+| **Transient/Fatal split only** | Clean, no design conflict | Restart still grants a fresh in-memory budget | 8/10 |
 | Split + store-counted attempts | Crash-proof budget (aionforge scheduler.rs:341-374) | Fights the documented restart-self-heal | 5/10 |
 | Status quo (in-memory, no split) | Zero change | Poison-pill not classified | 2/10 |
 
@@ -224,7 +224,7 @@ M-durable-retry-budget proposes attempts counted from the store (not the in-memo
 - `retry-budget.ts:8-13,:44-46`: add Transient/Fatal classification.
 - `post-insert.ts:289-298`: terminal `failed` dead-letter state (shared with Enrichment-retry-budget-deadletter).
 
-**How to roll back**: revert the classification hunk; the dead-letter terminal state is additive and queue-exclusion-only (non-destructive).
+**How to roll back**: revert the classification hunk. The dead-letter terminal state is additive and queue-exclusion-only (non-destructive).
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -258,9 +258,9 @@ aionforge's capture↔consolidation split presumes immutable per-turn episodes. 
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: graft the per-item `raw|in_progress|consolidated|failed` state and the clock-driver onto the existing chunk-save / consolidation-cursor path; do NOT adopt an episode model.
+**We chose**: graft the per-item `raw|in_progress|consolidated|failed` state and the clock-driver onto the existing chunk-save / consolidation-cursor path. Do NOT adopt an episode model.
 
-**How it works**: C4-C adds the state machine over `memory-index.ts:293-294,:1376-1377`; C-G1 attaches a registerInterval driver to the existing `consolidation.ts` tick; the capture-side candidates (prefix-stop, dead-letter) harden that same cursor.
+**How it works**: C4-C adds the state machine over `memory-index.ts:293-294,:1376-1377`. C-G1 attaches a registerInterval driver to the existing `consolidation.ts` tick. The capture-side candidates (prefix-stop, dead-letter) harden that same cursor.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -270,10 +270,10 @@ aionforge's capture↔consolidation split presumes immutable per-turn episodes. 
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Graft onto existing cursor** | No substrate rewrite; reuses the durable cursor | Per-item state must be added carefully | 9/10 |
+| **Graft onto existing cursor** | No substrate rewrite, reuses the durable cursor | Per-item state must be added carefully | 9/10 |
 | Adopt an immutable episode model | Matches aionforge directly | Invasive rewrite, no payoff (O18-01) | 2/10 |
 
-**Why this one**: the durable cursor already exists; only the per-item state and the clock are missing.
+**Why this one**: the durable cursor already exists. Only the per-item state and the clock are missing.
 <!-- /ANCHOR:adr-003-alternatives -->
 
 ---
@@ -318,6 +318,6 @@ aionforge's capture↔consolidation split presumes immutable per-turn episodes. 
 **What changes**:
 - `memory-index.ts`, `consolidation.ts`, `session-manager.ts`: per-item state + clock-driver grafted onto the existing cursor.
 
-**How to roll back**: the per-item state columns are additive/inert; disable the interval driver to revert to save-triggered consolidation.
+**How to roll back**: the per-item state columns are additive/inert. Disable the interval driver to revert to save-triggered consolidation.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->

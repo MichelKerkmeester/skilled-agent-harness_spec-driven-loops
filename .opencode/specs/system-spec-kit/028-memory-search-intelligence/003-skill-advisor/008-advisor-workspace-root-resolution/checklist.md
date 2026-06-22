@@ -51,7 +51,7 @@ FAILURE MODES:
 ## Pre-Implementation
 
 - [x] CHK-003 [P1] Scope settled with the operator (full fix plus cleanup).
-- [x] CHK-004 [P1] Stray inventory taken before any removal (13 found; 9 main-tree, 4 worktree).
+- [x] CHK-004 [P1] Stray inventory taken before any removal (13 found, 9 main-tree, 4 worktree).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -60,7 +60,7 @@ FAILURE MODES:
 ## Code Quality
 
 - [x] CHK-005 [P1] Resolver is deterministic and self-documenting (comment explains source-vs-dist depth and the nesting cause).
-- [x] CHK-006 [P1] No new public surface; only internal root resolution changed.
+- [x] CHK-006 [P1] No new public surface. Only internal root resolution changed.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -79,7 +79,7 @@ FAILURE MODES:
 ## Fix Completeness
 
 - [x] CHK-010 [P0] Both write-path call sites routed through the resolver (not just one).
-- [x] CHK-011 [P1] Pre-existing main-tree strays removed; canonical state preserved.
+- [x] CHK-011 [P1] Pre-existing main-tree strays removed. Canonical state preserved.
 - [ ] CHK-012 [P1] Live daemon activation pending operator reconnect / fresh session (T-010).
 <!-- /ANCHOR:fix-completeness -->
 
@@ -88,7 +88,7 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-013 [P1] No credential, path-disclosure, or write-authority change; the fix narrows where the advisor writes to the canonical root only.
+- [x] CHK-013 [P1] No credential, path-disclosure or write-authority change. The fix narrows where the advisor writes to the canonical root only.
 <!-- /ANCHOR:security -->
 
 ---
@@ -97,7 +97,7 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-014 [P1] Spec packet authored (spec, plan, tasks, checklist, implementation-summary) plus metadata.
-- [x] CHK-015 [P2] Commit message records root cause, fix, and verification.
+- [x] CHK-015 [P2] Commit message records root cause, fix and verification.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -105,7 +105,7 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-016 [P2] Single source file changed; dist is gitignored (rebuilt locally).
+- [x] CHK-016 [P2] Single source file changed. Dist is gitignored (rebuilt locally).
 - [x] CHK-017 [P1] Stray cleanup touched only `.advisor-state` leaves in the main tree.
 <!-- /ANCHOR:file-org -->
 
@@ -114,5 +114,5 @@ FAILURE MODES:
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Code, cleanup, and verification complete. One item (CHK-012 live daemon activation) remains as an operator deploy step.
+Code, cleanup and verification complete. One item (CHK-012 live daemon activation) remains as an operator deploy step.
 <!-- /ANCHOR:summary -->

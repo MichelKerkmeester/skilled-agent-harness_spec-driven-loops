@@ -37,10 +37,10 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!--
 SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
+- Confirm the plan names the simplest viable approach, affected surfaces and verification path.
 - Match phases to the stated scope, remove setup theater that does not change the outcome.
 FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
+- Over-planning, missing rollback and treating assumptions as dependencies.
 -->
 
 ---
@@ -59,7 +59,7 @@ FAILURE MODES:
 | **Reused substrate** | 027's Memory MCP `lib/graph/bfs-traversal.ts` weighted-walk traversal (`collectWeightedWalk`/`collectCausalWeightedNeighbors`) - confirm-then-reuse, do NOT rebuild |
 
 ### Overview
-Give the code-graph impact/blast-radius walk a query-seeded multi-hop ranking. The work is built around one net-new ranking primitive - Q3-C1 bounded personalized-PageRank - seeded on the subject symbol, spread over 027's already-shipped weighted-walk traversal, ordered best-first by PPR score, and GATED to impact/multi-hop modes only (the aionforge precision lesson). Three refinements layer on top of that built core: a new SingleHop/MultiHop/Entity query-class taxonomy for the gate (the structural classifier has none), an undirected projection so seed mass reaches callers, and Q4-C2 multi-hop reliability decay reusing the already-plumbed `reliability` factor. The vector-seed-union candidate is CUT - the code-graph deliberately disowned its semantic backend. Every change is reversible by mode-gate/flag, the cheap single-hop default never regresses.
+Give the code-graph impact/blast-radius walk a query-seeded multi-hop ranking. The work is built around one net-new ranking primitive - Q3-C1 bounded personalized-PageRank - seeded on the subject symbol, spread over 027's already-shipped weighted-walk traversal, ordered best-first by PPR score and GATED to impact/multi-hop modes only (the aionforge precision lesson). Three refinements layer on top of that built core: a new SingleHop/MultiHop/Entity query-class taxonomy for the gate (the structural classifier has none), an undirected projection so seed mass reaches callers and Q4-C2 multi-hop reliability decay reusing the already-plumbed `reliability` factor. The vector-seed-union candidate is CUT - the code-graph deliberately disowned its semantic backend. Every change is reversible by mode-gate/flag, the cheap single-hop default never regresses.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -180,7 +180,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Impact-walk latency regression (PPR over budget), single-hop precision regression (gate leaked PPR onto the cheap default), or a forked second walker discovered.
+- **Trigger**: Impact-walk latency regression (PPR over budget), single-hop precision regression (gate leaked PPR onto the cheap default) or a forked second walker discovered.
 - **Procedure**: Each candidate is a scoped, separately revertible commit. PPR is reversible by a default-off flag (disable ⇒ the flat enumeration returns, byte-identical). The mode-gate failing OFF on an ambiguous class is the safe default, refinements (undirected, Q4-C2 decay) revert independently of the PPR core. No schema migration ⇒ no data reversal.
 <!-- /ANCHOR:rollback -->
 
@@ -332,7 +332,7 @@ Phase 1 (reuse-confirm + Q3-C1 PPR core) ──► Phase 2 (class-gate taxonomy)
 
 **Context**: aionforge's hard lesson is that indiscriminate graph expansion hurts single-hop precision while helping multi-hop recall, the code-graph has no shape taxonomy today (`QueryIntent='structural'` only). And no candidate campaign-wide has a measured benefit number - PPR ranking quality and its damping/cap/decay VALUES are unprovable without a code-graph retrieval benchmark that does not exist.
 
-**Decision**: Build a SingleHop/MultiHop/Entity taxonomy and gate PPR ON for impact/multi-hop only (OFF for the single-hop default, fail-safe toward OFF on ambiguity), land the PPR mechanism with safe defaults and treat the tuned damping factor, power-method cap, and decay magnitudes as a separate benchmark follow-up.
+**Decision**: Build a SingleHop/MultiHop/Entity taxonomy and gate PPR ON for impact/multi-hop only (OFF for the single-hop default, fail-safe toward OFF on ambiguity), land the PPR mechanism with safe defaults and treat the tuned damping factor, power-method cap and decay magnitudes as a separate benchmark follow-up.
 
 **Consequences**:
 - Single-hop precision is structurally protected, the cheap default is byte-identical and zero-cost.

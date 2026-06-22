@@ -39,7 +39,7 @@
       "cas"
     ],
     "importance_tier": "important",
-    "status": "implemented_except_gated_m_system_kind_exclusion",
+    "status": "complete",
     "key_files": [
       "formatters/search-results.ts",
       "tests/injection-marker-capture.vitest.ts",

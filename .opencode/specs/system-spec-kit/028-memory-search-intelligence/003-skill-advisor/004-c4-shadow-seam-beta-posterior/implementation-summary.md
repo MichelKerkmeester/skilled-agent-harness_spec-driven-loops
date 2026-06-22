@@ -45,6 +45,7 @@ _memory:
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
+| **Status** | complete |
 | **Scope** | Advisor reliability-weighted learning: C4-seam + Beta posterior + aionforge promotion-gate family + Phase-0 foundation, shipped shadow-only and default-off |
 | **Branch** | system-speckit/027-xce-research-based-refinement |
 | **Shipped via** | Commit `10c5b61493` (default-off shadow). T006 daemon reload and T010 D2 coordination remain pending |
@@ -89,11 +90,11 @@ The build landed as scoped commits on the 028 branch following the task order. T
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **C4 is a shadow-only BUILD, not a graduation.** The live estimator is raw-frequency (`:176`) and the scorer has zero Beta math (grep=0, iter-14); there is nothing to graduate, so the posterior + seam + gate family are built from scratch behind `liveWeightsFrozen` (ADR-001).
-- **One shared Beta f64 primitive, thin per-consumer adapters.** The posterior is co-owned with Deep-Loop D2; it is NOT "one module, three identical callers" (RC6) — the advisor consumes a weight-delta, D2 a posterior mean — so the math is built once and adapted per consumer (ADR-002).
-- **The asymmetry lands at the threshold seam, not the weight clamp.** `:176` is provably symmetric; the NEW asymmetric helper (down≥up, gain→0) goes at `:200-201`, and the shared `clamp()` is never mutated (corrected iter-17/16).
-- **Capture a baseline before any leverage claim.** The asserted "~13% confidence skew" is unsourced (grep=0, iter-17); a real estimator/proposal baseline is recorded in `scratch/` first and the 13% is never quoted.
-- **Promotion to live is a hard NO-GO.** The whole build ships shadow-only; no live lane weight moves until a micro-benchmark proves the Beta posterior out-earns the `minSamples` cliff (recorded in `decision-record.md`).
+- **C4 is a shadow-only BUILD, not a graduation.** The live estimator is raw-frequency (`:176`) and the scorer has zero Beta math (grep=0, iter-14), there is nothing to graduate, so the posterior + seam + gate family are built from scratch behind `liveWeightsFrozen` (ADR-001).
+- **One shared Beta f64 primitive, thin per-consumer adapters.** The posterior is co-owned with Deep-Loop D2, it is NOT "one module, three identical callers" (RC6), the advisor consumes a weight-delta and D2 a posterior mean, so the math is built once and adapted per consumer (ADR-002).
+- **The asymmetry lands at the threshold seam, not the weight clamp.** `:176` is provably symmetric, the NEW asymmetric helper (down≥up, gain→0) goes at `:200-201`, and the shared `clamp()` is never mutated (corrected iter-17/16).
+- **Capture a baseline before any leverage claim.** The asserted "~13% confidence skew" is unsourced (grep=0, iter-17), a real estimator/proposal baseline is recorded in `scratch/` first and the 13% is never quoted.
+- **Promotion to live is a hard NO-GO.** The whole build ships shadow-only, no live lane weight moves until a micro-benchmark proves the Beta posterior out-earns the `minSamples` cliff (recorded in `decision-record.md`).
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -116,9 +117,9 @@ The build landed as scoped commits on the 028 branch following the task order. T
 ## Known Limitations
 
 1. **Shadow-only build.** All nine candidate behaviours shipped default-off. Nothing affects the live recommend path or any live lane weight until a micro-benchmark promotes it.
-2. **No measured benefit number.** The asserted "~13% confidence skew" is unsourced (grep=0, iter-17). Every leverage rating is structural inference; the cold-start prior and any live flip are NEEDS-BENCHMARK.
-3. **No per-lane attribution in production.** `laneAttributionBySkill` is empty (027 shipped none); even a correct posterior has no per-lane signal to tune until attribution exists, so the build stays shadow-only.
-4. **Daemon reload is unconfirmed (Q-002).** `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` resolves once at module load (`lane-registry.ts:71-74`), implying restart-only; the promoter needs an explicit reload trigger unless `advisor_rebuild` reloads it.
+2. **No measured benefit number.** The asserted "~13% confidence skew" is unsourced (grep=0, iter-17). Every leverage rating is structural inference, the cold-start prior and any live flip are NEEDS-BENCHMARK.
+3. **No per-lane attribution in production.** `laneAttributionBySkill` is empty (027 shipped none), even a correct posterior has no per-lane signal to tune until attribution exists, so the build stays shadow-only.
+4. **Daemon reload is unconfirmed (Q-002).** `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` resolves once at module load (`lane-registry.ts:71-74`), implying restart-only, the promoter needs an explicit reload trigger unless `advisor_rebuild` reloads it.
 5. **The shared Beta primitive is cross-subsystem.** Its module location and signature must be coordinated with Deep-Loop D2 (028/004) before both adapters are written, or the primitive forks.
 <!-- /ANCHOR:limitations -->
 
@@ -130,8 +131,8 @@ The build landed as scoped commits on the 028 branch following the task order. T
 - **Plan**: `plan.md` (Phases 0-4, FIX ADDENDUM affected surfaces, L3 ADRs).
 - **Tasks**: `tasks.md` (T001-T022, all shipped shadow-only except T006 and T010).
 - **Checklist**: `checklist.md`.
-- **Decision Record**: `decision-record.md` (ADR-001 shadow-only BUILD; ADR-002 shared Beta primitive).
-- **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/{01,04}-*`; deltas `iter-010.jsonl` / `iter-013.jsonl` / `iter-014.jsonl` / `iter-016.jsonl` / `iter-017.jsonl`.
+- **Decision Record**: `decision-record.md` (ADR-001 shadow-only BUILD, ADR-002 shared Beta primitive).
+- **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/{01,04}-*`, deltas `iter-010.jsonl` / `iter-013.jsonl` / `iter-014.jsonl` / `iter-016.jsonl` / `iter-017.jsonl`.
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.

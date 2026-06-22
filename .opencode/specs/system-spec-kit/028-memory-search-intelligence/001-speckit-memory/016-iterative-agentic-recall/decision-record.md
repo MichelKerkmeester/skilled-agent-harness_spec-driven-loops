@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop)"
-description: "Architecture decision for the governed ReAct agentic memory_context strategy: build the bounded loop governor first, gate the strategy default-off, and promote only on benchmark evidence. Reuses Letta's tool-rule DAG as the bounding template."
+description: "Architecture decision for the governed ReAct agentic memory_context strategy: build the bounded loop governor first, gate the strategy default-off and promote only on benchmark evidence. Reuses Letta's tool-rule DAG as the bounding template."
 trigger_phrases:
   - "028 agentic tool loop decision record"
   - "CG-agentic-tool-loop ADR"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-We needed a way to give complex `memory_context` asks an iterative, multi-tool retrieval path, because the current router is static. Research confirmed the seam is clean: `executeStrategy` (`handlers/memory-context.ts:1292-1311`) dispatches `quick/deep/focused/resume`, each a single straight-line retrieval call with no tool-calling, so a new agentic strategy is additive. The finders first read this as the campaign's best lever-to-effort win (H/L). Blast-radius scoping at iter-22 corrected that: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path (`lib/search/hybrid-search.ts:1365-1366`), and there is no loop or cost governor anywhere - controller, step-cap, cost-ceiling, and stop-condition are all greenfield. The real stakes are an unbounded loop with runaway cost and latency, plus non-determinism that would regress every deterministic caller if routing ever leaked.
+We needed a way to give complex `memory_context` asks an iterative, multi-tool retrieval path, because the current router is static. Research confirmed the seam is clean: `executeStrategy` (`handlers/memory-context.ts:1292-1311`) dispatches `quick/deep/focused/resume`, each a single straight-line retrieval call with no tool-calling, so a new agentic strategy is additive. The finders first read this as the campaign's best lever-to-effort win (H/L). Blast-radius scoping at iter-22 corrected that: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path (`lib/search/hybrid-search.ts:1365-1366`), and there is no loop or cost governor anywhere - controller, step-cap, cost-ceiling and stop-condition are all greenfield. The real stakes are an unbounded loop with runaway cost and latency, plus non-determinism that would regress every deterministic caller if routing ever leaked.
 
 ### Constraints
 
@@ -69,9 +69,9 @@ We needed a way to give complex `memory_context` asks an iterative, multi-tool r
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: build the bounded loop governor first, gate the new agentic strategy default-off, and promote it only on benchmark evidence.
+**We chose**: build the bounded loop governor first, gate the new agentic strategy default-off and promote it only on benchmark evidence.
 
-**How it works**: a new `agentic-loop-governor.ts` owns a hard step-cap, a hard cost-ceiling, and a deterministic stop-condition modeled on Letta's `Init→Child→Continue→Terminal` tool-rule DAG (`voice_sleeptime_agent.py:87-91,132-148`). One additive `case 'agentic'` in `executeStrategy` runs the reason-act-observe loop through that governor, reachable only when `SPECKIT_AGENTIC_RECALL` is set. A seeded benchmark then measures latency, cost, and determinism to decide whether to promote, keep flag-off, or drop.
+**How it works**: a new `agentic-loop-governor.ts` owns a hard step-cap, a hard cost-ceiling and a deterministic stop-condition modeled on Letta's `Init→Child→Continue→Terminal` tool-rule DAG (`voice_sleeptime_agent.py:87-91,132-148`). One additive `case 'agentic'` in `executeStrategy` runs the reason-act-observe loop through that governor, reachable only when `SPECKIT_AGENTIC_RECALL` is set. A seeded benchmark then measures latency, cost and determinism to decide whether to promote, keep flag-off or drop.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -95,7 +95,7 @@ We needed a way to give complex `memory_context` asks an iterative, multi-tool r
 
 **What improves**:
 - Complex asks gain an opt-in agentic retrieval path without risk to existing callers.
-- The loop is guaranteed to terminate (step-cap, cost-ceiling, or terminal stop).
+- The loop is guaranteed to terminate (step-cap, cost-ceiling or terminal stop).
 
 **What it costs**:
 - Extra upfront work building and bound-testing the governor before any feature value lands. Mitigation: reuse the documented Letta tool-rule DAG shape rather than inventing a controller.

@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Guard shipped, coverage verified (reindex superseded) |
+| **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -57,7 +57,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration, or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: "Reindex is gate-zero" (`synthesis/08-retrieval-evaluation-findings.md` §"How to read each entry", "Honest caveats"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.
+The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: "Reindex is gate-zero" (`synthesis/08-retrieval-evaluation-findings.md` §"How to read each entry", "Honest caveats"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.
 
 Live evidence of the cold state (captured `2026-06-19` via `memory_health`, full report):
 - **20,050 rows indexed**, `backgroundEnrichment.pendingByStatus`: `failed=1570, partial=21, pending=2441` → **4,032 rows still pending enrichment** (the health hint states it verbatim: "4032 rows still pending enrichment").
@@ -82,7 +82,7 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 ### Out of Scope
 - Implementing any downstream recall candidate (C2-C class-gating, the three new corpus metrics C9-1/C9-2/C9-3, isotonic calibration, cold-tier re-measurement) - each is its own sub-phase, all gated behind this one.
 - Building the eval-harness metric lanes themselves (child `008` Wave-1 spine `C9-1/C9-2/C9-3`) - gate-zero is their precondition, not their delivery.
-- Changing retention/TTL physical deletion, schema migrations, or the embedding provider/model.
+- Changing retention/TTL physical deletion, schema migrations or the embedding provider/model.
 - Touching the other three subsystems (code-graph, skill-advisor, deep-loop).
 
 ### Files to Change

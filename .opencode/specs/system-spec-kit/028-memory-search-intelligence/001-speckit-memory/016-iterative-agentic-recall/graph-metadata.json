@@ -39,7 +39,7 @@
       "context"
     ],
     "importance_tier": "important",
-    "status": "phase_1_implemented_(governor_+_flag,_default_off,_unit_proven);_phase_2_wiring_+_phase_3_benchmark_pending",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/search/search-flags.ts",
       "mcp_server/tests/flag-ceiling.vitest.ts",

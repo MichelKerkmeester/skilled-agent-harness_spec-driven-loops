@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Semantic Edge Layer [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer/checklist]"
-description: "Verification Date: 2026-06-19 - partial implementation: semantic-edge substrate, edge-vector store, consolidation embedder hook, and retrieval primitive done, benchmark/LLM consumers pending."
+description: "Verification Date: 2026-06-19 - partial implementation: semantic-edge substrate, edge-vector store, consolidation embedder hook and retrieval primitive done, benchmark/LLM consumers pending."
 trigger_phrases:
   - "semantic edge layer checklist"
   - "per edge embedding substrate verification"
@@ -46,7 +46,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-> **Status:** PARTIAL. The substrate/root work and shadow retrieval primitive are implemented. Semantic dedup/merge, cross-pair invalidation, and post-reindex benchmark/promotion remain pending.
+> **Status:** PARTIAL. The substrate/root work and shadow retrieval primitive are implemented. Semantic dedup/merge, cross-pair invalidation and post-reindex benchmark/promotion remain pending.
 
 <!-- /ANCHOR:protocol -->
 
@@ -92,7 +92,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 - [ ] CHK-FIX-001 [P0] Finding class recorded for each surface touched (`schema-migration` for the column/collection, `cross-consumer` for the four consumers)
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg 'insertEdge|causal_edges|invalid_at'` - every edge-write seam enumerated and confirmed unchanged in the synchronous path
 - [x] CHK-FIX-003 [P0] Consumer inventory for the new substrate: `rg 'SPECKIT_SEMANTIC_EDGE_LAYER|edge-vector|edgeVector|edge-semantic'` - all five consumers individually flagged off
-- [ ] CHK-FIX-004 [P0] Adversarial table tests cover paraphrase-equal vs distinct-fact pairs (dedup), high-similarity-but-unrelated cross-pair edges (invalidation), null fact text, and embed-provider-down
+- [ ] CHK-FIX-004 [P0] Adversarial table tests cover paraphrase-equal vs distinct-fact pairs (dedup), high-similarity-but-unrelated cross-pair edges (invalidation), null fact text and embed-provider-down
 - [ ] CHK-FIX-005 [P1] Matrix axes listed: {sub-candidate flag} × {flag-off byte-identical, flag-on shadow} × {edge-pair class} with the row count
 - [x] CHK-FIX-006 [P1] Synchronous insert path proven untouched: zero embedding/vector calls inside the `insertEdge` txn, deterministic core (`hybrid-search.ts`, Stage-2 fusion) unmodified (REQ-002)
 - [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA / explicit diff range, not a moving branch-relative range
@@ -103,7 +103,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets in fixtures, the migration, or the embedder
+- [x] CHK-030 [P0] No hardcoded secrets in fixtures, the migration or the embedder
 - [x] CHK-031 [P0] Default-off enforced: every flag (`SPECKIT_SEMANTIC_EDGE_LAYER` + 4 consumers) ships off, no results-affecting consumer is default-on (REQ-004)
 - [ ] CHK-032 [P0] No-silent-merge proven: semantic dedup never merges on adjudication uncertainty, false-merge benchmark recorded and merge stays shadow-only until precision clears the recorded bar (REQ-006)
 - [x] CHK-033 [P1] Edge fact text + embeddings stay inside the local SQLite boundary, no new external capability or data egress (NFR-S01)

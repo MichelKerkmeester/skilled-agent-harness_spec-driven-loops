@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code Graph Q2-C1 - Transient/Fatal Parser Skip-List with Bounded Retry"
-description: "Implemented split of the parser skip-list into TRANSIENT (re-attempt until attempt_count >= max_retries, default 5) vs FATAL (permanent), classification at parser catch seams, durable attempt_count retry budgeting, additive retry_class storage, and TRANSIENT self-heal on successful parse."
+description: "Implemented split of the parser skip-list into TRANSIENT (re-attempt until attempt_count >= max_retries, default 5) vs FATAL (permanent), classification at parser catch seams, durable attempt_count retry budgeting, additive retry_class storage and TRANSIENT self-heal on successful parse."
 trigger_phrases:
   - "Q2-C1 plan parser transient fatal"
   - "code graph bounded retry sequencing"
@@ -51,7 +51,7 @@ _memory:
 | **Testing** | vitest |
 
 ### Overview
-Q2-C1 adds a **transient/fatal axis** and a **bounded retry ceiling** (`max_retries`, default 5) to the parser skip-list, so a transient WASM crash (OOM/timeout/deadline-abort) self-heals on a later scan while a genuine poison file is permanently quarantined - and neither ever wedges the scan for other files. It reuses the **existing durable `attempt_count` column** (`parser-skip-list.ts:78-91`) as the retry budget, classifies at the **existing parse-error catch** (`structural-indexer.ts:1254-1262`), and lifts the deliberate no-op `recordSuccess` (`parser-skip-list.ts:93-97`) into a real TRANSIENT self-heal. This is the code-graph analogue of the deep-loop fan-out transient/fatal pattern and the scan-layer expression of aionforge's `PassError::Transient` vs `Fatal` model with `max_retries=5` and a durable failed-audit count [CONFIRMED: `external/aionforge-memory-development/docs/consolidation.md:60-68`, research iter-002 findings 8/9/10].
+Q2-C1 adds a **transient/fatal axis** and a **bounded retry ceiling** (`max_retries`, default 5) to the parser skip-list, so a transient WASM crash (OOM/timeout/deadline-abort) self-heals on a later scan while a genuine poison file is permanently quarantined - and neither ever wedges the scan for other files. It reuses the **existing durable `attempt_count` column** (`parser-skip-list.ts:78-91`) as the retry budget, classifies at the **existing parse-error catch** (`structural-indexer.ts:1254-1262`) and lifts the deliberate no-op `recordSuccess` (`parser-skip-list.ts:93-97`) into a real TRANSIENT self-heal. This is the code-graph analogue of the deep-loop fan-out transient/fatal pattern and the scan-layer expression of aionforge's `PassError::Transient` vs `Fatal` model with `max_retries=5` and a durable failed-audit count [CONFIRMED: `external/aionforge-memory-development/docs/consolidation.md:60-68`, research iter-002 findings 8/9/10].
 
 **Gating note:** the change deliberately **reverses** the documented "must not auto-unskip / no self-heal" stance for the TRANSIENT class only. REQ-000 was satisfied by the 2026-06-19 user request that pre-approved this phase and requested implementation. The retry budget reuses the existing durable counter, the retry policy itself is stored in an additive `retry_class` column, so Q2-C1 still ships independently of the Q1-C1/Q6-C1 reindex-transaction cluster.
 <!-- /ANCHOR:summary -->
@@ -83,7 +83,7 @@ Q2-C1 adds a **transient/fatal axis** and a **bounded retry ceiling** (`max_retr
 Durable, bounded retry with poison-pill isolation - the scan-layer analogue of aionforge consolidation's `Transient` (leave `raw`, retry) vs `Fatal` (mark `failed`, retain/audit/exclude, proceed past) classification, with `max_retries` read from a durable audit trail so a crash never refreshes the budget [CONFIRMED: `consolidation.md:60-68`].
 
 ### Key Components
-- **`parser-skip-list.ts`** (policy): owns the transient/fatal axis, the `max_retries` ceiling, the "eligible while TRANSIENT and under budget" lookup, the promotion of an exhausted TRANSIENT to FATAL, and the lifted `recordSuccess` self-heal for TRANSIENT entries. Reuses the durable `attempt_count`.
+- **`parser-skip-list.ts`** (policy): owns the transient/fatal axis, the `max_retries` ceiling, the "eligible while TRANSIENT and under budget" lookup, the promotion of an exhausted TRANSIENT to FATAL and the lifted `recordSuccess` self-heal for TRANSIENT entries. Reuses the durable `attempt_count`.
 - **`structural-indexer.ts`** (classifier): at the parse-error catch (`:1254-1262`), maps the caught error to TRANSIENT vs FATAL before calling `addToSkipList`, keeps returning the empty-node result so the scan proceeds past the file.
 - **`code-graph-db.ts`** (storage, additive): the `parser_skip_list` table stores `retry_class` as an additive `transient`/`fatal` column, legacy rows default to `fatal`, while the retry ceiling stays in config.
 

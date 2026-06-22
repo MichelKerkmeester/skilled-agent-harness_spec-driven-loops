@@ -41,9 +41,9 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence**: `spec.md` carries Level 2 metadata, the 5-candidate scope, REQ-C1/C2/C3/C4/C5/C6, NFRs, edge cases, the complexity assessment, and related docs - every candidate seam cited to research file:line.
+  - **Evidence**: `spec.md` carries Level 2 metadata, the 5-candidate scope, REQ-C1/C2/C3/C4/C5/C6, NFRs, edge cases, the complexity assessment and related docs - every candidate seam cited to research file:line.
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence**: `plan.md` carries the C1→C2→C3 dependency chain + independent C4/C5 guards, architecture seams, phased breakdown, testing strategy, dependencies, and L2 phase-deps/effort/enhanced-rollback addenda.
+  - **Evidence**: `plan.md` carries the C1→C2→C3 dependency chain + independent C4/C5 guards, architecture seams, phased breakdown, testing strategy, dependencies and L2 phase-deps/effort/enhanced-rollback addenda.
 - [x] CHK-003 [P1] Dependencies identified and available
   - **Evidence**: `plan.md` §6 confirms the 030 pool gauges + graceful-self-stop prerequisite shipped (`46812f12a8`), no dependency on the absent D2 reliability signal.
 - [x] CHK-004 [P1] Per-candidate DONE/PENDING status confirmed against current source
@@ -56,7 +56,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes `node --check` on every touched `.cjs`
-  - **Evidence**: `node --check` passed for `fanout-pool.cjs`, `fanout-run.cjs`, `lib/cli-guards.cjs`, and `reduce-state.cjs`.
+  - **Evidence**: `node --check` passed for `fanout-pool.cjs`, `fanout-run.cjs`, `lib/cli-guards.cjs` and `reduce-state.cjs`.
 - [x] CHK-011 [P0] No regression vs the captured fanout test baseline
   - **Evidence**: Baseline before edits: `npm run typecheck` passed and fanout-related runtime suite passed 5 files / 96 tests. Post-implementation broad related runtime suite passed 49 files / 403 tests with original fanout files still green.
 - [x] CHK-012 [P1] Failure-class label is additive (preserves `error:{name,message}`)
@@ -71,11 +71,11 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All P0 acceptance criteria met (REQ-C1/C2/C3/C5 + REQ-C6)
-  - **Evidence**: `fanout-pool.vitest.ts`, `fanout-run.vitest.ts`, and `deep-research-reduce-state.vitest.ts` cover the implemented acceptance paths.
+  - **Evidence**: `fanout-pool.vitest.ts`, `fanout-run.vitest.ts` and `deep-research-reduce-state.vitest.ts` cover the implemented acceptance paths.
 - [x] CHK-021 [P0] Retry count-correctness proven
   - **Evidence**: Retry-success exits ok and is not counted failed, retry exhaustion remains failed, mixed transient/fatal keeps the fatal failure, all-fatal exit behavior is unchanged.
 - [x] CHK-022 [P1] Edge cases tested
-  - **Evidence**: Tests cover salvage-miss vs exit, timeout precedence, empty/corrupt/missing resume refuse, orphan-no-terminal marker, fatal no-retry, and all-fatal regression behavior.
+  - **Evidence**: Tests cover salvage-miss vs exit, timeout precedence, empty/corrupt/missing resume refuse, orphan-no-terminal marker, fatal no-retry and all-fatal regression behavior.
 - [x] CHK-023 [P1] Durable budget survives a simulated crash-replay (NFR-R01)
   - **Evidence**: `fanout-pool.vitest.ts` seeds `initialRetryCounts` from durable ledger counts and verifies the retry budget is not refreshed.
 
@@ -88,7 +88,7 @@ _memory:
 - [x] CHK-024 [P0] All 5 candidates landed or explicitly deferred with approval
   - **Evidence**: C1-C5 are implemented. C4 auto-redispatch remains intentionally lease/heartbeat-gated, the required GO half is detect + marker.
 - [x] CHK-025 [P1] No new dependency on the absent D2 / reliability signal introduced (SC-003)
-  - **Evidence**: Classifier uses only `timedOut`, `exitCode`, and `salvage`, no reliability metadata is read or written.
+  - **Evidence**: Classifier uses only `timedOut`, `exitCode` and `salvage`, no reliability metadata is read or written.
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -97,7 +97,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced
-  - **Evidence**: Cluster touches orchestration control flow only, no credentials, tokens, or external endpoints.
+  - **Evidence**: Cluster touches orchestration control flow only, no credentials, tokens or external endpoints.
 - [x] CHK-031 [P0] Retry cannot loop unboundedly (default-conservative classification)
   - **Evidence**: Unknown/exit failures are fatal by default, transient retries are bounded by `maxRetries`, defaulting to 5 in fan-out config and 0 for direct pool callers unless opted in.
 - [x] CHK-032 [P1] Resume gate cannot leak or destroy state

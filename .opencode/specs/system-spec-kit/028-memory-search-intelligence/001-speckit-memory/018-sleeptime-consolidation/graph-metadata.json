@@ -39,7 +39,7 @@
       "tool-rule"
     ],
     "importance_tier": "important",
-    "status": "safe_core_implemented;_live_off_turn_writes_and_benchmark_promotion_pending",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/handlers/save/reconsolidation-bridge.ts",
       "mcp_server/handlers/chunking-orchestrator.ts",

@@ -51,7 +51,7 @@ The scaffold defines the P2 triage phase. The 91 P2 are grouped into 15 lens fam
 
 ### Pending Triage Contract
 
-This child phase has the required spec, plan, task list, checklist and summary docs. The spec carries the lens-grouped triage table; a later execution pass must confirm every P2 maps to a family, finalize each verdict, and route each fix-now family to a follow-on owner. No P2 is fixed in this phase.
+This child phase has the required spec, plan, task list, checklist and summary docs. The spec carries the lens-grouped triage table. A later execution pass must confirm every P2 maps to a family, finalize each verdict and route each fix-now family to a follow-on owner. No P2 is fixed in this phase.
 
 ### Files Changed
 
@@ -69,7 +69,7 @@ This child phase has the required spec, plan, task list, checklist and summary d
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. The triage is a decision layer over the frozen review-report.md finding set; it performs no fixes.
+The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. The triage is a decision layer over the frozen review-report.md finding set. It performs no fixes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +81,7 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 |----------|-----|
 | Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
 | Group by review lens | The deep-dive already organized findings by lens, so the families map cleanly |
-| Cross-reference G12 to phase 003 | The doc-accuracy cluster is owned there; re-deciding it would duplicate work |
+| Cross-reference G12 to phase 003 | The doc-accuracy cluster is owned there. Re-deciding it would duplicate work |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -102,6 +102,6 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Counts are approximate.** The per-item enumeration is authoritative in review-report.md; the family counts overlap where the tri-model pass and the deep-dive surfaced the same code.
+1. **Counts are approximate.** The per-item enumeration is authoritative in review-report.md. The family counts overlap where the tri-model pass and the deep-dive surfaced the same code.
 2. **Triage not finalized.** A later pass must confirm the per-item mapping and the routing before any completion claim.
 <!-- /ANCHOR:limitations -->

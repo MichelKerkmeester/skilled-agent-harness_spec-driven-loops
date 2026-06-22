@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold defines the memory-schema-and-concurrency remediation phase. No code has been fixed; the P1-2 derived-id split, P1-4 in-lock embedding, and P1-5 retention spare-only stale snapshot all remain PENDING.
+The scaffold defines the memory-schema-and-concurrency remediation phase. No code has been fixed. The P1-2 derived-id split, P1-4 in-lock embedding and P1-5 retention spare-only stale snapshot all remain PENDING.
 
 ### Pending Remediation Contract
 
-This child phase has the required spec, plan, task list, checklist and summary docs. They cite `vector-index-schema.ts:1126`, `consolidation.ts:701`, and `memory-retention-sweep.ts:612` with quoted fix intent so a later execution pass can align the derived-id identity, move the embedding pass out of the write lock with a refreshed maintenance handle, and re-validate the retention spare axes inside the transaction.
+This child phase has the required spec, plan, task list, checklist and summary docs. They cite `vector-index-schema.ts:1126`, `consolidation.ts:701` and `memory-retention-sweep.ts:612` with quoted fix intent so a later execution pass can align the derived-id identity, move the embedding pass out of the write lock with a refreshed maintenance handle and re-validate the retention spare axes inside the transaction.
 
 ### Files Changed
 
@@ -102,5 +102,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Fixes not executed.** This phase defines the remediation contract only; later work must confirm the cited facts and add migration-safety and concurrency tests before any completion claim.
+1. **Fixes not executed.** This phase defines the remediation contract only. Later work must confirm the cited facts and add migration-safety and concurrency tests before any completion claim.
 <!-- /ANCHOR:limitations -->

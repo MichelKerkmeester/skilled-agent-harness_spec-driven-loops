@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "QA checklist for C4-B derived-id provenance: default-off flag, schema v40, helper reuse, migration/backfill safety, write-path gating, focused tests, and strict packet validation."
+description: "QA checklist for C4-B derived-id provenance: default-off flag, schema v40, helper reuse, migration/backfill safety, write-path gating, focused tests and strict packet validation."
 trigger_phrases:
   - "C4-B checklist"
   - "derived_id QA"
@@ -47,7 +47,7 @@ _memory:
 | **[P1]** | Required | Must be verified or documented as residual follow-up |
 | **[P2]** | Optional | Can defer with rationale |
 
-> Candidate status: **DONE** behind default-off `SPECKIT_DERIVED_ID_PROVENANCE`; only benchmark-only insert-cost measurement remains pending.
+> Candidate status: **DONE** behind default-off `SPECKIT_DERIVED_ID_PROVENANCE`. Only benchmark-only insert-cost measurement remains pending.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -56,12 +56,12 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] C4-B scope is documented and faithful to research.
-  - **Evidence**: `spec.md` §2-§3; scope limited to generated causal edges and explicit exclusions.
+  - **Evidence**: `spec.md` §2-§3, scope limited to generated causal edges and explicit exclusions.
 - [x] CHK-002 [P0] The shipped content-id-module dependency is confirmed.
-  - **Evidence**: `lib/content-id.ts` exports `hashCanonicalJson`; helper reuses it.
+  - **Evidence**: `lib/content-id.ts` exports `hashCanonicalJson`, helper reuses it.
 - [x] CHK-003 [P0] The legacy anchor-inclusive UNIQUE is confirmed.
   - **Evidence**: `vector-index-schema.ts` retains `UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)`.
-- [x] CHK-004 [P0] Canonical-field order, kind-tag, `source` definition, and legacy `rule_version` sentinel are decided.
+- [x] CHK-004 [P0] Canonical-field order, kind-tag, `source` definition and legacy `rule_version` sentinel are decided.
   - **Evidence**: `decision-record.md` ADR-002 / ADR-003 accepted.
 <!-- /ANCHOR:pre-impl -->
 
@@ -74,7 +74,7 @@ _memory:
   - **Evidence**: `npm run typecheck` exit 0.
 - [x] CHK-011 [P0] Memory MCP build passes after the change.
   - **Evidence**: `npm run build` exit 0.
-- [x] CHK-012 [P1] No new hash primitive introduced; the derived-id helper reuses `hashCanonicalJson`.
+- [x] CHK-012 [P1] No new hash primitive introduced, the derived-id helper reuses `hashCanonicalJson`.
   - **Evidence**: `deriveCausalEdgeDerivedId()` composes canonical input and calls `hashCanonicalJson`.
 <!-- /ANCHOR:code-quality -->
 
@@ -91,8 +91,8 @@ _memory:
   - **Evidence**: rule-version change test in `tests/derived-id-provenance.vitest.ts`.
 - [x] CHK-023 [P0] The migration is additive and backfills without legacy-UNIQUE rejection.
   - **Evidence**: v40 migration/backfill tests cover column/index creation and duplicate-safe index creation.
-- [x] CHK-024 [P0] Restore/crash-replay preserves the id; manual-edge path is unchanged.
-  - **Evidence**: replay, tombstone metadata, and manual-null write-path tests.
+- [x] CHK-024 [P0] Restore/crash-replay preserves the id, manual-edge path is unchanged.
+  - **Evidence**: replay, tombstone metadata and manual-null write-path tests.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -105,7 +105,7 @@ _memory:
 - [x] CHK-FIX-002 [P0] The single most-cited caveat (anchor-inclusion) is proven, not assumed.
   - **Evidence**: CHK-021 plus backfill tests.
 - [x] CHK-FIX-003 [P1] Additive column does not break readers selecting `causal_edges.*`.
-  - **Evidence**: compatibility fixture updated; focused schema compatibility tests passed.
+  - **Evidence**: compatibility fixture updated, focused schema compatibility tests passed.
 - [x] CHK-FIX-004 [P1] SCHEMA_VERSION is bumped exactly once for this change.
   - **Evidence**: `SCHEMA_VERSION` moved from 39 to 40 with one migration entry.
 <!-- /ANCHOR:fix-completeness -->
@@ -116,9 +116,9 @@ _memory:
 ## Security
 
 - [x] CHK-040 [P0] No secrets or client tokens enter the hash input.
-  - **Evidence**: canonical input is causal-edge ids, relation, anchors, source, rule version, and kind only.
+  - **Evidence**: canonical input is causal-edge ids, relation, anchors, source, rule version and kind only.
 - [x] CHK-041 [P1] The manual/curated causal path is unchanged.
-  - **Evidence**: manual-edge write-path test keeps `derived_id = NULL`; gated generated writes only.
+  - **Evidence**: manual-edge write-path test keeps `derived_id = NULL`, gated generated writes only.
 <!-- /ANCHOR:security -->
 
 ---
@@ -126,14 +126,14 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-050 [P1] `plan.md` covers helper, migration, write-path, and verification.
+- [x] CHK-050 [P1] `plan.md` covers helper, migration, write-path and verification.
   - **Evidence**: `plan.md` §3-§5.
 - [x] CHK-051 [P1] `tasks.md` has shipped dependency and implementation tasks checked.
   - **Evidence**: `tasks.md` T001-T012 checked.
 - [x] CHK-052 [P1] `decision-record.md` records the load-bearing decisions.
   - **Evidence**: ADR-001..005 accepted.
 - [x] CHK-053 [P1] `implementation-summary.md` records shipped/verification state at completion.
-  - **Evidence**: implementation summary includes files changed, v40, flag, and command results.
+  - **Evidence**: implementation summary includes files changed, v40, flag and command results.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -144,7 +144,7 @@ _memory:
 - [x] CHK-060 [P1] Only scoped packet docs and scoped Memory MCP files are modified.
   - **Evidence**: changed files stay inside this phase packet and `.opencode/skills/system-spec-kit/mcp_server`.
 - [x] CHK-061 [P1] Unrelated dirty files remain untouched.
-  - **Evidence**: no work in packet 030, `rrf-fusion.ts`, deep-research, commands, or `.gitignore`.
+  - **Evidence**: no work in packet 030, `rrf-fusion.ts`, deep-research, commands or `.gitignore`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,7 +173,7 @@ _memory:
 - [x] CHK-101 [P1] Each ADR entry has a status.
   - **Evidence**: ADR-001..005 all Accepted.
 - [x] CHK-102 [P1] Alternatives and rejection rationale are documented.
-  - **Evidence**: ADR alternatives cover additive column/index, rowid rewrite, autoincrement, and hash reuse.
+  - **Evidence**: ADR alternatives cover additive column/index, rowid rewrite, autoincrement and hash reuse.
 - [x] CHK-103 [P0] Migration path is documented and tested.
   - **Evidence**: v40 migration and rollback helper covered in `tests/derived-id-provenance.vitest.ts`.
 <!-- /ANCHOR:arch-verify -->
@@ -183,10 +183,10 @@ _memory:
 <!-- ANCHOR:perf-verify -->
 ## L3: Performance Verification
 
-- [x] CHK-110 [P1] No benchmark is claimed; correctness-only framing is explicit.
+- [x] CHK-110 [P1] No benchmark is claimed, correctness-only framing is explicit.
   - **Evidence**: `spec.md` §2 and §12.
 - [x] CHK-111 [P1] Manual-edge hot path has no measured regression claim and no derived-id computation.
-  - **Evidence**: manual path remains `derived_id = NULL`; generated write computation is gated.
+  - **Evidence**: manual path remains `derived_id = NULL`, generated write computation is gated.
 - [ ] CHK-112 [P2] Derived-edge insert cost is acceptable.
   - **Evidence**: PENDING benchmark-only residual. One hash per generated insert is implemented, but no measured insert-cost run was requested or claimed.
 <!-- /ANCHOR:perf-verify -->
@@ -199,9 +199,9 @@ _memory:
 - [x] CHK-120 [P0] Rollback procedure documented.
   - **Evidence**: `plan.md` §7 + enhanced rollback.
 - [x] CHK-121 [P1] Schema/migration deploy impact documented.
-  - **Evidence**: `SCHEMA_VERSION` 40; additive column/index and backfill in the existing migration transaction.
+  - **Evidence**: `SCHEMA_VERSION` 40, additive column/index and backfill in the existing migration transaction.
 - [x] CHK-122 [P2] Operator-visible change documented.
-  - **Evidence**: no operator-visible behavior by default; write-time persistence is behind default-off `SPECKIT_DERIVED_ID_PROVENANCE`.
+  - **Evidence**: no operator-visible behavior by default, write-time persistence is behind default-off `SPECKIT_DERIVED_ID_PROVENANCE`.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -212,9 +212,9 @@ _memory:
 - [x] CHK-130 [P0] The migration does not violate the legacy anchor-inclusive UNIQUE.
   - **Evidence**: backfill-no-reject and duplicate-safe migration tests.
 - [x] CHK-131 [P1] Change stays within the derived causal layer.
-  - **Evidence**: scope excludes manual edges and non-causal derived artifacts; implementation gates generated writes only.
+  - **Evidence**: scope excludes manual edges and non-causal derived artifacts, implementation gates generated writes only.
 - [x] CHK-132 [P2] No new external dependency introduced.
-  - **Evidence**: reuses `lib/content-id.ts`; no package change.
+  - **Evidence**: reuses `lib/content-id.ts`, no package change.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -227,7 +227,7 @@ _memory:
 - [x] CHK-141 [P1] Packet docs are synchronized with the candidate status.
   - **Evidence**: docs mark C4-B DONE, except the explicit benchmark-only residual.
 - [x] CHK-142 [P2] Knowledge transfer documented at completion.
-  - **Evidence**: `implementation-summary.md` records files changed, decisions, verification, and limitations.
+  - **Evidence**: `implementation-summary.md` records files changed, decisions, verification and limitations.
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -237,6 +237,6 @@ _memory:
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Codex | Implementer | Implementation complete; strict validation passed | 2026-06-19 |
+| Codex | Implementer | Implementation complete, strict validation passed | 2026-06-19 |
 | User | Packet owner | Review pending | 2026-06-19 |
 <!-- /ANCHOR:sign-off -->

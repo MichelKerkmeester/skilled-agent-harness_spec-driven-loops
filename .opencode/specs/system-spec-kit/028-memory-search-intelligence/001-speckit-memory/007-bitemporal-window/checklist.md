@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Bi-temporal Window for Spec-Kit Memory Causal + Lineage"
-description: "P0/P1/P2 verification gates for the event-time fact-invalidation spearhead, the additive four-timestamp window, chronology-scoped supersession, and the C3-D separation note, skip-closed-in-sweep pre-verified as SHIPPED."
+description: "P0/P1/P2 verification gates for the event-time fact-invalidation spearhead, the additive four-timestamp window, chronology-scoped supersession and the C3-D separation note, skip-closed-in-sweep pre-verified as SHIPPED."
 trigger_phrases:
   - "bitemporal window memory checklist"
   - "event-time invalidation checklist"
@@ -184,7 +184,7 @@ _memory:
 ## L3+: DOCUMENTATION VERIFICATION
 
 - [x] CHK-140 [P1] spec/plan/tasks/checklist/decision-record synchronized
-- [x] CHK-141 [P1] Candidate status (SHIPPED vs PENDING) consistent across spec §3, tasks Phase 2, and 030 §14 reference
+- [x] CHK-141 [P1] Candidate status (SHIPPED vs PENDING) consistent across spec §3, tasks Phase 2 and 030 §14 reference
 - [x] CHK-142 [P2] C3-D separation note carried into both spec.md REQ-006 and decision-record ADR-003
 - [x] CHK-143 [P2] Research citations (file:line + [CONFIRMED]/[INFERRED]) preserved
 <!-- /ANCHOR:docs-verify -->

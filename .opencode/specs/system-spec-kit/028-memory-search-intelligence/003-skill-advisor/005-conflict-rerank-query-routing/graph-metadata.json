@@ -39,7 +39,7 @@
       "semantic"
     ],
     "importance_tier": "important",
-    "status": "implemented_default_off;_live_promotion_gates_pending",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

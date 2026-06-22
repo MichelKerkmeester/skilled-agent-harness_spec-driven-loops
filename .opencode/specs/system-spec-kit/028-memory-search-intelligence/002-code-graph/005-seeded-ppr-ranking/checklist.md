@@ -47,7 +47,7 @@ _memory:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-> **Phase posture**: the PPR mechanism is built behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` (default OFF). Ranking-quality benefit, tuned damping/cap/decay values, and temporal `invalid_at` current-set semantics remain pending because they require a retrieval benchmark or schema migration. Packet 030 was not touched.
+> **Phase posture**: the PPR mechanism is built behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` (default OFF). Ranking-quality benefit, tuned damping/cap/decay values and temporal `invalid_at` current-set semantics remain pending because they require a retrieval benchmark or schema migration. Packet 030 was not touched.
 <!-- /ANCHOR:protocol -->
 
 ---

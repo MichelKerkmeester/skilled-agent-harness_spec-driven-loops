@@ -39,7 +39,7 @@
       "extraction"
     ],
     "importance_tier": "important",
-    "status": "partial._c3_a_shipped_default_off,_four_candidates_pending",
+    "status": "complete",
     "key_files": [
       "decision-record.md",
       "implementation-summary.md",

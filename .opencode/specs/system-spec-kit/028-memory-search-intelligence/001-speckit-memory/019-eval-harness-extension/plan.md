@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Eval-Harness Extension — Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)"
-description: "Sequenced plan for the eval-harness spine (C9-1 single-pass emit, C9-2 three-way label tagging, C9-3 three corpus metrics, A8-1/A8-2/A8-5/A8-4 per-class promotion gate). Forced linear build order on the gate-zero reindex precondition; additive, reversible, no-benchmark-to-ship. Shared-infra deps and per-candidate gates documented."
+title: "Implementation Plan: Eval-Harness Extension - Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)"
+description: "Sequenced plan for the eval-harness spine (C9-1 single-pass emit, C9-2 three-way label tagging, C9-3 three corpus metrics, A8-1/A8-2/A8-5/A8-4 per-class promotion gate). Forced linear build order on the gate-zero reindex precondition, additive, reversible, no-benchmark-to-ship. Shared-infra deps and per-candidate gates documented."
 trigger_phrases:
   - "eval harness extension plan"
   - "three corpus metric lanes plan"
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Eval-Harness Extension — Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)
+# Implementation Plan: Eval-Harness Extension, Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
@@ -50,11 +50,11 @@ _memory:
 
 ### Overview
 
-This phase extends the live retrieval eval harness (already ~75-85% built) with the three accuracy lanes it has never had, then generalizes the single promotion gate so it scores any candidate-class. The work is an *extension* of `eval_run_ablation`, not a greenfield build: the runner, the 110-query golden set, the 12-metric library, the baseline runner, the dashboard, and the shadow-scoring gate all already exist. Every new lane is additive — the existing ranking ablation stays byte-identical when the new lanes are off.
+This phase extends the live retrieval eval harness (already ~75-85% built) with the three accuracy lanes it has never had, then generalizes the single promotion gate so it scores any candidate-class. The work is an *extension* of `eval_run_ablation`, not a greenfield build: the runner, the 110-query golden set, the 12-metric library, the baseline runner, the dashboard and the shadow-scoring gate all already exist. Every new lane is additive, the existing ranking ablation stays byte-identical when the new lanes are off.
 
 The candidates follow a **forced linear build order** on a single precondition (the corpus reindex, gate-zero, owned by sibling `001-corpus-reindex-gate-zero`): C9-1 emits the diagnostic snapshot the runner already computes but throws away → C9-2 tags the golden labels three ways in one DB-join → C9-3 adds the three corpus-level metrics → A8 un-welds the promotion gate from `meanNdcgDelta` to a per-class panel and routes its labels through the golden set.
 
-All seven candidates are **PENDING** — none shipped in Wave-0 (030 §14 ships an unrelated "C9" embedder-degrade candidate, not these C9-N metric lanes). Nothing here is benchmarked; the whole point of the harness is to make the rest measurable.
+All seven candidates are **PENDING**, none shipped in Wave-0 (030 §14 ships an unrelated "C9" embedder-degrade candidate, not these C9-N metric lanes). Nothing here is benchmarked, the whole point of the harness is to make the rest measurable.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,9 +70,9 @@ All seven candidates are **PENDING** — none shipped in Wave-0 (030 §14 ships 
 
 ### Definition of Done
 - [ ] Each candidate has a final status row in `spec.md` §14 (DONE with commit, or PENDING with its gate).
-- [ ] Shipped candidates have focused tests + scoped commits; existing 12 ranking metrics verified byte-identical when new lanes are off.
+- [ ] Shipped candidates have focused tests + scoped commits. Existing 12 ranking metrics verified byte-identical when new lanes are off.
 - [ ] The three corpus lanes (gate-verdict P/R/F1, ECE/Brier/bins, cold-rate/precision) compute and are unit-tested against fixtures.
-- [ ] The promotion gate scores ≥2 candidate-classes off one spine; ledger records class + metric-JSON.
+- [ ] The promotion gate scores ≥2 candidate-classes off one spine. Ledger records class + metric-JSON.
 - [ ] `validate.sh --strict` passes on this phase.
 <!-- /ANCHOR:quality-gates -->
 
@@ -83,18 +83,18 @@ All seven candidates are **PENDING** — none shipped in Wave-0 (030 §14 ships 
 
 ### Pattern
 
-An additive diagnostic-capture + corpus-metric layer hosted by the existing `eval_run_ablation` runner, plus a class-parameterization of the single promotion gate. No new runner, no second gate — one capture pass feeds three aggregation-layer metrics, and the existing gate spine gains a swappable per-class metric panel.
+An additive diagnostic-capture + corpus-metric layer hosted by the existing `eval_run_ablation` runner, plus a class-parameterization of the single promotion gate. No new runner, no second gate, one capture pass feeds three aggregation-layer metrics, and the existing gate spine gains a swappable per-class metric panel.
 
 ### Key Components
-- **Ablation runner (host)**: `lib/eval/ablation-framework.ts` — `runAblation` (`:554`), per-query baseline loop (capture region `:590-606`), aggregation `buildAggregatedMetrics` (`:486`), alignment guard call site (`:580-586`). Today captures only `EvalResult[]` (`:112`).
+- **Ablation runner (host)**: `lib/eval/ablation-framework.ts`, `runAblation` (`:554`), per-query baseline loop (capture region `:590-606`), aggregation `buildAggregatedMetrics` (`:486`), alignment guard call site (`:580-586`). Today captures only `EvalResult[]` (`:112`).
 - **Diagnostic-emit (C9-1)**: a parallel per-query capture of the gate verdict + per-result resolved confidence + tier/created_at, reusing `captureScoreSnapshot` (`pipeline/types.ts:411`), `resolveAbsoluteRelevance` (`:90`), `assessRequestQuality` (`confidence-scoring.ts:385`).
-- **Label tagging (C9-2)**: a one-join derivation of citability / binary / tier label views; `GroundTruthEntry.tier?/createdAt?` already typed (`eval-metrics.ts:29-45`); reuses the `SELECT FROM memory_index` join already in the alignment path (`ablation-framework.ts:247`).
-- **Corpus metrics (C9-3)**: three new fns in `eval-metrics.ts` attached at the aggregation layer — gate-verdict confusion + P/R/F1, ECE + Brier + reliability bins, cold-appearance-rate + cold-precision (cold EXTENDS the existing cold-start detection metric).
+- **Label tagging (C9-2)**: a one-join derivation of citability / binary / tier label views. `GroundTruthEntry.tier?/createdAt?` already typed (`eval-metrics.ts:29-45`), reuses the `SELECT FROM memory_index` join already in the alignment path (`ablation-framework.ts:247`).
+- **Corpus metrics (C9-3)**: three new fns in `eval-metrics.ts` attached at the aggregation layer, gate-verdict confusion + P/R/F1, ECE + Brier + reliability bins, cold-appearance-rate + cold-precision (cold EXTENDS the existing cold-start detection metric).
 - **Promotion gate (A8)**: `lib/feedback/shadow-scoring.ts` (spine: `selectHoldoutQueries:243`, `PROMOTION_THRESHOLD_WEEKS:32`, `MIN_NDCG_IMPROVEMENT:43`, `meanNdcgDelta:68`, `is_improvement:93`), `rank-metrics.ts` (`compareRanks:223`, `ndcgDelta:274`), `shadow-evaluation-runtime.ts` (label source `adaptive_signal_events` empty-map at `:137,:160`). Generalize to a per-class panel + golden-set labels + flag lifecycle.
 
 ### Data Flow
 
-`runAblation` runs each golden query against real `hybridSearchEnhanced` (today). C9-1 adds a parallel capture of the verdict/confidence/tier snapshot per query. C9-2's tagging step derives the three label views from graded relevance + a `memory_index` join. C9-3's three corpus metrics consume the snapshot + labels at `buildAggregatedMetrics` (corpus-level, not per-query). The promotion gate (A8) selects its 20% holdout, runs ≥2 cycles, and scores the candidate on the panel matching its class (R ranking → nDCG; G gate/calibration → ECE/Brier/P/R/FP), reading held-out labels from the golden set; a promote authorizes the flag-symbol graduation. Gate-zero (reindex + coverage guard) bounds the whole flow: no recall/calibration/cold number is trusted until coverage is whole.
+`runAblation` runs each golden query against real `hybridSearchEnhanced` (today). C9-1 adds a parallel capture of the verdict/confidence/tier snapshot per query. C9-2's tagging step derives the three label views from graded relevance + a `memory_index` join. C9-3's three corpus metrics consume the snapshot + labels at `buildAggregatedMetrics` (corpus-level, not per-query). The promotion gate (A8) selects its 20% holdout, runs ≥2 cycles and scores the candidate on the panel matching its class (R ranking → nDCG, G gate/calibration → ECE/Brier/P/R/FP), reading held-out labels from the golden set, and a promote authorizes the flag-symbol graduation. Gate-zero (reindex + coverage guard) bounds the whole flow: no recall/calibration/cold number is trusted until coverage is whole.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -104,13 +104,13 @@ An additive diagnostic-capture + corpus-metric layer hosted by the existing `eva
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `lib/eval/ablation-framework.ts` (`runAblation:554`, capture `:590-606`) | Per-query baseline loop capturing only `EvalResult[]` | Add a parallel diagnostic snapshot capture (C9-1) | snapshot-emit test; ranking metrics byte-identical when off |
+| `lib/eval/ablation-framework.ts` (`runAblation:554`, capture `:590-606`) | Per-query baseline loop capturing only `EvalResult[]` | Add a parallel diagnostic snapshot capture (C9-1) | snapshot-emit test, ranking metrics byte-identical when off |
 | `lib/eval/ablation-framework.ts` (`buildAggregatedMetrics:486`) | Aggregates ranking metrics corpus-level | Attach the three new corpus metrics (C9-3) here | corpus-metric aggregation test |
-| `lib/eval/eval-metrics.ts` (`GroundTruthEntry:29-45`, cold-start fn) | 12 ranking metrics + half-built tier/createdAt typing | Add C9-2 label tagging + C9-3 metric fns; extend cold-start | label-view unit test; ECE/Brier fixture test |
+| `lib/eval/eval-metrics.ts` (`GroundTruthEntry:29-45`, cold-start fn) | 12 ranking metrics + half-built tier/createdAt typing | Add C9-2 label tagging + C9-3 metric fns, extend cold-start | label-view unit test, ECE/Brier fixture test |
 | `lib/eval/data/` golden set + `ground-truth-data.ts` | Grades 1-3 positive-only, no tier rows | C9-2 derives tier/citability/binary views (data backfill, category-derived non-citable) | backfill-view test |
-| `lib/feedback/shadow-scoring.ts` (`:32,43,68,93,243`) | One gate welded to `meanNdcgDelta` | Swap a per-class metric panel; generalize the ledger (class + metric-JSON) | ranking-class regression test; CLASS-G panel test |
+| `lib/feedback/shadow-scoring.ts` (`:32,43,68,93,243`) | One gate welded to `meanNdcgDelta` | Swap a per-class metric panel, generalize the ledger (class + metric-JSON) | ranking-class regression test, CLASS-G panel test |
 | `lib/feedback/shadow-evaluation-runtime.ts` (`:137,160`) | Held-out labels from `adaptive_signal_events` (empty-map silent skip) | Route labels through the 110-query golden set (A8-5) | no-silent-cycle-skip test |
-| `lib/feedback/rank-metrics.ts` (`compareRanks:223`) | Intersection rank-delta | Unchanged (A8-3 recall-union panel rescoped out) | n/a — refuted headline, not built |
+| `lib/feedback/rank-metrics.ts` (`compareRanks:223`) | Intersection rank-delta | Unchanged (A8-3 recall-union panel rescoped out) | n/a, refuted headline, not built |
 
 Inventories are scoped to the harness + gate seams above. The gate-zero reindex (`memory_index_scan` / `memory_embedding_reconcile`) is owned by the sibling phase and consumed, not modified here.
 <!-- /ANCHOR:affected-surfaces -->
@@ -122,23 +122,23 @@ Inventories are scoped to the harness + gate seams above. The gate-zero reindex 
 
 ### Phase 1: Setup
 - [ ] Confirm gate-zero green: sibling `001-corpus-reindex-gate-zero` reindex run + `assertEmbeddingCoverage` passes.
-- [ ] Re-confirm the live promotion-gate entrypoint symbol (research-cited `:547` drifted); pin the surrounding confirmed constants.
+- [ ] Re-confirm the live promotion-gate entrypoint symbol (research-cited `:547` drifted), pin the surrounding confirmed constants.
 - [ ] Capture the ranking-ablation baseline for additivity byte-checks.
 
 ### Phase 2: Core Implementation (forced linear order)
 - [ ] C9-1: add the parallel per-query diagnostic snapshot (verdict + per-result confidence + tier/created_at) in `runAblation`.
-- [ ] C9-2: derive citability / binary / tier label views in one DB-join (`memory_index` join); category-derived non-citable.
-- [ ] C9-3: add the three corpus metrics at `buildAggregatedMetrics` (gate-verdict confusion + P/R/F1; ECE + Brier + bins; cold-rate + cold-precision).
-- [ ] A8-1: keep the gate spine, swap a per-class metric panel for the hardcoded `meanNdcgDelta`; generalize the ledger (class + metric-JSON).
+- [ ] C9-2: derive citability / binary / tier label views in one DB-join (`memory_index` join), category-derived non-citable.
+- [ ] C9-3: add the three corpus metrics at `buildAggregatedMetrics` (gate-verdict confusion + P/R/F1, ECE + Brier + bins, cold-rate + cold-precision).
+- [ ] A8-1: keep the gate spine, swap a per-class metric panel for the hardcoded `meanNdcgDelta`, generalize the ledger (class + metric-JSON).
 - [ ] A8-2: add the CLASS-G (ECE/Brier/P/R/FP) panel that unfreezes isotonic calibration.
 - [ ] A8-5: route held-out labels through the golden set instead of `adaptive_signal_events`.
 - [ ] A8-4: encode promote-on-evidence as the flag-symbol lifecycle (`isOptInEnabled`→`isFeatureEnabled`→rollback).
 
 ### Phase 3: Verification
-- [ ] Run Memory MCP typecheck, build, and touched-area Vitest suite.
+- [ ] Run Memory MCP typecheck, build and touched-area Vitest suite.
 - [ ] Verify the existing 12 ranking metrics byte-identical when the new lanes are off.
 - [ ] Unit-test the three corpus metrics against fixtures (confusion, ECE/Brier reliability diagram, cold-rate).
-- [ ] Test the gate scoring ≥2 classes off one spine; verify no silent cycle-skip after the label-source swap.
+- [ ] Test the gate scoring ≥2 classes off one spine, verify no silent cycle-skip after the label-source swap.
 - [ ] Run `validate.sh --strict` on this phase.
 <!-- /ANCHOR:phases -->
 
@@ -151,10 +151,10 @@ Inventories are scoped to the harness + gate seams above. The gate-zero reindex 
 |-----------|-------|-------|
 | Static | Memory MCP TypeScript contracts | `npm run typecheck` |
 | Build | Memory MCP package build | `npm run build` |
-| Diagnostic emit | C9-1 per-query snapshot present; ranking metrics byte-identical when off | focused Vitest |
-| Label views | C9-2 citability/binary/tier derivation; category-derived non-citable | focused Vitest |
-| Corpus metrics | C9-3 confusion+P/R/F1; ECE+Brier+bins; cold-rate+precision | fixture Vitest |
-| Promotion gate | A8-1 per-class panel; A8-2 CLASS-G; A8-5 golden-set labels; A8-4 lifecycle | focused Vitest |
+| Diagnostic emit | C9-1 per-query snapshot present, ranking metrics byte-identical when off | focused Vitest |
+| Label views | C9-2 citability/binary/tier derivation, category-derived non-citable | focused Vitest |
+| Corpus metrics | C9-3 confusion+P/R/F1, ECE+Brier+bins, cold-rate+precision | fixture Vitest |
+| Promotion gate | A8-1 per-class panel, A8-2 CLASS-G, A8-5 golden-set labels, A8-4 lifecycle | focused Vitest |
 | Packet docs | Level-3 structure, anchors, frontmatter | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
@@ -167,10 +167,10 @@ Inventories are scoped to the harness + gate seams above. The gate-zero reindex 
 |------------|------|--------|-------------------|
 | Gate-zero corpus reindex + coverage guard | Internal (sibling 001) | Pending | Blocks every trustworthy recall/calibration/cold number |
 | `eval_run_ablation` live runner + 110-query golden set | Internal | Built (~75-85%), flag-gated `SPECKIT_ABLATION=true` | Required host for all three lanes |
-| `GroundTruthEntry.tier?/createdAt?` typing | Internal | Typed; golden data lacks values | C9-2 is a backfill against this |
+| `GroundTruthEntry.tier?/createdAt?` typing | Internal | Typed, golden data lacks values | C9-2 is a backfill against this |
 | `captureScoreSnapshot`/`resolveAbsoluteRelevance`/`assessRequestQuality` | Internal | Live | Required for C9-1 capture |
-| Shadow-scoring gate (`lib/feedback/`) | Internal | Live, welded to `meanNdcgDelta`; entrypoint symbol drifted | Required for A8; re-confirm symbol |
-| Benefit micro-benchmark (the first measured delta) | Evidence | Not run | This harness IS what enables it; not a precondition to ship the harness |
+| Shadow-scoring gate (`lib/feedback/`) | Internal | Live, welded to `meanNdcgDelta`, entrypoint symbol drifted | Required for A8, re-confirm symbol |
+| Benefit micro-benchmark (the first measured delta) | Evidence | Not run | This harness IS what enables it, not a precondition to ship the harness |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -178,9 +178,9 @@ Inventories are scoped to the harness + gate seams above. The gate-zero reindex 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A new lane regresses the existing ranking ablation, the gate generalization breaks ranking-class promotion, or the label-source swap skips cycles.
-- **Procedure**: Revert the candidate commit (each is independent + additive). The C9-1 emit and the C9-3 metrics are separable; the A8 gate panel is separable from the C9 lanes.
-- **Data reversal**: No schema migration is introduced by the lanes (label tagging is a derived view). The gate ledger column addition (if taken) is additive and droppable; no data deletion.
+- **Trigger**: A new lane regresses the existing ranking ablation, the gate generalization breaks ranking-class promotion or the label-source swap skips cycles.
+- **Procedure**: Revert the candidate commit (each is independent + additive). The C9-1 emit and the C9-3 metrics are separable, the A8 gate panel is separable from the C9 lanes.
+- **Data reversal**: No schema migration is introduced by the lanes (label tagging is a derived view). The gate ledger column addition (if taken) is additive and droppable, no data deletion.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -221,13 +221,13 @@ Inventories are scoped to the harness + gate seams above. The gate-zero reindex 
 
 | Candidate | Rollback |
 |-----------|----------|
-| C9-1 | Remove the parallel snapshot capture; runner reverts to `EvalResult[]`-only. |
-| C9-2 | Remove the label-view derivation; golden set reverts to grades-only. |
-| C9-3 | Remove the three corpus-metric fns; the 12 ranking metrics stand alone. |
-| A8-1 | Revert the per-class panel; gate falls back to the `meanNdcgDelta` weld. |
-| A8-2 | Remove the CLASS-G panel; isotonic stays frozen at opt-in (status quo). |
+| C9-1 | Remove the parallel snapshot capture, runner reverts to `EvalResult[]`-only. |
+| C9-2 | Remove the label-view derivation, golden set reverts to grades-only. |
+| C9-3 | Remove the three corpus-metric fns, the 12 ranking metrics stand alone. |
+| A8-1 | Revert the per-class panel, gate falls back to the `meanNdcgDelta` weld. |
+| A8-2 | Remove the CLASS-G panel, isotonic stays frozen at opt-in (status quo). |
 | A8-5 | Revert label routing to `adaptive_signal_events`. |
-| A8-4 | Remove the flag-lifecycle encoding; promote stays a manual decision. |
+| A8-4 | Remove the flag-lifecycle encoding, promote stays a manual decision. |
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -254,7 +254,7 @@ gate-zero reindex + coverage guard (sibling 001-001)
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-The critical path is the forced linear C9 chain, not volume: C9-1 must emit the snapshot before C9-2 can tag against it, C9-2 before C9-3 can compute, and C9-3 before A8 has a CLASS-G panel to gate on. Gate-zero (sibling reindex) bounds the whole path — every recall/calibration/cold number is untrustworthy until coverage is whole. A8-1 is the riskiest item (it touches the live promote path); the C9 lanes are additive and lower-risk. The Wave-2 consumers (A2/A3/A5) are explicitly out of this phase — this harness is their precondition, not their delivery.
+The critical path is the forced linear C9 chain, not volume: C9-1 must emit the snapshot before C9-2 can tag against it, C9-2 before C9-3 can compute and C9-3 before A8 has a CLASS-G panel to gate on. Gate-zero (sibling reindex) bounds the whole path, every recall/calibration/cold number is untrustworthy until coverage is whole. A8-1 is the riskiest item (it touches the live promote path), the C9 lanes are additive and lower-risk. The Wave-2 consumers (A2/A3/A5) are explicitly out of this phase, this harness is their precondition, not their delivery.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -268,5 +268,5 @@ The critical path is the forced linear C9 chain, not volume: C9-1 must emit the 
 | M2 Snapshot emitted | C9-1 per-query diagnostic capture shipped + ranking metrics byte-identical |
 | M3 Labels tagged | C9-2 citability/binary/tier views derived in one join |
 | M4 Lanes live | C9-3 three corpus metrics compute + fixture-tested |
-| M5 Gate generalized | A8-1/A8-2/A8-5/A8-4 promote ≥2 classes off one spine; `validate.sh --strict` passes |
+| M5 Gate generalized | A8-1/A8-2/A8-5/A8-4 promote ≥2 classes off one spine, `validate.sh --strict` passes |
 <!-- /ANCHOR:milestones -->

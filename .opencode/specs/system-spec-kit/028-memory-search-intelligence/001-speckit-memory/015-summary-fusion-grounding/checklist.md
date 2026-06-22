@@ -44,11 +44,11 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence**: `spec.md` defines the fused weighted RRF lane, double-count avoidance, weight-slot wiring, and the world-summary grounding prelude.
+  - **Evidence**: `spec.md` defines the fused weighted RRF lane, double-count avoidance, weight-slot wiring and the world-summary grounding prelude.
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence**: `plan.md` records the baseline-first sequencing, lane wiring, inject-path retirement, weight retune, and prelude.
+  - **Evidence**: `plan.md` records the baseline-first sequencing, lane wiring, inject-path retirement, weight retune and prelude.
 - [x] CHK-003 [P1] Scope exclusions documented
-  - **Evidence**: `spec.md` excludes new summary/community computation, the semantic-edge-layer initiative, full ablation re-derivation, live shards, and host daemons.
+  - **Evidence**: `spec.md` excludes new summary/community computation, the semantic-edge-layer initiative, full ablation re-derivation, live shards and host daemons.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -76,7 +76,7 @@ _memory:
 - [x] CHK-021 [P0] TypeScript passes
   - **Evidence**: `npx tsc --noEmit` from `.opencode/skills/system-spec-kit/mcp_server` exits 0.
 - [ ] CHK-022 [P0] Fusion/summary and no-op suites pass
-  - **Evidence**: Lane-fusion, double-count, weight-wiring, prelude, and flags-off byte-identical tests pass.
+  - **Evidence**: Lane-fusion, double-count, weight-wiring, prelude and flags-off byte-identical tests pass.
 - [x] CHK-023 [P1] Strict spec validation passes
   - **Evidence**: `validate.sh --strict` for this phase reports 0 errors.
 <!-- /ANCHOR:testing -->
@@ -93,7 +93,7 @@ _memory:
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for the new lane
   - **Evidence**: All RRF/weight consumers updated, the lane adapter and weight slot are wired and tested.
 - [x] CHK-FIX-004 [P1] Evidence pinned to explicit command results
-  - **Evidence**: Baseline, tsc, vitest, validation, and comment-hygiene rows record exact commands.
+  - **Evidence**: Baseline, tsc, vitest, validation and comment-hygiene rows record exact commands.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -102,7 +102,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No live shard or host daemon used
-  - **Evidence**: Tests use `:memory:` SQLite fixtures, temp directories, and mocks only.
+  - **Evidence**: Tests use `:memory:` SQLite fixtures, temp directories and mocks only.
 - [ ] CHK-031 [P0] Flags-off no-op verified
   - **Evidence**: With both shadow flags off, recall serialization is byte-identical to the captured baseline.
 - [x] CHK-032 [P1] Lane degrades fail-open
@@ -115,9 +115,9 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks/checklist/summary synchronized
-  - **Evidence**: All docs point to the same scope, candidates, seams, and shadow-gating discipline.
+  - **Evidence**: All docs point to the same scope, candidates, seams and shadow-gating discipline.
 - [x] CHK-041 [P1] Open questions documented
-  - **Evidence**: `spec.md` §10 lists the fused-lane weight, prelude cadence, and slice-selection questions.
+  - **Evidence**: `spec.md` §10 lists the fused-lane weight, prelude cadence and slice-selection questions.
 - [x] CHK-042 [P1] Final verification results recorded
   - **Evidence**: Recorded in `implementation-summary.md` Verification section.
 <!-- /ANCHOR:docs -->

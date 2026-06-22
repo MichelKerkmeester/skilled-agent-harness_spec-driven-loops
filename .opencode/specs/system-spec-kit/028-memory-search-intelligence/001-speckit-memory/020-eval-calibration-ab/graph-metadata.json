@@ -39,7 +39,7 @@
       "reorder"
     ],
     "importance_tier": "important",
-    "status": "observe_only_consumer_utilities_implemented;_promotion_and_measured_a/b_deltas_pending",
+    "status": "in_progress",
     "key_files": [
       "lib/eval/ablation-framework.ts",
       "lib/eval/eval-metrics.ts",

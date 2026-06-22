@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "C4-B implementation summary: generated causal edges now have default-off content-addressed derived_id provenance through a helper, v40 additive migration, write-path wiring, tombstone preservation, focused tests, and packet validation."
+description: "C4-B implementation summary: generated causal edges now have default-off content-addressed derived_id provenance through a helper, v40 additive migration, write-path wiring, tombstone preservation, focused tests and packet validation."
 trigger_phrases:
   - "C4-B implementation summary"
   - "derived_id status"
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-C4-B gives generated causal edges a content-addressed `derived_id` without changing manual causal-edge behavior. The helper freezes the canonical recipe as `kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version`, normalizes absent anchors to `""`, and delegates hashing to the shipped `hashCanonicalJson` primitive. No third hash primitive was introduced.
+C4-B gives generated causal edges a content-addressed `derived_id` without changing manual causal-edge behavior. The helper freezes the canonical recipe as `kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version`, normalizes absent anchors to `""` and delegates hashing to the shipped `hashCanonicalJson` primitive. No third hash primitive was introduced.
 
-The schema moved from `SCHEMA_VERSION` 39 to 40. The v40 migration adds `causal_edges.derived_id TEXT`, backfills generated rows using the reserved legacy sentinel `legacy-pre-derived-id`, leaves duplicate computed identities `NULL` before creating `idx_causal_edges_derived_id`, and creates a partial unique index on non-null derived ids. The write path persists `derived_id` only for generated rows and only when `SPECKIT_DERIVED_ID_PROVENANCE=true`; manual rows keep `derived_id = NULL`.
+The schema moved from `SCHEMA_VERSION` 39 to 40. The v40 migration adds `causal_edges.derived_id TEXT`, backfills generated rows using the reserved legacy sentinel `legacy-pre-derived-id`, leaves duplicate computed identities `NULL` before creating `idx_causal_edges_derived_id` and creates a partial unique index on non-null derived ids. The write path persists `derived_id` only for generated rows and only when `SPECKIT_DERIVED_ID_PROVENANCE=true`. Manual rows keep `derived_id = NULL`.
 
 ### Files Changed
 
@@ -67,10 +67,10 @@ The schema moved from `SCHEMA_VERSION` 39 to 40. The v40 migration adds `causal_
 | `.opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts` | Modified | Added the causal-edge derived-id helper and constants over `hashCanonicalJson` |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modified | Added default-off `SPECKIT_DERIVED_ID_PROVENANCE` |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts` | Modified | Registered the new `SPECKIT_*` flag in the known list |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Added v40 schema migration, column/index creation, duplicate-safe backfill, and rollback helper for tests |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Added v40 schema migration, column/index creation, duplicate-safe backfill and rollback helper for tests |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modified | Wired generated-edge inserts/upserts to compute and persist derived ids behind the flag |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts` | Modified | Preserved `derived_id` in tombstone restore metadata when the column exists |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/derived-id-provenance.vitest.ts` | Added | Covered helper stability, migration/backfill, flag gating, replay, tombstone metadata, and rollback |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/derived-id-provenance.vitest.ts` | Added | Covered helper stability, migration/backfill, flag gating, replay, tombstone metadata and rollback |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts` | Modified | Updated the compatible schema fixture to include v40 derived-id provenance |
 <!-- /ANCHOR:what-built -->
 
@@ -105,11 +105,11 @@ SQLite compatibility changed the planning shape slightly: instead of rewriting `
 
 | Check | Result |
 |-------|--------|
-| Baseline before changes | PASS — `npm run typecheck`; focused existing migration/currentness/flag tests, 3 files / 30 tests |
-| Memory MCP typecheck | PASS — `npm run typecheck` exit 0 |
-| Memory MCP build | PASS — `npm run build` exit 0 |
-| Focused Vitest suite | PASS — 5 files / 41 tests (`derived-id-provenance`, schema migration/compatibility, edge presence, flag ceiling) |
-| Strict packet validation | PASS — `validate.sh --strict` exit 0 |
+| Baseline before changes | PASS, `npm run typecheck` plus focused existing migration/currentness/flag tests, 3 files / 30 tests |
+| Memory MCP typecheck | PASS, `npm run typecheck` exit 0 |
+| Memory MCP build | PASS, `npm run build` exit 0 |
+| Focused Vitest suite | PASS, 5 files / 41 tests (`derived-id-provenance`, schema migration/compatibility, edge presence, flag ceiling) |
+| Strict packet validation | PASS, `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,7 +117,7 @@ SQLite compatibility changed the planning shape slightly: instead of rewriting `
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Benchmark-only cost measurement remains pending.** C4-B ships for correctness; no derived-edge insert-cost benchmark or performance delta is claimed.
+1. **Benchmark-only cost measurement remains pending.** C4-B ships for correctness, no derived-edge insert-cost benchmark or performance delta is claimed.
 2. **Causal edges only.** Other derived artifact stores remain out of scope.
 3. **Write-time persistence is default-off.** Existing databases receive the additive schema/backfill, but new generated writes only populate `derived_id` when `SPECKIT_DERIVED_ID_PROVENANCE=true`.
 <!-- /ANCHOR:limitations -->

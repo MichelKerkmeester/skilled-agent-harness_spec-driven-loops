@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Corpus Reindex — Gate-Zero for Recall Benchmarking"
-description: "Breakdown for running the deferred corpus reindex and wiring the C9-4 embedding-coverage guard. Candidate is PENDING (not in 030 section 14) — all tasks open."
+title: "Tasks: Corpus Reindex - Gate-Zero for Recall Benchmarking"
+description: "Breakdown for running the deferred corpus reindex and wiring the C9-4 embedding-coverage guard. Candidate is PENDING (not in 030 section 14), all tasks open."
 trigger_phrases:
   - "corpus reindex tasks gate zero"
   - "embedding coverage guard tasks"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author reindex gate-zero task breakdown"
-    next_safe_action: "Start T001 — capture pre-reindex memory_health baseline"
+    next_safe_action: "Start T001, capture pre-reindex memory_health baseline"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Corpus Reindex — Gate-Zero for Recall Benchmarking
+# Tasks: Corpus Reindex - Gate-Zero for Recall Benchmarking
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
@@ -42,7 +42,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
-> **Candidate status:** `corpus-reindex-gate-zero` is **PENDING** — gate = needs-reindex-run (it IS the reindex). It is NOT (that table covers candidates 1-13; none is the reindex). The Wave-0 030 fixes did not require a whole corpus, so gate-zero was deferred there and is owned here. No tasks are pre-checked.
+> **Candidate status:** `corpus-reindex-gate-zero` is **PENDING**, gate = needs-reindex-run (it IS the reindex). It is NOT (that table covers candidates 1-13, none is the reindex). The Wave-0 030 fixes did not require a whole corpus, so gate-zero was deferred there and is owned here. No tasks are pre-checked.
 
 <!-- /ANCHOR:notation -->
 ---
@@ -50,21 +50,21 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [Baseline] [15m]
 
-- [ ] T001 Capture pre-reindex `memory_health` full report; record `pendingByStatus` (failed/partial/pending), `consistency` counts, `index.summary` [10m]
+- [ ] T001 Capture pre-reindex `memory_health` full report, record `pendingByStatus` (failed/partial/pending), `consistency` counts, `index.summary` [10m]
 - [ ] T002 Confirm `embeddingProvider.healthy === true` and no active competing index-scan job (`index.activeScanJob === false`) [5m]
 
 <!-- /ANCHOR:phase-1 -->
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation [Reindex — the gate-zero data operation] [1-3h, mostly re-embed wall-clock]
+## Phase 2: Implementation [Reindex - the gate-zero data operation] [1-3h, mostly re-embed wall-clock]
 
 ### Force reindex
-- [ ] T003 Run `memory_index_scan({ force: true, background: true })`; capture the returned `jobId` [5m]
-- [ ] T004 Poll `memory_index_scan_status({ jobId })` to completion; record final counts (deferred/complete_with_pending_vectors) [varies]
+- [ ] T003 Run `memory_index_scan({ force: true, background: true })`, capture the returned `jobId` [5m]
+- [ ] T004 Poll `memory_index_scan_status({ jobId })` to completion, record final counts (deferred/complete_with_pending_vectors) [varies]
 
 ### Embedding reconcile
-- [ ] T005 Run `memory_embedding_reconcile({ mode: 'dry-run' })`; record the bucket preview (vector-present-to-success, missing-to-retry) [10m]
+- [ ] T005 Run `memory_embedding_reconcile({ mode: 'dry-run' })`, record the bucket preview (vector-present-to-success, missing-to-retry) [10m]
 - [ ] T006 Run `memory_embedding_reconcile({ mode: 'apply' })` after confirming the dry-run buckets [10m]
 - [ ] T007 [P] Run a second `memory_embedding_reconcile` pass to measure the irreducible `failed` floor (resolve OPEN QUESTION 2) [10m]
 
@@ -75,14 +75,14 @@ _memory:
 ## Phase 3: Verification [Guard + Verify] [1-2h]
 
 ### Coverage delta
-- [ ] T008 Capture post-reindex `memory_health` full report; compute the before/after delta on `pendingByStatus` + `consistency` (regression-baseline-and-delta rule) [15m]
-- [ ] T009 Explain any residual `failed` rows (genuine provider failures vs recoverable); record the floor [10m]
+- [ ] T008 Capture post-reindex `memory_health` full report, compute the before/after delta on `pendingByStatus` + `consistency` (regression-baseline-and-delta rule) [15m]
+- [ ] T009 Explain any residual `failed` rows (genuine provider failures vs recoverable), record the floor [10m]
 
 ### Ground-truth re-alignment (conditional)
 - [ ] T010 If `assertGroundTruthAlignment` reports drift post-reindex, run `map-ground-truth-ids.ts --write` against the active DB and re-verify [20m]
 
 ### C9-4 coverage guard
-- [x] T011 Add `assertEmbeddingCoverage` (compute golden-set parent embedding coverage; throw-with-remediation below threshold) (`lib/eval/ablation-framework.ts`) [45m]
+- [x] T011 Add `assertEmbeddingCoverage` (compute golden-set parent embedding coverage, throw-with-remediation below threshold) (`lib/eval/ablation-framework.ts`) [45m]
 - [x] T012 Invoke it at the existing pre-flight call site `:580-586` alongside `assertGroundTruthAlignment` (`lib/eval/ablation-framework.ts`) [10m]
 
 ### Tests
@@ -104,7 +104,7 @@ _memory:
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Coverage restored (`pending` ~0, residual explained) with a recorded before/after delta
 - [ ] `assertEmbeddingCoverage` wired and verified (throws below / passes above)
-- [ ] `mcp_server/` vitest passing; checklist.md fully verified
+- [ ] `mcp_server/` vitest passing, checklist.md fully verified
 
 <!-- /ANCHOR:completion -->
 ---

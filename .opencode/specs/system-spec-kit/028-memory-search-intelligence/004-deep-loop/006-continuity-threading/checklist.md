@@ -65,7 +65,7 @@ Status: both candidates are DONE in this sub-phase. Neither was shipped in packe
 
 - [x] CHK-010 [P0] `node --check` passes on touched `.cjs` files. Evidence: `reduce-state.cjs` and `continuity-thread.cjs`.
 - [x] CHK-011 [P0] No new continuity-injection channel is introduced. Evidence: diff grep shows only reducer strategy anchor + prompt-pack variable.
-- [x] CHK-012 [P1] Error handling preserves prompt-pack throw-on-missing behavior. Evidence: renderer unchanged; production prompt-pack test passes with supplied variable.
+- [x] CHK-012 [P1] Error handling preserves prompt-pack throw-on-missing behavior. Evidence: renderer unchanged, production prompt-pack test passes with supplied variable.
 - [x] CHK-013 [P1] Reducer changes stay idempotent. Evidence: reducer idempotency test passes with carried-forward output.
 <!-- /ANCHOR:code-quality -->
 
@@ -101,7 +101,7 @@ Status: both candidates are DONE in this sub-phase. Neither was shipped in packe
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced by planning docs.
 - [x] CHK-031 [P0] No untrusted input path added in the plan.
-- [x] CHK-032 [P1] Prompt-pack variable additions, if used, remain supplied by the reducer and validated. Evidence: auto/confirm YAML supply `carried_forward_open_questions`; prompt-pack test passes.
+- [x] CHK-032 [P1] Prompt-pack variable additions, if used, remain supplied by the reducer and validated. Evidence: auto/confirm YAML supply `carried_forward_open_questions`, prompt-pack test passes.
 <!-- /ANCHOR:security -->
 
 ---

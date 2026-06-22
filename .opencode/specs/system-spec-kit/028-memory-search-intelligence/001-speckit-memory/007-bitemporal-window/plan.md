@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Bi-temporal Window for Spec-Kit Memory Causal + Lineage"
-description: "Ship the reader-transparent event-time fact-invalidation spearhead first, then the additive four-timestamp window (C3-B) on causal + lineage, chronology-scoped supersession (GR-temporal-ordering-invalidation), and the C3-D separation-of-concerns note - referencing the already-shipped skip-closed-in-sweep guard."
+description: "Ship the reader-transparent event-time fact-invalidation spearhead first, then the additive four-timestamp window (C3-B) on causal + lineage, chronology-scoped supersession (GR-temporal-ordering-invalidation) and the C3-D separation-of-concerns note - referencing the already-shipped skip-closed-in-sweep guard."
 trigger_phrases:
   - "bitemporal window memory plan"
   - "event-time invalidation plan"
@@ -162,7 +162,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: reader-transparency breaks, a focused test regresses, or the C3-B migration proves non-additive against `active_memory_projection`.
+- **Trigger**: reader-transparency breaks, a focused test regresses or the C3-B migration proves non-additive against `active_memory_projection`.
 - **Procedure**: revert the per-candidate scoped commit (each candidate is an independent, reversible hunk), the spearhead and C3-B land as separate commits so either reverts alone. Additive columns are forward-compatible (left in place, unread) if only the writer change is reverted.
 <!-- /ANCHOR:rollback -->
 
@@ -284,4 +284,4 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-See `decision-record.md` for the full ADRs. Headlines: (ADR-001) lineage is the canonical event-time writer, causal `invalid_at` is a derived projection, (ADR-002) retention TTL is EXCLUDED from the bi-temporal consumer set, (ADR-003) tombstone-sweep and temporal-close are separate concerns (C3-D), and skip-closed ships as defensive hardening, not a data-loss gate.
+See `decision-record.md` for the full ADRs. Headlines: (ADR-001) lineage is the canonical event-time writer, causal `invalid_at` is a derived projection, (ADR-002) retention TTL is EXCLUDED from the bi-temporal consumer set, (ADR-003) tombstone-sweep and temporal-close are separate concerns (C3-D) and skip-closed ships as defensive hardening, not a data-loss gate.

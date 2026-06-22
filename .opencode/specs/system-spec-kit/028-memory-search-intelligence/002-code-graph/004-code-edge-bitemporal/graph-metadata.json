@@ -39,7 +39,7 @@
       "as-of"
     ],
     "importance_tier": "important",
-    "status": "done_(schema_foundation_shipped;_consumers_default_off)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
       ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts",

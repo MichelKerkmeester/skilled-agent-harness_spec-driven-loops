@@ -39,7 +39,7 @@
       "trust"
     ],
     "importance_tier": "important",
-    "status": "partial._m_spare_only_eligibility_and_forget_allowlist_shipped,_three_candidates_pending",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/lib/feedback/feedback-retention-reducer.ts",
       "mcp_server/lib/governance/memory-retention-sweep.ts",

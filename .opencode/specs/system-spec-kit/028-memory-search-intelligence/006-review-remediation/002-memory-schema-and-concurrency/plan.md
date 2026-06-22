@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Memory Schema and Concurrency Remediation"
-description: "Fix approach for the derived-id split, in-lock embedding, and retention spare-only stale snapshot."
+description: "Fix approach for the derived-id split, in-lock embedding and retention spare-only stale snapshot."
 trigger_phrases:
   - "028 memory schema concurrency plan"
   - "derived-id consolidation retention fix plan"
@@ -69,7 +69,7 @@ Three independent storage-layer fixes. The derived-id fix aligns the migration b
 ## 3. ARCHITECTURE
 
 ### Pattern
-Storage-layer correctness fixes across identity, locking, and retention.
+Storage-layer correctness fixes across identity, locking and retention.
 
 ### Key Components
 - **Derived-id reconciliation**: align backfill and live rule_version so identity is content-addressed and stable.
@@ -88,7 +88,7 @@ For identity, the same edge content plus a single rule_version yields one `deriv
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `vector-index-schema.ts:1126` | v40 backfill hardcodes legacy rule_version | Align with live default | Backfilled and live edge share one `derived_id` |
-| `consolidation.ts:701` | Embedding inside `BEGIN IMMEDIATE` | Move out of tx; add maintenance handle | Lock held only for the DB write; marker refreshed |
+| `consolidation.ts:701` | Embedding inside `BEGIN IMMEDIATE` | Move out of tx and add maintenance handle | Lock held only for the DB write, marker refreshed |
 | `memory-retention-sweep.ts:612` | Applies stale spare-only decision | Re-validate spare axes in-tx | Concurrent trust raise protects the row |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -103,7 +103,7 @@ For identity, the same edge content plus a single rule_version yields one `deriv
 - [ ] Capture the current test baseline for the affected suites.
 
 ### Phase 2: Core Implementation
-- [ ] Align the v40 backfill rule_version with the live default; reconcile any existing skew.
+- [ ] Align the v40 backfill rule_version with the live default and reconcile any existing skew.
 - [ ] Move the semantic-edge embedding pass out of `BEGIN IMMEDIATE` and wrap it in a maintenance handle with explicit `refresh()`.
 - [ ] Re-validate the spare axes inside the retention transaction before the delete at `line 687`.
 
@@ -145,7 +145,7 @@ For identity, the same edge content plus a single rule_version yields one `deriv
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The backfill change touches live rows or a concurrency fix regresses a default path.
-- **Procedure**: Revert the specific fix, restore from the pre-change DB copy, and record the blocker.
+- **Procedure**: Revert the specific fix, restore from the pre-change DB copy and record the blocker.
 <!-- /ANCHOR:rollback -->
 
 ---

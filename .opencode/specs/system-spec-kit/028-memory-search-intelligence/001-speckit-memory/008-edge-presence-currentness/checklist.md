@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "QA checklist for the five PENDING temporal candidates (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness): pre-implementation gates, per-candidate code/test/security items, and Level-3 architecture/deploy/compliance verification. All implementation items pending, Wave-0 (030) confirmed none shipped."
+description: "QA checklist for the five PENDING temporal candidates (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness): pre-implementation gates, per-candidate code/test/security items and Level-3 architecture/deploy/compliance verification. All implementation items pending, Wave-0 (030) confirmed none shipped."
 trigger_phrases:
   - "verification checklist edge presence currentness"
   - "temporal recall QA"
@@ -46,7 +46,7 @@ _memory:
 | **[P1]** | Required | Must be verified or documented as residual follow-up |
 | **[P2]** | Optional | Can defer with rationale |
 
-> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0 - Wave-0 record). Implementation/test items are unchecked until each candidate is built behind its gate.
+> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0, Wave-0 record). Implementation/test items are unchecked until each candidate is built behind its gate.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -90,7 +90,7 @@ _memory:
   - **Evidence**: mode-specific tests, gated-capability typed error for AsKnownAt pre-C3-B.
 - [ ] CHK-023 [P0] memory_history tool parity-tested against `resolveLineageAsOf`/`inspectLineageChain`.
   - **Evidence**: parity test, default recall unchanged.
-- [ ] CHK-024 [P1] CG-temporal-query-extraction parses `QueryInterval`, filters by range, and falls through when no bounds.
+- [ ] CHK-024 [P1] CG-temporal-query-extraction parses `QueryInterval`, filters by range and falls through when no bounds.
   - **Evidence**: range-filter test + non-temporal fallthrough byte-check, benchmark for precision before go.
 - [ ] CHK-025 [P1] M-unforget-channel-disjointness invariant property-tested (or deferred with reason).
   - **Evidence**: 4-channel `(expired_at,status,edge)` disjointness property test + refuse-on-violation, defer if unforget/erasure half absent.
@@ -128,7 +128,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-050 [P1] `plan.md` covers all five candidates + the C3-B substrate dependency.
-  - **Evidence**: `plan.md` phase, dependency, and rollback tables.
+  - **Evidence**: `plan.md` phase, dependency and rollback tables.
 - [x] CHK-051 [P1] `tasks.md` has a task per candidate with its gate.
   - **Evidence**: T004-T009 map to the five candidates, T001-T003 are setup.
 - [x] CHK-052 [P1] `decision-record.md` records the load-bearing decisions.
@@ -231,7 +231,7 @@ _memory:
 - [x] CHK-141 [P1] Packet docs synchronized with `spec.md` §14 as candidates land.
 - [x] CHK-142 [P2] User-facing docs not required.
 - [x] CHK-143 [P2] Knowledge transfer documented.
-  - **Evidence**: research cross-refs name the roadmap, synthesis, 005-revisit, and 007-memory-systems sources.
+  - **Evidence**: research cross-refs name the roadmap, synthesis, 005-revisit and 007-memory-systems sources.
 <!-- /ANCHOR:docs-verify -->
 
 ---

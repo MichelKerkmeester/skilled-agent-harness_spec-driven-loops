@@ -45,7 +45,7 @@ _memory:
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/006-continuity-threading` |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
-| **Status** | IMPLEMENTED, verification green |
+| **Status** | complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,7 +60,7 @@ Implemented both continuity candidates. C1 now computes a self-owned carried-for
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs` | Added | Runtime helper for carried-forward open questions and answer-derived next focus |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modified | Parses `Questions Remaining`, writes carried-forward registry/strategy state, and derives next focus |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modified | Parses `Questions Remaining`, writes carried-forward registry/strategy state and derives next focus |
 | `.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl` | Modified | Surfaces carried-forward questions through the existing prompt-pack variable path |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Modified | Supplies `carried_forward_open_questions` to prompt rendering |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Modified | Supplies `carried_forward_open_questions` to prompt rendering |

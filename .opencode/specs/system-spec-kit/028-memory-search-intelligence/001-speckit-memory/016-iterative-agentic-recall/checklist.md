@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop)"
-description: "Level-3 verification checklist for the governed ReAct agentic memory_context strategy. Prove-first: governor bounds, flag-off isolation, deterministic-core-untouched, and benchmark evidence are all blockers."
+description: "Level-3 verification checklist for the governed ReAct agentic memory_context strategy. Prove-first: governor bounds, flag-off isolation, deterministic-core-untouched and benchmark evidence are all blockers."
 trigger_phrases:
   - "028 agentic tool loop checklist"
   - "CG-agentic-tool-loop checklist"

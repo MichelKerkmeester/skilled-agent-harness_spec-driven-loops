@@ -43,7 +43,7 @@ _memory:
 | **Testing** | Benchmark re-run, recall computation, strict spec validation |
 
 ### Overview
-This phase corrects two measurement defects in the per-flag benchmark driver, then re-runs criterion-4. The driver must route through the production default path and must genuinely disable the trigger lane during ablation. The runtime routing code is not changed; only the eval driver and the resulting benchmark doc change.
+This phase corrects two measurement defects in the per-flag benchmark driver, then re-runs criterion-4. The driver must route through the production default path and must genuinely disable the trigger lane during ablation. The runtime routing code is not changed. Only the eval driver and the resulting benchmark doc change.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,7 +78,7 @@ Eval-harness fidelity fix plus benchmark re-run.
 - **Doc update**: record the new deltas and supersede the prior measurement.
 
 ### Data Flow
-A benchmark query is routed by `routeQuery()` to its default channel subset, scored per flag off/on, aggregated into a Recall@20 delta, and written to `benchmark-status.md`. The trigger ablation removes the trigger lane and re-scores so its delta reflects a real channel removal.
+A benchmark query is routed by `routeQuery()` to its default channel subset, scored per flag off/on, aggregated into a Recall@20 delta and written to `benchmark-status.md`. The trigger ablation removes the trigger lane and re-scores so its delta reflects a real channel removal.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -147,7 +147,7 @@ A benchmark query is routed by `routeQuery()` to its default channel subset, sco
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The corrected driver produces unexplained or unstable deltas.
-- **Procedure**: Revert the driver change, retain the prior benchmark, and record the blocker before re-attempting.
+- **Procedure**: Revert the driver change, retain the prior benchmark and record the blocker before re-attempting.
 <!-- /ANCHOR:rollback -->
 
 ---

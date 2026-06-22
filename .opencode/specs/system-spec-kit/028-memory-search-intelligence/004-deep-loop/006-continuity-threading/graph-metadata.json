@@ -39,7 +39,7 @@
       "next"
     ],
     "importance_tier": "important",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",

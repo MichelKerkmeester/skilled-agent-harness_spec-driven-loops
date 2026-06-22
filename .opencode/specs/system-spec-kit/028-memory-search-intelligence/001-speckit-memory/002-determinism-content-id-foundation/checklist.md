@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Determinism + Content-ID Foundation"
-description: "QA checklist for the determinism + content-id foundation sub-phase: 5 shipped keystone candidates with commit evidence, 4 gated residue candidates, the cross-subsystem byte-compare contract, and strict packet validation."
+description: "QA checklist for the determinism + content-id foundation sub-phase: 5 shipped keystone candidates with commit evidence, 4 gated residue candidates, the cross-subsystem byte-compare contract and strict packet validation."
 trigger_phrases:
   - "verification checklist determinism content-id foundation"
   - "memory total comparator QA"
@@ -50,7 +50,7 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Foundation scope is documented and bounded to determinism + content-id seams.
-  - **Evidence**: `spec.md` sections 2, 3, and 13 define the 9-candidate set and exclude downstream consumers (C2-A/B/C, C4-A, C4-B).
+  - **Evidence**: `spec.md` sections 2, 3 and 13 define the 9-candidate set and exclude downstream consumers (C2-A/B/C, C4-A, C4-B).
 - [x] CHK-002 [P0] 028 research is treated as roadmap input, shipped record traced to packet 030.
  - **Evidence**: `spec.md` METADATA + section 13 cite `../research/research.md` and Wave-0 record.
 - [x] CHK-003 [P1] Candidate seams identified before implementation.
@@ -77,15 +77,15 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] two-content-id-primitives implemented, tested, and committed.
+- [x] CHK-020 [P0] two-content-id-primitives implemented, tested and committed.
   - **Evidence**: Commit `18c8582e33`, byte-identical hash outputs proven by parity test (`030` §14 cand 7).
-- [x] CHK-021 [P0] ANN-tie-stable-order implemented, tested, and committed.
+- [x] CHK-021 [P0] ANN-tie-stable-order implemented, tested and committed.
   - **Evidence**: Commit `bec0eed27f`, ANN ordering covered by the Memory search/fusion suite (`030` §14 cand 3).
-- [x] CHK-022 [P0] C5-B content-derived tiebreak implemented, tested, and committed.
+- [x] CHK-022 [P0] C5-B content-derived tiebreak implemented, tested and committed.
   - **Evidence**: Commit `bec0eed27f`, RRF + deterministic comparator tiebreak tests passed, primary order unchanged (verified) (`030` §14 cand 4).
-- [x] CHK-023 [P0] C-X1 `'active'` implemented, tested, reviewed, and committed.
+- [x] CHK-023 [P0] C-X1 `'active'` implemented, tested, reviewed and committed.
   - **Evidence**: Commit `65cfcea513`, opus review SHIP, default byte-identical traced (`030` §14 cand 5).
-- [x] CHK-024 [P0] C6-A rank-time decay clock implemented, tested, and committed.
+- [x] CHK-024 [P0] C6-A rank-time decay clock implemented, tested and committed.
   - **Evidence**: Commit `65cfcea513`, pure-refactor with restored no-timestamp skip guard (`030` §14 cand 5).
 - [x] CHK-025 [P0] C-X1-true-multichannel (`'configured'`) explicitly gated, not shipped.
   - **Evidence**: `spec.md` §13 / `tasks.md` T006 record gate shared-infra-dep (Wave-1 C2-B consumer + fusion-bonus unit test).
@@ -111,7 +111,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Identity-hardening is not shipped against the wrong threat model.
   - **Evidence**: The dual-class / clock-skew pair is documented-NO-GO for a single-trusted-host tool.
 - [x] CHK-FIX-005 [P1] Determinism axes are documented.
-  - **Evidence**: `plan.md` affected-surfaces names the ANN-below-RRF, comparator/output-sort, decay-clock, and render-order axes.
+  - **Evidence**: `plan.md` affected-surfaces names the ANN-below-RRF, comparator/output-sort, decay-clock and render-order axes.
 - [x] CHK-FIX-006 [P1] Evidence is pinned to commits and research citations.
   - **Evidence**: `tasks.md` records commit hashes, `spec.md` cites per-iteration research (iter-3/7/14/23/31).
 <!-- /ANCHOR:fix-completeness -->
@@ -122,7 +122,7 @@ _memory:
 ## Security
 
 - [x] CHK-040 [P0] No secrets introduced.
-  - **Evidence**: Candidate changes are hashing, ranking, and fusion logic, no secret-bearing files in scope.
+  - **Evidence**: Candidate changes are hashing, ranking and fusion logic, no secret-bearing files in scope.
 - [x] CHK-041 [P1] Identity-hardening threat model is honest.
   - **Evidence**: Clock-skew / dual-class are NOT shipped because their threat model (remote / multi-writer adversary) does not apply to a single-trusted-host MCP (`spec.md` NFR-S01).
 <!-- /ANCHOR:security -->
@@ -133,7 +133,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-050 [P1] `plan.md` covers all 9 candidates and the sequencing.
-  - **Evidence**: `plan.md` phase, effort, and rollback tables list shipped and gated candidates.
+  - **Evidence**: `plan.md` phase, effort and rollback tables list shipped and gated candidates.
 - [x] CHK-051 [P1] `tasks.md` has one task per candidate.
   - **Evidence**: T001-T009 map to the 9 candidates, T010-T013 cover verification/closeout.
 - [x] CHK-052 [P1] No leakage into packet 030 or sibling-subsystem code.
@@ -150,7 +150,7 @@ _memory:
 - [x] CHK-060 [P1] Only scoped sub-phase docs are authored.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md` under this sub-phase folder.
 - [x] CHK-061 [P1] Unrelated and shipped-record files remain untouched.
-  - **Evidence**: No edits to packet 030, the 028 parent, or sibling research children.
+  - **Evidence**: No edits to packet 030, the 028 parent or sibling research children.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -229,7 +229,7 @@ _memory:
 - [x] CHK-140 [P1] Level-3 docs exist.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md` present in this sub-phase.
 - [x] CHK-141 [P1] Docs are synchronized with `spec.md` section 13.
-  - **Evidence**: Candidate statuses and commits match across `spec.md`, `plan.md`, and `tasks.md`.
+  - **Evidence**: Candidate statuses and commits match across `spec.md`, `plan.md` and `tasks.md`.
 - [x] CHK-142 [P2] Knowledge transfer documented.
   - **Evidence**: `spec.md` OPEN QUESTIONS names the fusion-bonus unit-test gate and the multi-writer-revival question.
 <!-- /ANCHOR:docs-verify -->

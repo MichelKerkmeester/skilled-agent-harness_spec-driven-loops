@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Procedural Reliability Memory (benchmark-first, PROXY-ONLY)"
-description: "Verification checklist for the Memory MCP procedural-reliability cluster. This is a planning-only re-plan: planning/spec-quality items are verified [x], all implementation, benchmark, schema, and deployment items remain [ ] PENDING because no candidate ships here (none in 030 Wave-0). The PROXY-ONLY gate and the per-candidate refutation verdicts are the load-bearing checks."
+description: "Verification checklist for the Memory MCP procedural-reliability cluster. This is a planning-only re-plan: planning/spec-quality items are verified [x], all implementation, benchmark, schema and deployment items remain [ ] PENDING because no candidate ships here (none in 030 Wave-0). The PROXY-ONLY gate and the per-candidate refutation verdicts are the load-bearing checks."
 trigger_phrases:
   - "procedural reliability checklist"
   - "proxy only gate verification"
@@ -124,7 +124,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks/checklist synchronized
-  - **Evidence**: all four docs share the four candidates, the gates, and the 0-done/4-pending count
+  - **Evidence**: all four docs share the four candidates, the gates and the 0-done/4-pending count
 - [x] CHK-041 [P1] GRAFT-not-episode-model decision recorded
   - **Evidence**: spec.md §3 Out of Scope + plan.md §3 Pattern [`iter-018.md:16`]
 - [x] CHK-042 [P2] 030 Wave-0 cross-reference recorded (none of the four shipped)
@@ -228,7 +228,7 @@ _memory:
   - **Evidence**: `validate.sh --strict` ANCHORS_VALID + TEMPLATE_HEADERS pass
 - [x] CHK-141 [P1] Per-candidate STATUS table present with gate + 030 commit column
   - **Evidence**: spec.md §14 (all four PENDING, 030 commit column = none)
-- [x] CHK-142 [P2] RELATED DOCUMENTS link the research, synthesis, external source, and 030 record
+- [x] CHK-142 [P2] RELATED DOCUMENTS link the research, synthesis, external source and 030 record
   - **Evidence**: spec.md RELATED DOCUMENTS
 
 <!-- /ANCHOR:docs-verify -->

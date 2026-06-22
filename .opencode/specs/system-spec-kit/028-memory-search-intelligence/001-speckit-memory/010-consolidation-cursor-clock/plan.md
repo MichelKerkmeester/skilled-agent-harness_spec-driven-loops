@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain + crash-safety hardening)"
-description: "Sequenced approach for landing the longest Memory consolidation chain from packet 028: receipts default-on, an explicit per-item consolidation cursor, a clock-driver, and the crash-safety hardening that the cursor needs, each independently reversible and unit-tested in strict dependency order."
+description: "Sequenced approach for landing the longest Memory consolidation chain from packet 028: receipts default-on, an explicit per-item consolidation cursor, a clock-driver and the crash-safety hardening that the cursor needs, each independently reversible and unit-tested in strict dependency order."
 trigger_phrases:
   - "consolidation cursor plan"
   - "c4-a c4-c c-g1 sequencing"
@@ -49,7 +49,7 @@ _memory:
 | **Testing** | vitest (focused per-seam suites incl. `handleMemoryUpdate`) |
 
 ### Overview
-Land the longest Memory chain from packet 028 in strict dependency order: C4-A (receipts default-on, save/update-path scoped) is the chain head whose content-addressed id and receipt mechanism C-G1 and Transport-idempotency reuse; C4-C adds an explicit per-item consolidation state machine over the existing background/deferred seam; C-G1 wraps the existing save-triggered cursor in a clock-driver. The crash-safety candidates (contiguous-prefix-stop, durable-retry, transport-idempotency, dead-letter) harden that same cursor. All candidates are PENDING — none shipped in the 030 Wave-0 record (C4-A was explicitly DEFERRED there).
+Land the longest Memory chain from packet 028 in strict dependency order: C4-A (receipts default-on, save/update-path scoped) is the chain head whose content-addressed id and receipt mechanism C-G1 and Transport-idempotency reuse. C4-C adds an explicit per-item consolidation state machine over the existing background/deferred seam. C-G1 wraps the existing save-triggered cursor in a clock-driver. The crash-safety candidates (contiguous-prefix-stop, durable-retry, transport-idempotency, dead-letter) harden that same cursor. All candidates are PENDING, none shipped in the 030 Wave-0 record (C4-A was explicitly DEFERRED there).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -74,17 +74,17 @@ Land the longest Memory chain from packet 028 in strict dependency order: C4-A (
 ## 3. ARCHITECTURE
 
 ### Pattern
-Idempotent async-consolidation state machine over an existing durable cursor — content-addressed identity + bounded retry + per-item state, reused as a shared primitive by the 003 advisor projection.
+Idempotent async-consolidation state machine over an existing durable cursor, content-addressed identity + bounded retry + per-item state, reused as a shared primitive by the 003 advisor projection.
 
 ### Key Components
-- **Idempotency receipts** (`idempotency-receipts.ts`): content-derived `{operation, contentHash, requestFingerprintHash, payloadHash}` receipts with `miss|replay|conflict`; the C4-A flip + content-addressed id is the chain head.
-- **Consolidation cursor** (`consolidation.ts:518-548`): durable cadence-gated cursor (`consolidation_state.last_run_at`, weekly interval, idempotent locked cycle) — already built, save-triggered only.
-- **Background/deferred enrichment seam** (`memory-index.ts:293-294,:1376-1377`; `post-insert.ts:289-298`): where C4-C's per-item `raw|in_progress|consolidated|failed` state and the dead-letter terminal state live.
+- **Idempotency receipts** (`idempotency-receipts.ts`): content-derived `{operation, contentHash, requestFingerprintHash, payloadHash}` receipts with `miss|replay|conflict`. The C4-A flip + content-addressed id is the chain head.
+- **Consolidation cursor** (`consolidation.ts:518-548`): durable cadence-gated cursor (`consolidation_state.last_run_at`, weekly interval, idempotent locked cycle), already built, save-triggered only.
+- **Background/deferred enrichment seam** (`memory-index.ts:293-294,:1376-1377`, `post-insert.ts:289-298`): where C4-C's per-item `raw|in_progress|consolidated|failed` state and the dead-letter terminal state live.
 - **Clock host** (`session-manager.ts:234-283` registerInterval): where C-G1's interval driver attaches.
-- **Retry budget** (`retry-budget.ts:8-13,:44-46`): in-memory `BoundedMap` today; M-durable-retry adds Transient/Fatal + store-counted attempts.
+- **Retry budget** (`retry-budget.ts:8-13,:44-46`): in-memory `BoundedMap` today. M-durable-retry adds Transient/Fatal + store-counted attempts.
 
 ### Data Flow
-save → (C4-A receipt dedup) → deferred enrichment write (`raw`) → C4-C cursor picks up → consolidation tick (`in_progress`→`consolidated`/`failed`) → contiguous-prefix cursor advance; the C-G1 clock-driver fires the same tick on cadence, gated by the LT turns_counter.
+save → (C4-A receipt dedup) → deferred enrichment write (`raw`) → C4-C cursor picks up → consolidation tick (`in_progress`→`consolidated`/`failed`) → contiguous-prefix cursor advance. The C-G1 clock-driver fires the same tick on cadence, gated by the LT turns_counter.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -96,19 +96,19 @@ Applies because C4-A touches a public save/update path and several candidates to
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `idempotency-receipts.ts` | flag-gated receipt store | update (default-on, scoped) | `handleMemoryUpdate` suite green; replay re-derives same id |
+| `idempotency-receipts.ts` | flag-gated receipt store | update (default-on, scoped) | `handleMemoryUpdate` suite green. Replay re-derives same id |
 | `memory-save.ts:3547,3655,3775` | save handler + receipt + IPC token sink | update | unit test: commit-then-die replay deduped |
 | `memory-update.ts` (`handleMemoryUpdate`) | update path consumer of the flag | not-broken (regression gate) | 55/55 update tests stay green |
 | `near-duplicate.ts:95` | overloaded under the same flag | update OR explicitly-accepted | decision-record ADR-001 |
 | `consolidation.ts:518-548` | durable save-triggered cursor | update (per-item state + clock) | startup-reset + prefix-stop tests |
 | `post-insert.ts:289-298` | boot enrichment replay | update (bounded + terminal failed) | poison-pill terminates test |
-| `retry-budget.ts` | in-memory ephemeral budget | update (Transient/Fatal; store-counted optional) | restart does not grant fresh budget |
+| `retry-budget.ts` | in-memory ephemeral budget | update (Transient/Fatal, store-counted optional) | restart does not grant fresh budget |
 | `launcher-session-proxy.cjs:151` | daemon IPC | update (forward token) | token reaches the handler |
 
 Required inventories:
 - Consumers of the `SPECKIT_MEMORY_IDEMPOTENCY` flag: `rg -n 'SPECKIT_MEMORY_IDEMPOTENCY' mcp_server` (catches the near-dup-hint coupling at `near-duplicate.ts:95` + the receipt path at `memory-index.ts:697`).
 - Consumers of the deferred/background status column: `rg -n 'post_insert_enrichment_status|deferred|in_progress' mcp_server`.
-- Invariant (apply-once): a re-run over already-`consolidated` items must be a no-op; a replay must re-derive the same content-addressed id.
+- Invariant (apply-once): a re-run over already-`consolidated` items must be a no-op. A replay must re-derive the same content-addressed id.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -117,23 +117,23 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Chain head + scoping (C4-A)
-- [ ] Read the receipt + update-path seams; reproduce the 11-test `handleMemoryUpdate` regression with the flag on
+- [ ] Read the receipt + update-path seams, reproduce the 11-test `handleMemoryUpdate` regression with the flag on
 - [ ] Scope receipts to the save path (decouple from the update path / split the near-dup-hint coupling per ADR-001)
-- [ ] Default-on with the content-addressed id; verify replay = dedup no-op
+- [ ] Default-on with the content-addressed id, verify replay = dedup no-op
 
 ### Phase 2: Cursor + state machine (C4-C) + prefix/dead-letter hardening
 - [ ] Add per-item `raw|in_progress|consolidated|failed` over the deferred seam
-- [ ] M-contiguous-prefix-stop: stop at first non-consolidating item; prefix-only cursor; startup `in_progress`→`raw` reset
-- [ ] Enrichment-retry-budget-deadletter: bound boot-replay; terminal `failed`; queue-exclude poison-pill
+- [ ] M-contiguous-prefix-stop: stop at first non-consolidating item, prefix-only cursor, startup `in_progress`→`raw` reset
+- [ ] Enrichment-retry-budget-deadletter: bound boot-replay, terminal `failed`, queue-exclude poison-pill
 - [ ] M-durable-retry-budget: Transient/Fatal split (store-counted attempts pending user decision)
 
 ### Phase 3: Clock + cadence + quality + transport, then verify
-- [ ] C-G1: registerInterval driver around the existing cursor (Skip missed-tick; log-and-continue; sits on C4-A)
+- [ ] C-G1: registerInterval driver around the existing cursor (Skip missed-tick, log-and-continue, sits on C4-A)
 - [ ] LT-turn-cadence-trigger: persistent turns_counter gate (`% frequency`, default 5)
 - [ ] Transport-idempotency: thread the token through IPC into the handler
 - [ ] M-detail-retention-guard: anti-lossy guard (gated on entity confidence scoring) OR defer
 - [ ] M-capture-near-dup-verdict: record REFUTED disposition (no code)
-- [ ] tsc/build + focused tests + `validate.sh --strict`; adversarial review; scoped commits
+- [ ] tsc/build + focused tests + `validate.sh --strict`, adversarial review, scoped commits
 <!-- /ANCHOR:phases -->
 
 ---
@@ -143,9 +143,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | receipt replay/conflict; update-path regression; cursor state transitions; prefix-stop; startup reset; dead-letter termination; Transient/Fatal; turns_counter gate | vitest |
-| Integration | commit-then-die replay across IPC; clock-driver tick advancing the existing cursor | vitest + daemon harness |
-| Manual | health output gauges (`lag`/pending/failed if surfaced); a forced poison-pill backlog | CLI |
+| Unit | receipt replay/conflict, update-path regression, cursor state transitions, prefix-stop, startup reset, dead-letter termination, Transient/Fatal, turns_counter gate | vitest |
+| Integration | commit-then-die replay across IPC, clock-driver tick advancing the existing cursor | vitest + daemon harness |
+| Manual | health output gauges (`lag`/pending/failed if surfaced), a forced poison-pill backlog | CLI |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -167,7 +167,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: any candidate regresses an existing suite (esp. `handleMemoryUpdate`) or the clock-driver double-applies.
-- **Procedure**: each candidate is a scoped, independently reversible commit on the 028 branch; revert the single hunk. C4-A remains flag-reversible (`SPECKIT_MEMORY_IDEMPOTENCY` back to off) with inert receipt-table residue (TTL-pruned).
+- **Procedure**: each candidate is a scoped, independently reversible commit on the 028 branch. Revert the single hunk. C4-A remains flag-reversible (`SPECKIT_MEMORY_IDEMPOTENCY` back to off) with inert receipt-table residue (TTL-pruned).
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -216,8 +216,8 @@ Phase 1 (C4-A chain head) ──► Phase 2 (C4-C cursor + hardening) ──► 
 4. Re-run the focused suite + `validate.sh --strict`.
 
 ### Data Reversal
-- **Has data migrations?** No (state columns are additive on existing tables; no SCHEMA_VERSION bump in scope).
-- **Reversal procedure**: additive state columns are inert when unused; new `failed` rows are queue-excluded, not destructive.
+- **Has data migrations?** No (state columns are additive on existing tables, no SCHEMA_VERSION bump in scope).
+- **Reversal procedure**: additive state columns are inert when unused. New `failed` rows are queue-excluded, not destructive.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -247,7 +247,7 @@ Phase 1 (C4-A chain head) ──► Phase 2 (C4-C cursor + hardening) ──► 
 | C4-C | C4-A | per-item consolidation state | C-G1, prefix-stop |
 | M-contiguous-prefix-stop | C4-C | crash-safe prefix cursor | None |
 | Enrichment-retry-budget-deadletter | C4-C | terminal `failed` state | None |
-| M-durable-retry-budget | (independent; pairs with dead-letter) | Transient/Fatal classification | None |
+| M-durable-retry-budget | (independent, pairs with dead-letter) | Transient/Fatal classification | None |
 | Transport-idempotency | C4-A | IPC-deduped save | None |
 | C-G1 | C4-A, C4-C | clock-driven tick | None |
 | LT-turn-cadence-trigger | (pairs with C-G1) | turns_counter gate | None |
@@ -279,7 +279,7 @@ Phase 1 (C4-A chain head) ──► Phase 2 (C4-C cursor + hardening) ──► 
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | C4-A re-scoped + default-on | `handleMemoryUpdate` 55/55 green; replay deduped | Phase 1 |
+| M1 | C4-A re-scoped + default-on | `handleMemoryUpdate` 55/55 green, replay deduped | Phase 1 |
 | M2 | Cursor crash-safe | startup reset + prefix-stop + dead-letter tests pass | Phase 2 |
 | M3 | Clock-driven + cadence-gated | interval tick advances cursor idempotently | Phase 3 |
 <!-- /ANCHOR:milestones -->
@@ -288,4 +288,4 @@ Phase 1 (C4-A chain head) ──► Phase 2 (C4-C cursor + hardening) ──► 
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-See `decision-record.md` for ADR-001 (C4-A flag coupling), ADR-002 (durable-retry vs restart-self-heal), and ADR-003 (cursor reuse, not a new episode model). The detailed records live in that file; this section is the pointer.
+See `decision-record.md` for ADR-001 (C4-A flag coupling), ADR-002 (durable-retry vs restart-self-heal) and ADR-003 (cursor reuse, not a new episode model). The detailed records live in that file. This section is the pointer.

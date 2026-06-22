@@ -57,12 +57,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1, and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split, and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding, and an explicit verification contract.
+The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding and an explicit verification contract.
 
 ### Purpose
-Turn the review-report findings into independently executable remediation phases without performing the fixes here. Each child phase owns one finding family, cites the exact `file:line` and quoted fix intent from `../review-report.md`, and records the checks that must pass when the fix runs. The parent records the convergence note and the per-child roster only.
+Turn the review-report findings into independently executable remediation phases without performing the fixes here. Each child phase owns one finding family, cites the exact `file:line` and quoted fix intent from `../review-report.md` and records the checks that must pass when the fix runs. The parent records the convergence note and the per-child roster only.
 
-> **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning, tasks, and checklists live in the child phase folders listed below.
+> **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning, tasks and checklists live in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -71,9 +71,9 @@ Turn the review-report findings into independently executable remediation phases
 ## 3. SCOPE
 
 ### In Scope
-- Remediation planning for the 6 confirmed P1 findings, split into eval-benchmark fidelity, memory schema and concurrency, and doc accuracy.
+- Remediation planning for the 6 confirmed P1 findings, split into eval-benchmark fidelity, memory schema and concurrency and doc accuracy.
 - A scope-and-triage pass over the 91 P2 findings grouped by review lens, marking each group fix-now versus accept-as-is.
-- Per-phase discovery, fix intent, and verification contracts quoted from `../review-report.md`.
+- Per-phase discovery, fix intent and verification contracts quoted from `../review-report.md`.
 
 ### Out of Scope
 - Executing any code fix at the parent level (the child phases own execution, dispatched to separate seats).
@@ -103,14 +103,14 @@ Turn the review-report findings into independently executable remediation phases
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-eval-benchmark-fidelity/` | P1-1 forceAllChannels + P1-3 trigger-ablation no-op; fix driver, re-run criterion-4 benchmark | PENDING |
+| 001 | `001-eval-benchmark-fidelity/` | P1-1 forceAllChannels + P1-3 trigger-ablation no-op, fix driver, re-run criterion-4 benchmark | PENDING |
 | 002 | `002-memory-schema-and-concurrency/` | P1-2 derived-id split + P1-4 embedding-in-lock + P1-5 retention spare-only stale snapshot | PENDING |
 | 003 | `003-doc-accuracy/` | P1-6 changelog shipped-vs-Planned mislabel + 12-strong doc staleness cluster | PENDING |
 | 004 | `004-p2-triage/` | 91 P2 grouped by lens, each marked fix-now or accept-as-is (scope only) | PENDING |
 
 ### Convergence Note
 
-The deep review verdict is **NOT CONVERGED**. The last three deep-dive iterations did not stop surfacing new P1 (the largest confirmed-P1 spike, 13, landed in the second-to-last iteration), so there is no clean trailing window. After phases 001-003 fix the confirmed P1 and phase 004 closes its fix-now P2 set, the deep review **MUST be re-run until a round surfaces zero new P0/P1**, then this remediation can be declared release-clean. A single clean round is the convergence gate; phase 001 also supersedes the prior criterion-4 measurement and must re-run that benchmark.
+The deep review verdict is **NOT CONVERGED**. The last three deep-dive iterations did not stop surfacing new P1 (the largest confirmed-P1 spike, 13, landed in the second-to-last iteration), so there is no clean trailing window. After phases 001-003 fix the confirmed P1 and phase 004 closes its fix-now P2 set, the deep review **MUST be re-run until a round surfaces zero new P0/P1**, then this remediation can be declared release-clean. A single clean round is the convergence gate. Phase 001 also supersedes the prior criterion-4 measurement and must re-run that benchmark.
 
 ### Phase Transition Rules
 

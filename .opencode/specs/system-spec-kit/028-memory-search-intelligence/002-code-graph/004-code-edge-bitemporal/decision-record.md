@@ -37,7 +37,7 @@ _memory:
 
 ## 2026-06-19 Amendment
 
-User approval unblocked the schema foundation while keeping consumer behavior gated. `code_edges.valid_at` / `invalid_at`, SCHEMA_VERSION 6->7, UP/DOWN/BACKFILL helpers, fail-closed idempotent migration tests, and fresh-init support are DONE. ADR-001 remains the decision for unbenchmarked temporal consumers: no default read/write behavior consumes these columns unless a future path explicitly opts into `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.
+User approval unblocked the schema foundation while keeping consumer behavior gated. `code_edges.valid_at` / `invalid_at`, SCHEMA_VERSION 6->7, UP/DOWN/BACKFILL helpers, fail-closed idempotent migration tests and fresh-init support are DONE. ADR-001 remains the decision for unbenchmarked temporal consumers: no default read/write behavior consumes these columns unless a future path explicitly opts into `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.
 
 <!-- ANCHOR:adr-001 -->
 ## ADR-001: Q1-C1 is DEFER-speculative for its consumers - ship only the additive schema foundation, gate the rest
@@ -70,7 +70,7 @@ The cluster (Q1-C1 validity columns, Q1-C1-views live-view, CG-edge-bitemporal-l
 
 **We chose**: ship ONLY the additive Q1-C1 schema foundation - `code_edges.valid_at`/`invalid_at`, UP/DOWN/BACKFILL helpers, fail-closed idempotent migration, default-off - landed 2026-06-19 in commit `1c39235e36` (the 6->7 migration, SCHEMA_VERSION is now 8). DEFER the four consumers (Q1-C1-views live-view, edge-lifecycle, symbol-timeline), each marked PENDING (gated). The consumers are un-deferred ONLY when a real as-of/time-travel consumer is named AND Q6-C1 has shipped.
 
-**How it works**: the gated plan, the atomic co-ship boundary, the live-view keystone, and the aionforge schema reference are preserved here so the work is ready IF a consumer appears. Until then, the real edge-staleness bug is routed to the sibling phase, and nothing migrates.
+**How it works**: the gated plan, the atomic co-ship boundary, the live-view keystone and the aionforge schema reference are preserved here so the work is ready IF a consumer appears. Until then, the real edge-staleness bug is routed to the sibling phase, and nothing migrates.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -84,7 +84,7 @@ The cluster (Q1-C1 validity columns, Q1-C1-views live-view, CG-edge-bitemporal-l
 | Build the cluster now | Closes the bi-temporal gap | No consumer, redundant safety, doesn't fix the real bug, high blast-radius for zero realized value | 2/10 |
 | Build a partial (columns only, no views/lifecycle) | Smaller | Q1-C1 without the live-view leaks the migration across the read surface, still no consumer | 3/10 |
 
-**Why this one**: a high-blast-radius schema migration with no consumer, a redundant safety story, and no fix for the actual bug is the textbook speculative build the campaign was designed to catch.
+**Why this one**: a high-blast-radius schema migration with no consumer, a redundant safety story and no fix for the actual bug is the textbook speculative build the campaign was designed to catch.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -153,7 +153,7 @@ The cluster (Q1-C1 validity columns, Q1-C1-views live-view, CG-edge-bitemporal-l
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-IF the cluster is ever un-deferred, the validity columns (Q1-C1) and the live current-view (Q1-C1-views) must not land separately. Q1-C1 alone would mean every default reader has to learn the `invalid_at IS NULL` filter, leaking the migration across the whole read surface - high blast-radius, easy to get wrong, easy to forget a site. The aionforge reference (`relates_to.rs:313-332`, `store.rs:894-927`, 002 iter-018) solves this with a single live-view chokepoint: define "current" exactly ONCE as a SQL VIEW (`WHERE invalid_at IS NULL AND status NOT IN (superseded, quarantined)`), force all default reads through it, and let as-of/audit readers deliberately bypass. The migration shares ONE `code-graph-db.ts` transaction boundary (the reindex DELETE+INSERT swap), one `d.transaction()` on the serialized WAL connection (`:511`).
+IF the cluster is ever un-deferred, the validity columns (Q1-C1) and the live current-view (Q1-C1-views) must not land separately. Q1-C1 alone would mean every default reader has to learn the `invalid_at IS NULL` filter, leaking the migration across the whole read surface - high blast-radius, easy to get wrong, easy to forget a site. The aionforge reference (`relates_to.rs:313-332`, `store.rs:894-927`, 002 iter-018) solves this with a single live-view chokepoint: define "current" exactly ONCE as a SQL VIEW (`WHERE invalid_at IS NULL AND status NOT IN (superseded, quarantined)`), force all default reads through it and let as-of/audit readers deliberately bypass. The migration shares ONE `code-graph-db.ts` transaction boundary (the reindex DELETE+INSERT swap), one `d.transaction()` on the serialized WAL connection (`:511`).
 
 ### Constraints
 - The `code_edges` validity columns shipped additively at the 6->7 migration (commit `1c39235e36`, SCHEMA_VERSION is now 8), `ensureSchemaMigrations()` has ONE call site, the body is purely additive (no table-rebuild pattern exists yet - closed-vocab adds the first).

@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy |
-| **Completed** | 2026-06-20 (parent-dispatched scope; three scaffold items deferred) |
+| **Completed** | 2026-06-20 (parent-dispatched scope, three scaffold items deferred) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,8 +52,8 @@ The parent-dispatched doc-accuracy fixes are executed against committed code. Th
 ### What Was Fixed
 
 - **P1-6 (`changelog-001-root.md`):** rows 009 (Complete, default-off), 011, 017, 018 and 020 (Partial) reclassified from Planned, each traced to `ed53661043`, `5308401d95` or `8f8776e329` plus its child implementation-summary. Rows 008 and 010 left as no-code-shipped because their own children agree.
-- **`timeline.md`:** the epochs diagram extended past commit 30 (`b1d6ab80cd`) with the schema cluster, the release-cleanup executions, the criterion-4 benchmark and the packet-030 deletion; a new Section D2 narrates that continuation; Section E reframed shipped-behind-flag versus held; the "last code wave" label corrected; the dangling 030 pointer repointed to the per-track changelogs.
-- **`before-vs-after.md`:** intro and CURRENT STATE advanced past commit 30; Section 6 release-cleanup corrected from all-PENDING to all-executed; the benchmark present-tense and the "no measured benefit number" framing reconciled to the criterion-4 run that produced channel deltas with no flag flip.
+- **`timeline.md`:** the epochs diagram extended past commit 30 (`b1d6ab80cd`) with the schema cluster, the release-cleanup executions, the criterion-4 benchmark and the packet-030 deletion. A new Section D2 narrates that continuation. Section E reframed shipped-behind-flag versus held. The "last code wave" label corrected. The dangling 030 pointer repointed to the per-track changelogs.
+- **`before-vs-after.md`:** intro and CURRENT STATE advanced past commit 30. Section 6 release-cleanup corrected from all-PENDING to all-executed. The benchmark present-tense and the "no measured benefit number" framing reconciled to the criterion-4 run that produced channel deltas with no flag flip.
 - **`benchmark-status.md`:** the default-off flag inventory completed with `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`, `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` and `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`, layered on phase 001's criterion-4 text without reverting it.
 
 ### Deferred Out of Scope
@@ -94,7 +94,7 @@ Phase 001 first committed its `benchmark-status.md` criterion-4 re-run at `885f0
 |----------|-----|
 | Reclassify shipped-default-off, not no-code | Default-off gating is not the same as no code shipped, and the children plus commits prove code landed |
 | Keep 008 and 010 as no-code | Their own child implementation-summaries say no code shipped, so the rollup matches them |
-| Narrow to the parent-dispatched four files | The parent scoped P1-6 plus the timeline, before-vs-after and benchmark-status cluster; the extra scaffold surfaces overlap phase 004 and a concurrent session |
+| Narrow to the parent-dispatched four files | The parent scoped P1-6 plus the timeline, before-vs-after and benchmark-status cluster. The extra scaffold surfaces overlap phase 004 and a concurrent session |
 | Layer the inventory fix on phase 001 | benchmark-status.md criterion-4 is phase 001's committed correction and must not be reverted |
 <!-- /ANCHOR:decisions -->
 
@@ -105,9 +105,9 @@ Phase 001 first committed its `benchmark-status.md` criterion-4 re-run at `885f0
 
 | Check | Result |
 |-------|--------|
-| Rollup reclassification | DONE: 009/011/017/018/020 corrected and traced to commits; 008 and 010 kept as no-code |
+| Rollup reclassification | DONE: 009/011/017/018/020 corrected and traced to commits. 008 and 010 kept as no-code |
 | Narrative refresh | DONE: timeline and before-vs-after advanced past commit 30 to the criterion-4 run and the 030 deletion |
-| Inventory completion | DONE for benchmark-status.md (3 Code Graph flags); ENV_REFERENCE.md deferred to its concurrent owner |
+| Inventory completion | DONE for benchmark-status.md (3 Code Graph flags). ENV_REFERENCE.md deferred to its concurrent owner |
 | HVR scan | PASS: 0 em-dashes and 0 semicolons in the added lines |
 | Strict validation | exit 0 for this child folder and the 028 root |
 <!-- /ANCHOR:verification -->

@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate"
+title: "Verification Checklist: Skill Advisor - Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate"
 description: "Verification Date: 2026-06-19"
 trigger_phrases:
   - "advisor provenance drift checklist"
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate
+# Verification Checklist: Skill Advisor - Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -60,9 +60,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..007 with per-candidate gates) — evidence: spec.md §4
-- [x] CHK-002 [P0] Technical approach defined in plan.md (substrate-first sequencing; Phases 1-3; affected-surface inventory) — evidence: plan.md §3-4, FIX ADDENDUM
-- [x] CHK-003 [P1] Dependencies identified (durable calibration substrate shared with 028/004 for drift + skip; scope-correction for the self-boost guard; REFUTED items recorded out-of-scope) — evidence: plan.md §6, spec.md §3/§6
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..007 with per-candidate gates), evidence: spec.md §4
+- [x] CHK-002 [P0] Technical approach defined in plan.md (substrate-first sequencing, Phases 1-3, affected-surface inventory), evidence: plan.md §3-4, FIX ADDENDUM
+- [x] CHK-003 [P1] Dependencies identified (durable calibration substrate shared with 028/004 for drift + skip, scope-correction for the self-boost guard, REFUTED items recorded out-of-scope), evidence: plan.md §6, spec.md §3/§6
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -70,10 +70,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes lint/format/`tsc` checks (per promoted candidate) — evidence: `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck` passed with 0 errors
-- [ ] CHK-011 [P0] No console errors or warnings; existing advisor calibration + scorer suite green
-- [ ] CHK-012 [P1] Error handling implemented (calibration store unreadable → `baselines_needed` named-skip; embedder change → `stale_model`; never a fabricated alarm)
-- [ ] CHK-013 [P1] Code follows advisor patterns (self-boost guard generalizes the existing penalties at `fusion.ts:134,313`; drift sweep sits beside the live `thresholdSignals` recompute `feedback-calibration.ts:193-203` behind the `:230-237` guardrails; skip enum extends `signalReason()` `:125-130`)
+- [x] CHK-010 [P0] Code passes lint/format/`tsc` checks (per promoted candidate), evidence: `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck` passed with 0 errors
+- [ ] CHK-011 [P0] No console errors or warnings, existing advisor calibration + scorer suite green
+- [ ] CHK-012 [P1] Error handling implemented (calibration store unreadable → `baselines_needed` named-skip, embedder change → `stale_model`, never a fabricated alarm)
+- [ ] CHK-013 [P1] Code follows advisor patterns (self-boost guard generalizes the existing penalties at `fusion.ts:134,313`, drift sweep sits beside the live `thresholdSignals` recompute `feedback-calibration.ts:193-203` behind the `:230-237` guardrails, skip enum extends `signalReason()` `:125-130`)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -81,10 +81,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met when promoted (SC-001 status explicit; SC-002 each honors its invariant; SC-003 the shared-substrate dependency on 028/004 explicit) — partial: self-boost met, drift/skip deferred
-- [x] CHK-021 [P0] Default-inert / shadow-only assertion green: with each gate unmet, calibration + scorer output matches today's baseline exactly — the drift sweep is absent, the skip enum unused, the self-boost guard is default-off (REQ-001, NFR-R02) — evidence: focused fixture plus broad related suite had 0 new failures relative to baseline
-- [ ] CHK-022 [P1] Edge cases tested (no attested baseline → `baselines_needed`, no drift score; self-rec vector absent → self-boost guard a no-op; embedder change → `stale_model`; stable drift → gauge no-ops/anti-flap)
-- [ ] CHK-023 [P1] Error scenarios validated (calibration store mid-rotation → named-skip not alarm; non-self producer scored for its own content → self-boost guard does NOT fire; baseline never auto-rebaselines)
+- [ ] CHK-020 [P0] All acceptance criteria met when promoted (SC-001 status explicit, SC-002 each honors its invariant, SC-003 the shared-substrate dependency on 028/004 explicit), partial: self-boost met, drift/skip deferred
+- [x] CHK-021 [P0] Default-inert / shadow-only assertion green: with each gate unmet, calibration + scorer output matches today's baseline exactly, the drift sweep is absent, the skip enum unused, the self-boost guard is default-off (REQ-001, NFR-R02), evidence: focused fixture plus broad related suite had 0 new failures relative to baseline
+- [ ] CHK-022 [P1] Edge cases tested (no attested baseline → `baselines_needed`, no drift score, self-rec vector absent → self-boost guard a no-op, embedder change → `stale_model`, stable drift → gauge no-ops/anti-flap)
+- [ ] CHK-023 [P1] Error scenarios validated (calibration store mid-rotation → named-skip not alarm, non-self producer scored for its own content → self-boost guard does NOT fire, baseline never auto-rebaselines)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -92,12 +92,12 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each candidate has a finding class: SA-author-self-boost-guard = `algorithmic/integrity` (generalize 2 self-rec penalties into one producer-vs-scored guard); SA-attested-baseline-drift-sweep = `observability/integrity` (attested baseline + shadow drift sweep, anti-rebaseline); SA-skip-never-fabricate = `observability` (named-skip taxonomy enrich).
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n 'readOnlyExplainerFloor|auditRecsAdvisorPenalty' fusion.ts` (confirm `:134` + `:313` are the only two self-rec penalties to generalize); `rg -n 'author:' explicit.ts` (confirm `:320` is the self-authored evidence push and `:327` the by-design symmetric lane score).
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `signalReason()` (`feedback-calibration.ts:125-130`) callers, the `thresholdSignals` recompute (`:193-203`), the guardrails block (`:230-237`), and the record root (`:25-26,248-251`) across `system-skill-advisor`.
-- [ ] CHK-FIX-004 [P0] Adversarial table tests: self-boost guard fires ONLY on the self-recommendation vector + byte-identical for non-self skills; drift sweep NEVER auto-rebaselines + gauge anti-flaps on a stable drift; skip-never-fabricate names every reason + never forces a max/alarm; SA-anti-flap NOT built standalone (only the dedup discipline rides the new gauge). Partial: self-boost fixture is complete; drift/skip fixtures remain gated.
+- [ ] CHK-FIX-001 [P0] Each candidate has a finding class: SA-author-self-boost-guard = `algorithmic/integrity` (generalize 2 self-rec penalties into one producer-vs-scored guard), SA-attested-baseline-drift-sweep = `observability/integrity` (attested baseline + shadow drift sweep, anti-rebaseline), SA-skip-never-fabricate = `observability` (named-skip taxonomy enrich).
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n 'readOnlyExplainerFloor|auditRecsAdvisorPenalty' fusion.ts` (confirm `:134` + `:313` are the only two self-rec penalties to generalize), `rg -n 'author:' explicit.ts` (confirm `:320` is the self-authored evidence push and `:327` the by-design symmetric lane score).
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `signalReason()` (`feedback-calibration.ts:125-130`) callers, the `thresholdSignals` recompute (`:193-203`), the guardrails block (`:230-237`) and the record root (`:25-26,248-251`) across `system-skill-advisor`.
+- [ ] CHK-FIX-004 [P0] Adversarial table tests: self-boost guard fires ONLY on the self-recommendation vector + byte-identical for non-self skills, drift sweep NEVER auto-rebaselines + gauge anti-flaps on a stable drift, skip-never-fabricate names every reason + never forces a max/alarm, SA-anti-flap NOT built standalone (only the dedup discipline rides the new gauge). Partial: self-boost fixture is complete, drift/skip fixtures remain gated.
 - [ ] CHK-FIX-005 [P1] Matrix axes listed before completion: {no baseline, baseline present, embedder changed, store mid-rotation, stable drift, self-rec vector present/absent} × {self-boost, drift, skip} × {gate met / gate unmet}.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed — drift sweep resolves the record path from `SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH` / `RECORD_ROOT` (`feedback-calibration.ts:25,149-152`); test the durable-substrate path override + a session restart; the calibration shadow flag (`SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW`) stays default-off.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed, drift sweep resolves the record path from `SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH` / `RECORD_ROOT` (`feedback-calibration.ts:25,149-152`), test the durable-substrate path override + a session restart, the calibration shadow flag (`SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW`) stays default-off.
 - [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA or explicit diff range (per-candidate scoped commits), not a moving branch-relative range.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -107,8 +107,8 @@ FAILURE MODES:
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation: the skip taxonomy only labels internal calibration state; the drift sweep reads an attested internal baseline; the self-boost guard reads producer identity already in the projection — no new untrusted-input path (NFR-S01)
-- [ ] CHK-032 [P1] Drift sweep ships behind the existing shadow guardrails (`defaultOff/shadowOnly/liveWeightsFrozen/autoPromotion:false`); no live weight change reachable (REQ-003)
+- [ ] CHK-031 [P0] Input validation: the skip taxonomy only labels internal calibration state, the drift sweep reads an attested internal baseline, the self-boost guard reads producer identity already in the projection, no new untrusted-input path (NFR-S01)
+- [ ] CHK-032 [P1] Drift sweep ships behind the existing shadow guardrails (`defaultOff/shadowOnly/liveWeightsFrozen/autoPromotion:false`), no live weight change reachable (REQ-003)
 <!-- /ANCHOR:security -->
 
 ---
@@ -116,9 +116,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized (self-boost DONE default-off; drift/skip PENDING with substrate gate; REFUTED out-of-scope items retained)
-- [x] CHK-041 [P1] Code comments adequate (durable WHY; no spec-path/packet ids in comments — comment-hygiene) — evidence: changed-code `rg` spot check returned no matches
-- [ ] CHK-042 [P2] README updated (N/A — internal calibration/scorer-seam changes)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (self-boost DONE default-off, drift/skip PENDING with substrate gate, REFUTED out-of-scope items retained)
+- [x] CHK-041 [P1] Code comments adequate (durable WHY, no spec-path/packet ids in comments, comment-hygiene), evidence: changed-code `rg` spot check returned no matches
+- [ ] CHK-042 [P2] README updated (N/A, internal calibration/scorer-seam changes)
 <!-- /ANCHOR:docs -->
 
 ---

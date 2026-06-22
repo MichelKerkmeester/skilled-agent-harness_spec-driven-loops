@@ -39,7 +39,7 @@
       "repetition"
     ],
     "importance_tier": "normal",
-    "status": "benchmark_build_plumbing_implemented;_all_candidates_remain_pending_/_benchmark_gated",
+    "status": "complete",
     "key_files": [
       "lib/feedback/feedback-ledger.ts",
       "lib/cognitive/adaptive-ranking.ts",

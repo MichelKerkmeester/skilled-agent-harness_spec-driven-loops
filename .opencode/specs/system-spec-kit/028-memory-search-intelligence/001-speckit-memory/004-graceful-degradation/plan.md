@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Memory MCP C9 — Graceful Embedder-Degrade to Lexical"
-description: "Wire the null-embedding recall case into the existing useVector=false keep-lexical substrate, surface embedder_available:false through the handler, and keep the embedder-success path byte-identical. Single-file-seam, S-effort, reversible."
+title: "Implementation Plan: Memory MCP C9: Graceful Embedder-Degrade to Lexical"
+description: "Wire the null-embedding recall case into the existing useVector=false keep-lexical substrate, surface embedder_available:false through the handler and keep the embedder-success path byte-identical. Single-file-seam, S-effort, reversible."
 trigger_phrases:
   - "C9 plan embedder degrade"
   - "stage1 candidate gen lexical fallback plan"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author C9 impl plan (DONE-record for 030 484b77b589)"
-    next_safe_action: "None — C9 shipped"
+    next_safe_action: "None. C9 shipped"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
     answered_questions: []
 ---
 
-# Implementation Plan: Memory MCP C9 — Graceful Embedder-Degrade to Lexical
+# Implementation Plan: Memory MCP C9: Graceful Embedder-Degrade to Lexical
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | vitest |
 
 ### Overview
-C9 routes the null/empty-embedding recall case into the channel-gating substrate that already supports dropping the vector channel while keeping FTS5/BM25/graph (`useVector=false` at `hybrid-search.ts:931-947`), instead of throwing at the Stage-1 entry (`stage1-candidate-gen.ts:700-707` hybrid path, `:1014-1020` vector path). The degrade is surfaced as `embedder_available:false` / `vector_search_skipped:true` on the Stage-1 output and plumbed through `memory-search.ts`. This is the Wave-0 spearhead's sharpest single graceful-degradation gap: independent, reversible, S-effort, PROMOTE-the-existing-substrate [CONFIRMED: roadmap.md:89,143,151; iter-037 Wave-0].
+C9 routes the null/empty-embedding recall case into the channel-gating substrate that already supports dropping the vector channel while keeping FTS5/BM25/graph (`useVector=false` at `hybrid-search.ts:931-947`), instead of throwing at the Stage-1 entry (`stage1-candidate-gen.ts:700-707` hybrid path, `:1014-1020` vector path). The degrade is surfaced as `embedder_available:false` / `vector_search_skipped:true` on the Stage-1 output and plumbed through `memory-search.ts`. This is the Wave-0 spearhead's sharpest single graceful-degradation gap: independent, reversible, S-effort, PROMOTE-the-existing-substrate [CONFIRMED: roadmap.md:89,143,151, iter-037 Wave-0].
 <!-- /ANCHOR:summary -->
 
 ---
@@ -63,7 +63,7 @@ C9 routes the null/empty-embedding recall case into the channel-gating substrate
 
 ### Definition of Done
 - [x] All acceptance criteria met (REQ-001..004)
-- [x] Tests passing (440 search/pipeline tests; new degrade vitest 5 cases)
+- [x] Tests passing (440 search/pipeline tests, new degrade vitest 5 cases)
 - [x] Docs updated (spec/plan/tasks/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
@@ -73,10 +73,10 @@ C9 routes the null/empty-embedding recall case into the channel-gating substrate
 ## 3. ARCHITECTURE
 
 ### Pattern
-Pipeline stage with channel-gated degrade — the recall path mirrors the existing graph-channel degrade at `handlers/memory-context.ts:1513` ("code graph unavailable — hybrid degrades to semantic-only"), applied to the dense channel instead.
+Pipeline stage with channel-gated degrade, the recall path mirrors the existing graph-channel degrade at `handlers/memory-context.ts:1513` ("code graph unavailable, hybrid degrades to semantic-only"), applied to the dense channel instead.
 
 ### Key Components
-- **`stage1-candidate-gen.ts`**: detects the null embedding and routes to lexical instead of throwing; sets the degrade flags.
+- **`stage1-candidate-gen.ts`**: detects the null embedding and routes to lexical instead of throwing. Sets the degrade flags.
 - **`types.ts`**: carries `embedder_available` / `vector_search_skipped` on the Stage-1 output metadata.
 - **`memory-search.ts`**: plumbs the flags through to the response and guards concept input.
 - **`hybrid-search.ts` `getAllowedChannels`** (unchanged): the `useVector=false` substrate the degrade routes into.
@@ -94,12 +94,12 @@ This is a degrade/error-path fix touching public responses and a stage invariant
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `stage1-candidate-gen.ts` (hybrid + vector + multi-concept entry) | Throws on null embedding (the three throw sites) | Update — route null → lexical; the hybrid path drops via the live `useVector=false` substrate, the vector/multi-concept branches get an explicit lexical route | `stage1-embedder-degrade.vitest.ts` degrade traced to BM25 [CONFIRMED: 030 §14] |
-| `types.ts` Stage-1 output metadata | Carries Stage-1 result metadata | Update — add `embedder_available` / `vector_search_skipped` | New fields plumbed through cache + envelope |
-| `memory-search.ts` handler | Builds the recall response | Update — surface degrade flags + handler concept guard | Gate-D envelope assertion |
-| `orchestrator.ts:7,49,62` "Stage-1 failure is mandatory" contract | No code keys on `PIPELINE_STAGE1_FAILED`, but throw-catchers must read the new flag | Unchanged contract — the typed `Stage1InputError` for genuine input errors stays mandatory; only embedder-unavailable degrades | [CONFIRMED: iter-034 I34-O01] |
+| `stage1-candidate-gen.ts` (hybrid + vector + multi-concept entry) | Throws on null embedding (the three throw sites) | Update, route null → lexical. The hybrid path drops via the live `useVector=false` substrate, the vector/multi-concept branches get an explicit lexical route | `stage1-embedder-degrade.vitest.ts` degrade traced to BM25 [CONFIRMED: 030 §14] |
+| `types.ts` Stage-1 output metadata | Carries Stage-1 result metadata | Update, add `embedder_available` / `vector_search_skipped` | New fields plumbed through cache + envelope |
+| `memory-search.ts` handler | Builds the recall response | Update, surface degrade flags + handler concept guard | Gate-D envelope assertion |
+| `orchestrator.ts:7,49,62` "Stage-1 failure is mandatory" contract | No code keys on `PIPELINE_STAGE1_FAILED`, but throw-catchers must read the new flag | Unchanged contract, the typed `Stage1InputError` for genuine input errors stays mandatory. Only embedder-unavailable degrades | [CONFIRMED: iter-034 I34-O01] |
 
-Required invariant: the embedder-success path stays byte-identical; only a genuinely null/empty embedding takes the degrade branch, and genuine input-validation errors (`>5 concepts`, empty query/concept, unknown searchType) still fail (as a typed `Stage1InputError`), they do not silently degrade.
+Required invariant: the embedder-success path stays byte-identical. Only a genuinely null/empty embedding takes the degrade branch, and genuine input-validation errors (`>5 concepts`, empty query/concept, unknown searchType) still fail (as a typed `Stage1InputError`), they do not silently degrade.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -108,7 +108,7 @@ Required invariant: the embedder-success path stays byte-identical; only a genui
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [x] Confirm the `useVector=false` substrate and the three null-embedding throw sites (`stage1-candidate-gen.ts:700-707, 1014-1020`; root null at `vector-index-queries.ts`)
+- [x] Confirm the `useVector=false` substrate and the three null-embedding throw sites (`stage1-candidate-gen.ts:700-707, 1014-1020` and root null at `vector-index-queries.ts`)
 - [x] Capture baseline: existing search/pipeline suite green (2 pre-existing unrelated failures recorded)
 
 ### Phase 2: Core Implementation
@@ -118,7 +118,7 @@ Required invariant: the embedder-success path stays byte-identical; only a genui
 
 ### Phase 3: Verification
 - [x] New `stage1-embedder-degrade.vitest.ts` (5 cases) + gate-D envelope assertion
-- [x] Happy path byte-identical (verified via `git diff -w` trace; degrade traced to BM25)
+- [x] Happy path byte-identical (verified via `git diff -w` trace, degrade traced to BM25)
 - [x] Independent opus adversarial review: SHIP
 <!-- /ANCHOR:phases -->
 
@@ -141,8 +141,8 @@ Required invariant: the embedder-success path stays byte-identical; only a genui
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `getAllowedChannels` / `useVector=false` substrate (`hybrid-search.ts:931-947`) | Internal | Green | Without it the degrade route would need building; it already exists, so C9 is a wire-up |
-| 027 embedder subsystem (storage-side) | Internal | Green | Independent — C9 is the recall-side complement, no shared-infra dep |
+| `getAllowedChannels` / `useVector=false` substrate (`hybrid-search.ts:931-947`) | Internal | Green | Without it the degrade route would need building. It already exists, so C9 is a wire-up |
+| 027 embedder subsystem (storage-side) | Internal | Green | Independent, C9 is the recall-side complement, no shared-infra dep |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -151,5 +151,5 @@ Required invariant: the embedder-success path stays byte-identical; only a genui
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A caller relied on the embedder-unavailable throw to detect an outage and now mis-reads the degraded result, or the happy path regresses.
-- **Procedure**: Revert commit `484b77b589` (branch-only; never pushed to main or deployed without explicit go). The change is a self-contained, reversible single-file-seam edit.
+- **Procedure**: Revert commit `484b77b589` (branch-only, never pushed to main or deployed without explicit go). The change is a self-contained, reversible single-file-seam edit.
 <!-- /ANCHOR:rollback -->

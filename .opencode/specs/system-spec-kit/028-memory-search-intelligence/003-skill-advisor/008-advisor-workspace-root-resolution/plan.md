@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Advisor workspace-root resolution by walk-up [template:level_2/plan.md]"
-description: "Plan to replace cwd-based workspace-root resolution in the skill advisor with a deterministic walk-up, route the two write-path call sites through it, rebuild dist, and clean stray nested .advisor-state directories."
+description: "Plan to replace cwd-based workspace-root resolution in the skill advisor with a deterministic walk-up, route the two write-path call sites through it, rebuild dist and clean stray nested .advisor-state directories."
 trigger_phrases:
   - "advisor root plan"
   - "resolveWorkspaceRoot walk-up"
@@ -46,11 +46,11 @@ Make the skill advisor resolve its workspace root deterministically from the mod
 
 ### Technical Context
 
-The advisor persists `skill-graph-generation.json` under `<root>/.opencode/skills/.advisor-state/`. The startup scan and daemon init passed `process.cwd()` as the root; `resolveWorkspaceRoot()` existed but its `import.meta.dirname` candidate used a fixed depth wrong for the compiled layout, so it always fell back to cwd.
+The advisor persists `skill-graph-generation.json` under `<root>/.opencode/skills/.advisor-state/`. The startup scan and daemon init passed `process.cwd()` as the root. `resolveWorkspaceRoot()` existed but its `import.meta.dirname` candidate used a fixed depth wrong for the compiled layout, so it always fell back to cwd.
 
 ### Overview
 
-Reuse `resolveWorkspaceRoot()` with a corrected walk-up implementation, route the two write-path call sites through it, rebuild dist, and clean pre-existing strays.
+Reuse `resolveWorkspaceRoot()` with a corrected walk-up implementation, route the two write-path call sites through it, rebuild dist and clean pre-existing strays.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -60,7 +60,7 @@ Reuse `resolveWorkspaceRoot()` with a corrected walk-up implementation, route th
 
 ### Definition of Ready
 
-- Root cause confirmed with file:line; runtime layout (source vs dist) understood.
+- Root cause confirmed with file:line. Runtime layout (source vs dist) understood.
 
 ### Definition of Done
 
@@ -74,11 +74,11 @@ Reuse `resolveWorkspaceRoot()` with a corrected walk-up implementation, route th
 
 ### Pattern
 
-Walk up from the module's own directory to the first ancestor containing `.opencode/skills/system-skill-advisor`; that is the repo root.
+Walk up from the module's own directory to the first ancestor containing `.opencode/skills/system-skill-advisor`. That is the repo root.
 
 ### Key Components
 
-`resolveWorkspaceRoot()` (the resolver), the startup-scan write path, and the daemon-init write path.
+`resolveWorkspaceRoot()` (the resolver), the startup-scan write path and the daemon-init write path.
 
 ### Data Flow
 
@@ -100,11 +100,11 @@ Generation paths derive from the resolved root, so writes always land at the can
 
 ### Phase 1: Setup
 
-Clean stray nested `.advisor-state` leaves in the main tree (leaf-only; preserve any parent `.opencode` that holds other content).
+Clean stray nested `.advisor-state` leaves in the main tree (leaf-only, preserving any parent `.opencode` that holds other content).
 
 ### Phase 2: Core Implementation
 
-Rewrite `resolveWorkspaceRoot()` to walk up; swap the two write-path call sites to use it.
+Rewrite `resolveWorkspaceRoot()` to walk up. Swap the two write-path call sites to use it.
 
 ### Phase 3: Verification
 
@@ -116,7 +116,7 @@ Typecheck, rebuild dist, confirm the resolver returns the repo root from a subdi
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-`npm run typecheck` (0 errors); a node walk-up check from `cwd=tool/` returning the repo root; observation that re-running does not regenerate a `tool/.opencode`.
+`npm run typecheck` (0 errors), a node walk-up check from `cwd=tool/` returning the repo root, plus observation that re-running does not regenerate a `tool/.opencode`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -148,7 +148,7 @@ Phase 1 precedes Phase 2 so a leftover stray cannot influence verification. Phas
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-Small: one function plus two call sites, a scripted cleanup, a rebuild, and a logic verification.
+Small: one function plus two call sites, a scripted cleanup, a rebuild and a logic verification.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -166,5 +166,5 @@ Revert the source, rebuild dist, start a fresh session to reload prior behavior.
 
 ### Data Reversal
 
-None — no data migration is involved.
+None, no data migration is involved.
 <!-- /ANCHOR:enhanced-rollback -->

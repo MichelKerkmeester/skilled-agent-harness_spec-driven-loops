@@ -39,7 +39,7 @@
       "assert"
     ],
     "importance_tier": "important",
-    "status": "guard_shipped,_coverage_verified_(reindex_superseded)",
+    "status": "complete",
     "key_files": [
       "lib/eval/ablation-framework.ts",
       "plan.md",

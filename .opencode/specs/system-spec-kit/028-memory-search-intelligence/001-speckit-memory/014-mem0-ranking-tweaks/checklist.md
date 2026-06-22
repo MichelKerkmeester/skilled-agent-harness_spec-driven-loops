@@ -96,7 +96,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] All 8 distinct candidates resolved (built, deferred-with-gate, or NO-TRANSFER) - none left ambiguous
+- [ ] CHK-024 [P0] All 8 distinct candidates resolved (built, deferred-with-gate or NO-TRANSFER) - none left ambiguous
   - **Evidence**: PENDING
 - [ ] CHK-025 [P1] Every ranking tweak default-on decision is backed by a reindexed positive recall delta (or stays default-off)
   - **Evidence**: PENDING

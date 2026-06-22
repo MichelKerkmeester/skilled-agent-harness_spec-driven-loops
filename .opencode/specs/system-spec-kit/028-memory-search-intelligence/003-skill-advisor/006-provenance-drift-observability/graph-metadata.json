@@ -39,7 +39,7 @@
       "skip"
     ],
     "importance_tier": "important",
-    "status": "partial._sa_author_self_boost_guard_shipped_default_off,_drift_and_skip_candidates_pending",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

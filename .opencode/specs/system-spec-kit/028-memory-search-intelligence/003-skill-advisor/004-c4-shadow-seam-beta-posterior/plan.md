@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Skill Advisor C4 Shadow Seam + Beta Posterior"
-description: "Sequenced shadow-only build of the C4 estimator->registry seam, a shared Beta-posterior primitive, and the aionforge promotion-gate family for the Skill Advisor lane scorer."
+description: "Sequenced shadow-only build of the C4 estimator->registry seam, a shared Beta-posterior primitive and the aionforge promotion-gate family for the Skill Advisor lane scorer."
 trigger_phrases:
   - "advisor c4 seam plan"
   - "advisor beta posterior plan"
@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Testing** | Vitest (existing advisor scorer test harness) |
 
 ### Overview
-The C4 machinery shipped default-off shadow in `10c5b61493`: `beta-reliability.ts` (shared f64 posterior + advisor adapter), `shadow-weight-promoter.ts` (the estimator→registry cron seam), and the `feedback-calibration.ts`/`lane-registry.ts` wiring (asymmetric deltas, content-fold, decay channel). Everything stays shadow-only behind `liveWeightsFrozen`, only the live-flip micro-benchmark remains NO-GO. Everything stays shadow-only behind `liveWeightsFrozen`, promotion to live is a documented NO-GO until a micro-benchmark earns it.
+The C4 machinery shipped default-off shadow in `10c5b61493`: `beta-reliability.ts` (shared f64 posterior + advisor adapter), `shadow-weight-promoter.ts` (the estimator→registry cron seam) and the `feedback-calibration.ts`/`lane-registry.ts` wiring (asymmetric deltas, content-fold, decay channel). Everything stays shadow-only behind `liveWeightsFrozen`, only the live-flip micro-benchmark remains NO-GO. Everything stays shadow-only behind `liveWeightsFrozen`, promotion to live is a documented NO-GO until a micro-benchmark earns it.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -280,7 +280,7 @@ Phase 0 (Baseline + lane-health + asymmetric-deltas) ──► Phase 1 (C4-seam)
 **Total Critical Path**: Phase 0 → C4-seam → Beta → two-gate → held-out → decay.
 
 **Parallel Opportunities**:
-- `SA-asymmetric-deltas`, the C5 baseline capture, and C3 (RRF import, off-path, owned elsewhere) are off-critical-path parallel tracks.
+- `SA-asymmetric-deltas`, the C5 baseline capture and C3 (RRF import, off-path, owned elsewhere) are off-critical-path parallel tracks.
 - `SA-content-addressed-fold` and `SA-cold-start-neutral` can land alongside the gate chain.
 <!-- /ANCHOR:critical-path -->
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Skill Advisor - Conflict Re-rank, Query-Class Routing & Semantic Exact-Rerank (C1/QCR/C6)"
-description: "Default-off implementation plan for three Skill Advisor routing refinements riding the RRF spine: C1 conflict demotion, QCR query-class lane weights, and C6 top-K exact semantic rerank. Live/default promotion remains gated by conflict-edge and benchmark evidence."
+description: "Default-off implementation plan for three Skill Advisor routing refinements riding the RRF spine: C1 conflict demotion, QCR query-class lane weights and C6 top-K exact semantic rerank. Live/default promotion remains gated by conflict-edge and benchmark evidence."
 trigger_phrases:
   - "advisor conflict rerank routing plan"
   - "C1 post-fusion demotion sequencing"
@@ -93,7 +93,7 @@ Prompt → (QCR, if flag enabled) class classification → class→lane-multipli
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-These are scorer-seam changes touching the ranking comparator, the effective-weight merge, and a confidence/ordering-bearing output, so the affected-surface inventory applies. All rows are conditional on the candidate being promoted past its gate.
+These are scorer-seam changes touching the ranking comparator, the effective-weight merge and a confidence/ordering-bearing output, so the affected-surface inventory applies. All rows are conditional on the candidate being promoted past its gate.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
@@ -162,7 +162,7 @@ Required invariant: when a candidate's gate is unmet it is ABSENT from the score
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A promoted candidate regresses routing - QCR misroutes and demotes the right skill, C6 re-orders non-deterministically or drops recall, or C1's demotion fires when it should be inert.
+- **Trigger**: A promoted candidate regresses routing - QCR misroutes and demotes the right skill, C6 re-orders non-deterministically or drops recall or C1's demotion fires when it should be inert.
 - **Procedure**: Revert the per-candidate commit (branch-only, never pushed to main or deployed without explicit go). Each candidate is a self-contained, additive scorer-seam edit, reverting restores the C3-only (or pre-spine weighted-sum) behavior exactly.
 <!-- /ANCHOR:rollback -->
 

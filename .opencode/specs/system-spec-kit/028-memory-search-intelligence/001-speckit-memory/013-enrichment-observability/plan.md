@@ -159,6 +159,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: lag arithmetic skews on legacy timestamp formats, the new field breaks a health-response consumer, or build/tests regress.
+- **Trigger**: lag arithmetic skews on legacy timestamp formats, the new field breaks a health-response consumer or build/tests regress.
 - **Procedure**: branch-only, additive read-side field - revert the single `memory-crud-health.ts` hunk (and the optional `memory-save.ts` field). The pending/failed gauges (`e1c6a3c793`) are untouched and remain live, no schema or state to undo.
 <!-- /ANCHOR:rollback -->

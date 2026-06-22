@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Load-bearing decisions for the five PENDING temporal candidates: C3-A is a read-side build not a flag flip, lineage is the canonical supersede writer, C3-C Current reads alongside active_memory_projection, temporal-query-extraction must be additive with a non-temporal fallthrough, and unforget-disjointness is deferred until both an unforget channel and erasure exist."
+description: "Load-bearing decisions for the five PENDING temporal candidates: C3-A is a read-side build not a flag flip, lineage is the canonical supersede writer, C3-C Current reads alongside active_memory_projection, temporal-query-extraction must be additive with a non-temporal fallthrough and unforget-disjointness is deferred until both an unforget channel and erasure exist."
 trigger_phrases:
   - "decision record edge presence currentness"
   - "c3-a read side build not flip"
@@ -253,7 +253,7 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-The Memory MCP has no query-time temporal parsing - recency is only a decay/boost weight, and records carry timestamps that are never searched by an extracted range (007 iter-013, iter-008:16). The Cognee `temporal_retriever` pattern extracts a structured `QueryInterval` from the NL query, filters events by range, then vector-ranks. The candidate carries a "CG-" prefix but is Memory-home (NO-TRANSFER cross-cut - not Code Graph / Deep Loop).
+The Memory MCP has no query-time temporal parsing, recency is only a decay/boost weight, and records carry timestamps that are never searched by an extracted range (007 iter-013, iter-008:16). The Cognee `temporal_retriever` pattern extracts a structured `QueryInterval` from the NL query, filters events by range, then vector-ranks. The candidate carries a "CG-" prefix but is Memory-home (NO-TRANSFER cross-cut, not Code Graph / Deep Loop).
 
 ### Constraints
 

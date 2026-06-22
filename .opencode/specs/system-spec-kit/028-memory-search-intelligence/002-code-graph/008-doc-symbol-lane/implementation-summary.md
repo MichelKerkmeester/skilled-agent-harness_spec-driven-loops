@@ -69,8 +69,8 @@ Today `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.
 
 The change replaces that empty branch with a dependency-free extractor (`doc-symbol-extractor.ts`, new):
 
-- `extractMarkdownHeadings(content)` parses ATX (`^#{1,6} `) and Setext headings into `heading` nodes with parent-`CONTAINS`-child nesting by heading level, skipping fenced code regions so a `#` inside a code block is not mistaken for a heading;
-- `extractConfigKeys(content, language)` walks json/yaml/toml top-level and nested keys into `key` nodes via a shallow key walk (structure, never `eval`, so a value that looks like a key is not promoted);
+- `extractMarkdownHeadings(content)` parses ATX (`^#{1,6} `) and Setext headings into `heading` nodes with parent-`CONTAINS`-child nesting by heading level, skipping fenced code regions so a `#` inside a code block is not mistaken for a heading.
+- `extractConfigKeys(content, language)` walks json/yaml/toml top-level and nested keys into `key` nodes via a shallow key walk (structure, never `eval`, so a value that looks like a key is not promoted).
 - every node id is content-derived through the kind-agnostic `generateSymbolId(filePath, fqName, kind)` (`indexer-types.ts:100`, `sha256(filePath::fqName::kind)`), so a rescan of unchanged doc content yields a byte-identical node/edge set.
 
 Research reclassifies this from a passive note to a real **tier-2 BUILD** (002 iter-4, ranking `Q5-C1=12`, `disposition:BUILD`): the inferred slot-in (`q5-f4`) "confirms with" two concrete BUILD items - extending the `SymbolKind` union (`indexer-types.ts:13`) to admit `'heading' | 'key'`, and making the `code-graph-context` render path tolerate those non-code kinds without assuming a closed code vocabulary [roadmap L192 "tier-2 BUILD candidate (002 iter-4), not merely a SymbolKind tolerance note"].

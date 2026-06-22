@@ -59,7 +59,7 @@ FAILURE MODES:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The skill advisor persists a `skill-graph-generation.json` under `.opencode/skills/.advisor-state/`. Both the startup scan and the daemon initialization resolved the target with `process.cwd()`. When an `opencode run` or advisor hook fired with a subdirectory as its working directory — for example the embedded `sk-design-md-generator/tool/`, which is its own npm project — the advisor wrote `<subdir>/.opencode/skills/.advisor-state/` and created a stray nested `.opencode` tree.
+The skill advisor persists a `skill-graph-generation.json` under `.opencode/skills/.advisor-state/`. Both the startup scan and the daemon initialization resolved the target with `process.cwd()`. When an `opencode run` or advisor hook fired with a subdirectory as its working directory (for example the embedded `sk-design-md-generator/tool/`, which is its own npm project), the advisor wrote `<subdir>/.opencode/skills/.advisor-state/` and created a stray nested `.opencode` tree.
 
 `resolveWorkspaceRoot()` already existed but its `import.meta.dirname` candidate used a fixed `../../../..` depth that is wrong at runtime: the compiled file lives one level deeper under `dist/mcp_server/`, so that candidate never matched and the function always fell back to `process.cwd()`. The result was 13 stray nested `.advisor-state` directories across the repo. They are gitignored (`**/.advisor-state/`), so they never entered version control, but they are disk clutter and a sign of an incorrect root resolution.
 
@@ -77,7 +77,7 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 - Remove the pre-existing stray nested `.advisor-state` directories in the main tree.
 
 **Out of scope:**
-- `resolveSkillGraphSourceDir()`'s sibling `import.meta.dirname` depth (read path; does not create nesting) — noted as a follow-up.
+- `resolveSkillGraphSourceDir()`'s sibling `import.meta.dirname` depth (read path, does not create nesting), noted as a follow-up.
 - Stray `.advisor-state` directories inside isolated git worktrees (left untouched to avoid interfering with other sessions).
 - Any change to the gitignore (the `**/.advisor-state/` rule already prevents commits).
 <!-- /ANCHOR:scope -->
@@ -100,7 +100,7 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 ## 5. SUCCESS CRITERIA
 
 - The resolver returns the repo root when invoked with a subdirectory cwd (verified).
-- Typecheck of the advisor mcp_server passes; dist rebuilds.
+- Typecheck of the advisor mcp_server passes. Dist rebuilds.
 - Zero stray nested `.advisor-state` directories remain in the main tree.
 - The canonical `.opencode/skills/.advisor-state/` is intact.
 <!-- /ANCHOR:success-criteria -->
@@ -111,7 +111,7 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 ## 6. RISKS & DEPENDENCIES
 
 - The advisor is a shared daemon used by every session. The source fix is committed and dist rebuilt, but the running daemon keeps the old dist until a `/mcp` reconnect or a fresh session (the advisor launcher exits on child SIGTERM, so it is not transparent-recycle).
-- A leftover stray `.opencode/skills` at a subdir cwd could have re-fooled a cwd-first resolver; cleanup-first plus the walk-up (which requires `.opencode/skills/system-skill-advisor`, never present in a stray) removes that risk.
+- A leftover stray `.opencode/skills` at a subdir cwd could have re-fooled a cwd-first resolver. Cleanup-first plus the walk-up (which requires `.opencode/skills/system-skill-advisor`, never present in a stray) removes that risk.
 <!-- /ANCHOR:risks -->
 
 ---
@@ -122,7 +122,7 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 - Determinism: root resolution does not depend on cwd or invocation surface.
-- Blast radius: the change is internal to root resolution; the public tool surface is unchanged.
+- Blast radius: the change is internal to root resolution. The public tool surface is unchanged.
 - Reversibility: revert is a single-file `git revert` of the source change.
 <!-- /ANCHOR:nfr -->
 
@@ -131,9 +131,9 @@ The purpose is to resolve the canonical workspace root deterministically so the 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Compiled dist runs one directory deeper than source — handled by walk-up rather than a fixed depth.
-- A subdirectory that is its own npm project (the embedded `tool/`) — no longer mistaken for a workspace root.
-- A subdirectory carrying a leftover stray `.opencode/skills` — the walk-up requires `system-skill-advisor` under it, which a stray never has.
+- Compiled dist runs one directory deeper than source, handled by walk-up rather than a fixed depth.
+- A subdirectory that is its own npm project (the embedded `tool/`), no longer mistaken for a workspace root.
+- A subdirectory carrying a leftover stray `.opencode/skills`, where the walk-up requires `system-skill-advisor` under it, which a stray never has.
 <!-- /ANCHOR:edge-cases -->
 
 ---

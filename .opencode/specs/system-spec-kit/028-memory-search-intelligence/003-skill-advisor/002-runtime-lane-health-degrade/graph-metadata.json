@@ -39,7 +39,7 @@
       "baseline"
     ],
     "importance_tier": "important",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       "plan.md",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",

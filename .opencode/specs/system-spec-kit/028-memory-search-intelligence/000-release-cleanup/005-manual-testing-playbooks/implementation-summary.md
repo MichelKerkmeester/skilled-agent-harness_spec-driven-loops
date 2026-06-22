@@ -92,8 +92,8 @@ Each fix was confirmed against the live tree before editing: the successor path 
 | Decision | Why |
 |----------|-----|
 | Scope to the system-spec-kit playbook package | It is the playbook that documents packet-028 memory-search work and the one carrying the file-count self-check. Other skills own independent playbook packages |
-| Verify counts before editing | The self-check was flagged as drift-prone; it was reproduced against the live tree and found accurate, so no count was changed |
-| Fix only high-confidence anchors | Genuine renames and moves with a confirmed current target were fixed; ambiguous or illustrative references were classified and left rather than guessed |
+| Verify counts before editing | The self-check was flagged as drift-prone. It was reproduced against the live tree and found accurate, so no count was changed |
+| Fix only high-confidence anchors | Genuine renames and moves with a confirmed current target were fixed. Ambiguous or illustrative references were classified and left rather than guessed |
 | Surgical path-only edits | Honors the stay-in-scope and no-invent-fixes rules and avoids breaking executable command examples |
 <!-- /ANCHOR:decisions -->
 

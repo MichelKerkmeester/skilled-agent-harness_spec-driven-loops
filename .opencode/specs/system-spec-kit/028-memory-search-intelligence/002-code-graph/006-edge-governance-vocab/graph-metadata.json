@@ -39,7 +39,7 @@
       "guard"
     ],
     "importance_tier": "normal",
-    "status": "done_(closed_vocab_check_shipped;_governance_siblings_deferred)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",

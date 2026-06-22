@@ -39,7 +39,7 @@
       "scan"
     ],
     "importance_tier": "important",
-    "status": "q6_c2_done;_q6_c1_pending_defer_speculative",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
       ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",

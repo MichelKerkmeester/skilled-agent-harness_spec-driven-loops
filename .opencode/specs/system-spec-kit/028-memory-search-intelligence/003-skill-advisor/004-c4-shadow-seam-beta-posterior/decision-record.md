@@ -65,9 +65,9 @@ The pass-1 research framed C4 as graduating an already-shipped Beta estimator to
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Build the Beta posterior, the estimator→registry seam, and the aionforge promotion-gate family from scratch, keeping the entire pipeline shadow-only behind `liveWeightsFrozen` and gating any live flip behind a micro-benchmark that must beat today's `minSamples` cliff (NO-GO until it does). Shipped default-off shadow in `10c5b61493` (`beta-reliability.ts` + `shadow-weight-promoter.ts`), the live flip stays NO-GO.
+**We chose**: Build the Beta posterior, the estimator→registry seam and the aionforge promotion-gate family from scratch, keeping the entire pipeline shadow-only behind `liveWeightsFrozen` and gating any live flip behind a micro-benchmark that must beat today's `minSamples` cliff (NO-GO until it does). Shipped default-off shadow in `10c5b61493` (`beta-reliability.ts` + `shadow-weight-promoter.ts`), the live flip stays NO-GO.
 
-**How it works**: An out-of-process promoter (cron/maintenance, never a prompt-time hook) reads the estimator's `ReadOnlyScorerCalibrationProposal` from the feedback-calibration JSONL, folds it through a new shared Beta posterior plus the two-gate + held-out attestation machinery, and writes only the non-live shadow-weight channel (`SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` → `RESOLVED_SHADOW_WEIGHTS`, `lane-registry.ts:71-74`). The live scorer is never on this path, and a guardrail unit test asserts no code route can move a live lane weight.
+**How it works**: An out-of-process promoter (cron/maintenance, never a prompt-time hook) reads the estimator's `ReadOnlyScorerCalibrationProposal` from the feedback-calibration JSONL, folds it through a new shared Beta posterior plus the two-gate + held-out attestation machinery and writes only the non-live shadow-weight channel (`SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` → `RESOLVED_SHADOW_WEIGHTS`, `lane-registry.ts:71-74`). The live scorer is never on this path, and a guardrail unit test asserts no code route can move a live lane weight.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -94,7 +94,7 @@ The pass-1 research framed C4 as graduating an already-shipped Beta estimator to
 - Lane reliability becomes flood-immune: 8 all-accepted samples no longer max the delta identically to a 10,000-sample signal (the `minSamples` cliff is replaced by a continuous posterior, NEEDS-BENCHMARK).
 
 **What it costs**:
-- Net-new math, a net-new out-of-process promoter, and a gate family. Mitigation: build in dependency order (Phase-0 foundation → seam → posterior → gates) so each layer is independently testable.
+- Net-new math, a net-new out-of-process promoter and a gate family. Mitigation: build in dependency order (Phase-0 foundation → seam → posterior → gates) so each layer is independently testable.
 
 **Risks**:
 
@@ -127,9 +127,9 @@ The pass-1 research framed C4 as graduating an already-shipped Beta estimator to
 ### Implementation
 
 **What changes**:
-- `feedback-calibration.ts` gains a Beta lane signal, sign-locked asymmetric threshold deltas (`:200-201`), a content-addressed fold over the JSONL (`:241-251`), and a cold-start neutral prior replacing the exclude-on-low-sample path (`:193-197`).
+- `feedback-calibration.ts` gains a Beta lane signal, sign-locked asymmetric threshold deltas (`:200-201`), a content-addressed fold over the JSONL (`:241-251`) and a cold-start neutral prior replacing the exclude-on-low-sample path (`:193-197`).
 - A new out-of-process promoter script reads the proposal and writes the shadow-weight channel, `lane-registry.ts` gains a decay/un-promotion revert path with audit tags (`:71-74`).
-- New unit tests cover the Beta math, the gate, the fold, and the shadow-only guardrail, a baseline-capture harness lives in `scratch/`.
+- New unit tests cover the Beta math, the gate, the fold and the shadow-only guardrail, a baseline-capture harness lives in `scratch/`.
 
 **How to roll back**: Unset `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` to restore default shadow weights, then revert the per-candidate scoped commits. No live weight ever changes, so rollback is reversion-only with no data migration, verify the live recommend path is byte-identical to the captured baseline.
 <!-- /ANCHOR:adr-001-impl -->
@@ -167,7 +167,7 @@ The anti-flood Beta posterior is needed by two subsystems at once: Skill Advisor
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Build one f64 primitive `(α₀+s)/(α₀+β₀+s+f)` with a cold-start neutral 0.5 (Beta(1,1)) and a count floor, plus a thin advisor adapter that turns the posterior into a weight-delta, and coordinate the module location and signature with the Deep-Loop subsystem.
+**We chose**: Build one f64 primitive `(α₀+s)/(α₀+β₀+s+f)` with a cold-start neutral 0.5 (Beta(1,1)) and a count floor, plus a thin advisor adapter that turns the posterior into a weight-delta and coordinate the module location and signature with the Deep-Loop subsystem.
 
 **How it works**: The primitive is pure f64 math with commuting α/β increments (folds are order-independent and replay-idempotent). The advisor adapter maps lane outcome counts onto the primitive and emits a bounded weight-delta for the shadow channel, the D2 adapter (built in 028/004) maps finding counts onto the same primitive and emits a posterior mean. Neither adapter reimplements the math.
 <!-- /ANCHOR:adr-002-decision -->
@@ -228,7 +228,7 @@ The anti-flood Beta posterior is needed by two subsystems at once: Skill Advisor
 ### Implementation
 
 **What changes**:
-- A new shared module (e.g. `beta-reliability.ts`) holds the f64 primitive `(α₀+s)/(α₀+β₀+s+f)` with cold-start 0.5, a count floor, and commuting folds.
+- A new shared module (e.g. `beta-reliability.ts`) holds the f64 primitive `(α₀+s)/(α₀+β₀+s+f)` with cold-start 0.5, a count floor and commuting folds.
 - A new thin advisor adapter consumes the posterior as a bounded weight-delta and feeds the C4-seam promoter, the D2 adapter is out of scope here (lands in 028/004).
 
 **How to roll back**: The primitive is a new, additive module with no live consumer until the shadow promoter is wired, delete the module and adapter and revert the scoped commits. The live scorer never imported it, so there is nothing to unwind on the live path.

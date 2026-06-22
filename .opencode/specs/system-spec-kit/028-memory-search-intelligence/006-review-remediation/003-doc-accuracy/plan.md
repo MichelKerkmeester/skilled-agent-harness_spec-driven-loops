@@ -43,7 +43,7 @@ _memory:
 | **Testing** | Git-log tracing, sibling strict validation, strict spec validation |
 
 ### Overview
-This phase reconciles the packet narrative docs with committed code. It corrects the Memory rollup mislabel, advances the frozen timeline and before-vs-after narratives, completes the default-off flag inventories, and reconciles the sibling status tables. Every status edit must trace to a commit or an implementation-summary. No code changes here.
+This phase reconciles the packet narrative docs with committed code. It corrects the Memory rollup mislabel, advances the frozen timeline and before-vs-after narratives, completes the default-off flag inventories and reconciles the sibling status tables. Every status edit must trace to a commit or an implementation-summary. No code changes here.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -75,7 +75,7 @@ Documentation-only accuracy reconciliation against committed code.
 - **Rollup reclassification**: correct the Planned-vs-shipped rows traceable to named commits.
 - **Narrative refresh**: advance the timeline and before-vs-after past commit 30.
 - **Inventory completion**: add the missing default-off flags to both inventories.
-- **Sibling reconciliation**: align the 005 phase-map, root changelog, and fingerprint.
+- **Sibling reconciliation**: align the 005 phase-map, root changelog and fingerprint.
 
 ### Data Flow
 Each doc claim is checked against `git log` and the relevant implementation-summary, then edited to match. The flag inventories are checked against `search-flags.ts` and the per-track changelogs.
@@ -150,7 +150,7 @@ Each doc claim is checked against `git log` and the relevant implementation-summ
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A status edit overstates progress or reverts the phase-001 benchmark update.
-- **Procedure**: Revert the specific doc edit, restore the prior text, and re-trace the claim before retrying.
+- **Procedure**: Revert the specific doc edit, restore the prior text and re-trace the claim before retrying.
 <!-- /ANCHOR:rollback -->
 
 ---

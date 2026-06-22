@@ -39,7 +39,7 @@
       "count"
     ],
     "importance_tier": "important",
-    "status": "no_go_—_will_not_build_(deferred_to_benchmark_tier)",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

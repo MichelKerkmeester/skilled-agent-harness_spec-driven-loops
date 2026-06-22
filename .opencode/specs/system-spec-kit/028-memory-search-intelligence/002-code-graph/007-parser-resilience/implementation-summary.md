@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Code Graph Q2-C1 - Transient/Fatal Parser Skip-List with Bounded Retry"
-description: "Implemented Q2-C1 parser resilience: transient/fatal retry policy, additive retry_class storage, default max_retries=5, durable attempt_count budgeting, transient self-heal, fatal manual-review behavior, deterministic unit tests, typecheck, build, broad related vitest, and strict spec validation."
+description: "Implemented Q2-C1 parser resilience: transient/fatal retry policy, additive retry_class storage, default max_retries=5, durable attempt_count budgeting, transient self-heal, fatal manual-review behavior, deterministic unit tests, typecheck, build, broad related vitest and strict spec validation."
 trigger_phrases:
   - "Q2-C1 implementation summary parser transient fatal"
   - "code graph bounded retry implemented"
@@ -51,6 +51,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/002-code-graph/007-parser-resilience` |
+| **Status** | Complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 1 |
 | **Candidates** | Q2-C1 / `Q2-C1-parser-transient-fatal` (DONE) |
@@ -66,11 +67,11 @@ Q2-C1 is implemented in the real Code Graph MCP subsystem. The parser skip-list 
 
 Delivered behavior:
 
-- `parser-skip-list.ts` now exposes raw entry reads, skip decisions, retry-class mapping, bounded promotion, and transient-only `recordSuccess` cleanup.
+- `parser-skip-list.ts` now exposes raw entry reads, skip decisions, retry-class mapping, bounded promotion and transient-only `recordSuccess` cleanup.
 - `code-graph-db.ts` adds an additive `retry_class` column to `parser_skip_list`, legacy rows default to `fatal`.
-- `tree-sitter-parser.ts` feeds both crash cohort and retry policy into the skip-list, clears transient entries after non-error parses, and preserves global B2 quarantine behavior.
+- `tree-sitter-parser.ts` feeds both crash cohort and retry policy into the skip-list, clears transient entries after non-error parses and preserves global B2 quarantine behavior.
 - `structural-indexer.ts` classifies fallback parse exceptions before returning the existing empty-node error result, so poison-pill isolation stays intact.
-- `parser-skip-list.vitest.ts` covers transient self-heal, exhaustion to fatal, fatal-from-first, poison-pill isolation, mapping fail-closed behavior, legacy schema upgrade, and B1/B2/OTHER preservation.
+- `parser-skip-list.vitest.ts` covers transient self-heal, exhaustion to fatal, fatal-from-first, poison-pill isolation, mapping fail-closed behavior, legacy schema upgrade and B1/B2/OTHER preservation.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,6 +82,8 @@ Delivered behavior:
 The change stayed inside `.opencode/skills/system-code-graph/mcp_server` plus this phase packet. No packet 030 files were edited. The work shipped in commit `fd30af2cb6` (feat(028) 4-phase build), touching `parser-skip-list.ts`, `tree-sitter-parser.ts`, `structural-indexer.ts` and `code-graph-db.ts` plus `parser-skip-list.vitest.ts`.
 
 The storage change is additive. Existing skip-list rows get `retry_class='fatal'`, which preserves old behavior until a new transient failure is explicitly recorded. `attempt_count` remains the durable retry budget, so process restarts or mid-scan crashes do not refresh a file's retry allowance.
+
+Status is **Complete**: the candidate is implemented and verified in the local workspace, with the live MCP scan, benchmark, reindex and DB benchmark deliberately deferred per user instruction (see Known Limitations). The clean enum value is Complete, the local-only and deferred-live-scan nuance is the qualifier, not a partial breakdown.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -119,7 +122,7 @@ The storage change is additive. Existing skip-list rows get `retry_class='fatal'
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. No live MCP scan, benchmark, reindex, or DB benchmark was run. This was deliberate per user instruction.
+1. No live MCP scan, benchmark, reindex or DB benchmark was run. This was deliberate per user instruction.
 2. Q2-C2 content-addressed edge endpoints remain out of scope.
 3. The older packet 030 shipped record still does not list Q2-C1, this phase implements it locally without touching packet 030.
 <!-- /ANCHOR:limitations -->

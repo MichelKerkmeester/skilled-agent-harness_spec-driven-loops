@@ -43,9 +43,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration` |
-| **Completed** | Runtime implementation complete; live gates pending |
+| **Completed** | Runtime implementation complete. Live gates pending |
 | **Level** | 2 |
-| **Status** | IMPLEMENTED in deep-loop-runtime; benchmark/wiring/persistence gates pending |
+| **Status** | complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,16 +53,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `46812f12a8` and was not re-implemented.
+C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `46812f12a8` and was not re-implemented. The cluster is complete as a runtime-scoped ship: every candidate landed behind a conservative default-off or benchmark-gated guard, so the live behavior gates (novelty floor/tolerance calibration, fanout lag ceiling, heartbeat cadence), the workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit downstream gates recorded under Known Limitations rather than incomplete core work.
 
 | Candidate | Outcome |
 |-----------|---------|
-| C1 graph-novelty audit | Implemented `computeGraphNoveltyDelta` from graph rows and snapshots; no model self-report input. Benchmark threshold calibration pending. |
-| C2 reported-novelty STOP guard | Implemented `--reported-novelty`, `effectiveNovelty = max(reported, graphDelta)` and blocking `novelty_self_report_unverified`; absent arg is a no-op. Workflow forwarding remains pending outside runtime. |
+| C1 graph-novelty audit | Implemented `computeGraphNoveltyDelta` from graph rows and snapshots, with no model self-report input. Benchmark threshold calibration pending. |
+| C2 reported-novelty STOP guard | Implemented `--reported-novelty`, `effectiveNovelty = max(reported, graphDelta)` and blocking `novelty_self_report_unverified`. An absent arg is a no-op. Workflow forwarding remains pending outside runtime. |
 | C3 lag ceiling | Implemented pure cost-guard evaluator and fanout-pool warning event. Fanout default remains off until benchmarked. |
 | C4 keep-both collision handling | Implemented same-id/different-content keep-both with content-derived ids and deterministic ordering. |
-| C5 conflict record | Implemented `_conflicts` markers with `relation: 'CONTRADICTS'`; namespace-aware graph-edge persistence remains a separate gate because fanout merge has no graph namespace inputs. |
-| C6 progress heartbeat | Implemented configurable progress events in the lineage worker; default `0` keeps current behavior until cadence is benchmarked. |
+| C5 conflict record | Implemented `_conflicts` markers with `relation: 'CONTRADICTS'`. Namespace-aware graph-edge persistence remains a separate gate because fanout merge has no graph namespace inputs. |
+| C6 progress heartbeat | Implemented configurable progress events in the lineage worker. Default `0` keeps current behavior until cadence is benchmarked. |
 
 ### Files Changed
 
@@ -86,7 +86,7 @@ C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with dete
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured STOP only when a runtime caller supplies `--reported-novelty`; this preserves existing callers. C3 and C6 are default-off in live fanout config because their defaults require calibration. C4 and C5 avoid downstream same-id clobber by rewriting divergent records to content-derived ids before any later id-scoped upsert.
+The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured STOP only when a runtime caller supplies `--reported-novelty`, which preserves existing callers. C3 and C6 are default-off in live fanout config because their defaults require calibration. C4 and C5 avoid downstream same-id clobber by rewriting divergent records to content-derived ids before any later id-scoped upsert.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,7 +99,7 @@ The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured 
 | Keep C1 before C2 | The independent graph delta is the input the STOP gate consumes. |
 | Leave workflow forwarding pending | The requested code scope was deep-loop-runtime, and the workflow reducer file was outside that subsystem. |
 | Keep C3 additive and default-off in fanout | The existing cost-guard return remains advisory, while live tripwire defaults need benchmark calibration. |
-| Rewrite divergent same-id records to content-derived ids | Downstream id-scoped upsert would clobber same-id bodies; unique ids preserve both sides. |
+| Rewrite divergent same-id records to content-derived ids | Downstream id-scoped upsert would clobber same-id bodies. Unique ids preserve both sides. |
 | Keep C6 default disabled until measured | The heartbeat cadence can add ledger noise if the default is wrong. |
 | Do not rebuild C7 | Packet 030 commit `46812f12a8` already shipped the shutdown-summary half. |
 <!-- /ANCHOR:decisions -->
@@ -111,7 +111,7 @@ The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured 
 
 | Check | Result |
 |-------|--------|
-| Baseline | PASS: broad related Vitest was `6 files / 83 tests`; baseline `npm run typecheck` failed because no script existed |
+| Baseline | PASS: broad related Vitest was `6 files / 83 tests`. Baseline `npm run typecheck` failed because no script existed |
 | `node --check` | PASS: `convergence.cjs`, `cost-guards.cjs`, `fanout-merge.cjs`, `fanout-pool.cjs`, `fanout-run.cjs` |
 | `npm run typecheck` | PASS: 0 errors |
 | Broad related Vitest | PASS: `7 files / 136 tests` |
@@ -126,6 +126,6 @@ The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured 
 
 1. **Benchmark calibration remains pending.** Novelty floor/tolerance, fanout lag ceiling and heartbeat cadence need real histories before any default-on behavior.
 2. **Workflow forwarding remains pending.** `convergence.cjs` accepts `--reported-novelty`, but the deep-research reducer/orchestrator was not modified in this runtime-scoped pass.
-3. **Namespace-aware graph-edge persistence remains pending.** Fanout merge emits `_conflicts` markers; it does not write graph edges because it has no graph namespace input.
-4. **No independent adversarial review seat was run.** Deterministic fixtures cover the anti-gaming and merge behaviors; the T024 review gate remains open.
+3. **Namespace-aware graph-edge persistence remains pending.** Fanout merge emits `_conflicts` markers. It does not write graph edges because it has no graph namespace input.
+4. **No independent adversarial review seat was run.** Deterministic fixtures cover the anti-gaming and merge behaviors. The T024 review gate remains open.
 <!-- /ANCHOR:limitations -->

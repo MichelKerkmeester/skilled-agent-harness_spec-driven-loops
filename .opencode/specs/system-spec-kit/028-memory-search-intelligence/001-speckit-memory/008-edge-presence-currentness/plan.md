@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Sequenced plan for five temporal candidates: C3-A shipped default-off (cb92f2f211), four PENDING (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) behind gates: substrate-first ordering on C3-B, read-side currentness wiring, temporal-mode recall, an as-of lineage tool, query-range extraction, and the 4-channel unforget-disjointness invariant. Schema and benchmark gates per candidate."
+description: "Sequenced plan for five temporal candidates: C3-A shipped default-off (cb92f2f211), four PENDING (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) behind gates: substrate-first ordering on C3-B, read-side currentness wiring, temporal-mode recall, an as-of lineage tool, query-range extraction and the 4-channel unforget-disjointness invariant. Schema and benchmark gates per candidate."
 trigger_phrases:
   - "edge presence currentness plan"
   - "temporal recall implementation plan"
@@ -53,7 +53,7 @@ _memory:
 
 This phase makes the Memory MCP's bi-temporal edge substrate the **live currentness path** and adds the temporal-recall surface on top of it. The substrate (`temporal-edges.ts`, `contradiction-detection.ts`) already compiles and `SPECKIT_TEMPORAL_EDGES` is already ON, the work is read-side wiring plus store reconciliation, not a flag flip. The five candidates are sequenced on a single substrate prerequisite (C3-B four-timestamp window, owned by a sibling phase): C3-A wires currentness onto the read path, C3-C adds TemporalMode, memory_history exposes the lib-only as-of resolver, temporal-query-extraction parses a range from the NL query, unforget-disjointness extends the revision matrix from 2 to 4 channels.
 
-C3-A shipped default-off (cb92f2f211). The remaining four are **PENDING** - none shipped in Wave-0 (030). Two (temporal-query-extraction, unforget-disjointness) are benchmark/shared-infra gated and may stay deferred within this phase.
+C3-A shipped default-off (cb92f2f211). The remaining four are **PENDING**, none shipped in Wave-0 (030). Two (temporal-query-extraction, unforget-disjointness) are benchmark/shared-infra gated and may stay deferred within this phase.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -85,11 +85,11 @@ C3-A shipped default-off (cb92f2f211). The remaining four are **PENDING** - none
 A read-side currentness layer plus a thin temporal-recall capability surface over the existing bi-temporal substrate. No new physical-deletion path, retention TTL is explicitly excluded (category-opposite of edge-presence currentness).
 
 ### Key Components
-- **Temporal substrate**: `lib/graph/temporal-edges.ts` (`valid_at`/`invalid_at`, `invalidateEdge()`) and `lib/graph/contradiction-detection.ts` (live-edge queries, auto-invalidation) - already built, read-unwired.
+- **Temporal substrate**: `lib/graph/temporal-edges.ts` (`valid_at`/`invalid_at`, `invalidateEdge()`) and `lib/graph/contradiction-detection.ts` (live-edge queries, auto-invalidation), already built, read-unwired.
 - **Read-side currentness (C3-A)**: a `getValidEdges`-style filter (`AND invalid_at IS NULL`) on the recall read path + lineage↔causal-edge store reconciliation so the canonical supersede writer (lineage) and the derived causal projection do not fork.
 - **Temporal recall (C3-C)**: a `TemporalMode` enum (Current / AsOf / AsKnownAt / History) selecting the read window + a maintained `current-support` provider, Current defaults to `active_memory_projection`.
 - **As-of tool (memory_history)**: a new MCP tool wrapping `resolveLineageAsOf` / `inspectLineageChain` (`lineage-state.ts:1025-1043`, zero non-test callers today).
-- **Query-range extraction**: a query-time parser producing a structured `QueryInterval`, an event filter by that range, and a fallthrough to normal search when no bounds are found.
+- **Query-range extraction**: a query-time parser producing a structured `QueryInterval`, an event filter by that range and a fallthrough to normal search when no bounds are found.
 - **Revision matrix (unforget-disjointness)**: 4 channels leaving disjoint `(expired_at, status, edge)` fingerprints + a status-ownership write-refusal guard.
 
 ### Data Flow
@@ -124,14 +124,14 @@ Inventories are scoped to the temporal seams above. The `active_memory_projectio
 - [ ] Capture the non-temporal recall baseline for additivity byte-checks.
 
 ### Phase 2: Core Implementation
-- [x] C3-A: wire the read-side `getValidEdges` currentness filter + lineage↔causal-edge store reconciliation. - committed cb92f2f211, 3/3 tests pass
+- [x] C3-A: wire the read-side `getValidEdges` currentness filter + lineage↔causal-edge store reconciliation, committed cb92f2f211, 3/3 tests pass
 - [ ] C3-C: add the `TemporalMode` enum + `current-support` provider, Current byte-identical (gate AsKnownAt on C3-B).
 - [ ] memory_history: expose the lib-only as-of resolver as a new MCP tool (~5-surface parity add).
 - [ ] CG-temporal-query-extraction: parse `QueryInterval` from the NL query, filter by range, fall through when no bounds (needs-benchmark for precision).
 - [ ] M-unforget-channel-disjointness: extend the C3-D matrix 2→4 channels + status-ownership guard (defer if the unforget/erasure half is absent).
 
 ### Phase 3: Verification
-- [ ] Run Memory MCP typecheck, build, and touched-area Vitest suite.
+- [ ] Run Memory MCP typecheck, build and touched-area Vitest suite.
 - [ ] Verify Current-mode recall byte-identical to baseline, AsOf/History correctness, AsKnownAt presence once C3-B lands.
 - [ ] Parity-test memory_history against the lib functions.
 - [ ] Byte-check non-temporal queries unchanged, property-test unforget disjointness.
@@ -175,8 +175,8 @@ Inventories are scoped to the temporal seams above. The `active_memory_projectio
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A candidate regresses Current-mode recall, the reconciliation forks the store, or a non-temporal query changes output.
-- **Procedure**: Revert the candidate commit (each is independent). C3-A's store reconciliation is the riskiest to unwind - keep its read-side filter and its reconciliation in separable hunks.
+- **Trigger**: A candidate regresses Current-mode recall, the reconciliation forks the store or a non-temporal query changes output.
+- **Procedure**: Revert the candidate commit (each is independent). C3-A's store reconciliation is the riskiest to unwind, keep its read-side filter and its reconciliation in separable hunks.
 - **Data reversal**: No physical-deletion or retention change is introduced, rollback is code/test revert only. C3-B's migration (if landed) is owned and reverted by the sibling phase.
 <!-- /ANCHOR:rollback -->
 
@@ -190,9 +190,9 @@ Inventories are scoped to the temporal seams above. The `active_memory_projectio
 | C3-B substrate confirm | Sibling four-timestamp phase | C3-C AsKnownAt, 4-channel matrix |
 | C3-A read-side currentness | Substrate + reconciliation decision | memory_history currentness-correct chains |
 | C3-C TemporalMode | C3-A read path | AsKnownAt (after C3-B) |
-| memory_history | C3-A read path | - (tool surface independent otherwise) |
-| temporal-query-extraction | Benchmark go | - |
-| unforget-disjointness | C3-B + unforget/erasure half | - |
+| memory_history | C3-A read path | none (tool surface independent otherwise) |
+| temporal-query-extraction | Benchmark go | none |
+| unforget-disjointness | C3-B + unforget/erasure half | none |
 <!-- /ANCHOR:phase-deps -->
 
 ---

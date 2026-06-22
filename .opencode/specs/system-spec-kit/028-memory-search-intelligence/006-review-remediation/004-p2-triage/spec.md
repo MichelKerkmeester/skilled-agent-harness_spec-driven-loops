@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created PENDING p2-triage scaffold with lens-grouped verdicts"
-    next_safe_action: "Route the fix-now groups to follow-on phases; do not fix here"
+    next_safe_action: "Route the fix-now groups to follow-on phases, do not fix here"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "This phase scopes and triages only; it fixes nothing."
+      - "This phase scopes and triages only. It fixes nothing."
       - "Per-item enumeration is authoritative in review-report.md."
 ---
 
@@ -59,10 +59,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The review surfaced 91 P2 findings. None is a shipped runtime defect on a default-on path, but they are not uniform: some are cheap default-off-contract guards worth fixing before release, some are latent injection seams that are safe only while inputs stay constrained, and many are missing-assertion gaps on default-off features whose blast radius is low. Shipping a flat list invites either over-fixing low-value items or silently dropping ones that matter. The packet needs a single triaged view that says, per finding family, whether to fix now or accept as is, with the reason recorded.
+The review surfaced 91 P2 findings. None is a shipped runtime defect on a default-on path, but they are not uniform: some are cheap default-off-contract guards worth fixing before release, some are latent injection seams that are safe only while inputs stay constrained and many are missing-assertion gaps on default-off features whose blast radius is low. Shipping a flat list invites either over-fixing low-value items or silently dropping ones that matter. The packet needs a single triaged view that says, per finding family, whether to fix now or accept as is, with the reason recorded.
 
 ### Purpose
-Group the 91 P2 by review lens, and for each group record a fix-now or accept-as-is verdict with a one-line reason. This phase does not fix anything: it produces the triage and routes the fix-now groups to a follow-on phase or to the existing P1 phases where they ride along. The per-item enumeration stays authoritative in `../../review-report.md`; this phase is the decision layer over it.
+Group the 91 P2 by review lens, and for each group record a fix-now or accept-as-is verdict with a one-line reason. This phase does not fix anything: it produces the triage and routes the fix-now groups to a follow-on phase or to the existing P1 phases where they ride along. The per-item enumeration stays authoritative in `../../review-report.md`. This phase is the decision layer over it.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -83,25 +83,25 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 ### P2 Lens Triage
 
-> Counts are approximate and families overlap where the tri-model pass and the deep-dive both surfaced the same code; the authoritative per-item list is `../../review-report.md`. Each group carries one verdict; documented exceptions are noted inline.
+> Counts are approximate and families overlap where the tri-model pass and the deep-dive both surfaced the same code. The authoritative per-item list is `../../review-report.md`. Each group carries one verdict. Documented exceptions are noted inline.
 
 | # | Lens / Family | Approx count | Verdict | One-line reason |
 |---|---------------|--------------|---------|-----------------|
-| G1 | Schema migration non-idempotency (valid_at re-stamp every init, source_kind re-classify, v40 blank-id unique-index wedge, v38/v39 existing-DB self-heal gap) | 5 | Fix-now | Runs on every init or can wedge migration; becomes a live bug the moment a bitemporal read path is wired. |
-| G2 | Rollback-API durability (v38/v39 memory + code-edge rollback undone on next init, lineage re-add) | 4 | Accept-as-is | Rollback functions are test-only with no production down-migration caller and re-added columns are additive nullable; record the contract gap instead. |
-| G3 | Default-off response-shape drift (residual_retention always emitted, memory_health extra fields, degraded-search embedder fields, retention audit metadata key) | 4 | Fix-now | Breaks byte-identical-to-baseline with all new flags off, which is the packet's own default-off contract; the guards are one-line. |
-| G4 | Eval-harness correctness (ALL_CHANNELS omits degree/summary, per-flag loop has no coverage guard, EvalResult.score type violation, normalizeMemoryId nulls big ids, cold-start createdAt drop, hard_negative unreachable, hardcoded bucket quotas) | 9 | Fix-now | These directly degrade benchmark trustworthiness; route to ride along with phase 001's eval-driver work. |
-| G5 | Fail-open guards (inspectEmbeddingCoverage empty→coverage 1, ensureTemporalColumns fail-open then index build silently fails) | 2 | Fix-now | A guard that should fail closed reports perfect coverage on an empty golden set; cheap to invert. |
-| G6 | Constitutional CRUD TOCTOU + dropped tier-downgrade audit | 1 | Fix-now | Weakens a constitutional protection and silently removed an audit on the new reject path; matters under multi-process or shared-WAL. |
+| G1 | Schema migration non-idempotency (valid_at re-stamp every init, source_kind re-classify, v40 blank-id unique-index wedge, v38/v39 existing-DB self-heal gap) | 5 | Fix-now | Runs on every init or can wedge migration. Becomes a live bug the moment a bitemporal read path is wired. |
+| G2 | Rollback-API durability (v38/v39 memory + code-edge rollback undone on next init, lineage re-add) | 4 | Accept-as-is | Rollback functions are test-only with no production down-migration caller and re-added columns are additive nullable. Record the contract gap instead. |
+| G3 | Default-off response-shape drift (residual_retention always emitted, memory_health extra fields, degraded-search embedder fields, retention audit metadata key) | 4 | Fix-now | Breaks byte-identical-to-baseline with all new flags off, which is the packet's own default-off contract. The guards are one-line. |
+| G4 | Eval-harness correctness (ALL_CHANNELS omits degree/summary, per-flag loop has no coverage guard, EvalResult.score type violation, normalizeMemoryId nulls big ids, cold-start createdAt drop, hard_negative unreachable, hardcoded bucket quotas) | 9 | Fix-now | These directly degrade benchmark trustworthiness. Route to ride along with phase 001's eval-driver work. |
+| G5 | Fail-open guards (inspectEmbeddingCoverage empty→coverage 1, ensureTemporalColumns fail-open then index build silently fails) | 2 | Fix-now | A guard that should fail closed reports perfect coverage on an empty golden set. Cheap to invert. |
+| G6 | Constitutional CRUD TOCTOU + dropped tier-downgrade audit | 1 | Fix-now | Weakens a constitutional protection and silently removed an audit on the new reject path. Matters under multi-process or shared-WAL. |
 | G7 | DoS / robustness guards (scope-governance unbounded recursion, rebuildCodeEdgesTable non-atomic exec) | 2 | Fix-now | Cheap depth and transaction guards on partially caller-influenced paths. |
-| G8 | Eval-harness TOCTOU + path/info leakage (existsSync/backup race, internal paths in error text) | 3 | Accept-as-is | Eval-only harness, low blast radius; capture as a hardening backlog item. |
-| G9 | Latent injection seams (regex injection in ground-truth generator, search-results attribute escaping, redaction-gate opening-tag, synthetic SUPERSEDES NULL valid_at) | 4 | Fix-now | Prompt-injection and regex boundaries safe only while inputs stay constrained; cheap to harden before the constraint widens. |
-| G10 | Recall correctness (summary fusion lane dropped when complexity router off, world-summary cap with no ORDER BY, entity-extractor rejects configured custom types, summary-fusion ON-path under-covered) | 4 | Fix-now | Correctness and determinism bugs on opt-in recall lanes; fix before the lanes are enabled. |
-| G11 | Test-coverage / missing-assertion gaps (temporal-edges provenance + relation branch, edge-presence early-return, idempotency-receipt TTL/clamp/error-swallow/conflict, lineage re-root, governance-vocab branches, bitemporal-schema duplicate-column catch, BM25 calibration env path, edge-vector FK pragma) | 20 | Accept-as-is | Missing-assertion and defensive-guard gaps on default-off features with low blast radius; convert to a test-hardening backlog, close opportunistically when each feature is enabled. |
-| G12 | Doc-accuracy P2 cluster (timeline / before-vs-after / benchmark-status / ENV_REFERENCE / sibling status tables) | 12 | Fix-now (owned by phase 003) | The iteration-9 staleness cluster is already delegated to phase 003; cross-referenced here, not re-decided. |
-| G13 | Code-graph SUPERSEDES / bitemporal invariants (both-edges-live ambiguity, dead bitemporal read gate, code-edge re-stamp) | 4 | Accept-as-is | The read gate has zero consumers today, so the invariant ambiguity has no live effect; reconfirm the zero-callers caveat, then fix when a read path wires up. |
-| G14 | Advisor outcome-weighted rerank (neutral resolver untested, vacuous assertion, shadowScore blend untested) | 3 | Accept-as-is | Default-off shadow/telemetry channel with no live production import; test-hardening backlog. |
-| G15 | Flags ceiling / drift guards (orphan-flag detection missing, stale test name and comment counts) | 2 | Fix-now | Cheap one-line test additions that stop the frozen snapshot accumulating dead entries; the packet added 22 acknowledged flags so the gap is widening. |
+| G8 | Eval-harness TOCTOU + path/info leakage (existsSync/backup race, internal paths in error text) | 3 | Accept-as-is | Eval-only harness, low blast radius. Capture as a hardening backlog item. |
+| G9 | Latent injection seams (regex injection in ground-truth generator, search-results attribute escaping, redaction-gate opening-tag, synthetic SUPERSEDES NULL valid_at) | 4 | Fix-now | Prompt-injection and regex boundaries safe only while inputs stay constrained. Cheap to harden before the constraint widens. |
+| G10 | Recall correctness (summary fusion lane dropped when complexity router off, world-summary cap with no ORDER BY, entity-extractor rejects configured custom types, summary-fusion ON-path under-covered) | 4 | Fix-now | Correctness and determinism bugs on opt-in recall lanes. Fix before the lanes are enabled. |
+| G11 | Test-coverage / missing-assertion gaps (temporal-edges provenance + relation branch, edge-presence early-return, idempotency-receipt TTL/clamp/error-swallow/conflict, lineage re-root, governance-vocab branches, bitemporal-schema duplicate-column catch, BM25 calibration env path, edge-vector FK pragma) | 20 | Accept-as-is | Missing-assertion and defensive-guard gaps on default-off features with low blast radius. Convert to a test-hardening backlog, close opportunistically when each feature is enabled. |
+| G12 | Doc-accuracy P2 cluster (timeline / before-vs-after / benchmark-status / ENV_REFERENCE / sibling status tables) | 12 | Fix-now (owned by phase 003) | The iteration-9 staleness cluster is already delegated to phase 003. Cross-referenced here, not re-decided. |
+| G13 | Code-graph SUPERSEDES / bitemporal invariants (both-edges-live ambiguity, dead bitemporal read gate, code-edge re-stamp) | 4 | Accept-as-is | The read gate has zero consumers today, so the invariant ambiguity has no live effect. Reconfirm the zero-callers caveat, then fix when a read path wires up. |
+| G14 | Advisor outcome-weighted rerank (neutral resolver untested, vacuous assertion, shadowScore blend untested) | 3 | Accept-as-is | Default-off shadow/telemetry channel with no live production import. Test-hardening backlog. |
+| G15 | Flags ceiling / drift guards (orphan-flag detection missing, stale test name and comment counts) | 2 | Fix-now | Cheap one-line test additions that stop the frozen snapshot accumulating dead entries. The packet added 22 acknowledged flags so the gap is widening. |
 
 ### Triage Summary
 
@@ -150,7 +150,7 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 - All 91 P2 are accounted for across the lens groups, with no ungrouped finding.
 - Each group has a fix-now or accept-as-is verdict and a one-line reason.
-- Each fix-now group is routed to a follow-on owner; each accept-as-is group records why deferral is safe.
+- Each fix-now group is routed to a follow-on owner. Each accept-as-is group records why deferral is safe.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
@@ -183,7 +183,7 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 - Findings that the tri-model pass and the deep-dive both raised are counted once in their dominant family.
 - A finding that reframes a confirmed P1 at P2 severity (for example the retention spare-only fail-closed framing) is routed to the owning P1 phase, not double-counted as new work.
-- The doc-accuracy cluster is owned by phase 003; G12 cross-references it rather than re-deciding it.
+- The doc-accuracy cluster is owned by phase 003. G12 cross-references it rather than re-deciding it.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -193,7 +193,7 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 | Dimension | Rating | Notes |
 |-----------|--------|-------|
-| File count | Small | Scaffold docs only; no code touched |
+| File count | Small | Scaffold docs only, no code touched |
 | Risk | Low | Triage is a decision layer, not a change |
 | Verification | Medium | Completeness against the full P2 set must be checked |
 <!-- /ANCHOR:complexity -->
@@ -203,5 +203,5 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the fix-now P2 groups become a single new remediation phase (007) or ride along inside phases 001-002 where the surfaces overlap? The routing decision is recorded during execution; the default is to ride along where the file is already open.
+- Should the fix-now P2 groups become a single new remediation phase (007) or ride along inside phases 001-002 where the surfaces overlap? The routing decision is recorded during execution. The default is to ride along where the file is already open.
 <!-- /ANCHOR:questions -->

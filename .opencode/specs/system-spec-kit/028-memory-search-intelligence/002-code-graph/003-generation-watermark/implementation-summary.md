@@ -42,7 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/002-code-graph/003-generation-watermark |
-| **Completed** | Q6-C2 implemented and verified on 2026-06-19, Q6-C1 remains gated |
+| **Status** | complete |
+| **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Q6-C2 is built. The code-graph subsystem now stores a monotonic `generation` counter in the existing `code_graph_metadata` KV table, advances it from the scan promotion finalize path, and surfaces it as an additive field on `metadata.freshness` from `code_graph_context`.
+Q6-C2 is built. The code-graph subsystem now stores a monotonic `generation` counter in the existing `code_graph_metadata` KV table, advances it from the scan promotion finalize path and surfaces it as an additive field on `metadata.freshness` from `code_graph_context`.
 
 ### Q6-C2 - Soft generation watermark (DONE)
 
@@ -79,7 +80,7 @@ The hard gate would turn a stale read into an explicit ERROR rather than silentl
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Q6-C2 shipped as an additive, reversible metadata field with no feature flag and no read-filter change. The counter is persisted in `code_graph_metadata`, bumped only after scan promotion, and read into the freshness envelope. Tests cover generation defaults, malformed metadata fallback, promotion increments, failed/no-op no-bump behavior, and byte-identical node/edge ordering. Q6-C1 ships only with the Q1-C1 cluster decision.
+Q6-C2 shipped as an additive, reversible metadata field with no feature flag and no read-filter change. The counter is persisted in `code_graph_metadata`, bumped only after scan promotion and read into the freshness envelope. Tests cover generation defaults, malformed metadata fallback, promotion increments, failed/no-op no-bump behavior and byte-identical node/edge ordering. Q6-C1 ships only with the Q1-C1 cluster decision.
 <!-- /ANCHOR:how-delivered -->
 
 ---

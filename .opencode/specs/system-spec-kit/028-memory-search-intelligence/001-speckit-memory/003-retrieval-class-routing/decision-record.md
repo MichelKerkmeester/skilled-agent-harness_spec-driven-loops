@@ -57,7 +57,7 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 ### Constraints
 
 - The two existing axes must stay byte-identical for all existing fixtures (additive-reversibility guarantee).
-- C2-A is the single internal critical-path dependency for the whole Cluster A — C2-C and C2-B cannot route by class without it.
+- C2-A is the single internal critical-path dependency for the whole Cluster A. C2-C and C2-B cannot route by class without it.
 - The classifier must be a synchronous pure function (no I/O, no embedding call) on the pre-fusion path.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -68,7 +68,7 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 
 **We chose**: Build C2-A as a standalone pure classifier (`retrieval-class-classifier.ts`) that plumbs `retrievalClass` onto `RouteResult` as an additive third axis.
 
-**How it works**: The classifier maps each query to exactly one class (with a neutral default and a documented precedence rule for multi-shape queries). `RouteResult` gains a `retrievalClass` field; the two existing axes are untouched. C2-C and C2-B read `retrievalClass` to gate graph expansion and select a per-class weight profile.
+**How it works**: The classifier maps each query to exactly one class (with a neutral default and a documented precedence rule for multi-shape queries). `RouteResult` gains a `retrievalClass` field. The two existing axes are untouched. C2-C and C2-B read `retrievalClass` to gate graph expansion and select a per-class weight profile.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,10 +78,10 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Standalone additive axis (chosen)** | Clean reversibility; existing routing byte-identical until a consumer reads the axis | One new module + a new field | 9/10 |
-| Overload the intent classifier to emit shape | No new module | Conflates two orthogonal axes; breaks additive-reversibility; harder to test | 3/10 |
+| **Standalone additive axis (chosen)** | Clean reversibility, existing routing byte-identical until a consumer reads the axis | One new module + a new field | 9/10 |
+| Overload the intent classifier to emit shape | No new module | Conflates two orthogonal axes, breaks additive-reversibility, harder to test | 3/10 |
 
-**Why this one**: Retrieval-shape and task-intent are genuinely orthogonal; keeping them separate preserves the additive-reversibility guarantee and isolates the new behavior behind a single readable field.
+**Why this one**: Retrieval-shape and task-intent are genuinely orthogonal. Keeping them separate preserves the additive-reversibility guarantee and isolates the new behavior behind a single readable field.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -94,13 +94,13 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 - The new axis is testable in isolation (per-class fixtures + a totality property test).
 
 **What it costs**:
-- One new module and a `RouteResult` field. Mitigation: the field is additive and downstream consumers tolerate it; existing-axis output is asserted byte-identical.
+- One new module and a `RouteResult` field. Mitigation: the field is additive and downstream consumers tolerate it. Existing-axis output is asserted byte-identical.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| C2-A misclassifies and demotes the right answer (the costly false positive the research names) | H | Neutral default class; documented precedence; per-class adversarial fixtures |
+| C2-A misclassifies and demotes the right answer (the costly false positive the research names) | H | Neutral default class, documented precedence, per-class adversarial fixtures |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -126,16 +126,16 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 
 **What changes**:
 - New `mcp_server/lib/search/retrieval-class-classifier.ts` (the pure classifier).
-- `mcp_server/lib/search/query-router.ts` (`RouteResult` gains `retrievalClass`; `preserved`/`includeDegree` extended for C2-C).
+- `mcp_server/lib/search/query-router.ts` (`RouteResult` gains `retrievalClass`, and `preserved`/`includeDegree` extended for C2-C).
 
-**How to roll back**: Revert the scoped C2-A commit; with no consumer reading `retrievalClass`, routing returns byte-identical to baseline. C2-C/C2-B revert independently to their neutral defaults.
+**How to roll back**: Revert the scoped C2-A commit. With no consumer reading `retrievalClass`, routing returns byte-identical to baseline. C2-C/C2-B revert independently to their neutral defaults.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
 <!-- ANCHOR:adr-002 -->
-## ADR-002: Ship the C2-B per-class weight MECHANISM with a neutral default; defer calibrated VALUES to a benchmark
+## ADR-002: Ship the C2-B per-class weight MECHANISM with a neutral default, and defer calibrated VALUES to a benchmark
 
 ### Metadata
 
@@ -150,7 +150,7 @@ The Memory MCP query router already fuses two orthogonal classifiers into `Route
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusion seam. The 028 research has no measured before/after benefit number for any candidate and explicitly flags the per-class `RetrievalProfile` weight VALUES as needing re-calibration on the ~1000-memory corpus; that calibration is benchmark-gated, and the reindex is gate-zero (027/002 §13). We needed to decide whether to ship guessed values now or land the mechanism with a neutral default.
+C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusion seam. The 028 research has no measured before/after benefit number for any candidate and explicitly flags the per-class `RetrievalProfile` weight VALUES as needing re-calibration on the ~1000-memory corpus. That calibration is benchmark-gated, and the reindex is gate-zero (027/002 §13). We needed to decide whether to ship guessed values now or land the mechanism with a neutral default.
 
 ### Constraints
 
@@ -166,7 +166,7 @@ C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusio
 
 **We chose**: Land C2-B's injection seam with a neutral/identity default `RetrievalProfile` (byte-identical to baseline) and treat the tuned per-class values as a separate benchmark follow-up, explicitly out of scope here.
 
-**How it works**: Per-class profiles map to `RankedList.weight`; fusion runs with the live `bonusOverChannels` option so `weight:0` is honored without skewing survivors. The default profile leaves fused output unchanged; only a tuned profile (a later, measured change) alters ranking.
+**How it works**: Per-class profiles map to `RankedList.weight`. Fusion runs with the live `bonusOverChannels` option so `weight:0` is honored without skewing survivors. The default profile leaves fused output unchanged. Only a tuned profile (a later, measured change) alters ranking.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -176,10 +176,10 @@ C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusio
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Mechanism + neutral default (chosen)** | Safe, reversible, byte-identical now; isolates value-tuning risk to a measured follow-up | No live ranking change until values are tuned | 9/10 |
+| **Mechanism + neutral default (chosen)** | Safe, reversible, byte-identical now, isolates value-tuning risk to a measured follow-up | No live ranking change until values are tuned | 9/10 |
 | Ship guessed weight values now | Immediate ranking change | Un-calibrated values could demote good results with no measured basis (violates the regression-baseline discipline) | 3/10 |
 
-**Why this one**: Shipping the mechanism is safe and unblocked; shipping un-calibrated values is not, and 028 forbids fabricated benefit claims.
+**Why this one**: Shipping the mechanism is safe and unblocked. Shipping un-calibrated values is not, and 028 forbids fabricated benefit claims.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -208,7 +208,7 @@ C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusio
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Per-class weighting is the C2-B leverage; the seam must exist before any tuning |
+| 1 | **Necessary?** | PASS | Per-class weighting is the C2-B leverage, the seam must exist before any tuning |
 | 2 | **Beyond Local Maxima?** | PASS | Shipping guessed values was considered and rejected |
 | 3 | **Sufficient?** | PASS | A neutral default is the minimal safe landing |
 | 4 | **Fits Goal?** | PASS | C2-B is a direct consumer of C2-A in the cluster |

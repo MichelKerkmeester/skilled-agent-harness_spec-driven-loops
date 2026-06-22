@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Make bi-temporal edge-presence the live currentness path for the Spec-Kit Memory MCP: wire the already-ON temporal-edge substrate into the read side (C3-A), add TemporalMode recall (C3-C), expose the lib-only as-of lineage resolver as a memory_history tool, parse a time range from the NL query (CG-temporal-query-extraction), and extend the C3-D 2-channel revision matrix to a 4-channel unforget-disjointness invariant. C3-A is DONE in the current working tree, the other four candidates remain PENDING behind their gates."
+description: "Make bi-temporal edge-presence the live currentness path for the Spec-Kit Memory MCP: wire the already-ON temporal-edge substrate into the read side (C3-A), add TemporalMode recall (C3-C), expose the lib-only as-of lineage resolver as a memory_history tool, parse a time range from the NL query (CG-temporal-query-extraction) and extend the C3-D 2-channel revision matrix to a 4-channel unforget-disjointness invariant. C3-A shipped then was kept off, the other four candidates remain PENDING behind their gates."
 trigger_phrases:
   - "edge presence currentness"
   - "temporal mode recall"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
     last_updated_at: "2026-06-19T06:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped C3-A edge-presence currentness default-off, 4 candidates pending"
+    recent_action: "C3-A shipped then kept off as integrity-only, 4 candidates pending"
     next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
     blockers: []
     key_files:
@@ -44,7 +44,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark, or shared-infra gates.
+This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query) and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark or shared-infra gates.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -53,7 +53,7 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Partial. C3-A shipped default-off, four candidates pending |
+| **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -70,22 +70,22 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 
 ### Problem Statement
 
-The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is **build-side only and unwired on the read path**. `SPECKIT_TEMPORAL_EDGES` is **already ON** (not a flag to flip - `ENV_REFERENCE.md:296`, `search-flags.ts:706`), and `lib/graph/temporal-edges.ts` (`valid_at`/`invalid_at` columns, `invalidateEdge()`) plus `lib/graph/contradiction-detection.ts` (queries only live edges, auto-invalidates on `supersedes`/conflicting pairs) exist and compile [CONFIRMED: `temporal-edges.ts:35-80`, `contradiction-detection.ts:75-77, 85-90, 99-110`, research.md:22]. What is missing is the **read-side wiring** that makes "currentness = edge presence" the live retirement path, plus the **store reconciliation** that prevents the causal-edge `invalid_at` projection and the canonical lineage writer from forking into a third source of truth [CONFIRMED: `vector-index-schema.ts:184-185`, roadmap §BROADENING-2 "C3-A KILLED as a flip → reclassified read-side build"].
+The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is **build-side only and unwired on the read path**. `SPECKIT_TEMPORAL_EDGES` is **already ON** (not a flag to flip, `ENV_REFERENCE.md:296`, `search-flags.ts:706`), and `lib/graph/temporal-edges.ts` (`valid_at`/`invalid_at` columns, `invalidateEdge()`) plus `lib/graph/contradiction-detection.ts` (queries only live edges, auto-invalidates on `supersedes`/conflicting pairs) exist and compile [CONFIRMED: `temporal-edges.ts:35-80`, `contradiction-detection.ts:75-77, 85-90, 99-110`, research.md:22]. What is missing is the **read-side wiring** that makes "currentness = edge presence" the live retirement path, plus the **store reconciliation** that prevents the causal-edge `invalid_at` projection and the canonical lineage writer from forking into a third source of truth [CONFIRMED: `vector-index-schema.ts:184-185`, roadmap §BROADENING-2 "C3-A KILLED as a flip → reclassified read-side build"].
 
 Beyond making currentness live, the subsystem has **no temporal recall UX**: the as-of lineage resolver (`resolveLineageAsOf` / `inspectLineageChain`) is **lib-only with zero non-test callers** [CONFIRMED: `lineage-state.ts:1025-1043`, 005-revisit Q9], there is **no query-time temporal parsing** (recency is only a decay/boost weight, records carry timestamps but are never searched by an extracted time range) [CONFIRMED: 007 iter-013 "CG-temporal-query-extraction → GO", iter-008:16], and the revision model documents only a **2-channel** soft-forget/temporal-close base where a safe `unforget(id)` bare-key removal needs **4 disjoint `(expired_at, status, edge)` fingerprints** [CONFIRMED: `temporal-edges.ts`, 001 iter-012:13, iter-016].
 
 ### Purpose
 
-Land the edge-presence currentness path and its temporal-recall surface as a **sequenced, schema-aware build** - not a flag flip - with the four-timestamp window (C3-B, a prerequisite owned by a sibling phase) as the substrate, the read-side `getValidEdges` filter and lineage/causal-edge store reconciliation as C3-A's core, and TemporalMode + memory_history + query-range extraction as the capability layer. Extend the revision-channel matrix to the 4-channel disjointness invariant so unforget is provably a safe bare-key operation.
+Land the edge-presence currentness path and its temporal-recall surface as a **sequenced, schema-aware build**, not a flag flip, with the four-timestamp window (C3-B, a prerequisite owned by a sibling phase) as the substrate, the read-side `getValidEdges` filter and lineage/causal-edge store reconciliation as C3-A's core and TemporalMode + memory_history + query-range extraction as the capability layer. Extend the revision-channel matrix to the 4-channel disjointness invariant so unforget is provably a safe bare-key operation.
 
 ### Critical context (from the 028 broadening + 027-revisit addenda, authoritative)
 
 - **C3-A is NOT a flag flip.** `SPECKIT_TEMPORAL_EDGES` is already ON, edge-presence currentness still needs a read-side build + store reconciliation [roadmap §BROADENING-2, 001 iter-037].
-- **No candidate has a measured before/after benefit number** - all leverage/effort are structural inference, never benchmarked [roadmap §BROADENING-6, synthesis/03 §B].
+- **No candidate has a measured before/after benefit number**, all leverage/effort are structural inference, never benchmarked [roadmap §BROADENING-6, synthesis/03 §B].
 - **Bi-temporal scoping:** consumers are causal + lineage (+ code_edges in the sibling Code Graph phase), **exclude retention TTL** (physical deletion is the category-opposite of edge-presence currentness). The canonical supersede writer is **lineage**, causal `invalid_at` is a derived projection, the real "current memory" read store is **`active_memory_projection`** [CONFIRMED: 005-revisit edit #4, synthesis/01 Wave-2].
 - **C3-C cost is conditional:** if "Current" reads stay on `active_memory_projection` it is M, if "Current" replaces the projection with causal edge-presence reads it crosses to **L** (~12 JOIN sites / 2 writers) [005-revisit edit #4, synthesis/03 §C].
 - **memory_history** is a ~5-surface parity add, full **AsKnownAt** (transaction-time recall) is gated on C3-B [005-revisit Q9 GO additions].
-- **M-unforget-channel-disjointness is NEEDS-BENCHMARK (defer)** - it is a cross-channel invariant that depends on **both** an unforget channel AND erasure, only one half of which is present today [CONFIRMED: 001 iter-016:13].
+- **M-unforget-channel-disjointness is NEEDS-BENCHMARK (defer)**, it is a cross-channel invariant that depends on **both** an unforget channel AND erasure, only one half of which is present today [CONFIRMED: 001 iter-016:13].
 <!-- /ANCHOR:problem -->
 
 ---
@@ -93,7 +93,7 @@ Land the edge-presence currentness path and its temporal-recall surface as a **s
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope - five candidates (all PENDING, status detailed in §14)
+### In Scope, five candidates (all PENDING, status detailed in §14)
 
 | # | Candidate | One-line change | Seam (file:line) | Lev | Eff | Class |
 |---|-----------|-----------------|------------------|-----|-----|-------|
@@ -109,11 +109,11 @@ Land the edge-presence currentness path and its temporal-recall surface as a **s
 
 ### Out of Scope (documented, NOT built this phase)
 
-- **C3-B itself** (the four-timestamp schema migration) - owned by a sibling phase, consumed here.
-- **C4-B `derived_id`** content-addressed identity - separate Wave-2 candidate (`causal-edges.ts:348-358`).
-- **Retention TTL / physical deletion** - explicitly excluded from the bi-temporal currentness model (category error) [005-revisit edit #4].
-- **Code Graph Q1-C1 code-edge bi-temporal** - DEFER-speculative, owned by `002-code-graph` [synthesis/01 Wave-2].
-- **Full erasure cascade / `unforget` channel construction** beyond the disjointness invariant - `M-erasure-cascade-refuse-whole` is its own GDPR packet [001 iter-016:12].
+- **C3-B itself** (the four-timestamp schema migration), owned by a sibling phase, consumed here.
+- **C4-B `derived_id`** content-addressed identity, a separate Wave-2 candidate (`causal-edges.ts:348-358`).
+- **Retention TTL / physical deletion**, explicitly excluded from the bi-temporal currentness model (category error) [005-revisit edit #4].
+- **Code Graph Q1-C1 code-edge bi-temporal**, DEFER-speculative, owned by `002-code-graph` [synthesis/01 Wave-2].
+- **Full erasure cascade / `unforget` channel construction** beyond the disjointness invariant, `M-erasure-cascade-refuse-whole` is its own GDPR packet [001 iter-016:12].
 - Modifying any external reference system under `external/`.
 
 ### Files to Change
@@ -129,7 +129,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - **R1 (C3-A):** Recall's currentness decision MUST derive from edge presence (`invalid_at IS NULL`) on the read path, not from a flag or physical deletion, the lineage canonical writer and the causal-edge `invalid_at` projection MUST reconcile to one source of truth (no third fork).
 - **R2 (C3-C):** Recall MUST accept a `TemporalMode` (Current / AsOf / AsKnownAt / History), Current MUST preserve today's `active_memory_projection` behavior byte-for-byte unless explicitly migrated, AsKnownAt MUST be gated on the C3-B four-timestamp window.
 - **R3 (memory_history):** A new tool MUST expose `resolveLineageAsOf` / `inspectLineageChain` with full I/O parity to the lib functions, it MUST NOT change any existing recall path.
-- **R4 (temporal-query-extraction):** Query parsing MUST extract a structured time interval when present, filter events by that range before vector ranking, and fall back to the existing search unchanged when no bounds are found (no regression for non-temporal queries).
+- **R4 (temporal-query-extraction):** Query parsing MUST extract a structured time interval when present, filter events by that range before vector ranking and fall back to the existing search unchanged when no bounds are found (no regression for non-temporal queries).
 - **R5 (unforget-disjointness):** The four revision channels MUST leave disjoint `(expired_at, status, edge)` fingerprints such that `unforget(id)` is a safe bare-key removal, a status-ownership write MUST be refused when it would violate channel disjointness.
 - **R6 (cross-cutting):** No retention-TTL coupling, no physical deletion introduced, every change independently reversible.
 <!-- /ANCHOR:requirements -->
@@ -144,7 +144,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - `memory_history` returns the same lineage chains as the lib functions for the same inputs, with no change to default recall.
 - A temporal NL query (e.g. "decisions before commit X") filters by the extracted range, a non-temporal query is byte-identical to baseline.
 - `unforget(id)` is provably a safe bare-key removal under the 4-channel disjointness invariant (property test), a disjointness-violating status write is refused.
-- Typecheck, build, focused tests, and `validate.sh --strict` on this phase all pass.
+- Typecheck, build, focused tests and `validate.sh --strict` on this phase all pass.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -186,9 +186,9 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 
 | Dimension | Assessment |
 |-----------|------------|
-| Code surface | Medium - read-path search wiring, a new tool surface, a query parser, and a temporal-mode provider |
+| Code surface | Medium, read-path search wiring, a new tool surface, a query parser and a temporal-mode provider |
 | Data migration | None directly here, consumes C3-B's migration (sibling phase) |
-| Runtime risk | Medium - C3-A changes the live retirement path, C3-C touches recall mode selection |
+| Runtime risk | Medium, C3-A changes the live retirement path, C3-C touches recall mode selection |
 | Reversibility | High per-candidate, C3-A's store reconciliation is the riskiest to unwind |
 
 ## 10. RISK MATRIX
@@ -212,7 +212,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 ## 12. OPEN QUESTIONS
 
 1. Does C3-C "Current" read alongside `active_memory_projection` (M) or replace it with causal edge-presence reads (L, ~12 JOIN sites / 2 writers)? Default to alongside, replacement is a separate decision.
-2. Is the C3-B four-timestamp window genuinely additive with no reader rewrites? Unverified at source - no migration spec exists to read.
+2. Is the C3-B four-timestamp window genuinely additive with no reader rewrites? Unverified at source, no migration spec exists to read.
 3. Is the unforget channel + erasure half present enough to build R5 fully, or does it stay a partial invariant + property test until the erasure packet lands?
 <!-- /ANCHOR:questions -->
 
@@ -238,7 +238,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|
-| 1 | **C3-A** edge-presence currentness | DONE | none for the implemented gated slice | Not in 030 §14, current working tree only (no commit per user request) | Implemented in `temporal-edges.ts`, `vector-index-schema.ts`, and `search-flags.ts`, verified by `tests/edge-presence-currentness.vitest.ts` (3/3), `tests/flag-ceiling.vitest.ts` (6/6), and `npm run typecheck` (0) |
+| 1 | **C3-A** edge-presence currentness | DONE (shipped then kept off) | none for the implemented gated slice | Not in 030 §14, current working tree only (no commit per user request) | Implemented in `temporal-edges.ts`, `vector-index-schema.ts` and `search-flags.ts`, verified by `tests/edge-presence-currentness.vitest.ts` (3/3), `tests/flag-ceiling.vitest.ts` (6/6) and `npm run typecheck` (0). The flag and code were later removed in the kept-off flag-resolution reckoning (reconciliation repaired 0 rows, integrity-only). See `../../007-kept-off-flag-resolution/` |
 | 2 | **C3-C** TemporalMode | PENDING | schema-migration (AsKnownAt needs C3-B) + implementation not started | Not in 030 §14 | Pending until the TemporalMode read surface is implemented, Current must remain byte-identical via `active_memory_projection` |
 | 3 | **memory_history** as-of tool | PENDING | shared-infra-dep (depends on currentness-correct chains) + tool surface not started | Not in 030 §14 | Lib-only `resolveLineageAsOf`/`inspectLineageChain` still need MCP tool parity |
 | 4 | **CG-temporal-query-extraction** | PENDING | needs-benchmark (precision of range-filter vs current recency boost) | Not in 030 §14 | Benchmark-blocked, do not ship range filtering without a precision/fallthrough check |

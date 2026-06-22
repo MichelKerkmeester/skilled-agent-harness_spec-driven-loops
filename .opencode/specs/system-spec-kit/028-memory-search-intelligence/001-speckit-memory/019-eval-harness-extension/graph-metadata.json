@@ -39,7 +39,7 @@
       "brier"
     ],
     "importance_tier": "important",
-    "status": "c9_implemented;_a8_pending",
+    "status": "complete",
     "key_files": [
       "lib/feedback/shadow-scoring.ts",
       "spec.md",

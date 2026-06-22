@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Async Sleep-Time Consolidation (governed off-turn reorganization)"
-description: "Level-3 verification checklist for the governed, default-off, shadow-gated off-turn memory-reorganization pass. Prove-first: governor bounds, off-turn isolation (sync byte-identical + zero off-turn archival mutation), idempotency against 010's cursor, and shadow-telemetry evidence are all blockers."
+description: "Level-3 verification checklist for the governed, default-off, shadow-gated off-turn memory-reorganization pass. Prove-first: governor bounds, off-turn isolation (sync byte-identical + zero off-turn archival mutation), idempotency against 010's cursor and shadow-telemetry evidence are all blockers."
 trigger_phrases:
   - "async sleep-time consolidation checklist"
   - "sleeptime agent verification"
@@ -175,7 +175,7 @@ _memory:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Review pass (independent seat) attempts to refute the termination guarantee, the off-turn isolation, and the cursor-idempotency claim
+- [ ] CHK-130 [P1] Review pass (independent seat) attempts to refute the termination guarantee, the off-turn isolation and the cursor-idempotency claim
 - [x] CHK-131 [P2] No new dependency licenses introduced
 <!-- /ANCHOR:compliance-verify -->
 

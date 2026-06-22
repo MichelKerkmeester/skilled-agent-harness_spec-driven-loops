@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: RRF Determinism Spine (Skill Advisor)"
-description: "Plan for the advisor RRF determinism-spine sub-phase: import Memory's shared fuseResultsMulti to replace the raw-score weighted-SUM fusion, fold in the byte-stable tiebreak (C2), carry the graph_causal signed-score conflict-suppression caveat via a post-fusion re-rank, and capture a routing-agreement baseline before any live flip. Sequencing, the shared-infra dependency, and the dormant-conflict-data reality."
+description: "Plan for the advisor RRF determinism-spine sub-phase: import Memory's shared fuseResultsMulti to replace the raw-score weighted-SUM fusion, fold in the byte-stable tiebreak (C2), carry the graph_causal signed-score conflict-suppression caveat via a post-fusion re-rank and capture a routing-agreement baseline before any live flip. Sequencing, the shared-infra dependency and the dormant-conflict-data reality."
 trigger_phrases:
   - "advisor rrf determinism spine plan"
   - "skill advisor fuseResultsMulti import sequencing"
@@ -51,7 +51,7 @@ _memory:
 | **Testing** | `tsc`, package build, Vitest (advisor scorer/fusion suite), a routing-agreement baseline, `validate.sh --strict` |
 
 ### Overview
-This sub-phase makes the single highest-leverage foundational change to the Skill Advisor fusion scorer: replace the raw-score weighted SUM (which mixes a hint-inflated lexical overlap, a `[0.2,1]` cosine, and a signed `[-1,1]` graph propagation on one incomparable axis) with rank-based deterministic RRF, by importing Memory's already-shipped `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) and passing the advisor's OWN smaller `k`. The byte-stable tiebreak (C2) is C3's mechanism and folds in. The one mandatory caveat is that `fuseResultsMulti` is positive-only and elides zero/negative-weight lanes, so the `graph_causal` `conflicts_with = -0.35` conflict suppression is preserved via a post-fusion re-rank rather than fed to RRF.
+This sub-phase makes the single highest-leverage foundational change to the Skill Advisor fusion scorer: replace the raw-score weighted SUM (which mixes a hint-inflated lexical overlap, a `[0.2,1]` cosine and a signed `[-1,1]` graph propagation on one incomparable axis) with rank-based deterministic RRF, by importing Memory's already-shipped `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) and passing the advisor's OWN smaller `k`. The byte-stable tiebreak (C2) is C3's mechanism and folds in. The one mandatory caveat is that `fuseResultsMulti` is positive-only and elides zero/negative-weight lanes, so the `graph_causal` `conflicts_with = -0.35` conflict suppression is preserved via a post-fusion re-rank rather than fed to RRF.
 
 Nothing in this sub-phase shipped in the flat Wave-0 implementation record (030) - 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `65cfcea513`) that this import depends on. So C3/C2/the conflict carrier are net-new here, they shipped default-off in this sub-phase (`ce858fa165`), with only the live-flip benchmark still pending. The plan's discipline mirrors packet 030's one-candidate-at-a-time method (read the seam, smallest reversible change, focused test, prove the property, commit independently) but adds a gate the Wave-0 tiebreaks did not need: because the RRF import *changes the fused ordering* (it is not byte-identical-by-default like the Memory tiebreaks), it is **needs-benchmark** - a top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip.
 
@@ -89,7 +89,7 @@ A fusion-MECHANISM replacement at one advisor seam (the lane-merge in `fusion.ts
 
 ### Key Components
 - **Lane-to-RankedList adapter**: each lane's `LaneMatch[]` becomes a `RankedList{source, results}`, the lane's pre-sort order defines the rank fed to RRF. The five lanes (`explicit_author`, `lexical`, `graph_causal`-positive, `derived_generated`, `semantic_shadow`) become five ranked lists.
-- **Imported RRF fuser**: `fuseResultsMulti(lists, { k })` with the advisor's own smaller `k` (skills << ~1000-memory corpus, so `DEFAULT_K` is wrong) - fuses by `1/(k+rank)`, applies its convergence bonus, and emits the shared deterministic order via `compareFusionResults` (`rrfScore` desc → `content_hash` → canonical id).
+- **Imported RRF fuser**: `fuseResultsMulti(lists, { k })` with the advisor's own smaller `k` (skills << ~1000-memory corpus, so `DEFAULT_K` is wrong) - fuses by `1/(k+rank)`, applies its convergence bonus and emits the shared deterministic order via `compareFusionResults` (`rrfScore` desc → `content_hash` → canonical id).
 - **Post-fusion conflict re-rank (carrier)**: the `graph_causal` `conflicts_with` negative mass does NOT enter RRF (which would elide it), it is surfaced separately and applied in the sort comparator, mirroring how `primaryIntentBonus` is applied at sort time (`fusion.ts:428-430`), outside the lane sum - deterministic, auditable, lane-weight-independent.
 - **Determinism order (C2 folded)**: RRF's fixed-order rank sum + the shared tiebreak replaces the `toFixed(6)` float field + `localeCompare` id sort.
 

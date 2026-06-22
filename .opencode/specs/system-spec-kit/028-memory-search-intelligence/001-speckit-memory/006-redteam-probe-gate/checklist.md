@@ -90,7 +90,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 - [x] CHK-FIX-001 [P0] Finding class recorded for the exfil-audit edit (`cross-consumer` / `algorithmic`) and for each probe family
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: `rg 'sanitizeSkillLabel|ignore previous instructions|promptPoisoning|unicodeInstructional'` - all injection seams enumerated and covered by the gate
 - [x] CHK-FIX-003 [P0] Consumer inventory for the render boundary + the audit path (`rg 'formatSearchResults|memory-triggers|getTieredContent|namespace_denied|audit'`)
-- [x] CHK-FIX-004 [P0] Adversarial table tests cover delimiter, joined-input, outside-wrapper, no-op, and fallback cases across poisoned-RAG / query-only-injection / wrapper-breakout
+- [x] CHK-FIX-004 [P0] Adversarial table tests cover delimiter, joined-input, outside-wrapper, no-op and fallback cases across poisoned-RAG / query-only-injection / wrapper-breakout
 - [x] CHK-FIX-005 [P1] Matrix axes listed: {attack family} × {full, compact recall} × {payload class} with the row count
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed (the gate reads no process-wide relaxation knob - proven by grep)
 - [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA / explicit diff range, not a moving branch-relative range - pending commit hash by user instruction

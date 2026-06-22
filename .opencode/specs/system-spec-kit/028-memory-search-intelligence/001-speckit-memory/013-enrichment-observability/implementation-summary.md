@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Enrichment Observability — read-side gauges (028/001 impl)"
+title: "Implementation Summary: Enrichment Observability - read-side gauges (028/001 impl)"
 description: "The pending/failed enrichment-backlog gauges shipped at e1c6a3c793. The decoupled oldest-pending lag gauge now extends the same health query with no schema migration."
 trigger_phrases:
   - "enrichment observability summary"
@@ -61,15 +61,15 @@ You can now see how many rows are waiting and how many failed enrichment, straig
 
 ### gauge-lag (shipped)
 
-The sibling gauge answers a different question: not how many rows are waiting, but how old the oldest one is. It reads `MIN(created_at)` over the same non-complete rows and derives `oldestPendingAgeMs`, while also surfacing `oldestPendingAt` for the raw timestamp anchor. The research is explicit that this is decoupled from the C4-C consolidation cursor: lag needs only the pre-existing `post_insert_enrichment_status` column plus `created_at`, so it ships independently of any Wave-1 shared infrastructure. Its only gate was needs-benchmark, since every effort estimate in the 028 roadmap is structural inference, never a measured delta; focused verification covers correctness and degradation behavior.
+The sibling gauge answers a different question: not how many rows are waiting, but how old the oldest one is. It reads `MIN(created_at)` over the same non-complete rows and derives `oldestPendingAgeMs`, while also surfacing `oldestPendingAt` for the raw timestamp anchor. The research is explicit that this is decoupled from the C4-C consolidation cursor: lag needs only the pre-existing `post_insert_enrichment_status` column plus `created_at`, so it ships independently of any Wave-1 shared infrastructure. Its only gate was needs-benchmark, since every effort estimate in the 028 roadmap is structural inference, never a measured delta. Focused verification covers correctness and degradation behavior.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified (`e1c6a3c793`) | `getBackgroundEnrichmentStats` returns pending/failed and remains DB-free |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Backlog query + `backgroundEnrichment` block; gauge-lag extends it with `MIN(created_at)` and neutral degradation |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts` | Modified | Known-age fixture, neutral all-complete case, and missing-column degradation coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Backlog query + `backgroundEnrichment` block, gauge-lag extends it with `MIN(created_at)` and neutral degradation |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts` | Modified | Known-age fixture, neutral all-complete case and missing-column degradation coverage |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,7 +77,7 @@ The sibling gauge answers a different question: not how many rows are waiting, b
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `e1c6a3c793` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag now ships as a single additive read-side hunk in `memory-crud-health.ts`, with a known-age fixture test, an all-complete neutral case, a missing-column neutral case, typecheck, build, focused vitest, and strict packet validation.
+gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `e1c6a3c793` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag now ships as a single additive read-side hunk in `memory-crud-health.ts`, with a known-age fixture test, an all-complete neutral case, a missing-column neutral case, typecheck, build, focused vitest and strict packet validation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,10 +87,10 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 
 | Decision | Why |
 |----------|-----|
-| Compute lag in the health handler, not a new query class | The backlog query already scans the non-complete rows there; `MIN(created_at)` is one more aggregate on the same plan |
-| Keep lag decoupled from the C4-C cursor | The roadmap and 027-revisit both state lag rides the existing status column + `created_at`; coupling it to C4-C would force an unnecessary Wave-1 deferral |
+| Compute lag in the health handler, not a new query class | The backlog query already scans the non-complete rows there, `MIN(created_at)` is one more aggregate on the same plan |
+| Keep lag decoupled from the C4-C cursor | The roadmap and 027-revisit both state lag rides the existing status column + `created_at`, coupling it to C4-C would force an unnecessary Wave-1 deferral |
 | Neutral-degrade on a schema edge | Mirror the shipped pending/failed catch-block so an absent column or a query error returns 0/null and the scheduler counters still surface, never an outage |
-| Ship gauge-pending-failed before gauge-lag | Lag extends the exact query the pending/failed gauges introduced; sequencing after them costs nothing |
+| Ship gauge-pending-failed before gauge-lag | Lag extends the exact query the pending/failed gauges introduced, sequencing after them costs nothing |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -100,13 +100,13 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 
 | Check | Result |
 |-------|--------|
-| gauge-pending-failed shipped | PASS — commit `e1c6a3c793` (verified + `git log`) |
-| gauge-lag implemented | PASS — `oldestPendingAt` + `oldestPendingAgeMs` surfaced in `backgroundEnrichment` |
-| `npm run typecheck` | PASS — baseline PASS, after PASS |
-| `npx vitest run mcp_server/tests/handler-memory-health-edge.vitest.ts` | PASS — baseline 11 passed, after 13 passed |
-| mutation check | PASS — forcing lag to `0` failed the known-age assertion, then production code was restored |
+| gauge-pending-failed shipped | PASS, commit `e1c6a3c793` (verified + `git log`) |
+| gauge-lag implemented | PASS, `oldestPendingAt` + `oldestPendingAgeMs` surfaced in `backgroundEnrichment` |
+| `npm run typecheck` | PASS, baseline PASS, after PASS |
+| `npx vitest run mcp_server/tests/handler-memory-health-edge.vitest.ts` | PASS, baseline 11 passed, after 13 passed |
+| mutation check | PASS, forcing lag to `0` failed the known-age assertion, then production code was restored |
 | `npm run build` | PASS |
-| `validate.sh --strict` on this packet | PASS — Level 1, exit 0 |
+| `validate.sh --strict` on this packet | PASS, Level 1, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,5 +115,5 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 ## Known Limitations
 
 1. **Effort is structural inference, not a benchmark.** The "S" effort tag, like every estimate in the 028 roadmap, is a reasoning estimate and was never build-measured. gauge-lag shipped for correctness and reversibility, not a promised performance delta.
-2. **Lag is read-side only.** It observes rows whose post-insert enrichment status is not complete; it does not retry, drain, or steer the background scheduler.
+2. **Lag is read-side only.** It observes rows whose post-insert enrichment status is not complete. It does not retry, drain or steer the background scheduler.
 <!-- /ANCHOR:limitations -->

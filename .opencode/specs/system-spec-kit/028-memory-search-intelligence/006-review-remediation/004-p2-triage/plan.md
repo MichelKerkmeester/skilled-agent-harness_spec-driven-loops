@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: P2 Triage"
-description: "Approach for grouping the 91 P2 by lens, deciding fix-now vs accept-as-is, and routing the fix-now groups."
+description: "Approach for grouping the 91 P2 by lens, deciding fix-now vs accept-as-is and routing the fix-now groups."
 trigger_phrases:
   - "028 p2 triage plan"
   - "p2 fix-now routing plan"
@@ -43,7 +43,7 @@ _memory:
 | **Testing** | Coverage check against the full P2 set, strict spec validation |
 
 ### Overview
-This phase is a decision layer, not a change. It reads the 91 P2 from the review report, assigns each to a lens family, marks each family fix-now or accept-as-is with a reason, and routes the fix-now families to a follow-on owner. No code is touched.
+This phase is a decision layer, not a change. It reads the 91 P2 from the review report, assigns each to a lens family, marks each family fix-now or accept-as-is with a reason and routes the fix-now families to a follow-on owner. No code is touched.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,7 +78,7 @@ Decision-layer triage over a frozen finding set.
 - **Routing**: send each fix-now family to a follow-on owner.
 
 ### Data Flow
-The review report finding set is partitioned into families. Each family gets a verdict and a reason. Fix-now families are routed; accept-as-is families record why deferral is safe.
+The review report finding set is partitioned into families. Each family gets a verdict and a reason. Fix-now families are routed. Accept-as-is families record why deferral is safe.
 <!-- /ANCHOR:architecture -->
 
 ---

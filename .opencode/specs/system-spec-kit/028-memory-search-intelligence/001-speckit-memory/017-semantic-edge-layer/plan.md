@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Semantic Edge Layer (semantic-edge-layer / GR-fact-embedding-on-edge)"
-description: "Prove-first plan to build the per-edge embedding substrate once: additive schema migration, a consolidation-time edge embedder + dedicated edge-vector collection, then layer edge-vector-index, triplet search, semantic dedup/merge, and cross-pair invalidation as shadow-gated default-off consumers, benchmarked post-reindex before any promotion."
+description: "Prove-first plan to build the per-edge embedding substrate once: additive schema migration, a consolidation-time edge embedder + dedicated edge-vector collection, then layer edge-vector-index, triplet search, semantic dedup/merge and cross-pair invalidation as shadow-gated default-off consumers, benchmarked post-reindex before any promotion."
 trigger_phrases:
   - "028 semantic edge layer plan"
   - "per edge embedding substrate plan"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Implemented substrate-first semantic-edge schema, store, embedder hook, and retrieval primitive"
+    recent_action: "Implemented substrate-first semantic-edge schema, store and embedder hook"
     next_safe_action: "Run strict validation and final typecheck/tests"
     blockers:
       - "shared-infra-dep: gate-zero corpus reindex precedes any recall benchmark"
@@ -51,7 +51,7 @@ _memory:
 | **Testing** | Vitest (`mcp_server/__tests__/`) + a recall/dedup benchmark run post gate-zero reindex |
 
 ### Overview
-Build the per-edge semantic substrate the causal graph lacks, **once**, off the foreground turn. The approach is **substrate-first, prove-first, shadow-gated**: an additive schema migration (`fact_text` on `causal_edges` + a dedicated edge-vector collection mirroring `ports/vector-store.ts`), a consolidation-time embedder that writes edge relationship/fact vectors inside `runConsolidationCycle` (`consolidation.ts:499`), then four consumers layered on top - edge-vector lookup, edge-aware-triplet scoring, LLM-judged semantic dedup/merge, and cross-pair semantic invalidation - **each individually default-off** behind `SPECKIT_SEMANTIC_EDGE_LAYER` + per-sub-candidate flags. The synchronous insert path (`causal-edges.ts:350-352` exact-key upsert) and the same-pair contradiction path (`contradiction-detection.ts:85-93`) are never touched while flags are off. Promotion of any consumer is gated on benchmark numbers measured against the reindexed corpus.
+Build the per-edge semantic substrate the causal graph lacks, **once**, off the foreground turn. The approach is **substrate-first, prove-first, shadow-gated**: an additive schema migration (`fact_text` on `causal_edges` + a dedicated edge-vector collection mirroring `ports/vector-store.ts`), a consolidation-time embedder that writes edge relationship/fact vectors inside `runConsolidationCycle` (`consolidation.ts:499`), then four consumers layered on top - edge-vector lookup, edge-aware-triplet scoring, LLM-judged semantic dedup/merge and cross-pair semantic invalidation - **each individually default-off** behind `SPECKIT_SEMANTIC_EDGE_LAYER` + per-sub-candidate flags. The synchronous insert path (`causal-edges.ts:350-352` exact-key upsert) and the same-pair contradiction path (`contradiction-detection.ts:85-93`) are never touched while flags are off. Promotion of any consumer is gated on benchmark numbers measured against the reindexed corpus.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -182,7 +182,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Benchmark shows no recall lift, an unacceptable false-merge rate, or any flag-off regression detected.
+- **Trigger**: Benchmark shows no recall lift, an unacceptable false-merge rate or any flag-off regression detected.
 - **Procedure**: All flags are default-off, so rollback is a no-op for deployed callers. To fully revert: drop the consumer modules and the consolidation embedding pass (branch-only), the additive `fact_text` column + empty edge-vector collection are inert with the flag off and may be left or dropped via a down-migration. The synchronous insert path and live recall were never changed, so there is nothing to restore there.
 <!-- /ANCHOR:rollback -->
 
@@ -326,7 +326,7 @@ Phase 1 (Substrate) ──► Phase 2 (Embedder, off) ──► Phase 3 (Retriev
 
 **Status**: Accepted
 
-**Context**: Research (iters 19/21) surfaced five edge-intelligence candidates (`CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge`, `GR-semantic-invalidation-discovery`) that all bottom out on the **same** missing substrate - per-edge embeddings + semantic edge retrieval. The memory-ID graph stores edges as exact-key SQLite rows (`causal-edges.ts:350-352`), has no episode model, and runs no LLM in the synchronous insert path. Semantic dedup carries the highest tail-risk of the campaign: it can silently merge two distinct facts.
+**Context**: Research (iters 19/21) surfaced five edge-intelligence candidates (`CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge`, `GR-semantic-invalidation-discovery`) that all bottom out on the **same** missing substrate - per-edge embeddings + semantic edge retrieval. The memory-ID graph stores edges as exact-key SQLite rows (`causal-edges.ts:350-352`), has no episode model and runs no LLM in the synchronous insert path. Semantic dedup carries the highest tail-risk of the campaign: it can silently merge two distinct facts.
 
 **Decision**: Build the substrate once, root-first (`GR-fact-embedding-on-edge` provides it, the other four consume it). Embed **at consolidation-time** (`runConsolidationCycle`, `consolidation.ts:499`), never in the synchronous insert txn. Ship the whole initiative **shadow-gated default-off** with telemetry from day one and promote each consumer only on benchmark numbers measured against the reindexed corpus. Mirror the existing `ports/vector-store.ts` rather than inventing a parallel embedding stack.
 

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: P2 Triage"
-description: "PENDING task list for grouping, deciding, and routing the 91 P2 findings."
+description: "PENDING task list for grouping, deciding and routing the 91 P2 findings."
 trigger_phrases:
   - "028 p2 triage tasks"
   - "p2 fix-now routing tasks"

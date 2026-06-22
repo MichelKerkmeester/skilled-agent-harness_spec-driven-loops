@@ -39,7 +39,7 @@
       "multi"
     ],
     "importance_tier": "important",
-    "status": "implemented_mechanism_default_off;_benchmark/schema_gates_pending",
+    "status": "complete",
     "key_files": [
       "lib/graph/bfs-traversal.ts",
       "plan.md",

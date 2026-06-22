@@ -68,7 +68,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "research_complete",
+    "status": "complete",
     "key_files": [
       "research/stage-0-external-findings.md",
       "research/research.md",

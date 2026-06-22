@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Research Reducer-Anchor Template Fix (028/004)"
-description: "The shipped deep-research strategy template now carries the 7 reducer-owned ANCHOR markers, so a freshly-copied strategy folds deterministically instead of hard-failing on the first reduce. Template-only, no runtime change; landed in commit 738e118751."
+description: "The shipped deep-research strategy template now carries the 7 reducer-owned ANCHOR markers, so a freshly-copied strategy folds deterministically instead of hard-failing on the first reduce. Template-only, no runtime change. Landed in commit 738e118751."
 trigger_phrases:
   - "reducer anchor fix summary"
   - "Q6 anchor implementation summary"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T08:10:00+02:00"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the DONE Q6-anchor reducer template fix against commit 738e118751"
-    next_safe_action: "None — candidate COMPLETE; sibling D2/D3/Q2 cluster ships in separate 004 sub-phases"
+    next_safe_action: "None, candidate COMPLETE. Sibling D2/D3/Q2 ships in separate 004 sub-phases"
     blockers: []
     key_files:
       - "spec.md"
@@ -56,7 +56,7 @@ A freshly-copied deep-research strategy file now folds its cross-iteration state
 
 ### The seven reducer anchor pairs
 
-The reducer's `updateStrategyContent` (`reduce-state.cjs:734-745`) rewrites seven anchored sections each reduce — `key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`. For each one, `replaceAnchorSection` (`:699-714`) requires a matching `ANCHOR:<id>` … `/ANCHOR:<id>` HTML-comment pair and throws if it is absent. You now get those pairs in the shipped template, so the reducer's regex matches on a clean copy and the section is rewritten in place rather than raising. This is a determinism-spine repair: a reducer that hard-fails on a fresh strategy is non-deterministic at the loop level, and this session's own driver hit the throw and hand-patched its working copy before the fix landed.
+The reducer's `updateStrategyContent` (`reduce-state.cjs:734-745`) rewrites seven anchored sections each reduce: `key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`. For each one, `replaceAnchorSection` (`:699-714`) requires a matching `ANCHOR:<id>` … `/ANCHOR:<id>` HTML-comment pair and throws if it is absent. You now get those pairs in the shipped template, so the reducer's regex matches on a clean copy and the section is rewritten in place rather than raising. This is a determinism-spine repair: a reducer that hard-fails on a fresh strategy is non-deterministic at the loop level, and this session's own driver hit the throw and hand-patched its working copy before the fix landed.
 
 ### Files Changed
 
@@ -70,7 +70,7 @@ The reducer's `updateStrategyContent` (`reduce-state.cjs:734-745`) rewrites seve
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Shipped as a single additive, template-only hunk in commit `738e118751` on the 027 branch — no runtime-code change, no dependencies. Verified by confirming the template now carries 14 `ANCHOR:` markers (the 7 pairs, at lines 39/58/66/74/82/98/106) and that each id matches the `replaceAnchorSection` regex, so a freshly-copied strategy reduces past iteration 1 without the throw.
+Shipped as a single additive, template-only hunk in commit `738e118751` on the 027 branch, no runtime-code change, no dependencies. Verified by confirming the template now carries 14 `ANCHOR:` markers (the 7 pairs, at lines 39/58/66/74/82/98/106) and that each id matches the `replaceAnchorSection` regex, so a freshly-copied strategy reduces past iteration 1 without the throw.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,9 +80,9 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 
 | Decision | Why |
 |----------|-----|
-| Fix the template, not the reducer | The reducer regex is the correct, fixed contract; the bug was the shipped template never satisfying it. Editing the template is the minimal, zero-blast-radius fix. |
-| Wrap only the 7 `updateStrategyContent` headings | Those are the exact ids that throw on a fresh copy; the reducer's other anchors are written elsewhere and were never the hard-failure surface. |
-| Ship this first, ahead of the rest of the deep-loop catalog | It is the only unconditional win — confirmed correctness defect, near-zero effort/risk, no dependency on the absent D2 reliability signal that gates D1/D3/Q2. |
+| Fix the template, not the reducer | The reducer regex is the correct, fixed contract. The bug was the shipped template never satisfying it. Editing the template is the minimal, zero-blast-radius fix. |
+| Wrap only the 7 `updateStrategyContent` headings | Those are the exact ids that throw on a fresh copy. The reducer's other anchors are written elsewhere and were never the hard-failure surface. |
+| Ship this first, ahead of the rest of the deep-loop catalog | It is the only unconditional win, confirmed correctness defect, near-zero effort/risk, no dependency on the absent D2 reliability signal that gates D1/D3/Q2. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -92,10 +92,10 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 
 | Check | Result |
 |-------|--------|
-| Template carries the 7 anchor pairs | PASS — grep of the open-marker comment = 14; all 7 ids present (lines 39/58/66/74/82/98/106) |
-| Reducer regex matches all 7 ids on a fresh copy | PASS — 030 §14: "7 anchor pairs added; reducer regex verified (all 7 match)" |
-| Template-only diff (no runtime-code change) | PASS — commit `738e118751` touches only `deep_research_strategy.md` (+14) plus the 030 scaffold; `reduce-state.cjs` unchanged |
-| Independent live re-verification (first-hand) | PASS — `node --check reduce-state.cjs` OK; the deep-loop reducer suite (`deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`) is 4/4 green; each of the 7 `replaceAnchorSection`-target ids matches the reducer regex against the current shipped template (open=1/close=1 per id). The reducer's 8th anchor `carried-forward-open-questions` uses the non-throwing `upsertAnchorSectionBefore` path and is not part of the 7-id hard-failure surface. |
+| Template carries the 7 anchor pairs | PASS, grep of the open-marker comment = 14. All 7 ids present (lines 39/58/66/74/82/98/106) |
+| Reducer regex matches all 7 ids on a fresh copy | PASS, 030 §14: "7 anchor pairs added, reducer regex verified (all 7 match)" |
+| Template-only diff (no runtime-code change) | PASS, commit `738e118751` touches only `deep_research_strategy.md` (+14) plus the 030 scaffold. `reduce-state.cjs` unchanged |
+| Independent live re-verification (first-hand) | PASS, `node --check reduce-state.cjs` OK. The deep-loop reducer suite (`deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`) is 4/4 green. Each of the 7 `replaceAnchorSection`-target ids matches the reducer regex against the current shipped template (open=1/close=1 per id). The reducer's 8th anchor `carried-forward-open-questions` uses the non-throwing `upsertAnchorSectionBefore` path and is not part of the 7-id hard-failure surface. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -103,7 +103,7 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Scope is the 7 `updateStrategyContent` anchors only.** The reducer writes other anchored sections elsewhere (`reduce-state.cjs:785+`); those were never part of the hard-failure surface and are out of scope here.
+1. **Scope is the 7 `updateStrategyContent` anchors only.** The reducer writes other anchored sections elsewhere (`reduce-state.cjs:785+`). Those were never part of the hard-failure surface and are out of scope here.
 2. **The reliability-weighted deep-loop cluster (D1/D2/D3/Q2) is unaffected and still open.** D2 is a wholly-absent net-new build (every input is `r=0.5` today), so it remains NO-GO until built and benchmarked, in sibling sub-phases of `004-deep-loop`. This fix is fully independent of that cluster.
 <!-- /ANCHOR:limitations -->
 
@@ -115,4 +115,4 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Shipped record (Wave-0)**: Wave-0 record (commit `738e118751`)
-- **Source research**: `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md`
+- **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md`

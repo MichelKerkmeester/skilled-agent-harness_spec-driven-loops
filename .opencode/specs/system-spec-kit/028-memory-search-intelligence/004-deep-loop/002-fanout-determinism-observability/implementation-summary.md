@@ -43,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability` |
-| **Completed** | Yes locally - 3 Wave-0 candidates shipped in packet 030, the Wave-1 property-test and default-off near-dup dedup rows are implemented in this worktree |
+| **Status** | complete |
 | **Level** | 2 |
 | **Actual Effort** | Trio shipped in Wave-0 (commit `46812f12a8`). Wave-1 tail with 9 new unit tests shipped in commit `fd30af2cb6` (fanout-merge determinism + vitest) |
 
@@ -53,7 +53,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The deep-loop fan-out **determinism + observability** trio shipped in the flat Wave-0 implementation record (030, commit `46812f12a8`) and is the foundation already in place: the merge sorts its de-duplicated survivors with a hand-written content-then-id total comparator (`compareByContentThenId`, layered on the first-write-wins `id||title` dedup), the concurrent pool emits read-derived `lag`/`pending`/`failed` gauges (`buildPoolGauges`, no new state), and a SIGINT/SIGTERM during a long run flushes a `stopped` partial summary while an empty no-new-findings tick is valid convergence. This worktree now implements the Wave-1 tail: research and review order-invariance tests assert byte-identical merged registries across lineage-order permutations, `fanout-merge.cjs` sorts lineage labels and merged metadata arrays to close the full-registry arrival-order seam, and a default-off near-duplicate dedup option collapses normalized body-content restatements across research, review open, and review resolved findings.
+The deep-loop fan-out **determinism + observability** trio shipped in the flat Wave-0 implementation record (030, commit `46812f12a8`) and is the foundation already in place: the merge sorts its de-duplicated survivors with a hand-written content-then-id total comparator (`compareByContentThenId`, layered on the first-write-wins `id||title` dedup), the concurrent pool emits read-derived `lag`/`pending`/`failed` gauges (`buildPoolGauges`, no new state) and a SIGINT/SIGTERM during a long run flushes a `stopped` partial summary while an empty no-new-findings tick is valid convergence. This worktree now implements the Wave-1 tail: research and review order-invariance tests assert byte-identical merged registries across lineage-order permutations, `fanout-merge.cjs` sorts lineage labels and merged metadata arrays to close the full-registry arrival-order seam and a default-off near-duplicate dedup option collapses normalized body-content restatements across research, review open and review resolved findings.
+
+Status detail: the sub-phase is complete. The 3 Wave-0 candidates shipped in packet 030 (commit `46812f12a8`) and the 3 Wave-1 rows are implemented locally in this worktree. The near-duplicate dedup ships default-off behind an explicit option, CLI flag and environment variable so default merge membership stays byte-compatible, and it is opt-in only because no candidate carries a measured before/after benchmark number. The resilience cluster and the D2/D3/Q2 reliability-learning cluster are recorded as out of scope (sibling sub-phase or NO-GO), not silently dropped.
 
 ### Files Changed
 
@@ -62,7 +64,7 @@ The deep-loop fan-out **determinism + observability** trio shipped in the flat W
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Wave-0 comparator remains, Wave-1 adds deterministic label/metadata ordering and default-off normalized-body-content dedup |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified (Wave-0 `46812f12a8`) | `buildPoolGauges` read-derived `lag`/`pending`/`failed`, live per settle + final summary |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified (Wave-0 `46812f12a8`) | empty-tick=convergence + `stopped` partial-summary flush on SIGINT/SIGTERM |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added 7 tests for order-invariance, default-off near-dup collapse, distinct-content survival, and resolved review variants |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added 7 tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
 | `.opencode/specs/.../002-fanout-determinism-observability/{spec,plan,tasks,implementation-summary,checklist}.md` | Modified | Level-2 packet docs reconciled to 3 Wave-0 DONE rows plus 3 local Wave-1 DONE rows |
 
 <!-- /ANCHOR:what-built -->
@@ -71,7 +73,7 @@ The deep-loop fan-out **determinism + observability** trio shipped in the flat W
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The trio was delivered in Wave-0 using the one-candidate-at-a-time method: a content-then-id total comparator was added (NOT a total order via `id` alone - `finding.id` is not always present, so the comparator layers on top of the `id||title` dedup), the pool gauges were read-derived from existing counters with no new state, the graceful self-stop added a `stopped` partial-summary flush and reclassified the empty no-new-findings tick as convergence. It was committed independently (`46812f12a8`) with `node --check` + 58 fanout tests + a mutation check. This Wave-1 tail was delivered by adding the missing order-invariance tests, sorting full-registry observability metadata, and implementing a default-off normalized-body-content bucket index that preserves exact-key conflict behavior for distinct content. The cluster stayed disjoint from the sibling resilience sub-phase (`003-fanout-failure-recovery`) and from the D2 reliability-learning cluster.
+The trio was delivered in Wave-0 using the one-candidate-at-a-time method: a content-then-id total comparator was added (NOT a total order via `id` alone - `finding.id` is not always present, so the comparator layers on top of the `id||title` dedup), the pool gauges were read-derived from existing counters with no new state, the graceful self-stop added a `stopped` partial-summary flush and reclassified the empty no-new-findings tick as convergence. It was committed independently (`46812f12a8`) with `node --check` + 58 fanout tests + a mutation check. This Wave-1 tail was delivered by adding the missing order-invariance tests, sorting full-registry observability metadata and implementing a default-off normalized-body-content bucket index that preserves exact-key conflict behavior for distinct content. The cluster stayed disjoint from the sibling resilience sub-phase (`003-fanout-failure-recovery`) and from the D2 reliability-learning cluster.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -82,7 +84,7 @@ The trio was delivered in Wave-0 using the one-candidate-at-a-time method: a con
 | Decision | Rationale |
 |----------|-----------|
 | Merge total-order is a comparator ON TOP of the `id||title` dedup, not a total order via `id` alone | `finding.id` is not always present, the pass-1 "SOLID total-order" billing was corrected to WEAKER - Wave-0 layered `compareByContentThenId` (content → id → full stringify) on the existing dedup (`roadmap.md:221`, `030` §14 cand 12) |
-| The order-invariance property test needed a small production tightening | Full-registry byte identity includes `mergedFrom`, open/resolved questions, and ruled-out directions, sorting those read-derived arrays closes the arrival-order seam rather than testing only a projection |
+| The order-invariance property test needed a small production tightening | Full-registry byte identity includes `mergedFrom`, open/resolved questions and ruled-out directions, sorting those read-derived arrays closes the arrival-order seam rather than testing only a projection |
 | The near-dup dedup is content-normalization-gated, never a blunt key change | Two distinct findings can share an `id||title`, collapsing on the key alone would drop one - collapse only on normalized body content, keep both when content differs |
 | Keep near-dup default-off | It changes merge membership and can affect downstream ranking/convergence signals, so default behavior remains byte-compatible unless explicitly enabled |
 | Keep the resilience cluster out (sibling sub-phase) | failure-class/retry/orphan/recover-vs-fresh are a different cluster shipped/scoped elsewhere, the trio's failure-class sibling is upstream in fanout-run, not the pool (`030` §14 cand 12, `synthesis/01:95`) |
@@ -133,8 +135,8 @@ The trio was delivered in Wave-0 using the one-candidate-at-a-time method: a con
 ## Known Limitations
 
 1. **No measured benefit number** - every leverage/effort rating is structural inference, there is no before/after delta for the near-dup dedup's effect on `sourceDiversity` (`roadmap.md` §6, `synthesis/03` §B).
-2. **The near-dup dedup changes merge membership when enabled** - it remains default-off until a caller deliberately opts in with the option, CLI flag, or environment variable.
-3. **No live benchmark or reindex was run** - per instruction, verification stayed at code, typecheck, and unit-test level.
+2. **The near-dup dedup changes merge membership when enabled** - it remains default-off until a caller deliberately opts in with the option, CLI flag or environment variable.
+3. **No live benchmark or reindex was run** - per instruction, verification stayed at code, typecheck and unit-test level.
 
 <!-- /ANCHOR:limitations -->
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Task Breakdown: Advisor workspace-root resolution by walk-up [template:level_2/tasks.md]"
-description: "Tasks to clean stray nested .advisor-state, rewrite resolveWorkspaceRoot to walk up, swap the two write-path call sites, and verify via typecheck, rebuild, and a subdir-cwd logic check."
+description: "Tasks to clean stray nested .advisor-state, rewrite resolveWorkspaceRoot to walk up, swap the two write-path call sites and verify via typecheck, rebuild and a subdir-cwd logic check."
 trigger_phrases:
   - "advisor root tasks"
   - "advisor-state cleanup tasks"
@@ -51,7 +51,7 @@ FAILURE MODES:
 
 - [x] T-001 [P1] Inventory stray nested `.advisor-state` directories. Evidence: `find` reported 13 (9 main-tree, 4 worktree).
 - [x] T-002 [P1] Inspect each stray's parent `.opencode` to avoid removing real content. Evidence: counts showed several parents hold other content.
-- [x] T-003 [P1] Remove main-tree `.advisor-state` leaves; `rmdir` empty parents only. Evidence: 9 removed, parents with content preserved.
+- [x] T-003 [P1] Remove main-tree `.advisor-state` leaves. `rmdir` empty parents only. Evidence: 9 removed, parents with content preserved.
 <!-- /ANCHOR:phase-1 -->
 
 ---

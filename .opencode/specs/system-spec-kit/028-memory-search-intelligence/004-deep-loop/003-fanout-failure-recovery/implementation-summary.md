@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)"
-description: "Implementation summary for the deep-loop resilience GO cluster (C1-C5): bounded failure-class taxonomy, transient/fatal retry with durable budget, orphan-lineage marker, and explicit recover-vs-fresh resume gate."
+description: "Implementation summary for the deep-loop resilience GO cluster (C1-C5): bounded failure-class taxonomy, transient/fatal retry with durable budget, orphan-lineage marker and explicit recover-vs-fresh resume gate."
 trigger_phrases:
   - "fanout failure recovery summary"
   - "deep loop resilience implementation"
@@ -35,10 +35,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery` |
-| **Status** | IMPLEMENTED - deterministic unit verification complete |
+| **Status** | complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
-| **Actual Effort** | C1-C5 implemented surgically across fan-out pool/run, CLI guards, fan-out config, reducer gate, and tests |
+| **Actual Effort** | C1-C5 implemented surgically across fan-out pool/run, CLI guards, fan-out config, reducer gate and tests |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -51,10 +51,10 @@ Implemented the Level 2 deep-loop **resilience GO cluster**. The change keeps th
 | # | Candidate | What was built | Status |
 |---|-----------|-----------------|--------|
 | C1 | DL-failure-class-taxonomy | `settleItem` preserves `error:{name,message}` and adds bounded `failure_class`, `buildPoolSummary` emits fixed `failure_classes` rollup | DONE |
-| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode`, and `salvage` only, unknown/default exit remains fatal | DONE |
-| C3 | Q3-fanout-transient-fatal-retry | `runCappedPool` requeues only the failed transient lineage, honors `maxRetries`, reads prior retry count from `orchestration-status.log`, and preserves final summary counts | DONE |
+| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode` and `salvage` only, unknown/default exit remains fatal | DONE |
+| C3 | Q3-fanout-transient-fatal-retry | `runCappedPool` requeues only the failed transient lineage, honors `maxRetries`, reads prior retry count from `orchestration-status.log` and preserves final summary counts | DONE |
 | C4 | DL-orphan-lineage-reset | status-ledger scan detects started-without-terminal lineages and appends `orphan_requeued` markers, auto-redispatch remains lease/heartbeat-gated | DONE |
-| C5 | DL-recover-vs-fresh-gate | `reduce-state.cjs` supports explicit `--require-existing-state` / `requireExistingState` mode and refuses missing, empty, or corrupt state logs distinctly from fresh starts | DONE |
+| C5 | DL-recover-vs-fresh-gate | `reduce-state.cjs` supports explicit `--require-existing-state` / `requireExistingState` mode and refuses missing, empty or corrupt state logs distinctly from fresh starts | DONE |
 
 ### Files Changed
 
@@ -100,7 +100,7 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 |-----------|--------|----------|-------|
 | Baseline typecheck | Pass | canonical OpenCode TypeScript gate | `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` before edits: 0 errors |
 | Baseline fanout suite | Pass | fanout-related runtime tests | `npm test -- tests/unit/executor-config.vitest.ts tests/unit/fanout-pool.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/fanout-salvage.vitest.ts tests/unit/fanout-merge.vitest.ts`: 5 files / 96 tests |
-| Syntax checks | Pass | touched `.cjs` files | `node --check` on `fanout-pool.cjs`, `fanout-run.cjs`, `cli-guards.cjs`, and `reduce-state.cjs` |
+| Syntax checks | Pass | touched `.cjs` files | `node --check` on `fanout-pool.cjs`, `fanout-run.cjs`, `cli-guards.cjs` and `reduce-state.cjs` |
 | Focused implementation tests | Pass | C1-C5 | `npm test -- tests/unit/executor-config.vitest.ts tests/unit/fanout-pool.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/fanout-salvage.vitest.ts tests/unit/fanout-merge.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts`: 6 files / 110 tests |
 | Canonical typecheck | Pass | post-implementation | `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server`: 0 errors |
 | Broad related Vitest | Pass | full deep-loop-runtime suite through system-spec-kit config | `npx vitest run ../../deep-loop-runtime/tests --reporter=default`: 49 files / 403 tests |
@@ -147,6 +147,6 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 | Planned | Actual | Reason |
 |---------|--------|--------|
 | One commit per candidate | Shipped together in commit `c1f2466811` | The 028 build batched this phase (fanout-pool + fanout-run + cli-guards) into one commit |
-| External adversarial review seat | Skipped | User constrained this run to code + unit tests, local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry, and all-fatal behavior |
+| External adversarial review seat | Skipped | User constrained this run to code + unit tests, local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry and all-fatal behavior |
 
 <!-- /ANCHOR:deviations -->

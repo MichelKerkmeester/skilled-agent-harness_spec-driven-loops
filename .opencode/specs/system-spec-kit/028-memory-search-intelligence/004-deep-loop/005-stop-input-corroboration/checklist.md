@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Deep Loop STOP-Input Corroboration"
-description: "Level 2 checklist for the STOP-input corroboration cluster. C1 through C6 are runtime-implemented with deterministic tests; benchmark/default-on gates, workflow forwarding and namespace-aware graph-edge persistence remain pending. C7 was already shipped in packet 030 commit 46812f12a8."
+description: "Level 2 checklist for the STOP-input corroboration cluster. C1 through C6 are runtime-implemented with deterministic tests. Benchmark/default-on gates, workflow forwarding and namespace-aware graph-edge persistence remain pending. C7 was already shipped in packet 030 commit 46812f12a8."
 trigger_phrases:
   - "stop input corroboration checklist"
   - "newInfoRatio audit checklist"
@@ -45,7 +45,7 @@ _memory:
 | **[P1]** | Required | Must complete or stay explicitly gated |
 | **[P2]** | Optional | Can defer with a recorded reason |
 
-Status: C7 is DONE through packet 030 commit `46812f12a8`. C1 through C6 are runtime-implemented; benchmark/default-on gates, workflow forwarding and namespace-aware graph-edge persistence remain pending.
+Status: C7 is DONE through packet 030 commit `46812f12a8`. C1 through C6 are runtime-implemented. Benchmark/default-on gates, workflow forwarding and namespace-aware graph-edge persistence remain pending.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -65,7 +65,7 @@ Status: C7 is DONE through packet 030 commit `46812f12a8`. C1 through C6 are run
 
 - [x] CHK-010 [P0] `node --check` passes on touched `.cjs` files. Evidence: `convergence.cjs`, `cost-guards.cjs`, `fanout-merge.cjs`, `fanout-pool.cjs`, `fanout-run.cjs`.
 - [x] CHK-011 [P0] No-op path with missing `--reported-novelty` is byte-identical. Evidence: no novelty fields or blocker are emitted without the arg.
-- [ ] CHK-012 [P1] Error handling covers novelty gaming, lag boundary and downstream dedup clobber. Runtime fixtures cover novelty gaming and lag boundary; independent downstream persistence remains pending.
+- [ ] CHK-012 [P1] Error handling covers novelty gaming, lag boundary and downstream dedup clobber. Runtime fixtures cover novelty gaming and lag boundary. Independent downstream persistence remains pending.
 - [x] CHK-013 [P1] Code follows additive fan-out and convergence patterns.
 <!-- /ANCHOR:code-quality -->
 

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence"
     last_updated_at: "2026-06-19T10:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Marked reliability cluster NO-GO / WILL-NOT-BUILD; plan kept as design of record"
-    next_safe_action: "None — held NO-GO; revisit after benchmark tier supplies a success signal + REQ-BENCH"
+    recent_action: "Marked reliability cluster NO-GO. Plan kept as design of record"
+    next_safe_action: "Held NO-GO. Revisit after benchmark tier supplies a success signal"
     blockers: []
     key_files:
       - "spec.md"
@@ -44,9 +44,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence` |
-| **Completed** | n/a — NO-GO, no implementation this cycle |
+| **Completed** | n/a, NO-GO, no implementation this cycle |
 | **Level** | 3 |
-| **Status** | NO-GO — WILL NOT BUILD (deferred to benchmark tier); plan preserved as design of record |
+| **Status** | complete |
+
+> **Status nuance**: this packet is `complete` as a closed-out decision, NOT as shipped code. The determination is NO-GO / WILL-NOT-BUILD this cycle, deferred to the benchmark tier. The Level 3 plan is preserved intact as the design of record. The cluster is held behind a benefit micro-benchmark gate, every reliability input is the prior mean (`r=0.5`) today because no writer populates the slot, and D3 / D4 ship default-off when the cluster is eventually built. Revisit once the benchmark tier supplies a per-execution success signal and the REQ-BENCH micro-benchmark.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,14 +64,14 @@ No production reliability code was built in this sub-phase. The deliverable is t
 
 | Candidate | Status | Revisit gate |
 |-----------|--------|------|
-| D-orderhelper | NO-GO — deferred | Extract before Q2 victim tie-break |
-| D1-weighted-Beta | NO-GO — deferred | Add f64 export before D2 |
-| D2-reliability | NO-GO — deferred | Read-only keystone after D1 |
-| D3-cap-and-gate | NO-GO — deferred | Benchmark and threshold recalibration |
-| D4-policy-config | NO-GO — deferred | Default-off policy and unreachable-config refusal |
-| Q2-quarantine | NO-GO — deferred | D2 plus deterministic content-derived victim choice |
-| Q2-adjudicator-seat | NO-GO — deferred | D2 signal and policy-OFF parity |
-| Q7-rank-field | NO-GO — deferred | D2 signal and absent-data order parity |
+| D-orderhelper | NO-GO, deferred | Extract before Q2 victim tie-break |
+| D1-weighted-Beta | NO-GO, deferred | Add f64 export before D2 |
+| D2-reliability | NO-GO, deferred | Read-only keystone after D1 |
+| D3-cap-and-gate | NO-GO, deferred | Benchmark and threshold recalibration |
+| D4-policy-config | NO-GO, deferred | Default-off policy and unreachable-config refusal |
+| Q2-quarantine | NO-GO, deferred | D2 plus deterministic content-derived victim choice |
+| Q2-adjudicator-seat | NO-GO, deferred | D2 signal and policy-OFF parity |
+| Q7-rank-field | NO-GO, deferred | D2 signal and absent-data order parity |
 
 ### Files Changed
 

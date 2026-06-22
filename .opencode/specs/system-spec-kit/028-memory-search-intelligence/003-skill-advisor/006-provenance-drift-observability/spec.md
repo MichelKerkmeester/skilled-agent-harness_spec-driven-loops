@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Partial. SA-author-self-boost-guard shipped default-off, drift and skip candidates pending |
+| **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
@@ -104,7 +104,7 @@ Ship the self-recommendation guard as a default-off, auditable scorer refinement
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/types.ts` | Modified | Add optional producer identity on lane matches for guarded provenance checks |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` | Modified | Thread producer identity through author evidence only when the default-off guard path requests it, default output remains unchanged |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modified | Add `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` and centralize advisor self-recommendation guard behavior, flag off preserves current ranking |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts` | Created | Fixtures for default-off output, flag-on producer identity, non-advisor byte-equivalence, and advisor audit penalties |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts` | Created | Fixtures for default-off output, flag-on producer identity, non-advisor byte-equivalence and advisor audit penalties |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -136,7 +136,7 @@ Ship the self-recommendation guard as a default-off, auditable scorer refinement
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Candidate status is explicit: SA-author-self-boost-guard is DONE default-off, SA-attested-baseline-drift-sweep and SA-skip-never-fabricate stay PENDING until the shared durable calibration substrate exists. REFUTED items (SA-anti-flap as standalone, SA-family-normalization hard-collapse, the galadriel residue) remain out of scope (REQ-001/REQ-006).
-- **SC-002**: When promoted, each candidate honors its invariant - the self-boost guard generalizes 2 penalties without touching by-design symmetry (REQ-002/REQ-007), the drift sweep never auto-rebaselines and stays shadow-only with an anti-flap gauge (REQ-003), and skip-never-fabricate names every skip reason and never fabricates a max/alarm (REQ-004).
+- **SC-002**: When promoted, each candidate honors its invariant - the self-boost guard generalizes 2 penalties without touching by-design symmetry (REQ-002/REQ-007), the drift sweep never auto-rebaselines and stays shadow-only with an anti-flap gauge (REQ-003) and skip-never-fabricate names every skip reason and never fabricates a max/alarm (REQ-004).
 - **SC-003**: The shared-substrate dependency on the sibling `004-c4-shadow-seam-beta-posterior` is explicit for SA-attested-baseline-drift-sweep and SA-skip-never-fabricate (both ride the durable substrate), SA-author-self-boost-guard additionally names its scope-correction (generalize, don't blanket).
 <!-- /ANCHOR:success-criteria -->
 
@@ -167,7 +167,7 @@ Ship the self-recommendation guard as a default-off, auditable scorer refinement
 - **NFR-P02**: SA-attested-baseline-drift-sweep computes one cosine pair per anchor per call (`cos(baseline, anchor)` is read from the attested snapshot, `cos(current, anchor)` reuses the already-computed current signal) - O(anchors), bounded and shadow-path only, it does NOT add per-skill cost to the live scorer.
 
 ### Security
-- **NFR-S01**: None of the three introduce a new untrusted-input path, SA-skip-never-fabricate only labels an internal calibration state, the drift sweep reads an attested internal baseline, and the self-boost guard reads producer identity already present in the projection.
+- **NFR-S01**: None of the three introduce a new untrusted-input path, SA-skip-never-fabricate only labels an internal calibration state, the drift sweep reads an attested internal baseline and the self-boost guard reads producer identity already present in the projection.
 
 ### Reliability
 - **NFR-R01**: Each candidate is reversible. SA-author-self-boost-guard is default-off and leaves current scorer behavior unchanged unless `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` is enabled. SA-attested-baseline-drift-sweep remains default-off/shadow-only with live weights frozen (`feedback-calibration.ts:230-237`), SA-skip-never-fabricate remains unimplemented until the substrate exists.

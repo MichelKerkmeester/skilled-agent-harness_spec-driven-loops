@@ -85,10 +85,10 @@ The two shipped candidates landed as additive, separately reversible changes. Ca
 |----------|-----------|
 | Ship candidates 4 and 2, defer the rest | Candidate 4 is a parity-proven config refactor and candidate 2 is a default-off flag, both cheap and reversible. The recall and LLM-dependent candidates need gates the bundle does not yet satisfy |
 | 11 requested IDs collapse to 8 distinct candidates | `M0-`/`M-` prefix duplicates name the same 3 ranking candidates (BM25 calibration, cardinality penalty, lemmatization) |
-| Gate-zero reindex precedes ranking work | Recall is unmeasurable against a ~25%-cold index (synthesis/06 + 07; regression-baseline rule) |
+| Gate-zero reindex precedes ranking work | Recall is unmeasurable against a ~25%-cold index (synthesis/06 + 07, regression-baseline rule) |
 | Ranking tweaks flag-gated default-off | 027 doctrine: new results-affecting intelligence ships shadow-gated, earns activation on live evidence |
-| Declarative regex config ships always-on | Correctness/config-class refactor; parity-proven equivalence to the inline 5 rules |
-| Candidate 7 treated as shared-infra | No entity *vector* index exists; a scoring-only attempt is impossible (iter-6 REFINE) |
+| Declarative regex config ships always-on | Correctness/config-class refactor, parity-proven equivalence to the inline 5 rules |
+| Candidate 7 treated as shared-infra | No entity *vector* index exists, a scoring-only attempt is impossible (iter-6 REFINE) |
 | Candidate 8 is verify-first | May collapse to NO-TRANSFER vs the existing `memory_index_scan` reindex path (iter-19 needs-verify) |
 <!-- /ANCHOR:decisions -->
 
@@ -126,12 +126,12 @@ The two shipped candidates landed as additive, separately reversible changes. Ca
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No benefit numbers** — every leverage/effort tag is structural inference; none is benchmarked (028 roadmap caveat).
-2. **Gate-zero dependency** — no recall candidate (1-3, 7) can be measured until the corpus reindex restores the ~25% cold rows.
-3. **Candidate 7 blocked** — the entity-store boost needs a new entity vector index (shared-infra), and may belong to the Wave-2 semantic-edge-layer initiative.
+1. **No benefit numbers**, every leverage/effort tag is structural inference, none is benchmarked (028 roadmap caveat).
+2. **Gate-zero dependency**, no recall candidate (1-3, 7) can be measured until the corpus reindex restores the ~25% cold rows.
+3. **Candidate 7 blocked**, the entity-store boost needs a new entity vector index (shared-infra) and may belong to the Wave-2 semantic-edge-layer initiative.
 4. **Candidate 8 resolved.** Content-hash reprocessing closed NO-TRANSFER because changed content already re-enters the save and indexing path.
-5. **spaCy dependency open** — candidate 3's lemmatizer choice (heavy spaCy vs lightweight) is unresolved.
-6. **Memory-ID-graph constraint** — the causal graph is memory-ID → memory-ID (not entity-node), so candidate 6 needs a reframe before build (iter-6 systemic finding).
+5. **spaCy dependency open**, candidate 3's lemmatizer choice (heavy spaCy vs lightweight) is unresolved.
+6. **Memory-ID-graph constraint**, the causal graph is memory-ID → memory-ID (not entity-node), so candidate 6 needs a reframe before build (iter-6 systemic finding).
 <!-- /ANCHOR:limitations -->
 
 ---

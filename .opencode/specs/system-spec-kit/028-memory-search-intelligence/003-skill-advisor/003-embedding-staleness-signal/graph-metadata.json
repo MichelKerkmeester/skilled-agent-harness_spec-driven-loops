@@ -41,7 +41,7 @@
       "masks"
     ],
     "importance_tier": "important",
-    "status": "signal_implemented;_rebuild_reuse_gated",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

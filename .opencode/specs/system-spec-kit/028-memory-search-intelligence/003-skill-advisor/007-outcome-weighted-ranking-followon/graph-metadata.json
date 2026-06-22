@@ -39,7 +39,7 @@
       "adv"
     ],
     "importance_tier": "important",
-    "status": "implemented_(shadow_only,_default_off)_—_live_promotion_remains_no_go",
+    "status": "complete",
     "key_files": [
       "scripts/spec/validate.sh",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",

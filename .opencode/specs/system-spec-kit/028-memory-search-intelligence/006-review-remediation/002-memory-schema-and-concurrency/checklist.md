@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Memory Schema and Concurrency Remediation"
-description: "PENDING verification checklist for the derived-id, in-lock embedding, and retention spare-only fixes."
+description: "PENDING verification checklist for the derived-id, in-lock embedding and retention spare-only fixes."
 trigger_phrases:
   - "028 memory schema concurrency checklist"
   - "derived-id consolidation retention checklist"

@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Edited markdown has no em dash character. All edits are path-only and add no em dash; pre-existing table-convention em dashes were left intact.
+- [x] CHK-010 [P0] Edited markdown has no em dash character. All edits are path-only and add no em dash. Pre-existing table-convention em dashes were left intact.
 - [x] CHK-011 [P0] Edited markdown has no semicolon character. No semicolon introduced by any edit.
 - [x] CHK-012 [P1] Edited markdown avoids Oxford comma patterns. No list prose was authored.
 - [x] CHK-013 [P1] Edits follow nearby documentation structure. Path forms match the surrounding anchor style in each file.
@@ -68,7 +68,7 @@ _memory:
 
 - [x] CHK-020 [P0] Stale-reference scan is run. A backtick-anchor resolution scan caught all unresolved paths, 14 genuine stale anchors fixed.
 - [x] CHK-021 [P0] Source-file path claims are grep-traceable. Every fixed anchor points to a path confirmed present in the live tree.
-- [x] CHK-022 [P1] Mirror or index counts are checked. The root-index deterministic self-check reproduces 410 scenario files, 0 broken links, 82 orphans, 3 README exclusions, and 344 feature-catalog files all match the doc.
+- [x] CHK-022 [P1] Mirror or index counts are checked. The root-index deterministic self-check reproduces 410 scenario files, 0 broken links, 82 orphans, 3 README exclusions and 344 feature-catalog files all match the doc.
 - [x] CHK-023 [P1] Strict validation exits 0.
 <!-- /ANCHOR:testing -->
 
@@ -78,7 +78,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-060 [P0] Every discovered candidate is reviewed. All 410 scenario files plus the root index were scanned.
-- [x] CHK-061 [P0] Every stale hit is fixed, explicitly deferred or proven historical. 13 fixed; residual hits classified as intentional ledger rows, placeholders, absence-assertions or non-actionable shorthand in non-028 features.
+- [x] CHK-061 [P0] Every stale hit is fixed, explicitly deferred or proven historical. 13 fixed. Residual hits classified as intentional ledger rows, placeholders, absence-assertions or non-actionable shorthand in non-028 features.
 - [x] CHK-062 [P1] Out-of-scope files remain unchanged. No code, no other-skill playbooks, no concurrent-session files touched.
 - [x] CHK-063 [P1] Packet 030 remains unchanged. No packet-030 path edited.
 <!-- /ANCHOR:fix-completeness -->

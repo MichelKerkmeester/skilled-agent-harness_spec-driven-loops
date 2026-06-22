@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code-Edge Bi-temporal Lifecycle (Q1-C1 cluster)"
-description: "Plan and completion update for the Code Graph schema foundation: SCHEMA_VERSION 6->7 adds code_edges valid_at/invalid_at with UP/DOWN/BACKFILL, idempotent fail-closed migration tests, fresh init, and default-off temporal read consumption. Wider lifecycle/timeline consumers remain gated."
+description: "Plan and completion update for the Code Graph schema foundation: SCHEMA_VERSION 6->7 adds code_edges valid_at/invalid_at with UP/DOWN/BACKFILL, idempotent fail-closed migration tests, fresh init and default-off temporal read consumption. Wider lifecycle/timeline consumers remain gated."
 trigger_phrases:
   - "code edge bitemporal plan"
   - "q1-c1 views atomic migration"
@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Vitest (focused code-graph reindex/read suites alongside each change) |
 
 ### Overview
-This plan is **DONE for the schema foundation** and remains gated for temporal consumers. The shipped foundation adds `code_edges.valid_at` / `invalid_at`, bumps Code Graph `SCHEMA_VERSION` 6->7, exposes UP/DOWN/BACKFILL helpers, backfills legacy rows from `graph_generation`, fails closed on missing migration prerequisites, covers idempotent reruns and fresh DB initialization, and keeps temporal read consumption default-off behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`. The wider cluster - live-view routing, close-and-insert reindex writes, edge lifecycle, and symbol timeline reads - still requires an explicit consumer and benchmark before it should consume the columns.
+This plan is **DONE for the schema foundation** and remains gated for temporal consumers. The shipped foundation adds `code_edges.valid_at` / `invalid_at`, bumps Code Graph `SCHEMA_VERSION` 6->7, exposes UP/DOWN/BACKFILL helpers, backfills legacy rows from `graph_generation`, fails closed on missing migration prerequisites, covers idempotent reruns and fresh DB initialization and keeps temporal read consumption default-off behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`. The wider cluster - live-view routing, close-and-insert reindex writes, edge lifecycle and symbol timeline reads - still requires an explicit consumer and benchmark before it should consume the columns.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,7 +56,7 @@ This plan is **DONE for the schema foundation** and remains gated for temporal c
 ## 2. QUALITY GATES
 
 ### Definition of Ready (to un-defer - NOT met today)
-- [ ] A real as-of/time-travel consumer is named (impact-as-of, audit, or "call graph at commit X") - none exists today
+- [ ] A real as-of/time-travel consumer is named (impact-as-of, audit or "call graph at commit X") - none exists today
 - [ ] Q6-C1 (hard generation watermark) has shipped, the generation bumps atomically with the reindex swap
 - [ ] CG-closed-vocab-CHECK has rebuilt the `edge_type` table (the first table-rebuild migration)
 - [ ] The bi-temporal "commit-time = event-time" mapping is traced end-to-end (dangling-prune contract `:957-968` + cross-file CALLS resolver)
@@ -64,7 +64,7 @@ This plan is **DONE for the schema foundation** and remains gated for temporal c
 ### Definition of Done (schema foundation)
 - [x] Q1-C1 schema columns land as an additive SCHEMA_VERSION 6->7 migration
 - [x] UP/DOWN/BACKFILL helpers exist and are tested
-- [x] Migration is idempotent, fail-closed, and present in fresh DB init
+- [x] Migration is idempotent, fail-closed and present in fresh DB init
 - [x] Temporal consumer behavior remains default-off
 - [ ] `validate.sh --strict` passes
 <!-- /ANCHOR:quality-gates -->
@@ -75,7 +75,7 @@ This plan is **DONE for the schema foundation** and remains gated for temporal c
 ## 3. ARCHITECTURE
 
 ### Pattern
-Non-destructive bi-temporal supersede behind a single SQL-VIEW current-store chokepoint - the aionforge reference: define "current" once as a VIEW, route all default reads through it, retain non-current rows, and bump an explicit generation counter in the same atomic commit (SQLite must maintain the counter explicitly, aionforge gets it free from engine MVCC).
+Non-destructive bi-temporal supersede behind a single SQL-VIEW current-store chokepoint - the aionforge reference: define "current" once as a VIEW, route all default reads through it, retain non-current rows and bump an explicit generation counter in the same atomic commit (SQLite must maintain the counter explicitly, aionforge gets it free from engine MVCC).
 
 ### Key Components
 - **`code_edges` schema**: gained `valid_at`/`invalid_at` (the validity window) at the 6->7 migration (commit `1c39235e36`, SCHEMA_VERSION is now 8), `ensureSchemaMigrations()` one call site on the WAL singleton, additive ALTER + CREATE-IF-NOT-EXISTS (no table-rebuild pattern exists yet - closed-vocab adds the first).

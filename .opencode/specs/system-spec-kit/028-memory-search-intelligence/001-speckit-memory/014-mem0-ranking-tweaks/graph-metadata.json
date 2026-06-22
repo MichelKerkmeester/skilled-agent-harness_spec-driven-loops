@@ -39,7 +39,7 @@
       "spacy"
     ],
     "importance_tier": "important",
-    "status": "partially_implemented_—_candidates_4_+_2_shipped;_candidate_8_resolved_no_transfer;_candidates_1,_3,_5,_6,_7_pending_on_their_gates",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/lib/extraction/entity-extractor.ts",
       "mcp_server/lib/extraction/entity-extraction-rules.json",

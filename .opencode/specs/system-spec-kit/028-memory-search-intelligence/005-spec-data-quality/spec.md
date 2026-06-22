@@ -62,7 +62,7 @@ The research converged on the truncation law. The prod retrieval path never cuts
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Research Complete |
+| **Status** | complete |
 | **Created** | 2026-06-21 |
 | **Branch** | `005-spec-data-quality` |
 <!-- /ANCHOR:metadata -->

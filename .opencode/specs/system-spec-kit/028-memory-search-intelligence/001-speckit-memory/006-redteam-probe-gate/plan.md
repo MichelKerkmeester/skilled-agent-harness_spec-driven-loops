@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/plan]"
-description: "Aggregate the existing per-seam Memory MCP injection sanitizers into one named zero-success-ceiling CI gate, add the missing deep-loop prompt-pack render probe, and fold in the no-querytext exfil-audit assertion - additive test infrastructure plus one audit-path edit."
+description: "Aggregate the existing per-seam Memory MCP injection sanitizers into one named zero-success-ceiling CI gate, add the missing deep-loop prompt-pack render probe and fold in the no-querytext exfil-audit assertion, additive test infrastructure plus one audit-path edit."
 trigger_phrases:
   - "red-team probe gate plan"
   - "memory injection ci gate plan"
@@ -51,7 +51,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Testing** | Vitest, run via `scripts/run-tests.mjs` lane selector |
 
 ### Overview
-Build one named CI red-team probe gate that aggregates the Memory MCP's existing per-seam injection sanitizers, adds the missing deep-loop prompt-pack render probe, and folds in a no-querytext exfil-audit assertion. The work is almost entirely additive test infrastructure (a new aggregating gate module, per-family fixtures, a deep-loop probe, a `run-tests.mjs` security lane) plus exactly one production edit: the namespace-denial audit path must record a denial without storing the probe query text.
+Build one named CI red-team probe gate that aggregates the Memory MCP's existing per-seam injection sanitizers, adds the missing deep-loop prompt-pack render probe and folds in a no-querytext exfil-audit assertion. The work is almost entirely additive test infrastructure (a new aggregating gate module, per-family fixtures, a deep-loop probe, a `run-tests.mjs` security lane) plus exactly one production edit: the namespace-denial audit path must record a denial without storing the probe query text.
 
 <!-- /ANCHOR:summary -->
 
@@ -81,7 +81,7 @@ Build one named CI red-team probe gate that aggregates the Memory MCP's existing
 Test-gate aggregation: one named Vitest module fans out into three attack-family suites + the deep-loop probe + the exfil-audit assertion, emitting a single structured report with a fixed zero-success ceiling. Reuses the existing sanitizer seams rather than reimplementing them.
 
 ### Key Components
-- **`redteam-probe-gate.vitest.ts`**: the named aggregator - drives poisoned-RAG, query-only-injection, and wrapper-breakout families, collects per-probe verdicts, fails on any success.
+- **`redteam-probe-gate.vitest.ts`**: the named aggregator - drives poisoned-RAG, query-only-injection and wrapper-breakout families, collects per-probe verdicts, fails on any success.
 - **`redteam-fixtures/`**: deterministic payload fixtures per family (extends `promptPoisoningAdversarial.json`, `unicodeInstructionalSkillLabel.json`).
 - **`prompt-pack-injection.vitest.ts`** (deep-loop-runtime): the previously-uncovered render-seam probe.
 - **`run-tests.mjs` security lane**: a named selector so the gate runs as one group.
@@ -175,7 +175,7 @@ Required inventories (run at implementation time):
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: The gate flakes, blocks merges incorrectly, or the audit edit regresses a save/recall path.
+- **Trigger**: The gate flakes, blocks merges incorrectly or the audit edit regresses a save/recall path.
 - **Procedure**: Revert the additive test modules + `run-tests.mjs` lane selector (restores the prior suite byte-for-byte) and `git revert` the single audit-path edit. No data migration, no schema change, no feature flag.
 
 <!-- /ANCHOR:rollback -->
@@ -223,7 +223,7 @@ Phase 1 (Setup / seam confirm) ──► Phase 2 (Core: gate + probes + audit) �
 
 ### Rollback Procedure
 1. Remove the security lane selector from `run-tests.mjs`.
-2. `git revert` the gate modules, fixtures, prompt-pack probe, and the audit-path edit.
+2. `git revert` the gate modules, fixtures, prompt-pack probe and the audit-path edit.
 3. Re-run the suite and confirm it matches the pre-gate baseline exactly.
 
 ### Data Reversal

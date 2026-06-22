@@ -89,9 +89,9 @@ Delivery followed the plan order minus the deferred steps. The fused lane was wi
 ## Key Decisions
 
 - **Shadow-gated, default-off.** Both candidates change recall ordering and prompt content, so they ship behind default-off flags and require a captured baseline before promotion (intelligence-class, per the roadmap §3).
-- **Reuse, don't rebuild.** The lane consumes existing `searchCommunities` + `querySummaryEmbeddings` data; no new summary/community computation.
+- **Reuse, don't rebuild.** The lane consumes existing `searchCommunities` + `querySummaryEmbeddings` data, no new summary/community computation.
 - **Single-count discipline.** The two legacy inject paths are retired in the same change as the fused lane to avoid double-counting the same evidence.
-- **Retune only what the lane perturbs.** A full ablation re-derivation is deferred to a separate benchmark; this phase re-tunes only the weights the new lane disturbs.
+- **Retune only what the lane perturbs.** A full ablation re-derivation is deferred to a separate benchmark. This phase re-tunes only the weights the new lane disturbs.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -115,8 +115,8 @@ The shipped lane reuses the existing `searchCommunities` and `querySummaryEmbedd
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- No measured benefit number exists for either candidate; all leverage estimates are structural inference (roadmap BROADENING §6). The captured baseline-and-delta is the gate that converts this into a measured result.
-- The full RRF ablation re-derivation is out of scope; only the lane-perturbed weights are re-tuned here.
+- No measured benefit number exists for either candidate. All leverage estimates are structural inference (roadmap BROADENING §6). The captured baseline-and-delta is the gate that converts this into a measured result.
+- The full RRF ablation re-derivation is out of scope, only the lane-perturbed weights are re-tuned here.
 - The Wave-2 "semantic edge layer" (per-edge embeddings, edge vector index, triplet search) is explicitly deferred.
 <!-- /ANCHOR:limitations -->
 

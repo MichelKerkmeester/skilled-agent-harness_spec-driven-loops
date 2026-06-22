@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Code-Graph Seeded-PPR Impact Ranking (Q3-C1 cluster)"
-description: "Implemented the Code Graph seeded-PPR impact-ranking mechanism behind the default-off SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING flag: Q3-C1 bounded PPR, query-class gate, undirected projection, and Q4-C2 transition decay. Ranking-quality/tuning remains benchmark-gated, invalid_at current-set semantics remain schema-gated, CG-lexical-vector-seed-union remains CUT."
+description: "Implemented the Code Graph seeded-PPR impact-ranking mechanism behind the default-off SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING flag: Q3-C1 bounded PPR, query-class gate, undirected projection and Q4-C2 transition decay. Ranking-quality/tuning remains benchmark-gated, invalid_at current-set semantics remain schema-gated, CG-lexical-vector-seed-union remains CUT."
 trigger_phrases:
   - "seeded ppr impact ranking implementation summary"
   - "q3-c1 cluster pending unbuilt"
@@ -54,6 +54,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking` |
+| **Status** | complete |
 | **Completed** | Mechanism implemented default-off, benchmark/schema-gated acceptance remains pending |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -63,7 +64,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase builds the mechanism the re-plan identified, default-off behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`. The impact path now has a bounded personalized-PageRank primitive, consumes the Memory MCP weighted-walk substrate through a code-graph edge adapter, gates expansion to impact/multi-hop classes, projects the PPR working graph undirected, and folds confidence/evidence reliability into transition weights. With the flag unset, the existing flat impact walk remains the served path, neighborhood and outline short-circuit before PPR even when the flag is enabled.
+This phase builds the mechanism the re-plan identified, default-off behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`. The impact path now has a bounded personalized-PageRank primitive, consumes the Memory MCP weighted-walk substrate through a code-graph edge adapter, gates expansion to impact/multi-hop classes, projects the PPR working graph undirected and folds confidence/evidence reliability into transition weights. With the flag unset, the existing flat impact walk remains the served path, neighborhood and outline short-circuit before PPR even when the flag is enabled.
 
 ### Q3-C1 + Q3-C1-seeded-PPR (DONE mechanism - default-off, benchmark tuning pending)
 
@@ -91,7 +92,7 @@ A BM25-seeds UNION vector-seeds expansion, so lexical seeds keep expansion alive
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The build followed the recorded sequence: confirm weighted-walk reuse, implement the bounded Q3-C1 PPR core, add the query-class gate, then layer undirected projection and transition decay on that core. No schema migration was performed. No live MCP scan, reindex, benchmark, or migration was run. The mechanism shipped default-off in commit `657a0f6a3e` (feat(028), which names seeded-PPR), touching `code-graph-context.ts` and `query-intent-classifier.ts` plus the seeded-PPR vitest.
+The build followed the recorded sequence: confirm weighted-walk reuse, implement the bounded Q3-C1 PPR core, add the query-class gate, then layer undirected projection and transition decay on that core. No schema migration was performed. No live MCP scan, reindex, benchmark or migration was run. The mechanism shipped default-off in commit `657a0f6a3e` (feat(028), which names seeded-PPR), touching `code-graph-context.ts` and `query-intent-classifier.ts` plus the seeded-PPR vitest.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -135,7 +136,7 @@ The build followed the recorded sequence: confirm weighted-walk reuse, implement
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **PPR remains default-off.** The mechanism is available only when `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` is truthy, this preserves byte-identical default behavior for ranking-sensitive paths.
+1. **PPR remains default-off, and the flag was later removed by measurement.** The mechanism is available only when `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` is truthy, this preserves byte-identical default behavior for ranking-sensitive paths. The status here is `complete` because this phase shipped and concluded its scoped work (mechanism built, gated, benchmark-deferred). The downstream flag-resolution reckoning then cut the flag and its code as a no-go, since PPR went negative on the real forward-CALLS graph where uniform edges make it equal to the prior ranking (see `../../007-kept-off-flag-resolution/`).
 2. **No code-graph retrieval benchmark exists campaign-wide.** The PPR ranking-quality claim and tuned damping/cap/decay values are held behind a benchmark that must be built first.
 3. **The current-set intersection degrades.** Q3-C1 intersects with physically present edges today, `invalid_at IS NULL` semantics remain pending until the separate temporal-edge schema migration exists.
 <!-- /ANCHOR:limitations -->

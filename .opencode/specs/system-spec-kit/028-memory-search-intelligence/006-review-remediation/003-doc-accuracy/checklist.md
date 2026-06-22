@@ -55,9 +55,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] No status is marked Complete without commit or summary evidence. 009 marked Complete only because its child reads completion_pct 100 and `ed53661043` shipped it; 011/017/018/020 marked Partial.
+- [x] CHK-010 [P0] No status is marked Complete without commit or summary evidence. 009 marked Complete only because its child reads completion_pct 100 and `ed53661043` shipped it. 011/017/018/020 marked Partial.
 - [x] CHK-011 [P0] Default-off is not conflated with no code shipped. The rollup, timeline Section E and before-vs-after Section 6 now read shipped-behind-flag rather than not-shipped.
-- [x] CHK-012 [P1] Doc edits follow each surface's existing house voice. HVR maintained; added lines carry 0 em-dashes and 0 semicolons.
+- [x] CHK-012 [P1] Doc edits follow each surface's existing house voice. HVR maintained. Added lines carry 0 em-dashes and 0 semicolons.
 - [x] CHK-013 [P1] Phase 008 stays no-code-shipped where its child agrees. 008 and 010 left as no-code per their children.
 <!-- /ANCHOR:code-quality -->
 
@@ -79,7 +79,7 @@ _memory:
 
 - [ ] CHK-060 [P0] P1-6 and all 12 cluster items are addressed. PARTIAL: P1-6 plus the timeline / before-vs-after / benchmark-status cluster items (the parent-dispatched scope) are addressed. Cluster items 7 (`changelog-028-root.md`), 8 and 9 (`000-release-cleanup/spec.md`) and 10 (`ENV_REFERENCE.md`) are DEFERRED out of scope to phase 004 P2 triage and the concurrent owner.
 - [ ] CHK-061 [P0] The zero-hash fingerprint is replaced with a real content-derived value. DEFERRED: the `000-release-cleanup/spec.md` fingerprint (T008) is outside the parent-dispatched scope and was not touched.
-- [x] CHK-062 [P1] The benchmark-status inventory fix does not revert the phase-001 re-run. The criterion-4 re-run text is untouched; only the flag-inventory sentence was extended.
+- [x] CHK-062 [P1] The benchmark-status inventory fix does not revert the phase-001 re-run. The criterion-4 re-run text is untouched. Only the flag-inventory sentence was extended.
 - [x] CHK-063 [P1] The concurrent session's files and packet 030 remain unchanged. `rrf-fusion.ts`, deep-research, `commands/`, `.gitignore`, `ENV_REFERENCE.md` and packet 030 all left untouched.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -107,7 +107,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] No temp files are committed. No commits made; no temp files created.
+- [x] CHK-050 [P1] No temp files are committed. No commits made. No temp files created.
 - [x] CHK-051 [P1] Edits stay within the cited doc surfaces. Edits confined to the four parent-named docs plus this child's tasks / checklist / implementation-summary.
 <!-- /ANCHOR:file-org -->
 

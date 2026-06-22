@@ -39,7 +39,7 @@
       "skip"
     ],
     "importance_tier": "important",
-    "status": "done_—_schema_migration_foundation",
+    "status": "complete",
     "key_files": [
       "lib/search/vector-index-schema.ts",
       "lib/graph/temporal-edges.ts",

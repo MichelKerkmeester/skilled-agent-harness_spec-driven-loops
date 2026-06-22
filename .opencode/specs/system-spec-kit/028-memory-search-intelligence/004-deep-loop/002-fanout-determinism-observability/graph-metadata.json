@@ -39,7 +39,7 @@
       "failed"
     ],
     "importance_tier": "important",
-    "status": "complete_locally_(not_committed_per_instruction)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",

@@ -39,7 +39,7 @@
       "weighted"
     ],
     "importance_tier": "important",
-    "status": "implemented_(shadow_only;_t006_daemon_reload_+_t010_d2_coordination_pending;_live_flip_no_go)",
+    "status": "complete",
     "key_files": [
       "decision-record.md",
       "spec.md",

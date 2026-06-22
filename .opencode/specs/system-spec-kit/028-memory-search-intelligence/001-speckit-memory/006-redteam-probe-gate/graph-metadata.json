@@ -39,7 +39,7 @@
       "audit"
     ],
     "importance_tier": "important",
-    "status": "partial_implementation",
+    "status": "in_progress",
     "key_files": [
       "lib/governance/scope-governance.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",

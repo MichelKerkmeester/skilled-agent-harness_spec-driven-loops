@@ -56,7 +56,7 @@ _memory:
 - [x] CHK-001 [P0] Gate-zero confirmed: sibling `001-corpus-reindex-gate-zero` reindex run + `assertEmbeddingCoverage` passes.
   - **Evidence**: user provided gate-zero embedding coverage = 100%, not locally re-run because live reindex/scan was explicitly forbidden.
 - [x] CHK-002 [P0] Live promotion-gate entrypoint symbol re-confirmed (research-cited `:547` drifted).
-  - **Evidence**: `rg` + file read confirmed `evaluatePromotionGate`, `MIN_NDCG_IMPROVEMENT`, `meanNdcgDelta`, `is_improvement`, and `selectHoldoutQueries` in `lib/feedback/shadow-scoring.ts`.
+  - **Evidence**: `rg` + file read confirmed `evaluatePromotionGate`, `MIN_NDCG_IMPROVEMENT`, `meanNdcgDelta`, `is_improvement` and `selectHoldoutQueries` in `lib/feedback/shadow-scoring.ts`.
 - [x] CHK-003 [P1] Candidate seams identified before implementation.
   - **Evidence**: `spec.md` §3 and §14 list each seam (`ablation-framework.ts:554/486`, `eval-metrics.ts:29-45`, `lib/feedback/shadow-scoring.ts`, `shadow-evaluation-runtime.ts:137,160`).
 - [x] CHK-004 [P1] Wave-0 done-evidence cross-checked, all seven candidates confirmed PENDING.
@@ -86,7 +86,7 @@ _memory:
 - [x] CHK-021 [P0] C9-2 label views (citability/binary/tier) derived in one DB-join and tested.
   - **Evidence**: `tests/eval-metrics.vitest.ts` label-view fixture and `tests/ablation-framework.vitest.ts` in-memory metadata lookup, non-citable labels use `hard_negative`.
 - [x] CHK-022 [P0] C9-3 three corpus metrics implemented + fixture-tested.
-  - **Evidence**: `tests/eval-metrics.vitest.ts` covers confusion + P/R/F1, ECE + Brier + reliability bins, and cold-rate + cold-precision.
+  - **Evidence**: `tests/eval-metrics.vitest.ts` covers confusion + P/R/F1, ECE + Brier + reliability bins and cold-rate + cold-precision.
 - [ ] CHK-023 [P0] A8-1 class-parameterized gate scores ≥2 classes off one spine, ranking class unregressed.
   - **Evidence**: per-class panel test, ledger records `candidate_class` + metric-JSON, ranking-class regression test.
 - [ ] CHK-024 [P1] A8-2 CLASS-G panel produces a promote signal sufficient to graduate isotonic on evidence.
@@ -132,7 +132,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-050 [P1] `plan.md` covers all seven candidates + the gate-zero precondition.
-  - **Evidence**: `plan.md` phase, dependency, and rollback tables.
+  - **Evidence**: `plan.md` phase, dependency and rollback tables.
 - [x] CHK-051 [P1] `tasks.md` has a task per candidate with its gate.
   - **Evidence**: T004-T010 map to the seven candidates, T001-T003 are setup.
 - [x] CHK-052 [P1] Load-bearing decisions captured in `spec.md` §13 + §12.
@@ -235,7 +235,7 @@ _memory:
 - [x] CHK-141 [P1] Packet docs synchronized with `spec.md` §14 as candidates land.
 - [x] CHK-142 [P2] User-facing docs not required.
 - [x] CHK-143 [P2] Knowledge transfer documented.
-  - **Evidence**: research cross-refs name the 008-retrieval-evaluation research, synthesis/08, and the gate-zero sibling.
+  - **Evidence**: research cross-refs name the 008-retrieval-evaluation research, synthesis/08 and the gate-zero sibling.
 <!-- /ANCHOR:docs-verify -->
 
 ---

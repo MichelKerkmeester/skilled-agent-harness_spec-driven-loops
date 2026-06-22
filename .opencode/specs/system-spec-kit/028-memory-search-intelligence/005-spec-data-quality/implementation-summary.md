@@ -42,6 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-spec-data-quality |
+| **Status** | complete |
 | **Completed** | Research complete, 28 implementation child phases scaffolded, no build shipped |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

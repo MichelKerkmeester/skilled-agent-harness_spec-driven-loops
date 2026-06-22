@@ -39,7 +39,7 @@
       "supersedes"
     ],
     "importance_tier": "important",
-    "status": "implemented_default_off;_benchmark_gate_pending",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",

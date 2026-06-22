@@ -39,7 +39,7 @@
       "nodes"
     ],
     "importance_tier": "important",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

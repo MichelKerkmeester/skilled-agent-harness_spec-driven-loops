@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Advisor - Runtime Lane-Health & Graceful Lane-Degrade (C5/C5a/AMB)"
-description: "Implementation record for the advisor graceful-degradation unit. Runtime lane-health, C5, C5a, and AMB shipped in this 028 sub-phase, packet 030 untouched."
+description: "Implementation record for the advisor graceful-degradation unit. Runtime lane-health, C5, C5a and AMB shipped in this 028 sub-phase, packet 030 untouched."
 trigger_phrases:
   - "advisor lane health degrade implementation summary"
   - "C5 C5a AMB status"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade |
-| **Completed** | Yes. Implemented in this 028 sub-phase and shipped in commit `99bfa4427d` |
+| **Status** | complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase built the runtime lane-health degrade path in the Skill Advisor MCP scorer. The scorer now distinguishes a degraded-empty lane from a lane that ran and matched nothing, elides only degraded-empty lanes from the confidence denominator, and surfaces the degraded-lane condition through metrics, prompt-safe handler output, warnings, and abstention explanations.
+This phase built the runtime lane-health degrade path in the Skill Advisor MCP scorer. The scorer now distinguishes a degraded-empty lane from a lane that ran and matched nothing, elides only degraded-empty lanes from the confidence denominator and surfaces the degraded-lane condition through metrics, prompt-safe handler output, warnings and abstention explanations.
 
 The baseline fixture is now measured, not asserted. For prompt `alpha routing surface nearby neutral words`, with `graph_causal` degraded-empty, confidence moves from `0.6060` to `0.6189` (`+0.0129`) and `liveNormalized` for the scored fixture moves from `0.1600` to `0.1839`. The all-healthy path remains byte-identical to the default path.
 
@@ -82,8 +82,8 @@ Delivered in the P0-first sequence from `plan.md`:
 2. Added scorer option types for runtime lane health.
 3. Computed call-scoped lane health in `fusion.ts`, degrading only when a lane is externally marked degraded and emitted zero matches.
 4. Passed stale graph health from `advisor-recommend.ts` into the scorer without exposing that signal as user input.
-5. Surfaced degraded lane metadata through scorer metrics, handler output, and schema validation.
-6. Added scorer, handler, and schema tests covering degraded-empty, matched-nothing, happy-path byte identity, and prompt-safe legibility.
+5. Surfaced degraded lane metadata through scorer metrics, handler output and schema validation.
+6. Added scorer, handler and schema tests covering degraded-empty, matched-nothing, happy-path byte identity and prompt-safe legibility.
 
 No schema migration or DB change. The code shipped in commit `99bfa4427d` (first-wave 028 build, lane-health scorer + handler + schema tests).
 <!-- /ANCHOR:how-delivered -->
@@ -123,5 +123,5 @@ Post-implementation verification:
 1. **graph_causal-specific evidence.** This phase wires handler-owned graph freshness into the scorer. The scorer option shape can represent other degraded lanes, but only `graph_causal` has production evidence here.
 2. **External reference not locally readable.** The packet cites the aionforge degrade-to-remaining pattern, but this workspace has no local `external/` tree. The implementation does not depend on that file.
 3. **Commit.** This unit shipped in commit `99bfa4427d` (feat(028) first-wave build), touching `lib/scorer/fusion.ts`, `lib/scorer/types.ts` and `handlers/advisor-recommend.ts` plus `tests/scorer/runtime-lane-health.vitest.ts`. The Metadata and How-Delivered sections cite the same SHA.
-4. **Adjacent candidates out of scope.** C3 RRF, C4 Beta posterior + SA-two-gate chain, QCR query-class router, C1 split-conflict re-rank, and SA-asymmetric-deltas are explicitly out of scope here and tracked under sibling 028/003 sub-phases.
+4. **Adjacent candidates out of scope.** C3 RRF, C4 Beta posterior + SA-two-gate chain, QCR query-class router, C1 split-conflict re-rank and SA-asymmetric-deltas are explicitly out of scope here and tracked under sibling 028/003 sub-phases.
 <!-- /ANCHOR:limitations -->

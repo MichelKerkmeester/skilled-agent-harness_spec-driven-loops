@@ -39,7 +39,7 @@
       "byte-stable"
     ],
     "importance_tier": "important",
-    "status": "implemented_default_off_(benchmark_gate_pending_before_live_flip)",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Recall→Render Trust Escaper + Substrate-Kind Recall Correctness (028/001 impl phase)"
-description: "Implemented approach, sequencing, and remaining gate for the six write→recall→prompt spine candidates: C8 render escaper, capture-side injection filter, CAS-guard P2 polish, gated substrate-kind recall exclusion, residual-retention disclosure."
+description: "Implemented approach, sequencing and remaining gate for the six write→recall→prompt spine candidates: C8 render escaper, capture-side injection filter, CAS-guard P2 polish, gated substrate-kind recall exclusion, residual-retention disclosure."
 trigger_phrases:
   - "028 recall render escaper plan"
   - "C8 implementation plan"
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | vitest (`mcp_server/tests/*.vitest.ts`), `tsc` + build, `validate.sh --strict` on this folder |
 
 ### Overview
-This sub-phase lands the highest-stakes spine - write → recall → prompt - plus two same-boundary recall-correctness candidates. The center of gravity is one coherent **recall-trust spine**: the C8 `source_kind`-labeled render escaper at the recall content formatter, its non-destructive capture-side injection-marker filter at the shared indexing core reached by `indexSingleFile`, and focused poison/injection vitests. The Constitutional-CAS-guard was already DONE in 030 (`e1c6a3c793`), this phase finishes its P2 polish and the additive residual-retention field. M-system-kind-exclusion remains gated because no safe substrate-only signal or live-DB validation input is available here. No candidate has a benchmarked benefit number - every change ships for correctness and reversibility (campaign caveat).
+This sub-phase lands the highest-stakes spine - write → recall → prompt - plus two same-boundary recall-correctness candidates. The center of gravity is one coherent **recall-trust spine**: the C8 `source_kind`-labeled render escaper at the recall content formatter, its non-destructive capture-side injection-marker filter at the shared indexing core reached by `indexSingleFile` and focused poison/injection vitests. The Constitutional-CAS-guard was already DONE in 030 (`e1c6a3c793`), this phase finishes its P2 polish and the additive residual-retention field. M-system-kind-exclusion remains gated because no safe substrate-only signal or live-DB validation input is available here. No candidate has a benchmarked benefit number - every change ships for correctness and reversibility (campaign caveat).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -81,7 +81,7 @@ Boundary-hardening at two trust seams of an existing MCP server: the **capture**
 
 ### Key Components
 - **Recall content formatter** (`shared-payload.ts` / `formatters/search-results.ts`): the single render seam that owns escaping (NOT `wrapForMCP`/`envelope.ts:284-295`, which serializes every response).
-- **`indexSingleFile` chokepoint** (`context-server.ts:2190-2200`): the planned shared write path. In this codebase it delegates to `indexMemoryFile` / `processPreparedMemory`, the capture-side injection-marker flag installs in that shared indexing core so direct saves, scans, async ingest, and watcher routes are covered.
+- **`indexSingleFile` chokepoint** (`context-server.ts:2190-2200`): the planned shared write path. In this codebase it delegates to `indexMemoryFile` / `processPreparedMemory`, the capture-side injection-marker flag installs in that shared indexing core so direct saves, scans, async ingest and watcher routes are covered.
 - **`redaction-gate.ts`**: secrets-only today (`:25-33` destructive PATTERNS), a SEPARATE non-destructive `detectInjectionMarkers` is added beside it (never merged into the secrets path).
 - **`memory-crud-update.ts`**: the already-shipped constitutional CAS guard (`:118-142`), the P2 polish removes the now-dead downgrade branch.
 - **`write-provenance.ts`** (`SourceKind` at `:7`): needs a real substrate signal distinct from canonical `source_kind='system'`.
@@ -96,7 +96,7 @@ Capture: content → `indexSingleFile` / `indexMemoryFile` → `processPreparedM
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-This phase touches security (injection/escaping), public recall responses (substrate-kind exclusion), persistence honesty (residual-retention), and a shared write-path policy (constitutional CAS), so the affected-surfaces inventory is mandatory.
+This phase touches security (injection/escaping), public recall responses (substrate-kind exclusion), persistence honesty (residual-retention) and a shared write-path policy (constitutional CAS), so the affected-surfaces inventory is mandatory.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
@@ -134,7 +134,7 @@ Required inventories:
 - [x] **M-residual-retention-report:** additive `residual_retention` field on `MemoryRetentionSweepResult` (reading-b scope only).
 
 ### Phase 3: Verification
-- [x] Poison/injection vitests pass for forged close-tag inertness, marker detection, marker-residue rejection, full recalled content, and compact anchor rendering.
+- [x] Poison/injection vitests pass for forged close-tag inertness, marker detection, marker-residue rejection, full recalled content and compact anchor rendering.
 - [x] Benign-corpus zero-FP fixture passes.
 - [ ] Live-DB validation: canonical spec-docs + 29 constitutional rules NOT hidden by the substrate-kind exclusion - pending with REQ-005.
 - [x] Typecheck + focused vitest green (6 files / 99 tests), `validate.sh --strict` 0/0 recorded in `implementation-summary.md`, build + broad suites out of scope per gate.

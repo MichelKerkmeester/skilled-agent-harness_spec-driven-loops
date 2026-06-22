@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Code-Graph Determinism + Walk-Order"
-description: "Level-2 verification checklist for the code-graph determinism + walk-order sub-phase: the shipped Q4-C1 RRF-additive trust predecessor, implemented det-context-order-global, and two gated PENDING follow-ups recorded with their gates."
+description: "Level-2 verification checklist for the code-graph determinism + walk-order sub-phase: the shipped Q4-C1 RRF-additive trust predecessor, implemented det-context-order-global and two gated PENDING follow-ups recorded with their gates."
 trigger_phrases:
   - "checklist code graph determinism walk order"
   - "Q4-C1 order-stability verification"
@@ -51,11 +51,11 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence**: `spec.md` includes Level-2 metadata, scope (4-candidate table), requirements, NFRs, edge cases, complexity, and the candidate-status table.
+  - **Evidence**: `spec.md` includes Level-2 metadata, scope (4-candidate table), requirements, NFRs, edge cases, complexity and the candidate-status table.
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence**: `plan.md` includes summary, architecture (one finalize/rank seam), phases, testing, dependencies, rollback, and the L2 addenda.
+  - **Evidence**: `plan.md` includes summary, architecture (one finalize/rank seam), phases, testing, dependencies, rollback and the L2 addenda.
 - [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence**: `plan.md` section 6 lists the shipped Q4-C1 blend, the local det-order implementation, the isolation-compatible shared-fuser gate, and the missing retrieval benchmark.
+  - **Evidence**: `plan.md` section 6 lists the shipped Q4-C1 blend, the local det-order implementation, the isolation-compatible shared-fuser gate and the missing retrieval benchmark.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -64,11 +64,11 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Shipped Q4-C1 blend is RRF-additive, never multiplicative
-  - **Evidence**: `rankScore = 1/(60+index+1) + clamp(confidence)*evidenceClassFactor`; structural weight unmutated (`code-graph-context.ts:355-378`, commit `e21caf5de6`).
+  - **Evidence**: `rankScore = 1/(60+index+1) + clamp(confidence)*evidenceClassFactor`. Structural weight unmutated (`code-graph-context.ts:355-378`, commit `e21caf5de6`).
 - [x] CHK-011 [P0] Neutral edge byte-identical to the rowid baseline
-  - **Evidence**: a neutral edge scores `1/(61+index)`, byte-verified against the pre-change output; the order-stability ship criterion (`030` §14 cand 13).
+  - **Evidence**: a neutral edge scores `1/(61+index)`, byte-verified against the pre-change output. The order-stability ship criterion (`030` §14 cand 13).
 - [x] CHK-012 [P1] PENDING residue follows the reuse-not-fork pattern
-  - **Evidence**: det-order is implemented locally in the isolated code-graph seam; the fuser adapter remains pending instead of forking a code-graph-specific fuser — recorded in `spec.md` section 3 and `plan.md` section 3.
+  - **Evidence**: det-order is implemented locally in the isolated code-graph seam. The fuser adapter remains pending instead of forking a code-graph-specific fuser, recorded in `spec.md` section 3 and `plan.md` section 3.
 - [x] CHK-013 [P1] Code follows project patterns
   - **Evidence**: candidate seams and the consume-the-shared-signature contract mirror the 001 determinism foundation sub-phase.
 
@@ -79,13 +79,13 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Shipped Q4-C1 acceptance criteria met (REQ-001)
-  - **Evidence**: 56 code-graph ranking/impact/gold-battery tests pass incl. neutral-byte-identical + trusted-boost; the 8 full-package failures are unrelated IPC sandbox EPERM (`e21caf5de6`).
+  - **Evidence**: 56 code-graph ranking/impact/gold-battery tests pass incl. neutral-byte-identical + trusted-boost. The 8 full-package failures are unrelated IPC sandbox EPERM (`e21caf5de6`).
 - [x] CHK-021 [P1] det-order cross-rebuild reproducibility test implemented (REQ-002)
   - **Evidence**: `code-graph-context-handler.vitest.ts` verifies equal-trust impact callers return identical order across shifted DB row orders.
 - [x] CHK-022 [P1] Fuser-adapter dual-channel test planned (REQ-003)
-  - **Evidence**: CALLS+IMPORTS fuse by rank with a cross-channel bonus; single-channel degrades cleanly; not built — gated on an isolation-compatible shared-fuser consume path (`plan.md` section 5).
+  - **Evidence**: CALLS+IMPORTS fuse by rank with a cross-channel bonus. Single-channel degrades cleanly. Not built, gated on an isolation-compatible shared-fuser consume path (`plan.md` section 5).
 - [x] CHK-023 [P1] Q4-C1 tuning is benchmark-gated (REQ-004)
-  - **Evidence**: re-tune `CONTEXT_EDGE_EVIDENCE_RANK_FACTORS` only against a retrieval benchmark; the neutral-fallback gate is non-negotiable; benchmark does not exist campaign-wide (`synthesis/03` §B).
+  - **Evidence**: re-tune `CONTEXT_EDGE_EVIDENCE_RANK_FACTORS` only against a retrieval benchmark. The neutral-fallback gate is non-negotiable. Benchmark does not exist campaign-wide (`synthesis/03` §B).
 
 <!-- /ANCHOR:testing -->
 ---
@@ -94,7 +94,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-024 [P0] Every candidate has a final status (2 DONE, 2 PENDING-with-gate)
-  - **Evidence**: `spec.md` section 11 — Q4-C1 DONE (`e21caf5de6`); det-order DONE; fuser adapter and tuning PENDING with gates.
+  - **Evidence**: `spec.md` section 11, Q4-C1 DONE (`e21caf5de6`), det-order DONE, fuser adapter and tuning PENDING with gates.
 - [x] CHK-025 [P1] Out-of-scope cluster recorded, not silently dropped
   - **Evidence**: Q1-C1 bi-temporal, Q3-C1 PPR, Q6-* watermark, CG-edge-staleness recorded as other sub-phases in `spec.md` section 3 Out of Scope.
 
@@ -105,11 +105,11 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
-  - **Evidence**: docs contain only file paths, commit hashes, and commands.
+  - **Evidence**: docs contain only file paths, commit hashes and commands.
 - [x] CHK-031 [P0] No new external data sink or trust boundary introduced
-  - **Evidence**: code-graph context render is JSON-escaped + trusted-source; the cross-cutting C8 generalization was refuted/reachability-gated for code-graph (`synthesis/04`).
+  - **Evidence**: code-graph context render is JSON-escaped + trusted-source. The cross-cutting C8 generalization was refuted/reachability-gated for code-graph (`synthesis/04`).
 - [x] CHK-032 [P1] Auth/authz unaffected
-  - **Evidence**: ordering-only ranking changes; no auth surface touched (`spec.md` NFR-S01).
+  - **Evidence**: ordering-only ranking changes. No auth surface touched (`spec.md` NFR-S01).
 
 <!-- /ANCHOR:security -->
 ---
@@ -148,6 +148,6 @@ _memory:
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-06-19
-**Verified By**: Implementation pass (Q4-C1 shipped/verified; det-order implemented; residue gated, deferral documented)
+**Verified By**: Implementation pass (Q4-C1 shipped/verified, det-order implemented, residue gated, deferral documented)
 
 <!-- /ANCHOR:summary -->

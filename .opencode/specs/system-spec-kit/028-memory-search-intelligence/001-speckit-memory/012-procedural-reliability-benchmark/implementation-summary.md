@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Procedural Reliability Memory (safe core implemented; candidates benchmark-gated)"
-description: "Safe-core summary for the Memory MCP procedural-reliability cluster. The outcome emitter mirror, f64 Beta reliability primitive, and default-off procedural reliability recall fold are implemented and tested. Candidate promotion remains PENDING until benchmark evidence exists."
+title: "Implementation Summary: Procedural Reliability Memory (complete no-go, flags and code removed in 007)"
+description: "Safe-core summary for the Memory MCP procedural-reliability cluster. The outcome emitter mirror, f64 Beta reliability primitive and default-off procedural reliability recall fold were implemented and tested, then the flags and code were removed in the 007 flag-resolution reckoning. The phase concludes as a complete no-go with all 4 candidates unpromoted and benchmark-gated."
 trigger_phrases:
   - "procedural reliability implementation summary"
   - "procedural cluster planning summary"
@@ -44,9 +44,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark |
-| **State** | Safe core implemented; candidate promotion benchmark-gated |
+| **State** | complete |
 | **Level** | 3 |
-| **Candidates** | 4 (safe-core plumbing done; 4 promotion decisions PENDING) |
+| **Candidates** | 4 (safe-core plumbing done, 4 promotion decisions PENDING) |
 | **In 030 Wave-0** | None (procedural cluster absent from `030-...impl/spec.md` §14) |
 
 <!-- /ANCHOR:metadata -->
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This sub-phase now has the safe procedural-reliability core in place: outcome/correction feedback can be mirrored into adaptive signals behind `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`, a fractional Beta reliability primitive exists in `lib/scoring/bayesian-scorer.ts`, and procedural recall weighting is available behind `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`. Default behavior remains byte-identical with both flags off. Candidate promotion remains PENDING until a benchmark proves the reliability fold out-earns the existing access/confirmation signals.
+This sub-phase is **complete as a no-go**. The safe procedural-reliability core was built default-off (outcome/correction mirror behind `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`, a fractional Beta reliability primitive in `lib/scoring/bayesian-scorer.ts`, procedural recall weighting behind `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`) and stayed byte-identical with both flags off. In the 007 flag-resolution reckoning the two flags and their code were **removed**: the outcome ledger stayed empty so the bounded multiplier moved only synthetic near-ties with an eval rankDelta of 0, and the de-rate correctness fix was real but earned no shipped behavior. All four candidates conclude PENDING and unpromoted, none reached 030 Wave-0 and the benchmark gate was never cleared. See `../../007-kept-off-flag-resolution/` and `decision-record.md`. The decision is concluded, hence the enum is `complete` even though the result is a shadow-only no-go.
 
 <!-- /ANCHOR:exec-summary -->
 
@@ -70,7 +70,7 @@ This sub-phase now has the safe procedural-reliability core in place: outcome/co
 | `lib/feedback/feedback-ledger.ts` | reliability-recall, version-reset | default-off outcome/correction mirror into adaptive signals | DONE |
 | `lib/scoring/bayesian-scorer.ts` | reliability-recall (+ Advisor follow-on) | f64 Beta reliability primitive + multiplier helper | DONE |
 | `lib/cognitive/adaptive-ranking.ts` | reliability-recall | default-off procedural reliability fold for procedural rows only | DONE (benchmark-gated) |
-| `lib/storage/causal-edges.ts:21-28`; `lib/search/vector-index-schema.ts:1113-1115` | bad-pattern | `HAS_FAILURE` migration / precedent | PENDING (schema) |
+| `lib/storage/causal-edges.ts:21-28`, `lib/search/vector-index-schema.ts:1113-1115` | bad-pattern | `HAS_FAILURE` migration / precedent | PENDING (schema) |
 | `lib/reconsolidation.ts:38,202-210,527-533` | skill-induction, bad-pattern | new action + counter | PENDING (heaviest) |
 
 <!-- /ANCHOR:what-built -->
@@ -80,7 +80,7 @@ This sub-phase now has the safe procedural-reliability core in place: outcome/co
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered as default-off, additive plumbing only. The outcome mirror is gated by `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`; the procedural recall fold is gated by `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`; both flags are registered in the flag-ceiling known list. No schema migration, bad-pattern host, skill-induction action, or version-reset promotion was implemented.
+Delivered as default-off, additive plumbing only. The outcome mirror is gated by `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`. The procedural recall fold is gated by `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`. Both flags are registered in the flag-ceiling known list. No schema migration, bad-pattern host, skill-induction action or version-reset promotion was implemented.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -91,9 +91,9 @@ Delivered as default-off, additive plumbing only. The outcome mirror is gated by
 
 | ADR | Decision | Status | Impact |
 |-----|----------|--------|--------|
-| ADR-001 | Whole cluster is benchmark-first + PENDING | Accepted | No no-op or fabricated benefit shipped; emitter + benchmark gate every candidate |
-| ADR-002 | GRAFT onto reconsolidation-on-save; no episode model | Accepted | Minimal save-path blast radius; reuses tested atomicity |
-| ADR-003 | Bad-pattern is a net-new schema BUILD (migration or precedent + audit) | Accepted | "Free reuse" framing rejected; true cost recorded |
+| ADR-001 | Whole cluster is benchmark-first + PENDING | Accepted | No no-op or fabricated benefit shipped, emitter + benchmark gate every candidate |
+| ADR-002 | GRAFT onto reconsolidation-on-save, no episode model | Accepted | Minimal save-path blast radius, reuses tested atomicity |
+| ADR-003 | Bad-pattern is a net-new schema BUILD (migration or precedent + audit) | Accepted | "Free reuse" framing rejected, true cost recorded |
 
 See `decision-record.md` for full ADRs.
 
@@ -122,16 +122,16 @@ See `decision-record.md` for full ADRs.
 |-------|--------|---------|
 | `validate.sh --strict` | Pass | Folder structure + anchors + frontmatter green |
 | Research faithfulness | Pass | Every candidate + gate traces to `research/` deltas `iter-015/018/021` |
-| Implementation tests | Pass | `bayesian-scorer`, `feedback-ledger`, `adaptive-ranking`, `search-flags`, and `flag-ceiling` targeted suites passed |
-| Benefit benchmark | Not run | The promotion gate; no candidate has a benefit number |
+| Implementation tests | Pass | `bayesian-scorer`, `feedback-ledger`, `adaptive-ranking`, `search-flags` and `flag-ceiling` targeted suites passed |
+| Benefit benchmark | Not run | The promotion gate, no candidate has a benefit number |
 
 ### Candidate status (frozen from research)
 
 | Candidate | Status | Gate |
 |-----------|--------|------|
-| M-procedural-reliability-recall | PENDING | safe core DONE; promotion needs benchmark |
+| M-procedural-reliability-recall | PENDING | safe core DONE, promotion needs benchmark |
 | M-bad-pattern-negative-memory | PENDING | schema-migration (+ filter-site audit) |
-| M-skill-induction-repetition | PENDING | needs-benchmark (heaviest; write-side risk) |
+| M-skill-induction-repetition | PENDING | needs-benchmark (heaviest, write-side risk) |
 | M-procedural-version-reset | PENDING | already-exists-residual |
 
 <!-- /ANCHOR:verification -->
@@ -144,11 +144,11 @@ See `decision-record.md` for full ADRs.
 | Milestone | Target | Actual | Status |
 |-----------|--------|--------|--------|
 | Planning (this re-plan) | Capture 4 candidates + gates | Done | Complete |
-| M1 Emitter | Outcome signal at >2 sites | — | Not started (future packet) |
-| M2 Beta primitive | f64 export + adapter | — | Not started |
-| M3 Benchmark verdict | Measured delta | — | Not started |
-| M4 Reliability-recall | Promote or PENDING | — | Not started |
-| M5 Sibling gates | Bad-pattern / induction / version-reset | — | Not started |
+| M1 Emitter | Outcome signal at >2 sites | n/a | Not started (future packet) |
+| M2 Beta primitive | f64 export + adapter | n/a | Not started |
+| M3 Benchmark verdict | Measured delta | n/a | Not started |
+| M4 Reliability-recall | Promote or PENDING | n/a | Not started |
+| M5 Sibling gates | Bad-pattern / induction / version-reset | n/a | Not started |
 
 <!-- /ANCHOR:milestones -->
 
@@ -157,11 +157,11 @@ See `decision-record.md` for full ADRs.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No execution-success emitter** — the dominant blocker; only recommendation-acceptance is captured today.
-2. **No measured benefit anywhere** — every leverage/effort rating is structural inference [`03-corrections-caveats-and-residuals.md:33`].
-3. **Bad-pattern cannot reuse the causal-edge infra** — `HAS_FAILURE` is rejected at two layers; net-new schema work [`iter-021.jsonl:2`].
-4. **Skill-induction is the heaviest build** — needs a new reconsolidation action + a non-existent repetition counter + a precision gate; write-side corpus risk [`iter-021.jsonl:3`].
-5. **Version-reset's mechanism already ships** — only the explicit reliability-reset-to-zero is net-new [`iter-021.jsonl:4`].
+1. **No execution-success emitter**, the dominant blocker. Only recommendation-acceptance is captured today.
+2. **No measured benefit anywhere**, every leverage/effort rating is structural inference [`03-corrections-caveats-and-residuals.md:33`].
+3. **Bad-pattern cannot reuse the causal-edge infra**, `HAS_FAILURE` is rejected at two layers. Net-new schema work [`iter-021.jsonl:2`].
+4. **Skill-induction is the heaviest build**, it needs a new reconsolidation action + a non-existent repetition counter + a precision gate. Write-side corpus risk [`iter-021.jsonl:3`].
+5. **Version-reset's mechanism already ships**, only the explicit reliability-reset-to-zero is net-new [`iter-021.jsonl:4`].
 
 <!-- /ANCHOR:limitations -->
 
@@ -186,8 +186,8 @@ See `decision-record.md` for full ADRs.
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Implement candidates | Planning-only | This is a benchmark-first re-plan; the unit is PROXY-ONLY and gated |
-| Mark candidates done | All PENDING | None survived as a free byproduct; the emitter + benchmark are prerequisites |
+| Implement candidates | Planning-only | This is a benchmark-first re-plan, the unit is PROXY-ONLY and gated |
+| Mark candidates done | All PENDING | None survived as a free byproduct, the emitter + benchmark are prerequisites |
 
 <!-- /ANCHOR:deviations -->
 
@@ -196,9 +196,9 @@ See `decision-record.md` for full ADRs.
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-- [ ] Build the outcome/usefulness emitter (REQ-001) — the shared prerequisite.
-- [ ] Build the shared bounded-Beta f64 primitive + procedural adapter (REQ-003; shared with Advisor C4).
-- [ ] Run ONE benefit micro-benchmark (reliability-weighting vs `access`/confirmation) — REQ-002.
+- [ ] Build the outcome/usefulness emitter (REQ-001), the shared prerequisite.
+- [ ] Build the shared bounded-Beta f64 primitive + procedural adapter (REQ-003, shared with Advisor C4).
+- [ ] Run ONE benefit micro-benchmark (reliability-weighting vs `access`/confirmation) for REQ-002.
 - [ ] Decide bad-pattern host: `HAS_FAILURE` migration vs `'deprecated'`/`contradicts` precedent + filter-site audit.
 - [ ] Sibling cross-packet: Advisor `SA-outcome-weighted-ranking` → `003-skill-advisor`.
 
