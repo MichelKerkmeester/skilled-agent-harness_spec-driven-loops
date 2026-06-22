@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog playbook coverage audit",
+      "028 feature catalog gap",
+      "code-graph skill-advisor coverage",
+      "feature catalog gap",
+      "testing playbook gap",
+      "code-graph skill-advisor catalog",
+      "028 coverage audit"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "coverage",
+      "audit",
+      "028",
+      "feature",
+      "gap",
+      "code-graph",
+      "skill-advisor",
+      "testing",
+      "read-only",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/before-vs-after.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-vs-after.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/before-vs-after.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Coverage Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. HEADLINE FINDINGS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook Coverage Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Loop",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A read-only deep-research audit answering one question: did packet 028 ship features into system-spec-kit, system-code-graph, and system-skill-advisor that were never added to those skills feature catalogs or testing playbooks?",
+    "created_at": "2026-06-22T04:40:16.647Z",
+    "last_save_at": "2026-06-22T04:40:16.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
