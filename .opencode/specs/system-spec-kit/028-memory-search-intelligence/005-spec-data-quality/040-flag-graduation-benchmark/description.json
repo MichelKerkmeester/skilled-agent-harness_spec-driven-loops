@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
+  "description": "Feature Specification: Flag Graduation Benchmark",
+  "keywords": [
+    "feature",
+    "specification",
+    "flag",
+    "graduation",
+    "benchmark",
+    "earn-or-delete"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "specId": "040",
+  "folderSlug": "flag-graduation-benchmark",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

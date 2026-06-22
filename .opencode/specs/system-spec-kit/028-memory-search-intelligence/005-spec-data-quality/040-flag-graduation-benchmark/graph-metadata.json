@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
+      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "flag graduation benchmark",
+      "stage 4 before and after benchmark",
+      "default off flag earn or delete",
+      "graduate flag to default on",
+      "keep off flag roadmap verdict",
+      "false confirm driver reuse",
+      "benchmark harness reuse",
+      "dual metric graduation gate",
+      "benchmark status verdict doc",
+      "per flag isolation measurement"
+    ],
+    "key_topics": [
+      "flag",
+      "graduation",
+      "benchmark",
+      "before-after",
+      "false-confirm",
+      "earn-or-delete",
+      "default-on",
+      "keep-off",
+      "stage-4",
+      "capability-flags",
+      "safety-metric",
+      "retrieval"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/graph/flag-graduation-benchmark.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      "benchmark-status.md",
+      "keep-off-flag-roadmap.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "flag-graduation-benchmark.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/flag-graduation-benchmark.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_LEXICAL_GROUNDING_V1",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_ENVELOPE_FIDELITY_V1",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_IDENTITY_MERGE_SAFETY",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This program shipped a set of default-OFF flags whose benefit is inert until each one is measured and graduated. This Stage 4 benchmark runs a real before-and-after on live data and live queries for every default-OFF program flag, each toggled in isolation against the same corpus and query set, reusing the phase 025 false-confirm driver for the safety metric and the phase 029 benchmark harness for the retrieval and scoring metrics. Each graduation is gated on the measured delta clearing the bar on both metrics, so a flag that helps retrieval but raises false confirms does not graduate. The earners flip to default-ON, the rest stay off with the reason recorded in keep-off-flag-roadmap.md, per the 028 earn-or-delete discipline, and the verdicts land in benchmark-status.md. The phase is HARD-GATED on phase 039, the full-repo migration, being done because the before-and-after is only meaningful on a fully-migrated corpus.",
+    "created_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
