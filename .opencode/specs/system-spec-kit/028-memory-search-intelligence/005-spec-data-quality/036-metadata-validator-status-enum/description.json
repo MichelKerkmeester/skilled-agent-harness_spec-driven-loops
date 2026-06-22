@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
+  "description": "Feature Specification: Generated-Metadata Validator and Status Enum",
+  "keywords": [
+    "generated-metadata",
+    "validator",
+    "status",
+    "enum",
+    "schema"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "specId": "036",
+  "folderSlug": "metadata-validator-status-enum",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
+  "description": "Spec: Scoped Backfill Boundary and Exclusion Unification",
+  "keywords": [
+    "spec",
+    "scoped-backfill",
+    "boundary",
+    "exclusion"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "specId": "034",
+  "folderSlug": "scoped-backfill-boundary",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

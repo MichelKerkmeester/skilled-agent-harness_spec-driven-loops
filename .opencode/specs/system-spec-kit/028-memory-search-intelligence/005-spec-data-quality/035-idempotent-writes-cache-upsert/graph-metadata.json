@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "idempotent description writes",
+      "global cache upsert",
+      "content hash gated description",
+      "ensureDescriptionCache over-reach",
+      "description json no-op skip",
+      "savePerFolderDescription unconditional write",
+      "saveDescriptionCache content gate",
+      "upsertDescriptionCacheEntry targeted",
+      "default off grandfather report mode",
+      "description lastUpdated preserve"
+    ],
+    "key_topics": [
+      "idempotent",
+      "description",
+      "cache",
+      "upsert",
+      "fingerprint",
+      "content-hash",
+      "no-op",
+      "folder-discovery",
+      "grandfather",
+      "flag",
+      "rebuild",
+      "path"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/folder-discovery-idempotent.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "folder-discovery.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery-idempotent.vitest.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/folder-discovery-idempotent.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "savePerFolderDescription",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "saveDescriptionCache",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ensureDescriptionCache",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "upsertDescriptionCacheEntry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "buildCanonicalDescriptionFields",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-folder description generator writes non-idempotently. generatePerFolderDescription stamps lastUpdated with new Date and savePerFolderDescription writes unconditionally, so a rerun on unchanged content dirties the folder. Running that generator also triggers ensureDescriptionCache to regenerate the whole tree by scanning every base path, pulling unrelated sessions folders into a scoped commit. The phase adds a content fingerprint over the canonical fields with a per-folder no-op skip, content-gates the aggregate-cache write, and adds a targeted upsertDescriptionCacheEntry that replaces only the changed entry and reserves the full rebuild for structural changes. Both fixes ship behind a default-OFF flag with a grandfather report mode because the existing files carry the wall-clock stamps the gate rejects.",
+    "created_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

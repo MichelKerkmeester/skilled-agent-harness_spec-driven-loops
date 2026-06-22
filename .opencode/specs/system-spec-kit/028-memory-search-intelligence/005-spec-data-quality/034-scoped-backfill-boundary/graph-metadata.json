@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scoped backfill boundary",
+      "backfill spec folder positional",
+      "collection matches writer rules",
+      "authoritative z exclusion helper",
+      "descriptions json z guard",
+      "backfill repo wide over-reach",
+      "backfill all flag default off",
+      "corrupt folder failure isolation",
+      "canClassifyAsGraphMetadataPath collection",
+      "z archive memory inclusion preserved"
+    ],
+    "key_topics": [
+      "scoped-backfill",
+      "boundary",
+      "exclusion",
+      "z-prefix",
+      "descriptions-json",
+      "folder-discovery",
+      "index-scope",
+      "writer-rules",
+      "failure-isolation",
+      "grandfather-mode",
+      "generated-metadata",
+      "z-archive"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.js",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoped-backfill-boundary.vitest.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "canClassifyAsGraphMetadataPath",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXCLUDED_FOR_MEMORY",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHIVE_MULTIPLIERS",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The graph-metadata backfill CLI ignores a positional folder and defaults to the repo-wide root, then refreshes every collected folder, so a single-packet intent silently walks the whole tree and dirties unrelated sessions. Collection also admits candidates the writer rule canClassifyAsGraphMetadataPath would reject, and one corrupt folder aborts the whole run. The z_* exclusion policy is split across backfill, memory-index, code-graph, and the description scanner whose local skip list omits z_*. This phase adds an explicit scoped boundary that refreshes one packet by default with broad mode behind a default-off all flag, makes collection match the writer rules and isolate per-folder failures, and introduces one authoritative z_* exclusion helper with a descriptions.json guard, every behavioral fix behind a default-off flag or a grandfather report mode and the by-design z_archive memory inclusion preserved through a separate generatedMetadata policy.",
+    "created_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

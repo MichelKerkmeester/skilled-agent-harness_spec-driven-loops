@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generated metadata validator",
+      "derived status enum boundary",
+      "graph metadata integrity rule",
+      "stop preserving bad statuses",
+      "status enum schema close",
+      "normalize derived status enum",
+      "graph metadata status values",
+      "grandfather report mode",
+      "schema boundary close",
+      "strict mode integrity gate"
+    ],
+    "key_topics": [
+      "generated-metadata",
+      "validator",
+      "status",
+      "enum",
+      "schema",
+      "normalizer",
+      "integrity-rule",
+      "strict-mode",
+      "grandfather",
+      "parser",
+      "re-derive",
+      "boundary"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/validator-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "GRAPH_METADATA_STATUS_VALUES",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "GENERATED_METADATA_INTEGRITY",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "normalizeDerivedStatus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The generated graph-metadata status field is open. The normalizer normalizeDerivedStatus returns the raw normalized string in its default branch and the Zod schema accepts any non-empty string, so em-dash prose becomes a valid status. The shallow GRAPH_METADATA_SHAPE and DESCRIPTION_SHAPE checks run as warnings rather than a real gate, and the parser preserves a legacy bad status when a packet has no implementation-summary.md. The planned fix closes derived.status to a shared GRAPH_METADATA_STATUS_VALUES enum at the schema boundary so the normalizer returns an enum value or null, adds a first-class GENERATED_METADATA_INTEGRITY rule validating both JSON files through the shared schemas plus path-prefix and enum invariants registered as an error in strict mode behind a grandfather report mode, and stops preserving bad statuses by re-deriving on the closed enum or falling back to planned plus a review flag. Every behavioral fix ships behind a default-off flag or grandfather mode because existing files carry the prose statuses and prefixed paths the new contract rejects.",
+    "created_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

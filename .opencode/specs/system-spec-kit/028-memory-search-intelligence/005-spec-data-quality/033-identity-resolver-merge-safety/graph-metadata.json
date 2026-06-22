@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared spec folder identity resolver",
+      "merge graph metadata parent preservation",
+      "children ids append only",
+      "parent id reconciled merge",
+      "spec folder identity canonicalizer",
+      "resolve spec folder identity",
+      "graph metadata lineage loss",
+      "description json path shape drift",
+      "default off merge flag",
+      "grandfather report mode"
+    ],
+    "key_topics": [
+      "identity-resolver",
+      "merge-safety",
+      "parent-id",
+      "children-ids",
+      "graph-metadata",
+      "folder-discovery",
+      "spec-folder",
+      "lineage",
+      "append-only",
+      "specs-root-relative",
+      "parser",
+      "grandfather"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/identity-resolver-merge-safety.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "identity-resolver-merge-safety.vitest.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/identity-resolver-merge-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resolveSpecFolderIdentity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mergeGraphMetadata",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit generators disagree on spec-folder identity and the graph merge loses lineage. description.json stores a caller-base-relative specFolder from path.relative at folder-discovery.ts line 809 while graph metadata stores a specs-root-relative path, so the same folder carries two shapes. mergeGraphMetadata spreads the refreshed snapshot at graph-metadata-parser.ts lines 1149 to 1161, so a null-deriving parent_id from resolveParentId erases an existing non-null parent and a scoped scan replaces children_ids and deletes relationships. The fix adds a shared resolveSpecFolderIdentity helper consumed by both generators and a merge guard that reconciles parent_id as refreshed then existing then null and unions children_ids append-only, all behind a default-OFF flag with a grandfather report mode so existing files do not mass-fail.",
+    "created_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

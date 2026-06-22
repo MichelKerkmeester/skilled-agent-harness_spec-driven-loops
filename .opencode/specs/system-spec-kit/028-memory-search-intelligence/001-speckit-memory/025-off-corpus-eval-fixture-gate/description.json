@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
+  "description": "Feature Specification: Off-Corpus Eval Fixture and False-Confirm Gate",
+  "keywords": [
+    "off-corpus",
+    "eval-fixture",
+    "false-confirm",
+    "hard-negative",
+    "kubernetes-anchor",
+    "ci-gate"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "specId": "025",
+  "folderSlug": "off-corpus-eval-fixture-gate",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

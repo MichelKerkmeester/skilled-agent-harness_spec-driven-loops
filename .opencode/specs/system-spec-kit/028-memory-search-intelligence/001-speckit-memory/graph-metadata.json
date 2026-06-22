@@ -27,7 +27,11 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
-    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
   ],
   "manual": {
     "depends_on": [],

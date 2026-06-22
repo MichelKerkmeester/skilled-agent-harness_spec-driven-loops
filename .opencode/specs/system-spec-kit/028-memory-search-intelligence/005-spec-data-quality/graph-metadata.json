@@ -35,7 +35,13 @@
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored"
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening"
   ],
   "manual": {
     "depends_on": [],
