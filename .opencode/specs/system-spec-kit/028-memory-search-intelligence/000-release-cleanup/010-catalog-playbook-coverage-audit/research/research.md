@@ -127,7 +127,7 @@ None of this is a correctness defect in the shipped code. It is a documentation-
 
 - **Twelve deleted flags are NOT a gap.** One seat flagged `SPECKIT_SUMMARY_FUSION_LANE`, `SPECKIT_AGENTIC_RECALL`, `SPECKIT_SLEEPTIME_CONSOLIDATION`, `SPECKIT_CARDINALITY_PENALTY`, `SPECKIT_BITEMPORAL_RECALL` and others as missing from the catalog. Direct grep confirms all are absent (0 files), which is correct because the reckoning removed their code. An absent entry for a removed feature is the right state.
 - **Temporal-edges is cataloged.** The kept-on-flag count is 4 missing, not 5.
-- **Unconfirmed tool-name findings (excluded from the count):** a few seats named `code_graph_apply`, `code_graph_classify_query_intent`, and `skill_graph_propagate_enhances` as missing tools. These tool ids were not cross-checked against the live tool roster and may be model artifacts. The removed seeded-PPR finding is likely the same false-positive shape as the deleted flags (correctly absent). Treat all four as unverified, not as confirmed gaps.
+- **Tool-name findings (confirmed real):** a few seats named `code_graph_apply`, `code_graph_classify_query_intent`, and `skill_graph_propagate_enhances` as missing tools. These tool ids ARE present in the live MCP tool roster, so those are confirmed gaps, not artifacts. The one finding that remains a likely false-positive is the removed seeded-PPR (`SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`), correctly absent like the deleted flags, so treat only that one as not-a-gap.
 
 ---
 
