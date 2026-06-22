@@ -6,10 +6,26 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
-      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
-      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
-      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum"
+      {
+        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
     ],
     "supersedes": [],
     "related_to": []
@@ -20,35 +36,31 @@
       "stage 3 generated json migration",
       "scoped per folder generator loop",
       "byte stable second run gate",
-      "regenerate description and graph metadata repo wide",
-      "z_archive z_future migration",
-      "enum clean derived status migration",
-      "prefixed paths preserved parent id",
-      "validate clean tree gate",
-      "scoped commits batched by track"
+      "regenerate description and graph metadata repo wide"
     ],
     "key_topics": [
+      "full",
+      "repo",
+      "json",
       "migration",
-      "generated-json",
+      "stage",
+      "generated",
       "scoped",
-      "idempotent",
-      "validator",
-      "archive",
-      "enum",
-      "parent_id",
-      "path-prefix",
-      "stage-3",
-      "description",
-      "graph-metadata"
+      "per",
+      "folder",
+      "generator",
+      "loop",
+      "byte"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/graph/migrate-generated-json.ts",
       "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
       "plan.md",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
@@ -56,20 +68,8 @@
     "entities": [
       {
         "name": "migrate-generated-json.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": "scripts/graph/migrate-generated-json.ts",
         "source": "derived"
       },
       {
@@ -79,9 +79,21 @@
         "source": "derived"
       },
       {
+        "name": "migrate-generated-json.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
         "source": "derived"
       },
       {
@@ -103,19 +115,31 @@
         "source": "derived"
       },
       {
-        "name": "z_archive",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "z_future",
+        "name": "Repo Generated",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "This Stage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Regenerate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,21 +151,69 @@
         "source": "derived"
       },
       {
-        "name": "Affected Surfaces",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Testing Strategy",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the J1",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The hardened J1 to J4 generators ship their idempotent content-hashed writes, enum-clean derived status, prefixed paths and preserved parent links behind default-OFF flags, so the existing repo still carries the legacy format the new contract rejects. This Stage 3 migration regenerates every description.json and graph-metadata.json across the whole repo including z_archive and z_future onto the new format, driven by the scoped per-folder generator looped over every folder rather than the legacy over-reaching tree-walk. It is gated on a byte-stable second run that yields no diff, zero enum, parent_id and path violations under the phase 036 validator, and a validate-clean tree, and it lands as scoped commits batched by track. The phase is HARD-GATED on phases 033 through 036 being done and tested.",
+    "causal_summary": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind default-OFF flags so the on-disk repo is untouched. Phase 033 lands the identity-resolver merge safety, phase 034 lands the scoped backfill boundary, phase 035 lands the idempotent content-hashed description writes and the targeted cache upsert, and phase 036 lands the generated-metadata validator that enforces the enum-clean `derived.status`, the `.opencode/specs/` path prefix and the preserved `parent_id` and `children_ids`. With every one of those flags OFF, the existing generated JSON across the repo still carries the legacy format the new contract rejects, wall-clock churn, prose statuses, unprefixed paths and dropped parent links.",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T18:48:32.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

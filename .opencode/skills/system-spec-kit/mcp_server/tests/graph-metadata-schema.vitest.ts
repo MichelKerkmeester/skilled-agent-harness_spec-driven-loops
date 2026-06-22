@@ -7,7 +7,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createEmptyGraphMetadataManual,
   deriveGraphMetadata,
+  graphMetadataSchema,
   GRAPH_METADATA_SCHEMA_VERSION,
+  loadGraphMetadata,
   mergeGraphMetadata,
   serializeGraphMetadata,
   type GraphMetadata,
@@ -264,6 +266,57 @@ describe('graph metadata schema and parser', () => {
     expect(validation.metadata.manual.depends_on[0]?.packet_id).toBe('system-spec-kit/010-foundation');
     expect(validation.metadata.manual.supersedes[0]?.packet_id).toBe('system-spec-kit/009-older');
     expect(validation.metadata.manual.related_to[0]?.packet_id).toBe('system-spec-kit/011-peer');
+  });
+
+  it('upgrades bare string manual relationships to structured references on load', () => {
+    const specFolder = createSpecFolder();
+    const base = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    // A hand-authored or legacy file that stored relationships as bare packet-id strings
+    // fails the strict schema; the load path must upgrade rather than drop them.
+    const legacyShaped = {
+      ...base,
+      manual: {
+        depends_on: ['system-spec-kit/001-base', 'system-spec-kit/002-foundation'],
+        supersedes: [],
+        related_to: ['system-spec-kit/003-peer'],
+      },
+    };
+
+    const validation = validateGraphMetadataContent(JSON.stringify(legacyShaped));
+
+    expect(validation.ok).toBe(true);
+    if (!validation.ok) {
+      throw new Error('Expected the tolerant load to upgrade string relationships');
+    }
+    expect(validation.metadata.manual.depends_on.map((ref) => ref.packet_id)).toEqual([
+      'system-spec-kit/001-base',
+      'system-spec-kit/002-foundation',
+    ]);
+    expect(validation.metadata.manual.depends_on[0]?.reason).toBe('Imported from legacy graph-metadata.json');
+    expect(validation.metadata.manual.depends_on[0]?.source).toBe('legacy');
+    expect(validation.metadata.manual.related_to.map((ref) => ref.packet_id)).toEqual([
+      'system-spec-kit/003-peer',
+    ]);
+  });
+
+  it('carries upgraded string relationships through a re-derive as strict-valid references', () => {
+    const specFolder = createSpecFolder();
+    const base = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+    const graphPath = path.join(specFolder, 'graph-metadata.json');
+    fs.writeFileSync(graphPath, JSON.stringify({
+      ...base,
+      manual: { depends_on: ['system-spec-kit/001-base'], supersedes: [], related_to: [] },
+    }, null, 2), 'utf-8');
+
+    const loaded = loadGraphMetadata(graphPath);
+    const rederived = deriveGraphMetadata(specFolder, loaded, { now: '2026-04-13T12:00:00.000Z' });
+
+    expect(rederived.manual.depends_on).toEqual([
+      { packet_id: 'system-spec-kit/001-base', reason: 'Imported from legacy graph-metadata.json', source: 'legacy' },
+    ]);
+    // The migration writes the re-derived payload, so it must satisfy the strict schema:
+    // the relationship is preserved as a structured reference rather than lost.
+    expect(graphMetadataSchema.safeParse(rederived).success).toBe(true);
   });
 
   it('preserves current-schema validation errors when legacy fallback also fails', () => {
@@ -591,6 +644,21 @@ describe('graph metadata schema and parser', () => {
     expect(graphMetadataParserTestables.shouldKeepEntityName('node')).toBe(false);
     expect(graphMetadataParserTestables.shouldKeepEntityName('tsc')).toBe(false);
     expect(graphMetadataParserTestables.shouldKeepEntityName('GraphMetadataParser')).toBe(true);
+  });
+
+  it('caps entities at 24 keeping the top of the existing ranking and dropping the tail', () => {
+    const specFolder = createSpecFolder({
+      implementationSummaryReferences: Array.from({ length: 30 }, (_, index) => `scripts/entities/entity-${index + 1}.ts`),
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.entities).toHaveLength(24);
+    const names = metadata.derived.entities.map((entity) => entity.name);
+    // Key-file-derived entities lead the ranking, so the earliest reference survives the
+    // clamp while the tail beyond the cap is dropped rather than the set being reordered.
+    expect(names).toContain('entity-1.ts');
+    expect(names).not.toContain('entity-30.ts');
   });
 
   it('caps derived trigger_phrases at 12 entries', () => {

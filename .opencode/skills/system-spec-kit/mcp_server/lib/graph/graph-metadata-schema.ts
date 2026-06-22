@@ -110,12 +110,42 @@ export const graphMetadataSchema = z.object({
   derived: graphMetadataDerivedSchema,
 });
 
+// Reason and source stamped onto a manual relationship that was stored as a bare
+// packet-id string, matching the legacy text-file fallback so an upgraded reference is
+// indistinguishable from one the legacy importer produced.
+export const LEGACY_REFERENCE_REASON = 'Imported from legacy graph-metadata.json' as const;
+export const LEGACY_REFERENCE_SOURCE = 'legacy' as const;
+
+// Legacy and hand-authored graph-metadata files stored manual relationships as bare
+// packet-id strings rather than the structured reference the contract now requires. A
+// load upgrades a string to the object shape so the relationship is preserved on read
+// rather than dropped, while the strict schema above keeps rejecting strings so the
+// integrity validator still flags an un-migrated on-disk file. The object branch is
+// tried first, so an already-structured reference passes through byte-identical.
+const tolerantPacketReferenceSchema = z.union([
+  packetReferenceSchema,
+  z.string().min(1).transform((packetId) => ({
+    packet_id: packetId,
+    reason: LEGACY_REFERENCE_REASON,
+    source: LEGACY_REFERENCE_SOURCE,
+  })),
+]);
+
+const graphMetadataManualLoadSchema = z.object({
+  depends_on: z.array(tolerantPacketReferenceSchema),
+  supersedes: z.array(tolerantPacketReferenceSchema),
+  related_to: z.array(tolerantPacketReferenceSchema),
+});
+
 // Tolerant variant for loading an on-disk file whose derived.status may still be a
-// legacy non-enum string. The strict schema closes the enum for writes and for the
-// integrity rule, but a load must not crash on a legacy prose status: it has to read
-// the raw value so a later re-derive can detect and drop it. Only the load path uses
-// this; everything that writes or validates goes through the strict schema above.
+// legacy non-enum string, or whose manual relationships are still bare strings. The
+// strict schema closes the enum and requires structured references for writes and for
+// the integrity rule, but a load must not crash on a legacy value: it reads the raw
+// status so a later re-derive can detect and drop it, and upgrades a string reference so
+// the relationship survives rather than being lost to the text fallback. Only the load
+// path uses this; everything that writes or validates goes through the strict schema.
 export const graphMetadataLoadSchema = graphMetadataSchema.extend({
+  manual: graphMetadataManualLoadSchema,
   derived: graphMetadataDerivedSchema.extend({
     status: z.string().min(1),
   }),

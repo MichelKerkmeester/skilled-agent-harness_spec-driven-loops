@@ -1,15 +1,15 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration",
   "description": "Feature Specification: Full-Repo Generated-JSON Migration",
   "keywords": [
     "feature",
     "specification",
     "full-repo",
-    "migration",
     "generated-json",
-    "scoped"
+    "migration"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:48:32.570Z",
   "specId": "039",
   "folderSlug": "full-repo-json-migration",
   "parentChain": [
@@ -18,6 +18,5 @@
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }
