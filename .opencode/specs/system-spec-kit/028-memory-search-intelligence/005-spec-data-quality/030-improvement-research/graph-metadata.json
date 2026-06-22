@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005 improvement research",
+      "off-corpus false-relevance fix",
+      "lexical grounding citation floor",
+      "data quality calibration research",
+      "false-confirm eval driver",
+      "post-benchmark 005 research",
+      "spec data quality next steps",
+      "score calibration miss",
+      "envelope fidelity gap",
+      "recommended build order"
+    ],
+    "key_topics": [
+      "improvement",
+      "research",
+      "calibration",
+      "false-relevance",
+      "off-corpus",
+      "lexical",
+      "grounding",
+      "envelope",
+      "fidelity",
+      "eval",
+      "benchmark",
+      "proposals"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deltas/",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Post-Benchmark Improvement Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Two Soft Spots",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Proposals",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lexical Grounding",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-Cutting Themes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Build Order",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 10-angle read-only deep-research study seeded by the 029 model benchmark, which found that `/memory:search` scored an off-corpus term `kubernetes` good at 0.78 on a semantically unrelated doc, identical across all four models. Ten angle-diverse seats reading the live scoring, citation, eval, and command code converged on a diagnosis: this is a score-calibration miss, not an envelope-fidelity miss, and the root-cause fix is to require a lexical-grounding floor before awarding good. The verdict is provably independent of the isotonic calibration curve, so a curve re-fit is a non-fix. The study produced 12 ranked proposals across two distinct soft spots with a recommended build order, and the load-bearing claims were cross-model verified by gpt-5.5-fast, all PARTIAL core-confirmed, none refuted.",
+    "created_at": "2026-06-22T15:45:00.000Z",
+    "last_save_at": "2026-06-22T15:45:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
