@@ -144,7 +144,7 @@ describe('validateDesignMd', () => {
     const mdFewColors = VALID_MD.replace(/\| .+ \| `#[0-9a-f]{6}` .+\n/g, '');
     const result = validateDesignMd(mdFewColors, fewColors);
     const colorWarns = result.warnings.filter((w) => w.type === 'insufficient-colors');
-    expect(colorWarns.length).toBeGreaterThanOrEqual(0); // may or may not trigger depending on remaining hex
+    expect(colorWarns.length).toBe(1); // stripped colour rows fall below the 8-colour floor -> warns
   });
 
   it('scoring: failures cost 5 pts, warnings cost 1 pt', () => {
@@ -188,5 +188,19 @@ describe('validateDesignMd', () => {
     }));
     const score = Math.max(0, 100 - manyFailures.length * 5);
     expect(score).toBe(0);
+  });
+
+  it('quickstart fidelity: flags a --page-max-width that disagrees with tokens (the 100rem class)', () => {
+    const t = makeTokens();
+    (t as unknown as { spacingSystem: unknown }).spacingSystem = { maxContentWidth: '100%', scale: [], baseUnit: 4, frequencyMap: {}, sectionSpacing: [] };
+    const md = VALID_MD + '\n\n## Quick Start\n```css\n:root {\n  --color-a: #6b5ce7;\n  --page-max-width: 100rem;\n}\n```\n';
+    const result = validateDesignMd(md, t);
+    expect(result.warnings.some((w) => w.type === 'quickstart-maxwidth')).toBe(true);
+  });
+
+  it('quickstart fidelity: a phantom Quick Start hex is a critical failure', () => {
+    const md = VALID_MD + '\n\n## Quick Start\n```css\n:root {\n  --color-x: #1a2b3c;\n}\n```\n';
+    const result = validateDesignMd(md, makeTokens());
+    expect(result.failures.some((f) => f.type === 'quickstart-phantom-color')).toBe(true);
   });
 });

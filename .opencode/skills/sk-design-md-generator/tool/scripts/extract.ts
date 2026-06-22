@@ -214,6 +214,7 @@ Options:
   --with-interaction     Enable interaction state capture (now the default; kept for clarity)
   --fast                 Fast mode: maxPages=5, concurrency=8 (still captures interaction)
   --fast-no-interaction  Fast mode AND skip interaction capture (the old --fast behavior)
+  --insecure             Ignore HTTPS certificate errors (self-signed / staging hosts)
   --verbose              Detailed logging
   --help, -h             Show this help
 `);
