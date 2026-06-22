@@ -28,7 +28,7 @@
       "registry"
     ],
     "importance_tier": "important",
-    "status": "implemented_(35_fixed/refuted;_7_deferred_to_a_code_phase)",
+    "status": "complete",
     "key_files": [
       ".claude/agents/deep-review.md",
       ".codex/agents/orchestrate.toml",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Sub-phase of `005-fresh-regression-remediation` (phase parent). It owns the subsystem cluster from the fresh+regression deep-review's findings registry. Per operator directive every finding is carried (refuted ones as hardening, asserted ones fix-as-stated). Source: `../../review/fresh-regression-75/deep-review-findings-registry.json`.",
     "created_at": "2026-06-18T12:37:50.431Z",
-    "last_save_at": "2026-06-18T12:37:50.431Z",
+    "last_save_at": "2026-06-22T18:55:03.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

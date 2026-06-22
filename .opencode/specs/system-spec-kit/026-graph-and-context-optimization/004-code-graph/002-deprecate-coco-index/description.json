@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "description": "Feature Specification: Deprecate CocoIndex + Rerank-Sidecar, Decouple Code-Graph",
   "keywords": [
     "feature",
@@ -10,12 +10,13 @@
     "decouple",
     "code-graph"
   ],
-  "lastUpdated": "2026-05-25T17:52:17.513Z",
-  "specId": "014",
+  "lastUpdated": "2026-06-22T18:55:02.738Z",
+  "specId": "002",
   "folderSlug": "deprecate-coco-index",
   "parentChain": [
     "system-spec-kit",
-    "026-graph-and-context-optimization"
+    "026-graph-and-context-optimization",
+    "004-code-graph"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

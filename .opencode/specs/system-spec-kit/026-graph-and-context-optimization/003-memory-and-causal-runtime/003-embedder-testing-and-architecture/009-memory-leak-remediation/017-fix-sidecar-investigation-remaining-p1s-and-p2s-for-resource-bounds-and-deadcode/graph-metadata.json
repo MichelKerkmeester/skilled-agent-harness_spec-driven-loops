@@ -39,7 +39,7 @@
       "via"
     ],
     "importance_tier": "important",
-    "status": "shipped_then_removed",
+    "status": "planned",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
@@ -110,7 +110,7 @@
     ],
     "causal_summary": "Close 24 remaining P1 findings via 4 surface-grouped surgical batches, then 68 P2 findings via 2 cleanup batches. Each batch is its own phase child with finding-IDs in its tasks.md.",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-06-05T12:47:33.874Z",
+    "last_save_at": "2026-06-22T18:56:36.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

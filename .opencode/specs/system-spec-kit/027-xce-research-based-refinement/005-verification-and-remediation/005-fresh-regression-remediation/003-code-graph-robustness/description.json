@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness",
   "description": "Feature Specification: Code-Graph Engine Robustness Remediation",
   "keywords": [
     "feature",
@@ -10,12 +10,10 @@
     "robustness",
     "remediation"
   ],
-  "lastUpdated": "2026-06-16T12:27:05.582Z",
+  "lastUpdated": "2026-06-22T18:55:03.547Z",
   "specId": "003",
   "folderSlug": "code-graph-robustness",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",

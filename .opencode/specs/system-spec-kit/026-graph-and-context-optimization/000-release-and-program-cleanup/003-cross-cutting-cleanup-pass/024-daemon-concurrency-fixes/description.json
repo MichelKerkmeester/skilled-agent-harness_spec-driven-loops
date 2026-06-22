@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes",
+  "description": "Feature Specification: Iteration-001 Daemon Concurrency Fixes",
+  "keywords": [
+    "feature",
+    "specification",
+    "iteration-001",
+    "daemon",
+    "concurrency",
+    "fixes"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.762Z",
+  "specId": "024",
+  "folderSlug": "daemon-concurrency-fixes",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

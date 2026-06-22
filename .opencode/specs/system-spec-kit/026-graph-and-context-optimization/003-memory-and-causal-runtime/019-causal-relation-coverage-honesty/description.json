@@ -7,10 +7,10 @@
     "specification",
     "causal",
     "relation-coverage",
-    "reporter",
+    "reporting",
     "honesty"
   ],
-  "lastUpdated": "2026-06-04T09:45:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:02.708Z",
   "specId": "019",
   "folderSlug": "causal-relation-coverage-honesty",
   "parentChain": [

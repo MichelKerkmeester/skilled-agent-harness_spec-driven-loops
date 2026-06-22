@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration, or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: \"Reindex is gate-zero\" (`synthesis/08-retrieval-evaluation-findings.md` §\"How to read each entry\", \"Honest caveats\"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.",
+    "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: \"Reindex is gate-zero\" (`synthesis/08-retrieval-evaluation-findings.md` §\"How to read each entry\", \"Honest caveats\"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-21T07:23:18.798Z",
+    "last_save_at": "2026-06-22T18:55:03.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

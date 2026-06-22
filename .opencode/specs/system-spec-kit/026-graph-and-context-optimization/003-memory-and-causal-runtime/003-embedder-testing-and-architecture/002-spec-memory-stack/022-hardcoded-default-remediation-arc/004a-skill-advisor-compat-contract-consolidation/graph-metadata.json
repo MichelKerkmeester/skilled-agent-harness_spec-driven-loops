@@ -1,52 +1,207 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "new-phase-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
-        "reason": "closes 14 P0 from f-iter004-001..014"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill",
-        "reason": "previous shipped sibling phase"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "022/004a wave 1 consolidation",
       "skill-advisor compat contract import",
-      "14 P0 threshold consolidation"
+      "022/004a plan",
+      "022/004a tasks",
+      "022/004a checklist",
+      "022/004a shipped"
     ],
-    "key_topics": ["skill-advisor", "compat-contract", "confidenceThreshold", "uncertaintyThreshold", "consolidation", "wave-1"],
+    "key_topics": [
+      "022",
+      "004a",
+      "wave",
+      "consolidation",
+      "skill-advisor",
+      "compat",
+      "contract",
+      "import",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped"
+    ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/subprocess.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {"name": "SKILL_ADVISOR_COMPAT_CONTRACT", "kind": "const", "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts", "source": "derived"}
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Compat",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Split Council",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Splitting Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "contract",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PRE-IMPLEMENTATION",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. CODE QUALITY",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Wave 1 of phase 004. 5 production files in skill-advisor lib wired to import confidence + uncertainty thresholds from SKILL_ADVISOR_COMPAT_CONTRACT.defaults. Closes 14 P0 audit findings. Waves 2-4 deferred to 004b after pre-execution investigation revealed council's file paths didn't match actual structure.",
+    "causal_summary": "Closes 14 P0 audit findings from packet 021 on duplicate confidence/uncertainty threshold defaults across skill-advisor.",
     "created_at": "2026-05-23T17:20:00.000000Z",
-    "last_save_at": "2026-05-23T17:20:00.000000Z",
-    "save_lineage": "new-phase-scaffolding",
+    "last_save_at": "2026-06-22T18:55:02.351Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

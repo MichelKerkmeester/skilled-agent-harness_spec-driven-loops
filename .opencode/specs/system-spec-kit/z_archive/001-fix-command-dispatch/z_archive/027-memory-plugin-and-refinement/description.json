@@ -2,13 +2,14 @@
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement",
   "description": "Feature Specification: 027 Memory Plugin And Refinement",
   "keywords": [
+    "feature",
+    "specification",
     "027",
     "memory",
     "plugin",
-    "and",
     "refinement"
   ],
-  "lastUpdated": "2026-04-27T13:33:11Z",
+  "lastUpdated": "2026-06-22T18:55:03.940Z",
   "specId": "027",
   "folderSlug": "memory-plugin-and-refinement",
   "parentChain": [

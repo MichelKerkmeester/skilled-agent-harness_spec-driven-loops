@@ -1,21 +1,23 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup",
-  "description": "Orphan Code Graph DB Cleanup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-022-orphan-code-graph-db-cleanup",
+  "description": "Feature Specification: Orphan Code Graph DB Cleanup",
   "keywords": [
+    "feature",
+    "specification",
     "orphan",
     "code",
     "graph",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-14T15:06:22.190317Z",
-  "specId": "008",
-  "folderSlug": "orphan-code-graph-db-cleanup",
+  "lastUpdated": "2026-06-22T18:55:03.128Z",
+  "specId": "007",
+  "folderSlug": "022-orphan-code-graph-db-cleanup",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

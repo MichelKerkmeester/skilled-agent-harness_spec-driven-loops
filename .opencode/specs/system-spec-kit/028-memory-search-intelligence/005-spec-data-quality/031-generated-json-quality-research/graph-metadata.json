@@ -16,48 +16,48 @@
       "description json scoping fix",
       "spec folder identity canonicalizer",
       "generated metadata validator",
-      "broad walk over-reach",
-      "non-idempotent metadata writes",
-      "merge path lineage loss",
-      "derived status enum",
-      "recommended build order"
+      "generated json quality research plan",
+      "safe regeneration research approach",
+      "10-angle read-only research plan",
+      "generated json quality research tasks",
+      "safe regeneration research task list",
+      "10-angle read-only research tasks",
+      "generated json quality research checklist"
     ],
     "key_topics": [
-      "generated-json",
+      "generated",
+      "json",
       "quality",
-      "safety",
       "research",
-      "over-reach",
-      "idempotency",
-      "identity",
-      "resolver",
-      "lineage",
-      "validator",
-      "schema",
-      "proposals"
+      "graph",
+      "metadata",
+      "safe",
+      "regeneration",
+      "description",
+      "scoping",
+      "fix",
+      "spec"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "research/research.md",
-      "research/deltas/",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts"
     ],
     "entities": [
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -85,51 +85,123 @@
         "source": "derived"
       },
       {
-        "name": "Generated JSON Quality and Safety Research",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Safety Research",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "The Four Safety Classes",
+        "name": "Purpose Produce",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Ranked Proposals",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Shared Identity Resolver",
+        "name": "File Path",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Cross-Cutting Themes",
+        "name": "Change Type",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Recommended Build Order",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A 10-angle read-only deep-research study on improving the quality and safety of the spec-kit generated JSON metadata, description.json and graph-metadata.json, and the generators that produce them. Ten gpt-5.5-fast xhigh angle seats reading the live generator, parser, schema, discovery, and validator code converged on a diagnosis: two safety classes dominate, broad-walk over-reach and non-idempotent writes, both surfacing as unscoped cross-session commit churn, plus a latent lineage-loss risk on the merge path. The root-cause fixes are convergent, a single shared spec-folder identity resolver four angles reached and a first-class generated-metadata validator in strict mode three angles reached. A claude skeptical pass confirmed two P0 root causes with file:line, the status normalizer admits em-dash prose and mergeGraphMetadata drops parent_id and children_ids, and downgraded four over-claims, z_future already fixed, z_archive divergence by-design, graph metadata already idempotent, and triple-counted drift merged. The study produced 14 ranked proposals across four safety classes with a recommended build order.",
+    "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn. The backfill CLI ignores its positional folder arg and defaults to the repo-wide root, runtime search regenerates a global cache as a side effect, the description path stamps wall-clock time and writes unconditionally, the status normalizer admits free-text prose with em-dashes, `mergeGraphMetadata` drops `parent_id` and `children_ids` on a re-derive, the `specFolder` path shape is inconsistent between the two generators, and the global `descriptions.json` regen pulls in other sessions' folders. The visible symptom is unscoped cross-session commit churn that buries real diffs, plus a latent lineage-loss risk on the merge path. No prior research has examined the generated-JSON quality and safety surface as a whole.",
     "created_at": "2026-06-22T16:18:00.000Z",
-    "last_save_at": "2026-06-22T16:18:00.000Z",
+    "last_save_at": "2026-06-22T18:55:03.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

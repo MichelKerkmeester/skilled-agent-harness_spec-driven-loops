@@ -1,24 +1,25 @@
 {
-  "specFolder": "011-skill-docs-sk-doc-alignment",
-  "description": "Align system-code-graph skill docs with sk-doc standards",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-025-skill-docs-sk-doc-alignment",
+  "description": "Feature Specification: System-code-graph skill docs sk-doc alignment",
   "keywords": [
+    "feature",
+    "specification",
     "system-code-graph",
+    "skill",
+    "docs",
     "sk-doc",
-    "skill docs",
-    "mk-code-index",
-    "manual testing playbook",
-    "feature catalog"
+    "alignment"
   ],
-  "lastUpdated": "2026-05-14T17:43:47.498Z",
-  "specId": "011",
-  "folderSlug": "skill-docs-sk-doc-alignment",
+  "lastUpdated": "2026-06-22T18:55:03.146Z",
+  "specId": "007",
+  "folderSlug": "025-skill-docs-sk-doc-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

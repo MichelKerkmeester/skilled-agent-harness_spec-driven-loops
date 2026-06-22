@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/008-structural-indexer",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/008-structural-indexer",
   "description": "Phase 008: Structural Indexer (tree-sitter)",
   "keywords": [
     "phase",
@@ -8,11 +8,12 @@
     "indexer",
     "tree-sitter"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.528Z",
+  "lastUpdated": "2026-06-22T18:55:04.700Z",
   "specId": "008",
   "folderSlug": "structural-indexer",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

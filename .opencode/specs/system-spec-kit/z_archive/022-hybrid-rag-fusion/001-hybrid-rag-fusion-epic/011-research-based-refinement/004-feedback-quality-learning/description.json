@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/004-feedback-quality-learning",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/004-feedback-quality-learning",
   "description": "Feature Specification: Feedback & Quality Learning",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "quality",
     "learning"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.181Z",
+  "lastUpdated": "2026-06-22T18:55:04.170Z",
   "specId": "004",
   "folderSlug": "feedback-quality-learning",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic",
     "011-research-based-refinement"

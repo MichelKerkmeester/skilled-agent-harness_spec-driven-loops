@@ -41,7 +41,7 @@
       "evidence"
     ],
     "importance_tier": "normal",
-    "status": "conditional",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
       ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "This is the second child packet under `011-resource-map-template`. Phase 001 restores the local-owner artifact contract for deep-research and deep-review packets. This phase builds on that restored contract by making the two autonomous deep-loop skills (`sk-deep-research` and `sk-deep-review`) emit a filled `resource-map.md` at convergence beside the actual resolved packet artifacts. The aggregated map carries dimension-specific signals: review maps include P0/P1/P2 findings-per-file counts; research maps include citation counts per file. Both shapes share the same ten-category skeleton so reviewers can read them without learning two templates.",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-06-15T09:09:34.122Z",
+    "last_save_at": "2026-06-22T18:55:02.024Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

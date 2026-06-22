@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
-  "description": "Feature Specification: Eval-Harness Extension — Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)",
+  "description": "Feature Specification: Eval-Harness Extension, Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)",
   "keywords": [
     "feature",
     "specification",
@@ -18,7 +18,7 @@
     "impl",
     "phase"
   ],
-  "lastUpdated": "2026-06-20T09:26:59.675Z",
+  "lastUpdated": "2026-06-22T18:55:03.664Z",
   "specId": "019",
   "folderSlug": "eval-harness-extension",
   "parentChain": [

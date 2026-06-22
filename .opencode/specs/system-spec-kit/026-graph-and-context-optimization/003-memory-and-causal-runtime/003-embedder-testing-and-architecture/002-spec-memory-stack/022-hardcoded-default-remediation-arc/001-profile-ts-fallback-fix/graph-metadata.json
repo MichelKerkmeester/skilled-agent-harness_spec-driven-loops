@@ -37,7 +37,7 @@
       "active"
     ],
     "importance_tier": "important",
-    "status": "in_progress_(scaffolded;_dispatch_pending)",
+    "status": "complete",
     "key_files": [
       "shared/embeddings/profile.ts",
       "shared/embeddings/profile.test.ts",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Purpose: thread all 4 profile.ts inline `||` returns through `getCanonicalFallback(provider)`, and remove the dead-code fallback at `embeddings.ts:774`. Ship `profile.test.ts` with 6 standalone-assertion invariants locking the contract.",
     "created_at": "2026-05-23T13:29:12.045886Z",
-    "last_save_at": "2026-06-05T12:47:33.663Z",
+    "last_save_at": "2026-06-22T18:55:02.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

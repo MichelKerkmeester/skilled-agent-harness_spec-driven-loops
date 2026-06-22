@@ -6,11 +6,12 @@
     "feature",
     "specification",
     "mcp",
-    "front-proxy",
-    "in-place-recycle",
-    "transparent-reconnect"
+    "launcher-as-reconnecting-frame-proxy",
+    "in-place",
+    "daemon",
+    "recycle"
   ],
-  "lastUpdated": "2026-06-01T21:32:38.012Z",
+  "lastUpdated": "2026-06-22T18:55:02.678Z",
   "specId": "003",
   "folderSlug": "mcp-front-proxy",
   "parentChain": [

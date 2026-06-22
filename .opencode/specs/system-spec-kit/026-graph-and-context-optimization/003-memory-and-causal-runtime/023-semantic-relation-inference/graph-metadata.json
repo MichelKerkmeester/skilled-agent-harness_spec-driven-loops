@@ -41,7 +41,7 @@
       "opt-in"
     ],
     "importance_tier": "important",
-    "status": "shipped",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/lib/causal/relation-backfill.ts",
       "mcp_server/lib/causal/relation-coverage.ts",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Packet 021 built the bounded relation-inference backfill (`backfillRelationInference`) with two deterministic collectors and explicitly deferred the similarity `supports` and `contradicts` signals as best-effort extensions. This packet ships those two as OPT-IN collectors that reuse the same safety envelope: `dryRun` default true, bounded by `limit`, every edge `created_by='auto'` so it inherits `insertEdge`'s runtime guards.",
     "created_at": "2026-06-04T13:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.022Z",
+    "last_save_at": "2026-06-22T18:55:02.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,44 +11,79 @@
   },
   "derived": {
     "trigger_phrases": [
-      "028 lexical grounding floor",
-      "028 single hit corroboration",
-      "028 off corpus false relevance fix",
-      "028 citation grounding floor",
-      "028 assess request quality corroboration",
-      "028 lexical grounding floor plan",
-      "028 lexical grounding floor method",
-      "028 lexical grounding floor tasks",
-      "028 lexical grounding floor checklist",
-      "028 lexical grounding floor summary"
+      "lexical grounding floor",
+      "single hit corroboration",
+      "off corpus false relevance",
+      "citation grounding floor",
+      "assess request quality corroboration"
     ],
     "key_topics": [
-      "028",
       "lexical",
       "grounding",
       "floor",
+      "single",
+      "hit",
       "corroboration",
-      "off",
       "corpus",
+      "false",
+      "relevance",
       "citation",
-      "verdict",
       "assess",
-      "request",
-      "quality"
+      "request"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts",
+      "tests/lexical-grounding-floor.vitest.ts",
+      "tests/request-quality-aggregation.vitest.ts",
+      "tests/scoring-opt-in.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lexical-grounding-floor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-quality-aggregation.vitest.ts",
+        "kind": "test",
+        "path": "tests/request-quality-aggregation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-opt-in.vitest.ts",
+        "kind": "test",
+        "path": "tests/scoring-opt-in.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,43 +115,37 @@
         "source": "derived"
       },
       {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Lexical-Grounding Floor",
+        "name": "Grounding Floor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Single-Hit Corroboration",
+        "name": "Hit Corroboration",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Require",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,15 +163,15 @@
         "source": "derived"
       },
       {
-        "name": "Affected Surfaces",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Pattern Guarded",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -152,21 +181,21 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 029 model benchmark found memory search confidently cited an off-corpus term, kubernetes scored good on a semantically unrelated doc across all four models, and the 030 improvement research diagnosed a score-calibration miss. The verdict and citation path scores good and cite_results from the absolute cosine plus a top-margin alone, with no query-term or lexical-grounding signal, so a fluent off-corpus term sails through on one spurious high-cosine hit. A lone above-floor hit also reaches good through qualityRatio with a zero margin, so the margin signal rewards the spurious hit. This phase gates good and cite_results on a lexical-grounding floor and requires single-hit corroboration in assessRequestQuality, both behind a default-OFF flag so the shipped verdict prose existing spec docs carry stays accurate until graduation.",
+    "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence. The 029 model benchmark found `kubernetes` scored good at 0.78 on a semantically unrelated doc, identical across all four models, and the 030 improvement research diagnosed this as a score-calibration miss rather than an envelope-fidelity miss. The entire verdict and citation path uses only the absolute cosine score plus a top-margin, with zero query-term or lexical-grounding signal. Nomic embeddings hand fluent but unrelated text a high background cosine, so a lone spurious hit sails through. The citation policy derives only from `requestQuality.label` at `deriveCitationPolicy` (`search-results.ts:368-370`), and `assessRequestQuality` reads only `topScore`, `qualityRatio` and `topMargin` with no lexical input (`confidence-scoring.ts:453-484`), even though the lexical signals `fts_score`, `bm25_score` and `keyword` are already populated on the raw rows (`search-results.ts:915`).",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-22T18:55:03.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

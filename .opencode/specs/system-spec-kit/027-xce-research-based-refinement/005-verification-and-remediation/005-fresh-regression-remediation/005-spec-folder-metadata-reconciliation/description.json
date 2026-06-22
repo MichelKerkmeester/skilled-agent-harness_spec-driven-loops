@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
   "description": "Feature Specification: Spec-Folder Control-Metadata Reconciliation",
   "keywords": [
     "feature",
@@ -9,12 +9,10 @@
     "control-metadata",
     "reconciliation"
   ],
-  "lastUpdated": "2026-06-16T12:27:05.943Z",
+  "lastUpdated": "2026-06-22T18:55:03.554Z",
   "specId": "005",
   "folderSlug": "spec-folder-metadata-reconciliation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",

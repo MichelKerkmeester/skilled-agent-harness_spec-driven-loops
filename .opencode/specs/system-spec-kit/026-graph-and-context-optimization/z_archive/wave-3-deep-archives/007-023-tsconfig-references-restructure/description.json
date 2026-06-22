@@ -1,23 +1,22 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure",
-  "description": "TSConfig References Restructure",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
+  "description": "Feature Specification: TSConfig References Restructure",
   "keywords": [
+    "feature",
+    "specification",
     "tsconfig",
     "references",
-    "system",
-    "code",
-    "graph",
-    "emit"
+    "restructure"
   ],
-  "lastUpdated": "2026-05-14T16:26:51Z",
-  "specId": "009",
-  "folderSlug": "tsconfig-references-restructure",
+  "lastUpdated": "2026-06-22T18:55:03.133Z",
+  "specId": "007",
+  "folderSlug": "023-tsconfig-references-restructure",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

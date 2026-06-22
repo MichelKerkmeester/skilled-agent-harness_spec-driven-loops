@@ -23,25 +23,24 @@
     "019-maintenance-grace-background-embedding",
     "020-cooperative-heavy-phases"
   ],
-  "specFolder": "002-memory-store-and-search",
-  "description": "Phase-parent for the memory store and search hardening track: write-path safety, incremental index and causal lifecycle, semantic trigger fallback, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, vector/BM25 read-path resilience, retrieval gating and recall recovery, search/output intelligence, and maintenance-grace daemon responsiveness.",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "description": "Feature Specification: Memory Store and Search (Phase Parent)",
   "keywords": [
+    "feature",
+    "specification",
     "memory",
     "store",
     "search",
-    "write-safety",
-    "causal-lifecycle",
-    "semantic-trigger",
-    "feedback-reducers",
-    "vector",
-    "bm25",
-    "retrieval",
-    "resilience"
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-20T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.282Z",
   "specId": "002",
   "folderSlug": "memory-store-and-search",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

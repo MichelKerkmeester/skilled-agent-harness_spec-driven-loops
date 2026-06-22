@@ -40,7 +40,7 @@
       "edge"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "lib/storage/incremental-index.ts",
       "lib/parsing/memory-parser.ts",
@@ -153,7 +153,7 @@
     ],
     "causal_summary": "This phase-parent groups four children that together form one program: the memory store's incremental-index and causal-graph **write lifecycle**. They were previously flat children `003`-`006` of `027`, but they read as a single sequential effort — each child hands off to the next and the last child cannot be validated without the first.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.933Z",
+    "last_save_at": "2026-06-22T18:56:37.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

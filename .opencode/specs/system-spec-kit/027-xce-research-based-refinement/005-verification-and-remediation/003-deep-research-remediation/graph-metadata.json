@@ -15,10 +15,10 @@
       "027 remediation lanes",
       "tri-system finding fixes",
       "deep research remediation plan",
-      "027 remediation plan",
+      "029 remediation plan",
       "lane remediation order",
       "verify first remediation",
-      "027 remediation tasks",
+      "029 remediation tasks",
       "remediation lane tasks",
       "verify first task loop",
       "027 implementation summary",
@@ -34,9 +34,9 @@
       "finding",
       "fixes",
       "plan",
+      "029",
       "lane",
-      "order",
-      "verify"
+      "order"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -177,12 +177,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Continue Goal",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,11 +199,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings. The 48 confirmed and 8 canonical adherence recommendations are actionable now; the 53 downgraded and 92 unadjudicated P2/P3 findings still need direct verification before they become work. Nothing is fixed unverified.",
     "created_at": "2026-06-12T11:12:59.644Z",
-    "last_save_at": "2026-06-15T09:09:34.849Z",
+    "last_save_at": "2026-06-22T18:55:03.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

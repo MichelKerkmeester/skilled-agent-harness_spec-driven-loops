@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features",
   "description": "Feature Specification: Sprint 8 - Deferred Features",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "deferred",
     "features"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.153Z",
+  "lastUpdated": "2026-06-22T18:55:04.141Z",
   "specId": "009",
   "folderSlug": "sprint-8-deferred-features",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"
   ],

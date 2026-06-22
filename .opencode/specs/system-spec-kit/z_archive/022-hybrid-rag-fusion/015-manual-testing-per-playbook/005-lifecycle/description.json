@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle",
   "description": "Feature Specification: manual-testing-per-playbook lifecycle phase",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "lifecycle",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.546Z",
+  "lastUpdated": "2026-06-22T18:55:04.464Z",
   "specId": "005",
   "folderSlug": "lifecycle",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

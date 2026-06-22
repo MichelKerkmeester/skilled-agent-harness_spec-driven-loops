@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
-  "migration_source": "manual",
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,44 +13,111 @@
   },
   "derived": {
     "trigger_phrases": [
-      "028 scoring hardening",
-      "028 grounding signal envelope",
-      "028 noise floor subtraction banding",
-      "028 cite with caveat tier",
-      "028 evidence gap detected verdict",
-      "028 calibration re-fit non-fix",
-      "028 scoring hardening plan",
-      "028 scoring hardening tasks",
-      "028 scoring hardening checklist",
-      "028 scoring hardening summary"
+      "scoring hardening",
+      "grounding signal envelope",
+      "noise floor subtraction banding",
+      "cite with caveat tier",
+      "evidence gap detected verdict"
     ],
     "key_topics": [
-      "028",
       "scoring",
       "hardening",
       "grounding",
+      "signal",
+      "envelope",
       "noise",
       "floor",
+      "subtraction",
+      "banding",
       "cite",
       "caveat",
-      "evidence",
-      "gap",
-      "calibration",
-      "banding"
+      "tier"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
       ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-hardening.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+      "spec.md",
+      "plan.md",
+      "scripts/evals/run-false-confirm-eval.mjs",
+      "lib/search/noise-floor.ts",
+      "lib/search/search-flags.ts",
+      "dist/lib/search/search-flags.js",
+      "dist/lib/search/confidence-scoring.js",
+      "dist/formatters/search-results.js",
+      "tests/scoring-hardening.vitest.ts",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "noise-floor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-eval-v2.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.d.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
+        "source": "derived"
+      },
+      {
+        "name": "run-false-confirm-eval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,39 +131,21 @@
         "source": "derived"
       },
       {
+        "name": "search-flags.js",
+        "kind": "code",
+        "path": "dist/lib/search/search-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.js",
+        "kind": "code",
+        "path": "dist/formatters/search-results.js",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "noise-floor.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
         "source": "derived"
       },
       {
@@ -130,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -142,27 +197,15 @@
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The 029 model benchmark caught an off-corpus term scoring good on a lone spurious high-cosine hit, and the 005 improvement research traced it to a score-calibration miss in the banding seam rather than an envelope-fidelity miss. The band reads the pre-calibration absolute relevance with no grounding signal, no background-cosine subtraction, no caveat tier, and no evidence-gap bridge, so a fluent but unrelated doc that earns a high background cosine reaches good. This phase hardens that seam around the convergent root-cause fix. It surfaces a grounding signal so a downgrade is legible, subtracts a measured corpus noise-floor before banding so the background cosine no longer inflates the band, adds a cite_with_caveat tier so borderline grounding is hedged rather than dropped, bridges stage4.evidenceGapDetected into the verdict so a known gap lowers the band, and documents the calibration re-fit as a proven non-fix because banding is taken off the pre-calibration value and the curve cannot move the verdict. Every behavioral change ships behind a default-OFF flag and graduates only against the off-corpus fixtures, with a grandfather report for the legacy fixtures the new contract rejects.",
+    "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit. The 029 model benchmark caught `kubernetes` scoring good at 0.78 on a semantically unrelated doc, identical across all four models, and the 005 improvement research traced it to a score-calibration miss, not an envelope-fidelity miss. The envelope reported good faithfully because the upstream absolute relevance genuinely returned 0.78. The banding reads the pre-calibration absolute value at `confidence-scoring.ts:400` with no grounding signal, no noise-floor correction and no evidence-gap bridge, so a fluent but unrelated doc that earns a high background cosine from the nomic embedder sails through to good and cite_results. Four facts shape this phase. First, the verdict band derives only from `topScore`, `qualityRatio` and `topMargin` with no query or lexical input (`confidence-scoring.ts:433-478`), so a borderline downgrade is invisible to the reader. Second, the raw absolute relevance is banded with no background-cosine subtraction, so an embedder that hands unrelated text a high floor inflates every band. Third, a borderline grounding case is dropped to weak with no middle tier, so a near-miss is treated the same as a clear miss. Fourth, `stage4.evidenceGapDetected` is computed but never bridged into the request-quality verdict, so a known evidence gap does not lower the band. The calibration curve is provably independent of the verdict because banding is taken off the pre-calibration value at `confidence-scoring.ts:400` with `value=maybeCalibrate` at `:388`, so a curve re-fit can never move good versus weak and is a non-fix that must be documented rather than attempted.",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-22T18:55:03.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

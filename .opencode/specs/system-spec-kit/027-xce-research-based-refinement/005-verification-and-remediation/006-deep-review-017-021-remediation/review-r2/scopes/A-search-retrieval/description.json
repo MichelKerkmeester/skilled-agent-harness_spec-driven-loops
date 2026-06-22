@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
+  "description": "Audit Scope — Search & Retrieval Subsystem",
+  "keywords": [
+    "audit",
+    "scope",
+    "search",
+    "retrieval",
+    "subsystem"
+  ],
+  "lastUpdated": "2026-06-22T18:55:03.566Z",
+  "specId": "",
+  "folderSlug": "a-search-retrieval",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "006-deep-review-017-021-remediation",
+    "review-r2",
+    "scopes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

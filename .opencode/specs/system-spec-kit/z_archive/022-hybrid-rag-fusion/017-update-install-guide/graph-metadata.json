@@ -39,7 +39,7 @@
       "930"
     ],
     "importance_tier": "important",
-    "status": "in_progress_(tasks_tracker_pending_completion_evidence)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
       "spec.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The install guide (mcp_server/INSTALL_GUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilized. Some installation steps may reference outdated package names, missing build scripts, or stale platform-specific configurations. No rollback procedure exists if installation fails midway.",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-06-05T12:47:34.890Z",
+    "last_save_at": "2026-06-22T18:55:04.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

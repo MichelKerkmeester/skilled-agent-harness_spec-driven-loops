@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "description": "Audit Scope — Memory Store / Index / Lifecycle (002 non-search)",
+  "keywords": [
+    "audit",
+    "scope",
+    "memory",
+    "store",
+    "index",
+    "lifecycle",
+    "002",
+    "non-search"
+  ],
+  "lastUpdated": "2026-06-22T18:55:03.571Z",
+  "specId": "",
+  "folderSlug": "b-rest-of-002",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "006-deep-review-017-021-remediation",
+    "review-r2",
+    "scopes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

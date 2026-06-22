@@ -40,7 +40,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "pending",
+    "status": "complete",
     "key_files": [
       "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
       "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op. Both defects are 028's own eval code, in scope, confirmed real against source. This is the only release-blocking finding class in the review: a flag can read baseline-neutral in the harness while changing real default behavior, so the benchmark evidence cannot be trusted until the driver routes the way production does.",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.861Z",
+    "last_save_at": "2026-06-22T18:55:03.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

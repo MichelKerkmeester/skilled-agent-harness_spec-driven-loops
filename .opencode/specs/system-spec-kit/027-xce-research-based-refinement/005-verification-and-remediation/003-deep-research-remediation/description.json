@@ -1,18 +1,12 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
-  "description": "Verify-first remediation of the deep-research and command-adherence backlog across nine lanes (027)",
+  "description": "Deep-Research Remediation",
   "keywords": [
-    "verify-first",
-    "remediation",
     "deep-research",
-    "command-adherence",
-    "backlog",
-    "across",
-    "nine",
-    "lanes",
-    "027"
+    "remediation"
   ],
-  "lastUpdated": "2026-06-20T00:00:00Z",
+  "lastUpdated": "2026-06-22T18:55:03.522Z",
   "specId": "003",
   "folderSlug": "deep-research-remediation",
   "parentChain": [
@@ -21,6 +15,5 @@
     "005-verification-and-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

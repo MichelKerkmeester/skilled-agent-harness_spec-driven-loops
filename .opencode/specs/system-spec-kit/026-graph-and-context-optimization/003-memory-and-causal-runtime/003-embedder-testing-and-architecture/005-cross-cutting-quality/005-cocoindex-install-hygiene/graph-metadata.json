@@ -41,7 +41,7 @@
       "rerank"
     ],
     "importance_tier": "important",
-    "status": "complete_(diagnosis_only)",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The production MCP path uses `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`, which is correctly editable-installed from the live local source. The bake-off harness used PATH `ccc`, so prior hybrid plus rerank benchmark runs may have measured the stale pipx stack instead of the production-truthful local venv stack.",
     "created_at": "2026-05-18T19:05:18.860Z",
-    "last_save_at": "2026-06-05T12:47:33.765Z",
+    "last_save_at": "2026-06-22T18:55:02.435Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -10,12 +10,14 @@
     "model",
     "server"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.521Z",
+  "lastUpdated": "2026-06-22T18:55:02.618Z",
   "specId": "004",
   "folderSlug": "launcher-supervision",
   "parentChain": [
     "system-spec-kit",
-    "029-embedding-consolidation-hf-local-server"
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "010-embedding-consolidation-hf-local-server"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

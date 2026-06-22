@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of **cheap ranking and extraction improvements** for the Spec-Kit Memory MCP, mostly mined from **Mem0** scoring/extraction plus two Cognee extraction-config wins. The Wave-0 implementation packet (030) shipped a different, determinism-and-correctness-first slate; **none of this bundle was implemented** — it is absent from 030 §14. These candidates therefore remain open work.",
+    "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of **cheap ranking and extraction improvements** for the Spec-Kit Memory MCP, mostly mined from **Mem0** scoring/extraction plus two Cognee extraction-config wins. The Wave-0 implementation packet (030) shipped a different, determinism-and-correctness-first slate. **None of this bundle was implemented**, it is absent from 030 §14. These candidates therefore remain open work.",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-06-21T07:23:18.815Z",
+    "last_save_at": "2026-06-22T18:55:03.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

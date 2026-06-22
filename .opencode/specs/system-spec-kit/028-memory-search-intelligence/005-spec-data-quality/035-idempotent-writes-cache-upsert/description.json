@@ -1,15 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
   "description": "Feature Specification: Idempotent Writes and Global-Cache Upsert",
   "keywords": [
     "feature",
     "specification",
     "idempotent",
-    "description",
-    "cache",
+    "writes",
+    "global-cache",
     "upsert"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.857Z",
   "specId": "035",
   "folderSlug": "idempotent-writes-cache-upsert",
   "parentChain": [
@@ -18,6 +19,5 @@
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

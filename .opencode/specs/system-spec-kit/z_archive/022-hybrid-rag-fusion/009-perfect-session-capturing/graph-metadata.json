@@ -60,7 +60,7 @@
       "018"
     ],
     "importance_tier": "normal",
-    "status": "complete_(documentation_pass)",
+    "status": "complete",
     "key_files": [
       "000-dynamic-capture-deprecation/spec.md",
       "plan.md",
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that audit needed both implementation work and spec-pack follow-through. The runtime now includes explicit write/index dispositions and typed source capabilities, yet the parent pack still needs to distinguish the current `017`/`018` baseline from archival research context (`016`), archived navigation history (`000`), and still-open retained live-proof work.",
     "created_at": "2026-04-12T09:02:50.263Z",
-    "last_save_at": "2026-06-05T12:47:34.762Z",
+    "last_save_at": "2026-06-22T18:55:04.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

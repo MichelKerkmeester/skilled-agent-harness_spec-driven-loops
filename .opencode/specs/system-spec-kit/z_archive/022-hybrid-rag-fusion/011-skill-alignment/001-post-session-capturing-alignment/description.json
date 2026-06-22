@@ -1,16 +1,17 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
   "description": "Feature Specification: 001-post-session-capturing-alignment",
   "keywords": [
     "feature",
     "specification",
     "001-post-session-capturing-alignment"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.501Z",
+  "lastUpdated": "2026-06-22T18:55:04.424Z",
   "specId": "001",
   "folderSlug": "post-session-capturing-alignment",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "011-skill-alignment"
   ],

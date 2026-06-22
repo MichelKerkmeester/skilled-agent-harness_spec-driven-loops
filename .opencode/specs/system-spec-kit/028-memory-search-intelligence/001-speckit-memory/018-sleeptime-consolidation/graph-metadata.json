@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save** — `handlers/save/reconsolidation-bridge.ts` runs inline on the hot write path, and there is **no background reorganization agent** anywhere. This sub-phase lands packet 028's Wave-2 \"async sleep-time consolidation\" initiative (research child 007, iteration 20, MiMo lineage): a background **sleep-time agent** that fires AFTER the foreground turn, reorganizes recent transcripts into archival memory through a bounded tool-chain, and lets the LLM choose which transcript ranges are worth preserving — modeled on Letta's `voice_sleeptime_agent` / `sleeptime_multi_agent_v4`. Because the pass **mutates archival memory off-turn**, it is the highest-tail-risk intelligence-class candidate in the Memory subsystem: it is built strictly **shadow-gated, default-off**, governed by a tool-rule DAG, and rides the C-G1 clock host + C4-C cursor that sibling **010** lands first.",
+    "causal_summary": "The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save**, `handlers/save/reconsolidation-bridge.ts` runs inline on the hot write path, and there is **no background reorganization agent** anywhere. This sub-phase lands packet 028's Wave-2 \"async sleep-time consolidation\" initiative (research child 007, iteration 20, MiMo lineage): a background **sleep-time agent** that fires AFTER the foreground turn, reorganizes recent transcripts into archival memory through a bounded tool-chain and lets the LLM choose which transcript ranges are worth preserving, modeled on Letta's `voice_sleeptime_agent` / `sleeptime_multi_agent_v4`. Because the pass **mutates archival memory off-turn**, it is the highest-tail-risk intelligence-class candidate in the Memory subsystem: it is built strictly **shadow-gated, default-off**, governed by a tool-rule DAG and rides the C-G1 clock host + C4-C cursor that sibling **010** lands first.",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-06-21T07:23:18.821Z",
+    "last_save_at": "2026-06-22T18:55:03.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

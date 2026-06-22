@@ -3,14 +3,12 @@
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
   "description": "Feature Specification: Envelope-Fidelity Enforcement",
   "keywords": [
-    "envelope",
-    "fidelity",
-    "enforcement",
-    "render-slots",
-    "requestquality",
-    "citationpolicy"
+    "feature",
+    "specification",
+    "envelope-fidelity",
+    "enforcement"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.698Z",
   "specId": "027",
   "folderSlug": "envelope-fidelity-enforcement",
   "parentChain": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/018-non-hook-auto-priming",
   "description": "Phase 018: Non-Hook CLI Auto-Priming & Session Health",
   "keywords": [
     "phase",
@@ -10,11 +10,12 @@
     "session",
     "health"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.586Z",
+  "lastUpdated": "2026-06-22T18:55:04.753Z",
   "specId": "018",
   "folderSlug": "non-hook-auto-priming",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

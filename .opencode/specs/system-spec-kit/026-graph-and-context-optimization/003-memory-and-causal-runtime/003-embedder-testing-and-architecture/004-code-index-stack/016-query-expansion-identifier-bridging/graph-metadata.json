@@ -41,7 +41,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete_(2026_05_19)_—_code_+_tests_+_docs_shipped_with_default_`cocoindex_query_expansion=false`._empirical_bench_showed_deterministic_expansion_regressed_all_3_lanes_vs_post_015_baseline_(test/doc_files_displace_implementation_files_in_top_k)._available_as_opt_in_research_artifact;_revisit_defaults_after_017_rrf_recalibration.",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "User queries are natural language (\"filesystem walker\", \"memory save\", \"rerank adapter\"). Code corpora store identifiers in conventions:",
     "created_at": "2026-05-19T16:20:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.725Z",
+    "last_save_at": "2026-06-22T18:55:02.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

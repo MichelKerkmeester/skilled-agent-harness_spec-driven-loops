@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned_(created_2026_05_18_from_010/002_discovery)",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "lib/embedders/registry.ts",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "But the WRITE path was left unwired:",
     "created_at": "2026-05-17T22:02:52.268Z",
-    "last_save_at": "2026-06-05T12:47:33.691Z",
+    "last_save_at": "2026-06-22T18:55:02.372Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

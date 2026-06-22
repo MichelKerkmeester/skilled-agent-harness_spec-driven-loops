@@ -39,7 +39,7 @@
       "level"
     ],
     "importance_tier": "normal",
-    "status": "[draft/in_progress/review/complete]",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Level 3 (+Arch) is appropriate when:",
     "created_at": "2026-05-02T08:52:26Z",
-    "last_save_at": "2026-06-05T12:47:33.460Z",
+    "last_save_at": "2026-06-22T18:55:02.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

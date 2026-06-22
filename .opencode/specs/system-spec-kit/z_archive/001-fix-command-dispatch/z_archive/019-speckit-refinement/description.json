@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
-  "description": "SpecKit Refinement: ECP Analysis & Improvements",
+  "description": "Feature Specification: SpecKit Refinement: ECP Analysis & Improvements",
   "keywords": [
+    "feature",
+    "specification",
     "speckit",
     "refinement",
     "ecp",
     "analysis",
     "improvements"
   ],
-  "lastUpdated": "2026-04-27T13:33:11Z",
+  "lastUpdated": "2026-06-22T18:55:03.914Z",
   "specId": "019",
   "folderSlug": "speckit-refinement",
   "parentChain": [

@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP already ships most of an idempotent async-consolidation machine — idempotency receipts, a deferred/background enrichment seam, and a durable cadence-gated consolidation cursor — but the pieces are flag-gated OFF, save-triggered only, and not crash-safe end to end. This sub-phase lands the longest Memory chain from packet 028's research: **C4-A** (receipts default-on) → **C4-C** (explicit episode→consolidation cursor with a per-item state machine) → **C-G1** (a clock-driver around the existing cursor), plus the crash-safety hardening (`M-contiguous-prefix-stop`, `M-durable-retry-budget`, `Transport-idempotency`, `Enrichment-retry-budget-deadletter`) and two consolidation-quality candidates (`M-detail-retention-guard`, `LT-turn-cadence-trigger`). One candidate (`M-capture-near-dup-verdict`) is carried only to record its REFUTED disposition.",
+    "causal_summary": "The Spec-Kit Memory MCP already ships most of an idempotent async-consolidation machine, idempotency receipts, a deferred/background enrichment seam and a durable cadence-gated consolidation cursor, but the pieces are flag-gated OFF, save-triggered only and not crash-safe end to end. This sub-phase lands the longest Memory chain from packet 028's research: **C4-A** (receipts default-on) → **C4-C** (explicit episode→consolidation cursor with a per-item state machine) → **C-G1** (a clock-driver around the existing cursor), plus the crash-safety hardening (`M-contiguous-prefix-stop`, `M-durable-retry-budget`, `Transport-idempotency`, `Enrichment-retry-budget-deadletter`) and two consolidation-quality candidates (`M-detail-retention-guard`, `LT-turn-cadence-trigger`). One candidate (`M-capture-near-dup-verdict`) is carried only to record its REFUTED disposition.",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-06-19T05:52:29.564Z",
+    "last_save_at": "2026-06-22T18:55:03.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

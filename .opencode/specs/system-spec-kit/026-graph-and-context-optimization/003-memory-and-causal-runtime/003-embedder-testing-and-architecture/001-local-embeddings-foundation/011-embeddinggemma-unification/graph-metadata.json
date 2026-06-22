@@ -33,7 +33,7 @@
       "split-model"
     ],
     "importance_tier": "important",
-    "status": "complete_(shipped_2026_05_13_in_commit_d76f3b795)",
+    "status": "complete",
     "key_files": [
       ".codex/config.toml",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Setup A ended in a split-model state: Spec Kit Memory used `onnx-community/embeddinggemma-300m-ONNX` while CocoIndex used a heavier code-side model. The code-side model was heavier than needed for the current code-search target and kept older packet docs/config comments pointing future clones at the wrong default.",
     "created_at": "2026-05-13T07:35:00Z",
-    "last_save_at": "2026-06-05T12:47:33.533Z",
+    "last_save_at": "2026-06-22T18:55:02.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T07:35:00Z",
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
   "description": "Feature Specification: manual-testing-per-playbook memory quality and indexing phase",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "indexing",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.581Z",
+  "lastUpdated": "2026-06-22T18:55:04.507Z",
   "specId": "013",
   "folderSlug": "memory-quality-and-indexing",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

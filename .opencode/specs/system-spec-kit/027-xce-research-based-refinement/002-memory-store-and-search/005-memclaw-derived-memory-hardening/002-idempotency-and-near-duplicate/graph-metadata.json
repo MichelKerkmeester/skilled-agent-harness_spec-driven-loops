@@ -40,7 +40,7 @@
       "duplicate"
     ],
     "importance_tier": "normal",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification.",
     "created_at": "2026-06-06T10:10:45Z",
-    "last_save_at": "2026-06-10T19:22:14.955Z",
+    "last_save_at": "2026-06-22T18:55:03.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

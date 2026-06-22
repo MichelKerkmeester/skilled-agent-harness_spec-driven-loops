@@ -39,7 +39,7 @@
       "116"
     ],
     "importance_tier": "normal",
-    "status": "[draft/in_progress/review/complete]",
+    "status": "complete",
     "key_files": [
       "scripts/tests/graph-aware-stop.vitest.ts",
       "spec.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "This is **Phase 3** of the Rework operator surfaces and adjacent 116 casualties to post-CocoIndex reality specification.",
     "created_at": "2026-05-26T06:48:34Z",
-    "last_save_at": "2026-06-05T12:47:34.258Z",
+    "last_save_at": "2026-06-22T18:55:02.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

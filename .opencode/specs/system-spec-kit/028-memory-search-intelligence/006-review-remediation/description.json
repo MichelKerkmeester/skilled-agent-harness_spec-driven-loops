@@ -1,23 +1,22 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
-  "description": "Phase parent for remediating the 028 deep-review findings (0 P0, 6 P1, 91 P2, NOT CONVERGED).",
+  "description": "Feature Specification: 028 Review Remediation Phase Parent",
   "keywords": [
-    "phase",
-    "parent",
+    "feature",
+    "specification",
+    "028",
     "review",
     "remediation",
-    "deep",
-    "findings",
-    "convergence"
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-22T18:55:03.884Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
     "system-spec-kit",
-    "028-memory-search-intelligence",
-    "006-review-remediation"
+    "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -38,7 +38,7 @@
       "004"
     ],
     "importance_tier": "important",
-    "status": "complete_—_hold",
+    "status": "complete",
     "key_files": [
       "dist/context-server.js",
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Phase 004 of the 008 rerank-sidecar arc. Quantify the actual quality lift of Qwen reranking on spec-memory's own corpus before promoting to default. Closes the \"cargo-culting cocoindex's +1/73\" risk surfaced in the gpt-5.5 xhigh critique.",
     "created_at": "2026-05-23T11:55:15.610Z",
-    "last_save_at": "2026-06-05T12:47:33.814Z",
+    "last_save_at": "2026-06-22T18:55:02.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

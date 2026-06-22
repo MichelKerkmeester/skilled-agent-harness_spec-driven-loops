@@ -39,7 +39,7 @@
       "code"
     ],
     "importance_tier": "important",
-    "status": "planned_(2026_05_19)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       "scratch/test_path_extraction.py",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Phase 2 bench produced a verdict that DeepSeek synthesized into a recommendation, but the deep-dive surfaced TWO measurement-quality defects that undermine the verdict's reliability:",
     "created_at": "2026-05-19T10:32:52.990Z",
-    "last_save_at": "2026-06-05T12:47:33.717Z",
+    "last_save_at": "2026-06-22T18:55:02.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

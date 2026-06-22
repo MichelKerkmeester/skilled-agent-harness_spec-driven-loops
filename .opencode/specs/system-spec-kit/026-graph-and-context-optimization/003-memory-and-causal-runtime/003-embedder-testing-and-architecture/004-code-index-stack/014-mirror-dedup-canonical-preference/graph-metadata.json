@@ -41,7 +41,7 @@
       "pollution"
     ],
     "importance_tier": "important",
-    "status": "complete_(2026_05_19)",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "CocoIndex indexes every project file under 4 runtime mirror prefixes — `.opencode/`, `.codex/`, `.gemini/`, `.claude/`. These mirrors are byproducts of multi-runtime support (Claude Code, OpenCode, Codex, Gemini all see the same `.opencode/skills/<X>` content through their own prefix). They share:",
     "created_at": "2026-05-19T13:10:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.720Z",
+    "last_save_at": "2026-06-22T18:55:02.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

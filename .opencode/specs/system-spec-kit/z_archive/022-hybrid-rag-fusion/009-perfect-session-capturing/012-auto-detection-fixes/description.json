@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes",
   "description": "Feature Specification: Auto-Detection Fixes",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "auto-detection",
     "fixes"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.436Z",
+  "lastUpdated": "2026-06-22T18:55:04.384Z",
   "specId": "012",
   "folderSlug": "auto-detection-fixes",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

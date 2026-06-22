@@ -35,7 +35,7 @@
       "launcher-lease"
     ],
     "importance_tier": "important",
-    "status": "implemented_+_verified_(11/11);_activates_on_fresh_session",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/mk-code-index-launcher.cjs",
       "spec.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Implements the O6 follow-up recommended in `015-socket-server-reconvergence-and-hardening/o6-spec-memory-ownership-findings.md`: mk-spec-memory had the canonical IPC bridge (015) + probe-marker (014) but lacked the exclusive owner-lease discipline code-index/advisor already have.",
     "created_at": "2026-06-05T06:23:26.342Z",
-    "last_save_at": "2026-06-05T12:47:33.797Z",
+    "last_save_at": "2026-06-22T18:55:02.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

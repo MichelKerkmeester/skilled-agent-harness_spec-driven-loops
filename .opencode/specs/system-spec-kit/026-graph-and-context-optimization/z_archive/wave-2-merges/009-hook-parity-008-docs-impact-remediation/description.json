@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
   "description": "Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "daemon",
     "parity"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.777Z",
-  "specId": "008",
-  "folderSlug": "docs-impact-remediation",
+  "lastUpdated": "2026-06-22T18:55:03.086Z",
+  "specId": "009",
+  "folderSlug": "hook-parity-008-docs-impact-remediation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-hook-parity"
+    "z_archive",
+    "wave-2-merges"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

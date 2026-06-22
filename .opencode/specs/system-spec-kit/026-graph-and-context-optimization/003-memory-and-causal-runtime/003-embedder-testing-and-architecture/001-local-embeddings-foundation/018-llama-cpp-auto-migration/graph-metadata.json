@@ -37,7 +37,7 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "superseded_(by_001_local_embeddings_foundation's_ollama_cascade_work)",
+    "status": "complete",
     "key_files": [
       "mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active profile pointed at the llama-cpp store. That left operators with a manual migration step and a stale source sqlite that could keep being rediscovered.",
     "created_at": "2026-05-13T12:01:28Z",
-    "last_save_at": "2026-06-05T12:47:33.547Z",
+    "last_save_at": "2026-06-22T18:55:02.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T12:01:28Z",
     "source_docs": [

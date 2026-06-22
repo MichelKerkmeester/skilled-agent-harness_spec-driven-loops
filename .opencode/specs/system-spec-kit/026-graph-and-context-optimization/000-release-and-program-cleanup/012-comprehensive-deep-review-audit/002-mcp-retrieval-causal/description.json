@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "description": "Feature Specification: MCP Retrieval + Causal Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "retrieval",
+    "causal",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.947Z",
+  "specId": "002",
+  "folderSlug": "mcp-retrieval-causal",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

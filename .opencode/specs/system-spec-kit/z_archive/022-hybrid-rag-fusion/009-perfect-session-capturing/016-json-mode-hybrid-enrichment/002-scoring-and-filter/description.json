@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/002-scoring-and-filter",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/002-scoring-and-filter",
   "description": "Feature Specification: Scoring and Filter — Quality Scorer Recalibration and Contamination Filter Expansion",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "contamination",
     "expansion"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.466Z",
+  "lastUpdated": "2026-06-22T18:55:04.401Z",
   "specId": "002",
   "folderSlug": "scoring-and-filter",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",
     "016-json-mode-hybrid-enrichment"

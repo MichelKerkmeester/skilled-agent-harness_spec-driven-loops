@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
+  "description": "Feature Specification: Finding Remediation Lane: Causal And Memo",
+  "keywords": [
+    "feature",
+    "specification",
+    "finding",
+    "remediation",
+    "lane",
+    "causal",
+    "memo"
+  ],
+  "lastUpdated": "2026-06-22T18:55:03.481Z",
+  "specId": "002",
+  "folderSlug": "causal-and-memo",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

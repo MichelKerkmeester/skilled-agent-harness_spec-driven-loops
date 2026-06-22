@@ -15,7 +15,14 @@
       "test generation from specs",
       "additive adherence artifacts",
       "novel go floor bypass",
-      "ears ac coverage consumer"
+      "ears ac coverage consumer",
+      "example generation plan",
+      "test generation from specs plan",
+      "additive adherence artifacts plan",
+      "novel go floor bypass plan",
+      "ears ac coverage consumer plan",
+      "example generation tasks",
+      "test generation from specs tasks"
     ],
     "key_topics": [
       "example",
@@ -37,7 +44,12 @@
       ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      "spec.md"
+      "spec.md",
+      "mcp_server/tests/flag-ceiling.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,6 +74,36 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -99,15 +141,73 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its REQ",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it. The downstream `AC_COVERAGE` and `REQ_COVERAGE` gates measure that a requirement is linked to a task or acceptance criterion, but they cannot measure whether the requirement is concretely exercised because no concrete artifact exists for them to count. The research names this the strongest adherence lever in the topic and a genuinely novel floor-bypasser the reuse-first work missed: it writes additive adherence artifacts not vector rows, so it pays no truncation-floor tax and no re-index cost (`research.md` section 3 row \"Automatic example and test generation from specs\", verdict GO-on-cost; `research.md` section 1 truncation law). The opposing rail is equally clear: an auto-generator that silently rewrote requirement prose would cross the no-body-mutate rail and reward-hack a proxy (`research.md` section 3 NO-GO row \"Retrieval-driven doc AUTO-rewriting\"; `research.md` section 5 INV-1).",
     "created_at": "2026-06-21T10:22:34.990Z",
-    "last_save_at": "2026-06-21T10:22:34.990Z",
+    "last_save_at": "2026-06-22T18:55:03.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,14 +1,14 @@
 {
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
   "description": "Feature Specification: Analytics and Learning Remediation",
   "keywords": [
+    "feature",
+    "specification",
     "analytics",
     "learning",
-    "remediation",
-    "consumption-log",
-    "pii"
+    "remediation"
   ],
-  "lastUpdated": "2026-06-03T11:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:01.936Z",
   "specId": "011",
   "folderSlug": "analytics-and-learning-remediation",
   "parentChain": [

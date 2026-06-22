@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
   "description": "Feature Specification: manual-testing-per-playbook remediation-revalidation phase",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "remediation-revalidation",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.619Z",
+  "lastUpdated": "2026-06-22T18:55:04.565Z",
   "specId": "021",
   "folderSlug": "remediation-revalidation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

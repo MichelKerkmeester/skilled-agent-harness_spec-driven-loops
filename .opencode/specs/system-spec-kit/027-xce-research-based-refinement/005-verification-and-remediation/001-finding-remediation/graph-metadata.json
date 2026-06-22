@@ -39,8 +39,7 @@
       "only"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
-    "status_note": "Nested phase parent; all 8 lane children shipped (each has an implementation-summary.md).",
+    "status": "complete",
     "key_files": [
       "backlog/p1-backlog.json",
       "backlog/p2-backlog.json",
@@ -104,7 +103,7 @@
     ],
     "causal_summary": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed). That left 101 single-seat P1 claims and 119 P2 clusters inventoried but never individually examined. Single-seat claims historically refute about half the time, so they can be neither fixed blindly nor dismissed blindly.",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-06-11T18:50:03.207Z",
+    "last_save_at": "2026-06-22T18:55:03.474Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

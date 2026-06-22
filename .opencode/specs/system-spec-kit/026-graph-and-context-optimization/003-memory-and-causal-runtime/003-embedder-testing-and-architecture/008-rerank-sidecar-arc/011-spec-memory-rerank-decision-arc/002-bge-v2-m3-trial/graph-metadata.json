@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "planned_(gated_on_phase_1_off_deficient)",
+    "status": "complete",
     "key_files": [
       "dist/handlers/memory-search.js",
       "lib/search/search-flags.ts",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
     "created_at": "2026-05-23T11:55:15.630Z",
-    "last_save_at": "2026-06-05T12:47:33.830Z",
+    "last_save_at": "2026-06-22T18:55:02.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

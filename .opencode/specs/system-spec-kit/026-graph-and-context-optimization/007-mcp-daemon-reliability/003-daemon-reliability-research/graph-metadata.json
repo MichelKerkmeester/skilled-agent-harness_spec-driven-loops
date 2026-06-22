@@ -39,7 +39,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "research_complete_(fixes_not_yet_implemented)",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "spec.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-killed, nothing auto-restarts it, reconnects \"succeed\" into a dead socket, and rebuilding the server crashes the running daemon.",
     "created_at": "2026-05-28T17:34:16Z",
-    "last_save_at": "2026-06-05T12:47:34.271Z",
+    "last_save_at": "2026-06-22T18:55:02.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

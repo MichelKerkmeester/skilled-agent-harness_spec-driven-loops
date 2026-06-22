@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "not_started",
+    "status": "complete",
     "key_files": [
       "evidence/tool-sweep.jsonl",
       "evidence/playbook-results.jsonl",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 2618 archived rows are now indexed with 0.1 decay multiplier. Behavior under load + scoring fidelity needs validation against the canonical 345-scenario manual testing playbook and the full 39-tool mk-spec-memory surface. The 113 fix shipped narrow targeted tests (159 vitest assertions); this packet runs the broad real-traffic equivalent.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-06-08T17:32:20.712Z",
+    "last_save_at": "2026-06-22T18:55:01.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

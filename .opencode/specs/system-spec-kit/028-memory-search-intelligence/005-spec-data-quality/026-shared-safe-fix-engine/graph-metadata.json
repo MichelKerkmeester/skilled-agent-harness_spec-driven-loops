@@ -34,13 +34,70 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      "scripts/core/post-save-review.ts",
+      "scripts/evals/import-policy-rules.ts",
+      "scripts/evals/check-no-mcp-lib-imports.ts",
+      "mcp_server/api/index.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-save-review.ts",
+        "kind": "code",
+        "path": "scripts/core/post-save-review.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-rules.ts",
+        "kind": "code",
+        "path": "scripts/evals/import-policy-rules.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -62,7 +119,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Tier",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -74,19 +137,71 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The five keystone front doors converge on one shared core that does not exist yet (`research.md` section 4). A1 is on-write and report-only, B1 is scheduled and headless, B2 is interactive on `/doctor`, B3 emits queue rows, and every Tier-C retrieval detector must pass one promotion gate. With no shared core each front door would carry its own detector list, its own notion of what a safe fix is, and its own write path, so the five would drift on the one decision that matters: whether a given fix is allowed to mutate a git-tracked authored artifact. There is no `detector-registry.ts` single source of truth and no `dq-engine.ts` pure runner today, so the deny-by-default safety property the program depends on has nowhere to live.",
+    "causal_summary": "Five keystone consumers converge on one shared core that does not exist yet (`research.md` section 4). Three are write-time front doors with a safe-apply path: A1 is on-write and report-only, B1 is scheduled and headless, B2 is interactive on `/doctor`. The other two register on the engine without a safe-apply path. B3 emits queue rows. Every Tier-C retrieval detector must pass one promotion gate. SC-001 measures the three write-time front doors A1, B1, B2. With no shared core each front door would carry its own detector list, its own notion of what a safe fix is, and its own write path, so the five would drift on the one decision that matters: whether a given fix is allowed to mutate a git-tracked authored artifact. There is no `detector-registry.ts` single source of truth and no `dq-engine.ts` pure runner today, so the deny-by-default safety property the program depends on has nowhere to live.",
     "created_at": "2026-06-21T10:22:34.993Z",
-    "last_save_at": "2026-06-21T10:22:34.993Z",
+    "last_save_at": "2026-06-22T18:55:03.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

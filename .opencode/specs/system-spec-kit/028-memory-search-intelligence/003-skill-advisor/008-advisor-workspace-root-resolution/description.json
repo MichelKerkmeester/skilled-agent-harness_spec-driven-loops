@@ -3,20 +3,25 @@
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/008-advisor-workspace-root-resolution",
   "description": "Feature Specification: Resolve the skill-advisor workspace root by walk-up to stop nested .opencode/.advisor-state",
   "keywords": [
-    "advisor",
-    "workspace-root",
-    "resolveWorkspaceRoot",
-    "advisor-state",
-    "nested-opencode",
-    "skill-graph-generation",
-    "process-cwd",
-    "walk-up"
+    "feature",
+    "specification",
+    "resolve",
+    "skill-advisor",
+    "workspace",
+    "root",
+    "walk-up",
+    "stop",
+    "nested",
+    "opencode",
+    "advisor-state"
   ],
-  "lastUpdated": "2026-06-21T15:40:00.000Z",
-  "specId": "001",
+  "lastUpdated": "2026-06-22T18:55:03.761Z",
+  "specId": "008",
   "folderSlug": "advisor-workspace-root-resolution",
   "parentChain": [
-    "system-skill-advisor"
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

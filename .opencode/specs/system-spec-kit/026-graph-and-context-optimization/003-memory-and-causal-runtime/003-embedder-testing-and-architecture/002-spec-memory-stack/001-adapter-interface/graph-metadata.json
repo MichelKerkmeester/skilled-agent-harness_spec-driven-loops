@@ -33,7 +33,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "scaffolded",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/embedders/adapter.ts",
       "mcp_server/lib/embedders/registry.ts",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Define the foundational types every other phase will build on. The `EmbedderAdapter` interface abstracts backend differences (prefix tokens, dimensions, batch sizes, error formats). The `EmbedderRegistry` provides name-based lookup. Pure types + small registry — no actual inference runtime wiring in this phase.",
     "created_at": "2026-05-17T06:35:17.033Z",
-    "last_save_at": "2026-06-05T12:47:33.616Z",
+    "last_save_at": "2026-06-22T18:55:02.300Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -36,7 +36,7 @@
       "gap"
     ],
     "importance_tier": "important",
-    "status": "complete_(feature_catalog/playbook_doc_refresh_deferred_as_p2_follow_on)",
+    "status": "complete",
     "key_files": [
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/scripts/claude-session-cleanup.sh",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only. Three concrete problems:",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-06-05T12:47:34.261Z",
+    "last_save_at": "2026-06-22T18:55:02.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

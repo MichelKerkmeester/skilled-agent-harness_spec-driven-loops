@@ -1,24 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
-  "description": "Spec: Shared Identity Resolver and Merge Safety",
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety",
+  "description": "Feature Specification: Shared Identity Resolver and Merge Safety",
   "keywords": [
-    "spec",
+    "feature",
+    "specification",
+    "shared",
     "identity",
     "resolver",
     "merge",
-    "lineage"
+    "safety"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T16:10:27.261Z",
   "specId": "033",
   "folderSlug": "identity-resolver-merge-safety",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

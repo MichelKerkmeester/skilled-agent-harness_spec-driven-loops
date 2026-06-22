@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+  "description": "Feature Specification: 027 Launch-State Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "027",
+    "launch-state",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.973Z",
+  "specId": "008",
+  "folderSlug": "027-launch-state",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

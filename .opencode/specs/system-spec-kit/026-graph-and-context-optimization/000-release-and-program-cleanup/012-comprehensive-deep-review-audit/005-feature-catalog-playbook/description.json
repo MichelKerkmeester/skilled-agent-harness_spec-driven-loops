@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "description": "Feature Specification: Feature Catalog + Testing Playbook Verification Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "catalog",
+    "testing",
+    "playbook",
+    "verification",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.961Z",
+  "specId": "005",
+  "folderSlug": "feature-catalog-playbook",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

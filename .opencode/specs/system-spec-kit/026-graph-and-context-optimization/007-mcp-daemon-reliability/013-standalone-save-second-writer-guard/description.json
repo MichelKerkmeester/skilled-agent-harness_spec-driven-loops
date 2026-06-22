@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
   "description": "Feature Specification: Standalone Save Second-Writer Guard",
   "keywords": [
     "feature",
@@ -9,17 +10,14 @@
     "second-writer",
     "guard"
   ],
-  "lastUpdated": "2026-05-29T14:01:09.520Z",
+  "lastUpdated": "2026-06-22T18:55:03.012Z",
   "specId": "013",
   "folderSlug": "standalone-save-second-writer-guard",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

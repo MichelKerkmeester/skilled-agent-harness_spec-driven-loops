@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
   "description": "Feature Specification: Sprint 9 — Extra Features (Productization & Operational Tooling)",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "operational",
     "tooling"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.158Z",
+  "lastUpdated": "2026-06-22T18:55:04.147Z",
   "specId": "010",
   "folderSlug": "sprint-9-extra-features",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"
   ],

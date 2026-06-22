@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/020-query-routing-integration",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/020-query-routing-integration",
   "description": "Feature Specification: Query-Routing Integration [024/020]",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "024",
     "020"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.597Z",
+  "lastUpdated": "2026-06-22T18:55:04.771Z",
   "specId": "020",
   "folderSlug": "query-routing-integration",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

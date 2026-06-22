@@ -15,7 +15,14 @@
       "constraint tier",
       "req coverage",
       "ac coverage clone",
-      "ears linter"
+      "ears linter",
+      "ears requirements plan",
+      "constraint tier plan",
+      "req coverage plan",
+      "ac coverage clone plan",
+      "ears linter plan",
+      "ears requirements tasks",
+      "constraint tier tasks"
     ],
     "key_topics": [
       "ears",
@@ -26,21 +33,31 @@
       "coverage",
       "clone",
       "linter",
+      "plan",
+      "tasks",
       "spec",
-      "requirement",
-      "prose",
-      "shared"
+      "requirement"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "tasks.md",
       "scripts/rules/check-ac-coverage.sh",
       ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "check-ac-coverage.sh",
         "kind": "script",
@@ -69,6 +86,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -106,15 +141,73 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "severity",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction. There is no always / ask-first / never constraint tier in the templates, so hard safety constraints are buried in narrative. The spec-REQ-to-tasks linkage gap is real and unguarded today: `tasks.md` lists `T001`-style task IDs with no requirement back-reference column (`templates/manifest/tasks.md.tmpl:54-77`), so nothing checks that every authored requirement is actually built. The shipped `AC_COVERAGE` rule already solves the parallel problem for acceptance-criteria traceability (`scripts/rules/check-ac-coverage.sh`), proving the exact gate shape exists and can be cloned.",
     "created_at": "2026-06-21T10:22:34.982Z",
-    "last_save_at": "2026-06-21T10:22:34.982Z",
+    "last_save_at": "2026-06-22T18:55:03.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

@@ -15,56 +15,103 @@
       "derived status enum boundary",
       "graph metadata integrity rule",
       "stop preserving bad statuses",
-      "status enum schema close",
-      "normalize derived status enum",
-      "graph metadata status values",
-      "grandfather report mode",
-      "schema boundary close",
-      "strict mode integrity gate"
+      "status enum schema close"
     ],
     "key_topics": [
-      "generated-metadata",
+      "generated",
+      "metadata",
       "validator",
+      "derived",
       "status",
       "enum",
-      "schema",
-      "normalizer",
-      "integrity-rule",
-      "strict-mode",
-      "grandfather",
-      "parser",
-      "re-derive",
-      "boundary"
+      "boundary",
+      "graph",
+      "integrity",
+      "rule",
+      "stop",
+      "preserving"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      "mcp_server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/validation/generated-metadata-integrity.ts",
+      "scripts/lib/validator-registry.json",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/validator-registry.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "graph-metadata-schema.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
         "source": "derived"
       },
       {
         "name": "graph-metadata-parser.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
         "source": "derived"
       },
       {
-        "name": "validator-registry.json",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/validator-registry.json",
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
         "source": "derived"
       },
       {
@@ -92,31 +139,31 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "GRAPH_METADATA_STATUS_VALUES",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "GENERATED_METADATA_INTEGRITY",
+        "name": "Metadata Validator",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "normalizeDerivedStatus",
+        "name": "Status Enum",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,21 +175,33 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Affected Surfaces",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The generated graph-metadata status field is open. The normalizer normalizeDerivedStatus returns the raw normalized string in its default branch and the Zod schema accepts any non-empty string, so em-dash prose becomes a valid status. The shallow GRAPH_METADATA_SHAPE and DESCRIPTION_SHAPE checks run as warnings rather than a real gate, and the parser preserves a legacy bad status when a packet has no implementation-summary.md. The planned fix closes derived.status to a shared GRAPH_METADATA_STATUS_VALUES enum at the schema boundary so the normalizer returns an enum value or null, adds a first-class GENERATED_METADATA_INTEGRITY rule validating both JSON files through the shared schemas plus path-prefix and enum invariants registered as an error in strict mode behind a grandfather report mode, and stops preserving bad statuses by re-deriving on the closed enum or falling back to planned plus a review flag. Every behavioral fix ships behind a default-off flag or grandfather mode because existing files carry the prose statuses and prefixed paths the new contract rejects.",
+    "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them. The status normalizer `normalizeDerivedStatus` returns the raw normalized string in its default branch at `graph-metadata-parser.ts:179-180`, and the Zod schema in `graph-metadata-schema.ts` accepts any non-empty string for `derived.status`, so an em-dash prose value becomes a valid status. The current `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` checks registered in the rule registry are shallow shell guards run at warning level, while the real Zod schemas already exist and are not used as a completion gate. The parser also preserves a legacy bad status. When a packet has no `implementation-summary.md`, the parser keeps the existing status after a normalization that admits arbitrary strings, so a folder that once carried a prose status keeps carrying it across re-derives. The combined effect is that the status enum, the path-prefix shape and the schema invariants regress silently because nothing errors on them under strict mode. The 031 research confirmed each leak against live code in its section 4 ranked proposals 6, 9 and 7 and in its section 6 verification table.",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T18:55:03.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

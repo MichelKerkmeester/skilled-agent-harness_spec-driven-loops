@@ -38,7 +38,7 @@
       "smoke"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       ".opencode/bin/spec-memory.cjs",
       ".opencode/bin/code-index.cjs",
@@ -109,7 +109,7 @@
     ],
     "causal_summary": "Harden the UX, documentation, integration, and automation around 027's three daemon CLI front-doors so the advertised offline fallback parity check works durably, discoverability does not require a warm daemon, recovery guidance is in one canonical place, hook consumers see a normalized fallback envelope, and machine automation can consume compact tool lists and shell completion. Tool coverage is explicitly NOT in scope; this packet improves the layer around the tools, not the tool set.",
     "created_at": "2026-06-10T20:46:28.777Z",
-    "last_save_at": "2026-06-10T20:46:28.777Z",
+    "last_save_at": "2026-06-22T18:56:37.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

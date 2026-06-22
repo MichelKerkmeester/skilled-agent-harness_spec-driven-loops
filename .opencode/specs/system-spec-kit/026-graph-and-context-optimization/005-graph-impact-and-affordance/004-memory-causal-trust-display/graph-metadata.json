@@ -31,7 +31,7 @@
       "display-only"
     ],
     "importance_tier": "important",
-    "status": "draft_(blocked_on_012/001)",
+    "status": "in_progress",
     "key_files": [
       "tests/response-profile-formatters.vitest.ts",
       "mcp_server/formatters/search-results.ts",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-06-05T12:47:34.215Z",
+    "last_save_at": "2026-06-22T18:55:02.915Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

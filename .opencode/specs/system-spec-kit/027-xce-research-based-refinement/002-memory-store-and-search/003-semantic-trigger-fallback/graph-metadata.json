@@ -39,7 +39,7 @@
       "adrs"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "decision-record.md",
       "resource-map.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This phase-parent decomposes that ADAPT into four independently executable children. The semantic stage reuses the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768d; never embeds in the hot path), source-tags its hits, and activates them at reduced attention (`min(0.85, score)`). It ships default-off behind `SPECKIT_SEMANTIC_TRIGGERS`. In current code, shadow mode observes prompts that do not have a strong lexical match, and union mode is selected by `SPECKIT_SEMANTIC_TRIGGERS_MODE=union`; promotion evidence is an operator rollout policy, not a runtime-enforced gate.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.765Z",
+    "last_save_at": "2026-06-22T18:56:37.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

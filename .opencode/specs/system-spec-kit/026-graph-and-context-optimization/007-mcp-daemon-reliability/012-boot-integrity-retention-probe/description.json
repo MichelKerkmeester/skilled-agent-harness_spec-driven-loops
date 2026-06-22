@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
   "description": "Feature Specification: Boot Integrity-Check + Retention Durability + Probe Liveness Fix",
   "keywords": [
     "feature",
@@ -12,17 +13,14 @@
     "liveness",
     "fix"
   ],
-  "lastUpdated": "2026-05-29T13:49:32.067Z",
+  "lastUpdated": "2026-06-22T18:55:03.005Z",
   "specId": "012",
   "folderSlug": "boot-integrity-retention-probe",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

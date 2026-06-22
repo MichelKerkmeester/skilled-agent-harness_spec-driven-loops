@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall **throws** instead of degrading to lexical. Both Stage-1 entry branches compute `effectiveEmbedding = queryEmbedding ?? await generateQueryEmbedding(query)` and then, if null, throw — the hybrid path at `stage1-candidate-gen.ts:700-707` and the vector path at `stage1-candidate-gen.ts:1014-1020` [CONFIRMED: iter-003 finding f-iter003-007]. There is no `useVector=false` keep-lexical fallback on this recall path and no `embedder_available:false` flag, even though the channel-gating substrate to drop the vector channel while keeping FTS5/BM25/graph already exists at `hybrid-search.ts:931-947` [CONFIRMED]. The result is a brittle inversion of the mined aionforge model, where dense falls back to the plain current-set path, lexical always runs, and the bundle reports `embedder_available:false` [CONFIRMED: external/aionforge-memory-development/docs/retrieval.md:170, 299-300].",
+    "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall **throws** instead of degrading to lexical. Both Stage-1 entry branches compute `effectiveEmbedding = queryEmbedding ?? await generateQueryEmbedding(query)` and then, if null, throw, the hybrid path at `stage1-candidate-gen.ts:700-707` and the vector path at `stage1-candidate-gen.ts:1014-1020` [CONFIRMED: iter-003 finding f-iter003-007]. There is no `useVector=false` keep-lexical fallback on this recall path and no `embedder_available:false` flag, even though the channel-gating substrate to drop the vector channel while keeping FTS5/BM25/graph already exists at `hybrid-search.ts:931-947` [CONFIRMED]. The result is a brittle inversion of the mined aionforge model, where dense falls back to the plain current-set path, lexical always runs and the bundle reports `embedder_available:false` [CONFIRMED: external/aionforge-memory-development/docs/retrieval.md:170, 299-300].",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-19T05:40:37.442Z",
+    "last_save_at": "2026-06-22T18:55:03.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

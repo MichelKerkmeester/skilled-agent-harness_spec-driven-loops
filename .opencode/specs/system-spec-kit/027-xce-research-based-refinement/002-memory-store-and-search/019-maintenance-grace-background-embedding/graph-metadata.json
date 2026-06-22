@@ -14,15 +14,15 @@
       "maintenance grace background embedding",
       "maintenance marker reference counted embedding queue",
       "reindex post-scan embedding burst re-election",
-      "027 002/019",
+      "027 002/020",
       "maintenance grace background embedding plan",
       "reference-counted marker embedding queue plan",
-      "027 002/019 plan",
+      "027 002/020 plan",
       "maintenance grace background embedding tasks",
-      "027 002/019 tasks",
+      "027 002/020 tasks",
       "maintenance grace background embedding summary",
       "reference-counted marker embedding queue shipped",
-      "027 002/019 shipped"
+      "027 002/020 shipped"
     ],
     "key_topics": [
       "maintenance",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This phase is the direct follow-on to 019. 019 made a reindex's SCAN survive launcher re-election by writing a maintenance-active marker that the launcher reads to adopt a busy-but-healthy daemon instead of reaping it. But that marker was scoped to the scan job. Because the scan defers embeddings (`asyncEmbedding`), the real vector writes happen AFTER the scan, in the background-embedding queue (`lib/providers/retry-manager.ts` draining `embedding_status='pending'` rows). That queue is busy-but-unprotected: a live run saw a separate re-election recycle the daemon DURING the post-scan embedding burst, interrupting the embeddings. Search stayed up and the gap drained on a later queue pass, but the reindex was not re-election-proof end to end. 019's own limitations section flagged this as the loop-closing follow-on.",
     "created_at": "2026-06-17T13:56:34.988Z",
-    "last_save_at": "2026-06-17T13:56:34.988Z",
+    "last_save_at": "2026-06-22T18:55:03.374Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

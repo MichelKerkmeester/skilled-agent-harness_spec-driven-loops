@@ -39,7 +39,7 @@
       "bridge"
     ],
     "importance_tier": "normal",
-    "status": "shipped",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This packet closes defect **(c)**, deferred as a follow-up in packet 018 (front-proxy recycle hardening).",
     "created_at": "2026-06-04T10:33:09.672Z",
-    "last_save_at": "2026-06-05T12:47:34.015Z",
+    "last_save_at": "2026-06-22T18:55:02.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

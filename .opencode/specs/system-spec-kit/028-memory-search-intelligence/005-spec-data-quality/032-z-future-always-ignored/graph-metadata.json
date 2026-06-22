@@ -18,59 +18,53 @@
       "backfill walk over-reach",
       "excluded dirs z future",
       "backfill dist rebuild",
-      "z archive parity preserved",
       "backfill verification",
-      "z archive parity check"
+      "z archive parity check",
+      "z archive parity preserved"
     ],
     "key_topics": [
-      "z-future",
+      "future",
+      "always",
+      "ignored",
       "backfill",
-      "graph-metadata",
+      "graph",
+      "metadata",
       "exclusion",
-      "staging",
-      "specs-root",
+      "supported",
+      "specs",
+      "root",
       "collectspecfolders",
-      "excluded-dirs",
-      "z-archive",
-      "dist",
-      "parser",
-      "walk"
+      "staging"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "graph-metadata-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "backfill-graph-metadata.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
         "source": "derived"
       },
       {
         "name": "backfill-graph-metadata.js",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-backfill.vitest.ts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -98,19 +92,25 @@
         "source": "derived"
       },
       {
-        "name": "EXCLUDED_DIRS",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "collectSpecFolders",
+        "name": "Always Ignored In Backfill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,13 +146,19 @@
         "source": "derived"
       },
       {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Affected Surfaces",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -176,15 +182,21 @@
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The graph-metadata backfill generator refreshed z_future by default. Its tree walk in collectSpecFolders only skipped z_future under the --active-only flag, so a default run descended into z_future and the parser threw because z_future is not a supported specs root, and the walk over-reached. The fix adds z_future to the EXCLUDED_DIRS set so the walk unconditionally prunes the staging area, corrects the header comment, and rebuilds the dist, while z_archive stays included by default and skippable via --active-only.",
+    "causal_summary": "The graph-metadata backfill generator refreshed `z_future/` by default. Its tree walk in `collectSpecFolders` only skipped `z_future` under the `--active-only` flag, so a default run descended into `z_future` and the parser threw `Spec folder is not under a supported specs root` at the refresh site. The same descent let the walk over-reach into a staging tree that the generator was never meant to touch. A default backfill should refresh real packet folders without crashing on a staging area.",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T18:55:03.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

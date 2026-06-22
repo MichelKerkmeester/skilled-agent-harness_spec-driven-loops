@@ -41,7 +41,7 @@
       "docs"
     ],
     "importance_tier": "important",
-    "status": "in_progress_(phase_2_added_2026_05_15)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill. User-facing system-spec-kit docs still contained a mixture of correct cross-skill runtime mentions and stale ownership/path claims, including old `mcp_server/code_graph` paths and prose describing Code Graph as a system-spec-kit subsystem.",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-06-05T12:47:34.353Z",
+    "last_save_at": "2026-06-22T18:55:03.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

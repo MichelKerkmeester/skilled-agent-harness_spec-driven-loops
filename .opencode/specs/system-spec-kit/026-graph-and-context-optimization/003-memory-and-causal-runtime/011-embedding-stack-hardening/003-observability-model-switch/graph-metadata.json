@@ -34,7 +34,7 @@
       "timeout"
     ],
     "importance_tier": "important",
-    "status": "implemented_—_verified,_reviewed,_fixed_(2026_05_29)",
+    "status": "complete",
     "key_files": [
       "mcp_server/handlers/embedder-status.ts",
       "shared/embeddings/providers/hf-local.ts",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This is **Phase 3 of 5** of the embedding-stack hardening decomposition: give operators a read-only view of embedder state, make model switches safe, and stop the client from declaring a healthy-but-downloading server dead.",
     "created_at": "2026-05-29T11:22:57.379Z",
-    "last_save_at": "2026-06-05T12:47:33.942Z",
+    "last_save_at": "2026-06-22T18:55:02.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

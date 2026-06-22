@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
+  "description": "Feature Specification: Finding Remediation Lane: Launchers And Cli",
+  "keywords": [
+    "feature",
+    "specification",
+    "finding",
+    "remediation",
+    "lane",
+    "launchers",
+    "cli"
+  ],
+  "lastUpdated": "2026-06-22T18:55:03.501Z",
+  "specId": "006",
+  "folderSlug": "launchers-and-cli",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

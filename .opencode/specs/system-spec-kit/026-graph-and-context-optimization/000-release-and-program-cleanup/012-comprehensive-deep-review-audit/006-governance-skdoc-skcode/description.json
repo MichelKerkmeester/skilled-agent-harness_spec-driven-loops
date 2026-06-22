@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "description": "Feature Specification: Governance + sk-doc + sk-code Drift Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "governance",
+    "sk-doc",
+    "sk-code",
+    "drift",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.964Z",
+  "specId": "006",
+  "folderSlug": "governance-skdoc-skcode",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

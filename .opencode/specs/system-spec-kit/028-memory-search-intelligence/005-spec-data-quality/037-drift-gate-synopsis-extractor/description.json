@@ -1,24 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
   "description": "Feature Specification: Drift Gate and Shared Synopsis Extractor",
   "keywords": [
-    "drift-gate",
-    "synopsis-extractor",
-    "generated-metadata",
-    "causal-summary",
-    "description"
+    "feature",
+    "specification",
+    "drift",
+    "gate",
+    "shared",
+    "synopsis",
+    "extractor"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.864Z",
   "specId": "037",
   "folderSlug": "drift-gate-synopsis-extractor",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

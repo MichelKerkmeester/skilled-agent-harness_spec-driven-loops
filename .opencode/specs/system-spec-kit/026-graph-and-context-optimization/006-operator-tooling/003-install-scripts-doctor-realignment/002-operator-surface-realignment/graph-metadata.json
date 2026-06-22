@@ -39,7 +39,7 @@
       "realignment"
     ],
     "importance_tier": "normal",
-    "status": "[draft/in_progress/review/complete]",
+    "status": "complete",
     "key_files": [
       "mcp_server/INSTALL_GUIDE.md",
       "mcp_server/package.json",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the Rework operator surfaces and adjacent 116 casualties to post-CocoIndex reality specification.",
     "created_at": "2026-05-26T06:48:33Z",
-    "last_save_at": "2026-06-05T12:47:34.256Z",
+    "last_save_at": "2026-06-22T18:55:02.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

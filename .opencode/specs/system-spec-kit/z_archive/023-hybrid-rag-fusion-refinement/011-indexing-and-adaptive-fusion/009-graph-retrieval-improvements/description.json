@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements",
   "description": "Feature Specification: Graph Retrieval Improvements",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "retrieval",
     "improvements"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.767Z",
+  "lastUpdated": "2026-06-22T18:55:04.665Z",
   "specId": "009",
   "folderSlug": "graph-retrieval-improvements",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"
   ],

@@ -41,7 +41,7 @@
       "error"
     ],
     "importance_tier": "important",
-    "status": "shipped_—_readme_cluster_(skill_readme,_mcp_server_readme,_env_reference)_refreshed_to_the_deployed_runtime:_speckit_backend_only,_schema_v28_>v30_+_`.needs_rebuild`_sentinel,_mcp_front_proxy_recycle,_e429/_32001/_32002_error_codes,_sk_git_`wt/{nnnn}_{name}`_convention,_version_footer_bump_(2026_06_02).",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The system-spec-kit README cluster lags the shipped runtime. Concretely, against the deployed source:",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.000Z",
+    "last_save_at": "2026-06-22T18:55:02.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

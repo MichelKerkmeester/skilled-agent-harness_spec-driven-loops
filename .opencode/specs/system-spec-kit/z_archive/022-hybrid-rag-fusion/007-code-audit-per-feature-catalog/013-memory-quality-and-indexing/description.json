@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/013-memory-quality-and-indexing",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/013-memory-quality-and-indexing",
   "description": "Feature Specification: Code Audit — Memory Quality and Indexing",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "quality",
     "indexing"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.273Z",
+  "lastUpdated": "2026-06-22T18:55:04.257Z",
   "specId": "013",
   "folderSlug": "memory-quality-and-indexing",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"
   ],

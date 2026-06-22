@@ -4,56 +4,110 @@
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
   "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "025 off corpus eval fixture",
-      "025 false confirm gate",
-      "025 kubernetes regression anchor",
-      "025 false good on hard negatives",
-      "025 off corpus hard negative class",
-      "025 false confirm eval driver",
-      "025 speckit false confirm max rate",
-      "025 off corpus fixture plan",
-      "025 off corpus fixture tasks",
-      "025 off corpus fixture checklist",
-      "025 off corpus fixture summary",
-      "025 off corpus eval fixture spec"
+      "off corpus eval fixture",
+      "false confirm gate",
+      "kubernetes regression anchor",
+      "false good on hard negatives",
+      "off corpus hard negative class"
     ],
     "key_topics": [
-      "025",
-      "off-corpus",
+      "corpus",
       "eval",
       "fixture",
-      "false-confirm",
+      "false",
+      "confirm",
       "gate",
-      "hard-negative",
       "kubernetes",
+      "regression",
       "anchor",
-      "embedder",
-      "grandfather",
-      "metric"
+      "good",
+      "hard",
+      "negatives"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+      "lib/eval/data/ground-truth.json",
+      "dist/lib/eval/eval-metrics.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/ground-truth-data.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/ground-truth.json",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-generator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-false-confirm-eval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "false-confirm-eval.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": "dist/lib/eval/eval-metrics.js",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/ground-truth-data.js",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,40 +139,70 @@
         "source": "derived"
       },
       {
-        "name": "ground-truth.json",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/ground-truth.json",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.js",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
-        "source": "derived"
-      },
-      {
-        "name": "run-false-confirm-eval.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "Off-Corpus Eval Fixture",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "False-Confirm Gate",
+        "name": "Corpus Eval Fixture",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 029 model benchmark caught /memory:search confidently citing an off-corpus term, kubernetes scored good at 0.78 on a semantically unrelated doc, but the eval harness cannot reproduce it. All six existing ground-truth hard-negatives are in-corpus decoys with a real relevance-3 target, so no sample tests the absent-term case, and the falseGoodOnHardNegatives metric that would measure it already ships yet sits dormant with no driver and no CI gate. This phase adds an off_corpus class with absent terms and zero relevance rows, pins kubernetes as a permanent regression anchor, wires the dormant metric behind a false-confirm driver, and gates the measured rate behind a default-off threshold with a grandfather report mode, turning the one-off manual benchmark into a permanent guard without moving the verdict.",
+    "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term. The term `kubernetes` scored good at 0.78 on a semantically unrelated doc, identical across all four models, and the 005 improvement research diagnosed it as a score-calibration miss where a fluent but unrelated doc earns a high background cosine and a lone spurious hit sails through to good. The eval harness cannot reproduce that defect today. All six existing ground-truth hard-negatives are in-corpus decoys with a real relevance-3 target (`ground-truth.json:914-971`, `ground-truth-data.ts:18-30`), so every hard-negative still has a correct answer in the corpus and no sample tests the absent-term case the benchmark exposed. The metric that would measure the defect already exists but is dormant. `computeCitabilityConfusionMetrics` with `falseGoodOnHardNegatives` is present (`eval-metrics.ts:885-902`) yet no `scripts/evals` driver calls it, and the ablation framework wires only the weaker `computeGateVerdictMetrics`. The net effect is that the benchmarked off-corpus false-positive is a one-off manual finding with no fixture to reproduce it and no permanent guard to catch a regression.",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T00:00:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-22T18:55:03.693Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

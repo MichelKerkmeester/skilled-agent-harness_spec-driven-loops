@@ -10,25 +10,23 @@
   ],
   "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-llama-cpp-metal-investigation",
   "level": 1,
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-llama-cpp-metal-investigation",
-  "description": "Research-only packet documenting node-llama-cpp Metal initialization failures, local package and system evidence, H1-H5 hypothesis evaluation, and an ADR recommendation to defer source implementation.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
+  "description": "Feature Specification: llama-cpp Metal Investigation",
   "keywords": [
+    "feature",
+    "specification",
     "llama-cpp",
     "metal",
-    "embeddings",
-    "node-llama-cpp",
-    "ggml",
-    "gpuLayers",
-    "darwin-25.4.0",
-    "embeddinggemma"
+    "investigation"
   ],
-  "lastUpdated": "2026-05-14T17:11:14.339Z",
-  "specId": "041",
-  "folderSlug": "llama-cpp-metal-investigation",
+  "lastUpdated": "2026-06-22T18:55:03.123Z",
+  "specId": "014",
+  "folderSlug": "041-llama-cpp-metal-investigation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "z_archive",
+    "wave-2-shallow-medium"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

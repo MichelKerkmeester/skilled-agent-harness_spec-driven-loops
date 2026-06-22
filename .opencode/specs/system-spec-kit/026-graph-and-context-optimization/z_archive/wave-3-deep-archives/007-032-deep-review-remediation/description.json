@@ -1,22 +1,23 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/032-deep-review-remediation",
-  "description": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph campaign. 3 findings deferred, 2 blocked, 1 verified-correct.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-032-deep-review-remediation",
+  "description": "Feature Specification: 018 Deep-Review Remediation",
   "keywords": [
+    "feature",
+    "specification",
+    "018",
     "deep-review",
-    "remediation",
-    "mk-code-index",
-    "naming-convention",
-    "launcher-hardening"
+    "remediation"
   ],
-  "lastUpdated": "2026-05-14T21:10:00Z",
-  "specId": "018",
-  "folderSlug": "deep-review-remediation",
+  "lastUpdated": "2026-06-22T18:55:03.165Z",
+  "specId": "007",
+  "folderSlug": "032-deep-review-remediation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
-  "memorySequence": 1
+  "memorySequence": 1,
+  "memoryNameHistory": []
 }

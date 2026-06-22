@@ -33,7 +33,7 @@
       "infra"
     ],
     "importance_tier": "important",
-    "status": "graph_metadata_fixes_applied_+_verified;_memory_db_repair_operator_gated",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem. (1) The spec-memory MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on `memory_match_triggers`, `memory_index_scan`, and `memory_save`, blocking every memory write/index path — present since session start, caused by corrupted on-disk DB state after an unclean shutdown, not a logic defect. (2) The daemon (and any save path) rewrites ~634 `graph-metadata.json` `last_save_at` timestamps repo-wide — including `z_archive/` and `z_future/` — on essentially every save, burying real changes in working-tree noise and forcing wide manual git scoping on every commit.",
     "created_at": "2026-06-08T11:22:12.712Z",
-    "last_save_at": "2026-06-08T11:22:12.712Z",
+    "last_save_at": "2026-06-22T18:55:03.016Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

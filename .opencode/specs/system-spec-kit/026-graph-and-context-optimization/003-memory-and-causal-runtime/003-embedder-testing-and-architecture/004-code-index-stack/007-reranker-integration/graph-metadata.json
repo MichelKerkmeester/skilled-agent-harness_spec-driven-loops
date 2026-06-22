@@ -36,7 +36,7 @@
       "cross-encoder"
     ],
     "importance_tier": "normal",
-    "status": "implemented_(created_2026_05_18)",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "spec.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion. Research converged on `Alibaba-NLP/gte-multilingual-reranker-base`, K=20, opt-in rollout, score replacement, and default-on only after fixture and latency gates.",
     "created_at": "2026-05-18T05:13:45.663Z",
-    "last_save_at": "2026-06-05T12:47:33.705Z",
+    "last_save_at": "2026-06-22T18:55:02.384Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

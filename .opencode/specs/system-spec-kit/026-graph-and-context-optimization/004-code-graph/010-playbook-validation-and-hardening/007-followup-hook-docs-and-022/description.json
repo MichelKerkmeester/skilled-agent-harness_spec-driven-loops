@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
   "description": "Feature Specification: Hook-Doc Reconciliation + 022 Transitive Re-verify (029 Phase 007)",
   "keywords": [
     "feature",
@@ -13,12 +13,10 @@
     "phase",
     "007"
   ],
-  "lastUpdated": "2026-05-28T06:13:48.095Z",
+  "lastUpdated": "2026-06-22T18:55:02.879Z",
   "specId": "007",
   "folderSlug": "followup-hook-docs-and-022",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "004-code-graph",

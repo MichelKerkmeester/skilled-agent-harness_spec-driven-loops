@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       "shared/embeddings/providers/ollama.ts",
       "mcp_server/tests/embedder-ollama.vitest.ts",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "That left a production asymmetry. The index path can write Jina v3 vectors into `vec_1024`, while query-time `generateEmbedding()` and `generateQueryEmbedding()` can still instantiate llama-cpp and produce 768-dim EmbeddingGemma vectors. The live machine has `vec_metadata.active_embedder_name='jina-embeddings-v3'`, `active_embedder_dim=1024`, and a populated `vec_1024`, so search must encode queries with the same Ollama-backed model.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-06-05T12:47:33.625Z",
+    "last_save_at": "2026-06-22T18:55:02.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

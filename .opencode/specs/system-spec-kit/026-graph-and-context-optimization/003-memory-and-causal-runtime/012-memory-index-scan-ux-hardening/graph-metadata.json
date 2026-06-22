@@ -39,7 +39,7 @@
       "research"
     ],
     "importance_tier": "normal",
-    "status": "complete_(design_research)",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "research/resource-map.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A DESIGN research packet (no production code changed) producing evidence-backed, file:line-cited recommendations for a memory indexing subsystem that is always safe to call, always completes regardless of corpus size, degrades gracefully when the embedder is slow/absent, and self-heals moves/orphans. The canonical synthesis lives in `research/research.md`.",
     "created_at": "2026-05-31T14:05:03.746Z",
-    "last_save_at": "2026-06-05T12:47:33.956Z",
+    "last_save_at": "2026-06-22T18:55:02.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

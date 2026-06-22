@@ -20,7 +20,8 @@
       "027 advisor and code graph",
       "causal traversal bfs",
       "xce feature adoption advisor codegraph",
-      "skill advisor cross session reconnect"
+      "skill advisor cross session reconnect",
+      "advisor state spec folder leak"
     ],
     "key_topics": [
       "027",
@@ -37,7 +38,7 @@
       "skill"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -87,7 +88,7 @@
     ],
     "causal_summary": "Two sibling daemons beyond the memory store needed 027's hardening: the skill-advisor lacked launcher resilience and had not adopted the proven write-safety and observability patterns, and the code-graph carried recursive-CTE traversals that defeated its indexes. The advisor and code-graph work is cross-cutting between two subsystems, so it belongs under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-06-22T18:56:37.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

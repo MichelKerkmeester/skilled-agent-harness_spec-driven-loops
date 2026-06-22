@@ -36,7 +36,7 @@
       "coverage"
     ],
     "importance_tier": "important",
-    "status": "planned_(ready_to_execute)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced **identical retrieval metrics to three sig figs**:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-06-05T12:47:33.834Z",
+    "last_save_at": "2026-06-22T18:55:02.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+  "description": "Feature Specification: MCP Session + Index + Schema/Entrypoint Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "session",
+    "index",
+    "schema",
+    "entrypoint",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.952Z",
+  "specId": "003",
+  "folderSlug": "mcp-session-index-schema",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

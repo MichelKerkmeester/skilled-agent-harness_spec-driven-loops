@@ -34,7 +34,7 @@
       "service"
     ],
     "importance_tier": "important",
-    "status": "implemented_(node_check_+_7_vitest_green;_review_clean;_not_yet_wired_in)",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/hf-model-server.cjs",
       "mcp_server/tests/embedders/hf-model-server.vitest.ts",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This is **Phase 2 of 6** of the embedding-consolidation and hf-local-server decomposition: Add a hand-written CommonJS local HTTP/UDS model server that wraps the existing transformers load path and exposes ollama-shaped /api/embed plus /api/health endpoints.",
     "created_at": "2026-05-29T05:06:24.637Z",
-    "last_save_at": "2026-06-05T12:47:33.927Z",
+    "last_save_at": "2026-06-22T18:55:02.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

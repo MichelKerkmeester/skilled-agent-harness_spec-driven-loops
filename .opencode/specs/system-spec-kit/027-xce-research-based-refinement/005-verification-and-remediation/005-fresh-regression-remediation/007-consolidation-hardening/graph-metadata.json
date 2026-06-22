@@ -32,7 +32,7 @@
       "regression"
     ],
     "importance_tier": "important",
-    "status": "implemented_and_test_gated_(live_activation_deferred_to_a_separate_dist_rebuild_+_recycle)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "These two findings were surfaced by the 027 fresh+regression deep-review (`../../review/fresh-regression-75/`) in sub-phase 001 and deferred there because they require a structural refactor of the exported consolidation cycle on a **default-ON path** — disproportionate to fold into a broad sweep, warranting a dedicated packet with its own concurrency gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T17:00:43.966Z",
+    "last_save_at": "2026-06-22T18:55:03.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

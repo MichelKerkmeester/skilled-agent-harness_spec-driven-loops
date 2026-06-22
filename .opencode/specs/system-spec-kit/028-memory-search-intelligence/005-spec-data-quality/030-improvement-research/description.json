@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
   "description": "Spec: 005 Post-Benchmark Improvement Research",
   "keywords": [
     "spec",
@@ -8,17 +9,14 @@
     "improvement",
     "research"
   ],
-  "lastUpdated": "2026-06-22T15:45:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.833Z",
   "specId": "030",
   "folderSlug": "improvement-research",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

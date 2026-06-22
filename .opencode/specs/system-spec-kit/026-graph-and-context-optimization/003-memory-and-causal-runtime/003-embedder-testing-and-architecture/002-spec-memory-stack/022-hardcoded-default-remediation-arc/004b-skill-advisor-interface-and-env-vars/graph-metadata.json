@@ -1,42 +1,207 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "new-phase-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation", "reason": "Wave 1 prerequisite"}
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research", "reason": "closes 9 P1 + 2 P2 from f-iter004-015..025"}
-    ]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["022/004b skill-advisor interface env-vars", "prompt-policy JSON config", "resolvedConfidenceThreshold"],
-    "key_topics": ["skill-advisor", "RoutingCalibration", "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD", "SPECKIT_ADVISOR_PROMPT_POLICY_PATH", "prompt-policy.default.json", "resolvedConfidenceThreshold", "resolvedUncertaintyThreshold"],
+    "trigger_phrases": [
+      "022/004b skill-advisor interface env-vars",
+      "prompt-policy JSON config",
+      "022/004b plan",
+      "022/004b tasks",
+      "022/004b checklist",
+      "022/004b shipped"
+    ],
+    "key_topics": [
+      "022",
+      "004b",
+      "skill-advisor",
+      "interface",
+      "env-vars",
+      "prompt-policy",
+      "json",
+      "config",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped"
+    ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {"name": "resolvedConfidenceThreshold", "kind": "function", "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts", "source": "derived"},
-      {"name": "RoutingCalibration", "kind": "interface", "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts", "source": "derived"}
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Interface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PID",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "HALT-on-failure-per-wave",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bundle Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "HALT-on-failure",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PRE-IMPLEMENTATION",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. CODE QUALITY",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 004b dispatched via cli-opencode + deepseek-v4-pro atomic 3-wave. Wave 2 expanded RoutingCalibration; Wave 3 added 3 env vars + resolved* helpers; Wave 4 externalized prompt-policy to JSON + 5 env vars. SPECKIT_ADVISOR_LANE_WEIGHTS_JSON skipped (lane-registry has no extension point — deferred). 9 P1 + 2 P2 closed. Bundle gate PASS.",
+    "causal_summary": "Phase 004a closed the 14 P0 inline-literal consolidation. Phase 004b closes the remaining 11 audit findings (9 P1 + 2 P2) via 3 waves:",
     "created_at": "2026-05-23T18:00:00.000000Z",
-    "last_save_at": "2026-05-23T18:00:00.000000Z",
-    "save_lineage": "new-phase-scaffolding",
+    "last_save_at": "2026-06-22T18:55:02.353Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

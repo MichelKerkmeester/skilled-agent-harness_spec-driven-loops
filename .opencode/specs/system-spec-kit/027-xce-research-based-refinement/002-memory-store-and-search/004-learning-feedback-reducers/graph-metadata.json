@@ -39,7 +39,7 @@
       "consume"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -89,7 +89,7 @@
     ],
     "causal_summary": "Phase 005 coordinates the learning feedback reducers that consume existing feedback signals after Phase 002 has landed the required correctness preconditions. The parent holds no implementation tasks itself; it routes work into four child packets with explicit dependency order and shadow-to-live safety gates.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-06-07T09:00:47.193Z",
+    "last_save_at": "2026-06-22T18:56:37.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,7 +41,7 @@
       "orphan"
     ],
     "importance_tier": "important",
-    "status": "shipped_&_deployed_—_phases_1_3_merged_2026_05_31_(sc1_sc5_met);_phase_4_council_follow_up_shipped_2026_06_01_(active_row_uniqueness_guard_+_multi_tenant_scope_isolation,_commit_`942ad78d9c`,_schema_v28)._follow_up_detail_in_`handover.md`_§6_8_+_`implementation_summary.md`.",
+    "status": "in_progress",
     "key_files": [
       "handover.md",
       "ai-council/council-report-followups-mcp-stability.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Implement the **self-maintaining index** design that the 012 deep-research packet converged on (research.md §6): `memory_index_scan` becomes an **idempotent, coalescing, phased async scan job** that always commits lexical rows first, drains vectors in the background without ever failing the scan on embedder trouble, and self-heals moves/orphans behind a `memory_health.index` freshness surface. The 30s cooldown stays but becomes an internal worker-start guard, never a caller-visible error. Almost every building block already exists (async/deferred embedding path, `embedder_status` job model, atomic claim-by-update, batch chunking, two circuit breakers) — the work is mostly composition and contract change.",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.961Z",
+    "last_save_at": "2026-06-22T18:55:02.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

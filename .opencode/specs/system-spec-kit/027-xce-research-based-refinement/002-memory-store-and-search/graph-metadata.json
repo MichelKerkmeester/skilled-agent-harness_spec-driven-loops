@@ -23,7 +23,8 @@
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-background-embedding",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases"
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation"
   ],
   "manual": {
     "depends_on": [],
@@ -54,7 +55,7 @@
       "vector"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -104,7 +105,7 @@
     ],
     "causal_summary": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger matching, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, and vector/BM25 search resilience. These share the memory subsystem and a single deployment doctrine (results-affecting features default-off, protections always-on), so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-06-22T18:56:37.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

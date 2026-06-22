@@ -36,7 +36,7 @@
       "scoped"
     ],
     "importance_tier": "important",
-    "status": "complete_(shipped_2026_05_13_in_42aa114e3)",
+    "status": "complete",
     "key_files": [
       ".claude/mcp.json",
       ".codex/config.toml",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This packet is the scoped remediation layer. It does not rotate leaked PATs, touch live daemons, or fork 027 work.",
     "created_at": "2026-05-13T08:30:00Z",
-    "last_save_at": "2026-06-05T12:47:33.535Z",
+    "last_save_at": "2026-06-22T18:55:02.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T08:30:00Z",
     "source_docs": [

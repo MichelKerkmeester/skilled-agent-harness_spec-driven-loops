@@ -39,7 +39,7 @@
       "22-scenario"
     ],
     "importance_tier": "important",
-    "status": "complete_—_validation_conditional_pass_(16/2/4);_after_remediation_(phases_004_008)_all_findings_fixed_(f_019_1,_f_025_1,_f_runtime_2,_f_011_1,_f_020_1,_f_021_1,_f_022_1)",
+    "status": "planned",
     "key_files": [
       ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md"
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manual_testing_playbook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detect_changes, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook. These scenarios have no captured, dated operator run on record. Release readiness cannot be asserted without one.",
     "created_at": "2026-05-26T19:43:14.031Z",
-    "last_save_at": "2026-06-05T12:47:34.172Z",
+    "last_save_at": "2026-06-22T18:56:37.016Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

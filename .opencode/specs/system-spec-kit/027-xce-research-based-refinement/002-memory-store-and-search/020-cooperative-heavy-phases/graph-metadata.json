@@ -16,15 +16,15 @@
       "cooperative heavy phases daemon responsiveness",
       "event loop lag instrumentation reindex scan",
       "trigger embedding backfill chunk and yield",
-      "027 002/020",
+      "027 002/021",
       "cooperative heavy phases plan",
       "event loop lag sampler trigger backfill chunk plan",
-      "027 002/020 plan",
+      "027 002/021 plan",
       "cooperative heavy phases tasks",
-      "027 002/020 tasks",
+      "027 002/021 tasks",
       "cooperative heavy phases shipped",
       "event loop lag sampler trigger backfill chunk shipped",
-      "027 002/020 shipped"
+      "027 002/021 shipped"
     ],
     "key_topics": [
       "cooperative",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "This phase is the direct follow-on to 020. 018 made the reindex scan cancellable and added cooperative `setImmediate` yields to its two big tail loops. 019 wrote a `.maintenance-active.json` marker so a competing launcher adopts a busy daemon instead of reaping it. 020 extended that marker to the post-scan background-embedding queue. 020's own limitation closes the loop being opened here: *\"The marker makes the daemon un-reaped while busy, it does not make it responsive.\"* A daemon whose event loop is blocked can neither answer a competing launcher's probe/bridge nor fire the marker's 20s self-refresh timer; if a single synchronous phase blocks longer than the 180s TTL, the marker goes stale and a second daemon spawns anyway. 020 noted the longest blocking tail phase observed (~79s) but never pinned which phase it was.",
     "created_at": "2026-06-17T17:15:00.000Z",
-    "last_save_at": "2026-06-17T19:57:25.114Z",
+    "last_save_at": "2026-06-22T18:55:03.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

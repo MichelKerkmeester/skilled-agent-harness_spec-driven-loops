@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark, or shared-infra gates.",
+    "causal_summary": "This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query) and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark or shared-infra gates.",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-06-21T07:23:18.807Z",
+    "last_save_at": "2026-06-22T18:55:03.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

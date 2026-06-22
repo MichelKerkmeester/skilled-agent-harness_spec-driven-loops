@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
   "description": "Feature Specification: Signal Extraction",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "signal",
     "extraction"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.416Z",
+  "lastUpdated": "2026-06-22T18:55:04.368Z",
   "specId": "008",
   "folderSlug": "signal-extraction",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

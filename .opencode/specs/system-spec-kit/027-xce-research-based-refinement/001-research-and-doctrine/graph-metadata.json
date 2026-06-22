@@ -35,7 +35,7 @@
       "templates"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -85,7 +85,7 @@
     ],
     "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces. These adoptions share a research provenance and a process-quality target, so they belong under one themed parent that points to the per-source child phases.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-06-22T18:56:37.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

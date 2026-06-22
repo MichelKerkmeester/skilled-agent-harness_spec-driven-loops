@@ -10,11 +10,13 @@
     "model",
     "server"
   ],
-  "lastUpdated": "2026-05-29T05:07:32.709Z",
-  "specId": "029",
+  "lastUpdated": "2026-06-22T18:55:02.594Z",
+  "specId": "010",
   "folderSlug": "embedding-consolidation-hf-local-server",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

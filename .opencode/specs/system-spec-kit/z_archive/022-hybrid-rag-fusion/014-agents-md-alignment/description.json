@@ -1,15 +1,16 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/014-agents-md-alignment",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/014-agents-md-alignment",
   "description": "Specification: 014-agents-md-alignment",
   "keywords": [
     "specification",
     "014-agents-md-alignment"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.518Z",
+  "lastUpdated": "2026-06-22T18:55:04.438Z",
   "specId": "014",
   "folderSlug": "agents-md-alignment",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 1,

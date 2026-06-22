@@ -13,47 +13,106 @@
     "trigger_phrases": [
       "envelope fidelity enforcement",
       "mandatory render slots verdict",
-      "requestQuality citationPolicy render slots",
       "post render envelope fidelity check",
       "pre rendered verdict fragment",
-      "envelope fidelity enforcement plan",
-      "render mandate fidelity check fragment plan",
-      "default off render mandate plan",
-      "envelope fidelity enforcement tasks",
-      "render slot reclassify tasks",
-      "envelope fidelity enforcement checklist",
-      "envelope fidelity enforcement summary"
+      "requestQuality citationPolicy render"
     ],
     "key_topics": [
       "envelope",
       "fidelity",
       "enforcement",
+      "mandatory",
       "render",
       "slots",
-      "requestquality",
-      "citationpolicy",
       "verdict",
-      "fragment",
-      "grandfather",
-      "default-off",
-      "search"
+      "post",
+      "check",
+      "pre",
+      "rendered",
+      "fragment"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/assets/search_presentation.txt",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "handlers/memory-search.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/search.md",
-      ".opencode/commands/memory/assets/search_presentation.txt",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "search_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/memory/assets/search_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-envelope-fidelity.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "envelope-fidelity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,55 +144,13 @@
         "source": "derived"
       },
       {
-        "name": "search.md",
-        "kind": "file",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "search_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/memory/assets/search_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-envelope-fidelity.mjs",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "envelope-fidelity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Envelope Fidelity Enforcement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Packet",
+        "name": "Fidelity Enforcement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,6 +168,18 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -163,33 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Affected Surfaces",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase hardens soft spot B, envelope fidelity, the robustness gap the 029 benchmark surfaced alongside the off-corpus false-positive. The memory-search tool always ships the requestQuality and citationPolicy verdict on a non-empty result and the verdict is correct, but the render contract lets a weaker model drop the two fields, so the verdict is model-dependently absent. The phase reclassifies the fields to conditionally-mandatory render slots, adds a deterministic post-render fidelity check that replays the tool verdict against the rendered block, and emits a pre-rendered verdict fragment so the model pastes rather than transcribes. Every behavioral change ships behind a default-OFF flag or a grandfather report mode because the existing renders carry the looser absence-is-valid contract the new mandate rejects, so enforcement graduates only after a clean grandfather report.",
+    "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity. The memory-search tool always computes and ships `requestQuality` and `citationPolicy` on a non-empty result, the verdict itself is correct, but the command render contract lets a weaker model drop the two fields from the rendered block. The benchmark scored fidelity from rendered prose and the cross-model disagreements were null omissions rather than conflicts, so the field is model-dependently absent. The research verified this against the live code. The verdict is computed and shipped at `handlers/memory-search.ts:1325-1327` and the field is presence-gated by `isResultConfidenceEnabled`, so the contract is mandatory-when-enabled (`benchmark-results.md:79`). The render contract names `requestQuality` and `citationPolicy` as the only sanctioned extras but states their absence is valid (`commands/memory/search.md:76`, `:144`), and the presentation asset lists them as optional trailing fields (`assets/search_presentation.txt:103`, `:110-111`). The net effect is that a reader of a weak-model render cannot tell whether the verdict was withheld or simply dropped, so the correct verdict is robust only when a strong model renders it.",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-06-22T18:55:03.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

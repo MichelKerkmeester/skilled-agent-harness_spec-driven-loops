@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
   "description": "Feature Specification: Shutdown Durability for Forwarded Launcher Signals",
   "keywords": [
     "feature",
@@ -10,17 +11,14 @@
     "launcher",
     "signals"
   ],
-  "lastUpdated": "2026-05-29T13:03:58.864Z",
+  "lastUpdated": "2026-06-22T18:55:02.989Z",
   "specId": "009",
   "folderSlug": "shutdown-durability",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

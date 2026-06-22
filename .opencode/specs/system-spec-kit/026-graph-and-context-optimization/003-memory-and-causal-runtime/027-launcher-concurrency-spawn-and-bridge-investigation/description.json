@@ -1,5 +1,5 @@
 {
-  "specFolder": "027-launcher-concurrency-spawn-and-bridge-investigation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
   "description": "Feature Specification: Launcher Concurrency Spawn & Bridge Investigation (deep-research)",
   "keywords": [
     "feature",
@@ -11,13 +11,10 @@
     "investigation",
     "deep-research"
   ],
-  "lastUpdated": "2026-06-04T18:16:47.573Z",
+  "lastUpdated": "2026-06-22T18:55:02.729Z",
   "specId": "027",
   "folderSlug": "launcher-concurrency-spawn-and-bridge-investigation",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"

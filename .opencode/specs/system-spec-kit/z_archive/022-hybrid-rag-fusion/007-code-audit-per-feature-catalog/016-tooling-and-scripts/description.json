@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
   "description": "Feature Specification: Code Audit — Tooling and Scripts",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "tooling",
     "scripts"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.287Z",
+  "lastUpdated": "2026-06-22T18:55:04.273Z",
   "specId": "016",
   "folderSlug": "tooling-and-scripts",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"
   ],

@@ -37,7 +37,7 @@
       "fan-out"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "shared/algorithms/rrf-fusion.ts",
       "spec.md",
@@ -96,9 +96,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1, and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split, and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding, and an explicit verification contract.",
+    "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding and an explicit verification contract.",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.861Z",
+    "last_save_at": "2026-06-22T18:56:37.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -22,16 +22,13 @@
     "audit"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
-  "description": "Automates npm audit detection and lockfile-only remediation for OpenCode skill package roots.",
+  "description": "Autonomous Dependency Patching",
   "keywords": [
     "autonomous",
     "dependency",
-    "patching",
-    "security",
-    "lockfile",
-    "npm"
+    "patching"
   ],
-  "lastUpdated": "2026-06-11T09:31:18.346Z",
+  "lastUpdated": "2026-06-22T18:55:03.463Z",
   "specId": "005",
   "folderSlug": "autonomous-dependency-patching",
   "parentChain": [

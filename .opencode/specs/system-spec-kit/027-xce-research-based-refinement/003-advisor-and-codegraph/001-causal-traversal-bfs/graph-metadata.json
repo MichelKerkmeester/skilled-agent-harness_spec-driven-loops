@@ -41,6 +41,7 @@
       "mcp_server/lib/storage/memo.ts",
       "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
       "mcp_server/lib/storage/canonical-fingerprint.ts",
+      "lib/graph/bfs-traversal.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies. getNeighborBoosts (lib/search/causal-boost.ts:431) recurses with ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id, which prevents single-index use on every hop; the live graph measured 10,240 causal edges with max degree 22, so an indexed two-query-per-hop BFS is estimated at 0.5-2ms - at or below the CTE. collectDependents (lib/storage/memo.ts:192) runs an unbounded recursive CTE and wouldCreateCycle fires per insert, yet dependency_edges and memoization_records both held zero rows when measured (2026-06-10). Source evidence: z_future/sqlite-to-turso research.md gap 6 and 004 - gap-alternatives.md section 4.",
     "created_at": "2026-06-10T17:48:32Z",
-    "last_save_at": "2026-06-10T19:22:14.994Z",
+    "last_save_at": "2026-06-22T18:55:03.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

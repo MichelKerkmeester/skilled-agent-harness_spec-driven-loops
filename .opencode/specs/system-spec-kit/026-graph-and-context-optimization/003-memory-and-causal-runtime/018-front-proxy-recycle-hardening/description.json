@@ -6,11 +6,10 @@
     "feature",
     "specification",
     "front-proxy",
-    "launcher",
-    "cold-start",
-    "daemon-recycle"
+    "recycle",
+    "hardening"
   ],
-  "lastUpdated": "2026-06-04T09:45:55.207Z",
+  "lastUpdated": "2026-06-22T18:55:02.701Z",
   "specId": "018",
   "folderSlug": "front-proxy-recycle-hardening",
   "parentChain": [

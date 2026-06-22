@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
   "description": "Feature Specification: Parser Quarantine Recovery (029 Phase 006)",
   "keywords": [
     "feature",
@@ -11,12 +11,10 @@
     "phase",
     "006"
   ],
-  "lastUpdated": "2026-05-28T06:13:47.876Z",
+  "lastUpdated": "2026-06-22T18:55:02.874Z",
   "specId": "006",
   "folderSlug": "parser-quarantine-recovery",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "004-code-graph",

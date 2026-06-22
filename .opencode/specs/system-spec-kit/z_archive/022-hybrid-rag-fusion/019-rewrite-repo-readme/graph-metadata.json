@@ -39,7 +39,7 @@
       "822"
     ],
     "importance_tier": "important",
-    "status": "complete_(2026_03_25)",
+    "status": "complete",
     "key_files": [
       "scratch/research-brief.md",
       "spec.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The root README (`README.md`, ~822 lines) was previously rewritten but uses flat technical prose without the two-tier voice (narrative analogies + reference tables) established in the MCP server README (016) and Spec Kit README (018). It undercounts MCP tools (40 vs actual 42), lacks power-feature highlights from the 222-entry feature catalog, and does not match the formatting patterns (numbered subsections, dividers, comparison tables) of its sibling READMEs.",
     "created_at": "2026-04-12T09:02:50.309Z",
-    "last_save_at": "2026-06-05T12:47:34.893Z",
+    "last_save_at": "2026-06-22T18:55:04.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

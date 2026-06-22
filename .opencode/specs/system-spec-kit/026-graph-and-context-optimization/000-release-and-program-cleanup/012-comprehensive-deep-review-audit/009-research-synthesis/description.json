@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "description": "Research Charter: Root-Cause Synthesis of the system-spec-kit / 026 Deep-Review Audit",
+  "keywords": [
+    "research",
+    "charter",
+    "root-cause",
+    "synthesis",
+    "system-spec-kit",
+    "026",
+    "deep-review",
+    "audit"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.978Z",
+  "specId": "009",
+  "folderSlug": "research-synthesis",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

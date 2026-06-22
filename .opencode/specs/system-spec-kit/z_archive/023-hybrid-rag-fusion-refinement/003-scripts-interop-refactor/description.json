@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor",
   "description": "Feature Specification: Scripts Interop Refactor",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "interop",
     "refactor"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.686Z",
+  "lastUpdated": "2026-06-22T18:55:04.623Z",
   "specId": "003",
   "folderSlug": "scripts-interop-refactor",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],
   "memorySequence": 0,

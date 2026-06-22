@@ -35,7 +35,7 @@
       "package"
     ],
     "importance_tier": "important",
-    "status": "pending_(gated_by_001_synthesis_+_004_completion)",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines troubleshooting, no daemon lease contract, no skill-graph drift reconciliation guide, and the hook-reference link is broken because the canonical file lives in system-spec-kit. HVR compliance also needs a sweep after all 004 alignment edits.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.283Z",
+    "last_save_at": "2026-06-22T18:55:02.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,7 +41,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned_—_research_not_yet_started",
+    "status": "complete",
     "key_files": [
       "applied/B1.md",
       "applied/B2.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Both the Code Graph subsystem and the Skill Advisor system have matured independently, but no systematic investigation has been conducted into their combined correctness, performance boundaries, and UX consistency. This research phase uses 20 deep-research iterations to produce actionable, evidence-based recommendations across both systems so that a follow-up implementation phase can make targeted improvements with confidence rather than guesswork.",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.074Z",
+    "last_save_at": "2026-06-22T18:55:02.789Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

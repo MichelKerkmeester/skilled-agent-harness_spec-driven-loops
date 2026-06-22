@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
   "description": "Feature Specification: blast_radius includeTransitive Flag Fix (029 Phase 008)",
   "keywords": [
     "feature",
@@ -11,12 +11,10 @@
     "phase",
     "008"
   ],
-  "lastUpdated": "2026-05-28T06:13:48.341Z",
+  "lastUpdated": "2026-06-22T18:55:02.884Z",
   "specId": "008",
   "folderSlug": "blast-radius-transitive-flag",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "004-code-graph",

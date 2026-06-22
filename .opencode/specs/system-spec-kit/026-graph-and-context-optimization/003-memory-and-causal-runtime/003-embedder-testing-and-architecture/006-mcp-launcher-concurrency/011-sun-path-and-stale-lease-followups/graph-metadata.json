@@ -41,7 +41,7 @@
       "mk-code-index"
     ],
     "importance_tier": "important",
-    "status": "complete_(core_fix_shipped);_1_follow_on_advisory_open",
+    "status": "complete",
     "key_files": [
       ".codex/config.toml",
       "plan.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two post-010 MCP startup failures observed on macOS, plus the workaround applied and the one outstanding robustness gap that should follow.",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-06-05T12:47:33.788Z",
+    "last_save_at": "2026-06-22T18:55:02.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,7 +37,7 @@
       "currently"
     ],
     "importance_tier": "important",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/feedback/feedback-retention-reducer.ts",
       "mcp_server/lib/feedback/edge-tier-basement.ts",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Retention currently follows rule-based TTL behavior. This child adds a feedback-aware retention reducer that can return `delete`, `extend`, or `protect` decisions while keeping constitutional/critical protection narrow and auditable.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-10T19:22:14.947Z",
+    "last_save_at": "2026-06-22T18:55:03.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

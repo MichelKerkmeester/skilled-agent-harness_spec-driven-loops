@@ -3,6 +3,7 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/002-ai-output-command-vs-conversation",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/002-ai-output-command-vs-conversation",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research",
+  "parent_id_review_required": true,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the Deep research child loop specification.",
     "created_at": "2026-06-17T19:57:25.099Z",
-    "last_save_at": "2026-06-17T19:57:25.099Z",
+    "last_save_at": "2026-06-22T18:55:03.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,7 @@
       "observability"
     ],
     "importance_tier": "important",
-    "status": "complete_—_all_5_phases_shipped_+_committed_(2026_05_29);_flag_flip_+_live_perf/dtype_numbers_gated_on_a_working_onnxruntime_tree",
+    "status": "planned",
     "key_files": [
       "shared/embeddings/auto-select.ts",
       "shared/embeddings/providers/hf-local.ts",
@@ -132,7 +132,7 @@
     ],
     "causal_summary": "The local embedding stack does not yet deliver its zero-install promise end to end. The hf-local selector probe gates selection on a Python import that the pure-Node server never satisfies, so fresh Node-only machines reject hf-local and fall through to an error or cloud egress. The two launchers resolve different sockets under shipped config, so the single-owner cross-launcher machinery never fires. Beyond those two gaps, the server can wedge while loading without being reaped, a hung native run keeps reporting healthy, crash loops can spawn-storm, disk-full breaks launcher writes, operators have no read-only view of embedder state, model switches are unsafe, cold-start timeouts are mismatched, the embed path is uninstrumented, reindex issues one POST per row, and the cross-launcher residency has never been validated live.",
     "created_at": "2026-05-29T11:22:57.361Z",
-    "last_save_at": "2026-06-05T12:47:33.934Z",
+    "last_save_at": "2026-06-22T18:56:36.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,7 +41,7 @@
       "f-018"
     ],
     "importance_tier": "critical",
-    "status": "blocked_on_global_verification",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "tests/context-server.vitest.ts",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets. These findings affect read-path operator diagnostics, guarded freshness recovery, verify scope evidence, hook documentation parity, advisor staleness repair, CocoIndex seed interop, and scope fingerprints for scan glob arguments.",
     "created_at": "2026-05-18T08:15:53.451Z",
-    "last_save_at": "2026-06-08T17:32:21.260Z",
+    "last_save_at": "2026-06-22T18:55:02.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

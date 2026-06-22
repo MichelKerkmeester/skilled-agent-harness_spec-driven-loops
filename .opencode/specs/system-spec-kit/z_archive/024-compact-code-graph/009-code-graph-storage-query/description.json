@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/009-code-graph-storage-query",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/009-code-graph-storage-query",
   "description": "Phase 009: Code Graph Storage + Query",
   "keywords": [
     "phase",
@@ -9,11 +9,12 @@
     "storage",
     "query"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.534Z",
+  "lastUpdated": "2026-06-22T18:55:04.705Z",
   "specId": "009",
   "folderSlug": "code-graph-storage-query",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

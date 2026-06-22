@@ -41,7 +41,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress_(code_shipped;_benchmark_deferred_pending_ground_truth_queries)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       "scratch/fp32-vs-q4-similarity.mjs",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call. This forces the largest model variant (~620MB RAM for EmbeddingGemma-300m). The HF cache from 002 contains all dtype variants of the model — `model.onnx` (fp32, default), `model_fp16.onnx`, `model_q4.onnx`, `model_q4f16.onnx`, `model_quantized.onnx` — but the code path never reaches them. RAM and cold-load time are both higher than they need to be.",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-06-05T12:47:33.521Z",
+    "last_save_at": "2026-06-22T18:55:02.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T21:40:00Z",
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
   "description": "Feature Specification: Code Audit — Maintenance",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "audit",
     "maintenance"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.232Z",
+  "lastUpdated": "2026-06-22T18:55:04.211Z",
   "specId": "004",
   "folderSlug": "maintenance",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"
   ],

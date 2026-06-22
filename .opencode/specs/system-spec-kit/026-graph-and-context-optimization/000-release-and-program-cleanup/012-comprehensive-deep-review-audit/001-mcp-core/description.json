@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "description": "Feature Specification: MCP Memory Mutation + Save + Reconcile Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "memory",
+    "mutation",
+    "save",
+    "reconcile",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.942Z",
+  "specId": "001",
+  "folderSlug": "mcp-core",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

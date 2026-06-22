@@ -14,15 +14,15 @@
       "reindex scan responsiveness cancellation",
       "memory_index_scan event loop starvation",
       "background scan uncancellable wedge",
-      "027 002/017",
+      "027 002/018",
       "reindex scan responsiveness plan",
       "memory_index_scan yield cancel plan",
-      "027 002/017 plan",
+      "027 002/018 plan",
       "reindex scan responsiveness tasks",
-      "027 002/017 tasks",
+      "027 002/018 tasks",
       "reindex scan responsiveness summary",
       "memory_index_scan tail loop yield cancel",
-      "027 002/017 shipped"
+      "027 002/018 shipped"
     ],
     "key_topics": [
       "reindex",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This phase came out of a live incident while deploying the 017 search work. A `memory_index_scan` with `{force:true, background:true}` was run to repair a `degraded` index. It pegged the daemon's single-thread event loop for over an hour, during which every IPC call timed out and the scan could not be cancelled, so the daemon had to be SIGKILLed.",
     "created_at": "2026-06-17T12:03:13.967Z",
-    "last_save_at": "2026-06-17T12:03:13.967Z",
+    "last_save_at": "2026-06-22T18:55:03.371Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

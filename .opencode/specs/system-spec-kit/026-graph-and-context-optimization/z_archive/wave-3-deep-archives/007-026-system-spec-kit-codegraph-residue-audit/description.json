@@ -1,23 +1,29 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
-  "description": "System Spec Kit Codegraph Residue Audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit",
+  "description": "Feature Specification: System Spec Kit Codegraph Residue Audit + Install/Doctor Coverage (Phase 2)",
   "keywords": [
-    "system-spec-kit",
+    "feature",
+    "specification",
+    "system",
+    "spec",
+    "kit",
     "codegraph",
-    "code-graph",
     "residue",
     "audit",
-    "system-code-graph"
+    "install",
+    "doctor",
+    "coverage",
+    "phase"
   ],
-  "lastUpdated": "2026-05-15T14:05:48.084Z",
-  "specId": "012",
-  "folderSlug": "system-spec-kit-codegraph-residue-audit",
+  "lastUpdated": "2026-06-22T18:55:03.153Z",
+  "specId": "007",
+  "folderSlug": "026-system-spec-kit-codegraph-residue-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

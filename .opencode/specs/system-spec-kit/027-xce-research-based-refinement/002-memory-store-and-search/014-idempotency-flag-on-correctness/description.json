@@ -6,13 +6,10 @@
     "feature",
     "specification",
     "idempotency",
-    "memory",
-    "receipts",
-    "replay",
-    "conflict",
-    "SPECKIT_MEMORY_IDEMPOTENCY"
+    "flag-on",
+    "correctness"
   ],
-  "lastUpdated": "2026-06-11T12:35:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.347Z",
   "specId": "014",
   "folderSlug": "idempotency-flag-on-correctness",
   "parentChain": [

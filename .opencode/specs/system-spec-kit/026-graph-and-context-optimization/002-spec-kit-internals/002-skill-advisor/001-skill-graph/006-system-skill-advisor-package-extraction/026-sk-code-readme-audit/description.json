@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
+  "description": "Feature Specification: sk-code compliance and code README coverage audit",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code",
+    "compliance",
+    "code",
+    "readme",
+    "coverage",
+    "audit"
+  ],
+  "lastUpdated": "2026-06-22T18:55:02.072Z",
+  "specId": "026",
+  "folderSlug": "sk-code-readme-audit",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "001-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

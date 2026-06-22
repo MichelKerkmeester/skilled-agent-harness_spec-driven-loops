@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection",
   "description": "Feature Specification: Contamination Detection",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "contamination",
     "detection"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.390Z",
+  "lastUpdated": "2026-06-22T18:55:04.341Z",
   "specId": "002",
   "folderSlug": "contamination-detection",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

@@ -15,7 +15,14 @@
       "quality threshold",
       "report only ticket",
       "freshness queue",
-      "description governance block"
+      "description governance block",
+      "per doc quality sla plan",
+      "quality threshold plan",
+      "sla evaluator",
+      "host queue dependency",
+      "per doc quality sla tasks",
+      "sla task breakdown",
+      "per doc quality sla checklist"
     ],
     "key_topics": [
       "per",
@@ -35,7 +42,12 @@
     "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -48,6 +60,36 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -85,15 +127,85 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time. The pure scorer `computeMemoryQualityScore` ships and runs on the live save path (`quality-loop.ts:392`). The governance fields that describe a doc (provenance, source_kind, document-weight, content_type, temporal and freshness governance) are already computed on the memory side at `pe-gating.ts` and `write-provenance.ts`. What is missing is a named threshold that says this score is below an acceptable level for this surface and that turns that fact into a tracked actionable item. Today a doc whose quality drifts below a reasonable bar is silently acceptable. There is no SLA and no ticket and no queue entry, so quality regression on an authored doc is invisible until someone reads it again.",
     "created_at": "2026-06-21T10:22:34.993Z",
-    "last_save_at": "2026-06-21T10:22:34.993Z",
+    "last_save_at": "2026-06-22T18:55:03.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

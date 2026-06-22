@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
   "description": "Feature Specification: Data Fidelity",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "data",
     "fidelity"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.394Z",
+  "lastUpdated": "2026-06-22T18:55:04.351Z",
   "specId": "003",
   "folderSlug": "data-fidelity",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

@@ -37,7 +37,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/feedback/session-trace-causal-reducer.ts",
       "spec.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Session traces already record `search_shown` and `result_cited` events, but those signals are never converted into weak causal edges. This child adds a deferred reducer that infers bounded `ENABLED(A -> B)` edges from same-session evidence.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-10T19:22:14.946Z",
+    "last_save_at": "2026-06-22T18:55:03.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/011-scoring-and-calibration",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/011-scoring-and-calibration",
   "description": "Feature Specification: scoring-and-calibration manual testing",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "manual",
     "testing"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.572Z",
+  "lastUpdated": "2026-06-22T18:55:04.495Z",
   "specId": "011",
   "folderSlug": "scoring-and-calibration",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

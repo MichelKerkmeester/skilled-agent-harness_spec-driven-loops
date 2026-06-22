@@ -36,7 +36,7 @@
       "2-system-spec-kit"
     ],
     "importance_tier": "important",
-    "status": "planning",
+    "status": "planned",
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
@@ -155,7 +155,7 @@
     ],
     "causal_summary": "Current implementation has 3 context mechanisms:",
     "created_at": "2026-04-12T09:02:53.514Z",
-    "last_save_at": "2026-06-05T12:47:34.426Z",
+    "last_save_at": "2026-06-22T18:56:37.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

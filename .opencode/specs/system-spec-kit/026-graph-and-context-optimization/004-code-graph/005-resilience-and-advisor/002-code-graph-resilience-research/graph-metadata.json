@@ -41,7 +41,7 @@
       "record"
     ],
     "importance_tier": "important",
-    "status": "research_queued",
+    "status": "complete",
     "key_files": [
       "assets/code-graph-gold-queries.json",
       "assets/staleness-model.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The code graph index has three observable failure modes today:",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.079Z",
+    "last_save_at": "2026-06-22T18:55:02.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

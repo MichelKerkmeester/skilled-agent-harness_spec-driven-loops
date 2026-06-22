@@ -21,35 +21,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
+      "search and output intelligence",
+      "027 002/016",
+      "memory search intelligence",
+      "ai output command vs conversation",
+      "retrieval gating calibration",
+      "memory search output parity",
       "implementation",
       "plan",
+      "name",
+      "template",
       "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "tasks"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary",
-      "impl",
-      "phase"
+      "search",
+      "output",
+      "intelligence",
+      "027",
+      "002",
+      "016",
+      "memory",
+      "command",
+      "conversation",
+      "retrieval",
+      "gating",
+      "calibration"
     ],
     "importance_tier": "normal",
-    "status": "phase_parent",
+    "status": "complete",
     "key_files": [
       "spec.md",
       ".opencode/commands/memory/search.md",
@@ -95,6 +95,12 @@
         "source": "derived"
       },
       {
+        "name": "Output Intelligence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -114,12 +120,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement After",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 17** of the search-and-output-intelligence work: implementing the prioritized findings from the 016 deep-research (KQ1–KQ5 + recommendations #1–#7) via fresh claude2 Opus agents, one phase child per finding.",
+    "causal_summary": "This phase unifies the search-and-output-intelligence work: the deep-research lives in `research/` (the search-intelligence and AI-output-command-vs-conversation studies) and its implementation is delivered across the seven child phases — the prioritized findings (KQ1–KQ5 + recommendations #1–#7) from that research, one child per finding.",
     "created_at": "2026-06-17T19:57:25.100Z",
-    "last_save_at": "2026-06-18T12:37:50.220Z",
+    "last_save_at": "2026-06-22T18:55:03.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

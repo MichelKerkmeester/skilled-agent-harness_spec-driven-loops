@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision",
   "description": "Feature Specification: Server liveness + supervision hardening",
   "keywords": [
     "feature",
@@ -9,16 +10,15 @@
     "supervision",
     "hardening"
   ],
-  "lastUpdated": "2026-05-29T11:46:56Z",
+  "lastUpdated": "2026-06-22T18:55:02.640Z",
   "specId": "002",
   "folderSlug": "server-liveness-supervision",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
-    "031-embedding-stack-hardening"
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "011-embedding-stack-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

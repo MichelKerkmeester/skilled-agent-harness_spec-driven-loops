@@ -37,7 +37,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress_(settings_shipped;_clean_rebuild_in_flight)",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Cocoindex's `DEFAULT_INCLUDED_PATTERNS` (and the project-level `.cocoindex_code/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`. The result on this codebase: 45% of the index is non-code content. Worse, the 4-runtime skill mirror (Public has filesystem-level copies of every skill under `.opencode/skills/`, `.gemini/skills/`, `.claude/skills/`, `.codex/skills/`) means every SKILL.md / reference / playbook gets indexed 4 times. Cocoindex code search returns near-duplicate documentation hits where actual code matches should win.",
     "created_at": "2026-05-13T06:50:00Z",
-    "last_save_at": "2026-06-05T12:47:33.531Z",
+    "last_save_at": "2026-06-22T18:55:02.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T06:55:00Z",
     "source_docs": [

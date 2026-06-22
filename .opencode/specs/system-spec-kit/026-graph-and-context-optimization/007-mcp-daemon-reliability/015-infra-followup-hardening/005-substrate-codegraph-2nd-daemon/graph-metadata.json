@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "completed_(2026_05_31)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Two defects compounded in `run-substrate-stress-harness.mjs`. First, packet 002 corrected scenarios 403/404/407 to call `mcp__mk_code_index__code_graph_context`, but the runner only ever connected the `mk-spec-memory` daemon — `selectClientForServer` returned `null` for `mk_code_index`, so those scenarios SKIPped and never exercised the code-graph path. Second, the runner spawned its daemons WITHOUT a short `SPECKIT_IPC_SOCKET_DIR`, so each daemon's `context-server` tried to `listen()` on its in-`database/daemon-ipc.sock` path (~134 chars from this repo root) → `EINVAL` (exceeds the ~104-byte macOS `sun_path` limit) → child died → `runner:mk-spec-memory=FAIL` → all scenarios SKIP → the vitest FAILED. The suite was therefore RED by default on this operator's deep checkout (it only passed when a caller exported a short socket dir by hand).",
     "created_at": "2026-05-31T05:02:01.763Z",
-    "last_save_at": "2026-06-05T12:47:34.307Z",
+    "last_save_at": "2026-06-22T18:55:03.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

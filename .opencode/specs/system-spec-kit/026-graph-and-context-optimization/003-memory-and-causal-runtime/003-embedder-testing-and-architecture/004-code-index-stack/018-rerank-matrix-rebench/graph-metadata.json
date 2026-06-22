@@ -41,7 +41,7 @@
       "jina-v3"
     ],
     "importance_tier": "important",
-    "status": "complete_(2026_05_19)_—_jina_reranker_v3_locked_as_production_default_(14/18_vs_bge_12/18_vs_bge+path_class_13/18)._bge_retained_as_opt_in_via_env_override._adr_021_documents_4_lane_verdict;_lane_a_no_rerank_ablation_deferred_to_follow_on_(32_sec/probe_timeout_bug_in_dispatch)._arc_closed.",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 011 deep-research originally concluded: \"jina-reranker-v3 looks best (+38 NDCG@10 in public benchmarks)\". But:",
     "created_at": "2026-05-19T15:29:56.011Z",
-    "last_save_at": "2026-06-05T12:47:33.729Z",
+    "last_save_at": "2026-06-22T18:55:02.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

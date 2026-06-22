@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/003-graph-augmented-retrieval",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/003-graph-augmented-retrieval",
   "description": "Feature Specification: Graph-Augmented Retrieval",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "graph-augmented",
     "retrieval"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.177Z",
+  "lastUpdated": "2026-06-22T18:55:04.165Z",
   "specId": "003",
   "folderSlug": "graph-augmented-retrieval",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic",
     "011-research-based-refinement"

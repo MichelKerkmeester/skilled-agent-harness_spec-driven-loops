@@ -35,7 +35,7 @@
       "guard"
     ],
     "importance_tier": "important",
-    "status": "built_+_tested_(wrapper_+_reaper_+_guard;_step_0_+_sc_001_green;_sk_git/bin_docs);_only_operator_machine_wiring_remains",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/worktree-session.sh",
       ".opencode/bin/worktree-reaper.sh",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the **same working tree on `main`**, with **shared, gitignored MCP databases** guarded only by single-writer leases. Measured live: HEAD moved under an active session twice in ~12 minutes; ~20 orphaned code-graph daemons accumulated; the working tree carried 1,500+ daemon-churned files to filter on every commit. This cross-session contention caused real damage in practice — misreading concurrent commits as corruption, double-reverting a good fix, and a tug-of-war over a packet's docs.",
     "created_at": "2026-05-30T14:07:30.760Z",
-    "last_save_at": "2026-06-05T12:47:34.263Z",
+    "last_save_at": "2026-06-22T18:55:02.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,7 +39,7 @@
       "migration"
     ],
     "importance_tier": "high",
-    "status": "implemented_verified",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Embedding-profile experiments currently create full per-profile `context-index__<slug>.sqlite` stores. That duplicates canonical memory metadata, lineage, FTS, governance, checkpoints, and session state across profile files and can keep old vector/cache pages hot during profile switches.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-06-05T12:47:33.635Z",
+    "last_save_at": "2026-06-22T18:55:02.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

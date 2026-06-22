@@ -46,7 +46,7 @@
       "improvements"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "001-speckit-memory/research/merged-research-index.md",
@@ -54,6 +54,7 @@
       "002-code-graph/spec.md",
       "003-skill-advisor/spec.md",
       "004-deep-loop/spec.md",
+      "000-release-cleanup/spec.md",
       "research/roadmap.md",
       "research/research.md",
       "001-speckit-memory/research/from-007-memory-systems/research.md",
@@ -202,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its nine top-level children span four subsystem phase parents, one release-cleanup phase parent, a review-remediation phase parent, the kept-off flag-resolution reckoning, the TRACK B new-feature research-and-build arc and the reranker deep research so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.",
+    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its seven top-level children span a release-cleanup phase parent, four subsystem phase parents, the spec-data-quality research packet and a review-remediation phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024.",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-21T07:23:18.786Z",
+    "last_save_at": "2026-06-22T18:56:37.389Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

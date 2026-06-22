@@ -15,63 +15,117 @@
       "shared synopsis extractor",
       "derive packet synopsis",
       "check generated metadata drift",
-      "source doc hashes",
-      "causal summary description divergence",
-      "grandfather report mode",
-      "default off drift flag",
-      "re-derive folder synopsis",
-      "volatile timestamp ignore compare"
+      "source doc hashes"
     ],
     "key_topics": [
-      "drift-gate",
-      "synopsis-extractor",
-      "generated-metadata",
-      "causal-summary",
-      "description",
-      "source-doc-hashes",
-      "grandfather",
-      "folder-discovery",
-      "graph-metadata-parser",
-      "validate",
-      "backfill",
-      "precedence"
+      "generated",
+      "metadata",
+      "drift",
+      "gate",
+      "shared",
+      "synopsis",
+      "extractor",
+      "derive",
+      "packet",
+      "check",
+      "source",
+      "doc"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      "mcp_server/lib/description/packet-synopsis.ts",
+      "mcp_server/lib/graph/generated-metadata-drift.ts",
+      "scripts/validation/generated-metadata-drift.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/generated-metadata-drift.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
+      "scripts/lib/validator-registry.json",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
+        "name": "packet-synopsis.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/description/packet-synopsis.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-drift.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/generated-metadata-drift.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
         "name": "folder-discovery.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
         "source": "derived"
       },
       {
         "name": "graph-metadata-parser.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
         "source": "derived"
       },
       {
         "name": "graph-metadata-schema.ts",
-        "kind": "file",
+        "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
         "source": "derived"
       },
       {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
         "name": "validate.sh",
-        "kind": "file",
+        "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-drift.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
         "source": "derived"
       },
       {
@@ -93,31 +147,31 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "derivePacketSynopsis",
+        "name": "Feature Specification",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "checkGeneratedMetadataDrift",
+        "name": "Drift Gate",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Shared Synopsis Extractor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,27 +183,27 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affected Surfaces",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Testing Strategy",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit generated metadata can fall out of sync with the docs it summarizes and nothing proves otherwise. There is no persisted proof that a stored causal_summary or description still matches the current docs because memory_save emits only an advisory and neither strict validation nor a dry-run backfill re-derives a folder to confirm. The description and causal_summary fields are also produced by two different extractors, so they apply different precedence over the same source doc and legitimately diverge. This phase adds checkGeneratedMetadataDrift that re-derives one folder and compares the generated fields ignoring volatile timestamps, persists source_doc_hashes as a cheap freshness key, and introduces one shared derivePacketSynopsis helper with explicit precedence and field-specific length limits used for both fields. Both behaviors ship behind a default-OFF flag and a grandfather report mode so existing folders that carry drifted or divergently-extracted text report rather than mass-fail, and the gate reports drift and never writes so it cannot churn the generated files the research exists to protect.",
+    "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise. Two findings from the 031 generated-JSON quality research drive this phase.",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T00:00:00.000Z",
+    "last_save_at": "2026-06-22T18:55:03.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

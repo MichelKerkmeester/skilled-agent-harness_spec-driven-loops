@@ -2,7 +2,8 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
-  "parent_id": null,
+  "parent_id": "null",
+  "parent_id_review_required": true,
   "children_ids": [
     "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
     "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
@@ -31,33 +32,53 @@
       "memory semantic triggers",
       "feedback reducers",
       "causal graph tombstones",
-      "peck teachings adoption",
-      "gem-team agent io contract"
+      "peck teachings adoption"
     ],
     "key_topics": [
       "027",
       "xce",
+      "research",
+      "based",
       "refinement",
+      "root",
+      "packet",
+      "phase",
+      "map",
+      "program",
       "memory",
-      "store",
-      "search",
-      "advisor",
-      "codegraph",
-      "shared",
-      "infrastructure",
-      "verification",
-      "remediation"
+      "store"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "changelog/before-vs-after.md",
+      "spec.md",
+      "changelog/README.md",
+      "research/research.md"
     ],
     "entities": [
+      {
+        "name": "before-vs-after.md",
+        "kind": "doc",
+        "path": "changelog/before-vs-after.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -67,45 +88,76 @@
         "source": "derived"
       },
       {
-        "name": "XCE-Derived Spec Kit Refinement",
+        "name": "Derived Spec Kit Refinement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem & Purpose",
+        "name": "Problem Statement Spec Kit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope",
+        "name": "Purpose Coordinate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Open Questions",
+        "name": "Research Phase Index This",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Map",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Outputs",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Canonical Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness and retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
+    "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-06-22T18:55:03.200Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
-    "last_active_at": "2026-06-19T06:32:30+02:00"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

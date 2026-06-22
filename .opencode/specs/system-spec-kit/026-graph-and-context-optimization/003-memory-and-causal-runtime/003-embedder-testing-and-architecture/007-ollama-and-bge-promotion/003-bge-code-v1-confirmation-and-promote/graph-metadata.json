@@ -39,7 +39,7 @@
       "default"
     ],
     "importance_tier": "important",
-    "status": "planned_—_scope_changed_2026_05_18_evening_(was:_bge_code_v1_only_corrected_single_run_or_later_018;_now:_4_candidate_re_baseline)",
+    "status": "complete",
     "key_files": [
       "decision-record.md",
       "pre-confirmation-margin-analysis.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 004-extended-bake-off measured bge-code-v1 at **11/18 = 61.1%** on May 18 morning — a +2-pair lead over the 9/18 three-way tie. The plan was a corrected single-run or later 018 replay to confirm the lead before swapping `_DEFAULT_MODEL`.",
     "created_at": "2026-05-18T16:52:17.343Z",
-    "last_save_at": "2026-06-05T12:47:33.803Z",
+    "last_save_at": "2026-06-22T18:55:02.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "description": "Feature Specification: 026 Program Integrity Review Slice",
+  "keywords": [
+    "feature",
+    "specification",
+    "026",
+    "program",
+    "integrity",
+    "review",
+    "slice"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.957Z",
+  "specId": "004",
+  "folderSlug": "026-integrity",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

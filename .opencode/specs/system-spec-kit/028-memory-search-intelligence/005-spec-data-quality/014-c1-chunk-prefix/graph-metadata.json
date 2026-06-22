@@ -15,7 +15,14 @@
       "header path",
       "embedding coverage guard",
       "dual cache key",
-      "retrieval re-embed"
+      "retrieval re-embed",
+      "chunk prefix plan",
+      "header path prefix",
+      "chunk prefix tasks",
+      "header path tasks",
+      "embedding coverage guard tasks",
+      "dual cache key tasks",
+      "chunk prefix checklist"
     ],
     "key_topics": [
       "chunk",
@@ -37,7 +44,11 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings.ts",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,6 +73,30 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -99,15 +134,79 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Embed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector. `normalizeContentForEmbedding` at `content-normalizer.ts:216-231` strips the YAML frontmatter at line 222, strips anchors at line 223, and flattens every markdown heading to a plain label at line 228 via `normalizeHeadings`. The frontmatter `trigger_phrases` and `title` and the header path that the author curated are gone by the time the chunk is hashed and embedded, so a spec-doc chunk vector carries only its flattened body prose and none of its strongest intent signal.",
     "created_at": "2026-06-21T10:22:34.986Z",
-    "last_save_at": "2026-06-21T10:22:34.986Z",
+    "last_save_at": "2026-06-22T18:55:03.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

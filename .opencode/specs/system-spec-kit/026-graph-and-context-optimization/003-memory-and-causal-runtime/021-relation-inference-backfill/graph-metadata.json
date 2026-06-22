@@ -41,7 +41,7 @@
       "document"
     ],
     "importance_tier": "important",
-    "status": "shipped",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/lib/causal/relation-backfill.ts",
       "mcp_server/lib/causal/relation-coverage.ts",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Packet 019 corrected `memory_causal_stats` to honestly report that no command balances relation coverage (`backfillJob.implemented:false`, `command:null`). This packet builds the missing piece: a real, bounded, reversible relation-inference backfill that infers typed causal edges from strong existing signals only, then flips the stat to `implemented:true` with a callable command.",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.017Z",
+    "last_save_at": "2026-06-22T18:55:02.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

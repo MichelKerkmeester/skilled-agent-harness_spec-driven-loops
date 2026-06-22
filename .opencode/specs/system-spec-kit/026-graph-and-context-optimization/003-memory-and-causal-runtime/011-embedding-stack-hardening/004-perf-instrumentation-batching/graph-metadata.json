@@ -34,7 +34,7 @@
       "perf"
     ],
     "importance_tier": "important",
-    "status": "implemented_—_instrument_+_batching_+_latch_shipped;_cache_into_reindex_+_live_bench_→_005_(2026_05_29)",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/hf-model-server.cjs",
       "shared/embeddings/providers/hf-local.ts",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This is **Phase 4 of 5** of the embedding-stack hardening decomposition: turn the perf items from guesses into measured wins. Instrumentation comes FIRST — it is the gate that turns the next three changes from speculation into evidence.",
     "created_at": "2026-05-29T11:22:57.383Z",
-    "last_save_at": "2026-06-05T12:47:33.944Z",
+    "last_save_at": "2026-06-22T18:55:02.647Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,9 @@
     "system-spec-kit/026-graph-and-context-optimization",
     "system-spec-kit/027-xce-research-based-refinement",
     "system-spec-kit/037-substrate-skip-not-fail-validation",
-    "system-spec-kit/038-substrate-harness-hardening"
+    "system-spec-kit/038-substrate-harness-hardening",
+    "system-spec-kit/028-memory-search-intelligence",
+    "system-spec-kit/029-rag-code-index"
   ],
   "manual": {
     "depends_on": [],
@@ -15,45 +17,25 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "system-spec-kit",
-      "system",
-      "spec",
-      "kit",
-      "two-bug",
-      "fix",
-      "mcp-coco-index",
-      "daemon",
-      "idempotent",
-      "prevents",
-      "leaked-zombie",
-      "duplicates"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "two-bug",
-      "fix",
-      "mcp-coco-index",
-      "daemon",
-      "idempotent",
-      "prevents",
-      "leaked-zombie",
-      "duplicates",
-      "brokenpipeerror-safe",
-      "error",
-      "handler",
-      "stops"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [],
     "entities": [],
-    "causal_summary": "Two-bug fix to mcp-coco-index daemon: (1) idempotent start_daemon() prevents leaked-zombie duplicates, (2) BrokenPipeError-safe error handler stops CP",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-06-11T09:31:20.145Z",
+    "last_save_at": "2026-06-22T18:55:01.668Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-      "description.json"
-    ],
+    "source_docs": [],
     "last_active_child_id": "system-spec-kit/028-autonomous-dependency-patching",
     "last_active_at": "2026-06-11T09:31:20.145Z"
   }

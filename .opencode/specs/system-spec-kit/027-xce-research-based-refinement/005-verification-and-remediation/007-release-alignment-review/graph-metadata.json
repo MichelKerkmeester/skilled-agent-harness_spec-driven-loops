@@ -37,8 +37,7 @@
       "time"
     ],
     "importance_tier": "important",
-    "status": "phase_parent",
-    "status_note": "Review-output children 001/002 complete (read-only review artifacts); remediation children 003/004 shipped.",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -88,7 +87,7 @@
     ],
     "causal_summary": "Establish, at release time for the 027 epic, whether the repository's documentation and code still tell the truth about the system the epic produced — and remediate where they do not. Two independent questions are answered by read-only fan-out review, then the confirmed gaps are fixed by a scope-locked writer fleet:",
     "created_at": "2026-06-18T12:37:50.443Z",
-    "last_save_at": "2026-06-18T12:37:50.443Z",
+    "last_save_at": "2026-06-22T18:56:37.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

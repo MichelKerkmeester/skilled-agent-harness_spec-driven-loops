@@ -1,5 +1,6 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "level": "3",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
   "description": "Spec: 028 Catalog and Playbook Coverage Audit",
   "keywords": [
     "spec",
@@ -9,17 +10,14 @@
     "coverage",
     "audit"
   ],
-  "lastUpdated": "2026-06-22T04:40:14.890Z",
+  "lastUpdated": "2026-06-22T18:55:03.608Z",
   "specId": "010",
   "folderSlug": "catalog-playbook-coverage-audit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "000-release-cleanup"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

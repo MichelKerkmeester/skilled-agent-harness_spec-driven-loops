@@ -1,23 +1,23 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index",
-  "description": "MCP Tool Rename mk-code-index",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
+  "description": "Feature Specification: MCP Tool Rename: mk-code-index",
   "keywords": [
+    "feature",
+    "specification",
     "mcp",
     "tool",
     "rename",
-    "mk",
-    "code",
-    "index"
+    "mk-code-index"
   ],
-  "lastUpdated": "2026-05-14T17:29:04Z",
-  "specId": "010",
-  "folderSlug": "mcp-tool-rename-mk-code-index",
+  "lastUpdated": "2026-06-22T18:55:03.140Z",
+  "specId": "007",
+  "folderSlug": "024-mcp-tool-rename-mk-code-index",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "013-system-code-graph-extraction"
+    "z_archive",
+    "wave-3-deep-archives"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

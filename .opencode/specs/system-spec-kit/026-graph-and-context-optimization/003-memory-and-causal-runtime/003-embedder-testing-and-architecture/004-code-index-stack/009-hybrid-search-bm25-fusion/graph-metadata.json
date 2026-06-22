@@ -36,7 +36,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "implemented;_fixture_benchmark_pending",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "spec.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now default-on behind `COCOINDEX_HYBRID=true`.",
     "created_at": "2026-05-18T05:13:46.575Z",
-    "last_save_at": "2026-06-05T12:47:33.708Z",
+    "last_save_at": "2026-06-22T18:55:02.387Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

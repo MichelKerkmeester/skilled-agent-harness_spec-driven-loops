@@ -39,7 +39,7 @@
       "kill"
     ],
     "importance_tier": "critical",
-    "status": "implemented,_dry_run_review",
+    "status": "complete",
     "key_files": [
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/scripts/claude-session-cleanup.sh",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Codex.app and Claude Code can leave MCP helper stacks alive after respawns or session stops, producing linear RAM growth on this workstation. This packet adds a dry-run-first process sweeper, chains a repo-local Claude Stop cleanup command into the existing hook, and teaches the three MCP servers to exit after configurable idle time.",
     "created_at": "2026-05-24T06:58:36Z",
-    "last_save_at": "2026-06-08T08:50:26.979Z",
+    "last_save_at": "2026-06-22T18:55:02.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -62,7 +62,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress_—_wrapper_truth_sync_active;_historical_execution_evidence_preserved;_traceability_remediation_still_open",
+    "status": "in_progress",
     "key_files": [
       "tasks.md",
       "checklist.md",
@@ -222,7 +222,7 @@
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-06-05T12:47:34.839Z",
+    "last_save_at": "2026-06-22T18:55:04.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

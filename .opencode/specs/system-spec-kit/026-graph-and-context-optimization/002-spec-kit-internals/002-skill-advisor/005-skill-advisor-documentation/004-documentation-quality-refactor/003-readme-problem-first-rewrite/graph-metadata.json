@@ -35,7 +35,7 @@
       "reads"
     ],
     "importance_tier": "important",
-    "status": "pending_(gated_by_001_synthesis)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/README.md",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The current `system-skill-advisor/README.md` reads as a structural reference (PASS on sk-doc `skill_readme` template) but lacks marketing voice. The project root README and peer `system-code-graph/README.md` set the voice ceiling: technical-but-narrative, tables-heavy, ~2000 words, 9 numbered sections.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.404Z",
+    "last_save_at": "2026-06-22T18:55:02.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

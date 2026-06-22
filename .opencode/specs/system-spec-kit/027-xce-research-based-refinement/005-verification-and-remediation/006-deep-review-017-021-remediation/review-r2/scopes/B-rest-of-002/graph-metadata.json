@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "independent",
+      "gpt-5",
+      "deep-review",
+      "audit",
+      "memory",
+      "store",
+      "index",
+      "write-lifecycle",
+      "code",
+      "system-spec-kit",
+      "mcp",
+      "server"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "handlers/memory-index.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Store",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Independent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code under review",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Independent gpt-5.5 deep-review **audit** of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the 002-memory-store-and-search surface OUTSIDE the search/retrieval pipeline and outside the 017-021 fixes. REVIEW-SCOPE target (no new implementation). Report real P0/P1/P2 findings with `file:line` evidence; clean PASS is valid.",
+    "created_at": "2026-06-22T18:55:03.570Z",
+    "last_save_at": "2026-06-22T18:55:03.570Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "completed_(2026_05_30)_—_contract_fix_shipped;_daemon_wiring_deferred",
+    "status": "complete",
     "key_files": [
       "dist/tool-schemas.js",
       ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call `mcp__mk_code_index__code_graph_query({query, num_results})`, which is rejected.",
     "created_at": "2026-05-30T20:48:58.838Z",
-    "last_save_at": "2026-06-05T12:47:34.302Z",
+    "last_save_at": "2026-06-22T18:55:03.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/023-context-preservation-metrics",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/023-context-preservation-metrics",
   "description": "Feature Specification: Phase 023 — Context Preservation Metrics",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "preservation",
     "metrics"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.614Z",
+  "lastUpdated": "2026-06-22T18:55:04.804Z",
   "specId": "023",
   "folderSlug": "context-preservation-metrics",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

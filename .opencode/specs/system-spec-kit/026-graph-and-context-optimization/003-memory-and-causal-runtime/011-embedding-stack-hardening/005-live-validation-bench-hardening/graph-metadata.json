@@ -34,7 +34,7 @@
       "ownership"
     ],
     "importance_tier": "important",
-    "status": "implemented_—_perimeter_+_idle_+_live_test_+_cleanup_shipped;_flag_flip_+_dtype_+_live_numbers_gated_on_a_working_onnxruntime_tree_(2026_05_29)",
+    "status": "complete",
     "key_files": [
       "scripts/bench-dtype-q8-fp16.cjs",
       ".opencode/bin/lib/model-server-supervision.cjs",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This is **Phase 5 of 5** of the embedding-stack hardening decomposition: validate the two-launcher residency live, flip the advisor flag on, benchmark the dtype, and close the perimeter + cleanup. This is the only phase that can close the spawn→bind + cold-load + perf items, and it gates the flag flip.",
     "created_at": "2026-05-29T11:22:57.388Z",
-    "last_save_at": "2026-06-05T12:47:33.946Z",
+    "last_save_at": "2026-06-22T18:55:02.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

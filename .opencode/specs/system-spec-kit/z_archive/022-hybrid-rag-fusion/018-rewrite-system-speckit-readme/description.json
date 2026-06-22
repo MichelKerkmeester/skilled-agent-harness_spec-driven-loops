@@ -1,13 +1,13 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme",
   "description": "Specification: 018-rewrite-system-spec-kit-readme",
   "keywords": [
     "specification",
     "018-rewrite-system-spec-kit-readme"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.255Z",
+  "lastUpdated": "2026-06-22T18:55:04.579Z",
   "specId": "018",
-  "folderSlug": "rewrite-system-spec-kit-readme",
+  "folderSlug": "rewrite-system-speckit-readme",
   "parentChain": [
     "system-spec-kit",
     "z_archive",

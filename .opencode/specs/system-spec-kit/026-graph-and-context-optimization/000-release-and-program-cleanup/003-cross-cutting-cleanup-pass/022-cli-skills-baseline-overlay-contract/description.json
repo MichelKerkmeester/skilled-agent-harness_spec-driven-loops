@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
+  "description": "Spec: CLI Skills Codebase-Agnostic Standards Contract",
+  "keywords": [
+    "spec",
+    "cli",
+    "skills",
+    "codebase-agnostic",
+    "standards",
+    "contract"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.754Z",
+  "specId": "022",
+  "folderSlug": "cli-skills-baseline-overlay-contract",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

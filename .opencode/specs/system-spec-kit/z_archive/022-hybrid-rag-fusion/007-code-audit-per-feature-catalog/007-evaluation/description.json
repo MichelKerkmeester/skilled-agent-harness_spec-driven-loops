@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/007-evaluation",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/007-evaluation",
   "description": "Feature Specification: Code Audit — Evaluation",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "audit",
     "evaluation"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.247Z",
+  "lastUpdated": "2026-06-22T18:55:04.226Z",
   "specId": "007",
   "folderSlug": "evaluation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"
   ],

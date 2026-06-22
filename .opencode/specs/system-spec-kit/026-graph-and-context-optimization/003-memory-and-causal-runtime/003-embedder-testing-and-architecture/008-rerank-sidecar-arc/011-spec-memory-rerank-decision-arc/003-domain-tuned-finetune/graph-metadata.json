@@ -36,7 +36,7 @@
       "ms-marco-minilm"
     ],
     "importance_tier": "important",
-    "status": "planned_(gated_on_phases_1+2_outcomes)",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "spec.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "If Phases 1 and 2 both fail to land an acceptable rerank path, the remaining hypothesis is that **no off-the-shelf cross-encoder is well-aligned to the spec-memory corpus**. The corpus has properties most generic rerankers don't see in training:",
     "created_at": "2026-05-23T11:55:15.632Z",
-    "last_save_at": "2026-06-05T12:47:33.832Z",
+    "last_save_at": "2026-06-22T18:55:02.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

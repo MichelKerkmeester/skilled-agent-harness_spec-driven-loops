@@ -1,24 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
   "description": "Spec: 031 Generated JSON Quality and Safety Research",
   "keywords": [
     "spec",
     "031",
-    "generated-json",
+    "generated",
+    "json",
     "quality",
+    "safety",
     "research"
   ],
-  "lastUpdated": "2026-06-22T16:18:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.841Z",
   "specId": "031",
   "folderSlug": "generated-json-quality-research",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

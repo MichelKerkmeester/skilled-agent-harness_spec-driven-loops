@@ -39,7 +39,7 @@
       "fusion"
     ],
     "importance_tier": "normal",
-    "status": "not_started",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/memory/search.md",
       "handlers/memory-context.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook. Each of the 13 retrieval scenarios must be executed, verdicted, and evidenced independently. Without a dedicated phase packet, testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or record results.",
     "created_at": "2026-04-12T09:02:50.289Z",
-    "last_save_at": "2026-06-05T12:47:34.842Z",
+    "last_save_at": "2026-06-22T18:55:04.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

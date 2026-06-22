@@ -36,7 +36,6 @@
       ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
       ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
       ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md",
-      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
       "spec.md"
     ],
     "entities": [
@@ -103,7 +102,7 @@
     ],
     "causal_summary": "Audit the 027 phase-parent control surface and child-phase scaffolding for traceability and maintainability, reporting structural drift, naming issues, and misalignment with 026. READ-ONLY review.",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-06-05T12:47:33.223Z",
+    "last_save_at": "2026-06-22T18:55:01.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

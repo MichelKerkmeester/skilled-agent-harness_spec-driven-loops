@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
+  "description": "Feature Specification: Three-way Isolation Finalize",
+  "keywords": [
+    "feature",
+    "specification",
+    "three-way",
+    "isolation",
+    "finalize"
+  ],
+  "lastUpdated": "2026-06-22T18:55:02.811Z",
+  "specId": "004",
+  "folderSlug": "three-way-isolation-finalize",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "006-extraction-and-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

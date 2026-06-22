@@ -39,11 +39,11 @@
       "repetition"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "decision-record.md",
       "lib/feedback/feedback-ledger.ts",
       "lib/cognitive/adaptive-ranking.ts",
-      "decision-record.md",
       "mcp_server/lib/feedback/feedback-ledger.ts",
       "mcp_server/lib/cognitive/adaptive-ranking.ts",
       "handlers/checkpoints.ts",
@@ -62,6 +62,12 @@
     ],
     "entities": [
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "feedback-ledger.ts",
         "kind": "code",
         "path": "lib/feedback/feedback-ledger.ts",
@@ -71,12 +77,6 @@
         "name": "adaptive-ranking.ts",
         "kind": "code",
         "path": "lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined from aionforge's `procedural-memory.md` against the live `system-spec-kit/mcp_server/` substrate (packet 028, child `001-speckit-memory`, PRIMARY). It bundles four research candidates into one coherent benchmark-first unit: **M-procedural-reliability-recall** (Beta-posterior reliability-weighted recall), **M-bad-pattern-negative-memory** (immutable negative procedural memory surfaced before reuse), **M-skill-induction-repetition** (off-by-default verbatim-procedure induction from recurrence), and **M-procedural-version-reset** (cut a new procedural version + reset reliability when the contract surface changes).",
+    "causal_summary": "This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined from aionforge's `procedural-memory.md` against the live `system-spec-kit/mcp_server/` substrate (packet 028, child `001-speckit-memory`, PRIMARY). It bundles four research candidates into one coherent benchmark-first unit: **M-procedural-reliability-recall** (Beta-posterior reliability-weighted recall), **M-bad-pattern-negative-memory** (immutable negative procedural memory surfaced before reuse), **M-skill-induction-repetition** (off-by-default verbatim-procedure induction from recurrence) and **M-procedural-version-reset** (cut a new procedural version + reset reliability when the contract surface changes).",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-06-21T07:23:18.812Z",
+    "last_save_at": "2026-06-22T18:55:03.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

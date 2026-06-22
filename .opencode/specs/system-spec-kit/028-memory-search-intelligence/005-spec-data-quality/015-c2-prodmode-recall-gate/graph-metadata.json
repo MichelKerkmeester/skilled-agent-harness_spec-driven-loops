@@ -31,13 +31,26 @@
       "regression",
       "path"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "dist/lib/eval/eval-metrics.js",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
+      "dist/lib/eval/ground-truth-data.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": "dist/lib/eval/eval-metrics.js",
+        "source": "derived"
+      },
       {
         "name": "run-eval-v2.mjs",
         "kind": "file",
@@ -45,9 +58,39 @@
         "source": "derived"
       },
       {
+        "name": "ground-truth-data.js",
+        "kind": "code",
+        "path": "dist/lib/eval/ground-truth-data.js",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -85,15 +128,79 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The prod retrieval path truncates every query to a 3-result floor (`confidence-truncation.ts`, `DEFAULT_MIN_RESULTS = 3`, applied at the prod seam), so 028 measured a 5.9x eval-versus-prod fidelity gap on this corpus. The dual-mode harness `run-eval-v2.mjs` already runs an eval lens and a prod lens on one copy DB and reports an `evalVsProdDelta` fidelity metric at K of 3, 5 and 8, but it performs no baseline comparison and its `process.exitCode = 1` (line 357) is a crash handler rather than a recall verdict. The shipped single-target goldens saturate and hide wins because a 3-target query has something to be incomplete about and a single-target query does not. The net effect is that every Tier-C retrieval candidate (C1, C3, C4, C5) stays a hypothesis with no instrument to promote or regress it.",
+    "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap. `DEFAULT_MIN_RESULTS = 3` (`confidence-truncation.ts`) is a never-cut-below-3 MINIMUM guarantee, not a cap. Confidence truncation is cliff-conditional and returns 3..20, and token-budget truncation is the real prod-limiting stage. The eval lens runs `forceAllChannels` with no truncation while the prod lens runs the routed channel subset with confidence truncation active, so 028 measured a real eval-versus-prod fidelity gap on this corpus, reported as the harness `evalVsProdDelta`. The dual-mode harness `run-eval-v2.mjs` already runs both lenses on one copy DB and computes completeRecall at K of 3, 5 and 8 (`COMPLETE_RECALL_KS = '3,5,8'`), but it performs no baseline comparison and its `process.exitCode = 1` (line 357) is a crash handler rather than a recall verdict. The shipped single-target goldens saturate and hide wins because a multi-target query has something to be incomplete about and a single-target query does not. The net effect is that every downstream Tier-C retrieval candidate (C1, C3, C4, C5) stays a hypothesis with no instrument to promote or regress it.",
     "created_at": "2026-06-21T10:22:34.987Z",
-    "last_save_at": "2026-06-21T10:22:34.987Z",
+    "last_save_at": "2026-06-22T18:55:03.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

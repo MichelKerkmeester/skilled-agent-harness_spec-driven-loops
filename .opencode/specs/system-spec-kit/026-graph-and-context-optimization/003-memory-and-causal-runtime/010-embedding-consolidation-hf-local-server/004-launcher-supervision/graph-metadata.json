@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "implemented_(f1_14_+_f3_4_+_6_new_=_24_green;_review_clean;_live_spawn_deferred)",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This is **Phase 4 of 6** of the embedding-consolidation and hf-local-server decomposition: Lazy-spawn the hf model server as a launcher-supervised sibling child with a second crash-loop guard, generalized RSS watchdog, modelServerPid lease field, health probe, and respawn lock.",
     "created_at": "2026-05-29T05:06:24.639Z",
-    "last_save_at": "2026-06-05T12:47:33.930Z",
+    "last_save_at": "2026-06-22T18:55:02.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

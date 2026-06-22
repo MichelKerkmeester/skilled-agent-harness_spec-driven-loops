@@ -179,13 +179,13 @@
         "source": "derived"
       },
       {
-        "name": "Research Complete",
+        "name": "Problem Statement Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Spec",
+        "name": "Purpose Decide",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -241,7 +241,7 @@
     ],
     "causal_summary": "Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. The official multi-lineage loop then ran five distinct deep-research lineages across thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats, each verifying its ranked candidates against the live retrieval and validation code. All five lineages converged.",
     "created_at": "2026-06-21T00:00:00.000Z",
-    "last_save_at": "2026-06-21T10:22:34.971Z",
+    "last_save_at": "2026-06-22T18:55:03.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

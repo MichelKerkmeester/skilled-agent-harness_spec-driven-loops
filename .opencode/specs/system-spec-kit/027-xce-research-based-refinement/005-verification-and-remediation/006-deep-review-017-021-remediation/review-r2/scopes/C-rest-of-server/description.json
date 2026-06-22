@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "description": "Audit Scope — MCP Server Infrastructure (handlers / providers / daemon)",
+  "keywords": [
+    "audit",
+    "scope",
+    "mcp",
+    "server",
+    "infrastructure",
+    "handlers",
+    "providers",
+    "daemon"
+  ],
+  "lastUpdated": "2026-06-22T18:55:03.576Z",
+  "specId": "",
+  "folderSlug": "c-rest-of-server",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "006-deep-review-017-021-remediation",
+    "review-r2",
+    "scopes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

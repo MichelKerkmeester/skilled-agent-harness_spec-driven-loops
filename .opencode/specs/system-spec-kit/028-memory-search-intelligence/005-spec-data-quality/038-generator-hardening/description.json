@@ -1,23 +1,21 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
-  "description": "Spec: Generator Hardening",
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
+  "description": "Feature Specification: Generator Hardening",
   "keywords": [
-    "spec",
+    "feature",
+    "specification",
     "generator",
-    "fingerprint",
-    "telemetry"
+    "hardening"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:03.871Z",
   "specId": "038",
   "folderSlug": "generator-hardening",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }
