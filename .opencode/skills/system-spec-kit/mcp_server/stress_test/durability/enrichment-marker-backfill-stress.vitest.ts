@@ -136,7 +136,7 @@ afterEach(() => {
 
 describe('durability: enrichment marker backfill convergence under save flood', () => {
   it('pins the current schema and the repair partial index the backfill relies on', () => {
-    expect(SCHEMA_VERSION).toBe(37);
+    expect(SCHEMA_VERSION).toBe(41);
     const indexSql = (db.prepare(`
       SELECT sql FROM sqlite_master
       WHERE type = 'index' AND name = 'idx_post_insert_enrichment_incomplete'

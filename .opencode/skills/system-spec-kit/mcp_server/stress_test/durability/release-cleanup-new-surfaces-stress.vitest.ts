@@ -100,6 +100,21 @@ function createMigrationDatabase(): Database.Database {
       (2, 'specs/a', '/tmp/b.md', 'Import row', 'memory_index_scan', '2026-06-10T01:00:00.000Z', 'plan', '2026-06-09T00:00:00.000Z'),
       (3, 'specs/a', '/tmp/c.md', 'Agent row', 'opencode automation', '2026-06-10T02:00:00.000Z', 'tasks', NULL);
   `);
+  // The causal-edge migrations (v38 bi-temporal window, v39 closure provenance,
+  // v40 derived identity, v41 fact-text/retention) hard-require causal_edges and
+  // its pre-existing extracted_at column; the bi-temporal/currentness/derived/
+  // fact_text columns and the memory_lineage + edge_vector_embeddings tables are
+  // added by the migrations themselves. Seeded empty so every backfill is a no-op
+  // and the repeated-run upgrades stay idempotent on the causal surface too.
+  database.exec(`
+    CREATE TABLE causal_edges (
+      id INTEGER PRIMARY KEY,
+      source_id TEXT,
+      target_id TEXT,
+      relation TEXT,
+      extracted_at TEXT
+    );
+  `);
   return database;
 }
 
@@ -202,14 +217,14 @@ afterEach(() => {
 
 describe('release-cleanup stress coverage for new memory and CLI surfaces', () => {
   it('keeps additive migrations idempotent across repeated isolated database upgrades', async () => {
-    expect(SCHEMA_VERSION).toBe(37);
+    expect(SCHEMA_VERSION).toBe(41);
 
     const databases = Array.from({ length: 12 }, () => createMigrationDatabase());
     try {
       await Promise.all(databases.map(async (database) => {
-        runMigrations(database, 34, 37);
-        runMigrations(database, 34, 37);
-        runMigrations(database, 36, 37);
+        runMigrations(database, 34, 41);
+        runMigrations(database, 34, 41);
+        runMigrations(database, 36, 41);
       }));
 
       for (const database of databases) {
@@ -357,7 +372,7 @@ describe('release-cleanup stress coverage for new memory and CLI surfaces', () =
     expectListTools(cliShims.codeIndex, CODE_GRAPH_TOOL_SCHEMAS.map((tool) => tool.name), 'code-index-cli-stress');
     expectListTools(cliShims.skillAdvisor, SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name), 'skill-advisor-cli-stress');
 
-    expect(TOOL_DEFINITIONS).toHaveLength(37);
+    expect(TOOL_DEFINITIONS).toHaveLength(39);
     expect(CODE_GRAPH_TOOL_SCHEMAS).toHaveLength(8);
     expect(SKILL_ADVISOR_CLI_TOOL_MANIFEST).toHaveLength(9);
 

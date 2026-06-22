@@ -25,6 +25,11 @@ interface InstrumentedDb {
 
 const ORIGINAL_ENABLE_BM25 = process.env.ENABLE_BM25;
 const ORIGINAL_BM25_ENGINE = process.env.SPECKIT_BM25_ENGINE;
+// The bm25 deprecated-tier exclusion is gated behind SPECKIT_INCLUDE_ARCHIVED_DEFAULT,
+// which graduated to default-on (cold/deprecated rows are INCLUDED by default and
+// rank low via FSRS). This suite asserts the hard-exclusion semantics, so it opts
+// back into exclusion explicitly rather than relying on the default.
+const ORIGINAL_INCLUDE_ARCHIVED = process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
 
 const TARGET_FOLDER = 'specs/search-target';
 const NOISE_FOLDER = 'specs/search-noise';
@@ -104,6 +109,7 @@ describe('BM25 scope-then-limit stress behavior', () => {
   beforeEach(() => {
     process.env.ENABLE_BM25 = 'true';
     process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
+    process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false';
     resetIndex();
   });
 
@@ -119,6 +125,12 @@ describe('BM25 scope-then-limit stress behavior', () => {
       delete process.env.SPECKIT_BM25_ENGINE;
     } else {
       process.env.SPECKIT_BM25_ENGINE = ORIGINAL_BM25_ENGINE;
+    }
+
+    if (ORIGINAL_INCLUDE_ARCHIVED === undefined) {
+      delete process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
+    } else {
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = ORIGINAL_INCLUDE_ARCHIVED;
     }
   });
 
