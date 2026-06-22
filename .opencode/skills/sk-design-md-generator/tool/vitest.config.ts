@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Vitest Configuration
+// ────────────────────────────────────────────────────────────────
+
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({

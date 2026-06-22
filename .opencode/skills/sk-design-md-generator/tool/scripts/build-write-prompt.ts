@@ -1,4 +1,7 @@
 // ────────────────────────────────────────────────────────────────
+// MODULE: WRITE-Phase Prompt Builder
+// ────────────────────────────────────────────────────────────────
+//
 // WRITE-phase prompt builder (doc-as-view integration)
 //
 // Pre-renders the deterministic value sections (§2 Color, §3 Typography, §6 Depth) from

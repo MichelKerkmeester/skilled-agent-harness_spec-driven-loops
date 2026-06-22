@@ -1,4 +1,7 @@
 // ────────────────────────────────────────────────────────────────
+// MODULE: Deterministic Section Formatters
+// ────────────────────────────────────────────────────────────────
+//
 // Deterministic DESIGN.md section renderers (doc-as-view, Phase A)
 //
 // These render the value-bearing sections directly from tokens.json with ZERO AI
