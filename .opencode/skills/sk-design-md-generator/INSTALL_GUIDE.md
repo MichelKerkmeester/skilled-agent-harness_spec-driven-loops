@@ -21,7 +21,7 @@ macOS, Linux, and Windows (WSL) are supported. The Playwright installer handles 
 **Step 1: Install Node dependencies.**
 
 ```bash
-cd .opencode/skills/sk-design-md-generator/tool
+cd .opencode/skills/sk-design-md-generator/backend
 npm install
 ```
 
@@ -99,7 +99,7 @@ If the site requires authentication, it is out of scope. The tool only works on 
 
 **Symptom:** `ts-node: command not found` or TypeScript compilation errors.
 
-**Fix:** Ensure you ran `npm install` from the `tool/` directory. The `ts-node` binary is in `tool/node_modules/.bin/`. Use `npx ts-node` (not a global install) to resolve it.
+**Fix:** Ensure you ran `npm install` from the `backend/` directory. The `ts-node` binary is in `backend/node_modules/.bin/`. Use `npx ts-node` (not a global install) to resolve it.
 
 ### Playwright version conflicts
 
@@ -117,7 +117,7 @@ npx playwright install chromium
 
 **Symptom:** `npx vitest run` reports failures.
 
-**Fix:** Confirm Chromium is installed (`npx playwright install chromium`). Some tests exercise the crawler and require the binary. If failures persist, check `tool/CHANGELOG.md` for known issues against your Node.js version.
+**Fix:** Confirm Chromium is installed (`npx playwright install chromium`). Some tests exercise the crawler and require the binary. If failures persist, check the skill changelog (`changelog/`) for known issues against your Node.js version.
 
 ---
 
@@ -126,9 +126,9 @@ npx playwright install chromium
 To remove the tool's dependencies and cached Chromium binary:
 
 ```bash
-cd .opencode/skills/sk-design-md-generator/tool
+cd .opencode/skills/sk-design-md-generator/backend
 rm -rf node_modules
 npx playwright uninstall chromium
 ```
 
-The embedded source under `tool/scripts/` and `tool/resources/` is part of the repo and is not affected by uninstalling dependencies.
+The embedded source under `backend/scripts/` and `references/` is part of the repo and is not affected by uninstalling dependencies.

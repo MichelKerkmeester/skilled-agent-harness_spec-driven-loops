@@ -23,7 +23,7 @@ The skill is the **extraction and format-fidelity engine** of the `sk-design-*` 
 
 Use this catalog as the inventory for the live `sk-design-md-generator` surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into the per-feature detail without losing the pipeline context.
 
-The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd tool && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the v3 Style Reference `DESIGN.md` — pre-rendering the value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) deterministically from `tokens.json` and writing prose only. The **validate** phase checks hex accuracy, v3 section completeness, and Quick-Start fidelity. An optional **report** phase renders visual HTML previews and proof artifacts. The **feature-extractors** area covers six per-feature detectors that run during extraction, and the **interaction-capture** area records component states (`--with-interaction`) for component state characterization.
+The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd backend && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the v3 Style Reference `DESIGN.md` — pre-rendering the value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) deterministically from `tokens.json` and writing prose only. The **validate** phase checks hex accuracy, v3 section completeness, and Quick-Start fidelity. An optional **report** phase renders visual HTML previews and proof artifacts. The **feature-extractors** area covers six per-feature detectors that run during extraction, and the **interaction-capture** area records component states (`--with-interaction`) for component state characterization.
 
 ### Capability areas
 
@@ -69,7 +69,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 
 #### Current Reality
 
-- OKLCH color space clustering groups visually similar colors into named roles following the taxonomy in `tool/resources/color_role_taxonomy.md`.
+- OKLCH color space clustering groups visually similar colors into named roles following the taxonomy in `references/color_role_taxonomy.md`.
 - L1 (permanent, brand-level) and L2 (system, component-level) tokens populate the main DESIGN.md sections.
 - L3 (campaign, temporary) tokens enter with a "Subject to change" annotation.
 - L4 (content, one-off, image-derived) tokens are excluded entirely.
@@ -98,8 +98,8 @@ Produces the v3 Style Reference `DESIGN.md` from `tokens.json` — a named, role
 - Elevation renders FLAT when there are 0 shadow tokens (it states how depth is achieved instead — border contrast, whitespace — never "gradient-as-depth").
 - Voice is named, confident, and restrained: evocative colour names and roles, inferred Similar Brands. No frequency dumps, no "div"/"Variant-N", no extractor-internal var names, and no false systems the data contradicts.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
-- The writer loads the v3 section spec from `tool/resources/design_md_format_v3.md` and voice rules from `tool/resources/writing_style_guide.md` before composing.
-- Doc-as-view: the value-bearing sections Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start are rendered DETERMINISTICALLY from tokens by `tool/scripts/formatters-v3.ts` (a hue+lightness colour namer keeps the Name, token slug, and Quick Start mutually consistent — no AI on the value surface). `tool/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first, pastes the pre-rendered tables unchanged, and writes prose only.
+- The writer loads the v3 section spec from `references/design_md_format_v3.md` and voice rules from `references/writing_style_guide.md` before composing.
+- Doc-as-view: the value-bearing sections Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start are rendered DETERMINISTICALLY from tokens by `backend/scripts/formatters-v3.ts` (a hue+lightness colour namer keeps the Name, token slug, and Quick Start mutually consistent — no AI on the value surface). `backend/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first, pastes the pre-rendered tables unchanged, and writes prose only.
 - Sections are honest about absence: Elevation states the system is flat when there are no shadows, conditional sections with no backing data are stamped ABSENT rather than invented, and every value the prose states comes from a pre-rendered section or the FACTS block — never invented or concretized.
 
 #### Source Files

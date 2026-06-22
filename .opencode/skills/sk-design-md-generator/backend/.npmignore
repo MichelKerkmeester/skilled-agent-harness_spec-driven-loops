@@ -1,7 +1,6 @@
 scripts/
-examples/
 output/
-__tests__/
+tests/
 *.ts
 !*.d.ts
 .DS_Store

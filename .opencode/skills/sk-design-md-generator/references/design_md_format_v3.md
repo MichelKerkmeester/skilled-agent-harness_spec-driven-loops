@@ -1,3 +1,18 @@
+---
+title: DESIGN.md v3 Style Reference Format
+description: "The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start — every value verbatim from tokens.json."
+trigger_phrases:
+  - design md format specification
+  - v3 style reference schema
+  - design md section order
+  - named colour tokens
+  - quick start css tailwind
+  - agent prompt guide section
+  - similar brands section
+importance_tier: important
+contextType: implementation
+---
+
 # DESIGN.md Format Specification — v3 (Style Reference schema)
 
 > The v3 schema produces a **Style Reference**: a named, role-driven, ship-ready design

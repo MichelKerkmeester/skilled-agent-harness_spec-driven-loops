@@ -43,21 +43,21 @@ Operators run the exact command sequence for `CLUSTER-001` and confirm the expec
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Wave 1 (SETUP-001) must be PASS. The `tool/node_modules/` directory must exist and the vitest runner must be available. A prior extraction must have produced `<--output>/tokens.json`; if none exists, run `cd tool && npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output` first.
+PRE: Wave 1 (SETUP-001) must be PASS. The `backend/node_modules/` directory must exist and the vitest runner must be available. A prior extraction must have produced `<--output>/tokens.json`; if none exists, run `cd backend && npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output` first.
 
-1. verify tool readiness: `bash: node --version`, glob `tool/node_modules/`  # -> Node >= 18, node_modules exists
-2. `cd .opencode/skills/sk-design-md-generator/tool && npx vitest run cluster`  # -> exits 0, all cluster tests pass
-3. `bash: ls <--output>/tokens.json` (run from `tool/`)  # -> file exists
-4. `bash: node -e "const t = require('./<--output>/tokens.json'); const layers = t.colorTokens.map(c => c.stability?.layer); console.log('total colors:', t.colorTokens.length, '| L1:', layers.filter(l => l === 'infrastructure').length, 'L2:', layers.filter(l => l === 'system').length, 'L3:', layers.filter(l => l === 'campaign').length, 'L4:', layers.filter(l => l === 'content').length, '| missing stability:', layers.filter(l => !l).length)"` (run from `tool/`)  # -> all tokens have stability.layer, L1/L2 present
+1. verify tool readiness: `bash: node --version`, glob `backend/node_modules/`  # -> Node >= 18, node_modules exists
+2. `cd .opencode/skills/sk-design-md-generator/backend && npx vitest run cluster`  # -> exits 0, all cluster tests pass
+3. `bash: ls <--output>/tokens.json` (run from `backend/`)  # -> file exists
+4. `bash: node -e "const t = require('./<--output>/tokens.json'); const layers = t.colorTokens.map(c => c.stability?.layer); console.log('total colors:', t.colorTokens.length, '| L1:', layers.filter(l => l === 'infrastructure').length, 'L2:', layers.filter(l => l === 'system').length, 'L3:', layers.filter(l => l === 'campaign').length, 'L4:', layers.filter(l => l === 'content').length, '| missing stability:', layers.filter(l => !l).length)"` (run from `backend/`)  # -> all tokens have stability.layer, L1/L2 present
 5. agent reports cluster test pass and stability distribution
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CLUSTER-001 | OKLCH clustering and stability classification | Verify cluster.ts groups colors in OKLCH space and assigns L1-L4 stability classes | `Confirm the color tokens are clustered and stability-classified correctly.` | 1. verify tool readiness (`node --version`, check `tool/node_modules/`) -> 2. `cd tool && npx vitest run cluster` -> 3. `ls <--output>/tokens.json` -> 4. `node -e "...` inspect stability.layers -> 5. agent reports cluster pass + stability distribution | Step 1: Node >= 18, tool dependencies present. Step 2: vitest exits 0, all cluster tests pass (parseColor, rgbaToHex, wcagContrast, deltaE, splitShadowLayers, classifyShadow, mergeTokenSets). Step 3: tokens.json exists. Step 4: every colorToken has stability.layer (infrastructure/system/campaign/content) with confidence and signals. Step 5: agent reports L1-L4 counts. | Transcript of `vitest run cluster`, node inspect output of tokens.json stability, stability layer distribution | PASS if cluster.test.ts passes AND tokens.json colorTokens[].stability.layer values are all valid AND no token is missing stability. FAIL if vitest fails OR stability is missing on any token OR clustering is degenerate (single cluster for different colors) OR L1/L2 count is zero on a real site | 1. If vitest fails, check `tool/vitest.config.ts` includes `scripts/__tests__/**/*.test.ts`. 2. If stability is missing, confirm the extraction pipeline ran `classifyTokenStability()` after `clusterTokens()`. 3. If all tokens are L3 or L4, the site may be content-heavy with no design system; try a known design-system site (e.g., linear.app, vercel.com). 4. If only one cluster exists, check `deltaE` threshold (should be < 3) and confirm culori OKLCH conversion works. |
+| CLUSTER-001 | OKLCH clustering and stability classification | Verify cluster.ts groups colors in OKLCH space and assigns L1-L4 stability classes | `Confirm the color tokens are clustered and stability-classified correctly.` | 1. verify tool readiness (`node --version`, check `backend/node_modules/`) -> 2. `cd backend && npx vitest run cluster` -> 3. `ls <--output>/tokens.json` -> 4. `node -e "...` inspect stability.layers -> 5. agent reports cluster pass + stability distribution | Step 1: Node >= 18, tool dependencies present. Step 2: vitest exits 0, all cluster tests pass (parseColor, rgbaToHex, wcagContrast, deltaE, splitShadowLayers, classifyShadow, mergeTokenSets). Step 3: tokens.json exists. Step 4: every colorToken has stability.layer (infrastructure/system/campaign/content) with confidence and signals. Step 5: agent reports L1-L4 counts. | Transcript of `vitest run cluster`, node inspect output of tokens.json stability, stability layer distribution | PASS if cluster.test.ts passes AND tokens.json colorTokens[].stability.layer values are all valid AND no token is missing stability. FAIL if vitest fails OR stability is missing on any token OR clustering is degenerate (single cluster for different colors) OR L1/L2 count is zero on a real site | 1. If vitest fails, check `backend/vitest.config.ts` includes `scripts/__tests__/**/*.test.ts`. 2. If stability is missing, confirm the extraction pipeline ran `classifyTokenStability()` after `clusterTokens()`. 3. If all tokens are L3 or L4, the site may be content-heavy with no design system; try a known design-system site (e.g., linear.app, vercel.com). 4. If only one cluster exists, check `deltaE` threshold (should be < 3) and confirm culori OKLCH conversion works. |
 
 ### Optional Supplemental Checks
 
-For a deeper stability audit, run `cd tool && npx vitest run cluster` with `--reporter verbose` to see each unit test case output. Inspect a single `colorToken` by running `node -e "const t = require('./<--output>/tokens.json'); console.log(JSON.stringify(t.colorTokens[0].stability, null, 2))"` to confirm the `signals` array explains the classification (e.g., `pages: 100%`, `text/border usage`, `css-var: --color-brand`). Cross-check that tokens with `cssVariableNames` populated are never classified as L4.
+For a deeper stability audit, run `cd backend && npx vitest run cluster` with `--reporter verbose` to see each unit test case output. Inspect a single `colorToken` by running `node -e "const t = require('./<--output>/tokens.json'); console.log(JSON.stringify(t.colorTokens[0].stability, null, 2))"` to confirm the `signals` array explains the classification (e.g., `pages: 100%`, `text/border usage`, `css-var: --color-brand`). Cross-check that tokens with `cssVariableNames` populated are never classified as L4.
 
 ---
 
@@ -73,11 +73,11 @@ For a deeper stability audit, run `cd tool && npx vitest run cluster` with `--re
 
 | File | Role |
 |---|---|
-| `../../tool/scripts/cluster.ts` | Token clustering orchestrator: deltaE grouping, L1-L4 classification, mergeTokenSets |
-| `../../tool/scripts/__tests__/cluster.test.ts` | Vitest suite: unit tests for parseColor, rgbaToHex, wcagContrast, deltaE, splitShadowLayers, classifyShadow, mergeTokenSets |
-| `../../tool/vitest.config.ts` | Vitest config: includes `scripts/__tests__/**/*.test.ts` |
-| `../../tool/scripts/extract.ts` | Extraction orchestrator: calls clusterTokens and classifyTokenStability during Phase 1 |
-| `../../tool/scripts/types.ts` | StabilityClassification type: layer, confidence, signals |
+| `../../backend/scripts/cluster.ts` | Token clustering orchestrator: deltaE grouping, L1-L4 classification, mergeTokenSets |
+| `../../backend/tests/cluster.test.ts` | Vitest suite: unit tests for parseColor, rgbaToHex, wcagContrast, deltaE, splitShadowLayers, classifyShadow, mergeTokenSets |
+| `../../backend/vitest.config.ts` | Vitest config: includes `scripts/__tests__/**/*.test.ts` |
+| `../../backend/scripts/extract.ts` | Extraction orchestrator: calls clusterTokens and classifyTokenStability during Phase 1 |
+| `../../backend/scripts/types.ts` | StabilityClassification type: layer, confidence, signals |
 | `../../SKILL.md` | §3 Token Stability Classes (L1-L4) — classification table and DESIGN.md treatment |
 
 ---

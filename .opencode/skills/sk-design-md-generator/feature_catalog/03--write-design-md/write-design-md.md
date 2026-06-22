@@ -16,9 +16,9 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Produces the v3 **Style Reference** `DESIGN.md` that AI agents consume as a hallucination-proof, ship-ready design-system handoff — named colour tokens, a semantic type scale, named components, Surfaces, Elevation, an Agent Prompt Guide, Similar Brands, and a copy-paste Quick Start (CSS + Tailwind). This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v3 section specification from `tool/resources/design_md_format_v3.md` and the voice/tone rules from `tool/resources/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+Produces the v3 **Style Reference** `DESIGN.md` that AI agents consume as a hallucination-proof, ship-ready design-system handoff — named colour tokens, a semantic type scale, named components, Surfaces, Elevation, an Agent Prompt Guide, Similar Brands, and a copy-paste Quick Start (CSS + Tailwind). This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v3 section specification from `references/design_md_format_v3.md` and the voice/tone rules from `references/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
 
-To remove the AI from the highest-risk value surface, the phase runs `tool/scripts/build-write-prompt.ts` first: it pre-renders the deterministic value sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, Quick Start) directly from tokens via `tool/scripts/formatters-v3.ts` and assembles a FACTS block of locked values (type scale, shadow/gradient/motion/icon/focus counts) for the prose sections. The WRITE phase runs it first, pastes those pre-rendered tables unchanged, and writes prose only for the remaining sections — every value sourced from a pre-rendered section or the FACTS block.
+To remove the AI from the highest-risk value surface, the phase runs `backend/scripts/build-write-prompt.ts` first: it pre-renders the deterministic value sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, Quick Start) directly from tokens via `backend/scripts/formatters-v3.ts` and assembles a FACTS block of locked values (type scale, shadow/gradient/motion/icon/focus counts) for the prose sections. The WRITE phase runs it first, pastes those pre-rendered tables unchanged, and writes prose only for the remaining sections — every value sourced from a pre-rendered section or the FACTS block.
 
 ---
 
@@ -30,7 +30,7 @@ Every hex code, pixel value, font weight, box shadow, border radius, and spacing
 
 ### Doc-as-view value rendering
 
-The value-bearing sections are rendered deterministically, not authored by the AI. `tool/scripts/formatters-v3.ts` renders Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start straight from tokens — every hex, px, weight, radius, and `--page-max-width` value verbatim, L4 excluded, zero AI on the value surface. A deterministic hue+lightness colour namer assigns each colour an evocative-but-grounded Name and a matching `--color-<slug>` token, so the Name, the token slug, and the Quick Start stay mutually consistent without an AI naming pass. `tool/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first and pastes the pre-rendered tables unchanged. The AI composes only the prose sections (intro, per-font Typography prose, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands), and never emits a value — every value it states comes from a pre-rendered section or the FACTS block.
+The value-bearing sections are rendered deterministically, not authored by the AI. `backend/scripts/formatters-v3.ts` renders Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start straight from tokens — every hex, px, weight, radius, and `--page-max-width` value verbatim, L4 excluded, zero AI on the value surface. A deterministic hue+lightness colour namer assigns each colour an evocative-but-grounded Name and a matching `--color-<slug>` token, so the Name, the token slug, and the Quick Start stay mutually consistent without an AI naming pass. `backend/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first and pastes the pre-rendered tables unchanged. The AI composes only the prose sections (intro, per-font Typography prose, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands), and never emits a value — every value it states comes from a pre-rendered section or the FACTS block.
 
 ### Hex format requirements
 
@@ -58,11 +58,11 @@ The v3 voice is named, confident, and restrained: assign evocative colour names 
 
 ### Header
 
-The file opens with `# <Brand> — Style Reference`, an evocative one-line `> tagline`, and a `**Theme:**` line (light | dark | mixed), followed by an unlabeled 4–6 sentence intro paragraph, per `tool/resources/design_md_format_v3.md`.
+The file opens with `# <Brand> — Style Reference`, an evocative one-line `> tagline`, and a `**Theme:**` line (light | dark | mixed), followed by an unlabeled 4–6 sentence intro paragraph, per `references/design_md_format_v3.md`.
 
 ### Write-phase prompt
 
-The WRITE phase runs `tool/scripts/build-write-prompt.ts` first; it pre-renders the deterministic value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts`, assembles a FACTS block of locked values, and emits a complete v3 WRITE prompt with the hard rules inline (paste the pre-rendered sections unchanged, source every other value from the FACTS block, named/confident/restrained voice, no false systems). The prompt template in `assets/design_md_prompt_template.md` then provides a ready-to-fill composition prompt for the prose sections. Load the format spec (`design_md_format_v3.md`) and writing style guide alongside, paste the pre-rendered tables unchanged, and hand to the writing agent.
+The WRITE phase runs `backend/scripts/build-write-prompt.ts` first; it pre-renders the deterministic value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts`, assembles a FACTS block of locked values, and emits a complete v3 WRITE prompt with the hard rules inline (paste the pre-rendered sections unchanged, source every other value from the FACTS block, named/confident/restrained voice, no false systems). The prompt template in `assets/design_md_prompt_template.md` then provides a ready-to-fill composition prompt for the prose sections. Load the format spec (`design_md_format_v3.md`) and writing style guide alongside, paste the pre-rendered tables unchanged, and hand to the writing agent.
 
 ### Pre-validate self-check
 
@@ -76,21 +76,20 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/build-write-prompt.ts` | Script | Pre-renders the v3 value sections, assembles the FACTS block, and emits the prose-only WRITE prompt; run first by the WRITE phase |
-| `tool/scripts/formatters-v3.ts` | Script | Deterministic v3 emitters: hue+lightness colour namer, Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start (every value verbatim from tokens, L4 excluded) |
+| `backend/scripts/build-write-prompt.ts` | Script | Pre-renders the v3 value sections, assembles the FACTS block, and emits the prose-only WRITE prompt; run first by the WRITE phase |
+| `backend/scripts/formatters-v3.ts` | Script | Deterministic v3 emitters: hue+lightness colour namer, Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start (every value verbatim from tokens, L4 excluded) |
 | `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
-| `tool/resources/design_md_format_v3.md` | Shared | Authoritative v3 Style Reference section specification |
-| `tool/resources/anti_patterns.md` | Shared | Authoring anti-patterns including AP-29 Interpretive Fabrication |
+| `references/design_md_format_v3.md` | Shared | Authoritative v3 Style Reference section specification |
+| `references/anti_patterns.md` | Shared | Authoring anti-patterns including AP-29 Interpretive Fabrication |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `../../manual_testing_playbook/03--fidelity/verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
-| `tool/scripts/__tests__/formatters-v3.test.ts` | Automated test | v3 emitter unit tests: colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start rendering |
-| `tool/scripts/__tests__/formatters.test.ts` | Automated test | Legacy v2 doc-as-view formatter unit tests for §2 Color, §3 Typography, and §6 Depth rendering |
-| `tool/scripts/__tests__/build-write-prompt.test.ts` | Automated test | v3 pre-render and FACTS-block / prose-only prompt unit tests |
+| `backend/tests/formatters-v3.test.ts` | Automated test | v3 emitter unit tests: colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start rendering |
+| `backend/tests/build-write-prompt.test.ts` | Automated test | v3 pre-render and FACTS-block / prose-only prompt unit tests |
 
 ---
 
@@ -101,7 +100,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 - Feature file path: `03--write-design-md/write-design-md.md`
 
 Related references:
-- [tool/resources/writing_style_guide.md](../../tool/resources/writing_style_guide.md) — voice, tone, tense, and section-composition rules
-- [tool/resources/anti_patterns.md](../../tool/resources/anti_patterns.md) — common DESIGN.md authoring mistakes
+- [references/writing_style_guide.md](../../references/writing_style_guide.md) — voice, tone, tense, and section-composition rules
+- [references/anti_patterns.md](../../references/anti_patterns.md) — common DESIGN.md authoring mistakes
 - [cluster-classify.md](../02--cluster-classify/cluster-classify.md) — the stability classes that gate token inclusion
 - [validate.md](../04--validate/validate.md) — the hex-and-section validator that confirms fidelity

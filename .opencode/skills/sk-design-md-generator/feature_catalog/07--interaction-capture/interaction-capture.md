@@ -70,7 +70,7 @@ Section 11 (State Matrix) is data-driven: the v2 format specification (`design_m
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/interaction-capture.ts` | Script | Interactive element discovery, per-element state simulation (hover/focus/focus-visible/active/disabled), style-diff computation, loading/empty/error state detection |
+| `backend/scripts/interaction-capture.ts` | Script | Interactive element discovery, per-element state simulation (hover/focus/focus-visible/active/disabled), style-diff computation, loading/empty/error state detection |
 
 ### Validation And Tests
 

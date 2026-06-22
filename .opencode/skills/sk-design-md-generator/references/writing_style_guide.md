@@ -17,7 +17,7 @@ contextType: general
 
 Writing quality standard for the v3 **Style Reference** output (see `design_md_format_v3.md`). The Style Reference is a named, role-driven, ship-ready design-system handoff — not an extraction report. Every value still traces verbatim to `tokens.json`; what this guide governs is the prose voice (named + restrained, not mechanical + hedged).
 
-**Division of labour (read this first).** In the v3 pipeline the value-bearing sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — are pre-rendered deterministically by `tool/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters) and pasted into the doc unchanged. The agent writes **prose only** (header, intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). You never hand-author a value table, so "100rem where the tokens say 100%" cannot happen — this guide is about making the prose worthy of the named tokens, not about transcribing numbers.
+**Division of labour (read this first).** In the v3 pipeline the value-bearing sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters) and pasted into the doc unchanged. The agent writes **prose only** (header, intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). You never hand-author a value table, so "100rem where the tokens say 100%" cannot happen — this guide is about making the prose worthy of the named tokens, not about transcribing numbers.
 
 ---
 

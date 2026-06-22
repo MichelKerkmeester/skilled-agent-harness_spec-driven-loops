@@ -28,10 +28,10 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 ## 2. SETUP FAILURES
 
 **Chromium / Playwright missing.** `extract.ts` throws `browserType.launch: Executable doesn't exist`.
-- Fix: `cd tool && npx playwright install chromium`. Chromium is ~500 MB and is not bundled with the tool.
+- Fix: `cd backend && npx playwright install chromium`. Chromium is ~500 MB and is not bundled with the tool.
 
 **ts-node not found / module errors.** `command not found: ts-node` or import-resolution errors.
-- Fix: `cd tool && npm install`. The tool runs its TypeScript directly via `ts-node`; there is no build step.
+- Fix: `cd backend && npm install`. The tool runs its TypeScript directly via `ts-node`; there is no build step.
 
 ---
 
@@ -64,4 +64,4 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 
 ## 5. TESTS
 
-Confirm the tool is intact with `cd tool && npx vitest run` - it runs the unit suite (clustering + validation).
+Confirm the tool is intact with `cd backend && npx vitest run` - it runs the unit suite (clustering + validation).

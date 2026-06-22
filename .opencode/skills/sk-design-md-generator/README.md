@@ -23,7 +23,7 @@ AI agents invent colors, guess font sizes, and approximate shadows. When you tel
 
 ### What It Does
 
-The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a v3 **Style Reference** `DESIGN.md`: the value-bearing sections (colors, typography, spacing, the Quick Start CSS + Tailwind) are pre-rendered deterministically by `tool/scripts/formatters-v3.ts` and assembled by `tool/scripts/build-write-prompt.ts`, so the AI writes prose only and never emits a value. **Validate** checks hex accuracy, the v3 section set, and a Quick-Start fidelity check. A fourth optional phase renders HTML previews and visual-diff reports.
+The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a v3 **Style Reference** `DESIGN.md`: the value-bearing sections (colors, typography, spacing, the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`, so the AI writes prose only and never emits a value. **Validate** checks hex accuracy, the v3 section set, and a Quick-Start fidelity check. A fourth optional phase renders HTML previews and visual-diff reports.
 
 The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the numbers and the AI only writes prose, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
 
@@ -34,7 +34,7 @@ The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.
 **Step 1: Install dependencies.** From the skill root, run:
 
 ```bash
-cd .opencode/skills/sk-design-md-generator/tool
+cd .opencode/skills/sk-design-md-generator/backend
 npm install
 npx playwright install chromium   # ~500 MB, one-time
 ```
@@ -46,7 +46,7 @@ npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/spec
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `tool/resources/design_md_format_v3.md` and `tool/resources/writing_style_guide.md`. The value-bearing sections are pre-rendered by `tool/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you write prose only and never type a value by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
+**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format_v3.md` and `references/writing_style_guide.md`. The value-bearing sections are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you write prose only and never type a value by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
 
 **Step 4: Validate before claiming completion.**
 
@@ -101,7 +101,7 @@ Each extracted token gets a stability classification that governs its presence i
 | L3 | Campaign | Temporary — hero gradients, seasonal accents | With "Subject to change" annotation |
 | L4 | Content | Image-derived, one-off, article-specific | Excluded |
 
-The classifier in `tool/scripts/cluster.ts` is deterministic. Boundary tokens get the higher (more restrictive) class.
+The classifier in `backend/scripts/cluster.ts` is deterministic. Boundary tokens get the higher (more restrictive) class.
 
 ### Extract Flags
 
@@ -158,11 +158,11 @@ Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project 
 
 | What you see | Why | Fix |
 |---|---|---|
-| `chromium is not installed` or Playwright error | Chromium binary not downloaded | Run `npx playwright install chromium` from `tool/` (~500 MB, one-time) |
+| `chromium is not installed` or Playwright error | Chromium binary not downloaded | Run `npx playwright install chromium` from `backend/` (~500 MB, one-time) |
 | Extraction times out or returns empty tokens | Site blocks automated crawlers or requires authentication | Try `--wait-for networkidle` or `--wait-for css`. If the site requires login, it is out of scope |
 | Dark-mode section is missing | The site has no `prefers-color-scheme` media query or dark-mode CSS variables | This is expected. Include a dark-mode section only when `tokens.json` contains a detected dark palette |
 | Validation reports hex mismatches | `DESIGN.md` contains values not in `tokens.json` | Re-read `tokens.json` and fix the mismatched values. Every hex must match verbatim |
-| `ts-node: command not found` | Dev dependencies not installed | Run `npm install` from `tool/` |
+| `ts-node: command not found` | Dev dependencies not installed | Run `npm install` from `backend/` |
 
 ---
 
@@ -178,7 +178,7 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `tool/resources/design_md_format_v3.md`. `build-write-prompt.ts` pre-renders the value-bearing sections (colors, typography, spacing, Quick Start) via `formatters-v3.ts`; the agent writes the surrounding prose only, so no value is ever hand-copied. The skill validates the result.
+A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format_v3.md`. `build-write-prompt.ts` pre-renders the value-bearing sections (colors, typography, spacing, Quick Start) via `formatters-v3.ts`; the agent writes the surrounding prose only, so no value is ever hand-copied. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 
@@ -194,9 +194,9 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 
 | Check | How to run it |
 |---|---|
-| Tool dependencies installed | `ls tool/node_modules/playwright` returns a directory |
-| Chromium available | `npx playwright install --dry-run chromium` from `tool/` shows installed |
-| Test suite passes | `npx vitest run` from `tool/` exits 0 |
+| Tool dependencies installed | `ls backend/node_modules/playwright` returns a directory |
+| Chromium available | `npx playwright install --dry-run chromium` from `backend/` shows installed |
+| Test suite passes | `npx vitest run` from `backend/` exits 0 |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-md-generator/README.md --type readme` reports zero issues |
 
 ---
@@ -207,6 +207,6 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`tool/resources/design_md_format_v3.md`](./tool/resources/design_md_format_v3.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
-| [`tool/resources/writing_style_guide.md`](./tool/resources/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
+| [`references/design_md_format_v3.md`](./references/design_md_format_v3.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
+| [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

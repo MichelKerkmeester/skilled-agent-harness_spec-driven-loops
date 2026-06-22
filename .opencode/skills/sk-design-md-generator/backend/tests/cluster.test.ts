@@ -9,8 +9,8 @@ import {
   splitShadowLayers,
   mergeTokenSets,
   type OKLCH,
-} from '../cluster';
-import type { DesignTokens, ColorToken } from '../types';
+} from '../scripts/cluster';
+import type { DesignTokens, ColorToken } from '../scripts/types';
 
 // ─── parseColor ─────────────────────────────────────────────────────────────
 

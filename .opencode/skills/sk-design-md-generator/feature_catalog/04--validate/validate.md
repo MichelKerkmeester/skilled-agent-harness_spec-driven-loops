@@ -82,14 +82,14 @@ Four conditions require escalation rather than automated correction:
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/validate.ts` | Script | v3-schema-aware hex-accuracy checker, v3 section-completeness checker, Quick-Start fidelity checker (`checkQuickStartFidelity`), format-consistency checker, dual-score engine (`isPass` requires `claimsScore >= 80`) |
+| `backend/scripts/validate.ts` | Script | v3-schema-aware hex-accuracy checker, v3 section-completeness checker, Quick-Start fidelity checker (`checkQuickStartFidelity`), format-consistency checker, dual-score engine (`isPass` requires `claimsScore >= 80`) |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `../../manual_testing_playbook/02--validate/phantom-hex-detection.md` | Manual playbook | Validator pass/fail scenario — confirms faithful DESIGN.md passes and phantom hexes are flagged |
-| `tool/scripts/__tests__/validate.test.ts` | Automated test | Validation engine unit tests covering hex accuracy, section completeness, and format consistency |
+| `backend/tests/validate.test.ts` | Automated test | Validation engine unit tests covering hex accuracy, section completeness, and format consistency |
 
 ---
 
@@ -100,6 +100,6 @@ Four conditions require escalation rather than automated correction:
 - Feature file path: `04--validate/validate.md`
 
 Related references:
-- [tool/resources/quality_checklist.md](../../tool/resources/quality_checklist.md) — pre-validate self-check list
+- [references/quality_checklist.md](../../references/quality_checklist.md) — pre-validate self-check list
 - [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that produces the DESIGN.md under validation
 - [references/troubleshooting.md](../../references/troubleshooting.md) — failure modes and escalation guidance

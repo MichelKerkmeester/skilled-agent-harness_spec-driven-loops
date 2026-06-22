@@ -24,7 +24,7 @@ Transforms the raw color data from `tokens.json` into a stability-gated token se
 
 ### OKLCH color clustering
 
-`cluster.ts` reads the extracted color tokens and converts each hex value to OKLCH coordinates (lightness, chroma, hue). Colors within a defined perceptual-distance threshold are grouped into a shared role. The algorithm avoids splitting visually identical colors across roles and keeps the role count manageable for DESIGN.md authoring. Roles follow the taxonomy in `tool/resources/color_role_taxonomy.md`: brand colors, semantic role colors (success, error, warning, info), surface colors, border colors, text ladder colors, and interactive-state colors.
+`cluster.ts` reads the extracted color tokens and converts each hex value to OKLCH coordinates (lightness, chroma, hue). Colors within a defined perceptual-distance threshold are grouped into a shared role. The algorithm avoids splitting visually identical colors across roles and keeps the role count manageable for DESIGN.md authoring. Roles follow the taxonomy in `references/color_role_taxonomy.md`: brand colors, semantic role colors (success, error, warning, info), surface colors, border colors, text ladder colors, and interactive-state colors.
 
 ### Stability classification (L1-L4)
 
@@ -47,8 +47,8 @@ When a token straddles the L2/L3 or L3/L4 boundary, the classifier assigns the h
 
 The classification drives the write-phase gating:
 
-- L1 and L2 tokens populate the main 17 sections.
-- L3 tokens appear in the `Current Campaign Colors` table (section 2) with a "Subject to change" annotation.
+- L1 and L2 tokens populate the main token sections.
+- L3 tokens appear in the `Current Campaign Colors` sub-table with a "Subject to change" annotation.
 - L4 tokens are excluded entirely from DESIGN.md.
 
 ### Incremental extraction
@@ -63,14 +63,14 @@ The classification drives the write-phase gating:
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/cluster.ts` | Script | OKLCH color space clustering engine, role assignment, stability heuristic |
-| `tool/scripts/types.ts` | Shared | Token type definitions, L1-L4 classification enum, interface contracts |
+| `backend/scripts/cluster.ts` | Script | OKLCH color space clustering engine, role assignment, stability heuristic |
+| `backend/scripts/types.ts` | Shared | Token type definitions, L1-L4 classification enum, interface contracts |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `tool/scripts/__tests__/cluster.test.ts` | Automated test | Color parsing, px-value extraction, and cluster classification unit tests |
+| `backend/tests/cluster.test.ts` | Automated test | Color parsing, px-value extraction, and cluster classification unit tests |
 
 ---
 
@@ -81,6 +81,6 @@ The classification drives the write-phase gating:
 - Feature file path: `02--cluster-classify/cluster-classify.md`
 
 Related references:
-- [tool/resources/color_role_taxonomy.md](../../tool/resources/color_role_taxonomy.md) — color role naming conventions and hierarchy
+- [references/color_role_taxonomy.md](../../references/color_role_taxonomy.md) — color role naming conventions and hierarchy
 - [extract.md](../01--extract/extract.md) — the extraction phase that produces tokens consumed by the cluster
 - [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that applies stability gating

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { nameColors, formatSpacingShapesV3, emitQuickStart, formatColorsV3, formatSurfacesV3 } from '../formatters-v3';
-import type { DesignTokens } from '../types';
+import { nameColors, formatSpacingShapesV3, emitQuickStart, formatColorsV3, formatSurfacesV3 } from '../scripts/formatters-v3';
+import type { DesignTokens } from '../scripts/types';
 
 function tokens(over: Record<string, unknown> = {}): DesignTokens {
   return {

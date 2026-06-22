@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseArgs } from '../extract';
+import { parseArgs } from '../scripts/extract';
 
 // parseArgs takes process.argv form (it slices the leading [node, script]).
 const pa = (...a: string[]) => parseArgs(['node', 'extract', ...a]);

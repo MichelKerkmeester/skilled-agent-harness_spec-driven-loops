@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { classifyVariant, classifyColorStability } from '../cluster';
-import type { ElementStyle, ColorToken } from '../types';
+import { classifyVariant, classifyColorStability } from '../scripts/cluster';
+import type { ElementStyle, ColorToken } from '../scripts/types';
 
 const el = (o: Partial<ElementStyle>) =>
   ({ backgroundColor: 'rgb(255,255,255)', color: 'rgb(0,0,0)', boxShadow: 'none', borderTopWidth: '0px', ...o } as ElementStyle);

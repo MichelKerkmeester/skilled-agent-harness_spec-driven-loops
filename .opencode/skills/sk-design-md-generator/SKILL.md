@@ -9,7 +9,7 @@ version: 1.0.0
 
 # Design System Extractor (sk-design-md-generator)
 
-Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`tool/resources/`](tool/resources/).
+Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
 > **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `sk-design-interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `mcp-open-design` and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `sk-design-interface` consume.
 
@@ -37,7 +37,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 **Visual report generation.** Given a `DESIGN.md` + `tokens.json` pair, render an HTML preview and a visual-diff report to confirm the written doc matches the extracted tokens.
 
-**Example study.** The user wants to understand how a gold-standard site (stripe, vercel, linear, supabase — included in `tool/examples/`) structures its DESIGN.md output, to inform a new extraction or to learn the format conventions.
+**Example study.** The user wants to understand how a gold-standard site (stripe, vercel, linear, supabase — included in `references/examples/`) structures its DESIGN.md output, to inform a new extraction or to learn the format conventions.
 
 ### When NOT to Use
 
@@ -65,7 +65,7 @@ echo "$REQUEST" | grep -qiE 'example|gold.*standard|stripe|vercel|linear|supabas
 : "${PHASE:=EXTRACT_WRITE}"
 
 # Tool readiness check
-[ -d "tool/node_modules" ] && TOOL_READY=true || TOOL_READY=false
+[ -d "backend/node_modules" ] && TOOL_READY=true || TOOL_READY=false
 ```
 
 ### Phase Detection
@@ -74,7 +74,7 @@ echo "$REQUEST" | grep -qiE 'example|gold.*standard|stripe|vercel|linear|supabas
 TASK CONTEXT
     |
     +- STEP 0: Detect pipeline phase -> EXTRACT_WRITE | VALIDATE | REPORT | STUDY
-    +- STEP 1: Verify tool readiness (tool/node_modules + playwright chromium installed)
+    +- STEP 1: Verify tool readiness (backend/node_modules + playwright chromium installed)
     +- Phase 1: EXTRACT — crawl URL across 5 viewports, emit tokens.json
     +- Phase 2: WRITE — run build-write-prompt.ts (pre-renders Tokens—Colors/Spacing&Shapes/Surfaces/Quick Start + a facts block), paste those tables unchanged, then write prose only for the v3 Style Reference
     +- Phase 3: VALIDATE — check hex accuracy + v3 section completeness + Quick-Start fidelity via validate.ts
@@ -83,28 +83,29 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers knowledge from two root domains: the embedded `tool/resources/` (six deep-reference docs on format, style, taxonomies, anti-patterns, and quality) and this skill's own `references/` (advisor-routable operational docs authored separately). Examples under `tool/examples/` are study artifacts, not resources.
+The router discovers knowledge from a single root domain — this skill's `references/` directory: eight reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the quality checklist, and the operational extraction-workflow and troubleshooting guides. Examples under `references/examples/` are study artifacts, not resources.
 
 ```text
-tool/resources/design_md_format_v3.md    # v3 Style Reference section specification
-tool/resources/writing_style_guide.md    # voice, tone, section composition rules
-tool/resources/color_role_taxonomy.md    # color role naming + classification
-tool/resources/component_taxonomy.md     # component naming + hierarchy patterns
-tool/resources/anti_patterns.md          # common DESIGN.md mistakes to avoid
-tool/resources/quality_checklist.md      # pre-validate self-check
-tool/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + tokens.json pairs
-references/                              # skill-owned advisor-routable reference docs
+references/design_md_format_v3.md    # v3 Style Reference section specification
+references/writing_style_guide.md    # voice, tone, section composition rules
+references/color_role_taxonomy.md    # color role naming + classification
+references/component_taxonomy.md     # component naming + hierarchy patterns
+references/anti_patterns.md          # common DESIGN.md mistakes to avoid
+references/quality_checklist.md      # pre-validate self-check
+references/extraction_workflow.md    # three-phase workflow, invocations, handoff
+references/troubleshooting.md        # failure modes and fixes
+references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + tokens.json pairs
 ```
 
 ### Resource Loading Levels
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `tool/resources/design_md_format_v3.md`, `tool/resources/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
-| CONDITIONAL | EXTRACT_WRITE intent                 | `tool/resources/color_role_taxonomy.md`, `tool/resources/component_taxonomy.md`, `tool/resources/anti_patterns.md` |
-| CONDITIONAL | VALIDATE / completion claim          | `tool/resources/quality_checklist.md`, `tool/resources/anti_patterns.md`  |
-| CONDITIONAL | STUDY intent                         | `tool/examples/` (one site at a time, loaded as reference pairs)           |
-| ON_DEMAND   | Deep format edge-cases or component patterns | `tool/resources/anti_patterns.md`, `tool/resources/component_taxonomy.md` |
+| ALWAYS      | Every invocation                     | `references/design_md_format_v3.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
+| CONDITIONAL | EXTRACT_WRITE intent                 | `references/color_role_taxonomy.md`, `references/component_taxonomy.md`, `references/anti_patterns.md` |
+| CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
+| CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
+| ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti_patterns.md`, `references/component_taxonomy.md` |
 
 ### Smart Router Pseudocode
 
@@ -114,8 +115,8 @@ references/                              # skill-owned advisor-routable referenc
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "tool" / "resources", SKILL_ROOT / "references")
-DEFAULT_RESOURCE = "tool/resources/design_md_format_v3.md"
+RESOURCE_BASES = (SKILL_ROOT / "references",)
+DEFAULT_RESOURCE = "references/design_md_format_v3.md"
 
 INTENT_MODEL = {
     "EXTRACT_WRITE": {"keywords": [("extract", 4), ("crawl", 4), ("url", 4), ("design.md", 4), ("generate", 3),
@@ -129,20 +130,20 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "EXTRACT_WRITE": ["tool/resources/design_md_format_v3.md", "tool/resources/writing_style_guide.md",
-                       "tool/resources/color_role_taxonomy.md", "tool/resources/component_taxonomy.md",
-                       "tool/resources/anti_patterns.md"],
-    "VALIDATE":      ["tool/resources/quality_checklist.md", "tool/resources/anti_patterns.md",
-                       "tool/resources/design_md_format_v3.md"],
-    "REPORT":        ["tool/resources/design_md_format_v3.md"],
-    "STUDY":         ["tool/resources/design_md_format_v3.md", "tool/resources/writing_style_guide.md"],
+    "EXTRACT_WRITE": ["references/design_md_format_v3.md", "references/writing_style_guide.md",
+                       "references/color_role_taxonomy.md", "references/component_taxonomy.md",
+                       "references/anti_patterns.md"],
+    "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
+                       "references/design_md_format_v3.md"],
+    "REPORT":        ["references/design_md_format_v3.md"],
+    "STUDY":         ["references/design_md_format_v3.md", "references/writing_style_guide.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the pipeline phase: full extraction (URL → DESIGN.md), validation-only, report generation, or example study",
     "For any extraction, confirm the target URL is live and renders JavaScript",
     "Confirm the output paths for tokens.json and DESIGN.md before writing",
-    "Verify tool readiness: cd tool && npm install && npx playwright install chromium",
+    "Verify tool readiness: cd backend && npm install && npx playwright install chromium",
 ]
 
 AMBIGUITY_DELTA = 1
@@ -219,7 +220,7 @@ WRITE (Phase 2)
     ├─ Run build-write-prompt.ts FIRST: it pre-renders Tokens — Colors, Tokens — Spacing &
     │    Shapes, Surfaces, and Quick Start deterministically from tokens (doc-as-view, no AI on
     │    the value tables) via formatters-v3.ts, plus a FACTS block of locked values
-    ├─ Read tokens.json and tool/resources/design_md_format_v3.md for the v3 Style Reference spec
+    ├─ Read tokens.json and references/design_md_format_v3.md for the v3 Style Reference spec
     ├─ Paste the pre-rendered value sections UNCHANGED; write prose only (intro, Typography role
     │    prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands)
     ├─ Every value comes from a pre-rendered section or the FACTS block — never invented or concretized
@@ -256,14 +257,14 @@ REPORT (Phase 4, optional)
 
 ```bash
 # One-time setup (from the skill root)
-cd tool && npm install && npx playwright install chromium
+cd backend && npm install && npx playwright install chromium
 
 # Phase 1 — extract. --fast crawls 5 pages at 8 concurrency (default is 8 pages).
 # Interaction capture (hover/focus/active) runs by DEFAULT, including under --fast.
 # tokens.json is written to <--output>/.
 npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
-# Phase 2 — write DESIGN.md per tool/resources/design_md_format_v3.md, every value from tokens.json.
+# Phase 2 — write DESIGN.md per references/design_md_format_v3.md, every value from tokens.json.
 # Run build-write-prompt.ts first: it pre-renders Tokens—Colors/Spacing&Shapes/Surfaces/Quick Start
 # (via formatters-v3.ts) plus a FACTS block, then you paste those unchanged and write prose only:
 npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json
@@ -277,7 +278,7 @@ npx ts-node scripts/report-gen.ts <--output>/tokens.json <dir> <DESIGN.md>
 npx ts-node scripts/preview-gen.ts <--output>/tokens.json <dir>
 ```
 
-Real extract flags (see `tool/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
+Real extract flags (see `backend/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
 
 ### Token Stability Classes (L1–L4)
 
@@ -290,7 +291,7 @@ Each extracted token receives a stability classification that governs whether it
 | L3    | Campaign   | Temporary — hero gradients, seasonal accents             | Included with "Subject to change" annotation |
 | L4    | Content    | Image-derived, one-off, article-specific                 | Excluded entirely                        |
 
-The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens that sit at a boundary are assigned the higher (more restrictive) class.
+The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Tokens that sit at a boundary are assigned the higher (more restrictive) class.
 
 ---
 
@@ -298,14 +299,14 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### ✅ ALWAYS
 
-1. **ALWAYS read `tool/resources/design_md_format_v3.md` and `tool/resources/writing_style_guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
+1. **ALWAYS read `references/design_md_format_v3.md` and `references/writing_style_guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
 2. **ALWAYS copy every numeric CSS value verbatim from `tokens.json`.** Hex colors, pixel sizes, font weights, box shadows, border radii, spacing values — every number must match `tokens.json` exactly. This is the cardinal fidelity rule.
 3. **ALWAYS use 6-digit lowercase hex** for every color in DESIGN.md (e.g., `#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 4. **ALWAYS apply stability gates:** L1 and L2 colours in the main token table; L3 colours in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens excluded entirely.
 5. **ALWAYS run `validate.ts` before claiming completion** of any extraction or DESIGN.md edit. Validation checks hex accuracy against `tokens.json`, v3 Style Reference section completeness, Quick-Start fidelity (every Quick Start hex traces to a token, `--page-max-width` matches `tokens.json`), and prose provenance — `isPass()` requires `claimsScore >= 80`.
 6. **ALWAYS include a dark-mode section ONLY when `tokens.json` contains a detected dark-mode palette.** Never infer, derive, or fabricate a dark palette from the light tokens.
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
-8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd tool && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
+8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
 
 ### ❌ NEVER
 
@@ -327,21 +328,21 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ## 5. REFERENCES
 
-### Core References (Embedded Tool)
+### Core References (Format & Style)
 
-- [design_md_format_v3.md](tool/resources/design_md_format_v3.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
-- [writing_style_guide.md](tool/resources/writing_style_guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
-- [color_role_taxonomy.md](tool/resources/color_role_taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
-- [component_taxonomy.md](tool/resources/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
-- [anti_patterns.md](tool/resources/anti_patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
-- [quality_checklist.md](tool/resources/quality_checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
+- [design_md_format_v3.md](references/design_md_format_v3.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
+- [writing_style_guide.md](references/writing_style_guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
+- [color_role_taxonomy.md](references/color_role_taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
+- [component_taxonomy.md](references/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
+- [anti_patterns.md](references/anti_patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
+- [quality_checklist.md](references/quality_checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
 
 ### Gold-Standard Examples
 
-- [tool/examples/stripe/](tool/examples/stripe/) — DESIGN.md + tokens.json + writing-notes.md for Stripe.
-- [tool/examples/vercel/](tool/examples/vercel/) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
-- [tool/examples/linear/](tool/examples/linear/) — DESIGN.md + tokens.json + writing-notes.md for Linear.
-- [tool/examples/supabase/](tool/examples/supabase/) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
+- [references/examples/stripe/](references/examples/stripe/) — DESIGN.md + tokens.json + writing-notes.md for Stripe.
+- [references/examples/vercel/](references/examples/vercel/) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
+- [references/examples/linear/](references/examples/linear/) — DESIGN.md + tokens.json + writing-notes.md for Linear.
+- [references/examples/supabase/](references/examples/supabase/) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
 
 ### Skill-Owned References
 
@@ -355,10 +356,10 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Reference Loading Notes
 
-- `tool/resources/design_md_format_v3.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
+- `references/design_md_format_v3.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
 - Load the taxonomy docs (`color_role_taxonomy.md`, `component_taxonomy.md`) and `anti_patterns.md` only when the intent is EXTRACT_WRITE.
 - Load `quality_checklist.md` before any validation or completion claim.
-- Load one example site at a time from `tool/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
+- Load one example site at a time from `references/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 
 ---
@@ -367,7 +368,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 **Extraction complete when:**
 - [x] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
-- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `tool/resources/design_md_format_v3.md`.
+- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design_md_format_v3.md`.
 - [x] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
 - [x] All hex codes use 6-digit lowercase format.
 - [x] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
@@ -388,7 +389,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Tool Usage Guidelines
 
-- **Bash** owns all embedded-tool invocations: `npx ts-node scripts/extract.ts`, `npx ts-node scripts/validate.ts`, `npx ts-node scripts/report-gen.ts`, `npx ts-node scripts/preview-gen.ts`, `npm install`, `npx playwright install chromium`. All commands run from `tool/` as the working directory.
+- **Bash** owns all embedded-tool invocations: `npx ts-node scripts/extract.ts`, `npx ts-node scripts/validate.ts`, `npx ts-node scripts/report-gen.ts`, `npx ts-node scripts/preview-gen.ts`, `npm install`, `npx playwright install chromium`. All commands run from `backend/` as the working directory.
 - **Read** loads `tokens.json`, the existing DESIGN.md for re-extraction context, and all resource/reference docs.
 - **Write** produces the DESIGN.md output. Only Write when the token data is fully loaded and the v3 Style Reference format specification has been read.
 - **Edit** is used for targeted fixes to DESIGN.md after validation reveals specific errors.
@@ -404,25 +405,25 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 ### External Tools
 
 - **Playwright** (Microsoft, Apache 2.0): installed via `npx playwright install chromium`. Required for the extraction phase. The embedded tool uses Playwright to crawl live URLs and read computed CSS.
-- **Node.js**: required by the embedded tool. The `tool/package.json` declares the version range.
-- **`ts-node`**: used to execute the embedded TypeScript modules directly. Included in `tool/package.json` devDependencies.
+- **Node.js**: required by the embedded tool. The `backend/package.json` declares the version range.
+- **`ts-node`**: used to execute the embedded TypeScript modules directly. Included in `backend/package.json` devDependencies.
 
 ### Knowledge Base Dependencies
 
-**Required** (every invocation): `tool/resources/design_md_format_v3.md` (v3 Style Reference section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
+**Required** (every invocation): `references/design_md_format_v3.md` (v3 Style Reference section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers resource and reference docs dynamically. Start from `tool/resources/design_md_format_v3.md` for the v3 Style Reference section specification, load `tool/resources/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
+The router (Section 2) discovers resource and reference docs dynamically. Start from `references/design_md_format_v3.md` for the v3 Style Reference section specification, load `references/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
 
-Examples: `tool/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
+Examples: `references/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
 
-Scripts: the embedded `tool/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
+Scripts: the embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
 
 Related skills: `sk-design-interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
 
-Install guide: tool setup is `cd tool && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
+Install guide: tool setup is `cd backend && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
 
-The embedded tool under `tool/` is a self-contained TypeScript pipeline; its runtime dependencies are declared in `tool/package.json` and installed per the INSTALL_GUIDE, not redistributed in the skill.
+The embedded tool under `backend/` is a self-contained TypeScript pipeline; its runtime dependencies are declared in `backend/package.json` and installed per the INSTALL_GUIDE, not redistributed in the skill.

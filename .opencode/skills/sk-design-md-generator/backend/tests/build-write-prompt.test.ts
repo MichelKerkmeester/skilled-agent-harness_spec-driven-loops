@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { buildWritePrompt } from '../build-write-prompt';
-import type { DesignTokens } from '../types';
+import { buildWritePrompt } from '../scripts/build-write-prompt';
+import type { DesignTokens } from '../scripts/types';
 
 function tokens(overrides: Record<string, unknown> = {}): DesignTokens {
   return {

@@ -45,7 +45,7 @@ Operators run the exact command sequence for `DARKMODE-001` and confirm the expe
 
 PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. For the positive branch (dark palette detected), choose a site known to have a dark mode with a `prefers-color-scheme` media query. For the negative branch (no dark palette), choose a site without a dark mode, or re-run extraction with `--no-dark-mode`.
 
-1. `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('darkMode present:', !!t.darkMode); if(t.darkMode) { console.log('detectionMethod:', t.darkMode.detectionMethod); console.log('has variableDiff:', !!t.darkMode.variableDiff?.length); console.log('has darkTokens:', !!t.darkMode.darkTokens?.length) }"` (run from `tool/`)  # -> darkMode metadata printed
+1. `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('darkMode present:', !!t.darkMode); if(t.darkMode) { console.log('detectionMethod:', t.darkMode.detectionMethod); console.log('has variableDiff:', !!t.darkMode.variableDiff?.length); console.log('has darkTokens:', !!t.darkMode.darkTokens?.length) }"` (run from `backend/`)  # -> darkMode metadata printed
 2. `bash: rg -ci 'dark' <style-reference.md>`  # -> non-zero if dark values present, 0 if absent
 3. if darkMode is non-empty: read the Style Reference's dark tokens / dark surfaces and spot-check 3 dark hex values against tokens.json.darkMode  # -> verbatim match
 4. if darkMode is absent/empty: confirm no dark-mode hex values appear anywhere in the Style Reference  # -> clean absence
@@ -73,10 +73,10 @@ Run a second extraction of the same site with `--no-dark-mode` and confirm no da
 
 | File | Role |
 |---|---|
-| `../../tool/scripts/dark-mode-detect.ts` | Dark-mode detection — keys on `prefers-color-scheme` media query, collects CSS variable diffs across viewports |
-| `../../tool/scripts/extract.ts` | Orchestrator — passes `noDarkMode` flag, calls `detectDarkMode` |
-| `../../tool/scripts/types.ts` | Type definitions — `DarkModeData` with detectionMethod, variableDiff, darkTokens |
-| `../../tool/resources/design_md_format_v3.md` | v3 Style Reference section specification — verbatim-value rule and the token tables where detected dark values appear |
+| `../../backend/scripts/dark-mode-detect.ts` | Dark-mode detection — keys on `prefers-color-scheme` media query, collects CSS variable diffs across viewports |
+| `../../backend/scripts/extract.ts` | Orchestrator — passes `noDarkMode` flag, calls `detectDarkMode` |
+| `../../backend/scripts/types.ts` | Type definitions — `DarkModeData` with detectionMethod, variableDiff, darkTokens |
+| `../../references/design_md_format_v3.md` | v3 Style Reference section specification — verbatim-value rule and the token tables where detected dark values appear |
 | `../../references/troubleshooting.md` | §3 Crawl Failures — dark-mode detection gaps and recovery |
 | `../../SKILL.md` | §3 Cardinal Fidelity Rule (dark mode paragraph), §4 ALWAYS rule 6, §4 ESCALATE IF rule 2 |
 

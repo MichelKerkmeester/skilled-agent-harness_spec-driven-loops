@@ -43,9 +43,9 @@ Operators run the exact command sequence for `FIDELITY-001` and confirm the expe
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faithful v3 Style Reference must exist, written from the Wave 2 tokens.json per the v3 format specification in `tool/resources/design_md_format_v3.md`.
+PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faithful v3 Style Reference must exist, written from the Wave 2 tokens.json per the v3 format specification in `references/design_md_format_v3.md`.
 
-1. extract sample values from tokens.json: `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('HEX:', t.colorTokens.slice(0,5).map(c=>c.hex)); console.log('PX:', t.spacingScale?.slice(0,3).map(s=>s.value)); console.log('WEIGHT:', t.typographyLevels?.slice(0,2).map(l=>l.fontWeight)); console.log('SHADOW:', t.shadowTokens?.slice(0,2).map(s=>s.value)); console.log('MAXWIDTH:', t.spacingSystem?.maxContentWidth)"` (run from `tool/`)  # -> sample values printed, including the layout max-width
+1. extract sample values from tokens.json: `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('HEX:', t.colorTokens.slice(0,5).map(c=>c.hex)); console.log('PX:', t.spacingScale?.slice(0,3).map(s=>s.value)); console.log('WEIGHT:', t.typographyLevels?.slice(0,2).map(l=>l.fontWeight)); console.log('SHADOW:', t.shadowTokens?.slice(0,2).map(s=>s.value)); console.log('MAXWIDTH:', t.spacingSystem?.maxContentWidth)"` (run from `backend/`)  # -> sample values printed, including the layout max-width
 2. locate each sample value in the Style Reference: `bash: rg '<sample-hex>' <style-reference.md>` (repeat for each value, including the max-width — confirm `100%` is not rendered as `100rem`)  # -> each value found verbatim
 3. confirm 6-digit lowercase hex: `bash: rg -o '#[0-9a-fA-F]{3,8}' <style-reference.md> \| sort -u`  # -> all hex codes are 6-digit lowercase; flag any 3-digit or uppercase
 4. confirm L4 absence: search the Style Reference for any value from tokens.json where `stabilityClass === "L4"` — confirm none appear  # -> zero L4 values
@@ -58,7 +58,7 @@ PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faith
 
 ### Optional Supplemental Checks
 
-Run the full `validate.ts` against the Style Reference and confirm it passes (values 100, claims >= 80, zero failures) as an additional fidelity gate, including a clean `checkQuickStartFidelity` (no `quickstart-phantom-color`, no `quickstart-maxwidth`). Check the extraction report at `<--output>/report.json` and confirm the token counts and stability-class distribution match what appears in the Style Reference. Run `cd tool && npx vitest run` to confirm the clustering and validation unit tests pass.
+Run the full `validate.ts` against the Style Reference and confirm it passes (values 100, claims >= 80, zero failures) as an additional fidelity gate, including a clean `checkQuickStartFidelity` (no `quickstart-phantom-color`, no `quickstart-maxwidth`). Check the extraction report at `<--output>/report.json` and confirm the token counts and stability-class distribution match what appears in the Style Reference. Run `cd backend && npx vitest run` to confirm the clustering and validation unit tests pass.
 
 ---
 
@@ -74,14 +74,14 @@ Run the full `validate.ts` against the Style Reference and confirm it passes (va
 
 | File | Role |
 |---|---|
-| `../../tool/scripts/cluster.ts` | Token classifier — assigns L1-L4 stability classes, determines which tokens reach the Style Reference |
-| `../../tool/scripts/build-write-prompt.ts` | Pre-renders the deterministic v3 value sections (calls `formatters-v3.ts`) so the writer adds prose only — the structural source of the verbatim guarantee |
-| `../../tool/scripts/formatters-v3.ts` | Deterministic v3 emitters — emit every hex/size/weight/radius/max-width verbatim (`100%` stays `100%`) |
-| `../../tool/scripts/validate.ts` | Fidelity validator — `checkFormatConsistency` verifies 6-digit lowercase hex, `checkPhantomColors` verifies hex provenance, `checkQuickStartFidelity` verifies Quick Start hex traceability + `--page-max-width` |
-| `../../tool/scripts/types.ts` | Shared type definitions — `StabilityClassification`, `DesignTokens`, `ColorToken` |
-| `../../tool/resources/design_md_format_v3.md` | v3 Style Reference section specification — defines the named token tables and which receive L1/L2/L3 tokens |
-| `../../tool/resources/writing_style_guide.md` | Voice and tone rules — named/confident/restrained voice, no frequency dumps, and the "Subject to change" sub-table for L3 tokens |
-| `../../tool/resources/anti_patterns.md` | Common mistakes — invented values, wrong hex case, L4 leaks, dark-mode fabrication |
+| `../../backend/scripts/cluster.ts` | Token classifier — assigns L1-L4 stability classes, determines which tokens reach the Style Reference |
+| `../../backend/scripts/build-write-prompt.ts` | Pre-renders the deterministic v3 value sections (calls `formatters-v3.ts`) so the writer adds prose only — the structural source of the verbatim guarantee |
+| `../../backend/scripts/formatters-v3.ts` | Deterministic v3 emitters — emit every hex/size/weight/radius/max-width verbatim (`100%` stays `100%`) |
+| `../../backend/scripts/validate.ts` | Fidelity validator — `checkFormatConsistency` verifies 6-digit lowercase hex, `checkPhantomColors` verifies hex provenance, `checkQuickStartFidelity` verifies Quick Start hex traceability + `--page-max-width` |
+| `../../backend/scripts/types.ts` | Shared type definitions — `StabilityClassification`, `DesignTokens`, `ColorToken` |
+| `../../references/design_md_format_v3.md` | v3 Style Reference section specification — defines the named token tables and which receive L1/L2/L3 tokens |
+| `../../references/writing_style_guide.md` | Voice and tone rules — named/confident/restrained voice, no frequency dumps, and the "Subject to change" sub-table for L3 tokens |
+| `../../references/anti_patterns.md` | Common mistakes — invented values, wrong hex case, L4 leaks, dark-mode fabrication |
 | `../../assets/cardinal_rules_card.md` | One-page fidelity checklist for pre-validate self-check |
 | `../../SKILL.md` | §3 Cardinal Fidelity Rule, §4 ALWAYS rules 2-4, §4 NEVER rules 1-2 |
 

@@ -1,0 +1,7 @@
+# Writing Notes: Supabase DESIGN.md (v3)
+
+- This is a v3 **Style Reference**, regenerated from the existing `tokens.json` with no re-crawl. Value-bearing sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from `build-write-prompt.ts`; only prose was authored.
+- Final validation: **score 99/100, claims 100/100, PASS** (zero critical failures). The single warning (`unknown-font: "### Tailwind v4"`) is a benign heuristic false-positive on the required Quick Start subheading — same warning the gold anobel exemplar would raise.
+- Theme set to **dark**: the background tokens are near-black (`#171717` cards, `#0f0f0f` footer, `#000000` base) and Snow (`#fafafa`) is the dominant text colour. The pre-rendered Surfaces table labels Canvas as `#fafafa` by formatter convention; it was pasted unchanged per the fidelity rule despite the dark theme.
+- Two fonts: Circular (headings/body/UI) and Source Code Pro (numerics + uppercase tier labels). `fontInfo.loadedFonts` only reports a generic `custom-font`, so font names come from `typographyLevels` — substitutes (Inter / Fira Code) are inferred, not extracted.
+- Data caveats observed: Source Code Pro's 700 weight is a single low-confidence `$25` instance; component border `rgb(54,54,54)` and Secondary text `rgb(18,18,18)` are NOT in `colorTokens`, so they are described as "dark-gray"/"near-black" rather than printed as phantom hexes. Most shadow tokens are no-op transparent stacks — Elevation reports them honestly rather than claiming a depth system.

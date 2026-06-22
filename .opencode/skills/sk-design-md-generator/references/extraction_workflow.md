@@ -21,7 +21,7 @@ Operational guide for running the three-phase pipeline in this framework and han
 
 ### Purpose
 
-Cover how the embedded `tool/` runs here: the exact invocations, where output lands, the rule that makes the output trustworthy, and who consumes it. The deep format and voice rules live in `tool/resources/`; this doc is the operating layer above them.
+Cover how the embedded `backend/` runs here: the exact invocations, where output lands, the rule that makes the output trustworthy, and who consumes it. The deep format and voice rules live in `references/`; this doc is the operating layer above them.
 
 ### Core Principle
 
@@ -42,7 +42,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 1: EXTRACT
 
 **Actions**:
-1. `cd tool && npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output`
+1. `cd backend && npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output`
 2. Playwright crawls five viewports and writes `<--output>/tokens.json` plus screenshots and an extraction report.
 3. `--fast` means 5 pages at 8 concurrency. Interaction capture (hover/focus/active states) runs by **default**, including under `--fast`; drop `--fast` (or set `--max-pages 10`) for a deeper crawl. To opt out of interaction capture pass `--no-interaction`, or `--fast-no-interaction` for a fast crawl that also skips it (the old `--fast` behavior).
 4. Per-page async accessibility is captured alongside the crawl: page language, skip-link presence, tab order, alt-text coverage, and reduced-motion support populate the a11y tokens.
@@ -53,7 +53,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 
 **Actions**:
 1. Run `npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json` first. It pre-renders §2 Color, §3 Typography, and §6 Depth deterministically from the tokens (via `formatters.ts`) and emits a PRESENT/ABSENT manifest for the data-gated sections.
-2. Read `tool/resources/design_md_format_v3.md` and `tool/resources/writing_style_guide.md`.
+2. Read `references/design_md_format_v3.md` and `references/writing_style_guide.md`.
 3. Paste the pre-rendered §2/§3/§6 tables unchanged; compose the remaining sections, copying every hex, pixel, font-weight, shadow, and radius verbatim from `tokens.json`.
 4. Data-driven sections (§0, §6, §6.5, §7, §9, §11, §12) follow the manifest: PRESENT → write from tokens; ABSENT → stamp `_No <X> data was extracted._`, never invent. Interpretive claims cite a token or are labelled `[INFERRED]`.
 5. 6-digit lowercase hex only. L1+L2 tokens in main sections, L3 marked "Subject to change", L4 excluded.
@@ -73,7 +73,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 
 ## 3. STABILITY CLASSES
 
-`tool/scripts/cluster.ts` tags each token L1-L4 by how stable it is. The class governs whether the token reaches `DESIGN.md`.
+`backend/scripts/cluster.ts` tags each token L1-L4 by how stable it is. The class governs whether the token reaches `DESIGN.md`.
 
 | Class | Name | Meaning | In DESIGN.md? |
 |-------|------|---------|---------------|

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { validateDesignMd, type ValidationResult } from '../validate';
-import type { DesignTokens } from '../types';
+import { validateDesignMd, type ValidationResult } from '../scripts/validate';
+import type { DesignTokens } from '../scripts/types';
 
 // ─── Minimal tokens fixture ─────────────────────────────────────────────────
 

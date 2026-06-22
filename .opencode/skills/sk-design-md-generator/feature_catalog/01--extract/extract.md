@@ -70,10 +70,10 @@ If Playwright cannot reach the URL, JavaScript rendering times out, or the page 
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/extract.ts` | Script | Orchestrator entry point, dispatch flags, phase sequencing |
-| `tool/scripts/crawl.ts` | Script | Playwright crawl engine, viewport sampling, page spidering |
-| `tool/scripts/dom-collector.ts` | Script | DOM tree walker, element selection, computed-style readout |
-| `tool/scripts/css-analyzer.ts` | Script | Computed CSS parsing, value extraction, token assignment |
+| `backend/scripts/extract.ts` | Script | Orchestrator entry point, dispatch flags, phase sequencing |
+| `backend/scripts/crawl.ts` | Script | Playwright crawl engine, viewport sampling, page spidering |
+| `backend/scripts/dom-collector.ts` | Script | DOM tree walker, element selection, computed-style readout |
+| `backend/scripts/css-analyzer.ts` | Script | Computed CSS parsing, value extraction, token assignment |
 
 ### Validation And Tests
 

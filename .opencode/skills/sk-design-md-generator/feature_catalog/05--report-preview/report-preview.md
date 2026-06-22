@@ -65,9 +65,9 @@ All three scripts write to a user-specified output directory. They do not silent
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/report-gen.ts` | Script | Token-to-section HTML report generator |
-| `tool/scripts/preview-gen.ts` | Script | Visual CSS preview renderer |
-| `tool/scripts/proof.ts` | Script | Fidelity proof artifact generator |
+| `backend/scripts/report-gen.ts` | Script | Token-to-section HTML report generator |
+| `backend/scripts/preview-gen.ts` | Script | Visual CSS preview renderer |
+| `backend/scripts/proof.ts` | Script | Fidelity proof artifact generator |
 
 ### Validation And Tests
 

@@ -59,12 +59,12 @@ Every detector that finds no data writes a minimal "not detected" record into it
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/a11y-extract.ts` | Script | Contrast-ratio calculator, focus-indicator capture, touch-target measurement, ARIA detection |
-| `tool/scripts/dark-mode-detect.ts` | Script | Media-query probe, class/attribute toggle detection, variable-diff recorder |
-| `tool/scripts/framework-detect.ts` | Script | CSS framework class scanning, custom-variable analysis |
-| `tool/scripts/icon-detect.ts` | Script | SVG inspection, library-signature matching, stroke-weight and grid-size capture |
-| `tool/scripts/motion-extract.ts` | Script | Transition/animation reading, easing-function capture, choreography detection, reduced-motion check |
-| `tool/scripts/design-boundary-detect.ts` | Script | System-vs-content token classification, cross-page frequency analysis |
+| `backend/scripts/a11y-extract.ts` | Script | Contrast-ratio calculator, focus-indicator capture, touch-target measurement, ARIA detection |
+| `backend/scripts/dark-mode-detect.ts` | Script | Media-query probe, class/attribute toggle detection, variable-diff recorder |
+| `backend/scripts/framework-detect.ts` | Script | CSS framework class scanning, custom-variable analysis |
+| `backend/scripts/icon-detect.ts` | Script | SVG inspection, library-signature matching, stroke-weight and grid-size capture |
+| `backend/scripts/motion-extract.ts` | Script | Transition/animation reading, easing-function capture, choreography detection, reduced-motion check |
+| `backend/scripts/design-boundary-detect.ts` | Script | System-vs-content token classification, cross-page frequency analysis |
 
 ### Validation And Tests
 

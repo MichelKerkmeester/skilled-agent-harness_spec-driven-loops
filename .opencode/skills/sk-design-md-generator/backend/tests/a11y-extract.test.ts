@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { extractA11y } from '../a11y-extract';
-import type { InteractionData } from '../types';
+import { extractA11y } from '../scripts/a11y-extract';
+import type { InteractionData } from '../scripts/types';
 
 // Regression: the focus indicator must report honest absence. Returning
 // consistent:true on empty data is what let the DESIGN.md writer assert
