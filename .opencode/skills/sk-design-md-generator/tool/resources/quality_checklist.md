@@ -21,9 +21,11 @@ Use this checklist to validate every generated design system document before del
 
 ## 1. OVERVIEW
 
-Use this checklist to validate every generated design system document before delivery. Each item includes verification steps, common failure modes, and fixes.
+Use this checklist to validate every generated design system document before delivery. The current output is the v3 **Style Reference** (`design_md_format_v3.md`): a named, confident, restrained design-system handoff whose value-bearing sections (`## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, `## Quick Start`) are pre-rendered deterministically by `tool/scripts/formatters-v3.ts` and pasted unchanged. The agent writes prose only. Many checks below therefore verify that the pre-rendered sections were not edited and that the prose is named, grounded, and honest. Each item includes verification steps, common failure modes, and fixes.
 
-**Data-driven, not fabrication-driven.** Sections are gated on token presence. When a section has no backing token data, stamp it ABSENT (`_No <X> data was extracted._`) — never invent content, a minimum count, comparative framing, or a named principle to fill it. The conditional sections (§0, §6, §6.5, §7, §9, §11, §12) are ABSENT-stamped when their backing token field is empty; "all sections present and non-empty" is a data-driven expectation, not a mandate to fabricate. Every interpretive claim must cite a token or be labelled `[INFERRED]`. `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score: `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance).
+**Named, deterministic, and honest.** Colours are NAMED evocatively (Obsidian Ink, Voltage) with clean `--color-<slug>` tokens; components are NAMED by function (Primary CTA, Card, Badge), never "Variant-N" or "div". Because the value tables are pre-rendered, value-fidelity failures mean the block was edited after pasting — restore it. The Quick Start is checked by `checkQuickStartFidelity` (every hex traces to a token; `--page-max-width` matches `tokens.maxContentWidth`). Elevation is never omitted — when 0 shadows it is rendered FLAT and the prose states how depth is achieved (border contrast, whitespace), never "gradient-as-depth".
+
+**Data-driven, not fabrication-driven.** Conditional sections (e.g. Imagery) are gated on token presence. When a section has no backing token data, stamp it ABSENT (`_No <X> data was extracted._`) — never invent content, a minimum count, comparative framing, or a named principle to fill it. "All sections present and non-empty" is a data-driven expectation, not a mandate to fabricate. Every interpretive claim must cite a token or be labelled `[INFERRED]`. `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score — `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance) — and `isPass` requires `score >= 80` AND `claimsScore >= 80`.
 
 ---
 
@@ -93,10 +95,10 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM assigned display/hero font size to "heading-1" when it is only used in the hero section
   - Fix: Map typography roles to their actual DOM usage; hero/display styles get their own role, not h1
 
-- [ ] **[SC-03]** Component variants are named correctly
-  - Check: Variant names reflect actual visual/behavioral differences (e.g., "outline" vs "ghost" vs "solid")
-  - Fail reason: LLM used generic variant names without verifying they match the component's actual states
-  - Fix: Name variants based on observed visual properties (fill, border, shadow) and interaction patterns
+- [ ] **[SC-03]** Components are NAMED by function, never "Variant-N"
+  - Check: Every component heading is a functional name (Primary CTA, Secondary Button, Ghost Link, Nav Header, Card, Badge, Footer). No "Variant-1", "Color 2", or raw DOM tag ("div") survives into the doc
+  - Fail reason: LLM carried the extractor's auto-indexed labels or DOM tags into the named Style Reference (AP-31)
+  - Fix: Name each component by what it does and where it is used; map a variant that cannot be characterized into the nearest named component or describe it by its distinguishing property ("a lighter green status variant")
 
 - [ ] **[SC-04]** Spacing "section" vs "component" distinction is accurate
   - Check: Section-level spacing (vertical rhythm between page sections) is separated from component-internal spacing
@@ -443,7 +445,7 @@ Use this checklist to validate every generated design system document before del
 
 ## 13. Validator Semantic Checks (validate.ts)
 
-These items mirror the WARNING-tier semantic checks `validate.ts` runs and the dual score it reports. They are not hard fails on their own, but each warning is a fabrication or coverage signal to resolve before delivery.
+`validate.ts` recognizes the v3 **Style Reference** schema (detected by the `# … — Style Reference` header plus `## Tokens — Colors`) as well as the legacy v2 layout. These items mirror its WARNING-tier semantic checks, its v3 Quick-Start fidelity check, and the dual score and pass gate it reports. Each warning is a fabrication or coverage signal to resolve before delivery.
 
 - [ ] **[VS-01]** Prose-discipline: no interpretive fabrication
   - Check: Scan for unbacked interpretive phrasing — comparison to other systems ("unlike most", "most systems", "the conventional approach"), "gradient-as-depth" / "replaces shadow elevation", and an "is consistent" focus claim when the data does not support it
@@ -452,10 +454,20 @@ These items mirror the WARNING-tier semantic checks `validate.ts` runs and the d
 
 - [ ] **[VS-02]** Section-coverage: no filled-but-empty high-risk section
   - Check: No section is written with content when its backing token field is empty
-  - Fail reason: A conditional section (e.g., motion, accessibility, iconography) was filled with invented content instead of being stamped ABSENT
-  - Fix: Stamp the empty section `_No <X> data was extracted._`. `validate.ts` `checkSectionCoverage` flags "present but backing field empty" as WARNING-tier.
+  - Fail reason: A conditional section (e.g., imagery, accessibility, iconography) was filled with invented content instead of being stamped ABSENT
+  - Fix: Stamp the empty section `_No <X> data was extracted._`. `validate.ts` `checkSectionCoverage` flags "present but backing field empty" as WARNING-tier. (Elevation is the exception — it is never omitted; when 0 shadows it is rendered FLAT, see CP-06.)
 
 - [ ] **[VS-03]** Dual score reviewed (valuesScore + claimsScore)
   - Check: Both scores from `validate.ts` are reviewed — `valuesScore` (hex/section/format/stability fidelity) AND `claimsScore` (prose provenance: interpretive claims cited or `[INFERRED]`)
   - Fail reason: A high `valuesScore` masked invented prose because `claimsScore` was ignored — a doc cannot hide fabricated claims behind hex fidelity
   - Fix: Resolve the prose-fabrication and section-coverage warnings that lower `claimsScore`, not just the value-level findings.
+
+- [ ] **[VS-04]** Quick-Start fidelity (v3): every Quick Start value traces to a token
+  - Check: `checkQuickStartFidelity` verifies every hex in the `## Quick Start` CSS `:root` and Tailwind `@theme` blocks traces back to a token (a phantom hex is a CRITICAL failure), and that `--page-max-width` matches `tokens.spacingSystem.maxContentWidth`
+  - Fail reason: A Quick Start hex with no token row (phantom), or a `--page-max-width` that disagrees with the tokens (the "100rem where tokens say 100%" class)
+  - Fix: Because the Quick Start is pre-rendered by `formatters-v3.ts`, a failure means it was edited after pasting — restore the pre-rendered block unchanged. Every `--color-*` slug must match a §3 row; every `--text-*`/`--spacing-*` must match §4/§5.
+
+- [ ] **[VS-05]** Pass gate: `isPass` requires score >= 80 AND claimsScore >= 80
+  - Check: `isPass` returns true only when `score >= 80` AND `claimsScore >= 80` AND there is no critical failure (e.g. a phantom hex)
+  - Fail reason: A doc with a passing `valuesScore` but `claimsScore < 80` still FAILS — fabricated prose cannot be bought back with hex fidelity
+  - Fix: Drive `claimsScore` to >= 80 by removing every unbacked interpretive claim and every filled-but-empty section before reporting completion.

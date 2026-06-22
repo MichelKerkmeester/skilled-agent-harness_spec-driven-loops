@@ -721,6 +721,87 @@ Match the emoji policy to the brand's observed behavior. If the source contains 
 
 ---
 
+### AP-30: Frequency Dump (v3)
+**Description**: Printing raw frequency or usage-count data in the output prose or tables ("border 9685, text 4258", "appears on 62% of elements", "47 occurrences").
+**Bad Example**:
+```markdown
+- `#171717` — text color [appears 9685 times, 62% of all text]
+- `#5e6ad2` — accent [appears 312 times]
+```
+**Why It's Wrong**: In the v3 Style Reference, frequency DECIDES prominence and role — it determines which colour is ordered first and which gets a usage guard — but it is an internal decision input, never displayed. A reader of a ship-ready handoff needs the role, not the tally. Raw counts read as extractor exhaust, not a design document.
+**Correct Approach**:
+```markdown
+| Name | Value | Token | Role |
+|------|-------|-------|------|
+| Obsidian Ink | `#171717` | `--color-obsidian-ink` | Primary text and borders |
+| Voltage | `#5e6ad2` | `--color-voltage` | Interactive elements only |
+```
+Express frequency as ROLE and ordering: the dominant colour is "primary text", the rare one carries an "interactive elements only" guard.
+**Detection**: Flag any number that is a count or percentage of usage (e.g. `\d{3,}` next to a colour, `\d+%` of elements, "N occurrences"). Frequency figures do not belong in the output.
+
+---
+
+### AP-31: Placeholder Labels (div / Variant-N) (v3)
+**Description**: Carrying the extractor's raw DOM tags ("div", "span") or auto-indexed labels ("Variant-1", "Color 2") into the named Style Reference.
+**Bad Example**:
+```markdown
+### Variant-1
+**Role:** div with background #2564eb
+
+### Variant-2
+**Role:** another div
+```
+**Why It's Wrong**: "Variant-1" and "div" are extractor internals, not design names. A v3 Style Reference is a named handoff: every component is named by function and every type role is semantic. Placeholder labels make the doc unusable as a reference and signal the agent stopped at transcription.
+**Correct Approach**:
+```markdown
+### Primary CTA
+**Role:** The main call-to-action button — background `#2564eb`, white text.
+
+### Ghost Link
+**Role:** Low-emphasis inline action — `#2564eb` text, no fill.
+```
+Name components by function (Primary CTA, Secondary Button, Ghost Link, Nav Header, Card, Badge, Footer). Map type levels onto semantic roles (caption/body/heading/display) by ascending size, never the raw tag. If a variant cannot be characterized, fold it into the nearest named component.
+**Detection**: Flag any component heading or type role matching `Variant-?\d`, `Color ?\d`, or a bare HTML tag name (`div`, `span`, `p`) used as a label.
+
+---
+
+### AP-32: Value Invention from a Vague Token (v3)
+**Description**: Concretizing a vague or relative token value into a specific absolute one the tokens never stated — most often turning `100%` into `100rem`, or an unset value into a guessed default.
+**Bad Example**:
+```markdown
+- Page max-width: 100rem
+```
+*(tokens.maxContentWidth is `100%`)*
+**Why It's Wrong**: `100%` and `100rem` are different layout behaviors. Inventing the concrete value silently changes the design. In v3 this class is structurally prevented for the pre-rendered sections (the formatters emit the verbatim token), so any invented value appears in the AI's prose — exactly where the FACTS block should have been copied. `validate.ts checkQuickStartFidelity` also fails when Quick Start `--page-max-width` disagrees with `tokens.maxContentWidth`.
+**Correct Approach**:
+```markdown
+- Page max-width: 100% (full-bleed; no fixed maximum)
+```
+Copy the token verbatim, including relative or percentage units. If a value is vague, say what it is — never resolve the ambiguity by guessing an absolute.
+**Detection**: Compare every value in the AI-written prose against the FACTS block and pre-rendered sections. Any absolute value (px/rem) where the token is relative (`%`, `auto`, `none`) is invention.
+
+---
+
+### AP-33: Extractor-Internal CSS Vars (v3)
+**Description**: Leaking the extractor's primitive variable names (`--_color-primitives---neutral--1400`, `--_spacing--raw--12`) into the Token column instead of deriving a clean `--color-<slug>` from the assigned name.
+**Bad Example**:
+```markdown
+| Name | Value | Token |
+|------|-------|-------|
+| Ink | `#121613` | `--_color-primitives---neutral--1400` |
+```
+**Why It's Wrong**: The `--_color-primitives` vars are internal scaffolding with a leading underscore and machine-generated suffixes. They are ugly, unstable, and meaningless to a consumer. The Quick Start re-uses the Token column slugs, so a leaked primitive var propagates into the shipped CSS.
+**Correct Approach**:
+```markdown
+| Name | Value | Token |
+|------|-------|-------|
+| Obsidian Ink | `#121613` | `--color-obsidian-ink` |
+```
+Derive `--color-<kebab-name>` from the evocative Name. The pre-rendered Colors table already does this; the anti-pattern only appears if a value table is hand-authored against the rule.
+**Detection**: Flag any token slug beginning with `--_` or containing `primitives`, `raw`, or a numeric primitive suffix.
+
+---
+
 ## 2. SUMMARY CHECKLIST
 
 Use this checklist when reviewing a generated DESIGN.md:
@@ -754,3 +835,7 @@ Use this checklist when reviewing a generated DESIGN.md:
 - [ ] **AP-27**: Frequency data present -- reader knows which values dominate
 - [ ] **AP-28**: Emoji policy matches brand -- no emoji in formal copy, no sterility in playful brands
 - [ ] **AP-29 (Interpretive Fabrication)**: No prose asserts a relationship, cause, consistency, or named principle absent from `tokens.json`. Canonical failures: "gradient-as-depth replaces shadow elevation" (zero shadow/gradient tokens supporting it) and "focus indicators are consistent" (no captured focus styles). Every interpretive claim cites a token or is labeled `[INFERRED]`; an empty section is stamped ABSENT, never filled.
+- [ ] **AP-30 (Frequency Dump, v3)**: No raw usage count or percentage appears in the output — frequency decides prominence/role, it is never printed.
+- [ ] **AP-31 (Placeholder Labels, v3)**: No "Variant-N", "Color N", or raw DOM tag ("div") as a name — components are named by function, type roles are semantic.
+- [ ] **AP-32 (Value Invention, v3)**: No vague/relative token concretized into an absolute (no "100rem" where the token says "100%"); every prose value traces to the FACTS block or a pre-rendered section.
+- [ ] **AP-33 (Extractor Vars, v3)**: No `--_color-primitives` or other internal var in the Token column — slugs are `--color-<name>` derived from the colour Name.

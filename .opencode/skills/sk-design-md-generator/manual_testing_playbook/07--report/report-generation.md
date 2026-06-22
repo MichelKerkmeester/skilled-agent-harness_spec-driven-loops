@@ -15,7 +15,7 @@ This scenario validates report, preview, and proof generation for `REPORT-001`. 
 
 ### Why This Matters
 
-Report generation is Phase 4 of the pipeline. It produces the artifacts that humans review before signing off on an extraction -- the HTML report shows exactly which tokens flow into which DESIGN.md sections, the visual preview confirms the tokens render as a real design system, and the fidelity proof catches any drift between the live site and the captured token set. If any of these scripts crashes silently or writes empty output, the operator may approve a DESIGN.md that misrepresents the source site.
+Report generation is Phase 4 of the pipeline. It produces the artifacts that humans review before signing off on an extraction -- the HTML report shows exactly which tokens flow into the v3 Style Reference, the visual preview confirms the tokens render as a real design system, and the fidelity proof catches any drift between the live site and the captured token set. If any of these scripts crashes silently or writes empty output, the operator may approve a Style Reference that misrepresents the source site.
 
 ---
 

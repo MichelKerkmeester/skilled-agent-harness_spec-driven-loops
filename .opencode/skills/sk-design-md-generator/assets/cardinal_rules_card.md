@@ -12,7 +12,7 @@ contextType: "implementation"
 
 # Cardinal Rules Card
 
-A one-page checklist of the rules that make a `DESIGN.md` trustworthy, for a quick self-check before running validation.
+A one-page checklist of the rules that make a v3 **Style Reference** trustworthy, for a quick self-check before running validation.
 
 ---
 
@@ -20,11 +20,11 @@ A one-page checklist of the rules that make a `DESIGN.md` trustworthy, for a qui
 
 ### Purpose
 
-A `DESIGN.md` earns its value by being hallucination-proof. These rules are the contract that property depends on; breaking any one turns the document back into a guess. Run this card before `validate.ts`.
+A Style Reference earns its value by being hallucination-proof AND ship-ready. These rules are the contract that property depends on; breaking any one turns the document back into a guess. Run this card before `validate.ts`.
 
 ### Usage
 
-Read top to bottom against the draft `DESIGN.md`. Every box must be checkable with evidence in `tokens.json`. Anything that cannot be checked is a value to remove or escalate, not to estimate.
+Read top to bottom against the draft Style Reference. The value-bearing sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `formatters-v3.ts` and pasted unchanged — verify you did not edit them. Every prose claim must be checkable with evidence in `tokens.json` or the facts block. Anything that cannot be checked is a claim to remove, not to estimate.
 
 ---
 
@@ -32,19 +32,22 @@ Read top to bottom against the draft `DESIGN.md`. Every box must be checkable wi
 
 ```text
 □ Every hex, pixel, font-weight, shadow, and radius traces to a value in tokens.json
-□ No value was estimated, rounded, normalized, or invented
+□ No value was estimated, rounded, normalized, or invented (no "100rem" where tokens say "100%")
 □ All hex codes are 6-digit lowercase (#1a1a2e) - no #1A1A2E, #333, rgb(), hsl()
-□ L1 + L2 tokens are in the main sections
-□ L3 tokens appear only with a "Subject to change" annotation
-□ L4 (content / image-derived) tokens are excluded entirely
-□ A dark-mode section exists ONLY if tokens.json has a detected dark palette
-□ The accessibility section is drawn from tokens.json a11y data (or notes its absence)
-□ Required sections are present; conditional sections appear ONLY when their backing tokens exist
-□ Any section with no backing data is stamped ABSENT (_No <X> data was extracted._), never invented
-□ No interpretive claim - a relationship, cause, consistency, or named principle - lacks a backing token
-□ No "gradient-as-depth", "focus is consistent", or "unlike most systems" without token evidence
+□ Pre-rendered sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) pasted UNCHANGED
+□ Colours are NAMED evocatively (Obsidian Ink, Voltage); each maps to a --color-<slug> token
+□ Token column uses --color-<slug>, NEVER the extractor's --_color-primitives internal var
+□ Components are NAMED by function (Primary CTA, Card, Badge) - no "Variant-N", no "div"
+□ Quick Start CSS :root and Tailwind @theme: every hex/slug traces to a §3/§4/§5 token row
+□ Quick Start --page-max-width matches tokens maxContentWidth (no concretized/invented value)
+□ L1 + L2 tokens are in the main tables; L3 only in a "Subject to change" sub-table; L4 excluded
+□ Elevation is FLAT (stated plainly) when 0 shadow tokens - never "gradient-as-depth"
+□ Imagery section is stamped ABSENT (_No <X> data was extracted._) when no imagery signal
+□ No frequency dump in prose - frequency decides prominence/role, it is never printed
+□ No false SYSTEM asserted: no "focus is consistent" when focusIndicator.consistent is false
+□ DO name confidently and infer Similar Brands (grounded inference); NEVER invent a fact or audience
 □ Any necessary inference is labeled [INFERRED] and cites a token
-□ validate.ts passes with zero hex mismatches and zero missing required sections
+□ validate.ts passes: score >= 80 AND claimsScore >= 80, zero hex mismatches, no missing sections
 ```
 
 ---

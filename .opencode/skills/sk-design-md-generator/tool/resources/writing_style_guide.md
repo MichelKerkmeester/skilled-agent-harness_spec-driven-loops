@@ -1,11 +1,11 @@
 ---
 title: DESIGN.md Writing Style Guide
-description: Writing quality standard for publication-level DESIGN.md files with concrete examples and banned-word discipline.
+description: Writing quality standard for the v3 Style Reference — named, confident, restrained prose with concrete examples and banned-word discipline.
 trigger_phrases:
   - design writing style
   - banned words in design docs
-  - opening paragraph rules
-  - key characteristics format
+  - tagline and intro rules
+  - colour naming format
   - comparative framing
   - value embedding in prose
   - agent prompt self-containment
@@ -15,21 +15,24 @@ contextType: general
 ---
 # DESIGN.md Writing Style Guide
 
-Writing quality standard for publication-level DESIGN.md files. Every rule here is derived from what separates the best DESIGN.md files (Vercel, Stripe, Linear, Notion) from the forgettable ones.
+Writing quality standard for the v3 **Style Reference** output (see `design_md_format_v3.md`). The Style Reference is a named, role-driven, ship-ready design-system handoff — not an extraction report. Every value still traces verbatim to `tokens.json`; what this guide governs is the prose voice (named + restrained, not mechanical + hedged).
+
+**Division of labour (read this first).** In the v3 pipeline the value-bearing sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — are pre-rendered deterministically by `tool/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters) and pasted into the doc unchanged. The agent writes **prose only** (header, intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). You never hand-author a value table, so "100rem where the tokens say 100%" cannot happen — this guide is about making the prose worthy of the named tokens, not about transcribing numbers.
 
 ---
 
 ## 1. OVERVIEW
 
-Write like a senior design systems engineer explaining a system to a peer who will implement it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
+Write like a design-systems lead handing the system off to the team that will ship it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
 
-**Voice characteristics:**
-- Precise but not dry. Opinions are welcome when backed by observable evidence.
-- Technical but not jargon-heavy. Prefer concrete values over abstract concepts.
-- Confident but not promotional. The writing describes what IS, not what the marketing team wishes it were.
-- Dense. Every sentence must carry at least one piece of information that would change how someone implements the design. If a sentence could be deleted without losing implementation guidance, delete it.
+**Voice characteristics — named, confident, restrained:**
+- **Named.** Colours, components, and surfaces carry evocative, grounded names (Obsidian Ink, Voltage, Primary CTA, Canvas), never "Color 1" or "Variant-1". Naming is a grounded inference about hue, lightness, and role — it is allowed and expected.
+- **Confident.** State roles plainly and assign Similar Brands as grounded inference. Do not hedge every sentence with "appears to" or "seems". You are characterizing what IS there.
+- **Restrained.** One grounded clause, not a paragraph of metaphor. "A warm-tinted near-black" beats "letters like hull plates." No purple prose.
+- **Honest.** Confident never means inventing a SYSTEM the data contradicts. No "gradient-as-depth" with 0 shadow tokens, no "focus is consistent" when `focusIndicator.consistent` is false. Name and characterize what exists; never assert a relationship the tokens deny.
+- **Dense, not noisy.** Every sentence carries one piece of implementation-changing information. But never dump raw mechanics: no frequency counts ("border 9685, text 4258"), no extractor-internal var names (`--_color-primitives---neutral--1400`), no DOM-tag labels ("div"). Frequency DECIDES prominence and role; it is never printed.
 
-**Audience model:** A frontend engineer who has 30 minutes to absorb a design system before building a component. They need values, rationale, and traps to avoid -- not inspiration or motivation.
+**Audience model:** A frontend engineer absorbing the system before building a component. Do NOT assume a market audience the page never states ("targets captains and port agents") — characterize the design, not an imagined user.
 
 ---
 
@@ -52,77 +55,59 @@ NEVER use these words in descriptive prose. They communicate nothing specific an
 
 ---
 
-## 3. Opening Paragraph Rules
+## 3. Header — Tagline Rules
 
-The opening paragraph is ONE sentence. It must do three things simultaneously:
+The header is a title line, an evocative `> tagline`, and a `**Theme:**` line:
 
-1. **Capture the design system's essence** -- not its parameters, but its personality and position
-2. **Use a unique metaphor or precise framing** that makes this system distinguishable from every other
+```
+# <Brand or Domain> — Style Reference
+> <one-line evocative tagline — the design's essence in a phrase>
+
+**Theme:** light | dark | mixed
+```
+
+The **tagline** is a single grounded, evocative phrase. It must do three things simultaneously:
+
+1. **Capture the design system's essence** -- not its parameters, but its character and position
+2. **Use a precise framing** that makes this system distinguishable from every other
 3. **Let a reader who has never seen the site form a mental image** that would survive comparison with the real thing
 
-### What the opening is NOT
+### What the tagline is NOT
 
 - A parameter list: "Uses Inter font, dark backgrounds, and purple accents."
-- A compliment: "A beautifully designed system that showcases modern web design."
-- A category label: "A minimalist dark-mode design system."
+- A compliment or banned word: "A beautifully designed, modern system."
+- A bare category label: "A minimalist dark-mode design system."
+- An invented fact about the brand or its audience.
 
-### What the opening IS
+### What the tagline IS
 
-An essence capture -- one sentence that makes someone say "I know exactly what this looks like."
+An essence capture -- one phrase that makes someone say "I know exactly what this looks like." It characterizes; it never fabricates a fact.
 
-### Examples from reference files
+### Example taglines
 
-> "Vercel's website is the visual thesis of developer infrastructure made invisible -- a design system so restrained it borders on philosophical."
+> Broadsheet financial broadside — the masthead itself is the design
 
-> "Stripe's website is the gold standard of fintech design -- a system that manages to feel simultaneously technical and luxurious, precise and warm."
+> A near-black canvas where content emerges through four luminance steps
 
-> "Linear's website is a masterclass in dark-mode-first product design -- a near-black canvas (`#08090a`) where content emerges from darkness like starlight."
+> Developer infrastructure made invisible — restraint as a thesis
 
-> "Notion's website embodies the philosophy of the tool itself: a blank canvas that gets out of your way."
+### Tagline test
 
-### Structure pattern
-
-`[Subject]'s website is [unique framing] -- [elaboration that adds a second dimension or tension]`
-
-The em-dash separates the macro observation from the micro insight. The elaboration should introduce a contradiction or tension that makes the system interesting: "simultaneously technical and luxurious," "so restrained it borders on philosophical," "a blank canvas that gets out of your way."
-
-### Opening paragraph test
-
-Ask: "Could this sentence describe three other websites?" If yes, it fails. An opening must be so specific that swapping it onto a different site would feel wrong.
+Ask: "Could this phrase describe three other sites?" If yes, it fails. A tagline must be so specific that swapping it onto a different site would feel wrong.
 
 ---
 
-## 4. Layered Expansion (Paragraphs 2-4)
+## 4. Intro Paragraph
 
-After the opening sentence, the atmosphere section expands through three distinct zoom levels. Each paragraph MUST include at least two concrete values (hex codes, pixel values, font weights, opacity numbers) as supporting evidence.
+Directly under the header, one unlabeled paragraph of **4-6 sentences**. It characterizes the system's voice across these dimensions: the canvas, the dominant type move, how colour is rationed, layout density, and what carries the page. Every characterizing claim must map to a real token (a hex, a size, a weight). Restrained, not purple. No assumed audience unless the page states it.
 
-### Paragraph 2: Macro -- Color and Space
+> "The canvas is a warm-tinted near-black (`#121613`), with Obsidian Ink doing double duty as text, borders, and image frames. A single high-voltage accent (`#06458c`) is rationed strictly to interactive elements — everything else is neutral by default. Display type runs at 140px with -1.4px tracking against a 16px body, so hierarchy comes from scale, not weight. Section rhythm is spacious: large gaps frame each block as self-contained. The system is flat — no shadow tokens — and depth is carried by border contrast and whitespace alone."
 
-What does the overall canvas feel like? What is the dominant color relationship? How much space exists between elements?
+Note: every claim cites a real value, colours are named (Obsidian Ink, the accent), the flat-elevation truth is stated plainly rather than dressed up as "gradient-as-depth", and there is no invented audience.
 
-> "The page opens on a clean white canvas (`#ffffff`) with deep navy headings (`#061b31`) and a signature purple (`#533afd`) that functions as both brand anchor and interactive accent. This isn't the cold, clinical purple of enterprise software; it's a rich, saturated violet that reads as confident and premium."
+### Intro test
 
-Note: two hex codes, one personality sentence about the purple, one contrast with what it is NOT.
-
-### Paragraph 3: Meso -- Typography Character and Mood
-
-What font defines the system? What makes its usage distinctive? What is the typographic personality?
-
-> "The custom sohne-var variable font is the defining element of Stripe's visual identity. Every text element enables the OpenType `ss01` stylistic set, which modifies character shapes for a distinctly geometric, modern feel. At display sizes (48px-56px), sohne-var runs at weight 300 -- an extraordinarily light weight for headlines that creates an ethereal, almost whispered authority."
-
-Note: font name, OpenType feature, specific size range, specific weight, personality description ("whispered authority"), and a contrast with convention ("the opposite of the bold hero headline convention").
-
-### Paragraph 4: Micro -- Unique Technique or Decision
-
-What single technical decision makes this system different from its peers? This should be something a developer would not guess without reading the DESIGN.md.
-
-> "What distinguishes Vercel from other monochrome design systems is its shadow-as-border philosophy. Instead of traditional CSS borders, Vercel uses `box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08)` -- a zero-offset, zero-blur, 1px-spread shadow that creates a border-like line without the box model implications."
-
-Note: names the technique, provides the exact CSS value, and explains the architectural reason (box model implications).
-
-### Paragraph test
-
-Each paragraph should be deletable without making the others incomprehensible, but their combined effect should be a complete picture: canvas > letterforms > signature technique.
+Each sentence should be deletable without making the others incomprehensible, but their combined effect is a complete picture: canvas → type → colour rationing → layout → what carries depth. A sentence with zero values is an opinion — cut it or ground it.
 
 ---
 
@@ -160,33 +145,41 @@ The front half tells you WHY. The back half tells you WHAT. Neither half works a
 
 ---
 
-## 6. Color Descriptions
+## 6. Colour Naming (`## Tokens — Colors`)
 
-Every color entry needs three components:
+In v3 the colour table is **pre-rendered** by `formatters-v3.ts` in the `Name | Value | Token | Role` shape, most-prominent first. You do not hand-author it — but you must understand the naming style, because the Quick Start re-uses these exact slugs and the rest of your prose references colours by their names.
 
-1. **Identity**: Name, hex value, CSS variable if applicable
-2. **Role**: Where it appears and what it does
-3. **Personality**: One sentence about why this specific color was chosen and what it feels like
+```
+| Name | Value | Token | Role |
+|------|-------|-------|------|
+| Obsidian Ink | `#121613` | `--color-obsidian-ink` | Primary text, borders, image frames — a warm-tinted near-black |
+| Voltage | `#06458c` | `--color-voltage` | Interactive elements only — do not promote it to a static text colour |
+```
 
-### Good color descriptions
+Each column has a job:
 
-> **Deep Navy** (`#061b31`): Primary heading color. Not black, not gray -- a very dark blue that adds warmth and depth to text.
+1. **Name** — evocative + grounded (hue + lightness + character). Neutrals by lightness (Snow/Linen → Ink/Obsidian/Void); hued by family + character (Voltage/Azure/Ember/Sage/Mist). Be consistent within a doc.
+2. **Value** — 6-digit lowercase hex, verbatim. Gradients render their full `linear-gradient(...)` value.
+3. **Token** — `--color-<kebab-name>` derived from the Name. NEVER the extractor's internal `--_color-primitives` var.
+4. **Role** — where it is used (grounded in measured usage) plus one characterizing clause. No frequency numbers. For a supporting accent, add a usage guard ("Do not promote it to the primary CTA color").
 
-> **Marketing Black** (`#010102` / `#08090a`): The deepest background -- the canvas for hero sections and marketing pages. Near-pure black with an imperceptible blue-cool undertone.
+### Good role clauses
 
-> **Warm White** (`#f6f5f4`): Background surface tint, section alternation, subtle card fill. The yellow undertone is key.
+> Primary text, borders, image frames — a warm-tinted near-black
 
-### Bad color descriptions
+> Card surfaces — same hex as canvas, so cards are defined by radius and padding, not fill
 
-> **Primary** (`#533afd`): Used for buttons. (No personality, no context about what makes this purple distinctive)
+### Bad role clauses
 
-> **Background** (`#ffffff`): White background. (Restating the hex value in words adds zero information)
+> Used for buttons. (No character, no usage guard)
 
-> **Text** (`#171717`): Text color. (No explanation of why it is not pure black, which is the interesting decision)
+> The colour that appears 9685 times. (Frequency dump — frequency decides prominence, it is never printed)
 
-### The personality sentence
+> `--_color-primitives---neutral--1400`. (Extractor-internal var leaked into the token column)
 
-This sentence answers: "If I showed someone two purples and asked which one is Stripe's, what would they look for?" It should describe visual quality, not emotional reaction. "Rich, saturated violet" tells you something measurable. "Beautiful purple" does not.
+### The characterizing clause
+
+It describes visual quality, not emotional reaction, and never restates the hex in words. "A warm-tinted near-black" tells you something measurable. "Beautiful dark colour" does not. L1/L2 colours go in the main table; L3 in a `### Current Campaign Colors (Subject to change)` sub-table; L4 is excluded entirely.
 
 ---
 
@@ -344,7 +337,7 @@ If a value appears in a table, do not repeat it in the prose below the table unl
 
 ### Paragraph density target
 
-Each paragraph in the atmosphere section should contain 2-4 concrete values (hex codes, pixel values, weights, opacities). A paragraph with zero values is an opinion. A paragraph with one value is an observation. A paragraph with 2-4 values is documentation.
+Each prose paragraph (intro, Typography role prose, Layout, Elevation) should contain 2-4 concrete values (hex codes, pixel values, weights, opacities). A paragraph with zero values is an opinion. A paragraph with one value is an observation. A paragraph with 2-4 values is documentation.
 
 ---
 
@@ -487,41 +480,46 @@ Every DESIGN.md should include a shadow philosophy paragraph. This paragraph ans
 
 ---
 
-## 13. Section Structure Checklist
+## 13. Section Structure Checklist (v3 Style Reference)
 
-Every DESIGN.md section should follow this structure:
+The v3 section set and where the prose effort goes. Pre-rendered sections are pasted unchanged; your writing is the prose in the remaining rows. Full contract: `design_md_format_v3.md`.
 
-| Section | Purpose | Density Target |
-|---------|---------|----------------|
-| Visual Theme & Atmosphere | Essence + macro/meso/micro expansion | 6-10 values in 4 paragraphs |
-| Key Characteristics | Scannable list of system-defining traits | 8-12 items with em-dash format |
-| Color Palette & Roles | Complete color inventory with personality | 3 components per color entry |
-| Typography Rules | Font stack + hierarchy table + principles | Table + 3-4 principle paragraphs |
-| Component Stylings | Copy-paste-ready component specs | Every value present per component |
-| Layout Principles | Spacing, grid, whitespace philosophy | Named techniques + values |
-| Depth & Elevation | Shadow system table + philosophy paragraph | Table + 1 dense paragraph |
-| Do's and Don'ts | Counter-intuitive system-specific rules | 8-10 each, all with values |
-| Responsive Behavior | Breakpoints + collapsing strategy | Table + specific px transitions |
-| Agent Prompt Guide | Self-contained copy-paste prompts | 5+ prompts at 100-200 words each |
+| Section | Source | Density Target |
+|---------|--------|----------------|
+| Header + intro | prose | Tagline phrase + 4-6 grounded sentences |
+| `## Tokens — Colors` | pre-rendered | (do not edit — named Name/Value/Token/Role table) |
+| `## Tokens — Typography` | prose + facts | Per-font block + semantic Type Scale table |
+| `## Tokens — Spacing & Shapes` | pre-rendered | (do not edit) |
+| `## Components` | prose | Named components, every value present per component |
+| `## Do's and Don'ts` | prose | Each bullet cites a concrete value and reads as an instruction |
+| `## Surfaces` | pre-rendered | (do not edit) |
+| `## Elevation` | prose | Shadow list, or one honest "flat" line when 0 shadows |
+| `## Imagery` | prose | Grounded treatment, or ABSENT when no imagery signal |
+| `## Layout` | prose | Max-width, rhythm, nav — grounded in spacing/breakpoint data |
+| `## Agent Prompt Guide` | prose | Quick Color Reference + 3-5 self-contained prompts |
+| `## Similar Brands` | prose | 3-5 brands, one grounded-inference WHY each |
+| `## Quick Start` | pre-rendered | (do not edit — CSS `:root` + Tailwind `@theme`) |
 
 ---
 
 ## 14. Final Quality Gate
 
-Before publishing a DESIGN.md, run these checks:
+Before publishing a Style Reference, run these checks:
 
-- [ ] Opening sentence passes the "could this describe three other sites?" test -- NO
+- [ ] Tagline passes the "could this describe three other sites?" test -- NO
 - [ ] Zero banned words in descriptive prose
-- [ ] Every paragraph in the atmosphere section has 2+ concrete values
-- [ ] Key characteristics use em-dash format with intent + implementation
-- [ ] Every color has name + hex + role + personality sentence
+- [ ] Intro paragraph (4-6 sentences) has every claim mapped to a real value
+- [ ] Colours are NAMED evocatively; every name maps to a `--color-<slug>` token; no `--_color-primitives` var leaked
+- [ ] Components are NAMED by function (Primary CTA, Card, Badge) — no "Variant-N" or "div"
 - [ ] Values are embedded in prose (not standalone facts) in narrative sections
-- [ ] Values are standalone and scannable in tables and component specs
-- [ ] Every Don't is counter-intuitive (would surprise a competent developer)
-- [ ] Every agent prompt is self-contained (copy-paste ready, no DESIGN.md lookups)
+- [ ] Values are standalone and scannable in the pre-rendered tables and component specs
+- [ ] Every Do/Don't cites a concrete value and reads as an instruction
+- [ ] Every agent prompt is self-contained (copy-paste ready, no doc lookups)
 - [ ] No transition phrases ("let's look at," "in this section")
-- [ ] No restating of table data in adjacent prose
-- [ ] Shadow philosophy paragraph exists and names the principle
+- [ ] No frequency dumps in prose — frequency decides prominence, it is never printed
+- [ ] Elevation is honest: "flat" stated plainly when 0 shadows, never dressed up as "gradient-as-depth"
+- [ ] No false SYSTEM asserted (no "focus is consistent" when the data says otherwise)
+- [ ] Pre-rendered sections (Colors, Spacing & Shapes, Surfaces, Quick Start) pasted UNCHANGED
 - [ ] Information density: no sentence survives the deletion test without losing information
 
 ---
@@ -631,33 +629,36 @@ Later: "The card shadow follows the **chromatic depth** principle established in
 
 ---
 
-## 17. Frequency Interpretation Pattern
+## 17. Frequency Is a Decision Input, Never Displayed
 
-Frequency data transforms a flat color/shadow/radius list into a narrative of intent. Raw frequency is noise; interpreted frequency is design strategy.
+Frequency DECIDES prominence and role — which colour is the primary, which is a rare accent, which radius is the default. It is never PRINTED. The v3 Style Reference shows no counts, no percentages, no "appears 9685 times" narration. Frequency informs the ordering and the role clauses; it never becomes a sentence.
 
-### Interpretation framework
+### How frequency informs (silently)
 
-| Frequency tier | What it signals | How to narrate it |
+| Frequency tier | What it decides | How it shows up |
 |---|---|---|
-| Dominant (>40% of usage) | System default, workhorse, structural backbone | "The system's foundation is X -- it appears on Y% of surfaces and defines the baseline from which all variation departs." |
-| Common (15-40%) | Supporting role, secondary structure | "X serves as the structural companion to [dominant], appearing wherever [context]." |
-| Moderate (5-15%) | Intentional accent, tactical emphasis | "X is deployed with precision -- frequent enough to feel systemic, rare enough to draw the eye." |
-| Rare (<5%) | Exception, special case, reserved signal | "X appears only in [specific context], reserved as a high-salience signal that breaks the dominant pattern." |
-| Absent (0% in expected role) | Deliberate omission, conscious refusal | "The absence of X is the design decision. Where most systems would [convention], this system [alternative]." |
+| Dominant | This is the system default / primary | Ordered first in the pre-rendered table; role clause says "primary text" or "canvas" |
+| Common | Supporting structural role | Mid-table; role clause names the structural use ("borders", "card surfaces") |
+| Moderate / Rare | Intentional accent, reserved signal | Lower in the table; role clause adds a usage guard ("interactive elements only") |
+| Absent in expected role | A deliberate omission worth stating | A Do/Don't or an honest "flat" / "no distinct CTA color" line |
 
-### Good frequency narration examples
+### Good — frequency expressed as ROLE, not number
 
-> "Of the 14 distinct colors extracted, `#171717` accounts for 62% of text usage -- it IS the reading experience. The accent blue (`#5e6ad2`) appears on just 3% of elements, but 100% of those elements are interactive. Frequency reveals intent: the system is achromatic by default, chromatic only by action."
+> Voltage (`#06458c`) — interactive elements only; do not promote it to a static text colour.
 
-> "`border-radius: 6px` appears on 78% of rounded elements. The system has exactly one other radius value: `9999px` for pills and avatars. This binary radius vocabulary -- sharp rectangle, soft rectangle, or full circle -- eliminates the gradation that creates visual noise in most systems."
+> The system has two radii: 7px on buttons, 14px on cards — controls and containers are distinguished by corner, not fill.
 
-> "The `0 0 0 1px rgba(0,0,0,0.08)` shadow appears 4x more frequently than any elevation shadow. This is not a depth system; it is a border system wearing shadow syntax."
+### Bad — frequency leaked as a number
 
-### Zero-frequency narration
+> "`#171717` accounts for 62% of text usage." (Frequency dump — say "primary text" instead.)
 
-The most interesting frequency observation is often what is MISSING:
+> "The `0 0 0 1px` shadow appears 4x more often than any elevation shadow." (Count printed — characterize the role, not the tally.)
 
-> "No color in the extracted palette falls in the warm spectrum (red, orange, yellow outside of semantic status colors). The absence is deliberate: this is a cool-only brand, and any warm tone introduced by an implementer would violate the system's thermal identity."
+### Stating a deliberate absence
+
+An absence can still be stated — as a fact about the system, never as a frequency figure:
+
+> Do not add `box-shadow` — there are zero shadow tokens; any shadow is an invention. Depth here is carried by border contrast and whitespace.
 
 ---
 

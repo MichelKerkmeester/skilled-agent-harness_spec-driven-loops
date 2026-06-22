@@ -1,6 +1,6 @@
 ---
 title: "sk-design-md-generator: Feature Catalog"
-description: "Unified capability inventory for the sk-design-md-generator skill, covering extraction, clustering, DESIGN.md writing, validation, reporting, and per-feature detection across a three-phase pipeline."
+description: "Unified capability inventory for the sk-design-md-generator skill, covering extraction, clustering, v3 Style Reference DESIGN.md writing, validation, reporting, and per-feature detection across a three-phase pipeline."
 trigger_phrases:
   - "design system extraction"
   - "DESIGN.md generation"
@@ -13,7 +13,7 @@ last_updated: "2026-06-22"
 
 # sk-design-md-generator: Feature Catalog
 
-This document is the canonical capability inventory for the `sk-design-md-generator` skill. The root catalog acts as the system-level directory: it summarizes each capability area, names the canonical scripts for each phase, and keeps the extraction-to-publication contract visible at a glance. The skill captures a live website's real, measured CSS into a 17-section `DESIGN.md` design-system reference that AI agents build against without hallucinating. A three-phase pipeline runs through an embedded Playwright crawler (EXTRACT), a fidelity-checked markdown writer (WRITE), and a hex-and-section validator (VALIDATE), with an optional REPORT phase for visual artifacts.
+This document is the canonical capability inventory for the `sk-design-md-generator` skill. The root catalog acts as the system-level directory: it summarizes each capability area, names the canonical scripts for each phase, and keeps the extraction-to-publication contract visible at a glance. The skill captures a live website's real, measured CSS into a v3 **Style Reference** `DESIGN.md` — a named, role-driven, ship-ready design-system handoff that AI agents build against without hallucinating. A three-phase pipeline runs through an embedded Playwright crawler (EXTRACT), a fidelity-checked markdown writer (WRITE), and a hex-and-section validator (VALIDATE), with an optional REPORT phase for visual artifacts.
 
 The skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `sk-design-interface` invents new distinctive direction; this skill produces the authoritative ground-truth reference those transports and skills consume.
 
@@ -23,7 +23,7 @@ The skill is the **extraction and format-fidelity engine** of the `sk-design-*` 
 
 Use this catalog as the inventory for the live `sk-design-md-generator` surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into the per-feature detail without losing the pipeline context.
 
-The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd tool && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the 17-section `DESIGN.md` with every value copied verbatim from `tokens.json`. The **validate** phase checks hex accuracy and section completeness. An optional **report** phase renders visual HTML previews and proof artifacts. The **feature-extractors** area covers six per-feature detectors that run during extraction, and the **interaction-capture** area records component states (`--with-interaction`) for the State Matrix.
+The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd tool && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the v3 Style Reference `DESIGN.md` — pre-rendering the value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) deterministically from `tokens.json` and writing prose only. The **validate** phase checks hex accuracy, v3 section completeness, and Quick-Start fidelity. An optional **report** phase renders visual HTML previews and proof artifacts. The **feature-extractors** area covers six per-feature detectors that run during extraction, and the **interaction-capture** area records component states (`--with-interaction`) for component state characterization.
 
 ### Capability areas
 
@@ -31,11 +31,11 @@ The capability surface has one hard prerequisite and four phases. Everything dep
 |---|---|---|
 | Extract | Crawls a live URL across 5 viewports, collects computed CSS, emits tokens.json | `01--extract/extract.md` |
 | Cluster and classify | OKLCH color clustering and L1-L4 stability classification on extracted tokens | `02--cluster-classify/cluster-classify.md` |
-| Write DESIGN.md | Composes the 17-section DESIGN.md, copying every value verbatim from tokens.json | `03--write-design-md/write-design-md.md` |
-| Validate | Checks hex accuracy against tokens.json and v2 core-section completeness | `04--validate/validate.md` |
+| Write DESIGN.md | Composes the v3 Style Reference DESIGN.md, pasting deterministic value sections (formatters-v3.ts) and writing prose only | `03--write-design-md/write-design-md.md` |
+| Validate | Checks hex accuracy against tokens.json, v3 section completeness, and Quick-Start fidelity | `04--validate/validate.md` |
 | Report and preview | Generates HTML report, visual preview, and proof artifacts | `05--report-preview/report-preview.md` |
 | Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | `06--feature-extractors/feature-extractors.md` |
-| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`), producing the §11 State Matrix | `07--interaction-capture/interaction-capture.md` |
+| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`) for the v3 Components section | `07--interaction-capture/interaction-capture.md` |
 
 ---
 
@@ -88,22 +88,23 @@ See [`02--cluster-classify/cluster-classify.md`](02--cluster-classify/cluster-cl
 
 #### Description
 
-Produces the 17-section `DESIGN.md` from `tokens.json` under the cardinal fidelity rule — every hex, pixel, font-weight, shadow, radius, and spacing value copied verbatim, with no estimation, rounding, or invention.
+Produces the v3 Style Reference `DESIGN.md` from `tokens.json` — a named, role-driven, ship-ready handoff — under the cardinal fidelity rule: every hex, pixel, font-weight, shadow, radius, and spacing value copied verbatim, with no estimation, rounding, or invention.
 
 #### Current Reality
 
+- The output is a v3 **Style Reference** (named colour tokens with `--color-<slug>` + roles, per-font Typography + a semantic Type Scale, Tokens — Spacing & Shapes, named Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, and a Quick Start CSS + Tailwind block) — not the old v2 17-section extraction report.
 - Hex codes in 6-digit lowercase only (`#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
-- L1 and L2 tokens populate the main 17 sections. L3 tokens appear only in a "Subject to change" block. L4 tokens absent.
-- Dark-mode section appears only when `tokens.json` contains a detected dark palette with populated variable diffs.
-- Accessibility section drawn from a11y data in `tokens.json`.
+- L1 and L2 colours populate the main token table. L3 colours appear only in the "Current Campaign Colors (Subject to change)" sub-table. L4 tokens absent.
+- Elevation renders FLAT when there are 0 shadow tokens (it states how depth is achieved instead — border contrast, whitespace — never "gradient-as-depth").
+- Voice is named, confident, and restrained: evocative colour names and roles, inferred Similar Brands. No frequency dumps, no "div"/"Variant-N", no extractor-internal var names, and no false systems the data contradicts.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
-- The writer loads the v2 section spec from `tool/resources/design_md_format.md` and voice rules from `tool/resources/writing_style_guide.md` before composing.
-- Doc-as-view: the value-bearing sections §2 Color, §3 Typography, and §6 Depth are rendered DETERMINISTICALLY from tokens by `tool/scripts/formatters.ts` (no AI on the value surface). `tool/scripts/build-write-prompt.ts` pre-renders them and emits a PRESENT/ABSENT manifest for the data-gated sections, which the writer pastes unchanged.
-- Sections are data-driven: a section with no backing tokens is stamped ABSENT (`_No <X> data was extracted._`) rather than invented, and interpretive claims (relationships, named principles, "consistent") must cite a token or be labeled `[INFERRED]`.
+- The writer loads the v3 section spec from `tool/resources/design_md_format_v3.md` and voice rules from `tool/resources/writing_style_guide.md` before composing.
+- Doc-as-view: the value-bearing sections Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start are rendered DETERMINISTICALLY from tokens by `tool/scripts/formatters-v3.ts` (a hue+lightness colour namer keeps the Name, token slug, and Quick Start mutually consistent — no AI on the value surface). `tool/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first, pastes the pre-rendered tables unchanged, and writes prose only.
+- Sections are honest about absence: Elevation states the system is flat when there are no shadows, conditional sections with no backing data are stamped ABSENT rather than invented, and every value the prose states comes from a pre-rendered section or the FACTS block — never invented or concretized.
 
 #### Source Files
 
-See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-md.md) for the cardinal fidelity rule, the 17-section contract, and the write-phase prompt template.
+See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-md.md) for the cardinal fidelity rule, the v3 Style Reference contract, the doc-as-view v3 emitters, and the write-phase prompt template.
 
 ---
 
@@ -111,18 +112,17 @@ See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-
 
 #### Description
 
-Confirms every hex in DESIGN.md traces to `tokens.json`, the required sections are present (conditional sections are data-gated — ABSENT-stamped when their tokens are empty, not invented), prose claims are token-backed, and no format violations exist — the gating step before any completion claim.
+Confirms every hex in DESIGN.md traces to `tokens.json`, the required v3 Style Reference sections are present, the Quick Start is faithful (every hex traces to tokens, `--page-max-width` matches), prose claims are token-backed, and no format violations exist — the gating step before any completion claim.
 
 #### Current Reality
 
+- The validator is v3-schema-aware: it detects the v3 Style Reference (by the `## Tokens — Colors` heading or a `— Style Reference` header) and checks the v3 required-section set (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start). It still recognizes the legacy v1/v2 schemas for older docs.
 - Hex-accuracy check cross-references every hex in DESIGN.md against `tokens.colorTokens[].hex` and `tokens.cssVariables[].value`.
-- Section-coverage check confirms the required sections are present; the conditional sections (6.5 Motion System, 11 State Matrix, 12 Iconography) are data-gated — flagged only when present while their backing tokens are empty and not stamped ABSENT.
+- Quick-Start fidelity check (`checkQuickStartFidelity`): every hex in the Quick Start block must trace to `tokens.colorTokens` (a phantom Quick Start hex is a failure), and a `--page-max-width` that disagrees with `tokens.spacingSystem.maxContentWidth` is flagged — the precise backstop for the "100rem where tokens say 100%" fabrication class.
 - Hex casing check flags uppercase hex, 3-digit shortcuts, `rgb()`, and `hsl()` as format violations.
 - Phantom-color detection flags hex values in DESIGN.md with no token source.
-- Score output with per-finding messages and a pass/fail verdict.
 - Prose-discipline check (WARNING-tier): flags interpretive-fabrication phrases ("gradient-as-depth", "unlike most systems", "replaces shadow elevation") and a "focus is consistent" claim unbacked by captured focus styles.
-- Section-coverage check: flags a high-risk section (Depth, Motion, Iconography) present while its backing tokens are empty and not stamped ABSENT.
-- Dual score: a value-fidelity score (hex/section/format) and a separate claims-provenance score, so invented prose cannot hide behind verbatim hexes.
+- Dual score: a `valuesScore` (hex/section/format fidelity) and a separate `claimsScore` (prose provenance), so invented prose cannot hide behind verbatim hexes. `isPass()` requires `claimsScore >= 80` alongside a clean values pass.
 - Four escalation conditions require human judgment rather than automated correction.
 
 #### Source Files
@@ -176,13 +176,13 @@ See [`06--feature-extractors/feature-extractors.md`](06--feature-extractors/feat
 
 #### Description
 
-Captures hover, focus, active, and disabled component states when extraction runs with `--with-interaction`, producing the data for the required v2 DESIGN.md section 11 (State Matrix).
+Captures hover, focus, active, and disabled component states when extraction runs with `--with-interaction`, producing the state data the v3 Components section uses to characterize hover/focus/active styling per named component.
 
 #### Current Reality
 
 - Runs by DEFAULT during extraction; `--fast-no-interaction` (or `--no-interaction`) opts out. `--with-interaction` remains accepted but is now the default.
 - `captureInteractions()` drives a real page, triggering hover, focus, active, and disabled states and recording the resulting computed styles per component.
-- The captured state data populates DESIGN.md section 11 (State Matrix), which `validate.ts` checks as a required section.
+- The captured state data feeds the v3 Components section (hover/focus/active states per named component, only when actually captured) and the validator's focus-consistency provenance check.
 - State tokens are classified L3 (interaction states are component-specific) and feed the accessibility focus-indicator data.
 - A component with no distinct state styling records the absence rather than inventing a state.
 

@@ -15,7 +15,7 @@ This scenario validates live extraction for `EXTRACT-001`. It focuses on confirm
 
 ### Why This Matters
 
-Extraction is Phase 1 of the three-phase pipeline. Every downstream artifact — DESIGN.md, the fidelity validation, the visual report — depends on `tokens.json` as ground truth. If extraction fails or produces an empty `tokens.json`, the entire skill is blocked. The failure mode this guards against is a silent crawl failure that produces an empty or partial `tokens.json` without the operator noticing.
+Extraction is Phase 1 of the three-phase pipeline. Every downstream artifact — the v3 Style Reference the WRITE phase produces, the fidelity validation, the visual report — depends on `tokens.json` as ground truth. Extraction itself is unchanged by the v3 output format; it still emits the same `tokens.json` schema. If extraction fails or produces an empty `tokens.json`, the entire skill is blocked. The failure mode this guards against is a silent crawl failure that produces an empty or partial `tokens.json` without the operator noticing.
 
 ---
 

@@ -1,10 +1,11 @@
 ---
 title: "Validate"
-description: "Check hex accuracy against tokens.json, confirm v2 core-section completeness, detect hex-format violations, and flag phantom colors."
+description: "Check hex accuracy against tokens.json, confirm v3 Style Reference section completeness, verify Quick-Start fidelity, detect hex-format violations, and flag phantom colors."
 trigger_phrases:
   - "validate DESIGN.md"
   - "hex accuracy check"
-  - "section completeness"
+  - "v3 section completeness"
+  - "quick start fidelity"
   - "npx ts-node scripts/validate.ts"
   - "design md fidelity check"
 importance_tier: "normal"
@@ -16,7 +17,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Confirms that a DESIGN.md is faithful to its source `tokens.json` before any completion claim. The validator runs value-fidelity checks — hex accuracy (every hex in DESIGN.md traces to a token), section coverage (required v2 sections present; conditional sections present only when their backing tokens exist, otherwise stamped ABSENT), and format consistency (hex casing, phantom colors) — alongside semantic prose checks that catch invented narrative. It reports a dual score: a `valuesScore` for hex/section/format fidelity and a `claimsScore` for prose provenance. An unvalidated DESIGN.md is a draft. Validation is always run after the write phase and can also run standalone on an existing DESIGN.md + tokens.json pair.
+Confirms that a DESIGN.md is faithful to its source `tokens.json` before any completion claim. The validator is v3-schema-aware: it detects the v3 Style Reference (by the `## Tokens — Colors` heading or a `— Style Reference` header) and checks the v3 required-section set, while still recognizing the legacy v1/v2 schemas for older docs. It runs value-fidelity checks — hex accuracy (every hex in DESIGN.md traces to a token), section coverage (required v3 sections present), Quick-Start fidelity (every Quick Start hex traces to a token, `--page-max-width` matches `tokens.json`), and format consistency (hex casing, phantom colors) — alongside semantic prose checks that catch invented narrative. It reports a dual score: a `valuesScore` for hex/section/format fidelity and a `claimsScore` for prose provenance, and `isPass()` requires `claimsScore >= 80`. An unvalidated DESIGN.md is a draft. Validation is always run after the write phase and can also run standalone on an existing DESIGN.md + tokens.json pair.
 
 ---
 
@@ -41,7 +42,11 @@ Any hex in DESIGN.md that cannot be traced to one of these two sources is report
 
 ### Section-coverage check
 
-The validator parses DESIGN.md section headings (`## N. Title`) and checks the required v2 sections are present. Conditional sections (Brand §0, Depth §6, Motion §6.5, Voice §7, Accessibility §9, State Matrix §11, Iconography §12) are data-driven: they are expected only when their backing tokens exist. Dark-mode section 2.5 is checked only when `tokens.darkMode.supported === true`. The semantic section-coverage check flags a high-risk section that is present while its backing tokens are empty and the section was not stamped ABSENT — that combination is the signature of fabricated content. A section with no backing data should be stamped ABSENT, not filled.
+The validator detects the schema version (v3 carries the `## Tokens — Colors` heading or a `— Style Reference` header) and checks the matching required-section set. The v3 required sections are: Tokens — Colors, Tokens — Typography, Tokens — Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, and Quick Start. Older v1/v2 docs are matched against their legacy section lists. The semantic section-coverage check additionally flags a high-risk section that is present while its backing tokens are empty and the section was not stamped ABSENT — that combination is the signature of fabricated content. A section with no backing data should be stamped ABSENT (or, for Elevation, rendered FLAT), not filled.
+
+### Quick-Start fidelity check
+
+`checkQuickStartFidelity` enforces the ship-ready Quick Start block: every hex inside `## Quick Start` must trace to `tokens.colorTokens` — a phantom Quick Start hex is a failure — and the `--page-max-width` value must match `tokens.spacingSystem.maxContentWidth`. This is the precise backstop for the "100rem where tokens say 100%" value-fabrication class: a Quick Start that disagrees with the tokens is caught here rather than slipping through as ship-ready CSS.
 
 ### Format-consistency check
 
@@ -58,7 +63,7 @@ A WARNING-tier semantic check flags interpretive prose that the tokens cannot su
 
 ### Score and verdict
 
-The validator produces a dual score with per-finding messages and a pass/fail verdict: `valuesScore` covers hex, section, and format fidelity; `claimsScore` covers prose provenance (the prose-discipline and section-coverage findings). Zero hex mismatches and zero missing required sections are needed for a values pass; a `claimsScore` below 80 surfaces prominently so invented prose cannot hide behind clean hex fidelity. Format violations are individually reported. The output guides targeted fixes in DESIGN.md before re-validation.
+The validator produces a dual score with per-finding messages and a pass/fail verdict: `valuesScore` covers hex, section, format, and Quick-Start fidelity; `claimsScore` covers prose provenance (the prose-discipline and section-coverage findings). Zero hex mismatches, zero missing required sections, and a faithful Quick Start are needed for a values pass; `isPass()` additionally requires `claimsScore >= 80`, so invented prose cannot hide behind clean hex fidelity — a `claimsScore` below 80 fails the verdict and surfaces prominently. Format violations are individually reported. The output guides targeted fixes in DESIGN.md before re-validation.
 
 ### Escalation triggers
 
@@ -77,7 +82,7 @@ Four conditions require escalation rather than automated correction:
 
 | File | Layer | Role |
 |---|---|---|
-| `tool/scripts/validate.ts` | Script | Hex-accuracy checker, section-completeness checker, format-consistency checker, scoring engine |
+| `tool/scripts/validate.ts` | Script | v3-schema-aware hex-accuracy checker, v3 section-completeness checker, Quick-Start fidelity checker (`checkQuickStartFidelity`), format-consistency checker, dual-score engine (`isPass` requires `claimsScore >= 80`) |
 
 ### Validation And Tests
 

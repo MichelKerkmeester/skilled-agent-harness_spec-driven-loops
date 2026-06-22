@@ -15,7 +15,7 @@ This scenario validates OKLCH color clustering and L1-L4 stability classificatio
 
 ### Why This Matters
 
-Stability classification (L1-L4) is the gatekeeper for DESIGN.md inclusion. L1 (permanent/brand) and L2 (system) tokens populate the main 17 sections. L3 (campaign) tokens appear with a "Subject to change" annotation. L4 (content) tokens are excluded entirely. If clustering misclassifies a brand color as L4, the DESIGN.md omits it silently. If a one-off content color leaks in as L1, downstream AI agents treat it as a permanent design-system token. The failure mode this guards against is a degenerate clustering pass that assigns every token to L2 or leaves `stability` undefined, making the stability gate meaningless.
+Stability classification (L1-L4) is the gatekeeper for Style Reference inclusion. L1 (permanent/brand) and L2 (system) tokens populate the named token tables. L3 (campaign) tokens appear under a "Subject to change" sub-table. L4 (content) tokens are excluded entirely. If clustering misclassifies a brand color as L4, the Style Reference omits it silently. If a one-off content color leaks in as L1, downstream AI agents treat it as a permanent design-system token. The failure mode this guards against is a degenerate clustering pass that assigns every token to L2 or leaves `stability` undefined, making the stability gate meaningless. (Clustering mechanics are unchanged by the v3 output format; only the document the classified tokens flow into changed.)
 
 ---
 

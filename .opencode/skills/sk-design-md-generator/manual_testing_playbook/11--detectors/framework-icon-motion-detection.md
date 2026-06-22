@@ -15,7 +15,7 @@ This scenario validates the four remaining feature detectors for `DETECT-001`. D
 
 ### Why This Matters
 
-Detectors are the enrichment layer of the extraction pipeline. If a detector crashes, extraction fails. If a detector fabricates data when none exists, DESIGN.md propagates false claims (e.g., "uses Material UI" on a raw HTML page, or "icon system: lucide" on a site with no icons). If a detector finds real data but fails to write it, the DESIGN.md loses actionable information. Each detector runs inline during extraction; a silent failure in any one can poison tokens.json without the operator noticing.
+Detectors are the enrichment layer of the extraction pipeline. If a detector crashes, extraction fails. If a detector fabricates data when none exists, the v3 Style Reference propagates false claims (e.g., "uses Material UI" on a raw HTML page, or "icon system: lucide" on a site with no icons). If a detector finds real data but fails to write it, the Style Reference loses actionable information. Detector mechanics are unchanged by the v3 output format. Each detector runs inline during extraction; a silent failure in any one can poison tokens.json without the operator noticing.
 
 ---
 
