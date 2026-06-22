@@ -14,23 +14,23 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the envelope-fidelity-enforcement phase from recs 5, 6, 9"
-    next_safe_action: "Run speckit plan to decompose the render and fidelity build"
+    recent_action: "Implemented and verified recs 5, 6, 9 behind SPECKIT_ENVELOPE_FIDELITY_V1, vitest 12/12 green"
+    next_safe_action: "Run the grandfather report over a captured render corpus before the default-on flip follow-on"
     blockers: []
     key_files:
       - ".opencode/commands/memory/search.md"
       - ".opencode/commands/memory/assets/search_presentation.txt"
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-027-envelope-fidelity-enforcement"
       parent_session_id: "phase-027-envelope-fidelity-enforcement"
-    completion_pct: 0
-    open_questions:
-      - "Whether the pre-rendered fragment is a new tool field or a string baked into the existing envelope"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Whether the kubernetes false-positive is in scope, it is not, that is soft spot A and a separate phase"
+      - "The pre-rendered fragment is a new additive data.envelopeRender field, not a string baked into the existing envelope, and it survives the memory_context re-wrap"
 ---
 # Feature Specification: Envelope-Fidelity Enforcement
 
@@ -53,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `027-envelope-fidelity-enforcement` |
 <!-- /ANCHOR:metadata -->

@@ -58,6 +58,9 @@ import {
   type WhyRankedTrace,
 } from '../lib/observability/retrieval-observability.js';
 
+// Envelope-fidelity render fragment gate
+import { isEnvelopeFidelityEnabled } from '../lib/search/search-flags.js';
+
 // Consolidated path validation from core/config.js (single source of truth)
 import { ALLOWED_BASE_PATHS } from '../core/config.js';
 
@@ -368,6 +371,22 @@ function deriveResponsePolicy(
 function deriveCitationPolicy(requestQuality: RequestQualityAssessment | null): CitationPolicy {
   const label = requestQuality?.requestQuality?.label;
   return label === 'good' ? 'cite_results' : 'do_not_cite_results';
+}
+
+/**
+ * Pre-rendered verdict fragment the model pastes verbatim. Built from the same
+ * requestQuality label and citationPolicy the tool already ships, so the model
+ * copies the two lines instead of transcribing each field and dropping one. The
+ * two lines and their order mirror the presentation asset exactly. Returns null
+ * when the tool shipped no verdict, so there is nothing to render.
+ */
+export function buildEnvelopeRenderFragment(
+  requestQuality: RequestQualityAssessment | null,
+  citationPolicy: CitationPolicy | null,
+): string | null {
+  const label = requestQuality?.requestQuality?.label;
+  if (!label || !citationPolicy) return null;
+  return `requestQuality ${label}\ncitationPolicy ${citationPolicy}`;
 }
 
 /**
@@ -1159,6 +1178,12 @@ export async function formatSearchResults(
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData);
+  // Pre-rendered verdict fragment, gated dark. Built from the same verdict pair
+  // shipped below so a label change propagates without a second edit. Off by
+  // default keeps the response shape byte-for-byte the shipped behavior.
+  const envelopeRender = isEnvelopeFidelityEnabled()
+    ? buildEnvelopeRenderFragment(requestQualityData, citationPolicy)
+    : null;
   const inlineWarnings: RetrievalConflictWarning[] = includeTrace
     ? findInlineConflictWarnings(results, requireDb)
     : [];
@@ -1174,6 +1199,7 @@ export async function formatSearchResults(
     // Recovery payload for weak/partial results (additive)
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
+    ...(envelopeRender !== null ? { envelopeRender } : {}),
     ...(inlineWarnings.length > 0 ? { inlineWarnings, retrievalWarnings: inlineWarnings } : {}),
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
@@ -1186,6 +1212,7 @@ export async function formatSearchResults(
       constitutionalCount: _cc,
       results: _r,
       citationPolicy: _cp,
+      envelopeRender: _er,
       responsePolicy: _rp,
       ...safeExtra
     } = safeExtraData as Record<string, unknown>;

@@ -86,6 +86,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Typed traversal | ON | `SPECKIT_TYPED_TRAVERSAL` | Sparse-first intent-aware graph traversal | D3 Phase A |
 | Empty result recovery | ON | `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | Empty and weak result recovery payloads | D5 REQ-D5-001 |
 | Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE_V1` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
+| Envelope fidelity | OFF | `SPECKIT_ENVELOPE_FIDELITY_V1` | Emits the `data.envelopeRender` verdict fragment and promotes the verdict fields to conditionally-mandatory render slots; default-OFF until a clean grandfather report | current |
 | Batch learned feedback | ON | `SPECKIT_BATCH_LEARNED_FEEDBACK` | Weekly batch feedback learning pipeline | D4 REQ-D4-004 |
 | Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer; shadow-first and audit-only unless active mode is gated | current |
 | Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and internally supplied shadow-evaluation evidence, which the public sweep tool and scheduler do not expose. | current |
@@ -423,6 +424,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_SESSION_RETRIEVAL_STATE_V1` | `true` | boolean | Cross-turn retrieval session state for dedup and goal-aware refinement (REQ-D5-006). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | `true` | boolean | Empty/weak result recovery UX with diagnostic payload (REQ-D5-001). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_ENVELOPE_FIDELITY_V1` | `false` | boolean | Emits the `data.envelopeRender` pre-rendered verdict fragment and promotes `requestQuality` and `citationPolicy` to conditionally-mandatory render slots in the command contract. Opt-in: set `true` to enable. Default-OFF keeps the response shape byte-for-byte the shipped behavior until a clean grandfather report. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESULT_EXPLAIN_V1` | `true` | boolean | Two-tier result explainability (REQ-D5-002). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESULT_EXPLAIN_DEBUG` | `false` | boolean | Detailed debug-level result explainability. Opt-in: set `true` to enable. | `formatters/search-results.ts` |
 | `SPECKIT_RESPONSE_PROFILE_V1` | `true` | boolean | Mode-aware response profile formatting (REQ-D5-003). Graduated ON. | `lib/search/search-flags.ts` |

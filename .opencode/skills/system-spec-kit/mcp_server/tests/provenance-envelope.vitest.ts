@@ -52,6 +52,7 @@ vi.mock('../lib/search/search-flags', () => ({
   resolveGraphWalkRolloutState: provenanceMocks.resolveGraphWalkRolloutState,
   isLearnedStage2CombinerEnabled: provenanceMocks.isLearnedStage2CombinerEnabled,
   isResultProvenanceEnabled: provenanceMocks.isResultProvenanceEnabled,
+  isEnvelopeFidelityEnabled: () => false,
 }));
 
 vi.mock('../lib/search/graph-flags', () => ({

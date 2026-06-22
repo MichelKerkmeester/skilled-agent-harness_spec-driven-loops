@@ -682,6 +682,27 @@ export function isLexicalGroundingEnabled(): boolean {
 }
 
 /**
+ * Envelope-fidelity enforcement for the request-quality verdict render. When
+ * enabled, the formatter emits a pre-rendered verdict fragment (envelopeRender)
+ * built from the same requestQuality label and citationPolicy the tool already
+ * ships, so the model pastes the two verdict lines verbatim instead of
+ * transcribing them field by field. The render contract reads the same flag to
+ * promote requestQuality and citationPolicy from droppable extras to
+ * conditionally-mandatory render slots, required-when-present, and to re-emit a
+ * tool-shipped field the render dropped.
+ *
+ * Default: FALSE (opt-in). The existing renders carry the looser
+ * absence-is-valid contract this mandate rejects, so it ships dark and graduates
+ * only after a clean grandfather report confirms aligned good and correctly-weak
+ * renders do not regress. With the flag OFF the response shape is byte-for-byte
+ * the shipped behavior, no envelopeRender field is added. An unparseable value
+ * resolves to OFF. Set SPECKIT_ENVELOPE_FIDELITY_V1=true to enable.
+ */
+export function isEnvelopeFidelityEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_ENVELOPE_FIDELITY_V1');
+}
+
+/**
  * Calibrate confidence/request-quality and result-set digests on an absolute
  * relevance signal (cosine similarity) instead of the RRF fusion score. RRF
  * magnitudes (~0.01–0.05) understate relevance and make "good" unreachable, so

@@ -14,19 +14,19 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Planned the render mandate, fidelity check and fragment from recs 5, 6, 9"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Shipped recs 5, 6, 9 behind the envelope-fidelity flag"
+    next_safe_action: "Run the grandfather report over a captured render corpus before the default-on flip follow-on"
     blockers: []
     key_files:
       - ".opencode/commands/memory/search.md"
       - ".opencode/commands/memory/assets/search_presentation.txt"
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-027-envelope-fidelity-enforcement"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

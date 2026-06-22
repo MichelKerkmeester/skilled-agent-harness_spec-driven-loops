@@ -73,9 +73,11 @@ Arg-echo rule: the query echoed in `"<query>"` MUST equal the resolved `QUERY`. 
 
 Surface-parity clause: the five core slots and the similarity 0–1 / two-decimal scale are mandatory regardless of how this command was reached — `--command` dispatch, a direct prompt, or natural conversation. Conversational phrasing may wrap the block in prose, but the core field set, field names, and scale never change, so any two surfaces return diffable, comparable rows for the same result.
 
-Named optional fields: `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots. When present, render each as a named trailing field per the presentation asset — never as an unnamed, renamed, or ad-hoc metric. Their absence is valid; their presence must be unambiguous.
+Verdict render slots: `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots. When present, render each as a named trailing field per the presentation asset, never as an unnamed, renamed, or ad-hoc metric, and their presence must be unambiguous.
 
-Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header, all five core slots, and the `STATUS` footer, and that no row carries `confidence` or a percentage score.
+Under the default contract their absence is valid. When `SPECKIT_ENVELOPE_FIDELITY_V1` is set the two fields become conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block, and the tool ships a ready-to-paste `data.envelopeRender` fragment the render pastes verbatim instead of transcribing the fields. The flag is default-OFF, so the legacy absence-is-valid rule stays the default until the grandfather report is clean.
+
+Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header, all five core slots, and the `STATUS` footer, and that no row carries `confidence` or a percentage score. When `SPECKIT_ENVELOPE_FIDELITY_V1` is set, also verify that every verdict field the tool response carries (`requestQuality` and `citationPolicy`) is present in the rendered block, and re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped.
 
 Supported intents:
 - `add_feature`
@@ -141,7 +143,7 @@ The following content must come from the presentation asset, not from router pro
 - Empty-argument startup question and targeted follow-up wording.
 - Analysis overview, preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard, empty-result, and error displays.
 - Forbidden vocabulary, result labels, fallback labels, examples, and recovery text.
-- Named optional trailing-field placement and exact field names (`requestQuality`, `citationPolicy`).
+- Verdict render-slot placement, exact field names (`requestQuality` and `citationPolicy`), the conditionally-mandatory required-when-present rule, and the `data.envelopeRender` paste fragment.
 
 ## 8. RELATED COMMANDS
 
