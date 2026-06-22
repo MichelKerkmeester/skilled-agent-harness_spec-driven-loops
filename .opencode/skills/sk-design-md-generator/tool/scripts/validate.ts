@@ -274,9 +274,25 @@ function checkSectionCompleteness(md: string): { passed: boolean; failures: Vali
     '## 8. Responsive Behavior',
     '## 9. Agent Prompt Guide',
   ];
-  // Detect format version: if Section 0 exists, use v2 checks
+  // v3 Style Reference is a different schema (named token tables + Quick Start), not the
+  // numbered v2 sections.
+  const v3Sections = [
+    '## Tokens — Colors',
+    '## Tokens — Typography',
+    '## Tokens — Spacing & Shapes',
+    '## Components',
+    "## Do's and Don'ts",
+    '## Surfaces',
+    '## Elevation',
+    '## Layout',
+    '## Agent Prompt Guide',
+    '## Similar Brands',
+    '## Quick Start',
+  ];
+  // Detect format version. v3 carries the "Style Reference" header + "## Tokens — Colors".
+  const isV3 = md.includes('## Tokens — Colors') || md.toLowerCase().includes('— style reference');
   const isV2 = md.toLowerCase().includes('## 0. brand context');
-  const requiredSections = isV2 ? v2Sections : v1Sections;
+  const requiredSections = isV3 ? v3Sections : isV2 ? v2Sections : v1Sections;
 
   const mdLower = md.toLowerCase();
   const failures: ValidationIssue[] = [];
@@ -368,6 +384,27 @@ function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boole
   return { passed: warnings.length === 0, warnings };
 }
 
+// The Quick Start (CSS + Tailwind) is the ship-ready surface — every value in it must
+// trace to tokens. This is the precise backstop for the value-fabrication class: a
+// phantom hex is critical, and a --page-max-width that disagrees with tokens (the "100rem
+// where tokens say 100%" case) is flagged.
+function checkQuickStartFidelity(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[]; failures: ValidationIssue[] } {
+  const warnings: ValidationIssue[] = [];
+  const failures: ValidationIssue[] = [];
+  const qs = md.split(/##\s*Quick Start/i)[1];
+  if (!qs) return { passed: true, warnings, failures };
+  const hexes = new Set(tokens.colorTokens.map((c) => c.hex.toLowerCase().slice(0, 7)));
+  for (const raw of qs.match(/#[0-9a-fA-F]{6}\b/g) ?? []) {
+    if (!hexes.has(raw.toLowerCase())) failures.push({ type: 'quickstart-phantom-color', value: raw, message: `Quick Start hex ${raw} not found in tokens.colorTokens` });
+  }
+  const mw = (tokens as unknown as { spacingSystem?: { maxContentWidth?: string | null } }).spacingSystem?.maxContentWidth;
+  const qsMw = qs.match(/--page-max-width:\s*([^;]+);/);
+  if (mw && qsMw && qsMw[1].trim() !== mw.trim()) {
+    warnings.push({ type: 'quickstart-maxwidth', value: qsMw[1].trim(), message: `Quick Start --page-max-width "${qsMw[1].trim()}" does not match tokens maxContentWidth "${mw}"` });
+  }
+  return { passed: failures.length === 0 && warnings.length === 0, warnings, failures };
+}
+
 export function validateDesignMd(mdContent: string, tokens: DesignTokens): ValidationResult {
   const passed: string[] = [];
   const warnings: ValidationIssue[] = [];
@@ -405,6 +442,11 @@ export function validateDesignMd(mdContent: string, tokens: DesignTokens): Valid
   if (coverage.passed) passed.push('section-coverage');
   else warnings.push(...coverage.warnings);
 
+  const qsFidelity = checkQuickStartFidelity(mdContent, tokens);
+  if (qsFidelity.passed) passed.push('quickstart-fidelity');
+  failures.push(...qsFidelity.failures);
+  warnings.push(...qsFidelity.warnings);
+
   // Dual score: separate value-fidelity from claim-provenance so a doc with real hexes
   // but invented prose cannot earn a high combined score on hex-tracing alone.
   const claimsWarnings = warnings.filter((w) => w.type === 'prose-fabrication' || w.type === 'section-coverage');
@@ -435,7 +477,7 @@ const RESET = '\x1b[0m';
 // sections are hard failures for an anti-hallucination tool: they fail the
 // document regardless of the numeric score, so a single fabricated color cannot
 // pass on points.
-const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section', 'content-color']);
+const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section', 'content-color', 'quickstart-phantom-color']);
 
 function hasCriticalFailure(result: ValidationResult): boolean {
   return result.failures.some((f) => CRITICAL_FAILURE_TYPES.has(f.type));
