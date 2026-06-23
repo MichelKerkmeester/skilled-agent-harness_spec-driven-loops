@@ -161,20 +161,41 @@ export function predictGraphCoverage(
  * Override the Z-score gap decision with a relevance-aware one when the flag is
  * on. The Z-score measures peakedness, not relevance: it over-flags strong tight
  * clusters and misses flat off-corpus ones. The request-quality banding instead
- * reads the noise-floor-subtracted absolute top relevance, so this computes that
- * same signal and flags a gap when the subtracted relevance falls below the
- * band's low floor. Reuses resolveNoiseFloor and LOW_THRESHOLD, never reimplements
- * them. When the flag is off the base Z-score result passes through untouched, so
- * flag-off is byte-identical. When no embedder noise-floor resolves (null) it fails
- * closed to the base Z-score path rather than banding on an unknown floor. The
- * zScore, mean and stdDev fields are preserved from the base result either way.
+ * reads the noise-floor-subtracted absolute top relevance, so this bands that same
+ * signal and flags a gap when the subtracted relevance falls below the band's low
+ * floor. Reuses resolveNoiseFloor and LOW_THRESHOLD, never reimplements them.
+ *
+ * The relevance signal is the per-result absolute-relevance array the caller threads
+ * in (relevanceScores), NOT the rrfScores the Z-score path bands. The RRF magnitude
+ * (~0.03) is always below LOW_THRESHOLD, so banding the gap on it would flag every
+ * query. The verdict bands resolveCalibrationScore, which is absolute relevance when
+ * calibration is on, so the caller passes that same signal here to keep them aligned.
+ *
+ * The override activates ONLY when the flag is on, relevanceScores is a non-empty
+ * array, and a noise floor resolves. When the flag is off the base Z-score result
+ * passes through untouched, so flag-off is byte-identical. When relevanceScores is
+ * absent or empty, or no embedder noise-floor resolves (null), it fails closed to the
+ * base Z-score path rather than banding on the degenerate RRF magnitude or an unknown
+ * floor. The zScore, mean and stdDev fields are preserved from the base result.
  */
 function applyRelevanceAwareGap(
   base: TRMResult,
-  topScore: number,
-  options?: { embedder?: string },
+  options?: { embedder?: string; relevanceScores?: number[] },
 ): TRMResult {
   if (!isRelevanceAwareGapEnabled()) {
+    return base;
+  }
+
+  // Fail closed to the Z-score path when the caller has no absolute-relevance
+  // signal to band. Banding on the rrfScores instead is the degenerate path that
+  // flags every query, so an absent or empty array must never reach the band.
+  const relevanceScores = options?.relevanceScores;
+  if (!Array.isArray(relevanceScores) || relevanceScores.length === 0) {
+    return base;
+  }
+
+  const finiteRelevance = relevanceScores.filter((score) => Number.isFinite(score));
+  if (finiteRelevance.length === 0) {
     return base;
   }
 
@@ -194,7 +215,8 @@ function applyRelevanceAwareGap(
     floor = 0;
   }
 
-  const subtracted = Math.max(0, topScore - floor);
+  const topRelevance = finiteRelevance.reduce((a, b) => Math.max(a, b), -Infinity);
+  const subtracted = Math.max(0, topRelevance - floor);
   return { ...base, gapDetected: subtracted < LOW_THRESHOLD };
 }
 
@@ -206,19 +228,25 @@ function applyRelevanceAwareGap(
  * - The top score is below `MIN_ABSOLUTE_SCORE` (all scores too small), or
  * - The input array is empty.
  *
- * When SPECKIT_RELEVANCE_AWARE_GAP is on, the Z-score gap decision is replaced by
- * the noise-floor-subtracted absolute top relevance banded at LOW_THRESHOLD, the
- * same signal the request-quality verdict already uses. The flag is default-off,
- * so the returned object is byte-identical to the Z-score path when it is unset.
+ * When SPECKIT_RELEVANCE_AWARE_GAP is on AND the caller threads a non-empty
+ * relevanceScores array, the Z-score gap decision is replaced by the noise-floor-
+ * subtracted absolute top relevance banded at LOW_THRESHOLD, the same signal the
+ * request-quality verdict already uses. The override never bands on rrfScores: their
+ * magnitude is always below LOW_THRESHOLD, which would flag every query. The flag is
+ * default-off, so the returned object is byte-identical to the Z-score path when it
+ * is unset, and the relevance-aware path fails closed to the Z-score path when
+ * relevanceScores is absent or empty.
  *
- * @param rrfScores - Array of Reciprocal Rank Fusion scores (any length).
+ * @param rrfScores - Array of Reciprocal Rank Fusion scores (any length). Drives the
+ *   Z-score path and the absolute-threshold fallback.
  * @param options - Optional embedder identifier, threaded through to resolve the
- *   per-embedder noise floor for the relevance-aware path.
+ *   per-embedder noise floor for the relevance-aware path, and optional
+ *   relevanceScores, the absolute-relevance array the relevance-aware band reads.
  * @returns TRMResult with gap flag, Z-score, mean, and standard deviation.
  */
 export function detectEvidenceGap(
   rrfScores: number[],
-  options?: { embedder?: string },
+  options?: { embedder?: string; relevanceScores?: number[] },
 ): TRMResult {
   if (rrfScores.length === 0) {
     return { gapDetected: true, zScore: 0, mean: 0, stdDev: 0 };
@@ -238,7 +266,7 @@ export function detectEvidenceGap(
       mean: score,
       stdDev: 0,
     };
-    return applyRelevanceAwareGap(base, score, options);
+    return applyRelevanceAwareGap(base, options);
   }
 
   const mean = finiteScores.reduce((acc, s) => acc + s, 0) / finiteScores.length;
@@ -260,7 +288,7 @@ export function detectEvidenceGap(
     ? topScore < MIN_ABSOLUTE_SCORE
     : zScore < Z_SCORE_THRESHOLD || topScore < MIN_ABSOLUTE_SCORE;
 
-  return applyRelevanceAwareGap({ gapDetected, zScore, mean, stdDev }, topScore, options);
+  return applyRelevanceAwareGap({ gapDetected, zScore, mean, stdDev }, options);
 }
 
 /**

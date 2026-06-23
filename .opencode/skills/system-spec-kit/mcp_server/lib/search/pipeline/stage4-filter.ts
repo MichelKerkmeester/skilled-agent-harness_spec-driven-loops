@@ -38,6 +38,7 @@ import type { Stage4Input, Stage4Output, Stage4ReadonlyRow, PipelineRow } from '
 import { captureScoreSnapshot, verifyScoreInvariant, resolveEffectiveScore } from './types.js';
 import { isTRMEnabled, isMultiQueryEnabled } from '../search-flags.js';
 import { detectEvidenceGap, formatEvidenceGapWarning } from '../evidence-gap-detector.js';
+import { resolveCalibrationScore } from '../confidence-scoring.js';
 import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 
 // Feature catalog: 4-stage pipeline architecture
@@ -263,9 +264,17 @@ export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
 
   if (isTRMEnabled()) {
     const scores = workingResults.map(extractScoringValue);
+    // The absolute-relevance array the relevance-aware gap path (when enabled) bands.
+    // It must read resolveCalibrationScore (the SAME signal the request-quality verdict
+    // bands), not the RRF effective score above. RRF magnitudes (~0.03) sit below the
+    // band's low floor for every query, so banding the gap on them flags everything.
+    // The Z-score path keeps reading the effective scores as its first argument.
+    const relevanceScores = workingResults.map((row) =>
+      resolveCalibrationScore(row as unknown as PipelineRow),
+    );
     // Thread the active embedder so the relevance-aware gap path (when enabled)
     // resolves the same per-embedder noise floor the request-quality banding reads.
-    const trm = detectEvidenceGap(scores, { embedder: input.embedder });
+    const trm = detectEvidenceGap(scores, { embedder: input.embedder, relevanceScores });
 
     evidenceGapDetected = trm.gapDetected;
 

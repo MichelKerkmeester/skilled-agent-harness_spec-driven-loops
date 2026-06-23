@@ -1033,6 +1033,8 @@ export function isLaneChampionBackfillEnabled(): boolean {
  * SPECKIT_RELEVANCE_AWARE_GAP=true to enable.
  */
 export function isRelevanceAwareGapEnabled(): boolean {
+  // Default-on. The relevance-aware gap earned graduation over the Z-score on a
+  // real-corpus benchmark, it keys the gap off absolute relevance not peakedness.
   const rawValue = process.env.SPECKIT_RELEVANCE_AWARE_GAP?.trim().toLowerCase();
-  return rawValue === 'true' || rawValue === '1';
+  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
 }

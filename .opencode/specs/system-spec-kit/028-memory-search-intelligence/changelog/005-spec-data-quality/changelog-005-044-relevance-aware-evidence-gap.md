@@ -12,6 +12,35 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 
+## 2026-06-23: Production-scoring fix and graduation
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap` (Level 2)
+
+### Summary
+
+The first graduation attempt flagged every query with the evidence-gap banner. Production `stage4-filter` feeds the detector `resolveEffectiveScore` (RRF-magnitude around 0.03) while the relevance band sits at `LOW_THRESHOLD` 0.4, so every query fell below the band. The original benchmark masked this by feeding hand-picked absolute-relevance scores. A full-handler live dispatch caught it.
+
+### Fixed
+
+- `detectEvidenceGap` now bands the absolute-relevance signal the verdict banding uses. `stage4-filter` threads `relevanceScores` from `resolveCalibrationScore` (exported from confidence-scoring), and the relevance-aware branch fails closed to the Z-score path when no relevance scores are provided, so the degenerate RRF case can no longer occur.
+
+### Verification
+
+- Re-benchmarked through the production `executePipeline`, reading `metadata.stage4.evidenceGapDetected`, not hand-fed scores. `graph` and `kubernetes` return false, only `oauth` (the genuine gap) returns true.
+- Full-handler live re-verify, `graph` good no-banner, `kubernetes` weak no-banner, `oauth` gap banner.
+- Graduated `SPECKIT_RELEVANCE_AWARE_GAP` to default-on with zero test collateral, the fail-closed design keeps the legacy Z-score unit tests on their path. 161 gap and pipeline tests pass.
+
+### Files Changed
+
+- `lib/search/confidence-scoring.ts`: exported `resolveCalibrationScore`.
+- `lib/search/evidence-gap-detector.ts`: the relevance-aware branch bands `relevanceScores` and fails closed.
+- `lib/search/pipeline/stage4-filter.ts`: threads `relevanceScores` from `resolveCalibrationScore`.
+- `lib/search/search-flags.ts`: graduated the flag to default-on.
+- `mcp_server/ENV_REFERENCE.md`: default true.
+- `044-relevance-aware-evidence-gap/scripts/gap-production-rebenchmark.mjs` and `results/production-metrics.json`: the production-path re-benchmark.
+
+
+
 ## 2026-06-23
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap` (Level 2)

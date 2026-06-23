@@ -76,7 +76,9 @@ describe('relevance-aware evidence-gap path', () => {
     // A clear-winner distribution: the Z-score path reports no gap (high Z). The
     // top relevance subtracted is below the band floor, so the relevance-aware
     // override must flip the decision to gap. Asserting against the flag-off
-    // baseline proves the override changed the result.
+    // baseline proves the override changed the result. The override bands the
+    // relevanceScores array the caller threads in, the absolute-relevance signal,
+    // never the rrf scores, so the same distribution is supplied on that channel.
     const scores = [0.5, 0.05, 0.05];
 
     setFlag(GAP_FLAG, 'false');
@@ -84,7 +86,10 @@ describe('relevance-aware evidence-gap path', () => {
 
     setFlag(GAP_FLAG, 'true');
     setFlag(NOISE_FLAG, 'true');
-    const on = detectEvidenceGap(scores, { embedder: DEFAULT_NOISE_FLOOR_EMBEDDER });
+    const on = detectEvidenceGap(scores, {
+      embedder: DEFAULT_NOISE_FLOOR_EMBEDDER,
+      relevanceScores: scores,
+    });
 
     // Top 0.5, subtracted = max(0, 0.5 - floor) lands below LOW_THRESHOLD => gap.
     const subtracted = Math.max(0, 0.5 - DEFAULT_FLOOR);
@@ -101,7 +106,9 @@ describe('relevance-aware evidence-gap path', () => {
   it('flag ON does NOT flag a high-relevance top score as gap even on a flat (gap-by-Z) distribution', () => {
     // A flat distribution the Z-score path flags as gap, but whose top relevance is
     // high. The relevance-aware override must flip the decision to no-gap. Asserting
-    // against the flag-off baseline proves both the Z verdict and the override.
+    // against the flag-off baseline proves both the Z verdict and the override. The
+    // override bands the relevanceScores array, so the high-relevance distribution is
+    // supplied on that channel rather than read from the rrf scores.
     const scores = [0.9, 0.9, 0.9, 0.85];
 
     setFlag(GAP_FLAG, 'false');
@@ -109,7 +116,10 @@ describe('relevance-aware evidence-gap path', () => {
 
     setFlag(GAP_FLAG, 'true');
     setFlag(NOISE_FLAG, 'true');
-    const on = detectEvidenceGap(scores, { embedder: DEFAULT_NOISE_FLOOR_EMBEDDER });
+    const on = detectEvidenceGap(scores, {
+      embedder: DEFAULT_NOISE_FLOOR_EMBEDDER,
+      relevanceScores: scores,
+    });
 
     // Top 0.9, subtracted = max(0, 0.9 - floor) lands at or above LOW_THRESHOLD => no gap.
     const subtracted = Math.max(0, 0.9 - DEFAULT_FLOOR);
@@ -118,6 +128,62 @@ describe('relevance-aware evidence-gap path', () => {
     expect(off.gapDetected).toBe(true);
     expect(on.gapDetected).toBe(false);
     expect(on.zScore).toBe(off.zScore);
+  });
+
+  // ---- Production bug: rrf magnitudes must never reach the band ----
+  it('flag ON with absent relevanceScores fails closed to Z-score on rrf-magnitude scores', () => {
+    setFlag(GAP_FLAG, 'true');
+    setFlag(NOISE_FLAG, 'true');
+
+    // The production stage4 array: rrf effective scores (~0.03 magnitude), a clear
+    // winner by Z. Banding these directly is the degenerate bug, every one sits below
+    // LOW_THRESHOLD and would flag a gap. With no relevanceScores threaded in the path
+    // must fail closed to the Z-score no-gap decision, NOT flag a spurious gap.
+    const rrfScores = [0.032, 0.018, 0.011, 0.009];
+    const on = detectEvidenceGap(rrfScores, { embedder: DEFAULT_NOISE_FLOOR_EMBEDDER });
+
+    setFlag(GAP_FLAG, 'false');
+    const off = detectEvidenceGap(rrfScores, { embedder: DEFAULT_NOISE_FLOOR_EMBEDDER });
+
+    expect(on.gapDetected).toBe(false);
+    expect(on).toEqual(off);
+  });
+
+  it('flag ON bands relevanceScores, so high relevance over rrf-magnitude scores is no gap', () => {
+    setFlag(GAP_FLAG, 'true');
+    setFlag(NOISE_FLAG, 'true');
+
+    // The realistic production case: rrf scores are tiny but the absolute relevance is
+    // high (a strong aligned hit). The band must read the relevanceScores channel and
+    // return no gap, the exact behavior the production stage4 fix restores.
+    const rrfScores = [0.032, 0.018, 0.011, 0.009];
+    const relevanceScores = [0.82, 0.71, 0.66, 0.6];
+    const on = detectEvidenceGap(rrfScores, {
+      embedder: DEFAULT_NOISE_FLOOR_EMBEDDER,
+      relevanceScores,
+    });
+
+    const subtracted = Math.max(0, 0.82 - DEFAULT_FLOOR);
+    expect(subtracted).toBeGreaterThanOrEqual(LOW_THRESHOLD);
+    expect(on.gapDetected).toBe(false);
+  });
+
+  it('flag ON bands relevanceScores, so a genuine low-relevance gap still flags', () => {
+    setFlag(GAP_FLAG, 'true');
+    setFlag(NOISE_FLAG, 'true');
+
+    // An off-corpus query: rrf scores tiny AND absolute relevance is background-level.
+    // The band must flag a gap off the relevanceScores channel.
+    const rrfScores = [0.03, 0.02, 0.015];
+    const relevanceScores = [0.3, 0.22, 0.18];
+    const on = detectEvidenceGap(rrfScores, {
+      embedder: DEFAULT_NOISE_FLOOR_EMBEDDER,
+      relevanceScores,
+    });
+
+    const subtracted = Math.max(0, 0.3 - DEFAULT_FLOOR);
+    expect(subtracted).toBeLessThan(LOW_THRESHOLD);
+    expect(on.gapDetected).toBe(true);
   });
 
   // ---- No noise floor resolves: fail closed to Z-score ----

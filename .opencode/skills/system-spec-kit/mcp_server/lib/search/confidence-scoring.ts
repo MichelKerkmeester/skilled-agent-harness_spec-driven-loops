@@ -197,8 +197,13 @@ function resolveScore(result: ScoredResult): number {
  * ordering on the RRF/effective score while reading an absolute 0–1 signal for
  * "how good is this", so the 0.7/0.4 thresholds mean what they say. Reverts to the
  * effective score when SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION is disabled.
+ *
+ * Exported so the evidence-gap detector keys its relevance-aware band off the SAME
+ * signal the verdict bands. The RRF effective score (~0.03 magnitude) is always
+ * below LOW_THRESHOLD, so banding the gap on it flags every query. Tracking this
+ * function keeps the gap and the verdict on one scale by construction.
  */
-function resolveCalibrationScore(result: ScoredResult): number {
+export function resolveCalibrationScore(result: ScoredResult): number {
   return isAbsoluteRelevanceCalibrationEnabled()
     ? resolveAbsoluteRelevance(result as PipelineRow)
     : resolveEffectiveScore(result as PipelineRow);

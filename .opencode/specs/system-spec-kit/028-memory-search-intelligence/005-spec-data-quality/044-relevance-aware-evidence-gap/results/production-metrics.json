@@ -1,0 +1,1294 @@
+{
+  "generatedFrom": "gap-production-rebenchmark.mjs",
+  "generatedAt": "2026-06-23T18:46:26.607Z",
+  "subject": "Relevance-aware evidence-gap path read from the PRODUCTION pipeline metadata (SPECKIT_RELEVANCE_AWARE_GAP on)",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-gap-prod-eval-dZRF3f/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-gap-prod-eval-dZRF3f/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "resolvedNoiseFloor": {
+    "embedder": "nomic-embed-text-v1.5",
+    "floor": 0.15
+  },
+  "lowThreshold": 0.4,
+  "pipelineLimit": 200,
+  "topK": 10,
+  "gapSource": "metadata.stage4.evidenceGapDetected from executePipeline with SPECKIT_RELEVANCE_AWARE_GAP on. The relevance-aware override bands resolveCalibrationScore inside the pipeline, not the rrf scores, and not a hand-fed array.",
+  "verdictSource": "assessRequestQuality over computeResultConfidence with the production Stage-4 gap threaded in, under shipped default flags.",
+  "agreementRule": "gap signal fires iff verdict is gap-or-weak; the production gap agrees when evidenceGapDetectedOn === (verdict in {gap, weak}).",
+  "bugContext": "Pre-fix, production stage4 fed detectEvidenceGap the rrf effective-score array (~0.03), and the relevance-aware band keyed off it. Every score sat below LOW_THRESHOLD, so the override flagged a gap on every query, a banner on everything. The prior gap-relevance-rebenchmark.mjs masked this by recomputing the NEW gap on a correct hand-built absolute-relevance array, bypassing the pipeline. This benchmark reads the gap from the pipeline metadata, so a still-broken band would show evidenceGapDetectedOn=true on the strong aligned queries.",
+  "notes": [
+    "rawTopRelevance = the absolute (cosine) top relevance, max over the result set, reported for audit only.",
+    "rank1Relevance = the relevance of results[0].",
+    "subtractedRelevance = max(0, rawTopRelevance - resolvedNoiseFloor); the band the in-pipeline override applies.",
+    "evidenceGapDetectedOn = the production Stage-4 gap binary with the relevance-aware override active.",
+    "gapMatchesVerdict = evidenceGapDetectedOn === (verdict in {gap, weak}); the fix-correctness check per query."
+  ],
+  "summary": {
+    "queryCount": 18,
+    "shouldGoodCount": 6,
+    "shouldGapCount": 6,
+    "productionGap": {
+      "agreementWithVerdict": 0.1111,
+      "shouldGoodFalsePositiveRate": 0,
+      "shouldGoodFalsePositives": [],
+      "shouldGapDetectionRate": 0.1667,
+      "shouldGapMissed": [
+        "gap-kubernetes",
+        "gap-kafka",
+        "gap-terraform",
+        "gap-graphql",
+        "gap-redis-cluster"
+      ],
+      "gapMatchesVerdictRate": 0.1111,
+      "gapDivergesFromVerdict": [
+        "good-retrieval-class-routing",
+        "good-constitutional-memory",
+        "good-skill-advisor-daemon",
+        "good-spec-folder-validation",
+        "good-memory-search-pipeline",
+        "gap-kubernetes",
+        "gap-kafka",
+        "gap-terraform",
+        "gap-graphql",
+        "gap-redis-cluster",
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-memory",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    }
+  },
+  "perQuery": [
+    {
+      "id": "good-retrieval-class-routing",
+      "text": "retrieval class routing",
+      "label": "should-good",
+      "resultCount": 23,
+      "rawTopRelevance": 0.8684,
+      "rank1Relevance": 0.8412,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.7184,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23686,
+          "relevance": 0.8412
+        },
+        {
+          "rank": 1,
+          "id": 23270,
+          "relevance": 0.8627
+        },
+        {
+          "rank": 2,
+          "id": 23273,
+          "relevance": 0.8441
+        },
+        {
+          "rank": 3,
+          "id": 23271,
+          "relevance": 0.8563
+        },
+        {
+          "rank": 4,
+          "id": 23272,
+          "relevance": 0.8684
+        },
+        {
+          "rank": 5,
+          "id": 22146,
+          "relevance": 0.8154
+        },
+        {
+          "rank": 6,
+          "id": 21811,
+          "relevance": 0.69833313
+        },
+        {
+          "rank": 7,
+          "id": 23269,
+          "relevance": 0.69833313
+        },
+        {
+          "rank": 8,
+          "id": 22182,
+          "relevance": 0.56637759
+        },
+        {
+          "rank": 9,
+          "id": 21799,
+          "relevance": 0.8332
+        }
+      ]
+    },
+    {
+      "id": "good-evidence-gap-detection",
+      "text": "evidence gap detection",
+      "label": "should-good",
+      "resultCount": 23,
+      "rawTopRelevance": 0.8684,
+      "rank1Relevance": 0.8664,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.7184,
+      "lowThreshold": 0.4,
+      "verdict": "good",
+      "verdictGapSignal": false,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": true,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23769,
+          "relevance": 0.8664
+        },
+        {
+          "rank": 1,
+          "id": 23571,
+          "relevance": 0.8138
+        },
+        {
+          "rank": 2,
+          "id": 22301,
+          "relevance": 0.8174
+        },
+        {
+          "rank": 3,
+          "id": 2658,
+          "relevance": 0.56056
+        },
+        {
+          "rank": 4,
+          "id": 2845,
+          "relevance": 0.5208887
+        },
+        {
+          "rank": 5,
+          "id": 6065,
+          "relevance": 0.52856339
+        },
+        {
+          "rank": 6,
+          "id": 23342,
+          "relevance": 0.50704992
+        },
+        {
+          "rank": 7,
+          "id": 22010,
+          "relevance": 0.51339514
+        },
+        {
+          "rank": 8,
+          "id": 23297,
+          "relevance": 0.49764
+        },
+        {
+          "rank": 9,
+          "id": 10919,
+          "relevance": 0.511212
+        }
+      ]
+    },
+    {
+      "id": "good-constitutional-memory",
+      "text": "constitutional memory",
+      "label": "should-good",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8294,
+      "rank1Relevance": 0.8124,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6794,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 20648,
+          "relevance": 0.8124
+        },
+        {
+          "rank": 1,
+          "id": 16203,
+          "relevance": 0.8069
+        },
+        {
+          "rank": 2,
+          "id": 11505,
+          "relevance": 0.64703491
+        },
+        {
+          "rank": 3,
+          "id": 23690,
+          "relevance": 0.7931
+        },
+        {
+          "rank": 4,
+          "id": 4642,
+          "relevance": 0.7926
+        },
+        {
+          "rank": 5,
+          "id": 4171,
+          "relevance": 0.7797
+        },
+        {
+          "rank": 6,
+          "id": 7572,
+          "relevance": 0.8294
+        },
+        {
+          "rank": 7,
+          "id": 3235,
+          "relevance": 0.54640767
+        },
+        {
+          "rank": 8,
+          "id": 21908,
+          "relevance": 0.8141
+        },
+        {
+          "rank": 9,
+          "id": 23248,
+          "relevance": 0.807
+        }
+      ]
+    },
+    {
+      "id": "good-skill-advisor-daemon",
+      "text": "skill advisor daemon",
+      "label": "should-good",
+      "resultCount": 23,
+      "rawTopRelevance": 0.864,
+      "rank1Relevance": 0.69981689,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.714,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3518,
+          "relevance": 0.69981689
+        },
+        {
+          "rank": 1,
+          "id": 3529,
+          "relevance": 0.8451
+        },
+        {
+          "rank": 2,
+          "id": 3530,
+          "relevance": 0.8488
+        },
+        {
+          "rank": 3,
+          "id": 5068,
+          "relevance": 0.8339
+        },
+        {
+          "rank": 4,
+          "id": 3528,
+          "relevance": 0.8525
+        },
+        {
+          "rank": 5,
+          "id": 23146,
+          "relevance": 0.70892035
+        },
+        {
+          "rank": 6,
+          "id": 17850,
+          "relevance": 0.8269
+        },
+        {
+          "rank": 7,
+          "id": 3753,
+          "relevance": 0.55179027
+        },
+        {
+          "rank": 8,
+          "id": 3843,
+          "relevance": 0.8607
+        },
+        {
+          "rank": 9,
+          "id": 4737,
+          "relevance": 0.8163
+        }
+      ]
+    },
+    {
+      "id": "good-spec-folder-validation",
+      "text": "spec folder validation",
+      "label": "should-good",
+      "resultCount": 23,
+      "rawTopRelevance": 0.8367,
+      "rank1Relevance": 0.8367,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6867,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 9516,
+          "relevance": 0.8367
+        },
+        {
+          "rank": 1,
+          "id": 3035,
+          "relevance": 0.73029632
+        },
+        {
+          "rank": 2,
+          "id": 3643,
+          "relevance": 0.71643
+        },
+        {
+          "rank": 3,
+          "id": 4455,
+          "relevance": 0.55273873
+        },
+        {
+          "rank": 4,
+          "id": 4069,
+          "relevance": 0.55273873
+        },
+        {
+          "rank": 5,
+          "id": 8055,
+          "relevance": 0.6812832
+        },
+        {
+          "rank": 6,
+          "id": 4470,
+          "relevance": 0.6908616
+        },
+        {
+          "rank": 7,
+          "id": 4140,
+          "relevance": 0.66612
+        },
+        {
+          "rank": 8,
+          "id": 4094,
+          "relevance": 0.706095
+        },
+        {
+          "rank": 9,
+          "id": 5990,
+          "relevance": 0.69923568
+        }
+      ]
+    },
+    {
+      "id": "good-memory-search-pipeline",
+      "text": "memory search pipeline",
+      "label": "should-good",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8352,
+      "rank1Relevance": 0.8313,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6852,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3223,
+          "relevance": 0.8313
+        },
+        {
+          "rank": 1,
+          "id": 23272,
+          "relevance": 0.8203
+        },
+        {
+          "rank": 2,
+          "id": 16437,
+          "relevance": 0.6292
+        },
+        {
+          "rank": 3,
+          "id": 3221,
+          "relevance": 0.8337
+        },
+        {
+          "rank": 4,
+          "id": 3220,
+          "relevance": 0.8352
+        },
+        {
+          "rank": 5,
+          "id": 5183,
+          "relevance": 0.5927168
+        },
+        {
+          "rank": 6,
+          "id": 18029,
+          "relevance": 0.612105
+        },
+        {
+          "rank": 7,
+          "id": 5574,
+          "relevance": 0.61347
+        },
+        {
+          "rank": 8,
+          "id": 21944,
+          "relevance": 0.59469949
+        },
+        {
+          "rank": 9,
+          "id": 3213,
+          "relevance": 0.59781168
+        }
+      ]
+    },
+    {
+      "id": "gap-kubernetes",
+      "text": "kubernetes",
+      "label": "should-gap",
+      "resultCount": 20,
+      "rawTopRelevance": 0.7556,
+      "rank1Relevance": 0.72071427,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6056,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 22278,
+          "relevance": 0.72071427
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "relevance": 0.70544712
+        },
+        {
+          "rank": 2,
+          "id": 23374,
+          "relevance": 0.71502276
+        },
+        {
+          "rank": 3,
+          "id": 23373,
+          "relevance": 0.70116329
+        },
+        {
+          "rank": 4,
+          "id": 23372,
+          "relevance": 0.70292722
+        },
+        {
+          "rank": 5,
+          "id": 23616,
+          "relevance": 0.51471621
+        },
+        {
+          "rank": 6,
+          "id": 23381,
+          "relevance": 0.50618866
+        },
+        {
+          "rank": 7,
+          "id": 23609,
+          "relevance": 0.51658696
+        },
+        {
+          "rank": 8,
+          "id": 23377,
+          "relevance": 0.50715641
+        },
+        {
+          "rank": 9,
+          "id": 22279,
+          "relevance": 0.52095067
+        }
+      ]
+    },
+    {
+      "id": "gap-oauth",
+      "text": "oauth",
+      "label": "should-gap",
+      "resultCount": 23,
+      "rawTopRelevance": 0.517998,
+      "rank1Relevance": 0.48467814,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.367998,
+      "lowThreshold": 0.4,
+      "verdict": "gap",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": true,
+      "gapMatchesVerdict": true,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 10955,
+          "relevance": 0.48467814
+        },
+        {
+          "rank": 1,
+          "id": 22343,
+          "relevance": 0.49764
+        },
+        {
+          "rank": 2,
+          "id": 22394,
+          "relevance": 0.50628464
+        },
+        {
+          "rank": 3,
+          "id": 23770,
+          "relevance": 0.517998
+        },
+        {
+          "rank": 4,
+          "id": 18005,
+          "relevance": 0.4869293
+        },
+        {
+          "rank": 5,
+          "id": 23374,
+          "relevance": 0.513474
+        },
+        {
+          "rank": 6,
+          "id": 2928,
+          "relevance": 0.502164
+        },
+        {
+          "rank": 7,
+          "id": 17836,
+          "relevance": 0.49592455
+        },
+        {
+          "rank": 8,
+          "id": 2937,
+          "relevance": 0.47648405
+        },
+        {
+          "rank": 9,
+          "id": 4061,
+          "relevance": 0.48823008
+        }
+      ]
+    },
+    {
+      "id": "gap-kafka",
+      "text": "kafka",
+      "label": "should-gap",
+      "resultCount": 23,
+      "rawTopRelevance": 0.7621,
+      "rank1Relevance": 0.52541138,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6121,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23770,
+          "relevance": 0.52541138
+        },
+        {
+          "rank": 1,
+          "id": 23374,
+          "relevance": 0.5204497
+        },
+        {
+          "rank": 2,
+          "id": 23371,
+          "relevance": 0.51273285
+        },
+        {
+          "rank": 3,
+          "id": 20046,
+          "relevance": 0.7601
+        },
+        {
+          "rank": 4,
+          "id": 18039,
+          "relevance": 0.7456
+        },
+        {
+          "rank": 5,
+          "id": 11530,
+          "relevance": 0.744
+        },
+        {
+          "rank": 6,
+          "id": 21933,
+          "relevance": 0.7461
+        },
+        {
+          "rank": 7,
+          "id": 20443,
+          "relevance": 0.7503
+        },
+        {
+          "rank": 8,
+          "id": 9371,
+          "relevance": 0.7347
+        },
+        {
+          "rank": 9,
+          "id": 16263,
+          "relevance": 0.7388
+        }
+      ]
+    },
+    {
+      "id": "gap-terraform",
+      "text": "terraform",
+      "label": "should-gap",
+      "resultCount": 23,
+      "rawTopRelevance": 0.7845,
+      "rank1Relevance": 0.52541166,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6345,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23770,
+          "relevance": 0.52541166
+        },
+        {
+          "rank": 1,
+          "id": 23374,
+          "relevance": 0.52044996
+        },
+        {
+          "rank": 2,
+          "id": 23371,
+          "relevance": 0.51273306
+        },
+        {
+          "rank": 3,
+          "id": 16341,
+          "relevance": 0.7587
+        },
+        {
+          "rank": 4,
+          "id": 19530,
+          "relevance": 0.7788
+        },
+        {
+          "rank": 5,
+          "id": 23653,
+          "relevance": 0.7527
+        },
+        {
+          "rank": 6,
+          "id": 11528,
+          "relevance": 0.7312
+        },
+        {
+          "rank": 7,
+          "id": 22549,
+          "relevance": 0.7535
+        },
+        {
+          "rank": 8,
+          "id": 4644,
+          "relevance": 0.7623
+        },
+        {
+          "rank": 9,
+          "id": 21023,
+          "relevance": 0.7609
+        }
+      ]
+    },
+    {
+      "id": "gap-graphql",
+      "text": "graphql",
+      "label": "should-gap",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8192,
+      "rank1Relevance": 0.52072736,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6692,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23374,
+          "relevance": 0.52072736
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "relevance": 0.51321983
+        },
+        {
+          "rank": 2,
+          "id": 19280,
+          "relevance": 0.7985
+        },
+        {
+          "rank": 3,
+          "id": 17082,
+          "relevance": 0.8012
+        },
+        {
+          "rank": 4,
+          "id": 23098,
+          "relevance": 0.8093
+        },
+        {
+          "rank": 5,
+          "id": 10208,
+          "relevance": 0.8135
+        },
+        {
+          "rank": 6,
+          "id": 22074,
+          "relevance": 0.8046
+        },
+        {
+          "rank": 7,
+          "id": 16843,
+          "relevance": 0.8099
+        },
+        {
+          "rank": 8,
+          "id": 16264,
+          "relevance": 0.8158
+        },
+        {
+          "rank": 9,
+          "id": 3477,
+          "relevance": 0.8116
+        }
+      ]
+    },
+    {
+      "id": "gap-redis-cluster",
+      "text": "redis cluster",
+      "label": "should-gap",
+      "resultCount": 20,
+      "rawTopRelevance": 0.7772,
+      "rank1Relevance": 0.7629,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6272,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23479,
+          "relevance": 0.7629
+        },
+        {
+          "rank": 1,
+          "id": 23413,
+          "relevance": 0.7707
+        },
+        {
+          "rank": 2,
+          "id": 9322,
+          "relevance": 0.49926864
+        },
+        {
+          "rank": 3,
+          "id": 4995,
+          "relevance": 0.48461088
+        },
+        {
+          "rank": 4,
+          "id": 4169,
+          "relevance": 0.488592
+        },
+        {
+          "rank": 5,
+          "id": 9580,
+          "relevance": 0.47782488
+        },
+        {
+          "rank": 6,
+          "id": 5557,
+          "relevance": 0.493116
+        },
+        {
+          "rank": 7,
+          "id": 10955,
+          "relevance": 0.502164
+        },
+        {
+          "rank": 8,
+          "id": 23477,
+          "relevance": 0.53379768
+        },
+        {
+          "rank": 9,
+          "id": 23697,
+          "relevance": 0.465465
+        }
+      ]
+    },
+    {
+      "id": "boundary-graph",
+      "text": "graph",
+      "label": "boundary",
+      "resultCount": 23,
+      "rawTopRelevance": 0.73425368,
+      "rank1Relevance": 0.64746065,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.58425368,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 5773,
+          "relevance": 0.64746065
+        },
+        {
+          "rank": 1,
+          "id": 3566,
+          "relevance": 0.57516753
+        },
+        {
+          "rank": 2,
+          "id": 22021,
+          "relevance": 0.72256653
+        },
+        {
+          "rank": 3,
+          "id": 3482,
+          "relevance": 0.65958404
+        },
+        {
+          "rank": 4,
+          "id": 5754,
+          "relevance": 0.73425368
+        },
+        {
+          "rank": 5,
+          "id": 2726,
+          "relevance": 0.62244767
+        },
+        {
+          "rank": 6,
+          "id": 4198,
+          "relevance": 0.62648811
+        },
+        {
+          "rank": 7,
+          "id": 3610,
+          "relevance": 0.64267874
+        },
+        {
+          "rank": 8,
+          "id": 3629,
+          "relevance": 0.55030087
+        },
+        {
+          "rank": 9,
+          "id": 3496,
+          "relevance": 0.59716297
+        }
+      ]
+    },
+    {
+      "id": "boundary-agent",
+      "text": "agent",
+      "label": "boundary",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8371,
+      "rank1Relevance": 0.8371,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6871,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23242,
+          "relevance": 0.8371
+        },
+        {
+          "rank": 1,
+          "id": 23338,
+          "relevance": 0.73355603
+        },
+        {
+          "rank": 2,
+          "id": 23351,
+          "relevance": 0.72837845
+        },
+        {
+          "rank": 3,
+          "id": 16220,
+          "relevance": 0.8322
+        },
+        {
+          "rank": 4,
+          "id": 20392,
+          "relevance": 0.8153
+        },
+        {
+          "rank": 5,
+          "id": 21877,
+          "relevance": 0.8313
+        },
+        {
+          "rank": 6,
+          "id": 23241,
+          "relevance": 0.8222
+        },
+        {
+          "rank": 7,
+          "id": 23246,
+          "relevance": 0.8086
+        },
+        {
+          "rank": 8,
+          "id": 23336,
+          "relevance": 0.72824382
+        },
+        {
+          "rank": 9,
+          "id": 23339,
+          "relevance": 0.73179048
+        }
+      ]
+    },
+    {
+      "id": "boundary-memory",
+      "text": "memory",
+      "label": "boundary",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8372,
+      "rank1Relevance": 0.64876289,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6872,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 4131,
+          "relevance": 0.64876289
+        },
+        {
+          "rank": 1,
+          "id": 18025,
+          "relevance": 0.6416104
+        },
+        {
+          "rank": 2,
+          "id": 2867,
+          "relevance": 0.63631549
+        },
+        {
+          "rank": 3,
+          "id": 23213,
+          "relevance": 0.8235
+        },
+        {
+          "rank": 4,
+          "id": 2738,
+          "relevance": 0.65584408
+        },
+        {
+          "rank": 5,
+          "id": 3235,
+          "relevance": 0.63224423
+        },
+        {
+          "rank": 6,
+          "id": 4178,
+          "relevance": 0.62913721
+        },
+        {
+          "rank": 7,
+          "id": 23289,
+          "relevance": 0.822
+        },
+        {
+          "rank": 8,
+          "id": 23351,
+          "relevance": 0.8226
+        },
+        {
+          "rank": 9,
+          "id": 23270,
+          "relevance": 0.72320146
+        }
+      ]
+    },
+    {
+      "id": "boundary-routing",
+      "text": "routing",
+      "label": "boundary",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8429,
+      "rank1Relevance": 0.8223,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6929,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23270,
+          "relevance": 0.8223
+        },
+        {
+          "rank": 1,
+          "id": 4202,
+          "relevance": 0.8408
+        },
+        {
+          "rank": 2,
+          "id": 3830,
+          "relevance": 0.54348348
+        },
+        {
+          "rank": 3,
+          "id": 23449,
+          "relevance": 0.8078
+        },
+        {
+          "rank": 4,
+          "id": 22402,
+          "relevance": 0.71416315
+        },
+        {
+          "rank": 5,
+          "id": 23246,
+          "relevance": 0.71390596
+        },
+        {
+          "rank": 6,
+          "id": 4198,
+          "relevance": 0.57510722
+        },
+        {
+          "rank": 7,
+          "id": 20471,
+          "relevance": 0.71327482
+        },
+        {
+          "rank": 8,
+          "id": 3235,
+          "relevance": 0.8429
+        },
+        {
+          "rank": 9,
+          "id": 23686,
+          "relevance": 0.73875402
+        }
+      ]
+    },
+    {
+      "id": "boundary-context",
+      "text": "context",
+      "label": "boundary",
+      "resultCount": 20,
+      "rawTopRelevance": 0.8339,
+      "rank1Relevance": 0.8161,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6839,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3470,
+          "relevance": 0.8161
+        },
+        {
+          "rank": 1,
+          "id": 3830,
+          "relevance": 0.64218297
+        },
+        {
+          "rank": 2,
+          "id": 22024,
+          "relevance": 0.7998
+        },
+        {
+          "rank": 3,
+          "id": 3230,
+          "relevance": 0.62423854
+        },
+        {
+          "rank": 4,
+          "id": 23584,
+          "relevance": 0.8152
+        },
+        {
+          "rank": 5,
+          "id": 11934,
+          "relevance": 0.63596044
+        },
+        {
+          "rank": 6,
+          "id": 4413,
+          "relevance": 0.8101
+        },
+        {
+          "rank": 7,
+          "id": 17131,
+          "relevance": 0.826
+        },
+        {
+          "rank": 8,
+          "id": 5735,
+          "relevance": 0.6251449
+        },
+        {
+          "rank": 9,
+          "id": 3091,
+          "relevance": 0.8045
+        }
+      ]
+    },
+    {
+      "id": "boundary-scores",
+      "text": "scores",
+      "label": "boundary",
+      "resultCount": 23,
+      "rawTopRelevance": 0.8038,
+      "rank1Relevance": 0.67736761,
+      "resolvedNoiseFloor": 0.15,
+      "noiseFloorEmbedder": "nomic-embed-text-v1.5",
+      "subtractedRelevance": 0.6538,
+      "lowThreshold": 0.4,
+      "verdict": "weak",
+      "verdictGapSignal": true,
+      "evidenceGapDetectedOn": false,
+      "gapMatchesVerdict": false,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 22511,
+          "relevance": 0.67736761
+        },
+        {
+          "rank": 1,
+          "id": 4514,
+          "relevance": 0.67115045
+        },
+        {
+          "rank": 2,
+          "id": 22413,
+          "relevance": 0.8025
+        },
+        {
+          "rank": 3,
+          "id": 22509,
+          "relevance": 0.7962
+        },
+        {
+          "rank": 4,
+          "id": 22668,
+          "relevance": 0.54063406
+        },
+        {
+          "rank": 5,
+          "id": 19888,
+          "relevance": 0.7788
+        },
+        {
+          "rank": 6,
+          "id": 20250,
+          "relevance": 0.52016952
+        },
+        {
+          "rank": 7,
+          "id": 22300,
+          "relevance": 0.7884
+        },
+        {
+          "rank": 8,
+          "id": 20634,
+          "relevance": 0.59390468
+        },
+        {
+          "rank": 9,
+          "id": 5744,
+          "relevance": 0.51397518
+        }
+      ]
+    }
+  ]
+}
