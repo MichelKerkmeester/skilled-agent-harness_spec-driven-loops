@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Status COMPLETE. Fixed the 043 finding that the Z-score evidence-gap detector measures peakedness not relevance and over-caps strong queries. Behind a default-off flag SPECKIT_RELEVANCE_AWARE_GAP, the gap decision now reads gapDetected from max(0, topRelevance - noiseFloor) < LOW_THRESHOLD, reusing the banding's resolveNoiseFloor and LOW_THRESHOLD, failing closed to the Z-score path when no floor resolves and byte-identical when off. tsc clean, 5/5 focused tests plus 124 in the nearest suites, byte-identity proven empirically. The re-benchmark over the 18 labeled queries drops the should-good false-positive rate from 0.67 to 0.00 and raises agreement with the verdict gap band from 0.61 to 1.00, the NEW path firing only on oauth. Verdict GRADUATE, a strict improvement over the Z-score that changes nothing when off."
+description: "Status COMPLETE. Fixed the 043 finding that the Z-score evidence-gap detector measures peakedness not relevance and over-caps strong queries. The gap decision now reads gapDetected from max(0, topRelevance - noiseFloor) < LOW_THRESHOLD, reusing the banding's relevance and failing closed to the Z-score path when no relevance scores are provided. The labeled re-benchmark drops the should-good false-positive rate from 0.67 to 0.00 and raises agreement with the verdict gap band from 0.61 to 1.00, the NEW path firing only on oauth. The first graduation attempt almost shipped a regression, the detector was fed resolveEffectiveScore RRF-magnitude scores while its band expects absolute cosine, a bug the benchmark masked by feeding hand-picked scores and a full-handler live dispatch caught. Fixed by threading resolveCalibrationScore into the detector via a relevanceScores option, fail-closed when absent, re-benchmarked through the production executePipeline (graph and kubernetes no-gap, only oauth gap) and confirmed by a live re-verify. Verdict GRADUATED, SPECKIT_RELEVANCE_AWARE_GAP flipped to default-on with zero test collateral, 161 gap and pipeline tests pass."
 trigger_phrases:
   - "relevance aware evidence gap"
   - "fix the gap detector over-capping"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
     last_updated_at: "2026-06-23T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped the gated path, ran the re-benchmark, authored results and verdict"
-    next_safe_action: "Graduate SPECKIT_RELEVANCE_AWARE_GAP to default-on as a separate decision"
+    recent_action: "Fixed the production-path scoring and graduated the flag to default-on"
+    next_safe_action: "Wire a real embedder through the seam to resolve a corpus-specific floor"
     blockers: []
     key_files:
       - "results/metrics.json"
@@ -56,17 +56,17 @@ A fix for the 043 finding, behind a default-off flag, and the re-benchmark that 
 
 The findings:
 
-**The fix is byte-identical when off.** With the flag off the detector is byte-identical to the Z-score path, proven empirically across the test distributions and covered by the five focused tests. tsc is clean and the five focused tests plus the 124 in the nearest suites pass. No consumer sees the relevance-aware path until a separate graduation decision flips the flag.
+**The fix is byte-identical when off.** With the flag off the detector is byte-identical to the Z-score path, proven empirically across the test distributions and covered by the five focused tests. tsc is clean and the five focused tests plus the 124 in the nearest suites pass. The path shipped gated first, then graduated to default-on after the production-scoring fix recorded in the verdict below.
 
 **The over-capping is gone.** The re-benchmark over the 18 labeled queries from 043 drops the should-good false-positive rate from 0.67 to 0.00. The four strong aligned queries (`retrieval-class-routing`, `evidence-gap-detection`, `skill-advisor-daemon`, `spec-folder-validation`), the `kubernetes` query and the `graph` and `scores` boundary queries that the Z-score falsely flagged are no longer capped under the relevance-aware path. The original symptom that started this thread is resolved at the source.
 
 **The gap now aligns with the verdict.** Agreement with the verdict gap band rises from 0.61 under the Z-score to 1.00 under the relevance-aware path. The NEW path fires on exactly one query, `oauth`, the single query the verdict rates `gap` (rawTop 0.513, subtracted 0.363, below the 0.4 `LOW_THRESHOLD`). The OLD Z-score fired on 8 queries, including the four strong aligned ones. The gap signal now means what it says, so the banner and the verdict can never disagree again.
 
-**The production path resolves the same default floor.** The embedder seam is undefined in the orchestrator today, which lands on the default noise floor of 0.15 exactly like the banding. So the production relevance-aware path subtracts the same floor the verdict uses, and default-off byte-identity holds while the on path is aligned with the verdict by construction.
+**The production path is fed the calibration score, not an embedder floor.** The labeled re-benchmark assumed the undefined embedder seam would land on the default noise floor of 0.15, but a full-handler live dispatch during graduation showed the production `stage4-filter` actually fed the detector `resolveEffectiveScore` (RRF-magnitude around 0.03), which fell below the band and flagged every query. The graduation fix threads the verdict banding signal `resolveCalibrationScore` into the detector through a `relevanceScores` option, fail-closed to the Z-score path when absent, so the on path now bands the same absolute-relevance signal the verdict uses and is aligned with it by construction. The verdict below records that fix.
 
-**Verdict: GRADUATE.** The fix works and is ready to graduate `SPECKIT_RELEVANCE_AWARE_GAP` to default-on. It is a strict improvement over the Z-score on every measured axis, false-positive 0.67 to 0.00 and agreement 0.61 to 1.00, and it changes nothing when off. The graduation itself is a separate decision, not enacted by this phase.
+**Verdict: GRADUATED.** The fix is a strict improvement over the Z-score on every measured axis, false-positive 0.67 to 0.00 and agreement 0.61 to 1.00, and it changes nothing when off, so `SPECKIT_RELEVANCE_AWARE_GAP` was graduated to default-on. The graduation went through a production-scoring fix. The first attempt almost shipped a regression, the relevance branch was fed `resolveEffectiveScore` (RRF-magnitude around 0.03) while its band expects absolute cosine, so it flagged every query with the evidence-gap banner, a bug the labeled re-benchmark above had masked by feeding hand-picked absolute-relevance scores and that a full-handler live dispatch caught. The fix threads the verdict banding signal `resolveCalibrationScore` into the detector through a `relevanceScores` option, fail-closed to the Z-score path when absent. It was re-benchmarked through the production `executePipeline` reading `metadata.stage4.evidenceGapDetected` (graph and kubernetes return no-gap, only oauth returns gap), confirmed by a full-handler live re-verify, then flipped to default-on with zero test collateral and 161 gap and pipeline tests passing.
 
-This phase shipped a gated default-off code change and did not flip the flag default.
+This phase shipped the gated code change, then fixed the production-path scoring and flipped the flag default to on.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,7 +106,7 @@ The setup exported `LOW_THRESHOLD` from `confidence-scoring.ts`, added the defau
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **The graduation is a separate decision.** This phase ships the fix default-off with a GRADUATE recommendation but does not flip `SPECKIT_RELEVANCE_AWARE_GAP` to default-on. The flag flip is its own decision and its own change.
+- **The default-on path resolves the calibration score, not a corpus embedder.** The graduated path bands the `resolveCalibrationScore` relevance the verdict already computes rather than a corpus-specific embedder floor, which is what keeps the gap and the verdict in agreement by construction. Wiring a real embedder through the seam to resolve a per-corpus floor remains a future enhancement.
 - **Off-corpus high-background queries still read weak.** `kafka` (rawTop 0.76) and `terraform` (rawTop 0.79) subtract to about 0.61 and read `weak`, not `gap`, so the relevance-aware path does not flag them. That is consistent with the verdict, which also rates them `weak`. The measured floor of 0.15 does not fully counter the embedder's fluent-but-unrelated background, which is a noise-floor calibration question that affects the verdict banding identically and is its own benchmark.
 - **One labeled set, one corpus snapshot.** The agreement and false-positive numbers are measured on the 18 labeled queries from 043 against one read-only corpus backup. They establish that the relevance-aware path eliminates the over-capping and aligns with the verdict, but the precise rates would shift with a different query mix or a re-indexed corpus.
 - **The embedder seam is undefined in the orchestrator today.** The production relevance-aware path resolves the default floor because no embedder is threaded at the orchestrator yet. Wiring a real embedder through the seam is a future enhancement that would let the path resolve a corpus-specific floor.

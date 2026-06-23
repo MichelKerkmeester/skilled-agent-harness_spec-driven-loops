@@ -67,6 +67,8 @@ The findings:
 **Verdict: STAY DEFAULT-OFF.** The flag passes the reproducibility test and fails the no-harm test. Keep `SPECKIT_DETERMINISTIC_RANKING` default-off and keep it available as an opt-in for reproducible benchmark and audit runs, set it to `true` when bit-identical re-runs matter. The always-on trigger id tie-break that shipped with the flag is the pure-win part and needs no flag, it improves ordering stability without removing recency. A future graduation would need a labeled-relevance benchmark showing deterministic ranking does not lose relevant results, not just a reproducibility argument.
 
 This benchmark mutated no production code and did not flip the flag default.
+
+**Subsequent removal.** Per the stay-off verdict above and the operator directive to remove benchmark-rejected stay-off flag code, the `SPECKIT_DETERMINISTIC_RANKING` flag reader and its gated branches were later deleted, reverting to the default recency-on ranking. The always-on trigger id tie-break was kept as the pure-win part. The result is behavior-identical to the prior default.
 <!-- /ANCHOR:what-built -->
 
 ---
