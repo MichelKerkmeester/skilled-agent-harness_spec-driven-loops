@@ -28,7 +28,6 @@ import {
 import { formatSearchResults } from '../formatters/search-results';
 import type { MCPEnvelope, MCPResponse } from '../lib/response/envelope';
 
-const GROUNDING_SIGNAL_FLAG = 'SPECKIT_GROUNDING_SIGNAL_V1';
 const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
 const CITE_CAVEAT_FLAG = 'SPECKIT_CITE_WITH_CAVEAT_V1';
 const EVIDENCE_GAP_FLAG = 'SPECKIT_EVIDENCE_GAP_VERDICT_V1';
@@ -39,7 +38,6 @@ const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
 const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 
 const MANAGED_FLAGS = [
-  GROUNDING_SIGNAL_FLAG,
   NOISE_FLOOR_FLAG,
   CITE_CAVEAT_FLAG,
   EVIDENCE_GAP_FLAG,
@@ -189,16 +187,6 @@ describe('rec 7: grounding signal', () => {
     expect(assessGrounding([])).toBeNull();
   });
 
-  it('flag ON surfaces a grounding field on the envelope, flag OFF omits it', async () => {
-    const rows = [{ id: 1, file_path: '/x.md', title: 'T', similarity: 82, fts_score: 0.5, sources: ['vector', 'fts'] }];
-
-    const off = parseEnvelope(await formatSearchResults(rows, 'semantic'));
-    expect(off.data.grounding).toBeUndefined();
-
-    process.env[GROUNDING_SIGNAL_FLAG] = 'true';
-    const on = parseEnvelope(await formatSearchResults(rows, 'semantic'));
-    expect((on.data.grounding as Record<string, unknown>)?.signal).toBe('grounded');
-  });
 });
 
 // ───────────────────────────────────────────────────────────────

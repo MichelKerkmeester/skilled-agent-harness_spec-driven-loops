@@ -36,28 +36,6 @@ function vectorOnlyHit(id: number, similarity: number, title: string): ScoredRes
   return { id, similarity, title, sources: ['vector'] };
 }
 
-// ── grounding signal: grounded vs low_grounding ──────────────────
-// The grounded case grounds on real query-term overlap alone (no fts_score), so
-// it proves the query-term path the task names. The low-grounding case is a
-// vector-only hit whose title shares no content term with the query.
-
-export const GROUNDING_GROUNDED: VerdictFeatureCase = {
-  id: 'grounding-grounded',
-  description: 'top hit shares real query terms in its title, so the signal is grounded',
-  query: 'grounding signal on the search envelope',
-  rows: [
-    { id: 1, similarity: 82, title: 'Grounding signal on the result envelope', sources: ['vector'] },
-  ],
-};
-
-export const GROUNDING_LOW: VerdictFeatureCase = {
-  id: 'grounding-low',
-  description: 'top hit is a vector-only match with no query-term or lexical overlap, so low_grounding',
-  query: 'kubernetes deployment rollout strategy',
-  rows: [
-    vectorOnlyHit(1, 82, 'FSRS retention sweep retains permanent decision rows'),
-  ],
-};
 
 // ── cite_with_caveat: borderline-grounded vs clear good vs clear gap ──
 // The borderline case is the one the binary policy drops and the caveat tier
@@ -108,7 +86,6 @@ export const EVIDENCE_GAP_NONE: VerdictFeatureCase = {
 };
 
 export const FLAG_FEATURE_FIXTURES = {
-  grounding: { grounded: GROUNDING_GROUNDED, low: GROUNDING_LOW },
   citeWithCaveat: { borderline: CITE_BORDERLINE, clearGood: CITE_CLEAR_GOOD, clearGap: CITE_CLEAR_GAP },
   evidenceGap: { withGap: EVIDENCE_GAP_GOOD, withoutGap: EVIDENCE_GAP_NONE },
 } as const;

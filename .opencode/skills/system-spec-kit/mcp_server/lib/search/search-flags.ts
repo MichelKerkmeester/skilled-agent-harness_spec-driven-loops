@@ -705,25 +705,6 @@ export function isEnvelopeFidelityEnabled(): boolean {
 }
 
 /**
- * Surface a grounding or low-grounding signal on the search envelope. When
- * enabled, the formatter attaches a `grounding` field built from the lexical
- * overlap already present on the result rows, so a downgrade or a borderline
- * cite is legible to the reader rather than silent: a clear good carries a
- * grounded signal and a borderline or off-corpus top hit carries low_grounding.
- * The signal reads the same lexical lane the verdict path reads and adds no new
- * query or DB read.
- *
- * Default: FALSE (opt-in). It adds a field to the response shape, so it ships
- * dark and graduates only after validating on the off-corpus fixtures. With the
- * flag OFF no grounding field is added and the response shape is byte-for-byte
- * the shipped behavior. An unparseable value resolves to OFF. Set
- * SPECKIT_GROUNDING_SIGNAL_V1=true to enable.
- */
-export function isGroundingSignalEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_GROUNDING_SIGNAL_V1');
-}
-
-/**
  * Subtract a measured corpus noise-floor from absolute relevance before the
  * request-quality band read. The nomic embedder hands fluent but unrelated text
  * a high background cosine, so an off-corpus hit inflates the band. When enabled,

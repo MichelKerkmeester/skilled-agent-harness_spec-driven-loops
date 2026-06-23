@@ -261,14 +261,13 @@ async function measureBenchmarkGated() {
   const noise = runFalseConfirm('noise', { SPECKIT_NOISE_FLOOR_SUBTRACTION_V1: 'true' });
   const evidence = runFalseConfirm('evidence', { SPECKIT_EVIDENCE_GAP_VERDICT_V1: 'true' });
   const cite = runFalseConfirm('cite', { SPECKIT_CITE_WITH_CAVEAT_V1: 'true' });
-  const grounding = runFalseConfirm('grounding', { SPECKIT_GROUNDING_SIGNAL_V1: 'true' });
  // The CI ceiling enforces only once a verdict flag has driven the rate to the
  // bar. Prove both halves: the gate passes under a graduated verdict flag and
  // fails on the raw default-off corpus.
   const gatePass = runFalseConfirm('gate-pass', { SPECKIT_LEXICAL_GROUNDING_V1: 'true', SPECKIT_FALSE_CONFIRM_MAX_RATE: '0' });
   const gateFail = runFalseConfirm('gate-fail', { SPECKIT_FALSE_CONFIRM_MAX_RATE: '0' });
   const envelope = runEnvelopeChecker();
-  return { baseline, lexical, noise, evidence, cite, grounding, gatePass, gateFail, envelope };
+  return { baseline, lexical, noise, evidence, cite, gatePass, gateFail, envelope };
 }
 
 // ── flag feature-case measurement ────────────────────────────────
@@ -280,7 +279,6 @@ async function measureBenchmarkGated() {
 // checker, so each flag emits a real measured effect.
 
 const FEATURE_FLAGS = [
-  'SPECKIT_GROUNDING_SIGNAL_V1',
   'SPECKIT_CITE_WITH_CAVEAT_V1',
   'SPECKIT_EVIDENCE_GAP_VERDICT_V1',
   'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
@@ -331,22 +329,6 @@ async function measureFlagFeatureCases() {
       if (saved[f] === undefined) delete process.env[f];
       else process.env[f] = saved[f];
     }
-  };
-
-  // Grounding signal: informational display field. Measure that each branch reads
-  // the correct signal. The retrieval rate is unchanged, measured by comparing the
-  // grounding-on false-confirm rate to the baseline in the benchmark-gated pass.
-  reset();
-  process.env.SPECKIT_CONFIDENCE_CALIBRATION = 'false';
-  const groundedSignal = cs.assessGrounding(F.grounding.grounded.rows, { query: F.grounding.grounded.query })?.signal ?? null;
-  const lowSignal = cs.assessGrounding(F.grounding.low.rows, { query: F.grounding.low.query })?.signal ?? null;
-  const grounding = {
-    groundedSignal,
-    lowSignal,
-    correct: groundedSignal === 'grounded' && lowSignal === 'low_grounding',
-    movesRetrievalMetric: false,
-    verdict: 'INFORMATIONAL',
-    effect: 'sets grounded vs low_grounding correctly, additive display field, no retrieval metric moves',
   };
 
   // Cite-with-caveat: pin the band to raw relevance, toggle only the caveat flag.
@@ -410,7 +392,7 @@ async function measureFlagFeatureCases() {
     effect: `flags ${env.flagged}/${env.nonConformingTotal} dropped or altered renders a no-checker baseline passes silently, ${env.faithfulPassed}/${env.faithfulTotal} faithful renders pass`,
   };
 
-  return { grounding, citeWithCaveat, evidenceGap, envelopeFidelity };
+  return { citeWithCaveat, evidenceGap, envelopeFidelity };
 }
 
 async function main() {

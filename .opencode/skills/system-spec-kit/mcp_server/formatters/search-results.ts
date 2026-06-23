@@ -60,10 +60,9 @@ import {
   type WhyRankedTrace,
 } from '../lib/observability/retrieval-observability.js';
 
-// Envelope-fidelity render fragment gate, grounding signal, and caveat tier gates
+// Envelope-fidelity render fragment gate and caveat tier gate
 import {
   isEnvelopeFidelityEnabled,
-  isGroundingSignalEnabled,
   isCiteWithCaveatEnabled,
 } from '../lib/search/search-flags.js';
 
@@ -1222,9 +1221,6 @@ export async function formatSearchResults(
   const envelopeRender = isEnvelopeFidelityEnabled()
     ? buildEnvelopeRenderFragment(requestQualityData, citationPolicy)
     : null;
-  // Grounding signal, gated dark. Surfaces the grounded / low_grounding label so a
-  // downgrade or borderline cite is legible. Off by default adds no grounding field.
-  const groundingSignal = isGroundingSignalEnabled() ? groundingData : null;
   const inlineWarnings: RetrievalConflictWarning[] = includeTrace
     ? findInlineConflictWarnings(results, requireDb)
     : [];
@@ -1241,7 +1237,6 @@ export async function formatSearchResults(
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
     ...(envelopeRender !== null ? { envelopeRender } : {}),
-    ...(groundingSignal !== null ? { grounding: groundingSignal } : {}),
     ...(inlineWarnings.length > 0 ? { inlineWarnings, retrievalWarnings: inlineWarnings } : {}),
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
