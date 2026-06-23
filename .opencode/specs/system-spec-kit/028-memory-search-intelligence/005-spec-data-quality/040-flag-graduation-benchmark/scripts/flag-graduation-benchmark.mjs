@@ -41,6 +41,11 @@ function arg(name, fallback) {
 
 const SAMPLE_SIZE = Number(arg('--sample', '60'));
 const RUN_EVAL = arg('--no-eval', false) !== true;
+// Run only the verdict/display feature cases, skipping the migration census and the
+// live-DB false-confirm pass. The feature cases are pure (synthetic fixtures through
+// the real verdict path), so they validate the new metrics without the full run.
+const FEATURES_ONLY = arg('--features-only', false) === true;
+const RENDER_CORPUS_DIR = path.join(HERE, 'fixtures', 'render-corpus');
 
 function distUrl(rel) {
   return pathToFileURL(path.join(DIST, rel)).href;
@@ -266,13 +271,164 @@ async function measureBenchmarkGated() {
   return { baseline, lexical, noise, evidence, cite, grounding, gatePass, gateFail, envelope };
 }
 
+// ── flag feature-case measurement ────────────────────────────────
+// The off-corpus false-confirm class never produces a grounded signal, a
+// borderline-grounded weak verdict, a Stage 4 evidence gap or a rendered block,
+// so the benchmark-gated pass above cannot measure the four display/verdict
+// flags. These cases feed shared synthetic fixtures through the same verdict path
+// production uses, then replay a captured render corpus through the fidelity
+// checker, so each flag emits a real measured effect.
+
+const FEATURE_FLAGS = [
+  'SPECKIT_GROUNDING_SIGNAL_V1',
+  'SPECKIT_CITE_WITH_CAVEAT_V1',
+  'SPECKIT_EVIDENCE_GAP_VERDICT_V1',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+  'SPECKIT_LEXICAL_GROUNDING_V1',
+  'SPECKIT_CONFIDENCE_CALIBRATION',
+];
+
+function measureEnvelopeCorpus(checkEnvelopeFidelity) {
+  const manifest = JSON.parse(fs.readFileSync(path.join(RENDER_CORPUS_DIR, 'manifest.json'), 'utf8'));
+  let faithfulPassed = 0;
+  let faithfulTotal = 0;
+  let flagged = 0;
+  let nonConformingTotal = 0;
+  for (const entry of manifest.renders) {
+    const rendered = fs.readFileSync(path.join(RENDER_CORPUS_DIR, entry.file), 'utf8');
+    const verdict = { requestQuality: { label: entry.verdict.label }, citationPolicy: entry.verdict.policy };
+    const report = checkEnvelopeFidelity(verdict, rendered, { mode: 'fail' });
+    if (entry.expect === 'conforming') {
+      faithfulTotal += 1;
+      if (report.ok && report.conforming) faithfulPassed += 1;
+    } else {
+      nonConformingTotal += 1;
+      if (!report.ok) flagged += 1;
+    }
+  }
+  return {
+    corpusSize: manifest.renders.length,
+    faithfulPassed,
+    faithfulTotal,
+    flagged,
+    nonConformingTotal,
+    allCorrect: faithfulPassed === faithfulTotal && flagged === nonConformingTotal,
+  };
+}
+
+async function measureFlagFeatureCases() {
+  const cs = await import(distUrl('lib/search/confidence-scoring.js'));
+  const fmt = await import(distUrl('formatters/search-results.js'));
+  const fx = await import(distUrl('lib/eval/fixtures/flag-feature-fixtures.js'));
+  const { checkEnvelopeFidelity } = await import(pathToFileURL(ENVELOPE_CHECKER).href);
+  const F = fx.FLAG_FEATURE_FIXTURES;
+
+  const saved = {};
+  for (const f of FEATURE_FLAGS) saved[f] = process.env[f];
+  const reset = () => { for (const f of FEATURE_FLAGS) delete process.env[f]; };
+  const restore = () => {
+    for (const f of FEATURE_FLAGS) {
+      if (saved[f] === undefined) delete process.env[f];
+      else process.env[f] = saved[f];
+    }
+  };
+
+  // Grounding signal: informational display field. Measure that each branch reads
+  // the correct signal. The retrieval rate is unchanged, measured by comparing the
+  // grounding-on false-confirm rate to the baseline in the benchmark-gated pass.
+  reset();
+  process.env.SPECKIT_CONFIDENCE_CALIBRATION = 'false';
+  const groundedSignal = cs.assessGrounding(F.grounding.grounded.rows, { query: F.grounding.grounded.query })?.signal ?? null;
+  const lowSignal = cs.assessGrounding(F.grounding.low.rows, { query: F.grounding.low.query })?.signal ?? null;
+  const grounding = {
+    groundedSignal,
+    lowSignal,
+    correct: groundedSignal === 'grounded' && lowSignal === 'low_grounding',
+    movesRetrievalMetric: false,
+    verdict: 'INFORMATIONAL',
+    effect: 'sets grounded vs low_grounding correctly, additive display field, no retrieval metric moves',
+  };
+
+  // Cite-with-caveat: pin the band to raw relevance, toggle only the caveat flag.
+  const policyOf = (fixture) => {
+    const conf = cs.computeResultConfidence(fixture.rows);
+    const quality = cs.assessRequestQuality(fixture.rows, conf, { query: fixture.query });
+    const ground = cs.assessGrounding(fixture.rows, { query: fixture.query });
+    return fmt.deriveCitationPolicy(quality, ground);
+  };
+  reset();
+  process.env.SPECKIT_NOISE_FLOOR_SUBTRACTION_V1 = 'false';
+  process.env.SPECKIT_LEXICAL_GROUNDING_V1 = 'false';
+  process.env.SPECKIT_CONFIDENCE_CALIBRATION = 'false';
+  const borderlineOff = policyOf(F.citeWithCaveat.borderline);
+  process.env.SPECKIT_CITE_WITH_CAVEAT_V1 = 'true';
+  const borderlineOn = policyOf(F.citeWithCaveat.borderline);
+  const clearGoodOn = policyOf(F.citeWithCaveat.clearGood);
+  const clearGapOn = policyOf(F.citeWithCaveat.clearGap);
+  const recoveredBorderline = borderlineOff === 'do_not_cite_results' && borderlineOn === 'cite_with_caveat' ? 1 : 0;
+  const citeWithCaveat = {
+    borderlineOff,
+    borderlineOn,
+    clearGoodOn,
+    clearGapOn,
+    recoveredBorderline,
+    firesOnlyOnBorderline: clearGoodOn === 'cite_results' && clearGapOn === 'do_not_cite_results',
+    verdict: recoveredBorderline > 0 ? 'MEASURABLE_EFFECT' : 'NEUTRAL',
+    effect: `recovers ${recoveredBorderline} borderline-grounded weak result the binary policy drops to do_not_cite`,
+  };
+
+  // Evidence-gap bridge: pin the band so the base verdict is a clean good, toggle
+  // the gap signal and the flag.
+  const verdictOf = (rows, gap) => cs.assessRequestQuality(rows, cs.computeResultConfidence(rows), { evidenceGapDetected: gap }).requestQuality.label;
+  reset();
+  process.env.SPECKIT_NOISE_FLOOR_SUBTRACTION_V1 = 'false';
+  process.env.SPECKIT_LEXICAL_GROUNDING_V1 = 'false';
+  process.env.SPECKIT_CONFIDENCE_CALIBRATION = 'false';
+  process.env.SPECKIT_EVIDENCE_GAP_VERDICT_V1 = 'true';
+  const goodNoGap = verdictOf(F.evidenceGap.withGap.rows, false);
+  const cappedGap = verdictOf(F.evidenceGap.withGap.rows, true);
+  delete process.env.SPECKIT_EVIDENCE_GAP_VERDICT_V1;
+  const flagOffGap = verdictOf(F.evidenceGap.withGap.rows, true);
+  const capsOnGap = goodNoGap === 'good' && cappedGap === 'weak' ? 1 : 0;
+  const evidenceGap = {
+    goodNoGap,
+    cappedGap,
+    flagOffGap,
+    capsOnGap,
+    unchangedWithFlagOff: flagOffGap === 'good',
+    verdict: capsOnGap > 0 ? 'MEASURABLE_EFFECT' : 'NEUTRAL',
+    effect: `caps ${capsOnGap} otherwise-good verdict to weak on a detected Stage 4 evidence gap`,
+  };
+
+  restore();
+
+  // Envelope fidelity: replay the captured render corpus through the checker.
+  const env = measureEnvelopeCorpus(checkEnvelopeFidelity);
+  const envelopeFidelity = {
+    ...env,
+    verdict: env.allCorrect && env.flagged > 0 ? 'MEASURABLE_EFFECT' : 'NEUTRAL',
+    effect: `flags ${env.flagged}/${env.nonConformingTotal} dropped or altered renders a no-checker baseline passes silently, ${env.faithfulPassed}/${env.faithfulTotal} faithful renders pass`,
+  };
+
+  return { grounding, citeWithCaveat, evidenceGap, envelopeFidelity };
+}
+
 async function main() {
+  if (FEATURES_ONLY) {
+    const flagFeatureCases = await measureFlagFeatureCases();
+    const report = { generatedFrom: 'flag-graduation-benchmark.mjs --features-only', flagFeatureCases };
+    fs.writeFileSync('/tmp/fgb-features-report.json', `${JSON.stringify(report, null, 2)}\n`);
+    process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    return;
+  }
+
   const allFolders = enumerateGraphMetaFolders();
   const sample = stratifiedSample(allFolders, SAMPLE_SIZE);
   const mig = await measureMigrationGated(sample);
   const bench = await measureBenchmarkGated();
+  const flagFeatureCases = await measureFlagFeatureCases();
 
-  const report = { generatedFrom: 'flag-graduation-benchmark.mjs', migration: mig, benchmark: bench };
+  const report = { generatedFrom: 'flag-graduation-benchmark.mjs', migration: mig, benchmark: bench, flagFeatureCases };
   fs.writeFileSync('/tmp/fgb-report.json', `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 }

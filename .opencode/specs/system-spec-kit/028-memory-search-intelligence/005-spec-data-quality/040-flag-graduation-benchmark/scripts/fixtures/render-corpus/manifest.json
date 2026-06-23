@@ -1,0 +1,47 @@
+{
+  "description": "Captured rendered search blocks for the envelope-fidelity replay. Each entry pairs the verdict the tool shipped with a rendered block. Faithful renders keep the verdict pair verbatim and must pass the fail-mode checker. Non-conforming renders drop or alter a shipped field and must be flagged, with the finding kind the checker should report.",
+  "renders": [
+    {
+      "name": "good-faithful",
+      "file": "good-faithful.txt",
+      "verdict": { "label": "good", "policy": "cite_results" },
+      "expect": "conforming"
+    },
+    {
+      "name": "caveat-faithful",
+      "file": "caveat-faithful.txt",
+      "verdict": { "label": "weak", "policy": "cite_with_caveat" },
+      "expect": "conforming"
+    },
+    {
+      "name": "weak-faithful",
+      "file": "weak-faithful.txt",
+      "verdict": { "label": "weak", "policy": "do_not_cite_results" },
+      "expect": "conforming"
+    },
+    {
+      "name": "good-dropped-policy",
+      "file": "good-dropped-policy.txt",
+      "verdict": { "label": "good", "policy": "cite_results" },
+      "expect": "non_conforming",
+      "findingField": "citationPolicy",
+      "findingKind": "dropped"
+    },
+    {
+      "name": "good-dropped-quality",
+      "file": "good-dropped-quality.txt",
+      "verdict": { "label": "good", "policy": "cite_results" },
+      "expect": "non_conforming",
+      "findingField": "requestQuality",
+      "findingKind": "dropped"
+    },
+    {
+      "name": "good-altered-quality",
+      "file": "good-altered-quality.txt",
+      "verdict": { "label": "good", "policy": "cite_results" },
+      "expect": "non_conforming",
+      "findingField": "requestQuality",
+      "findingKind": "altered"
+    }
+  ]
+}

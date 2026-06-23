@@ -224,7 +224,7 @@ export interface MemoryParserLike {
 }
 
 type ResponsePolicyAction = 'ask_disambiguation' | 'broaden_or_ask' | 'refuse_without_evidence';
-type CitationPolicy = 'cite_results' | 'cite_with_caveat' | 'do_not_cite_results';
+export type CitationPolicy = 'cite_results' | 'cite_with_caveat' | 'do_not_cite_results';
 
 // The borderline-grounding relevance floor for the cite_with_caveat tier. Mirrors
 // the weak-verdict relevance floor, so a hit that is grounded and clears the weak
@@ -379,7 +379,7 @@ function deriveResponsePolicy(
   };
 }
 
-function deriveCitationPolicy(
+export function deriveCitationPolicy(
   requestQuality: RequestQualityAssessment | null,
   grounding?: GroundingAssessment | null,
 ): CitationPolicy {
