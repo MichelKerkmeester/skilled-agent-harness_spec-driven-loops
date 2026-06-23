@@ -66,7 +66,6 @@ import { queryLearnedTriggers } from '../learned-feedback.js';
 import { applyNegativeFeedback, getNegativeFeedbackStats } from '../../scoring/negative-feedback.js';
 import {
   isNegativeFeedbackEnabled,
-  isDeterministicRankingEnabled,
   isCommunityDetectionEnabled,
   isGraphCalibrationProfileEnabled,
   isGraphSignalsEnabled,
@@ -704,14 +703,10 @@ function applyIntentWeightsToResults(
       ? row.importance_weight
       : 0.5;
 
-    // Recency: use created_at as the timestamp (ISO string stored in DB).
-    // Deterministic ranking drops the wall-clock recency term so the score is
-    // reproducible. OFF keeps the computeRecencyScore contribution.
+    // Recency: use created_at as the timestamp (ISO string stored in DB)
     const recencyTimestamp = (row.created_at as string | undefined) ?? '';
     const importanceTier = (row.importance_tier as string | undefined) ?? 'normal';
-    const recency = isDeterministicRankingEnabled()
-      ? 0
-      : computeRecencyScore(recencyTimestamp, importanceTier);
+    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
 
     const intentScore =
       similarity * weights.similarity +
@@ -1084,9 +1079,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   // Applies a time-decay bonus to each candidate based on its created_at timestamp.
   // Uses computeRecencyScore (already imported but previously unused in hybrid path).
   // Bonus is capped at RECENCY_FUSION_CAP and clamped to keep score in [0, 1].
-  // Deterministic ranking skips this wall-clock bonus entirely so the score is
-  // reproducible. OFF runs the recency fusion exactly as before.
-  if (!isDeterministicRankingEnabled()) try {
+  try {
     let recencyBoostedCount = 0;
     const fusionIntent = resolveFusionIntentContract({
       detectedIntent: config.detectedIntent,

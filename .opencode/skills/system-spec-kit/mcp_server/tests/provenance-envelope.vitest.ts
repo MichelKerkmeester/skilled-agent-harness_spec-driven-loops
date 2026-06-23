@@ -56,8 +56,6 @@ vi.mock('../lib/search/search-flags', () => ({
   // The formatter reads this citation-policy gate. Mirror the shipped default so
   // the mock stays a complete stand-in for the module.
   isCiteWithCaveatEnabled: () => false,
-  // The ranking path reads this determinism gate. Mirror the shipped default-off.
-  isDeterministicRankingEnabled: () => false,
 }));
 
 vi.mock('../lib/search/graph-flags', () => ({
