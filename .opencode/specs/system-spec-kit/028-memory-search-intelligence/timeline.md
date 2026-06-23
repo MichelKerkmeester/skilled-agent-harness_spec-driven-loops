@@ -518,3 +518,5 @@ decision, gated on a byte-stable second run, 2049 folders at zero violations and
 default-ON or enforcing on a measured before-and-after and one, grounding-signal, was deleted with its code as purely
 informational. Every phase across the seven tracks now carries a leaf changelog under `changelog/`, and the living flag
 record is `feature-flags.md`, `keep-off-flag-roadmap.md` and `benchmark-status.md`.
+
+On 2026-06-23 a test-infrastructure phase, `001-speckit-memory/029-substrate-sandbox-cleanup`, then stopped the substrate stress harness from leaving its `_sandbox/24--local-llm-query-intelligence/` scratch directory at the repo root. The harness now removes the throwaway code-graph DB on every run, a new `--clean` flag drops the whole sandbox for standalone runs, and the vitest runner clears it in `afterAll` once it has read the summary TSV. This is harness hygiene with no change to any served behavior.
