@@ -1,26 +1,90 @@
 {
   "command": "memory/search",
   "samplesPerCell": 3,
-  "concurrency": 3,
+  "concurrency": 2,
   "timeoutSec": 600,
   "models": [
-    { "label": "mimo", "slug": "xiaomi/mimo-v2-pro", "variant": "high" },
-    { "label": "kimi", "slug": "kimi-for-coding/k2p7", "variant": "high" },
-    { "label": "deepseek", "slug": "deepseek/deepseek-v4-pro", "variant": "high" },
-    { "label": "gpt55", "slug": "openai/gpt-5.5-fast", "variant": "medium" }
+    {
+      "label": "mimo",
+      "slug": "xiaomi/mimo-v2-pro",
+      "variant": "high"
+    },
+    {
+      "label": "kimi",
+      "slug": "kimi-for-coding/k2p7",
+      "variant": "high"
+    },
+    {
+      "label": "deepseek",
+      "slug": "deepseek/deepseek-v4-pro",
+      "variant": "high"
+    },
+    {
+      "label": "gpt55",
+      "slug": "openai/gpt-5.5-fast",
+      "variant": "medium"
+    }
   ],
   "queries": [
-    { "id": "graph", "text": "graph", "class": "aligned" },
-    { "id": "agent", "text": "agent", "class": "aligned" },
-    { "id": "memory", "text": "memory", "class": "aligned" },
-    { "id": "deep-loop", "text": "deep loop", "class": "aligned" },
-    { "id": "routing", "text": "routing", "class": "aligned" },
-    { "id": "semantic-search", "text": "semantic search", "class": "generic" },
-    { "id": "context", "text": "context", "class": "generic" },
-    { "id": "quality", "text": "quality", "class": "generic" },
-    { "id": "scores", "text": "scores", "class": "generic" },
-    { "id": "kubernetes", "text": "kubernetes", "class": "off-corpus" },
-    { "id": "authentication", "text": "authentication", "class": "off-corpus" },
-    { "id": "the-thing-with-confidence", "text": "the thing with confidence", "class": "max-vague" }
+    {
+      "id": "graph",
+      "text": "graph",
+      "class": "aligned"
+    },
+    {
+      "id": "agent",
+      "text": "agent",
+      "class": "aligned"
+    },
+    {
+      "id": "memory",
+      "text": "memory",
+      "class": "aligned"
+    },
+    {
+      "id": "deep-loop",
+      "text": "deep loop",
+      "class": "aligned"
+    },
+    {
+      "id": "routing",
+      "text": "routing",
+      "class": "aligned"
+    },
+    {
+      "id": "semantic-search",
+      "text": "semantic search",
+      "class": "generic"
+    },
+    {
+      "id": "context",
+      "text": "context",
+      "class": "generic"
+    },
+    {
+      "id": "quality",
+      "text": "quality",
+      "class": "generic"
+    },
+    {
+      "id": "scores",
+      "text": "scores",
+      "class": "generic"
+    },
+    {
+      "id": "kubernetes",
+      "text": "kubernetes",
+      "class": "off-corpus"
+    },
+    {
+      "id": "authentication",
+      "text": "authentication",
+      "class": "off-corpus"
+    },
+    {
+      "id": "the-thing-with-confidence",
+      "text": "the thing with confidence",
+      "class": "max-vague"
+    }
   ]
 }

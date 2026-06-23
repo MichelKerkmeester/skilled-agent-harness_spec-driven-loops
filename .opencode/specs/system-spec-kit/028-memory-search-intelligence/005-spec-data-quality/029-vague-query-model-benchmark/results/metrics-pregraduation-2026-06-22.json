@@ -13,43 +13,43 @@
   "perModel": {
     "mimo": {
       "variant": "high",
-      "avgTools": 3.4,
-      "maxTools": 4,
-      "avgChars": 833,
-      "avgFidelity": 6.9,
-      "avgLatencyMs": 86413,
-      "citeCorrectRate": 0.61,
-      "qualityStableRate": 0.83
+      "avgTools": 5.1,
+      "maxTools": 9,
+      "avgChars": 777,
+      "avgFidelity": 6.7,
+      "avgLatencyMs": 89599,
+      "citeCorrectRate": 1,
+      "qualityStableRate": 0.75
     },
     "kimi": {
       "variant": "high",
-      "avgTools": 7.9,
-      "maxTools": 15.7,
-      "avgChars": 561,
-      "avgFidelity": 5.5,
-      "avgLatencyMs": 229813,
-      "citeCorrectRate": 0.56,
-      "qualityStableRate": 0.83
+      "avgTools": 14.7,
+      "maxTools": 23.7,
+      "avgChars": 680,
+      "avgFidelity": 6.5,
+      "avgLatencyMs": 270690,
+      "citeCorrectRate": 1,
+      "qualityStableRate": 0.75
     },
     "deepseek": {
       "variant": "high",
-      "avgTools": 4.8,
-      "maxTools": 6.7,
-      "avgChars": 798,
+      "avgTools": 5.1,
+      "maxTools": 7.7,
+      "avgChars": 852,
       "avgFidelity": 6.9,
-      "avgLatencyMs": 93960,
-      "citeCorrectRate": 0.53,
+      "avgLatencyMs": 69975,
+      "citeCorrectRate": 1,
       "qualityStableRate": 0.92
     },
     "gpt55": {
       "variant": "medium",
-      "avgTools": 9.5,
+      "avgTools": 9.8,
       "maxTools": 11.3,
-      "avgChars": 484,
-      "avgFidelity": 6.6,
-      "avgLatencyMs": 152398,
-      "citeCorrectRate": 0.56,
-      "qualityStableRate": 0.92
+      "avgChars": 468,
+      "avgFidelity": 5.6,
+      "avgLatencyMs": 102751,
+      "citeCorrectRate": 1,
+      "qualityStableRate": 0.75
     }
   },
   "perQuery": {
@@ -62,20 +62,20 @@
         "gpt55": "good"
       },
       "verdictAgreement": true,
-      "scoreSpread": 0,
+      "scoreSpread": 0.04,
       "meanTopScore": 0.86
     },
     "agent": {
       "queryClass": "aligned",
       "verdicts": {
-        "mimo": "weak",
-        "kimi": "weak",
-        "deepseek": "weak",
-        "gpt55": "weak"
+        "mimo": "good",
+        "kimi": "null",
+        "deepseek": "good",
+        "gpt55": "good"
       },
-      "verdictAgreement": true,
-      "scoreSpread": 0.48,
-      "meanTopScore": 0.61
+      "verdictAgreement": false,
+      "scoreSpread": 0.33,
+      "meanTopScore": 0.66
     },
     "memory": {
       "queryClass": "aligned",
@@ -87,45 +87,33 @@
       },
       "verdictAgreement": true,
       "scoreSpread": 0,
-      "meanTopScore": 0.86
+      "meanTopScore": 0.83
     },
     "deep-loop": {
       "queryClass": "aligned",
       "verdicts": {
-        "mimo": "gap",
-        "kimi": "gap",
+        "mimo": "good",
+        "kimi": "null",
         "deepseek": "good",
         "gpt55": "good"
       },
       "verdictAgreement": false,
-      "scoreSpread": 0.61,
-      "meanTopScore": 0.55
+      "scoreSpread": 0.3,
+      "meanTopScore": 0.79
     },
     "routing": {
       "queryClass": "aligned",
       "verdicts": {
         "mimo": "good",
-        "kimi": "weak",
-        "deepseek": "weak",
-        "gpt55": "weak"
-      },
-      "verdictAgreement": false,
-      "scoreSpread": 0.25,
-      "meanTopScore": 0.68
-    },
-    "semantic-search": {
-      "queryClass": "generic",
-      "verdicts": {
-        "mimo": "weak",
-        "kimi": "weak",
-        "deepseek": "weak",
-        "gpt55": "weak"
+        "kimi": "good",
+        "deepseek": "good",
+        "gpt55": "good"
       },
       "verdictAgreement": true,
-      "scoreSpread": 0.14,
-      "meanTopScore": 0.5
+      "scoreSpread": 0.03,
+      "meanTopScore": 0.83
     },
-    "context": {
+    "semantic-search": {
       "queryClass": "generic",
       "verdicts": {
         "mimo": "weak",
@@ -134,68 +122,80 @@
         "gpt55": "null"
       },
       "verdictAgreement": false,
-      "scoreSpread": 0.45,
-      "meanTopScore": 0.56
+      "scoreSpread": 0.63,
+      "meanTopScore": 0.38
+    },
+    "context": {
+      "queryClass": "generic",
+      "verdicts": {
+        "mimo": "good",
+        "kimi": "good",
+        "deepseek": "good",
+        "gpt55": "null"
+      },
+      "verdictAgreement": false,
+      "scoreSpread": 0.62,
+      "meanTopScore": 0.71
     },
     "quality": {
       "queryClass": "generic",
       "verdicts": {
-        "mimo": "weak",
-        "kimi": "weak",
-        "deepseek": "weak",
-        "gpt55": "weak"
+        "mimo": "good",
+        "kimi": "good",
+        "deepseek": "good",
+        "gpt55": "null"
       },
-      "verdictAgreement": true,
-      "scoreSpread": 0.07,
-      "meanTopScore": 0.61
+      "verdictAgreement": false,
+      "scoreSpread": 0.58,
+      "meanTopScore": 0.69
     },
     "scores": {
       "queryClass": "generic",
       "verdicts": {
-        "mimo": "weak",
-        "kimi": "weak",
-        "deepseek": "weak",
-        "gpt55": "weak"
+        "mimo": "good",
+        "kimi": "good",
+        "deepseek": "good",
+        "gpt55": "good"
       },
       "verdictAgreement": true,
-      "scoreSpread": 0.02,
-      "meanTopScore": 0.56
+      "scoreSpread": 0.03,
+      "meanTopScore": 0.81
     },
     "kubernetes": {
       "queryClass": "off-corpus",
       "verdicts": {
+        "mimo": "good",
+        "kimi": "good",
+        "deepseek": "good",
+        "gpt55": "good"
+      },
+      "verdictAgreement": true,
+      "scoreSpread": 0.05,
+      "meanTopScore": 0.79
+    },
+    "authentication": {
+      "queryClass": "off-corpus",
+      "verdicts": {
         "mimo": "weak",
         "kimi": "weak",
         "deepseek": "weak",
         "gpt55": "weak"
       },
       "verdictAgreement": true,
-      "scoreSpread": 0.2,
-      "meanTopScore": 0.54
-    },
-    "authentication": {
-      "queryClass": "off-corpus",
-      "verdicts": {
-        "mimo": "gap",
-        "kimi": "null",
-        "deepseek": "gap",
-        "gpt55": "gap"
-      },
-      "verdictAgreement": false,
-      "scoreSpread": 0.29,
-      "meanTopScore": 0.22
+      "scoreSpread": 0.01,
+      "meanTopScore": 0.5
     },
     "the-thing-with-confidence": {
       "queryClass": "max-vague",
       "verdicts": {
-        "mimo": "gap",
-        "kimi": "null",
-        "deepseek": "gap",
-        "gpt55": "gap"
+        "mimo": "weak",
+        "kimi": "weak",
+        "deepseek": "weak",
+        "gpt55": "weak"
       },
-      "verdictAgreement": false,
-      "scoreSpread": 0.35,
-      "meanTopScore": 0.26
+      "verdictAgreement": true,
+      "scoreSpread": 0.27,
+      "meanTopScore": 0.44
     }
   },
   "byModelQuery": {
@@ -205,28 +205,28 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 3,
-        "sd": 0
+        "mean": 8.7,
+        "sd": 8
       },
       "toolsMem": {
         "mean": 2
       },
       "chars": {
-        "mean": 981,
-        "sd": 169
+        "mean": 974,
+        "sd": 55
       },
       "topScore": {
-        "mean": 0.86,
-        "sd": 0
+        "mean": 0.88,
+        "sd": 0.05
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 6.7
       },
       "latencyMs": {
-        "mean": 66306
+        "mean": 94403
       },
       "requestQualityMode": "good",
-      "requestQualityStable": true,
+      "requestQualityStable": false,
       "citeCorrectRate": 1
     },
     "mimo|agent": {
@@ -235,29 +235,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 3.7,
-        "sd": 0.5
+        "mean": 6.3,
+        "sd": 4.7
       },
       "toolsMem": {
-        "mean": 2.7
+        "mean": 1.7
       },
       "chars": {
-        "mean": 835,
-        "sd": 66
+        "mean": 864,
+        "sd": 183
       },
       "topScore": {
-        "mean": 0.67,
-        "sd": 0.15
+        "mean": 0.76,
+        "sd": 0.18
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 6.3
       },
       "latencyMs": {
-        "mean": 87819
+        "mean": 43173
       },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "requestQualityMode": "good",
+      "requestQualityStable": false,
+      "citeCorrectRate": 1
     },
     "mimo|memory": {
       "model": "mimo",
@@ -265,25 +265,25 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 3.3,
-        "sd": 0.5
+        "mean": 4,
+        "sd": 0.8
       },
       "toolsMem": {
-        "mean": 2.3
+        "mean": 3
       },
       "chars": {
-        "mean": 910,
-        "sd": 231
+        "mean": 704,
+        "sd": 106
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.83,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 80486
+        "mean": 76633
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -295,27 +295,27 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 3,
-        "sd": 0.8
+        "mean": 8,
+        "sd": 6.4
       },
       "toolsMem": {
-        "mean": 2
+        "mean": 7
       },
       "chars": {
-        "mean": 1145,
-        "sd": 92
+        "mean": 756,
+        "sd": 24
       },
       "topScore": {
-        "mean": 0.25,
-        "sd": 0
+        "mean": 0.87,
+        "sd": 0.02
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 98376
+        "mean": 115585
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -325,33 +325,93 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 3,
-        "sd": 0
+        "mean": 4.3,
+        "sd": 1.9
       },
       "toolsMem": {
-        "mean": 2
+        "mean": 3.3
       },
       "chars": {
-        "mean": 804,
-        "sd": 72
+        "mean": 609,
+        "sd": 213
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.82,
         "sd": 0
       },
       "envelopeFidelity": {
-        "mean": 6.3
+        "mean": 6.7
       },
       "latencyMs": {
-        "mean": 54450
+        "mean": 170254
       },
       "requestQualityMode": "good",
-      "requestQualityStable": false,
+      "requestQualityStable": true,
       "citeCorrectRate": 1
     },
     "mimo|semantic-search": {
       "model": "mimo",
       "query": "semantic-search",
+      "queryClass": "generic",
+      "n": 3,
+      "toolsTotal": {
+        "mean": 3.7,
+        "sd": 1.2
+      },
+      "toolsMem": {
+        "mean": 2.7
+      },
+      "chars": {
+        "mean": 874,
+        "sd": 374
+      },
+      "topScore": {
+        "mean": 0.44,
+        "sd": 0
+      },
+      "envelopeFidelity": {
+        "mean": 7
+      },
+      "latencyMs": {
+        "mean": 48896
+      },
+      "requestQualityMode": "weak",
+      "requestQualityStable": true,
+      "citeCorrectRate": 1
+    },
+    "mimo|context": {
+      "model": "mimo",
+      "query": "context",
+      "queryClass": "generic",
+      "n": 3,
+      "toolsTotal": {
+        "mean": 4,
+        "sd": 0
+      },
+      "toolsMem": {
+        "mean": 3
+      },
+      "chars": {
+        "mean": 942,
+        "sd": 53
+      },
+      "topScore": {
+        "mean": 0.83,
+        "sd": 0
+      },
+      "envelopeFidelity": {
+        "mean": 7
+      },
+      "latencyMs": {
+        "mean": 90413
+      },
+      "requestQualityMode": "good",
+      "requestQualityStable": true,
+      "citeCorrectRate": 1
+    },
+    "mimo|quality": {
+      "model": "mimo",
+      "query": "quality",
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
@@ -362,82 +422,22 @@
         "mean": 2.7
       },
       "chars": {
-        "mean": 615,
-        "sd": 147
+        "mean": 429,
+        "sd": 80
       },
       "topScore": {
-        "mean": 0.58,
-        "sd": 0.19
-      },
-      "envelopeFidelity": {
-        "mean": 7
-      },
-      "latencyMs": {
-        "mean": 104971
-      },
-      "requestQualityMode": "weak",
-      "requestQualityStable": false,
-      "citeCorrectRate": 0.33
-    },
-    "mimo|context": {
-      "model": "mimo",
-      "query": "context",
-      "queryClass": "generic",
-      "n": 3,
-      "toolsTotal": {
-        "mean": 4,
-        "sd": 0.8
-      },
-      "toolsMem": {
-        "mean": 3
-      },
-      "chars": {
-        "mean": 673,
-        "sd": 277
-      },
-      "topScore": {
-        "mean": 0.67,
+        "mean": 0.8,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 92026
+        "mean": 63319
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
-    },
-    "mimo|quality": {
-      "model": "mimo",
-      "query": "quality",
-      "queryClass": "generic",
-      "n": 3,
-      "toolsTotal": {
-        "mean": 3.3,
-        "sd": 0.9
-      },
-      "toolsMem": {
-        "mean": 2.3
-      },
-      "chars": {
-        "mean": 929,
-        "sd": 104
-      },
-      "topScore": {
-        "mean": 0.56,
-        "sd": 0
-      },
-      "envelopeFidelity": {
-        "mean": 7
-      },
-      "latencyMs": {
-        "mean": 119485
-      },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|scores": {
       "model": "mimo",
@@ -445,27 +445,27 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 3.3,
-        "sd": 0.5
+        "mean": 9,
+        "sd": 4.3
       },
       "toolsMem": {
-        "mean": 2.3
+        "mean": 8
       },
       "chars": {
-        "mean": 858,
-        "sd": 175
+        "mean": 861,
+        "sd": 260
       },
       "topScore": {
-        "mean": 0.56,
-        "sd": 0
+        "mean": 0.82,
+        "sd": 0.02
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 75410
+        "mean": 142857
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -475,29 +475,29 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 3.3,
-        "sd": 0.5
+        "mean": 4,
+        "sd": 0.8
       },
       "toolsMem": {
-        "mean": 2.3
+        "mean": 3
       },
       "chars": {
-        "mean": 768,
-        "sd": 290
+        "mean": 1015,
+        "sd": 34
       },
       "topScore": {
-        "mean": 0.6,
+        "mean": 0.78,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 84933
+        "mean": 83252
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|authentication": {
       "model": "mimo",
@@ -512,20 +512,20 @@
         "mean": 2.3
       },
       "chars": {
-        "mean": 763,
-        "sd": 112
+        "mean": 849,
+        "sd": 64
       },
       "topScore": {
-        "mean": 0.29,
-        "sd": 0
+        "mean": 0.5,
+        "sd": 0.01
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 87666
+        "mean": 77386
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -535,28 +535,28 @@
       "queryClass": "max-vague",
       "n": 3,
       "toolsTotal": {
-        "mean": 4,
-        "sd": 1.4
+        "mean": 2.7,
+        "sd": 1.2
       },
       "toolsMem": {
-        "mean": 1.3
+        "mean": 1.7
       },
       "chars": {
-        "mean": 720,
-        "sd": 144
+        "mean": 451,
+        "sd": 297
       },
       "topScore": {
-        "mean": 0.35,
-        "sd": 0
+        "mean": 0.31,
+        "sd": 0.22
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 5
       },
       "latencyMs": {
-        "mean": 85027
+        "mean": 69017
       },
-      "requestQualityMode": "gap",
-      "requestQualityStable": true,
+      "requestQualityMode": "weak",
+      "requestQualityStable": false,
       "citeCorrectRate": 1
     },
     "kimi|graph": {
@@ -565,25 +565,25 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 15.7,
-        "sd": 8.7
+        "mean": 13.7,
+        "sd": 8.2
       },
       "toolsMem": {
-        "mean": 14
+        "mean": 10.3
       },
       "chars": {
-        "mean": 683,
-        "sd": 270
+        "mean": 712,
+        "sd": 65
       },
       "topScore": {
-        "mean": 0.86,
-        "sd": 0
+        "mean": 0.88,
+        "sd": 0.04
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 303716
+        "mean": 222420
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -595,29 +595,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 13,
-        "sd": 7.1
+        "mean": 19.7,
+        "sd": 5.4
       },
       "toolsMem": {
-        "mean": 3.7
+        "mean": 16
       },
       "chars": {
-        "mean": 563,
-        "sd": 258
+        "mean": 854,
+        "sd": 110
       },
       "topScore": {
-        "mean": 0.36,
-        "sd": 0.26
+        "mean": 0.85,
+        "sd": 0.05
       },
       "envelopeFidelity": {
-        "mean": 5
+        "mean": 5.7
       },
       "latencyMs": {
-        "mean": 334702
+        "mean": 262402
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "null",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "kimi|memory": {
       "model": "kimi",
@@ -625,25 +625,25 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 9,
-        "sd": 5.7
+        "mean": 8,
+        "sd": 1.4
       },
       "toolsMem": {
-        "mean": 7.7
+        "mean": 6.7
       },
       "chars": {
-        "mean": 665,
-        "sd": 99
+        "mean": 573,
+        "sd": 201
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.83,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 245991
+        "mean": 238081
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -655,27 +655,27 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 11.3,
-        "sd": 6.3
+        "mean": 23.7,
+        "sd": 10.3
       },
       "toolsMem": {
-        "mean": 9.7
+        "mean": 19
       },
       "chars": {
-        "mean": 790,
-        "sd": 247
+        "mean": 546,
+        "sd": 388
       },
       "topScore": {
-        "mean": 0.25,
-        "sd": 0
+        "mean": 0.57,
+        "sd": 0.41
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 3.3
       },
       "latencyMs": {
-        "mean": 290375
+        "mean": 468659
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "null",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -685,29 +685,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 10.3,
-        "sd": 1.2
+        "mean": 17,
+        "sd": 6.7
       },
       "toolsMem": {
-        "mean": 9
+        "mean": 15.3
       },
       "chars": {
-        "mean": 914,
-        "sd": 38
+        "mean": 621,
+        "sd": 212
       },
       "topScore": {
-        "mean": 0.62,
-        "sd": 0.1
+        "mean": 0.85,
+        "sd": 0.04
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 357296
+        "mean": 318436
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|semantic-search": {
       "model": "kimi",
@@ -715,29 +715,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 6.3,
-        "sd": 1.7
+        "mean": 13,
+        "sd": 6.2
       },
       "toolsMem": {
-        "mean": 5.3
+        "mean": 10.3
       },
       "chars": {
-        "mean": 637,
-        "sd": 245
+        "mean": 756,
+        "sd": 104
       },
       "topScore": {
-        "mean": 0.52,
-        "sd": 0.11
+        "mean": 0.63,
+        "sd": 0.19
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 192185
+        "mean": 121430
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|context": {
       "model": "kimi",
@@ -745,29 +745,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 7.3,
-        "sd": 4
+        "mean": 11,
+        "sd": 0.8
       },
       "toolsMem": {
-        "mean": 6.3
+        "mean": 9.7
       },
       "chars": {
-        "mean": 926,
-        "sd": 21
+        "mean": 630,
+        "sd": 215
       },
       "topScore": {
-        "mean": 0.66,
-        "sd": 0.01
+        "mean": 0.9,
+        "sd": 0.05
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 6.3
       },
       "latencyMs": {
-        "mean": 313593
+        "mean": 205912
       },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "requestQualityMode": "good",
+      "requestQualityStable": false,
+      "citeCorrectRate": 1
     },
     "kimi|quality": {
       "model": "kimi",
@@ -775,29 +775,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 4.7,
-        "sd": 1.7
+        "mean": 17.7,
+        "sd": 7.5
       },
       "toolsMem": {
-        "mean": 3.7
+        "mean": 16.7
       },
       "chars": {
-        "mean": 538,
-        "sd": 160
+        "mean": 689,
+        "sd": 89
       },
       "topScore": {
-        "mean": 0.63,
-        "sd": 0.13
+        "mean": 0.85,
+        "sd": 0.05
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 217824
+        "mean": 345503
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|scores": {
       "model": "kimi",
@@ -805,27 +805,27 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 5.3,
-        "sd": 0.5
+        "mean": 19.3,
+        "sd": 8.8
       },
       "toolsMem": {
-        "mean": 4.3
+        "mean": 17.7
       },
       "chars": {
-        "mean": 514,
-        "sd": 214
+        "mean": 620,
+        "sd": 240
       },
       "topScore": {
-        "mean": 0.56,
-        "sd": 0
+        "mean": 0.82,
+        "sd": 0.02
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 178915
+        "mean": 293433
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -835,29 +835,29 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 7.3,
-        "sd": 3.4
+        "mean": 12,
+        "sd": 2.2
       },
       "toolsMem": {
-        "mean": 5.7
+        "mean": 10.7
       },
       "chars": {
-        "mean": 504,
-        "sd": 356
+        "mean": 792,
+        "sd": 55
       },
       "topScore": {
-        "mean": 0.4,
-        "sd": 0.28
+        "mean": 0.83,
+        "sd": 0.07
       },
       "envelopeFidelity": {
-        "mean": 4.7
+        "mean": 6.3
       },
       "latencyMs": {
-        "mean": 218866
+        "mean": 224583
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "kimi|authentication": {
       "model": "kimi",
@@ -865,27 +865,27 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 4.3,
-        "sd": 3.1
+        "mean": 8.3,
+        "sd": 2.5
       },
       "toolsMem": {
-        "mean": 3.7
+        "mean": 7.3
       },
       "chars": {
-        "mean": 0,
-        "sd": 0
+        "mean": 765,
+        "sd": 192
       },
       "topScore": {
-        "mean": 0,
+        "mean": 0.49,
         "sd": 0
       },
       "envelopeFidelity": {
-        "mean": 0
+        "mean": 7
       },
       "latencyMs": {
-        "mean": 92530
+        "mean": 235460
       },
-      "requestQualityMode": "null",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -895,27 +895,27 @@
       "queryClass": "max-vague",
       "n": 3,
       "toolsTotal": {
-        "mean": 0,
-        "sd": 0
+        "mean": 12.7,
+        "sd": 6.2
       },
       "toolsMem": {
-        "mean": 0
+        "mean": 10.3
       },
       "chars": {
-        "mean": 0,
-        "sd": 0
+        "mean": 607,
+        "sd": 60
       },
       "topScore": {
-        "mean": 0,
-        "sd": 0
+        "mean": 0.57,
+        "sd": 0.14
       },
       "envelopeFidelity": {
-        "mean": 0
+        "mean": 7
       },
       "latencyMs": {
-        "mean": 11762
+        "mean": 311962
       },
-      "requestQualityMode": "null",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -925,28 +925,28 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 4.3,
-        "sd": 1.2
+        "mean": 6.3,
+        "sd": 2.6
       },
       "toolsMem": {
-        "mean": 3.3
+        "mean": 5.3
       },
       "chars": {
-        "mean": 884,
-        "sd": 163
+        "mean": 774,
+        "sd": 128
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.85,
         "sd": 0
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 6.3
       },
       "latencyMs": {
-        "mean": 82237
+        "mean": 68667
       },
       "requestQualityMode": "good",
-      "requestQualityStable": true,
+      "requestQualityStable": false,
       "citeCorrectRate": 1
     },
     "deepseek|agent": {
@@ -955,29 +955,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 6.7,
-        "sd": 3.8
+        "mean": 5,
+        "sd": 0.8
       },
       "toolsMem": {
-        "mean": 2
+        "mean": 4
       },
       "chars": {
-        "mean": 627,
-        "sd": 68
+        "mean": 812,
+        "sd": 33
       },
       "topScore": {
-        "mean": 0.56,
-        "sd": 0.4
+        "mean": 0.52,
+        "sd": 0
       },
       "envelopeFidelity": {
-        "mean": 5.3
+        "mean": 7
       },
       "latencyMs": {
-        "mean": 107662
+        "mean": 69521
       },
-      "requestQualityMode": "weak",
-      "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "requestQualityMode": "good",
+      "requestQualityStable": true,
+      "citeCorrectRate": 1
     },
     "deepseek|memory": {
       "model": "deepseek",
@@ -986,24 +986,24 @@
       "n": 3,
       "toolsTotal": {
         "mean": 5.7,
-        "sd": 0.9
+        "sd": 1.7
       },
       "toolsMem": {
-        "mean": 4
+        "mean": 4.7
       },
       "chars": {
-        "mean": 550,
-        "sd": 54
+        "mean": 880,
+        "sd": 324
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.83,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 101361
+        "mean": 91641
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -1016,14 +1016,14 @@
       "n": 3,
       "toolsTotal": {
         "mean": 4.3,
-        "sd": 0.9
+        "sd": 1.2
       },
       "toolsMem": {
         "mean": 3.3
       },
       "chars": {
-        "mean": 583,
-        "sd": 135
+        "mean": 1031,
+        "sd": 301
       },
       "topScore": {
         "mean": 0.86,
@@ -1033,7 +1033,7 @@
         "mean": 7
       },
       "latencyMs": {
-        "mean": 119017
+        "mean": 75407
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -1052,22 +1052,22 @@
         "mean": 3.3
       },
       "chars": {
-        "mean": 1076,
-        "sd": 391
+        "mean": 789,
+        "sd": 126
       },
       "topScore": {
-        "mean": 0.61,
-        "sd": 0.02
+        "mean": 0.82,
+        "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 99461
+        "mean": 71921
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|semantic-search": {
       "model": "deepseek",
@@ -1075,15 +1075,15 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 3.7,
-        "sd": 0.9
+        "mean": 4.7,
+        "sd": 1.2
       },
       "toolsMem": {
-        "mean": 2.7
+        "mean": 3.7
       },
       "chars": {
-        "mean": 835,
-        "sd": 52
+        "mean": 1167,
+        "sd": 653
       },
       "topScore": {
         "mean": 0.44,
@@ -1093,15 +1093,75 @@
         "mean": 7
       },
       "latencyMs": {
-        "mean": 64066
+        "mean": 52465
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|context": {
       "model": "deepseek",
       "query": "context",
+      "queryClass": "generic",
+      "n": 3,
+      "toolsTotal": {
+        "mean": 6,
+        "sd": 2.8
+      },
+      "toolsMem": {
+        "mean": 4
+      },
+      "chars": {
+        "mean": 790,
+        "sd": 171
+      },
+      "topScore": {
+        "mean": 0.83,
+        "sd": 0
+      },
+      "envelopeFidelity": {
+        "mean": 7
+      },
+      "latencyMs": {
+        "mean": 84989
+      },
+      "requestQualityMode": "good",
+      "requestQualityStable": true,
+      "citeCorrectRate": 1
+    },
+    "deepseek|quality": {
+      "model": "deepseek",
+      "query": "quality",
+      "queryClass": "generic",
+      "n": 3,
+      "toolsTotal": {
+        "mean": 7.7,
+        "sd": 5.2
+      },
+      "toolsMem": {
+        "mean": 6.7
+      },
+      "chars": {
+        "mean": 736,
+        "sd": 173
+      },
+      "topScore": {
+        "mean": 0.83,
+        "sd": 0.04
+      },
+      "envelopeFidelity": {
+        "mean": 7
+      },
+      "latencyMs": {
+        "mean": 102124
+      },
+      "requestQualityMode": "good",
+      "requestQualityStable": true,
+      "citeCorrectRate": 1
+    },
+    "deepseek|scores": {
+      "model": "deepseek",
+      "query": "scores",
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
@@ -1112,80 +1172,20 @@
         "mean": 3
       },
       "chars": {
-        "mean": 685,
-        "sd": 133
+        "mean": 838,
+        "sd": 167
       },
       "topScore": {
-        "mean": 0.67,
+        "mean": 0.79,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 75369
+        "mean": 50054
       },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
-    },
-    "deepseek|quality": {
-      "model": "deepseek",
-      "query": "quality",
-      "queryClass": "generic",
-      "n": 3,
-      "toolsTotal": {
-        "mean": 6,
-        "sd": 1.4
-      },
-      "toolsMem": {
-        "mean": 5
-      },
-      "chars": {
-        "mean": 978,
-        "sd": 125
-      },
-      "topScore": {
-        "mean": 0.62,
-        "sd": 0.1
-      },
-      "envelopeFidelity": {
-        "mean": 7
-      },
-      "latencyMs": {
-        "mean": 99618
-      },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
-    },
-    "deepseek|scores": {
-      "model": "deepseek",
-      "query": "scores",
-      "queryClass": "generic",
-      "n": 3,
-      "toolsTotal": {
-        "mean": 4.7,
-        "sd": 0.5
-      },
-      "toolsMem": {
-        "mean": 3.7
-      },
-      "chars": {
-        "mean": 692,
-        "sd": 85
-      },
-      "topScore": {
-        "mean": 0.54,
-        "sd": 0.02
-      },
-      "envelopeFidelity": {
-        "mean": 7
-      },
-      "latencyMs": {
-        "mean": 100461
-      },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -1195,29 +1195,29 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 4.7,
+        "mean": 3.7,
         "sd": 0.5
       },
       "toolsMem": {
-        "mean": 3.3
+        "mean": 2.7
       },
       "chars": {
-        "mean": 861,
-        "sd": 111
+        "mean": 644,
+        "sd": 238
       },
       "topScore": {
-        "mean": 0.6,
+        "mean": 0.78,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 88173
+        "mean": 51693
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|authentication": {
       "model": "deepseek",
@@ -1232,20 +1232,20 @@
         "mean": 3.7
       },
       "chars": {
-        "mean": 931,
-        "sd": 82
+        "mean": 1105,
+        "sd": 65
       },
       "topScore": {
-        "mean": 0.29,
-        "sd": 0
+        "mean": 0.5,
+        "sd": 0.01
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 99195
+        "mean": 67828
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -1255,27 +1255,27 @@
       "queryClass": "max-vague",
       "n": 3,
       "toolsTotal": {
-        "mean": 5,
-        "sd": 0
+        "mean": 4.3,
+        "sd": 0.5
       },
       "toolsMem": {
-        "mean": 3.7
+        "mean": 3.3
       },
       "chars": {
-        "mean": 876,
-        "sd": 341
+        "mean": 653,
+        "sd": 118
       },
       "topScore": {
-        "mean": 0.35,
-        "sd": 0
+        "mean": 0.58,
+        "sd": 0.15
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 90898
+        "mean": 53387
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -1285,25 +1285,25 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 7.7,
-        "sd": 0.9
+        "mean": 9.3,
+        "sd": 2.4
       },
       "toolsMem": {
-        "mean": 6.7
+        "mean": 8.3
       },
       "chars": {
-        "mean": 306,
-        "sd": 6
+        "mean": 592,
+        "sd": 417
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.84,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 158460
+        "mean": 98702
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -1315,29 +1315,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 11.3,
-        "sd": 0.5
+        "mean": 9.7,
+        "sd": 2.1
       },
       "toolsMem": {
-        "mean": 10
+        "mean": 8.7
       },
       "chars": {
-        "mean": 280,
+        "mean": 324,
         "sd": 0
       },
       "topScore": {
-        "mean": 0.84,
+        "mean": 0.52,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 188920
+        "mean": 98844
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|memory": {
       "model": "gpt55",
@@ -1345,25 +1345,25 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 9.7,
-        "sd": 1.7
+        "mean": 10.3,
+        "sd": 0.5
       },
       "toolsMem": {
-        "mean": 8.7
+        "mean": 9.3
       },
       "chars": {
-        "mean": 643,
-        "sd": 6
+        "mean": 361,
+        "sd": 0
       },
       "topScore": {
-        "mean": 0.86,
+        "mean": 0.83,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 153234
+        "mean": 98535
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -1375,15 +1375,15 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 10,
-        "sd": 0.8
+        "mean": 11.3,
+        "sd": 0.5
       },
       "toolsMem": {
-        "mean": 9
+        "mean": 9.3
       },
       "chars": {
-        "mean": 520,
-        "sd": 237
+        "mean": 619,
+        "sd": 405
       },
       "topScore": {
         "mean": 0.86,
@@ -1393,7 +1393,7 @@
         "mean": 7
       },
       "latencyMs": {
-        "mean": 145298
+        "mean": 113917
       },
       "requestQualityMode": "good",
       "requestQualityStable": true,
@@ -1405,29 +1405,29 @@
       "queryClass": "aligned",
       "n": 3,
       "toolsTotal": {
-        "mean": 9.7,
+        "mean": 9.3,
         "sd": 1.7
       },
       "toolsMem": {
-        "mean": 8.7
+        "mean": 8
       },
       "chars": {
-        "mean": 368,
+        "mean": 334,
         "sd": 0
       },
       "topScore": {
-        "mean": 0.62,
+        "mean": 0.82,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 152361
+        "mean": 88019
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|semantic-search": {
       "model": "gpt55",
@@ -1435,29 +1435,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 9,
-        "sd": 1.4
+        "mean": 9.7,
+        "sd": 1.7
       },
       "toolsMem": {
-        "mean": 8
+        "mean": 8.3
       },
       "chars": {
-        "mean": 588,
-        "sd": 396
+        "mean": 406,
+        "sd": 574
       },
       "topScore": {
-        "mean": 0.44,
+        "mean": 0,
         "sd": 0
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 0.3
       },
       "latencyMs": {
-        "mean": 139119
+        "mean": 113894
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "null",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|context": {
       "model": "gpt55",
@@ -1465,29 +1465,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 7.3,
-        "sd": 0.5
+        "mean": 11.3,
+        "sd": 4.9
       },
       "toolsMem": {
-        "mean": 6.3
+        "mean": 1.7
       },
       "chars": {
-        "mean": 290,
-        "sd": 214
+        "mean": 549,
+        "sd": 554
       },
       "topScore": {
-        "mean": 0.22,
-        "sd": 0.32
+        "mean": 0.28,
+        "sd": 0.39
       },
       "envelopeFidelity": {
         "mean": 2.7
       },
       "latencyMs": {
-        "mean": 92718
+        "mean": 117925
       },
       "requestQualityMode": "null",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.67
+      "citeCorrectRate": 1
     },
     "gpt55|quality": {
       "model": "gpt55",
@@ -1495,29 +1495,29 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 11.3,
-        "sd": 3.7
+        "mean": 10.7,
+        "sd": 2.4
       },
       "toolsMem": {
-        "mean": 7.3
+        "mean": 5.7
       },
       "chars": {
-        "mean": 600,
-        "sd": 240
+        "mean": 426,
+        "sd": 400
       },
       "topScore": {
-        "mean": 0.63,
-        "sd": 0.13
+        "mean": 0.27,
+        "sd": 0.38
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 3
       },
       "latencyMs": {
-        "mean": 181710
+        "mean": 95583
       },
-      "requestQualityMode": "weak",
-      "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "requestQualityMode": "null",
+      "requestQualityStable": false,
+      "citeCorrectRate": 1
     },
     "gpt55|scores": {
       "model": "gpt55",
@@ -1525,27 +1525,27 @@
       "queryClass": "generic",
       "n": 3,
       "toolsTotal": {
-        "mean": 8.7,
-        "sd": 2.6
+        "mean": 9.7,
+        "sd": 2.1
       },
       "toolsMem": {
-        "mean": 7.7
+        "mean": 8.7
       },
       "chars": {
-        "mean": 521,
-        "sd": 245
+        "mean": 569,
+        "sd": 399
       },
       "topScore": {
-        "mean": 0.56,
+        "mean": 0.79,
         "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 140405
+        "mean": 113050
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -1555,29 +1555,29 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 10.7,
-        "sd": 2.5
+        "mean": 8,
+        "sd": 2.2
       },
       "toolsMem": {
-        "mean": 8.7
+        "mean": 7
       },
       "chars": {
-        "mean": 714,
-        "sd": 502
+        "mean": 591,
+        "sd": 273
       },
       "topScore": {
-        "mean": 0.57,
-        "sd": 0.04
+        "mean": 0.78,
+        "sd": 0
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 162068
+        "mean": 86731
       },
-      "requestQualityMode": "weak",
+      "requestQualityMode": "good",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|authentication": {
       "model": "gpt55",
@@ -1585,27 +1585,27 @@
       "queryClass": "off-corpus",
       "n": 3,
       "toolsTotal": {
-        "mean": 9,
-        "sd": 2.9
+        "mean": 10.3,
+        "sd": 2.1
       },
       "toolsMem": {
-        "mean": 5
+        "mean": 9.3
       },
       "chars": {
-        "mean": 491,
-        "sd": 235
+        "mean": 597,
+        "sd": 377
       },
       "topScore": {
-        "mean": 0.29,
-        "sd": 0
+        "mean": 0.5,
+        "sd": 0.01
       },
       "envelopeFidelity": {
         "mean": 7
       },
       "latencyMs": {
-        "mean": 166714
+        "mean": 104589
       },
-      "requestQualityMode": "gap",
+      "requestQualityMode": "weak",
       "requestQualityStable": true,
       "citeCorrectRate": 1
     },
@@ -1615,28 +1615,28 @@
       "queryClass": "max-vague",
       "n": 3,
       "toolsTotal": {
-        "mean": 9.7,
-        "sd": 1.7
+        "mean": 8.3,
+        "sd": 1.9
       },
       "toolsMem": {
         "mean": 7.3
       },
       "chars": {
-        "mean": 484,
-        "sd": 106
+        "mean": 249,
+        "sd": 176
       },
       "topScore": {
-        "mean": 0.35,
-        "sd": 0
+        "mean": 0.31,
+        "sd": 0.22
       },
       "envelopeFidelity": {
-        "mean": 7
+        "mean": 4.7
       },
       "latencyMs": {
-        "mean": 147772
+        "mean": 103221
       },
-      "requestQualityMode": "gap",
-      "requestQualityStable": true,
+      "requestQualityMode": "weak",
+      "requestQualityStable": false,
       "citeCorrectRate": 1
     }
   },
@@ -1648,33 +1648,33 @@
       "key": "mimo-graph-s1",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 1217,
+      "chars": 1003,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 52467,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "mimo",
       "query": "graph",
       "sample": 2,
       "key": "mimo-graph-s2",
-      "toolsTotal": 3,
+      "toolsTotal": 20,
       "toolsMem": 2,
-      "chars": 896,
-      "requestQuality": "good",
-      "citationPolicy": "cite_results",
-      "citeCorrect": true,
+      "chars": 1023,
+      "requestQuality": "degraded",
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
-      "envelopeFidelity": 7,
-      "latencyMs": 84281,
+      "topScore": 0.95,
+      "envelopeFidelity": 6,
+      "latencyMs": 244702,
       "exit": 0
     },
     {
@@ -1684,15 +1684,15 @@
       "key": "mimo-graph-s3",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 830,
+      "chars": 897,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 62170,
+      "latencyMs": 38508,
       "exit": 0
     },
     {
@@ -1702,33 +1702,33 @@
       "key": "mimo-agent-s1",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 815,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 734,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.59,
+      "topScore": 0.81,
       "envelopeFidelity": 7,
-      "latencyMs": 105511,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "mimo",
       "query": "agent",
       "sample": 2,
       "key": "mimo-agent-s2",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 766,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 13,
+      "toolsMem": 1,
+      "chars": 1122,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.88,
-      "envelopeFidelity": 7,
-      "latencyMs": 64139,
+      "topScore": 0.95,
+      "envelopeFidelity": 5,
+      "latencyMs": 90682,
       "exit": 0
     },
     {
@@ -1736,17 +1736,17 @@
       "query": "agent",
       "sample": 3,
       "key": "mimo-agent-s3",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 925,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 735,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.55,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 93806,
+      "latencyMs": 38836,
       "exit": 0
     },
     {
@@ -1754,17 +1754,17 @@
       "query": "memory",
       "sample": 1,
       "key": "mimo-memory-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 1192,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 598,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 63511,
+      "latencyMs": 35274,
       "exit": 0
     },
     {
@@ -1772,17 +1772,17 @@
       "query": "memory",
       "sample": 2,
       "key": "mimo-memory-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 912,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 666,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 1,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 83021,
+      "latencyMs": 110052,
       "exit": 0
     },
     {
@@ -1790,17 +1790,17 @@
       "query": "memory",
       "sample": 3,
       "key": "mimo-memory-s3",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 626,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 848,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 3,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 94926,
+      "latencyMs": 84573,
       "exit": 0
     },
     {
@@ -1808,17 +1808,17 @@
       "query": "deep-loop",
       "sample": 1,
       "key": "mimo-deep-loop-s1",
-      "toolsTotal": 2,
-      "toolsMem": 1,
-      "chars": 1211,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 740,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.25,
+      "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 47619,
+      "latencyMs": 64162,
       "exit": 0
     },
     {
@@ -1826,17 +1826,17 @@
       "query": "deep-loop",
       "sample": 2,
       "key": "mimo-deep-loop-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 1209,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 17,
+      "toolsMem": 16,
+      "chars": 738,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.25,
+      "topScore": 0.9,
       "envelopeFidelity": 7,
-      "latencyMs": 104561,
+      "latencyMs": 209707,
       "exit": 0
     },
     {
@@ -1846,15 +1846,15 @@
       "key": "mimo-deep-loop-s3",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 1015,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
+      "chars": 790,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.25,
+      "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 142949,
+      "latencyMs": 72887,
       "exit": 0
     },
     {
@@ -1862,17 +1862,17 @@
       "query": "routing",
       "sample": 1,
       "key": "mimo-routing-s1",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 720,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": 1,
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 905,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
-      "envelopeFidelity": 5,
-      "latencyMs": 81136,
+      "topScore": 0.82,
+      "envelopeFidelity": 7,
+      "latencyMs": 427503,
       "exit": 0
     },
     {
@@ -1882,15 +1882,15 @@
       "key": "mimo-routing-s2",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 895,
+      "chars": 508,
       "requestQuality": "good",
-      "citationPolicy": "cite_results",
-      "citeCorrect": true,
-      "results": 5,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
-      "envelopeFidelity": 7,
-      "latencyMs": 39123,
+      "topScore": 0.82,
+      "envelopeFidelity": 6,
+      "latencyMs": 47221,
       "exit": 0
     },
     {
@@ -1900,15 +1900,15 @@
       "key": "mimo-routing-s3",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 798,
+      "chars": 413,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 43090,
+      "latencyMs": 36037,
       "exit": 0
     },
     {
@@ -1916,35 +1916,35 @@
       "query": "semantic-search",
       "sample": 1,
       "key": "mimo-semantic-search-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 489,
+      "toolsTotal": 2,
+      "toolsMem": 1,
+      "chars": 387,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 140545,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "mimo",
       "query": "semantic-search",
       "sample": 2,
       "key": "mimo-semantic-search-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 536,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 1297,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 57412,
+      "latencyMs": 89137,
       "exit": 0
     },
     {
@@ -1954,15 +1954,15 @@
       "key": "mimo-semantic-search-s3",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 821,
-      "requestQuality": "good",
-      "citationPolicy": "cite_results",
+      "chars": 938,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.85,
+      "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 116956,
+      "latencyMs": 57551,
       "exit": 0
     },
     {
@@ -1972,15 +1972,15 @@
       "key": "mimo-context-s1",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 892,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 975,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 101057,
+      "latencyMs": 63562,
       "exit": 0
     },
     {
@@ -1988,17 +1988,17 @@
       "query": "context",
       "sample": 2,
       "key": "mimo-context-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 282,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 984,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 58364,
+      "latencyMs": 64364,
       "exit": 0
     },
     {
@@ -2006,17 +2006,17 @@
       "query": "context",
       "sample": 3,
       "key": "mimo-context-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 845,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 868,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 116656,
+      "latencyMs": 143313,
       "exit": 0
     },
     {
@@ -2026,15 +2026,15 @@
       "key": "mimo-quality-s1",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 1052,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 478,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.8,
       "envelopeFidelity": 7,
-      "latencyMs": 140250,
+      "latencyMs": 29307,
       "exit": 0
     },
     {
@@ -2042,17 +2042,17 @@
       "query": "quality",
       "sample": 2,
       "key": "mimo-quality-s2",
-      "toolsTotal": 2,
-      "toolsMem": 1,
-      "chars": 797,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 316,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.8,
       "envelopeFidelity": 7,
-      "latencyMs": 84788,
+      "latencyMs": 55237,
       "exit": 0
     },
     {
@@ -2062,15 +2062,15 @@
       "key": "mimo-quality-s3",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 939,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 494,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.8,
       "envelopeFidelity": 7,
-      "latencyMs": 133418,
+      "latencyMs": 105414,
       "exit": 0
     },
     {
@@ -2078,17 +2078,17 @@
       "query": "scores",
       "sample": 1,
       "key": "mimo-scores-s1",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 612,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 13,
+      "toolsMem": 12,
+      "chars": 718,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 67895,
+      "latencyMs": 188966,
       "exit": 0
     },
     {
@@ -2096,17 +2096,17 @@
       "query": "scores",
       "sample": 2,
       "key": "mimo-scores-s2",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 999,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 1226,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 90294,
+      "latencyMs": 143817,
       "exit": 0
     },
     {
@@ -2116,15 +2116,15 @@
       "key": "mimo-scores-s3",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 963,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "chars": 639,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 68042,
+      "latencyMs": 95787,
       "exit": 0
     },
     {
@@ -2134,15 +2134,15 @@
       "key": "mimo-kubernetes-s1",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 538,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 1041,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 87699,
+      "latencyMs": 45479,
       "exit": 0
     },
     {
@@ -2152,15 +2152,15 @@
       "key": "mimo-kubernetes-s2",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 1178,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 967,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 94744,
+      "latencyMs": 97551,
       "exit": 0
     },
     {
@@ -2168,17 +2168,17 @@
       "query": "kubernetes",
       "sample": 3,
       "key": "mimo-kubernetes-s3",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 589,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 1038,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 72356,
+      "latencyMs": 106726,
       "exit": 0
     },
     {
@@ -2186,17 +2186,17 @@
       "query": "authentication",
       "sample": 1,
       "key": "mimo-authentication-s1",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 875,
-      "requestQuality": "gap",
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 939,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.29,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 59875,
+      "latencyMs": 85493,
       "exit": 0
     },
     {
@@ -2204,17 +2204,17 @@
       "query": "authentication",
       "sample": 2,
       "key": "mimo-authentication-s2",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 804,
-      "requestQuality": "gap",
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 794,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
-      "results": 5,
+      "results": 1,
       "intent": "understand",
-      "topScore": 0.29,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 82109,
+      "latencyMs": 65829,
       "exit": 0
     },
     {
@@ -2224,15 +2224,15 @@
       "key": "mimo-authentication-s3",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 609,
-      "requestQuality": "gap",
+      "chars": 813,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.3,
+      "topScore": 0.51,
       "envelopeFidelity": 7,
-      "latencyMs": 121014,
+      "latencyMs": 80837,
       "exit": 0
     },
     {
@@ -2240,17 +2240,17 @@
       "query": "the-thing-with-confidence",
       "sample": 1,
       "key": "mimo-the-thing-with-confidence-s1",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 845,
-      "requestQuality": "gap",
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 569,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
-      "results": 1,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.35,
+      "topScore": 0.47,
       "envelopeFidelity": 7,
-      "latencyMs": 79039,
+      "latencyMs": 90974,
       "exit": 0
     },
     {
@@ -2258,17 +2258,17 @@
       "query": "the-thing-with-confidence",
       "sample": 2,
       "key": "mimo-the-thing-with-confidence-s2",
-      "toolsTotal": 6,
+      "toolsTotal": 1,
       "toolsMem": 0,
-      "chars": 519,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 5,
-      "intent": "understand",
-      "topScore": 0.35,
-      "envelopeFidelity": 7,
-      "latencyMs": 102588,
+      "chars": 43,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 1,
+      "latencyMs": 50710,
       "exit": 0
     },
     {
@@ -2278,15 +2278,15 @@
       "key": "mimo-the-thing-with-confidence-s3",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 797,
-      "requestQuality": "gap",
+      "chars": 742,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.35,
+      "topScore": 0.47,
       "envelopeFidelity": 7,
-      "latencyMs": 73455,
+      "latencyMs": 65366,
       "exit": 0
     },
     {
@@ -2294,18 +2294,18 @@
       "query": "graph",
       "sample": 1,
       "key": "kimi-graph-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 302,
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 622,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 1,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.85,
       "envelopeFidelity": 7,
-      "latencyMs": 168665,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "kimi",
@@ -2313,16 +2313,16 @@
       "sample": 2,
       "key": "kimi-graph-s2",
       "toolsTotal": 25,
-      "toolsMem": 22,
-      "chars": 848,
+      "toolsMem": 17,
+      "chars": 744,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
-      "intent": "understand",
-      "topScore": 0.86,
+      "intent": "find_spec",
+      "topScore": 0.85,
       "envelopeFidelity": 7,
-      "latencyMs": 438387,
+      "latencyMs": 522462,
       "exit": 0
     },
     {
@@ -2330,17 +2330,17 @@
       "query": "graph",
       "sample": 3,
       "key": "kimi-graph-s3",
-      "toolsTotal": 18,
-      "toolsMem": 17,
-      "chars": 899,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 770,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.94,
       "envelopeFidelity": 7,
-      "latencyMs": 304096,
+      "latencyMs": 144797,
       "exit": 0
     },
     {
@@ -2348,35 +2348,35 @@
       "query": "agent",
       "sample": 1,
       "key": "kimi-agent-s1",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 735,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 12,
+      "toolsMem": 9,
+      "chars": 1008,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.54,
+      "topScore": 0.81,
       "envelopeFidelity": 7,
-      "latencyMs": 197150,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "kimi",
       "query": "agent",
       "sample": 2,
       "key": "kimi-agent-s2",
-      "toolsTotal": 9,
-      "toolsMem": 5,
-      "chars": 755,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 24,
+      "toolsMem": 18,
+      "chars": 796,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.55,
-      "envelopeFidelity": 7,
-      "latencyMs": 206923,
+      "topScore": 0.92,
+      "envelopeFidelity": 5,
+      "latencyMs": 510467,
       "exit": 0
     },
     {
@@ -2385,34 +2385,34 @@
       "sample": 3,
       "key": "kimi-agent-s3",
       "toolsTotal": 23,
-      "toolsMem": 0,
-      "chars": 198,
+      "toolsMem": 21,
+      "chars": 757,
       "requestQuality": null,
       "citationPolicy": null,
       "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 1,
-      "latencyMs": 600033,
-      "exit": 124
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.82,
+      "envelopeFidelity": 5,
+      "latencyMs": 276740,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "memory",
       "sample": 1,
       "key": "kimi-memory-s1",
-      "toolsTotal": 17,
-      "toolsMem": 15,
-      "chars": 798,
+      "toolsTotal": 7,
+      "toolsMem": 5,
+      "chars": 306,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 482460,
+      "latencyMs": 198082,
       "exit": 0
     },
     {
@@ -2420,17 +2420,17 @@
       "query": "memory",
       "sample": 2,
       "key": "kimi-memory-s2",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 559,
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 792,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 165532,
+      "latencyMs": 249282,
       "exit": 0
     },
     {
@@ -2438,17 +2438,17 @@
       "query": "memory",
       "sample": 3,
       "key": "kimi-memory-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 639,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 620,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 1,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 89980,
+      "latencyMs": 266879,
       "exit": 0
     },
     {
@@ -2456,35 +2456,35 @@
       "query": "deep-loop",
       "sample": 1,
       "key": "kimi-deep-loop-s1",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 526,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.25,
-      "envelopeFidelity": 7,
-      "latencyMs": 115356,
-      "exit": 0
+      "toolsTotal": 37,
+      "toolsMem": 27,
+      "chars": 0,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 0,
+      "latencyMs": 600047,
+      "exit": 124
     },
     {
       "model": "kimi",
       "query": "deep-loop",
       "sample": 2,
       "key": "kimi-deep-loop-s2",
-      "toolsTotal": 20,
-      "toolsMem": 17,
-      "chars": 1120,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
+      "toolsTotal": 12,
+      "toolsMem": 11,
+      "chars": 860,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.25,
-      "envelopeFidelity": 7,
-      "latencyMs": 514445,
+      "topScore": 0.86,
+      "envelopeFidelity": 5,
+      "latencyMs": 446745,
       "exit": 0
     },
     {
@@ -2492,17 +2492,17 @@
       "query": "deep-loop",
       "sample": 3,
       "key": "kimi-deep-loop-s3",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 725,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
+      "toolsTotal": 22,
+      "toolsMem": 19,
+      "chars": 778,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.25,
-      "envelopeFidelity": 7,
-      "latencyMs": 241325,
+      "topScore": 0.86,
+      "envelopeFidelity": 5,
+      "latencyMs": 359186,
       "exit": 0
     },
     {
@@ -2510,17 +2510,17 @@
       "query": "routing",
       "sample": 1,
       "key": "kimi-routing-s1",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 863,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 8,
+      "toolsMem": 7,
+      "chars": 322,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.55,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 290237,
+      "latencyMs": 277247,
       "exit": 0
     },
     {
@@ -2528,17 +2528,17 @@
       "query": "routing",
       "sample": 2,
       "key": "kimi-routing-s2",
-      "toolsTotal": 12,
-      "toolsMem": 10,
-      "chars": 953,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 19,
+      "toolsMem": 17,
+      "chars": 781,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
-      "intent": "find_spec",
-      "topScore": 0.55,
+      "intent": "understand",
+      "topScore": 0.9,
       "envelopeFidelity": 7,
-      "latencyMs": 525050,
+      "latencyMs": 243382,
       "exit": 0
     },
     {
@@ -2546,17 +2546,17 @@
       "query": "routing",
       "sample": 3,
       "key": "kimi-routing-s3",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 925,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 24,
+      "toolsMem": 22,
+      "chars": 760,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.76,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 256602,
+      "latencyMs": 434679,
       "exit": 0
     },
     {
@@ -2564,35 +2564,35 @@
       "query": "semantic-search",
       "sample": 1,
       "key": "kimi-semantic-search-s1",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 553,
+      "toolsTotal": 20,
+      "toolsMem": 14,
+      "chars": 847,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.44,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 215611,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "kimi",
       "query": "semantic-search",
       "sample": 2,
       "key": "kimi-semantic-search-s2",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 970,
+      "toolsTotal": 14,
+      "toolsMem": 13,
+      "chars": 811,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.9,
       "envelopeFidelity": 7,
-      "latencyMs": 249396,
+      "latencyMs": 189021,
       "exit": 0
     },
     {
@@ -2600,17 +2600,17 @@
       "query": "semantic-search",
       "sample": 3,
       "key": "kimi-semantic-search-s3",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 389,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 611,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.44,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 111549,
+      "latencyMs": 175269,
       "exit": 0
     },
     {
@@ -2618,17 +2618,17 @@
       "query": "context",
       "sample": 1,
       "key": "kimi-context-s1",
-      "toolsTotal": 13,
-      "toolsMem": 12,
-      "chars": 954,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 758,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.64,
-      "envelopeFidelity": 7,
-      "latencyMs": 422412,
+      "topScore": 0.93,
+      "envelopeFidelity": 5,
+      "latencyMs": 144635,
       "exit": 0
     },
     {
@@ -2636,17 +2636,17 @@
       "query": "context",
       "sample": 2,
       "key": "kimi-context-s2",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 903,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 5,
+      "toolsTotal": 12,
+      "toolsMem": 10,
+      "chars": 327,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 233609,
+      "latencyMs": 285185,
       "exit": 0
     },
     {
@@ -2654,17 +2654,17 @@
       "query": "context",
       "sample": 3,
       "key": "kimi-context-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 921,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 804,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.94,
       "envelopeFidelity": 7,
-      "latencyMs": 284757,
+      "latencyMs": 187917,
       "exit": 0
     },
     {
@@ -2672,17 +2672,17 @@
       "query": "quality",
       "sample": 1,
       "key": "kimi-quality-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 701,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 23,
+      "toolsMem": 22,
+      "chars": 631,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.54,
+      "topScore": 0.81,
       "envelopeFidelity": 7,
-      "latencyMs": 151973,
+      "latencyMs": 519820,
       "exit": 0
     },
     {
@@ -2690,17 +2690,17 @@
       "query": "quality",
       "sample": 2,
       "key": "kimi-quality-s2",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 593,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 23,
+      "toolsMem": 22,
+      "chars": 814,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.81,
+      "topScore": 0.92,
       "envelopeFidelity": 7,
-      "latencyMs": 395087,
+      "latencyMs": 217738,
       "exit": 0
     },
     {
@@ -2708,17 +2708,17 @@
       "query": "quality",
       "sample": 3,
       "key": "kimi-quality-s3",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 321,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 621,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.54,
+      "topScore": 0.81,
       "envelopeFidelity": 7,
-      "latencyMs": 106413,
+      "latencyMs": 298952,
       "exit": 0
     },
     {
@@ -2726,17 +2726,17 @@
       "query": "scores",
       "sample": 1,
       "key": "kimi-scores-s1",
-      "toolsTotal": 6,
-      "toolsMem": 5,
-      "chars": 816,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 27,
+      "toolsMem": 26,
+      "chars": 787,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 299198,
+      "latencyMs": 418791,
       "exit": 0
     },
     {
@@ -2744,17 +2744,17 @@
       "query": "scores",
       "sample": 2,
       "key": "kimi-scores-s2",
-      "toolsTotal": 5,
+      "toolsTotal": 7,
       "toolsMem": 4,
-      "chars": 391,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "chars": 281,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 5,
+      "results": 1,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 118775,
+      "latencyMs": 100499,
       "exit": 0
     },
     {
@@ -2762,17 +2762,17 @@
       "query": "scores",
       "sample": 3,
       "key": "kimi-scores-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 336,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 24,
+      "toolsMem": 23,
+      "chars": 792,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 1,
+      "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 118773,
+      "latencyMs": 361009,
       "exit": 0
     },
     {
@@ -2780,17 +2780,17 @@
       "query": "kubernetes",
       "sample": 1,
       "key": "kimi-kubernetes-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 756,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 714,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
-      "envelopeFidelity": 7,
-      "latencyMs": 223899,
+      "topScore": 0.93,
+      "envelopeFidelity": 5,
+      "latencyMs": 171131,
       "exit": 0
     },
     {
@@ -2798,35 +2798,35 @@
       "query": "kubernetes",
       "sample": 2,
       "key": "kimi-kubernetes-s2",
-      "toolsTotal": 12,
-      "toolsMem": 9,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 317857,
-      "exit": 1
+      "toolsTotal": 15,
+      "toolsMem": 13,
+      "chars": 830,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.78,
+      "envelopeFidelity": 7,
+      "latencyMs": 328549,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "kubernetes",
       "sample": 3,
       "key": "kimi-kubernetes-s3",
-      "toolsTotal": 6,
-      "toolsMem": 5,
-      "chars": 756,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 831,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 114843,
+      "latencyMs": 174069,
       "exit": 0
     },
     {
@@ -2834,143 +2834,143 @@
       "query": "authentication",
       "sample": 1,
       "key": "kimi-authentication-s1",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 168845,
-      "exit": 1
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 855,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "security_audit",
+      "topScore": 0.49,
+      "envelopeFidelity": 7,
+      "latencyMs": 290205,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "authentication",
       "sample": 2,
       "key": "kimi-authentication-s2",
-      "toolsTotal": 6,
-      "toolsMem": 5,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 98814,
-      "exit": 1
+      "toolsTotal": 9,
+      "toolsMem": 8,
+      "chars": 942,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.49,
+      "envelopeFidelity": 7,
+      "latencyMs": 273350,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "authentication",
       "sample": 3,
       "key": "kimi-authentication-s3",
-      "toolsTotal": 0,
-      "toolsMem": 0,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 9931,
-      "exit": 1
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 498,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.49,
+      "envelopeFidelity": 7,
+      "latencyMs": 142824,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "the-thing-with-confidence",
       "sample": 1,
       "key": "kimi-the-thing-with-confidence-s1",
-      "toolsTotal": 0,
-      "toolsMem": 0,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 11261,
-      "exit": 1
+      "toolsTotal": 21,
+      "toolsMem": 19,
+      "chars": 692,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.76,
+      "envelopeFidelity": 7,
+      "latencyMs": 415688,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "the-thing-with-confidence",
       "sample": 2,
       "key": "kimi-the-thing-with-confidence-s2",
-      "toolsTotal": 0,
-      "toolsMem": 0,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 10744,
-      "exit": 1
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 567,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.47,
+      "envelopeFidelity": 7,
+      "latencyMs": 288368,
+      "exit": 0
     },
     {
       "model": "kimi",
       "query": "the-thing-with-confidence",
       "sample": 3,
       "key": "kimi-the-thing-with-confidence-s3",
-      "toolsTotal": 0,
-      "toolsMem": 0,
-      "chars": 0,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 0,
-      "latencyMs": 13280,
-      "exit": 1
+      "toolsTotal": 11,
+      "toolsMem": 7,
+      "chars": 563,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.47,
+      "envelopeFidelity": 7,
+      "latencyMs": 231831,
+      "exit": 0
     },
     {
       "model": "deepseek",
       "query": "graph",
       "sample": 1,
       "key": "deepseek-graph-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 730,
-      "requestQuality": "good",
-      "citationPolicy": "cite_results",
-      "citeCorrect": true,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 611,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
-      "envelopeFidelity": 7,
-      "latencyMs": 74313,
-      "exit": 0
+      "topScore": 0.85,
+      "envelopeFidelity": 5,
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "deepseek",
       "query": "graph",
       "sample": 2,
       "key": "deepseek-graph-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 812,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 925,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 66072,
+      "latencyMs": 60000,
       "exit": 0
     },
     {
@@ -2978,17 +2978,17 @@
       "query": "graph",
       "sample": 3,
       "key": "deepseek-graph-s3",
-      "toolsTotal": 6,
-      "toolsMem": 5,
-      "chars": 1109,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 785,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.85,
       "envelopeFidelity": 7,
-      "latencyMs": 106325,
+      "latencyMs": 146002,
       "exit": 0
     },
     {
@@ -2996,35 +2996,35 @@
       "query": "agent",
       "sample": 1,
       "key": "deepseek-agent-s1",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 680,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 834,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.84,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 81920,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "deepseek",
       "query": "agent",
       "sample": 2,
       "key": "deepseek-agent-s2",
-      "toolsTotal": 12,
-      "toolsMem": 1,
-      "chars": 532,
-      "requestQuality": null,
-      "citationPolicy": null,
-      "citeCorrect": null,
-      "results": -1,
-      "intent": null,
-      "topScore": 0,
-      "envelopeFidelity": 2,
-      "latencyMs": 137211,
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 837,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 5,
+      "intent": "understand",
+      "topScore": 0.52,
+      "envelopeFidelity": 7,
+      "latencyMs": 120213,
       "exit": 0
     },
     {
@@ -3033,16 +3033,16 @@
       "sample": 3,
       "key": "deepseek-agent-s3",
       "toolsTotal": 4,
-      "toolsMem": 2,
-      "chars": 670,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsMem": 3,
+      "chars": 765,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.84,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 103855,
+      "latencyMs": 88350,
       "exit": 0
     },
     {
@@ -3050,17 +3050,17 @@
       "query": "memory",
       "sample": 1,
       "key": "deepseek-memory-s1",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 582,
+      "toolsTotal": 8,
+      "toolsMem": 7,
+      "chars": 768,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 100805,
+      "latencyMs": 149882,
       "exit": 0
     },
     {
@@ -3068,17 +3068,17 @@
       "query": "memory",
       "sample": 2,
       "key": "deepseek-memory-s2",
-      "toolsTotal": 7,
-      "toolsMem": 4,
-      "chars": 594,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 551,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 117233,
+      "latencyMs": 57066,
       "exit": 0
     },
     {
@@ -3088,15 +3088,15 @@
       "key": "deepseek-memory-s3",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 474,
+      "chars": 1320,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 86046,
+      "latencyMs": 67976,
       "exit": 0
     },
     {
@@ -3106,15 +3106,15 @@
       "key": "deepseek-deep-loop-s1",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 625,
+      "chars": 1079,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 4,
+      "results": 5,
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 86114,
+      "latencyMs": 67111,
       "exit": 0
     },
     {
@@ -3122,9 +3122,9 @@
       "query": "deep-loop",
       "sample": 2,
       "key": "deepseek-deep-loop-s2",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 401,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 640,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
@@ -3132,7 +3132,7 @@
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 103697,
+      "latencyMs": 59291,
       "exit": 0
     },
     {
@@ -3140,17 +3140,17 @@
       "query": "deep-loop",
       "sample": 3,
       "key": "deepseek-deep-loop-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 724,
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 1373,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
-      "results": 4,
+      "results": 5,
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 167239,
+      "latencyMs": 99818,
       "exit": 0
     },
     {
@@ -3158,17 +3158,17 @@
       "query": "routing",
       "sample": 1,
       "key": "deepseek-routing-s1",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 853,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 618,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.58,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 68971,
+      "latencyMs": 68754,
       "exit": 0
     },
     {
@@ -3178,15 +3178,15 @@
       "key": "deepseek-routing-s2",
       "toolsTotal": 6,
       "toolsMem": 5,
-      "chars": 1625,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 830,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.62,
+      "topScore": 0.81,
       "envelopeFidelity": 7,
-      "latencyMs": 125270,
+      "latencyMs": 93701,
       "exit": 0
     },
     {
@@ -3194,17 +3194,17 @@
       "query": "routing",
       "sample": 3,
       "key": "deepseek-routing-s3",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 749,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 918,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.62,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 104141,
+      "latencyMs": 53307,
       "exit": 0
     },
     {
@@ -3214,33 +3214,33 @@
       "key": "deepseek-semantic-search-s1",
       "toolsTotal": 3,
       "toolsMem": 2,
-      "chars": 777,
+      "chars": 2084,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 61395,
-      "exit": 0
+      "latencyMs": null,
+      "exit": null
     },
     {
       "model": "deepseek",
       "query": "semantic-search",
       "sample": 2,
       "key": "deepseek-semantic-search-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 904,
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 809,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 63726,
+      "latencyMs": 101501,
       "exit": 0
     },
     {
@@ -3250,15 +3250,15 @@
       "key": "deepseek-semantic-search-s3",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 825,
+      "chars": 609,
       "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
       "envelopeFidelity": 7,
-      "latencyMs": 67078,
+      "latencyMs": 55894,
       "exit": 0
     },
     {
@@ -3268,15 +3268,15 @@
       "key": "deepseek-context-s1",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 873,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 671,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 83254,
+      "latencyMs": 67218,
       "exit": 0
     },
     {
@@ -3284,17 +3284,17 @@
       "query": "context",
       "sample": 2,
       "key": "deepseek-context-s2",
-      "toolsTotal": 3,
-      "toolsMem": 2,
-      "chars": 598,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 667,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 59150,
+      "latencyMs": 62877,
       "exit": 0
     },
     {
@@ -3302,17 +3302,17 @@
       "query": "context",
       "sample": 3,
       "key": "deepseek-context-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 585,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 10,
+      "toolsMem": 6,
+      "chars": 1032,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.67,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 83702,
+      "latencyMs": 124871,
       "exit": 0
     },
     {
@@ -3320,17 +3320,17 @@
       "query": "quality",
       "sample": 1,
       "key": "deepseek-quality-s1",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 1130,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 741,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.76,
+      "topScore": 0.8,
       "envelopeFidelity": 7,
-      "latencyMs": 121546,
+      "latencyMs": 56416,
       "exit": 0
     },
     {
@@ -3338,17 +3338,17 @@
       "query": "quality",
       "sample": 2,
       "key": "deepseek-quality-s2",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 982,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 15,
+      "toolsMem": 14,
+      "chars": 945,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.55,
+      "topScore": 0.88,
       "envelopeFidelity": 7,
-      "latencyMs": 98625,
+      "latencyMs": 195295,
       "exit": 0
     },
     {
@@ -3356,17 +3356,17 @@
       "query": "quality",
       "sample": 3,
       "key": "deepseek-quality-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 823,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 521,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.54,
+      "topScore": 0.8,
       "envelopeFidelity": 7,
-      "latencyMs": 78683,
+      "latencyMs": 54661,
       "exit": 0
     },
     {
@@ -3376,15 +3376,15 @@
       "key": "deepseek-scores-s1",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 588,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "chars": 853,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 95232,
+      "latencyMs": 59814,
       "exit": 0
     },
     {
@@ -3394,15 +3394,15 @@
       "key": "deepseek-scores-s2",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 796,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "chars": 627,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.56,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 67283,
+      "latencyMs": 51896,
       "exit": 0
     },
     {
@@ -3410,17 +3410,17 @@
       "query": "scores",
       "sample": 3,
       "key": "deepseek-scores-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 692,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 1035,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.51,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 138868,
+      "latencyMs": 38453,
       "exit": 0
     },
     {
@@ -3428,17 +3428,17 @@
       "query": "kubernetes",
       "sample": 1,
       "key": "deepseek-kubernetes-s1",
-      "toolsTotal": 5,
+      "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 934,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 760,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 81259,
+      "latencyMs": 59735,
       "exit": 0
     },
     {
@@ -3446,17 +3446,17 @@
       "query": "kubernetes",
       "sample": 2,
       "key": "deepseek-kubernetes-s2",
-      "toolsTotal": 4,
-      "toolsMem": 3,
-      "chars": 945,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 3,
+      "toolsMem": 2,
+      "chars": 312,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 84720,
+      "latencyMs": 51010,
       "exit": 0
     },
     {
@@ -3464,17 +3464,17 @@
       "query": "kubernetes",
       "sample": 3,
       "key": "deepseek-kubernetes-s3",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 705,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 860,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.6,
+      "topScore": 0.78,
       "envelopeFidelity": 7,
-      "latencyMs": 98539,
+      "latencyMs": 44335,
       "exit": 0
     },
     {
@@ -3484,15 +3484,15 @@
       "key": "deepseek-authentication-s1",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 988,
-      "requestQuality": "gap",
+      "chars": 1056,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.29,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 112150,
+      "latencyMs": 52178,
       "exit": 0
     },
     {
@@ -3502,15 +3502,15 @@
       "key": "deepseek-authentication-s2",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 815,
-      "requestQuality": "gap",
+      "chars": 1062,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.29,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 91329,
+      "latencyMs": 77466,
       "exit": 0
     },
     {
@@ -3520,15 +3520,15 @@
       "key": "deepseek-authentication-s3",
       "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 989,
-      "requestQuality": "gap",
+      "chars": 1196,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.29,
+      "topScore": 0.49,
       "envelopeFidelity": 7,
-      "latencyMs": 94105,
+      "latencyMs": 73840,
       "exit": 0
     },
     {
@@ -3536,17 +3536,17 @@
       "query": "the-thing-with-confidence",
       "sample": 1,
       "key": "deepseek-the-thing-with-confidence-s1",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 1305,
-      "requestQuality": "gap",
+      "toolsTotal": 4,
+      "toolsMem": 3,
+      "chars": 500,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.35,
+      "topScore": 0.47,
       "envelopeFidelity": 7,
-      "latencyMs": 102422,
+      "latencyMs": 44372,
       "exit": 0
     },
     {
@@ -3556,15 +3556,15 @@
       "key": "deepseek-the-thing-with-confidence-s2",
       "toolsTotal": 5,
       "toolsMem": 4,
-      "chars": 472,
-      "requestQuality": "gap",
+      "chars": 788,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.35,
+      "topScore": 0.79,
       "envelopeFidelity": 7,
-      "latencyMs": 72713,
+      "latencyMs": 59941,
       "exit": 0
     },
     {
@@ -3572,17 +3572,17 @@
       "query": "the-thing-with-confidence",
       "sample": 3,
       "key": "deepseek-the-thing-with-confidence-s3",
-      "toolsTotal": 5,
+      "toolsTotal": 4,
       "toolsMem": 3,
-      "chars": 850,
-      "requestQuality": "gap",
+      "chars": 671,
+      "requestQuality": "weak",
       "citationPolicy": "do_not_cite_results",
       "citeCorrect": true,
       "results": 5,
       "intent": "understand",
-      "topScore": 0.35,
+      "topScore": 0.47,
       "envelopeFidelity": 7,
-      "latencyMs": 97560,
+      "latencyMs": 55848,
       "exit": 0
     },
     {
@@ -3590,17 +3590,17 @@
       "query": "graph",
       "sample": 1,
       "key": "gpt55-graph-s1",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 314,
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 297,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 180707,
+      "latencyMs": 63105,
       "exit": 0
     },
     {
@@ -3608,17 +3608,17 @@
       "query": "graph",
       "sample": 2,
       "key": "gpt55-graph-s2",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 302,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 1181,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 154919,
+      "latencyMs": 135584,
       "exit": 0
     },
     {
@@ -3626,17 +3626,17 @@
       "query": "graph",
       "sample": 3,
       "key": "gpt55-graph-s3",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 302,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 297,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.84,
       "envelopeFidelity": 7,
-      "latencyMs": 139753,
+      "latencyMs": 97416,
       "exit": 0
     },
     {
@@ -3644,17 +3644,17 @@
       "query": "agent",
       "sample": 1,
       "key": "gpt55-agent-s1",
-      "toolsTotal": 11,
-      "toolsMem": 9,
-      "chars": 280,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 12,
+      "toolsMem": 11,
+      "chars": 324,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.84,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 218180,
+      "latencyMs": 130620,
       "exit": 0
     },
     {
@@ -3662,17 +3662,17 @@
       "query": "agent",
       "sample": 2,
       "key": "gpt55-agent-s2",
-      "toolsTotal": 12,
-      "toolsMem": 11,
-      "chars": 280,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 324,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.84,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 146614,
+      "latencyMs": 74741,
       "exit": 0
     },
     {
@@ -3680,17 +3680,17 @@
       "query": "agent",
       "sample": 3,
       "key": "gpt55-agent-s3",
-      "toolsTotal": 11,
-      "toolsMem": 10,
-      "chars": 280,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 324,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.84,
+      "topScore": 0.52,
       "envelopeFidelity": 7,
-      "latencyMs": 201965,
+      "latencyMs": 91171,
       "exit": 0
     },
     {
@@ -3698,17 +3698,17 @@
       "query": "memory",
       "sample": 1,
       "key": "gpt55-memory-s1",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 651,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 361,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 126662,
+      "latencyMs": 99367,
       "exit": 0
     },
     {
@@ -3716,17 +3716,17 @@
       "query": "memory",
       "sample": 2,
       "key": "gpt55-memory-s2",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 639,
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 361,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 158721,
+      "latencyMs": 98937,
       "exit": 0
     },
     {
@@ -3734,17 +3734,17 @@
       "query": "memory",
       "sample": 3,
       "key": "gpt55-memory-s3",
-      "toolsTotal": 12,
-      "toolsMem": 11,
-      "chars": 639,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 361,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.86,
+      "topScore": 0.83,
       "envelopeFidelity": 7,
-      "latencyMs": 174320,
+      "latencyMs": 97302,
       "exit": 0
     },
     {
@@ -3752,9 +3752,9 @@
       "query": "deep-loop",
       "sample": 1,
       "key": "gpt55-deep-loop-s1",
-      "toolsTotal": 11,
-      "toolsMem": 10,
-      "chars": 353,
+      "toolsTotal": 12,
+      "toolsMem": 8,
+      "chars": 346,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
@@ -3762,7 +3762,7 @@
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 150698,
+      "latencyMs": 119274,
       "exit": 0
     },
     {
@@ -3770,9 +3770,9 @@
       "query": "deep-loop",
       "sample": 2,
       "key": "gpt55-deep-loop-s2",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 353,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 1192,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
@@ -3780,7 +3780,7 @@
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 146845,
+      "latencyMs": 115094,
       "exit": 0
     },
     {
@@ -3788,9 +3788,9 @@
       "query": "deep-loop",
       "sample": 3,
       "key": "gpt55-deep-loop-s3",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 855,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 319,
       "requestQuality": "good",
       "citationPolicy": "cite_results",
       "citeCorrect": true,
@@ -3798,7 +3798,7 @@
       "intent": "understand",
       "topScore": 0.86,
       "envelopeFidelity": 7,
-      "latencyMs": 138350,
+      "latencyMs": 107384,
       "exit": 0
     },
     {
@@ -3806,17 +3806,17 @@
       "query": "routing",
       "sample": 1,
       "key": "gpt55-routing-s1",
-      "toolsTotal": 12,
-      "toolsMem": 11,
-      "chars": 368,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 334,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.62,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 175397,
+      "latencyMs": 102523,
       "exit": 0
     },
     {
@@ -3824,17 +3824,17 @@
       "query": "routing",
       "sample": 2,
       "key": "gpt55-routing-s2",
-      "toolsTotal": 9,
+      "toolsTotal": 10,
       "toolsMem": 8,
-      "chars": 368,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "chars": 334,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.62,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 138164,
+      "latencyMs": 90863,
       "exit": 0
     },
     {
@@ -3842,17 +3842,17 @@
       "query": "routing",
       "sample": 3,
       "key": "gpt55-routing-s3",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 368,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 334,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
-      "topScore": 0.62,
+      "topScore": 0.82,
       "envelopeFidelity": 7,
-      "latencyMs": 143521,
+      "latencyMs": 70671,
       "exit": 0
     },
     {
@@ -3860,63 +3860,27 @@
       "query": "semantic-search",
       "sample": 1,
       "key": "gpt55-semantic-search-s1",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 307,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.44,
-      "envelopeFidelity": 7,
-      "latencyMs": 134131,
-      "exit": 0
+      "toolsTotal": 12,
+      "toolsMem": 10,
+      "chars": 0,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 0,
+      "latencyMs": 126487,
+      "exit": null
     },
     {
       "model": "gpt55",
       "query": "semantic-search",
       "sample": 2,
       "key": "gpt55-semantic-search-s2",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 1149,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.44,
-      "envelopeFidelity": 7,
-      "latencyMs": 164764,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "semantic-search",
-      "sample": 3,
-      "key": "gpt55-semantic-search-s3",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 309,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.44,
-      "envelopeFidelity": 7,
-      "latencyMs": 118461,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "context",
-      "sample": 1,
-      "key": "gpt55-context-s1",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 510,
+      "toolsTotal": 9,
+      "toolsMem": 8,
+      "chars": 1218,
       "requestQuality": null,
       "citationPolicy": null,
       "citeCorrect": null,
@@ -3924,7 +3888,43 @@
       "intent": null,
       "topScore": 0,
       "envelopeFidelity": 1,
-      "latencyMs": 77443,
+      "latencyMs": 119583,
+      "exit": null
+    },
+    {
+      "model": "gpt55",
+      "query": "semantic-search",
+      "sample": 3,
+      "key": "gpt55-semantic-search-s3",
+      "toolsTotal": 8,
+      "toolsMem": 7,
+      "chars": 0,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 0,
+      "latencyMs": 95613,
+      "exit": null
+    },
+    {
+      "model": "gpt55",
+      "query": "context",
+      "sample": 1,
+      "key": "gpt55-context-s1",
+      "toolsTotal": 17,
+      "toolsMem": 1,
+      "chars": 1308,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 1,
+      "latencyMs": 141726,
       "exit": null
     },
     {
@@ -3932,6 +3932,294 @@
       "query": "context",
       "sample": 2,
       "key": "gpt55-context-s2",
+      "toolsTotal": 12,
+      "toolsMem": 0,
+      "chars": 0,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 0,
+      "latencyMs": 141718,
+      "exit": null
+    },
+    {
+      "model": "gpt55",
+      "query": "context",
+      "sample": 3,
+      "key": "gpt55-context-s3",
+      "toolsTotal": 5,
+      "toolsMem": 4,
+      "chars": 339,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.83,
+      "envelopeFidelity": 7,
+      "latencyMs": 70332,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "quality",
+      "sample": 1,
+      "key": "gpt55-quality-s1",
+      "toolsTotal": 9,
+      "toolsMem": 8,
+      "chars": 0,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 0,
+      "latencyMs": 71378,
+      "exit": null
+    },
+    {
+      "model": "gpt55",
+      "query": "quality",
+      "sample": 2,
+      "key": "gpt55-quality-s2",
+      "toolsTotal": 14,
+      "toolsMem": 8,
+      "chars": 316,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.8,
+      "envelopeFidelity": 7,
+      "latencyMs": 133780,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "quality",
+      "sample": 3,
+      "key": "gpt55-quality-s3",
+      "toolsTotal": 9,
+      "toolsMem": 1,
+      "chars": 962,
+      "requestQuality": null,
+      "citationPolicy": null,
+      "citeCorrect": null,
+      "results": -1,
+      "intent": null,
+      "topScore": 0,
+      "envelopeFidelity": 2,
+      "latencyMs": 81590,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "scores",
+      "sample": 1,
+      "key": "gpt55-scores-s1",
+      "toolsTotal": 12,
+      "toolsMem": 11,
+      "chars": 293,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.79,
+      "envelopeFidelity": 7,
+      "latencyMs": 107969,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "scores",
+      "sample": 2,
+      "key": "gpt55-scores-s2",
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 281,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.79,
+      "envelopeFidelity": 7,
+      "latencyMs": 77061,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "scores",
+      "sample": 3,
+      "key": "gpt55-scores-s3",
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 1134,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.79,
+      "envelopeFidelity": 7,
+      "latencyMs": 154121,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "kubernetes",
+      "sample": 1,
+      "key": "gpt55-kubernetes-s1",
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 324,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.78,
+      "envelopeFidelity": 7,
+      "latencyMs": 69185,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "kubernetes",
+      "sample": 2,
+      "key": "gpt55-kubernetes-s2",
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 482,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.78,
+      "envelopeFidelity": 7,
+      "latencyMs": 129437,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "kubernetes",
+      "sample": 3,
+      "key": "gpt55-kubernetes-s3",
+      "toolsTotal": 6,
+      "toolsMem": 5,
+      "chars": 966,
+      "requestQuality": "good",
+      "citationPolicy": "cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.78,
+      "envelopeFidelity": 7,
+      "latencyMs": 61570,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "authentication",
+      "sample": 1,
+      "key": "gpt55-authentication-s1",
+      "toolsTotal": 8,
+      "toolsMem": 7,
+      "chars": 1130,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.49,
+      "envelopeFidelity": 7,
+      "latencyMs": 83199,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "authentication",
+      "sample": 2,
+      "key": "gpt55-authentication-s2",
+      "toolsTotal": 10,
+      "toolsMem": 9,
+      "chars": 331,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.51,
+      "envelopeFidelity": 7,
+      "latencyMs": 107403,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "authentication",
+      "sample": 3,
+      "key": "gpt55-authentication-s3",
+      "toolsTotal": 13,
+      "toolsMem": 12,
+      "chars": 331,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.49,
+      "envelopeFidelity": 7,
+      "latencyMs": 123166,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "the-thing-with-confidence",
+      "sample": 1,
+      "key": "gpt55-the-thing-with-confidence-s1",
+      "toolsTotal": 11,
+      "toolsMem": 10,
+      "chars": 374,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.47,
+      "envelopeFidelity": 7,
+      "latencyMs": 121609,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "the-thing-with-confidence",
+      "sample": 2,
+      "key": "gpt55-the-thing-with-confidence-s2",
+      "toolsTotal": 7,
+      "toolsMem": 6,
+      "chars": 372,
+      "requestQuality": "weak",
+      "citationPolicy": "do_not_cite_results",
+      "citeCorrect": true,
+      "results": 1,
+      "intent": "understand",
+      "topScore": 0.47,
+      "envelopeFidelity": 7,
+      "latencyMs": 99325,
+      "exit": 0
+    },
+    {
+      "model": "gpt55",
+      "query": "the-thing-with-confidence",
+      "sample": 3,
+      "key": "gpt55-the-thing-with-confidence-s3",
       "toolsTotal": 7,
       "toolsMem": 6,
       "chars": 0,
@@ -3942,296 +4230,8 @@
       "intent": null,
       "topScore": 0,
       "envelopeFidelity": 0,
-      "latencyMs": 76671,
+      "latencyMs": 88728,
       "exit": null
-    },
-    {
-      "model": "gpt55",
-      "query": "context",
-      "sample": 3,
-      "key": "gpt55-context-s3",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 359,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.67,
-      "envelopeFidelity": 7,
-      "latencyMs": 124039,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "quality",
-      "sample": 1,
-      "key": "gpt55-quality-s1",
-      "toolsTotal": 11,
-      "toolsMem": 9,
-      "chars": 567,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 5,
-      "intent": "understand",
-      "topScore": 0.54,
-      "envelopeFidelity": 7,
-      "latencyMs": 149987,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "quality",
-      "sample": 2,
-      "key": "gpt55-quality-s2",
-      "toolsTotal": 7,
-      "toolsMem": 6,
-      "chars": 325,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.81,
-      "envelopeFidelity": 7,
-      "latencyMs": 146709,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "quality",
-      "sample": 3,
-      "key": "gpt55-quality-s3",
-      "toolsTotal": 16,
-      "toolsMem": 7,
-      "chars": 909,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.54,
-      "envelopeFidelity": 7,
-      "latencyMs": 248435,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "scores",
-      "sample": 1,
-      "key": "gpt55-scores-s1",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 348,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.56,
-      "envelopeFidelity": 7,
-      "latencyMs": 151041,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "scores",
-      "sample": 2,
-      "key": "gpt55-scores-s2",
-      "toolsTotal": 5,
-      "toolsMem": 4,
-      "chars": 868,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.56,
-      "envelopeFidelity": 7,
-      "latencyMs": 114288,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "scores",
-      "sample": 3,
-      "key": "gpt55-scores-s3",
-      "toolsTotal": 11,
-      "toolsMem": 10,
-      "chars": 348,
-      "requestQuality": "weak",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.56,
-      "envelopeFidelity": 7,
-      "latencyMs": 155886,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "kubernetes",
-      "sample": 1,
-      "key": "gpt55-kubernetes-s1",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 1424,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.6,
-      "envelopeFidelity": 7,
-      "latencyMs": 122309,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "kubernetes",
-      "sample": 2,
-      "key": "gpt55-kubernetes-s2",
-      "toolsTotal": 14,
-      "toolsMem": 10,
-      "chars": 356,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.52,
-      "envelopeFidelity": 7,
-      "latencyMs": 184901,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "kubernetes",
-      "sample": 3,
-      "key": "gpt55-kubernetes-s3",
-      "toolsTotal": 10,
-      "toolsMem": 9,
-      "chars": 362,
-      "requestQuality": "weak",
-      "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.6,
-      "envelopeFidelity": 7,
-      "latencyMs": 178994,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "authentication",
-      "sample": 1,
-      "key": "gpt55-authentication-s1",
-      "toolsTotal": 6,
-      "toolsMem": 5,
-      "chars": 325,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.29,
-      "envelopeFidelity": 7,
-      "latencyMs": 140893,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "authentication",
-      "sample": 2,
-      "key": "gpt55-authentication-s2",
-      "toolsTotal": 8,
-      "toolsMem": 0,
-      "chars": 325,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.29,
-      "envelopeFidelity": 7,
-      "latencyMs": 171216,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "authentication",
-      "sample": 3,
-      "key": "gpt55-authentication-s3",
-      "toolsTotal": 13,
-      "toolsMem": 10,
-      "chars": 824,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.29,
-      "envelopeFidelity": 7,
-      "latencyMs": 188034,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "the-thing-with-confidence",
-      "sample": 1,
-      "key": "gpt55-the-thing-with-confidence-s1",
-      "toolsTotal": 9,
-      "toolsMem": 8,
-      "chars": 607,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.35,
-      "envelopeFidelity": 7,
-      "latencyMs": 160635,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "the-thing-with-confidence",
-      "sample": 2,
-      "key": "gpt55-the-thing-with-confidence-s2",
-      "toolsTotal": 8,
-      "toolsMem": 7,
-      "chars": 348,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.35,
-      "envelopeFidelity": 7,
-      "latencyMs": 106014,
-      "exit": 0
-    },
-    {
-      "model": "gpt55",
-      "query": "the-thing-with-confidence",
-      "sample": 3,
-      "key": "gpt55-the-thing-with-confidence-s3",
-      "toolsTotal": 12,
-      "toolsMem": 7,
-      "chars": 498,
-      "requestQuality": "gap",
-      "citationPolicy": "do_not_cite_results",
-      "citeCorrect": true,
-      "results": 1,
-      "intent": "understand",
-      "topScore": 0.35,
-      "envelopeFidelity": 7,
-      "latencyMs": 176666,
-      "exit": 0
     }
   ]
 }

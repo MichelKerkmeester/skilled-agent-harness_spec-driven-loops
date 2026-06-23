@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Status** | Complete |
-| **Completed** | 2026-06-22 |
+| **Completed** | 2026-06-22, post-graduation re-run 2026-06-23 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
@@ -67,6 +67,8 @@ The findings:
 **An off-corpus false-relevance is a calibration property, not a model behavior.** `authentication` correctly lands weak near 0.50 across all four models. `kubernetes` lands good at 0.78 across all four, where the top hit is the unrelated Spec Memory Runtime Retention Cleanup summary. Identical across every model, this is the absolute-relevance calibration over-scoring an off-corpus term, and the models faithfully reported it. This is the one finding that touches 005 data quality directly, the quality gate can wave a confident citation through on a spurious match.
 
 **Recommendation.** Use DeepSeek for `/memory:search` dispatches, MiMo when cost matters more than the last point of fidelity. Avoid Kimi for this command, and do not run gpt-5.5 below high.
+
+**Post-graduation re-run (2026-06-23) confirms the calibration fix.** The off-corpus false-relevance above was the one finding that touched 005 data quality directly. The noise-floor and lexical-grounding flags that close it graduated to default-ON, and a four-model re-run on the same matrix against the live flags moved the discriminating queries exactly as intended. `kubernetes` dropped from `good` at 0.79 to `weak` at 0.53, `authentication` from `weak` to `gap`, and the post-graduation scores now stratify cleanly by query alignment from aligned 0.68 to max-vague 0.23. The re-run also surfaced findings the first pass could not: the new cite_with_caveat tier is live and coherent, the intent classifier collapses every vague query to `understand` with no weights applied, and Kimi is two and a half times slower while accounting for eight of ten unparsed cells. A dashboard review then found a `good` verdict rendered beside an `[EVIDENCE GAP DETECTED]` banner on 19 of 144 cells, the one substantive presentation bug. gpt-5.5 at medium showed the same calibration fix and its envelope fidelity actually rose from 5.6 to 6.6 against the cleaner verdict path, softening the original weakest-driver verdict. The full re-run data, the cross-cutting findings and the dashboard review are sections 5 through 8 of `benchmark-results.md`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,5 +108,7 @@ The driver expanded the config into one cell per model, query and sample, then r
 
 - **The variant axis is not apples-to-apples.** gpt-5.5 ran at medium against a high trio, so its weakest-driver result conflates the model with the reasoning tier. A follow-on running every model at both medium and high would separate the two.
 - **Latency is wall-clock, not billed compute.** It includes queueing and the launch pool, so it ranks the models rather than pricing them.
-- **The kubernetes false-relevance is one off-corpus term.** It shows the gate can over-score a spurious match, but a single term does not measure the rate. A standing red-team query set would.
+- **The kubernetes false-relevance is one off-corpus term.** It shows the gate can over-score a spurious match, but a single term does not measure the rate. A standing red-team query set would. The 2026-06-23 re-run confirms the graduated flags fixed this one term, but the rate question stands.
+- **Open follow-ups from the re-run.** The `good`-verdict-beside-evidence-gap-banner contradiction on 18 of 110 cells needs tracing to the Stage-4 bridge or a separate render-time banner. The cite-correct metric in `extract-metrics.mjs` must be made three-tier-aware before its column reads true again. The intent classifier returning `understand` for every vague query is a routing ceiling worth a decision. The full list is section 8 of `benchmark-results.md`.
+- **The variant axis is still not apples-to-apples in the re-run.** gpt-5.5 ran at medium against the high trio in both passes, so its numbers improved post-graduation but still carry the tier handicap. A both-tiers run would separate model from reasoning depth.
 <!-- /ANCHOR:limitations -->
