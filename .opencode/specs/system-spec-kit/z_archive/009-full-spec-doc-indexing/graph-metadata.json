@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived folder captures work that indexed full spec folder documents. The older archive shape no longer matched the active template contract, which caused strict validation errors.",
+    "causal_summary": "This archived folder captures work that indexed full spec folder documents",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-05-30T10:12:03.133Z",
+    "last_save_at": "2026-06-23T03:49:59.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:fd3e0900ba36c2f6d8ef569e50bd8df3a3be7d49d79e49ad2d306238f6a23fe6",
+    "source_doc_hashes": {
+      "spec.md": "d2dc918ac8babfb91bdf2a58e487ce9501ff6b0cd917214239bf14a4dd3d2b26",
+      "plan.md": "657529018bfaf593a0d29aac5ce533ef69202f60e502ead51837b4d766319690",
+      "tasks.md": "137d88ee51d8473e93ed6f9aacf9a855575a44263e72380e506346cb44c181f5",
+      "implementation-summary.md": "f095bab52c9d9b5fb5dfcd075652207913ced602260329471af06e2a428d4496",
+      "handover.md": "b9b42eabcef5cb8ce317cbd32c3dc1ef96d6da068902cb5bbaf924f1cac98131"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

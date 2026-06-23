@@ -29,8 +29,8 @@
       "plan",
       "tasks",
       "summary",
-      "purpose",
-      "ship"
+      "author",
+      "lib"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Purpose: ship a skill-advisor-local `mcp_server/lib/embedders/` module that mirrors 016 mk-spec-memory: `EmbedderAdapter` interface, `MANIFESTS` registry, dim-tagged schema, `vec_metadata` pointer. Operator can then swap embedders via env var + daemon restart (or eventually MCP tool).",
+    "causal_summary": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema + vec_metadata pointer",
     "created_at": "2026-05-18T08:07:25.979Z",
-    "last_save_at": "2026-05-30T10:12:02.272Z",
+    "last_save_at": "2026-06-23T03:49:54.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d0bfcf80214c97554860a63a92207a1e5964ce8b30cd3946a78f54c2fd04fabd",
+    "source_doc_hashes": {
+      "spec.md": "4c9fbe578378203b13afb5f706362584f7f20e0f5aee6700103d299b230b48c2",
+      "plan.md": "627bc78803aa7308bf8962f97f240344af2cfcccb66be575be38ffa541e132f7",
+      "tasks.md": "62ec6d5955b78fe5ada9a993b22f5460e63a73b2861b198b93692dce1abc7700",
+      "implementation-summary.md": "63cbe965547ec47b792aa42077105da1611d1e4067820e59dbc0ff1643d3a05a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

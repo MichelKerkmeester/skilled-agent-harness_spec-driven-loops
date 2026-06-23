@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
-  "description": "Feature Specification: manual-testing-per-playbook remediation-revalidation phase",
+  "description": "The code audit remediation and revalidation phase (catalog phase 021) synthesized findings from all 20 prior audit phases, identifying ~45 PARTIAL ver",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
-    "remediation-revalidation",
-    "phase"
+    "code",
+    "audit",
+    "remediation",
+    "revalidation",
+    "phase",
+    "catalog",
+    "021",
+    "synthesized",
+    "findings",
+    "prior",
+    "phases",
+    "identifying",
+    "partial",
+    "ver"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.565Z",
+  "lastUpdated": "2026-06-23T03:50:00.341Z",
   "specId": "021",
   "folderSlug": "remediation-revalidation",
   "parentChain": [

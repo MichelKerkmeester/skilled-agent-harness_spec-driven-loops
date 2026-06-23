@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Cocoindex's `DEFAULT_INCLUDED_PATTERNS` (and the project-level `.cocoindex_code/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`. The result on this codebase: 45% of the index is non-code content. Worse, the 4-runtime skill mirror (Public has filesystem-level copies of every skill under `.opencode/skills/`, `.gemini/skills/`, `.claude/skills/`, `.codex/skills/`) means every SKILL.md / reference / playbook gets indexed 4 times. Cocoindex code search returns near-duplicate documentation hits where actual code matches should win.",
+    "causal_summary": "Cocoindex's `DEFAULTINCLUDEDPATTERNS` (and the project-level `.cocoindexcode/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`",
     "created_at": "2026-05-13T06:50:00Z",
-    "last_save_at": "2026-06-22T18:55:02.234Z",
+    "last_save_at": "2026-06-23T03:49:53.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T06:55:00Z",
     "source_docs": [
@@ -195,6 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7826884a5bee684d7ea1c8a6cf459b2e7cc8757955c27970980dc6c17e381410",
+    "source_doc_hashes": {
+      "spec.md": "9c9d6e36fe6ca2ff8bd87944b37b201e2b0e69905337e90cbeaf8f0583379564",
+      "plan.md": "90a6c490aca8fbcad3543718343488d02876800616ff448ecb44f47b6a0c36de",
+      "tasks.md": "f8dca9cdcbb518a7440961f0402fc0081aea2ab1fbfdc348e6996b609305f232",
+      "implementation-summary.md": "7744a98ae63d9dbc7f590bc7fa21117c1702daba249beeb42e5a4dea27a242a8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

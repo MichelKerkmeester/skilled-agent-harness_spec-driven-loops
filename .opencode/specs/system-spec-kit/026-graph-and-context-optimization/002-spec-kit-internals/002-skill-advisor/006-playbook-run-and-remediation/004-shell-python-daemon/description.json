@@ -1,19 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
-  "description": "Feature Specification: Shell/Python/Daemon Waves (Playbook Run Phase 004)",
+  "description": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI), li",
   "keywords": [
-    "feature",
-    "specification",
-    "shell",
-    "python",
+    "remaining",
+    "scenarios",
+    "span",
+    "seven",
+    "categories",
+    "compat",
+    "disable",
+    "operator-h5",
     "daemon",
-    "waves",
-    "playbook",
-    "run",
-    "phase",
-    "004"
+    "states",
+    "auto-update",
+    "auto-indexing"
   ],
-  "lastUpdated": "2026-05-27T11:54:00.118Z",
+  "lastUpdated": "2026-06-23T03:49:53.668Z",
   "specId": "004",
   "folderSlug": "shell-python-daemon",
   "parentChain": [

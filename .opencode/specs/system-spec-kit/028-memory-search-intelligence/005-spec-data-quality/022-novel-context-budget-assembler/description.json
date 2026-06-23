@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
-  "description": "Feature Specification: Novel Context-Budget-Fitting Assembler",
+  "description": "The prod search path returns the post-floor result set with no density discipline",
   "keywords": [
-    "feature",
-    "specification",
-    "novel",
-    "context-budget-fitting",
-    "assembler"
+    "prod",
+    "search",
+    "path",
+    "returns",
+    "post-floor",
+    "result",
+    "set",
+    "density",
+    "discipline"
   ],
-  "lastUpdated": "2026-06-21T10:22:33.895Z",
+  "lastUpdated": "2026-06-23T03:49:58.697Z",
   "specId": "022",
   "folderSlug": "novel-context-budget-assembler",
   "parentChain": [

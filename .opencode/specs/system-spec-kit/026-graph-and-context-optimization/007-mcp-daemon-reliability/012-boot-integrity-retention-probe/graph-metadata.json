@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable. First, a daemon that died mid-write (SIGKILL/OOM/crash) could leave an FTS5 index in a torn state with no detection at the next boot, so a corrupt search index would surface only as cryptic query failures. Second, the retention sweep committed its delete transaction but never reclaimed space or truncated the WAL, so deleted rows lingered at rest in WAL and free pages. Third, the launcher liveness probe's default reap timeout (2500ms) was short enough to false-reap a busy-but-responsive daemon mid-merge, and the bridge decision could be satisfied by a bare socket connect — which would bridge a client into a HUNG daemon that accepts at libuv but never services JSON-RPC, and never respawn it.",
+    "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable",
     "created_at": "2026-05-29T13:49:32.618Z",
-    "last_save_at": "2026-06-22T18:55:03.003Z",
+    "last_save_at": "2026-06-23T03:49:56.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7ebd9497eefce87487e8d1823c2cb61e97b1db22de6e05289c0bcaaa5cca1f01",
+    "source_doc_hashes": {
+      "spec.md": "d367984e94a1ed8f4779a2d787ad4655f34e1355f2f054defcd3423571a8fa35",
+      "plan.md": "5e087d782991930a37d1b926a2a5b3d741166d5e5e3271f454cdd749aa912847",
+      "tasks.md": "66cf2c83f694a150099cbc34a1cc2cb5eed98381b23284004b53b4ea8f7e4e90",
+      "checklist.md": "9c31ad5193fa0b69f2caac282d45ff1ab1f1cd4d31dc199e9c3440fa52bd8014",
+      "implementation-summary.md": "c2ec10e7b3c1be8e8f8293d34e0caff5558bbcb1b141e1f53683f8b8e3e4a27e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/008-codex-system-wide-audit",
-  "description": "Feature Specification: System-Wide Remediation of Audit Findings",
+  "description": "This archived folder captures work that remediated audit findings across the wider system-spec-kit surface",
   "keywords": [
-    "feature",
-    "specification",
-    "system-wide",
-    "remediation",
+    "archived",
+    "folder",
+    "captures",
+    "work",
+    "remediated",
     "audit",
-    "findings"
+    "findings",
+    "across",
+    "wider",
+    "system-spec-kit",
+    "surface"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.585Z",
+  "lastUpdated": "2026-06-23T03:49:59.455Z",
   "specId": "008",
   "folderSlug": "codex-system-wide-audit",
   "parentChain": [

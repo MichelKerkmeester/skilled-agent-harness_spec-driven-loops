@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage. Research 031 section 4 ranks both findings P0/M and confirms each against live code in its section 6.",
+    "causal_summary": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.851Z",
+    "last_save_at": "2026-06-23T03:49:58.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ee86307595286761372d544380b1d105d73e33027d0ca38705f306afcff6a74b",
+    "source_doc_hashes": {
+      "spec.md": "9130abdbfad360cf295e03f0252f8007b4baccfed4d16ed82ce80401fe89eb9d",
+      "plan.md": "292f6cd014d48f533b4dc12a07789680b345fa97440be0a366e94afc2e6c6b7c",
+      "tasks.md": "e6786df3dde08d75502034efaa6f1db198e1bff492f345fcdc9c81c2ace45994",
+      "checklist.md": "fcfee0b475e72d82410423a8f94fc01ddd807f9496ea8a275718e9d4644ff688",
+      "implementation-summary.md": "320ecd0671247ca53454bff834abb92cb5f273811fc46717762483c4c628328e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

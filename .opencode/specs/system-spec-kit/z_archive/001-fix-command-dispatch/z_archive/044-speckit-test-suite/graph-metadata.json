@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
     "created_at": "2026-04-12T09:02:53.528Z",
-    "last_save_at": "2026-06-05T12:47:34.472Z",
+    "last_save_at": "2026-06-23T03:49:59.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:e0babe8691276abca0dfcf40c8b99fab932cde193a36d9d808f74b0a4f12bd83",
+    "source_doc_hashes": {
+      "spec.md": "4ce2687f9f2e9e60494fa5670c579b1162dadfcda48a30099cd8780d4c1296aa",
+      "plan.md": "6647a0283b28432b636ec81760cc12b4b9a7249b3ddf4f9af387ff77ec48b0aa",
+      "tasks.md": "9d1d1f47761f964eb4d522c8d4b968a7252ba57cfb2ab5d9b431f78108d0c00d",
+      "checklist.md": "19c939d4326c205e266e7d21efa64b6f540f7ffa74554b85b3b4b6367a3bdf92",
+      "decision-record.md": "078d64c318c679f988a32c593f2834c02ecbd768e8917fcbecc6b6ac6400b22a",
+      "implementation-summary.md": "20369a1a24341578d47684943697ffb5be8fd30a24a52451865d19aac2745965",
+      "handover.md": "6db5f14fb11b1d277c9f5c37abf012a3917993f7c1bd0150dbe454cf7d6fd6cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

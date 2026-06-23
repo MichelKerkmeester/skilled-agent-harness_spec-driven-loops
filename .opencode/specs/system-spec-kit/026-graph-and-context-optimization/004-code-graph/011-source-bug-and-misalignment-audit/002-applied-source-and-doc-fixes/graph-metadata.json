@@ -166,9 +166,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server. The clean, non-WIP-overlapping subset needed remediation without disturbing the operator's in-flight BUG-04/BUG-06 work.",
+    "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
     "created_at": "2026-05-29T08:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.649Z",
+    "last_save_at": "2026-06-23T03:49:56.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,6 +177,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f1ef75c1fd85e6e2463fc7f2c7123892e662421004c3482cd4532e31d498ce3e",
+    "source_doc_hashes": {
+      "spec.md": "d11a61ec0e4b3747d871e21c065649b81426adf5b8718c987aa0a40b0df34742",
+      "plan.md": "ffe8035743f970fbe1bb8bacb585f62f1b457620e1fff6aac87543650445d4ce",
+      "tasks.md": "90d8edd56940b371f7881a2114d90805741e89c0b4b1636147351d32639e2bab",
+      "implementation-summary.md": "a9fc62e0a84c291546c3876978b36b76b895d56c06885c356fb243ffa7cf791f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

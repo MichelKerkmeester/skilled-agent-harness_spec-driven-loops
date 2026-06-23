@@ -35,8 +35,8 @@
       "plan",
       "tasks",
       "checklist",
-      "spec-core",
-      "level2-verify"
+      "signal",
+      "established"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + phase-child-header | v2.2\"",
+    "causal_summary": "Graph signal was established in Sprint 1 (R4) but lacks sophistication — centrality and community structures remain unexploited, leaving graph channel attribution below potential",
     "created_at": "2026-04-12T09:02:50.229Z",
-    "last_save_at": "2026-06-22T18:55:04.128Z",
+    "last_save_at": "2026-06-23T03:49:59.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:238ddbcc26738ef051eac929d52b67ba6009da5ccbf30d0c9e048ee0dd8ffa03",
+    "source_doc_hashes": {
+      "spec.md": "b8aa7d099ab8c5dc1b2681f4f4eae0afec7cb7ce1ced68912eb160dedf5cd0a7",
+      "plan.md": "9fb469aa4d0dac1715c08d99e09e3687ce0bdd49ae179f779a1bf0ce65c86569",
+      "tasks.md": "a01e76c6fd5ce4869d1d7e7b75503bc9e08388a36297b523d4a36b119d7427db",
+      "checklist.md": "162d275b1348d9070cce0e13cba286f37b55159d5f9454996bba10aebff9f349",
+      "implementation-summary.md": "f55407b26fbe149266cc21bf10b18b784a8f46f1dfc06eb0d9b07431df2438b2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon",
-  "description": "Feature Specification: Sprint 7 — Long Horizon",
+  "description": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
   "keywords": [
-    "feature",
-    "specification",
-    "sprint",
-    "long",
-    "horizon"
+    "memory",
+    "summaries",
+    "only",
+    "valuable",
+    "scale",
+    "memories",
+    "implementing",
+    "them",
+    "prematurely",
+    "adds",
+    "overhead",
+    "without",
+    "benefit"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.136Z",
+  "lastUpdated": "2026-06-23T03:49:59.687Z",
   "specId": "008",
   "folderSlug": "sprint-7-long-horizon",
   "parentChain": [

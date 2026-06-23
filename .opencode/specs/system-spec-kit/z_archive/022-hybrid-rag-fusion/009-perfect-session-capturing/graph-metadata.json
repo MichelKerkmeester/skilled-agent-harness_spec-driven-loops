@@ -218,9 +218,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that audit needed both implementation work and spec-pack follow-through. The runtime now includes explicit write/index dispositions and typed source capabilities, yet the parent pack still needs to distinguish the current `017`/`018` baseline from archival research context (`016`), archived navigation history (`000`), and still-open retained live-proof work.",
+    "causal_summary": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that audit needed both implementation work and spec-pack follow-through",
     "created_at": "2026-04-12T09:02:50.263Z",
-    "last_save_at": "2026-06-22T18:55:04.320Z",
+    "last_save_at": "2026-06-23T03:49:59.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,6 +233,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:62d51f809d74b215fd4c4ae9d44b1dbb02f90499ca2449c71d71192dfad5390f",
+    "source_doc_hashes": {
+      "spec.md": "67e6c2a39ca1c9e7010807cd42698e08eee2de5e6696cd391a5c009f1b05e0c8",
+      "plan.md": "2f17e8f44bffbd41c5fbc73915c1c46587aac3d5a53267982acc7e9d86cd658d",
+      "tasks.md": "f181099acc1f06e32be23f81da0c0a1e361a43b1eee92c69a7423947ca1044fb",
+      "checklist.md": "78be9807051bf7fa53ed021e28d85cdd5e2c33dc5ecbba8d0ca3ab4d5605843d",
+      "decision-record.md": "2e1757813312de072f18ed155b71e817d38b44370c34302334e0148a2cd45555",
+      "implementation-summary.md": "169aaaeecd8b24e4873f4871843478759b1d4cf7a1dcea1785382e174e74386c",
+      "research/research.md": "170e4998f2a4202ff0bd9751d29777770793e4706b2f8795bdf328adda4fcd5d",
+      "resource-map.md": "e3dc15e28ad7457ec36c3bc3a1f7991a2b2efb4550ae317cbee8f40de2b2026c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
-  "description": "Feature Specification: Reliability-Weighted Convergence (028/004 keystone cluster)",
+  "description": "The deep-loop research convergence verdict (`computeCompositeScore`, `convergence.cjs:107-141`) is a fixed-weight linear blend whose two volume terms",
   "keywords": [
-    "feature",
-    "specification",
-    "reliability-weighted",
+    "deep-loop",
+    "research",
     "convergence",
-    "028",
-    "004",
-    "keystone",
-    "cluster"
+    "verdict",
+    "computecompositescore",
+    "cjs",
+    "107-141",
+    "fixed-weight",
+    "linear",
+    "blend",
+    "whose",
+    "two",
+    "volume",
+    "terms"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.895Z",
+  "lastUpdated": "2026-06-23T03:49:58.513Z",
   "specId": "004",
   "folderSlug": "reliability-weighted-convergence",
   "parentChain": [

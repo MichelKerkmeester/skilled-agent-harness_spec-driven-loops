@@ -1,15 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
-  "description": "Feature Specification: Phase 2: Hardening and Tests",
+  "description": "The reconcile verdict depends on scorer parity staying true, the orphan-launcher incident class has no regression fixture, and rebuild/scan mutation w",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "hardening",
-    "tests"
+    "reconcile",
+    "verdict",
+    "depends",
+    "scorer",
+    "parity",
+    "staying",
+    "true",
+    "orphan-launcher",
+    "incident",
+    "class",
+    "regression",
+    "fixture",
+    "rebuild",
+    "scan",
+    "mutation"
   ],
-  "lastUpdated": "2026-06-12T14:18:51.271Z",
+  "lastUpdated": "2026-06-23T03:49:57.624Z",
   "specId": "002",
   "folderSlug": "hardening-and-tests",
   "parentChain": [

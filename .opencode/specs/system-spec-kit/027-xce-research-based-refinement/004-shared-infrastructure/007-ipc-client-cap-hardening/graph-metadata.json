@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULT_MAX_SECONDARY_CLIENTS`) and refuses excess connections by accepting then immediately closing them. Every live session's launcher holds one persistent slot, so a multi-seat fan-out (10+ sessions) saturates the cap and every fresh short-lived connection — the plugin's warm probe, the inner CLI call — dies with EPIPE in about 2ms, mapped to exit 75. Measured directly: with the cap saturated, 10 parallel connections produced 1 reply (3ms) and 9 instant EPIPEs; the daemon itself was healthy throughout. Worse, an at-cap refusal is byte-for-byte indistinguishable from a dead daemon to probes, so a healthy daemon can be falsely reaped by a new launcher. Separately, the plugin wrote its skip diagnostic to raw stderr while the opencode TUI was active, which renders the banner into the user's input field.",
+    "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULTMAXSECONDARYCLIENTS`) and refuses excess connections by accepting then immediately closing them",
     "created_at": "2026-06-11T17:40:00Z",
-    "last_save_at": "2026-06-12T04:40:47.941Z",
+    "last_save_at": "2026-06-23T03:49:57.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3b5d940e0106219cde151a28040c97c9b3b6eaecfd1ffb9a13aa9ec9421398d3",
+    "source_doc_hashes": {
+      "spec.md": "85ba5975988c66957695abb49f43ad64522acbcfd479f4c3eff698e7f1bf540e",
+      "plan.md": "a892a1e8a38785175b8fc2b47b42bb113c30c9e26ac446920cf5411e70cc9bc5",
+      "tasks.md": "84c244ae275a6dbf7ea80d2cde37cae5c79a670f1ba5cfe7afc4821a06023c03",
+      "implementation-summary.md": "b848ac0b7b6a5ae46304522a9671d58acd85fe32ecccc9361946e2ea3e79b8a2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Close all 7 P1 findings with leaf-scoped TypeScript edits, keep sidecar behavior stable, add fixture coverage for F18/F57/F62, and record the decisions and verification evidence in this packet.",
+    "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.489Z",
+    "last_save_at": "2026-06-23T03:49:55.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9957a32b1105a3e0add14cd4c4c22deddf0d60568502df717bb989a7418fc6a8",
+    "source_doc_hashes": {
+      "spec.md": "65b325359c5e8dcc14ef95eafb3bcc8815e5c7033a55dec51d3dc71bae0bd942",
+      "plan.md": "7a462f6901de1253059f3b6f1953e3a1c291e70d60ce482ed635f2b9f42f1a08",
+      "tasks.md": "d11e6b247c0cd8f5e931a24573b9339d577bbdde88e241a50141845ac19666cf",
+      "checklist.md": "57149aeec1cdce9031885da91503abc69a580cc5612ae431f0b1e8441b0444b4",
+      "decision-record.md": "99793d8c7ed10e6bc93e079d0700e4e837b24c3dd5735d6da4b8282903741dd1",
+      "implementation-summary.md": "31515710e7ff90ebdc0a8ec17be173b474616962745645625a04ab5d1db12f70"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -92,14 +92,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `level_N/` outputs, `phase_parent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`). The Level 1/2/3/3+ taxonomy bundles two independent concerns (which doc files a packet needs AND which sections within those docs apply), causes drift between the scaffolder and the validators (both encode the level→files matrix independently), and produces stale empty addon stubs (`handover.md`, `debug-delegation.md`, `research.md`) in fresh packets even though those docs are written exclusively by automation.",
+    "causal_summary": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T16:30:00Z",
-    "last_save_at": "2026-06-05T12:47:33.438Z",
+    "last_save_at": "2026-06-23T03:49:53.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:203443924e27fca20ab60c43b6a36b924ffe1f5796d690004c642650b87b6447",
+    "source_doc_hashes": {
+      "spec.md": "a5b7aa981f6fd32cad65edf94b3ccf67688c0b4a97eb218e9808414335542c06"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

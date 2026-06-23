@@ -1,18 +1,26 @@
 {
+  "level": "1",
   "status": "complete",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
-  "description": "Feature Specification: Code Mode MCP Orphan Lifecycle Fix",
+  "description": "The mcp-code-mode stdio MCP server (`mcpserver/index.ts`) connected its transport and never handled session end: no stdin-EOF handler, no transport-cl",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "mode",
+    "mcp-code-mode",
+    "stdio",
     "mcp",
-    "orphan",
-    "lifecycle",
-    "fix"
+    "server",
+    "mcpserver",
+    "index",
+    "connected",
+    "transport",
+    "never",
+    "handled",
+    "session",
+    "end",
+    "stdin-eof",
+    "handler",
+    "transport-cl"
   ],
-  "lastUpdated": "2026-06-11T14:26:24.135Z",
+  "lastUpdated": "2026-06-23T03:49:57.844Z",
   "specId": "006",
   "folderSlug": "code-mode-orphan-lifecycle",
   "parentChain": [
@@ -21,6 +29,5 @@
     "004-shared-infrastructure"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

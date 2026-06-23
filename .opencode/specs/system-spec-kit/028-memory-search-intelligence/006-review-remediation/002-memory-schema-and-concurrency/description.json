@@ -1,16 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
-  "description": "Feature Specification: Memory Schema and Concurrency Remediation",
+  "description": "Three confirmed P1 defects sit in the memory schema and storage layer: a content-addressed identity that splits across the migration versus live-write",
   "keywords": [
-    "feature",
-    "specification",
+    "three",
+    "confirmed",
+    "defects",
+    "sit",
     "memory",
     "schema",
-    "concurrency",
-    "remediation"
+    "storage",
+    "layer",
+    "content-addressed",
+    "identity",
+    "splits",
+    "across",
+    "migration",
+    "versus",
+    "live-write"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-23T03:49:58.821Z",
   "specId": "002",
   "folderSlug": "memory-schema-and-concurrency",
   "parentChain": [

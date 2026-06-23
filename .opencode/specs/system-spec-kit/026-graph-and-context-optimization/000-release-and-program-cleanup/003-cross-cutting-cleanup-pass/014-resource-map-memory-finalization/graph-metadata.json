@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Seventeen session-touched spec folders lacked final resource maps and fresh memory indexing. Without a path ledger and canonical save pass, downstream reviewers have to reconstruct touched files from git history and memory search may miss the latest packet state.",
+    "causal_summary": "Seventeen session-touched spec folders lacked final resource maps and fresh memory indexing",
     "created_at": "2026-04-29T18:41:25.655Z",
-    "last_save_at": "2026-05-30T10:12:01.593Z",
+    "last_save_at": "2026-06-23T03:49:52.318Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:f9c9e7c7f12cbebeb605a70ee34bceff5f6218c26d10ffb57ca92fefa928574f",
+    "source_doc_hashes": {
+      "spec.md": "da148b27f27267b1ed0c4da12a8fed25a28c37d4e16cc7ffd6e7ea207dde0e74",
+      "plan.md": "3c83e83382336e4d86c97f9d75e649a2830803956dd9b726ee5e70f3f2bc4244",
+      "tasks.md": "090811bc3cd258bf4c07fe8c2917dcc895f95da6db7ada63163195e0ed95f688",
+      "checklist.md": "0b74bb5164fe207f1f774c1b01649e1a2a27579248e8f253a0b47429bd8f8275",
+      "implementation-summary.md": "499e23a05e1ad999e85dacc54cffc26df0b81acbc79b61f707c3487f5f3955f7",
+      "resource-map.md": "263102aae9ae3a45edc9ace82fc4d2bb8d37d0b07805e510f24fb6e2cc9758a0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

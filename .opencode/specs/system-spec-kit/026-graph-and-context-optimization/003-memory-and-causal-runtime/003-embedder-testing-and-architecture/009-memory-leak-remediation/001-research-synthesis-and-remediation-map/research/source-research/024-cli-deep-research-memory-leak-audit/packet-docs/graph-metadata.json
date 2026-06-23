@@ -215,9 +215,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet prepares a broad, evidence-driven memory-leak and process-lifecycle audit for the code-index stack. The investigation targets `.opencode/skills/mcp-coco-index/` and `.opencode/skills/system-code-graph/`, with special attention to CLI-skill orchestration paths that can leave child processes, local model sidecars, search daemons, or MCP helpers alive after deep-research, deep-review, council, or nested CLI workflows finish.",
+    "causal_summary": "Prior sessions observed CLI-orchestrated agent workflows building up many processes and consuming enough memory to threaten a 64 GB Apple Silicon workstation",
     "created_at": "2026-05-22T05:55:00Z",
-    "last_save_at": "2026-06-22T18:55:02.515Z",
+    "last_save_at": "2026-06-23T03:49:55.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,6 +229,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:acdcc3fc27f722eb4a43a550d030252ce5c1dcc60460de743e162386ea259540",
+    "source_doc_hashes": {
+      "spec.md": "be820c21888e67743a0cb53181d049f0ca764be1cb03b242260395c2aae8867c",
+      "plan.md": "91e9615d35a7838c6da81d33fcd30ee87b3f16e0fdb6f571df38e18213840edf",
+      "tasks.md": "e3a33dffeccf68fef7f3b020eea5d4ed6265804c2cd584eb6074fd834eb30814",
+      "checklist.md": "9de75912445a021fbff6613e00be41fde9b67bd7c52bd21a9f2231dcd6fb7c64",
+      "decision-record.md": "b01913da6d3be482744ab62018a9e5e3848ad7606b939b90e3a847ae3188ba6d",
+      "implementation-summary.md": "5413fa5c868a4090fed4277a7b8aa4494eb51851946136100a18cd5bac4151ff",
+      "resource-map.md": "96d28a7a930a05607341bdea31ee0d9a375739fa18b9df45ad37114539215127"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Let real provider failures propagate to callers that already know how to record them, while keeping intentional degraded-null behavior at call sites that use null as a fallback signal.",
+    "causal_summary": "`generateDocumentEmbedding` catches real provider failures, records a circuit-breaker failure, logs a warning, and returns `null`",
     "created_at": "2026-05-14T14:31:45Z",
-    "last_save_at": "2026-05-30T10:12:02.135Z",
+    "last_save_at": "2026-06-23T03:49:54.162Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c7257374234bc5d3582948b5b01a1112686fc26c8d645c2e14f9cd2c520fb0cf",
+    "source_doc_hashes": {
+      "spec.md": "dc0f598ee06baf9b5ce6c1b43381b17263d3c234970b5983f772fbcd806e8ac0",
+      "plan.md": "d56755431b444261e65cfff9fe438b5629b7889418c5eded9d24176bdd95f4e4",
+      "tasks.md": "74f9cb8c150d1572b71e8d5df229843e8ed27ee54049f2df758a0ef26b8626be",
+      "implementation-summary.md": "acdf284aad8ddddaf5164d0d89c9ec3d534eef05c304b6628e798802e38b71c8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

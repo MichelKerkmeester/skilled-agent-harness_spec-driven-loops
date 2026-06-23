@@ -35,7 +35,7 @@
       "implementation",
       "summary",
       "results",
-      "7-packet"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the 7-packet code-graph remediation campaign (010-015) shipped, the system-code-graph skill needed end-to-end manual verification: the `mk-code-index` MCP rename, sk-doc alignment work, the tsconfig fix from 009, and the architecture.md content all needed independent observation, not just unit tests. This packet executes the manual_testing_playbook scenarios plus six new post-rename smoke probes to confirm operational soundness before the campaign closes.",
+    "causal_summary": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook plus Layer-2 smoke probes.",
     "created_at": "2026-05-18T08:15:28.162Z",
-    "last_save_at": "2026-05-30T10:12:02.818Z",
+    "last_save_at": "2026-06-23T03:49:56.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:31a1950cfe99d0f61639f9dab28af74011b2bcec2e2908ca266f2823c4e2ffb2",
+    "source_doc_hashes": {
+      "spec.md": "8ed8f357dde53f63ac438edc7c40f45a4b7c219f5b3e486e41d119ef75960f40",
+      "plan.md": "1a13239e64ff229aa51575a8e22ea24d4310cf435df60cd262aa1f6faa6de687",
+      "tasks.md": "4139683070777af3fb353189aa3f948d68d2d41be072cb431885a81548dd70f1",
+      "implementation-summary.md": "04424da73b32d6d3341c5e026511bf1f3b3e25511db00186307ea0e0497a4802"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

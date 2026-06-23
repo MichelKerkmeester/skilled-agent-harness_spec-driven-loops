@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 9** of the spec-027 feature adoption into the advisor and code-graph daemons, and the lowest-priority transfer. It adds an optional fuzzy symbol resolver strictly for disambiguation.",
+    "causal_summary": "Code-graph subject matching is exact equality on `fqname` or `name` (`handlers/query.ts:202-235`), so a near-miss symbol query returns nothing and the caller has no disambiguation help",
     "created_at": "2026-06-10T19:24:14Z",
-    "last_save_at": "2026-06-12T04:40:47.932Z",
+    "last_save_at": "2026-06-23T03:49:57.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4e92cef86ef19bdd9b658e7f81ab0b96e24469ff09c7fe9dc4cffdf25f0b3cfe",
+    "source_doc_hashes": {
+      "spec.md": "c84e8ab442f11fd1addfcba682bd5c018725f7621b598c960cfe21f2c4fd73da",
+      "plan.md": "9b9a38ce6aac297a68069bbe480a16c68ab0ac54ebd1fa37dba5e12171ebeaf6",
+      "tasks.md": "d333955d0906923d667dcfe0bc42357b604d510c00e29c7d2782f8f6f5ac2564",
+      "implementation-summary.md": "2425f1964c6b26674678a5d5ca709a178d54de0b755ec426ec49c8dc77eff5cd"
+    },
     "last_active_child_id": null,
     "last_active_at": "2026-06-10T21:38:20Z"
   }

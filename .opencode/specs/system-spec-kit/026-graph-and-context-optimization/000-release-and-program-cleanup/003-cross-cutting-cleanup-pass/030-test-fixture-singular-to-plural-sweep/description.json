@@ -1,18 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep",
-  "description": "Feature Specification: 056 Test Fixture Singular→Plural Sweep",
+  "description": "Packet 096 renamed production paths from singular `.opencode/skill/` to plural `.opencode/skills/`, but 7 advisor-test fixtures continued using the si",
   "keywords": [
-    "feature",
-    "specification",
-    "056",
-    "test",
-    "fixture",
+    "packet",
+    "096",
+    "renamed",
+    "production",
+    "paths",
     "singular",
+    "opencode",
+    "skill",
     "plural",
-    "sweep"
+    "skills",
+    "advisor-test",
+    "fixtures",
+    "continued",
+    "using"
   ],
-  "lastUpdated": "2026-05-26T17:26:49.011Z",
+  "lastUpdated": "2026-06-23T03:49:52.420Z",
   "specId": "030",
   "folderSlug": "test-fixture-singular-to-plural-sweep",
   "parentChain": [

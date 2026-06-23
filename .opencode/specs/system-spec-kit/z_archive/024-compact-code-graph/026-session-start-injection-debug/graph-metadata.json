@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 26** of the Compact Code Graph specification.",
+    "causal_summary": "The startup priming path is still broken or too thin where true startup injection should happen",
     "created_at": "2026-04-12T09:02:53.432Z",
-    "last_save_at": "2026-06-08T17:32:21.741Z",
+    "last_save_at": "2026-06-23T03:50:00.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c4c37b1db6de57f14abb0070112ff33570bcae58038c30441fffcf9ff68ac33",
+    "source_doc_hashes": {
+      "spec.md": "8bf7af6cbb7bc11acb2e99bc10728a223ffa12287557a8db6c51aa40bde309ef",
+      "plan.md": "1b2a7e15821778b7d95d81060badc2fb2a96021e55fe27f134e865dd0507d6b8",
+      "tasks.md": "a0786be20aa81b4afd50a1377024646927d30b84d6e94cb8c6f0afd85a58f025",
+      "checklist.md": "dfcfa649558d608de8897847232a9feafd899e6f750c6a5b8f4ca9d402d23aea",
+      "implementation-summary.md": "07bda53225ab27d0fd432a2d674bf270aa78d556b6d96a0772211a63b911db05"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the successful release of Spec Kit v1.2.1.0 (SpecKit Reimagined + Memory Command Consolidation), comprehensive parallel audits revealed **70+ issues** across the command files, YAML workflow assets, MCP server code, and documentation. This specification consolidates findings from:",
+    "causal_summary": "After the successful release of Spec Kit v1.2.1.0 (SpecKit Reimagined + Memory Command Consolidation), comprehensive parallel audits revealed 70+ issues across the command files...",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-05-30T10:12:03.105Z",
+    "last_save_at": "2026-06-23T03:49:59.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8d311948168cb0a0c2dd2a641cea6da6f4550514ca932f705d7b739844e34e6c",
+    "source_doc_hashes": {
+      "spec.md": "4792ce3a9ccd7666e895915860cddce28695183252c2041ba35ded067de42fb3",
+      "plan.md": "86f6bfdd8ac1b5de4b7c3e8b246a3e6ba7293e56f19d958d9414c6c2f23f10b3",
+      "tasks.md": "c229ba0ae3ba60f9ce897df3b0d4bc50fc80d37f5370d9d154d0ec27cca6d0b8",
+      "checklist.md": "aa2eaa14a1927dd36a98e0cbd06cc86735d578a952d0b70cd346d0ee3678a16f",
+      "decision-record.md": "4a7d9c492ded5e0505129c15fd0e2d27d4c94197a0d02e44bf935d6556ae5487",
+      "implementation-summary.md": "d6c403a20c8b03b8aa94733fc94f8bbd09f66ee2c01facc0597ca52bb4486544"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

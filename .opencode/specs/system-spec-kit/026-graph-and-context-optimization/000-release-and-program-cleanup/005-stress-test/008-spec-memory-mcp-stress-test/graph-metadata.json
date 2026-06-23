@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 2618 archived rows are now indexed with 0.1 decay multiplier. Behavior under load + scoring fidelity needs validation against the canonical 345-scenario manual testing playbook and the full 39-tool mk-spec-memory surface. The 113 fix shipped narrow targeted tests (159 vitest assertions); this packet runs the broad real-traffic equivalent.",
+    "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-06-22T18:55:01.865Z",
+    "last_save_at": "2026-06-23T03:49:52.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:bd0218dda7a5a506033a7896c84ab978c6d187c1111253557d0bfea319b80ff3",
+    "source_doc_hashes": {
+      "spec.md": "acea2816b0e4818b6db8d9ea83b955714a8f75d18e447d07207031b4595948ab",
+      "plan.md": "27fa21a98d921d8b4673dcdc198a5312afc9013682cfb3fce75ec29a53031b33",
+      "tasks.md": "074a55801d8ae69588c199271b23f6da1f475adbe35b4f9ac21b8fe48822d55c",
+      "implementation-summary.md": "f074e765a74e66f8674f1c51f6ec50b95327c4e4c1d96541529f32782923d24c",
+      "handover.md": "d80834e32b58bfca23aa48701febaa7f9e70061fcdb8b5fde579656eae9aac2b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,18 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
-  "description": "Feature Specification: Unified Daemon CLI Reference and Skill Docs",
+  "description": "The daemon CLI documentation is accurate but scattered",
   "keywords": [
-    "feature",
-    "specification",
-    "unified",
     "daemon",
     "cli",
-    "reference",
-    "skill",
-    "docs"
+    "documentation",
+    "accurate",
+    "scattered"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.036Z",
+  "lastUpdated": "2026-06-23T03:49:57.818Z",
   "specId": "003",
   "folderSlug": "cli-reference-and-skill-docs",
   "parentChain": [

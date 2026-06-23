@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 003's config rollout, every MCP child sees Setup A env vars, but the on-disk vec stores still reflect the previous embedding model identities. The Spec Kit Memory layer uses filename-keyed sqlite (so a clean DB auto-appeared as soon as the launcher loaded `.env.local`), but it had 0 rows — search returned nothing. CocoIndex's `target_sqlite.db` is single-file and was 2.0GB of stale MiniLM 384-dim vectors held open by a daemon that pre-dated the user's runtime restart.",
+    "causal_summary": "After 003's config rollout, every MCP child sees Setup A env vars, but the on-disk vec stores still reflect the previous embedding model identities",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-06-22T18:55:02.223Z",
+    "last_save_at": "2026-06-23T03:49:53.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T20:00:00Z",
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f84a64133ec94179088328ccea13b222677a6f8ef047f562d496b6406b262daf",
+    "source_doc_hashes": {
+      "spec.md": "77c1dfca4ad4159bed3974986416031710648557d1e18fe4c3563c8f997ec267",
+      "plan.md": "6176e6f32333aa42e10478507531f0e604c6211a6709de0f888ace3cab74a264",
+      "tasks.md": "87ae1649c75c72222974e311e42b7d91c5d218bb6e6f4412d1956173d8854150",
+      "implementation-summary.md": "248bd72c33c24dde8aa1501f91eb76e271954ca48e3ca2df8575b0c6d4333a31"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

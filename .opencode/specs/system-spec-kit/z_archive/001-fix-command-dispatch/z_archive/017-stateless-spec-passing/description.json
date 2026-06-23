@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/017-stateless-spec-passing",
-  "description": "Stateless Spec Passing & System Alignment",
+  "description": "Remove all system reliance on the .spec-active marker file, enforcing a strictly stateless architecture. This aligns with AGENTS.md Gate 5: \\\"NEVER cr",
   "keywords": [
-    "stateless",
-    "spec",
-    "passing",
+    "remove",
     "system",
-    "alignment"
+    "reliance",
+    "spec-active",
+    "marker",
+    "file",
+    "enforcing",
+    "strictly",
+    "stateless",
+    "architecture",
+    "aligns",
+    "agents",
+    "gate",
+    "never"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.828Z",
+  "lastUpdated": "2026-06-23T03:49:58.912Z",
   "specId": "017",
   "folderSlug": "stateless-spec-passing",
   "parentChain": [

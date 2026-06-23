@@ -31,7 +31,7 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic"
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 22 Pipeline Architecture features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/14--pipeline-architecture/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Pipeline Architecture has evolved significantly",
     "created_at": "2026-04-12T09:02:50.252Z",
-    "last_save_at": "2026-05-30T10:12:03.252Z",
+    "last_save_at": "2026-06-23T03:49:59.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:73c8cee8f9022139d9f05a067b00e45647584eaf873066e0ba1d72fcb38f21e2",
+    "source_doc_hashes": {
+      "spec.md": "a50e20435e7128844c47ad56b57c7dd14bfddbafb5fa5f301d48ec3dd77728d3",
+      "plan.md": "89e42cccdb9773a6977723952e3efea3031155fe29d6a4c557fc4141597fbd8f",
+      "tasks.md": "f9d715b5c05e9ba729aa7b738d7ab8e7be7be7b218b008ba328e3a11b3dc5f8f",
+      "checklist.md": "869540b9bc2412c18c89651bdbcf302f2bafcfc69bf450e954d488dc4bad555a",
+      "implementation-summary.md": "d15a30d0cb71170336734d231b13d9ccae77a95f01f4139c24033230ecb3f799"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

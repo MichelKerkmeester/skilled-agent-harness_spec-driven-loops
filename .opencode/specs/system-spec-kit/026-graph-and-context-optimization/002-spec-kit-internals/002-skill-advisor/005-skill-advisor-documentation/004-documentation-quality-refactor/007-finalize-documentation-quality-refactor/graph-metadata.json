@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 006 closed Tier A + Tier B + bulk Oxford comma sweep, the remaining deferred backlog covers: 135 semicolons (context-aware HVR sweep), F34 playbook TEST EXECUTION structure across 20 files, F4/F6/F35/F36/F37 architectural decisions, plus 4 net new reference docs. The user asked to close all of this in one automated cli-opencode dispatch via DeepSeek API.",
+    "causal_summary": "After 006 closed Tier A + Tier B + bulk Oxford comma sweep, the remaining deferred backlog covers: 135 semicolons (context-aware HVR sweep), F34 playbook TEST EXECUTION structure across 20 files, F4/F6/F35/F36/F37 architectural decisions, plus 4 net new reference docs",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-08T17:32:20.859Z",
+    "last_save_at": "2026-06-23T03:49:53.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fa8ab459ec316b71465a891a968a7a8c31e6916c31cf2effa709053375ec9d6e",
+    "source_doc_hashes": {
+      "spec.md": "7fcc5ab0ab83319a5c56cbb9eb82ef3c6c951ec3c6bc55b55dc3e39f4943bdde",
+      "plan.md": "e12096ca5633bf37b48455e002088c0735173532d2ce8e508df6c61e1a91efd4",
+      "tasks.md": "833da5e032d7d4de71ef92709547306784f57ff7816f5728a00b3024fc6d1adc",
+      "implementation-summary.md": "00ac176a4fd149d983e3ededeac5e321b817b83feea05a52daec7a3770954313"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedder_set`/reindex completion transaction writes vectors but never commits `memory_index.embedding_status`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart.",
+    "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedderset`/reindex completion transaction writes vectors but never commits `memoryindex.embeddingstatus`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart",
     "created_at": "2026-05-27T03:52:02.042Z",
-    "last_save_at": "2026-05-30T10:12:02.529Z",
+    "last_save_at": "2026-06-23T03:49:55.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:97446610d2c4156dfb6a1df5b68fd11463a5ffca2e7cf8c8174492f0fffac4bb",
+    "source_doc_hashes": {
+      "spec.md": "8cf915f9a70881ad26e63cc5cf12f66ec07cae5d40cdb68adfaceb14e3b3333e",
+      "plan.md": "53c2b937beb6d8ee69992ec132816df9ce1ff62ca71689f699e3a783c95795e5",
+      "tasks.md": "6d0d768601595cd132aee508bbb1c0f68faa3e965a363dbf5d98fd2f48a0cb29",
+      "implementation-summary.md": "8276e26026e108fc76ed4e7341ab28afd50da5b723cdb00509011c3260e5985d",
+      "handover.md": "f643eaa4a95e1caef6d79c5b8e373fb80810a84cc8a888f4f394c843d6837a51"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

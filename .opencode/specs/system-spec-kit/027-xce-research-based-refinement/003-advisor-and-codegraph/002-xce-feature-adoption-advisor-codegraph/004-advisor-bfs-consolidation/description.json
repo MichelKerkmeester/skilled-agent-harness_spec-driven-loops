@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
-  "description": "Feature Specification: Phase 4: advisor-bfs-consolidation",
+  "description": "The advisor hand-rolls BFS twice for `transitivepath` and `subgraph` (`lib/skill-graph/skill-graph-queries.ts:296-354` and `:376-423`), duplicating ca",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "advisor-bfs-consolidation"
+    "advisor",
+    "hand-rolls",
+    "bfs",
+    "twice",
+    "transitivepath",
+    "subgraph",
+    "lib",
+    "skill-graph",
+    "skill-graph-queries",
+    "296-354",
+    "376-423",
+    "duplicating"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.641Z",
+  "lastUpdated": "2026-06-23T03:49:57.469Z",
   "specId": "004",
   "folderSlug": "advisor-bfs-consolidation",
   "parentChain": [

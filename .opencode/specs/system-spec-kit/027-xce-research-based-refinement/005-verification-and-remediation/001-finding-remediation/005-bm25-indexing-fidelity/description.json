@@ -1,17 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity",
-  "description": "Feature Specification: Finding Remediation Lane: Bm25 Indexing Fidelity",
+  "description": "The epic deep-review sweep left this lane with 4 unverified P1 claims and 1 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "bm25",
-    "indexing",
-    "fidelity"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.496Z",
+  "lastUpdated": "2026-06-23T03:49:57.906Z",
   "specId": "005",
   "folderSlug": "bm25-indexing-fidelity",
   "parentChain": [

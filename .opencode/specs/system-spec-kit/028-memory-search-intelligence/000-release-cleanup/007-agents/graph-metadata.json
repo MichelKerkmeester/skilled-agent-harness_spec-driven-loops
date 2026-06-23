@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.794Z",
+    "last_save_at": "2026-06-23T03:49:58.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:18b656fa6804a102ecb07e91555e2e09dfb30ce07c89de980efb538706ea7f7b",
+    "source_doc_hashes": {
+      "spec.md": "6bebc3eeb44ba61cfce3593096e81c8c834e79d71d54910a8d184b716823ccc0",
+      "plan.md": "7d4f87bc8eed703e0eb6f5dbb6f2decef9209e9747e9f7e76d35e5ac84e0089e",
+      "tasks.md": "55a81ff41f1df2b227af76d8ccdd27b3bda5d545c2aa68d178ea0b7fb7383b26",
+      "checklist.md": "580ec5f2ae6f4f0a1700847e4cacb0a06104c97187d76a89dcabb03f1b4ba70e",
+      "implementation-summary.md": "b9be1391b3018767996ec5a2ea13d585f15ce0a67916946d7230a466562e23af"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

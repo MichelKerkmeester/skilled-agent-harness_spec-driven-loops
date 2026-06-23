@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 17** of the ADR-012 embedder testing and architecture work under `002-spec-memory-stack`.",
+    "causal_summary": "Packet `016-reindex-populates-vec-memories-knn-table` fixed the Ollama factory resolver so it accepts ADR-012 vector shards when the main DB lacks `vec<dim>`",
     "created_at": "2026-05-19T19:21:53Z",
-    "last_save_at": "2026-05-30T10:12:02.222Z",
+    "last_save_at": "2026-06-23T03:49:54.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3a6d02457e6c0b1b13915009caa6e4b0986012e326904686dd2b57289edf8848",
+    "source_doc_hashes": {
+      "spec.md": "6eb793058ec44818f8aa6c288a81c807d95d386af1f0349b0af1a44100812579",
+      "plan.md": "05a3c30bdf63fcd6b0bbd82b0ea696c7295b8776a3a2bdbe4bdd4affc8c2e823",
+      "tasks.md": "95ea8f65e00240d7bd91306cd9e9cf5d4bc893ea1802d7f96224b8d9e9f46bcf",
+      "implementation-summary.md": "a56af1ba07101490965b88789030dc5bfb553fc43a01d8b88258dd38070c92fe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

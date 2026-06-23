@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Remove all system reliance on the `.spec-active` marker file, enforcing a strictly stateless architecture. This aligns with `AGENTS.md` Gate 5: \"NEVER create/write to .spec-active file (Stateless only)\".",
+    "causal_summary": "Remove all system reliance on the .spec-active marker file, enforcing a strictly stateless architecture. This aligns with AGENTS.md Gate 5: \\\"NEVER create/write to .spec-active f...",
     "created_at": "2026-04-12T09:02:53.513Z",
-    "last_save_at": "2026-05-30T10:12:02.951Z",
+    "last_save_at": "2026-06-23T03:49:58.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:cfd7cda59c7c0c0f83be6767dc37564866d88c82cd42f5eea727b0261ae9267c",
+    "source_doc_hashes": {
+      "spec.md": "0cbd6085648ac2fffd4843913386589f0d0494d8f112e7a9b2a88a663d9505d0",
+      "plan.md": "0eb2dad5f9a8adb046963bff8d3e0f5ff1e56098f8ed81e0efe7cc793136d1d2",
+      "tasks.md": "ca3d7c2606c374fc776c6190f559ac146689735da1d6cc1f7109c6f9ab65bebb",
+      "checklist.md": "d86f138b12009ed50808ce667d85e0f53ed0d46e09b463eaf5404915b8453418"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

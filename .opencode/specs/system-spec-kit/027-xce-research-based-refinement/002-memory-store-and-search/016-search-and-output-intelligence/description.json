@@ -1,15 +1,26 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
-  "description": "Feature Specification: Search and Output Intelligence",
+  "description": "After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2–3 word queries read `weak`/`donotcite` desp",
   "keywords": [
-    "feature",
-    "specification",
-    "search",
-    "output",
-    "intelligence"
+    "015",
+    "fixed",
+    "dominant",
+    "rrf-vs-cosine",
+    "miscalibration",
+    "on-topic",
+    "searches",
+    "still",
+    "under-report",
+    "generic",
+    "word",
+    "queries",
+    "read",
+    "weak",
+    "donotcite",
+    "desp"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.963Z",
+  "lastUpdated": "2026-06-23T03:49:57.335Z",
   "specId": "016",
   "folderSlug": "search-and-output-intelligence",
   "parentChain": [

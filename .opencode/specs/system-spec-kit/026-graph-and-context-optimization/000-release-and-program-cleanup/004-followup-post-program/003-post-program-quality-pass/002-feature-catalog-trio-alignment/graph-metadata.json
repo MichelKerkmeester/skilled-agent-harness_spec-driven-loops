@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 031-036 added MCP tools, hook diagnostics, CLI matrix runners, and changed freshness contracts. The feature catalogs lagged those shipped surfaces, which makes operator-facing docs undercount tools and miss the current repair/freshness behavior.",
+    "causal_summary": "Packets 031-036 added MCP tools, hook diagnostics, CLI matrix runners, and changed freshness contracts",
     "created_at": "2026-04-29T15:38:44.000Z",
-    "last_save_at": "2026-06-05T12:47:33.053Z",
+    "last_save_at": "2026-06-23T03:49:52.465Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:7a2e7b3b85d1c8a2841bd07d5f0ce3a41043d94b818c5a521040e620bf1b8d2a",
+    "source_doc_hashes": {
+      "spec.md": "f70c2e7490cc405bdabfb1db85b3607ee9c8422d7b98966aaffdfd8a34de130e",
+      "plan.md": "bde15431b133d8a4006d982f6281a1af3e4f6bf96774f34717b560ac115a2110",
+      "tasks.md": "74275a530c17f83a54d6d834d73a5d52a27cf5d7e5033172dd5c350f738f84f8",
+      "checklist.md": "1aba087db90549864d6dff07652709d0de5ebd840e7df90cec42d69d5ff55549",
+      "implementation-summary.md": "cb31e3c6074173d7d0683b68fe2364cd7f88a2751675c77ae198aca01c6e55eb",
+      "resource-map.md": "93d4e290561569dae6bf2e48b5fbc8bdc5334ef5ef1616174022ab781015ba06"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

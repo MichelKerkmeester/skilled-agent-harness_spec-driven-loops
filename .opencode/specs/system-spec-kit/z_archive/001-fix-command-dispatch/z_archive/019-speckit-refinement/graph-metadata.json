@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SpecKit Refinement: ECP Analysis & Improvements",
+    "causal_summary": "\"Conversation context is volatile, but the filesystem is persistent",
     "created_at": "2026-04-12T09:02:53.513Z",
-    "last_save_at": "2026-06-22T18:55:03.912Z",
+    "last_save_at": "2026-06-23T03:49:58.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:a5f00df791481e945e7fbff6dd85ba509c2aa9a33945f6725d83884fa94a5b4f",
+    "source_doc_hashes": {
+      "spec.md": "57428b58f2244c2974df8cb1b4bfecf67bb3de082319e8a4d25198bb6092afc3",
+      "plan.md": "c85c5606a253cc8a62d2fcb1134be47a48851d260fccc57c002d59cfd184eede",
+      "tasks.md": "b51aa45f0fd3ee7579da46acb1d5c2cfa32dfdc42d56ff31b6d07ca421ec6a22",
+      "checklist.md": "e917f3091bcdc4e2a9c99eb57d60d28cf268b0605b540c916a810bd50b5e492b",
+      "implementation-summary.md": "ad73d7ffd59f74734203ebea02d379f5700089426ea6af74e5952351bfde1dbb",
+      "resource-map.md": "03a2dc35828739ac4e94cf622e315550dc1a07ecbf1ffff10659ea877d59070a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

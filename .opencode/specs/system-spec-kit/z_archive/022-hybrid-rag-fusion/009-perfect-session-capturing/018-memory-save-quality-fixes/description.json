@@ -1,17 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/018-memory-save-quality-fixes",
-  "description": "Feature Specification: Memory Save Quality Root Cause Fixes",
+  "description": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural qualit",
   "keywords": [
-    "feature",
-    "specification",
+    "sprint",
+    "pipeline",
+    "hardening",
+    "landed",
     "memory",
     "save",
-    "quality",
-    "root",
-    "cause",
-    "fixes"
+    "run",
+    "still",
+    "produced",
+    "file",
+    "scored",
+    "100",
+    "while",
+    "carrying",
+    "structural",
+    "qualit"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.188Z",
+  "lastUpdated": "2026-06-23T03:50:00.138Z",
   "specId": "018",
   "folderSlug": "memory-save-quality-fixes",
   "parentChain": [

@@ -1,12 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",
-  "description": "Task 07 — Tagged Release",
+  "description": "Specify the GitHub tagged release for spec 130, following `PUBLICRELEASE.md` conventions",
   "keywords": [
-    "task",
+    "specify",
+    "github",
     "tagged",
-    "release"
+    "release",
+    "spec",
+    "130",
+    "following",
+    "publicrelease",
+    "conventions"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.067Z",
+  "lastUpdated": "2026-06-23T03:49:59.531Z",
   "specId": "007",
   "folderSlug": "github-release",
   "parentChain": [

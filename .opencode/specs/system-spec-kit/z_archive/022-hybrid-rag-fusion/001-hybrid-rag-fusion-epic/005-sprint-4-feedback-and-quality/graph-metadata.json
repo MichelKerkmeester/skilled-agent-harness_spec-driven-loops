@@ -34,9 +34,9 @@
       "r11",
       "plan",
       "tasks",
-      "phase",
-      "hybrid",
-      "rag"
+      "chunked",
+      "memories",
+      "scored"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuable signal",
     "created_at": "2026-04-12T09:02:50.228Z",
-    "last_save_at": "2026-06-05T12:47:34.652Z",
+    "last_save_at": "2026-06-23T03:49:59.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1e3d79ebfbc07a62f9db05d31718fcf65deb24f93b73b3a6ea587d1e3f00d1ee",
+    "source_doc_hashes": {
+      "spec.md": "f30bf31e1288d533414449316eb18d43eaa6fdc93d7644366597ef6921f1dc88",
+      "plan.md": "4747926c3f9ca435f3314964539b226100451dbae93a51e2897539a1ff3c2874",
+      "tasks.md": "edc3a0a6b93ba51f336f6643ee031acb408953ebc7383eaa5eb1ac4be2bd73d6",
+      "checklist.md": "97c79e54b825acdb8c3bf5ef63407ece2c19c1da797c42fa863304ef4ee552b0",
+      "implementation-summary.md": "9de75a2a8f003f059001f49398d6bdf03a6e5453e13fd2d7c7f69962fef88ed8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/029-comprehensive-bug-fix",
-  "description": "Comprehensive Skills & MCP Server Bug Fix",
+  "description": "The skills and MCP server codebase had accumulated technical debt including:",
   "keywords": [
-    "comprehensive",
     "skills",
     "mcp",
     "server",
-    "bug",
-    "fix"
+    "codebase",
+    "accumulated",
+    "technical",
+    "debt",
+    "including"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.284Z",
+  "lastUpdated": "2026-06-23T03:49:59.051Z",
   "specId": "029",
   "folderSlug": "comprehensive-bug-fix",
   "parentChain": [

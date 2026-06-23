@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command references (specs 124, 128, 129) are current and consistent.",
+    "causal_summary": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and speckit command references (specs 124, 128, 129) are current and consistent",
     "created_at": "2026-05-26T19:43:14.237Z",
-    "last_save_at": "2026-06-05T12:47:34.595Z",
+    "last_save_at": "2026-06-23T03:49:59.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bc8b8c5024c4bff57f027ef309f84d3516de46fdbc49be83faad259882cc8351",
+    "source_doc_hashes": {
+      "spec.md": "3593bd0067705e2a48a6f68af70d9c59dbf934afb4f3b4fd563d6f31959dcdf6",
+      "plan.md": "c414319ea3bd0ef66a5231c48d03c378621f1521f2ad241fd96df3207388b5c2",
+      "tasks.md": "5a399a6bfb6ccab1d8776758fa9a22f1c98895f1a652077d2569662e3fa0d906",
+      "checklist.md": "1c2be320564ca27e86d76dcaec38f29b68ed481e1730cfda988307e9096e3e5b",
+      "decision-record.md": "575efe31dc2fc7ed7b9f8c3385c0b6d7ac27f8b9b829e18066762f6007281e0a",
+      "implementation-summary.md": "7ebd1ae9a6be9a6d3f3e8871a79e4daf7806b654a01584cdd543c1bc394a873f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

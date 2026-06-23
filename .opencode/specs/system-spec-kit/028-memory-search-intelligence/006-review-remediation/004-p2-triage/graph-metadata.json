@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The review surfaced 91 P2 findings. None is a shipped runtime defect on a default-on path, but they are not uniform: some are cheap default-off-contract guards worth fixing before release, some are latent injection seams that are safe only while inputs stay constrained and many are missing-assertion gaps on default-off features whose blast radius is low. Shipping a flat list invites either over-fixing low-value items or silently dropping ones that matter. The packet needs a single triaged view that says, per finding family, whether to fix now or accept as is, with the reason recorded.",
+    "causal_summary": "The review surfaced 91 P2 findings",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.893Z",
+    "last_save_at": "2026-06-23T03:49:58.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2788b1f73c95b36c74326be7f569a4e5a49e79d8879fd1ae3026a94d37cca9af",
+    "source_doc_hashes": {
+      "spec.md": "dfbfe1bf762345d2f5e87922a3763033c3da352c3253f441790feab56b778513",
+      "plan.md": "7d1e299991d904dbaf9d72cd15e69601d448c0b31061f72692375ab489ef902e",
+      "tasks.md": "45466fa392e3ac2cf9909bb3aac5c53a8f1aaf2cf4514e5e4f315665e6a29e7f",
+      "checklist.md": "b10973285bc5cd04324692a5c3f21a27d564154e643b0e04fe388e86d0e54db7",
+      "implementation-summary.md": "11df5608db615f1532963bd357178c56199cbcd6ed9b7111f1ac27d163c637d2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

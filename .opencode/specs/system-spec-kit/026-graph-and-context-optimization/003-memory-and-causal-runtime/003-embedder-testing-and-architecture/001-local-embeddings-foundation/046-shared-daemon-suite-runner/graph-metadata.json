@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite. Each child starts its own MCP daemon stack, which can contend with the main session's local llama-cpp Metal context before scenario logic runs.",
+    "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite",
     "created_at": "2026-05-14T17:20:00Z",
-    "last_save_at": "2026-06-22T18:55:02.285Z",
+    "last_save_at": "2026-06-23T03:49:54.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:453fd2f4337bc74b37f6186e40da857bf7abb56e82cb56ac06ea73e9cdd79232",
+    "source_doc_hashes": {
+      "spec.md": "688689dd8570e64c180016efb8ea3d599c70d1f3610b6691bdac8cd9d05f1036",
+      "plan.md": "1ea902e6ebdf6ef9e0ca91e7dc5fed44bc2694085b7d75ef684b7ab1a40e6609",
+      "tasks.md": "ed0edb3a42fd0a30a36858e058e19674d02bf8e50bb3176d0c1d6b4b2d793d4c",
+      "checklist.md": "b162809358ddb3efed5b77746843df18b20cf8fd92af7a2a84c2bebfdebb06ef",
+      "implementation-summary.md": "2496592ccfb085c45b44d8e1b047e83717f25b14b186b1a2674ef58e99b949f8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -40,10 +40,10 @@
       "tasks",
       "checklist",
       "shipped",
-      "hardcoded",
-      "constants",
-      "across",
-      "owner-lease"
+      "cli-opencode",
+      "deepseek-v4-pro",
+      "variant",
+      "high"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph had hardcoded constants across owner-lease.ts (DEFAULT_TTL_MS=60_000), structural-indexer.ts (FIND_FILES_MAX_DEPTH=20), apply-orchestrator.ts (DEFAULT_QUARANTINE_AGE_DAYS=14), budget-allocator.ts (DEFAULT_FLOORS frozen object), indexer-types.ts (DEFAULT_EDGE_WEIGHTS frozen Record). No env-var overrides; operators couldn't tune behavior at runtime.",
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: new config-defaults.ts with CODE_GRAPH_DEFAULTS (ttlMs, findFilesMaxDepth, quarantineAgeDays, floors, edgeWeights) + 5 SPECKIT_CODE_GRAPH_* env-var overrides + 15-assertion invariant test. 5 consumer files wired.",
     "created_at": "2026-05-23T18:20:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.252Z",
+    "last_save_at": "2026-06-23T03:49:54.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c7f1466b3b4f7b890b9cffc3eef0badc380e21406783a1777cd01da245ddfaae",
+    "source_doc_hashes": {
+      "spec.md": "398ed3b4309f98e2a9bdb10d86261f3515ef7b26a53a56c4b88b68fd13539ae5",
+      "plan.md": "3e21327f5275e06bf399154f4c10438a131ded98703f8f60777338c3d354fe2d",
+      "tasks.md": "691e353d033706e6159a194b759f738e0f2c18b23d3b61dd27dd5cb08c47d8fe",
+      "checklist.md": "6b8825b64c2a3c00dcb595a7924f0e8637e44e88a0f6d958b0e75f4a0d858d6f",
+      "implementation-summary.md": "52788e82ff703baaedc5fd4771490ea607a03c70de54777bbe698bfc56238d62"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

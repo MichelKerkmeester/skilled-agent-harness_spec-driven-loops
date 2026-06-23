@@ -106,14 +106,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture. The memory store is a distinct surface from the code graph and cross-links to it.",
+    "causal_summary": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture",
     "created_at": "2026-05-26T16:35:26.649Z",
-    "last_save_at": "2026-06-05T12:47:33.470Z",
+    "last_save_at": "2026-06-23T03:49:53.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:a54b3ec4dc5f95c1dbd5903cbe9abb962eec99b9ebcd35b403f58433030d1676",
+    "source_doc_hashes": {
+      "spec.md": "21c770c2ad7edd017b402eb32e4f6742efb8e904e4d34bc4ff7897ae7903aa45"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
     "last_active_at": "2026-06-04T18:16:47.620Z"
   }

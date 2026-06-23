@@ -1,14 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates",
-  "description": "Feature Specification: Phase 2: self-check-templates",
+  "description": "system-spec-kit's self-check lives in the global CLAUDE.md, not in the manifest templates an author actually fills in",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "self-check-templates"
+    "system-spec-kit",
+    "self-check",
+    "lives",
+    "global",
+    "claude",
+    "manifest",
+    "templates",
+    "author",
+    "actually",
+    "fills"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.902Z",
+  "lastUpdated": "2026-06-23T03:49:57.068Z",
   "specId": "002",
   "folderSlug": "self-check-templates",
   "parentChain": [

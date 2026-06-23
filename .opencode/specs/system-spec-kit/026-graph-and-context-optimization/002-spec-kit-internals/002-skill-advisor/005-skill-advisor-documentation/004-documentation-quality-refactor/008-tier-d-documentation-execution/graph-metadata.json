@@ -31,8 +31,8 @@
       "plan",
       "tasks",
       "summary",
-      "execute",
-      "old"
+      "007",
+      "deferred-decisions"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Execute F4 (Devin hooks migration), F6 (OLD location deprecation banners), F37 (catalog/playbook cross-reference table). Leave F35 and F36 as status-quo per their recommendations.",
+    "causal_summary": "007 deferred-decisions.md documented 5 Tier D items (F4, F6, F35, F36, F37) with rationale",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-08T17:32:20.860Z",
+    "last_save_at": "2026-06-23T03:49:53.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3d18b1e17783c6fc3a2416206dd29284dcaba878fbff61de21d9042a982c33c1",
+    "source_doc_hashes": {
+      "spec.md": "bd7164f6b9167abe99f8604841374feb5d5b34415619d01524700712dc1ffb72",
+      "plan.md": "146815b710a61905064a2b70f85436e6982bfef93a39bd1d7f07b1bce01d5567",
+      "tasks.md": "2f34be803c11377952eeea899ed0fce5a6202cb0151a4830205df41a07e07d10",
+      "implementation-summary.md": "5163c462623bcdd26f12b12c103b581df61828a357ea06caf1aed1a458a2ee02"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

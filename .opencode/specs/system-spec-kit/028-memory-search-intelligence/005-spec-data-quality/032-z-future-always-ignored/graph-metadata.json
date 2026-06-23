@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The graph-metadata backfill generator refreshed `z_future/` by default. Its tree walk in `collectSpecFolders` only skipped `z_future` under the `--active-only` flag, so a default run descended into `z_future` and the parser threw `Spec folder is not under a supported specs root` at the refresh site. The same descent let the walk over-reach into a staging tree that the generator was never meant to touch. A default backfill should refresh real packet folders without crashing on a staging area.",
+    "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.846Z",
+    "last_save_at": "2026-06-23T03:49:58.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5d7c415c6a0c8013e06309d98021335e1416ca0fa2bac38ba93ef8a1899c043d",
+    "source_doc_hashes": {
+      "spec.md": "384c41957e5d7d75c84c7ba856a18968ea474090ea33b8de6bd35c05a8814f8b",
+      "plan.md": "b431dd57c806b52b9a09d73fd02116634513c9b58c4dd31ff57222a77bea5868",
+      "tasks.md": "ba99a847e04e5d7ed5bbb648d86561d1a56444ee2cea9277d17e160f9687250a",
+      "checklist.md": "8356432b2fc4c09d892becad092d90f78986e8da81a3545b8f0177402e1098e9",
+      "implementation-summary.md": "4eab65ddc630b789aac1cda57badb5858cfa581599f4ae0e4020af3be04de222"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

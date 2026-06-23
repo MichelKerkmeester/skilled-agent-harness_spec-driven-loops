@@ -19,16 +19,19 @@
     "implementation-summary.md"
   ],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/009-documentation-truth-audit",
-  "description": "Feature Specification: Documentation Truth Deep Review",
+  "description": "The documentation surface needs a release-readiness truth audit after recent refresh work",
   "keywords": [
-    "feature",
-    "specification",
     "documentation",
+    "surface",
+    "needs",
+    "release-readiness",
     "truth",
-    "deep",
-    "review"
+    "audit",
+    "recent",
+    "refresh",
+    "work"
   ],
-  "lastUpdated": "2026-05-26T17:27:09.871Z",
+  "lastUpdated": "2026-06-23T03:49:52.118Z",
   "specId": "009",
   "folderSlug": "documentation-truth-audit",
   "parentChain": [

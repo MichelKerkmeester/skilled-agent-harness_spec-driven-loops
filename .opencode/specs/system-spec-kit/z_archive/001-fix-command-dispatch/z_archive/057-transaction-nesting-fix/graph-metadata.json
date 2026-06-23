@@ -165,9 +165,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `memory_index_scan` MCP tool fails with SQLite error:",
+    "causal_summary": "The memory_index_scan MCP tool fails with SQLite error",
     "created_at": "2026-04-12T09:02:53.536Z",
-    "last_save_at": "2026-06-22T18:56:37.604Z",
+    "last_save_at": "2026-06-23T03:49:59.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,6 +175,12 @@
       "plan.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:06dfaf653e9d6e0c4a26259abb91c41237eab3d9bdafc11b302ea0ca8c980bbd",
+    "source_doc_hashes": {
+      "spec.md": "f75e27b68fb2c0879a64de6621a9c13c3c05497c73ff0d49a33fbfb4e0beefce",
+      "plan.md": "bd91d7a533154d3280525d3c453bd330da8b58c2698b623c5c60d21e58cce5c7",
+      "checklist.md": "f333c7438ce28875c3eef0c788457182824c13e5d3d51a08cc0c11ee4f3211a0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

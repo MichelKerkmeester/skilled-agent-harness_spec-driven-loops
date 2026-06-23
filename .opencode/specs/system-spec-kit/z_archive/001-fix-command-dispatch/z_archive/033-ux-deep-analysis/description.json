@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/033-ux-deep-analysis",
-  "description": "UX Deep Analysis - Memory & SpecKit Systems",
+  "description": "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness",
   "keywords": [
-    "deep",
-    "analysis",
     "memory",
+    "skill",
+    "server",
     "speckit",
-    "systems"
+    "commands",
+    "need",
+    "comprehensive",
+    "analysis",
+    "public",
+    "repo",
+    "readiness"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.870Z",
+  "lastUpdated": "2026-06-23T03:49:59.075Z",
   "specId": "033",
   "folderSlug": "ux-deep-analysis",
   "parentChain": [

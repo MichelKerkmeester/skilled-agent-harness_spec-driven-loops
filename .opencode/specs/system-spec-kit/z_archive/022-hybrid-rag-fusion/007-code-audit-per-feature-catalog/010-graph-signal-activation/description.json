@@ -1,16 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/010-graph-signal-activation",
-  "description": "Feature Specification: Code Audit — Graph Signal Activation",
+  "description": "The feature catalog for Graph Signal Activation has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
+    "catalog",
     "graph",
     "signal",
-    "activation"
+    "activation",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.241Z",
+  "lastUpdated": "2026-06-23T03:49:59.838Z",
   "specId": "010",
   "folderSlug": "graph-signal-activation",
   "parentChain": [

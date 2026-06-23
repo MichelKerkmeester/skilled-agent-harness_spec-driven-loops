@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification.",
+    "causal_summary": "The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer",
     "created_at": "2026-06-06T10:10:48Z",
-    "last_save_at": "2026-06-10T19:22:14.957Z",
+    "last_save_at": "2026-06-23T03:49:57.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cc32a47dfcf0f34f916858666234cdee8fd4e4f59e71162998d30780e463b4df",
+    "source_doc_hashes": {
+      "spec.md": "b145d6324565f6ac47f1d286845e9be2025bef0ee5b353fc5d17abfe56ae1ae9",
+      "plan.md": "1d172540c69d31d66b7977c01656114f05df08cbead45310421fdbbd77226865",
+      "tasks.md": "c0ae316957cb01b5658edcde709c38eeddbbee4499d9e20d302e2d9e48955499",
+      "checklist.md": "92f3d26bc1742191100d3908a9220114c08be7ede5e8a929cc2eeb28eff3331c",
+      "implementation-summary.md": "d4b67a713653a8ba860216305e87455e82a814da34e6d94bff510f185cd7f80f"
+    },
     "last_active_child_id": null,
     "last_active_at": "2026-06-10T14:30:00.000Z"
   }

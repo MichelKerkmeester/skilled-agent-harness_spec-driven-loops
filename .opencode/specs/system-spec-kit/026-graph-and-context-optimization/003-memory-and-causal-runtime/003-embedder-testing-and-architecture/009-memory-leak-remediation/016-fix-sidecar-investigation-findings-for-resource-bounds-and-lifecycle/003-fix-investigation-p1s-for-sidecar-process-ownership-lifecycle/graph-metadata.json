@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sidecar lifecycle selection contains explicit F88 plus the registry P1 fingerprint match F79. Together they leave process reuse and termination semantics under-specified.",
+    "causal_summary": "The sidecar lifecycle selection contains explicit F88 plus the registry P1 fingerprint match F79",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-05-30T10:12:02.480Z",
+    "last_save_at": "2026-06-23T03:49:55.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e7f50f5eba3b11bf8b233b1fec789742fa2fea1c0df8b428bc30b73566ce5b0e",
+    "source_doc_hashes": {
+      "spec.md": "3b40a7620b0627596a194faf68a4c61c329ee378708836b92296cc37774ea1e6",
+      "plan.md": "dd9566c7bd317b4254f1b8a073039038b1c3142ed617007f5f8c8705fc22f31a",
+      "tasks.md": "402743ec14a2eceeb9deb4a0bca1b3834de23fc2e5742bd43aa12b17694dd96a",
+      "checklist.md": "e253a7b296bb8de9ba8e26ca08a5beb29f3cb91c4763bbdc138c0610d6c4433d",
+      "implementation-summary.md": "bbe44533c4e5059343412a97be9e995cc23b017db18eb49181c5afd83f9a8be8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

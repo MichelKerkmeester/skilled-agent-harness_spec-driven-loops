@@ -1,16 +1,26 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
-  "description": "057: Deeper second-pass rewrite of root README",
+  "description": "Sonnet @markdown second-pass that revisits the raw iter findings (not just the bucket delta) and applies surgical edits to any finding Phase 4 missed",
   "keywords": [
-    "057",
-    "deeper",
+    "sonnet",
+    "markdown",
     "second-pass",
-    "rewrite",
-    "root",
-    "readme"
+    "revisits",
+    "raw",
+    "iter",
+    "findings",
+    "just",
+    "bucket",
+    "delta",
+    "applies",
+    "surgical",
+    "edits",
+    "finding",
+    "phase",
+    "missed"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.101Z",
+  "lastUpdated": "2026-06-23T03:49:56.715Z",
   "specId": "014",
   "folderSlug": "057-root-readme-deeper-rewrite",
   "parentChain": [

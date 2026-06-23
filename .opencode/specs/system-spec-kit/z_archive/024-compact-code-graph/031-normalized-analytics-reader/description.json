@@ -1,14 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
-  "description": "Feature Specification: Normalized Analytics Reader",
+  "description": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains strand",
   "keywords": [
-    "feature",
-    "specification",
-    "normalized",
-    "analytics",
-    "reader"
+    "stop",
+    "hook",
+    "already",
+    "captures",
+    "token",
+    "snapshots",
+    "now",
+    "persists",
+    "transcript",
+    "identity",
+    "plus",
+    "cache-token",
+    "carry-forward",
+    "data",
+    "state",
+    "remains",
+    "strand"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.401Z",
+  "lastUpdated": "2026-06-23T03:50:00.823Z",
   "specId": "031",
   "folderSlug": "normalized-analytics-reader",
   "parentChain": [

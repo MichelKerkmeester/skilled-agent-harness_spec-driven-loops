@@ -15,14 +15,22 @@
   "created_at": "2026-05-06T07:44:35Z",
   "status": "complete",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
-  "description": "Feature Specification: Scope-Change Guard",
+  "description": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
   "keywords": [
-    "feature",
-    "specification",
-    "scope-change",
-    "guard"
+    "phase",
+    "012",
+    "004",
+    "f-002",
+    "fix",
+    "blocks",
+    "only",
+    "literal",
+    "zero-node",
+    "full-scan",
+    "edge",
+    "case"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.074Z",
+  "lastUpdated": "2026-06-23T03:49:56.036Z",
   "specId": "006",
   "folderSlug": "scope-change-scan-guard",
   "parentChain": [

@@ -214,15 +214,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: marketing-grade README, full 1:1 template alignment across all doc surfaces, audit-confirmed bug fixes shipped, content gaps closed with new reference docs, and HVR compliance verified across every authored surface.",
+    "causal_summary": "`.opencode/skills/system-skill-advisor/` has accumulated drift across its 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALLGUIDE.md, references/, featurecatalog/, manualtestingplaybook/)",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-08T17:32:20.852Z",
+    "last_save_at": "2026-06-23T03:49:53.570Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:b223d69b571ce7eaf356ce185d59ed88bb7561d80df6a81346e79cdf78860a27",
+    "source_doc_hashes": {
+      "spec.md": "c48172bf11a7c7bf2d9ad9b7e59e479c6a06e4e9e4269b6c2fd13784da9ea2cb",
+      "resource-map.md": "7eaa12f4f09453bdf0e45190e17de21ef886adf8ef9e010850c77989d5dc2e91"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

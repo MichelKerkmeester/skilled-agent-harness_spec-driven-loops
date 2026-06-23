@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
-  "description": "Spec: CLI Matrix Adapter Runners",
+  "description": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNERMISSING`, and no complete `matr",
   "keywords": [
-    "spec",
-    "cli",
-    "matrix",
-    "adapter",
-    "runners"
+    "packet",
+    "035",
+    "signed",
+    "conditional",
+    "baseline",
+    "because",
+    "full",
+    "option",
+    "design",
+    "executable",
+    "cells",
+    "runnermissing",
+    "complete",
+    "matr"
   ],
-  "lastUpdated": "2026-05-26T17:26:35.748Z",
+  "lastUpdated": "2026-06-23T03:49:52.301Z",
   "specId": "011",
   "folderSlug": "cli-matrix-adapter-runners",
   "parentChain": [

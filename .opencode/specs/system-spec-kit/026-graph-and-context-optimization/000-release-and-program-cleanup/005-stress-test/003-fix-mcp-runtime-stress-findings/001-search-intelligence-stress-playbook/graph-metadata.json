@@ -84,14 +84,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The search-intelligence retrieval paths (hybrid search, trigger matching, ranking) need a repeatable stress playbook so regressions surface under load rather than in production. Without a designed scenario set and a recorded execution pass, stress coverage is ad hoc.",
+    "causal_summary": "The search-intelligence retrieval paths (hybrid search, trigger matching, ranking) need a repeatable stress playbook so regressions surface under load rather than in production",
     "created_at": "2026-04-26T14:50:00Z",
-    "last_save_at": "2026-06-08T17:32:20.665Z",
+    "last_save_at": "2026-06-23T03:49:52.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:3d88ea021efacce36d4c38e5778ffbebf02f85a90f3fd0314192c2ac496a9a30",
+    "source_doc_hashes": {
+      "spec.md": "9862105e997d1681397c0b65a9e17679ab37fe4c27d16729fe1111d2f3e52ae2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

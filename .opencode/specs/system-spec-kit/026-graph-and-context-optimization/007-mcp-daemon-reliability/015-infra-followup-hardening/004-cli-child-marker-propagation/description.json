@@ -1,18 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation",
-  "description": "Feature Specification: Propagate AI_SESSION_CHILD dispatch rule to remaining cli-* skills",
+  "description": "036/003 added the `AISESSIONCHILD=1` dispatch rule to cli-codex and cli-opencode but deferred the other three cli- dispatchers (cli-claude-code, cli-g",
   "keywords": [
-    "feature",
-    "specification",
-    "propagate",
+    "036",
+    "003",
+    "added",
+    "aisessionchild",
     "dispatch",
     "rule",
-    "remaining",
+    "cli-codex",
+    "cli-opencode",
+    "deferred",
+    "three",
     "cli",
-    "skills"
+    "dispatchers",
+    "cli-claude-code",
+    "cli-g"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.780Z",
+  "lastUpdated": "2026-06-23T03:49:56.507Z",
   "specId": "004",
   "folderSlug": "cli-child-marker-propagation",
   "parentChain": [

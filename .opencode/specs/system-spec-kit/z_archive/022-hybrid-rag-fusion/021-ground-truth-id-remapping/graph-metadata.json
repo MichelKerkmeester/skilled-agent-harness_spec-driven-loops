@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The ablation study (`eval_run_ablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `ground-truth.json` references memory IDs (e.g., 32599, 22351, 22303, 7518, 7285) from a prior database snapshot. The current live database contains 411 parent memories with IDs in the range 266–25784; none of the stale IDs exist. The script referenced in code comments — `scripts/map-ground-truth-ids.ts` (cited in `ground-truth-generator.ts` line 101) — was never created.",
+    "causal_summary": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `ground-truth.json` references memory IDs (e.g., 32599, 22351, 22303, 7518, 7285) from a prior database snapshot",
     "created_at": "2026-04-12T09:02:50.311Z",
-    "last_save_at": "2026-06-05T12:47:34.897Z",
+    "last_save_at": "2026-06-23T03:50:00.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:37f3c7d96a3f1df4f6d1ba06ee2de25b792b71f9757e3451ed6560b9533ca894",
+    "source_doc_hashes": {
+      "spec.md": "2d3fd3c137a6459ca0aa309676fa73bbe6f5ebef14bde92c0b7e37f207a5ea19",
+      "plan.md": "988275508408f854432da3031a5bd89d6b1a25cbec6e7478e25e288afe0b952b",
+      "tasks.md": "c84d6aaffab5965572a416b502ffaa7e3667dd5eb1e9e15bc0eb513e999da831",
+      "checklist.md": "9ec18d6da8395b091ebbf50e7b67a64d0e19583871e570db6d35b1de153e1314",
+      "implementation-summary.md": "81f6e625f444bfd414bc47ebf9dd186a99383872013eb9e1c26594ddbd5a9983"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

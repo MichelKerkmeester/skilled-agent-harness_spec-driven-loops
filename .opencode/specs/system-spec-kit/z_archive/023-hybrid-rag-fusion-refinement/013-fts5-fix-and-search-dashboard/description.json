@@ -1,17 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
-  "description": "Feature Specification: FTS5 Fix, Search Dashboard, and DB Path Drift Fix",
+  "description": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic",
   "keywords": [
-    "feature",
-    "specification",
+    "item",
     "fts5",
-    "fix",
-    "search",
-    "dashboard",
-    "path",
-    "drift"
+    "double-quoting",
+    "bug",
+    "completed",
+    "normalizelexicalquerytokens",
+    "bm25-index",
+    "produces",
+    "pre-quoted",
+    "phrase",
+    "tokens",
+    "semantic"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.189Z",
+  "lastUpdated": "2026-06-23T03:50:00.556Z",
   "specId": "013",
   "folderSlug": "fts5-fix-and-search-dashboard",
   "parentChain": [

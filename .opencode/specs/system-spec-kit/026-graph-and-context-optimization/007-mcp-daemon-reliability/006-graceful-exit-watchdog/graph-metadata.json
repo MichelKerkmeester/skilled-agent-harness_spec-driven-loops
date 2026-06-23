@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6 of 7**: the launcher memory-supervision fix (F1′ in `003-daemon-reliability-research`, addressing RC-1 OOM + RC-2 no-auto-restart).",
+    "causal_summary": "`mk-spec-memory-launcher.cjs` spawns the daemon and, on child exit, clears the lease and exits with no respawn and no RSS sampling (RC-2)",
     "created_at": "2026-05-28T18:43:49Z",
-    "last_save_at": "2026-06-22T18:55:02.976Z",
+    "last_save_at": "2026-06-23T03:49:56.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0b4f55e99631ddbe110a8a222e50787eda9f4a0131df070bfeea659d8804e00c",
+    "source_doc_hashes": {
+      "spec.md": "9f69fef1aaf3833add323fb3ef1671c2bd55a636bed1d8dd98b0b0a3eef736f4",
+      "plan.md": "8b09bbd7dcb47e2d119a7d9e61e542b54433c86f16ac63daa30a3bd7fe90064d",
+      "tasks.md": "71b0b028d8cb43acd509d870ee6b547393b2e33bf157f8d0ef40c58639c62884",
+      "implementation-summary.md": "0d88d5199cd7033fbbaefd747330048ffd2bc57f73a4e9aad072e8b656526617"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

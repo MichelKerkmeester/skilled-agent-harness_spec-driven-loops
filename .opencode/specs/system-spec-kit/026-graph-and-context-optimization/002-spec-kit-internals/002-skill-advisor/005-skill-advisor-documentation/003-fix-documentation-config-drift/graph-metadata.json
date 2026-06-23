@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A maintenance pass on `system-skill-advisor` surfaced three drift issues that the package's own ARCHITECTURE.md already flags or implies: (1) `npm run build` fails immediately with `TS5103: Invalid value for '--ignoreDeprecations'` because `mcp_server/tsconfig.json` sets `\"6.0\"` while installed TS is 5.9.3 (only `\"5.0\"` is valid); (2) SKILL.md and ARCHITECTURE.md disagree on whether the server exposes 8 or 9 public tools; (3) the root `opencode.json` registration comment still says \"four tools\" — flagged stale in ARCHITECTURE.md §6 but never fixed.",
+    "causal_summary": "A maintenance pass on `system-skill-advisor` surfaced three drift issues that the package's own ARCHITECTURE.md already flags or implies: (1) `npm run build` fails immediately with `TS5103: Invalid value for '--ignoreDeprecations'` because `mcpserver/tsconfig.json` sets `\"6.0\"` while installed TS is 5.9.3 (only `\"5.0\"` is valid); (2) SKILL.md and ARCHITECTURE.md disagree on whether the server exposes 8 or 9 public tools; (3) the root `opencode.json` registration comment still says \"four tools\" — flagged stale in ARCHITECTURE.md §6 but never fixed",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.396Z",
+    "last_save_at": "2026-06-23T03:49:53.564Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bfab9b7b34e6f0661d4b7c4e0548c565fd4d1c8af0f8da7cad3bc976ec29c31f",
+    "source_doc_hashes": {
+      "spec.md": "11450ea0672dba290b4f6d249b675bea07e77428f8f7ed9fe45c9fbd33928cd2",
+      "plan.md": "9d43b50c77333dd3cccb68b8a48f00a897c16fe8e8625545ea828978dec7d479",
+      "tasks.md": "25f982170a3b8b5f8c466efbb2bd3ac13c75cb0dc8a9e3f23339ed6a25657465",
+      "implementation-summary.md": "ac4f964bfa0c8f907c9484adee49b9ccf7238d288f36494d568a73281acd5843"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/073-speckit-template-optimization",
-  "description": "Feature Specification: SpecKit Template Optimization",
+  "description": "The existing SpecKit templates suffered from three critical issues:",
   "keywords": [
-    "feature",
-    "specification",
+    "existing",
     "speckit",
-    "template",
-    "optimization"
+    "templates",
+    "suffered",
+    "three",
+    "critical",
+    "issues"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.969Z",
+  "lastUpdated": "2026-06-23T03:49:59.280Z",
   "specId": "073",
   "folderSlug": "speckit-template-optimization",
   "parentChain": [

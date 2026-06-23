@@ -34,9 +34,9 @@
       "tasks",
       "checklist",
       "adr",
-      "spec-core",
-      "level2-verify",
-      "level3-arch"
+      "without",
+      "explicit",
+      "hierarchical"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "Without explicit hierarchical boundaries and lifecycle controls, the roadmap cannot safely support broader collaboration or enterprise-style governance requirements",
     "created_at": "2026-04-12T09:02:50.261Z",
-    "last_save_at": "2026-05-30T10:12:03.277Z",
+    "last_save_at": "2026-06-23T03:49:59.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3a77db88ed54616a3d24115c347d84351332845ca98a86173e15a7bc5c60d5dd",
+    "source_doc_hashes": {
+      "spec.md": "f72833ad807c0f403c4ef4cd19275193f6f68cfffa9b0d5e4c71bdb63038ea18",
+      "plan.md": "675da1c6893f959e37ff77bfd695471523e0318dd300e4301aad41f0cd78adc3",
+      "tasks.md": "82968e08a18d48d87f6b1283ceaa21ec1091b2245dc48cb459d6cff7a83a6ea0",
+      "checklist.md": "6cebe7d28d3616f107f05030c4ad6bf4a4bc44004b39a3370c529c213437f149",
+      "decision-record.md": "9972613e9f5e9c19c867c911b204c5772276d25f2eb92b475efd5bc333a4a2b4",
+      "implementation-summary.md": "2271905d39b323ff9580014208144717b0242e9293ef8973ac825339ebe06e4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

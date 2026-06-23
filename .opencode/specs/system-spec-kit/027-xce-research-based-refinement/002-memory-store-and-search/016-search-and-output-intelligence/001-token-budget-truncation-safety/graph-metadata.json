@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the search-and-output-intelligence implementation: token-budget truncation safety (Problem 3 / S1).",
+    "causal_summary": "The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved every smaller fitting result and collapsed a populated search to a single result (5→1)",
     "created_at": "2026-06-17T19:57:25.101Z",
-    "last_save_at": "2026-06-18T12:37:50.225Z",
+    "last_save_at": "2026-06-23T03:49:57.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:10ebf4d2d0310bc817809d244587eddfa74e124aaab65b6aae4db616933751a6",
+    "source_doc_hashes": {
+      "spec.md": "cbeaf5f5b8d86453a46ceea47502fcaafcd8d036622c5d2c3bfde7f001df449a",
+      "plan.md": "eadc381552e67860a7ccd9a468ede9b1728e3fb87541b174ec3289f4f4541d96",
+      "tasks.md": "8bfba1ea8ba630d878e7e55f8d96d857a11698b74e4c09da146decc4b149c87e",
+      "implementation-summary.md": "77935263e32b2928f45b46789023c267cc225a4bff3430ff0d493856c7fff576"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph code is currently fragmented across four top-level `mcp_server/` folders:",
+    "causal_summary": "Migrate code-graph into a parallel self-contained package at `mcpserver/code-graph/` with subfolders `lib/`, `tools/`, `handlers/`, `tests/`, `schemas/` (if extracted)",
     "created_at": "2026-04-21T08:25:24.317Z",
-    "last_save_at": "2026-06-05T12:47:34.314Z",
+    "last_save_at": "2026-06-23T03:49:56.633Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:32cc4387ddbe8ee75d3e207038c46dfb2ba61711be634b0b084231ea97f8b3cc",
+    "source_doc_hashes": {
+      "spec.md": "7476dc7831a4c1766802115dd4710a0c207b69bcc45b4663bc773ac5a7c06625",
+      "plan.md": "a2fe0b70d2bc30451c6f4172cadefedd78d7fbff9e55fe6b74186dfeb27921c9",
+      "tasks.md": "a2e01c979e7cea67e68b29f6f1c84a10cb76eb681cec4d8f27a5d95714e36abe",
+      "checklist.md": "c1033bd97620ebcb3cec440e160043c8cf7501d430eb9e622946f0a178c31749",
+      "implementation-summary.md": "9b77863516b4f3847d5c621a9240777aef5c07e48f6e9620b6ea6f7bf59583c5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

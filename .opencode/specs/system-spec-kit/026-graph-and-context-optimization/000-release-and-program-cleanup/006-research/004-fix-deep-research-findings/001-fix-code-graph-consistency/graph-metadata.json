@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Nine consistency-and-resilience defects across the code-graph indexing, query, and doctor-workflow surface area leak partial-write, contention, snapshot-skew, and silent-error bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-05-30T10:12:01.788Z",
+    "last_save_at": "2026-06-23T03:49:52.822Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b1b429424f42ee6e5a8fa3f72660b3e4556550e81d8bdab7bcd1aa2176f87894",
+    "source_doc_hashes": {
+      "spec.md": "5e9fc6bff6ce56a601cda281e938bccbc6e713cf76ab015f62a5f904a6831216",
+      "plan.md": "7d0291f4d724de25d0501979a4c5967668b71dcc200c3b054eb9837ede0a2fe2",
+      "tasks.md": "085ed579b0a7ab70fe999ad0ed5242e418c5e5eed94cffe842899c3b387f451d",
+      "checklist.md": "06bf151dd3fd986ae9fb2a0d4395717dbe00e82dbca5137c028b62289c4c70f9",
+      "implementation-summary.md": "aa0f2bf730fc3814a365cf34b5da3aeaf24fb0a460b0be2ad84e77e5ef7d5f5f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

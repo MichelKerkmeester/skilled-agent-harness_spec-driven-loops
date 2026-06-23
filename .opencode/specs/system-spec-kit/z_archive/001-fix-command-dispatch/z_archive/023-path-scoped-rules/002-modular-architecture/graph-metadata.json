@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current `validate-spec.sh` script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob patterns) would bloat it to ~1400 lines, making it:",
+    "causal_summary": "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob pattern...",
     "created_at": "2026-04-12T09:02:53.516Z",
-    "last_save_at": "2026-06-05T12:47:34.433Z",
+    "last_save_at": "2026-06-23T03:49:58.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6377f810e3ed608f32230d616db2a0ca07fced6750775c56ddd9622c841c1efa",
+    "source_doc_hashes": {
+      "spec.md": "92618cea6977e3fb744ed889545d042b61b23003487effdfd624e231ff5b8193",
+      "plan.md": "ed5a4658e8cba7b055244348af49243ad02a14d5f091590b5c1e576353b4898c",
+      "tasks.md": "10b5a25bb871ba8a7aa211a8af2b2dbc806c8f10957f448a7c06edf7c341b98a",
+      "checklist.md": "96003a09804d15a2fde4a3c1c80fc4e318cd76c4794bc7e994ea21ab52ade62b",
+      "decision-record.md": "d1222bda5ccf4f870b18a7eca9ba3c08b0ed27004ae3e0b27258826b45a554bd",
+      "implementation-summary.md": "c03eb43377d9d74b49d018fa2450c7715410943869a09e6275196faed5debbf2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

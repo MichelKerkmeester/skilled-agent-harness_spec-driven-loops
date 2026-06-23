@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor fuses five lanes (`explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05`, `lane-registry.ts:8-19`) and normalizes confidence against a `liveTotal` denominator built from **registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness** (`fusion.ts:343-345`, `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline, iter-003 F5/F7].",
+    "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05`, `lane-registry.ts:8-19`) and normalizes confidence against a `liveTotal` denominator built from registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness (`fusion.ts:343-345`, `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline, iter-003 F5/F7]",
     "created_at": "2026-06-19T05:52:29.584Z",
-    "last_save_at": "2026-06-22T18:55:03.738Z",
+    "last_save_at": "2026-06-23T03:49:58.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:82e2972262fb00e28f72c058b9c83125dbaa019a15ec35343bc3cedac5fe1dff",
+    "source_doc_hashes": {
+      "spec.md": "4553b1661f74790e16bec2cd7c24553ff45524068f0132eb29bb92f1c2fef950",
+      "plan.md": "98a89d5d04d13a63cefef907f89cf36fa86a857a64cbcf5649d880e1de250d71",
+      "tasks.md": "67b2e2ad76f6aabbd7d9d210a34a0be8052e5ef8c87eb1d5cbdba0f5d83c85bf",
+      "checklist.md": "0db2ee4bffefbf3133b8052f670dfcb8a0a4dd0e518e0078c5f90d7eb8e4d8d4",
+      "implementation-summary.md": "de6bef590c102369648bd37284e55a4df6eed586454fc85b2daae1528654a5c9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

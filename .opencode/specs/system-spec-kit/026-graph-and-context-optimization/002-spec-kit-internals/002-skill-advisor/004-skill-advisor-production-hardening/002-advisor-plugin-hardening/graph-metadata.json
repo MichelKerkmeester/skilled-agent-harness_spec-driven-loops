@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 007 Phase 5 fixed the immediate operator-visible bugs in `.opencode/plugins/spec-kit-skill-advisor.js` (runtime_ready flag, cache metric accounting, defensive output guard, sessionID normalization) and explicitly deferred three architectural P2 items per ADR-005:",
+    "causal_summary": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
     "created_at": "2026-04-23T08:35:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.953Z",
+    "last_save_at": "2026-06-23T03:49:53.527Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b8d60084652992af3995dea7a552674a0c5ab2d22a595c59430d126a56c2300d",
+    "source_doc_hashes": {
+      "spec.md": "9820be3cb8c70492fd46483d948f439b51ddd7bfaa4e6519a90f85d9181f411e",
+      "plan.md": "e35e9141f8cc9a2f93b132db8cfa1897e9ee7b149791b6ce00fabd49df9e94e3",
+      "tasks.md": "3774ac132a06a1cc72bd8c37b59f51581d1dbf3d723a73cab991ad35f63d07eb",
+      "checklist.md": "60b7c5a6db4defc0ff9c3209d56f3ac08af8c5d22bcc88bbd070661efd271f74",
+      "implementation-summary.md": "f9cdd4935a98c981a6e5f5efcaf7109025bd3657f71c788a05eef45c0f60c3fc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Decompose the monolithic context-server.js (2,703 LOC) into focused modules following the Spec 058 pattern.",
+    "causal_summary": "The context-server.js file is 2,703 lines - too large for efficient AI-assisted development and human review",
     "created_at": "2026-04-12T09:02:53.540Z",
-    "last_save_at": "2026-05-30T10:12:03.031Z",
+    "last_save_at": "2026-06-23T03:49:59.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:3d7a5117d354fccded4289e586427ff4a3ca243bd5400c828eaa11c4dc35fcf7",
+    "source_doc_hashes": {
+      "spec.md": "eb901c02010a21ac79eba054a712c125873a2ed56598febbacaee031e806bc8b",
+      "plan.md": "8146eaa3b1fba2d797b861af39dd5b4289e52383f6a40679670fde49c73155ac",
+      "tasks.md": "8538c629696b3b3f4e3cb8278ee40f92757802b583230edab12db67046fd361c",
+      "checklist.md": "082e239d6e6d201c45cdf2f49f384ef3ddc1d1328cc8ab4809e0dfd88dfa3bc2",
+      "decision-record.md": "fa819c2f4a2820babb22786ae732a7525b907436dbc8e5903eb0e89b5f3bb601",
+      "implementation-summary.md": "d31afe719883f7899c01a0ee9e5e0a03be3b7a7228e53f1bba675ec907f38d6d",
+      "handover.md": "edecfbbb717dda1b552240f22b35788c990129a196f4eae86e094412bd0e9172"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

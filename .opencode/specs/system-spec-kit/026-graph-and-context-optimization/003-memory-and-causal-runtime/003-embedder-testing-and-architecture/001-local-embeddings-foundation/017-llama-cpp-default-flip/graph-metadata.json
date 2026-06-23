@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent. The remaining decision was whether to flip the automatic local default, migrate the live hf-local store, and cascade runtime config notes across Codex, Claude, Gemini, and OpenCode.",
+    "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent",
     "created_at": "2026-05-13T11:10:00Z",
-    "last_save_at": "2026-06-05T12:47:33.544Z",
+    "last_save_at": "2026-06-23T03:49:54.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:10:00Z",
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9960b25006c228edaacbfb29eee0c76d3a04717635cfac2208574824434ebe3",
+    "source_doc_hashes": {
+      "spec.md": "46db4789e2e40cf1e7c73aa5d2206157702855d9f5f1537c57f1135297b94346",
+      "plan.md": "29d3b6a14fe17a0baee2b57cf965650c6944e1bb67a5c7eaf536e74459b9cced",
+      "tasks.md": "f140d071bca3e9307bb6c5554f9587c8647d5f3f62fe0471035adc54d2e5ff18",
+      "checklist.md": "c77e5ee0880bce92c585d6b5c8dcd3e17e83dd7eaa2f0910c98ac6c716dd751b",
+      "implementation-summary.md": "ea2f18569db1ee3583f767aceed013bc1adc62f534b7fa0eec3c418e56ef95d2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

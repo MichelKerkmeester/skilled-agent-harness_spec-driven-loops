@@ -1,16 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
-  "description": "Spec: Sidecar, Local Model, and Adapter Lifecycle",
+  "description": "Both audits found detached sidecars and in-process adapter caches that can retain model/client state",
   "keywords": [
-    "spec",
-    "sidecar",
-    "local",
-    "model",
+    "audits",
+    "found",
+    "detached",
+    "sidecars",
+    "in-process",
     "adapter",
-    "lifecycle"
+    "caches",
+    "retain",
+    "model",
+    "client",
+    "state"
   ],
-  "lastUpdated": "2026-05-26T17:26:03.557Z",
+  "lastUpdated": "2026-06-23T03:49:55.131Z",
   "specId": "008",
   "folderSlug": "sidecar-local-model-and-adapter-lifecycle",
   "parentChain": [

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "If a clearly better candidate has shipped since May 2026, we want to know — but we don't want to repeat the 6-candidate bake-off speculatively. The pragmatic stance: **survey on paper first, measure only if there's a real reason to**.",
+    "causal_summary": "Live HuggingFace crawl for text embedders released after May 2026 (when ADR-012 selected jina-embeddings-v3 as the mk-spec-memory production default). Research-only survey by default. Measurement only triggers if a candidate looks clearly stronger than jina-v3 on paper (better MTEB + paraphrase-tuned + Apple Silicon compatible + reasonable size).",
     "created_at": "2026-05-18T23:25:32.898Z",
-    "last_save_at": "2026-06-22T18:55:02.480Z",
+    "last_save_at": "2026-06-23T03:49:54.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:838ef0a3f530eaed68071a18856283eb8702c6cf7c6ba2ca3190c218b724d9cb",
+    "source_doc_hashes": {
+      "spec.md": "4ccd67fa39b02c4b88ada98a4d9f271405b682ca6a64ed4b3922886bbb6363ac",
+      "plan.md": "99ed09407fd82972875e53744d53f97c981b024339300c01a8e4cab1846d3756",
+      "tasks.md": "88437a9b01d48adf8d4844b5ca129239b39d1d986eb5bf86fc58afdd51699b0b",
+      "implementation-summary.md": "dd110497b6e3bab4f284276fda24c68c41df136b189c824dae7d18b220a267b1",
+      "research.md": "12d73a459ed1d729d350e6238d257aa9647ff9f0c92b397b69de32b7a74601fe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

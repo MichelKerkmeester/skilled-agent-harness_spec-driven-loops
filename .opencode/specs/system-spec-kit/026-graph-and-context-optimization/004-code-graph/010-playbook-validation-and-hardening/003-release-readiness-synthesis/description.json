@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
-  "description": "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)",
+  "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidate",
   "keywords": [
-    "feature",
-    "specification",
-    "release-readiness",
-    "synthesis",
-    "code",
-    "graph",
+    "phases",
+    "001",
+    "002",
+    "produce",
+    "per-scenario",
+    "evidence",
     "playbook",
-    "003"
+    "release-readiness",
+    "verdict",
+    "review",
+    "protocol",
+    "requires",
+    "single",
+    "consolidate"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.858Z",
+  "lastUpdated": "2026-06-23T03:49:56.090Z",
   "specId": "003",
   "folderSlug": "release-readiness-synthesis",
   "parentChain": [

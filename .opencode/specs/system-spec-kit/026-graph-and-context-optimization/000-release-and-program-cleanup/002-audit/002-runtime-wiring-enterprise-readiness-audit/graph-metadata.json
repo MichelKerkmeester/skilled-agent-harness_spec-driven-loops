@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is fixture-only, and W4 is underfed by an unknown empty QueryPlan. Without a shared decision envelope, the search stack cannot audit trust, rerank, shadow scoring, CocoIndex calibration, or degraded-readiness state per request.",
+    "causal_summary": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is fixture-only, and W4 is underfed by an unknown empty QueryPlan",
     "created_at": "2026-04-29T04:45:00Z",
-    "last_save_at": "2026-06-05T12:47:32.960Z",
+    "last_save_at": "2026-06-23T03:49:52.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5d9232d692852e4dc5836b863475b6145b5cdbbc8a29c06b9a2e747ed0f70a3c",
+    "source_doc_hashes": {
+      "spec.md": "407157f16568df0127606d30f50a2fd2928be3dc4390283cf8a379d4b2e339a1",
+      "plan.md": "b09586eb16d09df81c4052257b82bb54a31d6272d9e1b2d60e8a185ad677d5e2",
+      "tasks.md": "bb19d03cecca71b8d7e06c8c1d9b3ec9da76c5fe57bcd9d1bc3c6c20b5c84b07",
+      "checklist.md": "84e2eea180d3dd25e91914622adaabb6f0bf8369bad4f6dc62d1b15cbbb9b658",
+      "implementation-summary.md": "5015fe42fe0549b4ea48c38b78b269d006057adb1d6ae722aa80b83868d4cc58"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

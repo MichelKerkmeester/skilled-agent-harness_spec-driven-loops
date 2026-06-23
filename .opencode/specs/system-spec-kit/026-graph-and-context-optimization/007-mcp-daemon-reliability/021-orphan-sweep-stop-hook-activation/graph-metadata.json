@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Stop hook runs `session-cleanup.sh`, which only reaps a session's MCP descendants when `CLAUDE_SESSION_PID` is set. The harness never sets it, so the script logs `skip reason=no-session-pid` and does nothing; orphaned MCP daemons (reparented to pid 1) accumulate over days, holding RAM and stale sockets/leases. The script deliberately refuses to guess the pid from its PPID, because on a shared terminal that would mis-target and kill live sibling sessions (the v3.5.0.2 incident).",
+    "causal_summary": "The Stop hook runs `session-cleanup.sh`, which only reaps a session's MCP descendants when `CLAUDESESSIONPID` is set",
     "created_at": "2026-06-07T17:20:00Z",
-    "last_save_at": "2026-06-08T17:32:21.346Z",
+    "last_save_at": "2026-06-23T03:49:56.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:47428a9136b0b553a20bb076f7781f0423f9d622dd03d523f87b3db585395262",
+    "source_doc_hashes": {
+      "spec.md": "148ec4c5fcf32849ee30702621fa0d5c38efb9d6b7c3cee08060baa81167cd4e",
+      "plan.md": "f3eeac47844df3669fa76f581a0d0ae13afa3b3ead734e57a1931cc751af902e",
+      "tasks.md": "532ad6a04f6f4ade258dc89eed330a3a8753791aabc202b131e5e5779c5913c8",
+      "checklist.md": "8025608747ab1f2969486baa0b63c62b82d2d34f9e1ef1544706f7d1ff6d8d1a",
+      "implementation-summary.md": "6d13dc1724977523bf947273b8f9e925ca7afa2c3b2a80f8cb8e0d4cc4d311c4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

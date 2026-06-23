@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms). (1) The scenario doc (`10--python-compat/005-bench-runner.md:33,36`) omits the required `--dataset` flag (`skill_advisor_bench.py:241`). (2) The `--max-warm-p95-ms` default is 20 ms (`skill_advisor_bench.py:246`) — tighter than the documented 50 ms envelope (`feature_catalog/08--python-compat/03-bench-runner.md:21`) and the machine's measured 25.26 ms — and `--max-cold-p95-ms` (60 ms) is applied to a per-prompt subprocess cold-start (876 ms), conflating Python+Node startup with native-scorer latency.",
+    "causal_summary": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms)",
     "created_at": "2026-05-26T21:20:44.527Z",
-    "last_save_at": "2026-06-05T12:47:33.431Z",
+    "last_save_at": "2026-06-23T03:49:53.689Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:67478ef8d60783f8f3ccfda5a336e0bdef3a24c34e167a2826fadb2c7f4f8ae4",
+    "source_doc_hashes": {
+      "spec.md": "75185605be50551c1d0f76d1a6158dbb083a75ffcf184cbb08b3c4d4fad8766b",
+      "plan.md": "83f68871ac640a1eea2db4ed39819f92f2a8be558df361ab164fe43e31e99660",
+      "tasks.md": "6f619218ddea5e1b8c979417cea1978603526f03bd73ed843e86495b39b77df0",
+      "implementation-summary.md": "fd71bcb265c48bcfeeb53fa7d5f118961c4f8511798decd5835785b4b240baa0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

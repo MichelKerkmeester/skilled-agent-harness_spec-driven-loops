@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 040 fixed V8 overreach for scattered foreign spec IDs, but V8 still has a separate dominance branch that fails when a single foreign spec ID appears repeatedly. Parent-level handover docs intentionally summarize many child packets, so repeated child packet references are expected rather than contamination.",
+    "causal_summary": "Packet 040 fixed V8 overreach for scattered foreign spec IDs, but V8 still has a separate dominance branch that fails when a single foreign spec ID appears repeatedly",
     "created_at": "2026-05-14T17:15:00Z",
-    "last_save_at": "2026-05-30T10:12:02.156Z",
+    "last_save_at": "2026-06-23T03:49:54.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f31b16adc2d427035762402893444f04a830add987cc6748e49f6a5d0a2be60a",
+    "source_doc_hashes": {
+      "spec.md": "1f2be0ef096b722adc6b7a5eadc45e4f4fbf2f9e8dd1a72d14eebb7c7138ef17",
+      "plan.md": "45c678f98b909e82956a94900028d9a4ff09898e135fda182819e4e3b2f09dcf",
+      "tasks.md": "4d9cc15856f506253145e03fee3b19adff3588e63b4a659038ee561bd978b123",
+      "checklist.md": "40424ccfb684d2e6fafa2af1550fccdc17936baf4d0eb55e3317a4db22bdfa80",
+      "implementation-summary.md": "885f54cb9f1d87396a58744ad8b1d8f42f87bb910c91be13c3c281d8d6692056"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

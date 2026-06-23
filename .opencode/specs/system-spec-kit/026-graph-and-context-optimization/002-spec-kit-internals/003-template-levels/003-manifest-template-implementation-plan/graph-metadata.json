@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Sibling packet `002-manifest-driven-template-design/` ran a 14-iteration deep-research loop and converged on a chosen design (C+F hybrid manifest-driven greenfield) with 5 ADRs covering the architectural decisions and the workflow-invariance constraint. This packet **executes** the implementation across 4 gated phases: ADD private manifest+resolver+renderer+CI-test, MODIFY scaffolder, MODIFY validators, DELETE legacy. The full file-by-file blast radius lives in `resource-map.md` (~85 file references; 20 created / 18 modified / 51 deleted / many intentionally untouched).",
+    "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-05-30T10:12:02.014Z",
+    "last_save_at": "2026-06-23T03:49:53.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:3580179726443cd8f8ba7a772e0e9be3abb48f49cfd06b4d6ee478875374709b",
+    "source_doc_hashes": {
+      "spec.md": "d4ca5c12c60b2acfeb1329f480b21085c5c014dc4283fbfd74a2af71096a2d2e",
+      "plan.md": "45a15e46e04a0ed8af70984db7b8fe41b5082e8c8e27dcfb80417e665a95bdcf",
+      "tasks.md": "d0f53852015a99852a5a58f7d4f72e5ab1e095bfc16c78ab44edb32ce733943f",
+      "checklist.md": "5045d78b4ae04b47a92ef0a14beb8b9509acd8b2e1f6e051e11315502b0fba1d",
+      "decision-record.md": "457e43720222b0f921606a7863c8fde06fdc3ea33094175d86018387fc77edbb",
+      "implementation-summary.md": "b14eb4b91220e13f8b10f5be0d52720d737b873d041b70aac3a8543351fe8913",
+      "resource-map.md": "97cabaeb020c69d9dac3b5a758ece59f914ed03e6ad0faa831ba76dd6b600e6d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

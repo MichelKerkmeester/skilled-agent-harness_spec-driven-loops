@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
-  "description": "Feature Specification: Phase 4: confidence-calibration-labeled-set",
+  "description": "Per-result `confidence.value` was only ~40% absolute relevance, so a strong-but-isolated high-cosine hit could be capped at \"medium\" - dragged down by",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "confidence-calibration-labeled-set"
+    "per-result",
+    "confidence",
+    "value",
+    "only",
+    "absolute",
+    "relevance",
+    "strong-but-isolated",
+    "high-cosine",
+    "hit",
+    "capped",
+    "medium",
+    "dragged"
   ],
-  "lastUpdated": "2026-06-18T03:33:51.817Z",
+  "lastUpdated": "2026-06-23T03:49:57.359Z",
   "specId": "004",
   "folderSlug": "confidence-calibration-labeled-set",
   "parentChain": [

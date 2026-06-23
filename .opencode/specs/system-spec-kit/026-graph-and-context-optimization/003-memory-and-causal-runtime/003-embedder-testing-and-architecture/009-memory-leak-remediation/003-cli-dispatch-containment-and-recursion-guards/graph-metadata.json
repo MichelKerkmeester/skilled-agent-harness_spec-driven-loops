@@ -20,15 +20,15 @@
       "cli-dispatch-containment-and-recursion-guards",
       "memory",
       "leak",
-      "phase",
-      "remediation",
-      "arc",
-      "scoped",
-      "source",
-      "evidence",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "broad",
+      "audit",
+      "found",
+      "raw",
+      "shell",
+      "branches",
+      "inconsistent",
+      "timeout",
+      "handling"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -172,9 +172,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 3 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
+    "causal_summary": "The broad memory audit found raw shell branches, inconsistent timeout handling, and prose-only self-invocation guards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-05T12:47:33.843Z",
+    "last_save_at": "2026-06-23T03:49:55.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,6 +183,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:720576ab343c1e1758af5f5137c811a573a82255e8866b6d2b1672ca262ba6a2",
+    "source_doc_hashes": {
+      "spec.md": "43c94731580676f7f2d809ce910bd1e76e6ac7646e01c36b5a54af0e9930e6e4",
+      "plan.md": "bd819c711342b9cc1f554db9970cde3543f73a3eebc30f9565d27dfe827378d5",
+      "tasks.md": "0c42f37cbff4ba9457ec485859ed9bf75a2715257b5b7f8a3a9698d008122fb6",
+      "implementation-summary.md": "6b0f3a8eb7f774f245e9ffed0a73883e79a27acf2ad58c34b32a62626871d2a6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

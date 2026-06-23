@@ -109,14 +109,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carry a detailed memory-style block (`trigger_phrases`, `importance_tier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all. The detailed block has no runtime consumer on these doc types, and sk-doc's own guidance contradicts itself about what references should carry.",
+    "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.opencode/skills//assets/` carry a detailed memory-style block (`triggerphrases`, `importancetier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all",
     "created_at": "2026-06-11T05:47:09Z",
-    "last_save_at": "2026-06-12T04:40:47.825Z",
+    "last_save_at": "2026-06-23T03:49:56.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:2e7ded06a921a6e8f7a688bcfcdafebd2ab48106dd39fcce1bae519397538f07",
+    "source_doc_hashes": {
+      "spec.md": "be711d4b8ebecc4d73a4a942952fddd554450d1dad58daa69d9f8ee8aa54a160"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear.",
+    "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear",
     "created_at": "2026-05-23T03:50:22.752Z",
-    "last_save_at": "2026-05-30T10:12:02.482Z",
+    "last_save_at": "2026-06-23T03:49:55.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bc178b3a2397f107bec084629c460c6a647ff0438d8bfdcd7eb8e51d5235ee81",
+    "source_doc_hashes": {
+      "spec.md": "680a0e9aa4563f77f8659e1c685b75d4070a23330ef5512708ffa5970a661f08",
+      "plan.md": "bb6890bd61352935049befbf0cc87e2504d97d825a3378ea9100079968a3ae46",
+      "tasks.md": "c7f87e5bda97f1965764eb658289ab1e92d7210bf4293a434ee93624eeaa70b7",
+      "checklist.md": "f57c2fc10c1b985ee9b2cb04e69df0ec8760635b29a1f5fbdbc7bc357b1115a4",
+      "decision-record.md": "04b14ef490ef7dcf48858e6a531f6ccc78b00bfb57229def696ea160bbabe0b3",
+      "implementation-summary.md": "fa24c8dc13fe9b337166d5587558308a89ddfe97e61bcebd4e72eae6e75a26be"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

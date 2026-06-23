@@ -141,15 +141,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A spec folder with phase children carries duplicate state at the parent level: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` describe program-level intent at the time of decomposition, but the children own the real work and pivot as they execute. Over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.",
+    "causal_summary": "A spec folder with phase children carries duplicate state at the parent level: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` describe program-level intent at the time of decomposition, but the children own the real work and pivot as they execute",
     "created_at": "2026-04-27T08:55:00Z",
-    "last_save_at": "2026-06-05T12:47:32.991Z",
+    "last_save_at": "2026-06-23T03:49:52.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:c364f1f75605612c7be52c29e87bbad4d2b4a4c224e5c2be044cf4083ae52bcf",
+    "source_doc_hashes": {
+      "spec.md": "3b132b9d0847ee6f88842914caaeeaba1b7690d40fac6b32c1d70ea760032781",
+      "resource-map.md": "754f5e7a75c53073ba995890df6896b30f699678d8fbe75b66813c7c1a1b873b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

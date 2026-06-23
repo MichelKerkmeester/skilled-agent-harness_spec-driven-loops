@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (`.opencode/skills/system-spec-kit/`), the memory is saved to a project-specific folder (e.g., `005-anobel.com`) based on text matching alone.",
+    "causal_summary": "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths",
     "created_at": "2026-04-12T09:02:53.557Z",
-    "last_save_at": "2026-05-30T10:12:03.113Z",
+    "last_save_at": "2026-06-23T03:49:59.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:011b9142bd3956f38755f213e429da84142f27f81a104d7808da7f5858a2c388",
+    "source_doc_hashes": {
+      "spec.md": "299ec563b44b96f9022a995c7576b1849689a76ce3dc129c8e64004a2ed3e6ee",
+      "plan.md": "6f1d289b4d1fe51638832c4956a23e8b575a68e31f6e2cf866a2b6af01218c1c",
+      "checklist.md": "2102708ddf6dc12f6c669ecd7ebb70f097d447a48de47eb5bc3100614cdb9a3d",
+      "implementation-summary.md": "6eaab52c7213a4af29ef47a8ddb17d64ff88bd4e561a284473bb4bc3e9a110eb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

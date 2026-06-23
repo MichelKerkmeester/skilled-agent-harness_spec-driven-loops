@@ -1,16 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
-  "description": "Feature Specification: DFIDF cold start cache",
+  "description": "The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time",
   "keywords": [
-    "feature",
-    "specification",
-    "dfidf",
-    "cold",
-    "start",
-    "cache"
+    "advisor",
+    "corpus",
+    "idf",
+    "module",
+    "computed",
+    "document",
+    "frequencies",
+    "values",
+    "provided",
+    "every",
+    "time"
   ],
-  "lastUpdated": "2026-05-26T17:27:20.867Z",
+  "lastUpdated": "2026-06-23T03:49:53.372Z",
   "specId": "024",
   "folderSlug": "dfidf-cold-start-cache",
   "parentChain": [

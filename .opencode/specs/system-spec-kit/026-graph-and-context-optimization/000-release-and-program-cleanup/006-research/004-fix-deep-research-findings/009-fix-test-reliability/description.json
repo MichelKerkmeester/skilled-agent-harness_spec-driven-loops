@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-test-reliability",
-  "description": "Feature Specification: 009 Test Reliability Remediation",
+  "description": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated",
   "keywords": [
-    "feature",
-    "specification",
-    "009",
-    "test",
+    "six",
+    "tests",
+    "stress-test",
+    "unit-test",
+    "surface",
     "reliability",
-    "remediation"
+    "defects",
+    "make",
+    "them",
+    "brittle",
+    "non-developer",
+    "machines",
+    "repeated"
   ],
-  "lastUpdated": "2026-05-26T17:27:11.460Z",
+  "lastUpdated": "2026-06-23T03:49:52.878Z",
   "specId": "009",
   "folderSlug": "fix-test-reliability",
   "parentChain": [

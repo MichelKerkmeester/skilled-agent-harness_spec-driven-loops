@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement",
-  "description": "Feature Specification: 027 Memory Plugin And Refinement",
+  "description": "This parent packet coordinates the phased work under `027 Memory Plugin And Refinement` so the child packets stay discoverable and the root purpose re",
   "keywords": [
-    "feature",
-    "specification",
+    "parent",
+    "packet",
+    "coordinates",
+    "phased",
+    "work",
     "027",
     "memory",
     "plugin",
-    "refinement"
+    "refinement",
+    "child",
+    "packets",
+    "stay",
+    "discoverable",
+    "root",
+    "purpose"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.940Z",
+  "lastUpdated": "2026-06-23T03:49:59.015Z",
   "specId": "027",
   "folderSlug": "memory-plugin-and-refinement",
   "parentChain": [

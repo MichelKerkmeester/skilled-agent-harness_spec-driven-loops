@@ -34,9 +34,9 @@
       "plan",
       "tasks",
       "result",
-      "dual-stack",
-      "implementation",
-      "workstream"
+      "only",
+      "mkskilladvisor",
+      "tools"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the skill-advisor dual-stack CLI implementation (workstream 003-skill-advisor-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.",
+    "causal_summary": "Only 1 of 9 mkskilladvisor tools has real CLI coverage today (skilladvisor.py covers advisorrecommend); advisorrebuild and 4 of 5 skillgraph tools have no shell path at all",
     "created_at": "2026-06-06T14:45:16Z",
-    "last_save_at": "2026-06-22T18:55:03.426Z",
+    "last_save_at": "2026-06-23T03:49:57.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bf5d80f981122388fcb1da50603a5939a2806eb0e4393fb537fcc78771598ffa",
+    "source_doc_hashes": {
+      "spec.md": "e997d0ab80c8c2f1a692035c21d617bdde028cab555353c62987d79dc9dd17bd",
+      "plan.md": "b51985e932ab11a4efdb854ecd524889b3b90f05b1c6cd3406714b3cc86e9ac9",
+      "tasks.md": "e406a393d423658d7a6b4047b2eb2fa5c5187fdf01181bde73aa9efa400607f2",
+      "implementation-summary.md": "4a21e4815ac794d43a0c11dd8ea07e663a6a5b515f429e3cb268a096136a752b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

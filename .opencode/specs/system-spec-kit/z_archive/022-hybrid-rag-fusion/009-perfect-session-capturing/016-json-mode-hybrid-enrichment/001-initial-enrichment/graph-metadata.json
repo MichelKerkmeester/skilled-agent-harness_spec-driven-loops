@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "JSON-mode saves became the safe path for multi-spec sessions, but the implementation that actually shipped in this tree is narrower than the original phase design. The code now accepts richer structured JSON summaries such as `toolCalls` and `exchanges`, but it does not ship the full file-backed hybrid enrichment path originally described here.",
+    "causal_summary": "The original phase-016 pack had drifted away from the code that actually shipped",
     "created_at": "2026-04-12T09:02:50.277Z",
-    "last_save_at": "2026-05-30T10:12:03.316Z",
+    "last_save_at": "2026-06-23T03:50:00.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4728088fde7c9a91650c92d018d3b610601047d795221adcf79aff591bbb8351",
+    "source_doc_hashes": {
+      "spec.md": "3a3d221e08b42062e351fa5b40df709cb1d4864b0771f7afe9949e7766826d8e",
+      "plan.md": "da94fca487566e387669941f8d489cabd0e6d77cfd1cf13c107567608845aba5",
+      "tasks.md": "be1947628142363489eae927b9c29324e046c977153aa4f8c385af1b0d2c83c5",
+      "checklist.md": "5e1edc52c073d1d83e09a68c8f773d2ae7d415e246ab45cf1182ee87790800cd",
+      "decision-record.md": "0bca360a078cd9e31eeb8515b24b4af382e2465e48859353454a660fb59106c9",
+      "implementation-summary.md": "fe05fe7c0f41bd869a05712795f5a4e1425e72f5caefcd727d715d3595365860"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 056 + 058 dispatched ~40 cli-devin SWE 1.6 iter via custom orchestration because:",
+    "causal_summary": "Make cli-devin a first-class deep-loop executor across the codebase",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.309Z",
+    "last_save_at": "2026-06-23T03:49:54.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:3d6da7d87d6d5e0d062ba79fd24d85fa6a8baf48b39c1c16a3da68e7344442fc",
+    "source_doc_hashes": {
+      "spec.md": "6453b5f15bf4797e63f4bf80688e57fbd92e6dcba5c5ed9c84ac3ce4a954fc4c",
+      "plan.md": "25ccd2a205173e47d004c44baf7c05f36f61715d1c84bbcb0f747a05d2379ca9",
+      "tasks.md": "846c52437375ba4648d5bff6d33f83530365bd40a83dc0a06ce2c8d20a1c410d",
+      "implementation-summary.md": "a9c6bba2fca90e2936c2d53827a207b0191b1212701f428ee9a78333259782cf",
+      "resource-map.md": "e2352186d1354866b6a11bdedaf283d1e285bde3f6c295d822c006aa023c15a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

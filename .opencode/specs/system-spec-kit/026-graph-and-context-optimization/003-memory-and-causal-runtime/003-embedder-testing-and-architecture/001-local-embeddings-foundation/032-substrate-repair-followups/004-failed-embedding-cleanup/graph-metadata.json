@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The active Memory MCP database has historical rows in `memory_index` with `embedding_status='failed'`. The original expectation was roughly 24 rows, but the active local database currently reports 214 failed rows.",
+    "causal_summary": "The active Memory MCP database has historical rows in `memoryindex` with `embeddingstatus='failed'`",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-30T10:12:02.120Z",
+    "last_save_at": "2026-06-23T03:49:54.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1367ad0d029b313f6b24eecb40cae4f85cf7ca13748286a29918a79deaffe63e",
+    "source_doc_hashes": {
+      "spec.md": "19f4be50fa47f880ea1c790432303226123755b3097da795a6fad254c7fabd4d",
+      "plan.md": "8abed274c596f8e81861ea689fb955f982301c2ba18ec382246f2e427cbeab7f",
+      "tasks.md": "e352a31de9bc05213d91fce71d352cd833e21e8877724cbbf6017b0499c496ab",
+      "checklist.md": "0dec6755f94c02c3da200ebb376adce4fc3b1cbe528ab700b3524b623a8f143b",
+      "implementation-summary.md": "f8ab973c477d26a33282d9e28b8bc7337210fd34aaab5da1f1947d217aa43982"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

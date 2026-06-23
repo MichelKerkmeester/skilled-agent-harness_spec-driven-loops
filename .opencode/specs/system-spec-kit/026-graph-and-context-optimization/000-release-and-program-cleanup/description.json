@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
-  "description": "Feature Specification: Release and Program Cleanup",
+  "description": "Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context pr",
   "keywords": [
-    "feature",
-    "specification",
+    "coordinate",
     "release",
-    "program",
-    "cleanup"
+    "readiness",
+    "system",
+    "audits",
+    "cross-cutting",
+    "cleanup",
+    "stress",
+    "testing",
+    "program-level",
+    "adoption",
+    "follow-ups",
+    "graph-and-context"
   ],
-  "lastUpdated": "2026-05-26T17:26:56.205Z",
+  "lastUpdated": "2026-06-23T03:49:52.040Z",
   "specId": "000",
   "folderSlug": "release-and-program-cleanup",
   "parentChain": [

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the adaptive-ranking-prerequisites specification.",
+    "causal_summary": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`, `minSignalsForPromotion`) in a `WeakMap` keyed by the DB object",
     "created_at": "2026-04-12T09:02:50.330Z",
-    "last_save_at": "2026-06-22T18:55:04.648Z",
+    "last_save_at": "2026-06-23T03:50:00.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f1b94b1e68c539212b2ba4b2b192de058ce5db658ae834af44a636bc30e25e97",
+    "source_doc_hashes": {
+      "spec.md": "eedfe23945a3468b47c9700d16bb3cae544188a16accc99cc54b6beacc4b130b",
+      "plan.md": "47cf2e9bcc8fea981606eba793b82a7c6968e10b4195dd5ae97752a17a4024f8",
+      "tasks.md": "0dd6eb8f1b8db9ce9e47a0a7ded5228733593ad29c772dd1c16305cb19674c56",
+      "checklist.md": "cfb7490d77dd68bee178985d33612ed1131e2568f63ea8039b5fe41dee984fbf",
+      "implementation-summary.md": "eff95fa71fccb85f0f14fd0551d174013dff1950356e54cc8cde3db5da7805d0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

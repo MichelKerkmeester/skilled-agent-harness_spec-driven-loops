@@ -1,18 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
-  "description": "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit",
+  "description": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
   "keywords": [
-    "feature",
-    "specification",
-    "analysis",
+    "user",
+    "asked",
+    "whether",
+    "external",
+    "repo",
+    "gytis-ivaskevicius",
     "peck",
-    "framework",
-    "teachings",
-    "applicable",
-    "system-spec-kit"
+    "contains",
+    "teachings"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.898Z",
+  "lastUpdated": "2026-06-23T03:49:57.061Z",
   "specId": "001",
   "folderSlug": "peck-teachings-for-spec-kit",
   "parentChain": [

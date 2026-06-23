@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria. Without a dedicated feature-flag-reference packet, Phase 019 testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or review results.",
+    "causal_summary": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.305Z",
-    "last_save_at": "2026-06-22T18:55:04.556Z",
+    "last_save_at": "2026-06-23T03:50:00.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1c876ea64b24202d2c497d662e376ab94fc629fb884407b25bdb6f706ff879a7",
+    "source_doc_hashes": {
+      "spec.md": "fa805667cbad7aea96e6cb361491432327014a811bc00027b6e6d3a0b566f291",
+      "plan.md": "9b1cf8c7695be4d8321026e619cb240068f9daeebb296ab80e3be04cde0d0fa6",
+      "tasks.md": "9fce4b52208b57f93cb2102b053108ad94e13d7a935fef31524beffd53162860",
+      "checklist.md": "3663c7842491af56c563d03926f5869f17a7b3805d48e30a0370ed2fd4d09c86",
+      "implementation-summary.md": "b3c713744041a12385b55a8b1826d9d16156b1d5ba8f7d2bb639976ec2210a9d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

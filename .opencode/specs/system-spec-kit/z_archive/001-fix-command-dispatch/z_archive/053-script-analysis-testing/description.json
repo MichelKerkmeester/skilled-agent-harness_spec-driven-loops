@@ -1,17 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing",
-  "description": "Feature Specification: Script Analysis Testing - End-to-End Workflow Validation",
+  "description": "The Spec Kit Memory workflow involves multiple interconnected components (gates, memory tools, generate-context.js script)",
   "keywords": [
-    "feature",
-    "specification",
-    "script",
-    "analysis",
-    "testing",
-    "end-to-end",
+    "spec",
+    "kit",
+    "memory",
     "workflow",
-    "validation"
+    "involves",
+    "multiple",
+    "interconnected",
+    "components",
+    "gates",
+    "tools",
+    "generate-context",
+    "script"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.930Z",
+  "lastUpdated": "2026-06-23T03:49:59.189Z",
   "specId": "053",
   "folderSlug": "script-analysis-testing",
   "parentChain": [

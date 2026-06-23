@@ -1,17 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
-  "description": "Feature Specification: 002 — Scoped Pre-Execution & Handoff Gates",
+  "description": "The spec-kit's highest-risk agent transitions are governed by prose, not machine-checkable discipline",
   "keywords": [
-    "feature",
-    "specification",
-    "002",
-    "scoped",
-    "pre-execution",
-    "handoff",
-    "gates"
+    "spec-kit",
+    "highest-risk",
+    "agent",
+    "transitions",
+    "governed",
+    "prose",
+    "machine-checkable",
+    "discipline"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.752Z",
+  "lastUpdated": "2026-06-23T03:49:57.120Z",
   "specId": "002",
   "folderSlug": "scoped-preexec-and-handoff-gates",
   "parentChain": [

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TEMPLATE_EDGES`-gated `valid_at`/`invalid_at` columns on `causal_edges`, an `invalidateEdge()` writer and `IS NULL`-filtered current-edge readers), but the substrate is bi-temporally *incorrect in two ways*: (1) it carries only a single `valid_at`/`invalid_at` pair, conflating real-world event-time with our transaction-time, and (2) `invalidateEdge()` always stamps `invalid_at = now()`, recording *when we noticed* a fact died rather than *when it actually died*. This phase fixes the spearhead correctness bug (close at event-time, reader-transparent), defines the additive four-timestamp window shared with Code-Graph and lineage, adds chronology-driven supersession scoped to conflicting relation pairs and records the tombstone-sweep vs temporal-close separation-of-concerns note. The one already-shipped candidate (skip-closed-in-sweep) is referenced for completeness.",
+    "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-06-22T18:55:03.638Z",
+    "last_save_at": "2026-06-23T03:49:58.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:de849e9af96cf0fdbb998667c16be23a3a872da5e9583560717ee2dc4cc7b036",
+    "source_doc_hashes": {
+      "spec.md": "4b6c98b0d2a02cfa4e16d92a9baa2d6c9418aa4b1c486f8e0f152977d6a9ccbe",
+      "plan.md": "3ad00d5b8b421540d4d7d11b7a709268e0a9ca569b8f2e564d9f015620560e0c",
+      "tasks.md": "3ac7cf0254dec6e413912b9f86468ad2cb3ebfccd549c545d50c0c59ef78ffa3",
+      "checklist.md": "20902421743ba7721d09173eff8b63c13d8a322cbd44dafaeb75c854ff24d61d",
+      "decision-record.md": "205340d7c93617dd49c48efca1ac570f098c4abdeb95684985fa4f206a47a419",
+      "implementation-summary.md": "5a3275e5f00deb3ca15e8cc550f05e177b522761e62522ef6d44fedc9529cc41"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

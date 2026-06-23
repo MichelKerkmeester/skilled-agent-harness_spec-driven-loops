@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "cli-opencode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:24Z",
-    "last_save_at": "2026-06-12T04:40:47.829Z",
+    "last_save_at": "2026-06-23T03:49:56.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:eec530efb1d78d45f8158a4dfbf305ffda9f5189994124ce215d46510c190489",
+    "source_doc_hashes": {
+      "spec.md": "543b9cca9b5798c0e933b455b272c09b8b4030390dc074d8e36e073f7c5e2d8f",
+      "plan.md": "6239934fb24a7fc646b677c54e63a70375b922c41f79196e5970581407fd35e5",
+      "tasks.md": "3e63cfb76533e4f0c8684ccaf5c12d6ead7827ea96e7130f4e4266dbe7c2ecbd",
+      "implementation-summary.md": "ae0a5af7f39a3c3d7cd1aca8547dd502c6f610b1cdd59783539f4d47552306e4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

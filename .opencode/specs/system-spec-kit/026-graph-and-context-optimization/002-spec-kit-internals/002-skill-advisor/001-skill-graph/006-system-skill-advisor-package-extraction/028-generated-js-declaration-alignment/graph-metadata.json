@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep. This packet closes its assigned ledger slice without renaming tools, changing subsystem topology, or touching unrelated dirty files.",
+    "causal_summary": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
     "created_at": "2026-05-15T11:56:28Z",
-    "last_save_at": "2026-05-30T10:12:01.918Z",
+    "last_save_at": "2026-06-23T03:49:53.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a44e5ef03b8ccc22f2a332d7985fb9da1363477551d3ca84e47dc7a0c5ddc53b",
+    "source_doc_hashes": {
+      "spec.md": "9eb8d92dd75b8f2dcbb4db7fc662e2b5fd9f7b4e580b63b4614bc40120177d6f",
+      "plan.md": "f50cdc6d767c8de2f909c24b9a08e4e680088bfb857c23a5e26b1e4f33fe7c52",
+      "tasks.md": "5a0efdb0369c7fa345da6ed6a05dc24d16612e2368fe942ba2c5e65fab1fda8a",
+      "checklist.md": "7718e1cc67ffa74ee1bd541174758ba4b3e9b000bbc1d8c9966a0ba0670d0ceb",
+      "implementation-summary.md": "a7c188657cdb44ddad827274d874db477a1510ffc93c4e6ad9f2b8755e190f2d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1 of 5** of the embedding-stack hardening decomposition: fix the zero-install selector, pin a shared cross-launcher socket, and harden the client against transient resets and unhelpful timeouts. Everything downstream depends on a working selector and a shared socket.",
+    "causal_summary": "The zero-install fallback is silently broken: `probeHfLocal` (`auto-select.ts:435-449`) still gates hf-local selection on a Python `import sentencetransformers` probe, but the post-029 server is pure-Node with zero Python, so a normal Node-only machine fails the probe, rejects hf-local, and falls through to an error or silent cloud egress",
     "created_at": "2026-05-29T11:22:57.372Z",
-    "last_save_at": "2026-06-22T18:55:02.632Z",
+    "last_save_at": "2026-06-23T03:49:55.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:da03df567f68912cf954b5b1208a7ef4cc11d5739051afa6922b83c1994ffd52",
+    "source_doc_hashes": {
+      "spec.md": "0883f3b5d789fffe671e36ae64f8e0a67558c65d1ee8e1a5154776a6cf9027f5",
+      "plan.md": "131dc22895dd78086c17b7a60fb9dacc0367087502a838ed7b66bf08fcb390d6",
+      "tasks.md": "7e7ae83e16cafd227e8b936f72d3d3215a4c32d830ede0d77be795e4ec741086",
+      "implementation-summary.md": "fbbb2c55e67de93c44dc2677b9683f9214d039419ac792d1fcba1e0b24872346"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/010-template-compliance-enforcement",
-  "description": "Feature Specification: Template Compliance Enforcement",
+  "description": "Agents across all 4 CLI surfaces (Claude Code, Copilot, ChatGPT, Codex) produce structurally non-compliant spec folder documents",
   "keywords": [
-    "feature",
-    "specification",
-    "template",
-    "compliance",
-    "enforcement"
+    "agents",
+    "across",
+    "cli",
+    "surfaces",
+    "claude",
+    "code",
+    "copilot",
+    "chatgpt",
+    "codex",
+    "produce",
+    "structurally",
+    "non-compliant",
+    "spec",
+    "folder",
+    "documents"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.192Z",
+  "lastUpdated": "2026-06-23T03:50:00.153Z",
   "specId": "010",
   "folderSlug": "template-compliance-enforcement",
   "parentChain": [

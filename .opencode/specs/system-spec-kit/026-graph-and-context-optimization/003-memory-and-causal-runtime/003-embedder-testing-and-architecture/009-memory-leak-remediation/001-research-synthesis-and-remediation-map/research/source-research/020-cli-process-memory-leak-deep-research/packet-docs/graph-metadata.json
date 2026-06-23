@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet defines a broad 10-iteration `/deep:start-research-loop` investigation against `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` to find memory leaks, orphan process buildup, and unsafe nested CLI orchestration paths. The research is intentionally evidence-only: it must map leak classes, collect process and memory telemetry, and produce a prioritized fix backlog before any implementation changes are made.",
+    "causal_summary": "Several prior AI sessions reportedly used CLI skills to orchestrate agents inside other CLIs, which allowed long-lived or orphaned processes to accumulate",
     "created_at": "2026-05-22T05:43:12Z",
-    "last_save_at": "2026-06-22T18:55:02.512Z",
+    "last_save_at": "2026-06-23T03:49:55.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5f15c970b725b447707d953a15326ebf3e6af652bec5b36bad3c10e08d9dc824",
+    "source_doc_hashes": {
+      "spec.md": "36994c570484b688f4416174b928738cc667b20234890f977c5a691bdf418132",
+      "plan.md": "1427ae623273f420c51853e56239791583d80ac931f47640822ee35ffb48606b",
+      "tasks.md": "d8ba94d34c2a633f2d09000f3e57530319400bff7de46425e2d33152972ad449",
+      "checklist.md": "068f785480c9ebd9d72c1dd296fc1757454ec22b9d5f170c463a214a00702646",
+      "decision-record.md": "285702c6bcf76c8a1c68d9495056ff33118124afdca6a141211e74e84e70de90",
+      "implementation-summary.md": "8416009564c814cd777b974f298fb20a9a27dd934787a4e263bce167fc27c323"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

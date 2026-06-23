@@ -1,15 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening",
-  "description": "Feature Specification: Consolidation Cycle Hardening",
+  "description": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN I",
   "keywords": [
-    "feature",
-    "specification",
+    "remediate",
+    "two",
+    "deep-review",
     "consolidation",
-    "cycle",
-    "hardening"
+    "findings",
+    "deferred",
+    "001",
+    "structural",
+    "refactor",
+    "read-only",
+    "contradiction",
+    "scan",
+    "holds",
+    "begin"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.794Z",
+  "lastUpdated": "2026-06-23T03:49:57.994Z",
   "specId": "007",
   "folderSlug": "consolidation-hardening",
   "parentChain": [

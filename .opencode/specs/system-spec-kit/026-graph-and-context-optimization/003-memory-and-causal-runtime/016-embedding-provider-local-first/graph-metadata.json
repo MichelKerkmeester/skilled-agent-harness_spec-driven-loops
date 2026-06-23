@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The shared embeddings factory has three provider-order definitions. Two are already local-first (`auto-select.ts` bootstrap cascade and `getCascadeFallbackOrder()`: `ollama → hf-local → openai → voyage`). The third, `resolveProvider()` (the primary runtime resolver), resolves `explicit → persisted-ollama → voyage(if key) → openai(if key) → hf-local(last)` — putting cloud **above** local hf-local in auto mode. When Ollama is unavailable and a cloud API key is present, the system silently uses OpenAI/Voyage instead of the local model, contradicting the intended `Ollama > HF > OpenAI/Voyage` priority and the local-first/egress-conscious design (whose own drift warnings already tell operators to opt into cloud explicitly).",
+    "causal_summary": "The shared embeddings factory has three provider-order definitions",
     "created_at": "2026-06-02T21:06:00Z",
-    "last_save_at": "2026-06-05T12:47:34.008Z",
+    "last_save_at": "2026-06-23T03:49:55.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ecaccef489a3056ac1ef7ce707997fa282f8d066558257a4f6b8bf8bac57288f",
+    "source_doc_hashes": {
+      "spec.md": "8273828ad9c4f8d4b0ef149fbe67cc86a9e1dde77276f529798861fa4390559a",
+      "plan.md": "eed75fb1f30b4363433cc0db4e8f28b2d03fed61f9fbca4564a20a987af5d90a",
+      "tasks.md": "cfbcc393cdd1450b99cc495e11bc0d1cae9129c60fc981b5566232e3d1453e1e",
+      "checklist.md": "7a67c1b67e4dfdd6ffe853e8b26c12b0d8ce4f10fbb6a6b610a3587f9ae28e11",
+      "implementation-summary.md": "c88f0d60f7de1d7ee39f43d16cf2a83b07f9ae6eba3c144010463d1f64fca30d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This specification defines a comprehensive restructuring of the SpecKit template system from monolithic templates to a CORE + ADDENDUM compositional architecture. The optimization addresses three critical issues: template bloat from unused sections, lack of meaningful differentiation between levels, and absence of parallel sub-agent support for spec creation.",
+    "causal_summary": "The existing SpecKit templates suffered from three critical issues:",
     "created_at": "2026-04-12T09:02:53.545Z",
-    "last_save_at": "2026-05-30T10:12:03.068Z",
+    "last_save_at": "2026-06-23T03:49:59.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3161085eb69ef6b0c317ea67bd7ae28c419adcea103c65e3345d03fde2d53129",
+    "source_doc_hashes": {
+      "spec.md": "37892e408abeecd2b2f610832de9f6678d2cd6a7e7cd0f94738494a49685db48",
+      "plan.md": "3d0e88b6c64c551073114c316246bb4acad4a82d762a4662d1ef5360a54fb687",
+      "tasks.md": "bb6e5feaf4b4fd4caba778b6746c73f115fb7c910a7946c97aeeafb81a7934a9",
+      "checklist.md": "b8e2eb83ebf7620ffa56865082311502da6b5e0586ef3633bc0c60055c969144",
+      "decision-record.md": "889a4432817e29cdc67e9ad15d0460a7f220cf8e709f06d0005b60c262afb4f2",
+      "implementation-summary.md": "73eb134ff265d9c62580e95c9170c0cf6696b73b46d799c1951d2699e3d3488a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

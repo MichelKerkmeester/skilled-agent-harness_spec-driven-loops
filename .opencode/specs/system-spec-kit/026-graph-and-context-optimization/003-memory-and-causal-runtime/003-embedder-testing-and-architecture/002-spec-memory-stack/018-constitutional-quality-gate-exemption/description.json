@@ -1,14 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption",
-  "description": "Feature Specification: Phase 1: constitutional-quality-gate-exemption",
+  "description": "Constitutional markdown files under `.opencode/skills//constitutional/` hard-rejected during `memoryindexscan` with `INSUFFICIENTCONTEXTABORT`",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "constitutional-quality-gate-exemption"
+    "constitutional",
+    "markdown",
+    "files",
+    "opencode",
+    "skills",
+    "hard-rejected",
+    "memoryindexscan",
+    "insufficientcontextabort"
   ],
-  "lastUpdated": "2026-05-26T17:28:11.223Z",
+  "lastUpdated": "2026-06-23T03:49:54.373Z",
   "specId": "018",
   "folderSlug": "constitutional-quality-gate-exemption",
   "parentChain": [

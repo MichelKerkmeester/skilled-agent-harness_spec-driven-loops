@@ -1,13 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/007-phase-classification",
-  "description": "Feature Specification: Phase Classification",
+  "description": "Conversation phase handling previously lived in a keyword-precedence ladder that favored early matches over richer context, so ambiguous exchanges lik",
   "keywords": [
-    "feature",
-    "specification",
+    "conversation",
     "phase",
-    "classification"
+    "handling",
+    "previously",
+    "lived",
+    "keyword-precedence",
+    "ladder",
+    "favored",
+    "early",
+    "matches",
+    "richer",
+    "context",
+    "ambiguous",
+    "exchanges",
+    "lik"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.144Z",
+  "lastUpdated": "2026-06-23T03:50:00.037Z",
   "specId": "007",
   "folderSlug": "phase-classification",
   "parentChain": [

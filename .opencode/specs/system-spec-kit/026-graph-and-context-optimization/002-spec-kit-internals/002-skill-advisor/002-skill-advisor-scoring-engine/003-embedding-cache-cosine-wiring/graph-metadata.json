@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill advisor's `semantic_shadow` lane at `scorer/lanes/semantic-shadow.ts` is not an embedding lane. It is token-overlap scoring with a 0.8 multiplier, declared `live: false` with `weight: 0.00`. Prompts that describe intent without naming the skill's keywords get no semantic recall signal today. The 014 setup-A line shipped local EmbeddingGemma at ~6ms per embed, which is fast enough to compute cosine similarity on every recommend call.",
+    "causal_summary": "The skill advisor's `semanticshadow` lane at `scorer/lanes/semantic-shadow.ts` is not an embedding lane",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-06-05T12:47:33.355Z",
+    "last_save_at": "2026-06-23T03:49:53.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4c1241785654ee5fbb00993867a2739627bbbfe3049289746be6c39aa2abc4a1",
+    "source_doc_hashes": {
+      "spec.md": "12ecf4fdd4caba080bba8ef0a5aea391b197d5983acd63788200957bb10b4993",
+      "plan.md": "68d9732dd214d233e97ce38eab3881d4aacc57ea744989e7e258ebdf99dc9ab4",
+      "tasks.md": "5845b9db1377c620f01ad37e99e3a22cdcc49b2bb688bc9cc75a72e1ec8f9cae",
+      "checklist.md": "8e4a80f703cf70bebe6f41b918e709a4d8646ff9790c7c1390397c426cc3cea7",
+      "implementation-summary.md": "d2a1a97abb9db4f7147e28e0dd6e51e2a0831feb632ac06c0771614ed4dd98fd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

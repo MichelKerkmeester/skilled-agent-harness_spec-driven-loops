@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap. `DEFAULT_MIN_RESULTS = 3` (`confidence-truncation.ts`) is a never-cut-below-3 MINIMUM guarantee, not a cap. Confidence truncation is cliff-conditional and returns 3..20, and token-budget truncation is the real prod-limiting stage. The eval lens runs `forceAllChannels` with no truncation while the prod lens runs the routed channel subset with confidence truncation active, so 028 measured a real eval-versus-prod fidelity gap on this corpus, reported as the harness `evalVsProdDelta`. The dual-mode harness `run-eval-v2.mjs` already runs both lenses on one copy DB and computes completeRecall at K of 3, 5 and 8 (`COMPLETE_RECALL_KS = '3,5,8'`), but it performs no baseline comparison and its `process.exitCode = 1` (line 357) is a crash handler rather than a recall verdict. The shipped single-target goldens saturate and hide wins because a multi-target query has something to be incomplete about and a single-target query does not. The net effect is that every downstream Tier-C retrieval candidate (C1, C3, C4, C5) stays a hypothesis with no instrument to promote or regress it.",
+    "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
     "created_at": "2026-06-21T10:22:34.987Z",
-    "last_save_at": "2026-06-22T18:55:03.803Z",
+    "last_save_at": "2026-06-23T03:49:58.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07cb12e0010a1fe24528057667dfa646e53d1e69a44100d228d955fc4f8a8495",
+    "source_doc_hashes": {
+      "spec.md": "32de18cdcdf421f034d62eed34a641ed83decdeed0c2590e6757ed247a5def13",
+      "plan.md": "4f586fa98761083a1856b50e99054553c893a2a926ee8cc040d8dc728ea712cc",
+      "tasks.md": "4fd53a48c1d9ddc5e5aada9f83582af13a6d8107beaa4749fa5d5dff05c4ca41",
+      "checklist.md": "c30baaaf858c328772b9968aaed4cafa9522d2f082690ad0ecb8029fd8993a8e",
+      "implementation-summary.md": "be4009965b6471b0254e6208dd640b419e4d492299ecb72e11f6328f9c5c6065"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

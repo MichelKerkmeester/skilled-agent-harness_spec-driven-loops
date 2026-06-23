@@ -1,14 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
-  "description": "Feature Specification: manual-testing-per-playbook analysis phase",
+  "description": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflig",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
     "analysis",
-    "phase"
+    "category",
+    "contains",
+    "manual",
+    "test",
+    "scenarios",
+    "covering",
+    "causal",
+    "graph",
+    "operations",
+    "create",
+    "stats",
+    "delete",
+    "trace",
+    "epistemic",
+    "measurement",
+    "preflig"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.469Z",
+  "lastUpdated": "2026-06-23T03:50:00.250Z",
   "specId": "006",
   "folderSlug": "analysis",
   "parentChain": [

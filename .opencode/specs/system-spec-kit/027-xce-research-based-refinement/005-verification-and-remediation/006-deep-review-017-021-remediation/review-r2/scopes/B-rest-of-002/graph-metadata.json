@@ -81,14 +81,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Independent gpt-5.5 deep-review **audit** of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the 002-memory-store-and-search surface OUTSIDE the search/retrieval pipeline and outside the 017-021 fixes. REVIEW-SCOPE target (no new implementation). Report real P0/P1/P2 findings with `file:line` evidence; clean PASS is valid.",
+    "causal_summary": "Independent gpt-5.5 deep-review audit of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the 002-memory-store-and-search surface OUTSIDE the search/retrieval pipeline and outside the 017-021 fixes",
     "created_at": "2026-06-22T18:55:03.570Z",
-    "last_save_at": "2026-06-22T18:55:03.570Z",
+    "last_save_at": "2026-06-23T03:49:58.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e434f0559168e41b8fc94200a2f1e8ffb56d3b93f4b62802b2f7da644b8e18ac",
+    "source_doc_hashes": {
+      "spec.md": "932fd0d3e5494b1956a9864f5400dc06fd608067efaedd9903661f04eb8e9834"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

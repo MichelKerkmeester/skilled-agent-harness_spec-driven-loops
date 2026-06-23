@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "One bundled conventional commit on `main`, fully validated, with a complete summary, ready for the user to inspect and run. Plus a tcpdump-style post-merge verification checklist so the user can confirm everything is wired correctly post-ship.",
+    "causal_summary": "014 touched ~12 source files (TS + Python) plus ~50 spec-doc files plus 4 sqlite deletes plus user-local config (`~/.cocoindexcode/globalsettings.yml`)",
     "created_at": "2026-05-12T16:27:52Z",
-    "last_save_at": "2026-06-05T12:47:33.527Z",
+    "last_save_at": "2026-06-23T03:49:53.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e6f3ddd3e4d13ef9b13a35c9551aeada42f6769f8c2f26a50aa25894d6be525d",
+    "source_doc_hashes": {
+      "spec.md": "d56673f57921ff0379b2d1d612ca52cb33eac268d79faa36848b30c315e54eb5",
+      "plan.md": "4876208a40cd91638df51d5d3a91fcb7637564e22d85011d321efe15b6ca57bb",
+      "tasks.md": "83998326587cf73d136663f6abaa270dfd26cb912afd7f146cf7b3de1e51516d",
+      "implementation-summary.md": "5b088de9a381c8d268bb82960ea27d5770b0e4305f26c4581990a88ea5c15861"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

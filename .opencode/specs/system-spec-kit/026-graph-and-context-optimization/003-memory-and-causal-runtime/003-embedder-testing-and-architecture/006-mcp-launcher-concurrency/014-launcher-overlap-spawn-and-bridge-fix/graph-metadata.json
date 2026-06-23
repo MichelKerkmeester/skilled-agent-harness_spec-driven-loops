@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implements the unified design-conformance fix validated by the sibling deep-research packet (`027-launcher-concurrency-spawn-and-bridge-investigation`). Both defects surface only under concurrent multi-session use (launcher overlap); neither appears in single-session use.",
+    "causal_summary": "T1 — spurious model-server spawn",
     "created_at": "2026-06-04T19:02:45.735Z",
-    "last_save_at": "2026-06-22T18:55:02.459Z",
+    "last_save_at": "2026-06-23T03:49:54.914Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b9be438872058d059f118543076e8b11397f327b2704fbe133cb122d8891d079",
+    "source_doc_hashes": {
+      "spec.md": "89d5caaeedde89667bc7c5ff1a2999fa5dad285d9797227346e809eb0da9f3f0",
+      "plan.md": "223288cac45d5fc2d2daf76c31ae4869c99f06f599f405d918bd5d54efe73474",
+      "tasks.md": "e21f35621241bc1f2a46520a07344cf6c3a0a292553ef78446131584a9ab59fd",
+      "implementation-summary.md": "fbc6d8c337fbc22b521962f281307be5fc8cea8c19e35f6fe87c6c30990961f5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

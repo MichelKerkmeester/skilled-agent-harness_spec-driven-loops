@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph storage...\"). Operators reading the skill cold get a technical map without a reason to care. The Public root README and the system-spec-kit README both open with a problem hook (\"AI assistants have amnesia\") and walk the reader through problem → solution → mechanism → quick start → reference. The system-code-graph README should follow the same arc so the skill positions as indispensable, not specialized.",
+    "causal_summary": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph storage...\")",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.170Z",
+    "last_save_at": "2026-06-23T03:49:56.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:971c901eaf3fc50f84d5ce57ce6fea117873ad76f527e1220ff4e6a86f5786ee",
+    "source_doc_hashes": {
+      "spec.md": "fe6b4576fca5181957cee516ca7ff2f74393b2cb94b3a060d843ef1caa8146ba",
+      "plan.md": "dd254bdab7beb90146f4feb4523b01ca451917510f1d45c392679b57b7f53a60",
+      "tasks.md": "2bd5cec3a6ff0b553130ef37a62c2f52d3f4eb9f071d96f5e058abc9b9e876e2",
+      "implementation-summary.md": "a47e48101a4215c6d71990ceda45ab60188111cb81657fffbe63ebb7158a72b2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

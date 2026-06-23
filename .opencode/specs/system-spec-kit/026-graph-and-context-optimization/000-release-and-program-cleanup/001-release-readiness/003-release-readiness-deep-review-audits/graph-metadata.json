@@ -145,15 +145,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After this session's wave of remediation work (013 research → 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization wrapper packet is approximately release-ready. But \"approximately\" is not \"verified.\" Before declaring release-ready, run a structured 10-angle audit program where each angle scrutinizes a distinct release-critical dimension.",
+    "causal_summary": "After this session's wave of remediation work (013 research → 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization wrapper packet is approximately release-ready",
     "created_at": "2026-04-29T22:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.516Z",
+    "last_save_at": "2026-06-23T03:49:52.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:fa837270172cc7e3dfc5554e9be08b294402980b6c311b4398be04f11ee0c9ac",
+    "source_doc_hashes": {
+      "spec.md": "b146fe3dbd758d11a9b099946003f3f32332eb12c17cbae2523991db3027a102",
+      "resource-map.md": "b41ec1a24d3844b7e2d53ed4b5edc7cb514acfa7714e9e4697f9df75fade9aae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

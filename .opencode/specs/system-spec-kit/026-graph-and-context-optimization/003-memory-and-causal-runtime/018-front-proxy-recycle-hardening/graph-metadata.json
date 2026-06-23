@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild. A parallel-agent deep review root-caused three latent defects that turn a transient teardown race into an *apparently permanent* hang:",
+    "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.012Z",
+    "last_save_at": "2026-06-23T03:49:55.654Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:59335aecaa60fc48076407ff2b5b92273db7d4c0965aa3c241360f48e06ae6fd",
+    "source_doc_hashes": {
+      "spec.md": "6fdf17de4fb203c6e7b05364d41e1a61d4e7a31a508b92a79c017a1a1d9133a1",
+      "plan.md": "af8bf1933ce4e009a5bb682c0233aab80b2e5a655ada9c71149f3a5c89749c7a",
+      "tasks.md": "29b7320d01cdea01187b6153b8d4b0a06c367deec52ccf4edf6ea2472644550f",
+      "implementation-summary.md": "c3c09ceab4e7b8fc5fdf7edcdf5983acbbb85efebc7224443b6839006c9481a3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

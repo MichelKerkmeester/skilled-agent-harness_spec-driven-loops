@@ -25,15 +25,18 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
-  "description": "Feature Specification: Session-Trace Causal Reducer",
+  "description": "Level 2 child packet for deferred session-trace causal edge inference.",
   "keywords": [
-    "feature",
-    "specification",
+    "level",
+    "child",
+    "packet",
+    "deferred",
     "session-trace",
     "causal",
-    "reducer"
+    "edge",
+    "inference"
   ],
-  "lastUpdated": "2026-06-10T11:00:20.800Z",
+  "lastUpdated": "2026-06-23T03:49:57.219Z",
   "specId": "003",
   "folderSlug": "causal-reducer",
   "parentChain": [

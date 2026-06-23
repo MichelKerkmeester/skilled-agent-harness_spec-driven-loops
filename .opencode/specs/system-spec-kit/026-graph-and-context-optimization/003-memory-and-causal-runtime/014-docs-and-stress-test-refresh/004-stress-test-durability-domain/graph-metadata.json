@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 013 memory-index-scan roadmap shipped four durability surfaces — checkpoint-v2 file snapshots, schema-v30 post-insert enrichment markers, the single-writer `index_scan` lease, and the launcher front-proxy daemon-recycle path — but every existing test under `mcp_server/tests/*` is a single happy-path correctness check, not a load test. This packet adds a new `mcp_server/stress_test/durability/` domain with four cases that exercise those surfaces under contention, flood, and recycle, plus a `stress:durability` npm script that mirrors the existing stress scripts. Every case runs against throwaway temp/in-memory databases and the proxy's pure-logic helpers, so the domain is safe to run against a live operator session.",
+    "causal_summary": "The durability surfaces shipped by the 013 roadmap each have a correctness unit test under `mcpserver/tests/` (`checkpoints-v2-create/restore`, `vector-index-schema-enrichment-v30`, `handler-memory-index-async-scan`, `launcher-session-proxy`)",
     "created_at": "2026-06-02T11:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.695Z",
+    "last_save_at": "2026-06-23T03:49:55.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a572d3c113b2e044a600a9cf62299f4a799a2c370d2ef7ccd03ffad25bb6121a",
+    "source_doc_hashes": {
+      "spec.md": "cd5c6073ca851d8d6c7fe87e65f5bfec7967dea51d69bb6e5883dc4c5af2a71c",
+      "plan.md": "3e47e2eb84f00039fe3be5d93d898fb66292666fa9d0955c50ce233c3441ba3b",
+      "tasks.md": "fc618e160229184ea5ab850d3ebd4fae07677ea481933ab862b42bfb22641726",
+      "checklist.md": "1319ec371e4e45a05a3b96aaaae8c892f6140832c8f8fb21eb1f7fb7d46db1a7",
+      "decision-record.md": "4b3ae548f7cbcfed760b3554633d30a196c3ceff401b3c27f33990bd1beb2af9",
+      "implementation-summary.md": "c18e262a150523b7b012b32d86563f73e9339df9aa3c2a7ae07a9c7426c060fa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

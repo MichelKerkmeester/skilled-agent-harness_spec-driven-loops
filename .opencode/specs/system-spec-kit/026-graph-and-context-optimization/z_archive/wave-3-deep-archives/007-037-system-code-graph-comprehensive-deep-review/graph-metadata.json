@@ -114,14 +114,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-code-graph` skill has been through a multi-arc evolution: extraction from `system-spec-kit` (packet 014), MCP server rename `system_code_graph` → `mk-code-index` (packet 010), full spec-kit decoupling with CI isolation check (packets 015–020), sk-doc documentation alignment (025/035), and the just-shipped Install Guide + `/doctor:mcp` coverage (packet 026 Phase 2 → commit `1fc38a177`). No comprehensive deep-review covering ALL surfaces has been run since the package reached its current 1.0.0.0 state.",
+    "causal_summary": "The `system-code-graph` skill has been through a multi-arc evolution: extraction from `system-spec-kit` (packet 014), MCP server rename `systemcodegraph` → `mk-code-index` (packet 010), full spec-kit decoupling with CI isolation check (packets 015–020), sk-doc documentation alignment (025/035), and the just-shipped Install Guide + `/doctor:mcp` coverage (packet 026 Phase 2 → commit `1fc38a177`)",
     "created_at": "2026-05-26T16:51:06.370Z",
-    "last_save_at": "2026-06-05T12:47:34.363Z",
+    "last_save_at": "2026-06-23T03:49:56.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e3db215f2981718269e6a03bf545fc5b9536e8d75cde31906ad6a450084a513b",
+    "source_doc_hashes": {
+      "spec.md": "985e1ccb2a85d31e7e665af17d720a1079b692dd35f7491fbf9738270933d234"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

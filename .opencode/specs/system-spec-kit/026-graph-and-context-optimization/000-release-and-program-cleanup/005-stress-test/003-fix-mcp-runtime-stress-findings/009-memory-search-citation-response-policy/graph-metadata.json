@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add hard `responsePolicy` and `citationPolicy` fields to `memory_search` responses so weak retrieval becomes a BINDING claim-authority refusal contract, not advisory text. When `requestQuality.label != \"good\"` AND `recovery.status` indicates degraded, the response carries `responsePolicy.noCanonicalPathClaims:true` and a `safeResponse` string that the model MUST emit instead of inventing details. Also extend `RecoveryAction` vocabulary to include `ask_disambiguation`, `refuse_without_evidence`, and `broaden_or_ask`.",
+    "causal_summary": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized canonical-looking spec folder paths and file references that did not exist",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-06-05T12:47:33.090Z",
+    "last_save_at": "2026-06-23T03:49:52.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:00191eae2dfee56dadba3685ed1f87143ae7712f004ab1ceef8f74eadf4f9322",
+    "source_doc_hashes": {
+      "spec.md": "857b632742d30659e8658e7042ba1e28f5791e85da3fe97f41966d9f0ab00f51",
+      "plan.md": "596ac85114f773631ffef7edc205f49983adbf16126a4353de7af41577f53188",
+      "tasks.md": "3a439236a37ea5d2ca820c4d08403aa0e3abcf15e2646144df636d7f6ddaa0e1",
+      "implementation-summary.md": "d824566db24da0f7605c5a294ec61a97071341517ccf9e06f5c635bcfdc682f2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "description": "Feature Specification: Child 001 SKILL.md and References Polish",
+  "description": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver RE",
   "keywords": [
-    "feature",
-    "specification",
-    "child",
-    "001",
+    "research",
+    "enumerated",
+    "priority",
+    "items",
+    "spanning",
     "skill",
+    "installguide",
+    "architecture",
     "references",
-    "polish"
+    "featurecatalog",
+    "per-folder",
+    "mcpserver"
   ],
-  "lastUpdated": "2026-05-26T17:27:11.124Z",
+  "lastUpdated": "2026-06-23T03:49:56.061Z",
   "specId": "001",
   "folderSlug": "skill-docs-install-guide-and-readmes-polish",
   "parentChain": [

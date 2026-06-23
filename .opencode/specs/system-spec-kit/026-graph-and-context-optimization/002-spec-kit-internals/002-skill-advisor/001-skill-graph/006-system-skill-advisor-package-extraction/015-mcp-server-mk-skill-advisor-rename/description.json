@@ -1,15 +1,23 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename",
-  "description": "Feature Specification: Rename system_skill_advisor MCP server to mk_skill_advisor",
+  "description": "The advisor runtime is still registered as `systemskilladvisor`, which no longer matches the custom MCP identity pattern established by `mkcodeindex`",
   "keywords": [
-    "feature",
-    "specification",
-    "rename",
+    "advisor",
+    "runtime",
+    "still",
+    "registered",
+    "systemskilladvisor",
+    "longer",
+    "matches",
+    "custom",
     "mcp",
-    "server"
+    "identity",
+    "pattern",
+    "established",
+    "mkcodeindex"
   ],
-  "lastUpdated": "2026-05-26T17:27:15.866Z",
+  "lastUpdated": "2026-06-23T03:49:53.318Z",
   "specId": "015",
   "folderSlug": "mcp-server-mk-skill-advisor-rename",
   "parentChain": [

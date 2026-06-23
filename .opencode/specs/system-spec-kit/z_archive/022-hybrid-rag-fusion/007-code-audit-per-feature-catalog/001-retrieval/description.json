@@ -1,14 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/001-retrieval",
-  "description": "Feature Specification: Code Audit — Retrieval",
+  "description": "The feature catalog for Retrieval has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
-    "retrieval"
+    "catalog",
+    "retrieval",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.196Z",
+  "lastUpdated": "2026-06-23T03:49:59.784Z",
   "specId": "001",
   "folderSlug": "retrieval",
   "parentChain": [

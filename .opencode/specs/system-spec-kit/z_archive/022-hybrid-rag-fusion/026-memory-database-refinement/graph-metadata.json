@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memory_index` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline. Prior spec work (023-ablation-benchmark-integrity) already exposed silent cross-DB scoring, evaluation-time truncation leaking into Recall@20, and stale ground-truth IDs. The system has 26 documented BUG-fix comments, a flagged modularization TODO on the save handler, and multiple gated feature flags whose interaction paths are untested in combination.",
+    "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline",
     "created_at": "2026-04-12T09:02:50.315Z",
-    "last_save_at": "2026-06-22T18:55:04.607Z",
+    "last_save_at": "2026-06-23T03:50:00.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:02adff5042e8f33f8f33beb6aded1ff609584807bddc6943080695a509ee6dad",
+    "source_doc_hashes": {
+      "spec.md": "9e942ee4f2eaeb4d0c3f281361402c5553ba9c775c8047424f6b4315a78cb674",
+      "plan.md": "7016d0ebf0992f68a1aaada6f1be19a7ab9ecdcca3a4835157bb52b5ea320c4a",
+      "tasks.md": "6774f5e3d10658ea1f9310c279a62ce82a0e65c6a515230b137611b4b94aee61",
+      "checklist.md": "87938ec7a6a87882d1bb7266e71a759dfbc4425a2f1324650a49aa8bafb90075",
+      "implementation-summary.md": "789058d51d838623ab16211aff19b9ba27d882a6cbc6b854df5290ea90af4ec5",
+      "research/research.md": "6b2038dfea20d4f27bd9cc142395dca149b87695764c6fa08161260013e4642a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

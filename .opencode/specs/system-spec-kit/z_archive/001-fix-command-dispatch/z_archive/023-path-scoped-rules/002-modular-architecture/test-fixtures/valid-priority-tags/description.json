@@ -1,14 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-priority-tags",
-  "description": "Spec: Valid Priority Tags Fixture",
+  "description": "This fixture tests proper priority tag validation",
   "keywords": [
-    "spec",
-    "valid",
+    "fixture",
+    "tests",
+    "proper",
     "priority",
-    "tags",
-    "fixture"
+    "tag",
+    "validation"
   ],
-  "lastUpdated": "2026-04-02T17:21:40.019Z",
+  "lastUpdated": "2026-06-23T03:49:58.988Z",
   "specId": "",
   "folderSlug": "valid-priority-tags",
   "parentChain": [

@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
-  "description": "Feature Specification: Parser Quarantine Recovery (029 Phase 006)",
+  "description": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'` (`tree-sitter-parser.t",
   "keywords": [
-    "feature",
-    "specification",
-    "parser",
-    "quarantine",
-    "recovery",
     "029",
-    "phase",
-    "006"
+    "finding",
+    "f-runtime-2",
+    "single",
+    "fault",
+    "memory",
+    "access",
+    "bounds",
+    "sets",
+    "module-level",
+    "parserhealth",
+    "quarantined",
+    "tree-sitter-parser"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.874Z",
+  "lastUpdated": "2026-06-23T03:49:56.107Z",
   "specId": "006",
   "folderSlug": "parser-quarantine-recovery",
   "parentChain": [

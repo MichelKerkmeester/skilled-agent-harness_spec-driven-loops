@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 008 proved why `EMBEDDINGS_PROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by **shelling out to a bare `sqlite3` binary** (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper **returns `null` on *any* error, including `ENOENT`**. The mk-spec-memory daemon runs with a restricted GUI/MCP `PATH` that lacks `sqlite3`, so every metadata probe fails silently → `resolveActiveOllamaEmbedder()` returns null → `resolveProvider()` falls past ollama to `hf-local`. The current mitigation is an explicit `EMBEDDINGS_PROVIDER=ollama` config pin, which is non-portable.",
+    "causal_summary": "Phase 008 proved why `EMBEDDINGSPROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by shelling out to a bare `sqlite3` binary (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper returns `null` on any error, including `ENOENT`",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-06-22T18:55:02.584Z",
+    "last_save_at": "2026-06-23T03:49:55.411Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:01f5ca5a78aae3b6eee03f1869ea0f54bb243132df80f3a95c8418a6859b90f9",
+    "source_doc_hashes": {
+      "spec.md": "3be02ca24df754e8863580ccefeeb4741abc9b4b8f2151b378b464386bfdf175",
+      "plan.md": "4e7b5723937cd4b8d1326b5469080478f131d6c90ca3341ce68ded81a51369ed",
+      "tasks.md": "32bb87b4b3515c7cd921c6b90b84cdc82f9a76fba9c4b5b386c4082d249ccf6a",
+      "checklist.md": "5028471456f7949e3f9bfafefb0525e554c82f8e44c62d7000322a74074856a0",
+      "decision-record.md": "aca7ccbbf0d743cb764dbed7afb4a7ac60cb42d90f5fa1a2a4ea52bfa890dfea",
+      "implementation-summary.md": "cf92bb2b07bf459afa409dec0f9455d47a6271b7278d4804e6fc04089a6aeddf",
+      "handover.md": "7363abc4ac7a7837f40cb2fdc03f6e911dbbb4814996d352220c2f8a2d1170fa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

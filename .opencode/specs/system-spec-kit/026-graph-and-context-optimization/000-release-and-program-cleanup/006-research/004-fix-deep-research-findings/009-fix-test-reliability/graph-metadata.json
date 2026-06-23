@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated runs. One test hard-codes the original developer's local checkout path. One asserts absolute latency budgets that can fail on slower hardware. One uses real-timer sleeps with elapsed-time assertions, slowing the suite and producing flakes. Two tests mutate process env vars (`SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_MMR`) without restoration, leaking state across the run. One test uses a repo-local temp fixture root that collides between parallel runs and survives crashes.",
+    "causal_summary": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated runs",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-30T10:12:01.816Z",
+    "last_save_at": "2026-06-23T03:49:52.876Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9a3c3c24abbdc4e83fc17703b4a805fca068c479aa94be812da7c5ee897c65ca",
+    "source_doc_hashes": {
+      "spec.md": "f85dc987eefca060989ab028219e65466377f11dcf2a9baf2ae8353c4d8a7126",
+      "plan.md": "166b705f58d22d530618dfdfbd602e207846af0806bb5e4632bc715dbc2d2bc5",
+      "tasks.md": "9dabfaa657767896ac170b3b59c427883d67380b098a50944a2e245f42de0e1c",
+      "checklist.md": "d4e12240c296ee52bae8468e33c86e84b68ca16996921c875dd254a7f58692e4",
+      "implementation-summary.md": "1df4aa2a7439935f27c80d2608c96655cf909084f1bd47c2d2d2cc4a7103e775"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

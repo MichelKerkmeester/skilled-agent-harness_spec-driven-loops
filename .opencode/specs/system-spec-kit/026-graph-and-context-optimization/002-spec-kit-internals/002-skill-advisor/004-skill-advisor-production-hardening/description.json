@@ -1,14 +1,25 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
-  "description": "Phase Parent: 006-skill-advisor/004-skill-advisor-production-hardening",
+  "description": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin ha",
   "keywords": [
     "phase",
     "parent",
-    "006-skill-advisor",
-    "004-skill-advisor-production-hardening"
+    "skill-advisor",
+    "hardening",
+    "safety",
+    "improvements",
+    "across",
+    "child",
+    "packets",
+    "covers",
+    "deferred",
+    "remediation",
+    "telemetry",
+    "measurement",
+    "plugin"
   ],
-  "lastUpdated": "2026-05-26T17:26:51.298Z",
+  "lastUpdated": "2026-06-23T03:49:53.517Z",
   "specId": "004",
   "folderSlug": "skill-advisor-production-hardening",
   "parentChain": [

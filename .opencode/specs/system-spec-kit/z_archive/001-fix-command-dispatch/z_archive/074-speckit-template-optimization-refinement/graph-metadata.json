@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Enterprise-scale refinement of the SpecKit template optimization (Spec 073), conducted through multi-agent orchestration with 20+ Opus 4.5 agents executing parallel research, implementation, and verification workstreams. The work delivered comprehensive analysis documents, implemented 5 priority recommendations, and updated 25+ files across the entire skill system, resulting in version bump to v1.9.0.",
+    "causal_summary": "The Spec 073 template optimization achieved significant template reduction (74-82%) but required comprehensive review to validate implementation quality, identify gaps, and implement refinements",
     "created_at": "2026-04-12T09:02:53.545Z",
-    "last_save_at": "2026-05-30T10:12:03.071Z",
+    "last_save_at": "2026-06-23T03:49:59.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:726d508137996070cebfa5e68666d76502f64fb64685970150bd21c9b696f5a1",
+    "source_doc_hashes": {
+      "spec.md": "92dc4f99c447bf7511e3703aa8a7167ce0f943d0c67df2a6e60e8f1f6892b6c3",
+      "plan.md": "10acf5699bc7d9c31a70e6bc4599c2571de56df883ec0852072293759e7d0246",
+      "tasks.md": "3397d3cf66152d40d104498bac44daacbaea8016d1c19412401df8a76fc79cae",
+      "checklist.md": "c126b4679c16a88ac882fd4628e6f24dd160cc5ef1b76849a3ee082ff08b3d26",
+      "decision-record.md": "119306d2d2bb35e693808abfd81988d994fd0dc97d185185680283994713dce6",
+      "implementation-summary.md": "197bd6dfd801c4a3cf4e52332eba315f1c046c0cc446b1fc1163b8af47a11cfc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

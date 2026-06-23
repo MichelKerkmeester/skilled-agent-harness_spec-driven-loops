@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "seven",
-      "new",
-      "leaf",
-      "changelogs",
-      "authored",
-      "003-memory-and-causal-runtime",
-      "track",
-      "packets",
-      "020",
+      "spec",
       "026",
-      "independent",
-      "check"
+      "changelog",
+      "accuracy",
+      "re-audit",
+      "deep",
+      "research",
+      "folder-alignment",
+      "audit",
+      "20-iteration",
+      "5-way-parallel",
+      "gpt-5"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -113,15 +113,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After seven new leaf changelogs were authored in the 003-memory-and-causal-runtime track (packets 020 through 026), there was no independent check that each changelog accurately reflects its referenced spec folder (file lists, verification numbers, commit hashes, Level, and the spec-folder path).",
+    "causal_summary": "Spec: 026 Changelog Accuracy Re-Audit",
     "created_at": "2026-06-18T12:37:49.104Z",
-    "last_save_at": "2026-06-18T12:37:49.104Z",
+    "last_save_at": "2026-06-23T03:49:52.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:bd84bc27deefea7c977c54e31771f56db6cce31b150a44dcdff851cff46d1ae5",
+    "source_doc_hashes": {
+      "spec.md": "c2afe5e6890844e8578bba7cc528dd0e959a0eb7f4584beaee2866392afb9f74",
+      "research/research.md": "b4ecf7f0b8f3c94864de2fc283520310729443ee7a51eb29c54ea56e214e2e18"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

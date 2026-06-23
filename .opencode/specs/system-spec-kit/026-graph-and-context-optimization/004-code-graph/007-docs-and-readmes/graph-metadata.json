@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment.",
+    "causal_summary": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment",
     "created_at": "2026-05-26T16:51:06.201Z",
-    "last_save_at": "2026-06-05T12:47:34.101Z",
+    "last_save_at": "2026-06-23T03:49:55.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:10cec393f32e0ee449d84a40897c14f12208253bb9554c2f141c4f802b5fa588",
+    "source_doc_hashes": {
+      "spec.md": "23f85e25113d01d2b1677a53fcc93ade14aa0ba076753c25a53c6a3ad1e4f151"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

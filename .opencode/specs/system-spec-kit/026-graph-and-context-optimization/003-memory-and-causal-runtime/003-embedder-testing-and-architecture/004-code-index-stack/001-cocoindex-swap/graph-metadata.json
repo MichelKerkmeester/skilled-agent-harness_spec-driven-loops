@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex's `_DEFAULT_MODEL = \"sbert/google/embeddinggemma-300m\"` is a general-text embedder. Code search benefits from code-tuned embedders; gemma may be leaving recall on the table. CocoIndex's device auto-detection only covers CUDA — Mac users get CPU inference even when Metal is available.",
+    "causal_summary": "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-06-05T12:47:33.696Z",
+    "last_save_at": "2026-06-23T03:49:54.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ef123d1aecbb149fa38f8d736ba2ed972cea6b9a75db1686a2188817a40f6f4c",
+    "source_doc_hashes": {
+      "spec.md": "1640f45104210b4090ac379d1d30ba1fe28441732e9480e54726a546797a4513",
+      "plan.md": "15f393ca6674569049d18747c4acc07aa59396ddb0f72838272ccdf6c768fbd0",
+      "tasks.md": "46e840e4249e7b43da7fff1ff046b83ce628ef097395b34e265c46c21b5cf0dd",
+      "implementation-summary.md": "cfe5ebf2df3785f8cb88088eaa1467bdcfc54f21e82942ac5d7f1c1d8eb72a03"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

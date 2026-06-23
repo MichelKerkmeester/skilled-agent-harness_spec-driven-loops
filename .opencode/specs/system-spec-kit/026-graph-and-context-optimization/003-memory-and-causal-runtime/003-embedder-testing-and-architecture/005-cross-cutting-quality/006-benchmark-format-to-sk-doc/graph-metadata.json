@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarks_format.md`) and mirrored to sibling MCP skills via relative symlinks. This created three problems: readers had to consult two files to get the full picture; the symlink topology added maintenance overhead and path-resolution fragility; and the FORMAT.md and benchmarks_format.md naming did not follow the `*_creation.md` pattern used by sk-doc's other creation references (feature_catalog_creation.md, manual_testing_playbook_creation.md, agent_creation.md).",
+    "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarksformat.md`) and mirrored to sibling MCP skills via relative symlinks",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-05-30T10:12:02.349Z",
+    "last_save_at": "2026-06-23T03:49:54.811Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:85813368125a10fdcb00841180f65194269cc72879d285724406c967c99665ad",
+    "source_doc_hashes": {
+      "spec.md": "ff2ba9086b356f20b9c34e182000dba8e452f12d6eb6cd8aa456040a5404b623",
+      "plan.md": "ab338e0efe9a0d5b85296f8cc5476bdca6a235295fbd1372547974383086f2cc",
+      "tasks.md": "7e9f9ef8fc3464bc887598c8dc7945138f7fca242cf587d568c616b0d8b334e1",
+      "checklist.md": "3df0e08c648e1d3606048690e3303a6d019b54481bd85d20816a67a739083fac",
+      "implementation-summary.md": "bab68f5e7b7b1baca11465c7c2a56198aeb95871c77bcf322e0759c33bb50b51"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

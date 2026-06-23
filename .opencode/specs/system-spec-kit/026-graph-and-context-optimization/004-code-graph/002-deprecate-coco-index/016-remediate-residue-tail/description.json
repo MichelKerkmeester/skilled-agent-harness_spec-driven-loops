@@ -1,21 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
-  "description": "Feature Specification: Close the CocoIndex/rerank deprecation residue tail + record the completeness verdict",
+  "description": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 depr",
   "keywords": [
-    "feature",
-    "specification",
-    "close",
-    "cocoindex",
-    "rerank",
-    "deprecation",
-    "residue",
-    "tail",
-    "record",
-    "completeness",
-    "verdict"
+    "packets",
+    "014-remediate-codegraph-naming",
+    "015-remediate-cross-surface-residue",
+    "exhaustive",
+    "verify-first",
+    "sweep",
+    "run",
+    "prove",
+    "014",
+    "depr"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.324Z",
+  "lastUpdated": "2026-06-23T03:49:55.819Z",
   "specId": "016",
   "folderSlug": "remediate-residue-tail",
   "parentChain": [

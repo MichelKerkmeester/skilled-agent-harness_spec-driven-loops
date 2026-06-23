@@ -1,16 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
-  "description": "Feature Specification: 001 — Typed Agent I/O Adapter",
+  "description": "The spec-kit agents pass work to each other through loose prose",
   "keywords": [
-    "feature",
-    "specification",
-    "001",
-    "typed",
-    "agent",
-    "adapter"
+    "spec-kit",
+    "agents",
+    "pass",
+    "work",
+    "loose",
+    "prose"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.932Z",
+  "lastUpdated": "2026-06-23T03:49:57.114Z",
   "specId": "001",
   "folderSlug": "typed-agent-io-adapter",
   "parentChain": [

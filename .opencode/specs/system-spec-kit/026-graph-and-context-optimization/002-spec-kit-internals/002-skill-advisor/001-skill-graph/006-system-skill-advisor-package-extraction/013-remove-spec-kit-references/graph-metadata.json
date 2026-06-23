@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The advisor extraction moved skill-advisor ownership out of `system-spec-kit` into the sibling `system-skill-advisor` skill and standalone `system_skill_advisor` MCP server. Operator-facing spec-kit docs must not keep live instructions that point users back to old `system-spec-kit/mcp_server/skill_advisor/` paths, old server ownership, or advisor feature catalog entries that now belong with the advisor skill.",
+    "causal_summary": "The advisor extraction moved skill-advisor ownership out of `system-spec-kit` into the sibling `system-skill-advisor` skill and standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-19T15:11:02.192Z",
-    "last_save_at": "2026-06-12T04:40:47.232Z",
+    "last_save_at": "2026-06-23T03:49:53.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2f4d0be6d203b6f287bc4d1ded26b3183b38028267872199209a59c0f4e7bcac",
+    "source_doc_hashes": {
+      "spec.md": "a1dd806f67bb3372f0d60bebc44b6b93c8cd120f79fbd4b9c6d3165c8d523d40",
+      "plan.md": "152419c1c2de3290983e44b32ff6e655a67d2738ff9c6ee7775a6479015a88d4",
+      "tasks.md": "f1bf084bcb23c9a0a07fc2d86b23eb6dbd10c3405ad7845cf903221c188c7782",
+      "checklist.md": "9d9fcacb580df20aab60482fd9db6b90b75bce57d5bbd4f0674a15e739a4cee7",
+      "implementation-summary.md": "6b40878ec74c674f78e87b7f4321d6d8a0346e7c64839284837f160edc5d3d00"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

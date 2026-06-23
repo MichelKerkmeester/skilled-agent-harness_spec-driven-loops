@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Canonical typing is partial and inverted",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-05-30T10:12:03.296Z",
+    "last_save_at": "2026-06-23T03:50:00.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:72f4d878b94ae1b6809176a675d051c3e44533272b67d1f48af25f9308c9fe0d",
+    "source_doc_hashes": {
+      "spec.md": "3b5768f6f6f85f7bda37aa6a9b9e67cdc179e6973faf03eb59eef0bb589e7d8f",
+      "plan.md": "20bbc4e6e11e2089d6fef7dc7d1862dcaa5379a73c8248ed64bb2fd18b6a2bf3",
+      "tasks.md": "70083f1e9d85f7546495427e76c2c16b47fdb13447afb1efdd0f64fedd3a8547",
+      "checklist.md": "71e8a03d87c0e7ebd2e83250783f6aa2b07ca7aadf3ff9639c9fd8ac499c2906",
+      "implementation-summary.md": "1537a77cfe1e4e61fd2a07f7e360ba52a7decbc3d72f42c09a2b863bdd3c5b4f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

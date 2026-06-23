@@ -33,7 +33,7 @@
       "014",
       "done",
       "shipped",
-      "close"
+      "found"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Close the v4 cleanup layer without expanding scope: make provider startup warnings fire before auto-resolution, expose dtype in `memory_health`, let programmatic hf-local callers pass dtype, fix the mutable default, and align 012/parent docs with the shipped 42aa114e3 state.",
+    "causal_summary": "v4 deep-review found one remaining real startup path where Voyage auto-shadow warnings happened too late, a health-report gap for hf-local dtype, one mutable Python list default, and several documentation/config examples that still described the pre-42aa114e3 or wrong-slug state",
     "created_at": "2026-05-13T09:45:00Z",
-    "last_save_at": "2026-05-30T10:12:02.090Z",
+    "last_save_at": "2026-06-23T03:49:54.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:45:00Z",
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c3a565d11f4189158616c11f9ca9af3ce4d24b9d729c7777c66306c7295526ba",
+    "source_doc_hashes": {
+      "spec.md": "005dfd25d35a6a9159e4757dc4ae2a56f29be6c4931c74b79b9366c036cdd535",
+      "plan.md": "d608a7277db13d74e4e5ef9a2ee7c7e30da248fcd6f0b26bc3d136f6aeeeeb85",
+      "tasks.md": "ae97d2f375bc26fe332c5019a61a8c66ae14c3ea817618d45735f46e950a6e5e",
+      "implementation-summary.md": "51066c3a59f09354cd572d1f9b3a3159ba1aaf3e71ebd9a4206aa9ff75ff4016"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

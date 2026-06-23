@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A deep review of the relation-inference backfill subsystem surfaced a confirmed data-integrity defect: the supersession `contradicts` collector and the lineage `caused` collector emit the SAME directed pair (lineage is reciprocal — predecessor and superseded_by point at each other). In a committed run with `contradicts:true`, the `caused` edge inserts first, then the `contradicts` edge triggers contradiction-detection, which silently sets `invalid_at` on the just-created valid `caused` edge — mislabeling an evolution as a contradiction and corrupting traversal. This packet adds a relation-agnostic conflict guard, fixes three lesser findings (strict inner schema, honest write counting, handler hint), and clears five maintainability P2s.",
+    "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.027Z",
+    "last_save_at": "2026-06-23T03:49:55.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:41d96e35d30f6ef66d1c5bec232f84a546c29e540b86f701dbac5dac4edd182f",
+    "source_doc_hashes": {
+      "spec.md": "1ede4a2dfee040aeee74b27596115e4e9f8682c057b80f8f35c6a36256252b44",
+      "plan.md": "a6d5f7d381db0d1853164d515b8bf63370b51a66bdae643d3cb93f67ba8e61ec",
+      "tasks.md": "33052d4d75562f4afa7bb2a9367e9b1c7081da0bdfe35741f0ecc71a53fbf4e9",
+      "checklist.md": "503afcfa59bebb46e50c8b3838f315aaa974723f9db6b1374ac45a0ab2c2f064",
+      "decision-record.md": "15179cd253677d22d5442bbc08e95379fb4e6015f5e4def1add0acc1ad75e783",
+      "implementation-summary.md": "38767c131afa5e5f864fd08d6cbe0c4fc268ef63d293606125a179468e92555f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

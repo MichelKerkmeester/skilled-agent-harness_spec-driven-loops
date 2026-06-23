@@ -1,17 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
-  "description": "Feature Specification: C1 deterministic header-path plus curated-signal chunk prefix",
+  "description": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
   "keywords": [
-    "feature",
-    "specification",
-    "deterministic",
-    "header-path",
-    "plus",
-    "curated-signal",
-    "chunk",
-    "prefix"
+    "embed",
+    "path",
+    "strips",
+    "highest-value",
+    "curated",
+    "retrieval",
+    "signal",
+    "ever",
+    "reaches",
+    "vector"
   ],
-  "lastUpdated": "2026-06-21T10:22:32.665Z",
+  "lastUpdated": "2026-06-23T03:49:58.630Z",
   "specId": "014",
   "folderSlug": "c1-chunk-prefix",
   "parentChain": [

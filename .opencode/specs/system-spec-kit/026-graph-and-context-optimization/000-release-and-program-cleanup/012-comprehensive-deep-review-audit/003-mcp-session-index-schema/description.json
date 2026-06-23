@@ -1,18 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
-  "description": "Feature Specification: MCP Session + Index + Schema/Entrypoint Review Slice",
+  "description": "The MCP session lifecycle, incremental indexing, ingest, embedder management, the context-server entrypoint/dispatch, and the tool-schema layer all ch",
   "keywords": [
-    "feature",
-    "specification",
     "mcp",
     "session",
-    "index",
-    "schema",
+    "lifecycle",
+    "incremental",
+    "indexing",
+    "ingest",
+    "embedder",
+    "management",
+    "context-server",
     "entrypoint",
-    "review",
-    "slice"
+    "dispatch",
+    "tool-schema",
+    "layer"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.952Z",
+  "lastUpdated": "2026-06-23T03:49:52.987Z",
   "specId": "003",
   "folderSlug": "mcp-session-index-schema",
   "parentChain": [

@@ -83,14 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the program had hundreds of shipped phases with almost no packet-local changelogs. This phase parent groups both efforts.",
+    "causal_summary": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the program had hundreds of shipped phases with almost no packet-local changelogs",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.187Z",
+    "last_save_at": "2026-06-23T03:49:52.897Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c38cdad2051b041c7bc6de89c7b4eae2f89b764ee81a1c472c00fb6913f536dc",
+    "source_doc_hashes": {
+      "spec.md": "01cb20d5aefdd34f1e10e58713825b2c7e3c141781e242a30e3ddde907ff595a"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
     "last_active_at": "2026-06-01T00:00:00.000Z"
   }

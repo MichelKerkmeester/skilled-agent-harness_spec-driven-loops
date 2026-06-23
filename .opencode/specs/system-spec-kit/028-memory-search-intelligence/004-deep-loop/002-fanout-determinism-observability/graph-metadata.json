@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase records the deep-loop fan-out **determinism + observability** cluster (the fan-out-layer group touching `fanout-merge.cjs` / `fanout-pool.cjs` / `fanout-run.cjs`) and completes its Wave-1 tail. Three candidates already **shipped** in the flat Wave-0 implementation record (030, commit `46812f12a8`): the **deterministic merge total-order** (a hand-written `compareByContentThenId` content-then-id total comparator layered on top of the first-write-wins `id||title` dedup), the **read-derived pool gauges** (`lag`/`pending`/`failed`, computed from the pool's `total`/`settled`/`pending`/`failed` counters with no new state) and **graceful self-stop** (a `stopped` partial-summary flush on SIGINT/SIGTERM plus treating an empty no-new-findings tick as valid convergence rather than failure). The Wave-1 tail is now implemented locally: the **order-invariance property tests** prove research and review merged registries stay byte-identical across lineage arrival-order permutations, and the **near-duplicate merge dedup** is available default-off behind an explicit flag so surface-variant findings can be collapsed by normalized content without changing default ranking behavior.",
+    "causal_summary": "The deep-loop fan-out runtime merges per-lineage finding registries and pools concurrent CLI lineages on three modules: `fanout-merge.cjs` (merge + dedup), `fanout-pool.cjs` (concurrent dispatch + gauges + summary) and `fanout-run.cjs` (the lineage worker + signal handling)",
     "created_at": "2026-06-19T06:20:37.815Z",
-    "last_save_at": "2026-06-22T18:55:03.769Z",
+    "last_save_at": "2026-06-23T03:49:58.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8adc9e41930172b3673f486bd8ea8147c26e8964f41e0697b569383cf4fdf60d",
+    "source_doc_hashes": {
+      "spec.md": "c689dc0b3a13fe41ab275a729c2fb6b8ad1fc55127d328fcf8b8c8582c2a983d",
+      "plan.md": "b3571622922c1e6b6dfcedc6a2d6ace2a6e19d37f65ce1b7f2484e8215e35ab1",
+      "tasks.md": "5afb619f20c0519e98d843a25f150dc417248008869ed650f206ad36e53ddc8b",
+      "checklist.md": "ffa7f00362b25b8605f438e49c9175c21d51b33e3e0ba852d041515cc07d2469",
+      "implementation-summary.md": "53a4d67d2082ac987728f20d2443bdbb2918d2bd43db7858f574e9adb0daaf65"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

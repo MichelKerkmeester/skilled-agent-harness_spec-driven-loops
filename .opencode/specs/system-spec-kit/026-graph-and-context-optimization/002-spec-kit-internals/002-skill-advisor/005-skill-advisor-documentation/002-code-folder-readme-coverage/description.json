@@ -1,14 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
-  "description": "Phase B: sk-doc-aligned READMEs for system-skill-advisor",
+  "description": "Close the gap in two parallel tracks:",
   "keywords": [
-    "phase",
-    "sk-doc-aligned",
-    "readmes",
-    "system-skill-advisor"
+    "close",
+    "gap",
+    "two",
+    "parallel",
+    "tracks"
   ],
-  "lastUpdated": "2026-05-26T17:27:36.360Z",
+  "lastUpdated": "2026-06-23T03:49:53.560Z",
   "specId": "002",
   "folderSlug": "code-folder-readme-coverage",
   "parentChain": [

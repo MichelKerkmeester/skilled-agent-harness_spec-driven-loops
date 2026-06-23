@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral semantics (freshness sourcing, recovery no-op-vs-error) that interact with that WIP.",
+    "causal_summary": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral semantics (freshness sourcing, recovery no-op-vs-error) that interact with that WIP",
     "created_at": "2026-05-29T08:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.651Z",
+    "last_save_at": "2026-06-23T03:49:56.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7b858bc69d389ee40616081bcb751d0232466cdb4079963a56617621527c5850",
+    "source_doc_hashes": {
+      "spec.md": "128dd4a9de21e71f075884ba0bb22574dbea6b8a3dd97ee5c02b7913c81764bf",
+      "plan.md": "fced5f95b249f2b21dba3636269a430cfd0ead045964a2647cc9be479eb0349a",
+      "tasks.md": "79766bba419638c3b3a153c2bfc99fe86ed45af42f6f1a5a82b5f2122b56cc1d",
+      "implementation-summary.md": "99d899e8e877a4e10a08cf14999697dcbea78d395f50d7c7b5e2789991c78437"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

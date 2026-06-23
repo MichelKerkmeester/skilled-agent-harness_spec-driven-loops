@@ -15,20 +15,16 @@
     "007-acceptance-coverage-gate"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
-  "description": "Feature Specification: Adopt peck teachings into system-spec-kit (README-pass T1-T4 + source-pass T5-T10)",
+  "description": "Two peck research passes inform this packet",
   "keywords": [
-    "feature",
-    "specification",
-    "adopt",
+    "two",
     "peck",
-    "teachings",
-    "system-spec-kit",
-    "readme-pass",
-    "t1-t4",
-    "source-pass",
-    "t5-t10"
+    "research",
+    "passes",
+    "inform",
+    "packet"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.893Z",
+  "lastUpdated": "2026-06-23T03:49:57.055Z",
   "specId": "001",
   "folderSlug": "peck-teachings-adoption",
   "parentChain": [

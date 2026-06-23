@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence script, the devin compact-recovery hook, install scripts, the mk-spec-memory launcher, shell version guards, vector-index retention sweeps, memory-search community gating, agent finding-registry filenames, and AI-council skill asset references. Many of the 20 headlines did not survive contact with the real code: 4 were fully refuted (gemini-compact already calls `sanitizeRecoveredPayload` internally; 3 code-graph regex `lastIndex` claims — the while-exec loop resets correctly). Of the 9 partial-but-real targets, 1 (council `scoreVerdictProgression`) was excluded from auto-fix because its proposed change would alter stop-policy, a product decision that requires deliberate sign-off rather than a scout-driven patch.",
+    "causal_summary": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence script, the devin compact-recovery hook, install scripts, the mk-spec-memory launcher, shell version guards, vector-index retention sweeps, memory-search community gating, agent finding-registry filenames, and AI-council skill asset references",
     "created_at": "2026-06-03T08:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.202Z",
+    "last_save_at": "2026-06-23T03:49:52.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:77b15d20a03a288bffea3f0ac43c7268d052c9ca5627f0e200899f883a153cbd",
+    "source_doc_hashes": {
+      "spec.md": "178a6a566cd2471bc3c26195d6a118bb5aaae8d4c0479508bb583275164ebe6d",
+      "plan.md": "2783d7dac28119baf3dd59041c4b6e27fda9117cc10d95754109592520af5360",
+      "tasks.md": "f1dd7993610efcc13d7ab8d039a5a401c3170d06a6374b6655acf416c066fc55",
+      "checklist.md": "f6af85b8ccd853f90e9899256ee61b22abfbd2563a26454b81fa0cab80f7d11e",
+      "implementation-summary.md": "5551aea060819c4d6b83f24624096d0cdec5844453e9dd173e664cc6dbec21c7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two interrelated defects undermine memory quality in the generate-context.js pipeline. First, the extractors quality scorer applies up to +0.20 in bonuses for normal session activity, ensuring that five simultaneous soft failures still produce a score above 0.95 — making quality_score effectively binary and useless for discriminating good saves from bad ones. Second, the contamination filter is applied only to `observations` and `SUMMARY`, leaving `_JSON_SESSION_SUMMARY`, `_manualDecisions`, `recentContext`, and `technicalContext` completely uncleaned. This phase recalibrates the scorer and extends the filter to close both gaps.",
+    "causal_summary": "The extractors quality scorer (extractors/quality-scorer.ts:113-205) assigns bonuses of +0.05 for message count, +0.05 for tool usage, and +0.10 for decisions present — a maximum of +0.20",
     "created_at": "2026-04-12T09:02:50.278Z",
-    "last_save_at": "2026-05-30T10:12:03.318Z",
+    "last_save_at": "2026-06-23T03:50:00.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9e5b0f5830c3bb9471285d3928b744b3435e9edb1b953198e32ef9cb446034dd",
+    "source_doc_hashes": {
+      "spec.md": "7d01075978108c2f5f3b1eb706eefd11a15fef3ac7b742a8373127c491b1c668",
+      "plan.md": "11061a861d2095a0bfc4035552cca231ebc513b173588ed23b6690d34f54ad76",
+      "tasks.md": "a54e7aaa3231d3a0ad78c146c39f7d50bb806945b41d701cc018a86569b091ce",
+      "checklist.md": "9a79334fac8baae7e77dd00b2fe33a3a32e824b96d4a2c65502115fa4b8e2b38",
+      "decision-record.md": "bfa8236694637b201e74bf127f79ea61825f267dd6f48592a1a8fc25dbe53b48",
+      "implementation-summary.md": "a061171016afefc0e3ceb51f0c7f3db417eb60f87e0c1998fe6cc4b7fee0c8eb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

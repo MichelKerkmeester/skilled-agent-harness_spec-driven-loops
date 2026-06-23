@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path",
-  "description": "Feature Specification: Lease Socket-Path Persistence",
+  "description": "This packet closes defect (c), deferred as a follow-up in packet 018 (front-proxy recycle hardening)",
   "keywords": [
-    "feature",
-    "specification",
-    "lease",
-    "socket-path",
-    "persistence"
+    "packet",
+    "closes",
+    "defect",
+    "deferred",
+    "follow-up",
+    "018",
+    "front-proxy",
+    "recycle",
+    "hardening"
   ],
-  "lastUpdated": "2026-06-04T12:33:53.246Z",
+  "lastUpdated": "2026-06-23T03:49:55.668Z",
   "specId": "020",
   "folderSlug": "lease-socket-path",
   "parentChain": [

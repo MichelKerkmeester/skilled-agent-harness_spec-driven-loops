@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`. A direct run against `037-llama-cpp-embedding-worker-deep-dive/decision-record.md` reports scattered foreign IDs such as `768-dimension`, `142-line`, `002-decouple-retention-from-governance`, and `005-stability-instrumentation`.",
+    "causal_summary": "The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:02.278Z",
+    "last_save_at": "2026-06-23T03:49:54.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:727415a9d0ecab30bc859ef5db5afa383838153b1cd683a71ca7cc77c775fec9",
+    "source_doc_hashes": {
+      "spec.md": "20c8c77803afd392dd9591f1c84c931fce1e5cc5605f973e57a883e1d1533277",
+      "plan.md": "f8237ee5d2ee24aa287635b280a1cdd38d774281f0ea1af82dd91525ce688aed",
+      "tasks.md": "a4f6596d83d160cd5acb80114a5207fa26395374341116d102fbaabe1e8996ae",
+      "checklist.md": "6d0f18ff3e681d16972b255f5fdc39b730f7175139cd62f90cc3cbf30a865efb",
+      "implementation-summary.md": "eeec8f950c3ed3ff83bd5b20df9693163e96a2777761f36e4168f9a9680d15ff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

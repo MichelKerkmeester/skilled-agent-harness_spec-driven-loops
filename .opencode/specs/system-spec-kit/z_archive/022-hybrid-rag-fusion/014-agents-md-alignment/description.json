@@ -1,11 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/014-agents-md-alignment",
-  "description": "Specification: 014-agents-md-alignment",
+  "description": "The three AGENTS.md governance framework files reference outdated Quick Reference workflow tables that show 5 memory commands instead of the current 4",
   "keywords": [
-    "specification",
-    "014-agents-md-alignment"
+    "three",
+    "agents",
+    "governance",
+    "framework",
+    "files",
+    "reference",
+    "outdated",
+    "quick",
+    "workflow",
+    "tables",
+    "show",
+    "memory",
+    "commands",
+    "instead",
+    "current"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.438Z",
+  "lastUpdated": "2026-06-23T03:50:00.211Z",
   "specId": "014",
   "folderSlug": "agents-md-alignment",
   "parentChain": [

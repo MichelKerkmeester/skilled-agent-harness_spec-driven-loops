@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The retrieval-learning loop records only the positive selection edge. `learned-feedback.ts:257 recordSelection` logs a term-add audit row when a user selects a result, but the grep for impression or never-retrieved telemetry across the search lib is empty, so the system has no signal for a doc that was never retrieved. That gap matters because the prod path narrows the returned set through layered truncation. `confidence-truncation.ts:35 DEFAULT_MIN_RESULTS = 3` is a never-cut-below-3 minimum guarantee, not a cap. Above that minimum the confidence stage is cliff-conditional and returns 3 to 20, and token-budget truncation is the real prod-limiting stage. A never-retrieved doc is then one of two very different things the system cannot tell apart. One is a real recall gap where the doc ranked below the candidate set, the other is a truncation casualty where the doc was a real candidate the cliff or token-budget stage cut from the returned set.",
+    "causal_summary": "The retrieval-learning loop records only the positive selection edge",
     "created_at": "2026-06-21T10:22:34.985Z",
-    "last_save_at": "2026-06-22T18:55:03.800Z",
+    "last_save_at": "2026-06-23T03:49:58.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ddba4fbd6a823c9a6353c61d8d7b4cd1b23f2053a1dddce31f3e7f819e4bfac1",
+    "source_doc_hashes": {
+      "spec.md": "3c560f4b04acbd4e895302f9c5ce6871495abcfa9eab0483e080040adfda5601",
+      "plan.md": "73549b2837ccc8f4106bd30ff16d6e3aa45cce452f676ba6944985891ba687f5",
+      "tasks.md": "c0e39b31f679a8f6ffdc43c1ca669c59c19d224482ff690148e3b4515b4b23d1",
+      "checklist.md": "4756dc837136abac78b47eb7a74dde3e742cdc1e6d7c1b8929016914685bd0a2",
+      "implementation-summary.md": "7a956f92863f7b587e530fd9b54e41d233ed02cb074fbe09abe4f7f630d8068d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local `code_graph/` paths. Without rewiring, TypeScript import resolution and runtime startup surfaces fail.",
+    "causal_summary": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local `codegraph/` paths",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-05-30T10:12:02.775Z",
+    "last_save_at": "2026-06-23T03:49:56.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:551549e651646420055e3feb5c4163b16dc9328f0c75fb261e3714ac5af514d2",
+    "source_doc_hashes": {
+      "spec.md": "22e963a9c55d88befa6a7d44ecc8601d0f5d6b43059474954d2548e00ca20a7c",
+      "plan.md": "b80f59a1de09b2603f2946f427272760fb8c882e01834c210a9063d39137eb37",
+      "tasks.md": "59d501a5c8a59f960e28fc975d8b4124feda1cf0487f267522758035447928f1",
+      "checklist.md": "cf6a5b306646d691c120d09d0f3a65768e2ead86c1ec51665baec623369cfc13",
+      "implementation-summary.md": "38f6ccb60b82eecda9002a60414b9156ac9a59a1473d78fca70507f14a6ecdf4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

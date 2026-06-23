@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
-  "description": "Task 01 — README Audit & Alignment",
+  "description": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references re",
   "keywords": [
-    "task",
-    "readme",
     "audit",
-    "alignment"
+    "every",
+    "readme",
+    "file",
+    "opencode",
+    "directory",
+    "tree",
+    "ensure",
+    "statistics",
+    "feature",
+    "descriptions",
+    "version",
+    "numbers",
+    "cross-references"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.037Z",
+  "lastUpdated": "2026-06-23T03:49:59.495Z",
   "specId": "001",
   "folderSlug": "readme-alignment",
   "parentChain": [

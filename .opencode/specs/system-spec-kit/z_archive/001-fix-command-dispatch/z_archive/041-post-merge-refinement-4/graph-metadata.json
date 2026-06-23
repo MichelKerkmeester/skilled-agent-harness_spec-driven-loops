@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Complete specification for addressing 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration.",
+    "causal_summary": "Following the system-memory to system-spec-kit merger (specs 035-040), a comprehensive 10-agent analysis revealed 75+ issues across documentation, code, UX, and integration",
     "created_at": "2026-04-12T09:02:53.526Z",
-    "last_save_at": "2026-05-30T10:12:02.987Z",
+    "last_save_at": "2026-06-23T03:49:59.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:28c1640144f886ce14bfa4769d65da2ca52b2ccbcb36bd92f41f3c7c1665d57c",
+    "source_doc_hashes": {
+      "spec.md": "fc8f15483bdff0a2ac3c88ff49ab4713a4cee5e3807c8c5259caf61f136a3dfa",
+      "plan.md": "6e609479de97279c03306bb4f358bc2f13f83bf2a10757c814d14d085c11a6b4",
+      "tasks.md": "82088eeec91d0eea008aa70889c8e6f93a5d921e93d2ad58724d477ef5f71bea",
+      "checklist.md": "d161814d76418fb0a60099e38a139b8687562782e7be329473f83a7e539212ad",
+      "decision-record.md": "7d411ca76d09a90fc0d1b31fa86837b1e8765c6287604722ad69ec3ec4f3a9a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

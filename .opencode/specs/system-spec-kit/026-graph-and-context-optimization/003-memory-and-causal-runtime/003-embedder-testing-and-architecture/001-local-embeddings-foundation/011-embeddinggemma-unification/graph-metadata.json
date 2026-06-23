@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Setup A ended in a split-model state: Spec Kit Memory used `onnx-community/embeddinggemma-300m-ONNX` while CocoIndex used a heavier code-side model. The code-side model was heavier than needed for the current code-search target and kept older packet docs/config comments pointing future clones at the wrong default.",
+    "causal_summary": "Setup A ended in a split-model state: Spec Kit Memory used `onnx-community/embeddinggemma-300m-ONNX` while CocoIndex used a heavier code-side model",
     "created_at": "2026-05-13T07:35:00Z",
-    "last_save_at": "2026-06-22T18:55:02.235Z",
+    "last_save_at": "2026-06-23T03:49:53.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T07:35:00Z",
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:800305c3a51dc9ea27e3ef8fcb1f3984dd745ea45899b6e396c6deac04dcd3af",
+    "source_doc_hashes": {
+      "spec.md": "9e8f8065fc77e54ad6a1912420c693237b454352b5864417681e56e3b7598b4e",
+      "plan.md": "3772b0755ff87832589fcf513997ddcff91ded4b859d1f2b6e1ddad51dd1d7e0",
+      "tasks.md": "7897ee520bc23a494946afdf8706bb429f5e019a3fb92c0b2519730bc05325f5",
+      "implementation-summary.md": "18322e702b99ad62a4818ab373b25a42bac1b1a33da1772b2db180ec85dd5baa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

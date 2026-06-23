@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output. A release-readiness audit needs to verify that strict mode catches malformed spec documents, avoids rejecting valid phase-parent and research packet structures, and produces actionable findings.",
+    "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output",
     "created_at": "2026-04-29T19:47:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.529Z",
+    "last_save_at": "2026-06-23T03:49:52.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:75b9af14e83fdd27c5a5164b3b026bf153e768b238e810d02dae70f415f3a95a",
+    "source_doc_hashes": {
+      "spec.md": "c1c537c93bb9f62fa3bfde3bdad6763554ee353189b08dbfec17b140727dd601",
+      "plan.md": "c62f84be3682bf8558aca0a7a9cee1db04549d498f0436eeb7406149f6ba7156",
+      "tasks.md": "7a28cdc9981adc44572a6efb8ffeaedadab43b862a5fabd69961f127fec6a0c8",
+      "checklist.md": "73227b5bad6451312c994c25db67daa63f7f7810b02395aed703e9448d869600",
+      "implementation-summary.md": "963d8cbd482d8a0ef2b875f3baa51b07ccbc02bec6077da2086dfb3c8387b651"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The internal causal graph stores edges in SQLite only: an edge is a `(source_id, target_id, relation, source_anchor, target_anchor)` tuple with no fact text and no relationship vector, so edges never inform ranking and can only be deduped/invalidated on an exact key over the same node pair [CONFIRMED: `lib/storage/causal-edges.ts:350-352` exact-key upsert; `lib/graph/contradiction-detection.ts:85-93` same-pair-only; 0 grep hits for `embedding|vector|fact_text|cosine|similarity` in `causal-edges.ts`]. Research (028/007, iters 19/21) found **five** separately-surfaced edge-intelligence candidates that all need the **same missing substrate**, per-edge embeddings + semantic edge retrieval, and consolidated them into one Wave-2 initiative: build the layer once and `CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge` and `GR-semantic-invalidation-discovery` unlock together.",
+    "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-06-22T18:55:03.658Z",
+    "last_save_at": "2026-06-23T03:49:58.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fbf21ab4f33addcc6ad7f82e7c71598a31d3b7aae719a5577fdc75356105c7f7",
+    "source_doc_hashes": {
+      "spec.md": "1e4788de12bbab1cb4138439fa3b2c4ece48eda25eb5e8bec0e801b2c4cbd75d",
+      "plan.md": "6273e7550c42deb5b8f4080e265d1d08d970c4781b594290d777df048b81042f",
+      "tasks.md": "b253f2452e3306b76611a6571d3f8a76b971937696e117cc15430821576334cf",
+      "checklist.md": "1e7258a27f47f2f3a419747e6eaa1275097bd0a881cfcc805d9b960f771bd0ef",
+      "decision-record.md": "146f5e4d320df42dd2aba6c03adb4fe37f41749bef0aa6faeb1eadef69db8537",
+      "implementation-summary.md": "48183aaf83e9296c50bb0e804ea0e0b2a33473fcef318df44e96bf9a6c4e569b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations. The operator decision is to remove that drift by making skill-advisor consume the same shared embedder contract surface as mk-spec-memory. The alignment target is mk-spec-memory's current state (`'auto'` sentinel that triggers a content-type-aware cascade landing on `nomic-embed-text-v1.5` in local-only environments). The original scaffold mentioned `sbert/nomic-ai/CodeRankEmbed` — that target is overridden because (a) CodeRankEmbed is code-tuned and skill-advisor indexes prose skill metadata, (b) mk-spec-memory is the \"most recently updated\" canonical source and its cascade lands on text-tuned `nomic-embed-text-v1.5`.",
+    "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
     "created_at": "2026-05-21T18:08:46.935Z",
-    "last_save_at": "2026-06-05T12:47:33.692Z",
+    "last_save_at": "2026-06-23T03:49:54.533Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a39e6ca1eeb04157fc5254501bc16cdd08c4be4dc7e1deb13836342ca99834d7",
+    "source_doc_hashes": {
+      "spec.md": "0c133f53feae5cc75669791fcda0f659e4b98506df1f74b7d2754a0f67566c6d",
+      "plan.md": "1d8e5e835d659d51e7a134a8cec12abac132319c82870f3b07b489213b7f9358",
+      "tasks.md": "4aac89c43f5cc4332a54f3286268e3c0fe7772140fe0b9658609bf3fe7157055",
+      "implementation-summary.md": "010a8ce55a4f7a233cf979c6d9af74651d06a01ec97b9450644760a967d3e67e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

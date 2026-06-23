@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implement the two pieces that make swapping actually work:",
+    "causal_summary": "Phase 2 of 016. Implement Ollama HTTP-API adapter + lazy vec_<dim> table creation + active-embedder pointer. The two-layer swap mechanism.",
     "created_at": "2026-05-17T06:35:17.505Z",
-    "last_save_at": "2026-06-22T18:55:02.301Z",
+    "last_save_at": "2026-06-23T03:49:54.282Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:90f5d363b98a39fb82b61a45a53da80541983b7b5451c015defcd44ba0d2f864",
+    "source_doc_hashes": {
+      "spec.md": "4399df1c05407504fac2c815190d78cd82dcfe539569c529fe75888f63a376f5",
+      "plan.md": "2622b932ec6b6fed11ea28753cbaf47cf9c4ddde4a176afcdb8d150a7b49c676",
+      "tasks.md": "5b614a4ac2a923c939cfcb5aced4ed4b9ba919b2564f53a2e5cd3b63e2cd4336",
+      "implementation-summary.md": "a270febe4e4d33c949b31eac993f39b7dd750d7015dcff2fd28e482a68bd3ff3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

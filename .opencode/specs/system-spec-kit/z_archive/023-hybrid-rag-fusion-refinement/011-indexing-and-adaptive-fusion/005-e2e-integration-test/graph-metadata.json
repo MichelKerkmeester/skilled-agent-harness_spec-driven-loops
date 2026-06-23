@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the adaptive-ranking packet.",
+    "causal_summary": "The lifecycle suite existed, but the docs overstated what it covered",
     "created_at": "2026-04-12T09:02:50.334Z",
-    "last_save_at": "2026-05-30T10:12:03.441Z",
+    "last_save_at": "2026-06-23T03:50:00.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1d990ecdcd3296cd8d37a21c6dd6a797eeba671a904bec1f70ee3f4938fd0938",
+    "source_doc_hashes": {
+      "spec.md": "ed10d2d2168c44a3e6abc353b7ca1bdcef01d2b92a473c57af54296e5a40c941",
+      "plan.md": "793f3da0e3f35d6289959be2c6ab6256270e6c776a03d48ff8670de16a9fb870",
+      "tasks.md": "87ed1636341ab4ea970c93b614cbfe84462bd63bebf73161181c556123d2a20b",
+      "checklist.md": "533bc2b0ae205a181a90cf5746810731c4922d43ac08706e03c5b466c9563263",
+      "implementation-summary.md": "cbc77a8ee2eae00e89bac5b6ca29154b68f20d4972d69a4cf375e8139d38d5aa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

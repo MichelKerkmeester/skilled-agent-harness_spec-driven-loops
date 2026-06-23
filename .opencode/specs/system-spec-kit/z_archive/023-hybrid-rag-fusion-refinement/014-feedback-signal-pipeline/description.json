@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline",
-  "description": "Feature Specification: Feedback Signal Pipeline",
+  "description": "The feedback signal pipeline is implemented in the current repo, but this packet no longer matched the shipped code or the available verification evid",
   "keywords": [
-    "feature",
-    "specification",
     "feedback",
     "signal",
-    "pipeline"
+    "pipeline",
+    "implemented",
+    "current",
+    "repo",
+    "packet",
+    "longer",
+    "matched",
+    "shipped",
+    "code",
+    "available",
+    "verification",
+    "evid"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.674Z",
+  "lastUpdated": "2026-06-23T03:50:00.563Z",
   "specId": "014",
   "folderSlug": "feedback-signal-pipeline",
   "parentChain": [

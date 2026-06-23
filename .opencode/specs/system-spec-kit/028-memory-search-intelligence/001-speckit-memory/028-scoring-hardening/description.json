@@ -1,14 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
-  "description": "Feature Specification: Scoring Hardening",
+  "description": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
   "keywords": [
-    "feature",
-    "specification",
-    "scoring",
-    "hardening"
+    "memory",
+    "search",
+    "verdict",
+    "citation",
+    "path",
+    "scores",
+    "off-corpus",
+    "term",
+    "good",
+    "lone",
+    "spurious",
+    "high-cosine",
+    "hit"
   ],
-  "lastUpdated": "2026-06-22T16:10:27.250Z",
+  "lastUpdated": "2026-06-23T03:49:58.351Z",
   "specId": "028",
   "folderSlug": "scoring-hardening",
   "parentChain": [

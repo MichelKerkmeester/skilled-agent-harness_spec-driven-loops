@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed. A follow-up gpt-5.5-fast confirm pass re-examined all 4 against the real code and confirmed every one. One of the four — the cli-devin phantom \"dangerous\" permission rows — had already shipped via parallel `130/014` cli-doc work, so this batch lands the remaining 3 confirmed defects: a D4-R grader `dim_id` mismatch that silently capped confidence at 0.3 on every real grade, a handover freshness timestamp field mismatch that dropped live handovers to an unreliable mtime fallback, and the highest-frequency graph-metadata mutation path (`updatePhaseParentPointer`) reading/writing with NO Zod schema validation, silently accepting malformed timestamps and empty `last_active_child_id`.",
+    "causal_summary": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.208Z",
+    "last_save_at": "2026-06-23T03:49:52.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:40e7ad539dc0e1b53d97ef21c5c5e326819c26ba14d659e1c3d6be5aa6b54040",
+    "source_doc_hashes": {
+      "spec.md": "3ae6ab7b84f9651fab9bf6b8e2445a2a5838353fb478d3f8e029a2ca150dde25",
+      "plan.md": "9e50b3bc4af699d90c607408cb8eb6fcfc2f49c88129ee997db1fe42a85ad2d6",
+      "tasks.md": "5dc97e917288277f8b1469643dc9449af25c84e557bd253bb15a5d985ca5ef38",
+      "checklist.md": "6d0c3e1cda928e53b597ef851f8f2b781b7b9079dab8ae4ec6db9fb26423d610",
+      "implementation-summary.md": "9874bb66a1eb26885b90b06c6558ccbe9215c1801cea7875ef8fcfbb44b8e440"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

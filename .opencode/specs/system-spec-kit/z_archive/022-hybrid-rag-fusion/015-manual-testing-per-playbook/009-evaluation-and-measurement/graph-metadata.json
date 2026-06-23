@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB schema, metric computation, ablation studies, shadow scoring, and ground truth tooling. These scenarios require structured manual execution to confirm that the measurement pipeline produces accurate, reproducible results.",
+    "causal_summary": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB schema, metric computation, ablation studies, shadow scoring, and ground truth tooling",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-06-05T12:47:34.860Z",
+    "last_save_at": "2026-06-23T03:50:00.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:678c68d27b756d83d1fc67daa050dbfbb0a9fb9bc2ff6c075abbc4f06e3716b0",
+    "source_doc_hashes": {
+      "spec.md": "f708132712da3a4de4adadd546731b85939fe86badaded95c4452abe2936dc78",
+      "plan.md": "87a9aee978d550b672a173a651f596fa32be76ae18cc31b8559836917735f7b0",
+      "tasks.md": "47a813434e3fa1eccca99de8b21659cecc6c7aa0174c702b1da44cb011e03fce",
+      "checklist.md": "e6c628246edd4782dd763deb260510f1ee850dbecf63c189aad31ea6011384ee",
+      "implementation-summary.md": "757e78c299a90944f54f79a18426edce4ead709fedb788ada6bf77e868bb154e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

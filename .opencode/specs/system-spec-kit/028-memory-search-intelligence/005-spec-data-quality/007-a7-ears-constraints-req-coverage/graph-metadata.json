@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction. There is no always / ask-first / never constraint tier in the templates, so hard safety constraints are buried in narrative. The spec-REQ-to-tasks linkage gap is real and unguarded today: `tasks.md` lists `T001`-style task IDs with no requirement back-reference column (`templates/manifest/tasks.md.tmpl:54-77`), so nothing checks that every authored requirement is actually built. The shipped `AC_COVERAGE` rule already solves the parallel problem for acceptance-criteria traceability (`scripts/rules/check-ac-coverage.sh`), proving the exact gate shape exists and can be cloned.",
+    "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction",
     "created_at": "2026-06-21T10:22:34.982Z",
-    "last_save_at": "2026-06-22T18:55:03.791Z",
+    "last_save_at": "2026-06-23T03:49:58.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:36da27dce284c04c9e0ef966451fdca197bc46dd2d9cf4e590b391bd5b8c66d3",
+    "source_doc_hashes": {
+      "spec.md": "2c254ffe1c3e30597db99798c7c8a0c4291694e4c7f97a424df12ecaa73e86e3",
+      "plan.md": "ae02d3112be532dc92971e5714f7beef70d648cd85ded7dbdf76e3e16fbbc49f",
+      "tasks.md": "0b88c717776cb34f9bbddb3cbd61b564fa53596b8b8cc17cc6c91e4e67f6d147",
+      "checklist.md": "df48151464a49a1a6ecb149cf03d50500fa8709efdc68dd8d3e35aa23a7b6548",
+      "implementation-summary.md": "489229eab5e2b467dd08409b86f20d86ee34df18d637158a01e0bc81ece6f175"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

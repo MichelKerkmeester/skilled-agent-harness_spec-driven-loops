@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the Research-Based Refinement specification.",
+    "causal_summary": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and hard-coded Stage 2 signal weights",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-06-05T12:47:34.671Z",
+    "last_save_at": "2026-06-23T03:49:59.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:875198b144aef2a8dafd116efdb6c3fe1ccc113b46ed139362fcbdf48cf2202f",
+    "source_doc_hashes": {
+      "spec.md": "4a67c1014753bcb3575152414e3b839d03e300765433ffe22610cda5cd546b55",
+      "plan.md": "24a654de7fd4aadef3fc1b2f4d5266fb39ab38ec77701748b07cee416db8f749",
+      "tasks.md": "79ce359919933fc4896e4e966cb5ec84e8a491d1fb61646dfe7f8427e98ff580",
+      "checklist.md": "cd9684990bbf0b6aa1da95207770510e11b43e49b7cdee10e48ebd86f6b7a426"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

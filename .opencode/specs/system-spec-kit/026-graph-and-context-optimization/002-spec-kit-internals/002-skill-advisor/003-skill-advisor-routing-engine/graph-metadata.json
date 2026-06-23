@@ -29,13 +29,13 @@
       "router",
       "intent",
       "routing",
-      "optimize",
+      "phase",
+      "parent",
+      "optimization",
       "across",
       "skill",
       "advisor",
-      "system",
-      "coordinated",
-      "improvements"
+      "system"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -86,14 +86,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Optimize intent routing across the skill advisor system through coordinated improvements to search accuracy, phrase boosting, smart router behavior, hook surface integration, and setup command infrastructure. The 5 children bind together thematically around the goal of making skill advisor routing more precise, responsive, and maintainable.",
+    "causal_summary": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.939Z",
+    "last_save_at": "2026-06-23T03:49:53.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:0e23dfe65c2d6d780558a4feed720f74e406c693566681d7a1866702d257af1e",
+    "source_doc_hashes": {
+      "spec.md": "c02bacaaa12a476f8676a900fe445ba2cca85a5a8003f7b486bc803a7e514e9d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

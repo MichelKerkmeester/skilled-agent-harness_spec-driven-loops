@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4 of 6** of the embedding-consolidation and hf-local-server decomposition: Lazy-spawn the hf model server as a launcher-supervised sibling child with a second crash-loop guard, generalized RSS watchdog, modelServerPid lease field, health probe, and respawn lock.",
+    "causal_summary": "A standalone model server solves the execution boundary but not lifecycle",
     "created_at": "2026-05-29T05:06:24.639Z",
-    "last_save_at": "2026-06-22T18:55:02.617Z",
+    "last_save_at": "2026-06-23T03:49:55.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:11a8fd7c0183edd6b3e76f902bceb34bd181f781c2196338fd00110e87c4fb1b",
+    "source_doc_hashes": {
+      "spec.md": "3a2b5ecd5af4e5aa78fae4cc9ada843767e2bce8d515bb19ef101fe2dfbb4d13",
+      "plan.md": "7ca5bd101977c894ecba6f10f9f065b5bdbf18d823b562f5f7dac8fc0d76d097",
+      "tasks.md": "b5ee6fa791873413ae991d638f7660c228c81156016db0c5c465abeb60419ba5",
+      "implementation-summary.md": "d95af75eac1e85361af1fcc82bc909552ad16d62987c5b2fdc2c94634bdae4de"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

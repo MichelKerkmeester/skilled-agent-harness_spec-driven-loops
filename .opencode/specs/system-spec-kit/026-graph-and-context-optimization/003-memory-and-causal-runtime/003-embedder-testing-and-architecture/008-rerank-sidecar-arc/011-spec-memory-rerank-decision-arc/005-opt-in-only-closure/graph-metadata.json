@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After four HOLD verdicts (Phase 004 CPU-Qwen, Phase 005 CPU-ms-marco, Phase 007 MPS-Qwen, Phase 011/002 bge-v2-m3) plus an AI Council deliberation, the rerank arc reached the conclusion that no off-the-shelf or runtime-tuned reranker delivers a measurable quality lift for spec-memory's corpus. Phase 011/002 in particular returned **literally identical numbers to the OFF baseline** (hit-rate@5 0.12, NDCG@10 0.11, recall@5 0.12) at 19× the latency.",
+    "causal_summary": "After four HOLD verdicts (Phase 004 CPU-Qwen, Phase 005 CPU-ms-marco, Phase 007 MPS-Qwen, Phase 011/002 bge-v2-m3) plus an AI Council deliberation, the rerank arc reached the conclusion that no off-the-shelf or runtime-tuned reranker delivers a measurable quality lift for spec-memory's corpus",
     "created_at": "2026-05-23T11:55:15.636Z",
-    "last_save_at": "2026-05-30T10:12:02.420Z",
+    "last_save_at": "2026-06-23T03:49:55.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:523f6b6adcd8b5f48f2bf875e27efcf553558e29b5b0366111765ee5cf257d26",
+    "source_doc_hashes": {
+      "spec.md": "93063d1b4272879a419b9ac96acc4e963e82973553e0b490b75e07c6fd78d96f",
+      "plan.md": "561e50383fe8e698cbe1b046dbff4d6c0e237f6af788447c74e8c0565f6c3e55",
+      "tasks.md": "6a35c4687588c6205d9fc23d8c7482ca6f51f7badac90a5440bd697e0f15db2b",
+      "implementation-summary.md": "8fac1040de9ba8aee9f1573136d1c1b392ccbae7b701b844dfd6cbe7d939da8a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

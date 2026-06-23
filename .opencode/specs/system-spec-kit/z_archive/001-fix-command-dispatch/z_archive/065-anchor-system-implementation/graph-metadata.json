@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Complete feature specification defining requirements, user stories, and success criteria for the Anchor System implementation.",
+    "causal_summary": "Currently, the Spec Kit system creates anchors (the `<!-- ANCHOR:id -->` tags) in memory files, but the retrieval system ignores them",
     "created_at": "2026-04-12T09:02:53.539Z",
-    "last_save_at": "2026-05-30T10:12:03.029Z",
+    "last_save_at": "2026-06-23T03:49:59.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4ecd11034fce60f1585a79532f96bd7c10bf13aa1018c6dd3fbe492ee837fa39",
+    "source_doc_hashes": {
+      "spec.md": "f711463f41397a19aa40ae0ecf048a5bced99e87a132680b3b2106790f798810",
+      "plan.md": "25f83e246ea3794488d318d76ba37d7488ef941611d4a4758ef409bd65d10d3e",
+      "tasks.md": "501afda378b3524092a24125de2805bbf2744c51558c5f6bb38c611b13d082b0",
+      "checklist.md": "1592d465e601bb5d086d0c91a2cdbaed5e4aa29b86a815147c4bf02226189c32",
+      "decision-record.md": "b979a246593abf73116738a9df70e8b23772bfe52cc5110f3685e3df450ed261",
+      "implementation-summary.md": "ab3586b62f22caec9cd95fecdfd05e8472eda5f1a1f471394b6b43e1da2c9bce"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

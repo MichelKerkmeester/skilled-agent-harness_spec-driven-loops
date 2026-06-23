@@ -1,16 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
-  "description": "Feature Specification: MCP Tool Rename: mk-code-index",
+  "description": "The extracted code-graph MCP server was registered as `systemcodegraph`",
   "keywords": [
-    "feature",
-    "specification",
+    "extracted",
+    "code-graph",
     "mcp",
-    "tool",
-    "rename",
-    "mk-code-index"
+    "server",
+    "registered",
+    "systemcodegraph"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.140Z",
+  "lastUpdated": "2026-06-23T03:49:56.766Z",
   "specId": "007",
   "folderSlug": "024-mcp-tool-rename-mk-code-index",
   "parentChain": [

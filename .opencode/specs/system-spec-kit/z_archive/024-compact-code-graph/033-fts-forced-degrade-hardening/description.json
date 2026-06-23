@@ -1,14 +1,19 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/033-fts-forced-degrade-hardening",
-  "description": "Feature Specification: FTS Forced-Degrade Hardening",
+  "description": "The research said FTS hardening is now a low-priority but still useful truth lane",
   "keywords": [
-    "feature",
-    "specification",
+    "research",
+    "said",
     "fts",
-    "forced-degrade",
-    "hardening"
+    "hardening",
+    "now",
+    "low-priority",
+    "still",
+    "useful",
+    "truth",
+    "lane"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.410Z",
+  "lastUpdated": "2026-06-23T03:50:00.835Z",
   "specId": "033",
   "folderSlug": "fts-forced-degrade-hardening",
   "parentChain": [

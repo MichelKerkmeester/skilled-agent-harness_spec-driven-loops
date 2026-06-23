@@ -1,16 +1,25 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
-  "description": "Feature Specification: 006 — Peck Verification Discipline",
+  "description": "Peck's source carries a coherent verification-discipline bundle in its agent prompts that the README-only analysis pass never surfaced, and live spec-",
   "keywords": [
-    "feature",
-    "specification",
-    "006",
     "peck",
-    "verification",
-    "discipline"
+    "source",
+    "carries",
+    "coherent",
+    "verification-discipline",
+    "bundle",
+    "agent",
+    "prompts",
+    "readme-only",
+    "analysis",
+    "pass",
+    "never",
+    "surfaced",
+    "live",
+    "spec"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.265Z",
+  "lastUpdated": "2026-06-23T03:49:57.096Z",
   "specId": "006",
   "folderSlug": "peck-verification-discipline",
   "parentChain": [

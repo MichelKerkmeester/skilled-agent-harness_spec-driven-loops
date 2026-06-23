@@ -1,15 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
-  "description": "Feature Specification: Citation-Ledger Reranker Research",
+  "description": "The new-feature arc closed with a hard architectural finding",
   "keywords": [
-    "feature",
-    "specification",
-    "citation-ledger",
-    "reranker",
-    "research"
+    "new-feature",
+    "arc",
+    "closed",
+    "hard",
+    "architectural",
+    "finding"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.688Z",
+  "lastUpdated": "2026-06-23T03:49:58.323Z",
   "specId": "024",
   "folderSlug": "reranker-research",
   "parentChain": [

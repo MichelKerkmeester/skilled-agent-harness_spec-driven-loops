@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002 of the 008 rerank-sidecar arc. Build the shared HTTP cross-encoder service that lives in its own skill, with neither MCP owning it.",
+    "causal_summary": "After phase 001 unblocks routing to the HTTP cross-encoder path, there is still nothing answering at `localhost:8765/rerank`",
     "created_at": "2026-05-23T11:55:15.604Z",
-    "last_save_at": "2026-05-30T10:12:02.392Z",
+    "last_save_at": "2026-06-23T03:49:54.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e7e200684606ce47953d441de34e29dd0a47e17dcecabc5826e3ff3916e51603",
+    "source_doc_hashes": {
+      "spec.md": "3d4ba07a8600913ab391777c8663b7ddbf0d94742e5a94aef2b945d686f1dd6f",
+      "plan.md": "e9176b091a99384979aa57cee60f9b152d15013862e91cb8ecce9e51e31a0d75",
+      "tasks.md": "84564dce5ef114f2a8fc8c21aef5277c4ebfc10482fa86f826beccc4e24282a5",
+      "implementation-summary.md": "02735cdd12aa8a5914f41dca0523c18b9ae82d5c45f3bfba743b2069bcc0dd3a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

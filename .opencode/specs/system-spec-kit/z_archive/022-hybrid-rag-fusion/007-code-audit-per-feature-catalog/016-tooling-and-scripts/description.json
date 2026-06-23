@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-  "description": "Feature Specification: Code Audit — Tooling and Scripts",
+  "description": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "audit",
     "tooling",
-    "scripts"
+    "scripts",
+    "category",
+    "spans",
+    "validation",
+    "rules",
+    "cli",
+    "entrypoints",
+    "migration",
+    "utilities",
+    "watcher",
+    "logic",
+    "session-capture",
+    "plumbing"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.273Z",
+  "lastUpdated": "2026-06-23T03:49:59.880Z",
   "specId": "016",
   "folderSlug": "tooling-and-scripts",
   "parentChain": [

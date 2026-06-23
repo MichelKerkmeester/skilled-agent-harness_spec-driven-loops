@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The canonical Node validator (`mcp_server/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-placeholders.sh`) disagree on spec-doc placeholder detection. The orchestrator flags only `<YOUR_VALUE_HERE:`, `[YOUR_VALUE_HERE:`, and the underscore `[NEEDS_CLARIFICATION:`, and it does not exclude fenced code blocks or inline-backtick-escaped markers. The shell rule additionally matches the space variant `[NEEDS CLARIFICATION:` and `{{mustache}}`, and it DOES exclude fences and backticks. Since `validate.sh` runs the orchestrator as the active path (shell rule only runs in the no-orchestrator fallback), the two paths produce different results for the same documents.",
+    "causal_summary": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-placeholders.sh`) disagree on spec-doc placeholder detection",
     "created_at": "2026-05-29T12:33:35Z",
-    "last_save_at": "2026-05-30T10:12:02.931Z",
+    "last_save_at": "2026-06-23T03:49:53.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8910b1033f46f1f34b47ef180294f8d47a8fe60d669bc69080295cfb246640c7",
+    "source_doc_hashes": {
+      "spec.md": "ac5ba26599dd3bb3fbb359b969a2cc3ea711155596674105a69a8187bd69e9e3",
+      "plan.md": "20f64f1c64af4e6f1f8bd3924229973bbea9cf84af7ba8a6777db766fd87d994",
+      "tasks.md": "d3a6f6e70fb89f5001265d3c557e88224b87fadab79d1a04b584bbe8f149f2d6",
+      "checklist.md": "3d9250c1023e421b2f5b9ff92352a9566ba85d7423cb3e8b6484a66daddc115b",
+      "implementation-summary.md": "432537161e4c20e39aecf6825bba94f37fcc400d5e0e4d2e19a08d2d7d7e1967"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

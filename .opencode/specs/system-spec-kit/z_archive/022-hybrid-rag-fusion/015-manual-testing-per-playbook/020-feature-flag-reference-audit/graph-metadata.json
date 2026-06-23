@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a post-audit flag graduation event affecting 22 flags. Manual testing scenarios are needed to verify that the flag inventory matches code, graduated flag documentation is accurate, and the flag removal process works correctly.",
+    "causal_summary": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a post-audit flag graduation event affecting 22 flags",
     "created_at": "2026-04-12T09:02:50.306Z",
-    "last_save_at": "2026-06-22T18:55:04.557Z",
+    "last_save_at": "2026-06-23T03:50:00.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f17eeaeb37665af3cd4011c8654f8c1608466f6642a1f5ba36df2d39a766a6c6",
+    "source_doc_hashes": {
+      "spec.md": "bb35fe6962404df1445490f9648a4c3dd85fd4ed09faa17ba1902b945e63554c",
+      "plan.md": "1d85b57bce4f4dff93ece42a9c2a16457da38f28169d883dba8f3a8cf5f65fd8",
+      "tasks.md": "fa3556e6b1eb37f73aa4ff7a732debe6eb485fcd34585a548e9e9318e6782351",
+      "checklist.md": "762e53c2290f95132f45e24d697138b3582db5ce0e56e31bd4a7ef55f159b2f0",
+      "implementation-summary.md": "f1bb891b5824d6464a7f6a149e9190d5b1eec745635de37124da20936292f659"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 13 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact and 011-cocoindex-daemon and 012-causal-graph wrappers added the underlying systems (causal trust display, daemon resilience, channel routing); this phase exposes them as doctor commands so users can rebuild + maintain them via the standard `/doctor:*` surface. Closes the gap left by v3.4.1.0 which shipped the doctor pattern for `code-graph`, `skill-advisor`, `skill-budget`, `mcp_install`, and `mcp_debug` but not the four other databases.",
+    "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase: `context-index.sqlite` (memory FTS+vector, 134M+362M), `code-graph.sqlite` (51M structural index), `skill-graph.sqlite` (148K), `deep-loop-graph.sqlite` (84K coverage graphs), `speckit-eval.db` (16M ablation results), and `causaledges` table (in context-index, lazy-init)",
     "created_at": "2026-05-09T12:15:31.296Z",
-    "last_save_at": "2026-06-05T12:47:34.243Z",
+    "last_save_at": "2026-06-23T03:49:56.265Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,17 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:3734237f12ccf5f45cda6c839c7b3931cabce29895886c9d52aea1396e2728f1",
+    "source_doc_hashes": {
+      "spec.md": "0805f67dbada2a31dbc4641ec71cfd8627e02addfda9c97699f9fe3424378e8c",
+      "plan.md": "8c0eda5f7c6069bcfc6c8e2c3dc57035adfa3c4764f3395c137e8dff22526f75",
+      "tasks.md": "f001f2b78ee59bb9990899bfd333b14cce1dfe9cd957f5511303b59c7466806f",
+      "checklist.md": "c1e55047c7194307f3b2096fdf14e83cbc83abe31a4f90b9f7202a4bfac21713",
+      "decision-record.md": "20bc832f95e6601643a34be40baa2e73ae43185eb873ec29de6051d32906971f",
+      "implementation-summary.md": "1c6127189b86406e60409a5d70d826ea0e9a83895222fb2883215d2f02c4c748",
+      "handover.md": "c2cc96daf9efbc4d96cb4aa3ea1fa704f0118e086f91229ef7b8ae6f64400ad5",
+      "resource-map.md": "c6d47ec80e5cbf90781960fd5b622e727335e9fc62cfefabb0033641df1477a6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

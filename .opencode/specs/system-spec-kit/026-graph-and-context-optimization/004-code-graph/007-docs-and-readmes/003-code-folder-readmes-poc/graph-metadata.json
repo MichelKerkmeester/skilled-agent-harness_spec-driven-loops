@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three code folders under `.opencode/skills/system-code-graph/mcp_server/` ship without a README:",
+    "causal_summary": "Author 3 sk-doc-aligned READMEs (CODE template, 9 anchored sections, YAML frontmatter, HVR-compliant prose) using a two-pass cli-devin + cli-opencode pipeline",
     "created_at": "2026-05-15T08:50:00Z",
-    "last_save_at": "2026-06-05T12:47:34.106Z",
+    "last_save_at": "2026-06-23T03:49:55.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:a235fc78109df8bd2b9420ccca59ca93069ad6a77976fe18b332e0391d99350b",
+    "source_doc_hashes": {
+      "spec.md": "2284b790c0804b05a16f11cad7cdb6165907fa8fbcde4c2ff3c8322e07c18d4a",
+      "plan.md": "89ae14399494683ff36160ff6ddaa1d18bc26326be59017013f1f32da3825d76",
+      "tasks.md": "aa0c6925b0e9135434b1f124caa6517ca8cbbabf2ab5a309963f9b69e9d4bc14",
+      "implementation-summary.md": "cbac670740b21b546f9903f0228fd34910b4dfec7010fc18930c137773369368",
+      "resource-map.md": "373cb38254c1668e63a3b635d649e9419b25a9aecd2b3b49d57c335fae8e1f16"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

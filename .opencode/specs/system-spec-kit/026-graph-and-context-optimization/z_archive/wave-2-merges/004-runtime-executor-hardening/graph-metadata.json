@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse.",
+    "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.312Z",
+    "last_save_at": "2026-06-23T03:49:56.617Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:8c63713b9aa85cfaa7c88ad15b60d79700d805552c7c69287fd131b369c9da9c",
+    "source_doc_hashes": {
+      "spec.md": "0fb571bee8025f4e0aee5527361d03282919565a437d8247145a274160cccc58",
+      "research/research.md": "cda7704b7e253f07e5dc6d6cdf21a85d4373bff3bdde6ccb2d427fb2346eae4f",
+      "resource-map.md": "3de9a8e4d2e5f3754ac855067870bfc5620f34d18565e328e79e6a2713d7a3e5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

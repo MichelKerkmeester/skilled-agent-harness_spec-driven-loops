@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped. Three live examples in `.opencode/specs/` are `005-deep-review-p1-p2-remediation`, `004-remediation`, and `001-remediation` (see Dispatch B §3 evidence table). Naming guidance is currently spread across 10 generation surfaces (see Dispatch B §1 inventory: 4 YAML workflows, 2 `create.sh` fallbacks, 1 `complete.md` Q8 prompt, 1 feature catalog entry, 1 `SKILL.md` rule, and 1 implicit `/spec_kit:plan` remediation flow) but none of them enforces literal naming with a specific subject token. The result is that resume/handover and graph traversal lose semantic signal because the slug itself carries no information about what the packet fixes or builds.",
+    "causal_summary": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
     "created_at": "2026-05-19T07:48:17Z",
-    "last_save_at": "2026-06-05T12:47:33.465Z",
+    "last_save_at": "2026-06-23T03:49:53.792Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5faafebc38dcd8e7e975e34248dd69091a89a9e72b790652b1ca120ede4026d6",
+    "source_doc_hashes": {
+      "spec.md": "7e6c698e3e88215907840deded897d54470e6ad7d864ff6d3d8a62268d9eb9a6",
+      "plan.md": "1d1d912d9839300159793624f04f0b4a25ba93f3cd0280d59221f7fc11cefc28",
+      "tasks.md": "dfa7b0ea844ab3ec44a6ead84f1f2750b254e107460cf1a0bfaaf5352ece18ce",
+      "checklist.md": "996d15f3c9d0658b31c1ad863f1c5bfa3981a28d8c42be7e79cd85fe5cebef74",
+      "implementation-summary.md": "ed91d1913d2f2539367779651eaa4420117ec3c93252476795cbf1a201339321"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

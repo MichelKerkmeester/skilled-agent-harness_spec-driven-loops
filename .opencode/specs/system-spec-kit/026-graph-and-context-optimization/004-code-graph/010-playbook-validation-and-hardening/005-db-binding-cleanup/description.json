@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
-  "description": "Feature Specification: Legacy DB Cleanup (029 Phase 005)",
+  "description": "029 finding F-019-1 reported a legacy code-graph SQLite DB at `.opencode/skills/system-code-graph/mcpserver/database/code-graph.sqlite` (106 KB) along",
   "keywords": [
-    "feature",
-    "specification",
-    "legacy",
-    "cleanup",
     "029",
-    "phase",
-    "005"
+    "finding",
+    "f-019-1",
+    "reported",
+    "legacy",
+    "code-graph",
+    "sqlite",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "mcpserver",
+    "database",
+    "106",
+    "along"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.869Z",
+  "lastUpdated": "2026-06-23T03:49:56.101Z",
   "specId": "005",
   "folderSlug": "db-binding-cleanup",
   "parentChain": [

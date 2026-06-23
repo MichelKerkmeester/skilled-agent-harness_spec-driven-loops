@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is now the live remediation contract for the canonical review recorded under [`review/review-report.md`](./review/review-report.md).",
+    "causal_summary": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
     "created_at": "2026-04-12T09:02:50.310Z",
-    "last_save_at": "2026-05-30T10:12:03.398Z",
+    "last_save_at": "2026-06-23T03:50:00.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:345a66a5f842cf08b9f268a556b435528160e9128aaad36d71db6db9d163f041",
+    "source_doc_hashes": {
+      "spec.md": "25d7de9ae67b1ede0436790264be4fcf22486bfc6e4b873224a96b1d773f48d2",
+      "plan.md": "d1012c3cd183cb5b4ae6118d560c920a0f14aabdce5d594c10ef6926c1d4eed9",
+      "tasks.md": "3ef3a9c616db7240dfa7348aa70afe9f0cb4c09c0454f4b456714f987b4b185e",
+      "checklist.md": "70ab67ecdee2912e5fa846bd13d9ccb5bbb1e74dcee1b43726884fa4ff6c346f",
+      "decision-record.md": "64dbc483b09b607ca24abf678ce078213a5b1b1ad7445c5592805c8aca2273b1",
+      "implementation-summary.md": "ef94817239a319b670439b5140aad6b82d262cb8f1cae94d53c000f023335814"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

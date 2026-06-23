@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Upgrade the Spec Kit Memory MCP server with cognitive science-inspired memory patterns: FSRS power-law decay, prediction error gating for conflict detection, and dual-strength tracking. This transforms the system from \"store everything forever\" to intelligent memory that naturally retains what matters and forgets what doesn't.",
+    "causal_summary": "The current Spec Kit Memory system stores memories indefinitely with arbitrary exponential decay",
     "created_at": "2026-04-12T09:02:53.550Z",
-    "last_save_at": "2026-06-05T12:47:34.537Z",
+    "last_save_at": "2026-06-23T03:49:59.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:6c1fc78a7a365b5b6ad55a34be9ad7fc8655ceee1e705540fdddb9bdc4343cf3",
+    "source_doc_hashes": {
+      "spec.md": "995ea39f8597424a0b820607be3bcdd0ebdf3307170c6e6183fb588d760ba4a6",
+      "plan.md": "7b7b914f5a1d869968560a7d1cc9d4b1d73ef5cdffa008b853d21b62eae4ef1a",
+      "tasks.md": "dd38d4249f9ab90da6bf1f3c283c0bd471aca861b52e63ba82bc5f93473bb4c7",
+      "checklist.md": "0d07711176a165fa5a9ca0410cbf2d426a881658aa9a410a88b07ce6a87c3a1c",
+      "decision-record.md": "59322be2cd8c8744f6175f5f2530e1e3140a54c7f9f766799f19fa71254188a1",
+      "implementation-summary.md": "2ec747ec178d3eb3dc2fe19c216c84cd1fb138f9521f665c4940f4fc8b3616cf",
+      "research/research.md": "f2c7ebd8eafb2f8422609a1c08daead31a481c55e07c1f594cb674c961cf632d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

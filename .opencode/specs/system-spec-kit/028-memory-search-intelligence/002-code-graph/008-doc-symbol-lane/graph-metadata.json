@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<SupportedLanguage,'doc'>`), and when `language === 'doc'` the indexer short-circuits to an empty result (`structural-indexer.ts:1237-1249` returns `{nodes:[], edges:[], contentHash, parseHealth:'clean'…}`). A doc row is therefore purely a change-detection content-hash, markdown headings and json/yaml/toml keys are never queryable as graph nodes (and `**/*.md` is omitted from the default include globs entirely). Separately, the mk-code-index launcher classifies lease lifecycle events (held / bridged / reclaimed / respawned) but has no metrics sink, so that classification is computed for control flow and dropped, there is no observability into lease churn.",
+    "causal_summary": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<SupportedLanguage,'doc'>`), and when `language === 'doc'` the indexer short-circuits to an empty result (`structural-indexer.ts:1237-1249` returns `{nodes:[], edges:[], contentHash, parseHealth:'clean'…}`)",
     "created_at": "2026-06-19T05:53:16.600Z",
-    "last_save_at": "2026-06-22T18:55:03.729Z",
+    "last_save_at": "2026-06-23T03:49:58.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e3dabc3aaffe8522f6b8923e21ec2aaf54d7f230ab6515b3a8fec8dd27aaa6f7",
+    "source_doc_hashes": {
+      "spec.md": "e33e3abbb415d623d69ca75d96fff892a3ccf6c620c64986a416df0e95608b56",
+      "plan.md": "7ec08e188c94fe19ffa0c52a52ca8a3e56921a32a87a46503927d7f73da517c1",
+      "tasks.md": "661f83c7ef412ee3a3dc1ff672c670efd92d5e80cc025c703eb05fe6b317ddc3",
+      "checklist.md": "84506b14ed53ce37897cf49a8a7e6d872ef23aeb6914f807f47dedf8bc98990c",
+      "implementation-summary.md": "f5f280a68eb4757aab8dc343a78145e92259514ddac375f943b4080f0fbd7f30"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

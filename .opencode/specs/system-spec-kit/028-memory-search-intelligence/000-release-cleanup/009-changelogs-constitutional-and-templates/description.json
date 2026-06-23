@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
-  "description": "Feature Specification: Changelogs Constitutional And Templates Cleanup",
+  "description": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any documen",
   "keywords": [
-    "feature",
-    "specification",
-    "changelogs",
+    "changelog",
+    "directories",
     "constitutional",
+    "docs",
+    "system-spec-kit",
     "templates",
-    "cleanup"
+    "package",
+    "needs",
+    "release-readiness",
+    "cleanup",
+    "contract",
+    "documen"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.314Z",
+  "lastUpdated": "2026-06-23T03:49:58.120Z",
   "specId": "009",
   "folderSlug": "changelogs-constitutional-and-templates",
   "parentChain": [

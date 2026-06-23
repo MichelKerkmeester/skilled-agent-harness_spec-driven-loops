@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues:",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-05-30T10:12:03.008Z",
+    "last_save_at": "2026-06-23T03:49:59.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:97ef63d4478847fabc0a6b7df5f98a2f6b178f630283ff6bb50efc3ed4dfd4ef",
+    "source_doc_hashes": {
+      "spec.md": "c154d98a0d84bc08fccefff50b237fa151eaabd0a3310d7433640e0b97158b17",
+      "plan.md": "0401deec93b42b7dcbed2961161f2ee4d43f7979624d7d6ac9a41bfce804c3bd",
+      "checklist.md": "0ae0fec9d5de1bfd6ac2084ef90067fd5c5f7dda05aa91fa529d0ff1395dcf58",
+      "decision-record.md": "40881e1940e63f523e1e9be0e2d44aaa534fae34cbdb3760522e41af4cebe21b",
+      "implementation-summary.md": "f0c295fd84a39c371cff5e95425fb0992767ef96ab84a104d22acf2aef702d5b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

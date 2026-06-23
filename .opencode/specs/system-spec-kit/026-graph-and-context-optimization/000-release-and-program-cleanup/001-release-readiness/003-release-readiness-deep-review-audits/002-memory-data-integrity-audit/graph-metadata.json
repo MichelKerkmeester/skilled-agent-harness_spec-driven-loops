@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The release-readiness program needs a data-integrity audit for the memory subsystem. The critical risk is not ordinary handler failure; it is silent drift between `memory_index`, FTS, vector rows, derived caches, governance audit trails, and retention deletion records under save/delete/sweep workflows.",
+    "causal_summary": "The release-readiness program needs a data-integrity audit for the memory subsystem",
     "created_at": "2026-04-29T21:10:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.519Z",
+    "last_save_at": "2026-06-23T03:49:52.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:79a122770ae34d949bdd7235e65e2289154db56062cf191a2c81b9b583940750",
+    "source_doc_hashes": {
+      "spec.md": "db7b8cda14ef0ebb6d613cb49cb431f25f17ec772b50c574d83d516170c8759a",
+      "plan.md": "653a4a6eb079b5adde742b8d3e674af3ae490eca0de955dc94c0541c61571d1c",
+      "tasks.md": "0a3628b695acd8d88a1e077f0ad7c43b949f465ad64dec48aca5193e0d1fc6eb",
+      "checklist.md": "d31443b3799ea0e19eeac2aa2b7a3bf837664a6f11fef627c7d07bd6dd8505a6",
+      "implementation-summary.md": "6bec2172891758b0a510ca139461045e2a25f92ef1685e778d014b0026bfb3d0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

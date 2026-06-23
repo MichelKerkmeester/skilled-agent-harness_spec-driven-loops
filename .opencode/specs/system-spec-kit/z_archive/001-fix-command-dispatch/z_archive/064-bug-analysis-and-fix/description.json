@@ -1,18 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/064-bug-analysis-and-fix",
-  "description": "Feature Specification: System-Spec-Kit Bug Analysis and Fix - Requirements & User Stories",
+  "description": "A comprehensive audit and re-analysis of the system-spec-kit skill and speckit commands revealed ~231 issues ranging from critical architectural probl",
   "keywords": [
-    "feature",
-    "specification",
+    "comprehensive",
+    "audit",
+    "re-analysis",
     "system-spec-kit",
-    "bug",
-    "analysis",
-    "fix",
-    "requirements",
-    "user",
-    "stories"
+    "skill",
+    "speckit",
+    "commands",
+    "revealed",
+    "231",
+    "issues",
+    "ranging",
+    "critical",
+    "architectural",
+    "probl"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.955Z",
+  "lastUpdated": "2026-06-23T03:49:59.228Z",
   "specId": "064",
   "folderSlug": "bug-analysis-and-fix",
   "parentChain": [

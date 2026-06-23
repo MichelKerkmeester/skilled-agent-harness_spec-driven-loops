@@ -1,15 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
-  "description": "Feature Specification: Code Audit — Retrieval Enhancements",
+  "description": "The feature catalog for Retrieval Enhancements had evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
+    "catalog",
     "retrieval",
-    "enhancements"
+    "enhancements",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.267Z",
+  "lastUpdated": "2026-06-23T03:49:59.872Z",
   "specId": "015",
   "folderSlug": "retrieval-enhancements",
   "parentChain": [

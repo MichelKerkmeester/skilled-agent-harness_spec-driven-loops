@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Comprehensive audit by 10 parallel Opus agents identified **45+ bugs** across the Spec Kit MCP server codebase. Issues range from critical data corruption risks to ReDoS vulnerabilities and logic errors that affect memory ranking, caching, and cognitive algorithms.",
+    "causal_summary": "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase",
     "created_at": "2026-04-12T09:02:53.551Z",
-    "last_save_at": "2026-06-05T12:47:34.544Z",
+    "last_save_at": "2026-06-23T03:49:59.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c74e3507c7f5ad28cf402b8687547cd07dfd384be0cd8777d1cd794e6ead9774",
+    "source_doc_hashes": {
+      "spec.md": "186223906eb54b81ead79dfb83f19236c62ee4c1fd8039902eaa8848c88ac8c1",
+      "plan.md": "c4a470fcec67f37a6dd6a6650145e09d866d26f89df68a7ca6fb3fb794fc696d",
+      "tasks.md": "4ec1b4292f38e27316dc2ade9c15f247755e61ea412c86dfef0f040b54dbd3b6",
+      "checklist.md": "764a354c28ae9f87c6337d850d6593a33c613e1670a558457e7187d5dfaa9105",
+      "decision-record.md": "8f3e129b02f81e4ccfcf5bd786892dcb002f2705bf9dfb50e233d719fe11b4dc",
+      "implementation-summary.md": "d5c8b1a185448ec5262fdb52d983af80227298cdc95e0b478913566034a80091"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -34,7 +34,7 @@
       "plan",
       "tasks",
       "remove",
-      "outdated"
+      "misleading"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -147,9 +147,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Remove outdated Claude Code Hook references from workflows-memory skill for OpenCode compatibility.",
+    "causal_summary": "Remove misleading Claude Code Hook references from the workflows-memory skill documentation to ensure accuracy for OpenCode (which does not have hooks)",
     "created_at": "2026-04-12T09:02:53.508Z",
-    "last_save_at": "2026-05-30T10:12:02.938Z",
+    "last_save_at": "2026-06-23T03:49:58.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -157,6 +157,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:a7b77ec015b4f7e14e15e50f610f5c164c3152858957f2809347155326c5157c",
+    "source_doc_hashes": {
+      "spec.md": "558b3164413c3cc29a0bb6218639f22368d03bc8d0b2e12224ad937cf724e321",
+      "plan.md": "aaa72a2839fd6613c08ccfef8384d8f1defabe6f3d1b0e4239bbb243f088dde7",
+      "tasks.md": "08c5dfa39e9355170a407b8aae29f3ef3d349749d66ad840a380364e42d68522"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

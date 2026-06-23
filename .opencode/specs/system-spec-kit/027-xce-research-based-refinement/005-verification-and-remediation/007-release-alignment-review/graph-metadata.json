@@ -33,8 +33,8 @@
       "remediation",
       "doc",
       "currency",
-      "establish",
-      "time"
+      "phase-parent",
+      "release-alignment"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Establish, at release time for the 027 epic, whether the repository's documentation and code still tell the truth about the system the epic produced — and remediate where they do not. Two independent questions are answered by read-only fan-out review, then the confirmed gaps are fixed by a scope-locked writer fleet:",
+    "causal_summary": "Phase-parent for the 027 release-alignment program: a 36-seat gpt-5.5-fast review of every README vs current reality and all OpenCode-surface code vs sk-code standards, followed by a fixer-fleet remediation of the confirmed findings.",
     "created_at": "2026-06-18T12:37:50.443Z",
-    "last_save_at": "2026-06-22T18:56:37.382Z",
+    "last_save_at": "2026-06-23T03:49:58.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:10af581c5d414afd50a161c1b23f83f540ff2e93b6db094c8df527bc33736948",
+    "source_doc_hashes": {
+      "spec.md": "eaa8d3ebaae1d56bb778c1400fa292b010b51df233a5b06e03462e0127346834"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

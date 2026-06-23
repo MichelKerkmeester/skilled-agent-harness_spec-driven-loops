@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.",
+    "causal_summary": "SpecKit currently lacks critical capabilities present in competitor systems: no graph traversal (dotmd has 2-hop + LadybugDB), no session deduplication (drift achieves 8-16x token savings), no type-specific memory half-lives (drift has 9 types), and no causal relationship tracking (drift has 8 relationship types)",
     "created_at": "2026-04-12T09:02:53.552Z",
-    "last_save_at": "2026-06-05T12:47:34.546Z",
+    "last_save_at": "2026-06-23T03:49:59.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:08059a182b333915a7e8d5e270197f2bfab8e71e7649737272c1d50c60f8ac72",
+    "source_doc_hashes": {
+      "spec.md": "c4a9719e73bd3d067411e4823e166e38d68e288bf79bb36b22c0a268da08c924",
+      "plan.md": "cacd49d6f09f1c3d82d4a5779a1eca15e61aecbda6213f8a0632e6b449fa4897",
+      "tasks.md": "a850de92bd473bef9c091308f8327d9ff62a98800c7c33222ea09ff4a8143535",
+      "checklist.md": "bc4a719ac0b0a611e70c5bd34e87f7ee794820aa0f78bdb4b6907cab12b6504b",
+      "decision-record.md": "0f32324f8c9ad995c0327b0719a2be2244ea8c3c1e95cfa46df9cc7b6304f6db",
+      "implementation-summary.md": "d9919a96f18e3ac778a181ccf275bcc79b972a4442c324fa07e756e9dcbade17"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

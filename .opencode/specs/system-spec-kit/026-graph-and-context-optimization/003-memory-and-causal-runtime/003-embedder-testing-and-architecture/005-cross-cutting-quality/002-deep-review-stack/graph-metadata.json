@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 016-019 stack landed a lot of new code in a short window: pluggable embedder architecture (016), retrieval-rescue layer (016/004), dist-freshness vitest (post-016), CocoIndex jina-code swap + MPS auto-detect + registered_embedders + INSTALL_GUIDE updates (018 + 019). All have unit-level coverage and have been smoke-tested, but no adversarial deep-review has been run across the whole stack.",
+    "causal_summary": "20-iteration spec_kit:deep-review run covering all code work in packets 016-019 plus dist-freshness vitest. Executor cli-devin SWE 1.6 with 3-check bundle gate. Synthesize P0/P1/P2 findings into review-report.md.",
     "created_at": "2026-05-18T16:14:38.218Z",
-    "last_save_at": "2026-06-05T12:47:33.756Z",
+    "last_save_at": "2026-06-23T03:49:54.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70fff1fcf40427722be16af088d80aca61fc4c279a16fb44ac041835a9ee48ea",
+    "source_doc_hashes": {
+      "spec.md": "643e335018f874bfae113b4e0b9ddd85c6327675e2ff90fb641a2f18edffc15f",
+      "plan.md": "6aeb0bb6b198c7e809ec9984eb35e6ffc945365e799d411648f01028750cdf4d",
+      "tasks.md": "d32cb894b977fc9d5913ee20c6d7781082931126c6736e2e7385179ba00e0a83",
+      "implementation-summary.md": "a330731899e79eb527b6b3b468c32696d4d94aaaec0cc8eebc1be1a830ce3360"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-30T10:12:01.795Z",
+    "last_save_at": "2026-06-23T03:49:52.841Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6c0bb31fe9230837b2bd26d8070d62c1e25e91653da9b67b1f0f0206b1afe03b",
+    "source_doc_hashes": {
+      "spec.md": "d5366ef26b0d871cc32ea4b08781a2a6ca0e14f152e529ec06273543628d2a9e",
+      "plan.md": "1b04042c07474ca82be9f359314382ecf3d6a3f9643c3157b264ae86ffd1a6b0",
+      "tasks.md": "69e8cf28f27e165c37d1e539cd0019ce8aea47c5b5f71ef544da0b2a5938604b",
+      "checklist.md": "8efbc0c3a7661995701b58ba65a66d02d81fc23322a97f232999a078aa013b70",
+      "implementation-summary.md": "7595b2fc48268cc8272134935040974f5b93f46a383c45f335c5da18b989a025"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

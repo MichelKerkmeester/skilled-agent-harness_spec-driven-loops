@@ -15,19 +15,21 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings",
-  "description": "Spec: Phase 001 - Claude Optimization Settings (Reddit field-report audit)",
+  "description": "`CodeEnvironment/Public` had no evidence-anchored baseline for which Claude Code token-waste patterns are most prevalent, which configuration changes",
   "keywords": [
-    "spec",
-    "phase",
-    "001",
+    "codeenvironment",
+    "public",
+    "evidence-anchored",
+    "baseline",
     "claude",
-    "optimization",
-    "settings",
-    "reddit",
-    "field-report",
-    "audit"
+    "code",
+    "token-waste",
+    "patterns",
+    "prevalent",
+    "configuration",
+    "changes"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.993Z",
+  "lastUpdated": "2026-06-23T03:49:53.108Z",
   "specId": "001",
   "folderSlug": "claude-optimization-settings",
   "parentChain": [

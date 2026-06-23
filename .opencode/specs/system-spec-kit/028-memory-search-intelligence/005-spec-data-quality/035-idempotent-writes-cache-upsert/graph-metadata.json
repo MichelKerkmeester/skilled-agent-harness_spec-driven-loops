@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged content dirties files and buries real diffs under wall-clock churn. This is research safety class B, non-idempotent writes, and it surfaces as the same symptom as the broad-walk class, unscoped cross-session commit churn.",
+    "causal_summary": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged content dirties files and buries real diffs under wall-clock churn",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.855Z",
+    "last_save_at": "2026-06-23T03:49:58.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c46b000e1b8efcf71e9af87f71f27c897045e4e2d7bbc71c9c676ad77a882948",
+    "source_doc_hashes": {
+      "spec.md": "5c8f928b1948189f5a8b4cecf916985c1e45c0f1b2f7ea807ff878f0d6419ef1",
+      "plan.md": "bc33eb0751de811d7117d6b743c7cca7c6ed657a0acf5c336f8ad31d24104bec",
+      "tasks.md": "65a2b99e93a07af3b658ddf942514aa4987d3f3d36d4f9288a30cae321dab625",
+      "checklist.md": "04f38f409abbdd78d29e3622b089a3e3bebf548318f561bdb26084d8aa9ababe",
+      "implementation-summary.md": "f3e899ac30be5a516619619ffaa03719e5e718008fb15de90dd0f67a42355bfc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

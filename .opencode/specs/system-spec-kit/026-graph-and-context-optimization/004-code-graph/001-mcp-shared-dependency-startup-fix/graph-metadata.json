@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Codex startup logs show `mk_skill_advisor` and `mk_code_index` failing during MCP initialization with `ERR_MODULE_NOT_FOUND: Cannot find package '@spec-kit/shared'`. Both packages compile TypeScript path aliases into bare runtime imports, but neither package declares `@spec-kit/shared` as an installed local dependency. The result is a clean TypeScript build path with a broken Node runtime path.",
+    "causal_summary": "Codex startup logs show `mkskilladvisor` and `mkcodeindex` failing during MCP initialization with `ERRMODULENOTFOUND: Cannot find package '@spec-kit/shared'`",
     "created_at": "2026-05-16T10:03:53Z",
-    "last_save_at": "2026-05-30T10:12:02.539Z",
+    "last_save_at": "2026-06-23T03:49:55.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7e538b16d66534f3ab1172904e4f65beef4d055fae8d13d52ccad040cb2ccaba",
+    "source_doc_hashes": {
+      "spec.md": "65072e25b4f4384af9133f536692ce8e61c0f0d9c0071fb7cb16896e538588c1",
+      "plan.md": "f9092c260253e6f376ccd067da23b993a61248cbf6aeeb75665ce08516252797",
+      "tasks.md": "d563f8fe1fea0490e85b95239f8bea30f50125c897748c7b08560773a79f7ef7",
+      "checklist.md": "8bfed024c5722012ec48ee3bc8028cdf3022fb3d3775a37328ef49ad1737a92e",
+      "implementation-summary.md": "2e6508607005a8e45da4c42e858aa49f0c37705673534d7022eb55f2834060f1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

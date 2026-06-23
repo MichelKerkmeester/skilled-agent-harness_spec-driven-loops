@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: \"Reindex is gate-zero\" (`synthesis/08-retrieval-evaluation-findings.md` §\"How to read each entry\", \"Honest caveats\"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.",
+    "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-22T18:55:03.616Z",
+    "last_save_at": "2026-06-23T03:49:58.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f245aebd16b1f4ed7be2156ce71592d7ca1b8e7f4455a155116620f95f72897f",
+    "source_doc_hashes": {
+      "spec.md": "9e332e8688e09af96a4e076820aa6d8e5f4100e6f53e7530bc27d6d4a000262b",
+      "plan.md": "43199014626f352a5a404257f4715febd7a18b9662726cd7aff4d936b0882795",
+      "tasks.md": "77988070f3714aaccadfbe01df2640bb5ece6664c24626c6b4b5835870e97a30",
+      "checklist.md": "a305700c937bd361b0220206f8689b6248bde0213f01604aa98a5170e70695d1",
+      "implementation-summary.md": "51401687e3129f5d3d67560628a575a5e30e7d54daa214969c551f8e8deea568"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

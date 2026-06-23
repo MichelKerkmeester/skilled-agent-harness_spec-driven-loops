@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The extracted code-graph MCP server was registered as `system_code_graph`. The operator's preferred standalone server name is `mk-code-index`, while the skill folder remains `.opencode/skills/system-code-graph/` and the public tool identifiers remain `code_graph_*`, `ccc_*`, and `detect_changes`.",
+    "causal_summary": "The extracted code-graph MCP server was registered as `systemcodegraph`",
     "created_at": "2026-05-14T17:29:04Z",
-    "last_save_at": "2026-06-12T06:12:49.425Z",
+    "last_save_at": "2026-06-23T03:49:56.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:77df86cd4fb9566d192c395fbb027b51b276614b888aba708cd9632c56fb3080",
+    "source_doc_hashes": {
+      "spec.md": "11ffbe054409d9cab79590c26f42357694a4af4aa1729590fe8b61c2a508d962",
+      "plan.md": "b41095a7debc3245396f61e3ef6109627aac12d8734b535f5dd51d677e10104d",
+      "tasks.md": "a2daad5458c078ea62a74179fabf86a1f1e2593be2e6e3a1a4fe8bcc833c9742",
+      "implementation-summary.md": "3e46285ed8e86e1ebdc97d84c30762ffb86a66c951b5be308406af67cce948a8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Additionally, ALL three docs cite \"daemon.log shows BAAI/bge-reranker-v2-m3 cross-encoder load activity\" as a positive observability signal. **This claim was never accurate** — verified by grepping the 509KB live `~/.cocoindex_code/daemon.log` for `rerank|BAAI|Qwen|jina|CrossEncoder` and getting 0 hits. The CocoIndex daemon does NOT emit a positive load-trace line on successful CrossEncoder init; only `logger.warning()` calls in `reranker.py` produce output (and only on failure paths). The original prose was wishful even for the prior BGE default.",
+    "causal_summary": "Reranker-side doc-drift corrections deferred from phase 002. Updates BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B (023B follow-on canonical) across 3 doc files with verified Qwen3 disk footprint (1.1 GB) AND corrects stale daemon-log observability claims (the daemon does not emit positive load-trace lines on successful CrossEncoder init — verified by 0 hits in 509KB daemon.log).",
     "created_at": "2026-05-23T17:00:00.000000Z",
-    "last_save_at": "2026-06-22T18:55:02.347Z",
+    "last_save_at": "2026-06-23T03:49:54.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ec132f4f2a01ea99c9dac10e064bf049ce2062e851ff518624e08f1c1bc9ee53",
+    "source_doc_hashes": {
+      "spec.md": "fc8e607edc0c3efb2cb12a32cc2c0c3a48f12907c53a37850175c883d391c2a8",
+      "plan.md": "99bf30b69aa7a55617e8b9e8670a46f3b70651c4ab0f9bd4510f07a4e3bb1a89",
+      "tasks.md": "b7df3134076b60a9935a53b658f810102ff1f77264691a5db5dde37860f1e9a2",
+      "checklist.md": "c778d8d654ea9980c57dbd4fd4c5e3d5f6c506e60c8316617575602a20a6da30",
+      "implementation-summary.md": "1d861c36f68cffbf0c7e28be1555269e032691f35e47aa1292fe9c559060bfcf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

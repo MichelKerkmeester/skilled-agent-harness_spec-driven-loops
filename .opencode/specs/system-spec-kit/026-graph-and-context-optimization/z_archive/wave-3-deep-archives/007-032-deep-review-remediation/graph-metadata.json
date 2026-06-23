@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 017 deep-reviewed the 010-016 code-graph remediation campaign and produced 1 P1 + 19 P2 findings. The reviewer's recommendation was \"Ship as-is. Address P1 and batch-resolve P2s in a follow-up documentation packet.\" This packet IS that follow-up — it fixes the actionable findings (1 P1 + 13 P2s) and explicitly defers 3 (F001 already-resolved, F017 build-artifact maps, F018 per-parameter test scenarios).",
+    "causal_summary": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph remediation campaign. 3 findings deferred per reviewer recommendation.",
     "created_at": "2026-05-14T21:10:00Z",
-    "last_save_at": "2026-05-30T10:12:02.821Z",
+    "last_save_at": "2026-06-23T03:49:56.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f298ccfea96494076af3e1c8b708175f87a92141834e2cbccc3f811131fb6e90",
+    "source_doc_hashes": {
+      "spec.md": "6d97267d5d39993f36535515fa342fb39b48f76433060bda9c58c676107b062a",
+      "plan.md": "3aea04569dac7e9aee78683f45bab56ab3626b417e6186184705caf2ff6d334d",
+      "tasks.md": "714b64488f7b3e02ada773a536d97da54d376c2f6001588369b5ca15e335752f",
+      "implementation-summary.md": "5f3b2c0b14fce0849adfcdb5220d9f0aa46bc4afa237efb50898ac088755a02a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

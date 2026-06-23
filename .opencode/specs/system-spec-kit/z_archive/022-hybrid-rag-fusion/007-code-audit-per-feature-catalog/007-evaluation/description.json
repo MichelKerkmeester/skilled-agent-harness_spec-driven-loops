@@ -1,14 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/007-evaluation",
-  "description": "Feature Specification: Code Audit — Evaluation",
+  "description": "The feature catalog for Evaluation has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
-    "evaluation"
+    "catalog",
+    "evaluation",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.226Z",
+  "lastUpdated": "2026-06-23T03:49:59.820Z",
   "specId": "007",
   "folderSlug": "evaluation",
   "parentChain": [

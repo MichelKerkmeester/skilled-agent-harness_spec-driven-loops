@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Doctor Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Doctor Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.909Z",
+    "last_save_at": "2026-06-23T03:49:57.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ee017f58205f08cb422e7ef7f9d91398559e725a7052391937ba8f3a61bcbadc",
+    "source_doc_hashes": {
+      "spec.md": "d129546705ab896bf44f0ce0cb4e28cd57244560f5de5c2dc1d109edb8d387fb",
+      "plan.md": "66013089c33f3b099c86594e182b0a3827b2e7da59804b654ae4ffb236b76256",
+      "tasks.md": "187ea58920dbea1b9de2291a7d71062efd29dffefc081ea283bd8c35104ce3cc",
+      "implementation-summary.md": "8b3864f30634c267300ec1be0a632decbc31e9f86ed1008f506c924bb6c842cc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

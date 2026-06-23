@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it. The downstream `AC_COVERAGE` and `REQ_COVERAGE` gates measure that a requirement is linked to a task or acceptance criterion, but they cannot measure whether the requirement is concretely exercised because no concrete artifact exists for them to count. The research names this the strongest adherence lever in the topic and a genuinely novel floor-bypasser the reuse-first work missed: it writes additive adherence artifacts not vector rows, so it pays no truncation-floor tax and no re-index cost (`research.md` section 3 row \"Automatic example and test generation from specs\", verdict GO-on-cost; `research.md` section 1 truncation law). The opposing rail is equally clear: an auto-generator that silently rewrote requirement prose would cross the no-body-mutate rail and reward-hack a proxy (`research.md` section 3 NO-GO row \"Retrieval-driven doc AUTO-rewriting\"; `research.md` section 5 INV-1).",
+    "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
     "created_at": "2026-06-21T10:22:34.990Z",
-    "last_save_at": "2026-06-22T18:55:03.812Z",
+    "last_save_at": "2026-06-23T03:49:58.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ebe883af997febfa34156931e1e5e55efef19588a3ffa84568d1777543e65a2f",
+    "source_doc_hashes": {
+      "spec.md": "f8c933cc433c79d789a095a2c20d783ce255c1c21bc04cb8402794cac6ca597c",
+      "plan.md": "ae2f19fbeab84759e02326bee4f37a55153ac70b4f8aa5726a473449c2b5daba",
+      "tasks.md": "7d5bf1011774eb4eff71bb2c64f75cd7ba307119665efe8d770d0c26390e92cb",
+      "checklist.md": "602c9191ce99c8da9032a93f722a0392eba5377be2fced7f6e1d20402ef41934",
+      "implementation-summary.md": "4960b0127c21a692d423877e8f4a6f17297a94a49923e003dbb2d630d0156588"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

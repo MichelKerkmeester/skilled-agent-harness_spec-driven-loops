@@ -1,17 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign",
-  "description": "Feature Specification: Provider Adapter Redesign Deferred P2 Closure",
+  "description": "The final arc 020 bucket left the highest-risk provider and adapter cleanup items",
   "keywords": [
-    "feature",
-    "specification",
+    "final",
+    "arc",
+    "020",
+    "bucket",
+    "left",
+    "highest-risk",
     "provider",
     "adapter",
-    "redesign",
-    "deferred",
-    "closure"
+    "cleanup",
+    "items"
   ],
-  "lastUpdated": "2026-05-26T17:26:35.072Z",
+  "lastUpdated": "2026-06-23T03:49:55.347Z",
   "specId": "006",
   "folderSlug": "fix-deferred-p2s-for-provider-adapter-redesign",
   "parentChain": [

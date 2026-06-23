@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns. Those patterns were incomplete: they matched `DR-`, `WS-`, `NNN/NNN`, and `Spec NNN`, but were blind to `P0-/P1-/P2-` review-finding ids, 2-digit/hyphenated task ids (`T73`, `T-02`), no-hyphen checklist ids (`CHK069`), `#NN` issue refs, `NNN-NNN` spec pairs, and `SPRINT N`. A purpose-built detector revealed the true debt: **274 violations across 116 files** — 006 had covered roughly 10%.",
+    "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns",
     "created_at": "2026-05-29T20:35:49.807Z",
-    "last_save_at": "2026-06-05T12:47:33.951Z",
+    "last_save_at": "2026-06-23T03:49:55.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f5349362534a41608bb0641ea5026d726c2ea0f848058021752bd06f14898716",
+    "source_doc_hashes": {
+      "spec.md": "ee71f9d7893d91fd90cb1ea752219fc0772e02779a9ac4686b671968b798d941",
+      "plan.md": "46d25ea0e4fd8587d2f1cb88c230133218ec2ef77c701642c2d95bdabf35e349",
+      "tasks.md": "3e12ed0c559806a8eb048fe189f3696933e64f37a98a80e4ca056859e791446a",
+      "implementation-summary.md": "ffd58556bafeae5b98db585aa29ee6996993b79f4d5162d345a4abadb273cd7e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

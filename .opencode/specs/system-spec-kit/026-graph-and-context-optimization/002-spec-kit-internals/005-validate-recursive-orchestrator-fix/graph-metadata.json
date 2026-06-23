@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "In `validate.sh`, `run_node_orchestrator()` built the command with `--folder \"$FOLDER_PATH\"`, ran the compiled orchestrator (`mcp_server/dist/lib/validation/orchestrator.js`), then called `exit $?`. That `exit` fired before `main()` reached its recursive block, so when the orchestrator was present, `--recursive` silently validated only the parent and skipped every phase child. The shell fallback path already recursed via `run_recursive_validation`, so the gap was limited to the orchestrator-present path.",
+    "causal_summary": "In `validate.sh`, `runnodeorchestrator()` built the command with `--folder \"$FOLDERPATH\"`, ran the compiled orchestrator (`mcpserver/dist/lib/validation/orchestrator.js`), then called `exit $?`",
     "created_at": "2026-05-29T11:47:40Z",
-    "last_save_at": "2026-05-30T10:12:02.930Z",
+    "last_save_at": "2026-06-23T03:49:53.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fedd83cc29d09de563dca3e91acbad7241b1e30d7ea2c9b3103f66dd029ee4ac",
+    "source_doc_hashes": {
+      "spec.md": "9fffadbfbe49d8f4fc61c14c90435ee6691ca1e90f7935f584019594b037e559",
+      "plan.md": "71bd644a7bf949745100e02d10faceddcc69034cb2fc32b4cfa42ce80f59ed73",
+      "tasks.md": "c656f5c0bc649256ee0fcdfd105163fe68c340408ee7a64d2c95f7244c7da17e",
+      "checklist.md": "8adddaa629836ed8e56bfd675d2a57f7f0c5ebebdde8cbb81a0eaa2cc09f13fe",
+      "implementation-summary.md": "b16086347d83dbf64a64ce3cf4438af4643e3a1b0061dfd6deb26cbc0a1b5fee"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

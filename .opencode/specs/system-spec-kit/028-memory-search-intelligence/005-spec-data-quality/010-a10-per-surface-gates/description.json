@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
-  "description": "Feature Specification: A10 Per-Surface Gates",
+  "description": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
   "keywords": [
-    "feature",
-    "specification",
-    "a10",
-    "per-surface",
-    "gates"
+    "three",
+    "authoring",
+    "surfaces",
+    "beyond",
+    "spec-doc",
+    "json",
+    "ship",
+    "machinery",
+    "never",
+    "enforced",
+    "write",
+    "time"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.473Z",
+  "lastUpdated": "2026-06-23T03:49:58.602Z",
   "specId": "010",
   "folderSlug": "a10-per-surface-gates",
   "parentChain": [

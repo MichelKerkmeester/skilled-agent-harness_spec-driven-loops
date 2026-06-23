@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived system-spec-kit archive folder captures work related to Command Adherence. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
+    "causal_summary": "This archived system-spec-kit archive folder captures work related to Command Adherence",
     "created_at": "2026-04-12T09:02:53.569Z",
-    "last_save_at": "2026-06-05T12:47:34.613Z",
+    "last_save_at": "2026-06-23T03:49:59.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:a0578a7573af0c775e027b631dd12ea8a2eae0d49ead0b356797bae4ad50edcc",
+    "source_doc_hashes": {
+      "spec.md": "82ec270050f2ac48f8c10bfdf510a3cb82a6ff4cb5a7e38562b50c573763108a",
+      "plan.md": "9d55ead84bf5d59327b1fe73b25484c471780728d54f9001addf41192caccedc",
+      "tasks.md": "c508e9933bb8268801a934d71f55d9876e8490612d40c59f261a3e08dd6ee4c0",
+      "checklist.md": "cf39648a3512ea80e398c8e1c7684d0022dd8364b5afe750b9a54ea0e24f1da7",
+      "decision-record.md": "c2a0695d06411e7bfbfd4a8f49a095a37baf7078800d3f3febd42c14db6e519a",
+      "implementation-summary.md": "d1a635bbf8ba0761627706b00696d50b2be371c4d7139a07e00d1c6f6faccf07",
+      "handover.md": "a92b83e768beb2dc649d79a772544ede1c9461fcd2867110e7260d5fd666f92d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

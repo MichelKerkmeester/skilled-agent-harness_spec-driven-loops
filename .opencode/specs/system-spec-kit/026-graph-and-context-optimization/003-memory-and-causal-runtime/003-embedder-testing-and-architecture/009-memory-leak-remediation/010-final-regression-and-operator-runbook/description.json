@@ -1,15 +1,26 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook",
-  "description": "Spec: Final Regression and Operator Runbook",
+  "description": "Fixes across dispatch, locks, daemons, sidecars, code graph, CocoIndex, and memory runtime need one final regression story",
   "keywords": [
-    "spec",
+    "fixes",
+    "across",
+    "dispatch",
+    "locks",
+    "daemons",
+    "sidecars",
+    "code",
+    "graph",
+    "cocoindex",
+    "memory",
+    "runtime",
+    "need",
+    "one",
     "final",
     "regression",
-    "operator",
-    "runbook"
+    "story"
   ],
-  "lastUpdated": "2026-05-26T17:26:37.918Z",
+  "lastUpdated": "2026-06-23T03:49:55.142Z",
   "specId": "010",
   "folderSlug": "final-regression-and-operator-runbook",
   "parentChain": [

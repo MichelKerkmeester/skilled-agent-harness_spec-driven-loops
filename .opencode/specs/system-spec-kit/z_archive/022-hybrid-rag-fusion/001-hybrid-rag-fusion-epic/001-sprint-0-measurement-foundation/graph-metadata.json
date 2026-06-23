@@ -35,8 +35,8 @@
       "plan",
       "tasks",
       "checklist",
-      "phase",
-      "hybrid"
+      "channel",
+      "completely"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
     "created_at": "2026-04-12T09:02:50.225Z",
-    "last_save_at": "2026-05-30T10:12:03.187Z",
+    "last_save_at": "2026-06-23T03:49:59.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6900270d5fdb5b4de79dabdfe1b56241cfa6d53b24266e49689b5a43c6d21503",
+    "source_doc_hashes": {
+      "spec.md": "3576e419e3cfa6adcc39adb4fc5f733cb4359c30e3a20aa848ea6336fc588aa1",
+      "plan.md": "71df706b11c0515bc9d0417c1ef9001e58a10832fe0b876821e558c47f18238e",
+      "tasks.md": "222f513cab5f7accaa83f09a66b03170a34de9671ba4adda31bfd8fe6460bfa1",
+      "checklist.md": "0df02e0bee815403fbbe73fe36603272355213165e3c70421d1dccf610abc74d",
+      "implementation-summary.md": "44556fc82b4ca0e07a7682ed4876b7373c86fc67753d73ac8b6301f8bf18027d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

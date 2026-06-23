@@ -83,14 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-code-graph extraction and standalone-MCP isolation track: extraction, extraction design and decision record, standalone-MCP topology pivot, and three-way isolation.",
+    "causal_summary": "The system-code-graph extraction and standalone-MCP isolation track: extraction, extraction design and decision record, standalone-MCP topology pivot, and three-way isolation",
     "created_at": "2026-05-26T16:51:06.191Z",
-    "last_save_at": "2026-06-05T12:47:34.092Z",
+    "last_save_at": "2026-06-23T03:49:55.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:d8e336e5bbc7f20e6015ca354ee9fd7cf65c24e0bf8bc36c192d568ae924031b",
+    "source_doc_hashes": {
+      "spec.md": "18ca7f1ff654781f4ffbfa06e73d50703f488abbf1403ef6f71370be6e63657c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

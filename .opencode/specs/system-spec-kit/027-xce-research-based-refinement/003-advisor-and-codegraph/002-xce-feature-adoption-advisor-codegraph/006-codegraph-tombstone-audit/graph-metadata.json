@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the spec-027 feature adoption into the advisor and code-graph daemons. It adds a deletion audit lineage for stale code-graph cleanup.",
+    "causal_summary": "The code graph hard-deletes nodes and edges during reindex and stale cleanup (`lib/code-graph-db.ts:692-704`, `:784-790`, `:890-905`), so after a file deletion or scan repair there is no way to answer \"why did this edge disappear?\"",
     "created_at": "2026-06-10T19:24:12Z",
-    "last_save_at": "2026-06-12T04:40:47.927Z",
+    "last_save_at": "2026-06-23T03:49:57.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:508d1469e0586184dbf0af92a151f60c8270388e7927196c898477b63514af0a",
+    "source_doc_hashes": {
+      "spec.md": "aef75a88e9f4f223373e18951c3db776f1fdc9a22c29be01cf6dab7fd521ec9e",
+      "plan.md": "78e1fa58b5c335ab748e8e9d5108777550da15252e1584ec65b83a67da901a35",
+      "tasks.md": "90341163559e6ac2e8bf1ab72301790bd12a6a8f4cf0f97f0cedd2f239ef3d0f",
+      "implementation-summary.md": "59683cbf928cfeed45b46fdbe75052053d9aab0bd820621a2b95c6418899f432"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

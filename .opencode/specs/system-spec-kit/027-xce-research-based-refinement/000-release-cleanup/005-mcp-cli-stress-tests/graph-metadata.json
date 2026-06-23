@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Completed stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags.",
+    "causal_summary": "Completed stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.919Z",
+    "last_save_at": "2026-06-23T03:49:56.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e686f35f410aa3123f44d7eb0f826889a5bbe3ac6069154f2364dad890d4fa39",
+    "source_doc_hashes": {
+      "spec.md": "0ab8692d1e8f7d92aa835e56c2b261d34da78f4762bab2a257466b33b45c0cde",
+      "plan.md": "e3e29f1c3324c3ebce88c339a74b94b3c28648960a458274c196c2e66dddce38",
+      "tasks.md": "d93eb1b28507b666cb2f26453c6eca4671c2c0227958bbd8a4bfe74373854f85",
+      "implementation-summary.md": "c4eb7fdb3aa0a1e1b9826a6b1752fc996ba4747fc3aaa5f62b52957dd7fc2d4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

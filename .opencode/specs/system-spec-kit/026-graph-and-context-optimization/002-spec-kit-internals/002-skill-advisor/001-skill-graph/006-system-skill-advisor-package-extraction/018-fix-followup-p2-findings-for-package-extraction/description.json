@@ -1,14 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction",
-  "description": "Feature Specification: 10-iter P2 cleanup",
+  "description": "The review retained 28 P2 advisories across architecture, correctness, robustness, testing, security, performance, documentation, compatibility, and m",
   "keywords": [
-    "feature",
-    "specification",
-    "10-iter",
-    "cleanup"
+    "review",
+    "retained",
+    "advisories",
+    "across",
+    "architecture",
+    "correctness",
+    "robustness",
+    "testing",
+    "security",
+    "performance",
+    "documentation",
+    "compatibility"
   ],
-  "lastUpdated": "2026-05-26T17:27:07.965Z",
+  "lastUpdated": "2026-06-23T03:49:53.336Z",
   "specId": "018",
   "folderSlug": "fix-followup-p2-findings-for-package-extraction",
   "parentChain": [

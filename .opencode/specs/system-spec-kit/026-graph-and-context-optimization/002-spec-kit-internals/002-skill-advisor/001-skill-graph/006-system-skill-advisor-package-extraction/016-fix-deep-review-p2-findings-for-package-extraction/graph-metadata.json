@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 015 deep review passed the `system_skill_advisor` to `mk_skill_advisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path. D2b from packet 011 also flagged two shared-concern seams that need either extraction or explicit acceptance.",
+    "causal_summary": "The 015 deep review passed the `systemskilladvisor` to `mkskilladvisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path",
     "created_at": "2026-05-19T15:11:02.193Z",
-    "last_save_at": "2026-06-05T12:47:33.323Z",
+    "last_save_at": "2026-06-23T03:49:53.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fc4d32b5a477a3df64d870c9177b4993791dc9dec270879a88e366e84f7ba067",
+    "source_doc_hashes": {
+      "spec.md": "e84d55066bfb2a6f2f33fff8aef05f473ef9f5d8ca36c1214ad1152a7c9d0142",
+      "plan.md": "d6fe6e6f98941af847a3451926d999740847828a116615875ee11387c63f94df",
+      "tasks.md": "af4e3050ab54120a8aea79ff79fdc365088b8716d98de243e79fbb036a43c818",
+      "checklist.md": "299c6fc2e389f85577e2b5f711b18d36981c48ba7d1e49e07cd29012a3c89d4f",
+      "implementation-summary.md": "c82d8ae132661c623343f1fb049dbd093579e4c1f20c100d459adfd6095eec29"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase unifies the search-and-output-intelligence work: the deep-research lives in `research/` (the search-intelligence and AI-output-command-vs-conversation studies) and its implementation is delivered across the seven child phases — the prioritized findings (KQ1–KQ5 + recommendations #1–#7) from that research, one child per finding.",
+    "causal_summary": "After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2–3 word queries read `weak`/`donotcite` despite mixed-but-relevant matches, a strong top hit is dragged down by a weaker tail, token-budget truncation hides results (5→1), and weak models render non-comparable output fields (`confidence` vs `similarity`) across surfaces",
     "created_at": "2026-06-17T19:57:25.100Z",
-    "last_save_at": "2026-06-22T18:55:03.353Z",
+    "last_save_at": "2026-06-23T03:49:57.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0bf5a1a060b2785799dbd8637a431568589f29d16c50e9285d08fe85ef984073",
+    "source_doc_hashes": {
+      "spec.md": "1d4260c1bd51e8c09fd1e6ebd048d9e2d96d9e838bbff8f0cb6f323c54c1ae30",
+      "plan.md": "93510fe67df3ffe4c81c0f0729875b16701de7503340f3249a9ba7bb9cf80ea7",
+      "tasks.md": "2416347e5e6c6391c08a0e808be9dc9a0c4ee8bab7467b02937810356a858234",
+      "implementation-summary.md": "6a85fa306dd914773aae1efdb68321861b6fc486fca463af949c10f2ae6b892b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

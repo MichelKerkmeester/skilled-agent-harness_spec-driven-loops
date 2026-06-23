@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups",
-  "description": "Feature Specification: 006 Architecture Cleanup Remediation",
+  "description": "Fifteen architectural findings across the advisor, memory, freshness, and graph subsystems leak boundary violations, value-level dependency cycles, de",
   "keywords": [
-    "feature",
-    "specification",
-    "006",
-    "architecture",
-    "cleanup",
-    "remediation"
+    "fifteen",
+    "architectural",
+    "findings",
+    "across",
+    "advisor",
+    "memory",
+    "freshness",
+    "graph",
+    "subsystems",
+    "leak",
+    "boundary",
+    "violations",
+    "value-level",
+    "dependency",
+    "cycles"
   ],
-  "lastUpdated": "2026-05-26T17:27:34.736Z",
+  "lastUpdated": "2026-06-23T03:49:52.858Z",
   "specId": "006",
   "folderSlug": "fix-architecture-cleanup-followups",
   "parentChain": [

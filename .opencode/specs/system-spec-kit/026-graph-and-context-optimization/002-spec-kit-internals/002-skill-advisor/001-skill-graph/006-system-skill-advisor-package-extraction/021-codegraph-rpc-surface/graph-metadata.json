@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call. The workaround was a local heuristic shim inside `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`, which kept functional behavior but left one duplicated classifier implementation outside code-graph ownership.",
+    "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call",
     "created_at": "2026-05-15T09:15:19Z",
-    "last_save_at": "2026-06-22T18:55:02.065Z",
+    "last_save_at": "2026-06-23T03:49:53.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:20:31Z",
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dc4ac0a64eae9d1440a631be1ca655c8e9150ea87a7cae293b5ea2aed95e282d",
+    "source_doc_hashes": {
+      "spec.md": "fbf70b68b2fa7952e59b8b73cc16936f0c48111961ab6da3e5ce006a9c59b3a5",
+      "plan.md": "71540fc44a5bbb11e6f4ee130713f0ad80c985c751080ac11846d28e2673b714",
+      "tasks.md": "be140a2123e6bb047435f0405e3ea60adf4b210d652430897e08910475c391de",
+      "checklist.md": "279a2fff42c5de00d03eda603f39643949c165bc28e45c1ee4ff162fa1ff8da7",
+      "implementation-summary.md": "9764f228252229f9210a2970d4ee0ab6809ffd2a0f074e19fed774f02bf17927"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

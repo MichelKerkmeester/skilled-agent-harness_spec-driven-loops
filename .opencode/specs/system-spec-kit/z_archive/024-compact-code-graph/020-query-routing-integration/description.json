@@ -1,15 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/020-query-routing-integration",
-  "description": "Feature Specification: Query-Routing Integration [024/020]",
+  "description": "This packet drifted away from the shipped implementation",
   "keywords": [
-    "feature",
-    "specification",
-    "query-routing",
-    "integration",
-    "024",
-    "020"
+    "packet",
+    "drifted",
+    "away",
+    "shipped",
+    "implementation"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.771Z",
+  "lastUpdated": "2026-06-23T03:50:00.715Z",
   "specId": "020",
   "folderSlug": "query-routing-integration",
   "parentChain": [

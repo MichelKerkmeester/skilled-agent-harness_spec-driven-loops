@@ -1,15 +1,26 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
-  "description": "Feature Specification: Phase 1: CLI Core",
+  "description": "The mkcodeindex daemon has no CLI front door: 8 tools are MCP-only, so transport-down sessions, hooks, cron, and scripts cannot reach structural code",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
+    "mkcodeindex",
+    "daemon",
     "cli",
-    "core"
+    "front",
+    "door",
+    "tools",
+    "mcp-only",
+    "transport-down",
+    "sessions",
+    "hooks",
+    "cron",
+    "scripts",
+    "cannot",
+    "reach",
+    "structural",
+    "code"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.236Z",
+  "lastUpdated": "2026-06-23T03:49:57.585Z",
   "specId": "001",
   "folderSlug": "cli-core",
   "parentChain": [

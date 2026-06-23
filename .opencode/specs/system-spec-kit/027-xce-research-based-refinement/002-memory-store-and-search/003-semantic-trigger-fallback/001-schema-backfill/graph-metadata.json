@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the semantic trigger fallback decomposition (parent `004-semantic-trigger-fallback`).",
+    "causal_summary": "The semantic trigger stage needs cached trigger-phrase embeddings to run, but the trigger hot path has a tight latency budget (`trigger-matcher.ts:132-160`) and must never call an embedding provider inline",
     "created_at": "2026-06-06T13:35:44Z",
-    "last_save_at": "2026-06-10T19:22:14.941Z",
+    "last_save_at": "2026-06-23T03:49:57.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d71f8f8c8251349964ccf99ac6db329c4bea12add8e3c12af2c84212641d6ebc",
+    "source_doc_hashes": {
+      "spec.md": "6566eacb3c3b1e0dd76f9d4e1c59bde92db9242d0f57b3a551b68ceaa9431454",
+      "plan.md": "1564946fca049efc5a11a86e8e60949279a52132e4f0ee31b1f5cd356e1b366e",
+      "tasks.md": "4a5aa23bc52bbd3d7660b00fe443735a01275ba8337f280ae1bb2761d8621e91",
+      "checklist.md": "2cf852b4aa98e8fd5765335e1e7c3177317e5d99fd432ce520478585aff1bead",
+      "implementation-summary.md": "a068f1128f8a9151dd3ab276ee7a47ca42b88e8fbb98a645ba6fbd778a196fc4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

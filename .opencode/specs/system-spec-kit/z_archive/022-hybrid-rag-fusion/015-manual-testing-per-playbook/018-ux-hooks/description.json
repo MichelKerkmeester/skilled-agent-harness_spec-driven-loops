@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks",
-  "description": "Feature Specification: manual-testing-per-playbook ux-hooks phase",
+  "description": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact p",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
+    "manual",
     "ux-hooks",
-    "phase"
+    "scenarios",
+    "spec",
+    "kit",
+    "memory",
+    "system",
+    "live",
+    "inside",
+    "central",
+    "playbook",
+    "require",
+    "phase-specific",
+    "document",
+    "preserves",
+    "exact"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.236Z",
+  "lastUpdated": "2026-06-23T03:50:00.324Z",
   "specId": "018",
   "folderSlug": "ux-hooks",
   "parentChain": [

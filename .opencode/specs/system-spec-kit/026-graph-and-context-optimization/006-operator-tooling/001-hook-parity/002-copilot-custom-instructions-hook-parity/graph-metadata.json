@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec 020 (`skill-advisor-hook-surface`) wired the Spec Kit Memory MCP to inject two payloads via Claude Code's native hook system: `SessionStart:startup` delivers code-graph freshness and structural highlights, and `UserPromptSubmit` delivers the skill-advisor brief (format: `Advisor: <skill> <conf>/<uncert> <status>`). Both hooks work correctly in Claude Code.",
+    "causal_summary": "Two distinct runtime behaviors diverge across CLIs:",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-05-30T10:12:02.677Z",
+    "last_save_at": "2026-06-23T03:49:56.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1d5d329d36c9707e52c94d2d70eeb1e8821c3b3c18b94ee1ac44077e38f10c65",
+    "source_doc_hashes": {
+      "spec.md": "83b3ccc01b636776d42730a0fcfd11ae3fe34e545dc94a7929599837aabfaa46",
+      "plan.md": "8eb753847b62222ef70142b6a07f78a5f00da4e433f0b32aa162bd07ce13df82",
+      "tasks.md": "83c585443594b7400daf861500465471001a96b81591fe6a1125a83c46c0e28c",
+      "checklist.md": "aee5f51441cde20e55837a927e575469f24b75b6c74037f3cde1eec704156048",
+      "decision-record.md": "f21db9a31d4a793eaec8fdf5c1ee23c1d80f064de8c5c07f67890262c157288e",
+      "implementation-summary.md": "4b0900b4f4dfa50635edf0c0e3adc87aff3c49baa95adbdc75028e4f245f59de"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

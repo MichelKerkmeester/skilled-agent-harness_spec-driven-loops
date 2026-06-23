@@ -17,18 +17,17 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
-  "description": "Feature Specification: System Hardening (Post-Consolidation Research + Remediation Train)",
+  "description": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed t",
   "keywords": [
-    "feature",
-    "specification",
-    "system",
-    "hardening",
-    "post-consolidation",
-    "research",
-    "remediation",
-    "train"
+    "2026-04-18",
+    "consolidation",
+    "shipped",
+    "016-foundational-runtime",
+    "017-sk-deep-cli-runtime-execution",
+    "018-cli-executor-remediation",
+    "closed"
   ],
-  "lastUpdated": "2026-05-26T17:26:00.064Z",
+  "lastUpdated": "2026-06-23T03:49:53.882Z",
   "specId": "009",
   "folderSlug": "system-hardening",
   "parentChain": [

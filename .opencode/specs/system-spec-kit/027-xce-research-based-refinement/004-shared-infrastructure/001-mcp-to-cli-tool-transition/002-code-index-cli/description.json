@@ -21,17 +21,23 @@
     "003-runtime-integration"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
-  "description": "Feature Specification: Code-Index CLI Workstream (Phase Parent)",
+  "description": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session tran",
   "keywords": [
-    "feature",
-    "specification",
-    "code-index",
-    "cli",
-    "workstream",
-    "phase",
-    "parent"
+    "mkcodeindex",
+    "mcp",
+    "server",
+    "tools",
+    "structural-code-search",
+    "backbone",
+    "only",
+    "client",
+    "surface",
+    "protocol",
+    "layer",
+    "mid-session",
+    "tran"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.298Z",
+  "lastUpdated": "2026-06-23T03:49:57.571Z",
   "specId": "002",
   "folderSlug": "code-index-cli",
   "parentChain": [

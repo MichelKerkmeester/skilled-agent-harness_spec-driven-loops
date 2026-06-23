@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "End-to-end hook testing on 2026-04-23 (two real `claude -p` sessions + five direct hook-script smokes) surfaced three concrete findings. This packet remediates all three in a single focused pass.",
+    "causal_summary": "Hook testing surfaced three defects",
     "created_at": "2026-04-23T10:15:00.000Z",
-    "last_save_at": "2026-06-12T04:40:47.736Z",
+    "last_save_at": "2026-06-23T03:49:56.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:68bed755e1cc05224da9f71d9a99f893f94a0c1d0ce75a572e161c7a271a3978",
+    "source_doc_hashes": {
+      "spec.md": "1d493e129ef62b4e33bf10ec1a0ad535078b21eda9109dabf284d7aeb269fcdf",
+      "plan.md": "f595de6fb7051d22a601bf50913b381b188d33736a8a0a7ea29d17487323c6f5",
+      "tasks.md": "c9a2f1cb96701d81669cdfec0fd4232c7b034d5727b717469b7480ecdca3ce0e",
+      "checklist.md": "8beeb2eace7f7b76e01fd6242a37a58e7884af8227399a0c33193ac649152fdf",
+      "implementation-summary.md": "d5531db74f7f59cd5d212e9aaf7093807ca9d95d0042175f06948c2da8680671"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

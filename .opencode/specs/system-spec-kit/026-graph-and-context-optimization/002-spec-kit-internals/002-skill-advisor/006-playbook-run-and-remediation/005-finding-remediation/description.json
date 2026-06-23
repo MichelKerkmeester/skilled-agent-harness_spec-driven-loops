@@ -1,15 +1,26 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation",
-  "description": "Feature Specification: Skill Advisor Finding Remediation",
+  "description": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, seman",
   "keywords": [
-    "feature",
-    "specification",
+    "028",
+    "playbook",
+    "run",
+    "surfaced",
+    "key",
+    "findings",
+    "system-skill-advisor",
     "skill",
-    "advisor",
-    "finding",
-    "remediation"
+    "corpus",
+    "accuracy",
+    "regression",
+    "pc-005",
+    "bench",
+    "failures",
+    "doc",
+    "gap",
+    "seman"
   ],
-  "lastUpdated": "2026-05-27T11:53:58.774Z",
+  "lastUpdated": "2026-06-23T03:49:53.674Z",
   "specId": "005",
   "folderSlug": "finding-remediation",
   "parentChain": [

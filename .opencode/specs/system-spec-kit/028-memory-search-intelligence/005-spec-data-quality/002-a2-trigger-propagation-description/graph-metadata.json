@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The per-folder `description.json` generator never propagates the curated frontmatter `trigger_phrases` and its `description` is a verbatim copy of the spec title. `extractDescription` Pass 1 returns the first `# ` heading unchanged (`folder-discovery.ts:455-461`), `generatePerFolderDescription` builds the record with `description` and `keywords` but no `trigger_phrases` key (`folder-discovery.ts:872-902`), and the field is declared optional in both the interface (`folder-discovery.ts:54`) and the schema (`description-schema.ts:66`) yet is never written. The live sibling `005/description.json` proves both gaps in one file. Its `description` reads \"Feature Specification: Spec-Kit Data Quality by Default\" and it carries no `trigger_phrases` key at all even though `005/spec.md` frontmatter holds five curated triggers.",
+    "causal_summary": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the spec title",
     "created_at": "2026-06-21T10:22:34.978Z",
-    "last_save_at": "2026-06-22T18:55:03.783Z",
+    "last_save_at": "2026-06-23T03:49:58.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a69ac00c0c8b86b1e4365d46280ab8009164b76b14f74de62f604eafb4b30059",
+    "source_doc_hashes": {
+      "spec.md": "20d0be35e80062e3256d20e68b3ed0cfdd400e5721002accb7f52c054a6cc8ac",
+      "plan.md": "0469704c61241a8c69d7f5e41c875fd88eaaa7a218331a56b94722777f0966d6",
+      "tasks.md": "98f62344f2a96f05548048f80de40c25d23aee60cb1cb4a0d2fd018c54fb175c",
+      "checklist.md": "d87ce6525f7baf5c7e07be172c45d3030f782b9bf69b428f1816a5f4074ddca8",
+      "implementation-summary.md": "c9ab9cd39196ed4fa751dfbfe3c0cda3397ae13604c1e387ab40f846835ccec0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

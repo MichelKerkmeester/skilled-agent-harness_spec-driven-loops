@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7 of 7** (final): the IPC-bridge liveness fix (F3′ in `003-daemon-reliability-research`, addressing RC-3).",
+    "causal_summary": "`maybeBridgeLeaseHolder` (`launcher-ipc-bridge.cjs:97`) bridges whenever `fs.existsSync(socketPath)` is true (the gate at `:122`) with NO liveness probe; `bridgeStdioToSocket` (`:57`) then `net.createConnection`s",
     "created_at": "2026-05-28T18:43:50Z",
-    "last_save_at": "2026-06-22T18:55:02.978Z",
+    "last_save_at": "2026-06-23T03:49:56.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6e0fc312c99730815e1cc5f8d86b43445491a494719aa457eaf847c9522580fe",
+    "source_doc_hashes": {
+      "spec.md": "2b5d5ef1df9cd815fae81d6d34610aa8c2d6ea5ff9c389ef1e93223d6235c045",
+      "plan.md": "c73d2f6927797a6e64e900f3e858ca79cf12ff27e9f4e9202c5e3f8b027bc873",
+      "tasks.md": "762f47a736c735219c5246d7f73f34766dbafa090ae613b648dbdb3d14243e6e",
+      "implementation-summary.md": "1a4a15ccc61db7ee01fe98b37489977fab1b4a8d71f0537c2d7e67cb2fb87fd3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

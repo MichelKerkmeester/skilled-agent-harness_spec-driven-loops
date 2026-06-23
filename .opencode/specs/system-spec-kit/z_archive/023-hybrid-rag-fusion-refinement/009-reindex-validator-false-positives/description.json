@@ -1,15 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
-  "description": "Feature Specification: Reindex Validator False Positives",
+  "description": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
   "keywords": [
-    "feature",
-    "specification",
+    "batch",
     "reindex",
-    "validator",
-    "false",
-    "positives"
+    "discovered",
+    "substantially",
+    "files",
+    "disk",
+    "inserted",
+    "memory",
+    "index"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.126Z",
+  "lastUpdated": "2026-06-23T03:50:00.481Z",
   "specId": "009",
   "folderSlug": "reindex-validator-false-positives",
   "parentChain": [

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase introduces a typed target-state (desired/prior) reconciliation layer for Spec Kit Memory's write path. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.",
+    "causal_summary": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
     "created_at": "2026-05-13T09:00:48Z",
-    "last_save_at": "2026-06-10T19:22:14.938Z",
+    "last_save_at": "2026-06-23T03:49:57.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:043f7cef5ee35270496e0c66e66499683532aaeaeb5953b67d8abda2717eeb7d",
+    "source_doc_hashes": {
+      "spec.md": "6dbed32c4115ac72b12a7173f574935edbaffc863ea7a6e76f73d723e76f1233",
+      "plan.md": "90d02e8fe386c3c5c392c314dffbd43d6680622860810768b57569361e8c656b",
+      "tasks.md": "ae4e0ba8458b690393a2b3c5a4fe621f4068f939402e3c6b97b0aa0336c49196",
+      "checklist.md": "a62ef2710c6ab6bb0ef4f0e39dff3f31f74c9faced29bfe83e2068455a43aa86",
+      "implementation-summary.md": "b9de652750841e7e3b80ab758f89c69a2bd4e7291c648216e9c4beb3d8ff9d79"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

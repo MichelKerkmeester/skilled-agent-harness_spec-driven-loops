@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase A research resolved the code-graph packet with one deliberate asymmetry: unlike advisor hooks, code-graph SessionStart hook sources stay under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Moving them to `system-code-graph/hooks/` would touch 110+ references, `.claude/settings.local.json` registrations, and build/finalize paths; ADR-001 accepts keeping the current source location and adding Devin beside the existing Claude/Gemini/Codex variants (F002/Q2).",
+    "causal_summary": "`system-code-graph` is extracted as a skill and MCP surface, but its runtime startup hooks still live in `system-spec-kit/mcpserver/hooks/`",
     "created_at": "2026-05-15T13:06:00.454Z",
-    "last_save_at": "2026-06-22T18:55:03.114Z",
+    "last_save_at": "2026-06-23T03:49:56.738Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,18 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:8f489079401f83a7976bdde908a5096781533622c4e8b3909c73d48480a89635",
+    "source_doc_hashes": {
+      "spec.md": "bf29f3b9e303c2e7dc50ec50d0fe9135f0427e70bf57a2efa60c425397248fd4",
+      "plan.md": "655d3e59bddc2cd985bd708adb6747ce8baf17ea6d36bcd1c80d7dda1cb8e94b",
+      "tasks.md": "a88544b06accb539be5a173504bddd5019ee5708c5a2e49d064d6d5cec63ea6b",
+      "checklist.md": "ec0c149a3889618042697a6e9a665a5dacf46d2db5ef7bb3ea6d8600e24ce785",
+      "decision-record.md": "c2d898798be8067919fdb74a769229f48296ae514dc3575b712820490cb2964c",
+      "implementation-summary.md": "ec331303f0cb6e0ba020aac47361866a6f311c647833a36a0636d75e58420987",
+      "research/research.md": "d78e25241ae2e51e08ca1a33e7d00ccc4845a3ddb465016cc4197bcbc9fdd621",
+      "handover.md": "9897f035c327c79aa9ff0593a0d9da6cdea83299a6dc6633735dc5cb57874271",
+      "resource-map.md": "1e88ca450a5dcc7854b624f7d5651a03b1ed5ad15c32ae279d81cf3965a2bb35"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

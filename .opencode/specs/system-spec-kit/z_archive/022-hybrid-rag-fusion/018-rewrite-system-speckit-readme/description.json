@@ -1,11 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme",
-  "description": "Specification: 018-rewrite-system-spec-kit-readme",
+  "description": "The system-spec-kit README (`README.md`, ~872 lines) was written before the 22-category feature catalog, 14-command suite (8 speckit + 6 memory), and",
   "keywords": [
-    "specification",
-    "018-rewrite-system-spec-kit-readme"
+    "system-spec-kit",
+    "readme",
+    "872",
+    "lines",
+    "written",
+    "22-category",
+    "feature",
+    "catalog",
+    "14-command",
+    "suite",
+    "speckit",
+    "memory"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.579Z",
+  "lastUpdated": "2026-06-23T03:50:00.365Z",
   "specId": "018",
   "folderSlug": "rewrite-system-speckit-readme",
   "parentChain": [

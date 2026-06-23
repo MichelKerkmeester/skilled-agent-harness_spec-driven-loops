@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic: the owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile()` + `readLeaseFile()` reprobe (lines 948-954) both detect only *overlapping* concurrent writes via a read-after-write, not *sequential* ones. Worse, `writeLeaseFile()` runs **outside** the `if (lockHeld)` bootstrap-lock branch, so both the bootstrap-lock winner and loser reach it. Under two launchers concurrently reclaiming a stale-heartbeat lease, two daemon children can briefly both `launchServer()`, and the PID lease flips last-writer-wins. The daemon does not re-elect atomically; it only refreshes on a heartbeat timer (`index.ts:46-55`, interval `TTL/3`) and self-shuts-down when it finds the lease no longer holds its pid — so the double-daemon window persists up to one heartbeat tick (Agent A's observed \"~12 s both alive\").",
+    "causal_summary": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic: the owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile()` + `readLeaseFile()` reprobe (lines 948-954) both detect only overlapping concurrent writes via a read-after-write, not sequential ones",
     "created_at": "2026-05-29T16:10:52.725Z",
-    "last_save_at": "2026-06-22T18:55:02.900Z",
+    "last_save_at": "2026-06-23T03:49:56.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a3f9041db024732f22d4e708c99b6630db661ce96e22d1d697486a71eacc100b",
+    "source_doc_hashes": {
+      "spec.md": "89d600d2e8332bec77bd65f253dd4de2c6f34f0c995e25ad93e709e1d5c38ef7",
+      "plan.md": "9a37353b8b936cc32dbb3d3d0ef75325aa6122551271c855cc0c2a96a4a55616",
+      "tasks.md": "bfbe55f5c18a9d5e876ff3d14a906d351efa3c8191f5d7e3c58cd0943910b98f",
+      "implementation-summary.md": "83d9228ea8ad5ab7aec378e7ce98884dad7cedba5426ffaee6a80b89c3073a89"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
-  "description": "Feature Specification: Wire PromotionGate to Action",
+  "description": "`runShadowEvaluation()` computes a `promotionGate` result (pass/fail with NDCG/MRR/Kendall-tau metrics and a recommendation), but nothing acts on it",
   "keywords": [
-    "feature",
-    "specification",
-    "wire",
+    "runshadowevaluation",
+    "computes",
     "promotiongate",
-    "action"
+    "result",
+    "pass",
+    "fail",
+    "ndcg",
+    "mrr",
+    "kendall-tau",
+    "metrics",
+    "recommendation",
+    "nothing",
+    "acts"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.153Z",
+  "lastUpdated": "2026-06-23T03:50:00.495Z",
   "specId": "001",
   "folderSlug": "wire-promotion-gate",
   "parentChain": [

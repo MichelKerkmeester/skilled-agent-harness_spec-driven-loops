@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 22** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "system-spec-kit reference/asset frontmatter is inconsistent with the repo-wide contract: 2 of 41 references and 0 of 4 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:39Z",
-    "last_save_at": "2026-06-12T04:40:47.846Z",
+    "last_save_at": "2026-06-23T03:49:57.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:62950864218207eafb7f6f98b793523b852b23f33f380b74c200521386d8826d",
+    "source_doc_hashes": {
+      "spec.md": "a60729a2ffb29fbb514dba75c3f519c851d813b0353c2b89a36769ea48880edd",
+      "plan.md": "2631697fb0c00f93f2c32a09341e2fc272d1cf5f14bc1c6e4fd9a1cef315930a",
+      "tasks.md": "f470cafdf4c700d9f23d1bcca1bcf64a8424fdef14968960f44a7c783fe02061",
+      "implementation-summary.md": "de722977ddcc645b4c0a8b9b6274477344647d2e796e08ffcff28eac09cbc0e3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

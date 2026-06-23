@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase closes review findings in the skill-advisor launcher after the initial cross-session reconnect implementation. The launcher remains intentionally shaped like the simpler code-index launcher: inherited stdio, non-detached child, rebuild-on-start, one bootstrap lock, one owner lease, and reconnecting session proxy for secondary clients.",
+    "causal_summary": "The first skill-advisor reconnect implementation added owner-lease and bridge happy paths, but it dropped the bridge module's `{ action: \"respawn\" }` decision",
     "created_at": "2026-06-11T06:25:37Z",
-    "last_save_at": "2026-06-12T04:40:47.933Z",
+    "last_save_at": "2026-06-23T03:49:57.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b442a29f40491258b1bba8441e20e8fd3b0fe45b79955ef41621c15f2aeeb1c9",
+    "source_doc_hashes": {
+      "spec.md": "3cfac46fd818795de38d48f145048ad1ccd8d8c4ab8ab6b71212082010254fbd",
+      "plan.md": "3203b477f9ab86bdc868da2d0f12e45a41aee60cad37a47c45bc5839e8cd6b06",
+      "tasks.md": "4f6db8c88d6cc6601a9ab946e008e346e314beab796de49c45c6a3d6f5cb419e",
+      "implementation-summary.md": "686da350885c64a30f4de574daf02c5ad290fb9fc269fef6ba05c94985873afb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

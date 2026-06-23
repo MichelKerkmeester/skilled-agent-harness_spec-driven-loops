@@ -1,16 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit",
-  "description": "Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit",
+  "description": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-runtime",
-    "hook",
-    "parity",
     "release-readiness",
-    "audit"
+    "program",
+    "needs",
+    "runtime-by-runtime",
+    "truth",
+    "check",
+    "spec",
+    "kit",
+    "hook",
+    "delivery"
   ],
-  "lastUpdated": "2026-05-26T17:27:34.113Z",
+  "lastUpdated": "2026-06-23T03:49:52.096Z",
   "specId": "005",
   "folderSlug": "cross-runtime-hook-parity-audit",
   "parentChain": [

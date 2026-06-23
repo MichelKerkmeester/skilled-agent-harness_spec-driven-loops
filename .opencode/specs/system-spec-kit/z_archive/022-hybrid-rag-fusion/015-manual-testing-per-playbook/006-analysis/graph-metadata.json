@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflight, postflight), and learning history retrieval. Each scenario must be executed with defined prompts, expected behaviors verified, and evidence captured to validate that analysis tools function correctly.",
+    "causal_summary": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflight, postflight), and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.293Z",
-    "last_save_at": "2026-06-22T18:55:04.468Z",
+    "last_save_at": "2026-06-23T03:50:00.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d0d240c1a7d300d3822505608e2106e690f06967d96d36ff20aee37460cf6458",
+    "source_doc_hashes": {
+      "spec.md": "0243e89e9222a0986c36fdae335fa8c84543df705d6ccfae22f817d2f3935c2c",
+      "plan.md": "f3c5acb22fea455442f4260b95ae541fb740e725a3ac631f7fe82cd88d18f462",
+      "tasks.md": "016df4e5a16c5224cfa6aceb827948a22706a94520c7b04415f93a5ef016ae0c",
+      "checklist.md": "423f7c81aeafb55f72a54c745abed43d718cb22fab56b189698dbbba11272b5a",
+      "implementation-summary.md": "7d6c7bd8973584679c08f2fa8ae0158f7c95e4efd40d0bf52af2dc841ecf7cf0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

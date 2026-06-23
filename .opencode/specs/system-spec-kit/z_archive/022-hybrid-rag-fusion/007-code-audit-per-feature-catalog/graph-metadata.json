@@ -233,7 +233,7 @@
     ],
     "causal_summary": "Feature Specification: Code Audit per Feature Catalog",
     "created_at": "2026-04-12T09:02:50.243Z",
-    "last_save_at": "2026-06-22T18:55:04.192Z",
+    "last_save_at": "2026-06-23T03:49:59.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -246,6 +246,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:cd8d78c45979b11608ac736f07bb49f936f138af2c408b39c9f14a536a28aa45",
+    "source_doc_hashes": {
+      "spec.md": "690f62bf7bf101299513c60a2bcbea8ab5b57604ce6bd7c99930edd48956fc0e",
+      "plan.md": "5d8d6b584ffcc7d1d7b00038f59437e7b055bb8b2db7c98afccfcbb96d82fc87",
+      "tasks.md": "7a590d5591782bc493f787d62d8ec0f66e3688c172a5b3fe480c22e3d6d2492c",
+      "checklist.md": "5174b2406f78e3b5b60dc25d25b0a650c512d384e83a3e83d87604fdeee2418a",
+      "decision-record.md": "86eb03643ded05134d37696394a96bd5b7b68ed86cca2d70878a4e4e70e08e4a",
+      "implementation-summary.md": "a0850eb2476b44032c32885871564ea430c054c1ef318a91fe959111163921cc",
+      "research/research.md": "3bbeb72e49166921d7e3e9ce3ade3cd2d595d1fb309e5b3d9db5236bff86e0f1",
+      "resource-map.md": "a90078a6c754c85c56352c2c055134d2449f1ad6c6e87ce60486565b47aca847"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

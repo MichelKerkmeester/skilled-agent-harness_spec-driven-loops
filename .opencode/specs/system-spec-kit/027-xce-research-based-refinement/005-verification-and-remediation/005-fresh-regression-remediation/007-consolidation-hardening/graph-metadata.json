@@ -24,12 +24,12 @@
       "ordering",
       "handle",
       "consistency",
+      "remediate",
       "two",
+      "deep-review",
       "findings",
-      "surfaced",
-      "027",
-      "fresh",
-      "regression"
+      "deferred",
+      "001"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "These two findings were surfaced by the 027 fresh+regression deep-review (`../../review/fresh-regression-75/`) in sub-phase 001 and deferred there because they require a structural refactor of the exported consolidation cycle on a **default-ON path** — disproportionate to fold into a broad sweep, warranting a dedicated packet with its own concurrency gate.",
+    "causal_summary": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN IMMEDIATE write lock (blocking other writers ~5s/cycle), and the DB handle is threaded inconsistently (latent atomicity risk). Both on the default-ON weekly consolidation cycle, so they need their own concurrency safety gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.561Z",
+    "last_save_at": "2026-06-23T03:49:57.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0a7c4ded61c2dffe581bffab8ed510377565c9247a039c0fe7b6817393012e56",
+    "source_doc_hashes": {
+      "spec.md": "e3063fb30988f9f2c96a0bee05e3ade27139779c33fb11cc759c0afba1939b9d",
+      "plan.md": "2ed27259e1fa815b8ad37e0f72304ec07afee8dcaa5cbd2f504b43bb82551c47",
+      "tasks.md": "311497417744daa2ebbc113ff29d8264f1685be84be363524f78c5188d11c2c2",
+      "implementation-summary.md": "5141447644ee8d692de431cb927c7a666d985f2932ac72b6bead58f9bf36d4d1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

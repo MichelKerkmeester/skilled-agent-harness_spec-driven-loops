@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002 is a small correctness-first packet carved out of `../005-learning-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 005's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.",
+    "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.931Z",
+    "last_save_at": "2026-06-23T03:49:57.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:14d0750671ebcaf0aba494815d288a11a231a707516af431dbf1ecf3c5d08d62",
+    "source_doc_hashes": {
+      "spec.md": "c000aeb684cbdcd1864d511ded40f027fb08c2da41b387b37f57c671eee60462",
+      "plan.md": "19727963df32d2d255b8dfd6690ec1a7326b6e1afe51ad565770067cec3f1b08",
+      "tasks.md": "a9a2e1c1abbabfaaae73cddd4aa67c0a9937b97d42656e52d09fa778f6815eb0",
+      "checklist.md": "94d1e0576e26876ee2a7dfed110a34b20157b35572aad252af941e1bc8320b7b",
+      "implementation-summary.md": "646564e8f8330e04a201cab344a70778748752dd65d7041e463c323459494103"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 19 UX Hooks features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/18--ux-hooks/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for UX Hooks has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-05-30T10:12:03.258Z",
+    "last_save_at": "2026-06-23T03:49:59.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8ee83b10c8550ecdaf4c8659cd2a9013dc3050556686ae257b45fc1ae59fd510",
+    "source_doc_hashes": {
+      "spec.md": "fb117e956a6a41e8e70d92e0e6820f2222f84cf205e7e2ebdcae983d62e07c73",
+      "plan.md": "12591f14b4ef7253fbea01f547479aeefea3777e9bb12874b731a244575e688d",
+      "tasks.md": "4b95a8d7f663d938e6df5d49d154f6b976146a10126d6e7fb8cb1a0d41fef0f3",
+      "checklist.md": "afa32261aa799f65e0466d8fd97ab71c9925db56df96cd5bbc00c9106af58dcc",
+      "implementation-summary.md": "4629fd87f521e26b50cb8e666adc4c9c9a9f21298bf0fc97ffd5de508852033c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

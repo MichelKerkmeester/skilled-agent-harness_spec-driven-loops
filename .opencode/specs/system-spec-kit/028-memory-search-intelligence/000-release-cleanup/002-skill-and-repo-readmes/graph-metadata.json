@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.789Z",
+    "last_save_at": "2026-06-23T03:49:58.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f9f8b48646cdbad4403e23d6d8274b1a6cc98845f7ec15e418c062a8fd8097ff",
+    "source_doc_hashes": {
+      "spec.md": "354b73fa37790446e59c7b01821aa8bdce4a34b5509a2f001bdc54f8068fce4f",
+      "plan.md": "6beeb33cfcbf3837d55536bd7f4c8500f56702863b9c7deea53fb9afa80e453f",
+      "tasks.md": "364c9c1d0050c265b31d4542d14929f951552b998fb128250343126a08461be4",
+      "checklist.md": "2cc586652894dc9ff19f418cb6f22fdeb5d0430c1a0bc27df881013efec32e9a",
+      "implementation-summary.md": "0881488fdbf96d6aff0caa8a7d948a75c42f04fc10948f70306f3acb03a5ccb0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

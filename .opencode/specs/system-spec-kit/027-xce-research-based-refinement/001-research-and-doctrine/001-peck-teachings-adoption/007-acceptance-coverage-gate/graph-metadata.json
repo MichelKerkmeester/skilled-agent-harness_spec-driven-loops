@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 011 revives the long-deferred T1 acceptance-criteria coverage gate. The 2026-06-02 peck-README pass produced teachings T1-T4 and deferred T1; the peck-source deep-mining pass (research 006, 13 discovery iterations plus 5 cross-model verify iterations) re-evaluated T1 and found it now adoptable as a staged, reuse-heavy sibling packet. Post-026 the validation, checklist, and deep-review substrate already exists, so T1 becomes an AC-traceability table plus an `AC_COVERAGE` rule (floor 0.9, WARNING graduating to ERROR) plus a deep-review verdict binding with per-level AND lifecycle opt-in, reusing existing AC columns, the `EVIDENCE_CITED` infrastructure, and the fresh-context reviewer primitive.",
+    "causal_summary": "A spec folder claims its acceptance criteria are satisfied through a single self-attested checkbox (\"All acceptance criteria met\") in `checklist.md`",
     "created_at": "2026-06-06T10:22:05.634Z",
-    "last_save_at": "2026-06-22T18:55:03.271Z",
+    "last_save_at": "2026-06-23T03:49:57.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:581b21900d7c604d2839468157cf13fd31fffd105cc7e1032a5c3880dba1c9f1",
+    "source_doc_hashes": {
+      "spec.md": "d17d8b3af35c80a4ce8a0b91470b264287d5f4f78c0a1e66c9473fc5dbd9640f",
+      "plan.md": "688748ff4d65750af617029e97815a6251c57db67f4df0ddeca93a183b3dc4b4",
+      "tasks.md": "c8e036d81ea2eeb588911911e6d6088a925ff44a2ab6a604675e2ffe442b09b9",
+      "checklist.md": "43bb4a1dc890f4fb374bf7a81277eb96b976072c3b58ec53f84999e58788cbf7",
+      "decision-record.md": "6d3ee1fc21c614ffb17aa7d755232de10ba01aed73109d6feb249e1c6b67456a",
+      "implementation-summary.md": "9d9ddf01dcf1523ebca6a9a3376f7080836c2abfb8fb9d0a9a08d03843f65027"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "The single `CONFIDENCE` field on `DecisionRecord` conflates two independent dimensions: certainty about the chosen option and certainty about the captured rationale",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-05-30T10:12:03.297Z",
+    "last_save_at": "2026-06-23T03:50:00.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3cf2a8a91fde18fdefbab80c663490f9f308885f07e140cbf6acf65e73450d98",
+    "source_doc_hashes": {
+      "spec.md": "d8a1d89de62a5bab14764604428ce6a11035f1c12a1f9157c43c48bb8e89f8b2",
+      "plan.md": "a323e6441ce5ee27b792186c995b90754fc80c74185d9baf7a52b9e99e4ec58c",
+      "tasks.md": "597e0cda6d4011452ba5c170d7f94a49f791b4fbd67fe1365ec469f983796b3c",
+      "checklist.md": "e190bce581050023d3c4a2c4eebd5a3a609f1fff2bf56d7afebea0b4d2017252",
+      "implementation-summary.md": "d334859ed9204e4e986f26d3e06af77b1c1bb07352773b54975033525c09ad4d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization",
-  "description": "Feature Specification: 006 Search Query RAG Optimization",
+  "description": "Phase C found no surviving P0 regression and no current-runtime regression, but it did find that search optimization lacks shared outcome evidence",
   "keywords": [
-    "feature",
-    "specification",
-    "006",
+    "phase",
+    "found",
+    "surviving",
+    "regression",
+    "current-runtime",
+    "find",
     "search",
-    "query",
-    "rag",
-    "optimization"
+    "optimization",
+    "lacks",
+    "shared",
+    "outcome",
+    "evidence"
   ],
-  "lastUpdated": "2026-05-26T17:26:55.200Z",
+  "lastUpdated": "2026-06-23T03:49:52.219Z",
   "specId": "002",
   "folderSlug": "search-query-rag-optimization",
   "parentChain": [

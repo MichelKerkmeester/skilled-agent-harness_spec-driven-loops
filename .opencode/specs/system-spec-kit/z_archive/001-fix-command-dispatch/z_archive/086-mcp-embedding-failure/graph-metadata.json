@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Users report that the `spec_kit_memory` MCP server fails to generate semantic embeddings due to a corrupted local HuggingFace embedding model cache. The ONNX model fails protobuf parsing.",
+    "causal_summary": "Users report that the `speckitmemory` MCP server fails to generate semantic embeddings due to a corrupted local HuggingFace embedding model cache",
     "created_at": "2026-04-12T09:02:53.558Z",
-    "last_save_at": "2026-05-30T10:12:03.114Z",
+    "last_save_at": "2026-06-23T03:49:59.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:635bb0380c504d561ea31a7800549fa422e2077fdc9de0285798a7d447b7caa8",
+    "source_doc_hashes": {
+      "spec.md": "64f36c797231e79becc8a5eb29f937ed6bd8c99af776e484d4f27ac212b1ec85",
+      "plan.md": "8d6bd6bbaa19ef1eab075464007e37a39e65b569592464bbecf9efcf8a622f46",
+      "tasks.md": "f343c453ac179f542f181da5cf1b90975f56e1df131ddfca78a95be4a221ca04",
+      "implementation-summary.md": "d46bdf528017ff8739cc49d1cc01c2827f87f71c60b07362e693c2856c3d858a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

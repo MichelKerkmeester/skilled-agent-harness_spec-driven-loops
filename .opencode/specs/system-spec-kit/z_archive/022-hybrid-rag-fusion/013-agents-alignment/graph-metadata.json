@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses. It treated `.opencode/agents/*.md` as a single canonical source copied directly to every runtime, but the live repo has split lineage:",
+    "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-06-22T18:55:04.435Z",
+    "last_save_at": "2026-06-23T03:50:00.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:80b9f4c3825dd161f999a33761502a8c192d6b6b17f9562e8b602187cb73e5a1",
+    "source_doc_hashes": {
+      "spec.md": "f0dc5937420c00bd520ee59b8c0705dd45ace2d5935e9bb44181221825b1ff78",
+      "plan.md": "78e7dc5cc78c288f68095ebf1de098d53dedca24793f73148d46abe816b72503",
+      "tasks.md": "392b4b80f6822dbf596cc912540fba5a17234aa9446b54b27384dd3c3e4ec87f",
+      "checklist.md": "8027b1f304b69e80e10ece4bdecf968f371e80f03d4796ed9b497cc858539a08",
+      "implementation-summary.md": "f1e1894deb950e53d8a4d188a5f751641de77ffdf8635a2528d9e6e4cd9cc1c9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

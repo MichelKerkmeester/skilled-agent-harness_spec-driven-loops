@@ -99,14 +99,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit feature catalog (~412KB, 24 themes) and manual testing playbook (~293KB) claim a large set of features and verification procedures. The user specifically flagged \"playbooks or feature catalogs not verified\". This slice audits whether catalog entries have real code backing and whether the playbook actually verifies the cataloged features.",
+    "causal_summary": "The system-spec-kit feature catalog (~412KB, 24 themes) and manual testing playbook (~293KB) claim a large set of features and verification procedures",
     "created_at": "2026-06-04T18:53:35.320Z",
-    "last_save_at": "2026-06-06T09:38:26.488Z",
+    "last_save_at": "2026-06-23T03:49:52.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:b4a0b644dbd2ee1d9083f8b566b5367ff7ab7205c9b0f3bac023cec04b4df909",
+    "source_doc_hashes": {
+      "spec.md": "49db62a85fd8d9771018c52d096e112ac0d0611b33af4ba221394331c4c1c298"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

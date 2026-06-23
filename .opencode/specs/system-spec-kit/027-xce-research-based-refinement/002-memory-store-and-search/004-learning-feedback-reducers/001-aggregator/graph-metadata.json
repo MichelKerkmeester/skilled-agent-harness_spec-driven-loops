@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The three learning reducers need a shared interpretation of `feedback_events`. Without a common aggregation layer, each consumer can drift on confidence mapping, weighted-positive math, and window semantics.",
+    "causal_summary": "Level 2 child packet for the shared TypeScript feedback aggregation reducer used by the feedback reducer consumers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.310Z",
+    "last_save_at": "2026-06-23T03:49:57.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07d85d1ba2081d6907d9b8b537de6c400889e91b02b1d1fcd87f0be27d976e1b",
+    "source_doc_hashes": {
+      "spec.md": "94114a5a7d97cd721f288f3cf4bc29523043820dc0808c626a1a99f2d2fc2cba",
+      "plan.md": "fac298a6743563b3aa4ff98c9dc0b55aa6833db9c2b00d011c7e2fe78c4e94ab",
+      "tasks.md": "fd6ed08b8e59c89a3b83597d1fc08fd2e80cc64826439c6ae4cf5dba65da46f8",
+      "checklist.md": "4b730cd3b56590420c6fcfcef995130504dd4ddeaf499d49b586fc2681a29bc9",
+      "implementation-summary.md": "448ac4f6050afd356892373d438ae6bc717b0d0b766979dfc234c48c1def2419"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

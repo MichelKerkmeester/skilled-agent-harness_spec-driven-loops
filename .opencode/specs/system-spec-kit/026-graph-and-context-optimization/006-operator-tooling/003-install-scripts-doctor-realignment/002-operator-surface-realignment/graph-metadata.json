@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Rework operator surfaces and adjacent 116 casualties to post-CocoIndex reality specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-26T06:48:33Z",
-    "last_save_at": "2026-06-22T18:55:02.949Z",
+    "last_save_at": "2026-06-23T03:49:56.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:77a79456cbe577b3534c5accbc5703c2d3f1aa35fb760af7d287f05740ca48d7",
+    "source_doc_hashes": {
+      "spec.md": "b5b7ec5841ec9b8a14282b73afb6c80a74b6f657ac0dd1c82ac9e881ddb12de1",
+      "plan.md": "178cccdd89417dc041369588e994c2009819e4ac9adcf2ea696ab42c93e838ae",
+      "tasks.md": "e83388cef88ad624c085f71da83d288b1baffbce5acb4670b8cc49db41d4fc73",
+      "implementation-summary.md": "c40e60451714ab90b56ad239d828675ca8777da58d29422a625ca4ba79b7c1e4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

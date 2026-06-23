@@ -20,15 +20,15 @@
       "deep-loop-locks-state-and-recovery",
       "memory",
       "leak",
-      "phase",
-      "remediation",
-      "arc",
-      "scoped",
-      "source",
-      "evidence",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "broad",
+      "audit",
+      "found",
+      "advisory",
+      "locks",
+      "without",
+      "pid",
+      "ttl",
+      "heartbeat"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 4 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
+    "causal_summary": "The broad audit found advisory locks without PID/TTL/heartbeat metadata, inconsistent deep-review locking, and JSONL state recovery gaps",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-15T09:09:34.428Z",
+    "last_save_at": "2026-06-23T03:49:55.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:27bea7591d23eca74e605af194a0205fbbab887b85f90dbcef66d7012f14d15b",
+    "source_doc_hashes": {
+      "spec.md": "5abf670e2ff2424e70f5862a44e54a04d9ad15758325b16781a32c20c5bd2139",
+      "plan.md": "036531ae81a24f39f30a0857af3da2fe878c1e73be584db20c060ae489d2c505",
+      "tasks.md": "19981679c0f9b615070487399cf8dc8198effa7cb2c483a263e764a649451164",
+      "implementation-summary.md": "c6e351f07f928578c3c1b0a7f10c8e99eaea32f2d2b6904029c299bab6ac9266"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

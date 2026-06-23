@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex's only embedder-selection surface today is `COCOINDEX_CODE_EMBEDDING_MODEL` env var. No catalog. A new user must know:",
+    "causal_summary": "Catalog of vetted code-embedder candidates with metadata for new-user selection",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-06-05T12:47:33.702Z",
+    "last_save_at": "2026-06-23T03:49:54.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ed7a8976639c46cb5f343d63ae075686212c33a2da95aeb5f40a0243245e8f91",
+    "source_doc_hashes": {
+      "spec.md": "d1711e0e06031162e0ba18b992889808487f47ab060221e0c7254547dd5ccb34",
+      "plan.md": "47729a7ff4b9311f9dea1028abb4dfa51f05c288290ecca9548316da3bdfab92",
+      "tasks.md": "8652f73a51b8e49b17c8c8943e88da1f0bf8cceba5a778e02e6c8ce3cfb5d11d",
+      "implementation-summary.md": "edc3fb6c9803a48b8fdd45317a5892546eba95c6189516d16adeccd7aa428af9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

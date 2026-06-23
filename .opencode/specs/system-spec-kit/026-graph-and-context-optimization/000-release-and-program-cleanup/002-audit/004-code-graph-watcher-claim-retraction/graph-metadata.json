@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Retract the structural watcher claim and document the real freshness model: `ensureCodeGraphReady()` can selectively reindex changed tracked files during query/context reads, `code_graph_scan` performs manual full repair, `code_graph_status` diagnoses without mutating, and `code_graph_query` blocks with required action when a full scan is needed.",
+    "causal_summary": "013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only markdown/spec-doc and skill-graph watcher paths",
     "created_at": "2026-04-29T13:55:04Z",
-    "last_save_at": "2026-05-30T10:12:01.546Z",
+    "last_save_at": "2026-06-23T03:49:52.171Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:6128a924b416221a26a808136479ca905ff0d470a345e92a397293256b5fa569",
+    "source_doc_hashes": {
+      "spec.md": "5d10c4ad00c550260b1c48f054bd749a246c271c59aeea3e8c97798ff971c3ea",
+      "plan.md": "9ac3c4136718a3c2617484d64013a0727b57e3bef475f4cebf625808df8be27f",
+      "tasks.md": "57a858e5e0ed8c9e6ad00305a3adea191ae4e0baf8ce2638a24657f30a019370",
+      "checklist.md": "157567275b70e9eeab0815b5e6063d7bbd89eb7a2e0311ab14756f82b51e83f2",
+      "implementation-summary.md": "15f5baa483564c086783d14013873772e7d28990ff2b012e1653e12acae2edcf",
+      "resource-map.md": "3138d6f74fd53dee7f4590a7164ec8e8b2d71ebb5e31bcf41b05e7fb63f261b5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

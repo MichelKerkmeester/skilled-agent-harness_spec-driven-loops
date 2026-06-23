@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces. The findings mix safe cleanup with behavior-changing hardening requests, so the packet needs a surgical sweep that closes dead exports, stale comments, helper noise, and type drift while deferring runtime-policy changes.",
+    "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-05-30T10:12:02.493Z",
+    "last_save_at": "2026-06-23T03:49:55.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a23d4274f53dbd653bac441b10e99ccbe002c408e365d65ebe1933c9ed36baee",
+    "source_doc_hashes": {
+      "spec.md": "e8b7f1ed08e5943c9a853653cf54c4ed3e16d40179a7d8f4d35a33823a33cf52",
+      "plan.md": "aeabfe812cea360c984b7a0a4442c7e64ee017f21b0b3451a989a51dd196dd14",
+      "tasks.md": "eae6f6aade9d7b84bb8aff33e418e9761d087fc105663eb3880444e3dc1f7977",
+      "checklist.md": "4a6d421c15ec86dfc7f8b624985532bd86c66d5fc3afd89a3ff13663e9fd37aa",
+      "decision-record.md": "a0314f318d81cb0fc745017df85415ec1a4d484130717eb344fbeea93e77b6d6",
+      "implementation-summary.md": "1ed32be23713b4f1dbe0ce5ac07256a396b26180987174bade8b994078846a98"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

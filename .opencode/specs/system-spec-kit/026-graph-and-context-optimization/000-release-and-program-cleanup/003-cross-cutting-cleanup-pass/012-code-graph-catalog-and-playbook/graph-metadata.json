@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code_graph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `feature_catalog/` and `manual_testing_playbook/` directories at the source-of-truth runtime path. That left runtime details scattered and made code_graph weaker than the already documented skill_advisor package.",
+    "causal_summary": "The codegraph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `featurecatalog/` and `manualtestingplaybook/` directories at the source-of-truth runtime path",
     "created_at": "2026-04-29T17:26:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.588Z",
+    "last_save_at": "2026-06-23T03:49:52.305Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:94e4a3ac81bb0c7a870a5e97a285d16f671f78fcd26da2172798b0c1c755538b",
+    "source_doc_hashes": {
+      "spec.md": "f2daa6547687aebcf4062969ce7265d4e499206f40c8800f39cd8e0821c8f13b",
+      "plan.md": "23aca59450d721edfa931635f807b65ba24e2f2837ad41ebd1a0e01632b00019",
+      "tasks.md": "437c3ab6795a57b323520d011568302b0ee019239a550666a732040941a08076",
+      "checklist.md": "b0f1a4c61b38da13459f6787a5caf5cb90d435e05f89b97c90b9a850f24e3f3f",
+      "implementation-summary.md": "4936b035e96e68a3165d13273e2f3839b2d68029ab04b040e341bcb33744df74",
+      "resource-map.md": "f64a043ff029421115071b4ac63e23d082f8b18b62563477f1b50c8b29ef1561"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

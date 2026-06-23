@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `019-system-hardening` is the research-first umbrella for the post-026-consolidation hardening train. The 2026-04-18 consolidation that collapsed the former 015-020 range into four thematic packets (015, 016, 017, 018) left six high-leverage investigation items unaddressed: three 026 close-out candidates (`DR-1` 015 delta-review, `RR-1` Q4 NFKC robustness, `RR-2` description.json regen strategy) and three system-spec-kit-wide candidates (`SSK-RR-1` Gate 3 + skill-advisor routing accuracy, `SSK-DR-1` template v2.2 + validator joint audit, `SSK-RR-2` canonical-save pipeline invariants). This packet coordinates them as one research wave plus follow-on implementation children.",
+    "causal_summary": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed the 026 train's core runtime and executor work",
     "created_at": "2026-04-18T16:46:13.781Z",
-    "last_save_at": "2026-06-22T18:55:02.203Z",
+    "last_save_at": "2026-06-23T03:49:53.879Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b07be39c377e005e25920a1a9dd16061c4cb1e1c5baebd78aed825693f75c968",
+    "source_doc_hashes": {
+      "spec.md": "1664f2a3b18dc7388b69d293b3738acd08cf1b4ce9b8103ebe9fdbb2aec9dc3a",
+      "plan.md": "2142a64d28629fc28a3f990ab5d569e2062574ef09ebf9891786dab817dd4b4a",
+      "tasks.md": "f1f5f8a47c6f6327cd5d46f5d8ece5343a43b5508675c4913c7b273c6b131518",
+      "checklist.md": "f8ea5338100b583a431d1f99edc00e63a93a563d006463300e0b4749b98a0d9c",
+      "decision-record.md": "ec695e24f56866b7b17364768173ff70ced1706c97b377ab41454c1f07627e2a",
+      "implementation-summary.md": "589894889acbb5db6d5793991732c2bcdeeb62200b0b0fd4afd942fcae6b5cb0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

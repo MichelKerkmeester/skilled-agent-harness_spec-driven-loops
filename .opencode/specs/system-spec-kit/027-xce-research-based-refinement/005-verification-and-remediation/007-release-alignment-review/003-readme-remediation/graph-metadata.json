@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs lag the code 027 shipped — stale tool counts, removed/renamed features described as present, dead links, and old defaults.",
+    "causal_summary": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs lag the code 027 shipped — stale tool counts, removed/renamed features described as present, dead links, and old defaults",
     "created_at": "2026-06-18T12:41:12.384Z",
-    "last_save_at": "2026-06-22T18:55:03.586Z",
+    "last_save_at": "2026-06-23T03:49:58.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:91f7f45239d4a277d0cc44e9fa1cdf11d98fd0077730a6d0c2d5846629719936",
+    "source_doc_hashes": {
+      "spec.md": "e7625f1d88bd9c993c58cbf63bb35d5164322e77117e91a731327712090c5597",
+      "plan.md": "185cf6766ef2d0d16960f049cc879d2080e062a52a28b043b516e9816f308f68",
+      "tasks.md": "56461d534c76f308e8bd2d2d00c1a66d0fd9010f3abde5b52016a29744147928",
+      "checklist.md": "f3f401dc753af871e9fc85c0099821c3d09f8689fa925f931ef1345ed054c59e",
+      "implementation-summary.md": "2183b690e651448ec2725425f77b48dfe72bcd7d4f50f9617e42697d859eb8fa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

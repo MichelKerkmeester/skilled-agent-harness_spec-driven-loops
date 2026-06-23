@@ -34,7 +34,7 @@
       "checklist",
       "implementation",
       "summary",
-      "currently"
+      "level"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Retention currently follows rule-based TTL behavior. This child adds a feedback-aware retention reducer that can return `delete`, `extend`, or `protect` decisions while keeping constitutional/critical protection narrow and auditable.",
+    "causal_summary": "Level 2 child packet for learned retention and edge-floor reducer logic.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.313Z",
+    "last_save_at": "2026-06-23T03:49:57.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:487a18b34e69ab4c7a272613a94816c2b1f6504b717ff089f02c09f5b984cdc2",
+    "source_doc_hashes": {
+      "spec.md": "5cb4dc5547c238209a0271976dc7a661cd8c8512f054e0c82b169bfd9f60313c",
+      "plan.md": "eee6a4bd3fced3c9ef5933ee090a9ac7790781b6eba0c7d605663118506b6cfc",
+      "tasks.md": "ce192e3f7fc8e821177bea3f251c1817898604592cce9c9c8ef7e0e1b0e36e66",
+      "checklist.md": "866a6760bb5a2ff14133b5d8c96352a14f9ab37d2dadb5e87a4ac38659e51a83",
+      "implementation-summary.md": "c6e6d7121e0d92abdec9e819d67db1c71bdb5930324cc3df211cda28850da891"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
-  "description": "Feature Specification: TSConfig References Restructure",
+  "description": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-",
   "keywords": [
-    "feature",
-    "specification",
-    "tsconfig",
-    "references",
-    "restructure"
+    "packet",
+    "014",
+    "extracted",
+    "code-graph",
+    "ownership",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "typescript",
+    "config",
+    "kept",
+    "include",
+    "system"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.133Z",
+  "lastUpdated": "2026-06-23T03:49:56.760Z",
   "specId": "007",
   "folderSlug": "023-tsconfig-references-restructure",
   "parentChain": [

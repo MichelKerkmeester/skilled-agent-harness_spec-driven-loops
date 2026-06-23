@@ -1,13 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/004-doc-drift-alignment",
-  "description": "system-code-graph Doc-Drift Alignment",
+  "description": "Authored docs under `.opencode/skills/system-code-graph/` disagree with the live runtime on four points: (1) tool count is claimed as `10` in 6 places",
   "keywords": [
+    "authored",
+    "docs",
+    "opencode",
+    "skills",
     "system-code-graph",
-    "doc-drift",
-    "alignment"
+    "disagree",
+    "live",
+    "runtime",
+    "four",
+    "points",
+    "tool",
+    "count",
+    "claimed",
+    "places"
   ],
-  "lastUpdated": "2026-05-26T17:25:52.531Z",
+  "lastUpdated": "2026-06-23T03:49:55.981Z",
   "specId": "004",
   "folderSlug": "doc-drift-alignment",
   "parentChain": [

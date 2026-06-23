@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet investigates whether the memory-saving recommendation from deep-research-005, \"make SQLite FTS5 the default BM25 engine and stop warming the JS BM25 index\", risks degrading the current RAG-fusion retrieval design. The answer is calibrated: SQLite FTS5 preserves the lexical BM25 lane, but the current JS path contributes synonym expansion, lightweight custom stemming, stop-word filtering, underscore and hyphen preservation, and markdown normalization that are only partially matched by the production FTS5 schema.",
+    "causal_summary": "Deep-research-005 ranked the JS in-memory BM25 index as the top resident-memory target, but its recommendation noted that SQLite FTS5 tokenization and weights may not be identical",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-05-30T10:12:02.215Z",
+    "last_save_at": "2026-06-23T03:49:54.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:c5eadb9fc2ff4328301572fe50b5586db02a9ece1e99d3ca79e8a9b8a7558bec",
+    "source_doc_hashes": {
+      "spec.md": "8882f15da4fdc015f04690bf0481e2ff0974a4999987f6d2a7fd768684e64fed",
+      "plan.md": "a1249679c49d175919d4da102106e8ab2ac1de069af0c6e34082715d5b9867e4",
+      "tasks.md": "e518e66289064ba774142261dc887bf043c3336fb9478fde33db2b7841b3e560",
+      "checklist.md": "6a603893d4e51e28a906fed3e2530a39dd57d503acc1e362997ab49aef8277da",
+      "decision-record.md": "0fea16969270ae3475f7bbdd8eac686723507b477eaab249390df18517da9682",
+      "implementation-summary.md": "ebf9e3ebad874501ddc16dcef33c0c584828ce92a77fd7329d87c8492ed77dda",
+      "research/research.md": "bc4dbf8c858138923582800579dad482200731a0f03b85cb3888596e42d6bf58"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

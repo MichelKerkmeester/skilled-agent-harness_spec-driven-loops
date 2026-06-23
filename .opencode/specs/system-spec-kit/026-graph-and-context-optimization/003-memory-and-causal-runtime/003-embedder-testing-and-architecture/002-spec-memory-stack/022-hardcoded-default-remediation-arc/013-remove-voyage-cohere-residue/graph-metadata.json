@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two separate gates in the cross-encoder pipeline activated cloud reranking whenever `VOYAGE_API_KEY` or `COHERE_API_KEY` was present in the environment:",
+    "causal_summary": "Operator directive: remove voyage/cohere as reranker providers. Their auto-resolution from API-key presence (VOYAGE_API_KEY / COHERE_API_KEY) created a silent re-routing footgun — setting those keys for embedding purposes would also activate cloud reranking. The only supported reranker is now the local sidecar (Qwen3-Reranker-0.6B).",
     "created_at": "2026-05-23T21:00:00.000000Z",
-    "last_save_at": "2026-06-08T08:50:26.752Z",
+    "last_save_at": "2026-06-23T03:49:54.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:50deb4e08af4118db944b85db2db46f6e4b93fa1d81dd8f827835311306c7128",
+    "source_doc_hashes": {
+      "spec.md": "5393064aaed9f8626e35b7d80abe0bfa419233475b9335df664915343965e151",
+      "plan.md": "42f3bb005b39fa8b6f3d3f3829da132764684cb325e644cdab617303eab84c73",
+      "tasks.md": "22c01075b1033f55f5ccd08ac8bc15af6925bfe087406069655696fea7065b01",
+      "implementation-summary.md": "8c626352dfce112789d6c271290989abada82dfab8a27d86aabcfa45f664e78f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

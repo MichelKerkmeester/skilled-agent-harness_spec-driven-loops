@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet preserves the six remediation targets that closed the `007-code-audit-per-feature-catalog` phase chain: three previously deprecated capabilities that needed release-level verification and three obsolete evaluation/shadow artifacts targeted for retirement. During the 2026-03-25 release-alignment pass, the packet was normalized to reflect its actual role as a release-control tracker, while execution status remains coordinated with the parent release packet at ../../001-hybrid-rag-fusion-epic/012-pre-release-remediation/spec.md.",
+    "causal_summary": "The final audit phase identified a small set of deprecated-feature decisions that sat between documentation cleanup and runtime release readiness",
     "created_at": "2026-04-12T09:02:50.257Z",
-    "last_save_at": "2026-06-22T18:55:04.304Z",
+    "last_save_at": "2026-06-23T03:49:59.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:47bab46fcad35e9b139d3252c3b5efb4169fd73acb8c0fc1bb376973f81c4ee0",
+    "source_doc_hashes": {
+      "spec.md": "3bbad5c327357a01ae7e8d2f38a0c99844b4b63ed573a1dd4aacc09c646ababd",
+      "plan.md": "63703fc42b73877cf1bd03c4ef79f246897421f1d5a5cb32e2603784218db1da",
+      "tasks.md": "04c7564205516ea633f4e00cc9aba9c92ee23984f1d25798e6cc32f27b2023ad",
+      "checklist.md": "edc57dada630c786d8e45dc76e61909899dee604562ab952ee751e981534b6c6",
+      "implementation-summary.md": "8ebc044fa2b4e21a2bb57e543f22b5c728d8d3e0d2ac2c5fcd2d64a9f12dd007"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

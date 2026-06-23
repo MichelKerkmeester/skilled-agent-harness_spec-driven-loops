@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 PC-004 regression has genuine P0 failures unrelated to label drift (0/24 P0 cases use the drifted labels). Two scorer/routing defects: (1) the low-information ambiguous prompt \"api chain mcp\" routes to `sk-code` instead of abstaining or selecting `mcp-code-mode` (`lib/scorer/ambiguity.ts:44-57`, `lib/scorer/fusion.ts:389-404`) — fails P0-UNC-001/P0-UNC-002; (2) `/speckit:plan` appears in the command-bridge projection but lacks a primary-intent bonus, so `sk-doc` wins (`lib/scorer/projection.ts:47-55`, `lib/scorer/fusion.ts:265-268`) — fails P0-CMD-002.",
+    "causal_summary": "The 028 PC-004 regression has genuine P0 failures unrelated to label drift (0/24 P0 cases use the drifted labels)",
     "created_at": "2026-05-26T21:20:41.535Z",
-    "last_save_at": "2026-05-30T10:12:01.996Z",
+    "last_save_at": "2026-06-23T03:49:53.683Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bfe65f8d65922e16cc6f98260bb527d2adeab3e1ce1301a9f16328b284d75a3b",
+    "source_doc_hashes": {
+      "spec.md": "871b214fd4d2d9907f7f97c9441ba87dfdb9ec3d4f154d65ef23384771c4fb77",
+      "plan.md": "b986b2156d239c91f5e08a698c6b064ef905340164955b45f340aea5b905cb8b",
+      "tasks.md": "9d6045305d02e81d97313280d9c384e502f93e5c219d1d52e6f1827846f950cd",
+      "implementation-summary.md": "b822f3dde4b83a21714de3aa6956db603f20f1ad70d10497273ed65e10e749f8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect the post-implementation state of specs 014–016 and 122–129.",
+    "causal_summary": "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect the post-implementation state of specs 014–016 and 122–129",
     "created_at": "2026-05-26T19:43:14.235Z",
-    "last_save_at": "2026-06-15T09:09:34.961Z",
+    "last_save_at": "2026-06-23T03:49:59.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c126b82d73793fb699815d1882ec1c3cfc5304017ca66018f88484c1ba1b823",
+    "source_doc_hashes": {
+      "spec.md": "49d9420c7e974d4cc395cfc858f6af1829033aac350ed7a0e4e850005b2b5a0b",
+      "plan.md": "7ca38de091251f5d19ad70f390865218d186fe250131b0fec7b3278df2ba1c50",
+      "tasks.md": "4cf4c28a8df63fb54309556da69dfc34abe76ddbdacd13c32080152add086efc",
+      "checklist.md": "befa4b1ade72dc845f81728f12d063bacb091ccef1d2d4d07697ee767ce70892",
+      "decision-record.md": "cca24bcd25e3ec729ac01afdb9e13acc3ee29eafb42db2334fac29a278456841",
+      "implementation-summary.md": "368f10ffdbf89e2a77a147685b1593f9a3eb28f00d8e09f2bc92173fc8be49dc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

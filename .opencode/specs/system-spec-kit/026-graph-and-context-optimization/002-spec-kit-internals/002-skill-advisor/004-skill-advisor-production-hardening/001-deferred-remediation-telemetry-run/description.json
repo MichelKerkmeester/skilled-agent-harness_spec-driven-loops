@@ -1,16 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
-  "description": "Feature Specification: Deferred Remediation + Telemetry Measurement Run",
+  "description": "Six phases shipped with a consolidated list of deferred items:",
   "keywords": [
-    "feature",
-    "specification",
+    "six",
+    "phases",
+    "shipped",
+    "consolidated",
+    "list",
     "deferred",
-    "remediation",
-    "telemetry",
-    "measurement",
-    "run"
+    "items"
   ],
-  "lastUpdated": "2026-05-26T17:26:58.403Z",
+  "lastUpdated": "2026-06-23T03:49:53.523Z",
   "specId": "001",
   "folderSlug": "deferred-remediation-telemetry-run",
   "parentChain": [

@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/011-scoring-and-calibration",
-  "description": "Feature Specification: scoring-and-calibration manual testing",
+  "description": "Manual test scenarios for scoring-and-calibration need structured per-phase documentation instead of a single playbook table buried inside the hybrid",
   "keywords": [
-    "feature",
-    "specification",
-    "scoring-and-calibration",
     "manual",
-    "testing"
+    "test",
+    "scenarios",
+    "scoring-and-calibration",
+    "need",
+    "structured",
+    "per-phase",
+    "documentation",
+    "instead",
+    "single",
+    "playbook",
+    "table",
+    "buried",
+    "inside",
+    "hybrid"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.495Z",
+  "lastUpdated": "2026-06-23T03:50:00.280Z",
   "specId": "011",
   "folderSlug": "scoring-and-calibration",
   "parentChain": [

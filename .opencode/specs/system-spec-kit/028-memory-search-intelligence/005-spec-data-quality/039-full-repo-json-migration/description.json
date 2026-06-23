@@ -1,15 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration",
-  "description": "Feature Specification: Full-Repo Generated-JSON Migration",
+  "description": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind def",
   "keywords": [
-    "feature",
-    "specification",
-    "full-repo",
-    "generated-json",
-    "migration"
+    "generator",
+    "phases",
+    "harden",
+    "spec-kit",
+    "writes",
+    "description",
+    "json",
+    "graph-metadata",
+    "ship",
+    "new",
+    "behavior",
+    "behind",
+    "def"
   ],
-  "lastUpdated": "2026-06-22T18:48:32.570Z",
+  "lastUpdated": "2026-06-23T03:49:58.799Z",
   "specId": "039",
   "folderSlug": "full-repo-json-migration",
   "parentChain": [

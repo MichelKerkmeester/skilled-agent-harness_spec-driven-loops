@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the foundation for incremental indexing. The current system can skip at the file level, but it does not model derived state as a graph of inputs and outputs. Two ideas drive this phase: memo records keyed by stable fingerprints, and dependency-aware invalidation rather than repeating the entire processing path.",
+    "causal_summary": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
     "created_at": "2026-05-13T09:00:45Z",
-    "last_save_at": "2026-06-10T19:22:14.934Z",
+    "last_save_at": "2026-06-23T03:49:57.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8173b6b1aa0b562e2793236ed89a8b2614e43856b84fb7745a31c40b2d85a0df",
+    "source_doc_hashes": {
+      "spec.md": "9b54881ecac57c41a7afde62f4c4010e0a806cfcb9637b7e2ee3f6fd95df9a33",
+      "plan.md": "2855fc2e237c62e15c638f180e61e88acd02c8ad865bf2fc6cd139a7363a24d8",
+      "tasks.md": "de90cc5dd3de8143bd1cd521cdb4263a01d16e0efc8714928fc505d72cfd2124",
+      "checklist.md": "dedb36f35337e85374c31863f694a3ca9b901b4a2f3f549f917136f65d1a45e7",
+      "implementation-summary.md": "5085154c023dc26e7c01a9d70faa942299c89f7aa205e3a4222c5eaac15211ca"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

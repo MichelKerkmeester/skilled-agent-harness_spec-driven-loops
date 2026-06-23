@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary. Three concrete gaps were confirmed by the 028/001 deep-research loop: (1) forget eligibility is incomplete, the feedback-retention reducer only spares by tier/pin (`feedback-retention-reducer.ts:153-155`), so a non-`important` row with strong positive feedback is annotated yet still deletes, and there is no live-edge protection against forgetting a still-referenced memory, (2) there is NO session/spec-folder dominance cap anywhere in the search pipeline (`stage4-filter.ts:305-309` truncates with a bare `slice(0, limit)`), so one chatty session or dominant spec-folder can occupy the entire top-k, (3) the constitutional always-surface prefix counts toward the recall limit but is never itself capped (`vector-index-queries.ts:435`), so constitutional rows can silently fill the slice and starve regular results. The erasure surface (hard-purge cascade, per-namespace authorization, signed writes) is partially modelled in aionforge but unbuilt here.",
+    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-06-22T18:55:03.646Z",
+    "last_save_at": "2026-06-23T03:49:58.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07f1154e4f88cb0cdc6fcec32d819e5515b765627f40e908743113790b74bacc",
+    "source_doc_hashes": {
+      "spec.md": "4d70179a3ce3bfaa1caa8ad7678d1b95635aa942473056f9f85f708703786f74",
+      "plan.md": "37d208a1421f56ed4b7318f9eb7411d70fa847dcbaf74422a4dd79da5f818d40",
+      "tasks.md": "84840e83156376c595d4d2a913f090004c84338c497e6594c03fcbb988be6d21",
+      "checklist.md": "9fce7bb3b03b9476f72bc57e5cf4102ea53545e0216af3cf99cccf5cca068875",
+      "implementation-summary.md": "da4ee80d27acac35db8fa7d2f46f4f3de30721d7fde1d86a74b2c43f38d7e1f4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -178,9 +178,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rename the semantic memory MCP server from `semantic_memory` to `spec_kit_memory` across all configuration files, documentation, and code references.",
+    "causal_summary": "Rename the semantic memory MCP server from semantic_memory to spec_kit_memory across all configuration files, documentation, and code references.",
     "created_at": "2026-04-12T09:02:53.525Z",
-    "last_save_at": "2026-05-30T10:12:02.986Z",
+    "last_save_at": "2026-06-23T03:49:59.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:c314792ba55eb0dbfac573864fe6d08d8cddfe967e50b10e5b24cb3eab6ab5df",
+    "source_doc_hashes": {
+      "spec.md": "9bf3c2629519b726eb2c3fe9f1812fa5aac0163cd8ca88a3b8accffe7c3c9013",
+      "plan.md": "d8c619c7d82c309d395560f38655eacc1a8b46f56af628d3c3f6c34b825fd72d",
+      "tasks.md": "c2d8d64bcabbac48b3d5b4d7c40b4442a19f2eacb624356e109a3509ab74cde9",
+      "checklist.md": "ecf23a497556c08b884f154028e8ba9d7fcf1006a5b82e91e01be3c238aa64aa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

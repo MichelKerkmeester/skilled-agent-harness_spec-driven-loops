@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the 014 setup-A line migrated both MCP servers off cloud Voyage onto local EmbeddingGemma, two distinct runtimes ended up in production: a quantized GGUF/ONNX path for the Memory MCP family, and a full-precision sentence-transformers path for CocoIndex. Operators routinely conflate the two when reasoning about what model is doing what, because both surface as \"EmbeddingGemma 768d\" in documentation. Existing docs describe the migration but do not enumerate, per subsystem, which runtime each one actually invokes.",
+    "causal_summary": "After the 014 setup-A line migrated both MCP servers off cloud Voyage onto local EmbeddingGemma, two distinct runtimes ended up in production: a quantized GGUF/ONNX path for the Memory MCP family, and a full-precision sentence-transformers path for CocoIndex",
     "created_at": "2026-05-13T17:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.110Z",
+    "last_save_at": "2026-06-23T03:49:54.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T17:30:00Z",
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1d3903ce96ffa334bad96955b61b20dcb4a68310a622fa1a1fd68d1f5dd1915d",
+    "source_doc_hashes": {
+      "spec.md": "ebca268bb9582b32de683d75ca2b1ed530dce6b6f0b6ab94d6c9bff54065f31d",
+      "plan.md": "32a71955bd30f17f29bf0eefa622074080b1ef55dc688e2f219f4d8f94515299",
+      "tasks.md": "855e5a524b47bb29751945be6cc29bdb8ab54e30e0ea36c97df7393cb9d60eb8",
+      "implementation-summary.md": "57bd53d6c260b564c6bd421aef89bb5ca68afcb119a6359fb3f47c1700d6ddbc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

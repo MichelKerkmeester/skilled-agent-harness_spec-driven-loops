@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Child 001 wires the cosine lane shadow-only. With no weight, the lane produces match payloads but never affects which skill the advisor recommends. To actually optimize, the lane must promote to `live: true` with a non-zero weight, and the other four weights must rebalance so the total stays at 1.0. Naive choices risk flipping today's correct routings.",
+    "causal_summary": "Child 001 wires the cosine lane shadow-only",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-06-22T18:55:02.089Z",
+    "last_save_at": "2026-06-23T03:49:53.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0d2be1cd67afee2838e14d274da80de895b8a18d24b14a116761d8f02a3a18cc",
+    "source_doc_hashes": {
+      "spec.md": "2b38c1afe4511b793181c445975622a3bebb909c8ded197f135a601f21dc92ba",
+      "plan.md": "c8f781557e91b51446e5c3ee02e0f458305d5262550298e0f6fa6d3576b6ec0e",
+      "tasks.md": "0806ed4824ed2f77cb0ec38a6e10a732bd81db7e9e45e8692c327214d0d0230f",
+      "checklist.md": "ab5c571694d951fc438927e4a2ac18af594958bfd0547be55bbbb64d1eeb76f7",
+      "decision-record.md": "f0a5041d2559a783323165b365e0b67df4667c759a6c3201cffac0f06a0ce731",
+      "implementation-summary.md": "8c1fb03a392956463359fe29a3563b082dab399c89a31c7dbe9dd0c8fcbf82d2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

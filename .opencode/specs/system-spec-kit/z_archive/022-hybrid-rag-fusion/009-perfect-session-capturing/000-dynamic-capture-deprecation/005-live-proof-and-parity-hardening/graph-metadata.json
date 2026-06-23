@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The automated runtime contract is stronger now, but the live-proof boundary is still lagging behind it. The repo still needs refreshed retained artifacts across supported CLIs and save modes before it can honestly claim flawless current parity everywhere.",
+    "causal_summary": "The automated runtime contract is stronger now, but the live-proof boundary is still lagging behind it",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-06-05T12:47:34.775Z",
+    "last_save_at": "2026-06-23T03:49:59.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9c7643aa360e72bf03c8e261908b8dbbe77bc85354155e8c858b9838d7a00c83",
+    "source_doc_hashes": {
+      "spec.md": "ea85e18abbc1b9e54917f98df33b0d00a111b0daf4be69939e5d8c0935a380b7",
+      "plan.md": "ff25abccb16d5a7e96e09477e332ed2c83c806c4097bddf22488c645735bc022",
+      "tasks.md": "25230d0950abbbfb1b402f9817fdab0c0bd2716e8b369885c7753a97e4825546",
+      "implementation-summary.md": "332054957c4f11418fade924def08847f027a290933fffa89233ff3b6baedb79"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

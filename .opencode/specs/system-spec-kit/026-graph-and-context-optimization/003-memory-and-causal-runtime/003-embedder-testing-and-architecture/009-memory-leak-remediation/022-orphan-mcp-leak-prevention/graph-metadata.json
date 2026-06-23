@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Codex.app and Claude Code can leave MCP helper stacks alive after respawns or session stops, producing linear RAM growth on this workstation. This packet adds a dry-run-first process sweeper, chains a repo-local Claude Stop cleanup command into the existing hook, and teaches the three MCP servers to exit after configurable idle time.",
+    "causal_summary": "Manual cleanup on 2026-05-24 found repeated orphan MCP stacks under Codex.app and stale Claude Code launcher children",
     "created_at": "2026-05-24T06:58:36Z",
-    "last_save_at": "2026-06-22T18:55:02.574Z",
+    "last_save_at": "2026-06-23T03:49:55.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:30e9c5681b9154265e84eb5fcfece0268fd761a52234abc9ed51213b571eb2e1",
+    "source_doc_hashes": {
+      "spec.md": "c2dbe234ef97a8b0401a3960b39f6d8960ff2ba196d210de78eba739b719837b",
+      "plan.md": "634d10de559622eaf76f4cabf55b4f5ebaa51751a028374c8f7d8abb515a1e39",
+      "tasks.md": "7b976ea1240b73610c72e043de589a8328065097234c077cd93e4087e23a22a8",
+      "checklist.md": "bc8d4e1b5ed2827db89c58bb2f793b057556329e87f26ae6857d01b028eedd9d",
+      "decision-record.md": "69a09fea728dbaed4b3740829aee91f02c76c1ac3459e65fe2d6b0a24011f558",
+      "implementation-summary.md": "6ef2bbb8eeedde1fb1131503df72497906a7d512f9cf85e32693c7ca2ab28422",
+      "handover.md": "bff3ec64bbb56ae2d6e1440418a32efe0937302c8961a2a20864ef8a3be34ce0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

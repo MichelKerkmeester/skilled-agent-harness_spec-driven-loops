@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Inventory predicate type, stale fixed ground truth, aspirational thresholds, and orphan-row dependencies for every pre-expansion scenario.",
     "created_at": "2026-05-17T12:59:58Z",
-    "last_save_at": "2026-05-30T10:12:02.334Z",
+    "last_save_at": "2026-06-23T03:49:54.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,6 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1b358378fe0a541a99bc194e835c98f375c6dd5c1363d1a4c25b94c0472b86de",
+    "source_doc_hashes": {
+      "spec.md": "24c02f8d7118054ea4b2faef9c25ce8f8bc90f5a98632384bfe90978c475da37",
+      "plan.md": "ea70d699f54124a9d288c783198e46559911daff5d6f063e6c54fc7de9c9e0fe",
+      "tasks.md": "b8b1431a2948d7923ac87758a0eddcdd360c8f6ed43b6d341b9a5ad9bc6d92d3",
+      "implementation-summary.md": "499bc525459ebe8525918d0bd08179afa65c221b75b424de9765f17a039862b8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,27 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
-  "description": "Feature Specification: BM25 Warmup Churn Reduction",
+  "description": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105",
   "keywords": [
-    "feature",
-    "specification",
+    "realistic",
+    "corpus",
+    "packed",
     "bm25",
     "warmup",
-    "churn",
-    "reduction"
+    "spikes",
+    "process",
+    "rss",
+    "687mb",
+    "150mb",
+    "budget",
+    "even",
+    "though",
+    "retained",
+    "heap",
+    "only",
+    "105"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.953Z",
+  "lastUpdated": "2026-06-23T03:49:57.297Z",
   "specId": "010",
   "folderSlug": "bm25-warmup-churn-reduction",
   "parentChain": [

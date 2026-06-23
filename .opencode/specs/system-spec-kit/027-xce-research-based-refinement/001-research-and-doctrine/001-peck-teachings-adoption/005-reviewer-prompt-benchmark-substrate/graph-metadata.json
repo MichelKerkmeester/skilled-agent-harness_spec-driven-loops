@@ -28,8 +28,8 @@
       "fixture",
       "scorer",
       "lane",
-      "packet",
-      "adopts"
+      "spec-kit",
+      "ships"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 010 adopts **T10**, the highest-novelty mechanism (newInfoRatio 0.85) from the peck-source deep-mining pass (`research/006-peck-source-deep-mining/research.md` §2): peck's untouched `revim-*` harness runs a reviewer prompt over a real repo fixture that carries an **expected verdict** (`CHECKOUT/INPUT/EXPECTED` -> `Pass|Fail|Block`) and asserts the reviewer still catches that known bug class. spec-kit's deep-improvement Lane B (code-task oracles) and Lane C (routing gold) cannot currently answer \"does this reviewer prompt still catch this known bug class\" — cross-model verification (MiniMax M3, iteration-016) confirmed the gap is real and supplied a low-cost implementation sketch.",
+    "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is routing/us",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-06-16T14:27:21.523Z",
+    "last_save_at": "2026-06-23T03:49:57.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9f337d3ac715a8b28150db33c3533cfaa9e524c492c6da4efd3e28ef612a63bf",
+    "source_doc_hashes": {
+      "spec.md": "3be7bd36a82f2ecf079479e13f634ba89abd20206408586a1b190b5330435b83",
+      "plan.md": "c14ded9f71ced219b6044de8a725c2ce77bb4425a1059fcee3ead7915e51815a",
+      "tasks.md": "e254cb4d8a1be5a8c73b3fd7f85113988a0c2c9baeee8955c5116edacec41d6a",
+      "checklist.md": "b663f3614174c9da9ab7c251f7ec77564258a569579615b325a4f9732a8be2ac",
+      "implementation-summary.md": "5d425dc6844517b8a374345ef5992a875b3be589f57cff1a9bb4fe16cae621ba"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

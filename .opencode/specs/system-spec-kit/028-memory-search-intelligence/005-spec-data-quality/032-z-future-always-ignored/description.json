@@ -1,14 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored",
-  "description": "Spec: z_future Always Ignored In Backfill",
+  "description": "The graph-metadata backfill generator refreshed `zfuture/` by default",
   "keywords": [
-    "spec",
-    "always",
-    "ignored",
-    "backfill"
+    "graph-metadata",
+    "backfill",
+    "generator",
+    "refreshed",
+    "zfuture",
+    "default"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.847Z",
+  "lastUpdated": "2026-06-23T03:49:58.757Z",
   "specId": "032",
   "folderSlug": "z-future-always-ignored",
   "parentChain": [

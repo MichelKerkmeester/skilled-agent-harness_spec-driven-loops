@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`. The final phase needed to prove the new package is buildable and testable from its new location, confirm the copied DB is valid, remove the old fallback DB only after validation, clear active stale source-path references, and mark parent phase 014 complete.",
+    "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`",
     "created_at": "2026-05-14T08:43:25Z",
-    "last_save_at": "2026-05-30T10:12:02.778Z",
+    "last_save_at": "2026-06-23T03:49:56.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:43:25Z",
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fa0e04977b08665ad27dadcab51e6623e11b1cd00f1f87cfa254fa7acb8179c1",
+    "source_doc_hashes": {
+      "spec.md": "666aa54e57b60337d89edc20c9c30b6d046bea44cd5baf4e6947811e56f16671",
+      "plan.md": "71572089d58cbd207382ee5958da14da6754bf03a03652ebaa36b564a7bdceab",
+      "tasks.md": "9d52ff54135ccddb1e68ee3cba5b26c50a33b3aa1e791c61e323b243328a079f",
+      "checklist.md": "15e06e43b5488180670a8dbe3908a547824c6dba5361f9f43f72c39b5064b7e3",
+      "implementation-summary.md": "bada6d7da45ccb8e72c061379badede2d106d70d3d5ffd70d8e0b6937fd36b85"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

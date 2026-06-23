@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build",
-  "description": "Feature Specification: Preconditions and Build (Playbook Run Phase 001)",
+  "description": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces be",
   "keywords": [
-    "feature",
-    "specification",
-    "preconditions",
-    "build",
     "playbook",
-    "run",
-    "phase",
-    "001"
+    "global",
+    "preconditions",
+    "require",
+    "current",
+    "mcp",
+    "server",
+    "build",
+    "unset",
+    "speckitskilladvisorhookdisabled",
+    "flag",
+    "evidence",
+    "workspaces"
   ],
-  "lastUpdated": "2026-05-27T11:54:00.542Z",
+  "lastUpdated": "2026-06-23T03:49:53.650Z",
   "specId": "001",
   "folderSlug": "preconditions-and-build",
   "parentChain": [

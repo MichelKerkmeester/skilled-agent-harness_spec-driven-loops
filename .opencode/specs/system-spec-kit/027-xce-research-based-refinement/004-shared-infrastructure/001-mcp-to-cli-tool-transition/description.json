@@ -22,18 +22,23 @@
     "004-release-and-program-cleanup"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
-  "description": "Feature Specification: MCP to CLI Tool Transition (Phase Parent)",
+  "description": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session tr",
   "keywords": [
-    "feature",
-    "specification",
+    "mk-spec-memory",
     "mcp",
-    "cli",
-    "tool",
-    "transition",
-    "phase",
-    "parent"
+    "server",
+    "tools",
+    "spec-kit",
+    "continuity",
+    "backbone",
+    "transport",
+    "carries",
+    "real",
+    "operational",
+    "costs",
+    "mid-session"
   ],
-  "lastUpdated": "2026-06-10T11:00:20.813Z",
+  "lastUpdated": "2026-06-23T03:49:57.532Z",
   "specId": "001",
   "folderSlug": "mcp-to-cli-tool-transition",
   "parentChain": [

@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
-  "description": "Feature Specification: Cross-Surface trigger_phrases Coherence Assertion",
+  "description": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-surface",
-    "coherence",
-    "assertion"
+    "spec",
+    "folder",
+    "carries",
+    "same",
+    "triggerphrases",
+    "concept",
+    "three",
+    "separate",
+    "surfaces",
+    "never",
+    "asserted",
+    "agree"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.456Z",
+  "lastUpdated": "2026-06-23T03:49:58.569Z",
   "specId": "005",
   "folderSlug": "a5-trigger-coherence-assertion",
   "parentChain": [

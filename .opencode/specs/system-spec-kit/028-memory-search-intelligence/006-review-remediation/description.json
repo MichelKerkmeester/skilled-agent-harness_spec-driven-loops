@@ -1,17 +1,26 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
-  "description": "Feature Specification: 028 Review Remediation Phase Parent",
+  "description": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict:",
   "keywords": [
-    "feature",
-    "specification",
     "028",
+    "deep",
     "review",
-    "remediation",
-    "phase",
-    "parent"
+    "tri-model",
+    "40-seat",
+    "fan-out",
+    "plus",
+    "10-iteration",
+    "lens",
+    "deep-dive",
+    "claude",
+    "adversarially",
+    "verified",
+    "closed",
+    "converged",
+    "verdict"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.884Z",
+  "lastUpdated": "2026-06-23T03:49:58.810Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [

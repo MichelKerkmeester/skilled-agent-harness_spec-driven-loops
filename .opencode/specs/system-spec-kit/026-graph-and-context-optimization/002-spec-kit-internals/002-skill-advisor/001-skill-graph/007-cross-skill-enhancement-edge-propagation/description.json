@@ -1,15 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
-  "description": "Feature Specification: skill_graph_propagate_enhances — cross-skill auto-propagation MVP",
+  "description": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-skill",
-    "auto-propagation",
-    "mvp"
+    "new",
+    "skill",
+    "ships",
+    "system-skill-advisor",
+    "daemon",
+    "indexer",
+    "correctly",
+    "auto-discover",
+    "own",
+    "outbound",
+    "edges"
   ],
-  "lastUpdated": "2026-05-26T17:27:24.409Z",
+  "lastUpdated": "2026-06-23T03:49:53.415Z",
   "specId": "007",
   "folderSlug": "cross-skill-enhancement-edge-propagation",
   "parentChain": [

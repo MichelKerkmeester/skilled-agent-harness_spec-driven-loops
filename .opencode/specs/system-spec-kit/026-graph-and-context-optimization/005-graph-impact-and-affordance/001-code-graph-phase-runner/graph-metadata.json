@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Adopt typed phase-DAG runner around code-graph scan; build read-only detect_changes handler that maps git diff hunks to symbols and refuses to answer when graph is stale.",
+    "causal_summary": "`codegraph/lib/structural-indexer.ts:1369` `indexFiles()` runs scan stages inlined with no phase abstraction",
     "created_at": "2026-04-25T10:48:07.133Z",
-    "last_save_at": "2026-06-22T18:55:02.909Z",
+    "last_save_at": "2026-06-23T03:49:56.175Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c7c04186364a89318a2826f614cfc4d0468a225b97171c2f224d1dac980e997",
+    "source_doc_hashes": {
+      "spec.md": "d4b4f8f20941960938b76a503546efe1310f505feadc4125a0785e387cb025fe",
+      "plan.md": "b6b996fcf4da48ed42c472d2d9c9a4cd3580ecaa110685c767775b5ced691ab9",
+      "tasks.md": "a40ac9f91d9bce9d072d457c96e5579a47f046c0ba7b449edd28d89b0a3a3ec7",
+      "checklist.md": "af67cb6d9471cd1c770a3769fc726ec42342640d30334a594312bcf2134e797c",
+      "implementation-summary.md": "51db664f5ac656e48e689615ddeb1a023e082f91e63b929ba24ff9f6d89c332d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

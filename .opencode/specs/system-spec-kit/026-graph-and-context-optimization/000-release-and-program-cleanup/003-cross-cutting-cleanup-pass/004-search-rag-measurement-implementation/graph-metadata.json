@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase C identified five promising search/RAG optimization workstreams but deferred them until Phase D measurement infrastructure existed. Phase E must measure each candidate before deciding whether to ship, keep opt-in, or skip.",
+    "causal_summary": "Phase C identified five promising search/RAG optimization workstreams but deferred them until Phase D measurement infrastructure existed",
     "created_at": "2026-04-29T03:35:49Z",
-    "last_save_at": "2026-05-30T10:12:01.565Z",
+    "last_save_at": "2026-06-23T03:49:52.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6f43f8298eb5fd8e0b95b38ec98cce1fbf28080ce3318bb59816a51808d00f61",
+    "source_doc_hashes": {
+      "spec.md": "11b21b343f7b40d09d8215d07e8d74f302754015b4ddfeb8edff9db03a6b4287",
+      "plan.md": "dfd0e655ca72aec32a68523e80b2018914e11c9b488b20660515b125ddf8b2ea",
+      "tasks.md": "c381d4583bd3236d1eb61746a821ad7d14b8171e062a5fe6d4ebee5159a7d675",
+      "checklist.md": "f57f44ef77d531578b324ae08424724516119eebb5c532f9d8a86ebace15dfe8",
+      "implementation-summary.md": "ca3645c615ab32cfbd280f2c2ef3d82a105ddcacca9d93cba32eb6326eb251b3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

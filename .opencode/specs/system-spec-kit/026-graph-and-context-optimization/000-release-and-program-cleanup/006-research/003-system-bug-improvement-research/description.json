@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
-  "description": "Research Charter: System Deep Research — Bugs and Improvements",
+  "description": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-co",
   "keywords": [
-    "research",
-    "charter",
-    "system",
-    "deep",
-    "bugs",
-    "improvements"
+    "packets",
+    "042-045",
+    "closed",
+    "documented",
+    "stress-coverage",
+    "backlog",
+    "known",
+    "drift",
+    "findings",
+    "next",
+    "layer",
+    "risk",
+    "unknowns",
+    "latent",
+    "production-co"
   ],
-  "lastUpdated": "2026-05-26T17:26:57.794Z",
+  "lastUpdated": "2026-06-23T03:49:52.811Z",
   "specId": "003",
   "folderSlug": "system-bug-improvement-research",
   "parentChain": [

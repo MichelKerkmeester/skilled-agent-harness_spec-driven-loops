@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory indexer shipped two independent but related regressions during the 026 optimization cycle. Both regressions modify the same runtime surface (`mcp_server/handlers/memory-save.ts`, `mcp_server/handlers/memory-index.ts`, `mcp_server/lib/search/vector-index-mutations.ts`, `mcp_server/lib/storage/post-insert-metadata.ts`, `mcp_server/lib/storage/checkpoints.ts`) and share the same evaluation surface, so they ship as one coordinated invariant packet under 026.",
+    "causal_summary": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
     "created_at": "2026-04-24T17:21:38.685Z",
-    "last_save_at": "2026-06-22T18:55:02.205Z",
+    "last_save_at": "2026-06-23T03:49:53.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c18c58268a8ce57e27a46120876565bbd476b8949b3c4433f38b501d3b6c00d7",
+    "source_doc_hashes": {
+      "spec.md": "d382f56c6c7892fe1c8fbe3c8e9c4837dde57d3a02934101e2ec348787f1b781",
+      "plan.md": "131c4f6958a5a755bd983d83f03ea6883ecbb5eab68406f4bfd9ff1809b5411c",
+      "tasks.md": "c0047252ee6edccfa68cf4a5b70675cf80d732d9065af6cf8daa36f3a7c4c186",
+      "checklist.md": "c1bce63b1d18a58162ffac4078cd5f9661f56ddd330d2ccbc6bc815b7f2ef05a",
+      "decision-record.md": "c6fabab89fbceffb573e62c8593e201ce51b9dbc45715d39e84df23e6b0d5262",
+      "implementation-summary.md": "dd978ca385846722ec0e5e477adc97eeb062768453ec0838a35ee8b221790d50"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

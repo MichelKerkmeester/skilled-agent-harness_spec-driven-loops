@@ -1,14 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
-  "description": "Feature Specification: Code Audit — Discovery",
+  "description": "The feature catalog for Discovery has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
-    "discovery"
+    "catalog",
+    "discovery",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.206Z",
+  "lastUpdated": "2026-06-23T03:49:59.797Z",
   "specId": "003",
   "folderSlug": "discovery",
   "parentChain": [

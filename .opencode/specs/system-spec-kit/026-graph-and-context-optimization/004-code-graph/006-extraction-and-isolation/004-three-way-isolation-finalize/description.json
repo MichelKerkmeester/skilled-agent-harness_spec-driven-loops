@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize",
-  "description": "Feature Specification: Three-way Isolation Finalize",
+  "description": "Close the last 1 production import in system-code-graph + the 6 in system-skill-advisor by duplicating symbols into each skill's lib/shared/, then dro",
   "keywords": [
-    "feature",
-    "specification",
-    "three-way",
-    "isolation",
-    "finalize"
+    "close",
+    "last",
+    "production",
+    "import",
+    "system-code-graph",
+    "system-skill-advisor",
+    "duplicating",
+    "symbols",
+    "skill",
+    "lib",
+    "shared",
+    "dro"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.811Z",
+  "lastUpdated": "2026-06-23T03:49:55.951Z",
   "specId": "004",
   "folderSlug": "three-way-isolation-finalize",
   "parentChain": [

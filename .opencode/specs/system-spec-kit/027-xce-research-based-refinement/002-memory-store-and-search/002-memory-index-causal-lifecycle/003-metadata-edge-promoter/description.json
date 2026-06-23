@@ -1,16 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
-  "description": "Feature Specification: 005 — Metadata Edge Promoter",
+  "description": "Causal edges are currently created mostly through manual `memorycausallink` flows",
   "keywords": [
-    "feature",
-    "specification",
-    "005",
-    "metadata",
-    "edge",
-    "promoter"
+    "causal",
+    "edges",
+    "currently",
+    "created",
+    "mostly",
+    "manual",
+    "memorycausallink",
+    "flows"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.953Z",
+  "lastUpdated": "2026-06-23T03:49:57.163Z",
   "specId": "003",
   "folderSlug": "metadata-edge-promoter",
   "parentChain": [

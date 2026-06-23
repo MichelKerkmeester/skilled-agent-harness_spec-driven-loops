@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.907Z",
+    "last_save_at": "2026-06-23T03:49:57.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:17bc8c1c562b944bbdebe60d72aa34fe772475a87393f85138d8221eaec93010",
+    "source_doc_hashes": {
+      "spec.md": "cf2102fdae87bd9468d4302a0d413a16392c558d515f7ad02ea8dc1c9e0f38d4",
+      "plan.md": "0ab0178f155ad8ed3f8f701d99920d862e6ee4448b0d777430a571e948d4bf37",
+      "tasks.md": "96c72d1ac505c9c76ad79b682d0655619ac989fbc76b1d3ade3136f67ce5eee4",
+      "implementation-summary.md": "17107daef71a795bacffa6983bb2570dd728a4d7e24e19019762346224f8e60d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

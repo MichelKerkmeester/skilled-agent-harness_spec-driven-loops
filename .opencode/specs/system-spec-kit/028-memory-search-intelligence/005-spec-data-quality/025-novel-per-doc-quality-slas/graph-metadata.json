@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time. The pure scorer `computeMemoryQualityScore` ships and runs on the live save path (`quality-loop.ts:392`). The governance fields that describe a doc (provenance, source_kind, document-weight, content_type, temporal and freshness governance) are already computed on the memory side at `pe-gating.ts` and `write-provenance.ts`. What is missing is a named threshold that says this score is below an acceptable level for this surface and that turns that fact into a tracked actionable item. Today a doc whose quality drifts below a reasonable bar is silently acceptable. There is no SLA and no ticket and no queue entry, so quality regression on an authored doc is invisible until someone reads it again.",
+    "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
     "created_at": "2026-06-21T10:22:34.993Z",
-    "last_save_at": "2026-06-22T18:55:03.818Z",
+    "last_save_at": "2026-06-23T03:49:58.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5a9e9018ce82b5457407a9f569bd29a744f7d8ca28a049a4c570356d8c601ea4",
+    "source_doc_hashes": {
+      "spec.md": "3d5ee98d9d7c109fb64efc530018dda41e8dd0a0c9b8fac80b5f40689aac199b",
+      "plan.md": "daaba85df3aff330e3e35581405511d6b345fe45c949e6289c57aab79317de99",
+      "tasks.md": "7d87c1ae3d4153654fc45bcf5bf494e4a3ca400c1e5c321bda6ce2ec0664b84c",
+      "checklist.md": "a2d170af5153289a1306961856c9c9d2435e4b0aeab416b06d79807f265b187f",
+      "implementation-summary.md": "c930ca06ed04d01f7503d5665410472adee763057c7a828c092a4760fe4ff206"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

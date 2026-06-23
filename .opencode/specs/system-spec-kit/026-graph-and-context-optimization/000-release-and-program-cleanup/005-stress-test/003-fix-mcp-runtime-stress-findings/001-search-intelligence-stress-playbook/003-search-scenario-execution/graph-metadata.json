@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Define the run harness contract: pre-flight checks, dispatch loop, output capture, scoring workflow, and findings aggregation. The actual run is a separate execution session against this scaffold (estimated 30-45 min wall-clock for N=1 sweep).",
+    "causal_summary": "001 ships the design (corpus + rubric + matrix); without an execution harness those artifacts produce no signal",
     "created_at": "2026-04-26T15:00:00Z",
-    "last_save_at": "2026-06-22T18:55:01.805Z",
+    "last_save_at": "2026-06-23T03:49:52.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4599a06a4931e50f236c422cbefaab93e03a1146d0f3a117fa83ce38ceac4a08",
+    "source_doc_hashes": {
+      "spec.md": "ef655f23c41f8f5decc6b050d3dd73225b73d11710064012ffe88740e0319004",
+      "plan.md": "c32d76a3e4b58d82728e265362ed128b8d2578a87f6b735a6be3001f10167459",
+      "tasks.md": "9b0c059f3a67a26e0abe20bdb16c52f0f0b9e60738990bac0baff3f10b10b41f",
+      "implementation-summary.md": "762ffa5a8cca17ec9f0d635ce7a6394fe1d50e56cd0e9d54995fd301c25f81ce"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

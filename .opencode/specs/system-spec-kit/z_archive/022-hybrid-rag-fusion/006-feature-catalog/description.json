@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
-  "description": "Feature Catalog Comprehensive Audit & Remediation",
+  "description": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were curr",
   "keywords": [
-    "feature",
-    "catalog",
-    "comprehensive",
+    "packet",
+    "still",
+    "preserves",
+    "important",
+    "historical",
     "audit",
-    "remediation"
+    "evidence",
+    "downstream",
+    "wrapper",
+    "packets",
+    "reading",
+    "milestone",
+    "counts",
+    "curr"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.080Z",
+  "lastUpdated": "2026-06-23T03:49:59.775Z",
   "specId": "006",
   "folderSlug": "feature-catalog",
   "parentChain": [

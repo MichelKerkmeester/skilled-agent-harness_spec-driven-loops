@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The real-world usefulness research found two end-user-facing P0 code graph bugs. A full scan that returns zero nodes can prune and promote over a populated graph, and parser runtime errors can overwrite a file's last successful structural graph with empty error state.",
+    "causal_summary": "The real-world usefulness research found two end-user-facing P0 code graph bugs",
     "created_at": "2026-05-06T06:02:52Z",
-    "last_save_at": "2026-05-30T10:12:02.621Z",
+    "last_save_at": "2026-06-23T03:49:56.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:57a4f98cf86bc22c207c62d6c47773c79e82b059cd8027d2e0a197d74f6308d3",
+    "source_doc_hashes": {
+      "spec.md": "4707804b01eec6d571741eaf61b6c442030f2a6fc91eddaba0251cd626af8280",
+      "plan.md": "08280d664068b1354bc42157c682c7989506bcf11c44de9874a9975c1087f707",
+      "tasks.md": "ccfcc3417d65a8c674032e9f1314004d404fbd13552a3c63d571cfaa580d1368",
+      "checklist.md": "247d23c7d3faee452c49ca04ae53ad95d3d8ab83a9294dfc65032755ed226a31",
+      "decision-record.md": "0563f9838f333fe4c0dbc5e31f96cacc3a3a030b75d4177b6d7baf153cb55dca",
+      "implementation-summary.md": "652e166f2a868ee476aacf76e8bc953c5a1f93d66d70edf11249240086932129"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

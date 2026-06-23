@@ -1,14 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research",
-  "description": "Feature Specification: Phase 1: search-and-output-intelligence-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "search-and-output-intelligence-research"
+    "broken",
+    "missing",
+    "inefficient",
+    "2-3",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.364Z",
+  "lastUpdated": "2026-06-23T03:49:57.384Z",
   "specId": "",
   "folderSlug": "research",
   "parentChain": [

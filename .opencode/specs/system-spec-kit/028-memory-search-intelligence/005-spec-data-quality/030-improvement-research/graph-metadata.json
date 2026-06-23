@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The original 005 research decided which data-quality levers were worth building. The 029 model benchmark then ran 144 read-only `/memory:search` dispatches and exposed a sharper truth: the data-quality envelope the command emits is sound and model-robust, but the score calibration underneath it false-confirms off-corpus terms. The term `kubernetes` earned a good verdict at 0.78 on a semantically unrelated doc, identical across all four models, so the gate cited a spurious match with confidence. No follow-on research has re-examined the 005 priorities or the calibration fix in light of this evidence, and the benchmark only measured the retrieval job, leaving the adherence and logic-reading jobs unexamined.",
+    "causal_summary": "The original 005 research decided which data-quality levers were worth building",
     "created_at": "2026-06-22T15:45:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.831Z",
+    "last_save_at": "2026-06-23T03:49:58.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:098949b51fd9563bfe399a41660fcea78ff6445e9bb22cc0fa51fd12e0abbc88",
+    "source_doc_hashes": {
+      "spec.md": "a554a5581076db4c3c4f74d470523e011b73166e260e94eb7683968e5e7e2d21",
+      "plan.md": "b5cc73e9e85bde8d755e7f1ddf324c6a46dbd065221142513584f654c39d7a21",
+      "tasks.md": "a7bb33962537dfdbb94d80df68dc89d82a0bedb0388503260b24f2ee4fe6d43b",
+      "checklist.md": "e30dcd69d5c4d38f67e139144c504fa61423da01ca04fba8561b2561b0d71fb8",
+      "implementation-summary.md": "7c04998315ca330e03ed6b4cce2178d5c2cfdc7793a8dbb2c5056c0e51e0d0eb",
+      "research/research.md": "2fee5d4eba190047433adb08947e1cbd1a7af53832f92953035d9588a7aaa968"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

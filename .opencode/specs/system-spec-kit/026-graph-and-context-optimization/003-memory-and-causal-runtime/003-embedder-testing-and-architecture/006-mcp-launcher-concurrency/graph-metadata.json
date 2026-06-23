@@ -44,10 +44,10 @@
       "012",
       "daemon",
       "corruption",
-      "three",
-      "launchers",
-      "mk-skill-advisor-launcher",
-      "cjs"
+      "umbrella",
+      "12-child",
+      "delivered",
+      "single-writer"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -105,14 +105,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The three MCP launchers (`mk-skill-advisor-launcher.cjs`, `mk-code-index-launcher.cjs`, `mk-spec-memory-launcher.cjs`) all shared the same architectural smell: nothing prevented multiple launcher instances from running concurrently in the same workspace. Skill-advisor's SQLite quarantine path turned that smell into a visible failure (1005 `.corrupt` files in 6 hours during a benchmark run). Code-graph and spec-memory absorbed the race silently because their WAL + busy_timeout settings happened to be compatible, but the same code-path could have failed under different conditions.",
+    "causal_summary": "Umbrella for the 12-child launcher concurrency arc that delivered single-writer lease enforcement at the launcher boundary across all 3 MCP launchers (skill-advisor, code-graph, spec-memory), plus the review-driven hardening that followed.",
     "created_at": "2026-05-18T08:15:00Z",
-    "last_save_at": "2026-06-05T12:47:33.771Z",
+    "last_save_at": "2026-06-23T03:49:54.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:dc192090f07cade073261be2734992ce91c6917ef3fff2d79db0556d4c893f8d",
+    "source_doc_hashes": {
+      "spec.md": "6708dd7aa9b0f430ab31d7f1be7dab183e36ef870d5c0dcf55e4d6f62a0425c5"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening",
     "last_active_at": "2026-06-04T20:36:32.680Z"
   }

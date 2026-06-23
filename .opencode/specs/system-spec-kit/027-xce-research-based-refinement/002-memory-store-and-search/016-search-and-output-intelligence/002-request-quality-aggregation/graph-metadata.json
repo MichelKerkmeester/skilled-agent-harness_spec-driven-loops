@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the search-and-output-intelligence implementation: request-quality aggregation (S2).",
+    "causal_summary": "The request-quality verdict was gated on `topScore >= 0.7 AND qualityRatio >= 0.6` with the ratio computed over the whole result set",
     "created_at": "2026-06-17T19:57:25.102Z",
-    "last_save_at": "2026-06-18T12:37:50.227Z",
+    "last_save_at": "2026-06-23T03:49:57.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:80bb9376c7406a5280d2b4e0e922866ad471a6140363e864a099a3137eeaa62e",
+    "source_doc_hashes": {
+      "spec.md": "dacad4a4822d2c2696f0f33314f18af813a617598864f8f24a3059e1faa35c29",
+      "plan.md": "c49684b8eccb2ab3ef646fb89790f3bdd99cfb77dc382252af4d3912427627de",
+      "tasks.md": "45d4deb5a8466f3d1ec194a010e916d8a6ecf063fc976a8e694db0285cf54e47",
+      "implementation-summary.md": "70006141a33a5c23f95ed4ed48c872375cc1dfc350e9d265a97e17328d908a0b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

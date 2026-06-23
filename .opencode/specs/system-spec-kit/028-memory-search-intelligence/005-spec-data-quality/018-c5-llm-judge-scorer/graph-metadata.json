@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score. `applyValidationSignalScoring` in `stage2-fusion.ts` reads `metadata.qualityScore`, clamps it to `[0,1]` and turns it into `qualityFactor = 0.9 + (quality * 0.2)`, a deliberate plus-or-minus-10-percent band (L272-288). The backing `quality_score` column has shipped since the V15 migration (`vector-index-schema.ts:643`). The weakness is the input, not the band. The score fed into the multiplier today is a form-only metric, and when it is absent the consumer falls back to a flat `0.5` (`stage2-fusion.ts:272-274`), so a structurally-clean but semantically-thin document and a genuinely useful one can land on the same multiplier. A real semantic judgment of document quality would be a strictly better input to a band that already exists, but its retrieval lift is capped by that same narrow band and stays a hypothesis until proven on this corpus.",
+    "causal_summary": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
     "created_at": "2026-06-21T10:22:34.988Z",
-    "last_save_at": "2026-06-22T18:55:03.808Z",
+    "last_save_at": "2026-06-23T03:49:58.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:aeea7aff730e5e9c7e8f588017842b678c218876d2c41d393fd557dab6750d19",
+    "source_doc_hashes": {
+      "spec.md": "d6f51d0ec12dc6d36334f0a42ee0b4a35227a7adafe5727ceacfc255366fc5a4",
+      "plan.md": "5e61870c3b017d46c8b9b9fe47826a53c98c2d7afa0fdcac55eaac52d8841e2e",
+      "tasks.md": "7641c36b3a8a3606b279381dd72598804eefedb26bc8660b6ce3edb12ee68b2e",
+      "checklist.md": "cf518b748f6331e1c3cf7e3c387be06f26b516d248294e9cf63d152f7a10e48c",
+      "implementation-summary.md": "a20fbbf73273bb15be59d8501d02b3841b8358e2fed0149bd56fd534c67dba1f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

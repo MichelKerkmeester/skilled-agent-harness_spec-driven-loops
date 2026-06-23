@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage.",
+    "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-06-05T12:47:34.179Z",
+    "last_save_at": "2026-06-23T03:49:56.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5036c33e6d5402189cc7ba19e91fb10ef22bc9e46dfc732250844f9cbf3fad57",
+    "source_doc_hashes": {
+      "spec.md": "bac701c65294470026e7664d66189c1c3c9239583397f891cef04dd8d578cb14",
+      "plan.md": "a4f7afbbd8f57f7878aa13f0854dc96181234ab80266afd7fae95d5f36f6731d",
+      "tasks.md": "85af8fcf3c37b36cb0518a48cec3dc59cd8def75475fa6833cceee0787582c68",
+      "checklist.md": "43150b36e14d43fed12f2cf5053fe964e782269a74705081345aec2ff8edcaf1",
+      "implementation-summary.md": "b6545d47efff183c226c59857256a032f8c8b53a8fcfc1dee7139459f62d31e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

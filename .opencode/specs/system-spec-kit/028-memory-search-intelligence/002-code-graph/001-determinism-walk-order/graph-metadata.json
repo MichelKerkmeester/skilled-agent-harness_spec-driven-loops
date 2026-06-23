@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase makes the code-graph impact/dependency/neighborhood walk **reproducible across scan rebuilds** and lets it **fuse the dual impact channels through 001's shared determinism keystone**. Both wins land on a single seam, the `rankContextEdges` / `finalize()` ranking path in `code-graph-context.ts`, with **no schema migration**. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (candidate Q4-C1) **already shipped** in the flat Wave-0 implementation record (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds `det-context-order-global`: baseline rank assignment now starts from a content-derived total edge order (`contentHash` coalescing to related symbol id and stable endpoint fields), so equal-trust impact/dependency/neighborhood walks no longer inherit SQLite row order. What remains is Q4-C1 **benchmark-driven magnitude tuning** and the **adapter that promotes 001's `fuseResultsMulti`** (synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels) so CALLS-channel and IMPORTS-channel impact results fuse with a cross-channel bonus instead of being concatenated in DB order (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).",
+    "causal_summary": "Before this pass, the code-graph impact/dependency walk ranked callers/callees on a single seam, `rankContextEdges` feeding `finalize()` in `code-graph-context.ts:365-378, :436, :712`, and its ordering was not reproducible across scan rebuilds",
     "created_at": "2026-06-19T05:52:29.579Z",
-    "last_save_at": "2026-06-22T18:55:03.708Z",
+    "last_save_at": "2026-06-23T03:49:58.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cafa1453b9b7d2449daab126f2a70c93a0ffcbd7dd51c64162081af55e4ee5ce",
+    "source_doc_hashes": {
+      "spec.md": "c7ccf2968f9cff2cc8e8aa66362eb5205152a3d0ab860df097acebd4804086b0",
+      "plan.md": "1c794b7ced528678f7410ed15fa29de3d51facee23c18dad636924914c947d22",
+      "tasks.md": "c991ceb5233befb327c16ff0a16722d6e89f68134bf35a0294741e09efcd3d93",
+      "checklist.md": "00898a20fd0600ac39e873825f971876837b2955a2dd32f731f3916e8894f836",
+      "implementation-summary.md": "12e5ae7edabf716ce8a02ec56ba24b72903bc982c7861c51fca6e31282299a6d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

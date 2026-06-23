@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
-  "description": "Feature Specification: Phase 1 — Prefix Registry Architecture",
+  "description": "`HfLocalProvider` (TS, transformers.js-backed) and `cocoindexcode/shared.py` both hardcode prefix conventions for ONE model family (Nomic)",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
+    "hflocalprovider",
+    "transformers",
+    "js-backed",
+    "cocoindexcode",
+    "shared",
+    "hardcode",
     "prefix",
-    "registry",
-    "architecture"
+    "conventions",
+    "one",
+    "model",
+    "family",
+    "nomic"
   ],
-  "lastUpdated": "2026-05-26T17:26:13.723Z",
+  "lastUpdated": "2026-06-23T03:49:53.933Z",
   "specId": "001",
   "folderSlug": "prefix-registry-architecture",
   "parentChain": [

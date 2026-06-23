@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed. The repair target is `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`.",
+    "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.131Z",
+    "last_save_at": "2026-06-23T03:49:54.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:73813f525ba3e0cf2e55ff39452ff4a5452b0260ff59378036a4f99429abf59d",
+    "source_doc_hashes": {
+      "spec.md": "1e6c4c8d75f26b4c7f6807e2d72faedca12ae7f81fa5e7d7f868cfba181f6270",
+      "plan.md": "13b6e614db8ad968ff96941e38e3e53aa68f05f16d57bb6a9c94b6d9a6176902",
+      "tasks.md": "70256a6ea724d36b257b3ecbabe009e3e0b2a9f03f73a494390e336f04992c05",
+      "checklist.md": "bf9c965c8cd7fdb96bf68766c9be5c7950859894792268d893fcf9b3324895f9",
+      "implementation-summary.md": "f05fe4ba81da35714e283e451df3f0afb67b3e493925b7b190db64b91ed65185"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

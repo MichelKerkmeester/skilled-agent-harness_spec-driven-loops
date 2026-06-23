@@ -1,16 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup",
-  "description": "Spec: Stress-Test Gap Remediation — Close 10 P0 Coverage Gaps",
+  "description": "Packet 042's audit produced a 54-row coverage matrix and classified 10 features as P0 stress gaps — features with concurrency, lease, capacity, or per",
   "keywords": [
-    "spec",
-    "stress-test",
-    "gap",
-    "remediation",
-    "close",
+    "packet",
+    "042",
+    "audit",
+    "produced",
+    "54-row",
     "coverage",
-    "gaps"
+    "matrix",
+    "classified",
+    "features",
+    "stress",
+    "gaps",
+    "concurrency",
+    "lease",
+    "capacity",
+    "per"
   ],
-  "lastUpdated": "2026-05-26T17:28:07.260Z",
+  "lastUpdated": "2026-06-23T03:49:52.777Z",
   "specId": "007",
   "folderSlug": "fix-stress-test-coverage-gap-followup",
   "parentChain": [

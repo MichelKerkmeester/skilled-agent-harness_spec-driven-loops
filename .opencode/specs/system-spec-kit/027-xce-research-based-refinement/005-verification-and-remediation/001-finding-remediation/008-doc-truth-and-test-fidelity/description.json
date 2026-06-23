@@ -1,18 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity",
-  "description": "Feature Specification: Finding Remediation Lane: Doc Truth And Test Fidelity",
+  "description": "The epic deep-review sweep left this lane with 23 unverified P1 claims and 35 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "doc",
-    "truth",
-    "test",
-    "fidelity"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.511Z",
+  "lastUpdated": "2026-06-23T03:49:57.924Z",
   "specId": "008",
   "folderSlug": "doc-truth-and-test-fidelity",
   "parentChain": [

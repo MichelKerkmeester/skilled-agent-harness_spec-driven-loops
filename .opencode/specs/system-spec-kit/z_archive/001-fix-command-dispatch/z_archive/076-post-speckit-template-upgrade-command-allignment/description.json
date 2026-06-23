@@ -1,16 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/076-post-speckit-template-upgrade-command-allignment",
-  "description": "Spec 076: Post-SpecKit Template Upgrade - Command Alignment",
+  "description": "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture",
   "keywords": [
-    "spec",
-    "076",
-    "post-speckit",
+    "comprehensive",
+    "alignment",
+    "opencode",
+    "commands",
+    "standards",
+    "following",
+    "speckit",
+    "core",
+    "addendum",
     "template",
-    "upgrade",
-    "command",
-    "alignment"
+    "architecture"
   ],
-  "lastUpdated": "2026-04-02T17:21:40.267Z",
+  "lastUpdated": "2026-06-23T03:49:59.305Z",
   "specId": "076",
   "folderSlug": "post-speckit-template-upgrade-command-allignment",
   "parentChain": [

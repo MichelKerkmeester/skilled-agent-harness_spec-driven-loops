@@ -91,14 +91,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Improve operator-facing tooling: runtime hook parity across runtimes, the doctor command surface, and install-script and doctor realignment for the post-CocoIndex world.",
+    "causal_summary": "Improve operator-facing tooling: runtime hook parity across runtimes, the doctor command surface, and install-script and doctor realignment for the post-CocoIndex world",
     "created_at": "2026-05-26T16:51:06.255Z",
-    "last_save_at": "2026-06-15T09:09:34.601Z",
+    "last_save_at": "2026-06-23T03:49:56.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:6b570388c6b4c211032c8ccecc3150ed0040a575df026ba5d3eca0e35d89f706",
+    "source_doc_hashes": {
+      "spec.md": "529e8f75257b9f629e1785f0bb830c417ec3e512605c660e0db64929503192a7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

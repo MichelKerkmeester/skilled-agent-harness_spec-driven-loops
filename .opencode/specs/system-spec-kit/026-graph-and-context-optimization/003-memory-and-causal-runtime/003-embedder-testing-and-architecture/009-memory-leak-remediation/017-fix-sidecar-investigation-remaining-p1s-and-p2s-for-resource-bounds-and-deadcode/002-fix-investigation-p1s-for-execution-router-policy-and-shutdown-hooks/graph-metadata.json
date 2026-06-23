@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Close F6, F31, F52, F53, F58, F61, and F74 with surgical router edits, isolate test-only seams in a test-only module, add fixture coverage for the fallback/shutdown behavior, and keep the child packet independently verifiable.",
+    "causal_summary": "`execution-router.ts` has 7 P1 findings from arc 010/001 deep-research",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-05-30T10:12:02.487Z",
+    "last_save_at": "2026-06-23T03:49:55.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3fafb2409344a8e466708fe71a4e349a3dc266f96d5764c0deb87b453d1423ca",
+    "source_doc_hashes": {
+      "spec.md": "a89d4a79d43604b8338576b14ed21b7dd7cdb702e3872e16c486b407c8585e6a",
+      "plan.md": "627c473b91914beed34f4801dd74343e6f526c885a41272a19acd0b6398ea57d",
+      "tasks.md": "ae9123c96b7c69e68b043c2b14d259aee3dac8e3634d1effb5bfee2f37979047",
+      "checklist.md": "b6d8009967dfc1b329bf07f129aa22a3b121fbcfe8a28d3c9c3edb4783fe2317",
+      "decision-record.md": "ad02fd9b62b3e45a95cc6506d4bd70f9644d5cc199e494f36fd23a39299f5602",
+      "implementation-summary.md": "cbf6a8f4a4792efeca61d6675e9870675c36ce55440ba993b84e4f8eb3e538d5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

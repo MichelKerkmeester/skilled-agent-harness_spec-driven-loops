@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Today the system has two parallel retrieval surfaces with no routing layer between them:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.745Z",
+    "last_save_at": "2026-06-23T03:49:52.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:4033e89e8f64c4b84625d5b8f19bacb610e809bd599892b9a916804fa1667022",
+    "source_doc_hashes": {
+      "spec.md": "dcb7aea28443687de6f626a2b68fc868cb82572eb3e4077221c899dc62a0d726",
+      "plan.md": "44367a032d62542ab8eaf92b67dbbb011521d81a78986d09c3d102155e93ad6d",
+      "tasks.md": "e41cf3256798f2b9055351b9794215f1d1dfa9590ef7ae75ca6f62e58b4af46e",
+      "checklist.md": "a95047a60e272e94c2a1adf1eefb406033ca6c929c5cf484a1757ae3d22985dd",
+      "implementation-summary.md": "c15aed1cfb9411f0d6c66b7d4f023b9340987d51d6e31822fc1e188dbea97362",
+      "resource-map.md": "13a1fd0780cfe686500536fe8e3dbd7e90aeb543912f2b97744afae8841dd7a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

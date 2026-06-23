@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill-advisor launcher handles `EPERM` from `process.kill(pid, 0)`; the spec-memory + code-index launchers did not. Closing that parity gap fixes the `-32000` MCP reconnect failure.",
+    "causal_summary": "Propagate skill-advisor's EPERM handling in leaseHeldFromFile to mk-spec-memory and mk-code-index launchers. Closes the -32000 MCP reconnect failure where process.kill(pid, 0) returns EPERM in the Claude/Codex sandbox and the two launchers crash because they only handle ESRCH.",
     "created_at": "2026-05-18T20:00:10.250Z",
-    "last_save_at": "2026-05-30T10:12:02.371Z",
+    "last_save_at": "2026-06-23T03:49:54.884Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a9178f29503de5ac2b8dc2e5cdac9fe78b2c826b93bdcc6c5730fd00942d8e44",
+    "source_doc_hashes": {
+      "spec.md": "b082e9af8c5102b2f777f96af99810b51b02636782760ac41fd460d85b04c86c",
+      "plan.md": "9382b257e6331b22fd0e4d1292743223cb7595b49bed3df320950a87231d2ef9",
+      "tasks.md": "56a9a724e8d16ca8f7bcca969682cbe31cb9592e170b28193ab7adc420f81e4e",
+      "implementation-summary.md": "ab7260afccd380a5022dd88e9578ff8ca57488f8623a7bcd01d2afd080d5c1b6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

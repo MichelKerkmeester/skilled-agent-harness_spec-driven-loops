@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "cli-claude-code reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 4 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:22Z",
-    "last_save_at": "2026-06-12T04:40:47.827Z",
+    "last_save_at": "2026-06-23T03:49:56.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:614e72de3154df12b28dc6ed46cd0c82045cef628d449da0d6d409cc53f5761c",
+    "source_doc_hashes": {
+      "spec.md": "4a7c02a464c27cd71c487e920558ee60cd1696e4fbca718df9b5e25abaf59051",
+      "plan.md": "5d8e355860587677e9cf110a9d7d9d477638e420e04f8a13c324e4b592d8a58d",
+      "tasks.md": "381c9b1adfbd05e2bb0318b4b696d818756bc7c77be7006b977e9963353bff36",
+      "implementation-summary.md": "5c12eb1b16d650f68aec9965f665f74779ba2862b3ecf53b066bde4ac64cb4d5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

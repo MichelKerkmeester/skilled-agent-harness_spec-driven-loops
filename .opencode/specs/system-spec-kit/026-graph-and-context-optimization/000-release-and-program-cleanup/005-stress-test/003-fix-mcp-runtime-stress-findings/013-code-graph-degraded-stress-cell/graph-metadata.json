@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise `fallbackDecision` end-to-end — pre-flight recovery left the live graph healthy before each cell ran. The handler at `mcp_server/code_graph/handlers/query.ts:791-828` and the readiness states at `mcp_server/code_graph/lib/ensure-ready.ts:151-217` already work correctly per their mocked unit tests, but no integration test closes the loop against a real degraded graph.",
+    "causal_summary": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise `fallbackDecision` end-to-end — pre-flight recovery left the live graph healthy before each cell ran",
     "created_at": "2026-04-27T19:58:00Z",
-    "last_save_at": "2026-05-30T10:12:01.700Z",
+    "last_save_at": "2026-06-23T03:49:52.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:230bf7aee9f5f5c4af9fe412469cc2cc4dbdbcec8ee61635637ac94021a9f96e",
+    "source_doc_hashes": {
+      "spec.md": "890df85d8a81fc751e6f6c7c0e7e0d4c29854a7063cdaf7fa08efea3e36ee6cc",
+      "plan.md": "1445ddcfca0fdb3f75223cb4da50c9d1af763b56b76e06d0a3784a13b2ec2c82",
+      "tasks.md": "733da183527101b9d6a3aecfdded46e463d5a7e8de8b7fad4a0325e8503ece55",
+      "checklist.md": "5def183a8fecaeab5f38ee27e5cfa6f921703b9f77f6741bbee40828ed92e477",
+      "implementation-summary.md": "51844eb11efe6ff1b04cc7622e8911748baa7019cefc3da58067ccb3b6d18848"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

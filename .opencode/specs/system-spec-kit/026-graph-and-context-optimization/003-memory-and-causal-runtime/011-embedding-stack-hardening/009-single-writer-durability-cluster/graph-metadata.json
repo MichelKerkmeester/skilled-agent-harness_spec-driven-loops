@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep review found a cluster of single-writer / durability defects across the embedding-stack launcher + supervision + WAL surfaces. The handover mandates they land as ONE coordinated packet with a deterministic two-process concurrency test — not piecemeal — because they share resources (respawn lock, root-liveness authority, leases, shutdown marker) and piecemeal fixes re-collide. This is the highest-blast-radius surface in the repo (the program exists because of a DB-corruption incident here), so each finding must be re-validated at HEAD before editing.",
+    "causal_summary": "The deep review found a cluster of single-writer / durability defects across the embedding-stack launcher + supervision + WAL surfaces",
     "created_at": "2026-05-29T21:10:00.586Z",
-    "last_save_at": "2026-06-22T18:55:02.663Z",
+    "last_save_at": "2026-06-23T03:49:55.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:25ff6af65066753257aa62849b990c4519b57996708f92228fdfee98b1bd3e5f",
+    "source_doc_hashes": {
+      "spec.md": "4f0d01718bcadabcb76fba46d63297ec9c7cd71f1263a88dc2fc87b107b884b5",
+      "plan.md": "c627a84b7edce3e977bc4ca8d9294d1cea54edbb8470ee2acac8487b78d703f8",
+      "tasks.md": "ad6dc5e5c161ce0e3176583943065afe3dcf04e1eea4567ae7ae3c3b6b94502f",
+      "implementation-summary.md": "db0d4ef31119e58f3942e2def94e20a3375f2ee1dcecd6c75cca87ff005b36fe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -21,17 +21,22 @@
     "003-runtime-integration"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
-  "description": "Feature Specification: Skill-Advisor CLI Workstream (Phase Parent)",
+  "description": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has t",
   "keywords": [
-    "feature",
-    "specification",
-    "skill-advisor",
-    "cli",
-    "workstream",
-    "phase",
-    "parent"
+    "mkskilladvisor",
+    "mcp",
+    "server",
+    "tools",
+    "advisor",
+    "skillgraph",
+    "powers",
+    "gate-2",
+    "routing",
+    "prompt-submit",
+    "brief",
+    "surface"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.312Z",
+  "lastUpdated": "2026-06-23T03:49:57.604Z",
   "specId": "003",
   "folderSlug": "skill-advisor-cli",
   "parentChain": [

@@ -1,17 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
-  "description": "Spec: retrieval + fixture audit (decision gate before Phase 3)",
+  "description": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
   "keywords": [
-    "spec",
+    "phase",
+    "baseline",
+    "bge-reranker-v2-m3",
+    "produced",
+    "identical",
     "retrieval",
-    "fixture",
-    "audit",
-    "decision",
-    "gate",
-    "phase"
+    "metrics",
+    "three",
+    "sig",
+    "figs"
   ],
-  "lastUpdated": "2026-05-26T17:28:23.284Z",
+  "lastUpdated": "2026-06-23T03:49:55.058Z",
   "specId": "004",
   "folderSlug": "retrieval-and-fixture-audit",
   "parentChain": [

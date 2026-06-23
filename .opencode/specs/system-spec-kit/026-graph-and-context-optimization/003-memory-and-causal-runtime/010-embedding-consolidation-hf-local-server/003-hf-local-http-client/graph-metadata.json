@@ -30,8 +30,8 @@
       "tasks",
       "rewrite",
       "summary",
-      "phase",
-      "embedding-consolidation"
+      "currently",
+      "owns"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3 of 6** of the embedding-consolidation and hf-local-server decomposition: Replace the in-process hf-local pipeline body with an ollama-shaped HTTP/socket client that keeps public provider APIs, client-side prefixes, readiness retry, and runtime dimension adoption.",
+    "causal_summary": "hf-local.ts currently owns in-process transformers execution",
     "created_at": "2026-05-29T05:06:24.638Z",
-    "last_save_at": "2026-06-22T18:55:02.612Z",
+    "last_save_at": "2026-06-23T03:49:55.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d8d2a92ef82311aba579a0cc61630ad87923b7ce194c8a5136a0ca7285a44061",
+    "source_doc_hashes": {
+      "spec.md": "f7a9c7b7864519a033eafa4a41eea8fc2ad99e29169de6717a8e2492f2426dd7",
+      "plan.md": "e62a53f3b19a3bd69d8ab8aa1a42917c7784b7af55272efd347b4b364fcabb15",
+      "tasks.md": "39431fb41e86ae9a4d8872bb113d473e247a6544482311599c757ca419c232b7",
+      "implementation-summary.md": "47c2fa447a3b33341107142555dba0959970b0c9609f71b6af0f6b897c8c70e8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

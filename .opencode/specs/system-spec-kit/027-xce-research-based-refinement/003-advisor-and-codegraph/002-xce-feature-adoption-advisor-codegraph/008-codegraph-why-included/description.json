@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
-  "description": "Feature Specification: Phase 8: codegraph-why-included",
+  "description": "Code graph already returns depth groups and risk for `blastradius` and `codegraphcontext`, but not the concrete edge chain per file - so a consumer ca",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "codegraph-why-included"
+    "code",
+    "graph",
+    "already",
+    "returns",
+    "depth",
+    "groups",
+    "risk",
+    "blastradius",
+    "codegraphcontext",
+    "concrete",
+    "edge",
+    "chain",
+    "per",
+    "file",
+    "consumer"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.996Z",
+  "lastUpdated": "2026-06-23T03:49:57.494Z",
   "specId": "008",
   "folderSlug": "codegraph-why-included",
   "parentChain": [

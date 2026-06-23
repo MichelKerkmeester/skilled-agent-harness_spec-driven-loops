@@ -36,7 +36,7 @@
       "plan",
       "tasks",
       "checklist",
-      "phase"
+      "only"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
     "created_at": "2026-04-12T09:02:50.230Z",
-    "last_save_at": "2026-05-30T10:12:03.200Z",
+    "last_save_at": "2026-06-23T03:49:59.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:66eb2b79e7f70c62537524ca432c920345e6bb3c0bffa2a1e76ac9e89c87efe2",
+    "source_doc_hashes": {
+      "spec.md": "1b50ae5020583bc54b37b921a59372e3657808d80ed00be8a71159b6e26c2232",
+      "plan.md": "1530e4d134778f2c86afe3d5a5d4951ed9ba022180ad6d7181919164db34ade9",
+      "tasks.md": "fe34e05620e0fee2920d13cc7443958c97c9733ab46429a2c689df23a5bce509",
+      "checklist.md": "dd71997847c2c6cd68c9c8aae7e94943b42c195deb879c5c3ea0f746e2ff5d62",
+      "implementation-summary.md": "9c8a15e1fa77dab63c189391517d17b555f8eebbbe9010cf5e216e512f14c770"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

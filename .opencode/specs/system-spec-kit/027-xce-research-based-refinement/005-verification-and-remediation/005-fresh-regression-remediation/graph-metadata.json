@@ -36,12 +36,11 @@
       "every",
       "deep-review",
       "finding",
-      "75-seat",
-      "epic"
+      "phase",
+      "parent"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "status_note": "Nested phase parent (7 sub-phases). Lanes 004/006/007 implemented; lanes 001/002/003/005 still planned (findings carried as tasks, no fixes applied).",
     "key_files": [
       "fix-coverage.json",
       "spec.md"
@@ -96,14 +95,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 75-seat fresh+regression deep-review of the 027 epic surfaced 113 unique findings (0 P0 · 40 P1 · 73 P2) in `../../review/fresh-regression-75/deep-review-findings-registry.json`. Per operator directive, every finding must be addressed — refuted ones carried as hardening, asserted ones fixed as stated. This phase parent decomposes that work by subsystem so each sub-phase has a coherent verification gate, and tracks full coverage via `fix-coverage.json`.",
+    "causal_summary": "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases (memory-storage, daemon-launcher, code-graph, CLI front-doors, spec-folder metadata, doc-truth/mirrors). Scaffold only — every finding carried as a task; no fixes applied.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T14:27:21.642Z",
+    "last_save_at": "2026-06-23T03:49:57.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:b1865ef30bd2d6c948461061deb39fa77b8b1b82e1451d482aa3a3e1f4e3395a",
+    "source_doc_hashes": {
+      "spec.md": "4106dfadcbc3e19a636ee965c72d0abe95ea6b7654b3e6e0ae22c10e936c5fac"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

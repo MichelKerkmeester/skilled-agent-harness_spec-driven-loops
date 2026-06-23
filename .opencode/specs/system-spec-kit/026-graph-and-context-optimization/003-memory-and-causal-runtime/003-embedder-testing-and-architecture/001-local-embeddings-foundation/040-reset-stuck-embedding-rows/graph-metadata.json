@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rows in `memory_index` were stuck with `failure_reason='Embedding generation returned null'` after the old embedding path swallowed provider failures. Packets 038 and 039 fixed the pipeline, but rows with high retry counts and `embedding_status='failed'` or `retry` would not all re-enter processing without a bounded reset.",
+    "causal_summary": "Rows in `memoryindex` were stuck with `failurereason='Embedding generation returned null'` after the old embedding path swallowed provider failures",
     "created_at": "2026-05-14T15:15:00Z",
-    "last_save_at": "2026-05-30T10:12:02.140Z",
+    "last_save_at": "2026-06-23T03:49:54.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c84abe54a983a00e58036817dc18bbed926c66190085ca308e71b398cdaa243e",
+    "source_doc_hashes": {
+      "spec.md": "7e648017d95618267fb7d0bb48a4f04877c8f2d97b5fa7a867eaa9c8e2c519f8",
+      "plan.md": "b15b5967576dc26c8904d4ea196110f9232c83bdc3dc2fc5053eff94b291c121",
+      "tasks.md": "98527210f1b46b87feb9b1b9f982b41a090df1bc1653035cd027b20574e9d4d9",
+      "implementation-summary.md": "e67f7b766f7ec4f3cc7c1c574f68d2adce2fcdafc54e1b6f363a089d6041a610"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

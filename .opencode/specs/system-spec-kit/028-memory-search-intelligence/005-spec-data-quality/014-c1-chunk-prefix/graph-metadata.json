@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector. `normalizeContentForEmbedding` at `content-normalizer.ts:216-231` strips the YAML frontmatter at line 222, strips anchors at line 223, and flattens every markdown heading to a plain label at line 228 via `normalizeHeadings`. The frontmatter `trigger_phrases` and `title` and the header path that the author curated are gone by the time the chunk is hashed and embedded, so a spec-doc chunk vector carries only its flattened body prose and none of its strongest intent signal.",
+    "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
     "created_at": "2026-06-21T10:22:34.986Z",
-    "last_save_at": "2026-06-22T18:55:03.802Z",
+    "last_save_at": "2026-06-23T03:49:58.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8c6c5df5304c6f4bb8ba4699e816a63cb93c93871f7de952bdc8c3679b767ed7",
+    "source_doc_hashes": {
+      "spec.md": "0aea493fd65cf81c49d38e5080d728a0dc509ab7a22a7e82e192189f2dec51e2",
+      "plan.md": "19ed09fc628c19b5d96d6648a932fa6d74491f01e6c7ddd11af1424bbea94339",
+      "tasks.md": "0ecc9d94909cc7f49e567d59edaa2fa970cf8e73589d4f7efcce916d2ee25a0d",
+      "checklist.md": "44a11cf7d447701ba603c148ab91ae78a32abf105fc50c56a55bd37de9571fc4",
+      "implementation-summary.md": "debcbc15222458a59a0d5a3fdae3d65233fcdc1d16b70df71dd5d84510d4781c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

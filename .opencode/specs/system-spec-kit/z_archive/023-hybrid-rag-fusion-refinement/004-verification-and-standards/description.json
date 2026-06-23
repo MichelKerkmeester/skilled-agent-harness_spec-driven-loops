@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/004-verification-and-standards",
-  "description": "Feature Specification: Verification and Standards Sync",
+  "description": "The parent review packet mandates that standards docs outside 023 remain deferred until the runtime verification matrix passes",
   "keywords": [
-    "feature",
-    "specification",
-    "verification",
+    "parent",
+    "review",
+    "packet",
+    "mandates",
     "standards",
-    "sync"
+    "docs",
+    "outside",
+    "023",
+    "remain",
+    "deferred",
+    "until",
+    "runtime",
+    "verification",
+    "matrix",
+    "passes"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.629Z",
+  "lastUpdated": "2026-06-23T03:50:00.449Z",
   "specId": "004",
   "folderSlug": "verification-and-standards",
   "parentChain": [

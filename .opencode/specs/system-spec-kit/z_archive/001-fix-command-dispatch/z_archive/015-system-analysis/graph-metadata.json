@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "To deconstruct and analyze the SpecKit system's architecture, identifying strengths, weaknesses, and structural risks (specifically the synchronization between Skills and Commands).",
+    "causal_summary": "To deconstruct and analyze the SpecKit system's architecture, identifying strengths, weaknesses, and structural risks (specifically the synchronization between Skills and Commands)",
     "created_at": "2026-04-12T09:02:53.512Z",
-    "last_save_at": "2026-05-30T10:12:02.949Z",
+    "last_save_at": "2026-06-23T03:49:58.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:11400f9a13512214483b2c3037ceff780153246bbe5c23dc196dc9dbc3c5736d",
+    "source_doc_hashes": {
+      "spec.md": "f37eaf185304739051d5d38e55b14422b58a04779fef75a0f035aa700664476a",
+      "plan.md": "6d9b57f9b5aaef56c45e6e3d625e50efb226a70ce5a57a7dd47ed62cb3b7aa44",
+      "tasks.md": "c6de7cb200beded284f4443b483f3dd58b3793b3433954afd53d776bcae1a0b1",
+      "checklist.md": "ceae28554a83364345f4750ce00480cff0bca3998f899c18d50afd0597101045",
+      "decision-record.md": "3ed2859ef5044e1b59e7e8c7c75f4075de758c19feed68d0b2748254a8cac500",
+      "implementation-summary.md": "25dde9ab598cf83b6c8f5cd1d0b1c397d229b620ceace99e6630abfa00b5071a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

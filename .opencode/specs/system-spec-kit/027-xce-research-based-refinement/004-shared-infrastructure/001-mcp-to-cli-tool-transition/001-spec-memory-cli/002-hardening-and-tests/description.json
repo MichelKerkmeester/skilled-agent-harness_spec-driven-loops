@@ -1,15 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests",
-  "description": "Feature Specification: Phase 2: Hardening and Tests",
+  "description": "The research verdict is conditional on a set of acceptance-test deltas that do not exist yet: the spawn-race and coexistence guarantees are code-trace",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "hardening",
-    "tests"
+    "research",
+    "verdict",
+    "conditional",
+    "set",
+    "acceptance-test",
+    "deltas",
+    "exist",
+    "spawn-race",
+    "coexistence",
+    "guarantees",
+    "code-trace"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.290Z",
+  "lastUpdated": "2026-06-23T03:49:57.558Z",
   "specId": "002",
   "folderSlug": "hardening-and-tests",
   "parentChain": [

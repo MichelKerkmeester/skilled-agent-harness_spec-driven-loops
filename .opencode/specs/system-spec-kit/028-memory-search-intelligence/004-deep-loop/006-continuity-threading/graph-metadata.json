@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode, each iteration rebuilding its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found. Two confirmed continuity gaps remain after the 030 Wave-0 pass:",
+    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode, each iteration rebuilding its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found",
     "created_at": "2026-06-19T06:20:37.820Z",
-    "last_save_at": "2026-06-22T18:55:03.777Z",
+    "last_save_at": "2026-06-23T03:49:58.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:855acced6c4acde2aa8a01341329ce7579d218ef67cfe335e6840d9cf2ae7d98",
+    "source_doc_hashes": {
+      "spec.md": "274f1e656f8d98f38625be0db500f2a4c96afc25230303132afbcf56813c25b3",
+      "plan.md": "b82a75a4006f5858afc94ab460f0e7f3cdfad7a2e0deed276aae0cb5e97ded74",
+      "tasks.md": "7a1855cf05c965deaac53fb890973d6ee73f206063ebdef967b89787917d637b",
+      "checklist.md": "e17b90a088a54a5469fa13830601f05b94b3a05216eac39f9b59547ccd809fcc",
+      "implementation-summary.md": "c556aef3c2a9503960d4f334afeab3cf57410fe92e9f439c593cad631675440d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

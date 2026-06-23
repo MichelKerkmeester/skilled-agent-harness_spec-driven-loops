@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's `generate-context.js` pipeline to produce a memory file",
     "created_at": "2026-04-12T09:02:50.265Z",
-    "last_save_at": "2026-06-05T12:47:34.769Z",
+    "last_save_at": "2026-06-23T03:49:59.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d31ba3574242c077afd941489bdc79df91cdc5948973ad7cd3d9fba788d71d22",
+    "source_doc_hashes": {
+      "spec.md": "3b8f7013fb150aebd4bfbf929df6bd81c8096f8866423be21d0cc38651d3c61d",
+      "plan.md": "5b00e0ea6cf7cff1db104ac72a0e84db1d4f5205763985ef2a5f9743b4899c2d",
+      "tasks.md": "902ae17902281427234059bdf96728a0486ad992234fea993f17bffe7301d556",
+      "checklist.md": "ec4e82771a98ab289fc9bc61a7473390d07afec2664efb434dbe58c0075ec8d9",
+      "implementation-summary.md": "d182fb4d1ec5b52d7314e338a5069ed4664926fbad4c29881318235fb07c4f3a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

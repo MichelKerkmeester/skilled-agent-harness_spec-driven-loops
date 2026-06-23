@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec 026 (`026-graph-and-context-optimization`) is the largest program in the repo: 8 tracks, 633 phase packets, 553 of them with a shipped implementation summary. Only 103 packet-local changelogs exist, so about 441 shipped phases have no changelog. This packet runs an agent swarm that backfills every missing changelog using the established nested-changelog convention, canonicalizes the reorg residue left by multiple renumberings, and produces a program-wide work audit.",
+    "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
     "created_at": "2026-05-31T19:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.190Z",
+    "last_save_at": "2026-06-23T03:49:52.908Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4ffc2a8f2a64c6b00aefd15e218bb354e9b2aea90aae03ee81b379de54e8fbd0",
+    "source_doc_hashes": {
+      "spec.md": "a329da5992631cfd38b63c706f58e394a7b9ad72cce421b6654b3ade54f12771",
+      "plan.md": "ec26828245ccd6ea3979c0999bf5fb9199a097b489b0b6e8d23ccea270f84b1e",
+      "tasks.md": "07ef6827fa28773268343e519209586a257e6b4526d0ac0edf8956f41c9a4f3b",
+      "checklist.md": "3fa1ca5af8f243ea2b9ff814800e160882286b67716cb480f10e945ee0fc02a0",
+      "decision-record.md": "40f380915e246ea01682043e817fadcfa3a32cbef07d56c221274b5016ace866",
+      "implementation-summary.md": "8c8c99242c89d0078c82d2b15cb236851ba6a49776b11206ff500a2e2697e3bc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

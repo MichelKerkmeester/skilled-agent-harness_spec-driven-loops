@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 031-036 shipped or corrected operator-visible surfaces, but the reusable manual testing playbooks did not yet give operators copy-pasteable validation entries for the new handlers and runners. The gap affects retention enforcement, Skill Advisor rebuild separation, CLI matrix adapters, code-graph read-path repair, and packet 035 code-graph cell evidence.",
+    "causal_summary": "Packets 031-036 shipped or corrected operator-visible surfaces, but the reusable manual testing playbooks did not yet give operators copy-pasteable validation entries for the new handlers and runners",
     "created_at": "2026-04-29T15:41:05Z",
-    "last_save_at": "2026-06-05T12:47:33.055Z",
+    "last_save_at": "2026-06-23T03:49:52.471Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:ddb4aec37bd112ed78eba49540058729f609800a8470a97486ff28e2ce6e943d",
+    "source_doc_hashes": {
+      "spec.md": "a3b79eac8fbfda83be566a99003c10d60f1c31c62bdf121812b8e3885fa5945e",
+      "plan.md": "c9bdb1452d3baa9fa0b2b0d30dbf884bfb94f56370699cde16f57b0a09db1c6d",
+      "tasks.md": "35d8235a68bdc4f5006f87e6b8e79abd3d70781c54655d288b75caaf834eb76f",
+      "checklist.md": "2291b8409a2b9e6fb4078fd7f893b8f3bbc01a934d4ecbce0b7bd495427acde4",
+      "implementation-summary.md": "8e1e61e22a2390e1b03f6609c489327bbea27feae6b2b82242feaf6c1fa66402",
+      "resource-map.md": "4df0010edcb8a18cd050db0e802f67a5e6f8f51f1c2da907c8d756b6783f3c4e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

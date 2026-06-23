@@ -35,7 +35,6 @@
     ],
     "importance_tier": "normal",
     "status": "complete",
-    "status_note": "slices 1-5 verified",
     "key_files": [
       "tests/hybrid-search.vitest.ts",
       "tests/memory-search-ux-hooks.vitest.ts",
@@ -197,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams. This makes storage policy untestable in isolation and turns ANY backend evolution into shotgun surgery. The sqlite-to-turso revalidation (research.md section 8, 004 section 1) identified exactly five genuine divergence seams and estimated a ports layer at 1,200-2,000 LOC; phases 012 (traversal helper) and 014 (packed lexical engine) produce two port implementations as natural byproducts.",
+    "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams",
     "created_at": "2026-06-10T17:48:34Z",
-    "last_save_at": "2026-06-12T04:40:47.914Z",
+    "last_save_at": "2026-06-23T03:49:57.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9589a96bc606f8c1ab5dc33fb45fdd6d5b24ca7ed9cd74dbee143b913659e1fa",
+    "source_doc_hashes": {
+      "spec.md": "c6e7907f43ee768861b4c7bf1f2565a4af5d7b73e49d293619be8cd996ea62f6",
+      "plan.md": "b2111f34fbff33bafd6028cd6cf76813e420eaaeab2d4de5c80a1e139289e242",
+      "tasks.md": "0548454a6bf4a442d657a12be069ac2df197205d338e38183a954468ec228705",
+      "implementation-summary.md": "c3f95aa932771e51f1ae050de4c006753aa5983f0d312ce37fe228e7b2e4d00f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

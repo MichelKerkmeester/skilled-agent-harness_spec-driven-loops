@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Release readiness depends on whether the skill advisor reports freshness honestly, keeps status diagnostic-only, rebuilds graph state on explicit request, and avoids scoring drift or silent stale-context fallback. Prior packets unified the daemon and advisor paths, but the release program still needs an evidence-backed audit of status/rebuild split, cache invalidation, scoring table trust, Codex cold-start markers, and Python compatibility behavior.",
+    "causal_summary": "Release readiness depends on whether the skill advisor reports freshness honestly, keeps status diagnostic-only, rebuilds graph state on explicit request, and avoids scoring drift or silent stale-context fallback",
     "created_at": "2026-04-29T20:05:20.000Z",
-    "last_save_at": "2026-05-30T10:12:01.521Z",
+    "last_save_at": "2026-06-23T03:49:52.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2d2cb26960a8bc5bfc9db27188ffc878ac25a9d16f7707ad500fec68843a7899",
+    "source_doc_hashes": {
+      "spec.md": "4d0fd8453a565c70548ade16ad823661a88febfd6ae675a60734b53e83ff25e7",
+      "plan.md": "0c7785b2bec9d0baef71a8f467e12740209825df5d33ea9758ea66ad06c74643",
+      "tasks.md": "54e1f13744c160a74bf507e8d55740fc2036b35c88957512a2488c17edd57418",
+      "checklist.md": "06d9ba9c69d1929f92b5710a8bb3193c78c0780403c488b6051a88dcbb225807",
+      "implementation-summary.md": "95a3b5f746cbcd57d0df79ea21fc046d479a987050f18c139c734e75f0fd9446"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

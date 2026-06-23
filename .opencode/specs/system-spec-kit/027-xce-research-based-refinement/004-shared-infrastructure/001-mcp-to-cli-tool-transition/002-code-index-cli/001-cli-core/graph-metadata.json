@@ -34,9 +34,9 @@
       "plan",
       "tasks",
       "result",
-      "dual-stack",
-      "implementation",
-      "workstream"
+      "mkcodeindex",
+      "daemon",
+      "front"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the code-index dual-stack CLI implementation (workstream 002-code-index-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.",
+    "causal_summary": "The mkcodeindex daemon has no CLI front door: 8 tools are MCP-only, so transport-down sessions, hooks, cron, and scripts cannot reach structural code search at all",
     "created_at": "2026-06-06T14:45:13Z",
-    "last_save_at": "2026-06-22T18:55:03.420Z",
+    "last_save_at": "2026-06-23T03:49:57.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8b127a4376a500c9b4ec4da21890471f2d8f2b362372d886cb6cbaae881ef3be",
+    "source_doc_hashes": {
+      "spec.md": "2dfbe48e0126afc42dc0851239b8a7f65090c90ea3b4bcc7f7cdbe8203bc27be",
+      "plan.md": "2e117bde51b8863dd51c80df94b1e37f5fb4f2eec152a847fa2f0bd824bd232a",
+      "tasks.md": "468c62b63ddf32798f6d9b7812878d2a2c9b8a612c75a04694300d6fd45049d8",
+      "implementation-summary.md": "3590038b632b6e509dd2a0f968fb0a81b6db4b63e6bddc856f2a2ff8f3b13029"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

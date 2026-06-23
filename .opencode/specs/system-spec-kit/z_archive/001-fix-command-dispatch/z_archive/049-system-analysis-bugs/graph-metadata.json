@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A comprehensive 20-agent parallel analysis of the `system-spec-kit` skill revealed **1 CRITICAL bug**, **2 HIGH severity issues**, and **6 MEDIUM issues** that impact the memory indexing system, validation logic, and documentation consistency.",
+    "causal_summary": "A comprehensive 20-agent parallel analysis of the system-spec-kit skill revealed 1 CRITICAL bug, 2 HIGH severity issues, and 6 MEDIUM issues that impact the memory indexing syst...",
     "created_at": "2026-04-12T09:02:53.531Z",
-    "last_save_at": "2026-05-30T10:12:03.004Z",
+    "last_save_at": "2026-06-23T03:49:59.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,17 @@
       "research/research.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:aa1a9a0d5f35c97c18a0847bca0fa5ef48779e34e4b9a74937cc57f853ad7997",
+    "source_doc_hashes": {
+      "spec.md": "c0b3d81fba160d5c52d5b71d47a9c5dc0cd8f454b84623aa3d3ff0a7402b8aed",
+      "plan.md": "ef00e115c1fa514cebdd63e51a6d489b911c5473a96fa2968122254298de77e3",
+      "tasks.md": "0949267a7d4706b58c12fb4f6c1f409d9a1afe8b631c21a5f969783178829f0f",
+      "checklist.md": "4df59c241cea91159bf9fd2fed71cbd44e3dcf1180666b1cb6c1b07b6258d110",
+      "decision-record.md": "e7408f7699a98a533c8bd189788b5eacecde6c4ba93a1e0e2b69d2ce30547ab1",
+      "implementation-summary.md": "5b6eb0d239338b5d0f4b2d271f9d37af2125303ef2dc1ca5dcafa982d528b270",
+      "research/research.md": "672d34ede8f00d346e8aea750485092fe9fccdee04094a75361842fec1317691",
+      "handover.md": "6dbc256a7ca7d53782804bd7ed595009ef2d0b9cf9e7e5902200b583ef6b1ded"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

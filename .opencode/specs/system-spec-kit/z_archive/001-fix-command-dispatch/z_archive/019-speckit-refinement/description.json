@@ -1,16 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
-  "description": "Feature Specification: SpecKit Refinement: ECP Analysis & Improvements",
+  "description": "\"Conversation context is volatile, but the filesystem is persistent",
   "keywords": [
-    "feature",
-    "specification",
-    "speckit",
-    "refinement",
-    "ecp",
-    "analysis",
-    "improvements"
+    "conversation",
+    "context",
+    "volatile",
+    "filesystem",
+    "persistent"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.914Z",
+  "lastUpdated": "2026-06-23T03:49:58.919Z",
   "specId": "019",
   "folderSlug": "speckit-refinement",
   "parentChain": [

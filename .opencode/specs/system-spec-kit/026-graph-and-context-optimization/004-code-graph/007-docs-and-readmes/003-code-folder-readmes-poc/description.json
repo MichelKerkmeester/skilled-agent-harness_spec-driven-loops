@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc",
-  "description": "Phase A: sk-doc-aligned READMEs for system-code-graph",
+  "description": "Author 3 sk-doc-aligned READMEs (CODE template, 9 anchored sections, YAML frontmatter, HVR-compliant prose) using a two-pass cli-devin + cli-opencode",
   "keywords": [
-    "phase",
+    "author",
     "sk-doc-aligned",
     "readmes",
-    "system-code-graph"
+    "code",
+    "template",
+    "anchored",
+    "sections",
+    "yaml",
+    "frontmatter",
+    "hvr-compliant",
+    "prose",
+    "using",
+    "two-pass",
+    "cli-devin",
+    "cli-opencode"
   ],
-  "lastUpdated": "2026-05-26T17:25:48.331Z",
+  "lastUpdated": "2026-06-23T03:49:55.975Z",
   "specId": "003",
   "folderSlug": "code-folder-readmes-poc",
   "parentChain": [

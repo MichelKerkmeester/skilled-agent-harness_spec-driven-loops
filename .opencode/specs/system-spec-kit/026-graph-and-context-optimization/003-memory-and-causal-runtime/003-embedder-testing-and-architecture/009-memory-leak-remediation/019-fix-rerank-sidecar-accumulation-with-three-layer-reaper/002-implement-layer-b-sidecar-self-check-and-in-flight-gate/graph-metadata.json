@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry. Arc 010/004/001 ADR-001, ADR-006, and ADR-007 require an async-native Layer B self-check, Layer A idle exit, structured telemetry, and graceful self-SIGTERM after active requests drain.",
+    "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.501Z",
+    "last_save_at": "2026-06-23T03:49:55.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:44d6ff58afb272e8bfa1c73a0bf262cc75bc5f947dae7009613c85f5e04cf110",
+    "source_doc_hashes": {
+      "spec.md": "3e6081ca6c681db1716f61cf094401938c0205cb23d6cbb8ecaab21409bf959b",
+      "plan.md": "118cbc55bf6674dc040c2b272dd1a24d75afda2b74fb5daf19b189a6a8486ce0",
+      "tasks.md": "c742ae0e86c55b116c3ecac2312e3d845bba82e1b5c00461dd96b94046c8285a",
+      "checklist.md": "e7975b838664940db02f39c8c72222b06d569f07d3aeee28cbc6dfcaca551a24",
+      "decision-record.md": "8f32351c2e83956b38e2c854b06dd3266bba19631c9e24fb90e4a40a0d16f585",
+      "implementation-summary.md": "982498a7afdee2c69412eac7583634fa9366e2038fc872a313dfe5b7606958ac"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

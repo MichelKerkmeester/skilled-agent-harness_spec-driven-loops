@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the `022-hybrid-rag-fusion` root packet moved to a coordination-root model, the `system-spec-kit` documentation still taught older navigation, validation, and phase-routing patterns. That left the child packet with stale Gate 3 wording, outdated phase examples, and inconsistent guidance across the review artifacts that documented the cleanup.",
+    "causal_summary": "After the `022-hybrid-rag-fusion` root packet moved to a coordination-root model, the `system-spec-kit` documentation still taught older navigation, validation, and phase-routing patterns",
     "created_at": "2026-04-12T09:02:50.285Z",
-    "last_save_at": "2026-05-30T10:12:03.337Z",
+    "last_save_at": "2026-06-23T03:50:00.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:79d42b690d55c881f95ffd2ec82039e5d3d940ba58f0c18305905823127b4acc",
+    "source_doc_hashes": {
+      "spec.md": "160ff9d2c2976bf56a9ce608acacc7441968e1b8384db4a31585c3a2c1d9b447",
+      "plan.md": "64f99de4399cdb3ea0b6785888ff55064fa91b7210aa3506207bc6d919ef85e5",
+      "tasks.md": "69b0ec6a0203b8ffeb81a9e123adf2949d707fb0dd72ce52eec080c55985103b",
+      "checklist.md": "60320817fa13bce3beb6b0bde7d14f258a37fe5d4b1068a8aaf4bf5e13e65d1a",
+      "implementation-summary.md": "19b565f0663979b92bb84db6fb9216a72e876321358d03aa9c117c557e68d94c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Tier 2 deep-review program reviewed 5 packets (D-H). Four returned CONDITIONAL with actionable findings; one (H 006/001 clean-room license audit) returned FAIL with a P0 that requires human verification of the actual gitignored `external/LICENSE` file. This sub-phase closes the 15 findings from D/E/F/G; H is tracked separately as a human-action gate.",
+    "causal_summary": "The Tier 2 deep-review program reviewed 5 packets (D-H)",
     "created_at": "2026-04-28T18:35:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.514Z",
+    "last_save_at": "2026-06-23T03:49:52.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b6457887cf8b6f06cb33137c499acdacbc495b5aafdfb1efcdba6f3720fa4da3",
+    "source_doc_hashes": {
+      "spec.md": "b06c463477902bb7e31e59011a06a53bf3f4d45fabb7333fb6447fefece3a41e",
+      "plan.md": "055fa860443f2a22a6b98552fe17d7d31f3260a9f487eb1f65abfe1f54918b53",
+      "tasks.md": "94fb3de592718e1549fd4510c2165e8af7421b509e1b58a325bb3f6b17db61b9",
+      "checklist.md": "c60e0daaa2c956233a22310b568161e81dc65622a30830470b05dd718f0525f2",
+      "implementation-summary.md": "c76630fa786e6231a5e7c11055e66682f87a8f8c7d680606cd8dc0087828e917"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

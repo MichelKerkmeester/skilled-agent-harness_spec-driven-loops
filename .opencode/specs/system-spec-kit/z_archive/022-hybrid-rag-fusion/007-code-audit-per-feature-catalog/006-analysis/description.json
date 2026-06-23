@@ -1,14 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/006-analysis",
-  "description": "Feature Specification: Code Audit — Analysis",
+  "description": "The feature catalog for Analysis has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
-    "analysis"
+    "catalog",
+    "analysis",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.221Z",
+  "lastUpdated": "2026-06-23T03:49:59.813Z",
   "specId": "006",
   "folderSlug": "analysis",
   "parentChain": [

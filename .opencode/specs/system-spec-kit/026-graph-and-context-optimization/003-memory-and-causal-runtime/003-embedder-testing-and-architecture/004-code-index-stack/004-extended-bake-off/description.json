@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
-  "description": "Spec: 016/006/004 Extended Code-Embedder Bake-Off",
+  "description": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Meas",
   "keywords": [
-    "spec",
-    "016",
-    "006",
-    "004",
-    "extended",
-    "code-embedder",
-    "bake-off"
+    "re-run",
+    "018",
+    "003",
+    "benchmark",
+    "harness",
+    "against",
+    "additional",
+    "candidates",
+    "nomic-coderankembed",
+    "previously",
+    "failed",
+    "newly",
+    "registered",
+    "meas"
   ],
-  "lastUpdated": "2026-05-26T17:27:58.636Z",
+  "lastUpdated": "2026-06-23T03:49:54.568Z",
   "specId": "004",
   "folderSlug": "extended-bake-off",
   "parentChain": [

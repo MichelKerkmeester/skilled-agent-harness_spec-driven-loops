@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 13** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "mcp-code-mode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 5 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:31Z",
-    "last_save_at": "2026-06-12T04:40:47.838Z",
+    "last_save_at": "2026-06-23T03:49:56.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0e7c7447df5015c762ab91c0be51519532e2aa02b2e0a9695accde59744ec8b1",
+    "source_doc_hashes": {
+      "spec.md": "b7bba3ea7a3353b5e20fd8eb7bcf8a391acc4f3e20df841e86ba71cb8d7cdcac",
+      "plan.md": "1d2f3aba97dc6dd2b0c02111894a2f38f5507bbe40ef568f25ce3d957d327e8c",
+      "tasks.md": "79c9c5edf3c95b9357e614cd123d0cf3b6062bf5e6ee063a8ab22c829f3719e3",
+      "implementation-summary.md": "5c0ce429882db6f6660b14954931daeedf8031918eb4a1b8d4086dac6de0b3ee"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

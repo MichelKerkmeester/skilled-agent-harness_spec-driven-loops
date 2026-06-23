@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Without root coordination docs, the packet is harder to validate, harder to resume, and easier to misread as either \"research only\" or \"ready to execute everywhere at once.\" The parent packet needs to state the overall contract and explicitly route execution work into the child gates.",
+    "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
     "created_at": "2026-04-12T09:02:53.476Z",
-    "last_save_at": "2026-05-30T10:12:02.040Z",
+    "last_save_at": "2026-06-23T03:49:53.836Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,6 +225,17 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2e2dcf53021b9981dc0da3e8b2dda00379c3dd0a8ea222d3fd13a2846d7da09d",
+    "source_doc_hashes": {
+      "spec.md": "3dd4d3c236b341a558714feb5fe515678ed2edb164427af57b28aaef905b182d",
+      "plan.md": "fef3c11f9ca9e2646e7a7e75ccc179619c0dbcc1a0a206255bbf8e6c6ce624f8",
+      "tasks.md": "00eb2e8d58bb97eb1272ac06d413a018bf74cabc775d8263279e9c0222982825",
+      "checklist.md": "df9be1a6cdd68e0f8256b85ec7f667eff14e5cef5ed84a8b23c44ec2875a79d4",
+      "implementation-summary.md": "d4e279e29ccc0bbe6d174b1288c0cd42ec18230248718704d96a6bd886b61f37",
+      "research/research.md": "2c40e98a07d538b790fc6e2abfcab3ca5ee28daf023bc08288fa81ae8b5a2046",
+      "handover.md": "0240f74edf12abf2abac2a186368e6f430e38df72d468d98cf61032dbb72337d",
+      "resource-map.md": "67c9bea4899433e67b62d11851f8bbc439a106ffdebd8ab1ab61dedcd35bdca9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

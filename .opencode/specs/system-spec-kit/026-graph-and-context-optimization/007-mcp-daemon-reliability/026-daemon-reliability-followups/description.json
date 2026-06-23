@@ -1,14 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
-  "description": "Feature Specification: Daemon-reliability follow-ups",
+  "description": "The anti-disconnection investigation left four follow-ups",
   "keywords": [
-    "feature",
-    "specification",
-    "daemon-reliability",
+    "anti-disconnection",
+    "investigation",
+    "left",
+    "four",
     "follow-ups"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.188Z",
+  "lastUpdated": "2026-06-23T03:49:56.583Z",
   "specId": "026",
   "folderSlug": "daemon-reliability-followups",
   "parentChain": [

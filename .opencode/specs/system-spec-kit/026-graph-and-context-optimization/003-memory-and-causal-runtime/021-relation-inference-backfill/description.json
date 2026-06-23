@@ -1,14 +1,23 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
-  "description": "Feature Specification: Relation-Inference Backfill",
+  "description": "After packet 019, `memorycausalstats.relationCoverage.backfillJob` honestly reports `implemented:false` / `command:null` because no command actually b",
   "keywords": [
-    "feature",
-    "specification",
-    "relation-inference",
-    "backfill"
+    "packet",
+    "019",
+    "memorycausalstats",
+    "relationcoverage",
+    "backfilljob",
+    "honestly",
+    "reports",
+    "implemented",
+    "false",
+    "command",
+    "null",
+    "because",
+    "actually"
   ],
-  "lastUpdated": "2026-06-04T12:33:53.254Z",
+  "lastUpdated": "2026-06-23T03:49:55.678Z",
   "specId": "021",
   "folderSlug": "relation-inference-backfill",
   "parentChain": [

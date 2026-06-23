@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary",
-  "description": "Feature Specification: Memory-Indexer Storage-Boundary Remediation",
+  "description": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013)",
   "keywords": [
-    "feature",
-    "specification",
-    "memory-indexer",
-    "storage-boundary",
-    "remediation"
+    "005-memory-indexer-invariants",
+    "deep",
+    "review",
+    "surfaced",
+    "one",
+    "release-blocker",
+    "correctness",
+    "gap",
+    "p1-001",
+    "advisory",
+    "cleanup",
+    "items",
+    "p2-001",
+    "p2-013"
   ],
-  "lastUpdated": "2026-05-26T17:26:04.180Z",
+  "lastUpdated": "2026-06-23T03:49:52.213Z",
   "specId": "001",
   "folderSlug": "fix-memory-indexer-storage-boundary",
   "parentChain": [

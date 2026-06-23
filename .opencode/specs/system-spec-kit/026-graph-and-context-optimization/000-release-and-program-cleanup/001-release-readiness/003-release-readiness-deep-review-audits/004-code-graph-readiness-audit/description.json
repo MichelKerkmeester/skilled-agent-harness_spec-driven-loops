@@ -1,16 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit",
-  "description": "Feature Specification: Code Graph Readiness Release-Readiness Audit",
+  "description": "The release-readiness program needs a truth check for the post-032 code graph readiness contract",
   "keywords": [
-    "feature",
-    "specification",
+    "release-readiness",
+    "program",
+    "needs",
+    "truth",
+    "check",
+    "post-032",
     "code",
     "graph",
     "readiness",
-    "release-readiness",
-    "audit"
+    "contract"
   ],
-  "lastUpdated": "2026-05-26T17:27:38.304Z",
+  "lastUpdated": "2026-06-23T03:49:52.090Z",
   "specId": "004",
   "folderSlug": "code-graph-readiness-audit",
   "parentChain": [

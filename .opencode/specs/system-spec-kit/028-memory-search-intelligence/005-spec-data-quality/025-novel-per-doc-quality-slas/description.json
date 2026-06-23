@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
-  "description": "Feature Specification: Per-Doc Quality SLAs",
+  "description": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
   "keywords": [
-    "feature",
-    "specification",
+    "system",
+    "computes",
     "per-doc",
     "quality",
-    "slas"
+    "score",
+    "never",
+    "holds",
+    "doc",
+    "named",
+    "bar",
+    "time"
   ],
-  "lastUpdated": "2026-06-21T10:22:34.370Z",
+  "lastUpdated": "2026-06-23T03:49:58.715Z",
   "specId": "025",
   "folderSlug": "novel-per-doc-quality-slas",
   "parentChain": [

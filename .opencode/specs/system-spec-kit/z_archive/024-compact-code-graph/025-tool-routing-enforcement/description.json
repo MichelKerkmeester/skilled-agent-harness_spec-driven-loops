@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/025-tool-routing-enforcement",
-  "description": "Feature Specification: Tool Routing Enforcement",
+  "description": "AI assistants across all CLI runtimes (Claude Code, Codex CLI, Copilot CLI, Gemini CLI) consistently default to Grep/Glob for code search tasks even w",
   "keywords": [
-    "feature",
-    "specification",
-    "tool",
-    "routing",
-    "enforcement"
+    "assistants",
+    "across",
+    "cli",
+    "runtimes",
+    "claude",
+    "code",
+    "codex",
+    "copilot",
+    "gemini",
+    "consistently",
+    "default",
+    "grep",
+    "glob",
+    "search",
+    "tasks",
+    "even"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.198Z",
+  "lastUpdated": "2026-06-23T03:50:00.746Z",
   "specId": "025",
   "folderSlug": "tool-routing-enforcement",
   "parentChain": [

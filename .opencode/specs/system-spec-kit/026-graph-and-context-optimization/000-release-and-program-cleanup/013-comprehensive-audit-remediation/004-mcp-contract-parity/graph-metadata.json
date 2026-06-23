@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the comprehensive audit remediation specification.",
+    "causal_summary": "The four contract-parity MCP tools drifted across their public JSON schema, Zod validation schema, the allow-list, the handlers, and the docs",
     "created_at": "2026-06-04T20:45:42Z",
-    "last_save_at": "2026-06-05T05:20:54.801Z",
+    "last_save_at": "2026-06-23T03:49:53.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e0597307e30eea94967b8f2a5bfcc792be99e6c34515f26456730f59f189337f",
+    "source_doc_hashes": {
+      "spec.md": "730c97a8278e2b7aeb8f46aa347cf2dbc09e39f99d278bd6a9f0b163315ee4ee",
+      "plan.md": "74f03e6644831ba050a16026278bad2192e5522a003e2aafeabf9043c88962f3",
+      "tasks.md": "049044adadb87d6386b90dccb1ebaad2bfcb3f6c44d6c2337dea699a89ea6a9c",
+      "implementation-summary.md": "d998bc44f939e57e2b2b465dbd2d1539fb7556ab1d290f129e9307155705ad6f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

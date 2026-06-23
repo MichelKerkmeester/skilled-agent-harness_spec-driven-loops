@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
-  "description": "Feature Specification: 042 Root README Refresh",
+  "description": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities",
   "keywords": [
-    "feature",
-    "specification",
-    "042",
     "root",
     "readme",
-    "refresh"
+    "described",
+    "stale",
+    "runtime",
+    "counts",
+    "omitted",
+    "several",
+    "recently",
+    "added",
+    "mcp",
+    "server",
+    "capabilities"
   ],
-  "lastUpdated": "2026-05-26T17:26:10.839Z",
+  "lastUpdated": "2026-06-23T03:49:52.327Z",
   "specId": "015",
   "folderSlug": "root-readme-refresh",
   "parentChain": [

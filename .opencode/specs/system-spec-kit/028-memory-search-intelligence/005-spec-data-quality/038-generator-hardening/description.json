@@ -1,14 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
-  "description": "Feature Specification: Generator Hardening",
+  "description": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a",
   "keywords": [
-    "feature",
-    "specification",
+    "graph-metadata",
     "generator",
-    "hardening"
+    "json",
+    "produces",
+    "carry",
+    "two",
+    "residual",
+    "hardening",
+    "gaps",
+    "031",
+    "research",
+    "ranked",
+    "because",
+    "fix"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.871Z",
+  "lastUpdated": "2026-06-23T03:49:58.793Z",
   "specId": "038",
   "folderSlug": "generator-hardening",
   "parentChain": [

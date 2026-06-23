@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice. Reconcile ENV_REFERENCE flag completeness, including SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT.",
+    "causal_summary": "Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.916Z",
+    "last_save_at": "2026-06-23T03:49:56.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0078e259d99ed39fa3964754d24fca7f53aed411927e8872845db7a9fa621b27",
+    "source_doc_hashes": {
+      "spec.md": "d7a9ae6cae9deab6eaebf9355f999f2578aeb4376ba156702ee25d9ee243eba4",
+      "plan.md": "21d3370f236989b9de718c632179bdda3025af87b82fc8a95f7e4f5d9afe28dc",
+      "tasks.md": "d4ca361a3be9adc04ddbb71951e922bcdaf6548ed61ca366eda06743ea4a5ecd",
+      "implementation-summary.md": "ac64e367dc9fc7000720b2d67a6b1d73146159947c2762ddfc40e730846348f3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

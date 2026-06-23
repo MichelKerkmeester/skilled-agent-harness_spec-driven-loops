@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (complexity tier + task intent) but has **no retrieval-shape axis**: a single-hop \"find this exact fact\" query is expanded over the causal graph exactly like a multi-hop \"trace impact\" query, and \"indiscriminate graph expansion hurts single-hop precision\" (the aionforge failure mode that 028's research maps directly onto this code). This sub-phase implements the retrieval-shape intelligence cluster from packet 028's PRIMARY Memory MCP research: the **C2-A** retrieval-class classifier (the additive third router axis) plus the two consumers it gates, **C2-C** (graph-off for single-hop precision) and **C2-B** (per-class channel-weight injection), and the adjacent **recall-shape** family that routes/sizes recall by shape: **CG-iterative-context-extension** (answer-as-next-query), **MEM-tiered-recall-budget** (per-section/per-tier budgets), **LT-compaction-fallback-ladder** (summarize-before-truncate) and the **C-G2** cross-cutting auto-topic facet.",
+    "causal_summary": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`simple|moderate|complex`) and task intent (`addfeature|fixbug|findspec|…`), and neither is a retrieval-shape classifier [CONFIRMED: `query-router.ts:46-52`, `RouteResult` has `tier`/`channels`/`classification`, no `retrievalClass`]",
     "created_at": "2026-06-19T05:47:05.552Z",
-    "last_save_at": "2026-06-22T18:55:03.620Z",
+    "last_save_at": "2026-06-23T03:49:58.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e46d0cf2809eb5a098a8de039b1ac16282ea02ed1b9f06c4b5ad1a77da9def2f",
+    "source_doc_hashes": {
+      "spec.md": "dee87446fa496b23fca6e7445ec3102fcb47d403b6d63d13155d002026983e63",
+      "plan.md": "02997e3e0686c52628a605e584f5246c6beb484538f952754a2c15a488c76c2b",
+      "tasks.md": "d4a697cd9e480d5e4082b9a984e43ee07092a364197632bd872fc4fd712a152b",
+      "checklist.md": "986f675fa60cc9a3f599d1a07aa52a899e4506944ed3fd6033a05fa52c02bb9e",
+      "decision-record.md": "b1d19330fb1ba8a02579998682892f8acaeb31dbabcff7fc7dd76aaed7dc2ad8",
+      "implementation-summary.md": "00276ad42c0d76f45c06a128546e9d46439992dd973b5212b6d378bbca643dc9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

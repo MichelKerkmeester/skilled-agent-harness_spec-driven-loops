@@ -83,14 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces. These adoptions share a research provenance and a process-quality target, so they belong under one themed parent that points to the per-source child phases.",
+    "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-22T18:56:37.207Z",
+    "last_save_at": "2026-06-23T03:49:57.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:77c7cf9a7524eef10a28ff8e80075c83a7b04bd77d4d88b83973e0a8dd1c8070",
+    "source_doc_hashes": {
+      "spec.md": "a94564af90a9066ee001c2b5416ab81e9d8aceb3e786112bbb20048b93b7c5a5"
+    },
     "last_active_child_id": "001-peck-teachings-adoption",
     "last_active_at": "2026-06-15T09:09:34.752Z"
   }

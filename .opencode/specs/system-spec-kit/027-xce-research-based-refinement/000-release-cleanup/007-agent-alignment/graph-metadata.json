@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine.",
+    "causal_summary": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.921Z",
+    "last_save_at": "2026-06-23T03:49:56.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b51690b08675b47ae1153f051e4dfba8acd46d96f92a4d6e167c8846905b2ef3",
+    "source_doc_hashes": {
+      "spec.md": "9550b5ffde68d640f1c8b855accc9f2c8788c4e544106d415b0c20c649d53fb8",
+      "plan.md": "758985129f366ae4edeeee15d89498f89804ea6472758517be1c26187ae99007",
+      "tasks.md": "ca7fea1794ea45d7c2727ddc689ec1dbfd853a0e72b1c87e7c35f72f3d887196",
+      "implementation-summary.md": "a334b9846c087b5d085d1b4c958fc8436863bb97444f97173d195160120708cd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

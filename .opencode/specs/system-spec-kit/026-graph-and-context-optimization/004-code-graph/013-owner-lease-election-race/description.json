@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race",
-  "description": "Feature Specification: Owner-Lease Single-Writer Election Race (OR-R-01)",
+  "description": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic:",
   "keywords": [
-    "feature",
-    "specification",
-    "owner-lease",
-    "single-writer",
-    "election",
-    "race",
-    "or-r-01"
+    "launcher",
+    "mk-code-index-launcher",
+    "cjs",
+    "elects",
+    "single",
+    "writer",
+    "several",
+    "gates",
+    "spawning",
+    "daemon",
+    "two",
+    "them",
+    "non-atomic"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.902Z",
+  "lastUpdated": "2026-06-23T03:49:56.160Z",
   "specId": "013",
   "folderSlug": "owner-lease-election-race",
   "parentChain": [

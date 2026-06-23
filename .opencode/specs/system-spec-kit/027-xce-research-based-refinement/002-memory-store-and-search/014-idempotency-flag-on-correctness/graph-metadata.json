@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase fixes correctness in the server-derived memory idempotency path behind `SPECKIT_MEMORY_IDEMPOTENCY`. The feature remains default-off. The scope is limited to correctness for explicit flag-on runs, not rollout or enablement.",
+    "causal_summary": "The default-off idempotency path had correctness defects that only matter when `SPECKITMEMORYIDEMPOTENCY` is explicitly enabled:",
     "created_at": "2026-06-11T12:35:00Z",
-    "last_save_at": "2026-06-12T04:40:47.938Z",
+    "last_save_at": "2026-06-23T03:49:57.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:86fce560b4136c315c2cbc684a63a5a4559d6196455ce23a12c22570f92f389b",
+    "source_doc_hashes": {
+      "spec.md": "cd2e9480723f1749ebc705e02f9ac7c999cc35f61c9d11c90e2a9f83e20b071c",
+      "plan.md": "c35b817285d7e4ac592a62dc404f27548b63bde8f7e02802ffe51b654f5b28b1",
+      "tasks.md": "af9d832a093d5cf702f9ded3e6cdb9fc212abef2fabd3dc8cdd5d4905f77c584",
+      "checklist.md": "3dcc6de8959a39a8c6916c30b489a1b20abba9166776626bb5b86222196de4d7",
+      "implementation-summary.md": "e435eab415edbde9b5883ed7e9d162b4b3ddaf052b02abfcd41a7b6b52fe8d6b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

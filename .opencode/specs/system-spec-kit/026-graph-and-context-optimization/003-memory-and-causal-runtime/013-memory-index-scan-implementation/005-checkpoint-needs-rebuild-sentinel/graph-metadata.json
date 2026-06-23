@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A checkpoint-v2 restore reopens the database and then rebuilds derived artifacts (FTS index, community partitions, derived graph) best-effort. Those rebuilds are wrapped in try/catch, so when one fails the restore still returns SUCCESS and the base snapshot is valid, but FTS, community, and derived-graph state stay stale with nothing scheduled to repair them until an unrelated scan happens to re-index. This packet adds a durable `.needs-rebuild` sentinel that is written when a post-restore derived rebuild fails or is skipped, then checked on boot and immediately before the scheduled startup scan to run a bounded, non-fatal derived rebuild that clears the sentinel on success.",
+    "causal_summary": "After a checkpoint-v2 restore, `runPostRestoreRebuilds()` (`mcpserver/lib/storage/checkpoints.ts`, approx lines 1701-1772) rebuilds derived artifacts (FTS, communities, derived graph) best-effort and catches failures; `restoreCheckpointV2()` (approx lines 2456-2464) calls it after the DB swap and reopen",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.990Z",
+    "last_save_at": "2026-06-23T03:49:55.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:06e3b5fa9cc4a108ee338f37d3c228e72f72884918e8cf5970f6c0d2f5ced017",
+    "source_doc_hashes": {
+      "spec.md": "4c93acf37b183570e301a77f130949e3ac01415de3193c6d284ab525e61a20a9",
+      "plan.md": "6540c23b8aec4847bb368539a2873ac285fbfbd24a74346b97e9e151d0cce793",
+      "tasks.md": "8304564c22b28d8e8d0f9bc1f26e1cd3c3f5c3b37b5aabd666cd33ea37a60d76",
+      "checklist.md": "683d115c45a5c54cebbdd7c7f84170266d0cfe46aec9967a5e9705cf9c406f96",
+      "decision-record.md": "550dfdd707a3f0bebfd485f347f7de631647dd08a061ad63a6b5671b5b52aef4",
+      "implementation-summary.md": "02369e879901f326cce465b11e9f613a542acd3b4b44bde2db868b4d786b6070"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

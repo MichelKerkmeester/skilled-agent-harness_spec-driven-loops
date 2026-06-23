@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit skill. The research analyzed Smart-Ralph (state management, recovery), Empirica (epistemic vectors, uncertainty tracking), OpenCode Hooks (design patterns), and Superego (evaluation frameworks, decision journaling) to identify transferable patterns that would enhance context preservation, decision quality, and workflow reliability.",
+    "causal_summary": "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit skill. The research analyze...",
     "created_at": "2026-04-12T09:02:53.548Z",
-    "last_save_at": "2026-06-05T12:47:34.532Z",
+    "last_save_at": "2026-06-23T03:49:59.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:02f31927ad29cbc9235f4e603903e526cf04e89a6de3095d8c329e49f43b9b1a",
+    "source_doc_hashes": {
+      "spec.md": "dc378bc4489658e7d91b24dd3191c909519e3b4621a31e20f0af99f8f5f70295",
+      "plan.md": "94ebcb58511445922d6d4c39ae42bfd7b71de93604870dad086fa157d189e5df",
+      "tasks.md": "8ad60fc323fe29c179a1493d5fda209a112c156974a96cfb5defb8fd15655cbc",
+      "checklist.md": "465a57c0c6862fddccffc406966ba7e9b55690ad8c34b404c2448c6dcf7e1477",
+      "decision-record.md": "210f44d5448d903860a82fbf253a069440273bc5178b2a22323b7087a2f010a2",
+      "implementation-summary.md": "2bc1456b56cf2319f689ad2cdff8896e998b4f1e84cac7f5b8e1998e72a98e47"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

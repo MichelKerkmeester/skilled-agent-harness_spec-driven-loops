@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase adds provenance tagging to automated memory write paths so trust, manual-overwrite protection, and publication-gate decisions can reason about row origin. It does not expand guard enforcement beyond tagging.",
+    "causal_summary": "The provenance-injection change correctly introduced write-path tagging, but review found two regressions and one verification question:",
     "created_at": "2026-06-11T12:10:00Z",
-    "last_save_at": "2026-06-15T09:09:34.788Z",
+    "last_save_at": "2026-06-23T03:49:57.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:500f08613c655d1fde6a74f6d5bb5b684ad8bbc7abd9fd82321cdaa55bc8b695",
+    "source_doc_hashes": {
+      "spec.md": "dd345868b63c284cb2192739a12652ef5f4ae5c3b25fdaadca3196e21ef5a446",
+      "plan.md": "fa253a573136f45746059be6c58040a7eace662093f6bd43c3b92e1224c26f7a",
+      "tasks.md": "dc79a39f1cd35a339b503c4c7c1ef8380eb3fe25b558071912346e14597278d5",
+      "checklist.md": "16f8c04444a1162053bbb9d26dd03d7432b8f6bbffb42a84b3223830e88bdaab",
+      "implementation-summary.md": "307bdbcad780bd608f164b0f19d655c9017530d6d07fbf690e96bd367f8de63f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

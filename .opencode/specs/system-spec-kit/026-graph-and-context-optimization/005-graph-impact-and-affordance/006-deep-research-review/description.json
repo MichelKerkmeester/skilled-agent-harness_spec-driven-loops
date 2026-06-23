@@ -1,15 +1,25 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review",
-  "description": "Feature Specification: Deep Research Review 008",
+  "description": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverag",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "research",
-    "review",
-    "008"
+    "phase",
+    "006",
+    "007",
+    "remediation",
+    "claimed",
+    "broad",
+    "closure",
+    "across",
+    "graph-impact",
+    "affordance",
+    "work",
+    "shipped",
+    "code",
+    "tests",
+    "playbook",
+    "coverag"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.372Z",
+  "lastUpdated": "2026-06-23T03:49:56.208Z",
   "specId": "006",
   "folderSlug": "deep-research-review",
   "parentChain": [

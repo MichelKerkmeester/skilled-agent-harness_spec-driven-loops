@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, owner-lease election, readiness contracts). No recent end-to-end correctness audit existed, and several documentation surfaces (feature catalog, playbooks, references, install guide) had drifted from the implementation. The operator requested a bug + misalignment sweep, dispatched via `cli-opencode` using `gpt-5.5 xhigh`.",
+    "causal_summary": "The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, owner-lease election, readiness contracts)",
     "created_at": "2026-06-08T11:45:12.222Z",
-    "last_save_at": "2026-06-22T18:55:02.889Z",
+    "last_save_at": "2026-06-23T03:49:56.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6e2cdeeadc48ee8e0de2164adb4f0ade4ddfef7d9422fb55e010a30346e4714a",
+    "source_doc_hashes": {
+      "spec.md": "61148907947527d003c74f4b1a92bdf123afbf56ad2a30728444f69fa67e7926",
+      "plan.md": "2efb16a0d7b07c4f3fcd2d102dd0c432cb283b90b96ec49bb5b009033bf3c4ab",
+      "tasks.md": "b59c1817225c29ef845d65bf2f968b785a38311239f6293d9039850afac7c9f7",
+      "checklist.md": "1e68022d2e71c8c8fa29d2ee61f2196cf08fb93f71901545ac98ecced536f776",
+      "implementation-summary.md": "ad3df1aa1e75100a136b5a40e5af453af108a3a64e0b069cfc7695f9a6a00bab"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 54** of `000-release-cleanup`. It captures three operational follow-ons surfaced during post-restart verification of packet 096's singular→plural path rename.",
+    "causal_summary": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.opencode/skills` sentinel that can match nested mock dirs and self-perpetuate (proven live: `mcpserver/.opencode/skills/.advisor-state/` was rewritten 6 minutes after restart on 2026-05-08); (2) `memoryhealth` reports a persistent FTS/vector consistency gap (50 mismatched IDs across 6857 rows) that `autoRepair` does not fix; (3) the indexed-continuity DB carries 2,751 deprecated-tier records (~33% of total) bloating retrieval and search",
     "created_at": "2026-05-08T08:36:13Z",
-    "last_save_at": "2026-06-05T12:47:33.064Z",
+    "last_save_at": "2026-06-23T03:49:52.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:58dd658b547ca48f2a479709a0f9910b0fe2f8c7860a06d667d65bab06e1bbbc",
+    "source_doc_hashes": {
+      "spec.md": "ce35a9dcabdde58137f8aedf361321c2b43491c5d9e5574e61ed5b41d21d7f02",
+      "plan.md": "2d8eea262ae2f53705604a4f801adb2cce841d1f6b30ea47629de27bdcc2cd45",
+      "tasks.md": "c165e6bc848f4c92cc942ae1cd0e317c45f35d876fca7e663afaab085431775e",
+      "checklist.md": "ac447b8e7a765f45d1271b1ac3c4d4f8124ea5c9f9dd5d91d7810cac8f2d58f5",
+      "implementation-summary.md": "5017e3ff6f247ce320ca25c8b9fde141607b04ca8402d17fb3c6337fe6709ddb",
+      "handover.md": "db95787c114153c066a0248a16a05e3417fc0647d73d84c4601fca9eb525ff6e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Speckit Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Speckit Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.900Z",
+    "last_save_at": "2026-06-23T03:49:57.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0d61c77b847e2abce72cb050474fca44f3c8a03c7081181517469ed2bb2ddf82",
+    "source_doc_hashes": {
+      "spec.md": "3aba01ce48aeafc04298a44e9926d443781d1d56af114cb884dd48e3857bcd56",
+      "plan.md": "9db3ae5139397748ad62954bfde67194460f112b84f188134eb45f79e3c3010e",
+      "tasks.md": "d8adad71c424a7e83a361b56557d95639f11b943979472dab1020cf3651b9365",
+      "implementation-summary.md": "f6512002b69f0e2d5726700167ae2ff0d95948c1bbfba3e5a5cd6cea60df2e32"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

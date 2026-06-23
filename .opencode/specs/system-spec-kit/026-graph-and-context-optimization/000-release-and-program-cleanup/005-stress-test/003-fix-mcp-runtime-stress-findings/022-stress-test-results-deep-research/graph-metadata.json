@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The v1.0.3 stress test (Phase H, packet `021-stress-test-enterprise-wiring-expansion`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA). It produced 12-row envelope/audit/shadow samples, computed aggregate metrics, and confirmed W4 trigger logic fires real triggers (no `flag_disabled`/`unknown`).",
+    "causal_summary": "The v1.0.3 stress test (Phase H, packet `021-stress-test-enterprise-wiring-expansion`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA)",
     "created_at": "2026-04-29T07:15:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.735Z",
+    "last_save_at": "2026-06-23T03:49:52.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:02d6f6994efb50da977d3c5810f03b57f4ef0d84322a285b010920264e18ccc5",
+    "source_doc_hashes": {
+      "spec.md": "69cd09818453b0baf8c70953a140d13ae48aa1ffaace622f41486343ac8196db",
+      "plan.md": "68d0794d6521200a4b336164f754e1fd3f10f0bca4568d0114d3381a04c16052",
+      "tasks.md": "63f54edeefd674a75137599d7836f4bd80ab63a101d74154044763df089a3abe",
+      "checklist.md": "19b77bb1ede7b7752413cf2def93a142714cd9762c8d49ec638e968c4f3dbcd3",
+      "implementation-summary.md": "d9e92fe57488c01bb0feb8cc2b0f63e262d5ae23ddc1c34f642255954b610d9b",
+      "resource-map.md": "82761e6b2aad4c76beafd56f74f827ef571f5bb041e1884b3be4f8d9630fa0da"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

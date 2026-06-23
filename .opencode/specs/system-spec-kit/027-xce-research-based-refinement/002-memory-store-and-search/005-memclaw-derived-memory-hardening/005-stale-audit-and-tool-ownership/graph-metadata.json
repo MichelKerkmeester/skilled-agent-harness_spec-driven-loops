@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the Memclaw-derived memory hardening: provenance, idempotency, feedback reframe, tombstones, edges, stale audit, tool ownership specification. It is the polish phase — diagnostics and governance only — and is independent of the other four phases.",
+    "causal_summary": "Default `memorysearch` hard-excludes some rows: it forces `includeArchived=false` and the FTS path filters `importancetier != 'deprecated'`, so a deprecated-but-still-relevant memory can be silently dropped from recall with no signal to the caller",
     "created_at": "2026-06-06T10:10:49Z",
-    "last_save_at": "2026-06-10T19:22:14.959Z",
+    "last_save_at": "2026-06-23T03:49:57.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2f80e08d72ad6c6a5f039a2980949e4f15e969896a9f7a148d54a47aadcef9ba",
+    "source_doc_hashes": {
+      "spec.md": "0964fe415d66f08ed369fe249fe9d074528fbb58d961af90795f21ea3ad97cf8",
+      "plan.md": "96f2e29bde3a61f1dc65e30873615a0c7eceec4f67dcd2035db0e4b38e375a59",
+      "tasks.md": "677d3d4bfa2f3c6db7bdcc2f5dc5a0242a2183ecf79b6f78ec679642758265fd",
+      "checklist.md": "8d49d549ca08171e35a4e11d0759e945fe5fe2d6b192d939912a48569028210a",
+      "implementation-summary.md": "3cbb0a7c76897a195c894296beca689309a9d530eaf06a0b1c4f08d9d3769852"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

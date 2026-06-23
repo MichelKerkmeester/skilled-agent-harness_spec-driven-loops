@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill. User-facing system-spec-kit docs still contained a mixture of correct cross-skill runtime mentions and stale ownership/path claims, including old `mcp_server/code_graph` paths and prose describing Code Graph as a system-spec-kit subsystem.",
+    "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-06-22T18:55:03.150Z",
+    "last_save_at": "2026-06-23T03:49:56.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7eb1e5f8c6cc75e6605de81d994ffac7f2f4bbde8f68f6b5658d421126d955f8",
+    "source_doc_hashes": {
+      "spec.md": "33ee5a82ca277d306469dd3bf647ee44afeba11e0031bf0a91a33fda8742373f",
+      "plan.md": "0c921edb33a8de76a8ddebc33b5461e655d7a1ff96cae0670799e59d73ef7835",
+      "tasks.md": "3cc388afb077b73103fcb02dfc0640a1c24722d9e609717e0bf270cd5ba5ad1e",
+      "implementation-summary.md": "ec1d7a49c22894f2d2c874dae5dc328b1fc668ba21a1d4919f89e685e55d7f87"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

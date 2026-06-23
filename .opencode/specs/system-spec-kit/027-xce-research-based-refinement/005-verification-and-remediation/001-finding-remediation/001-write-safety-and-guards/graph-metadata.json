@@ -180,9 +180,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 12 P2 clusters. Unverified single-seat claims can be neither fixed nor dismissed without evidence.",
+    "causal_summary": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 12 P2 clusters",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-06-12T04:40:47.942Z",
+    "last_save_at": "2026-06-23T03:49:57.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,6 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0b7db98e4e5c85e50691f0a8c528035ad2c1439d59fd8f8594f1a0e8d73ebab8",
+    "source_doc_hashes": {
+      "spec.md": "87e961eb98f60742d43598c9b68775c2f437cd50e932724d15703d2d2a177ade",
+      "plan.md": "a2ef0d1a616f565956198a3cbc714822ea109710abc1ba4323f9effba1fda182",
+      "tasks.md": "5ecf73d8f7741ba6994848d36881558cc116a343654cb39edc172ccf4a4ef4f9",
+      "implementation-summary.md": "2ca3c2e4bc80d464b31afafe8bac588ea1d445ccae7a641f68303c6eea4460ab"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

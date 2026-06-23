@@ -1,17 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
-  "description": "Feature Specification: Design + ADR for skill advisor extraction",
+  "description": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`",
   "keywords": [
-    "feature",
-    "specification",
-    "design",
-    "adr",
     "skill",
     "advisor",
-    "extraction"
+    "today",
+    "substantial",
+    "subsystem",
+    "buried",
+    "levels",
+    "deep",
+    "inside",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-05-26T17:27:17.820Z",
+  "lastUpdated": "2026-06-23T03:49:53.229Z",
   "specId": "001",
   "folderSlug": "extraction-design-and-adr",
   "parentChain": [

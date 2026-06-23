@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness. A dev team cloning this repo should have a seamless first-time experience.",
+    "causal_summary": "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-05-30T10:12:02.979Z",
+    "last_save_at": "2026-06-23T03:49:59.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:ce056f51fa59167d358e505cb886e8e60e187efcf7c37f0e212d144121b8c26a",
+    "source_doc_hashes": {
+      "spec.md": "39ce22178ff9ce0cc431d4f05927b7356288ac3fbf0bc9662bb1538fd9da47b7",
+      "plan.md": "de16aaa40cd73cb9fac6d592a95f837138c757f32da8d2854a98e9c856e59457",
+      "tasks.md": "66bc68c2dc1ed10eb1b5c9fcf740031e628017f303dadb5c429668db8d5df164",
+      "checklist.md": "59d1dce3124cc30422f07148a2d8e6af8f589e5b2f9f260137f671e58f27b555"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

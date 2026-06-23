@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Packet 013 identified four Tier C surfaces where automation was easy to overstate:",
     "created_at": "2026-04-29T14:15:00Z",
-    "last_save_at": "2026-06-12T04:40:47.037Z",
+    "last_save_at": "2026-06-23T03:49:52.293Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:e7aa5ed2dcb2ea51a26984c200b0838a9db1c7488ed44e5155fc19632de4df3d",
+    "source_doc_hashes": {
+      "spec.md": "044e35561f1ecc961fe2fa455c1d38f175ad47a77ff637e2d5d8fae56dcc1ed1",
+      "plan.md": "445f508cb087683d54436138bbdb95c1190238c4cbadd0025512164da3c06fcc",
+      "tasks.md": "453fec2a05f72618696b2040a93fb27c682adaf862a75f2fee1ef9b1dbba78b3",
+      "checklist.md": "ddb405004b26b08f949c2b20d2eaa21223cf9642ec8aa107958b7d6f87ac3342",
+      "implementation-summary.md": "1bfbd1a2600b466dfcfb7449edc3a0a2ad6790e06ff2157fa63d1d0272b942cf",
+      "resource-map.md": "882724fa44bf6baaf80d9ee5a472eafb2750fd331102585321bf80ae657d3cbb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

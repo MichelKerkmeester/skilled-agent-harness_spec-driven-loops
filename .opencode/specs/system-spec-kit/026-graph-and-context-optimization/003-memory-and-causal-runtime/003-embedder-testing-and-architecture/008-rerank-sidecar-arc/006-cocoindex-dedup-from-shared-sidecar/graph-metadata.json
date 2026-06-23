@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 006 of arc 008-rerank-sidecar-arc — re-opens the arc to finish what was originally intended: actually de-duplicate Qwen across spec-memory + cocoindex by moving cocoindex onto the shared sidecar.",
+    "causal_summary": "Arc 008 was scoped around deduplication — ship one shared cross-encoder sidecar so both spec-memory and cocoindex stop bundling independent Qwen instances",
     "created_at": "2026-05-23T11:55:15.616Z",
-    "last_save_at": "2026-06-05T12:47:33.819Z",
+    "last_save_at": "2026-06-23T03:49:55.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:40d09bc998216939697d1cc6ca8cba50ca65ba7de912083a55e3598cd37c2fd3",
+    "source_doc_hashes": {
+      "spec.md": "fccf82ca7d52d0484d967e11a1515ee4af27e7220f9552033754caf052676efe",
+      "plan.md": "7348761f2ab6cb0fd4608f96820fc415e3214d1560c2fd6fcf8df9d161af195e",
+      "tasks.md": "20cb1898e90e1a0596a12212ec11199983238214a3818bcc988847d59c6640a7",
+      "implementation-summary.md": "7f0af17beac52d264b35908c8106a2acc5eb57d0c3621633a978ffd5c33786d2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

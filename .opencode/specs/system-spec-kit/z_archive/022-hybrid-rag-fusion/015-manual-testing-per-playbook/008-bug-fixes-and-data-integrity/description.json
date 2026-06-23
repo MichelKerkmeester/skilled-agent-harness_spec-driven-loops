@@ -1,17 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
-  "description": "Feature Specification: Manual Testing — Bug Fixes and Data Integrity",
+  "description": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the h",
   "keywords": [
-    "feature",
-    "specification",
-    "manual",
-    "testing",
-    "bug",
-    "fixes",
+    "bug-fixes-and-data-integrity",
+    "category",
+    "covers",
+    "scenarios",
+    "verify",
+    "correctness",
     "data",
-    "integrity"
+    "handling",
+    "deduplication",
+    "transaction",
+    "safety"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.476Z",
+  "lastUpdated": "2026-06-23T03:50:00.262Z",
   "specId": "008",
   "folderSlug": "bug-fixes-and-data-integrity",
   "parentChain": [

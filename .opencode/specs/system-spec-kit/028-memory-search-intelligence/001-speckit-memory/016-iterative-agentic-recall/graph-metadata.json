@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today**, controller, step-cap, cost-ceiling and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
+    "causal_summary": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`, and each branch is one straight-line retrieval call (quick→triggers, deep/focused→single `handleMemorySearch`, resume→ladder) [CONFIRMED: `handlers/memory-context.ts:1292-1311` (`executeStrategy` switch), deltas/iter-017.jsonl]",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-06-22T18:55:03.656Z",
+    "last_save_at": "2026-06-23T03:49:58.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4436c43e0edfc7a3a6fbe4a7009a352b23b0ce7b860898934f887961acc079a9",
+    "source_doc_hashes": {
+      "spec.md": "b643d976f4e49cb1523fdb43c0344900f718d254ee19af90fd0daa31cd5a1b00",
+      "plan.md": "19174573cea092539d675e52019bc8d6f3f8c18f08d8dae1b3550701f669c450",
+      "tasks.md": "337e0ced1be441838b495e451e4036ca1950de64fb7635d756c20d4d14ac3fef",
+      "checklist.md": "e3fe5b4add8854aee93349b0f86ead711cdb47a3c02ef18927fe398c204953d7",
+      "decision-record.md": "9cf48710e628c22ba01a4bf4bb58ce740304a0e95b7d1af7b609d131c121ec58",
+      "implementation-summary.md": "2213e4acb51ea8676f2a0728fc131833e668a84bf1b6a3659eeac832dcbbec53"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

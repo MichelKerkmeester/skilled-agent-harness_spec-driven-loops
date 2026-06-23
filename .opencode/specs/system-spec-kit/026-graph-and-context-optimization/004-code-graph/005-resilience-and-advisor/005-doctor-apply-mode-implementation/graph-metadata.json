@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase A (diagnostic-only `/doctor:code-graph`) shipped in `005-code-graph/005-doctor-diagnostic-command-phase-a/`, gated Phase B behind four artifacts from research packet `006-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.",
+    "causal_summary": "`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `005-doctor-diagnostic-command-phase-a/`, with apply-mode explicitly deferred behind the resilience research deliverables",
     "created_at": "2026-05-08T21:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.089Z",
+    "last_save_at": "2026-06-23T03:49:55.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:6a2a83d467d21429a3d074f0adea747a14cee78507b3f510ece5a4e5fc76fbff",
+    "source_doc_hashes": {
+      "spec.md": "7643e4b678e17dbfc234a5837a25dd177fabc91985dd406de940a2e0d9683568",
+      "plan.md": "b107f853dbc4e677de6258dd116e950dcebf8ebad301a8e490b851d03bc7e39c",
+      "tasks.md": "8334dd3fb3ddb77736cc09cdb00f579984d0ddf1a8d5aeb396ace1ef5211b10f",
+      "checklist.md": "f0f7d3239f00ae328262c873b03d4ffe31a676445d670b0057b8bd81061098c1",
+      "decision-record.md": "e5e891c1ba5de2b4ea284659d1643df546d829b5e6af5b45cde092f575db24b1",
+      "implementation-summary.md": "99a9fd22b7d1762cf9e693b782ba0c4ec195e05a8562f700615495910b76ea0b",
+      "resource-map.md": "8c142ed352116743f14a5e4a2caad22675bbc6dadad0cae4a9b6f7f696bf2d65"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

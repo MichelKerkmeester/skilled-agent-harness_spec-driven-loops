@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence. The 029 model benchmark found `kubernetes` scored good at 0.78 on a semantically unrelated doc, identical across all four models, and the 030 improvement research diagnosed this as a score-calibration miss rather than an envelope-fidelity miss. The entire verdict and citation path uses only the absolute cosine score plus a top-margin, with zero query-term or lexical-grounding signal. Nomic embeddings hand fluent but unrelated text a high background cosine, so a lone spurious hit sails through. The citation policy derives only from `requestQuality.label` at `deriveCitationPolicy` (`search-results.ts:368-370`), and `assessRequestQuality` reads only `topScore`, `qualityRatio` and `topMargin` with no lexical input (`confidence-scoring.ts:453-484`), even though the lexical signals `fts_score`, `bm25_score` and `keyword` are already populated on the raw rows (`search-results.ts:915`).",
+    "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.695Z",
+    "last_save_at": "2026-06-23T03:49:58.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f34734db575aeafd2d7f3c3f068cc4c93f571aec91ad9509836bb5e74b86805f",
+    "source_doc_hashes": {
+      "spec.md": "b5c73257e63a8a0b971b1c079da2b5846d5d128d8cd81fa21ded73f3cf0fe0b4",
+      "plan.md": "cabb70bf0f3b7a48d789deda9fa70c7a6db0c914a5288d33febacdbf8d1fb8bf",
+      "tasks.md": "24c38029039dcd3bc211b0934372dbf7789afc5f02ed1999652100bfa7838721",
+      "checklist.md": "fa9ba3c53ecec79b00c5f606b03e0366a5d8c188f0cb12df667731ffa5f9502a",
+      "implementation-summary.md": "5a6dbb59f2836fb21bf16d175fb6870e53b16d7dc89a9775a41a73b4a1db2cfe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

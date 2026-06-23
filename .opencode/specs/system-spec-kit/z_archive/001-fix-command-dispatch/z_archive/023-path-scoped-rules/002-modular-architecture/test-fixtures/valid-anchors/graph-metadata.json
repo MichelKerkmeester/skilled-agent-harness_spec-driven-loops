@@ -149,9 +149,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests properly paired ANCHOR tags in memory files.",
+    "causal_summary": "This fixture tests properly paired ANCHOR tags in memory files",
     "created_at": "2026-06-22T18:55:03.933Z",
-    "last_save_at": "2026-06-22T18:55:03.933Z",
+    "last_save_at": "2026-06-23T03:49:58.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -159,6 +159,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:c8d7aab42b8371bddfb194fbbd01c072a1c076c5b9e429424e89a22346af3115",
+    "source_doc_hashes": {
+      "spec.md": "5898ceff409332e459722f5bff974d69a894f7c91d37b573dae930b47a99eb90",
+      "plan.md": "8dbbc56211c93b55295e26299dd4b3b91764ccf1af1b7f1d0d80e5429532c246",
+      "tasks.md": "59ac09862ba3eaad6b84744893830cd6549c35563b5ee0fd2b21ea8c88ff7658"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

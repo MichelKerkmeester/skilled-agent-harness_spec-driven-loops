@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 shipped the lean-trio enforcement and documentation but deferred several additive items. Today, `/spec_kit:resume` on a phase parent walks the filesystem to list children — works correctly, but each resume pays the listing cost. `create.sh --phase` scaffolds the parent with level-N templates plus the phase-parent-section addendum — the resulting surface validates as a phase parent, but it carries vestigial heavy docs that the new lean template would skip entirely. There is no automated check warning a reviewer when a phase-parent `spec.md` slips into merge/migration narrative. And no end-to-end walkthrough exists to confirm the round trip from `/spec_kit:plan :with-phases` through `/spec_kit:resume`.",
+    "causal_summary": "Phase 001 shipped the lean-trio enforcement and documentation but deferred several additive items",
     "created_at": "2026-04-27T12:20:00Z",
-    "last_save_at": "2026-06-12T04:40:47.032Z",
+    "last_save_at": "2026-06-23T03:49:52.273Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:47b3d5e33dc4c10508894fd62812f75caf972109cec2a75d7d575362135c3fa0",
+    "source_doc_hashes": {
+      "spec.md": "85b9668fd519334add1a48f5dd26b58be8e4278e6a8c740e3e6b76708aaab373",
+      "plan.md": "2076397477f3e649de258cdde846ebe7140a26ad5043d1a2ad85626b5e6b7016",
+      "tasks.md": "974281f86f7bedf6b72ad61a10a3ee9d6d79db22599348063da204f516748cbc",
+      "checklist.md": "3aacbe3b329054ecb4ff813e3e6f55dc60b21494a37af91b48bc1295bb707d67",
+      "implementation-summary.md": "366f4037a96589196b1269e5f578da63f2474022d54f6a6294f5f368b8d6c883"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

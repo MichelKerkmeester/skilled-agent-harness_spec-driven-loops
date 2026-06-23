@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin",
-  "description": "Feature Specification: OpenCode Graph Plugin Phased Execution",
+  "description": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared payload/proven",
   "keywords": [
-    "feature",
-    "specification",
-    "opencode",
-    "graph",
-    "plugin",
-    "phased",
-    "execution"
+    "packet",
+    "030-opencode-graph-plugin",
+    "started",
+    "research",
+    "plus",
+    "scaffold",
+    "converged",
+    "six",
+    "completed",
+    "runtime",
+    "phases",
+    "shared",
+    "payload",
+    "proven"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.296Z",
+  "lastUpdated": "2026-06-23T03:50:00.778Z",
   "specId": "030",
   "folderSlug": "opencode-graph-plugin",
   "parentChain": [

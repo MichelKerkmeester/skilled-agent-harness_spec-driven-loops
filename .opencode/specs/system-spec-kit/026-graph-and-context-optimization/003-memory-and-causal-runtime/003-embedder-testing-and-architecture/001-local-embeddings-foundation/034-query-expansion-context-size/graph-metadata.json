@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer. The query expansion consumer still builds `combinedQuery` by appending up to eight expansion terms to the original query before calling the embedder. When the combined text crosses the practical context budget, the worker truncates the tail after the fact, which silently drops lower-priority synonym signal and can degrade retrieval quality.",
+    "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer",
     "created_at": "2026-05-14T15:40:13Z",
-    "last_save_at": "2026-05-30T10:12:02.127Z",
+    "last_save_at": "2026-06-23T03:49:54.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fcb95d263a676b1308104ac930081138b6f289cd2a3fc2d5db8b5110d459b8fa",
+    "source_doc_hashes": {
+      "spec.md": "66f58d50cbf856a6d2762ef4c7a9a4759af5b6ae1c0edb88e6498a95b25f13ae",
+      "plan.md": "071563f042fdd64bcb30784ba3d99a8f980514315ada02ccf9dc59de04d6145a",
+      "tasks.md": "7cb8f872079d92575748f36fc3d7918c6bc4c348630dc0656d6660d4067634b3",
+      "checklist.md": "2a8d4d8a537742c58fbdca352bd998073f352da0b7529d33a2c45d541f707269",
+      "implementation-summary.md": "e0828501fc58a38390b4b898a80166af44bea8886f9d9e98489941ee4d070c03"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

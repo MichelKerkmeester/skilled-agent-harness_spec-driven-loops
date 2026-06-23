@@ -1,16 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/005-post-research-wave-2-controlled-delivery",
-  "description": "Feature Specification: Post Research Wave 2 Controlled Delivery",
+  "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 2 Controlled Deliver",
   "keywords": [
-    "feature",
-    "specification",
+    "archived",
+    "child",
+    "phase",
+    "folder",
+    "020-mcp-working-memory-hybrid-rag",
+    "preserved",
+    "implementation",
+    "planning",
     "post",
     "research",
     "wave",
     "controlled",
-    "delivery"
+    "deliver"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.700Z",
+  "lastUpdated": "2026-06-23T03:49:59.606Z",
   "specId": "005",
   "folderSlug": "post-research-wave-2-controlled-delivery",
   "parentChain": [

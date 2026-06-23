@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current `RecursiveSplitter` (indexer.py:33-39, defaults chunk_size=1500, overlap=200, min=250) produces chunks by line-window, ignoring code structure. For `structural-indexer.ts` (2,234 lines, 67 chunks), the chunk that surfaces at dense rank 1 for the probe \"filesystem walker that emits typed structural symbols and import edges\" is **chunk 44683 = lines 1-9** — the import header — not the `findFiles` function (1391-1465) or the class body (anywhere). The reranker is starved of content.",
+    "causal_summary": "Replaces RecursiveSplitter's blind line-windowing with AST-aware chunking that respects class/function/interface/method boundaries. Uses tree-sitter grammars for TypeScript, Python, JavaScript, Go, Rust, Java, and falls back to RecursiveSplitter for unsupported languages. Each top-level definition becomes its own chunk (with full body + JSDoc/docstring), so the highest-ranked chunk for a query has rich semantic content instead of a 9-line import header. Future-proof: new languages drop in by adding a grammar. Embedder-agnostic, reranker-agnostic. The biggest expected leverage in the future-pro",
     "created_at": "2026-05-19T12:33:28.231Z",
-    "last_save_at": "2026-06-22T18:55:02.400Z",
+    "last_save_at": "2026-06-23T03:49:54.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0d86317e400cf1f47962e42c6c483378bf00e4d0cc8b456c40ee308a8c27c403",
+    "source_doc_hashes": {
+      "spec.md": "beed68ca50c2a5f1bc7a3cd91c8f8f591d70433f88aef89d9714d8fb684ad392",
+      "plan.md": "9337504b8f6e5ccf3bc6fddf24ac0c474e6ef818fe8f46ec629a81f8846c1db7",
+      "tasks.md": "b701f1bb9fa0ff059f394821a2ff4e0a10fd06c8a41f3f7c4dd21a4405aea04c",
+      "checklist.md": "460100c2761a7c4d371bc762d660f945f46a0e5b07de411bb15c174d4d54c6cf",
+      "implementation-summary.md": "f1d304bfc7aac1cba88d349bc5612e2ddd5087cdbca817d02946135652448d98"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

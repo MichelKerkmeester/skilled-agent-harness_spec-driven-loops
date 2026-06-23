@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make secondary enrichment durably recoverable by tracking enrichment completion with a per-row marker and repairing incomplete markers on dedup replay and as a bounded backfill under the scan lease, with no duplicate rows, no duplicate edges, and no save-latency regression.",
+    "causal_summary": "`memorysave` commits the primary row inside `writeTransaction.immediate()`, then runs secondary enrichment (FTS, vector, entity/summary, causal/graph edges) afterward via `runPostInsertEnrichmentIfEnabled()`",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.986Z",
+    "last_save_at": "2026-06-23T03:49:55.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:489d2f13f7c5b43378431c531fe41069f79595fddef167270e8c610b5336db00",
+    "source_doc_hashes": {
+      "spec.md": "2e1c15bfaea1b02c32f08a4b659098bb418a80fd0068078c30145ae95ec11760",
+      "plan.md": "9d9fb77f7de8c9164533733a30a1654fcc95584caa923e584878e16f147ca6b7",
+      "tasks.md": "af1c8738a723a826db54899b3c000695335ae1c3e3d227d6d4c598a4bc5632b8",
+      "checklist.md": "eaaa37eeb214499c2e08aebf046657ab79baabb206fa645b2b616668ed49f42a",
+      "decision-record.md": "29ad9617adcfa8d17a3b163b07a6e0aaacdd9b5598191c7fa7ebd4a6057bedc0",
+      "implementation-summary.md": "4e3c753793c6581b197006d171a8ce95880ef3a114ae5c78aee84139dbd56f1d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

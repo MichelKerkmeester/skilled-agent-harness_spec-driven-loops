@@ -1,17 +1,25 @@
 {
   "level": "feature",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
-  "description": "Spec: 016/013/002 CocoIndex Ollama Adapter",
+  "description": "Add Ollama provider support to CocoIndex's embedder registry. Today CocoIndex's MANIFESTS is sbert-only; the config.py comment claims non-sbert names",
   "keywords": [
-    "spec",
-    "016",
-    "013",
-    "002",
-    "cocoindex",
+    "add",
     "ollama",
-    "adapter"
+    "provider",
+    "support",
+    "cocoindex",
+    "embedder",
+    "registry",
+    "today",
+    "manifests",
+    "sbert-only",
+    "config",
+    "comment",
+    "claims",
+    "non-sbert",
+    "names"
   ],
-  "lastUpdated": "2026-05-26T17:27:58.945Z",
+  "lastUpdated": "2026-06-23T03:49:54.947Z",
   "specId": "002",
   "folderSlug": "cocoindex-ollama-adapter",
   "parentChain": [

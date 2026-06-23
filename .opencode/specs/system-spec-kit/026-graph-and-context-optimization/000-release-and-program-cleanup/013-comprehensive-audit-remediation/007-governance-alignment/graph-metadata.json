@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the comprehensive audit remediation specification.",
+    "causal_summary": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to remove required frontmatter; command required-section lists diverge across three docs; the comment-hygiene checker misses half the forbidden patterns the constitutional rule lists; enforcement docs miscount enforcement gates and misstate bypass behavior; and the alignment verifier false-positives on Python scripts with .sh extensions while passing on P0 header gaps",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-06-05T05:20:54.805Z",
+    "last_save_at": "2026-06-23T03:49:53.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:657aaf6bf0b87fc58c7c2f1949222a51f4fb5163298a9c92753c29b8bf4d654e",
+    "source_doc_hashes": {
+      "spec.md": "bbb2f80516032bc5546a8593a4f006caea176808580456b1780aac3759229404",
+      "plan.md": "873947121e56b53c565eee71ff44300e7dfdc00a294662239a52227bc4d04fd8",
+      "tasks.md": "d9ab6262f5e1458497ba586979f2560c66f746cf15f7105115bf8b5ea3a26154",
+      "implementation-summary.md": "59c96ad8ba08f75a059b13f977ac25b7e26a754b655f03ee2f0f9e8e610791f9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

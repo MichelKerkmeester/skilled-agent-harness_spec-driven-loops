@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 11** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "mcp-chrome-devtools reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 3 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:30Z",
-    "last_save_at": "2026-06-12T04:40:47.836Z",
+    "last_save_at": "2026-06-23T03:49:56.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:769d2c477889d1733b31f0f70ee3953fbf92fbf942051f357bca76c368e6c089",
+    "source_doc_hashes": {
+      "spec.md": "2d8c294f10b9cbefcdb6a18cab83903b384ef469b55e4d3cf4bfeed9997a2e4a",
+      "plan.md": "f66986a8804b7786a814bd7561e74abd0932cea5fe718df112facc5453539ead",
+      "tasks.md": "6fdf2d452dccfdf10f23c16b395f02b779e5f16b21927d1498611fce559886df",
+      "implementation-summary.md": "ab6bf243dc11fa980e8a53d007cc3a6f3b9612a9b03a84b2274e94cd01de6117"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

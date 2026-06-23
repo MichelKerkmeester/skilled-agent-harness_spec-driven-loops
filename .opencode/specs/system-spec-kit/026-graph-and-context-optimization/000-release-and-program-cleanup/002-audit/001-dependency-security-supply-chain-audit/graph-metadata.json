@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures. The compromised packages' release pipeline was hijacked, and the malicious versions look 100% legitimate to standard supply-chain defenders. 2FA didn't help; SLSA didn't help. Affected ~518M computers per the disclosure. The dead-man's-switch design means revoking a stolen token TRIGGERS the payload (`rm -rf ~/`), making remediation actively dangerous.",
+    "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures",
     "created_at": "2026-05-15T18:27:58.266Z",
-    "last_save_at": "2026-06-22T18:55:01.693Z",
+    "last_save_at": "2026-06-23T03:49:52.152Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d3417ad30d8a706905e0a47e1c17e0080b3686e1e3401125ed78695db7a4b8f4",
+    "source_doc_hashes": {
+      "spec.md": "ac47f817665260fb86aca19b8103d8dcaee5e3a0016a7243d6f005c0e6c7f795",
+      "plan.md": "b4fb78b65bf78468752bd8934164d80990e036c142c6bf7bb96f92559d5102b6",
+      "tasks.md": "1fc591922e629fdcd5149a6cda1c19b3997e350ba302c9b2e4f8022ff7064523",
+      "implementation-summary.md": "67f144c6cb69b7ac12d35180b33efffcf415c5780d66587b49467bbda98a0b1d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

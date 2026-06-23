@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The retrieval enhancements category (15--retrieval-enhancements) contains 9 features covering dual-scope surfacing, constitutional memory injection, spec folder hierarchy retrieval, lightweight consolidation, memory summary channel, cross-document entity linking, tier-2 fallback, provenance envelopes, and contextual tree injection. These features have never been manually verified against the published playbook scenarios, so conformance is unknown.",
+    "causal_summary": "The retrieval enhancements category (15--retrieval-enhancements) contains 9 features covering dual-scope surfacing, constitutional memory injection, spec folder hierarchy retrieval, lightweight consolidation, memory summary channel, cross-document entity linking, tier-2 fallback, provenance envelopes, and contextual tree injection",
     "created_at": "2026-04-12T09:02:50.302Z",
-    "last_save_at": "2026-06-22T18:55:04.526Z",
+    "last_save_at": "2026-06-23T03:50:00.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d977d579a7f08aee2084fccf2f0f54cbb52362af0ea9e2a8ce01c61242732c4c",
+    "source_doc_hashes": {
+      "spec.md": "a2ea9496e4801bd20fc11567e1b2d340d38e90bf00cfba4cacc1388262155caf",
+      "plan.md": "3623f59478e1b16c1cb08b88be5417f22abcda60ef3680b104bb7d4cd612a6d3",
+      "tasks.md": "995397c999e7c78506713045d679deb48270a85351ccdd6577a0977c72587c43",
+      "checklist.md": "46f1c746fd3383e8325b54bd1ee51e76a31cbf8ff72dd51ef9fe185329a33ecf",
+      "implementation-summary.md": "7d6a468b31f8c76747b3e01f3b04932b7c3ebda93e45eca16abed9dca769a5d3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

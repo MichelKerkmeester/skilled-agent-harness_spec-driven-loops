@@ -20,15 +20,15 @@
       "telemetry-and-process-verification-harness",
       "memory",
       "leak",
-      "phase",
-      "remediation",
-      "arc",
-      "scoped",
-      "source",
-      "evidence",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "research",
+      "packets",
+      "defer",
+      "live",
+      "proof",
+      "several",
+      "claims",
+      "spec",
+      "telemetry"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 2 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
+    "causal_summary": "Both research packets defer live proof for several memory claims",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-30T10:12:02.426Z",
+    "last_save_at": "2026-06-23T03:49:55.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e293ba4bfbf99a64d323e7a7275042f83d2f1caa28fe84a02ed36ebb944ca074",
+    "source_doc_hashes": {
+      "spec.md": "8aab95cf26349e68bd67ffa18857ed559a7a7a4a718b1f0b52e3ca3b3e54d7bb",
+      "plan.md": "031f26dbb5ff073f6e039dea73a814534fb2ee2aaaa51bf2f9db8850d3fa2385",
+      "tasks.md": "fafdf0037c2276ba65c34616497c86aa8a5de8aba1b62f331f74908594463ebf",
+      "implementation-summary.md": "7121e77cce71cf681991da7d89f3a75065d570c6a89177342754cdec768ea90b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

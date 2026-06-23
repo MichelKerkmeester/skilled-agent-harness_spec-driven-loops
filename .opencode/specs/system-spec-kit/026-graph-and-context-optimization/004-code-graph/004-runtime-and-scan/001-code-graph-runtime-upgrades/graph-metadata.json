@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Ship the bounded code-graph upgrade lane that improves detector fidelity, graph payload richness, and code-graph-local query ergonomics while explicitly depending on existing trust and routing packets instead of competing with them. [SOURCE: ../001-research-graph-context-systems/002-codesight/research/research.md:930-932]",
+    "causal_summary": "Current 026 graph work hardens trust (`011`) and advisory routing (`008`), but it does not add new detector provenance states, blast-radius correctness fixes, evidence-tagged edges, cluster metadata, export contracts, or graph-specific fallback behavior",
     "created_at": "2026-04-12T09:02:53.472Z",
-    "last_save_at": "2026-06-22T18:55:02.762Z",
+    "last_save_at": "2026-06-23T03:49:55.841Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b80c7e01bce09562a724ad0732620341e4b09568266ec4b40270a4cdf9f34c2e",
+    "source_doc_hashes": {
+      "spec.md": "30ba32e6f18b45f3ab4c8f3c124b3345e41558702f660f9c03b04568a3fc3016",
+      "plan.md": "6d70b1c582ddc061e2d62182da30c2f2b47ec4eb426ed50b131c1fb62a24a884",
+      "tasks.md": "8a34a52888468e08c46b1a67f7002dc62eabfa9ce294a37d46f62c5aa35e07a4",
+      "checklist.md": "0a3b96560114bc0a62a601b94f1feb1e2c43b3d65dd408bb08656760dbb32585",
+      "decision-record.md": "eba6cfab4b4e14c7801f23fb74b0daa10262a1adbe00425814910b9c5c11507c",
+      "implementation-summary.md": "b4bb1a38877f2d41830ca2eb7eaa67c13c3dca94f747fa138b79170abb89e477"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

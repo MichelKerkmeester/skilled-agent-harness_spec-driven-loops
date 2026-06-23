@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/012-code-graph-catalog-and-playbook",
-  "description": "Feature Specification: 039 code-graph-catalog-and-playbook",
+  "description": "The codegraph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `featurecatalog/` and `manualte",
   "keywords": [
-    "feature",
-    "specification",
-    "039",
-    "code-graph-catalog-and-playbook"
+    "codegraph",
+    "runtime",
+    "package",
+    "readme",
+    "coverage",
+    "root",
+    "skill",
+    "catalog",
+    "playbook",
+    "entries",
+    "lacked",
+    "package-local",
+    "featurecatalog",
+    "manualte"
   ],
-  "lastUpdated": "2026-05-26T17:26:41.797Z",
+  "lastUpdated": "2026-06-23T03:49:52.307Z",
   "specId": "012",
   "folderSlug": "code-graph-catalog-and-playbook",
   "parentChain": [

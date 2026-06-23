@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Specify the GitHub tagged release for spec 130, following `PUBLIC_RELEASE.md` conventions. This is the final task in the dependency chain — all documentation alignment work must be committed before tagging.",
+    "causal_summary": "Specify the GitHub tagged release for spec 130, following `PUBLICRELEASE.md` conventions",
     "created_at": "2026-05-26T19:43:14.244Z",
-    "last_save_at": "2026-06-22T18:55:04.065Z",
+    "last_save_at": "2026-06-23T03:49:59.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7600655329fc14d2aebe9ecaa857c0d7a4e8700fcd3007771cf796128e392ff5",
+    "source_doc_hashes": {
+      "spec.md": "b474753e70f08c149a098bdad4c4ca44f01006634a9e305b6e639b85b81d556a",
+      "plan.md": "f7171c6fe2ed4481c894c711c607a634857b18acb944893750aa8028213adc5d",
+      "tasks.md": "c6f8e41fcd101fa8d22889eecfb54ad096b5d0a8e34a49970c1e48905b4c148c",
+      "checklist.md": "3bf4af5660c9aca1a66446701b75cb857b158b9beb4278656c7c05a83d43e87f",
+      "decision-record.md": "ce40223e27468e274785b0484351f42f49e8511ef478d16de33f63f6f33242b2",
+      "implementation-summary.md": "ae38ab9c4ecf3870b17ad6048d3a51fb503af681534c5c43e338fcd364ed83b8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Neither the enrichment scheduler nor the startup scan touches the DB after `closeDb()`, so a clean shutdown leaves a clean WAL.",
+    "causal_summary": "`fatalShutdown` (`context-server.ts`) fences `fileWatcher` and `ingestWorker` before `closeDb()` because both write through `requireDb()`, which reopens a closed DB",
     "created_at": "2026-06-15T05:48:42Z",
-    "last_save_at": "2026-06-15T09:09:34.632Z",
+    "last_save_at": "2026-06-23T03:49:56.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:81771700cb2fddc22c365e43f24bf47ae10ccac76dc2da947777c407d46f6dd9",
+    "source_doc_hashes": {
+      "spec.md": "d604cf8f8502824246bc381c6549e4dc9a39e6018cd2d695def363671e5e886a",
+      "plan.md": "0f6b38a5f75d48b5e50ec251fcee6bf084912d42e37a727266074e3318ed92f0",
+      "tasks.md": "ddbd5e1896a3297e8ddcac8119124f6106aaac9844955ee41b1ce9157c3fd2d3",
+      "checklist.md": "43a3930e04b29f658a409e39ad33f5ed1726ef6f86a2657e591281db664c8f07",
+      "decision-record.md": "64c62ac7d3823a88d837ff16b1021670d4a2b1e5d2728e02c9d5543f33c99f98",
+      "implementation-summary.md": "3379855689286b3c7a3850c004e81ec497c1059945e07d5c11f7ad9ea8e849e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

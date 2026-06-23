@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save**, `handlers/save/reconsolidation-bridge.ts` runs inline on the hot write path, and there is **no background reorganization agent** anywhere. This sub-phase lands packet 028's Wave-2 \"async sleep-time consolidation\" initiative (research child 007, iteration 20, MiMo lineage): a background **sleep-time agent** that fires AFTER the foreground turn, reorganizes recent transcripts into archival memory through a bounded tool-chain and lets the LLM choose which transcript ranges are worth preserving, modeled on Letta's `voice_sleeptime_agent` / `sleeptime_multi_agent_v4`. Because the pass **mutates archival memory off-turn**, it is the highest-tail-risk intelligence-class candidate in the Memory subsystem: it is built strictly **shadow-gated, default-off**, governed by a tool-rule DAG and rides the C-G1 clock host + C4-C cursor that sibling **010** lands first.",
+    "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-06-22T18:55:03.660Z",
+    "last_save_at": "2026-06-23T03:49:58.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b8fdac17803399d00c78d324b6196d94dcc3d576e43f654181a67ff67ea70645",
+    "source_doc_hashes": {
+      "spec.md": "c2e755d14e78a1ce58f034d65645bbe3d9f9f7a1e9a1f3a0d4133f47f1a400de",
+      "plan.md": "1b741c642792af992e145e514e595c5a57cd88a3146940200157dc7cdee7a72b",
+      "tasks.md": "8bd6ce03ec121c289b95c96cd1423ee1202425d35c7997e03b758ceb3e900ecc",
+      "checklist.md": "2a3e0830340b31c703749614a4335691e9d99986ff9e2462652afc8fdd819c3b",
+      "decision-record.md": "097947077be9889ece54027c9b05fcf0885c3673d41d69a134792c4cce0ad138",
+      "implementation-summary.md": "f971777ac3f0fe6f78c3905340d945a7c2b1e4695de89b61f7e1d9068174001d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

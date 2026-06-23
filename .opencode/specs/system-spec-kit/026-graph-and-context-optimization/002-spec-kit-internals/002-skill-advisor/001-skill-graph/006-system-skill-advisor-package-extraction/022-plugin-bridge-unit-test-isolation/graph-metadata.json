@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion. That made logic failures slower to diagnose and coupled unit coverage to MCP subprocess availability.",
+    "causal_summary": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion",
     "created_at": "2026-05-15T10:50:15Z",
-    "last_save_at": "2026-05-30T10:12:01.910Z",
+    "last_save_at": "2026-06-23T03:49:53.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07f719b25da5bcf90ee24723ed13d22f048f3b003b661edfcea2f69bec438e3c",
+    "source_doc_hashes": {
+      "spec.md": "b1fa690f4a927ca3100add0f65ef6e30d146a1270f37354be5750962b731ce67",
+      "plan.md": "a822a87f3e1d32619448b1d1e37211c182b75f93168ed9ba7f222617b3bff629",
+      "tasks.md": "7dbd849019203c44bda879dfb05eeeaee74835c77e7d5cde104c21209f36a3b2",
+      "checklist.md": "7a693b7c43bb22634a866e3b1e3afc5749f8f83c16abca990be0d71136ba43ae",
+      "implementation-summary.md": "f5b4ea89dca0a4b7b3df2f1a401ba4dc9b8e00a3c2bc376ef12a630dd918ac54"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

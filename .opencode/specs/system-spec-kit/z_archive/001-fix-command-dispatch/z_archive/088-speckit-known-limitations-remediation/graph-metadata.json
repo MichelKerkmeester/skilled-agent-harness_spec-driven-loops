@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 087-speckit-deep-analysis remediation identified and fixed 3 critical bugs and 15+ moderate misalignments, but deferred 4 known limitations that require separate implementation work: (1) existing SQLite databases have a drifted schema with three conflicting DDL definitions causing silent INSERT failures, (2) stale Gate 4/6 references remain in 7 active files plus the legacy install guide, (3) three spec management scripts are undocumented in capability tables, and (4) minor signal handler gaps exist in the MCP server.",
+    "causal_summary": "The 087-speckit-deep-analysis remediation identified and fixed 3 critical bugs and 15+ moderate misalignments, but deferred 4 known limitations that require separate implementation work: (1) existing SQLite databases have a drifted schema with three conflicting DDL definitions causing silent INSERT failures, (2) stale Gate 4/6 references remain in 7 active files plus the legacy install guide, (3) three spec management scripts are undocumented in capability tables, and (4) minor signal handler gaps exist in the MCP server",
     "created_at": "2026-04-12T09:02:53.559Z",
-    "last_save_at": "2026-06-05T12:47:34.567Z",
+    "last_save_at": "2026-06-23T03:49:59.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6c31cbcf85dab6f3b38d0f0d464742fde045905209b6b4405b3c2f65cbfd14a4",
+    "source_doc_hashes": {
+      "spec.md": "0ea360eda2f307103e0c2377e894b1a31a4d6bff99e2b673884edfdc67da0cdc",
+      "plan.md": "06d59b447686485d25a7b04879876e0f124d165570f8892651ab566d6e296c7f",
+      "tasks.md": "a326df983df7fca40d6fe9743c80809f26832092f733c87b7b43f5017ab5d78a",
+      "checklist.md": "cc3ff5e0678b2d807be78dfba2f1e4e5812af570668d0bf165692a4175416fc8",
+      "implementation-summary.md": "5727603cad026fcfbcd7bd616c652f5ab4b443b1261d64e026997f72f05dedff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

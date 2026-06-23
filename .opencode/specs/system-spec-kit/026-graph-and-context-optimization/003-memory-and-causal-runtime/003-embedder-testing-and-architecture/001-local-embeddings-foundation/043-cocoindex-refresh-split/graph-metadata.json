@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP `search` now defaults `refresh_index=false`, so a normal semantic query no longer spends the same request budget on index refresh work. A new `cocoindex_refresh_index` MCP tool gives callers an explicit way to refresh before a search batch, while `search(refresh_index=true)` remains supported for backward compatibility.",
+    "causal_summary": "Packet 035 found that MCP requests can time out while CocoIndex continues daemon-side work, and packet 041 added the request IDs and timings needed to see that cost",
     "created_at": "2026-05-14T16:12:41Z",
-    "last_save_at": "2026-05-30T10:12:02.146Z",
+    "last_save_at": "2026-06-23T03:49:54.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d2addd51be7bc084c17343875a414a1cd5250f4e97043d691f192b8ac4ad18bc",
+    "source_doc_hashes": {
+      "spec.md": "f7389125509f9478226b7d1d8af46e471e11681221feecf6b7a5d4b10fbb718a",
+      "plan.md": "e1f28eecdec4c73e43aa03cf8dcb89dc42ee5341433eea68e066d49d9cfc3161",
+      "tasks.md": "babfb15c66caf9d2a38abdbf40cec85dc2c94644e0a21aa6b189e2975504171a",
+      "checklist.md": "d960d0747b201333d84c2f7e4eda154b944a82f879586b1493358acd6734e255",
+      "decision-record.md": "803b96a56b5659fe16063201f9c043f1ae424d447db418ee8c84ea994784146e",
+      "implementation-summary.md": "0e65401f1e75a2745ffcf37e9948ad79eee7ba87dad04a707aeb7fb7bd6bf83d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

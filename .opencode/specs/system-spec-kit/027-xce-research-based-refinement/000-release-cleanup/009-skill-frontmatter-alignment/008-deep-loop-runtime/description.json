@@ -2,16 +2,22 @@
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime",
-  "description": "Feature Specification: Phase 8: deep-loop-runtime Frontmatter Alignment",
+  "description": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed memo",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
     "deep-loop-runtime",
+    "reference",
+    "asset",
     "frontmatter",
-    "alignment"
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed",
+    "memo"
   ],
-  "lastUpdated": "2026-06-11T10:46:03.587Z",
+  "lastUpdated": "2026-06-23T03:49:56.962Z",
   "specId": "008",
   "folderSlug": "deep-loop-runtime",
   "parentChain": [

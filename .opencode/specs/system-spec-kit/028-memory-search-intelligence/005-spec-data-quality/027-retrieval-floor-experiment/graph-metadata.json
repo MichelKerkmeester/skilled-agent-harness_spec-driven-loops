@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULT_MIN_RESULTS = 3`, a floor not a cap), then layers a cliff-conditional confidence truncation that returns 3 to 20 at roughly 2x the median gap and a token budget that is the real prod-limiting stage, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the minimum guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULT_MIN_RESULTS`). The frozen Tier-C retrieval slate and the entire truncation-law framing rest on one untested assumption, that results 4 through 10 are noise the truncation stages are right to cut. Nobody has measured whether that tail carries real recall on this corpus. If the tail is signal the truncation-law constraint loosens and the frozen Tier-C slate must be re-evaluated. If it is noise the never-cut-below-3 minimum and the framing are confirmed. The experiment cannot run until there is a prod-mode completeRecall@3 instrument to read, which is exactly what 015-c2 builds.",
+    "causal_summary": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layers a cliff-conditional confidence truncation that returns 3 to 20 at roughly 2x the median gap and a token budget that is the real prod-limiting stage, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the minimum guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULTMINRESULTS`)",
     "created_at": "2026-06-21T10:22:34.994Z",
-    "last_save_at": "2026-06-22T18:55:03.822Z",
+    "last_save_at": "2026-06-23T03:49:58.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d22278b3759a53104476f09f6e0a8d6893b765e4294450bbb7c09a93916be991",
+    "source_doc_hashes": {
+      "spec.md": "de75119cde64793812773c8cd8489ff01dfc765a17d0fdfa96207f6389b7f893",
+      "plan.md": "8632b78529407e6a963985829920a01c623e529a6cb57d579f5172aa52c2d97b",
+      "tasks.md": "773e82aae0a49f247b86a9e9908370b78a366a510255fb1cbbf3131d83eb7518",
+      "checklist.md": "02e64b7ce2b8848519cf0679d4d16a2669f10b76f291be54b953c15798ddd0ae",
+      "implementation-summary.md": "2fb00b2a3f88465742ae450ad7d4923bd71fd296a9735e1002e23e372331b35e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

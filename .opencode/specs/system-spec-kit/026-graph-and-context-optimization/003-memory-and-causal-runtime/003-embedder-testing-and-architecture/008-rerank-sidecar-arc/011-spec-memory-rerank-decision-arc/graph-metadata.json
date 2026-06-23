@@ -95,14 +95,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Four spec-memory rerank benchmarks in arc 008 produced HOLDs with distinct failure modes (CPU Qwen latency, CPU ms-marco rank-quality regression, MPS Qwen attention OOM, fp16 MPS still OOM). The remaining undeleted children — 007 (MPS promotion), 008 (cap top_k), 009 (fp16) — are runtime tweaks that address latency and memory, not rank quality. The ms-marco bench's −6 hits vs OFF baseline is the diagnostic signal: the binding constraint is **model/corpus mismatch**, not runtime configuration.",
+    "causal_summary": "Phase parent for the 3-step path to a working spec-memory reranker (or a defensible decision not to ship one). Phase 1 audits the OFF baseline before building anything. Phase 2 tries the strongest Apache-2.0 off-the-shelf cross-encoder (bge-reranker-v2-m3) before fine-tuning. Phase 3 only fires if 1 and 2 both fail to clear the rank-quality bar. Supersedes the original 010-domain-tuned-reranker-finetune scaffold (now folded in as Phase 3 with the template-stripping refinement).",
     "created_at": "2026-05-23T11:55:15.626Z",
-    "last_save_at": "2026-05-30T10:12:02.410Z",
+    "last_save_at": "2026-06-23T03:49:55.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:5bc09bc53d011eacb5af0070f83790ec3002c994db43a7167ddf58757444e3ea",
+    "source_doc_hashes": {
+      "spec.md": "793b1efa3c282a8b2ec577b909b61c378bcf3ef85bbd9e0f243851ab917d71e4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/022-spec-doc-indexing-bypass",
-  "description": "Feature Specification: Spec Doc Indexing Bypass",
+  "description": "`memoryindexscan({ force: true })` rejects 1,807 out of 1,807 spec documents (spec.md, plan.md, tasks.md, checklist.md, etc.) with status `rejected` a",
   "keywords": [
-    "feature",
-    "specification",
+    "memoryindexscan",
+    "force",
+    "true",
+    "rejects",
+    "807",
     "spec",
-    "doc",
-    "indexing",
-    "bypass"
+    "documents",
+    "plan",
+    "tasks",
+    "checklist",
+    "etc",
+    "status",
+    "rejected"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.594Z",
+  "lastUpdated": "2026-06-23T03:50:00.389Z",
   "specId": "022",
   "folderSlug": "spec-doc-indexing-bypass",
   "parentChain": [

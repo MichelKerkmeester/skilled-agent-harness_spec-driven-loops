@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened **two orthogonal families the fusion-math roadmap never touches** - provenance-contamination and temporal-drift - plus a skip-reason taxonomy refinement [CONFIRMED: iter-008 focus, \"both docs occupy families the roadmap never touches\"]. Round-E verification (iter-012) then *softened* every one of them: each is PARTIAL/CAUTION, not the build it was first mined as, and all three converge on one shared blocker - **the live calibration records are an ephemeral tmpdir 50-record window** (`RECORD_ROOT = join(tmpdir(), 'speckit-skill-advisor-calibration')` at `feedback-calibration.ts:25`, `MAX_RECORDS = 50` at `:26`, `writeFileSync(... existing.slice(-MAX_RECORDS) ...)` at `:248-251`), so there is no durable cross-session state to attest a baseline against or to persist an enriched signal into [CONFIRMED: iter-008 \"both need durable cross-session state the current tmpdir JSONL lacks\", iter-012 E12-03]:",
+    "causal_summary": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened two orthogonal families the fusion-math roadmap never touches - provenance-contamination and temporal-drift - plus a skip-reason taxonomy refinement [CONFIRMED: iter-008 focus, \"both docs occupy families the roadmap never touches\"]",
     "created_at": "2026-06-19T06:06:27.155Z",
-    "last_save_at": "2026-06-21T07:23:18.848Z",
+    "last_save_at": "2026-06-23T03:49:58.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:419eb0e401680f2eed6bc004c934a9c1624e48790e052cabbbbf9213bf55e55d",
+    "source_doc_hashes": {
+      "spec.md": "8e2f5a5bf1f1c563c90575f0785f7cb29ee308f1235a6a3517bb6b4f916b8acf",
+      "plan.md": "69d2ce4818606fbb80de68822b858e46b038cc9b8b67c917105d10fcc311db57",
+      "tasks.md": "f35d62d075928133e82f226b3eb656984c0b741cad86f14227d9b4b31a5caf6d",
+      "checklist.md": "9102aec05509b4b256cf58c0d8b20abdf1796ad6d56df7f7de169d5f2e7f7c0f",
+      "implementation-summary.md": "bac39097ccca5fe3a130db81d6adf5c849ea5255a3fe1cbdbde716aa1c3ab1e8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

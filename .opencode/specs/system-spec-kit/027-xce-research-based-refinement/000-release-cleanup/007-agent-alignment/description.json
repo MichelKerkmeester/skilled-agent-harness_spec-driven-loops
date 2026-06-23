@@ -14,14 +14,21 @@
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
-  "description": "Feature Specification: Agent Alignment",
+  "description": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine",
   "keywords": [
-    "feature",
-    "specification",
+    "reconcile",
+    "opencode",
+    "claude",
+    "codex",
     "agent",
-    "alignment"
+    "mirror",
+    "parity",
+    "agent-io",
+    "contract",
+    "verification-discipline",
+    "doctrine"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.216Z",
+  "lastUpdated": "2026-06-23T03:49:56.901Z",
   "specId": "007",
   "folderSlug": "agent-alignment",
   "parentChain": [

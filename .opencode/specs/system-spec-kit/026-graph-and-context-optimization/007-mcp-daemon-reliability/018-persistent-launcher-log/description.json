@@ -18,15 +18,16 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
-  "description": "Feature Specification: Persistent launcher log",
+  "description": "The launcher's `log()` writes only to `process.stderr`",
   "keywords": [
-    "feature",
-    "specification",
-    "persistent",
     "launcher",
-    "log"
+    "log",
+    "writes",
+    "only",
+    "process",
+    "stderr"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.150Z",
+  "lastUpdated": "2026-06-23T03:49:56.537Z",
   "specId": "018",
   "folderSlug": "persistent-launcher-log",
   "parentChain": [

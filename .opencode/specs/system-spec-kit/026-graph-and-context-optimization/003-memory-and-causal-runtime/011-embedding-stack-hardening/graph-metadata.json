@@ -130,14 +130,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The local embedding stack does not yet deliver its zero-install promise end to end. The hf-local selector probe gates selection on a Python import that the pure-Node server never satisfies, so fresh Node-only machines reject hf-local and fall through to an error or cloud egress. The two launchers resolve different sockets under shipped config, so the single-owner cross-launcher machinery never fires. Beyond those two gaps, the server can wedge while loading without being reaped, a hung native run keeps reporting healthy, crash loops can spawn-storm, disk-full breaks launcher writes, operators have no read-only view of embedder state, model switches are unsafe, cold-start timeouts are mismatched, the embed path is uninstrumented, reindex issues one POST per row, and the cross-launcher residency has never been validated live.",
+    "causal_summary": "The local embedding stack does not yet deliver its zero-install promise end to end",
     "created_at": "2026-05-29T11:22:57.361Z",
-    "last_save_at": "2026-06-22T18:56:36.886Z",
+    "last_save_at": "2026-06-23T03:49:55.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:b90a2c83ab3ada41cca36cb788ab65c1617fc76a0dfc43cb5d9bc94e26f7d2ea",
+    "source_doc_hashes": {
+      "spec.md": "7c30b0a4038eefc993a261646d4a148c18e8ba3a27387aa9fd85b02a4668549a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

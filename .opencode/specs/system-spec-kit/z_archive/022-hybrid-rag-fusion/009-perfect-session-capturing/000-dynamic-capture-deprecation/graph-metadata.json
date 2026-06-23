@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Feature Specification: Dynamic Capture Deprecation Branch",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-06-22T18:55:04.323Z",
+    "last_save_at": "2026-06-23T03:49:59.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:f830be84f9308f913fd58dc2e60a1f4f1725dd314008b8f2983968d676fa9e6e",
+    "source_doc_hashes": {
+      "spec.md": "4fd0f476d5707fdb10adc8a1f6d0aa19fee682ddfcce8b1545dab745a0a09c88",
+      "plan.md": "65cc9a50352e2e1711915464ecca06408f1270dfb5960f07113ec161fd64da58",
+      "tasks.md": "9fa299496ea2aadc5243ac19ef627557b3bed8d0438e93b999a380d68d3178d2",
+      "implementation-summary.md": "6abf1d889cc349f7cee1deb80265740dff9277349eef33d7cbdcc242bdfc3ae8",
+      "resource-map.md": "df7d81b5f982687739b1d723f386f55007a98689793a82451762d53f4c6d507e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 004a closed the 14 P0 inline-literal consolidation. Phase 004b closes the remaining 11 audit findings (9 P1 + 2 P2) via 3 waves:",
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched waves 2-4: RoutingCalibration interface expansion, env-var overrides (SPECKIT_ADVISOR_*), prompt-policy externalization to JSON. 9 P1 + 2 P2 closed. Bundle gate PASSED.",
     "created_at": "2026-05-23T18:00:00.000000Z",
-    "last_save_at": "2026-06-22T18:55:02.353Z",
+    "last_save_at": "2026-06-23T03:49:54.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3e6a5c0237e4c2d92f4e5f41dbb967d0ea86c8abbaa14ba749a229ca47584343",
+    "source_doc_hashes": {
+      "spec.md": "a709ec1aaa541f6eefdefa66605ba8e9b3bb2104887d815b19d6a3d25afbb4ed",
+      "plan.md": "f488ed0e23ed21bedb8f6d5d3da7f4381bcd200843371bd2f5705c63a0df5949",
+      "tasks.md": "d09d21745a89757b85731d33d43daecc95c61951cfbf7f2a09b6bbd10525b53f",
+      "checklist.md": "a93bca4ce50ec365ef26ba0dff7446da53004b2f5cf06741af16133b1fad6e97",
+      "implementation-summary.md": "aa79bd6ef4a6879ba8c0dbec6240badfca219620adf0cb07de4744267e116f96"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

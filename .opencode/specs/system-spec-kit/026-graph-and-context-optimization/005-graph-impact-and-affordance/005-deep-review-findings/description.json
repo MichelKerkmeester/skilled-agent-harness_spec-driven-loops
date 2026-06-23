@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings",
-  "description": "Feature Specification: Review Remediation (010/007)",
+  "description": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
   "keywords": [
-    "feature",
-    "specification",
-    "review",
-    "remediation",
+    "phase",
     "010",
-    "007"
+    "sub-phases",
+    "001-006",
+    "shipped",
+    "sandbox-blocked",
+    "verification"
   ],
-  "lastUpdated": "2026-05-26T17:25:47.701Z",
+  "lastUpdated": "2026-06-23T03:49:56.202Z",
   "specId": "005",
   "folderSlug": "deep-review-findings",
   "parentChain": [

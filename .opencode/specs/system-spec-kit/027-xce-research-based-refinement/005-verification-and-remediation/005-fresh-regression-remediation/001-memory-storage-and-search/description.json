@@ -1,18 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
-  "description": "Feature Specification: Memory Store/Search/Save Write-Path Remediation",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 34 findings (5 P1) in this subsystem, each carried as a task with its registry recommen",
   "keywords": [
-    "feature",
-    "specification",
-    "memory",
-    "store",
-    "search",
-    "save",
-    "write-path",
-    "remediation"
+    "remediation",
+    "sub-phase",
+    "027",
+    "fresh",
+    "regression",
+    "deep-review",
+    "findings",
+    "subsystem",
+    "carried",
+    "task",
+    "registry",
+    "recommen"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.535Z",
+  "lastUpdated": "2026-06-23T03:49:57.959Z",
   "specId": "001",
   "folderSlug": "memory-storage-and-search",
   "parentChain": [

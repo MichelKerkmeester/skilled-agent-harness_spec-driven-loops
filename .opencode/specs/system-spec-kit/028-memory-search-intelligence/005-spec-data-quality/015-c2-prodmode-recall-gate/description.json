@@ -1,14 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
-  "description": "Feature Specification: C2 Prod-Mode Recall Gate",
+  "description": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
   "keywords": [
-    "feature",
-    "specification",
-    "prod-mode",
-    "recall",
-    "gate"
+    "prod",
+    "retrieval",
+    "path",
+    "diverges",
+    "external",
+    "eval",
+    "harness",
+    "already",
+    "measures",
+    "gap"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.478Z",
+  "lastUpdated": "2026-06-23T03:49:58.654Z",
   "specId": "015",
   "folderSlug": "c2-prodmode-recall-gate",
   "parentChain": [

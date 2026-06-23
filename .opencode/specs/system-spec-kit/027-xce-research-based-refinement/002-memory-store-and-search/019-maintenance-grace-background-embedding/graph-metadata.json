@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the direct follow-on to 019. 019 made a reindex's SCAN survive launcher re-election by writing a maintenance-active marker that the launcher reads to adopt a busy-but-healthy daemon instead of reaping it. But that marker was scoped to the scan job. Because the scan defers embeddings (`asyncEmbedding`), the real vector writes happen AFTER the scan, in the background-embedding queue (`lib/providers/retry-manager.ts` draining `embedding_status='pending'` rows). That queue is busy-but-unprotected: a live run saw a separate re-election recycle the daemon DURING the post-scan embedding burst, interrupting the embeddings. Search stayed up and the gap drained on a later queue pass, but the reindex was not re-election-proof end to end. 019's own limitations section flagged this as the loop-closing follow-on.",
+    "causal_summary": "019 made a reindex's scan survive launcher re-election, but its maintenance marker was scoped to the scan job",
     "created_at": "2026-06-17T13:56:34.988Z",
-    "last_save_at": "2026-06-22T18:55:03.374Z",
+    "last_save_at": "2026-06-23T03:49:57.414Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e295eb1aaff7650d65b13a1b4eca24c61939ad7b630495af5c37ac56e027d781",
+    "source_doc_hashes": {
+      "spec.md": "6d1bf5df2e81cbb19013bfea2f8aa0fffbae4fed7399a638f31e18e958284d87",
+      "plan.md": "e614ecb444dbc98785ca0ff4d960299e0687da53377f97aed1da17c780dd45d7",
+      "tasks.md": "751e5fe760e6b38714b7ef39b079d0c079ff57664c8a7b65b6ca81dd2387861d",
+      "implementation-summary.md": "46508143430d3a77aeca3c1ef0abe17ce8c80673a593fc1a9710ccac0dade0a9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -33,10 +33,10 @@
       "plan",
       "tasks",
       "checklist",
-      "phase",
-      "hybrid",
-      "rag",
-      "fusion"
+      "now",
+      "functional",
+      "fix",
+      "contributes"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "The graph channel is now functional after Sprint 0's G1 fix, but it contributes only through graph-search results (traversal)",
     "created_at": "2026-04-12T09:02:50.226Z",
-    "last_save_at": "2026-06-22T18:55:04.098Z",
+    "last_save_at": "2026-06-23T03:49:59.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d174d68ac7eda1145fc5d56862a9b21e4e9531dc0ee4607bc9bcc6c35a45d30e",
+    "source_doc_hashes": {
+      "spec.md": "f8eb039a81c940ba48a31af1e09fe9240db686e200a0bcac6198e9ede66a1777",
+      "plan.md": "3360a3552e9932f9fc1b641a94db90ec5fe5262a9eede67a6a059ea5df1b9052",
+      "tasks.md": "17295310bc2c38b7ca708cc7fc2be9b68d0cecf90f2922a1625f8cfb0c28a98d",
+      "checklist.md": "30a5811b34a569e45d04cebc66f8859765e1575f7fb42b42963a94490be23e24",
+      "implementation-summary.md": "7d33176ed5a50062cd930a92e22f39b502916dcc4fe8246fff446a685a0fdb17"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

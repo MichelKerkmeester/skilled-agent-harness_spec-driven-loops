@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead. That left failed-start, hung, or ownerless stale rows able to accumulate until a later cleanup path noticed them.",
+    "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-05-30T10:12:02.503Z",
+    "last_save_at": "2026-06-23T03:49:55.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a8c84847601f7fb046255ea6ab9e8ad4441f7dc269247725ffc7f13711244ca3",
+    "source_doc_hashes": {
+      "spec.md": "71bda03a1a18e8d81011f31f9654929586716286ec87f906e0d8618d8766fe14",
+      "plan.md": "6896b1a1610a9f82ef1205c588d2cd4349e1d940b0b8733ffd2ebcd2b0d0235e",
+      "tasks.md": "642ca6d7e2f1ba44b33ac912608820f9479204921d87d6bbb5d89125ede6747e",
+      "checklist.md": "bbc29b45f27ed80141480a257f8a54929b0c03de4a353ec8065649c5cf95aee3",
+      "decision-record.md": "d5b7d97343a59b143390d6d85fae0dec7c393f825ab15bfb607cefe19b953ff2",
+      "implementation-summary.md": "5691bbda54ff92f2b5aae1d581eab8c56b797a0dbe288a9a234316ff3861a6c1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

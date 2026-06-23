@@ -1,14 +1,27 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
-  "description": "Feature Specification: Phase 13 - v4 Cleanup",
+  "description": "v4 deep-review found one remaining real startup path where Voyage auto-shadow warnings happened too late, a health-report gap for hf-local dtype, one",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "cleanup"
+    "deep-review",
+    "found",
+    "one",
+    "remaining",
+    "real",
+    "startup",
+    "path",
+    "voyage",
+    "auto-shadow",
+    "warnings",
+    "happened",
+    "too",
+    "late",
+    "health-report",
+    "gap",
+    "hf-local",
+    "dtype"
   ],
-  "lastUpdated": "2026-05-26T17:26:16.308Z",
+  "lastUpdated": "2026-06-23T03:49:54.004Z",
   "specId": "013",
   "folderSlug": "v4-cleanup",
   "parentChain": [

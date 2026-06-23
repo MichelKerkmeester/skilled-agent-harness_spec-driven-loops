@@ -1,17 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
-  "description": "Feature Specification: Novel GO Automatic Example and Test Generation From Specs",
+  "description": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intende",
   "keywords": [
-    "feature",
-    "specification",
-    "novel",
-    "automatic",
+    "authored",
+    "spec",
+    "requirements",
+    "prose-only",
+    "adherence",
+    "requirement",
+    "unprovable",
+    "per",
+    "worked",
     "example",
-    "test",
-    "generation",
-    "specs"
+    "showing",
+    "intende"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.492Z",
+  "lastUpdated": "2026-06-23T03:49:58.691Z",
   "specId": "021",
   "folderSlug": "novel-example-test-generation",
   "parentChain": [

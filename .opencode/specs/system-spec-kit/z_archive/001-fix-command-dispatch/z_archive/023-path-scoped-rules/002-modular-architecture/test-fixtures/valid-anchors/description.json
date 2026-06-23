@@ -1,13 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-anchors",
-  "description": "Spec: Valid Anchors Fixture",
+  "description": "This fixture tests properly paired ANCHOR tags in memory files",
   "keywords": [
-    "spec",
-    "valid",
-    "anchors",
-    "fixture"
+    "fixture",
+    "tests",
+    "properly",
+    "paired",
+    "anchor",
+    "tags",
+    "memory",
+    "files"
   ],
-  "lastUpdated": "2026-04-02T17:21:40.009Z",
+  "lastUpdated": "2026-06-23T03:49:58.975Z",
   "specId": "",
   "folderSlug": "valid-anchors",
   "parentChain": [

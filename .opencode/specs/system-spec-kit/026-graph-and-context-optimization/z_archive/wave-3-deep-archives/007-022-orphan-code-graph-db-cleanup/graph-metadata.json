@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code remained under `.opencode/skills/system-spec-kit/mcp_server/`. One old `spec-kit-memory` process held the nested copied DB open from `mcp_server/dist/system-code-graph/mcp_server/database/code-graph.sqlite`, which made the tree look like it still owned code-graph storage.",
+    "causal_summary": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code remained under `.opencode/skills/system-spec-kit/mcpserver/`",
     "created_at": "2026-05-14T13:03:24Z",
-    "last_save_at": "2026-05-30T10:12:02.807Z",
+    "last_save_at": "2026-06-23T03:49:56.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6345ba222a777b669a111925422da182ad3edac61fda9c3e1f5cabee80a94d03",
+    "source_doc_hashes": {
+      "spec.md": "99b7ef759a5fbb782bf3c73bce7b6bb9b8ec72403a0de9e4c56d534920183f4e",
+      "plan.md": "9787febb892ed1d2d701d49a44e5c833b3cf34e0cb6f1ff0dca7149ca2781bf4",
+      "tasks.md": "2096ecc35705836319c11cc6ca3ead9eaf791834de60750b434435adbae1be6b",
+      "implementation-summary.md": "bc6e871574beb254c35ced079fb2b8ed9b41f96d4b60bd1cf7db7380d897017e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

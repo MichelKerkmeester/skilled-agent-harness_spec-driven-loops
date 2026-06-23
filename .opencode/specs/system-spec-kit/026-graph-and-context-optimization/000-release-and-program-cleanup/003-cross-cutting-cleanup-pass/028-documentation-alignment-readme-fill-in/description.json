@@ -1,15 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in",
-  "description": "Feature Specification: Doc-alignment and missing-README fill-in",
+  "description": "Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files",
   "keywords": [
-    "feature",
-    "specification",
-    "doc-alignment",
-    "missing-readme",
-    "fill-in"
+    "five",
+    "doc-quality",
+    "drift",
+    "items",
+    "accumulated",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "references",
+    "multi-ai-council",
+    "directory",
+    "files"
   ],
-  "lastUpdated": "2026-05-26T17:26:51.974Z",
+  "lastUpdated": "2026-06-23T03:49:52.407Z",
   "specId": "028",
   "folderSlug": "documentation-alignment-readme-fill-in",
   "parentChain": [

@@ -102,14 +102,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mk-spec-memory MCP server has a fully-built Stage 3 reranker pipeline (`lib/search/cross-encoder.ts`, `lib/search/pipeline/stage3-rerank.ts`) with three provider slots: Voyage (cloud), Cohere (cloud), and **local at `http://localhost:8765/rerank`**. The local slot is the project's preferred path (local-first per ADR-014) but **no sidecar runs there today**. Result: every `memory_search` falls back to positional scoring capped at ~0.5, never crosses the `HIGH_THRESHOLD=0.7` quality gate, and reports `requestQuality: 'weak'` even on clean retrievals. The `WEIGHT_RERANKER=0.20` confidence factor is BOOLEAN (`hasReranker ? 1.0 : 0`), so the missing reranker drops max achievable result confidence from 1.00 to 0.80 across the board.",
+    "causal_summary": "Umbrella for the 5-phase arc that brings a shared Python cross-encoder reranker (Qwen3-Reranker-0.6B) to both mk-spec-memory and mk-coco-index via a new `system-rerank-sidecar` skill. Closes the gap where cross-encoder.ts has a pre-wired `local` HTTP provider slot but no sidecar runs at localhost:8765, leaving every memory_search at HIGH_THRESHOLD=0.7 with positional fallback scores capped at ~0.5 (quality=weak).",
     "created_at": "2026-05-23T11:55:15.599Z",
-    "last_save_at": "2026-05-30T10:12:02.389Z",
+    "last_save_at": "2026-06-23T03:49:54.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:6b8017d13a13443f6eaef1f500e53630742e209251fbfe87c9ce67d86012a68e",
+    "source_doc_hashes": {
+      "spec.md": "1f60e444939efabbaff0a8a504ee09441cb07584128c179f9608007f5e4cdd36"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

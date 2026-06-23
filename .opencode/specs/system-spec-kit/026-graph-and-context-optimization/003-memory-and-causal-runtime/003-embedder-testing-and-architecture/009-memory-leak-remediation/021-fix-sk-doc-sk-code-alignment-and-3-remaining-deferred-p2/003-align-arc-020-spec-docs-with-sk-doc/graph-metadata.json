@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close. The risk is not runtime behavior; it is stale packet documentation that can weaken future memory retrieval and packet handoff quality.",
+    "causal_summary": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close",
     "created_at": "2026-05-23T14:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.523Z",
+    "last_save_at": "2026-06-23T03:49:55.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e8073f9c9d01218aed05a4c2a21d004858491410a1c83aa4fc1816123d5372cb",
+    "source_doc_hashes": {
+      "spec.md": "2dc3e305c0e915248561c38d853c9596bb365a809b2d662119ea239c95bb81cc",
+      "plan.md": "da3be988db875c6acce97992374f02d4b2b7cd2b0e380a492e1e6e560824ef47",
+      "tasks.md": "4ab906d100c90abf07f3ecc8fb1f3cf83de00b99f5b24f7d7a58f601f988f148",
+      "checklist.md": "215973876455226c14414df6a2062eb5a813cafa42db098634dc953f9fa74360",
+      "decision-record.md": "ee0ac9bd67dd48f4718c5a1747403025a64e06d5da417aebfe2425b071386e42",
+      "implementation-summary.md": "50588ace431f3c491aebc334f808167d53577f9b95c43f76ffe3b89262ab7b86"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

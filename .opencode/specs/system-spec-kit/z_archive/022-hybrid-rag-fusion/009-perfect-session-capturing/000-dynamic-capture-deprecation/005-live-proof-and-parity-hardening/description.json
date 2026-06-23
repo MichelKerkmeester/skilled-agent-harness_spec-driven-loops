@@ -1,15 +1,19 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/005-live-proof-and-parity-hardening",
-  "description": "Feature Specification: Live Proof And Parity Hardening",
+  "description": "The automated runtime contract is stronger now, but the live-proof boundary is still lagging behind it",
   "keywords": [
-    "feature",
-    "specification",
-    "live",
-    "proof",
-    "parity",
-    "hardening"
+    "automated",
+    "runtime",
+    "contract",
+    "stronger",
+    "now",
+    "live-proof",
+    "boundary",
+    "still",
+    "lagging",
+    "behind"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.135Z",
+  "lastUpdated": "2026-06-23T03:49:59.995Z",
   "specId": "005",
   "folderSlug": "live-proof-and-parity-hardening",
   "parentChain": [

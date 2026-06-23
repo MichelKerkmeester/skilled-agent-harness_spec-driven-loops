@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`. That earlier work established the end-to-end hook surfaces, but packet-02 research still identified a bounded implementation set across OpenCode threshold parity, shared brief rendering, MCP surface symmetry, validator threshold semantics, and durable prompt-safe telemetry.",
+    "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-06-22T18:55:02.083Z",
+    "last_save_at": "2026-06-23T03:49:53.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:4dd5e9e4e52f6ffc27d9eacd796881993a33cce6b5596eeda3873b919d4fbe6d",
+    "source_doc_hashes": {
+      "spec.md": "faa3570dfa87ef9f311b65f44d5a9fcc187184e63136382f945eeeb4ffc2ec31",
+      "plan.md": "865b5232c138b9162c016cbc0efd3f9024a2205faece4beeec94b0f09f8fb11e",
+      "tasks.md": "887fb3fe3bb1b48f0a80d33ea2cf7ebd9bc7225a36f0b189ff6e86969ef25c36",
+      "checklist.md": "0af17114ae1290dc03e9c298446959877e8ecaa4e4479b3f93eaa81e794dfd17",
+      "implementation-summary.md": "cf32e424e9c0fbe768751a680f4a3cd157eb945e8426e07a24b2588342622d9d",
+      "resource-map.md": "9dd20ca7c114fc987d187988ee7a254d9e48a9478c296a39d851da547fcf2384"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

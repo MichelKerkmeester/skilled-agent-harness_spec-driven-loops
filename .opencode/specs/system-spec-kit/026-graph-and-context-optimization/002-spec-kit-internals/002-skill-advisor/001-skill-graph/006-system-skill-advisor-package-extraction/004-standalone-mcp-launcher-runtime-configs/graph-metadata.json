@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "ADR-001 already chose a standalone advisor MCP server with stable `advisor_*` tool ids. This packet plans the runtime integration step: add `.opencode/bin/skill-advisor-launcher.cjs` and register `system_skill_advisor` beside `spec_kit_memory` in OpenCode, Codex, Claude, and Gemini.",
+    "causal_summary": "Child 003 moved advisor source and DB ownership into the dedicated `system-skill-advisor` package, but the runtime still has no standalone advisor launcher or MCP registration",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-06-05T12:47:33.298Z",
+    "last_save_at": "2026-06-23T03:49:53.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:80851858bc119c1658b3e4070224b2fa899a9774a9f405e79f5f10ead10dce50",
+    "source_doc_hashes": {
+      "spec.md": "3027b6d5e24782391b7ccc07f70efd443433c9a996dfba17a0dde422db01c1b3",
+      "plan.md": "ce8e4d39598ca61eabc4cce42755df7876d6dec6792ab52a27ccfadc18fe0c1e",
+      "tasks.md": "b0ad58af8ad239028c3095583b59e1bc51c30e2014a58a94226dbcb82ae2abcc",
+      "checklist.md": "a9bede73e38db081fd569519c44f252bd2ef19d5f82385f5d5cd69911643ef23",
+      "decision-record.md": "55992f0416cc46301409e452437fd9de1920d853225b335f497f8f69cd4cc8e7",
+      "implementation-summary.md": "3dc2597cf5a95ef593c2bc91b7964dd517d8e4f57370ac76855f9aade6063345"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

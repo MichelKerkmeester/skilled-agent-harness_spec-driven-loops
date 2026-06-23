@@ -29,12 +29,12 @@
       "post-program",
       "cleanup",
       "phases",
-      "coordinate",
+      "phase",
+      "parent",
       "followup",
-      "work",
-      "across",
       "quality",
-      "passes"
+      "work",
+      "across"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Coordinate followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. This sub-phase binds together 4 child packets that address cleanup tasks and quality refinements after major program milestones, ensuring system health and test coverage through targeted remediation efforts.",
+    "causal_summary": "Phase parent for post-program cleanup and followup quality work across 4 child packets. Covers quality passes, runtime cleanup, test recovery, and iterative improvements after major releases.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.628Z",
+    "last_save_at": "2026-06-23T03:49:52.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e68add546aa6a57014805fa33a88aae9cda4ed8e5b7059c1b699937658ff1689",
+    "source_doc_hashes": {
+      "spec.md": "96ab72a489dbcac0713bb804f656778d90a133e45cb3a29d2ec6d62be0f2afec"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 022/001+002 ship, a new user landing on skill-advisor needs to know:",
+    "causal_summary": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
     "created_at": "2026-05-18T08:07:25.980Z",
-    "last_save_at": "2026-06-22T18:55:02.371Z",
+    "last_save_at": "2026-06-23T03:49:54.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:73ffd8c764d71ed7ffe01ff9bff9f9bd3255e92f74e767c0738b5b712d371318",
+    "source_doc_hashes": {
+      "spec.md": "9ab686f4c9c2b830888b9655ae5394689165ddb1e5ae87c7d29f81b23dceacb6",
+      "plan.md": "f72aafd98034c5901c52a034c3af41191432ccff15a129ff0588fdeb5232acb7",
+      "tasks.md": "b3fdb33f4b18074218f0459def20b7b519eee118ef049f79e9b98bc46785ffcf",
+      "implementation-summary.md": "e0c48c99b1b37b42e085b785402165e2430043faa386e28aa6d5e93ef172a69c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

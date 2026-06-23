@@ -1,15 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/003-field-integrity-and-schema",
-  "description": "Feature Specification: Field Integrity and Schema Validation",
+  "description": "The `generate-context.js` pipeline has a split code path in `input-normalizer.ts` (lines 414-530): a fast path triggered by `userPrompts`, `observatio",
   "keywords": [
-    "feature",
-    "specification",
-    "field",
-    "integrity",
-    "schema",
-    "validation"
+    "generate-context",
+    "pipeline",
+    "split",
+    "code",
+    "path",
+    "input-normalizer",
+    "lines",
+    "414-530",
+    "fast",
+    "triggered",
+    "userprompts",
+    "observatio"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.173Z",
+  "lastUpdated": "2026-06-23T03:50:00.115Z",
   "specId": "003",
   "folderSlug": "field-integrity-and-schema",
   "parentChain": [

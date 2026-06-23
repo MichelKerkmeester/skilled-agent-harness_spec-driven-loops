@@ -25,11 +25,11 @@
       "adapter",
       "rss",
       "benchmark",
-      "memory-leak",
-      "remediation",
       "arc",
-      "source",
-      "decision"
+      "008",
+      "shipped",
+      "close",
+      "idempotence"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -180,9 +180,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 012 of the memory-leak remediation arc. Source decision lives in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md` (the 5xx fallback RSS gate + P2-default decision in the Decisions anchor).",
+    "causal_summary": "Arc 009 phase 008 shipped adapter close idempotence + a fallback RSS gate but kept severity at P2 (default) because growth was not yet measured",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.464Z",
+    "last_save_at": "2026-06-23T03:49:55.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,6 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9e1ad81347c4d798f0bbbfa8f169adddd5ad5b60fe94998fd6f391a8dd61df88",
+    "source_doc_hashes": {
+      "spec.md": "4dad1c8b283e1c6e21bf354f0de5e88894bc5e1e8493b698f2ad78423856195e",
+      "plan.md": "42b8c51b04661bb9232b124380d733d2697d68df44081552847dd91bc6135da5",
+      "tasks.md": "0985ee03afeccf5afd22a71c9f104120b2a2b3339ba4353d1b6c836f4ade8f22",
+      "implementation-summary.md": "2ba4cad7366fe6b699eaacab236bba7d716c40f07ad804ce0575fd1a28e80af0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

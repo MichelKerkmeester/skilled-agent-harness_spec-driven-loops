@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph today is a 108-file subsystem (29 lib TS + 10 handlers + 2 tools + 28 vitest + 16 in-package docs + 23 READMEs) inside `system-spec-kit`, 12 MCP tools (`code_graph_*`, `ccc_*`, `detect_changes`), backed by `code-graph.sqlite` (55 MB live index, 7 exclusive tables), consumed by 5 cross-subsystem handlers, 6 runtime hooks across 4 runtimes, 7 agent files, 5 commands, 1 plugin bridge + 2 `.mjs` siblings, 1 constitutional rule, 4 top-level docs, and 63 category-22 docs across `feature_catalog/22--*/` + `manual_testing_playbook/22--*/`.",
+    "causal_summary": "Code-graph today is a 108-file subsystem (29 lib TS + 10 handlers + 2 tools + 28 vitest + 16 in-package docs + 23 READMEs) inside `system-spec-kit`, 12 MCP tools (`codegraph`, `ccc`, `detectchanges`), backed by `code-graph.sqlite` (55 MB live index, 7 exclusive tables), consumed by 5 cross-subsystem handlers, 6 runtime hooks across 4 runtimes, 7 agent files, 5 commands, 1 plugin bridge + 2 `.mjs` siblings, 1 constitutional rule, 4 top-level docs, and 63 category-22 docs across `featurecatalog/22--/` + `manualtestingplaybook/22--/`",
     "created_at": "2026-05-14T07:00:38Z",
-    "last_save_at": "2026-06-05T12:47:34.094Z",
+    "last_save_at": "2026-06-23T03:49:55.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:00:38Z",
     "source_docs": [
@@ -225,6 +225,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:96f4dcd95c89652793d20553bdc872828379ad7f218fcc8a51011f3545966554",
+    "source_doc_hashes": {
+      "spec.md": "6d3149eb194975569bd6835891835802b7a4725e4c498e207cce3ab388adc0cb",
+      "plan.md": "91ea4883a260b4f11558522a0393b2fc9e43ec76bd73af4cc60fa4752297c515",
+      "tasks.md": "f926175b9f20305ffa467b60615b1f3b8add4e45acfb5f5d469541b678e8157a",
+      "checklist.md": "7c1f6f63e609908d51491521e5a09bdbabbb1ca989f12dbdd8e43fdd9854ffa8",
+      "decision-record.md": "325fc2ad6e933527cd9fbf4f1df7d84ae67bc143ab1894a31d04340385de0b11",
+      "implementation-summary.md": "f32c9de870e675cdf3eefc625ab813839bb260aaa3a7eded2aa9b03b149c256d",
+      "research/research.md": "0f03e52013fd35999e3e38262adbc054e14dba810b4e246628f3aaed494abe29",
+      "resource-map.md": "10c33bb73551632d0b47266bb84b7813efcdd60bfc5136e8ffcf05563b264fe3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

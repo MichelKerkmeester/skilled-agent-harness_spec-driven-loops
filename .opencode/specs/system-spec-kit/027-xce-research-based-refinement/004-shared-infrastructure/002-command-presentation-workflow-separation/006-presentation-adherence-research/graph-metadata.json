@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose. The command split needs a grounded explanation and a fix plan.",
+    "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose",
     "created_at": "2026-06-12T06:12:49.512Z",
-    "last_save_at": "2026-06-12T11:12:59.595Z",
+    "last_save_at": "2026-06-23T03:49:57.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:eeeabc5c3365f000d06642a763e8a981f8fd406dbb4ccf3dff20c508113e9427",
+    "source_doc_hashes": {
+      "spec.md": "9747bd34f7e3de5d8e2ec45da4eb2275402d4f9d28f9e62230b56b2b5567d33c",
+      "plan.md": "44f61af5c121ac6ee95e9fcf74a728b91b46125feaaa34152a8203fb6a610006",
+      "tasks.md": "73a6d35a10c8bb0fdf8d79321f22213c2cc41c317ad094722d928358496d6216",
+      "implementation-summary.md": "76f9210e515510bcd14c7e9edc453c18eb7a1427322932b88039239cb8dc6c88",
+      "research/research.md": "402ea87cbf214d5b01de0f6e607f12ee5e5d749dc19de84861e490d08656ff11"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

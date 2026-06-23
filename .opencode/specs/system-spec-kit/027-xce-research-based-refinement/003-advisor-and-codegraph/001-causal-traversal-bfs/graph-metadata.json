@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies. getNeighborBoosts (lib/search/causal-boost.ts:431) recurses with ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id, which prevents single-index use on every hop; the live graph measured 10,240 causal edges with max degree 22, so an indexed two-query-per-hop BFS is estimated at 0.5-2ms - at or below the CTE. collectDependents (lib/storage/memo.ts:192) runs an unbounded recursive CTE and wouldCreateCycle fires per insert, yet dependency_edges and memoization_records both held zero rows when measured (2026-06-10). Source evidence: z_future/sqlite-to-turso research.md gap 6 and 004 - gap-alternatives.md section 4.",
+    "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
     "created_at": "2026-06-10T17:48:32Z",
-    "last_save_at": "2026-06-22T18:55:03.378Z",
+    "last_save_at": "2026-06-23T03:49:57.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c95241011048ecea431c420257376ab9ddf3e0769532da7bbed78c3a8b185ef5",
+    "source_doc_hashes": {
+      "spec.md": "199e2e5250e1237eb503e674ed6442b90778c4b6a72185da8da4212069571e55",
+      "plan.md": "4a853d215bf4050175c4abd66f782c1d307c4b54c231faed02e939dd62297961",
+      "tasks.md": "cab6f57831f93c2cd2dc0574489ca2f485abc27f85d9d945eb6c40665914aca3",
+      "implementation-summary.md": "a2d98044adbfbd7527d82734ca0cfc87edf7efd879c28c57d6d310696848559d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

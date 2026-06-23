@@ -1,18 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
-  "description": "Feature Specification: Cross-Session Kill Scoping + Post-Crash Integrity Gate",
+  "description": "MCP transports kept dying mid-session despite the front-proxy work",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-session",
-    "kill",
-    "scoping",
-    "post-crash",
-    "integrity",
-    "gate"
+    "mcp",
+    "transports",
+    "kept",
+    "dying",
+    "mid-session",
+    "despite",
+    "front-proxy",
+    "work"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.201Z",
+  "lastUpdated": "2026-06-23T03:49:56.599Z",
   "specId": "029",
   "folderSlug": "cross-session-kill-scoping",
   "parentChain": [

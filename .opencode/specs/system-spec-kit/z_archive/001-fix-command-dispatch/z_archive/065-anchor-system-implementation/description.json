@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation",
-  "description": "Feature Specification: Anchor System Implementation - Targeted Memory Retrieval",
+  "description": "Currently, the Spec Kit system creates anchors (the `<!-- ANCHOR:id -->` tags) in memory files, but the retrieval system ignores them",
   "keywords": [
-    "feature",
-    "specification",
-    "anchor",
+    "currently",
+    "spec",
+    "kit",
     "system",
-    "implementation",
-    "targeted",
+    "creates",
+    "anchors",
+    "anchor",
+    "tags",
     "memory",
-    "retrieval"
+    "files",
+    "retrieval",
+    "ignores",
+    "them"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.959Z",
+  "lastUpdated": "2026-06-23T03:49:59.234Z",
   "specId": "065",
   "folderSlug": "anchor-system-implementation",
   "parentChain": [

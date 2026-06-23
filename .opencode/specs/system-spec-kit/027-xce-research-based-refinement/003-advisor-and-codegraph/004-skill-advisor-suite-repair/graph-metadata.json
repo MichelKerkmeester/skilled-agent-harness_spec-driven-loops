@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests failing in the working tree. The dominant cause was the committed deep-loop merge (`ce9e313e7f`), which folded the five legacy deep-loop skills (`deep-context`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) into one merged skill `deep-loop-workflows`, but left scorer fixtures, corpora, ledgers, the Python disambiguation layer, and the metadata-category allowlist still expecting the now-deleted legacy skill ids. Separately, an intentional `GOVERNOR_DIRECTIVE` capsule appended to every advisor brief in `lib/render.ts` broke ~15 brief-assertion tests that hard-coded the pre-governor brief string. After those 26 were fixed, 36 failures remained in two files: the settings-parity guard read the gitignored machine-local `.claude/settings.local.json` (which carries no hooks) instead of the committed `.claude/settings.json`, and the graph-health validator failed on three edge-symmetry asymmetries in external skill metadata.",
+    "causal_summary": "The `system-skill-advisor/mcpserver` vitest suite reported 61 of 553 tests failing in the working tree",
     "created_at": "2026-06-15T16:20:19Z",
-    "last_save_at": "2026-06-16T14:27:21.581Z",
+    "last_save_at": "2026-06-23T03:49:57.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3aea3af2e949171d637b9b941e40fa92f9baadd9a9fbfd783e995b8651ef0ad2",
+    "source_doc_hashes": {
+      "spec.md": "a1cdcd899ce18a52f589561f0f5fdfe67e9919e5306da1f77eded076ad078866",
+      "plan.md": "d9183ddfcb8042a8d91ce65ced42926631381a069e27328c69b8cd0558f69f32",
+      "tasks.md": "71f978c73d33fd3eebbbfe492f5ed2537bab578cd2c9624f27bba9287b22dee7",
+      "checklist.md": "2340998c88545e2f7e5cb06d370c7b9525544dc878a4025b55555a9d5a0723bd",
+      "implementation-summary.md": "728ea552c3bd6454aa29a5d087d952f7f97cccbbe2d3e2afaa18bcf79021bb1d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

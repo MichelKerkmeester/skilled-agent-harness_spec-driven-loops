@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/004-script-audit-comprehensive",
-  "description": "Feature Specification: Comprehensive Script Audit",
+  "description": "This archived folder captures work that audited system-spec-kit scripts for defects, broken behavior, and standards misalignment",
   "keywords": [
-    "feature",
-    "specification",
-    "comprehensive",
-    "script",
-    "audit"
+    "archived",
+    "folder",
+    "captures",
+    "work",
+    "audited",
+    "system-spec-kit",
+    "scripts",
+    "defects",
+    "broken",
+    "behavior",
+    "standards",
+    "misalignment"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.565Z",
+  "lastUpdated": "2026-06-23T03:49:59.431Z",
   "specId": "004",
   "folderSlug": "script-audit-comprehensive",
   "parentChain": [

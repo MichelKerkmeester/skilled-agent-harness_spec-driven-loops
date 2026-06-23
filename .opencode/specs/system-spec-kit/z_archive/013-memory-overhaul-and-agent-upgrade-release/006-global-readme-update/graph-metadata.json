@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Specify required updates to the project root `/README.md` to ensure all statistics, feature descriptions, and component references reflect the post-alignment state after spec 130 implementation.",
+    "causal_summary": "Specify required updates to the project root `/README.md` to ensure all statistics, feature descriptions, and component references reflect the post-alignment state after spec 130 implementation",
     "created_at": "2026-05-26T19:43:14.242Z",
-    "last_save_at": "2026-05-30T10:12:03.148Z",
+    "last_save_at": "2026-06-23T03:49:59.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cb65ed58b3f752bc646f5b8c757dc25d183b2663c7834698ed3daaddeee714e1",
+    "source_doc_hashes": {
+      "spec.md": "5bec225d33400c5021dfc0708a2e9bb02f4a9b5cdf86f1145c36debfe8c187df",
+      "plan.md": "920d253c858e503f9e2501c2011a9e043fd3f0bd273631b56020bd57212135e4",
+      "tasks.md": "db079a62b634cad53967bd16fac838d2ce4c0c18bfa2be7a42acfbea73914e41",
+      "checklist.md": "bf796d49e7d7ef1b22ebd3efa94a503d3b6c585ef91b5b7eeafb1a94df07d796",
+      "decision-record.md": "d41b1ec1ac255d57f805eab1f3d4aafe789a26d036a83d4f1cd9120c2d676e0e",
+      "implementation-summary.md": "824739fb97c4c1ffe16b0cbb712b7fb3bfb369a7af29d2f8a7f903e1e5243324"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

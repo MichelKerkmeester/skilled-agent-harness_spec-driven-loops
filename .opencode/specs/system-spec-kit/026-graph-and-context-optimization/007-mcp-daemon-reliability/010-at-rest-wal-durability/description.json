@@ -1,15 +1,26 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
-  "description": "Feature Specification: At-Rest WAL Durability",
+  "description": "Packet 008 added a close-time `walcheckpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUN",
   "keywords": [
-    "feature",
-    "specification",
-    "at-rest",
-    "wal",
-    "durability"
+    "packet",
+    "008",
+    "added",
+    "close-time",
+    "walcheckpoint",
+    "truncate",
+    "main",
+    "context",
+    "index",
+    "active",
+    "vector",
+    "shard",
+    "remained",
+    "attached",
+    "without",
+    "trun"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.750Z",
+  "lastUpdated": "2026-06-23T03:49:56.442Z",
   "specId": "010",
   "folderSlug": "at-rest-wal-durability",
   "parentChain": [

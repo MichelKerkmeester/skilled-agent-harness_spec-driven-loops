@@ -36,7 +36,7 @@
       "tasks",
       "implementation",
       "summary",
-      "930"
+      "mcpserver"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The install guide (mcp_server/INSTALL_GUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilized. Some installation steps may reference outdated package names, missing build scripts, or stale platform-specific configurations. No rollback procedure exists if installation fails midway.",
+    "causal_summary": "The install guide (mcpserver/INSTALLGUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilized",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-06-22T18:55:04.577Z",
+    "last_save_at": "2026-06-23T03:50:00.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2b9d73ff8a637de016b263d675d290586a3cf31be2915fb20f53072633025a93",
+    "source_doc_hashes": {
+      "spec.md": "358bb3bd2e776e5f4870dce308820ee56de986d1f026e7aa53eb7f800db44941",
+      "plan.md": "fca6d834bae506dff19389224d4ecdb277e7e4a2b69ae0bb5ab62514e04441e9",
+      "tasks.md": "3697e826273b46908e19c3adc0a1a0ee19f1f7123a0a0ae8787c2278c165b5b3",
+      "implementation-summary.md": "aefaa575cc3938f837d5d215ee29c2c5f4807ca09563ba95743034df58eb0989"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

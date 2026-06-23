@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership.",
+    "causal_summary": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.920Z",
+    "last_save_at": "2026-06-23T03:49:56.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9b28528713875eed77780f9f1e5fb617296f6f38f9e0a9bc1c6ab98361d1ae64",
+    "source_doc_hashes": {
+      "spec.md": "5e5dc23eb39061923e548460224b4726e41806198b87070da86df5553a38eeaa",
+      "plan.md": "90cb8126286db0ca21c721c2032c6bbed774930ce6ac04e2eed597480664f4d6",
+      "tasks.md": "10c837dc7aca4d8c1149b3dbae59c38656bf4f3772a9b7af403fa05470598e2a",
+      "implementation-summary.md": "09b8d3791fd285cc6c02ba5a5212f6d4ef99ed0a0fc0f856e4a38ecac5c2b959"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

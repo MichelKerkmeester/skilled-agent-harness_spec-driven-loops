@@ -20,15 +20,15 @@
       "cocoindex-remove-cancel-and-index-lifecycle",
       "memory",
       "leak",
-      "phase",
-      "remediation",
-      "arc",
-      "scoped",
-      "source",
-      "evidence",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "code-index",
+      "audit",
+      "found",
+      "remove",
+      "close",
+      "race",
+      "active",
+      "indexing",
+      "index"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 6 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
+    "causal_summary": "The code-index audit found that remove/close can race active indexing and that index operations lack a real protocol cancel surface",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-30T10:12:02.433Z",
+    "last_save_at": "2026-06-23T03:49:55.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:11d418c669f1f12aa87d36ca5e4281330b5951358a38d2033188e78d2897f233",
+    "source_doc_hashes": {
+      "spec.md": "bba3219d4d2dcb5906ba89ad48c761df79d543bf06ff1ecb01fbe15b0d0b69a7",
+      "plan.md": "e13386d347be7149cb76896ea5670eadd204fd5044ad1fcfc9353f16f023582a",
+      "tasks.md": "d5eb366863f7035bd4837e3db72e647d479d956647d4b733765459b70b998e72",
+      "implementation-summary.md": "fb047de7570a208ff4c076946163ee4852210a69745c3a3f399134b6573158ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

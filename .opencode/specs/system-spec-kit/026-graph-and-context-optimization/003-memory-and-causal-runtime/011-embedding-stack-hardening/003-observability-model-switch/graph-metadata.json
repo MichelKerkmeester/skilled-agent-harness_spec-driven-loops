@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3 of 5** of the embedding-stack hardening decomposition: give operators a read-only view of embedder state, make model switches safe, and stop the client from declaring a healthy-but-downloading server dead.",
+    "causal_summary": "Operators have no read-only view of embedder state: `embedderstatus.ts:68-86` does not report model-server state, requested/effective provider, or fallback reason",
     "created_at": "2026-05-29T11:22:57.379Z",
-    "last_save_at": "2026-06-22T18:55:02.645Z",
+    "last_save_at": "2026-06-23T03:49:55.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ab1cf129475b45b67995837b072a2f0ac79ed0ffb61633c1eaefea2fe2de1895",
+    "source_doc_hashes": {
+      "spec.md": "be8ed12a473ac8b95d04f663c65fef61b7c775536efe19e19bf425d39b09d976",
+      "plan.md": "382b77b3cdc1c36ee0943da96e4d65f9874c82368ec52520018a412339e7deb4",
+      "tasks.md": "f65b121ea45ed3e6b1505b56138407851de333d200d412cf44b97c64120b8b6d",
+      "implementation-summary.md": "b7b37afcc04e5c99077d1c80af301eece924800776a27d5226dae76a0bad4081"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

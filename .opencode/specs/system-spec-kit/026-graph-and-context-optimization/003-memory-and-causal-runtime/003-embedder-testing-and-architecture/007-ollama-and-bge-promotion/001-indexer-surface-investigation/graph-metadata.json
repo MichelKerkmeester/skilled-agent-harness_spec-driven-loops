@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Embedder swaps in CocoIndex don't directly affect AI council / deep-research / deep-review unless those systems retrieve from CocoIndex. We need to know **which system retrieves from which indexer** before any default-promotion decision.",
+    "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-05-30T10:12:02.381Z",
+    "last_save_at": "2026-06-23T03:49:54.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:6a3850d57e2abe10c47c13353dcec1ed708ed367025e6389901c23c7d50876ba",
+    "source_doc_hashes": {
+      "spec.md": "5519fb2e42a9cfb895aeecbbc3728c74e5ad89ce7c6771c30db3656b5b570016",
+      "plan.md": "01b652394e5efa55cd068797116904c5d75a40c6a4924479de2733de45aaaf55",
+      "tasks.md": "858d8c23c19391610c34d98cc9c20063c156bb772e7277e912fe7e2423b59113",
+      "implementation-summary.md": "b870a9f57af6ff76dc23bd9093758f232f1b7d559e301a67bde203339ebceb4a",
+      "research.md": "3781e807fb30c88174a0f0997448ee2ab04f2cfa856859e2311ed76c549e98fc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

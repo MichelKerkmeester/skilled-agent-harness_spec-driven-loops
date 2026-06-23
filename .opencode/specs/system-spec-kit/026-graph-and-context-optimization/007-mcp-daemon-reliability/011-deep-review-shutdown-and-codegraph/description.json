@@ -1,16 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
-  "description": "Feature Specification: opus-4.8 Deep Review (Daemon-Shutdown + Code-Graph)",
+  "description": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph f",
   "keywords": [
-    "feature",
-    "specification",
-    "opus-4",
-    "deep",
-    "review",
+    "recent",
     "daemon-shutdown",
+    "memory-db-lifecycle",
+    "work",
+    "packets",
+    "008",
+    "checkpoint-on-close",
+    "009",
+    "shutdown-durability",
+    "010",
+    "at-rest-wal",
     "code-graph"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.998Z",
+  "lastUpdated": "2026-06-23T03:49:56.448Z",
   "specId": "011",
   "folderSlug": "deep-review-shutdown-and-codegraph",
   "parentChain": [

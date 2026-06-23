@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/024-codex-memory-mcp-fix",
-  "description": "Feature Specification: Codex Memory MCP Fix",
+  "description": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startu",
   "keywords": [
-    "feature",
-    "specification",
     "codex",
-    "memory",
+    "fail",
+    "initialize",
+    "speckitmemory",
+    "because",
     "mcp",
-    "fix"
+    "server",
+    "assumed",
+    "create",
+    "sqlite",
+    "database",
+    "workspace",
+    "startu"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.278Z",
+  "lastUpdated": "2026-06-23T03:50:00.402Z",
   "specId": "024",
   "folderSlug": "codex-memory-mcp-fix",
   "parentChain": [

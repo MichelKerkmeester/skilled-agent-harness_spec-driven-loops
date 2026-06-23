@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the spec-027 feature adoption into the advisor and code-graph daemons. It augments the advisor's token-overlap lexical lane with a packed BM25F shadow helper.",
+    "causal_summary": "The advisor lexical lane is token overlap plus static synonyms/hints (`lib/scorer/lanes/lexical.ts:8-23` and `:50-85`), so routing quality depends on hand-tuned synonym pressure and degrades on ambiguous prompts",
     "created_at": "2026-06-10T19:24:10Z",
-    "last_save_at": "2026-06-12T04:40:47.924Z",
+    "last_save_at": "2026-06-23T03:49:57.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:40ab08e1e9b16e33f5c52b49d60eb8cdc4e62c8c80c716c4d5273861efea0d9b",
+    "source_doc_hashes": {
+      "spec.md": "1dd57c13df0280abda0bf70054067a19c02e5853bfc46d133084b10e81cf88ab",
+      "plan.md": "65dd448d15f951b5ae7ff58e8e6fb1f1b92056bc1adabcbf91607301a9088b4e",
+      "tasks.md": "b58e5ff56cffc5ecf904815832c66cf6324d6dc28b4132dd831c07727adeef56",
+      "implementation-summary.md": "440a479cb5cd652ed024be4c78a3fedff0755e33d45907d1778e91810ec24830"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

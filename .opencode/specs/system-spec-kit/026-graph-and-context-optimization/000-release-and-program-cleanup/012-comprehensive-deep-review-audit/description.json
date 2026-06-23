@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
-  "description": "Feature Specification: Comprehensive Deep-Review + Deep-Research Audit of system-spec-kit & 026",
+  "description": "The 026 program (`graph-and-context-optimization`) is large and mostly complete (8 tracks, ~711 spec.md, ~634 sub-packets) and touched the spec-kit MC",
   "keywords": [
-    "feature",
-    "specification",
-    "comprehensive",
-    "deep-review",
-    "deep-research",
-    "audit",
-    "system-spec-kit",
-    "026"
+    "026",
+    "program",
+    "graph-and-context-optimization",
+    "large",
+    "mostly",
+    "complete",
+    "tracks",
+    "711",
+    "spec",
+    "634",
+    "sub-packets",
+    "touched",
+    "spec-kit"
   ],
-  "lastUpdated": "2026-06-08T14:44:10.938Z",
+  "lastUpdated": "2026-06-23T03:49:52.972Z",
   "specId": "012",
   "folderSlug": "comprehensive-deep-review-audit",
   "parentChain": [

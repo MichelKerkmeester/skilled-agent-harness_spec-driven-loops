@@ -1,16 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
-  "description": "Feature Specification: Eval-Gated Confidence Calibration and Shipped-Lever A/B",
+  "description": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers th",
   "keywords": [
-    "feature",
-    "specification",
-    "eval-gated",
-    "confidence",
+    "memory",
+    "mcp",
+    "ships",
+    "two",
+    "classes",
+    "unvalidated",
+    "retrieval",
+    "intelligence",
+    "dormant",
     "calibration",
-    "shipped-lever"
+    "machinery",
+    "cannot",
+    "promoted",
+    "default-on",
+    "levers"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.814Z",
+  "lastUpdated": "2026-06-23T03:49:58.296Z",
   "specId": "020",
   "folderSlug": "eval-calibration-ab",
   "parentChain": [

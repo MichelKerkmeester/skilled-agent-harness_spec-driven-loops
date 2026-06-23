@@ -1,17 +1,25 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement",
-  "description": "Feature Specification: Code Graph and Skill Advisor Refinement Research",
+  "description": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered piece",
   "keywords": [
-    "feature",
-    "specification",
     "code",
     "graph",
+    "system",
+    "ast-based",
+    "structural",
+    "indexer",
     "skill",
     "advisor",
-    "refinement",
-    "research"
+    "5-lane",
+    "fusion",
+    "scorer",
+    "carry",
+    "known",
+    "limitations",
+    "discovered",
+    "piece"
   ],
-  "lastUpdated": "2026-05-26T17:26:19.139Z",
+  "lastUpdated": "2026-06-23T03:49:55.888Z",
   "specId": "001",
   "folderSlug": "code-graph-advisor-refinement",
   "parentChain": [

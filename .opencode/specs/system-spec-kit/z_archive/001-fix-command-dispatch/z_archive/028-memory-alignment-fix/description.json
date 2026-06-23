@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/028-memory-alignment-fix",
-  "description": "Memory Alignment Fix - Three-Layer Defense System",
+  "description": "Memory saves were being directed to wrong spec folders due to:",
   "keywords": [
     "memory",
-    "alignment",
-    "fix",
-    "three-layer",
-    "defense",
-    "system"
+    "saves",
+    "directed",
+    "wrong",
+    "spec",
+    "folders",
+    "due"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.855Z",
+  "lastUpdated": "2026-06-23T03:49:59.044Z",
   "specId": "028",
   "folderSlug": "memory-alignment-fix",
   "parentChain": [

@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case. Live MCP verification showed the original data-loss mode still exists when a scope-mismatched default scan returns a small nonzero graph and promotes over a populated broad-scope graph.",
+    "causal_summary": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
     "created_at": "2026-05-06T07:44:35Z",
-    "last_save_at": "2026-05-30T10:12:02.623Z",
+    "last_save_at": "2026-06-23T03:49:56.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5bef0598ff06ed20a1728e49fd9c9e1134650e78ccbbe9e727236f4de506e370",
+    "source_doc_hashes": {
+      "spec.md": "7bd8b229042d9a5b5526237efb822c8dcdcfede0734da79cd7694b3be76d14f8",
+      "plan.md": "b2064dbde1bea5f3c1d3ff16d9423aefede98920954d337126cfa5cd28b6cf67",
+      "tasks.md": "450cc7c34fda43f579685a2298306b50705e4eaf6f97eced7bcf55d40a08c05c",
+      "checklist.md": "88bceec5a5f691177ecf265935d83c2445ae7f62d421a92b0439e213e72600a6",
+      "decision-record.md": "79501f97ac3573c3c2cce59a79ce9fcbd973d201ee1fc8cbc7ab5c9e8be0da21",
+      "implementation-summary.md": "9b27064c7c0fe6dafaa7d21ec5fc7728f6ba789fcd6a5c83bae279c9b61c5f20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

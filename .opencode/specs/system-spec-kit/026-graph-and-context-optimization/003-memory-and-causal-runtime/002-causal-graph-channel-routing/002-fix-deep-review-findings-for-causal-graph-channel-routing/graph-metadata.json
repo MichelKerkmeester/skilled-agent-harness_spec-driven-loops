@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet closes all P1 and P2 findings from the 012/001 deep review. Final target state: P0=0, P1=0, P2=0.",
+    "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
     "created_at": "2026-05-19T15:28:02.707Z",
-    "last_save_at": "2026-06-05T12:47:33.506Z",
+    "last_save_at": "2026-06-23T03:49:53.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4a177bc721756cdfce6ec2759761afaa3f892f5d12c63392fb1ca38bd2efe854",
+    "source_doc_hashes": {
+      "spec.md": "589b7f75f127f14a8f926cd5b13bb58f729b8b290516bb0ba0aa878be68d27a7",
+      "plan.md": "52b91224e5b74a719c840d960964b9a8eb5495bc7d63b588a3df60e46d9b0850",
+      "tasks.md": "9cff25139e6e73f2098b4217e737834d52c7594f35e14316116902a2c7dd6397",
+      "checklist.md": "6b70e56347b189881bc53527fbace520f172d55dc24456411170dbe03f39963b",
+      "decision-record.md": "9f48fc20f45329cc120e6b7bc675b270c316e109f32da7c592f50f1345f5e7ac",
+      "implementation-summary.md": "dbfe50df6ab098a8f7f05cba166d6cee757dea18d4575762c1b8d96924c05fbb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

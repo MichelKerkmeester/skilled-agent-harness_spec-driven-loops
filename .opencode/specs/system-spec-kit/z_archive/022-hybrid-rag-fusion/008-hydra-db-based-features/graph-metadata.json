@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Feature Specification: 008-hydra-db-based-features",
     "created_at": "2026-04-12T09:02:50.258Z",
-    "last_save_at": "2026-06-22T18:55:04.310Z",
+    "last_save_at": "2026-06-23T03:49:59.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:a36aa2ff5330debef269a7274e8f4719ef0d25200b9828ce7208f09a60a12295",
+    "source_doc_hashes": {
+      "spec.md": "b944efa2a06b1be6dbf1b8cf2a6d8c62771f9f244103cc6d8f7aae46840f1f67",
+      "plan.md": "409ef342a5b0e6095cc91122c424147a02718c5b88a850deb9062ab3eaf6ec01",
+      "tasks.md": "51650a0a3a485e6fa071b8b9b313bbb2dbfae3bc74750bcb9f46446a4d39feb3",
+      "checklist.md": "eebc912d39587270c3914bb0754183de527f32a2436a40922e9b005f62169502",
+      "decision-record.md": "5cebe686bf9172880cc597a3fed60eb8297d9378cf50973276a6bc2c3285c625",
+      "implementation-summary.md": "0ee2d44baa4011e95de0e27b6043b91a22aec26b6d757410beb3cd1df40e242a",
+      "research/research.md": "44848ea08dbd448317cc77cbfe9d5bbd7ba7bfc4d11069e7a6cdfec0ac513209",
+      "resource-map.md": "02f6112e1c1d86aeb17d497479d84e7a6e9ea7ae38fd19c23245125b4de045aa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

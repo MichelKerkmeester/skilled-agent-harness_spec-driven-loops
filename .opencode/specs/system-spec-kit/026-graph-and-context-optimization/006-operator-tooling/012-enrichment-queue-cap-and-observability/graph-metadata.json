@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 010 cap fix bounds enrichment CONCURRENCY (4), and 011 fenced it at shutdown. The 010 deep-review left a P2 backlog: the overflow QUEUE is unbounded (a sustained live-save flood grows it + its retained `parsed` payloads without bound), background failures are log-only and unaggregated, and neither the scheduler state nor the enrichment backlog is exposed in `memory_health` — so a stuck or backed-up scheduler is a silent outage. This packet caps the queue (drop overflow → backfill recovers), aggregates failures with a rate-limited log, and surfaces scheduler counters + the `post_insert_enrichment_status` distribution + a recovery hint in `memory_health`.",
+    "causal_summary": "`scheduleBackgroundEnrichment` (`memory-save.ts`) caps concurrency but pushes overflow to an unbounded queue; a live-save flood grows it (and each entry's retained `parsed`) without bound (F-007)",
     "created_at": "2026-06-15T06:00:22Z",
-    "last_save_at": "2026-06-15T09:09:34.633Z",
+    "last_save_at": "2026-06-23T03:49:56.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:3da0fc3de89c93c1ffb1614ac67d0f19ac0257404e5c71be4278cb853d5f073f",
+    "source_doc_hashes": {
+      "spec.md": "58f0901dc6da71fb63126695c38aecd45761d61d036d42676ae2b4aa14170473",
+      "plan.md": "c38f4f61c7979d3b13a36b1c20ca20e9c73e8459a639424e9af7f9040ad607c4",
+      "tasks.md": "d1eb5d9bb4ab930559b931e66d477d05d94b96663d046674d1aed08066a863eb",
+      "checklist.md": "01219474b0d8a41fefefc9df0e5b41d3180a1c7087fb97113c026562cf4bf808",
+      "decision-record.md": "8621b06aeeb033cab42d35a89fe7c56fa04c625e830a05b6d46d2258c396abfa",
+      "implementation-summary.md": "9865ea13348c819924d86f0bdbcb79ba0d126f522c3d8453787f0c0c5d7da545",
+      "handover.md": "b7e465fc22403927d133ff98f1154acf03a9f8a93150cddd0c758b837db70126"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -32,7 +32,7 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic"
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 22 live Scoring and Calibration features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/11--scoring-and-calibration/` category is verified against source code to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Scoring and Calibration has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-05-30T10:12:03.248Z",
+    "last_save_at": "2026-06-23T03:49:59.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:75b7117c9299d9e89643a13b2559570abbdf9b0ffcf2af3cbf7ee9ce483274cf",
+    "source_doc_hashes": {
+      "spec.md": "a16df91e98a5becbc114fd6937e28df4722e643c9542410de1b0bed98b067830",
+      "plan.md": "3b9bcb400eaf32fab73222e3d571c6f5cfe9951aa023b93785798edb476f7e38",
+      "tasks.md": "b65fb9dca0ac4a4ebfabd5bb294d1514cd6baa521df4dff3b9e32d6f1ece6375",
+      "checklist.md": "4685b94f64b0dfc52c484edb1d9f30f770fe17e00ab82b5835ab5fb14644a6b8",
+      "implementation-summary.md": "7be37b165e888f2d746579f5964919a57d77b257097ba599c75ac53c56b2adf1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

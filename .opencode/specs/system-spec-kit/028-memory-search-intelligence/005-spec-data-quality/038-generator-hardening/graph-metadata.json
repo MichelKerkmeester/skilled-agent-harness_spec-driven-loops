@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn. Graph metadata is already idempotent through `graphMetadataEqualIgnoringVolatile` and the no-op skip at `graph-metadata-parser.ts:1275-1286`, so a rerun on unchanged content does not bump the volatile timestamps. What it cannot do today is prove that its derived fields, the `causal_summary` and the `description`, were re-derived from the current source docs rather than carried forward from a stale snapshot, because no persisted source fingerprint exists to compare against. The same generator also splits the phase-child contract across two code paths, `isPhaseParent` and `resolveChildrenIds`, so the two helpers can disagree on what counts as a child and a re-derive can produce a `children_ids` set that does not match the parent classification. Separately, access and freshness telemetry, `last_accessed_at` and the phase-parent `last_active_child_id` and `last_active_at` pointers, are stored inside the generated JSON and are mutated on reads and resumes, so a no-op read or a resume dirties an otherwise-unchanged generated file and produces the unscoped cross-session commit churn that the 031 study identifies as the dominant visible symptom. The net effect is that drift cannot be proven, the child contract can diverge, and a read can dirty a generated file.",
+    "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.869Z",
+    "last_save_at": "2026-06-23T03:49:58.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:317150caf2f93c9ff667386fe3f38cfcb7bbf0ecc0d783790c7afb764d492739",
+    "source_doc_hashes": {
+      "spec.md": "e85b264204e584cd2dc56138d1309b31894c41575bbe1ff99cca0c20335201ff",
+      "plan.md": "0c0d93ddde0ece901b0cc87f586954670fb13f51b6820aa9ca59588d02b5959e",
+      "tasks.md": "ab04c75a9c8e0ca7de9140544f790f567bf4cc97f72282f194696372c6be0f56",
+      "checklist.md": "b1402f4e9cf948655649047fefa24daf2f7bbb6ca3dbcf9aadf1a71bb73b8eb4",
+      "implementation-summary.md": "06f64d19f8e163db7bcac3256ba480db153a2234e97cb2cf2553da3a872247d8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

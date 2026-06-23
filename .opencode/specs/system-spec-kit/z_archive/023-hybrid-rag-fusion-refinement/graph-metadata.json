@@ -220,7 +220,7 @@
     ],
     "causal_summary": "Feature Specification: ESM Module Compliance",
     "created_at": "2026-04-12T09:02:50.316Z",
-    "last_save_at": "2026-06-05T12:47:34.911Z",
+    "last_save_at": "2026-06-23T03:50:00.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,6 +229,13 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:05b43b1609c58e91e2dffc0bb14762e797b85438017e42b66420579a2c5a3bee",
+    "source_doc_hashes": {
+      "spec.md": "d1661ca842baa84145073e5542e1da9df636e947f5548eedcd3077d7fa21f176",
+      "plan.md": "e976f356dc3cfd5f6691024a46d7a46baee5f2f486f48a9e4b40584039004cb8",
+      "research/research.md": "ef673d239f4f0aea36ca70fcdf4c40289ee0b12ef82c5dd7959f2d583544fa34",
+      "resource-map.md": "4a8846d8beff9351bb9151133ff7c3cce45604587d21ba683ddd82eec6220ab3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
-  "description": "Feature Specification: Memory Causal Trust Display (012/005)",
+  "description": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new rela",
   "keywords": [
-    "feature",
-    "specification",
-    "memory",
-    "causal",
+    "display-only",
     "trust",
-    "display",
-    "012",
-    "005"
+    "badges",
+    "confidence",
+    "orphan",
+    "memoryresultenvelope",
+    "schema",
+    "change",
+    "new",
+    "rela"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.367Z",
+  "lastUpdated": "2026-06-23T03:49:56.196Z",
   "specId": "004",
   "folderSlug": "memory-causal-trust-display",
   "parentChain": [

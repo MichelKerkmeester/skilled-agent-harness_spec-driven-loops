@@ -35,8 +35,8 @@
       "plan",
       "tasks",
       "implementation",
-      "1281",
-      "lines"
+      "mcpserver",
+      "1281"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The MCP server README (mcp_server/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the 022-hybrid-rag-fusion epic. It now mixes API reference, architecture, configuration, and troubleshooting concerns with no clear reader path. Some sections reference 28 tools when 33 exist. The hybrid search pipeline, cognitive memory (6-tier, 5-state, FSRS decay), and feature flag system are not cohesively documented.",
+    "causal_summary": "The MCP server README (mcpserver/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the 022-hybrid-rag-fusion epic",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-06-22T18:55:04.575Z",
+    "last_save_at": "2026-06-23T03:50:00.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:00f2f7fdf0c81386de93204e87c2b4118d189d9fbbf034ef2dec37d28f365564",
+    "source_doc_hashes": {
+      "spec.md": "a57a628454b27be0cae908bb7b58cf86c4bec694fd365594190c57e503d4e87b",
+      "plan.md": "dbe6f04e167bc2e4ee07c491dd88ccec9b36ea085847e4735143b22b2d45bb26",
+      "tasks.md": "ac706dd20a4e6d42128806073a7a3eb09b3144f6d502957140f040a9563d85ad",
+      "implementation-summary.md": "5119df8377705ec0c99500fc9b4ec45d53d168291eba49deb17c4cb9c0fb4ae2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

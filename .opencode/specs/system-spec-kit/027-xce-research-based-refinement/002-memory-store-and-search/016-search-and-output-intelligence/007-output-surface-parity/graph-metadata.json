@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the search-and-output-intelligence implementation: `/memory:search` output surface-parity (recommendations #4/#5 / O2).",
+    "causal_summary": "The same retrieval result rendered differently per model: DeepSeek showed `confidence 0.36` while Kimi showed `similarity 0.68` for the identical row, so two surfaces could not be compared or diffed",
     "created_at": "2026-06-17T19:57:25.108Z",
-    "last_save_at": "2026-06-18T12:37:50.254Z",
+    "last_save_at": "2026-06-23T03:49:57.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5619ff9a7c96545b52c7a8495d7c02d159bd873ef88af5a0d4be4734feeadefa",
+    "source_doc_hashes": {
+      "spec.md": "6aa3c5359dacdc641047b1b85b68526ff8abd59411b0fa11cffffedc670197e7",
+      "plan.md": "148932bbdb9afa85459576600a4758b17b64883680db8700072e5538aa367fe7",
+      "tasks.md": "3a03c28b59454c7a26d9ab99cbe86e6ea2c2c5aa082d5c95d9ea1c17dd79f1cf",
+      "implementation-summary.md": "3464afe70c8b1317021a2f7f4fa10494542e23013ba92f54838d6c08cf2f172f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

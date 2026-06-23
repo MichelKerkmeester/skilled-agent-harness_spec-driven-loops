@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core | v2.2\"",
+    "causal_summary": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
     "created_at": "2026-04-12T09:02:50.239Z",
-    "last_save_at": "2026-05-30T10:12:03.221Z",
+    "last_save_at": "2026-06-23T03:49:59.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:e0713eba7602e66a4d619cb9f41fa5165c6b9615d37e4382c070bb6537ca5583",
+    "source_doc_hashes": {
+      "spec.md": "a1fec6c341d422b288d2214dfd0420fd1b441bbdbe46c830371da3cff06f2f60",
+      "plan.md": "bbabf8af079a60ab7794523c2b0323670d60a306191c819e3bc11c60d71cb803",
+      "tasks.md": "3044931f460144cca685d0c9ce9cbf67b570e575f80cab2a6a04b6f500317eba",
+      "checklist.md": "4ec79e962e3efc1675a2cd69213e85782b514cb8c7efcf8d31c562724053557b",
+      "implementation-summary.md": "0bcbb57774b4ef73b90a9cd1ac61f76dcef979b391356eba0414646ddcd93cad",
+      "research/research.md": "d300847320da9872cb8d669238ddb7e0ecb867682932e320a6cc0fad9f9f15b2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

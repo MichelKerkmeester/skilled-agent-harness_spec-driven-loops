@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/023-ablation-benchmark-integrity",
-  "description": "Feature Specification: Ablation Benchmark Integrity",
+  "description": "The current ablation path can report invalid Recall@20 values because the benchmark still allows chunk-ID scoring on the CLI path, live token-budget a",
   "keywords": [
-    "feature",
-    "specification",
+    "current",
     "ablation",
+    "path",
+    "report",
+    "invalid",
+    "recall",
+    "values",
+    "because",
     "benchmark",
-    "integrity"
+    "still",
+    "allows",
+    "chunk-id",
+    "scoring",
+    "cli",
+    "live",
+    "token-budget"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.269Z",
+  "lastUpdated": "2026-06-23T03:50:00.395Z",
   "specId": "023",
   "folderSlug": "ablation-benchmark-integrity",
   "parentChain": [

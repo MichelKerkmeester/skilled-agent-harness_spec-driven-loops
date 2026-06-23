@@ -214,9 +214,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand. Cluster 1 (truncation), Cluster 2 (intent classifier), and Cluster 3 (rendering vocabulary) shipped P0 fixes in-phase. The remaining 13 P1/P2 defects across Clusters 4-7 were deferred to a follow-up packet, alongside a deferred CocoIndex daemon health probe (REQ-012, contingent on the daemon being runnable) and the deferral of formalizing the 20-paraphrase stability corpus (REQ-016, currently informal at `intent-classifier.vitest.ts:T060`). The result today: memory search works, but operators see noisy causal-stats output, leaked stale state across calls, weak-signal folder bindings, missing 3-tier FTS fallback on quality drops, and silent CocoIndex daemon failures.",
+    "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand",
     "created_at": "2026-05-08T21:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.048Z",
+    "last_save_at": "2026-06-23T03:49:53.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,6 +227,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:781738a3ee6e3b2f646a50318952b7cde2862e7190859d4b8294f4621a8b18aa",
+    "source_doc_hashes": {
+      "spec.md": "4fcde8c115f169db52994cad0f21f97bd43adda8741fb40adf367a87814f030c",
+      "plan.md": "93d19fd05f08aec518c137951ebec0cd094ff1a26d9d86357835c3865fe66eb8",
+      "tasks.md": "ce000e6e74d20ef76ca40815fc1576e7a9978bee8588ea26149d8f90ef643f8a",
+      "checklist.md": "0cb8e8a07a5ba169b1f4f256fd9ede16bbb86d55436e3309ba84781fb777481e",
+      "implementation-summary.md": "10e7aeaf9719dd86c3dc40d6b18532e8ff59da5434fa2770b7228ef5b8f42b50",
+      "resource-map.md": "3847e6c6e9236f8e410d28fd0e9860b6ef57ce78a8de6ed36d7bf32a4b5223d6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

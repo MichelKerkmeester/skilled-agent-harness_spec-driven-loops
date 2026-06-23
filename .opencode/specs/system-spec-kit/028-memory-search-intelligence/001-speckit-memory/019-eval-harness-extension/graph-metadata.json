@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and scopes the promotion-gate generalization that must follow. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision) and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). C9-1/C9-2/C9-3 are now implemented as code plus deterministic unit tests. A8 remains **PENDING** because the ledger/gate acceptance criteria require a schema change and live operational validation. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) remains the hard precondition for every trusted recall/calibration/cold number this harness produces.",
+    "causal_summary": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"]: a 110-query graded golden set (290 relevance judgments, grades 1-3, 93 real production memory IDs, 0 placeholders), a 12-metric library (`computeAllMetrics`, `eval-metrics.ts:586`, MRR/nDCG/recall/precision/F1/MAP/hitRate + 5 diagnostics), a live end-to-end runner `evalrunablation` driving real `hybridSearchEnhanced` against the golden set with per-channel recall deltas + paired sign-test p-values, a baseline runner, a dashboard, an alignment",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-06-22T18:55:03.662Z",
+    "last_save_at": "2026-06-23T03:49:58.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70bd1218f06b8e83e225506edd47036fec2318c8a80d4e0afa05f83ac6dd235d",
+    "source_doc_hashes": {
+      "spec.md": "f97ce505513061deb330b72ff543e8d243504569e9a00dd1d8aceae9be3a1d62",
+      "plan.md": "1ed4f38ab5c2dc592bdb075ea6b118cd6b0f205d078d24a42074d33bc466229d",
+      "tasks.md": "333b9efc4bb222b931a17b7125eb8b45edad7a46e938e7eb96741eec62c0dc8d",
+      "checklist.md": "ad8d734fd655cdc7761c2d1e1111bfc423be13c241b4ce235f7835d517f01de9",
+      "decision-record.md": "78bad8fa7458ad5ca96b4a8d5c56b444ab6261838328ce5af79f760b0dc4639f",
+      "implementation-summary.md": "fd3904053ea6149cea7b5507d2d85e67a0db0c371e574ecce611812def9c0ff7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

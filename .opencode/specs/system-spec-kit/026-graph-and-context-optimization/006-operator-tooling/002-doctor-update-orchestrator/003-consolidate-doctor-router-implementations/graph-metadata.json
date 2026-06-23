@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 10 `/doctor:*` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file. The 10 YAML workflow assets are self-sufficient and own all execution semantics; the markdown's only real job is to parse `$ARGUMENTS`, resolve setup variables, and hand off to the right YAML. This is a routing problem that today is solved by 10 near-identical .md files instead of one router plus a manifest. Maintenance cost compounds across 4 runtime mirrors (40 total .md files) and a 23-scenario manual playbook that hard-codes the per-command surface.",
+    "causal_summary": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.249Z",
+    "last_save_at": "2026-06-23T03:49:56.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a5b29250b24b48b04b015a0fb1fd39a9bcccbe6ee73e97688b314f8560164ddd",
+    "source_doc_hashes": {
+      "spec.md": "fdb04c3fcedac56b5ccefc73b719ace538a0adb40c89e5839d5e3304fb8147f5",
+      "plan.md": "17956bff46af4a5675b5af466e421edd9ce0a67f5e8c4dd5f2dd951391f52d5c",
+      "tasks.md": "d3e410c9a052a7ce5b957b7e853302f06000f72c9bba61a6fbc97aeb41753cd5",
+      "checklist.md": "676f53efd26d7c7ae65a8b01879e846eec673d7c06cb933482324cc02f217bbc",
+      "decision-record.md": "8214aaf1380e08c7101b4f06c48b76d1f12a97c81759b40b391ab1fdcee680d3",
+      "implementation-summary.md": "2fbfa2ef7e7b0684c31f870ee138240080419e0252d93b4acf47b6089df8c7d6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

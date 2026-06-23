@@ -33,8 +33,8 @@
       "implementation",
       "plan",
       "checklist",
-      "implement",
-      "comprehensive"
+      "saves",
+      "directed"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -154,9 +154,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implement a comprehensive 3-layer defense system to prevent memory saves to incorrect spec folders.",
+    "causal_summary": "Memory saves were being directed to wrong spec folders due to:",
     "created_at": "2026-04-12T09:02:53.520Z",
-    "last_save_at": "2026-05-30T10:12:02.972Z",
+    "last_save_at": "2026-06-23T03:49:59.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -164,6 +164,12 @@
       "plan.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:e8e6fc03b4291d11e3a51f14ee451df99e40739547341136f5a78cf4073c669c",
+    "source_doc_hashes": {
+      "spec.md": "db5a8122661f6d946bf1339b94127732d4d9ab7a8eb277ac11672d2a277094b9",
+      "plan.md": "8234a057f409e08c213f401b6e5afce3be87d9dfe168b2f7ed7e4424c9ed85f8",
+      "checklist.md": "f78be5fdd62057980ae8154113332c13a4dbaa521d1cdb02866f2d718fa626e5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

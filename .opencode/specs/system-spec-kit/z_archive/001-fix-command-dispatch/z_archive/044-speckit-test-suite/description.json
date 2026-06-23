@@ -1,13 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
-  "description": "Spec Kit Test Suite",
+  "description": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
   "keywords": [
     "spec",
     "kit",
-    "test",
-    "suite"
+    "memory",
+    "mcp",
+    "related",
+    "tools",
+    "lacked",
+    "comprehensive",
+    "testing"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.902Z",
+  "lastUpdated": "2026-06-23T03:49:59.135Z",
   "specId": "044",
   "folderSlug": "speckit-test-suite",
   "parentChain": [

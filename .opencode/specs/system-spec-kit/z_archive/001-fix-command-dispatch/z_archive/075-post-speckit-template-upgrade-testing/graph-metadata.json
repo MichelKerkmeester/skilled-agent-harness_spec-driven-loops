@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This specification defines a comprehensive test suite to validate the system-spec-kit v1.9.0 after the CORE+ADDENDUM template architecture upgrade. The test suite covers 44 JavaScript modules, 14 MCP tools, 17 shell scripts, and the complete template system to ensure all components function correctly post-upgrade.",
+    "causal_summary": "The system-spec-kit has undergone a major template architecture upgrade to CORE+ADDENDUM v2.0",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-06-05T12:47:34.528Z",
+    "last_save_at": "2026-06-23T03:49:59.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f0be9e4f5e6581d9f1cd93895a38be63b8479d678221bff60e2b80bc3b9b4ea7",
+    "source_doc_hashes": {
+      "spec.md": "ccbb5a3d6ceb1098a7d3faac0038d2bb2472b09489ad55d6872589d5fafdd1b7",
+      "plan.md": "59a6241f5a5338ea0671821ab9f59586c93dc94645ad01899a32c0d0ce380ebd",
+      "tasks.md": "57964ae38aadf7b13c23afce76ef468cd34b73f5ff90b23889ccb8c674ede630",
+      "checklist.md": "b700d561781873fec1ce3446f94f36c9864b0a3e15f85803c381973a0b98ca39",
+      "decision-record.md": "fe8317558ad5010090e914f1c8271d1e23cc916085b057b96763598650cce364",
+      "implementation-summary.md": "7f60ac7e8efc4ab9201cabdd397967262c8ac124e0277952ec82b7586829cf76"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

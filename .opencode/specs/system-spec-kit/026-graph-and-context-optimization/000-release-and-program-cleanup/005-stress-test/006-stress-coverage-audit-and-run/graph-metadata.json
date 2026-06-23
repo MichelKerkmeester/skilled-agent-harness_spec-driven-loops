@@ -32,8 +32,8 @@
       "tasks",
       "checklist",
       "summary",
-      "subsystems",
-      "maintain"
+      "codegraph",
+      "skilladvisor"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `code_graph` and `skill_advisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds only **3 directly-tagged code-graph tests** and **2 directly-tagged skill-advisor tests**. We don't have a written, auditable answer to: which catalog features have stress coverage, which require it, and which have a real gap. Release readiness work cannot proceed past 005-review-remediation without that answer.",
+    "causal_summary": "The `codegraph` and `skilladvisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds only 3 directly-tagged code-graph tests and 2 directly-tagged skill-advisor tests",
     "created_at": "2026-04-30T18:03:19Z",
-    "last_save_at": "2026-05-30T10:12:01.762Z",
+    "last_save_at": "2026-06-23T03:49:52.769Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7be7c56bb3d991edbadd608603c1a4051f5e49027759391ab7402cedea6f1063",
+    "source_doc_hashes": {
+      "spec.md": "0de87e7317ecb85005d822991d3b2bcda6b6389217e973561a2ac959cbc5eccd",
+      "plan.md": "814dd0ceb7a2a980dd8af48fb89f00cfc30cf1b0a42fc4cbc9e72d9d53134ec9",
+      "tasks.md": "5d47ad381e9b767f55270bc4f053f90dc00c02867f82506949b2ccde896aa1b2",
+      "checklist.md": "df5bebba93cdc333b96ab6884d618337590042090082ac1037433006a892e1f7",
+      "implementation-summary.md": "3f57f88b811573940b94d85ec8d7c7144e7cb1980981ae3bb530a9829961a7f8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

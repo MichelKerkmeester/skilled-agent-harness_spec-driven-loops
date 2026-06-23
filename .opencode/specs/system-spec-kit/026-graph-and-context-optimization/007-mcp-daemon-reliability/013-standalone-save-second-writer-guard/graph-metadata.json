@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Preserve the single-writer invariant. Standalone saves must write canonical docs first, then skip direct spec-doc indexing when the live daemon is detected and instruct operators to finish freshness through daemon-owned MCP `memory_index_scan`.",
+    "causal_summary": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran `reindexSpecDocs()`",
     "created_at": "2026-05-29T14:01:10.035Z",
-    "last_save_at": "2026-06-22T18:55:03.010Z",
+    "last_save_at": "2026-06-23T03:49:56.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:baaf0a75a77fe7dae6e0d9e493cd0bb94c9a970eb85ee93df2a53071ec11afca",
+    "source_doc_hashes": {
+      "spec.md": "755327bb7fd4814303678ccc0d904f144615c4b273a000505771d3b5ca25d78e",
+      "plan.md": "3db99ef948ba2c16918d28adac9dbe930d3b179b8a116cc71e91a8608b6e632c",
+      "tasks.md": "d6053ed833833a400b555460bef88632546f88ef00bf1b332bfc1abcf6189077",
+      "checklist.md": "47540dedff580842b657d9fe852164f89a5174aef1f549e8ff8f58b4f52871d4",
+      "implementation-summary.md": "1967d9a6650c6fb6f97c277c6ff19192e777c6a75781909832b502472470254b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

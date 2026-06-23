@@ -1,15 +1,26 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route",
-  "description": "Feature Specification: B2 Guarded data-quality Route on /doctor",
+  "description": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate s",
   "keywords": [
-    "feature",
-    "specification",
-    "guarded",
-    "data-quality",
+    "doctor",
+    "argv",
+    "router",
+    "whose",
     "route",
-    "doctor"
+    "manifest",
+    "opencode",
+    "commands",
+    "routes",
+    "yaml",
+    "lists",
+    "nine",
+    "targets",
+    "zero",
+    "them",
+    "inspect",
+    "remediate"
   ],
-  "lastUpdated": "2026-06-21T10:22:32.369Z",
+  "lastUpdated": "2026-06-23T03:49:58.616Z",
   "specId": "012",
   "folderSlug": "b2-doctor-dq-route",
   "parentChain": [

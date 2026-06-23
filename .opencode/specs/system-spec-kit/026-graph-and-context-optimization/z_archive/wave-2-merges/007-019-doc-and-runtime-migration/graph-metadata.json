@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 003 and 004 moved the code-graph source and rewired imports, but the authored documentation and runtime guidance still describe code graph as part of `system-spec-kit`. Category 22 also mixes code-graph internals with shared hook, context, runtime, budget, skill-graph, and coverage-graph pages.",
+    "causal_summary": "Phases 003 and 004 moved the code-graph source and rewired imports, but the authored documentation and runtime guidance still describe code graph as part of `system-spec-kit`",
     "created_at": "2026-05-14T08:21:27Z",
-    "last_save_at": "2026-06-05T12:47:34.320Z",
+    "last_save_at": "2026-06-23T03:49:56.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:21:27Z",
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:82f0a924d9008e478d2096c9b52eb7b095c906deef61167f542678942552cbe9",
+    "source_doc_hashes": {
+      "spec.md": "a3c78a8b2649a3b1f7092153b93614f1bb0c544b107ac775ea8ca2a157f57a65",
+      "plan.md": "c9d63e5eb52564b4964775dda5a23c1ad33af97f04caa00e25cc1011a1953b01",
+      "tasks.md": "db45a6250801fb625f301d3147030c39efb0ed4f6d3841564a7a62142e4c1c8e",
+      "checklist.md": "7038483afb3d447d7cd1be4c96a6deafa9fc45d61df36803fb2715c35862d8e5",
+      "implementation-summary.md": "934c7446a4ff8e04dd8457c7d0627ec91b2ab28c519c73cd2f7a6cb05dd92e17"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

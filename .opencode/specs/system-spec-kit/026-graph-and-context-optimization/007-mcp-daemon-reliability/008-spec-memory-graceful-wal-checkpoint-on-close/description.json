@@ -1,16 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close",
-  "description": "Feature Specification: spec-memory Graceful WAL Checkpoint on Close",
+  "description": "The `mk-spec-memory` close path (`closedb` in `vector-index-store.ts`) closes `context-index.sqlite` without first checkpointing its WAL",
   "keywords": [
-    "feature",
-    "specification",
-    "spec-memory",
-    "graceful",
-    "wal",
-    "checkpoint",
-    "close"
+    "mk-spec-memory",
+    "close",
+    "path",
+    "closedb",
+    "vector-index-store",
+    "closes",
+    "context-index",
+    "sqlite",
+    "without",
+    "first",
+    "checkpointing",
+    "wal"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.981Z",
+  "lastUpdated": "2026-06-23T03:49:56.430Z",
   "specId": "008",
   "folderSlug": "spec-memory-graceful-wal-checkpoint-on-close",
   "parentChain": [

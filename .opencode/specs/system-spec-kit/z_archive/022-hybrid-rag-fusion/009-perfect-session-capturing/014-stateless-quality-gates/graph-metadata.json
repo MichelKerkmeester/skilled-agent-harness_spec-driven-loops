@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Stateless mode (`node generate-context.js \"014-stateless-quality-gates\"`) is blocked by quality gates designed for curated JSON payloads. Two root causes produce systematic false-positive aborts: V10 always fires because it compares inherently different file-count measurements, and the tool-title-with-path contamination pattern caps scores at 0.60 for content that is factually correct in Claude Code sessions. This spec fixes the gate architecture across three targeted changes: tiering Gate A into hard-block vs. soft-warning rules, adding `--stdin` / `--json` support that reuses the file-mode workflow without temp files, and making the contamination filter source-aware.",
+    "causal_summary": "Before this phase shipped, `node generate-context.js \"014-stateless-quality-gates\"` entered stateless mode and still applied file-mode assumptions to raw CLI captures",
     "created_at": "2026-04-12T09:02:50.275Z",
-    "last_save_at": "2026-05-30T10:12:03.311Z",
+    "last_save_at": "2026-06-23T03:50:00.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6fde6817733d87ac29ac8dd0f76616c80f2587bbe36db4a2cbb47cd0e03e668d",
+    "source_doc_hashes": {
+      "spec.md": "020b78eefbbf3f853f48061b472670f3fca8b5d33f3f4e2c205066c9001537cd",
+      "plan.md": "71f1956afdbd5e2d99b9bef7c9402478afafffac04141352ab0afdf9229d933e",
+      "tasks.md": "6145f3949b914703bd2095ab0de31a81cc1a574db30f50ce33a4dc35e730c18a",
+      "checklist.md": "6681c348b1c9bea7781999980226079bed0bd6834fbc18707e4a5071e55b81dc",
+      "decision-record.md": "ca2e6bca58624aae1ec259e245b8bf3037181c784f321490b8b441cfef4f8e25",
+      "implementation-summary.md": "66f175aae7d26fe60e8816c2de54ecae84d9365c5eaadf9da930f56d5c9eef84"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

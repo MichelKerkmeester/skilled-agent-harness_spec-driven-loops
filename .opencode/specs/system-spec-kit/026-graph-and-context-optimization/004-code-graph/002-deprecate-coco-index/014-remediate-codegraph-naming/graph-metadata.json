@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `query.ts`, `context.ts`, `apply.ts`, `detect-changes.ts`, `index.ts`), tools are `code_graph_*`, the engine is tree-sitter, and `lib/` is `{ipc,shared,utils}/`. But the skill's **documentation** was never updated: it still references the old ccc-era names — `ccc-status.ts` / `ccc-reindex.ts` / `ccc-feedback.ts`, a deleted `lib/ccc/` adapter dir, a deleted `feature_catalog/07--ccc-integration/` section, a deleted `references/integrations/ccc_bridge_integration.md`, dead `cccStatus`/`cccReindex`/`cccFeedback` schema fields, a non-existent `retired-search-path.ts` \"local `ccc` binary\", and ghost test names (`ccc-integration-stress.vitest.ts`, `code-graph-context-retired-search-telemetry-passthrough.vitest.ts`). The 013 post-deprecation deep-review (iters 5–7, cli-devin/SWE-1.6) surfaced this class; it was independently re-verified by exact grep. The 007/009 doc-sweep missed system-code-graph's own docs.",
+    "causal_summary": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `query.ts`, `context.ts`, `apply.ts`, `detect-changes.ts`, `index.ts`), tools are `codegraph`, the engine is tree-sitter, and `lib/` is `{ipc,shared,utils}/`",
     "created_at": "2026-05-25T14:58:18Z",
-    "last_save_at": "2026-06-05T12:47:34.044Z",
+    "last_save_at": "2026-06-23T03:49:55.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ce433d06279bfa2bc8aa0a2d827b7eae7718316fbb1f8b27f700ac74e32c9244",
+    "source_doc_hashes": {
+      "spec.md": "e496041a3a9aa180eed4d777a8e479743512c21c9033c9f4147342ae43d6238f",
+      "plan.md": "21b26d2d700e2b38d0572bc18adab0395551137c596ef3199d2b4494108ef2b0",
+      "tasks.md": "01065f9829c47b61321c16847e06b50589eb0521ab381fe0b4670f498d48bf5b",
+      "checklist.md": "71b69f1f3546db17cfe37995a480988585f3563f041438c7ee45c8e62824d808",
+      "implementation-summary.md": "9b492394077dc06f26563d2b5913e1fdab3c93e29e52e87b651d68eb50ab0e3e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

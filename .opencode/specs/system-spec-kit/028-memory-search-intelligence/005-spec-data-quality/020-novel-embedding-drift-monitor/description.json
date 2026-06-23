@@ -1,16 +1,16 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/020-novel-embedding-drift-monitor",
-  "description": "Feature Specification: Novel embedding-drift monitoring plus alerting",
+  "description": "The re-index path has no mixed-vector guard and never specified one",
   "keywords": [
-    "feature",
-    "specification",
-    "novel",
-    "embedding-drift",
-    "monitoring",
-    "plus",
-    "alerting"
+    "re-index",
+    "path",
+    "mixed-vector",
+    "guard",
+    "never",
+    "specified",
+    "one"
   ],
-  "lastUpdated": "2026-06-21T10:22:33.566Z",
+  "lastUpdated": "2026-06-23T03:49:58.685Z",
   "specId": "020",
   "folderSlug": "novel-embedding-drift-monitor",
   "parentChain": [

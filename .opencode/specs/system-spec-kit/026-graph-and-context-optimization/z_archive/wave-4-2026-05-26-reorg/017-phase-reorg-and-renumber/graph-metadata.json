@@ -25,10 +25,10 @@
       "close",
       "reorganization",
       "017",
-      "final",
-      "wave",
-      "closes",
-      "026-graph-and-context-optimization"
+      "accumulated",
+      "flat",
+      "top-level",
+      "phases"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -93,14 +93,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Final reorganization wave that closes `026-graph-and-context-optimization`. The packet had grown to 17 flat top-level phases across ~6 prior ad-hoc restructure waves, with systemic metadata drift (every phase `status:\"planned\"`, root `children_ids` missing 014/015/016, phantom `childTopology`) and a non-compliant root `spec.md` narrating migration history. This wave consolidates the 17 into 7 themed parents (000-006), renumbers cleanly, fixes all metadata, rewrites the root docs to spec-kit-compliant form, and records the full migration history in a new `context-index.md` — leaving 026 as the single most-effective historical record.",
+    "causal_summary": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
     "created_at": "2026-05-26T16:51:06.296Z",
-    "last_save_at": "2026-06-05T12:47:34.370Z",
+    "last_save_at": "2026-06-23T03:49:56.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e5acb9676ba2cb4856395b625361f7d7ec76cb6681169f476ccfecee2a105bee",
+    "source_doc_hashes": {
+      "spec.md": "f56f76193f8a7914c6682edd9b39861543ebcb0229426f2d2aae84327e444032"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

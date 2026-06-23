@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 21 of the research-based refinement packet. It closes a lexical recall defect in the in-memory BM25 lane used by hybrid search.",
+    "causal_summary": "The in-memory BM25 path fetched only the caller-requested number of lexical hits before resolving `specFolder` scope and deprecated-tier exclusions",
     "created_at": "2026-06-11T06:25:40Z",
-    "last_save_at": "2026-06-12T04:40:47.935Z",
+    "last_save_at": "2026-06-23T03:49:57.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:92ba43a8e9722a36c74079aed0ed646ccb9004052e69ba16ed1378610edc2cd8",
+    "source_doc_hashes": {
+      "spec.md": "3a7f7916a29cf2fe8e17b5b59024761cdf45468448b2623830eab48b03c79411",
+      "plan.md": "d5cf1c30aaced855ee6a193307aee3771ab5aece6d36b4bd354dcae87f3f30ed",
+      "tasks.md": "efc3543140fa1833ecd528ccc4dc3d86a3ffc711c9e703ed8468f96397052a7f",
+      "implementation-summary.md": "36b045e38c2a77aa63521d253fb8fa7035759f300d68b59ad095bf62672fc889"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

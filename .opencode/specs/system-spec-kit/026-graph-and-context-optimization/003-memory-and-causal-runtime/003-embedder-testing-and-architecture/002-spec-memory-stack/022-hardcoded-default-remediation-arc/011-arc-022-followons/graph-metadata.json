@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three independent debt items surfaced post-022 arc convergence:",
+    "causal_summary": "Bundle of follow-on fixes after the 022 arc shipped: mk_skill_advisor MCP -32000 recovery (build doesn't copy data/*.json), validator script 6-bug fix, opencode v1.15.10 reactive-EOF idle-kill mitigation (wrapper + memory + SKILL.md elevation), RERANKER_CANONICAL voyage/cohere vendor canonical fill. LANE_WEIGHTS_JSON structural deferred.",
     "created_at": "2026-05-23T18:30:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.262Z",
+    "last_save_at": "2026-06-23T03:49:54.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1e2b2fa6a933aecc51de5377fe346e5e765fda54ab6995c5408209ad5806cc44",
+    "source_doc_hashes": {
+      "spec.md": "fee71c96160efab507695514a8d1113e67230d975da214773f11f587768d1741",
+      "plan.md": "ad0033b7a8711f3141d8b5539964943524c25b2c8dac8b2a1b17096a10911167",
+      "tasks.md": "b8bb88e15bfce82684517fb8317727bc066202b9280a3f71691e895285d9a30f",
+      "checklist.md": "0421a671898b24796343565abfa7b9be3d75b8fdbbc471a3a3280946799b0a22",
+      "implementation-summary.md": "6538547897f94bbd3b1b2799c98f5f8538feaa6e07bee038dd93420fdccc8c9e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -8,17 +8,22 @@
     "related_to": []
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
-  "description": "Feature Specification: Fix Rerank-Sidecar Accumulation With Three-Layer Reaper",
+  "description": "Rerank-sidecar uvicorn workers accumulate without bound: 25 stale processes consuming ~16 GB RAM observed on 2026-05-23",
   "keywords": [
-    "feature",
-    "specification",
-    "fix",
     "rerank-sidecar",
-    "accumulation",
-    "three-layer",
-    "reaper"
+    "uvicorn",
+    "workers",
+    "accumulate",
+    "without",
+    "bound",
+    "stale",
+    "processes",
+    "consuming",
+    "ram",
+    "observed",
+    "2026-05-23"
   ],
-  "lastUpdated": "2026-06-04T21:14:22.653Z",
+  "lastUpdated": "2026-06-23T03:49:55.282Z",
   "specId": "019",
   "folderSlug": "fix-rerank-sidecar-accumulation-with-three-layer-reaper",
   "parentChain": [

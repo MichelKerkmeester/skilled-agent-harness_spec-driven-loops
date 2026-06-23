@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection",
-  "description": "Feature Specification: Contamination Detection",
+  "description": "Three guard layers exist for contamination detection (lexical scrubber, prompt-quality pipeline, post-render V8/V9), but they run on different payload",
   "keywords": [
-    "feature",
-    "specification",
+    "three",
+    "guard",
+    "layers",
+    "exist",
     "contamination",
-    "detection"
+    "detection",
+    "lexical",
+    "scrubber",
+    "prompt-quality",
+    "pipeline",
+    "post-render",
+    "run",
+    "different",
+    "payload"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.341Z",
+  "lastUpdated": "2026-06-23T03:50:00.007Z",
   "specId": "002",
   "folderSlug": "contamination-detection",
   "parentChain": [

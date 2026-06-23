@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist entrypoint is stale...\") and blocks dispatch even when dist content is current. Root cause: `tsc --build` is content-hash incremental and will not rewrite dist when a watched source file's mtime bumps without a content change, so a plain rebuild is a no-op and only `tsc --build --force` restores freshness — the gate then trips permanently. With `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `list-tools` returns `count=37`, proving this is a gate bug, not a zero-count coverage bug. The advertised offline parity expectation is documented at `manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md:16-20` and its scenario at `:32-56`, but there is no single offline smoke command an agent or CI can run to verify the 37/8/9 list-tools counts and stale-dist health without a daemon, build, or scan. Separately, when the shim exits `69` with actionable stderr, the plugin bridges redact stderr to `[stderr-present]` (`mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs:266-280`), so plugin status shows a generic skipped/fail-open state instead of a diagnosable \"dist stale, rebuild required\".",
+    "causal_summary": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist entrypoint is stale...\") and blocks dispatch even when dist content is current",
     "created_at": "2026-06-10T20:38:53.995Z",
-    "last_save_at": "2026-06-12T04:40:47.916Z",
+    "last_save_at": "2026-06-23T03:49:57.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5c6a2dc51f8c70906f3472c006a63c310c9bfccf6fc33e44a30b1b2dc332f8f7",
+    "source_doc_hashes": {
+      "spec.md": "7c03b994f5bc80f2f5d9ad9f2d9a5d63c00219099b0e1462c18969cd14473745",
+      "plan.md": "fef00027d6b1625a8003d0649387d00e5d0c21dc65b1abb16d1b704194f88f7d",
+      "tasks.md": "a06783e102eb25b4e99b1be9b0ea4eef0b1bb14b9ddcf4e5353b7ef73955bf1d",
+      "implementation-summary.md": "3b212df118bf7ec3b46eb2dc2ca27b8a7acc146c148333dda4a01a1fb500164a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code graph (`mk_code_index`) is meant to model code structure, but its default include globs pulled in `**/*.md`, registering markdown/prose docs as `language='doc'` rows alongside real code. For an external user, that meant their READMEs/docs were graphed; for the maintainer, opting `.opencode` in graphed every `SKILL.md`, agent, command and spec doc. Separately, `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` was all-or-nothing — `=true` force-indexed all five `.opencode` categories, with no way to pick only the code-bearing ones (the per-`INDEX_*` `.env.local` route is inert because the committed config already sets those keys, and config wins over file).",
+    "causal_summary": "The code graph (`mkcodeindex`) is meant to model code structure, but its default include globs pulled in `/.md`, registering markdown/prose docs as `language='doc'` rows alongside real code",
     "created_at": "2026-06-14T08:55:44.858Z",
-    "last_save_at": "2026-06-15T09:09:34.839Z",
+    "last_save_at": "2026-06-23T03:49:57.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bade8eda7922d54cc8659b37ea749e4263b948acb2a40aadcf668e88fbc625e9",
+    "source_doc_hashes": {
+      "spec.md": "88e2a4c647ea4d895388ebfce3d3da9feb71c79127e9ccf9d66ae4aaff51a172",
+      "plan.md": "ceaac2e78bd38d38f1e5c681c704a350f4e38410e3acd06be6c4b5afdb84e26e",
+      "tasks.md": "d1db8767413039e2e1667f0eb587b770ebb94db27fc35d955601c8ca4633c0dc",
+      "implementation-summary.md": "929ec5aacb8f01f087e60f74a2c8724fd7d10abe44d95fabe3508779d28e40d4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

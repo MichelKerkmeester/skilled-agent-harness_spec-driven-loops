@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 19** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "sk-prompt-small-model reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:37Z",
-    "last_save_at": "2026-06-17T19:57:25.027Z",
+    "last_save_at": "2026-06-23T03:49:57.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a46cca1fabc5e7def037746426a9039ccf984f2602341d92fac5926ddeb6b2f7",
+    "source_doc_hashes": {
+      "spec.md": "b3f8eea8e3961013ba45fd573e93d9d455270d95eea1bc31f0b5e52d1117d29d",
+      "plan.md": "dca1a80dcbf92fb0e839d5ee9506c5ba5bd94aa6a5366e46ef98667e9274aa87",
+      "tasks.md": "ff4773c2dcf40395fc33a0a785efe65cdf2517332e8760e2c613b3e9d529be51",
+      "implementation-summary.md": "ba341f1e38e7760066df6b59bfca16e4d6ee88d95a06f3d2f990c5b2438e40ea"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,27 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
-  "description": "Phase Parent: 000-release-cleanup/002-audit",
+  "description": "Phase parent for system audits, validation sweeps, and compliance checks across runtime wiring, security, memory retention, and agent alignment. Coord",
   "keywords": [
     "phase",
     "parent",
-    "000-release-cleanup",
-    "002-audit"
+    "system",
+    "audits",
+    "validation",
+    "sweeps",
+    "compliance",
+    "checks",
+    "across",
+    "runtime",
+    "wiring",
+    "security",
+    "memory",
+    "retention",
+    "agent",
+    "alignment",
+    "coord"
   ],
-  "lastUpdated": "2026-05-26T17:27:32.499Z",
+  "lastUpdated": "2026-06-23T03:49:52.148Z",
   "specId": "002",
   "folderSlug": "audit",
   "parentChain": [

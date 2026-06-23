@@ -36,7 +36,7 @@
       "tasks",
       "verification",
       "checklist",
-      "level"
+      "broken"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Level 3 (+Arch) is appropriate when:",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-02T09:34:31Z",
-    "last_save_at": "2026-06-22T18:55:02.175Z",
+    "last_save_at": "2026-06-23T03:49:53.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0c66ad8d40b1eb39c72e61b6785faacc5b1a9a27e18f98ffa673f4d629440df4",
+    "source_doc_hashes": {
+      "spec.md": "c0d91b6386788def8471d5e3d27d1050961b866a0ae8fd2c920c038beed72afb",
+      "plan.md": "b905dedd3088eb4b673cdcba6d7dce7e715f451b038831672f80fd2ed4478803",
+      "tasks.md": "b39713771b270803da03fe5acbe582250354433f3a30feece0841204b97b6642",
+      "checklist.md": "bf2ff6889bc748c78ea6119eaaeef6e8372a308b579d2a0a17490e3a313ea5c2",
+      "decision-record.md": "836d7c0b66e04a3107df9d372ec91b7ef958b577a4a075c9c3f47611015ee7a2",
+      "implementation-summary.md": "dec6a454eb6389d6cc5156df4cb8bd43fad0a9cbde005de14f182f197c0ec941"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

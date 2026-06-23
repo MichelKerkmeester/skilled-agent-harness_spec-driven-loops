@@ -1,15 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1",
-  "description": "Feature Specification: Scouted Bugfix Batch 1",
+  "description": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged",
   "keywords": [
-    "feature",
-    "specification",
-    "scouted",
-    "bugfix",
-    "batch"
+    "broad",
+    "scout",
+    "codebase",
+    "surfaced",
+    "backlog",
+    "latent",
+    "code",
+    "security",
+    "defects",
+    "single",
+    "review",
+    "triaged"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.906Z",
+  "lastUpdated": "2026-06-23T03:49:52.932Z",
   "specId": "001",
   "folderSlug": "scouted-bugfix-batch-1",
   "parentChain": [

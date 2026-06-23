@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 2 Maintenance features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/04--maintenance/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Maintenance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.246Z",
-    "last_save_at": "2026-05-30T10:12:03.238Z",
+    "last_save_at": "2026-06-23T03:49:59.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6dac3d7cf48f6fcefb78999cb1f8b6438331fe6a4787f92eb7b792deee84ba32",
+    "source_doc_hashes": {
+      "spec.md": "0104d4700538c235dd0f3b93c6347fa98f526935913faa0db789cbc602174872",
+      "plan.md": "387cbb2833b3b641b9132070dbfafb062208387a0610eabc1c9ba508ef2192b0",
+      "tasks.md": "fd0f81701b666144c281bdff13468108e8c64b941f114e8a5dba6a8c8622686f",
+      "checklist.md": "0af0cbcb25c141fa79acc4d9142ddb04254912add30f3d1b6bbde6fde6cb2861",
+      "implementation-summary.md": "2136f7070f85f3b178bba75408155dc25a94136b57fd40731743cb0928b6107e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

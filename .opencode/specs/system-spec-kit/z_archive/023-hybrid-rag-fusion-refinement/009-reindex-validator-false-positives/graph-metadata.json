@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Batch reindex discovered substantially more files on disk than were inserted into the memory index. Two validation rules were producing false positives in bulk mode, which blocked valid memory and spec documentation content from indexing.",
+    "causal_summary": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
     "created_at": "2026-04-12T09:02:50.322Z",
-    "last_save_at": "2026-06-22T18:55:04.641Z",
+    "last_save_at": "2026-06-23T03:50:00.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:04e4798df1d515bd4309996f43c0c1b5a62587e2e709eced081393d13e33a2a3",
+    "source_doc_hashes": {
+      "spec.md": "57e3cc8d24643bf293e17098ebb5f9c182be73968449f588e92ea7971ada1823",
+      "plan.md": "69a28f38b6b3187ad41af2f75ac4affc576dddaa02bc289931ee815800b69363",
+      "tasks.md": "672c6efee2edcade368a151a3cce9d838d89689eed82a483f0065d8048c20eea",
+      "checklist.md": "67518abfa7cd363f09f3d1e616cbeae9ebe67a915328520f318efceead28cd8a",
+      "implementation-summary.md": "258ee42f1eca1640850c88925c0862bce071fc43c83d2186808480dc0809fa05"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

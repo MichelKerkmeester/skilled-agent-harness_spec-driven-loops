@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls through its explicit env allowlist. Operators also need current docs that explain owner-death self-exit, idle timeout, pre-flight reap, telemetry, and the manual debug opt-out without requiring source-code spelunking.",
+    "causal_summary": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls through its explicit env allowlist",
     "created_at": "2026-05-23T07:59:05Z",
-    "last_save_at": "2026-05-30T10:12:02.505Z",
+    "last_save_at": "2026-06-23T03:49:55.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:32fc4f775d63639327a75f7a68c68804acdc2cbc6822812801122cb7166cd5e2",
+    "source_doc_hashes": {
+      "spec.md": "1116974cca44be08cb55ba0dac7b390bde39ee015953d8296885fabae9488b30",
+      "plan.md": "b4c0ff6e388da4ad5a3342af6b90bfe376874ff91f1f3bb9bf055542ca7a69b4",
+      "tasks.md": "7b18ae08f8ae42d0cc573d55e0af86b4160f557ccd64a1441f622b5008651ba5",
+      "checklist.md": "93f315446f75fdf42fa8218818f65c9e44f2998d4906b8f87db2be3b3ce5ef3c",
+      "implementation-summary.md": "5c0bd8430c1be71a4ce69cb2940947514071fdc6c7d6fdd435ade86d650da1b0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

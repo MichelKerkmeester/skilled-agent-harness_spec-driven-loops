@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the direct follow-on to 020. 018 made the reindex scan cancellable and added cooperative `setImmediate` yields to its two big tail loops. 019 wrote a `.maintenance-active.json` marker so a competing launcher adopts a busy daemon instead of reaping it. 020 extended that marker to the post-scan background-embedding queue. 020's own limitation closes the loop being opened here: *\"The marker makes the daemon un-reaped while busy, it does not make it responsive.\"* A daemon whose event loop is blocked can neither answer a competing launcher's probe/bridge nor fire the marker's 20s self-refresh timer; if a single synchronous phase blocks longer than the 180s TTL, the marker goes stale and a second daemon spawns anyway. 020 noted the longest blocking tail phase observed (~79s) but never pinned which phase it was.",
+    "causal_summary": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing launcher's bridge/probe, and it cannot fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a fresh launcher spawns a second daemon",
     "created_at": "2026-06-17T17:15:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.375Z",
+    "last_save_at": "2026-06-23T03:49:57.421Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9243291155bcd7bb5ec8b797d96d0e3e4e84f63933563e63fd3327a024ecc995",
+    "source_doc_hashes": {
+      "spec.md": "6a179408ce0c9b353fd7d06f8767a840c136122341dc02c9f0dcb14aaad3a9a9",
+      "plan.md": "6c9a580f1295ebbd87da5dd38796b90c0c4069ff0aaa7679e88e1c8227459c61",
+      "tasks.md": "a8b76e8cb992562d8c5fdbeafbd2dc425e2346084a88eee0a0fdf1893f035586",
+      "implementation-summary.md": "b6c83f5db0e4630f221be84cab5d2e6f574d4c500749fea08a56edc87fd33f4e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

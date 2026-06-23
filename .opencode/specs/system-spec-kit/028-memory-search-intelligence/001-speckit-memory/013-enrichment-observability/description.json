@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
-  "description": "Feature Specification: Enrichment Observability - read-side gauges",
+  "description": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concu",
   "keywords": [
-    "feature",
-    "specification",
+    "memory",
+    "mcp",
+    "splits",
+    "write",
+    "path",
+    "background",
+    "post-insert",
     "enrichment",
-    "observability",
-    "read-side",
-    "gauges"
+    "row",
+    "commits",
+    "immediately",
+    "marked",
+    "enrichment-pending",
+    "async",
+    "concu"
   ],
-  "lastUpdated": "2026-06-19T08:44:36.279Z",
+  "lastUpdated": "2026-06-23T03:49:58.240Z",
   "specId": "013",
   "folderSlug": "enrichment-observability",
   "parentChain": [

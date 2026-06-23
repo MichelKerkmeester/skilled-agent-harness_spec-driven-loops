@@ -1,15 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
-  "description": "Feature Specification: Skill-Advisor CLI Feasibility",
+  "description": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has t",
   "keywords": [
-    "feature",
-    "specification",
-    "skill-advisor",
-    "cli",
-    "feasibility"
+    "mkskilladvisor",
+    "mcp",
+    "server",
+    "tools",
+    "advisor",
+    "skillgraph",
+    "powers",
+    "gate-2",
+    "routing",
+    "prompt-submit",
+    "brief",
+    "surface"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.252Z",
+  "lastUpdated": "2026-06-23T03:49:57.611Z",
   "specId": "000",
   "folderSlug": "skill-advisor-cli-research",
   "parentChain": [

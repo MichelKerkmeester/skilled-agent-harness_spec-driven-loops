@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite reported database disk image is malformed and vec_768 was missing from context-index.sqlite - the provider cascade silently degraded vector search with no health surface, no quarantine, and no rebuild. Separately, dimension discovery falls back to regexing FLOAT[N] out of sqlite_master.sql (vector-index-store.ts:258-273), and the KNN hot path computes scalar vec_distance_cosine in a plain JOIN (vector-index-queries.ts:310-324) - a shape never benchmarked against sqlite-vec's optimized vec0 MATCH form. Source evidence: z_future/sqlite-to-turso context-report.md and 004 - gap-alternatives.md section 2.",
+    "causal_summary": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectorsollamanomic-embed-text-v1.5768.sqlite reported database disk image is malformed and vec768 was missing from context-index.sqlite - the provider cascade silently degraded vector search with no health surface, no quarantine, and no rebuild",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-06-10T19:22:14.994Z",
+    "last_save_at": "2026-06-23T03:49:57.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:51f391fc7d4de2c696a7ae10a0f05ed33ac0196a407f96da1c0d1b550d9757a2",
+    "source_doc_hashes": {
+      "spec.md": "413658c875c7ae5af8367e49e26562e857ee4cdeedbf07c4e59f37cdefe185f2",
+      "plan.md": "24b928c7b363e8c7049c9a11a2d22d91137ae4dad1eed0ebf0eca6947e18ec8f",
+      "tasks.md": "0700fa17c4aae496d2254c8da2e35d0c3e08c0e85c9a03355466540532e7a57f",
+      "implementation-summary.md": "eaef848b7f2d8cb11e05b35c03b9e9edb8c68e6f29be8bfe5339d7aa1f7f1e13"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 018 deferred subprocess env hardening because the launcher, plugin bridge, and Python shim inherited broad parent environments. Full inheritance can leak unrelated credentials or operator state into child processes.",
+    "causal_summary": "Packet 018 deferred subprocess env hardening because the launcher, plugin bridge, and Python shim inherited broad parent environments",
     "created_at": "2026-05-15T10:50:16Z",
-    "last_save_at": "2026-05-30T10:12:01.911Z",
+    "last_save_at": "2026-06-23T03:49:53.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70b80e7d8012fd9cd5f55adff9cc7c3fb580c148e63420df38b6e286a73850c9",
+    "source_doc_hashes": {
+      "spec.md": "b59c3aa7df9715121b61db85bbaa6d30dbe21d638c31781f225a6ce0f266cbaf",
+      "plan.md": "20711ad50f4879ed4253b3f034eb17ff2bfa075e5487616f5a434534048b6d5f",
+      "tasks.md": "5c1ff4ce620bd0aff51e4522ae4c03554ae15e87dc2a60e25078b7ac916dc91b",
+      "checklist.md": "e164b90f1338a8a99ec948dd54e5efb9408a0a3ebddd016c5510897139ea0c1f",
+      "implementation-summary.md": "5d9160a67248f8d94e707b5671227865d59833ba5c7303a7d87d05b9a21d7e84"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

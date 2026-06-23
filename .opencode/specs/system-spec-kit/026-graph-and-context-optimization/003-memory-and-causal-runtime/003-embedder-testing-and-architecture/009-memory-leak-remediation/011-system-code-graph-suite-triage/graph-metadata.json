@@ -25,11 +25,11 @@
       "code-graph",
       "failures",
       "triage",
-      "memory-leak",
-      "remediation",
       "arc",
-      "source",
-      "baseline"
+      "007",
+      "shipped",
+      "launcher",
+      "single-owner"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 011 of the memory-leak remediation arc. Source baseline lives in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md` (the Limitations anchor).",
+    "causal_summary": "Arc 009 phase 007 shipped the code-graph launcher single-owner + closeDb lifecycle work but used a targeted-gate (lib/owner-lease + launcher-lease) for verification",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.459Z",
+    "last_save_at": "2026-06-23T03:49:55.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ffa83c955bc4de077f9c275b3baf0fb8862d8740c45b2d3fd666f7971c419b68",
+    "source_doc_hashes": {
+      "spec.md": "be5110866b369e81f25a2c7b0341f00f7abda4b22d9d148a88e254abffdd26c8",
+      "plan.md": "3291c8d32b2b96aa31d8bdf5957ca4ca40508d613f76d91ce969f5be1c7dc6bb",
+      "tasks.md": "7bba4040ef48960d584963e5bba44ab78b7fa5b1441278f38978224502df393c",
+      "implementation-summary.md": "0c2886a2b98abbcb7051c7557fe6145e2331b2a985535cb271f010abbe6ef038"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
-  "description": "Feature Specification: Hybrid RAG Fusion",
+  "description": "The root `022-hybrid-rag-fusion` folder had child packets but no parent `spec.md`, `plan.md`, or `tasks.md`",
   "keywords": [
-    "feature",
-    "specification",
-    "hybrid",
-    "rag",
-    "fusion"
+    "root",
+    "022-hybrid-rag-fusion",
+    "folder",
+    "child",
+    "packets",
+    "parent",
+    "spec",
+    "plan",
+    "tasks"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.071Z",
+  "lastUpdated": "2026-06-23T03:49:59.630Z",
   "specId": "022",
   "folderSlug": "hybrid-rag-fusion",
   "parentChain": [

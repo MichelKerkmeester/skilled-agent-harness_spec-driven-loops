@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This penalty was added on the assumption that reranking is load-bearing. The arc 008 benchmarks haven't actually validated that assumption against the OFF baseline; they've validated specific rerankers (Qwen, ms-marco) against each other. The ms-marco bench's −6 hits below OFF is the strongest signal that **positional fallback may already be good enough** for this corpus.",
+    "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-06-22T18:55:02.498Z",
+    "last_save_at": "2026-06-23T03:49:55.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:08cf63128be7e746658f6012bf1f0abf4072edac74c3fe63610051985c307b3e",
+    "source_doc_hashes": {
+      "spec.md": "69887ff501e39a30ec8944db38b2f802b60d284297c351d75aebf8626a8ff88a",
+      "plan.md": "ce76e6e7d0bfc87be6c930140228d8258291f6aec54cb2b16718edc6d687e1d3",
+      "tasks.md": "43dac9e5ed9ff0b4bf150a52990008d61fa9ff858658b2bce39d21f7279ea341",
+      "implementation-summary.md": "a4d9feb451ae62a42d0053b0e97c7f635c24eb9303dc566d7c1af9e8706e7a4f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

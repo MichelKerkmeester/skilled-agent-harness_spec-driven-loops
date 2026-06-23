@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`). There is no separate metadata-signal score blended into the result, so a document whose curated metadata strongly names a query cannot win on metadata strength alone. C4 proposes the classic linear blend `score = alpha * text + (1 - alpha) * meta`. Two facts make it a hypothesis and not a build. The alpha weight is un-calibrated on this corpus, and the external evidence that metadata carries most of the signal is a SEC-10K finding (`research.md:48`), not a spec-corpus finding, so the blend could just as easily dilute text relevance as sharpen it. The metadata signal C4 would fuse is the same header-path and curated-trigger signal that the cheaper C1 deterministic prefix re-injects directly into the embedded text, so C4 is subsumed by C1 in its cheaper deterministic form and earns a build only after the C1 prefix demonstrates the prod floor can actually move.",
+    "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
     "created_at": "2026-06-21T10:22:34.988Z",
-    "last_save_at": "2026-06-22T18:55:03.806Z",
+    "last_save_at": "2026-06-23T03:49:58.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f5c231ed026431c773bcda86dcc0dbd8faec45ffecfb1e9355ec649e100cde6d",
+    "source_doc_hashes": {
+      "spec.md": "b195e67db9d57ba64fb65cb895c896b6035ab256f89abcdbda9fb710724fdb8a",
+      "plan.md": "77db7105a0026b0fd0a9d7831002f03c4a461c24bd00dec22f5e302c412d65c9",
+      "tasks.md": "1afbac9c78cd876faa475cd2c7e61a1f934f64f155bc171abd415e4026d3cfdd",
+      "checklist.md": "54f21ffe82568bd8bdf814c0900f317681c0b9ae8d50c136cb554805cc825256",
+      "implementation-summary.md": "9b5293bd3df2179202839e995cda8ed46e0ac6981fd45061688f9853f27d6daf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

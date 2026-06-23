@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Arc 009's deep review returned a CONDITIONAL verdict with P0=0, P1=40, and P2=20. Phase 014 converts those findings into six bounded implementation batches so later dispatches can close correctness races, cleanup gaps, local-service security boundaries, audit/data integrity failures, traceability evidence gaps, and P2 maintainability drift without reopening the review packet itself.",
+    "causal_summary": "Arc 009 closed its implementation phases, but the deep review still found 40 P1 issues and 20 P2 advisories",
     "created_at": "2026-05-22T19:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.438Z",
+    "last_save_at": "2026-06-23T03:49:55.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f644b47e7144ec5e4cbf36f4550b925fc2003dbfc2fe64c1bca413692f580223",
+    "source_doc_hashes": {
+      "spec.md": "279b547edb37b7e43e5042865d2b0986bbb0844dc62d60d88d75719e12949198",
+      "plan.md": "5bff0cf7ba6b4efd74f6a57da7e5919c368df3dfce501a6b9a994258c75d7717",
+      "tasks.md": "333ae8e1a64688262687718329db9506011f4aaf4ca09d9edf1ed27da62774ce",
+      "checklist.md": "5357cace528ad6d9b3b4f34be20542d65c49c1a6b1ab4d12741b0a8c786aa9d7",
+      "decision-record.md": "9c2dd1c27e0c076c57d3250d125b5f682a399596063940a8dd4eb6b7175eb4e1",
+      "implementation-summary.md": "8d71202689e8f5eda8ea81d5c3b59a0db53e7729d3ee2d4d8b3951125506e6c0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

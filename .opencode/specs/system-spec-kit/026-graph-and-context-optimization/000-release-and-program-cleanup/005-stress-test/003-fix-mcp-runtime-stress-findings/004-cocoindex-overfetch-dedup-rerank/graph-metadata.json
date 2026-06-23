@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make CocoIndex code-first by default. Exclude runtime spec mirrors at index time. Add `source_realpath` and `content_hash` canonical identity fields. Over-fetch `limit * 4` candidates, dedup by `(source_realpath, line_range)` or `(content_hash, line_range)`, prefer canonical paths in returned rows. Add `path_class` source-role and bounded reranking that surfaces `implementation` above `spec_research` for implementation-intent queries.",
+    "causal_summary": "005/REQ-018 documented that CocoIndex returned the SAME research-06 markdown chunk 10 times under different mirror paths (`.gemini/specs/`, `.agents/specs/`, `.claude/specs/`, `.codex/specs/`, `specs/`, `.opencode/specs/`) — all with identical scores",
     "created_at": "2026-04-27T07:48:04.774Z",
-    "last_save_at": "2026-06-05T12:47:33.082Z",
+    "last_save_at": "2026-06-23T03:49:52.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:10958d65d8513598159638b57c3df19839acc435a1aff1f3a5226ac3531bdc56",
+    "source_doc_hashes": {
+      "spec.md": "6c47b502c5b5c9bed2a280cad69f28ff2ca32e662f078444f0e4aeffa36ab3ea",
+      "plan.md": "d959bd4966626d4693a9215160ab848095cb9ee11cc33b821e0bc93292c3f68d",
+      "tasks.md": "e0a8fbc2f5861d415e7b2155d6c725932f8a13d02aad2408c8f120a927bb3426",
+      "implementation-summary.md": "9cba4f61b3ffaaa5041019a519c9ea165f47868c90df1a9962c47e593336fe6f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

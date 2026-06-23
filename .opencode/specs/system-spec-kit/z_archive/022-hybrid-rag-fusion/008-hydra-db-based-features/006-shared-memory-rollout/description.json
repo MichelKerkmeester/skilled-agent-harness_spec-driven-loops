@@ -1,12 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout",
-  "description": "Feature Specification: 006-shared-memory-rollout",
+  "description": "The roadmap aims to support cross-agent and collaborative memory, but sharing memory safely requires stronger controls than the current system provide",
   "keywords": [
-    "feature",
-    "specification",
-    "006-shared-memory-rollout"
+    "roadmap",
+    "aims",
+    "support",
+    "cross-agent",
+    "collaborative",
+    "memory",
+    "sharing",
+    "safely",
+    "requires",
+    "stronger",
+    "controls",
+    "current",
+    "system",
+    "provide"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.117Z",
+  "lastUpdated": "2026-06-23T03:49:59.957Z",
   "specId": "006",
   "folderSlug": "shared-memory-rollout",
   "parentChain": [

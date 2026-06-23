@@ -1,13 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/valid-evidence",
-  "description": "Spec: Valid Evidence Fixture",
+  "description": "This fixture tests that completed P0/P1 items have evidence",
   "keywords": [
-    "spec",
-    "valid",
-    "evidence",
-    "fixture"
+    "fixture",
+    "tests",
+    "completed",
+    "items",
+    "evidence"
   ],
-  "lastUpdated": "2026-04-02T17:21:40.013Z",
+  "lastUpdated": "2026-06-23T03:49:58.982Z",
   "specId": "",
   "folderSlug": "valid-evidence",
   "parentChain": [

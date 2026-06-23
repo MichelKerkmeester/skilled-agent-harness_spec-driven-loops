@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current ablation path can report invalid Recall@20 values because the benchmark still allows chunk-ID scoring on the CLI path, live token-budget and confidence truncation can cut results below `K=20`, and the active database may not match the parent-memory ID universe encoded in `ground-truth.json`. Those failures produced the misleading `0.0101` baseline collapse and made the FTS5 0.3 retune impossible to judge fairly.",
+    "causal_summary": "The current ablation path can report invalid Recall@20 values because the benchmark still allows chunk-ID scoring on the CLI path, live token-budget and confidence truncation can cut results below `K=20`, and the active database may not match the parent-memory ID universe encoded in `ground-truth.json`",
     "created_at": "2026-04-12T09:02:50.312Z",
-    "last_save_at": "2026-06-05T12:47:34.901Z",
+    "last_save_at": "2026-06-23T03:50:00.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2fde9ba10f73a85325e88e6696b06d7a84c1987d427b5e090bc9ec84a5bfe75a",
+    "source_doc_hashes": {
+      "spec.md": "f3a40a112a8bd1d2055b3037fa07be60f7d98d1744ccd57ad597463b9899fd9d",
+      "plan.md": "35743a0ae8557ebc50d516499faebcd7e8a19f5c3ea54dfa7f0bd0887431ce7a",
+      "tasks.md": "3ee4f37117a2d0627e8b847bb10b9b384207d99c498a959ba05286e249b441f8",
+      "checklist.md": "6b81cf3435f558996a6a17cb3567d969473f0a8261fcbbe94e3dfa1ef9bdb769",
+      "implementation-summary.md": "2ce5fbabc1dd8b3e4a7b0f4321bc0d36259231067fcd96fdf4a9c3e7bdaab0d9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

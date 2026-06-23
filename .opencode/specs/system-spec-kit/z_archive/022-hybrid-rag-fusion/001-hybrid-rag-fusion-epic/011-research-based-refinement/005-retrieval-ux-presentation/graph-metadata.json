@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The D5 research agent found the system already has basic empty-result handling, trace envelopes, session transition trace, token budgets, session dedup, and evidence-gap detection. The gap is not raw capability but shaping these signals into an **AI-caller-friendly DECISION CONTRACT** — structured payloads that let the calling AI make informed decisions about retries, abstention, follow-up queries, and presentation depth without parsing free-text or guessing.",
+    "causal_summary": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retrieval session state.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-05-30T10:12:03.214Z",
+    "last_save_at": "2026-06-23T03:49:59.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:a081468b4e92351a63c62ab47f19ba3d0ac73c1d4548a1a600294286eae24860",
+    "source_doc_hashes": {
+      "spec.md": "a15246f14d541d1880be053fb30c67d97612eb043a0fd380b70c8bad4da6fe06",
+      "plan.md": "08c36a1424355d149f4e4f1ea92c89f29bcd9a8d8c389e891b5b6a603af52f51",
+      "tasks.md": "b7ceacfcfd7e6b93277e7359e339ed9632871979bbb0bb8303baf110b8802697",
+      "checklist.md": "3b702c589688f6d0d04dc1f17093f25a1b3e0d8300d399ff138745dda40e5f7e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

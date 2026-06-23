@@ -1,17 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
-  "description": "Feature Specification: Bi-temporal Window for Spec-Kit Memory Causal + Lineage",
+  "description": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
   "keywords": [
-    "feature",
-    "specification",
-    "bi-temporal",
-    "window",
-    "spec-kit",
     "memory",
-    "causal",
-    "lineage"
+    "mcp",
+    "causal-edge",
+    "currentness",
+    "machinery",
+    "records",
+    "wrong",
+    "time",
+    "number",
+    "times"
   ],
-  "lastUpdated": "2026-06-20T09:26:59.663Z",
+  "lastUpdated": "2026-06-23T03:49:58.190Z",
   "specId": "007",
   "folderSlug": "bitemporal-window",
   "parentChain": [

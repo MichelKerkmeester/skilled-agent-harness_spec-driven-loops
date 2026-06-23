@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing through the cosine lane at any weight from 0 to 0.30, no candidate vector flipped a single routing decision. The 8 wrong intent-described prompts are wrong for reasons no semantic-similarity weighting can fix on this corpus shape.",
+    "causal_summary": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing through the cosine lane at any weight from 0 to 0.30, no candidate vector flipped a single routing decision",
     "created_at": "2026-05-14T01:30:00Z",
-    "last_save_at": "2026-05-30T10:12:01.936Z",
+    "last_save_at": "2026-06-23T03:49:53.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:30:00Z",
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6845abcbf9426706fd9129c1bcb185daccae2d70bdffc7dfd900a29d59bd024f",
+    "source_doc_hashes": {
+      "spec.md": "7721c62f9aaef60692b9dce54011b9d586d66b036c2f010c942e2c6fcf578350",
+      "plan.md": "35e684491eec56c919671f71a1306c2141b7ee13080d1be130b6d735c7e3ae53",
+      "tasks.md": "aa2ca4f44ae724c1b992a2be53d157b53d99c4bb630c0c9fcf90e543ad3ef336",
+      "checklist.md": "21be121bf4684a8c5048a390efe7b2a86b63e4168c618fc6a093e306a69cd55b",
+      "implementation-summary.md": "de22ec1deb6de127cb9d0017421ed6fba4093d67cde63ee06c762d65bb17c27a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

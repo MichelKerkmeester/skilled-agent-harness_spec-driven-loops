@@ -1,16 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first",
-  "description": "Feature Specification: Embedding Provider Local-First Resolution",
+  "description": "The shared embeddings factory has three provider-order definitions",
   "keywords": [
-    "feature",
-    "specification",
-    "embedding",
-    "provider",
-    "local-first",
-    "resolution"
+    "shared",
+    "embeddings",
+    "factory",
+    "three",
+    "provider-order",
+    "definitions"
   ],
-  "lastUpdated": "2026-06-04T21:14:22.662Z",
+  "lastUpdated": "2026-06-23T03:49:55.642Z",
   "specId": "016",
   "folderSlug": "embedding-provider-local-first",
   "parentChain": [

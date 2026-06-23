@@ -1,19 +1,22 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
-  "description": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
+  "description": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
   "keywords": [
-    "feature",
-    "specification",
+    "memory",
+    "mcp",
+    "already",
+    "ships",
+    "machinery",
+    "bi-temporal",
     "edge-presence",
     "currentness",
-    "temporal",
-    "recall",
-    "028",
-    "001",
-    "impl",
-    "phase"
+    "build-side",
+    "only",
+    "unwired",
+    "read",
+    "path"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.067Z",
+  "lastUpdated": "2026-06-23T03:49:58.198Z",
   "specId": "008",
   "folderSlug": "edge-presence-currentness",
   "parentChain": [

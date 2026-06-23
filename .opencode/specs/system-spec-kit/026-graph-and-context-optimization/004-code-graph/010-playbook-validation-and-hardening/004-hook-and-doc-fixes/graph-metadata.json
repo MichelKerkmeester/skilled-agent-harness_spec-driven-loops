@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fires; and (b) several stale playbook scenario docs (F-011-1 verify-`rating`, F-020-1 tool count 11→8, F-021-1 label/content mismatch, 009/010 line drift).",
+    "causal_summary": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fires; and (b) several stale playbook scenario docs (F-011-1 verify-`rating`, F-020-1 tool count 11→8, F-021-1 label/content mismatch, 009/010 line drift)",
     "created_at": "2026-05-27T03:30:26.441Z",
-    "last_save_at": "2026-06-08T17:32:21.269Z",
+    "last_save_at": "2026-06-23T03:49:56.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f56ac15639e7141e593f0242b3bc4cb54fb5e26a93142669709e516921acf630",
+    "source_doc_hashes": {
+      "spec.md": "daadfee603c79e9db0b6ed04725839b26cdc6e1c2d59975967d18a8c21c027b4",
+      "plan.md": "1c3a407ccddbd5a439477c7e77302faa2fe8039b5e937ddeb43c67dbb1bede50",
+      "tasks.md": "cd3ab38ef15aca25848c9d400dc767c2a18f9a67ec5d0ce05d2bfe0afc1b574c",
+      "checklist.md": "e5b1c3da4363b6fac85814271d4605d70c9621cec53d116eb5afa2250bf7c78d",
+      "implementation-summary.md": "8a86b64176d3d99c939282697d0aa0b0cd3497b85f9a2847001c1de6725ed582"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

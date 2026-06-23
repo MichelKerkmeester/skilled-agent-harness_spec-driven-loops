@@ -1,20 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle",
-  "description": "Spec: Runtime Process Lifecycle Closure for F41 F43 F51 F90 F110",
+  "description": "Five deferred P2 findings remained in runtime/process lifecycle code",
   "keywords": [
-    "spec",
+    "five",
+    "deferred",
+    "findings",
+    "remained",
     "runtime",
     "process",
     "lifecycle",
-    "closure",
-    "f41",
-    "f43",
-    "f51",
-    "f90",
-    "f110"
+    "code"
   ],
-  "lastUpdated": "2026-05-26T17:26:38.217Z",
+  "lastUpdated": "2026-06-23T03:49:55.341Z",
   "specId": "005",
   "folderSlug": "fix-deferred-p2s-for-runtime-process-lifecycle",
   "parentChain": [

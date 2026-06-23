@@ -135,15 +135,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Track the end-to-end embedder and reranker program across the 013 umbrella. The current production posture is no longer the original Jina/mxbai scaffold: mk-spec-memory defaults to the Nomic/CodeRankEmbed local bi-encoder path through the Ollama -> hf-local Nomic cascade, CocoIndex defaults to `sbert/nomic-ai/CodeRankEmbed` for code embeddings, and CocoIndex reranks through `Qwen/Qwen3-Reranker-0.6B` via the shared sidecar by default.",
+    "causal_summary": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA, Ollama/BGE historical promotion work, the shared rerank sidecar arc, and memory-leak remediation (absorbed sidecar investigation as phases 015-019 in 009). Current defaults: nomic-ai/CodeRankEmbed bi-encoder; Qwen/Qwen3-Reranker-0.6B for CocoIndex rerank via sidecar; cross-encoder/ms-marco-MiniLM-L-6-v2 for mk-spec-memory rerank when opt-in.",
     "created_at": "2026-05-17T06:35:11.664Z",
-    "last_save_at": "2026-06-05T12:47:33.510Z",
+    "last_save_at": "2026-06-23T03:49:53.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:b9ecdc824ca8e4b5959ded76f29a2636df00a194f1d33422df607a2870e8e49a",
+    "source_doc_hashes": {
+      "spec.md": "4cf4edcf8c07a973f2da0eb3e9fb0e36277823e73fd931f79ffa7432b9c53e3f",
+      "research/research.md": "56f7a68a6ec39950dec3c2c2c26b26e111aff62feb997b192f0db963a388e6ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

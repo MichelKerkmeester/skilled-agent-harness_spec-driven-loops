@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment",
-  "description": "Feature Specification: System Skill Advisor Reference Template Alignment",
+  "description": "The advisor references were stored as one flat root folder with kebab-case filenames and inconsistent sk-doc reference-template structure",
   "keywords": [
-    "feature",
-    "specification",
-    "system",
-    "skill",
     "advisor",
-    "reference",
-    "template",
-    "alignment"
+    "references",
+    "stored",
+    "one",
+    "flat",
+    "root",
+    "folder",
+    "kebab-case",
+    "filenames",
+    "inconsistent",
+    "sk-doc",
+    "reference-template",
+    "structure"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.135Z",
+  "lastUpdated": "2026-06-23T03:49:53.639Z",
   "specId": "007",
   "folderSlug": "reference-template-alignment",
   "parentChain": [

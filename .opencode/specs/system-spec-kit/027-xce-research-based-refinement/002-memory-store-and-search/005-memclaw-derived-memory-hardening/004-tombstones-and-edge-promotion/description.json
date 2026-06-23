@@ -1,14 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
-  "description": "Feature Specification: Phase 4: tombstones-and-edge-promotion",
+  "description": "The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "tombstones-and-edge-promotion"
+    "review",
+    "found",
+    "prior",
+    "soft-delete",
+    "premise",
+    "false",
+    "delete",
+    "hard",
+    "via",
+    "vectorindex",
+    "deletememory",
+    "writer"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.934Z",
+  "lastUpdated": "2026-06-23T03:49:57.261Z",
   "specId": "004",
   "folderSlug": "tombstones-and-edge-promotion",
   "parentChain": [

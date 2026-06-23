@@ -1,14 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/002-opencode-transport-adapter",
-  "description": "Feature Specification: OpenCode Transport Adapter",
+  "description": "Packet 024 already has strong retrieval surfaces, but OpenCode still lacked a clean prompt-time transport layer that could inject compact context duri",
   "keywords": [
-    "feature",
-    "specification",
+    "packet",
+    "024",
+    "already",
+    "strong",
+    "retrieval",
+    "surfaces",
     "opencode",
+    "still",
+    "lacked",
+    "clean",
+    "prompt-time",
     "transport",
-    "adapter"
+    "layer",
+    "inject",
+    "compact",
+    "context",
+    "duri"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.377Z",
+  "lastUpdated": "2026-06-23T03:50:00.790Z",
   "specId": "002",
   "folderSlug": "opencode-transport-adapter",
   "parentChain": [

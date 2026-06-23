@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
-  "description": "Feature Specification: Remove coco from runtime configs + 4-runtime mirror",
+  "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
   "keywords": [
-    "feature",
-    "specification",
-    "remove",
-    "coco",
-    "runtime",
-    "configs",
-    "4-runtime",
-    "mirror"
+    "part",
+    "cocoindex",
+    "rerank-sidecar",
+    "deprecation",
+    "arc",
+    "014"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.293Z",
+  "lastUpdated": "2026-06-23T03:49:55.777Z",
   "specId": "006",
   "folderSlug": "runtime-configs-4runtime-mirror",
   "parentChain": [

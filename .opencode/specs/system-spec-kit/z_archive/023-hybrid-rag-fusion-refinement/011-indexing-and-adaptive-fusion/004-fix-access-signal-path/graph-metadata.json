@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the adaptive-ranking packet.",
+    "causal_summary": "Adaptive ranking needed access events from the main search pipeline, not only from storage-side batching paths",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-05-30T10:12:03.439Z",
+    "last_save_at": "2026-06-23T03:50:00.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e51e8a8e4d30d376f8794197ce3152c5ebee285d7397638917d9bf60f8547717",
+    "source_doc_hashes": {
+      "spec.md": "097ff082d4ba2e232539729008bfee8a32a8f57e6c3bf2db9675e7eaf57cc900",
+      "plan.md": "38106372bc6aba79bda817c849d8b6a1976e9f3ac73e0a1dbdaaa78e4934b520",
+      "tasks.md": "00f3057221231890a1fd73cf2e57ff036dcc03d719f903f2151e53de55dc086a",
+      "checklist.md": "2213f2441da17a2b0491fa400219d0843c3fe94992337f8054f99efbf34ef575",
+      "implementation-summary.md": "d7a28fca5b1ae2020749be5986ceffec296e4f736c56cf236bad1fff80a2dd75"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

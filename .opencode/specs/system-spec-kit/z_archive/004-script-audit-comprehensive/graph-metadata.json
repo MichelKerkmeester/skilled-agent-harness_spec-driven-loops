@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived folder captures work that audited system-spec-kit scripts for defects, broken behavior, and standards misalignment. The older archive shape had drifted into invalid higher-level structure, which caused strict validation errors.",
+    "causal_summary": "This archived folder captures work that audited system-spec-kit scripts for defects, broken behavior, and standards misalignment",
     "created_at": "2026-04-12T09:02:53.562Z",
-    "last_save_at": "2026-05-30T10:12:03.128Z",
+    "last_save_at": "2026-06-23T03:49:59.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e606313d1c7f7f49f88b0cb515b8009bda844f45c6cc97cdaaaa7cf9b7a08acb",
+    "source_doc_hashes": {
+      "spec.md": "94739c8ded7381b359820bb011e56539dff27b6262c79fff33329f556f0575b8",
+      "plan.md": "0a91b080126d701a83865cee9ee68bbc2ca3501f9074aa4f22a9c5ab494cc878",
+      "tasks.md": "0a8a3d0606dbde721158a48c2adf729af5fc37ede712e0faa34c986e0f9021af",
+      "implementation-summary.md": "ebc68813551a605b39aa0c41777895a048b12026a45363fccb62fb584b32f026"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

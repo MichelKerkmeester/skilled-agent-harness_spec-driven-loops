@@ -1,17 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival",
-  "description": "Feature Specification: Phase 30: Client-Side MCP Reconnect Survival",
+  "description": "When Claude Code's client-side MCP transport to a still-alive local stdio daemon drops",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
+    "claude",
+    "code",
     "client-side",
     "mcp",
-    "reconnect",
-    "survival"
+    "transport",
+    "still-alive",
+    "local",
+    "stdio",
+    "daemon",
+    "drops"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.205Z",
+  "lastUpdated": "2026-06-23T03:49:56.606Z",
   "specId": "030",
   "folderSlug": "client-side-reconnect-survival",
   "parentChain": [

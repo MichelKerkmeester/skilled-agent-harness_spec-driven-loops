@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit search and intelligence surfaces (memory_search, memory_context, code_graph_query, advisor_recommend, the intent classifier) grew organically across 26+ optimization packets. A sibling packet catalogs 17 defects from a single live session. There is no reproducible, cross-AI stress test that quantifies how well the search intelligence performs under realistic prompt variation, so quality regressions surface only in production.",
+    "causal_summary": "The system-spec-kit search and intelligence surfaces (memorysearch, memorycontext, codegraphquery, advisorrecommend, the intent classifier) grew organically across 26+ optimization packets",
     "created_at": "2026-06-08T11:31:18.243Z",
-    "last_save_at": "2026-06-08T17:32:20.666Z",
+    "last_save_at": "2026-06-23T03:49:52.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:9cf6cbba290d2a6770020919217d82a3d7cb7632f18a758964b411ec1dba402b",
+    "source_doc_hashes": {
+      "spec.md": "6aa8395da5e7a7597c799c8ce7ecf5632aed1ee9657dbc22ca4710bba7ae8238",
+      "plan.md": "fe5be89b804aa5b1c3387c7454467f6ced75c4c540593473fd26a0b566d00401",
+      "tasks.md": "4d81250f677aaae03cedc9716b48c7ba4417ba0065f7ffb227e117b9ef153506",
+      "implementation-summary.md": "f48f9f637c125ebe4c53aa99002f8c682d4338db5388eefea2f77f82a902f019",
+      "resource-map.md": "9287efabe2ab140dcfcf586f9457231e8a1650f1272e5c397073983501092093"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet delivers the end state implied by that analysis. `/memory:save` is planner-first by default: the handler computes the same route and legality data as before but stops short of mutation and returns structured planner output instead. `full-auto` is preserved as an explicit fallback via `SPECKIT_SAVE_PLANNER_MODE=full-auto`, with canonical atomic mutation, `POST_SAVE_FINGERPRINT` safety parity, same-path identity, and rollback intact. The legacy `[spec]/memory/*.md` write path is retired. Four previously default-on behaviors become explicit opt-in: `SPECKIT_ROUTER_TIER3_ENABLED`, `SPECKIT_QUALITY_AUTO_FIX`, `SPECKIT_RECONSOLIDATION_ENABLED`, `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED`. Freshness becomes follow-up work via three new APIs: `refreshGraphMetadata`, `reindexSpecDocs`, `runEnrichmentBackfill`. `hybrid` is documented as reserved and currently behaves like `plan-only`. The content-router category contract is preserved with one honest, scoped exception: a Tier 3 default-disable and manual-review guard inside `content-router.ts`. 43 implementation tasks shipped under v3.4.1.0. A deep-review pass flagged 3 P0, 5 P1, and 1 P2 findings on router honesty, fallback safety parity, blocker classification, deferred-helper coverage, and changelog accuracy; all 9 were resolved before closeout.",
+    "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-05-30T10:12:02.042Z",
+    "last_save_at": "2026-06-23T03:49:53.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8906ffb08e141b968cf79d1e86c454850819210a7be05f13c3aaaf419d9cb7da",
+    "source_doc_hashes": {
+      "spec.md": "5724e3b5869bb93e57bf3dbf80e106107d8471a483a0a7c8e49f7dc62a0347b2",
+      "plan.md": "ae9e6769a0de9daf505d85fe75b5f9eba57c6cedb9bedc088e14f95d054e6e18",
+      "tasks.md": "80db4c33b2bf7d4b09857d5693894385e7f0816ce8b9d83d178d50cf1e211111",
+      "checklist.md": "458ea214cf8cf35b92859ae9324d99398fc2866cec0809c68a0f480f984cae65",
+      "decision-record.md": "47856b8233159e1001be87ff6871937e008a904347064b9d80cf7b7c1ff92502",
+      "implementation-summary.md": "62c87d40b5308bf2f0290a8cece2df5dca5145392dacad0019066d0483cce160"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -220,9 +220,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `001` parent packet had become a merged historical archive instead of a usable coordination document. It referenced retired folder names, mixed multiple generations of planning and verification into single files, and no longer matched the live direct-child subtree or current template expectations.",
+    "causal_summary": "The `001` parent packet had become a merged historical archive instead of a usable coordination document",
     "created_at": "2026-04-12T09:02:50.224Z",
-    "last_save_at": "2026-06-05T12:47:34.637Z",
+    "last_save_at": "2026-06-23T03:49:59.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -236,6 +236,18 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:9bba6f12c2c427054c7707c2655b6b8b9a499c8a9cb0750d5dadfc558b79f319",
+    "source_doc_hashes": {
+      "spec.md": "2d908926c810aacaa3bf68da2527684774c8d8ca15c36224b35f4f214b652014",
+      "plan.md": "d91caa30c17af7504b224a0d92b10e3e23fa952cb0c62f41b9cce8713a7ad42a",
+      "tasks.md": "32f5ed4657536ef7d085204a3f549f5f964abb6531196f8a87afd7d73e6d3641",
+      "checklist.md": "cb8e5e95f8635af34905114fdad079c78567a507a132c0dfd53a7c8091172786",
+      "decision-record.md": "c649be0628fd102b8c6d59f1d19314190d2aefe8bc509ee131db5af2aa9b9117",
+      "implementation-summary.md": "0b0b7a7cffe36abd4a02107c91df73fd0b926cd6fb05a6c3e71c6c0a305f4b06",
+      "research/research.md": "1a4052949ee765db3503577de3cd4e5065da0aa9e00e0730bed27eca2e1f0dab",
+      "handover.md": "7772a5a149167901a7db02aee9bef7b7f6bd18746e50af01a9186dccb516d1c2",
+      "resource-map.md": "051745c72805041e32175ae898cdb23e0701124aae5706830ae3928bbae1eb5e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

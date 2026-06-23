@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
-  "description": "Feature Specification: 003 — Incremental Index Foundation",
+  "description": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "incremental",
+    "memoryindexscan",
+    "currently",
+    "reconsiders",
+    "discovered",
+    "files",
+    "every",
+    "run",
+    "uses",
+    "file-level",
+    "categorization",
+    "decide",
     "index",
-    "foundation"
+    "update",
+    "skip",
+    "delete"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.945Z",
+  "lastUpdated": "2026-06-23T03:49:57.151Z",
   "specId": "001",
   "folderSlug": "incremental-index-foundation",
   "parentChain": [

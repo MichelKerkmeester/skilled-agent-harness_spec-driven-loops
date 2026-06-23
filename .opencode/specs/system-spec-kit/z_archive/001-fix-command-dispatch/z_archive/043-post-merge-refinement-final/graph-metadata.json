@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues. However, many were:",
+    "causal_summary": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues",
     "created_at": "2026-04-12T09:02:53.527Z",
-    "last_save_at": "2026-06-05T12:47:34.469Z",
+    "last_save_at": "2026-06-23T03:49:59.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:808e38f9ee56226454b1da0a5eb7307f1035d25778bd6033da7d85e1371dffd4",
+    "source_doc_hashes": {
+      "spec.md": "c9661a47b55b85ceb866f95ed2fc4ed39b3acbe672adefdd362cb98e6c1b02ae",
+      "plan.md": "38bc3522e8173aa95e356a6f57e03ead66487f89c16ecc32a55d2b4e6162a286",
+      "tasks.md": "2c7e3bfd5394fad1830c2eaf6727b4da73ffed5a30f06bb6711454c7984c544e",
+      "checklist.md": "63a0fd9db45824398bce8e7a40cf9c70da21efcff7b8f6bd8b9034442285531b",
+      "decision-record.md": "c694e7e6ef4330b6dc4f645fa100160f75022888b8dd327a2ab05e22e4a7f390",
+      "implementation-summary.md": "808a68554b670d32305ce53c5f149f5df10371e77aef4588403616a1ce969c08"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

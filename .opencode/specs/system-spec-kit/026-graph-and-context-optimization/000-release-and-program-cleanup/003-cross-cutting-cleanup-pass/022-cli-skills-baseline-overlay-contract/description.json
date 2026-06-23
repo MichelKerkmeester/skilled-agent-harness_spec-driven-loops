@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
-  "description": "Spec: CLI Skills Codebase-Agnostic Standards Contract",
+  "description": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode",
   "keywords": [
-    "spec",
+    "update",
     "cli",
+    "orchestrator",
     "skills",
-    "codebase-agnostic",
-    "standards",
-    "contract"
+    "mirror",
+    "review",
+    "baseline",
+    "overlay",
+    "code-standards",
+    "contract",
+    "instead",
+    "hardcoded",
+    "sk-code-review",
+    "sk-code-opencode"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.754Z",
+  "lastUpdated": "2026-06-23T03:49:52.370Z",
   "specId": "022",
   "folderSlug": "cli-skills-baseline-overlay-contract",
   "parentChain": [

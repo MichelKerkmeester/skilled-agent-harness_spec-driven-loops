@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
-  "description": "Feature Specification: Memory and Causal Runtime",
+  "description": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture",
   "keywords": [
-    "feature",
-    "specification",
+    "harden",
     "memory",
-    "causal",
-    "runtime"
+    "continuity",
+    "substrate",
+    "deliver",
+    "causal-graph",
+    "channel",
+    "routing",
+    "validate",
+    "embedding",
+    "architecture"
   ],
-  "lastUpdated": "2026-06-01T19:57:48.418Z",
+  "lastUpdated": "2026-06-23T03:49:53.812Z",
   "specId": "003",
   "folderSlug": "memory-and-causal-runtime",
   "parentChain": [

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet audits the 17 Tooling and Scripts catalog entries that support Spec Kit build workflows, validation rules, admin operations, checkpointing, and source-dist hygiene. The verified result is 16 MATCH and 1 PARTIAL, with the remaining drift concentrated in the code-standards-alignment entry rather than runtime behavior.",
+    "causal_summary": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-06-05T12:47:34.731Z",
+    "last_save_at": "2026-06-23T03:49:59.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:025a6df702813b5a22696ebcb49c25c2810187d63d4a1c930dba58e691ca409c",
+    "source_doc_hashes": {
+      "spec.md": "30939b03bb501762df145cd9beabfa8c1ac1977732b91121c0910d464a0dfbc5",
+      "plan.md": "2f5100075d56cc3d7cc49cf3890ddcd87d928cab5af99a8a54b4dc24c061d03f",
+      "tasks.md": "477dd7aa7fa9d4817324f9e0d0258f6be59ecbaddae4978106fbe7681af9248a",
+      "checklist.md": "1ade35fe5c4b5f2560484fa361c1db4d791052790c7bdd264a69f56e6b12af80",
+      "implementation-summary.md": "e872f0f5c1d99476c544e6874ee932d328225fb8b01422b229f191fa4e4ae98c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

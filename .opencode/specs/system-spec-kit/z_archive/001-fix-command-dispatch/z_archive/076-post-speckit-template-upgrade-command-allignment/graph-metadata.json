@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture upgrade.",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-05-30T10:12:03.086Z",
+    "last_save_at": "2026-06-23T03:49:59.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,6 +191,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1b689341141e4c3ba90bb04d3acc51b00a432cb4c643eba0af02b570528fe703",
+    "source_doc_hashes": {
+      "spec.md": "ebd2dfced4e537ac2c53de33e9b973a003fffa085863e0fa15f4ce099fb84a37",
+      "checklist.md": "28944e5ce88f0330ec7bf5aea1489a0ccbb0165a24b971aee065283ab34131d1",
+      "decision-record.md": "fe62ac4de07560e30a7444c5b082b91b4b4147209ed26dd5cc5a494d5670f188",
+      "implementation-summary.md": "2119caebdf27b5369dfa9e8b580348cd1a76a571c111fde2c4d6fb4c4b704516"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

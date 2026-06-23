@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
-  "description": "Feature Specification: Standalone Save Second-Writer Guard",
+  "description": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran `rein",
   "keywords": [
-    "feature",
-    "specification",
-    "standalone",
-    "save",
-    "second-writer",
-    "guard"
+    "generate-context",
+    "step",
+    "unconditionally",
+    "imported",
+    "spec-kit",
+    "mcp-server",
+    "api",
+    "indexing",
+    "called",
+    "initializeindexingruntime",
+    "ran",
+    "rein"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.012Z",
+  "lastUpdated": "2026-06-23T03:49:56.460Z",
   "specId": "013",
   "folderSlug": "standalone-save-second-writer-guard",
   "parentChain": [

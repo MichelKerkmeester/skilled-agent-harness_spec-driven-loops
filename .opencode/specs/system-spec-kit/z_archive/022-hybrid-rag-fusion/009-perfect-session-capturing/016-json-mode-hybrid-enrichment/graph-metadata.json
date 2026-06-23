@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet had drifted into a historical phase container that no longer matched active system-spec-kit template rules. The top-level docs lacked template markers, anchors, and required section structure, which prevented recursive strict validation even though the child phases capture real implementation work.",
+    "causal_summary": "This packet had drifted into a historical phase container that no longer matched active system-spec-kit template rules",
     "created_at": "2026-04-12T09:02:50.276Z",
-    "last_save_at": "2026-06-05T12:47:34.805Z",
+    "last_save_at": "2026-06-23T03:50:00.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:a80f3c6bba41b0659409ecc7760f9e3f8cee75260d859b116cc8e3c604597fcf",
+    "source_doc_hashes": {
+      "spec.md": "0b523e306e718c76c780e161bb2ad25bd201b77627f6ee06dafcb577d431e4e4",
+      "plan.md": "37e48f0021cbfd6f491275694c03e2d9f58cad6ca2a0242b297df342e5cfd9a7",
+      "tasks.md": "5e52ae6c9dc4a239b02a342b4367bd061129870a110d37f2e973fe07c2ad5d4a",
+      "implementation-summary.md": "ec514a0463404152a48f994b5d76445676c6bedc6b1fd709356d5da80bc9b3e8",
+      "research/research.md": "81937e6c2c854022faa92662b7f4dcc484f9bc863b1b395b5ae7c52e809ba625",
+      "resource-map.md": "be367262c054b2bfb7bd11d2b1ee846ee0d34260e7b698714c19e406eaf1f615"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

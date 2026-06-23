@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op. Both defects are 028's own eval code, in scope, confirmed real against source. This is the only release-blocking finding class in the review: a flag can read baseline-neutral in the harness while changing real default behavior, so the benchmark evidence cannot be trusted until the driver routes the way production does.",
+    "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.888Z",
+    "last_save_at": "2026-06-23T03:49:58.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d76384f7f70adc3218520e1393856d10dd3f4b375d54236b8d765539163d5a59",
+    "source_doc_hashes": {
+      "spec.md": "69426d83213a07a8d34218f9beacb98586346460c7efd1b6c3736e0b40d9c4f7",
+      "plan.md": "a4a53183e81285588b381904c4072bc24bdbdcf45ead48f90e59fb161c2f402d",
+      "tasks.md": "2e954a0c6631905dc895628b745c36c8d8844cd243d60ed1bc27a9d5ab22f543",
+      "checklist.md": "b345a930d61a78f88ddf278b13706a413c2d6efbc73e9063af176fa61e8850fa",
+      "implementation-summary.md": "cbd192bd9d8a16f5e41e4a0780ab86772c3c16b518a25aa47a6778b525f5b9ff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

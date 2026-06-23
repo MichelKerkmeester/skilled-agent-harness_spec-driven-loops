@@ -41,7 +41,7 @@
       "tasks",
       "summary",
       "impl",
-      "phase"
+      "broken"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 16** of the Deep research into improving search intelligence and AI output quality across command and natural-conversation prompting specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-06-17T19:57:25.097Z",
-    "last_save_at": "2026-06-22T18:55:03.362Z",
+    "last_save_at": "2026-06-23T03:49:57.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:39fee3e9aca4d7184397238b27a72f35f0daa5b4baabfc522824981506e1a607",
+    "source_doc_hashes": {
+      "spec.md": "200e9d07f3e6c536f7b50387432d1d6651f723c927f17bb6a47329e451b4a9e2",
+      "plan.md": "4f2be5eeba08363508f2cc3fdd14b34aaed67a0dd34f3f2d0be245aa268e0525",
+      "tasks.md": "b590ddbc38f028fc399fd1bf4e3de64a97bfd4022543b2e346851d4d89612d2a",
+      "implementation-summary.md": "1dde61efd00d9a51b45e0f9c99e837f8367d5b640781bd98365d3ee2095cf4fe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory side already computes provenance and `source_kind` for every saved row, but the two metadata JSONs never expose them as first-class fields. `write-provenance.ts:7` defines the `SourceKind` union and `:141-182` derive and persist it onto `memory_index`, yet `description-schema.ts` and `graph-metadata-schema.ts` carry no `source_kind`, `provenance`, `content_type`, `document_weight` or freshness field, so a logic and governance reader cannot tell a human-authored doc from an imported or agent-generated one. Separately, `graph-metadata-schema.ts:47 causal_summary` and `:52 source_docs` both ship but are not coupled, so a `causal_summary` can silently outlive the `source_docs` it was derived from with no staleness signal.",
+    "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
     "created_at": "2026-06-21T10:22:34.982Z",
-    "last_save_at": "2026-06-22T18:55:03.793Z",
+    "last_save_at": "2026-06-23T03:49:58.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d910aba3a6aa336d3d1e307680383c55c2c38f143db502c5c47f0e311ffbde85",
+    "source_doc_hashes": {
+      "spec.md": "b8ce41999c09cfc599a23a5b8aa14162b64633a84b984ab42416ff902aff5699",
+      "plan.md": "5fc7ab7b3dc4f5aeeaddd5527e5ec5fa1f41cc6eee9d21ae74367089d4d052e5",
+      "tasks.md": "04b37f5e231f4fc976dac6eb610f2b24be2933ec5dffd5dd1909723ae3ee9719",
+      "checklist.md": "9599d0a5bff2ebcccb42f590804263720412e5049daf983b665f02f16f97ac54",
+      "implementation-summary.md": "2a9a0ac5e01f263350ec97f8ebf4b4fcff12a3109bec570fcdcd5c047636f1a3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

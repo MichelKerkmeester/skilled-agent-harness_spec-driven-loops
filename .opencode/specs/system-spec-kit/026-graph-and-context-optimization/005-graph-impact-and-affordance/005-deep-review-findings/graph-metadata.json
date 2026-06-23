@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification. A 7-iteration deep-review pass (6 cli-codex agents in parallel) surfaced 1 P0 + 21 P1 + 22 P2 findings. The P0 (LICENSE quote) was resolved by scrubbing the External Project name from the codebase (removing the need to quote any external license at all). The remaining 43 findings cluster into 6 themed task groups that need a focused remediation pass.",
+    "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-06-05T12:47:34.217Z",
+    "last_save_at": "2026-06-23T03:49:56.200Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dd083e9432ff1391f706dd1a3be1ef0bf6f0497d029174a915c8707549926b5d",
+    "source_doc_hashes": {
+      "spec.md": "31d79cc30c8f21232bec218c89bce48eb73e419175d563e2c2ee4e47483c69dd",
+      "plan.md": "040b3a53699556ecebbca0a759f96773849d781bb47dfeda80428885dae7ff49",
+      "tasks.md": "f6fbf4f1c9c490198cf175816c2db1ed86b7a9e01b7925212579a9718557bb04",
+      "checklist.md": "4bf4131043a930b07edf1cd32d53113898dddbeca6ea97bdc681d9e36d21de4d",
+      "implementation-summary.md": "64dfdc7308af03e8e850f432a106dda19d8d6bb578a98182ebf2a76b0e8d098f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

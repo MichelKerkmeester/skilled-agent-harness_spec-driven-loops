@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target. That parity test compared corresponding vectors, not retrieval behavior. The open question is whether the cosine miss changes actual search ranking enough to block a future default flip.",
+    "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target",
     "created_at": "2026-05-13T10:23:12Z",
-    "last_save_at": "2026-05-30T10:12:02.095Z",
+    "last_save_at": "2026-06-23T03:49:54.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T10:23:12Z",
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:57eb6bf842d8c4eafde8deb7504055f71677292ef17e4a4fbcd8098aa5935b3e",
+    "source_doc_hashes": {
+      "spec.md": "e3a6f4e38b1d134fceb9240f9141b477a0c7b18539b113d34da79aff0555803d",
+      "plan.md": "2dd74370fec3126d1a5834d9a02d9093f6e196e0abafbf82a2368f8d1cd74448",
+      "tasks.md": "161de42377e6b2055b639d86a6ce995edf5d789748ee31189c3f9b1f95fe5f43",
+      "implementation-summary.md": "10a45640d65def16d20e5d8edda16edf3287627ab0698f1881928b1c494af2fe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

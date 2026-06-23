@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet completes D2a of the council-recommended clean cut: the skill graph DB/query library and startup lifecycle move from `spec_kit_memory` into `system_skill_advisor`. The public tool ids stay unchanged, but the writer lifecycle now has one owner.",
+    "causal_summary": "`systemskilladvisor` owned the public `skillgraph` tools, but the SQLite DB/query library and lifecycle still lived in `system-spec-kit/mcpserver`",
     "created_at": "2026-05-18T08:53:19.871Z",
-    "last_save_at": "2026-06-08T17:32:20.804Z",
+    "last_save_at": "2026-06-23T03:49:53.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a2a9bfea0c61541d8a2f7e39058ac5a4c1d07a20085db91448239c9608aeb692",
+    "source_doc_hashes": {
+      "spec.md": "d845f1e6cba6894bf7f4cc1da6b36a5b9b13c906f7be0f9c43ebbfabe9064e79",
+      "plan.md": "3fac4c715f683c9c09022e715085ffcfe77423a19ba3dd2d58c8c263c4a9810a",
+      "tasks.md": "1b7281cafedbc317080d2a79633aee3e3da7c16c037093748b4501d777646d52",
+      "checklist.md": "b8c62c1faea6c61173eb8f94ad7faa88833ba67780036783653a7384ad43c0d1",
+      "decision-record.md": "6186acd3d661feef89d63fb3bdcf004c54a282e7de82995da0df7491681bb1d2",
+      "implementation-summary.md": "beec5cb598a0bf079af476c60ee39611236970a543c1ae3fb4db9e4729544b72"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

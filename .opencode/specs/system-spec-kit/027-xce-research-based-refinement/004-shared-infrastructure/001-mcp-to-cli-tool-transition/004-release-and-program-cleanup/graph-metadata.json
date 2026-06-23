@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 program shipped three dual-stack CLIs (`spec-memory`, `code-index`, `skill-advisor`) over the existing daemons, warm-only hook fallbacks for Claude Code and Codex, OpenCode plugins (including the previously missing `mk-spec-memory.js` and the CLI-backed `mk-code-graph.js` bridge repair), and a family of new environment variables. The documentation surface still largely describes the MCP-only world: none of the new CLI env vars appear in `ENV_REFERENCE.md`, the root and skill READMEs present MCP as the only access path, and the doctor/memory/speckit command docs predate the CLI fallbacks. Without a coordinated cleanup pass — the 028 analog of 026's `000-release-and-program-cleanup` — the program closes with drifted docs.",
+    "causal_summary": "The 028 program shipped three dual-stack CLIs (`spec-memory`, `code-index`, `skill-advisor`) over the existing daemons, warm-only hook fallbacks for Claude Code and Codex, OpenCode plugins (including the previously missing `mk-spec-memory.js` and the CLI-backed `mk-code-graph.js` bridge repair), and a family of new environment variables",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-10T19:22:14.978Z",
+    "last_save_at": "2026-06-23T03:49:57.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:94277778ed4764f0db490770f680fd719a9c4c27d4cc43e3fff72972f0e23073",
+    "source_doc_hashes": {
+      "spec.md": "8759162b3ec3d88d6f31b272841ac6150bd6af82055b127a459b47d7254f31b9",
+      "plan.md": "11354071bfe687045f065ddcafb8a57d581a16f4a699f8244d2daab52d3e9099",
+      "tasks.md": "82bf8d71a4179153abe768076c1579c4de3ba881353f0539a656af149a4de9e9",
+      "checklist.md": "e9a47041ebf1b3ad76859c0c166614f0cb033b9e89f205741c162fbaa5c12394",
+      "implementation-summary.md": "c1db9e55ce49bb6a1d36c9179d31ee577ada982656d721964d40d7baff8dde0f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

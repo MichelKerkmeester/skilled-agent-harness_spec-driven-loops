@@ -175,9 +175,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests detection of missing evidence on completed items.",
+    "causal_summary": "This fixture tests detection of missing evidence on completed items",
     "created_at": "2026-06-22T18:55:03.932Z",
-    "last_save_at": "2026-06-22T18:55:03.932Z",
+    "last_save_at": "2026-06-23T03:49:58.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,6 +186,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:fbcfb12d4200cf1be9c4d3516274c4bae9436a04a207fe86f6f46a34a99ec133",
+    "source_doc_hashes": {
+      "spec.md": "43a909c3b98f9eefe61a32a0b8a70cb81342adfc821e6af037aac35bebce8d92",
+      "plan.md": "a37b912629ddc7414ebbcc376917679def4375892a5c14a2f571a4a834a557cd",
+      "tasks.md": "f953d23d283a26d73d021622f856bcf2bf5f5165c05ce6e32b0d6370e3777039",
+      "checklist.md": "181f805569897cf269b6e38ee80e1f40f9df5279654c14342340001612267282"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

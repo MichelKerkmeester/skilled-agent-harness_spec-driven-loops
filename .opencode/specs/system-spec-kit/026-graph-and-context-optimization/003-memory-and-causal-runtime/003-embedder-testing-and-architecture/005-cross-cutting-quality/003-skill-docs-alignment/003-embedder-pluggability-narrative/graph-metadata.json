@@ -29,8 +29,8 @@
       "plan",
       "tasks",
       "summary",
-      "support",
-      "embedders"
+      "author",
+      "canonical"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The \"support all embedders out of the box for new users\" promise is now achieved across two MCPs but nowhere documents it cohesively. mk-spec-memory has the 016 EmbedderAdapter + MANIFESTS + MCP-tool swap. CocoIndex has registered_embedders.py + env var + reset/reindex. These are different mechanisms with the same goal.",
+    "causal_summary": "Author canonical doc covering mk-spec-memory + CocoIndex embedder architecture, out-of-box for any embedder + first-install + swap mechanism",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-06-05T12:47:33.761Z",
+    "last_save_at": "2026-06-23T03:49:54.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:00ca713e5846903a6eb4a1d99e16c127cbd87e9ee7b5edffb8d97fa8b6cb6a9a",
+    "source_doc_hashes": {
+      "spec.md": "f49e4c946b2c6d93edeba6675aa964dd0ed1dc6d00980ab852c5d5f1f3919fac",
+      "plan.md": "abb6e203fa032f5f6d567dbd246e9c282ba4389a252ae175803db3b3a3bc0e4b",
+      "tasks.md": "bc43c56b871f316229ee928db766f8163a9ddc76cc2cc62db82bc2e7986a365e",
+      "implementation-summary.md": "6abea406ffcf67c4feb1c9967b25883272a765940138da480987fb07628518ca"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

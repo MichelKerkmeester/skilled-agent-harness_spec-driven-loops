@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc`, non-commercial default reranker licensing, and expensive model-swap reindexing. The default reranker was empirically strong but licensed CC BY-NC 4.0, which creates silent commercial risk if the operator assumes Apache-licensed project code means unrestricted model use.",
+    "causal_summary": "CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc`, non-commercial default reranker licensing, and expensive model-swap reindexing",
     "created_at": "2026-05-19T20:36:58.000Z",
-    "last_save_at": "2026-05-30T10:12:02.325Z",
+    "last_save_at": "2026-06-23T03:49:54.713Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9ad6bb41b5aab12eafe4343aa5bca36662e59aaf8ef04161eec1aff5071894c1",
+    "source_doc_hashes": {
+      "spec.md": "e5d7a5108d12d0f4129c6daefcce9996f0e537c79d6bc3c433490f012b3efc7a",
+      "plan.md": "d967fc485b85077d40c4cc47a29c0a1d102b26530106d2b1f919acdfa9fc55bb",
+      "tasks.md": "12649203dfb44b14a6769c0ed403a426ace29bf39e0b0f542fcf56e7fc6e643c",
+      "checklist.md": "27c55836e307f5c9225489419199a33621445fd1c648a2000f27aabbc989a062",
+      "implementation-summary.md": "0e9744551b7469564e17132f74efd69552d7eab3e6f64cb1fc1573d08c2e3685"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

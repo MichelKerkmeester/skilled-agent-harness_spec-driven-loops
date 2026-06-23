@@ -1,16 +1,27 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
-  "description": "Feature Specification: MCP Retrieval + Causal Review Slice",
+  "description": "The MCP retrieval and causal-graph read path (semantic search, unified context, trigger matching, causal links) was heavily reworked across 026 (graph",
   "keywords": [
-    "feature",
-    "specification",
     "mcp",
     "retrieval",
+    "causal-graph",
+    "read",
+    "path",
+    "semantic",
+    "search",
+    "unified",
+    "context",
+    "trigger",
+    "matching",
     "causal",
-    "review",
-    "slice"
+    "links",
+    "heavily",
+    "reworked",
+    "across",
+    "026",
+    "graph"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.947Z",
+  "lastUpdated": "2026-06-23T03:49:52.982Z",
   "specId": "002",
   "folderSlug": "mcp-retrieval-causal",
   "parentChain": [

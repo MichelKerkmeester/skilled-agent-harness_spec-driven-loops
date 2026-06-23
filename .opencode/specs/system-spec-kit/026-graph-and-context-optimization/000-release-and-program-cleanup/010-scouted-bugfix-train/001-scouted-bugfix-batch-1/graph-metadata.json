@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged. An 8-agent scout enumerated 40 candidate deep-research targets; the top 5 carried the highest risk: two shell scripts with command-injection / unguarded `rm -rf` exposure, an IPC socket server missing the path-confinement hardening its sibling already had, and two MCP-server bugs (a `close()` that could block on a non-cancellable backoff sleep, and a multi-batch index scan with no lease heartbeat). Two of the five had been headlined as \"pre-try lease leaks,\" but that framing was unverified — acting on it directly risked fixing a defect that did not exist while missing the real one.",
+    "causal_summary": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged",
     "created_at": "2026-06-03T05:32:00Z",
-    "last_save_at": "2026-06-05T12:47:33.196Z",
+    "last_save_at": "2026-06-23T03:49:52.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d0a2c7901435e48cb888b00da4c1668fae7b5d6a2687045f84f1c4cb67ee1d57",
+    "source_doc_hashes": {
+      "spec.md": "104728d112b1f628176dd364710ec116f9bcd9521c3e960cef18d27ab96a747b",
+      "plan.md": "4aaf8ce7de12f3896b8fd1bb268e85116e4a328059f5384bea3a994fc640226e",
+      "tasks.md": "ac95dbf1d2bc35c3d9822929bf4e7f6edc1e6e5e13faa136cfb2b5a5bf8ecea6",
+      "checklist.md": "0f0b9a0c897030d6561a6434085c8e6c65aecb7c0274c59c2c436a4fde95b431",
+      "implementation-summary.md": "b78569a634bcfe63ea418242b27c3a8ab6e94393c9e79f9b6a3c0d2eb5f3fd8c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

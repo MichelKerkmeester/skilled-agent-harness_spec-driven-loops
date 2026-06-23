@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
-  "description": "Feature Specification: system-code-graph Deferred Follow-on",
+  "description": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real pr",
   "keywords": [
-    "feature",
-    "specification",
-    "system-code-graph",
-    "deferred",
-    "follow-on"
+    "packet",
+    "038",
+    "successfully",
+    "closed",
+    "verified",
+    "findings",
+    "037",
+    "20-iter",
+    "deep-review",
+    "p0-1",
+    "docs",
+    "p0-2",
+    "parallel-agent",
+    "path-1",
+    "real"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.188Z",
+  "lastUpdated": "2026-06-23T03:49:56.831Z",
   "specId": "007",
   "folderSlug": "039-system-code-graph-deferred-followon",
   "parentChain": [

@@ -1,15 +1,25 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
-  "description": "Feature Specification: Code Graph Backend Resilience",
+  "description": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdown",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
+    "007",
+    "resilience-research",
+    "packet",
+    "identified",
+    "five",
+    "concrete",
     "backend",
-    "resilience"
+    "resilience",
+    "gaps",
+    "produced",
+    "design-ready",
+    "patch",
+    "plans",
+    "iter",
+    "8-12",
+    "markdown"
   ],
-  "lastUpdated": "2026-05-26T17:25:55.893Z",
+  "lastUpdated": "2026-06-23T03:49:55.903Z",
   "specId": "003",
   "folderSlug": "code-graph-backend-resilience-implementation",
   "parentChain": [

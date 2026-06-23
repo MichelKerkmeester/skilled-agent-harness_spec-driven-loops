@@ -25,9 +25,9 @@
       "spec",
       "folder",
       "naming",
-      "phase-parent",
-      "control",
-      "surface"
+      "xce-research-based-refinement",
+      "just",
+      "launched"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -100,14 +100,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit the 027 phase-parent control surface and child-phase scaffolding for traceability and maintainability, reporting structural drift, naming issues, and misalignment with 026. READ-ONLY review.",
+    "causal_summary": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-06-22T18:55:01.972Z",
+    "last_save_at": "2026-06-23T03:49:53.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:a7f30d53ddc35aebcf0f2ba29f37f7a3494c20f7d5b965b1f74beaa9c2f2b2e8",
+    "source_doc_hashes": {
+      "spec.md": "b5829a136ad7629fb77fd826e9cfce2507e9f3aef3777c8a416fdb1efe864945"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

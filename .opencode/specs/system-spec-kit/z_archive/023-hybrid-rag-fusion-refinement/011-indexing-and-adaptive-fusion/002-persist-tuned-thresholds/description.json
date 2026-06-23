@@ -1,15 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
-  "description": "Feature Specification: Phase 2 — Persist Tuned Thresholds",
+  "description": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`, `minSignalsForProm",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "persist",
-    "tuned",
-    "thresholds"
+    "tuneadaptivethresholdsafterevaluation",
+    "adaptive-ranking",
+    "stores",
+    "adjusted",
+    "thresholds",
+    "maxadaptivedelta",
+    "signalweights",
+    "minsignalsforprom"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.159Z",
+  "lastUpdated": "2026-06-23T03:50:00.501Z",
   "specId": "002",
   "folderSlug": "persist-tuned-thresholds",
   "parentChain": [

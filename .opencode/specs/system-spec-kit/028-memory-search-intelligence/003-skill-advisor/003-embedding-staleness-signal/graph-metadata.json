@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor has a load-time staleness blind spot. Its WRITE path is already embedder-aware, `refreshSkillEmbeddingsViaAdapter` skips a re-embed only when `vec_model_id === modelId && vec_content_hash === contentHash` and fails fast on an adapter-vs-active-pointer dim mismatch (`skill-graph-db.ts` per-row guard + `:599-600` `providerModelId` signature builder, plus columns `embedding_model_id`/`embedding_content_hash` at `:187,:348-352`). But the READ/projection boundary the scorer actually consumes carries no embedder signature at all: `loadSqliteProjection` builds the in-memory `AdvisorProjection` and stamps `generatedAt: new Date().toISOString()` at load (`projection.ts:315`, same load-time stamp at `:328,:375,:413`). Because `generatedAt` is recomputed to *now* on every load, any embedder-version drift between the stored vectors and the active embedder is masked, and the `semantic_shadow` lane (`semantic-shadow.ts`, exact cosine over the cached rows) silently consumes vectors produced by a superseded embedder whenever a refresh has not run or only partially ran, with no detection and no repair signal. This is the same \"stable source / stale derived artifact\" family as the Memory and Code-Graph staleness gaps, but on the advisor's derived projection. **[CONFIRMED, `projection.ts:315`, `skill-graph-db.ts:187/348-352/599-600` read directly, research `../research/from-006-sibling-revisit/research.md:80`, synthesis `01-go-candidates.md:36` & `04-sibling-and-cross-cutting.md:15`]**",
+    "causal_summary": "The Skill Advisor has a load-time staleness blind spot",
     "created_at": "2026-06-19T08:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.745Z",
+    "last_save_at": "2026-06-23T03:49:58.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:15ace60fcdffb2bd18d7e37b2d7713844a64642a203cfdf21a55c68d6743e769",
+    "source_doc_hashes": {
+      "spec.md": "3ecb092e85559600ec186049ec36f75fa4a6ec9446bb82e7e312ee43da230eb4",
+      "plan.md": "5f832dd28ab67a54b6b99590a006b22b81121ff7af08529ccb8517c1b1ea07c1",
+      "tasks.md": "02ebaca7cf45e198879b9acb23d28acd0ae64c40f9aee6933b71849a01c20134",
+      "checklist.md": "630899f6063b4f3e12f1b4db594272380391b3bd15720bcfa46108de2f15cee6",
+      "implementation-summary.md": "eda48998f74c525ca96af827bc4e3b2774ffdc832e5548067a5c29481c98f336"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

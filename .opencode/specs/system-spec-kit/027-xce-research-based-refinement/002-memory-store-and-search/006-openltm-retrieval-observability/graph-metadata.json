@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "OpenLTM-derived observability phase. Both OpenLTM and our store are single-user and local, so the value is design, not scale. OpenLTM's recall is weaker than ours (it does keyword-first candidate generation; we run fused vector/BM25/FTS/graph/trigger search with FSRS), so we adopt **observability**, not its ranking. The hard constraint from research phase 010 is the storage-model difference: our memories are authored documents, so every surface here keys to a **document path/anchor**, never an OpenLTM-style memory row ID.",
+    "causal_summary": "Memory retrieval is hard to inspect",
     "created_at": "2026-06-08T15:10:29Z",
-    "last_save_at": "2026-06-10T13:07:04.710Z",
+    "last_save_at": "2026-06-23T03:49:57.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a87531d2f423c4be20b98c0008a2540db15d8f112847c98524d124d327a7bc49",
+    "source_doc_hashes": {
+      "spec.md": "fe40901b73a9ceefa019c11b5fdbeb95205f7090c151040c64e8c92c1f231aff",
+      "plan.md": "ad14f40e99d2a52ac67681112b93f7a8793a8e0ead4868e96372a7344bc48460",
+      "tasks.md": "15a8b1c25074b806c598e410dc897c96ab17d9609133044d002e51aa53f2f435",
+      "implementation-summary.md": "742ead789a842d9ac60eeebb76acb1d83ac1156a062e41b60dde11e879f56431"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

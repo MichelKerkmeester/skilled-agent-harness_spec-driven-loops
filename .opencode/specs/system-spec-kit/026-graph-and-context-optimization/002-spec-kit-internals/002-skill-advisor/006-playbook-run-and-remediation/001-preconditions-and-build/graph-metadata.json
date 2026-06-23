@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` flag, and evidence workspaces before any scenario can run. The CLI-delegated waves additionally require `cli-devin` and `cli-opencode` to be installed and authenticated. None of this had been confirmed for the current session.",
+    "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces before any scenario can run",
     "created_at": "2026-05-26T20:10:23.387Z",
-    "last_save_at": "2026-06-08T17:32:20.865Z",
+    "last_save_at": "2026-06-23T03:49:53.648Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:59f170cba7f00f81f37d76799fe98e2e0c678ec9ca5510fb239c775f69e1797d",
+    "source_doc_hashes": {
+      "spec.md": "1fa56db2aca88852bcec500c05c9547efbd519a50dbb18fb29c1a4a3544c5653",
+      "plan.md": "701cfbd8855e77a3c5182f5a78f66d60f1f2a7dcf8202fcf1925fc130516a85f",
+      "tasks.md": "87448fd3db23a10df292319e9c337122af2f21d96a8dbecf2c6e727d526e9d18",
+      "checklist.md": "ff4ca27818b0bd7fcabfe2675d75a3c4b277b99e369da2483ebf2473a9ef6a1e",
+      "implementation-summary.md": "a564cc4e76121648431ef04d4c4611be5ebef07b079179011d6dd7e82e643d65"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

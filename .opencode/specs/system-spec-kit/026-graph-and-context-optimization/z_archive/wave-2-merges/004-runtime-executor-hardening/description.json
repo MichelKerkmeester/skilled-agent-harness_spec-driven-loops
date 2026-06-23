@@ -9,15 +9,25 @@
     "layout": "phase-root-children"
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
-  "description": "Feature Specification: Runtime Executor Hardening",
+  "description": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse",
   "keywords": [
-    "feature",
-    "specification",
-    "runtime",
-    "executor",
-    "hardening"
+    "first",
+    "consolidation",
+    "preserved",
+    "old",
+    "packets",
+    "behind",
+    "extra",
+    "archive",
+    "layer",
+    "made",
+    "active",
+    "phase",
+    "surface",
+    "harder",
+    "browse"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.832Z",
+  "lastUpdated": "2026-06-23T03:49:56.620Z",
   "specId": "004",
   "folderSlug": "runtime-executor-hardening",
   "parentChain": [

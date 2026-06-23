@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
-  "description": "Feature Specification: manual-testing-per-playbook discovery phase",
+  "description": "Phase 003 discovery scenarios must be executed from scratch",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
+    "phase",
+    "003",
     "discovery",
-    "phase"
+    "scenarios",
+    "must",
+    "executed",
+    "scratch"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.221Z",
+  "lastUpdated": "2026-06-23T03:50:00.232Z",
   "specId": "003",
   "folderSlug": "discovery",
   "parentChain": [

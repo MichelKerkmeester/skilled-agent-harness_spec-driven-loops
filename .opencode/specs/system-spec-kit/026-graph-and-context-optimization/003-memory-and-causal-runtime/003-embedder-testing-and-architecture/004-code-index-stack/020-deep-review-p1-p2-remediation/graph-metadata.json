@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression. These findings affect fresh installs, operator rollback instructions, reranker stability, benchmark reproducibility, and trust in search quality evidence.",
+    "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression",
     "created_at": "2026-05-19T17:59:30Z",
-    "last_save_at": "2026-05-30T10:12:02.314Z",
+    "last_save_at": "2026-06-23T03:49:54.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:535ef033aba7d874a7037ed9cdbe1d8e89fbc11dc7784af3d695aff754985ad0",
+    "source_doc_hashes": {
+      "spec.md": "dda5d9ec2b712b8496743e266795161db8815754975610a6f02d07f15219dc39",
+      "plan.md": "f959b9ef72af691b39bb72de7934c2e0b2cfd334c42870ef9d65ea7d85cb4801",
+      "tasks.md": "f0923ed91d61f2287f1e9b63f1080e8db9606b5e284e4bd3afe1b985f57a3198",
+      "checklist.md": "6847995721a8650ec8005d857688e6316984d88eac5209059efd516ea58cf711",
+      "decision-record.md": "952d9eef3f1729c7f8b5de9956e9c319b00def25ccb03f18f6fa928bb40ba315",
+      "implementation-summary.md": "163829e06f1a1da3d2ceddbdaa8e2478c15fef4da433fa5346b9dc4c2bff6dc7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

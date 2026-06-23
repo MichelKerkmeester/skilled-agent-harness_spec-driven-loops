@@ -1,16 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/023-context-preservation-metrics",
-  "description": "Feature Specification: Phase 023 — Context Preservation Metrics",
+  "description": "We needed a way to measure how well session context survives across runtimes instead of relying on parity claims and anecdotal failures",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "023",
+    "needed",
+    "way",
+    "measure",
+    "well",
+    "session",
     "context",
-    "preservation",
-    "metrics"
+    "survives",
+    "across",
+    "runtimes",
+    "instead",
+    "relying",
+    "parity",
+    "claims",
+    "anecdotal",
+    "failures"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.804Z",
+  "lastUpdated": "2026-06-23T03:50:00.733Z",
   "specId": "023",
   "folderSlug": "context-preservation-metrics",
   "parentChain": [

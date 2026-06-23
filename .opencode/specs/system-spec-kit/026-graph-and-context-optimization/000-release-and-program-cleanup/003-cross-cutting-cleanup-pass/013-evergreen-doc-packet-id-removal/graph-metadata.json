@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Evergreen docs were carrying mutable packet and phase references. Those references rot when packet folders are renumbered, archived, or consolidated, even though the runtime behavior they describe remains current.",
+    "causal_summary": "Evergreen docs were carrying mutable packet and phase references",
     "created_at": "2026-04-29T20:05:00.000Z",
-    "last_save_at": "2026-06-12T04:40:47.041Z",
+    "last_save_at": "2026-06-23T03:49:52.311Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:9b72151a49cc65bf9cc2fb56cbc65d473d5ca2bb64bfba9a6440d0701fb27ec0",
+    "source_doc_hashes": {
+      "spec.md": "67305cdff4d23fa2690ea70fdbd79cd2383e3176ca01dd8ec1f928353d9888f7",
+      "plan.md": "2ccf279da2daf6c1a92baf551b6e9d6d96bd722cdf1f890cddbafeb664a8a0f8",
+      "tasks.md": "8a23cd069d5b24531af6d66a6377227d7beb332c596cf6c685326d504b22e478",
+      "checklist.md": "772d1163495cc022b697103d83a2a85b5f0dd2078d67fd01f6b83dca794e7247",
+      "implementation-summary.md": "1fb49a6db5bc99a680be9edcf26b71c7a12051e796bec5b6a9746beca68253c5",
+      "resource-map.md": "f87f217f3f732ed8e6c503e66e284011800d035dbbebd6ed4b6171ab9cb61bbb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

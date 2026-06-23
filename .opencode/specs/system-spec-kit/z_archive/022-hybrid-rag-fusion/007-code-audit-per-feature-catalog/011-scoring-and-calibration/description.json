@@ -1,15 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/011-scoring-and-calibration",
-  "description": "Feature Specification: Code Audit — Scoring and Calibration",
+  "description": "The feature catalog for Scoring and Calibration has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
+    "catalog",
     "scoring",
-    "calibration"
+    "calibration",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.247Z",
+  "lastUpdated": "2026-06-23T03:49:59.844Z",
   "specId": "011",
   "folderSlug": "scoring-and-calibration",
   "parentChain": [

@@ -1,12 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/003-unified-graph-retrieval",
-  "description": "Feature Specification: 003-unified-graph-retrieval",
+  "description": "The current server contains useful graph-related signals, but they are distributed across subsystems and do not form one coherent retrieval path",
   "keywords": [
-    "feature",
-    "specification",
-    "003-unified-graph-retrieval"
+    "current",
+    "server",
+    "contains",
+    "useful",
+    "graph-related",
+    "signals",
+    "distributed",
+    "across",
+    "subsystems",
+    "form",
+    "one",
+    "coherent",
+    "retrieval",
+    "path"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.104Z",
+  "lastUpdated": "2026-06-23T03:49:59.939Z",
   "specId": "003",
   "folderSlug": "unified-graph-retrieval",
   "parentChain": [

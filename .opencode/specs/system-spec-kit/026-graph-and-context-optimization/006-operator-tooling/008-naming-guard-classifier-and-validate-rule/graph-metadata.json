@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape, where a track-root slug starts with an existing phase-parent's 3-digit number), and nothing in the toolchain detects this. The motivating defect was Write-created, not `create.sh`-created, so the only path-independent detection point is `validate.sh`. The prior broad embedded-number heuristic also false-positived on legitimate shapes like `003-skill-advisor-render-103-alignment` and `009-p2-032-cleanup`.",
+    "causal_summary": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape, where a track-root slug starts with an existing phase-parent's 3-digit number), and nothing in the toolchain detects this",
     "created_at": "2026-06-06T08:49:08.130Z",
-    "last_save_at": "2026-06-06T08:49:08.130Z",
+    "last_save_at": "2026-06-23T03:49:56.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9e12627563a8950b9ce2fcce16a371a5a2ba13410c661cb9033c0bc8b5e47964",
+    "source_doc_hashes": {
+      "spec.md": "b44b93171cc14b0c67cf6d7b2b381e84a72a959e079aa06819ab00af1ab91cab",
+      "plan.md": "32d808d8cfbbeea85015ec29c08cb92720d30dc7d8e2fa0e6339fc59a1b715ff",
+      "tasks.md": "283f21eaef22bcfbf0fabd54c9007624d5aefc1a667ab85ae8c09d3ed7e5dab1",
+      "checklist.md": "aa7d62d6a8d9003a374f17106c1b7bdda2b7199d6c7957cd9d3f25fce332718d",
+      "implementation-summary.md": "e488fd3a72dfe25610da636c6d692a4c66afb62f16dd35645e1eb5854c9dcad0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
-  "description": "Feature Specification: Doc Accuracy Remediation",
+  "description": "The doc-accuracy iteration (iteration 9) was the largest confirmed-P1 spike in the review, landing in the second-to-last deep-dive iteration",
   "keywords": [
-    "feature",
-    "specification",
-    "doc",
-    "accuracy",
-    "remediation"
+    "doc-accuracy",
+    "iteration",
+    "largest",
+    "confirmed-p1",
+    "spike",
+    "review",
+    "landing",
+    "second-to-last",
+    "deep-dive"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.326Z",
+  "lastUpdated": "2026-06-23T03:49:58.827Z",
   "specId": "003",
   "folderSlug": "doc-accuracy",
   "parentChain": [

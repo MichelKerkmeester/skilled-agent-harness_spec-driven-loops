@@ -22,8 +22,8 @@
       "system-spec-kit",
       "mcp",
       "server",
-      "review-scope",
-      "target"
+      "scope",
+      "subsystem"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -109,14 +109,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Independent gpt-5.5 deep-review **audit** of the search/retrieval code of the system-spec-kit MCP server. This is a REVIEW-SCOPE target — there is NO new implementation to verify. Audit the shipped code below for real defects and report P0/P1/P2 findings with `file:line` evidence. Do not invent findings; a clean PASS is a valid outcome.",
+    "causal_summary": "Independent gpt-5.5 deep-review audit of the search/retrieval code of the system-spec-kit MCP server",
     "created_at": "2026-06-22T18:55:03.565Z",
-    "last_save_at": "2026-06-22T18:55:03.565Z",
+    "last_save_at": "2026-06-23T03:49:58.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:5a65a208d7ad415545e44c008c2c64127dd952ffbfc855c93b99830e3c718147",
+    "source_doc_hashes": {
+      "spec.md": "c91306d3e94d73a7b0606bcc5e9d3069e17ef7357cc2713170e46c3b0c9488d4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon. Its pure helpers (`cleanCloseAfterReap`, `uncleanShutdownMarkerPath`) are unit-tested, but the reap orchestration itself — SIGTERM, the SIGKILL escalation, and the marker-based clean-close determination — had zero live coverage. The only real-process launcher suite (`launcher-lease.vitest.ts`) is entirely `describe.skip`'d as a \"known launcher process lifecycle flake,\" so the safety-critical path was untested.",
+    "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon",
     "created_at": "2026-05-30T19:47:42.617Z",
-    "last_save_at": "2026-06-22T18:55:03.021Z",
+    "last_save_at": "2026-06-23T03:49:56.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5692a99d03f644202f897194cc6a65937345e999b759a7c94e4b6052449a4363",
+    "source_doc_hashes": {
+      "spec.md": "60b766ceec3e99fad45432cbcb85127a1e136eac5fc5996462fcf0c61d13bf8c",
+      "plan.md": "87bcacaa1d38d898bbabc1c4cd8c707ae1cd20fb8b6532771ca197bcd4416f77",
+      "tasks.md": "a90e92a153d5ffaea79d68763da8ac621251b6ab1512954149b5c1dfc26dea82",
+      "checklist.md": "17f0a60604517dc56c64745f911b46acbcd307464efd4d276a10c10d6df4acbe",
+      "implementation-summary.md": "90863c62552ee1a6e6c74b151411b4cd63b202c8806d03bcc078f9b4f811cc70"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

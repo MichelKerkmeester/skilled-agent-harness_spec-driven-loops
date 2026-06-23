@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Dynamic session capture reconstructs context from runtime databases after the fact. That heuristic repeatedly selected the wrong transcript, produced contaminated memory files, and failed even after multiple rounds of follow-up research and fixes. A production wrong-session capture proved the routine save path was still not trustworthy.",
+    "causal_summary": "Dynamic session capture reconstructs context from runtime databases after the fact",
     "created_at": "2026-04-12T09:02:50.280Z",
-    "last_save_at": "2026-05-30T10:12:03.325Z",
+    "last_save_at": "2026-06-23T03:50:00.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f9bc46303bbd70ad53b4ff3bf716169f0336129afe3e5ca0d8e1a61169afe7e7",
+    "source_doc_hashes": {
+      "spec.md": "ce12a08e38fdaead96922a1972e5f311ca6c5a64ffed2ad7cbbd9229c4d9f353",
+      "plan.md": "a4db711340df426b4d067d9652f35368768de08a888be3c9b7fe72b975b77c33",
+      "tasks.md": "39c5c2dbd93b822189368d300829eced5d94d2d1cdf92f36a2eeebafe507fbc8",
+      "checklist.md": "c83983f4355e63b4036b10c205e6f3580d302f8e1485bdde969364b2bc67acd5",
+      "implementation-summary.md": "ba86f761a1aa4146e2c748d90ae6ecda94bf43be1163e217ad211c7a4e0930e5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

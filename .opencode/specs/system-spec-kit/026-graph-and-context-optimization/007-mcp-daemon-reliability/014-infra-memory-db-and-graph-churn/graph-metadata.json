@@ -81,14 +81,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two live-infra issues degrade the spec-memory subsystem. The MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on the memory write and index paths after an unclean shutdown corrupts on-disk FTS state, and the daemon rewrites hundreds of `graph-metadata.json` `last_save_at` timestamps repo-wide on nearly every save, burying real changes in working-tree noise.",
+    "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-05-30T08:17:54.064Z",
-    "last_save_at": "2026-06-08T17:32:21.329Z",
+    "last_save_at": "2026-06-23T03:49:56.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:68e9fc686af5183f7385fc68585a43b31322eb05d94df28e517278e40c7a6c74",
+    "source_doc_hashes": {
+      "spec.md": "11d72476d8abf79f97c6a97c39f0b3aa8ba14477cee77690fd968d56bc8f7833"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

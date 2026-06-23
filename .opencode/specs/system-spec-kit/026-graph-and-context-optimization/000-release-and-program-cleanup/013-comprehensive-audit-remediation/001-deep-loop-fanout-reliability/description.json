@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability",
-  "description": "Feature Specification: Phase 1: deep-loop-fanout-reliability",
+  "description": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "deep-loop-fanout-reliability"
+    "deep-loop",
+    "fan-out",
+    "runner",
+    "reported",
+    "failed",
+    "timed-out",
+    "cli",
+    "lineages",
+    "successes",
+    "worker",
+    "returned",
+    "result",
+    "object",
+    "instead",
+    "throwing"
   ],
-  "lastUpdated": "2026-06-04T21:14:22.592Z",
+  "lastUpdated": "2026-06-23T03:49:53.028Z",
   "specId": "001",
   "folderSlug": "deep-loop-fanout-reliability",
   "parentChain": [

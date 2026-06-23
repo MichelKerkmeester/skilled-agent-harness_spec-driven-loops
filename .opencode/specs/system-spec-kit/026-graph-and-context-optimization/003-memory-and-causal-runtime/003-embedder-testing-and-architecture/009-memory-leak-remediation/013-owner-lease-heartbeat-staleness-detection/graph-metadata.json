@@ -25,11 +25,11 @@
       "007",
       "owner-lease",
       "gap",
-      "memory-leak",
-      "remediation",
-      "arc",
-      "discovered",
-      "closure"
+      "classifyowner",
+      "returns",
+      "live-owner",
+      "owner",
+      "whose"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 013 of the memory-leak remediation arc. Gap discovered during arc 009 closure (commit `8b84612f12`) when mk_code_index MCP reconnect failed with `-32000`. Investigation:",
+    "causal_summary": "Phase 007's `classifyOwner` returns `live-owner` for any owner whose PID is alive, regardless of heartbeat freshness",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.466Z",
+    "last_save_at": "2026-06-23T03:49:55.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3160ec724778aed94b74482f50d15f7be00aaa0fd466928cc28a25a74afaad02",
+    "source_doc_hashes": {
+      "spec.md": "fbea1c572f7f87bb2cd54562239c290dfd759a3f305f2dddfa76e32ac5ab0814",
+      "plan.md": "0eb4f7d936dc8887b48fc3933894711755b0c93a84c2153d3f445d89131e9e0a",
+      "tasks.md": "44f86f0dcd2ee4b2118ccbb98ed12e1c58a44e259529ec3bff6562d79942d528",
+      "implementation-summary.md": "5d8fc163096fb202dfe8c85bf4b604bf0ee3e9068d1c7acb745bfdab2118a157"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

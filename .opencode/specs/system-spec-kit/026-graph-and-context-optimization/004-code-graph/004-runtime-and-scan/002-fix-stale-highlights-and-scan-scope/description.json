@@ -1,17 +1,17 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
-  "description": "Feature Specification: Code Graph Context + Scan Scope Remediation",
+  "description": "Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
-    "context",
-    "scan",
-    "scope",
-    "remediation"
+    "investigation",
+    "2026-04-23",
+    "read-only",
+    "codex",
+    "pass",
+    "surfaced",
+    "three",
+    "findings"
   ],
-  "lastUpdated": "2026-05-26T17:26:30.029Z",
+  "lastUpdated": "2026-06-23T03:49:55.851Z",
   "specId": "002",
   "folderSlug": "fix-stale-highlights-and-scan-scope",
   "parentChain": [

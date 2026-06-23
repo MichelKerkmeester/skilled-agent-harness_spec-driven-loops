@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add `fallbackDecision: { nextTool, reason, retryAfter }` to all blocked/degraded code-graph read payloads. Preserve `allowInlineFullScan:false` (no inline full scans on read paths). Make the operator action obvious instead of weakening the boundary.",
+    "causal_summary": "006 stress-test recorded 249.8s spent on `cli-opencode` Q1 because the structural code-graph was empty/stale; the read path correctly blocked but the caller did not know to run `codegraphscan` first",
     "created_at": "2026-04-27T07:48:04.873Z",
-    "last_save_at": "2026-06-05T12:47:33.084Z",
+    "last_save_at": "2026-06-23T03:49:52.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:50dfc2a77ffe3c5d435def3d9e68ed0abffba54fc2783d54d7ab5852a1b89efe",
+    "source_doc_hashes": {
+      "spec.md": "fcd0af10600cd981766428e07a06a8657cc09c475b4569af64ff4db713d67d58",
+      "plan.md": "35b4d7a14ffda6e3d09311f255ae40dbe2825d96ef331ceb27308f41894d029b",
+      "tasks.md": "0e4a1d103e79197647af02198b79bf0d2e6af0aa91bf833cf6494cbf6d341bc6",
+      "implementation-summary.md": "8ff1d763f9b4879e9619dcbda9f73c03a5102ba1e4d8112a0e5b330b4203d0e9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

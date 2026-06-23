@@ -32,7 +32,7 @@
       "checklist",
       "implementation",
       "summary",
-      "meta-phase"
+      "completing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "META-PHASE synthesizing remediation needs identified across all 20 preceding audit phases. This phase collects cross-cutting catalog hygiene issues, classifies them by severity, and tracks their resolution. The original zero-MISMATCH baseline is superseded by the re-audit/deep-review state: 222 audited features, 133 MATCH, 84 PARTIAL, and 5 MISMATCH. Remediation now spans both catalog hygiene and audit/runtime-path drift. Full remediation plan pending — 22 P1 findings documented in `../review-report.md`.",
+    "causal_summary": "After completing 20 feature-category audit phases covering 220+ features, a set of cross-cutting catalog hygiene issues emerged that require structured remediation",
     "created_at": "2026-04-12T09:02:50.256Z",
-    "last_save_at": "2026-06-22T18:55:04.298Z",
+    "last_save_at": "2026-06-23T03:49:59.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4065777fa13b7602cf446d7538704b867926668b00a37bc0834a53f9a0b63d8f",
+    "source_doc_hashes": {
+      "spec.md": "dcad6d57ee0b9e17285a874196e8c21c7ea0b4b2d4c62e77590bfd03bb75c7b0",
+      "plan.md": "ba3d6e972b92f1dbc2e236d679ccbe37a0739e4b216d776de872b8ee4fb2a1be",
+      "tasks.md": "7cff63b94de1a5797a33cb8fe2a1fbfc76f31f41554c8a10760110cfb0605b48",
+      "checklist.md": "8455ace17368a94b318862b2c6102de4471489a77ae0c84c60b6e3898223f9c0",
+      "implementation-summary.md": "80ae99054fc4bb17b0936746b963a7544853c65ae13baa41f1c6532a1b0c0862"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

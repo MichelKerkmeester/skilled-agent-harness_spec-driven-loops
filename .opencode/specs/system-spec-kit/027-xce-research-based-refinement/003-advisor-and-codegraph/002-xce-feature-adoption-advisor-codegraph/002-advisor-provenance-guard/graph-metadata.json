@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the spec-027 feature adoption into the advisor and code-graph daemons. It hardens the advisor's auto edge-write path against clobbering manually-authored provenance.",
+    "causal_summary": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no manual-protection guard (`lib/cross-skill-edges/apply-graph-metadata-patch.ts:25-29` and `:63-80`)",
     "created_at": "2026-06-10T19:24:09Z",
-    "last_save_at": "2026-06-12T04:40:47.923Z",
+    "last_save_at": "2026-06-23T03:49:57.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:55bf0567b195757b4ee21499d8d248280fcc778bc4303a09cf9b5d1d68cc540c",
+    "source_doc_hashes": {
+      "spec.md": "a26769db334e7c7fad2b1c191c1c935f367da3888e557139786090a64a1b8f6d",
+      "plan.md": "2504002934c977fd85c704ccfec5ca7f3219028c020e741a2334d7341f6689ea",
+      "tasks.md": "39858aede0973a0c7f2da0aa0a4b1c8b5a5696b77ef8409d1d1172544b140c8f",
+      "implementation-summary.md": "e8adbe5ea1fbfc53f75960da02609a2e7b9316ed6647536de08a457245d80e2d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

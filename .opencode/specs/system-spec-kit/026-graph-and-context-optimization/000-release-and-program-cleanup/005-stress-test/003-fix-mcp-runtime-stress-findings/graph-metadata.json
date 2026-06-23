@@ -207,15 +207,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memory_context`, `memory_search`, `code_graph_query`, `memory_causal_stats` — that AI assistants depend on for retrieval and grounding. Under realistic CLI load these surfaces had subtle contract gaps: token-budget envelopes that under-reported truncation, code-graph blocked reads with no machine-readable fallback hint, causal-graph relation balance with no per-window cap or skew detection, intent telemetry that could not be aggregated across runtimes, and a `memory_search` weak-quality path that lacked a server-side refusal contract. The combined effect was ungrounded responses, runtime hallucinations, and silent CLI thrashing that the operator could not trace.",
+    "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` — that AI assistants depend on for retrieval and grounding",
     "created_at": "2026-04-27T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.071Z",
+    "last_save_at": "2026-06-23T03:49:52.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:589a0d696e989ba69058b59d3841afedfc86e8f14b47d0e5ace23f22d797f16e",
+    "source_doc_hashes": {
+      "spec.md": "c8391354341bcebeb37c8cddb0c66a247bf1fec1be710f9af41e66eff0b45a99",
+      "resource-map.md": "330903a9887d488d8dab5ff941f878c3b9dcbe6f14e55c5e316dbb4d3cbd9fe9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

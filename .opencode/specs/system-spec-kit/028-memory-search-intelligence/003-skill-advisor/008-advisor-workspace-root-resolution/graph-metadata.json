@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill advisor persists a `skill-graph-generation.json` under `.opencode/skills/.advisor-state/`. Both the startup scan and the daemon initialization resolved the target with `process.cwd()`. When an `opencode run` or advisor hook fired with a subdirectory as its working directory (for example the embedded `sk-design-md-generator/tool/`, which is its own npm project), the advisor wrote `<subdir>/.opencode/skills/.advisor-state/` and created a stray nested `.opencode` tree.",
+    "causal_summary": "The skill advisor wrote its generation state to <cwd>/.opencode/skills/.advisor-state whenever it ran with a subdirectory as the working directory, creating stray nested .opencode trees across the repo. Resolve the workspace root deterministically from the module location instead of process.cwd().",
     "created_at": "2026-06-21T15:40:00Z",
-    "last_save_at": "2026-06-22T18:55:03.759Z",
+    "last_save_at": "2026-06-23T03:49:58.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7fb1cfb3f260a5a24c1c96e8a8ec0834e6f9f4d27bb9319c1f236cc9c6460440",
+    "source_doc_hashes": {
+      "spec.md": "3d43571cf2439a8524a5b8fc724f8ed1d56b294db56c72148c0cb4ccc4f0f141",
+      "plan.md": "e24d37b55f295545df1bf66fbe87242f83f2427b6d2c92abb1032a34c07bba36",
+      "tasks.md": "6394d97b7940e1281882a9fdbab483276b19b3286279c94f633c41be1723584a",
+      "checklist.md": "b245e4f02eb276b89b5e65e472ca000856a9f3ea79544e764edb6087b54f0603",
+      "implementation-summary.md": "482816f9a9485ca7e0232b3965f7a658c8b96e1afb6c97bb2295cc608853a94b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
-  "description": "Feature Specification: Ensure rerank sidecar from launchers",
+  "description": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
   "keywords": [
-    "feature",
-    "specification",
-    "ensure",
-    "rerank",
+    "phase",
+    "002",
+    "ships",
+    "runnable",
     "sidecar",
-    "launchers"
+    "mcp",
+    "launcher",
+    "knows",
+    "start",
+    "attach"
   ],
-  "lastUpdated": "2026-05-26T17:28:19.348Z",
+  "lastUpdated": "2026-06-23T03:49:54.985Z",
   "specId": "003",
   "folderSlug": "ensure-sidecar-from-launchers",
   "parentChain": [

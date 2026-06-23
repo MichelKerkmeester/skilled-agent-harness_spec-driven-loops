@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the semantic trigger fallback decomposition (parent `004-semantic-trigger-fallback`).",
+    "causal_summary": "With cached trigger embeddings available, the system still needs a similarity matcher to score a prompt embedding against trigger embeddings",
     "created_at": "2026-06-06T13:35:45Z",
-    "last_save_at": "2026-06-22T18:55:03.305Z",
+    "last_save_at": "2026-06-23T03:49:57.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b5bc574edc0966888d39f1998204b50fbe5adf7474e326edcfd35410a4698cb1",
+    "source_doc_hashes": {
+      "spec.md": "2220810618d031771f57a5ec5c6f74a41c46256765ba34513a64e32a466e1acb",
+      "plan.md": "79ab5833d9cc001afe23df6eb5255958f822539235146ecba4058a634999734c",
+      "tasks.md": "4032bc1a3a2bf368cafcfdfe1645ec149ccaa49bab0d979ca04f5ebeeb103e88",
+      "checklist.md": "dd0a4e8c5449f79e45add7f1a2419f5dfa0c5ef01e4a177c07985fa3e3e49f39",
+      "implementation-summary.md": "5699856edf87d56a1f64e1964f05dfc33db4d3e8fd13c7aee766c609cc9dea0e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

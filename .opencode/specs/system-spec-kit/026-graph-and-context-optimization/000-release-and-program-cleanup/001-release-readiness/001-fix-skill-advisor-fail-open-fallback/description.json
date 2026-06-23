@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback",
-  "description": "Feature Specification: Skill-Advisor Release Remediation",
+  "description": "The 008/002-skill-graph-daemon-native-advisor-tools deep review surfaced three release-blocker correctness/security/traceability gaps and 15 P2 adviso",
   "keywords": [
-    "feature",
-    "specification",
-    "skill-advisor",
-    "release",
-    "remediation"
+    "008",
+    "002-skill-graph-daemon-native-advisor-tools",
+    "deep",
+    "review",
+    "surfaced",
+    "three",
+    "release-blocker",
+    "correctness",
+    "security",
+    "traceability",
+    "gaps",
+    "adviso"
   ],
-  "lastUpdated": "2026-05-26T17:27:33.462Z",
+  "lastUpdated": "2026-06-23T03:49:52.053Z",
   "specId": "001",
   "folderSlug": "fix-skill-advisor-fail-open-fallback",
   "parentChain": [

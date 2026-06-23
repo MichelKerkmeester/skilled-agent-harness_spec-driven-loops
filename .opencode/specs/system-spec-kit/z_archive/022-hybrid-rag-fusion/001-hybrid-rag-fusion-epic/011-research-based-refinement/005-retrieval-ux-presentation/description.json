@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
-  "description": "Feature Specification: Retrieval UX & Result Presentation",
+  "description": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retri",
   "keywords": [
-    "feature",
-    "specification",
-    "retrieval",
-    "result",
-    "presentation"
+    "add",
+    "empty-result",
+    "recovery",
+    "two-tier",
+    "explainability",
+    "mode-aware",
+    "response",
+    "shapes",
+    "per-result",
+    "calibrated",
+    "confidence",
+    "progressive",
+    "disclosure",
+    "retri"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.176Z",
+  "lastUpdated": "2026-06-23T03:49:59.738Z",
   "specId": "005",
   "folderSlug": "retrieval-ux-presentation",
   "parentChain": [

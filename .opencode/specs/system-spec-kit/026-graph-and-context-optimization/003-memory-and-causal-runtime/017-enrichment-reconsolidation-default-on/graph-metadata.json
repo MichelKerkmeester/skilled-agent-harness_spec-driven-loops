@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Three save-time \"planner-first\" features ship behind opt-in flags that default to OFF",
     "created_at": "2026-06-04T04:55:00Z",
-    "last_save_at": "2026-06-05T12:47:34.010Z",
+    "last_save_at": "2026-06-23T03:49:55.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:85c77878ce53dce5aa55638ed17834875655885f2366d8397507498b80721708",
+    "source_doc_hashes": {
+      "spec.md": "d909b4c9cf38fbc1dddb5327297d63f68db06e34bf338e286fe2c919b239e63f",
+      "plan.md": "862e7ebe9c05fa8858aa895b02805298a2e87c5d509cabcdeefcd95e49b2eeca",
+      "tasks.md": "26dc81dce28438f089df2afbd192a6ee19c62997f5e8df1b2c1d1f8b2e0af510",
+      "checklist.md": "358447d334990bdd26dbb724a79bc057221ae001ce14090c565b437283e7df3c",
+      "implementation-summary.md": "5979e9e9df22f1e1cd4339ec98835fb65e82942819b1aabd98339cf93dac8ed6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

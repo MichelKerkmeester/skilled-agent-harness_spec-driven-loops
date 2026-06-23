@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete. While 14 existing test files cover ~1,027 tests, critical gaps remain:",
+    "causal_summary": "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete",
     "created_at": "2026-04-12T09:02:53.549Z",
-    "last_save_at": "2026-06-15T09:09:34.927Z",
+    "last_save_at": "2026-06-23T03:49:59.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1d1aac2d4a106be31d23a86c35ff1146fda390c1faf63df72bd67fbd13da4bcf",
+    "source_doc_hashes": {
+      "spec.md": "a16f97a55f15439f275331391ea92073dc3625c2ba31d66fc0d3fe2dd613ac03",
+      "plan.md": "2787f2618684b79a467ce41320dca89c276d448a9e11af21561e20ec5c841e09",
+      "tasks.md": "28cb5962ed9207de3db5928da5c28a8689dc971e843cc22e58cfa2a5c5dbb0b1",
+      "checklist.md": "d7ba2cbb32ba0083f790e3c905aa46f58b71450fc7888921ef65644b756e1ee5",
+      "implementation-summary.md": "d5b4b0d8630371f48c4baf940d821bb7719bec8b4bfc69641c4324b7d9493e1d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

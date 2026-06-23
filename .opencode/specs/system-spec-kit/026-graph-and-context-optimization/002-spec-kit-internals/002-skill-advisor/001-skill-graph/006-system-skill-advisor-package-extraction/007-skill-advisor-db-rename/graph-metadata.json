@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`. The advisor scorer DB correctly lives under `.opencode/skills/system-skill-advisor/mcp_server/database/`, but the spec-kit `skill_graph_*` metadata indexer still wrote `skill-graph.sqlite` under `.opencode/skills/system-spec-kit/mcp_server/database/`.",
+    "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`",
     "created_at": "2026-05-14T13:02:30Z",
-    "last_save_at": "2026-06-22T18:55:02.047Z",
+    "last_save_at": "2026-06-23T03:49:53.267Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T13:20:00Z",
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:88a4c5d9847956f9bbe609828ca77a73c54cd235000f6da7626c7393674d4336",
+    "source_doc_hashes": {
+      "spec.md": "406128ae1e3701d0a91c61c85bfa8a6d575a56b9150ed06a95842a8ed28f3b88",
+      "plan.md": "a44355255f6ea64f517e2de1432c0c1ae222e247860f20bbc4a840afe3aea6f8",
+      "tasks.md": "02350989b35bf7f246d250718b2604197c15c67e57eaba50fa20a1420bac2125",
+      "checklist.md": "1a2ff4c33cd60fefbf150af0e7009ac4aefb2eb5f6020fedb84b3965bf742d23",
+      "implementation-summary.md": "f498912ac78dea92beebfc8e5ebf9b7a20695e94a348e2911b04393ae9931d4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

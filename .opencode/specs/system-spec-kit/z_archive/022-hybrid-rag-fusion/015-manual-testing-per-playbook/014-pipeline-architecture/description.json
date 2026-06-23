@@ -1,17 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
-  "description": "Feature Specification: Manual Testing — Pipeline Architecture (Phase 014)",
+  "description": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory aggregatio",
   "keywords": [
-    "feature",
-    "specification",
-    "manual",
-    "testing",
     "pipeline",
     "architecture",
-    "phase",
-    "014"
+    "category",
+    "14-pipeline-architecture",
+    "contains",
+    "features",
+    "spanning",
+    "4-stage",
+    "refactor",
+    "chunk-to-memory",
+    "aggregatio"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.518Z",
+  "lastUpdated": "2026-06-23T03:50:00.299Z",
   "specId": "014",
   "folderSlug": "pipeline-architecture",
   "parentChain": [

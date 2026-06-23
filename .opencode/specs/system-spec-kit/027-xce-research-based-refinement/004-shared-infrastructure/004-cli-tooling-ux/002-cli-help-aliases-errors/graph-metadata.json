@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The three daemon CLI front-doors are inconsistent in discoverability and error recovery. skill-advisor already offers per-command schema help (`skill-advisor-cli.ts:661-674`), but spec-memory always calls the global `usageText()` (`spec-memory-cli.ts:750-755`) and code-index does the same (`code-index-cli.ts:898-903`), so a user must read the giant `list-tools` JSON to learn one command's required args. Command aliasing is uneven: spec-memory maps snake+kebab only (`spec-memory-cli.ts:222-228`), code-index the same (`code-index-cli.ts:241-247`), while skill-advisor adds camel aliases (`skill-advisor-cli-manifest.ts:142-151`). Unknown-command handling emits structured JSON errors in shared catch paths (spec `spec-memory-cli.ts:774-793`, code `code-index-cli.ts:926-945`, advisor `skill-advisor-cli.ts:1111-1130`) but gives no \"try list-tools\" hint and no closest-match suggestion, so a typoed command is slow to recover from.",
+    "causal_summary": "The three daemon CLI front-doors are inconsistent in discoverability and error recovery",
     "created_at": "2026-06-10T20:46:28.784Z",
-    "last_save_at": "2026-06-12T04:40:47.917Z",
+    "last_save_at": "2026-06-23T03:49:57.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6a50c46339bf1344d5adbe43f186cf54b3a2f529e3f6a109e9ec32b5ef298497",
+    "source_doc_hashes": {
+      "spec.md": "8d0d56febf0ec6e8679b16d2fa2446925bd3947e5519210d4d66bbb1b2fb17c4",
+      "plan.md": "3e7b5e3a0cde6d82e7d68f0138f9f39ba631901e632c160bf44c7c45ff310a44",
+      "tasks.md": "950aca82a972116717c26994a9364a4e1a44c0baa0be7b7ce60d9a853a7acbad",
+      "implementation-summary.md": "3d62e95a2ae3360321534c5dde56c12c05081faee3e59df23df4459fe19b84e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

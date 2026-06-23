@@ -1,16 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-  "description": "Feature Specification: Append Nested Child Phases in create.sh",
+  "description": "The phase creation workflow breaks when the parent folder lives inside a nested spec tree such as `system-spec-kit/023-hybrid-rag-fusion-refinement/01",
   "keywords": [
-    "feature",
-    "specification",
-    "append",
+    "phase",
+    "creation",
+    "workflow",
+    "breaks",
+    "parent",
+    "folder",
+    "lives",
+    "inside",
     "nested",
-    "child",
-    "phases",
-    "create"
+    "spec",
+    "tree",
+    "system-spec-kit",
+    "023-hybrid-rag-fusion-refinement"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.308Z",
+  "lastUpdated": "2026-06-23T03:50:00.537Z",
   "specId": "008",
   "folderSlug": "create-sh-phase-parent",
   "parentChain": [

@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/021-ground-truth-id-remapping",
-  "description": "Feature Specification: Ground Truth ID Remapping",
+  "description": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `gr",
   "keywords": [
-    "feature",
-    "specification",
-    "ground",
-    "truth",
-    "remapping"
+    "ablation",
+    "study",
+    "evalrunablation",
+    "produces",
+    "all-zero",
+    "retrieval",
+    "metrics",
+    "recall",
+    "mrr",
+    "precision",
+    "ndcg",
+    "map",
+    "hit",
+    "rate",
+    "because"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.589Z",
+  "lastUpdated": "2026-06-23T03:50:00.383Z",
   "specId": "021",
   "folderSlug": "ground-truth-id-remapping",
   "parentChain": [

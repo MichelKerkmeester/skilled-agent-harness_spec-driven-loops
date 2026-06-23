@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The three hook fallback helpers return inconsistent result envelopes, so agents and plugins handle `skipped`, `fail_open`, `exitCode`, and retryability differently per helper: spec (`hooks/spec-memory-cli-fallback.ts:148-220`), code (`hooks/code-index-cli-fallback.ts:151-220`), advisor (`hooks/lib/skill-advisor-cli-fallback.ts:158-187`). Separately, the spec-memory plugin bridge accepts an arbitrary `toolName` if invoked directly (`plugin_bridges/mk-spec-memory-bridge.mjs:206-230`); in practice the plugin only calls `brief/status`, but there is no explicit guard, unlike the code-index bridge which blocks maintenance tools with a denylist (`plugin_bridges/mk-code-graph-bridge.mjs:18-25` and `:272-282`). That is a defense-in-depth gap on the spec-memory side.",
+    "causal_summary": "The three hook fallback helpers return inconsistent result envelopes, so agents and plugins handle `skipped`, `failopen`, `exitCode`, and retryability differently per helper: spec (`hooks/spec-memory-cli-fallback.ts:148-220`), code (`hooks/code-index-cli-fallback.ts:151-220`), advisor (`hooks/lib/skill-advisor-cli-fallback.ts:158-187`)",
     "created_at": "2026-06-10T20:46:28.786Z",
-    "last_save_at": "2026-06-12T04:40:47.918Z",
+    "last_save_at": "2026-06-23T03:49:57.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dd3b5c3e47032354ec2c653e37f783b45a8d0025677f6e9df33f862362100856",
+    "source_doc_hashes": {
+      "spec.md": "228b3b30fde94ea05beda1c21d412e6d102dad1286c5a2c20fc3f1f769e7a502",
+      "plan.md": "2c715a591bf82b0fe99e1b2c8c4ff8f3c477de9928f9f7dae93cba127f98af76",
+      "tasks.md": "2625b9e94a63814795819dc16f1ff5de2a9386b10a9f3fb99109e094961c9ce2",
+      "implementation-summary.md": "0e05211c53c40cbb57af1de78d5992fb6fa112f3391e8a929b5b943c9aee2054"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

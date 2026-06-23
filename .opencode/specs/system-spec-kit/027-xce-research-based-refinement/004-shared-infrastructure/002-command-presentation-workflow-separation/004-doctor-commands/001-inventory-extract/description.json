@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract",
-  "description": "Feature Specification: Doctor Commands - Inventory and Extract",
+  "description": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-",
   "keywords": [
-    "feature",
-    "specification",
     "doctor",
     "commands",
+    "needs",
+    "scoped",
     "inventory",
-    "extract"
+    "extract",
+    "phase",
+    "presentation",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing",
+    "display"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.780Z",
+  "lastUpdated": "2026-06-23T03:49:57.746Z",
   "specId": "001",
   "folderSlug": "inventory-extract",
   "parentChain": [

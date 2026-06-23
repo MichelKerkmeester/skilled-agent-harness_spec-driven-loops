@@ -153,7 +153,7 @@
     ],
     "causal_summary": "Research upgrading Spec Kit Memory system with ideas and principles from the claude-cognitive repository, adapted for OpenCode's hook-less architecture.",
     "created_at": "2026-04-12T09:02:53.535Z",
-    "last_save_at": "2026-05-30T10:12:03.016Z",
+    "last_save_at": "2026-06-23T03:49:59.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -161,6 +161,12 @@
       "plan.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:e940bb2e2aea8ea5160704e92847ee70c541c137ccb16f9441f8401564f71093",
+    "source_doc_hashes": {
+      "spec.md": "ee101db8f86f4bc3fa9c1a4553f1ddbe24123817fa5c1c61c63e9577649ee056",
+      "plan.md": "88d2682d5714c07b446c15dc04167c6855bffa9b71a93599651e85eef9e981d0",
+      "research/research.md": "da6282302c1de198dbce39d4327db156b9088fd94e256121e4a2fbb8560a1b88"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

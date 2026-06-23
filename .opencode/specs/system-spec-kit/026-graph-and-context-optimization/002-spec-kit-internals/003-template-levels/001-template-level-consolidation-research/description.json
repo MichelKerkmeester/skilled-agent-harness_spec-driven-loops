@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
-  "description": "Feature Specification: Template System Consolidation — Levels and Addendum to Generator",
+  "description": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendu",
   "keywords": [
-    "feature",
-    "specification",
+    "current",
     "template",
     "system",
-    "consolidation",
-    "levels",
-    "addendum",
-    "generator"
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "templates",
+    "accumulated",
+    "files",
+    "13k",
+    "loc",
+    "across",
+    "core",
+    "addendu"
   ],
-  "lastUpdated": "2026-05-26T17:25:48.691Z",
+  "lastUpdated": "2026-06-23T03:49:53.734Z",
   "specId": "001",
   "folderSlug": "template-level-consolidation-research",
   "parentChain": [

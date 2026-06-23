@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-05-30T10:12:03.292Z",
+    "last_save_at": "2026-06-23T03:49:59.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8c79cbb6bb45630c6fecce38e9d9e2681dc58658c0b42039ebc5728b8683ed36",
+    "source_doc_hashes": {
+      "spec.md": "5f7d9b260d6cea4cc864743b1f1c0cb0920c7becf094a93cd925909dd4305e0d",
+      "plan.md": "a7eae6a14ccaf27fd2549db7bd8a24db5dc1bc56d12bf7c73ea75fd4eb925590",
+      "tasks.md": "221b23c88c1e6cfa5d5b2c669aa9500f88f7ff1566f986c27bf3ff99a8a70d2f",
+      "checklist.md": "0d0137e054846895b48ae15f0a7a958b82243b53bc0424c5f08e90b7df8901de",
+      "implementation-summary.md": "ea0d50c7a23efd4b1941ca780e223938e8dc3af19f7d26256ea1de2d7c344b98"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

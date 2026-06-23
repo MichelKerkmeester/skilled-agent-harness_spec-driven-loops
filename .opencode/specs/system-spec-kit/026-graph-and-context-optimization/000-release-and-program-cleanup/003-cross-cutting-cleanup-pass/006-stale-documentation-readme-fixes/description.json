@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes",
-  "description": "Spec: Stale Doc + README Fixes (Tier 1+2)",
+  "description": "Today's 022-028 batch shipped runtime + skill-contract changes faster than packet continuity and adjacent READMEs caught up",
   "keywords": [
-    "spec",
-    "stale",
-    "doc",
-    "readme",
-    "fixes",
-    "tier"
+    "today",
+    "022-028",
+    "batch",
+    "shipped",
+    "runtime",
+    "skill-contract",
+    "changes",
+    "faster",
+    "packet",
+    "continuity",
+    "adjacent",
+    "readmes",
+    "caught"
   ],
-  "lastUpdated": "2026-05-26T17:27:03.704Z",
+  "lastUpdated": "2026-06-23T03:49:52.243Z",
   "specId": "006",
   "folderSlug": "stale-documentation-readme-fixes",
   "parentChain": [

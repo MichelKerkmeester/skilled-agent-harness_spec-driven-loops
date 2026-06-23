@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet implements the ten P1/P2 items deferred from 003 Gate 7 because they required policy decisions, broader validation architecture work, or cross-script CLI contract changes. It keeps the 003 template contract intact while delivering performance, manifest, migration, save-lock, and lineage semantics in a sibling packet.",
+    "causal_summary": "The 003 implementation packet left ten Gate 7 items deferred after the round-3 sweep",
     "created_at": "2026-05-01T20:32:55Z",
-    "last_save_at": "2026-05-30T10:12:02.021Z",
+    "last_save_at": "2026-06-23T03:49:53.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d6c5caa62439b448732a1fb248f5ef4bf83cd4807e78930f3e53fa1910f765c9",
+    "source_doc_hashes": {
+      "spec.md": "fb4bc953992ada3534ce0acb6b7a105fae1b7843e7dc7ab404d5269f6b6f9bfe",
+      "plan.md": "8fc060a61badd5022d05444026ca98c5ed4151b81475d9085c6f887f62218240",
+      "tasks.md": "636c5c8b31ddd6fed7ae3fbcb5c2d2e1be3a6fe809533cefbfb31ce2e735fcc0",
+      "checklist.md": "ebe11855fb882f29eae11fab818461b312d42ed63feb76ad4e4f3e7b10c636f4",
+      "decision-record.md": "725307c428ec155a629ca1f95dcf0e6a303a47badb75783f88902c20b476ee7f",
+      "implementation-summary.md": "5514007b6b6c8dbef6b3f6c56cc99feda38a9cf8a4de37cbf787a05ac5e50a78"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

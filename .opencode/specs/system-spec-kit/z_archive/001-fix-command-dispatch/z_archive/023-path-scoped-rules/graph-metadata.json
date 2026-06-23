@@ -128,15 +128,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-mvp-monolithic, 002-modular-architecture.",
+    "causal_summary": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-06-05T12:47:34.430Z",
+    "last_save_at": "2026-06-23T03:49:58.939Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:51b36cd99fad1eee7a24d1abc636fe33aaca32c6c30e600eb75632338492d095",
+    "source_doc_hashes": {
+      "spec.md": "88f58f025705b6a0ae45b3090b899f8ebd20792318b2852d950b371a69a5fea8",
+      "resource-map.md": "2c0bb6515c2f79008221e875eae1dfe26c4844d65c3a8b0d3f8da2bd09e44b5e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

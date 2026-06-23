@@ -52,8 +52,8 @@
       "cleanup",
       "sidecar",
       "daemon",
-      "coordinate",
-      "process-lifecycle"
+      "phase",
+      "parent"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -104,14 +104,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Coordinate memory and process-lifecycle remediation across the 016 embedder architecture umbrella. The arc covers CLI dispatch containment, deep-loop state safety, expected-daemon classification, host-memory telemetry, CocoIndex indexing lifecycle, Code Graph launcher ownership, rerank sidecar/model cleanup, and Spec Kit Memory runtime retention.",
+    "causal_summary": "Phase parent for memory and process lifecycle remediation across Spec Kit Memory, deep-loop CLI dispatch, CocoIndex, Code Graph, rerank sidecars, and Apple Silicon host-memory verification.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-30T10:12:02.423Z",
+    "last_save_at": "2026-06-23T03:49:55.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:90c25b77e529f327088f54835002bdd0e372cdcd19ec72d11995b1ba50ef1fcf",
+    "source_doc_hashes": {
+      "spec.md": "e75998bf082df56d4b3439917435f05757d908ccdd489a74f47959ddde6b0055"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

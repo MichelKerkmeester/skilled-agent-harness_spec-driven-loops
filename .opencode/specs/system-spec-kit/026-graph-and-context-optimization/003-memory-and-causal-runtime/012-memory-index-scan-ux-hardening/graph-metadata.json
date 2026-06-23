@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A DESIGN research packet (no production code changed) producing evidence-backed, file:line-cited recommendations for a memory indexing subsystem that is always safe to call, always completes regardless of corpus size, degrades gracefully when the embedder is slow/absent, and self-heals moves/orphans. The canonical synthesis lives in `research/research.md`.",
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T14:05:03.746Z",
-    "last_save_at": "2026-06-22T18:55:02.669Z",
+    "last_save_at": "2026-06-23T03:49:55.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:4fccadb2e63e46f43310522d08d14d97ab5a0519d8d34321d83d97d558d93ca4",
+    "source_doc_hashes": {
+      "spec.md": "9eb1c6b1d336968d39d3fbcb5b2ec86598587088848c3d587950fba07ce10d5a",
+      "plan.md": "ea74518ec51c40fc4259e8019bc843551dcba02a3868c5f959176043d28433cd",
+      "tasks.md": "93fd2e06c6b2388102741ffb06d4b8d13cce340133b5951ce4d126180293caf6",
+      "implementation-summary.md": "376cbd69f4a5e0e26ea9c7faf027c14aaa50ce3c0e5a579d626d50a8badc5b76",
+      "research/research.md": "7822a2f29bcb56d3c1a4b82215f0da88a2f3505aea548b75c6a0108899c9c343"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

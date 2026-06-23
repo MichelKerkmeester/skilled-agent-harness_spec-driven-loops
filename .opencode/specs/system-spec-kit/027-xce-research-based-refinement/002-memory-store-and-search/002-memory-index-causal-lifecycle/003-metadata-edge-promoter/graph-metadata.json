@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the deterministic, low-risk first step for causal-edge automation. The existing spec packet metadata already encodes parent-child, dependency, supersession, and related-work relationships. The memory system should not require users to manually run causal-link commands for relationships that are already structured.",
+    "causal_summary": "Causal edges are currently created mostly through manual `memorycausallink` flows",
     "created_at": "2026-05-13T09:00:47Z",
-    "last_save_at": "2026-06-10T19:22:14.937Z",
+    "last_save_at": "2026-06-23T03:49:57.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4f1d80fcc876c1b0572dd6588e6cccc0f309dadb31e686bff87824fc03917f19",
+    "source_doc_hashes": {
+      "spec.md": "51f00e959f3a8c4c1791590576c677b98080f5852329623903ca53c38642abe0",
+      "plan.md": "fd98d2e12bc17af98456b9840b4ebbf3cdad5926a16f55af6f20677c9265286d",
+      "tasks.md": "393d62e882c113578997a09fffc88ed8479c1accfc4ede15bd5accac4933d4e8",
+      "checklist.md": "d8b6918951dbe820f56c7852866534429a5efca4eab09f257032533412785c37",
+      "implementation-summary.md": "c16c0eaff3dfe51ec0b350142c4c0ac1e89d78dcf9f2e3df9e2327fcc222a47a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

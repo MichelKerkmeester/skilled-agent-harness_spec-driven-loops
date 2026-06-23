@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5 of 7** of the MCP daemon-reliability decomposition: the embedding-provider memory fix (F2′ in the `003-daemon-reliability-research` roadmap, addressing RC-1).",
+    "causal_summary": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s native ONNX/ORT session (held transitively via `extractor.model.sessions[].handler`) is orphaned on every provider swap — the native memory the GC cannot reclaim and `--max-old-space-size` cannot bound (RC-1)",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-06-22T18:55:02.975Z",
+    "last_save_at": "2026-06-23T03:49:56.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8ec82103612f87227728443cd7b7a474254ef400b2c9547ddd6ca537ad6c3794",
+    "source_doc_hashes": {
+      "spec.md": "4732480a858ebf7bb3c76294be99e7c7992f96ed3f59aaa2715cfabbf5863c3c",
+      "plan.md": "87979bb7de6920f91607f875e0829e7aa3c92568fd4d082de7942cac874660cd",
+      "tasks.md": "a7c4150c4717c45a3f68502a1bae86e7a8d28fa5a432ace0d5573a26695ec7df",
+      "implementation-summary.md": "8e1a02256d4fce5afd3bad8222846cf33b1216c433067e3edb6eea3d5cf718e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

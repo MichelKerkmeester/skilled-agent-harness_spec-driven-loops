@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces. Most surfaces PASS structurally but the manual_testing_playbook is PARTIAL (incomplete legacy ID mapping, count discrepancy), and per-file content alignment needs full 1:1 review against sk-doc templates per the audit's iters 01, 03-13, 15.",
+    "causal_summary": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:02.126Z",
+    "last_save_at": "2026-06-23T03:49:53.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:aeda9412189dabe89de88021c5b41941767649605e5afe0a418e9a331f798a70",
+    "source_doc_hashes": {
+      "spec.md": "53dcf88b551a3f13034268bdc43763549fc0ce24e32e367a17fd2e1ebaa2af90",
+      "plan.md": "d37342c187acfa851a808ec68200636e23df2f9e720efaadb10e34b5c7a0879d",
+      "tasks.md": "d93e618d600f8935857d6c38e795ad9093b7bd7009562e64af54e41bd6face43",
+      "implementation-summary.md": "9c50c1b4aec2e578b1b2e738626ddd1bfe52f125452325fb31d55e6a6e55cd4b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 27** under the Compact Code Graph packet.",
+    "causal_summary": "Phases 018 and 024 improved hookless session bootstrap, but non-hook runtimes still depend too much on the model deciding to call structural tools at the right moment",
     "created_at": "2026-04-12T09:02:53.433Z",
-    "last_save_at": "2026-05-30T10:12:03.505Z",
+    "last_save_at": "2026-06-23T03:50:00.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:643604a3a1500a293a574f215ef954d29c2aa983bf2da76aa30f74e71b750474",
+    "source_doc_hashes": {
+      "spec.md": "c3f79f21e1bf5c108ae18bb01cd6f1b31d73da8bcb1f460f4571782a41b7144d",
+      "plan.md": "e2a49e5f44c09b098295f3adbcbb8250cec5d8d4080e3ed7deb109f64509b60c",
+      "tasks.md": "024df602286d80507a43c6a928eb0fd7646167d9d85f033724f6e8fe4e10ae9f",
+      "checklist.md": "587b37679b867c3c6fb8b28da59df69de241a8a5cee02aedde98bb668bab10de",
+      "implementation-summary.md": "f3a243942fd4b93001a8e706bf79b144b96b5276712f19543aff0ffb211c3df6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

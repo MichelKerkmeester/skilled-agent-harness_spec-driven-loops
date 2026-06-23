@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec folders can be created with names that are syntactically valid but semantically wrong or mis-located, and nothing stops this at creation time. The operator just hit exactly this defect: `.opencode/specs/system-spec-kit/028-026-program-research` was created at the track root when its slug embeds another packet's number (`026`), signalling it should have been a phase child under `026-graph-and-context-optimization`. That folder passes both `create.sh`'s basename regex (`^[0-9]{3}-[A-Za-z0-9._-]+$`, `create.sh:683`) and the `validate.sh` `FOLDER_NAMING` rule (lowercase / hyphen / 3-digit prefix, `validation_rules.md:586`), so neither layer flags it. The naming-quality rule that would have caught it (literal/no-embedded-number guidance, `CLAUDE.md` ALWAYS #20) is documentation-only and is never executed.",
+    "causal_summary": "Spec folders can be created with names that are syntactically valid but semantically wrong or mis-located, and nothing stops this at creation time",
     "created_at": "2026-06-06T05:55:29.189Z",
-    "last_save_at": "2026-06-06T05:55:29.189Z",
+    "last_save_at": "2026-06-23T03:49:56.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:0c2306c391707c8f1e6004dba493ccad0b550616a26bffa7e4310c955db8c95f",
+    "source_doc_hashes": {
+      "spec.md": "1fcae31792f8f397a284079980228afd2ea77734352cbe201416594e2de1c37c",
+      "plan.md": "6e6e168754bdce0dc177ccfed237bb010e6456f71edad27f9e1e79ba5422a8f9",
+      "tasks.md": "3306fc03c0b2119c9577ea30653bb39594c1720e4634ea2463a945d472e8df1f",
+      "checklist.md": "f143253dd99d5a6e9c9488236a06411e2ff6ac40f29753a965961bc6a8fcb240",
+      "implementation-summary.md": "079e6572d711c5f3dbf2c7c4b64ca3622e477360e50dc94f67ab37bda5c41da1",
+      "research.md": "b12942598eca37ef75dc4854fdff9de63cbe8e1b050a26a6eb364c39ad6371d1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

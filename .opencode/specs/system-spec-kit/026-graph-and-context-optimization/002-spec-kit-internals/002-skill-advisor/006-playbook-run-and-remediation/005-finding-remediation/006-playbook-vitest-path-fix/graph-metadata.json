@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcp_server` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcp_server/tests/` during the skill extraction). Operators following the doc see \"No test files found.\" The audit found exactly these two scenarios affected.",
+    "causal_summary": "NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcpserver` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcpserver/tests/` during the skill extraction)",
     "created_at": "2026-05-26T21:20:49.841Z",
-    "last_save_at": "2026-06-06T09:38:26.649Z",
+    "last_save_at": "2026-06-23T03:49:53.706Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ef2278c2388997a7cf90a1f46bd61a24ea55469281f08b548c5c838271c3cb66",
+    "source_doc_hashes": {
+      "spec.md": "ce75db86788e0b385549381ebef75366cf071068e9129f915eefeb5407472ff1",
+      "plan.md": "e5acae6d89f8d9d23b03a302ffa65063c372388d552e5e340852738d3c179fb0",
+      "tasks.md": "74e8f1e88bab4a77d16a0735a109ab98067c0352b095346e6541822bbeeefb0c",
+      "implementation-summary.md": "b6680ed28e37d09e9bbc8ea6beeeb8eb605086090016ac7025dab864ef3e2a33"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

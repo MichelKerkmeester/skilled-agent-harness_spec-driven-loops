@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
-  "description": "Feature Specification: memory_index_scan UX Hardening (Deep-Research Design Packet)",
+  "description": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
   "keywords": [
-    "feature",
-    "specification",
-    "hardening",
-    "deep-research",
-    "design",
-    "packet"
+    "memoryindexscan",
+    "couples",
+    "scope",
+    "discovery",
+    "lexical",
+    "indexing",
+    "synchronous",
+    "vector",
+    "embedding",
+    "inside",
+    "one",
+    "mcp",
+    "request",
+    "global",
+    "lease"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.707Z",
+  "lastUpdated": "2026-06-23T03:49:55.531Z",
   "specId": "012",
   "folderSlug": "memory-index-scan-ux-hardening",
   "parentChain": [

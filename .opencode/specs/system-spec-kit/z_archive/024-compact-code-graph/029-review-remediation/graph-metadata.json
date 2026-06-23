@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contracts, hook safety, evidence traceability, and cross-runtime guidance. The current tree still advertises behavior that either is not implemented, is documented inconsistently, or is proven with stale evidence. Until these findings are remediated or explicitly downgraded with truthful packet updates, the parent packet cannot be treated as release-ready.",
+    "causal_summary": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contracts, hook safety, evidence traceability, and cross-runtime guidance",
     "created_at": "2026-04-12T09:02:53.434Z",
-    "last_save_at": "2026-06-08T17:32:21.744Z",
+    "last_save_at": "2026-06-23T03:50:00.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:22687100a67ed446a5a064ab86a8b6757b00aaf55b35cdf59865c5feeaadfc1b",
+    "source_doc_hashes": {
+      "spec.md": "a161d54db90e173af3beb91dad92b9ba35a75c6c7e81b781dd62904828ff9ba5",
+      "plan.md": "f5e0b54b76045fcd45a636ba0a3bda05febe18a2f933d24e528659b168f4f74e",
+      "tasks.md": "dcb61b1565ab4a57b3f5ce50db0bd0979b88599024ad0e2c54482ea6aa152ef4",
+      "checklist.md": "c871be5d56b6d8b18bac80af9e71914c8d916c4fbcc0760b91fc85c4d149b7d2",
+      "implementation-summary.md": "e89685e4451518377d30eecab68b245f6211c0d6b6dee7fe0bca5af6f09387cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

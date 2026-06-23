@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern. Operators need one cited source that explains the standalone `mk-code-index` MCP boundary, the observed ten-tool surface, structural parsing, SQLite storage, readiness guards, CocoIndex bridge tools, and spec-kit integration points.",
+    "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern",
     "created_at": "2026-05-14T17:43:18Z",
-    "last_save_at": "2026-05-30T10:12:02.817Z",
+    "last_save_at": "2026-06-23T03:49:56.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:180d28ca2fa2ddb4473791e6dd34672f784ca183bb4b5ebec777b5598408e720",
+    "source_doc_hashes": {
+      "spec.md": "31b360873a1a1bb5db34fddbea3022c88d574a388692f24eca2d654856bbc9f4",
+      "plan.md": "9334c7eecbc63f93a3c7dbb2fd7e5cba1fb6b03f9763b88d747a33ec92b7f0b6",
+      "tasks.md": "6ecce8c0bcc87a1aa352b2810e7452232a292cadb57d66e5c13eb390a12eadf0",
+      "implementation-summary.md": "5283c6245387c88266789c3b3aeb9ea66ea4afab5357606a8f49d2af09d0e75c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

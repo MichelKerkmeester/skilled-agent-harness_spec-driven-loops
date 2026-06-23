@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
-  "description": "Feature Specification: CLI Front-Door Safety Remediation",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest gree",
   "keywords": [
-    "feature",
-    "specification",
+    "remediation",
+    "sub-phase",
+    "027",
+    "fresh",
+    "regression",
+    "deep-review",
     "cli",
     "front-door",
-    "safety",
-    "remediation"
+    "findings",
+    "resolved",
+    "fixed",
+    "refuted-then-hardened",
+    "vitest",
+    "gree"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.785Z",
+  "lastUpdated": "2026-06-23T03:49:57.977Z",
   "specId": "004",
   "folderSlug": "cli-frontdoor-safety",
   "parentChain": [

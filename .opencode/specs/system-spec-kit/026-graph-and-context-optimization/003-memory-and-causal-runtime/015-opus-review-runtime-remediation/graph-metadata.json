@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "An independent Opus 4.8 cross-review of the deployed 013 memory runtime (checkpoint v2, MCP front-proxy, memory_save enrichment, the needs-rebuild sentinel) and its packet docs surfaced 4 P1 correctness defects and 17 P2 advisories. The P1 defects are: a checkpoint-restore data-loss crash window where a crash after the live DB is renamed to `.bak` but before the snapshot is in place can leave no live database; a front-proxy UTF-8 frame corruption where multi-byte sequences split across socket reads are decoded per-chunk and mangled; a `reconcileMoves` omission that drops `spec_folder` when rewriting moved-file rows; and an incomplete version/tool-count documentation sweep that leaves stale `SCHEMA_VERSION` and tool-count claims across runtime docs. This packet remediates each cited finding surgically — the exact defect, minimal diff, a focused vitest proving every behavior-changing fix — and leaves all other 013 workstreams untouched.",
+    "causal_summary": "The deployed 013 runtime shipped and is live, but an independent Opus 4.8 cross-review found correctness defects that the original implementation and its review missed",
     "created_at": "2026-06-02T16:07:14.000Z",
-    "last_save_at": "2026-06-05T12:47:34.005Z",
+    "last_save_at": "2026-06-23T03:49:55.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:53791616ae73a1a5bea991add7d46c7d029f01c5d83d9bb121a62d84b5dc56e6",
+    "source_doc_hashes": {
+      "spec.md": "cbef716bc6874c38117d3e85f751ee456f0a6fb06fe5c62192c9d0fcc638ee46",
+      "plan.md": "54119a7b01b39e5a2ac8cf7fdfe7f69c15a6967d37e9f68812ff6c827c807b53",
+      "tasks.md": "70c76666371238d178f76bdeb9266df40602a1be3e35f55b98bc21e9b90dd282",
+      "checklist.md": "a43318831adeddcd802b4173f3543d603446ded0a9c88921f9f7ae1cd2bfed31",
+      "decision-record.md": "ee4b24d3f884131a74b4257c8d0179195371b7056096b510589b9fe692427024",
+      "implementation-summary.md": "0beb7302505f9f68ff6bcbca7322bd688b288a121a27bb5e7c452dd94237c966"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

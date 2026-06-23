@@ -1,16 +1,20 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
-  "description": "Feature Specification: Release Cleanup Phase Parent",
+  "description": "Packet 028 is approaching release and its documentation surfaces need a focused release-readiness sweep",
   "keywords": [
-    "feature",
-    "specification",
+    "packet",
+    "028",
+    "approaching",
     "release",
-    "cleanup",
-    "phase",
-    "parent"
+    "documentation",
+    "surfaces",
+    "need",
+    "focused",
+    "release-readiness",
+    "sweep"
   ],
-  "lastUpdated": "2026-06-20T09:26:59.689Z",
+  "lastUpdated": "2026-06-23T03:49:58.054Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
   "parentChain": [

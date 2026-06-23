@@ -26,10 +26,10 @@
       "plan",
       "tasks",
       "summary",
-      "repo",
-      "exists",
-      "likely",
-      "doesn"
+      "current",
+      "embedder",
+      "defaults",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Repo root `README.md` (if it exists) likely doesn't mention the 016-019 changes: pluggable embedder architecture, jina-v3 for mk-spec-memory, jina-code for CocoIndex, rescue layer default-on, MPS auto-detect on Apple Silicon. New visitors landing on the repo should see the current architecture without spelunking.",
+    "causal_summary": "Refresh root README.md with current embedder defaults + architecture summary + link to canonical pluggability narrative",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-06-05T12:47:33.760Z",
+    "last_save_at": "2026-06-23T03:49:54.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:694fbd1c6e1f568e0057a83db4c3c81e61a7ae3147653e27bc1f722ed3a24740",
+    "source_doc_hashes": {
+      "spec.md": "518bbcee539f37229efc8470c5d7a6c58568a01f321b9607e4de3769f8c9d3d3",
+      "plan.md": "b4277c3e16731d293ab2b81d817a2813b741088912b0353eb2a9a61f0cae1178",
+      "tasks.md": "9fbd3878f05438af45e4f874fb1a2b636ba9ebf49856c9ecdddbe626cc6a6e86",
+      "implementation-summary.md": "5c2035b2447790bfd24e73850aa40545db436ded84ab7fb82daf074a35e80d52"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

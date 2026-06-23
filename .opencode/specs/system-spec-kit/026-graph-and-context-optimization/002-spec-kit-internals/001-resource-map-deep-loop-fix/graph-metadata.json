@@ -154,15 +154,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 011-resource-map-template packet introduces a lean, level-agnostic `resource-map.md` template that catalogs every file path a spec folder touches, restores the local-owner deep-loop artifact contract broken by an earlier centralized placement policy, and wires automatic resource-map emission into both `sk-deep-research` and `sk-deep-review` at convergence.",
+    "causal_summary": "Reviewers and successor phases had no quick way to answer \"what files did this packet touch\" without reading `implementation-summary.md` end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.264Z",
+    "last_save_at": "2026-06-23T03:49:53.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:e1c2282fe01c5151a8d592eab0efde573e88446bd7fbc492393a6a6613bf6aba",
+    "source_doc_hashes": {
+      "spec.md": "25cfeaeccb7f44b75a03c952e881db7b3fd3d519321fce5efd5f6418e6b804ba",
+      "resource-map.md": "936a036cfb383abc496374c89be16e1902d4866b99446d0c5c4a0585f841e4b9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 2 Evaluation features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/07--evaluation/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Evaluation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-05-30T10:12:03.242Z",
+    "last_save_at": "2026-06-23T03:49:59.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:012abd23a0ab122309d8417f7218b6bc90a3558cc33cfce66031ddee459d8a15",
+    "source_doc_hashes": {
+      "spec.md": "c20fbfcc4d8b85bab6972fd02ce2406e7d611302be13a92ac926ebd434943ace",
+      "plan.md": "e39d6076b8352c3c8ee4d7309fd5274dbc9871262c2cd0c86027849daa21f6fc",
+      "tasks.md": "38589fce7a380ad20d64cc3407987a40052e5ec9c1480b5bc042081ae22bf8e4",
+      "checklist.md": "477af30604599e1aa5df17e92a324af6209ccd64a0f96b16f0b75692d080d04b",
+      "implementation-summary.md": "db39c73dedb2a727bd98c19be48cce93e146fa70a14729f9e8d0bc07b29cb7ad"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

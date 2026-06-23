@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 011 asked for a dead-PID liveness probe, but that read-path probe already exists in `lease.ts:226-247`. The remaining gap is acquisition-time reclaim: `lease.ts:300-317` reads an existing row, evaluates staleness/liveness, then writes a new lease. That probe-then-set sequence is not atomic, so two launchers can race on the same stale row.",
+    "causal_summary": "Phase 011 asked for a dead-PID liveness probe, but that read-path probe already exists in `lease.ts:226-247`",
     "created_at": "2026-05-23T11:55:15.590Z",
-    "last_save_at": "2026-06-05T12:47:33.792Z",
+    "last_save_at": "2026-06-23T03:49:54.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5ab551528fcb9339cb98f39fc7001703cf5f1cee0a56b483cdfb60800bacf2a8",
+    "source_doc_hashes": {
+      "spec.md": "5cf752525d5315dd081bef379cf82e72d11c3d0fa3894e67e818283ad710f33e",
+      "plan.md": "4682b23f71dc114fa0a6fd0add5d78e11050b8c6395ddfb48e4c313f15b5cab4",
+      "tasks.md": "a31ec4fe6af311086e540e6ec70bc4167b065ae53040cfc7bcf7a3f3017cb855",
+      "implementation-summary.md": "c62e511bd1b606f85fd77cb5ceccd7ea784cdd1f6281275fa6651c5bb43160b9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

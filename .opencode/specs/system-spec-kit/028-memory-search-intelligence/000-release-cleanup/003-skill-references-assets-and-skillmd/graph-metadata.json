@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.790Z",
+    "last_save_at": "2026-06-23T03:49:58.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:064244600b082dcce61f20e4091f3a805cd3de1689b68cd26d55bdbb4fb1e057",
+    "source_doc_hashes": {
+      "spec.md": "2845507a5e9ceb953b676a88ac20674b8da0f6d15223687e6beee5f2f8d07688",
+      "plan.md": "ffbed3ebef02367301b50320f10e418b8002ecc37877813a0074dfb446a17fd5",
+      "tasks.md": "cc38e1a773dc019bca35969d301bdf09e5c8496ab8f70611ca66fa016619bb14",
+      "checklist.md": "be7433d80e0b7d8dea6287f9a6c287a15924fab8ab42449b1f35180a47f491e6",
+      "implementation-summary.md": "b7fb55b90c03264106067d0263ec30803008b6956f8c62c6afb93a142cbfbc29"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

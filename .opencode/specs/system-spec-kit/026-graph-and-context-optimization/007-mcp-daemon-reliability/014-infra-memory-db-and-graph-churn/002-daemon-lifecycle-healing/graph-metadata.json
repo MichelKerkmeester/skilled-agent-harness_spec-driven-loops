@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal). The result is a divergent FTS5 shadow (`memory_fts_data`); the next `memory_index` insert fires the `memory_fts_insert` trigger into the bad shadow and aborts with `SQLITE_CONSTRAINT_PRIMARYKEY` (SQ2). The same wedged incumbent surfaces the SQ1 substrate `Connection closed` diagnostic row that makes a stale test assert 5-vs-4. The boot FTS integrity probe currently only detects corruption and never repairs it, so the failure recurs after every unclean exit.",
+    "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal)",
     "created_at": "2026-05-30T16:25:17.710Z",
-    "last_save_at": "2026-06-22T18:55:03.018Z",
+    "last_save_at": "2026-06-23T03:49:56.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:30db77a322c9cf026b1b0b6188f61715a99dd14ab3d5bca624fd471e420834b8",
+    "source_doc_hashes": {
+      "spec.md": "427a33d76fb3cf253cb6d6e27e3d38835e4a40eb175b8973143c34ce05364b00",
+      "plan.md": "d62738f7478f5d0ecac45f318e243190a9db366a633cab038a838e72ab224e93",
+      "tasks.md": "84e87bf552da85876c8a1a10e0ca0101299760cc0828787158c8f977649dff8e",
+      "checklist.md": "0f89e4aea08a89c441a7c18f5e026f4a57eb243dc9d4f631e91d5817934a1a62",
+      "implementation-summary.md": "415576eb4ad7ed00f5e07306b0f3dcbbf498de79b91b07120cd0ebb459a7467e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

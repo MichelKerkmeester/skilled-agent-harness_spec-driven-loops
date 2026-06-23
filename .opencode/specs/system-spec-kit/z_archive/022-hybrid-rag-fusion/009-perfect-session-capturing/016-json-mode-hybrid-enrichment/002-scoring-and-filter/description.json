@@ -1,18 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/002-scoring-and-filter",
-  "description": "Feature Specification: Scoring and Filter — Quality Scorer Recalibration and Contamination Filter Expansion",
+  "description": "The extractors quality scorer (extractors/quality-scorer.ts:113-205) assigns bonuses of +0.05 for message count, +0.05 for tool usage, and +0.10 for d",
   "keywords": [
-    "feature",
-    "specification",
-    "scoring",
-    "filter",
+    "extractors",
     "quality",
     "scorer",
-    "recalibration",
-    "contamination",
-    "expansion"
+    "quality-scorer",
+    "113-205",
+    "assigns",
+    "bonuses",
+    "message",
+    "count",
+    "tool",
+    "usage"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.401Z",
+  "lastUpdated": "2026-06-23T03:50:00.108Z",
   "specId": "002",
   "folderSlug": "scoring-and-filter",
   "parentChain": [

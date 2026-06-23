@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the adaptive-ranking-prerequisites specification.",
+    "causal_summary": "`runShadowEvaluation()` computes a `promotionGate` result (pass/fail with NDCG/MRR/Kendall-tau metrics and a recommendation), but nothing acts on it",
     "created_at": "2026-04-12T09:02:50.326Z",
-    "last_save_at": "2026-06-22T18:55:04.646Z",
+    "last_save_at": "2026-06-23T03:50:00.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:096d88acacf4e3570807d0e8a5cbd3cba81740ff8ab3ef7a10135adf9d701ab2",
+    "source_doc_hashes": {
+      "spec.md": "0490779cf6f6188d2776271239cb1f766775a1176e0c5774204ebbc14c7fbe4e",
+      "plan.md": "5e2dfccb1bfe5ee6ea65e1ab49ebba803d42df439110b709c4a13bc50cec56b3",
+      "tasks.md": "151c9e029747de61897d36f464b92f52636b9710c482818ac2aee80be3e3334a",
+      "checklist.md": "67b51d98d802336efcd4ddfc34eee9f2d326f81da77d03f8cfe2e41ec1d89005",
+      "implementation-summary.md": "9dcae9766e3575df157689b94efc735110279e22cfe6239e6f380d86d66166cc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

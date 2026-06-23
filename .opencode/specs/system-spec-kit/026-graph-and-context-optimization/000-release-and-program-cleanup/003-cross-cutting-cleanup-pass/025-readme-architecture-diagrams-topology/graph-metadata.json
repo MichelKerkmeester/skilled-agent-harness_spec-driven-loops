@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree. The 18 other code-folders and `ARCHITECTURE.md` are missing one or both. This makes it hard for developers to orient themselves when entering a code directory.",
+    "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.032Z",
+    "last_save_at": "2026-06-23T03:49:52.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8184f9b28c6bd89eb32f028482a68c2dbd288b1a354020daf2569e3fed3dbf2f",
+    "source_doc_hashes": {
+      "spec.md": "cae05ab98fddb9d1d30b8d7a784bbb8358426b072c5a1afd1f745a306c5236e9",
+      "plan.md": "385bab91d03d818f7b5225b6a44c454c6410ca40b17ba58a5ec87258dd0dacc4",
+      "tasks.md": "33b26c64dec988bd80e440e60314e4783c0f5b52bb11b9a3d658bb99c1483503",
+      "implementation-summary.md": "a03d952eb80a74db329ce93adb329fb03fbc5d96efc55f4be6280818369f2c23"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

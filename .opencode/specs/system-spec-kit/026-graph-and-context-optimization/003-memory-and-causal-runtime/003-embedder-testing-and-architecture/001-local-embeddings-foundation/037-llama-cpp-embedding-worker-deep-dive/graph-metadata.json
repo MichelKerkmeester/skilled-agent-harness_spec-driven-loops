@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code inspection points to a hardcoded mismatch:",
+    "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-05-30T10:12:02.132Z",
+    "last_save_at": "2026-06-23T03:49:54.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:eda6e66073751926db3e314aca8fa6bc526e7abe7f3fa489d036a018e2ae6d62",
+    "source_doc_hashes": {
+      "spec.md": "c13d6b677172544a10b6fa60cba4a95b72e2cd576f0e0cc66c3c76739fb6590a",
+      "plan.md": "1a718bf30f97a5e3faf5dc60e118b0191f5e06b2e126ebc8800c2dc88bd5204a",
+      "tasks.md": "384e6e6bff8f41f6ad714cb84c3024ec73bf08a74f505acd832b1928a822e0cf",
+      "checklist.md": "303e199c8c91f17a982886e21eb31a126400d57c3c281da0c74855807a1fb19f",
+      "decision-record.md": "4079801359ed41a867f511d8384e11dc77732ba239f416b48517f839703874d6",
+      "implementation-summary.md": "e4ff84dccfd4befa663e6ab124c1793a5328fe3862f01d665d6812804933a117"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

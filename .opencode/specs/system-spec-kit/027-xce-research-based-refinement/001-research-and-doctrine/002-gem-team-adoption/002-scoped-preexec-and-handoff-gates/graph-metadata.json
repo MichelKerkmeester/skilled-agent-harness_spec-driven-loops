@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002 is proposal P2 from the phase-007 Gem-team adoption study (`research/007-gem-team-adoption-matrix/sub-packet-proposals.md`), confirmed FEASIBLE and FULLY ADDITIVE by the phase-009 integration synthesis (`research/009-gem-team-integration-impact/research.md`). It adds three NARROW, optional gates that each fire ONLY in their specific high-risk condition — no universal ceremony, no new agents, no governance/validator change.",
+    "causal_summary": "The spec-kit's highest-risk agent transitions are governed by prose, not machine-checkable discipline",
     "created_at": "2026-06-06T10:11:07.809Z",
-    "last_save_at": "2026-06-22T18:55:03.277Z",
+    "last_save_at": "2026-06-23T03:49:57.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8ed7307c3944278386b7719cf86990daefa84fdaaab8e559b1c7fb613b317b87",
+    "source_doc_hashes": {
+      "spec.md": "df0456c74cd0cb33c2aeade4c5d496d71efcac7b907ec9151e4ff7cde2666776",
+      "plan.md": "d5fffd84e9079faae4dca4e844e00f782bdc60af669747940a36fc3dcd55e31f",
+      "tasks.md": "9257cec3789ed59b31c0be88bb9cbfcf55f4d20fda7daea799b2380ff6fc3f7c",
+      "checklist.md": "517fc7c34bebdf4b366ba24b88478ede560d6ba72db543552d2994e735005330",
+      "implementation-summary.md": "370a8fc4e6835cf37d9c5310ee03658e3b7ac0984959f1afd877e4107e8d61df"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

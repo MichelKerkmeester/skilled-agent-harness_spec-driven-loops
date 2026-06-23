@@ -1,17 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence",
-  "description": "Feature Specification: Memory Search Intelligence Phase Parent",
+  "description": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces",
   "keywords": [
-    "feature",
-    "specification",
-    "memory",
-    "search",
-    "intelligence",
-    "phase",
-    "parent"
+    "packet",
+    "028",
+    "owns",
+    "planning",
+    "record",
+    "turns",
+    "external",
+    "memory-system",
+    "research",
+    "implementation",
+    "sub-phases",
+    "internal",
+    "retrieval",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.264Z",
+  "lastUpdated": "2026-06-23T03:49:58.049Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [

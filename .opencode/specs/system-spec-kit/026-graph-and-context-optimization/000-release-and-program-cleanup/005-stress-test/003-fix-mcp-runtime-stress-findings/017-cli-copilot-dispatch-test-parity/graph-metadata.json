@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
     "created_at": "2026-04-27T18:30:00Z",
-    "last_save_at": "2026-06-22T18:55:01.833Z",
+    "last_save_at": "2026-06-23T03:49:52.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:79c3f56eaefbccca5d2a95fdd9baebf010fda18c1ae58d9a2c2c63edb45d18f5",
+    "source_doc_hashes": {
+      "spec.md": "efad25ca58092c5dcf77bb3c90e5585856f9dc018dc5bc3787489c8684ef76ee",
+      "plan.md": "f248fc33594b741437d43876f0158c37dfb8889b9cdf534e171be17fd6d0fd0d",
+      "tasks.md": "7303f866eaa4cecea80c92241e0b46b5f15480eaf1ba1bfecbb7232646c79ff1",
+      "checklist.md": "e94b350778512fab38b092b7afc721d694e96e0d45c05dae983994c6db582052",
+      "implementation-summary.md": "db8925ad1b24789dc2b502d0f95b7bea5045af633131a170a8e8366a067ec34b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

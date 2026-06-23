@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call. This forces the largest model variant (~620MB RAM for EmbeddingGemma-300m). The HF cache from 002 contains all dtype variants of the model — `model.onnx` (fp32, default), `model_fp16.onnx`, `model_q4.onnx`, `model_q4f16.onnx`, `model_quantized.onnx` — but the code path never reaches them. RAM and cold-load time are both higher than they need to be.",
+    "causal_summary": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-06-22T18:55:02.225Z",
+    "last_save_at": "2026-06-23T03:49:53.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T21:40:00Z",
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:064052480fad1fa68a79d5b051b1ce15005043cc8628c898289b3fe4ae680865",
+    "source_doc_hashes": {
+      "spec.md": "9865622a9a1cf8acb1d1cf2b441d1b5b978ae7a84661286f01f88c72101e6579",
+      "plan.md": "172e9681d7e2637a8462ffdbcc1029c07e11e0f18cc50eab88c213e217089a53",
+      "tasks.md": "2c893fb5e9c53eeaebf29d0ac126751d72b856fa29635e902cad3bf19c620e3c",
+      "implementation-summary.md": "e97a4d4f78c8b22c2bb4e50d433c1ec36970708d09755f5d438c8b4d97e09ba5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

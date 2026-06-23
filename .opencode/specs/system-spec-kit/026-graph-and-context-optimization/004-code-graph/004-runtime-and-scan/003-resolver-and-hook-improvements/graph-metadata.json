@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package). Recent cross-phase synthesis (`026/research/cross-phase-synthesis.md`) flagged code-graph and runtime-hook concerns among its top P0 items (CF-002, CF-009, CF-010, CF-014). Those specific findings are now closed in `007/006-integrity-parity-closure/`. The open question: **beyond those findings, where else can the code-graph system and its hook wiring improve?**",
+    "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package)",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-06-08T17:32:21.223Z",
+    "last_save_at": "2026-06-23T03:49:55.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:298b36feaa2fbee9bbc7b76d68b548afec7c26dcaee2f72384a5739be703d432",
+    "source_doc_hashes": {
+      "spec.md": "1e31862df9900787fc0507a1e87867a2aec4c717480ad5dcf99e882f14d163c9",
+      "plan.md": "82dcf647aac6f07a5d739dc87b4011400151bfb871cb02e8611b61040835e413",
+      "tasks.md": "2d69ef640404e0fca349b49b22bfb9213889c7b7c949041b6974a4baa2f06b66",
+      "checklist.md": "6b49bb5290bb1e1576ffbd2dd10d87e34792bdc31eddf7d1c7238b83aa97f269",
+      "implementation-summary.md": "7a9a267ecc9df926f929bfe556c8faaae2b32b6fc365b82784586a549ac0b726",
+      "resource-map.md": "b09e99af695e86acf37b8286585aa4c0f279006e0ac82517f7fac03840ec245f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

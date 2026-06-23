@@ -1,17 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
-  "description": "Feature Specification: Memory Commands - Author Presentation Markdown",
+  "description": "Memory Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and d",
   "keywords": [
-    "feature",
-    "specification",
     "memory",
     "commands",
+    "needs",
+    "scoped",
     "author",
     "presentation",
-    "markdown"
+    "markdown",
+    "phase",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing"
   ],
-  "lastUpdated": "2026-06-10T19:14:00.000Z",
+  "lastUpdated": "2026-06-23T03:49:57.660Z",
   "specId": "002",
   "folderSlug": "author-presentation-md",
   "parentChain": [

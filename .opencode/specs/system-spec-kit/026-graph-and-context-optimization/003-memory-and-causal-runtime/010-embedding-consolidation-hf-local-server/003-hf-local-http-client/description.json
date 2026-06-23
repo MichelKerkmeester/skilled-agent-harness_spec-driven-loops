@@ -1,16 +1,15 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
-  "description": "Feature Specification: Rewrite hf-local as an HTTP model-server client",
+  "description": "hf-local.ts currently owns in-process transformers execution",
   "keywords": [
-    "feature",
-    "specification",
-    "rewrite",
     "hf-local",
-    "http",
-    "model-server",
-    "client"
+    "currently",
+    "owns",
+    "in-process",
+    "transformers",
+    "execution"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.613Z",
+  "lastUpdated": "2026-06-23T03:49:55.447Z",
   "specId": "003",
   "folderSlug": "hf-local-http-client",
   "parentChain": [

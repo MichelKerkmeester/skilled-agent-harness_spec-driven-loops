@@ -1,18 +1,26 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
-  "description": "Feature Specification: MCP Memory Mutation + Save + Reconcile Review Slice",
+  "description": "The spec-kit MCP memory write path (mutation hooks, the save pipeline, CRUD update/delete/bulk-delete, and embedding reconcile) was heavily modified a",
   "keywords": [
-    "feature",
-    "specification",
+    "spec-kit",
     "mcp",
     "memory",
+    "write",
+    "path",
     "mutation",
+    "hooks",
     "save",
+    "pipeline",
+    "crud",
+    "update",
+    "delete",
+    "bulk-delete",
+    "embedding",
     "reconcile",
-    "review",
-    "slice"
+    "heavily",
+    "modified"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.942Z",
+  "lastUpdated": "2026-06-23T03:49:52.977Z",
   "specId": "001",
   "folderSlug": "mcp-core",
   "parentChain": [

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This completed Level 3 spec captures the architecture audit of `.opencode/skills/system-spec-kit/` with focus on the ownership boundary between root `scripts/` and `mcp_server/`. The work established a boundary contract, reduced cross-area drift, hardened enforcement, merged the former `030-architecture-boundary-remediation` follow-up, and closed later verification-driven issues around naming, README coverage, symlinked runtime paths, and source-dist alignment.",
+    "causal_summary": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-05-30T10:12:03.223Z",
+    "last_save_at": "2026-06-23T03:49:59.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:04e777b42991578dba09dffae3ddba2d21d58834fd48b970aeaaa459d9649535",
+    "source_doc_hashes": {
+      "spec.md": "68c533a50b52b7f768e230e893548a6109e700f3b35a62ad7a7bcc01f25bc58d",
+      "plan.md": "286cda76a41f15bc4da7c3e3c386aabb57e9932f70fd9599c949f77b8a91badf",
+      "tasks.md": "e8b10b7df632a0e550f67995f59a1bfc73abe92f3433f851d49d4b0ea1d7f131",
+      "checklist.md": "3d941b60525642efb98e3612b956000aa82ba62db822d897f8293ac3e11fd1de",
+      "decision-record.md": "e5d1d026c620cc48d5b1f9656cc7b7fe8ed70fed52b5c61c81af65a0bbeff478",
+      "implementation-summary.md": "d7c0968be19f4f12278ea36f9e09bdbb3f92d6d1181ec59b99d137267d9d45b0",
+      "research/research.md": "b3a62bb66b9b6c3cdfc69eab25ca7e6717467098e16d5c8c7d9c941a01b07c45"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

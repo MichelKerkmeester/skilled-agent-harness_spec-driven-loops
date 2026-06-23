@@ -1,16 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
-  "description": "Feature Specification: Advisor doc alignment with sk-doc",
+  "description": "The `system-skill-advisor` package had grown through extraction packets",
   "keywords": [
-    "feature",
-    "specification",
-    "advisor",
-    "doc",
-    "alignment",
-    "sk-doc"
+    "system-skill-advisor",
+    "package",
+    "grown",
+    "extraction",
+    "packets"
   ],
-  "lastUpdated": "2026-05-26T17:27:34.426Z",
+  "lastUpdated": "2026-06-23T03:49:53.300Z",
   "specId": "012",
   "folderSlug": "sk-doc-documentation-alignment",
   "parentChain": [

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
     "created_at": "2026-05-18T08:15:52.987Z",
-    "last_save_at": "2026-05-30T10:12:01.535Z",
+    "last_save_at": "2026-06-23T03:49:52.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:dee14be6a6882cf73240731558e23e5446789699b24a13b35782aee7a4b3fbf5",
+    "source_doc_hashes": {
+      "spec.md": "a1dae6a89bad7f23b3dc656a38d294e4a1a6f682b92c7ce8e3f7cdf391e1a100",
+      "plan.md": "d49971e800404ad8232379d083d845785bc5c2b161ea7f03f5d80b60740a1115",
+      "tasks.md": "74cf981127491b5221744bf577e76aad11ebc80df0294b3aea03766cf7c17a1c",
+      "checklist.md": "09408c0be32d8f1e5be172da5f337b81e9572fd8143baa5c69cc8cf023584849",
+      "decision-record.md": "252f757b5d0f8a4992176df2c0b386f41f9a3899e203b13ddeb301c7bb428946",
+      "implementation-summary.md": "9df9023a753966e375af5ad3fc98cf952daae0ef7156552031e7037d04976f11",
+      "resource-map.md": "52c89e90a320116dd365701bbcd8f6b5bbfa30c99ef07cd94ecf918901008ccf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

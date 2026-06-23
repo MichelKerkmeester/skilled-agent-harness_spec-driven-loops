@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 11 Bug Fixes and Data Integrity features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/08--bug-fixes-and-data-integrity/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Bug Fixes and Data Integrity has evolved significantly",
     "created_at": "2026-04-12T09:02:50.249Z",
-    "last_save_at": "2026-05-30T10:12:03.244Z",
+    "last_save_at": "2026-06-23T03:49:59.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b8737665c223258dc60403be00c986aa0d0a73b80405347b3acc543500a8681d",
+    "source_doc_hashes": {
+      "spec.md": "d39e107348781e9cb2120b7149aaa7a6f2aa79b09398a87c571107f5a0e33c6a",
+      "plan.md": "e7c545878b768d3d19562767d3916fb98e26dac7d958001b79268431f3c1655a",
+      "tasks.md": "992e0734f4361468ab0017ebc58ec093fa732189940044c996cfd2428c7767d6",
+      "checklist.md": "92650d040685e3c15f79b01f62e4394f36d933084044e1b2d5ee124937ea8c73",
+      "implementation-summary.md": "0326e66159e6202ca8ff1a7b6238dbd83c5201bcf0a429b9158aecf7a7dccc0c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

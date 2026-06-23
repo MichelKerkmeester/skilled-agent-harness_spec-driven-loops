@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is the second child packet under `011-resource-map-template`. Phase 001 restores the local-owner artifact contract for deep-research and deep-review packets. This phase builds on that restored contract by making the two autonomous deep-loop skills (`sk-deep-research` and `sk-deep-review`) emit a filled `resource-map.md` at convergence beside the actual resolved packet artifacts. The aggregated map carries dimension-specific signals: review maps include P0/P1/P2 findings-per-file counts; research maps include citation counts per file. Both shapes share the same ten-category skeleton so reviewers can read them without learning two templates.",
+    "causal_summary": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense, per-cycle) and `research.md` or `review-report.md` (narrative synthesis)",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.024Z",
+    "last_save_at": "2026-06-23T03:49:53.171Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:b4704eb1d67ec282c12c0e1eb53dbc912bbb1732c154bbfa710a6fac72636e9e",
+    "source_doc_hashes": {
+      "spec.md": "5d15d92c923e8a53bb20f6a3327ef4130888d20fc920be79f8bb1537651f0756",
+      "plan.md": "2ac1055edaa53243def80e8f2a64548189216679d2baa13148ced3bc9f406744",
+      "tasks.md": "46f22f188c610b184f151f3bd444f398eb2d27deabad76b2193b44bd45a5c6b1",
+      "checklist.md": "6b7f74e6e6672c47565bb9a49187bf920f03c8b102bc00dc1cf915b6bd0c42f8",
+      "implementation-summary.md": "55643f651a304269851e6c6b8548caf045948976c3b0085ca21f31e9b9414874",
+      "research/research.md": "2e38ef6e56924a26ea1b12cca62c26cdb5820880894f0222e8bf39e497ff7743"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

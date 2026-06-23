@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark",
-  "description": "Feature Specification: Code Graph, Generation Watermark (Q6-C2 → Q6-C1)",
+  "description": "The code-graph readiness signal has no generation counter: `code-graph-context.ts:320` `computeFreshness()` reports only a wall-clock staleness bucket",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
+    "code-graph",
+    "readiness",
+    "signal",
     "generation",
-    "watermark",
-    "q6-c2",
-    "q6-c1"
+    "counter",
+    "code-graph-context",
+    "320",
+    "computefreshness",
+    "reports",
+    "only",
+    "wall-clock",
+    "staleness",
+    "bucket"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.713Z",
+  "lastUpdated": "2026-06-23T03:49:58.378Z",
   "specId": "003",
   "folderSlug": "generation-watermark",
   "parentChain": [

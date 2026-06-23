@@ -151,15 +151,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The root `022-hybrid-rag-fusion` folder had child packets but no parent `spec.md`, `plan.md`, or `tasks.md`. That broke parent back-references from multiple child packets and caused recursive validation to fail even when many child documents were otherwise close to compliant.",
+    "causal_summary": "The root `022-hybrid-rag-fusion` folder had child packets but no parent `spec.md`, `plan.md`, or `tasks.md`",
     "created_at": "2026-04-12T09:02:50.223Z",
-    "last_save_at": "2026-06-05T12:47:34.635Z",
+    "last_save_at": "2026-06-23T03:49:59.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:b281747c06cecaf4978473f02c2af791b533967b71a5a49fae66fd252541d3e9",
+    "source_doc_hashes": {
+      "spec.md": "09d38d79ca47cb53be148ee82454da5accff80d22a3da4114f12dc1d5e3e0c7a",
+      "resource-map.md": "bd5a8f88297805b28b1a5be0c666213b9e06851b3e74fd6ed9af551a99894a76"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Restore `mk_code_index` reconnection by making both the workspace-root resolution and the IPC socket-dir validation robust to the real deployment layout and the required `/tmp` socket path.",
+    "causal_summary": "`/mcp` reported `Failed to reconnect to mkcodeindex: -32000`",
     "created_at": "2026-05-26T08:34:36.085Z",
-    "last_save_at": "2026-05-30T10:12:02.559Z",
+    "last_save_at": "2026-06-23T03:49:55.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ade43d2ea001b356b694b564e471ada56c047c3c36816bb0f0449a7a4ddcd37b",
+    "source_doc_hashes": {
+      "spec.md": "822c6e75f999bff5c205e2b4417e64d16340d0a981a97f14f04dfe6ca881ea82",
+      "plan.md": "2c3a84ca3f291200dff9711a6c9d6098cdc4610766eb7e76a6e14173df005c52",
+      "tasks.md": "d74004db1d03c513297a607d8de838cc20b70a013bd6643ac894dbe2c96ea465",
+      "checklist.md": "ab389905b80fb4345b5a125c2935d0762494058ea07cf8fcc5f935e1eaf75edb",
+      "implementation-summary.md": "20d2a07c772b76739040e547939c41da2005503ea5a6f11f232536d53052d1ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

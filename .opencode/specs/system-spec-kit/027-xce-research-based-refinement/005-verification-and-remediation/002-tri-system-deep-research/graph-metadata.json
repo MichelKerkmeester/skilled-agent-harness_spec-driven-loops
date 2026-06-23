@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs. No systematic investigation has swept the three systems as they exist now for missed bugs, broken features, documentation drift, README misalignment, refinement debt, and feature opportunities.",
+    "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
     "created_at": "2026-06-12T04:40:47.948Z",
-    "last_save_at": "2026-06-16T14:27:21.639Z",
+    "last_save_at": "2026-06-23T03:49:57.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:246d3e577ed42a3d2a2ff5d8f50147d0d1847a6cc7aab48dd9cb7acb9f733128",
+    "source_doc_hashes": {
+      "spec.md": "50272ebcd29416986861256e414235c58a965c8b35df7cef8c28c003e79e5fda",
+      "plan.md": "ee9712fa9023ad0d33ee367f8de3182df68703e4e4a68d8d3af2fdd08e525302",
+      "tasks.md": "a419a1daa8df9199d6b6e761cdb79ac7c4d58052e94d2aa15cf4ac84636d61ad",
+      "implementation-summary.md": "c2a31758fbc31716c59ed1547863590cd65d6c3df2cac0f14b849cae6a17700e",
+      "research/research.md": "45f623fb08744c3cdf4246c8fb40cc85675f695c4fc7567f127bc7823909aebc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

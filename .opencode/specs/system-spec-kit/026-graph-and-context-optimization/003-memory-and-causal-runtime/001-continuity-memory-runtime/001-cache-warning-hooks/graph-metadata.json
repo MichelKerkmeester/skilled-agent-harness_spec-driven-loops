@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet no longer treats the earlier six-phase warning-hook prototype as the active plan. The canonical 2026-04-08 research narrowed the safe early continuity lane to two things: truthful predecessor ordering and a bounded producer-side metadata patch inside `session-stop.ts` and `hook-state.ts` after the FTS helper and forced-degrade tests exist [SOURCE: research.md §1; §2].",
+    "causal_summary": "Packet `002` was originally framed as a six-phase cache-warning rollout with `SessionStart` estimator and `UserPromptSubmit` behavior",
     "created_at": "2026-04-12T09:02:53.453Z",
-    "last_save_at": "2026-06-22T18:55:02.183Z",
+    "last_save_at": "2026-06-23T03:49:53.822Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,16 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:2ed4a9ab2361a8e77af25b0194b036c3386dac59f5d45bbe5de7d6084f100928",
+    "source_doc_hashes": {
+      "spec.md": "5c7170aa1a4625d26dbd1a6f196ffd2f0a4bef68a06f824887d15193b8b9387a",
+      "plan.md": "123146cda00ec38a157a33b8e29b6a5d9c462e3df8d9a2cae5960dbd4969712b",
+      "tasks.md": "64e55da0c7f7f44e6e0330f3dba6b8891ef84728b257ada210f5537f603c7aa8",
+      "checklist.md": "167d87f15ba19fc9cc513f2f07147ee881ea8c64ad19cac2719d7e523ad23d9f",
+      "decision-record.md": "14604f51db2a54c56f2a42ecefb6d2e752037a00e048c347c0fa40d8fbd113ed",
+      "implementation-summary.md": "d926955bccf1253104327860dc8bd600597a5cc66182c16835f7ba3533ca95f7",
+      "research.md": "ae49d0d5411642410574bdbbb441cc4f16c9d3b4aca762e9f91d6fc839bab4d6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

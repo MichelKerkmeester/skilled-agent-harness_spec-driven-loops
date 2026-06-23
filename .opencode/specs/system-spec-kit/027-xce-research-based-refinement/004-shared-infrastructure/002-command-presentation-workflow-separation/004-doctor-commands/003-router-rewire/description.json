@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire",
-  "description": "Feature Specification: Doctor Commands - Router Rewire",
+  "description": "Doctor Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract",
   "keywords": [
-    "feature",
-    "specification",
     "doctor",
     "commands",
+    "needs",
+    "scoped",
     "router",
-    "rewire"
+    "rewire",
+    "phase",
+    "presentation",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing",
+    "display-contract"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.789Z",
+  "lastUpdated": "2026-06-23T03:49:57.756Z",
   "specId": "003",
   "folderSlug": "router-rewire",
   "parentChain": [

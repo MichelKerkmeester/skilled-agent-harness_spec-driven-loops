@@ -34,7 +34,7 @@
       "improvement",
       "deep",
       "research",
-      "merge-consolidation"
+      "index"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"merge-consolidation | v2.2\"",
+    "causal_summary": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
     "created_at": "2026-04-12T09:02:50.237Z",
-    "last_save_at": "2026-05-30T10:12:03.215Z",
+    "last_save_at": "2026-06-23T03:49:59.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,17 @@
       "research/research.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:f73bb4a32bd028bbf58f0f9483bd4ded974e1a9f4feab9a985462b792186f5f6",
+    "source_doc_hashes": {
+      "spec.md": "260f71f29caecd51ca91772f2ee70263a53c9ea9e2a944263ff477086f323e56",
+      "plan.md": "9c97e674f2147930732a263783eacec611bdf69689c6ee11121032829851412f",
+      "tasks.md": "f6939ffd7e7c84956732654bd1675f9e527d84196855bea4bea518bd75883902",
+      "checklist.md": "95ac20e290f0bb4747dec5ee2fd922c6dd150a99993767cd492b31a5547111cd",
+      "decision-record.md": "95c5fea5e3a52409b18de08fd1743b83ba44cddf8f13a394f76d7e8547b84c6a",
+      "implementation-summary.md": "7b16dafb29f19c3f56f74c59ef37f3e2ae66118cf1268845f7308000c00c0ebe",
+      "research/research.md": "9916bd6a09b634d22b907be20f12feb0a1e5d1a76852041090f6502d8b3c2a21",
+      "handover.md": "b47602ae8b52888389d95595544992463a313a3ada3c33990fee279acbd11d78"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

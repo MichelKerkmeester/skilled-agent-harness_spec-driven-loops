@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Security audit of system-spec-kit identified 4 medium-severity and 5 low-severity issues. Additionally, documentation gaps exist from changes made in 048-system-analysis and 049-system-analysis-bugs that need to be addressed.",
+    "causal_summary": "Security audit of system-spec-kit identified 4 medium-severity and 5 low-severity issues",
     "created_at": "2026-04-12T09:02:53.532Z",
-    "last_save_at": "2026-05-30T10:12:03.007Z",
+    "last_save_at": "2026-06-23T03:49:59.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5447d372abbe06e29c30937a265cfd68bad59fd6fee553bfc93dcb1567d003d4",
+    "source_doc_hashes": {
+      "spec.md": "25a43031ae495c1cc761da3ca9c57b8b7c91729e22d54a45260c83f65fb5732d",
+      "plan.md": "3e8a2487386bf7150a61dae9ac4f9783b5d96975422118c11721f1a79d95e15c",
+      "checklist.md": "93938730a5affb9c46ff3fb9e7a387352efd66a9035b004d58924ba10a042e17",
+      "implementation-summary.md": "4aec51480b90694b758185e18300c4e922ffd292125373667e835812ab2ae9eb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

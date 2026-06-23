@@ -29,9 +29,9 @@
       "embedder",
       "pluggability",
       "narrative",
-      "session",
-      "shipped",
-      "large"
+      "sweep",
+      "readme",
+      "references"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -82,14 +82,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This session shipped large architectural changes (pluggable embedders 016, retrieval rescue 016/004 ADR-009/010/011, Nomic/CodeRankEmbed current default, CocoIndex CodeRankEmbed swap, registered_embedders + INSTALL_GUIDE 019/001+002) but the broader documentation surface — skill MDs, references/, assets/, the root README — wasn't audited for stale references.",
+    "causal_summary": "Sweep all skill SKILL.md / README / references / assets for stale embedder defaults + claims that drifted across 016-019 work. Refresh root README. Author canonical embedder-pluggability narrative covering mk-spec-memory + CocoIndex out-of-box for new users.",
     "created_at": "2026-05-18T16:14:38.214Z",
-    "last_save_at": "2026-05-30T10:12:02.340Z",
+    "last_save_at": "2026-06-23T03:49:54.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:29f8a520dd7f8ca8b87f0fa899eed45ed787686c0d61794080eadce7c0964b09",
+    "source_doc_hashes": {
+      "spec.md": "b8a82be3c4920c2b3d3ac246067234d516902ed65ca030d9b28663db799190bb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

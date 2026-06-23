@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Five tuning findings sit in the search subsystem. (1) The search-quality harness only reports precision@3 and recall@3 — no rank-sensitive metric like NDCG or MRR — so the harness cannot distinguish a top-1 hit from a top-3 hit. (2) The conditional rerank gate hard-floors at four candidates, blocking ambiguous three-candidate cases that have weak-margin or disagreement triggers. (3) The cross-encoder declares `maxDocuments` per provider but never enforces it, so providers receive the entire candidate list. (4) Duplicate-density adaptive overfetch is wired as telemetry-only; even when duplicate density is high, the calibrator records a recommendation but never raises the live overfetch multiplier. (5) The learned Stage 2 combiner runs in shadow mode forever despite stable quality deltas — there is no path to graduate it into a small guarded blend.",
+    "causal_summary": "Five tuning findings sit in the search subsystem",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-06-05T12:47:33.179Z",
+    "last_save_at": "2026-06-23T03:49:52.869Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8bebd372c429c36b5090329af39327b58f5b3d5f00468558c2d2b959532e66f9",
+    "source_doc_hashes": {
+      "spec.md": "fd549a2750073bdfd85bd135de57ccf554666080f61def2c6688ff4f56889277",
+      "plan.md": "9832c7ce26a3253127cd8a584876cb7cbe904ae89036d1cfca8f529e073fb691",
+      "tasks.md": "1dd6e1c0dfd349457c6cf78d921f54b41f2220795955412ff0434dab3f63f3fb",
+      "checklist.md": "3b2e77192e76bd5f06fe176940e9cdfb7fe5faf05b7c1de18739e06a5c2476d6",
+      "implementation-summary.md": "698310405bc6a416ee026b1a1315e8bc27590bb80e0051f76a904ed613618cb3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

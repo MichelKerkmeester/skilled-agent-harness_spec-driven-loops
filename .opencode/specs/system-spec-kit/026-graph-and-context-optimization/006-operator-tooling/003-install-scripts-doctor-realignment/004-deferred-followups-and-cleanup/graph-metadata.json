@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the Deferred follow-ups (scorer dead-branch removal, graph-metadata path fixes, contract-parity un-skip) plus deep-review doc overviews and install-guide deletions specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-26T08:28:22Z",
-    "last_save_at": "2026-06-22T18:55:02.953Z",
+    "last_save_at": "2026-06-23T03:49:56.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:202f9436a6ccf64b2539d22d892408d226924fb581b57c1c3c62d92178275640",
+    "source_doc_hashes": {
+      "spec.md": "0019e815ea949485c65663e2784718ebc7523cbb7bed463958ae952fe5a28be3",
+      "plan.md": "673551d60a252bd620484607b90cddfff6e474c4561239c7ab080b4a23bf85c4",
+      "tasks.md": "0781940f546545022a70c106aa10db89197ba0b098653917b7bf572e31cb30b7",
+      "implementation-summary.md": "321e13126ff768db485cb166b7c5bd11a2466685c7b6b0eb380063034403622e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

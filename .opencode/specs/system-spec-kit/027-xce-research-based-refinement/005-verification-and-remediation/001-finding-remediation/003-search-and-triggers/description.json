@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers",
-  "description": "Feature Specification: Finding Remediation Lane: Search And Triggers",
+  "description": "The epic deep-review sweep left this lane with 7 unverified P1 claims and 13 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "search",
-    "triggers"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.486Z",
+  "lastUpdated": "2026-06-23T03:49:57.893Z",
   "specId": "003",
   "folderSlug": "search-and-triggers",
   "parentChain": [

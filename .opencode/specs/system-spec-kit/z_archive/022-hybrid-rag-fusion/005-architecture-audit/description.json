@@ -1,13 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/005-architecture-audit",
-  "description": "Feature Specification: Architecture Audit",
+  "description": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
   "keywords": [
-    "feature",
-    "specification",
-    "architecture",
-    "audit"
+    "codebase",
+    "blurred",
+    "ownership",
+    "between",
+    "build-time",
+    "cli",
+    "tooling",
+    "root",
+    "scripts",
+    "runtime",
+    "concerns",
+    "mcpserver"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.075Z",
+  "lastUpdated": "2026-06-23T03:49:59.767Z",
   "specId": "005",
   "folderSlug": "architecture-audit",
   "parentChain": [

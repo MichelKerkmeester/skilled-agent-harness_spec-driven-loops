@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 024 extended the comment-hygiene checker to catch `RC-N`, single-number `DR-N`, hyphen `phase-NNN`, and `P#-Seat#` labels, and it scrubbed only the daemon-reliability files. A repo-wide measurement then found about ninety more perishable labels in live code comments across the skills, bin, and plugin code. These rot after packet renumbering and defeat the very rule the checker enforces.",
+    "causal_summary": "Packet 024 extended the comment-hygiene checker to catch `RC-N`, single-number `DR-N`, hyphen `phase-NNN`, and `P#-Seat#` labels, and it scrubbed only the daemon-reliability files",
     "created_at": "2026-06-07T18:24:03Z",
-    "last_save_at": "2026-06-08T17:32:21.351Z",
+    "last_save_at": "2026-06-23T03:49:56.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8edee411960577d287af4722a5485a6e74a0bdf2a67764fab4b0471903c08413",
+    "source_doc_hashes": {
+      "spec.md": "9064147f63e60fe7c84bd7aa147ac1c4069ecae77012f919f2346717b039e7b1",
+      "plan.md": "308376b4188cf3743b1da368b24d8b4dbfaed81c1dfd36d025214cc55f939e95",
+      "tasks.md": "630dc28d56476e44ec713688f0a555023d62fba69177a202e8751ab29f4b0fa3",
+      "checklist.md": "411915b65d844b24755380d14785d5a5f11e2f8b03c2dc1dbd288fbcb556241c",
+      "implementation-summary.md": "fb0bbeafba9d26c93df8d4cf0130d4dfec251688c0cc7f1ecb8fb522f15458b8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

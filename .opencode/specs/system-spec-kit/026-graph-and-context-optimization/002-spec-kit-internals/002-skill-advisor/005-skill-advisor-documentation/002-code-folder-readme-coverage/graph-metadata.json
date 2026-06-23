@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Discovery against the live tree (2026-05-15) shows the system-skill-advisor README gap is smaller than the original 4-phase plan estimated:",
+    "causal_summary": "Close the gap in two parallel tracks:",
     "created_at": "2026-05-15T11:55:00Z",
-    "last_save_at": "2026-06-05T12:47:33.394Z",
+    "last_save_at": "2026-06-23T03:49:53.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:ee99eefcf8a3fb7785d1578a0e04f78eab39ab6b4958464225ab1aec49d29fe0",
+    "source_doc_hashes": {
+      "spec.md": "e5a7fdef202a3f4d43728917d6782bc6624aabef13a8b9017bc04f1b64597fc3",
+      "plan.md": "6f0fa15dd68eb43e65bb5eb586afc32a4ae462e54bef1c0a73a7a462a8af0879",
+      "tasks.md": "6b45bfabc112cbbb2c16b3f0fd10efef36ad68cf3528e4a9745d057994865bd7",
+      "implementation-summary.md": "6c82e13610f456b2db4addcce0e1c24827fd3624667dae49eec8e4dd6cd61903",
+      "resource-map.md": "ac2f511cb3c456d1e91833938e1bba5ac6ecd22740c1c819b3c410f06774cccb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

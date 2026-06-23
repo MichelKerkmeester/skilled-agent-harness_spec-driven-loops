@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Run a 5-iteration supplemental loop that:",
+    "causal_summary": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterations` with newInfoRatio=0.18 — STILL ABOVE the 0.10 convergence threshold",
     "created_at": "2026-04-29T14:35:00.000Z",
-    "last_save_at": "2026-06-22T18:55:01.870Z",
+    "last_save_at": "2026-06-23T03:49:52.800Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:030c47389c606f3a112b2d3aa55515f4dd2e925297b4211c2cf85366954a42d2",
+    "source_doc_hashes": {
+      "spec.md": "54d4c0e7db395664ae3caa64f1f49cb5233ea1b714825862be5e4158f6fd1bd6",
+      "plan.md": "0f57af05aaa77b11ac082671d275b9ee468002e2b094f01fdc81c8527d5e754b",
+      "tasks.md": "d03d52603464a109a869242b19d2da99925484fd32e1b7bf01a8d95caef42661",
+      "checklist.md": "6f784e0b9489b33a3eafb7c2efc0c53339f6a9d7f7bb26c25eff8a27135cf10f",
+      "implementation-summary.md": "827e0c9032e499cc65e21b343b30640a482a43d24123e0424dc60eae1f24ade0",
+      "resource-map.md": "0049cf43d82b37b44ac2932fc78d216a53f169f65919343d05e00a6341d0a889"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

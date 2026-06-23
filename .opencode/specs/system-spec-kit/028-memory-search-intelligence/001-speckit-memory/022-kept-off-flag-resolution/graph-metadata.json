@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped. A keep-off reinvestigation then gave each flag a path to useful, and a transitional pass flipped four to default-on while the rest waited behind that path. That left the tree carrying many dormant switches whose someday-flip was an assumption, not a measured fact. A release sign-off could not tell which switches earned their place and which were dead code carrying a hopeful note.",
+    "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.827Z",
+    "last_save_at": "2026-06-23T03:49:58.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e6d0d9034b5341aa37a049f74363f93e466f06a849d8832a77ce40821a8a4804",
+    "source_doc_hashes": {
+      "spec.md": "45af4936decddbf79e0d167121ecad55c0de8db7018b112b5f3cb22e7f4ab200",
+      "plan.md": "4ea2aec431484766fd1845cfcd252d81cf918785d664eff9c6ff7dd1a101561c",
+      "tasks.md": "d70f9d1c7603d390c711d3f21ba5999a110ca8abff1f0312919493fcba2376fe",
+      "checklist.md": "c370c9ae7e218ec57f2b22250a0cc47df6a40769a5792ba890e164c8ce0a0329",
+      "implementation-summary.md": "2f5609097dfee4d781f94dab2be489aef8d2b2522d3ea620cfea284659f4b336"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

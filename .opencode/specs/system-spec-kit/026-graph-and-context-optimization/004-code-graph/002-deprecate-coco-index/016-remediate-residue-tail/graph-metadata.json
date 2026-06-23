@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\"). The sweep first exposed a recurring methodology bug — `-g '!...'` exclude globs built in an unquoted shell variable get mangled by zsh, silently breaking rg under `2>/dev/null` and producing false-negative \"0 residue\" results. With inline-quoted excludes + per-token greps, the true picture emerged: the deprecation residue is essentially closed, with only a 2-item live-doc tail referencing deleted artifacts.",
+    "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\")",
     "created_at": "2026-05-25T16:46:14Z",
-    "last_save_at": "2026-05-30T10:12:02.554Z",
+    "last_save_at": "2026-06-23T03:49:55.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5d6872e7af081eaec950f7bb445ce0cd72bc970d6c9c2b9e30cab2234e886882",
+    "source_doc_hashes": {
+      "spec.md": "01cd103839cd9b846bf82e9d1ddee9ebfccc11a98b3656c480e530d3438b1359",
+      "plan.md": "d179d60d6c299739a4141da0be7d346dcd3b09efdf306dade4659f3a4a6b3f34",
+      "tasks.md": "cd5bba1743414de4aa881f04d7c8534f0bb33e1c9fdec9314dd7304acc129602",
+      "implementation-summary.md": "91db40ba986b51b64a61b8e5840c74de38da195278a3e44613493ab300070637"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

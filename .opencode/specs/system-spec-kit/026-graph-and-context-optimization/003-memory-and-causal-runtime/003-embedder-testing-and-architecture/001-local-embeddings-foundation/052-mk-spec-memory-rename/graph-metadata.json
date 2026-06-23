@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase turns the K2.x naming decision into a bounded implementation packet. The research found that the visible host-qualified MCP prefix is not produced by the server code; it is derived by runtimes from their configured MCP server key. That makes the rename mostly a config and reference migration, not a tool-schema refactor.",
+    "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-06-22T18:55:02.293Z",
+    "last_save_at": "2026-06-23T03:49:54.246Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2ad2be7370720ff453081ce00acf177d891d5a0dc4830378fbbf4eb01184890c",
+    "source_doc_hashes": {
+      "spec.md": "1cff8ff7a9abf21c70c375e8c568b61b6103dffd76e59485eeeed0b8295e2994",
+      "plan.md": "09cd983b48f53d3e1d1321d89a1a735ee2d189b7a1e06117eaaf6858fcf8af25",
+      "tasks.md": "b07be163f2ef421e2c4ba13d51536833731c25a4611a9778ae69ad55860e060b",
+      "implementation-summary.md": "a1388bee4951f7702e651ae367310517037624d72a4049b9b61b33e9dda4b884",
+      "resource-map.md": "da36a8df869007b96d09257d6ca7b3ec1ab7d078baad04752b4c0eb58449fff8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

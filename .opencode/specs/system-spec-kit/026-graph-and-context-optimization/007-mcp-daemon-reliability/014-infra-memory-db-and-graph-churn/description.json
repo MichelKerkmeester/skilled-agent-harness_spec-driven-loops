@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
-  "description": "Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn",
+  "description": "Two live-infra issues degrade the spec-memory subsystem",
   "keywords": [
-    "feature",
-    "specification",
-    "infra",
-    "investigations",
-    "memory-db",
-    "corruption",
-    "graph-metadata",
-    "churn"
+    "two",
+    "live-infra",
+    "issues",
+    "degrade",
+    "spec-memory",
+    "subsystem"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.130Z",
+  "lastUpdated": "2026-06-23T03:49:56.465Z",
   "specId": "014",
   "folderSlug": "infra-memory-db-and-graph-churn",
   "parentChain": [

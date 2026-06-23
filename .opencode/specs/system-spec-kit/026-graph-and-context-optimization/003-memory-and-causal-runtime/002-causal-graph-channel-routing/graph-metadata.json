@@ -32,8 +32,8 @@
       "parent",
       "deep-review",
       "remediation",
-      "activate",
-      "degree"
+      "graph-channel",
+      "override"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -92,14 +92,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Activate the graph and degree channels for intent-driven and entity-rich short queries. The complex-tier threshold (`>8 terms`) was excluding essentially all natural queries from the graph channel, so 1,328 live causal edges sat unused. This phase parent owns both the initial routing override (001) and the post-deep-review remediation (002).",
+    "causal_summary": "Phase parent for the graph-channel routing override and its post-delivery remediation. 001 ships the initial routing override (delivered 2026-05-08); 002 resolves the 0 P0 / 3 P1 / 39 P2 findings from the 2026-05-11 deep review (10-iter, cli-opencode + deepseek/deepseek-v4-pro).",
     "created_at": "2026-05-11T10:36:32.859Z",
-    "last_save_at": "2026-05-30T10:12:02.063Z",
+    "last_save_at": "2026-06-23T03:49:53.901Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e94b79bc6eb0eb0658586279a7dedcc2c58e794f2caf340349cc9b4ee407f5a0",
+    "source_doc_hashes": {
+      "spec.md": "f71b678bbda454a4f018f86f9a7bb18615e6f84652b472791c21f95fcf3e0267"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

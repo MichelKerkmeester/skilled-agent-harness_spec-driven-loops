@@ -1,13 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/002-skill-speckit-alignment",
-  "description": "Task 02 — SKILL.md & References Audit",
+  "description": "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect t",
   "keywords": [
-    "task",
+    "audit",
     "skill",
-    "references",
-    "audit"
+    "files",
+    "total",
+    "system-spec-kit",
+    "reference",
+    "ensure",
+    "version",
+    "numbers",
+    "feature",
+    "descriptions",
+    "cross-references",
+    "reflect"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.041Z",
+  "lastUpdated": "2026-06-23T03:49:59.501Z",
   "specId": "002",
   "folderSlug": "skill-speckit-alignment",
   "parentChain": [

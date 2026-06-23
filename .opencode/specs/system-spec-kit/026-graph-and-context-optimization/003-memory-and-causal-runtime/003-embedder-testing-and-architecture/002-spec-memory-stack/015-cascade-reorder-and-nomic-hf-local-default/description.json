@@ -1,20 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
-  "description": "Spec: 016/002/015 Local-First Cascade Reorder + Nomic hf-local Default (ADR-014)",
+  "description": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 t",
   "keywords": [
-    "spec",
-    "016",
-    "002",
-    "015",
-    "local-first",
-    "cascade",
     "reorder",
-    "nomic",
+    "auto-select",
+    "provider",
+    "cascade",
+    "ollama",
     "hf-local",
-    "default",
-    "adr-014"
+    "openai",
+    "voyage",
+    "local-first",
+    "change",
+    "fallback",
+    "baai",
+    "bge-base-en-v1"
   ],
-  "lastUpdated": "2026-05-26T17:28:04.230Z",
+  "lastUpdated": "2026-06-23T03:49:54.356Z",
   "specId": "015",
   "folderSlug": "cascade-reorder-and-nomic-hf-local-default",
   "parentChain": [

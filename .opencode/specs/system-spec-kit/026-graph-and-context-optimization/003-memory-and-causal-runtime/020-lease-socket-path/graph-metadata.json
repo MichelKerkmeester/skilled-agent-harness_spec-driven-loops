@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet closes defect **(c)**, deferred as a follow-up in packet 018 (front-proxy recycle hardening).",
+    "causal_summary": "This packet closes defect (c), deferred as a follow-up in packet 018 (front-proxy recycle hardening)",
     "created_at": "2026-06-04T10:33:09.672Z",
-    "last_save_at": "2026-06-22T18:55:02.713Z",
+    "last_save_at": "2026-06-23T03:49:55.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:baea2f5bfa9d6e9475eee017c6427b05d596433a05a8d0121edb08452b7dae19",
+    "source_doc_hashes": {
+      "spec.md": "82b6ea3357dbf1126856d4bd7fd1975008db87166da86e3aa5bac7319f9179d1",
+      "plan.md": "00f562a559bc7a1bf183e27401807880a1df7cf074f1b3074b56826c3f56c301",
+      "tasks.md": "842756277ed9bb714c0cfaba1b4e43cdfc49028948a84cdbfc59f43c932831cf",
+      "checklist.md": "9c7330d6d38225729abd5e022a6fc5033b52a43785a22bc7a0a43cd3d355fcd9",
+      "implementation-summary.md": "5fcb20a4398b4f864cccf79b1435b4bd3aaa465fc99396afb7d6562daf1e0ad8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor ships an end-to-end *shadow* feedback pipeline, durable outcome capture, a bounded delta estimator and a parallel shadow-weight channel, but the estimator's proposal is written to a JSONL log that **no consumer ever reads back**, so the loop never closes. This sub-phase builds the missing seam: an out-of-process promoter that reads the estimator's proposals, plus the reliability math that turns raw acceptance frequency into a flood-immune posterior, plus the aionforge attestation-and-promotion gate family that decides, conservatively and shadow-only, whether a lane weight should ever move. Net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.",
+    "causal_summary": "The Skill Advisor's shadow learning pipeline is structurally half-built and disconnected",
     "created_at": "2026-06-19T06:06:27.153Z",
-    "last_save_at": "2026-06-22T18:55:03.747Z",
+    "last_save_at": "2026-06-23T03:49:58.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4b7a445cc3226da9ddf931aed672e3c21f56feca7ce989220d56f2c4e5d02d1f",
+    "source_doc_hashes": {
+      "spec.md": "bda55b77ffd43c58700e130cd236fcee75afaf8f684b6b96c477ca0d8a6238b5",
+      "plan.md": "6d460a4d21e24a1b3302f6c0401af73313207378bbf900ffb7b3f16a01186fd9",
+      "tasks.md": "2aaefeb242f9aed70e12906d13b84a87ed0cb1b1d775cbf132d35ef5577f0b24",
+      "checklist.md": "510505cc4e519a958d044a7a9ef832126c5b1a3bd644fbaccf3bf1d9ec7448f0",
+      "decision-record.md": "b3427a6639d3336ca8208d99c480fad018ef65df6673ebb232af3b095364bc4f",
+      "implementation-summary.md": "33b82d5adf59bb566a9f13eb70baf9b30de6dcfdf7f71d35c551b79960d150d3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

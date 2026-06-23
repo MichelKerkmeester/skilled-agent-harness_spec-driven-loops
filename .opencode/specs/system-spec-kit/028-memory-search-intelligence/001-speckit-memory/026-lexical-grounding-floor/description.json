@@ -1,16 +1,17 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
-  "description": "Feature Specification: Lexical-Grounding Floor and Single-Hit Corroboration",
+  "description": "The `/memory:search` verdict cites an off-corpus term with confidence",
   "keywords": [
-    "feature",
-    "specification",
-    "lexical-grounding",
-    "floor",
-    "single-hit",
-    "corroboration"
+    "memory",
+    "search",
+    "verdict",
+    "cites",
+    "off-corpus",
+    "term",
+    "confidence"
   ],
-  "lastUpdated": "2026-06-22T17:00:25.349Z",
+  "lastUpdated": "2026-06-23T03:49:58.337Z",
   "specId": "026",
   "folderSlug": "lexical-grounding-floor",
   "parentChain": [

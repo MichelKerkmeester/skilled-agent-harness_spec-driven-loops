@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.791Z",
+    "last_save_at": "2026-06-23T03:49:58.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c8533811f8ee0e64a723db784e97d3355a19ad2d259a41e3edc62bf9e871145",
+    "source_doc_hashes": {
+      "spec.md": "a705a2d55fa673ec84a37408c3cb290ab47479893cbeef69be4ddb00216fc1ee",
+      "plan.md": "d9756523f839856d2e8f2b3b5d0b6e50d357b3e754e34f3d53af301df3718c9a",
+      "tasks.md": "69013d4877045cd47344a639bbaacd78cb0bb04ceaade297d34ea51bdfb657e0",
+      "checklist.md": "4cd961d9aea87718b217358f735ec1e699c74e4d2ff98bffece9722658ecab89",
+      "implementation-summary.md": "8fa14b085554eba2d67281b417f40ec439c3d8dff04702f34ff9498e40fed498"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -30,7 +30,7 @@
       "plan",
       "tasks",
       "summary",
-      "compare"
+      "author"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "To compare CocoIndex embedder candidates we need a deterministic fixture (query → expected-source pairs grounded in actual repo code). Without this, \"is CodeRankEmbed better?\" has no measurable answer. The mk-spec-memory side has cat-24/409; CocoIndex has no equivalent today.",
+    "causal_summary": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
     "created_at": "2026-05-18T08:18:02.786Z",
-    "last_save_at": "2026-05-30T10:12:02.283Z",
+    "last_save_at": "2026-06-23T03:49:54.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:eb7e21c9742bcaff13e027b033bf01ed01f3609c8bc8b2d40ae2d2827292fad0",
+    "source_doc_hashes": {
+      "spec.md": "ba0a6834ff9f0d4d826efa51228100a1c8879938de2baffdd3e2942da37663f3",
+      "plan.md": "ed083a9bff8e3a864534ae235c89c0c912ff5148ec2c9e032579dd746ea1aece",
+      "tasks.md": "5c8996d0796f148a491c58a4f84158b2defcc0c1f078a01489d0bb78a1749d80",
+      "implementation-summary.md": "952d359f889a1ab048c7fe30fbaeb9e9b66da7c2667ce7c99462e5e1a33f5eba"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

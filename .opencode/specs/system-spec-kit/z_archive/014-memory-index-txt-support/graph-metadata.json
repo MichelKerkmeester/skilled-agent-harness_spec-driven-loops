@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived system-spec-kit archive folder captures work related to Memory Index Txt Support. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
+    "causal_summary": "This archived system-spec-kit archive folder captures work related to Memory Index Txt Support",
     "created_at": "2026-04-12T09:02:53.567Z",
-    "last_save_at": "2026-06-05T12:47:34.605Z",
+    "last_save_at": "2026-06-23T03:49:59.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:df9f65250ae53adb6e43197e7ae1293d49d19adf56a5287cf85e32b0f18b5beb",
+    "source_doc_hashes": {
+      "spec.md": "0a6e09da1c75f4ef6d6e4b18519f5ffb4e6a59f2c47ba980be3e785488ecde70",
+      "plan.md": "2506a5ae0a4de093d7a581eaed6648b3cf14c12e1a8397e58bcea1b7b398f47d",
+      "tasks.md": "f3b87688ca621229b25e9db92ca7d95e06f1b2e2f641cdd512b1fbefbeaf7319",
+      "checklist.md": "e9e86ceccefbc194a4ad4d751a677189ce6b5af281291ce32a55a3d387ca8304",
+      "decision-record.md": "60ab317014761042aebe5ba08f9e4b08bcb67842886a61001d7e5bf51fa3ca27",
+      "implementation-summary.md": "e50a389b3e6cb6d61b66fe1f9541ee920c06c9c115721fe1f46b7a7b6bd226e4",
+      "research/research.md": "1c47f0a7cfb393dc47a389177b1d1c2eca59115ff6edf5e5875e6d212ec77816"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

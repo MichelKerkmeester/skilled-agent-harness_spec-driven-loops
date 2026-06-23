@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2 of 6** of the embedding-consolidation and hf-local-server decomposition: Add a hand-written CommonJS local HTTP/UDS model server that wraps the existing transformers load path and exposes ollama-shaped /api/embed plus /api/health endpoints.",
+    "causal_summary": "hf-local currently owns transformers model loading inside provider/sidecar execution paths",
     "created_at": "2026-05-29T05:06:24.637Z",
-    "last_save_at": "2026-06-22T18:55:02.606Z",
+    "last_save_at": "2026-06-23T03:49:55.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1e60b2464ba4a20f1a7a56962575eb538c211b0d37e45e1c6fea7fe43a8ae876",
+    "source_doc_hashes": {
+      "spec.md": "bdc5ee6b093b73a545c0d90201b861ddbd57d33436b2366231f99bebdc25e8fc",
+      "plan.md": "6b2c1fb1d8943792b0e09ca2f6e456c640ff15a108e65c3da7c01b4c09f1b161",
+      "tasks.md": "4ecd54c6fad0d38a0fb7c359a9e67581c74e1dffddcaf6139b7b6fd2dcbc6087",
+      "implementation-summary.md": "fdcd8dbb2f38a7a856d61dd35f7e63b89d89d17e351f68fbf59141d5a6f844e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

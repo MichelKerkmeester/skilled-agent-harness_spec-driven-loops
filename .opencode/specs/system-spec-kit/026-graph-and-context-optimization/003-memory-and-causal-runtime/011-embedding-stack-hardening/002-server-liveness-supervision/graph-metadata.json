@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2 of 5** of the embedding-stack hardening decomposition: make the model server fail safe under wedges, hung inference, crash loops, and disk-full. These are the silent-failure killers — a server that looks alive but is not.",
+    "causal_summary": "The supervision layer cannot tell a healthy server from a wedged one",
     "created_at": "2026-05-29T11:22:57.376Z",
-    "last_save_at": "2026-06-22T18:55:02.638Z",
+    "last_save_at": "2026-06-23T03:49:55.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1e26a24789e7b24b17cee19ce40fda2e05cf13303b20c62348742db378c14541",
+    "source_doc_hashes": {
+      "spec.md": "62fba94b545f9e4759bddbb2ebedbe6d6e7261860ffa4b1663ba38677e08e2b7",
+      "plan.md": "222d5640766f574ccc960e51b1cedc01567ba78e3655fd981109947441a25a61",
+      "tasks.md": "c65e24acca701121816ba64022d3a4c64b47a8f31cb1ebdbcb9037530593802d",
+      "implementation-summary.md": "bb0214c890af556f7293073e7d1e7b26ddc5ef6c311f4765c61011b44f377928"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

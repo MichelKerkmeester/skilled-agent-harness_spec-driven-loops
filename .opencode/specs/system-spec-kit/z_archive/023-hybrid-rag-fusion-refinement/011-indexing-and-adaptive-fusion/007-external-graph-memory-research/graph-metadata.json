@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec Kit Memory causal graph currently has 3,854 edges at 79.92% coverage, dominated by `supports` (2,578) and `caused` (1,265) relations. While structurally healthy, the graph is used reactively — retrieved only when causal boost or co-activation fires — rather than as a proactive, first-class retrieval channel. This research phase investigates how leading external graph memory systems (Zep, Mem0, GraphRAG, Memoripy, LightRAG, Cognee) handle graph construction, traversal, UX surface, and automatic utilization, and produces a ranked shortlist of improvements applicable to our system.",
+    "causal_summary": "The Spec Kit Memory graph subsystem is structurally sound but underutilized",
     "created_at": "2026-04-12T09:02:50.335Z",
-    "last_save_at": "2026-06-05T12:47:34.946Z",
+    "last_save_at": "2026-06-23T03:50:00.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:4f0d735146d0d580aee69fa52e56e0864768c2ae6b1d976ed942a6be4a5a2e40",
+    "source_doc_hashes": {
+      "spec.md": "e562dd1f659d811014863bd87f2fef6333e8d4b687656f8c6f117e9596be1365",
+      "plan.md": "45820eefd648f6da9054ad5bd36f837b667bbf7a5c807d753ff5cccbfdbd6513",
+      "tasks.md": "c3f9611b7f313e4afffb0c70e01db30f6ea45b50b50daed54ee9b951642ba428",
+      "checklist.md": "aea471314b740368ad0aee56ee07efb307f30105cf28ed66f1cf0d2cc139d19f",
+      "decision-record.md": "751c3ad07d6c26160982ac79a9d0c9a5ce44fca273abf41886a82d416cb3ee6b",
+      "implementation-summary.md": "d0e80209b1f433a8de093e2b658543f9f422cfa7c00869d2c4c6a15c9d026919",
+      "research/research.md": "0074cc774c74005be4319ac005f28880f09589f4870db290212004bf79494c18"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

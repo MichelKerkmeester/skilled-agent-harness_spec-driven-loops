@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 21** of the Cross-skill doc polish: fix tool counts, restructure system-code-graph SKILL.md to canonical sk-doc shape, add new reference docs, sync upstream metadata specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-16T14:47:31Z",
-    "last_save_at": "2026-06-22T18:55:02.824Z",
+    "last_save_at": "2026-06-23T03:49:55.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5b4c069e0ec7f53ac0cfdbb54538dd4f0adcfd2e627fc52bbfe58da164378cf8",
+    "source_doc_hashes": {
+      "spec.md": "a08a72d12190230c27e40e2e5994c7308abd121a1575b1cb5328d753a7ad7b92",
+      "plan.md": "27f75110ef072ea5669ffb65a2dbfe1e1c0803bab27a2aefa4edaed7f5fb4bf7",
+      "tasks.md": "982acddd8fdd2866d74db4cd3bdcc614ad3aff0ea4857c08f8b8603f15e640af",
+      "implementation-summary.md": "8e450ca79755cd24073c9bd8ad926d6fe7a3a794cef5db8d94abd932c0bdfa82"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
-  "description": "Feature Specification: 008 W3-W7 Runtime Wiring and Audit",
+  "description": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is",
   "keywords": [
-    "feature",
-    "specification",
-    "008",
+    "phase",
+    "found",
     "w3-w7",
+    "exist",
+    "useful",
+    "local",
+    "artifacts",
     "runtime",
-    "wiring",
-    "audit"
+    "decisions",
+    "remain",
+    "fragmented",
+    "test-only",
+    "response-only"
   ],
-  "lastUpdated": "2026-05-26T17:27:26.313Z",
+  "lastUpdated": "2026-06-23T03:49:52.161Z",
   "specId": "002",
   "folderSlug": "runtime-wiring-enterprise-readiness-audit",
   "parentChain": [

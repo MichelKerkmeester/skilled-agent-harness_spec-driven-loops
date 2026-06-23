@@ -132,15 +132,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `cocoindex_code` MCP server) and the `system-rerank-sidecar` cross-encoder HTTP service. Two couplings make removal non-trivial: `system-code-graph` (structural indexing) is bound to CocoIndex through the `ccc_*` bridge tools and the semantic/hybrid query-intent routing, and `system-rerank-sidecar` is consumed by **both** CocoIndex and `mk-spec-memory` (opt-in cross-encoder rerank). Removing these cleanly requires mapping every live touchpoint first.",
+    "causal_summary": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `cocoindexcode` MCP server) and the `system-rerank-sidecar` cross-encoder HTTP service",
     "created_at": "2026-05-25T06:48:03.559Z",
-    "last_save_at": "2026-06-22T18:56:36.940Z",
+    "last_save_at": "2026-06-23T03:49:55.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:dce2637a16cc15581a7c5c7f4400384aad1d6047eff80d4ec66044c9a96ba195",
+    "source_doc_hashes": {
+      "spec.md": "29c5864aa648aad73c1cb450d9656b7b1530dca380ca35490d92c7cbd3eb1978",
+      "resource-map.md": "eb74360ed84684d9f886a564cfc440937ad0ad0d5931967b483198abbc22098e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

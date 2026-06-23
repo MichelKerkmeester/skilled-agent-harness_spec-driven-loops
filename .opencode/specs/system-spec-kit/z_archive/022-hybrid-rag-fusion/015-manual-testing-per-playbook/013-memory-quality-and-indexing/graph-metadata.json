@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario files that expand to 34 exact IDs through sub-scenario decomposition (M-005 expands to M-005a/b/c, M-006 expands to M-006a/b/c, 155 expands to 155-F). These scenarios cover the verify-fix-verify loop, signal vocabulary, quality gates, reconsolidation, entity extraction, outsourced agent capture, session enrichment, post-save review, and deferred indexing among other features. Without a dedicated phase packet, testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or record results.",
+    "causal_summary": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario files that expand to 34 exact IDs through sub-scenario decomposition (M-005 expands to M-005a/b/c, M-006 expands to M-006a/b/c, 155 expands to 155-F)",
     "created_at": "2026-04-12T09:02:50.300Z",
-    "last_save_at": "2026-06-22T18:55:04.505Z",
+    "last_save_at": "2026-06-23T03:50:00.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5eb5a296a2706ace6aaa0ec7a7bd3a8a2164b58c828325eabd5d68d1360878b1",
+    "source_doc_hashes": {
+      "spec.md": "47e3f2bd11063bda42a2e9da93d2b5cf9f7294288b272084c96ffb4b3fd19ed7",
+      "plan.md": "a2a143eafff01e5f71d4a93b98ec0fae4640f67a9dcd3c72e1eaf0d62402b313",
+      "tasks.md": "c79246abf4b24719eb932e6a0a651350baf94dc9c7e3de545967a279e4fc27c4",
+      "checklist.md": "dc28a1c0ab8aa75c016f76bc8e27edbc5c12f1a666fb4bbcdcd617e2bf6bfe04",
+      "implementation-summary.md": "fdf6bfb7899bea05d553b7721962221e9a18cd04a6555c4e54c958003466fac0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

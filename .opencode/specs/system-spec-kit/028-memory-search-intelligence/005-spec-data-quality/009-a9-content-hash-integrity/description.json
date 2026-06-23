@@ -1,15 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
-  "description": "Feature Specification: A9 Read-Time Content-Hash Integrity Verification",
+  "description": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
   "keywords": [
-    "feature",
-    "specification",
-    "read-time",
-    "content-hash",
-    "integrity",
-    "verification"
+    "contenthash",
+    "column",
+    "memoryindex",
+    "written",
+    "save",
+    "time",
+    "used",
+    "only",
+    "embedding-cache",
+    "key",
+    "idempotency",
+    "receipt"
   ],
-  "lastUpdated": "2026-06-21T10:22:31.918Z",
+  "lastUpdated": "2026-06-23T03:49:58.595Z",
   "specId": "009",
   "folderSlug": "a9-content-hash-integrity",
   "parentChain": [

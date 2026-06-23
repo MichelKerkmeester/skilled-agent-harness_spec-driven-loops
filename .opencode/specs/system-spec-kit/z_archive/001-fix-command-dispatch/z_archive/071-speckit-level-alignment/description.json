@@ -1,15 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/071-speckit-level-alignment",
-  "description": "Feature Specification: SpecKit Level-Based Template Alignment",
+  "description": "Scripts (`create-spec-folder.sh`, `expand-template.js`) copy from root templates instead of level-specific folders",
   "keywords": [
-    "feature",
-    "specification",
-    "speckit",
-    "level-based",
-    "template",
-    "alignment"
+    "scripts",
+    "create-spec-folder",
+    "expand-template",
+    "copy",
+    "root",
+    "templates",
+    "instead",
+    "level-specific",
+    "folders"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.984Z",
+  "lastUpdated": "2026-06-23T03:49:59.273Z",
   "specId": "071",
   "folderSlug": "speckit-level-alignment",
   "parentChain": [

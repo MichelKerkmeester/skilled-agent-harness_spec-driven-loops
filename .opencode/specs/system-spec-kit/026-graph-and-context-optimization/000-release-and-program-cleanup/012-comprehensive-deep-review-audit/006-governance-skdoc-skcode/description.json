@@ -1,17 +1,20 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
-  "description": "Feature Specification: Governance + sk-doc + sk-code Drift Review Slice",
+  "description": "The constitutional rules govern spec-kit behavior, and sk-doc / sk-code define documentation and code standards",
   "keywords": [
-    "feature",
-    "specification",
-    "governance",
+    "constitutional",
+    "rules",
+    "govern",
+    "spec-kit",
+    "behavior",
     "sk-doc",
     "sk-code",
-    "drift",
-    "review",
-    "slice"
+    "define",
+    "documentation",
+    "code",
+    "standards"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.964Z",
+  "lastUpdated": "2026-06-23T03:49:53.002Z",
   "specId": "006",
   "folderSlug": "governance-skdoc-skcode",
   "parentChain": [

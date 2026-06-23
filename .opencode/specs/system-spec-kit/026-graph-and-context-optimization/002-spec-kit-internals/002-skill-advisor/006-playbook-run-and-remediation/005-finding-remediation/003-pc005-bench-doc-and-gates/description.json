@@ -1,16 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
-  "description": "Feature Specification: PC-005 Bench Doc + Gate Calibration (F2)",
+  "description": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms)",
   "keywords": [
-    "feature",
-    "specification",
     "pc-005",
+    "fails",
+    "two",
+    "ways",
+    "scorer",
+    "regression",
+    "native",
     "bench",
-    "doc",
-    "gate",
-    "calibration"
+    "passes"
   ],
-  "lastUpdated": "2026-05-27T11:54:03.154Z",
+  "lastUpdated": "2026-06-23T03:49:53.691Z",
   "specId": "003",
   "folderSlug": "pc005-bench-doc-and-gates",
   "parentChain": [

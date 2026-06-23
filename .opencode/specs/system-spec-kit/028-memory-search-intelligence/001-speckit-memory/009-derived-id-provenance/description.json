@@ -1,16 +1,15 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
-  "description": "Feature Specification: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)",
+  "description": "Generated (DERIVED) causal edges have no content-addressed identity",
   "keywords": [
-    "feature",
-    "specification",
-    "content-addressed",
+    "generated",
     "derived",
     "causal",
-    "artifacts",
-    "c4-b"
+    "edges",
+    "content-addressed",
+    "identity"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.769Z",
+  "lastUpdated": "2026-06-23T03:49:58.207Z",
   "specId": "009",
   "folderSlug": "derived-id-provenance",
   "parentChain": [

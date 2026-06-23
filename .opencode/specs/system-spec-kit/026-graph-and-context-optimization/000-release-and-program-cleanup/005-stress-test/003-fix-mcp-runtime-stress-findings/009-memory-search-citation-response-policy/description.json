@@ -1,15 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
-  "description": "Feature Specification: memory_search hard response policy + citation policy",
+  "description": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized can",
   "keywords": [
-    "feature",
-    "specification",
-    "hard",
-    "response",
-    "policy",
-    "citation"
+    "006",
+    "cli-opencode",
+    "received",
+    "requestquality",
+    "weak",
+    "plus",
+    "recovery",
+    "recommendedaction",
+    "askuser",
+    "suggestedqueries",
+    "still",
+    "synthesized"
   ],
-  "lastUpdated": "2026-05-26T17:27:55.048Z",
+  "lastUpdated": "2026-06-23T03:49:52.595Z",
   "specId": "009",
   "folderSlug": "memory-search-citation-response-policy",
   "parentChain": [

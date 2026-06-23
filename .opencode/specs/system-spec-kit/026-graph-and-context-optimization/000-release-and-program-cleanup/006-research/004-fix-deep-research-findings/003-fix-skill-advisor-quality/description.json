@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality",
-  "description": "Feature Specification: 003 Advisor Quality",
+  "description": "Eight advisor-quality findings sit across the skill-advisor surface",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "advisor",
-    "quality"
+    "eight",
+    "advisor-quality",
+    "findings",
+    "sit",
+    "across",
+    "skill-advisor",
+    "surface"
   ],
-  "lastUpdated": "2026-05-26T17:27:19.248Z",
+  "lastUpdated": "2026-06-23T03:49:52.837Z",
   "specId": "003",
   "folderSlug": "fix-skill-advisor-quality",
   "parentChain": [

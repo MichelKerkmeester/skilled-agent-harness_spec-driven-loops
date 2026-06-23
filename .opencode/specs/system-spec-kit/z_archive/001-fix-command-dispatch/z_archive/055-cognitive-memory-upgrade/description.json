@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/055-cognitive-memory-upgrade",
-  "description": "Spec: Cognitive Memory Upgrade Research",
+  "description": "Research upgrading Spec Kit Memory system with ideas and principles from the claude-cognitive repository, adapted for OpenCode's hook-less architectur",
   "keywords": [
+    "research",
+    "upgrading",
     "spec",
-    "cognitive",
+    "kit",
     "memory",
-    "upgrade",
-    "research"
+    "system",
+    "ideas",
+    "principles",
+    "claude-cognitive",
+    "repository",
+    "adapted",
+    "opencode",
+    "hook-less",
+    "architectur"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.935Z",
+  "lastUpdated": "2026-06-23T03:49:59.201Z",
   "specId": "055",
   "folderSlug": "cognitive-memory-upgrade",
   "parentChain": [

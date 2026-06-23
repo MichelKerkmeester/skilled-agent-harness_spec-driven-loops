@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface. (B1-01) The Codex hook timeout fallback emits a bespoke advisor brief that bypasses the shared `renderAdvisorBrief()` formatter, so a future format change drifts between runtimes. (B1-02) The OpenCode bridge surfaces `Advisor: disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED.` to the model when the disabled flag is set, while every other runtime fails open silently — disabled-state visibility is not aligned. (B1-03) The OpenCode bridge carries a dead `renderNativeBrief()` alternate renderer that is unreferenced and can drift out of sync with the shared formatter. (C2-01) Graph-causal conflict evidence (negative `EDGE_MULTIPLIER` for `conflicts_with`) is filtered out at lane emit (`value.score > 0`), so conflict signals never reach fusion. (C2-02) The SQLite projection assigns `derivedKeywords = derivedTriggers` (same value), duplicating the same evidence into two lane inputs. (C2-03) The fusion task-intent confidence floor (0.75) lets token-stuffed prompts pass for many unrelated skills as soon as ANY direct/normalized score scrap clears the threshold — there is no dispersion guard. (C2-04) `isAmbiguousTopTwo` compares only the top two `confidence` values, ignoring the larger ranking-score signal and any third-or-deeper tied candidates. (C3-01) Fixture row 26 expects `sk-code-review` for `\"review and update this\"`, but the prompt is a write/edit request — the fixture encodes a review-only routing that conflicts with the write-verb signal.",
+    "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-06-05T12:47:33.165Z",
+    "last_save_at": "2026-06-23T03:49:52.834Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a86a9c7355a55fadb23a968d9009fd4d7d044acac5c45fa6cf33b028b29f6786",
+    "source_doc_hashes": {
+      "spec.md": "2963877a0638cada8d012eaf6b99266fd4e79bb028cd8f1c17517712c8163c82",
+      "plan.md": "084f1f95a6c3356671913d8f90db9039f34fc9608fea21b9db2ae090389c6782",
+      "tasks.md": "61070a880849315de9ff7148eedea4eac8dd0478590925817fc5dc0d3766960b",
+      "checklist.md": "fe1bf9229743f96f3c55524595a6f3b53565cda44a1e33009bb37dcc8ccc359d",
+      "implementation-summary.md": "059b5dc2a41aa3641da89ad64a8d5fe3f3c3167b9b81c1a0960efac934164aff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

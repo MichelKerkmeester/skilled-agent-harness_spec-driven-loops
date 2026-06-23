@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
-  "description": "Feature Specification: Red-Team Probe Gate",
+  "description": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
   "keywords": [
-    "feature",
-    "specification",
-    "red-team",
-    "probe",
-    "gate"
+    "spec-kit",
+    "memory",
+    "mcp",
+    "already",
+    "defends",
+    "individual",
+    "injection",
+    "seams",
+    "single",
+    "gate",
+    "proves",
+    "whole",
+    "surface",
+    "holds"
   ],
-  "lastUpdated": "2026-06-20T09:26:59.658Z",
+  "lastUpdated": "2026-06-23T03:49:58.182Z",
   "specId": "006",
   "folderSlug": "redteam-probe-gate",
   "parentChain": [

@@ -103,14 +103,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger matching, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, and vector/BM25 search resilience. These share the memory subsystem and a single deployment doctrine (results-affecting features default-off, protections always-on), so they belong under one themed parent.",
+    "causal_summary": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger matching, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, and vector/BM25 search resilience",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-22T18:56:37.225Z",
+    "last_save_at": "2026-06-23T03:49:57.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:a0d7d1153d93cefaacfcd0e96d35e1c90be9eba0fce2102989e6d2ff6bb0f7ba",
+    "source_doc_hashes": {
+      "spec.md": "c28a59930712521c5e279476036d55a39b042106635a380abe399bc37275fa0b"
+    },
     "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
     "last_active_at": "2026-06-17T18:35:00Z"
   }

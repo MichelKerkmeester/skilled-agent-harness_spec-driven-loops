@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
-  "description": "Feature Specification: Phase 6: codegraph-tombstone-audit",
+  "description": "The code graph hard-deletes nodes and edges during reindex and stale cleanup (`lib/code-graph-db.ts:692-704`, `:784-790`, `:890-905`), so after a file",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "codegraph-tombstone-audit"
+    "code",
+    "graph",
+    "hard-deletes",
+    "nodes",
+    "edges",
+    "reindex",
+    "stale",
+    "cleanup",
+    "lib",
+    "code-graph-db",
+    "692-704",
+    "784-790",
+    "890-905",
+    "file"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.991Z",
+  "lastUpdated": "2026-06-23T03:49:57.482Z",
   "specId": "006",
   "folderSlug": "codegraph-tombstone-audit",
   "parentChain": [

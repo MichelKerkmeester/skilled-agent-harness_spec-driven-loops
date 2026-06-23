@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents, hooks, 4-runtime configs, READMEs) with two dangerous couplings (sidecar to mk-spec-memory; code-graph to coco via the ccc bridge). Acting without an exhaustive, classified touchpoint map risks breaking memory reranking, semantic-search routing, or the structural code-graph.",
+    "causal_summary": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents, hooks, 4-runtime configs, READMEs) with two dangerous couplings (sidecar to mk-spec-memory; code-graph to coco via the ccc bridge)",
     "created_at": "2026-05-25T06:48:03.563Z",
-    "last_save_at": "2026-05-30T10:12:02.542Z",
+    "last_save_at": "2026-06-23T03:49:55.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:e5ea7971c3f0761080e79072d2650926cd76413332ede95f531cd9e775183dcc",
+    "source_doc_hashes": {
+      "spec.md": "d5123cc835587d683fca401d01b5fb5366bc9f1ae1a67911db43be7b54fed2af",
+      "plan.md": "a6e08e7b83f15d995bd14dd116ed982220700a9f6002030cd999a826168195d7",
+      "tasks.md": "3f0c323222b3e54769f93250b1f7f47a344ecb9bb3e7a85ba318657e0eecf3a6",
+      "implementation-summary.md": "8a123e88a8900ae83cc6d74e83c1449e98f526aafdf6ab513fb1b4559e69765e",
+      "research/research.md": "dda198678e3f1339844e3e213754e8006c33faf8445e790aff9ae3f0dcfb7348"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

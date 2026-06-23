@@ -35,8 +35,8 @@
       "plan",
       "tasks",
       "checklist",
-      "phase",
-      "hybrid"
+      "queries",
+      "use"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "All queries use the full 5-channel pipeline regardless of complexity, meaning simple lookups (e.g., trigger phrase matches) pay the same latency cost as complex semantic queries",
     "created_at": "2026-04-12T09:02:50.227Z",
-    "last_save_at": "2026-06-22T18:55:04.110Z",
+    "last_save_at": "2026-06-23T03:49:59.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0a12459508d600be59634d3d84fb759c69459912cee56e22eb3e40e1bf1beee9",
+    "source_doc_hashes": {
+      "spec.md": "a59a487a02687bad7751cd5b56de88e7b53f7393125162950efc06623125315a",
+      "plan.md": "7aacb6fce8c44f4f2c881f1ae7a7c90c9110f5fbaee884112f936992c1069bd7",
+      "tasks.md": "360afc7137927b921e2759bace7b3da8e827c365ae060e60c92e6ad25a56cfe4",
+      "checklist.md": "0440c37c08349bdebb308c1c4dfe0deae73ee07bcc94c5c084c5c8907cb62f14",
+      "implementation-summary.md": "8d5d34424cadd634804b65ee68544641df762f637b83b0fd9d9d905e636cc4bd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

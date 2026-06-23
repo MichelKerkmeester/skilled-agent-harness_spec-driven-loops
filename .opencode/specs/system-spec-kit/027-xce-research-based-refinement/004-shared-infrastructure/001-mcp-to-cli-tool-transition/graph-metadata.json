@@ -88,14 +88,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session transport disconnect permanently removes the tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration. A CLI surface over the same daemon removes the transport fragility without losing any feature.",
+    "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session transport disconnect permanently removes the tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-06-22T18:56:37.303Z",
+    "last_save_at": "2026-06-23T03:49:57.530Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:0dd48508f1467288b8a37ba23034751670d27e076c8db1ac550bf9983f7652cd",
+    "source_doc_hashes": {
+      "spec.md": "f819aa26f27f0c07321967f0540986ad4c99acb4696379a26b4eda89526866e0"
+    },
     "last_active_child_id": null,
     "last_active_at": "2026-06-09T20:29:34.821Z"
   }

@@ -28,8 +28,8 @@
       "coco",
       "scope",
       "gap",
-      "excise",
-      "vestigial"
+      "system-spec-kit",
+      "carries"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -87,14 +87,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Excise memory's vestigial CocoIndex coupling and repair the 002 cross-skill type break, with `npm run typecheck` AND full `npm run test` (vitest) green as the hard gate. No change to actual memory search results.",
+    "causal_summary": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts` (`isCocoIndexAvailable`/`getCocoIndexBinaryPath`), `lib/search/cocoindex-calibration.ts` (post-fetch overfetch telemetry), `cocoIndexAvailable` threaded through `context-server.ts`/`session-snapshot.ts`/`memory-surface.ts`/both `session-prime` hooks/`code-graph-boundary.ts`, the `cocoIndex` MergeInput hint in `compact-inject.ts`, and a coco-keyed `\"vector channel unavailable, lexical-only\"` warning in `memory-search.ts`",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.041Z",
+    "last_save_at": "2026-06-23T03:49:55.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:2222dfecdce02f242dc56b950eeabcdac65f515235acf67e655f34c3ac74a074",
+    "source_doc_hashes": {
+      "spec.md": "3b05d48a5d144123b565bf6bbabf845dbdf0e306dcf845f83f956dd9f8cca6b9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

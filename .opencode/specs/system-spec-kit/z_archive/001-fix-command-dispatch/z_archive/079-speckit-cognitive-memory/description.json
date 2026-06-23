@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/079-speckit-cognitive-memory",
-  "description": "Feature Specification: Cognitive Memory Upgrade",
+  "description": "The current Spec Kit Memory system stores memories indefinitely with arbitrary exponential decay",
   "keywords": [
-    "feature",
-    "specification",
-    "cognitive",
+    "current",
+    "spec",
+    "kit",
     "memory",
-    "upgrade"
+    "system",
+    "stores",
+    "memories",
+    "indefinitely",
+    "arbitrary",
+    "exponential",
+    "decay"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.019Z",
+  "lastUpdated": "2026-06-23T03:49:59.325Z",
   "specId": "079",
   "folderSlug": "speckit-cognitive-memory",
   "parentChain": [

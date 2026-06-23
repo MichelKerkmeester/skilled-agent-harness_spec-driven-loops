@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced **identical retrieval metrics to three sig figs**:",
+    "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-06-22T18:55:02.505Z",
+    "last_save_at": "2026-06-23T03:49:55.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b3317e849414a8cc855e29c1fbab1406e30572623e779302ecb685af568f7b3e",
+    "source_doc_hashes": {
+      "spec.md": "f6ac530f674a1456ff9e253f1ada0bfdbe128d6c1392f404c7331dfafaaa0ea9",
+      "plan.md": "37fee5e94307c366416c6a18323f39052c09028fe45c0dfa8091346f013d9fa5",
+      "tasks.md": "b038b6c205dc8f72f3f03d84674688e1682af8db2213e462e7e472eef1c83bcb",
+      "implementation-summary.md": "a788c13ff57e32b2a5f9160fee3a597851c9012af278ae19a9b1ac97b2c006a0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

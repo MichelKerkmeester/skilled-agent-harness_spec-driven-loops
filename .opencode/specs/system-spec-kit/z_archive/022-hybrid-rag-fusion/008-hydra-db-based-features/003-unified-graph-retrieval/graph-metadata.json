@@ -36,7 +36,7 @@
       "tasks",
       "checklist",
       "adr",
-      "spec-core"
+      "current"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "The current server contains useful graph-related signals, but they are distributed across subsystems and do not form one coherent retrieval path",
     "created_at": "2026-04-12T09:02:50.260Z",
-    "last_save_at": "2026-05-30T10:12:03.273Z",
+    "last_save_at": "2026-06-23T03:49:59.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d5fe92af7ab3e5e6a3b8b071fd3bf2ee477726970e4fe2193c99b1b7581b4f57",
+    "source_doc_hashes": {
+      "spec.md": "ad8498fb1aa53843ddfd95f56ca4b79ddd39378a2358b91872af356bd17d560e",
+      "plan.md": "8f67f665156cb59676f71ed4220dc24e4af36a8a58aa0004613c3d64226a68b2",
+      "tasks.md": "70a01e52b338a89c0fecb655b4c7e76482553bd869075a2f872b6137f822b8c5",
+      "checklist.md": "5b232a1172889db718f65658166ffd79a523c4cfabccb467a2538c0f87d21061",
+      "decision-record.md": "9f07afc41e8d5989fcf245b40db30c9f175131cb96dff23cd2f124d5f3d7a14c",
+      "implementation-summary.md": "8b54693d550914af2d45b87f9263fd2a8e770c03e2901bcb8d101d5fcac7d685"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

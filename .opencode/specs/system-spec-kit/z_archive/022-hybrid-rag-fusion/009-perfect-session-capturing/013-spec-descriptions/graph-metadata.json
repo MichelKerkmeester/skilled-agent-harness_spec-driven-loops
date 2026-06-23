@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
     "created_at": "2026-04-12T09:02:50.274Z",
-    "last_save_at": "2026-06-05T12:47:34.798Z",
+    "last_save_at": "2026-06-23T03:50:00.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9b84ccb523e524c76c2673bfce7e05176b6824af70aeec376adad7b9759e6016",
+    "source_doc_hashes": {
+      "spec.md": "33a7fca3d9672d344cc8af7aabc543882327d99bbca5fe4befdf6206f3cd4150",
+      "plan.md": "cda6ab6d526a08a896446e2d50f527916d4bd20bfcd39f0f7833526ce4d9e158",
+      "tasks.md": "29acd2a3e33d5cf17dd3a81a5897d1a6e95d82e691aaed45a0009d82c11cedd4",
+      "checklist.md": "d26a316692672c681ca1312fc4657d9964dccb82418ea4f53f736b4d81b53747",
+      "implementation-summary.md": "c0845696320ead5c9b503488a3331316c1c5741578a0e4f18a7e3784132018bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

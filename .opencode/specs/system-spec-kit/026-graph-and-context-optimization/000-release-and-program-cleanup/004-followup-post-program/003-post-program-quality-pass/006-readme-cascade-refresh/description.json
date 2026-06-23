@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
-  "description": "Feature Specification: 037/006 README Cascade Refresh",
+  "description": "Packets 031-036 and 037/001-005 changed the current documentation surface: the MCP registry is now 54 tools, `matrixrunners/` and `stresstest/` are li",
   "keywords": [
-    "feature",
-    "specification",
+    "packets",
+    "031-036",
     "037",
-    "006",
-    "readme",
-    "cascade",
-    "refresh"
+    "001-005",
+    "changed",
+    "current",
+    "documentation",
+    "surface",
+    "mcp",
+    "registry",
+    "now",
+    "tools",
+    "matrixrunners",
+    "stresstest"
   ],
-  "lastUpdated": "2026-05-26T17:26:56.810Z",
+  "lastUpdated": "2026-06-23T03:49:52.492Z",
   "specId": "006",
   "folderSlug": "readme-cascade-refresh",
   "parentChain": [

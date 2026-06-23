@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it. Three gaps remain after packet 028's tool-count and topology reconciliation: `INSTALL_GUIDE.md` retained three drift lines (`:49` `1.0.0.0`, `:56` `10 tools`, `:195` `10 tools`); the README opens with implementation prose instead of a problem hook that mirrors the Public root README and system-spec-kit README; and no exhaustive 1:1 pass against sk-doc's `validate_document.py --type <type>` has been run across every authored doc. Operators reading the skill cold get a technical map without a reason to care, and per-doc-type validation drift can hide until the next packet rediscovers it.",
+    "causal_summary": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it",
     "created_at": "2026-05-16T09:37:48Z",
-    "last_save_at": "2026-06-15T09:09:34.578Z",
+    "last_save_at": "2026-06-23T03:49:56.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:06c1bc7fbbc0643725a53e6c70c3971dabb87a5a45737f853a361d6c45aab179",
+    "source_doc_hashes": {
+      "spec.md": "124ec546e42eb62cb5866b95bc2e7460a0ff344b2606d765c70c7500292ecc16",
+      "research/research.md": "611dd415bd8f2bc6ffeee54194081ef4b51a3ece8de1e9601e9e28878fe0c43d",
+      "resource-map.md": "b5e9a2cb4d73eb4086b00c65ccf1e1838b6ca3a2f73b2b3265f05df41c84a1a6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

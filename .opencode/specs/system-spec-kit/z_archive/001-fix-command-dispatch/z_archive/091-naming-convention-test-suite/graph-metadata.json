@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Comprehensive test suite to verify all ~246 files adjusted during the OpenCode naming convention migration (spec 090). Tests confirm that every JS, shell, and Python script works correctly after renaming snake_case identifiers to camelCase, that 3 discovered runtime bugs are fixed, and that backward-compatible MCP handler exports function properly.",
+    "causal_summary": "The naming convention migration (spec 090) renames identifiers across ~206 JS files, 9 skill docs, and touches shell/Python scripts",
     "created_at": "2026-04-12T09:02:53.561Z",
-    "last_save_at": "2026-06-22T18:55:04.036Z",
+    "last_save_at": "2026-06-23T03:49:59.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6f5c47fa1984c36632d4ea116be5b7cd397eceeb1db1c992cc63fa4089adfb6b",
+    "source_doc_hashes": {
+      "spec.md": "00196e95f82d1478f6cb9dbee62598276711537f48ca27440e7b100c10a370ec",
+      "plan.md": "c17625259992c0bd8be1f26c1a63e491e365776f026e9eb7fdab370aabb3da82",
+      "tasks.md": "aee014636b94c92cabed61b799d091a33b3205610dd0d702effe35cf20581aee",
+      "checklist.md": "4bb3bcfbb07557faa961759d527dd18e0aa78dbe6e1dc497f80e243075f813c6",
+      "implementation-summary.md": "be2d930aa268be92eb320d9439e89bbc91cbefff3bbcfc0f7dc5cacea50cb85b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

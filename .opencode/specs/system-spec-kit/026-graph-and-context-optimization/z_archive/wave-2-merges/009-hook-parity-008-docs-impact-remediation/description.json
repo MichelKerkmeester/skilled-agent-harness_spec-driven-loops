@@ -1,18 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
-  "description": "Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity",
+  "description": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and",
   "keywords": [
-    "feature",
-    "specification",
+    "update",
+    "external",
     "documentation",
-    "impact",
-    "remediation",
+    "files",
+    "flagged",
     "009",
+    "impact",
+    "analysis",
+    "high",
+    "med",
+    "reflect",
     "hook",
-    "daemon",
-    "parity"
+    "advisor",
+    "plugin-loader",
+    "renderer"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.086Z",
+  "lastUpdated": "2026-06-23T03:49:56.700Z",
   "specId": "009",
   "folderSlug": "hook-parity-008-docs-impact-remediation",
   "parentChain": [

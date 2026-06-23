@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
-  "description": "Feature Specification: Stop skill-advisor state from leaking into spec folders",
+  "description": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up pare",
   "keywords": [
-    "feature",
-    "specification",
-    "stop",
     "skill-advisor",
+    "resolves",
+    "write",
+    "runtime",
     "state",
-    "leaking",
-    "spec",
-    "folders"
+    "via",
+    "findadvisorworkspaceroot",
+    "start",
+    "lib",
+    "utils",
+    "workspace-root",
+    "walks",
+    "pare"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.008Z",
+  "lastUpdated": "2026-06-23T03:49:57.520Z",
   "specId": "005",
   "folderSlug": "advisor-state-spec-folder-leak",
   "parentChain": [

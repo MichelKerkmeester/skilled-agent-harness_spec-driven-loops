@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Foundation Phases 0 1 1 5. Its earlier documents no longer matched the active templates, so validation failed even though the folder should remain as an archive record.",
+    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Foundation Phases 0 1 1 5",
     "created_at": "2026-04-12T09:02:53.571Z",
-    "last_save_at": "2026-06-05T12:47:34.620Z",
+    "last_save_at": "2026-06-23T03:49:59.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cadbbf155468d83f82e3f9de56796b6f0d64677a3296e894af0f3ef220bad014",
+    "source_doc_hashes": {
+      "spec.md": "734df72cec32be1a4a45750207106abb1ba1e92ce90e4123be199b4cafd009ee",
+      "plan.md": "c37df7007b21f1c564f33a0870f876ea9ca0b61950c5cb23e78f31ba867d03d0",
+      "tasks.md": "b187b79f1584f892d65d542abc25f1a49f6aa277cae8382523e58aacc44bf84e",
+      "checklist.md": "25ba5e9da0bc68e11d8b1f07c5bc7d4cb0afa690e8d0a63bf0146b2ec1a33e78",
+      "decision-record.md": "19f4a1a947d000f28ac5b882e181ba1ad399149ce650fb37ddd710c6baf54593",
+      "implementation-summary.md": "4c96898f6cd671ab213844e7214d32ebc49097b6c4d81ae53fad9e354e04438b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

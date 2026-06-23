@@ -1,17 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
-  "description": "Feature Specification: CLI Fallback Envelope and Bridge Allowlist",
+  "description": "The three hook fallback helpers return inconsistent result envelopes, so agents and plugins handle `skipped`, `failopen`, `exitCode`, and retryability",
   "keywords": [
-    "feature",
-    "specification",
-    "cli",
+    "three",
+    "hook",
     "fallback",
-    "envelope",
-    "bridge",
-    "allowlist"
+    "helpers",
+    "return",
+    "inconsistent",
+    "result",
+    "envelopes",
+    "agents",
+    "plugins",
+    "handle",
+    "skipped",
+    "failopen",
+    "exitcode",
+    "retryability"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.040Z",
+  "lastUpdated": "2026-06-23T03:49:57.824Z",
   "specId": "004",
   "folderSlug": "cli-fallback-envelope-and-bridge",
   "parentChain": [

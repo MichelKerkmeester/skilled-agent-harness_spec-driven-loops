@@ -33,7 +33,7 @@
       "implementation",
       "summary",
       "closeout",
-      "module"
+      "spec-kit"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the ESM Module Compliance specification.",
+    "causal_summary": "`@spec-kit/shared` has no `\"type\": \"module\"` in its `package.json`, its `tsconfig.json` inherits the root CommonJS baseline (`module: \"commonjs\"`, `moduleResolution: \"node\"`), and its 48 relative imports lack the `.js` extension specifiers that Node ESM requires",
     "created_at": "2026-04-12T09:02:50.317Z",
-    "last_save_at": "2026-05-30T10:12:03.417Z",
+    "last_save_at": "2026-06-23T03:50:00.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ee0b757b5a51f9860d80cfa86efc57f69098a844d3d66bf0cd838be59a76b386",
+    "source_doc_hashes": {
+      "spec.md": "43b898971505731cd5ff5e5b93b8fe812f0c9689134fca4e47f0fd739448aee5",
+      "plan.md": "df56bd18e67ef1ef711169d31db2c31ac109ecd9538d2bf5b2636913f5f3210d",
+      "tasks.md": "09e5ece3fb52eff1227ec26fd2f19a0aa0282d4068c0f5256980a695823e09f4",
+      "implementation-summary.md": "316b4813895fdf9e0e8ae4d2021065ccf0ebc309ecf2b3607e386b100c31b1ef"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

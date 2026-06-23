@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor fuses five lanes, `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`), via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKIT_ADVISOR_RRF_FUSION`. The research campaign catalogued three routing-quality refinements that ride that spine and need live evidence before default promotion:",
+    "causal_summary": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05` (`lane-registry.ts:8-19`), via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKITADVISORRRFFUSION`",
     "created_at": "2026-06-19T06:06:27.154Z",
-    "last_save_at": "2026-06-22T18:55:03.749Z",
+    "last_save_at": "2026-06-23T03:49:58.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:02522a7f1bac305fe7934055bdb770d311344ca23f49fa255bc072860ae79f2c",
+    "source_doc_hashes": {
+      "spec.md": "1b30447f3916a07ce44e04ccd3295dd3e698e0245716a7f885490d3ad59743fa",
+      "plan.md": "43b21e729631c51fab729e58dc5b9837b5a2fc33274b2479631480d12dbbbc7d",
+      "tasks.md": "18bcefd58442d88af821a4f17716bd690a7e6bd4a5b90afbc9988e9de40352d9",
+      "checklist.md": "f0a33deefb4d752e6d970aa9e0c59bc0d8b1f84cc382bee5c12e4c858e602409",
+      "implementation-summary.md": "a83b66c7f766061f15673306ff5f9e5638f1e3e62aa68ed2ace4c9f36e35d2aa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

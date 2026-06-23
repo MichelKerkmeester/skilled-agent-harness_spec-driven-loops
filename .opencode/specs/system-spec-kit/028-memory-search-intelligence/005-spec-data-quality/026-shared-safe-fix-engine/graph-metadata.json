@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Five keystone consumers converge on one shared core that does not exist yet (`research.md` section 4). Three are write-time front doors with a safe-apply path: A1 is on-write and report-only, B1 is scheduled and headless, B2 is interactive on `/doctor`. The other two register on the engine without a safe-apply path. B3 emits queue rows. Every Tier-C retrieval detector must pass one promotion gate. SC-001 measures the three write-time front doors A1, B1, B2. With no shared core each front door would carry its own detector list, its own notion of what a safe fix is, and its own write path, so the five would drift on the one decision that matters: whether a given fix is allowed to mutate a git-tracked authored artifact. There is no `detector-registry.ts` single source of truth and no `dq-engine.ts` pure runner today, so the deny-by-default safety property the program depends on has nowhere to live.",
+    "causal_summary": "Five keystone consumers converge on one shared core that does not exist yet (`research.md` section 4)",
     "created_at": "2026-06-21T10:22:34.993Z",
-    "last_save_at": "2026-06-22T18:55:03.820Z",
+    "last_save_at": "2026-06-23T03:49:58.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2a0147289eb273b1f0307273e49f6f4ff47f92277639106ad104bf7c566037e7",
+    "source_doc_hashes": {
+      "spec.md": "55f15e499e6acc9074a8d4072abc8243feeff36d242b15ea4637c08724535817",
+      "plan.md": "875e9ecd4c9f641cd7e094b92c36168bb09a8956bf4a3f8d7d5760714968da1b",
+      "tasks.md": "60519519a3842f6b26c75e996a5f5d57878c734e6e2feace659382bd8444e1d1",
+      "checklist.md": "00a3b807bdaa6513673c5deb58acdc84137bf9f73f0b35ad22b5943f14e72d89",
+      "implementation-summary.md": "49472cbf66b69a48500cec6186b3e3a63963a8f344a478475c923057fb28e9ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

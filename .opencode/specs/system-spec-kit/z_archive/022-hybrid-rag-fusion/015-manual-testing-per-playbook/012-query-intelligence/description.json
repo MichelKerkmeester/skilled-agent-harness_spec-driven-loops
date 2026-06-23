@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence",
-  "description": "Feature Specification: query-intelligence manual testing",
+  "description": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves",
   "keywords": [
-    "feature",
-    "specification",
-    "query-intelligence",
     "manual",
-    "testing"
+    "query-intelligence",
+    "scenarios",
+    "spec",
+    "kit",
+    "memory",
+    "system",
+    "live",
+    "inside",
+    "central",
+    "playbook",
+    "need",
+    "phase-specific",
+    "document",
+    "preserves"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.501Z",
+  "lastUpdated": "2026-06-23T03:50:00.286Z",
   "specId": "012",
   "folderSlug": "query-intelligence",
   "parentChain": [

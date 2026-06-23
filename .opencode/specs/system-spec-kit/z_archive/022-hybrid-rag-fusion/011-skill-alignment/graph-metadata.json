@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository. It mixed a finished-state label with draft or pre-implementation language, cited superseded command-surface counts, and had to reconcile the final `system-spec-kit` skill/reference/asset drift after the live memory surface settled at **33 tools**, **4 commands**, with retrieval documented under `/memory:search` and shared-memory lifecycle routed through `/memory:manage shared`.",
+    "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
     "created_at": "2026-04-12T09:02:50.284Z",
-    "last_save_at": "2026-06-05T12:47:34.827Z",
+    "last_save_at": "2026-06-23T03:50:00.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:1721ca6dd33fa0bd5b7422261e6a6504012084866ef88adf884f472d14ddcf33",
+    "source_doc_hashes": {
+      "spec.md": "5236f64cc553f6c5f88d22d36a4517badbb331de37607fe39bbd65cc2b61a89a",
+      "plan.md": "f69b4a7b161d14c3856339f86d8971abb297e56a0a83e2946c819f399f2b435a",
+      "tasks.md": "5d6938b2b71a78bbfcadde6c41819bf758790834577b7c1f006c86c0beae4ce7",
+      "checklist.md": "c14bfafe18eaacf389a2c5946e9502a18df657291c7cdb82cfe4030bb233ac62",
+      "implementation-summary.md": "4938262034ccb137be29bbada0fba1170ffb9534bb57997e7d26563ca7d1020b",
+      "resource-map.md": "2e396bde9bda9fb34c805aad73515d3708afbf09c5c3657d046c61aca87b02b3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the 006-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-skill-advisor-scoring-engine`, `003-skill-advisor-routing-engine`, `004-skill-advisor-production-hardening`, `005-skill-advisor-documentation`) built the advisor. This phase hardens its concurrency boundary, which `004-skill-advisor-production-hardening` did not cover.",
+    "causal_summary": "Between 2026-05-17 16:42 UTC and 22:51 UTC (~6 hours), the skill-advisor's `mcpserver/database/` accumulated 1005 `skill-graph.sqlite.<ms-timestamp>.corrupt` quarantine files — a rate of ~167/hour",
     "created_at": "2026-05-18T04:46:08Z",
-    "last_save_at": "2026-06-05T12:47:33.772Z",
+    "last_save_at": "2026-06-23T03:49:54.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ade976da07013ecfce22e753c999f1b773df8d962bb9ac30ce472d7f6ec4867e",
+    "source_doc_hashes": {
+      "spec.md": "f4088b5301b36b44f6a67894646a3c04cab151a41c8591e2595c023a859c6ce8",
+      "plan.md": "99488cbeadfbba259849d1f5b7d25321637e2dbd64d9ae89bfe923f69f754da2",
+      "tasks.md": "156ab9dcf41a640d3f252d1d3944d0a365c0b9c3ac803bd5817a9e5f72a75371",
+      "checklist.md": "7271090618e6bc1de6b16a638d1c95d0ebc3ce2ae9f03ad82bea2fbebbd51a62",
+      "implementation-summary.md": "ffd45ee6faac38983586cf2a25dd814a02b6e75ad3c919b0319880cca7ead863"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

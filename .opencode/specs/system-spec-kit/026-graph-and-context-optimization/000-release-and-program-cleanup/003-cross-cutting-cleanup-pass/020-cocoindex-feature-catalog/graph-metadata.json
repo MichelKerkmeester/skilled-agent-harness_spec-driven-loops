@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `feature_catalog/` inventory. Operators had to read `SKILL.md`, references, scripts, tests and vendored source separately to understand what currently ships.",
+    "causal_summary": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `featurecatalog/` inventory",
     "created_at": "2026-05-18T08:15:53.138Z",
-    "last_save_at": "2026-05-30T10:12:01.604Z",
+    "last_save_at": "2026-06-23T03:49:52.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:d55d509703570c8d8cf579a70bb61d25477934ed622fd67676fa24130cf89aff",
+    "source_doc_hashes": {
+      "spec.md": "3a1d7d7db831e7138e5b22367eb3a340f7873ac9a1e30ca1c97282797bdd2c7c",
+      "plan.md": "551902cea789272eb22a7b02d4062a62026fad36168f568728ecc0d225e320f9",
+      "tasks.md": "44e4789e65b4cade9e086aa2fae99aa725636b422cdedcee54eead2568a79fef",
+      "checklist.md": "48a52f0862f7eac85f23b6f6a39e209d9bf7395fe5273be51ce98010a59bb332",
+      "decision-record.md": "06a7fa704f635fa08affd02897f843f8b9641b0325f7ea026dec8d63d9c2f6fe",
+      "implementation-summary.md": "21b92c56456ffdb6a2b33fb7c9ffee09a90816923aec36449ff61da54de34dc7",
+      "resource-map.md": "896fa218cf5e1f8024712d96d5e6f3e1d2f2641f04e349d5a8540c5b2027788d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -2,16 +2,22 @@
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph",
-  "description": "Feature Specification: Phase 20: system-code-graph Frontmatter Alignment",
+  "description": "system-code-graph reference/asset frontmatter is inconsistent with the repo-wide contract: 6 of 7 references and 0 of 0 assets carry the detailed memo",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
     "system-code-graph",
+    "reference",
+    "asset",
     "frontmatter",
-    "alignment"
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed",
+    "memo"
   ],
-  "lastUpdated": "2026-06-11T10:46:03.641Z",
+  "lastUpdated": "2026-06-23T03:49:57.033Z",
   "specId": "020",
   "folderSlug": "system-code-graph",
   "parentChain": [

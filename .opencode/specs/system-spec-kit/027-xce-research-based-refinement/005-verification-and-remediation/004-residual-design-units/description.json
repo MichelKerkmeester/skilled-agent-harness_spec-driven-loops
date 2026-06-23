@@ -1,16 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
-  "description": "Feature Specification: Residual 029 Design Units",
+  "description": "029 ground the deep-research remediation down to its tail, but three residual builds were deliberately deferred because each mutates a high-blast-radi",
   "keywords": [
-    "feature",
-    "specification",
-    "residual",
     "029",
-    "design",
-    "units"
+    "ground",
+    "deep-research",
+    "remediation",
+    "tail",
+    "three",
+    "residual",
+    "builds",
+    "deliberately",
+    "deferred",
+    "because",
+    "mutates",
+    "high-blast-radi"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.779Z",
+  "lastUpdated": "2026-06-23T03:49:57.947Z",
   "specId": "004",
   "folderSlug": "residual-design-units",
   "parentChain": [

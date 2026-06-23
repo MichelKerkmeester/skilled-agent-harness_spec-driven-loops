@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 011 deep-research originally concluded: \"jina-reranker-v3 looks best (+38 NDCG@10 in public benchmarks)\". But:",
+    "causal_summary": "Re-benchmarks ALL reranker candidates (BGE-baseline, BGE+path-class, jina-reranker-v3, no-rerank ablation) under the FULLY-FIXED candidate-set pipeline produced by 013/014/015/016/017. Closes the loop on '011 deep-research said jina-v3 won' — but that measurement was made on the BROKEN pipeline. After all upstream pipeline defects are fixed, who actually wins? Embedder fixed (bge-code-v1). Hybrid fixed (017 recalibrated). Chunking fixed (015). Dedup fixed (014). Queries fixed (016). The only variable is the reranker. This is the final arc deliverable + ADR-021 locking the production reranker c",
     "created_at": "2026-05-19T15:29:56.011Z",
-    "last_save_at": "2026-06-22T18:55:02.406Z",
+    "last_save_at": "2026-06-23T03:49:54.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6ae02d60878d294a7c10cb61d0d32de3f8bc640a0363f77dc8f509f828789a55",
+    "source_doc_hashes": {
+      "spec.md": "5adfc23274f2ef4ba9cf21ea4d50dda951d8f86c17062117c132ec746186ef9a",
+      "plan.md": "acffa529c73552723a521dceba9c718d632c6a7747953958a1a4305d84dc5dc2",
+      "tasks.md": "bec209159752972d7b935628ffbed3938483565dcf1fdb7458903fe57975d0ad",
+      "checklist.md": "c908609b8503e1f81a01d1d50b5cbd4d2994c2d8c49b0e0d87a9b7e00ba00f1f",
+      "implementation-summary.md": "8a863a8e21757657dd53310169224c4787e27214ef16391e82463326e0d4d031"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

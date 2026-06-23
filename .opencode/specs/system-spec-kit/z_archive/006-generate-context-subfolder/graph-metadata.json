@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived folder captures work that added subfolder support to generate-context behavior. The older archive shape no longer matched the active template contract, which caused strict validation errors.",
+    "causal_summary": "This archived folder captures work that added subfolder support to generate-context behavior",
     "created_at": "2026-04-12T09:02:53.563Z",
-    "last_save_at": "2026-05-30T10:12:03.130Z",
+    "last_save_at": "2026-06-23T03:49:59.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a5e1f4f125a4f07eea1a860017b45729db455bb03aa22c293bec0776d0f565c3",
+    "source_doc_hashes": {
+      "spec.md": "2360e9959c562b268787e12d92f00fd6fce97cd9d0c9782a3b39fcfbdd01668e",
+      "plan.md": "403911f665253c4b131df1796ee733431f0a81a885656eaf4429317d9d69071b",
+      "tasks.md": "1a229a5e2a40316164efec1ec81b6a5d5d0c79a1ac98cfcf23623ed84c4d194e",
+      "implementation-summary.md": "71ac28c6e76469a9c7061dadc0ab5db8ee033035660553b25ef59757f0007496"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

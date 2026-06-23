@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 2 Controlled Delivery. Its earlier documents no longer matched the active templates, so validation failed even though the folder should remain as an archive record.",
+    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 2 Controlled Delivery",
     "created_at": "2026-04-12T09:02:53.573Z",
-    "last_save_at": "2026-06-05T12:47:34.626Z",
+    "last_save_at": "2026-06-23T03:49:59.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7d56980de4e15e7a4c81c19d6884daf6774917254f7d883bfc98e20e45ba8370",
+    "source_doc_hashes": {
+      "spec.md": "5dee19c67dc1371e99b6b907cbbbeb0cdbf8842c68efa65cf3aff7b682b21746",
+      "plan.md": "af6bfb4147a4facb0293d974a1fa09ef913b9d4b5883e34a29a822bb4394b0bd",
+      "tasks.md": "d8cb63af0b1c93d362a0e49de1dac144a8567eca4a4a8a597f1e7387cd29644e",
+      "checklist.md": "0269f0f5e330b204d6e2b6f48b0cfb1e7f0fa79df256ff8061bb46702859ed29",
+      "decision-record.md": "9ff57c5e89b69136ea2205aa5c174c790d09819078545202035d9ec93aaf886b",
+      "implementation-summary.md": "acd398b51bcdcd2f6e1cfba858081c50796d7bb74e2208a8a2a2dacb6a7a1e0f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

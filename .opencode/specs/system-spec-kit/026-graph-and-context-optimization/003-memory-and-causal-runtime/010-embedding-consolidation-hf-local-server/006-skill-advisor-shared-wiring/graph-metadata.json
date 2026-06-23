@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6 of 6** of the embedding-consolidation and hf-local-server decomposition: Point skill-advisor's semantic embedding lane at the shared hf model-server socket, add cross-launcher respawn-lock coverage, and document new HF_EMBED_SERVER env and troubleshooting contracts.",
+    "causal_summary": "The architecture only pays off if mk-spec-memory and skill-advisor consume the same resident model server",
     "created_at": "2026-05-29T05:06:24.649Z",
-    "last_save_at": "2026-06-22T18:55:02.624Z",
+    "last_save_at": "2026-06-23T03:49:55.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:82a16c952c255cbb085b75ec7056789a2bc0cece30f8a1d5be28d38c1b128981",
+    "source_doc_hashes": {
+      "spec.md": "7c4bc87fdd9ad069aede90cb5bfb590a547a75d49b3670d7b2ec8c0ee6edcf52",
+      "plan.md": "3ec59b4e7129fcf31f0ad5bde9d7d9e7abb71a36448718a4621b44cbeabd02ad",
+      "tasks.md": "326d05082ca5f8237c9fa69a34bafa3b35f9fc2c489b7606bb1c3bb4233df198",
+      "implementation-summary.md": "95aba70114ebc68a96daf9975225e9e9ddb59b74e0c6f3d39de670d0fd8579df"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

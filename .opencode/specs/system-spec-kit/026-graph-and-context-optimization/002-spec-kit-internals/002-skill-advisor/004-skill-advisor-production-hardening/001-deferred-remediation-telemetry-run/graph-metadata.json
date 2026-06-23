@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Six phases shipped with a consolidated list of deferred items:",
     "created_at": "2026-04-19T18:10:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.108Z",
+    "last_save_at": "2026-06-23T03:49:53.521Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T18:15:00.000Z",
     "source_docs": [
@@ -221,6 +221,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:13cc6f9e1b800834a33ba71c489ae82960b403b90b628a012ccba8bcf82a7e05",
+    "source_doc_hashes": {
+      "spec.md": "7a81f7cd67ee9f7ce9d364d9f4851aeeea48706c68f87d8e0ee886f2222d8592",
+      "plan.md": "a5a1464cb96849cd8a7463533ffe4f30d7b0f6dfe8faf00d0d9bcc862e98f1bc",
+      "tasks.md": "5fd678d7417abdeb2e00730e05adb6217022fec9c6469563828c0287f9cdfdb5",
+      "checklist.md": "7519dcd929b07bf34e5eeecec1752dc873c6c68db0d7676580de0a6d602cefe2",
+      "implementation-summary.md": "465a097e68aae55f8e806bf8eefcbf0c5ee4cc6db24db01c1e2a9c1b89a3cef6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

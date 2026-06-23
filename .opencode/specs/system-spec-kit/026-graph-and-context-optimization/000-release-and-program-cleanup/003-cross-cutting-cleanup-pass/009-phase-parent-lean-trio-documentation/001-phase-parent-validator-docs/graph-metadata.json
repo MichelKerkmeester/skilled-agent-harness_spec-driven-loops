@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When a spec folder has phase children (e.g. `026/{005-code-graph,006-skill-advisor,...}/`), the parent currently authors a full Level 1/2/3 document set (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) describing program-level intent. As phases execute, pivot, and converge over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.",
+    "causal_summary": "When a spec folder has phase children (e.g",
     "created_at": "2026-04-27T08:55:00Z",
-    "last_save_at": "2026-06-12T04:40:47.030Z",
+    "last_save_at": "2026-06-23T03:49:52.267Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c624dc901fc315fe456499383a0512ccb059057e08e91692be2d9c6dc3cada3",
+    "source_doc_hashes": {
+      "spec.md": "539aee5a670f5e001f5a78b7799038ff9d4d3d691cad4040e16f8da7c64e1a95",
+      "plan.md": "8af45ce398896273edfafb89abf80ab415aed37fd75bbe95ded9d71fe74ac052",
+      "tasks.md": "36446007962e84702c3ef66cc3491eef2465da6a7bc8399635ae200703d26051",
+      "checklist.md": "c3b9f273598c81908d4c056bc2b59650e0724289fffe52686fd095703be67e6b",
+      "implementation-summary.md": "9a32a34ff288fb4cf419ee4a17a7d5616986fa7460b88f08fc513c0601086367"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

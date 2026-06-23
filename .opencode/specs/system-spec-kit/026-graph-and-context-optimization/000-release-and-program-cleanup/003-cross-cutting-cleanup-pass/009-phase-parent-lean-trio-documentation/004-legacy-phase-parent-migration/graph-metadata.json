@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs). But the repo already contains 28 legacy phase parents created before the policy: 21 active and 7 archived. They split into two practical states:",
+    "causal_summary": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs)",
     "created_at": "2026-04-27T14:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.001Z",
+    "last_save_at": "2026-06-23T03:49:52.287Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ec37ddeeecf862f4a8c83e03a6d8514658f6892686998d2a35a05f64087dc37d",
+    "source_doc_hashes": {
+      "spec.md": "1af4fb187d85459c456a31e17d4a82ceba08f81e77cb7b6f3ea3d7c060c26c94",
+      "plan.md": "da48a65e11427489e3f1a6528e7eef688ba9a1e6f12943caece21ad1d3715b70",
+      "tasks.md": "96f142417a53f7aa6c522c7b897669a72c36e2ec68f5c45b6929237a860bc1bb",
+      "checklist.md": "a204c626ac412d0bd1085410c97cef002459dde66d737153680b89efa920a04e",
+      "implementation-summary.md": "cc14e7ac21fccbe0c31ff3c40e7b7f8d88a98246aabdc7e0b59e588f83b3c719"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

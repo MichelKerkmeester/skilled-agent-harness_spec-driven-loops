@@ -51,14 +51,34 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "scripts/flag-graduation-benchmark.mjs",
+      "scripts/benchmark-report.json",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "flag-graduation-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/flag-graduation-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-report.json",
+        "kind": "config",
+        "path": "scripts/benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "capability-flags.ts",
         "kind": "code",
@@ -87,12 +107,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,23 +204,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking. That discipline is correct, but it leaves the benefit inert. A flag that is never measured and never graduated is a feature that does not run in production, and a flag that is graduated without a measured before-and-after is a guess. The 028 governance discipline is earn-or-delete, a flag either measurably earns its default-ON state on live data or it stays off with the reason recorded, and nothing graduates on intuition.",
+    "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.877Z",
+    "last_save_at": "2026-06-23T03:49:58.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:62bc49defd1f236ccd7d8ef9e21c5a5dddf3e78fc2b7e268251dfcca9c4a8676",
+    "source_doc_hashes": {
+      "spec.md": "9b76e3ecb92dd838ac089c90e4192c89f3332c947f5886ea964344fc52d7b308",
+      "plan.md": "5bfa7e31b7906a05fb4719cdc180844e534e9c553120080e0b2700ad3befc2ec",
+      "tasks.md": "a24b19f2ad89d8f79f2f918dfcef27507483327dda92932cfd6b8d32dfa1dbb2",
+      "checklist.md": "61d1553ed717a63b80df4d34b733e28d90ef9b4944901930714037614bcee00f",
+      "implementation-summary.md": "a81facda26448de710a0d6134728718d04d584d3c6b2ee753aa5c4d879fb2ea6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -9,16 +9,18 @@
     "stress-test v1.0.2"
   ],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
-  "description": "Feature Specification: Stress-Test Rerun v1.0.2 — close-the-loop measurement",
+  "description": "The v1.0.1 stress-test sweep (`../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`) baselined the four MCP-runtime s",
   "keywords": [
-    "feature",
-    "specification",
     "stress-test",
-    "rerun",
-    "close-the-loop",
-    "measurement"
+    "sweep",
+    "001-search-intelligence-stress-playbook",
+    "002-search-scenario-execution",
+    "findings",
+    "baselined",
+    "four",
+    "mcp-runtime"
   ],
-  "lastUpdated": "2026-05-26T17:28:10.923Z",
+  "lastUpdated": "2026-06-23T03:49:52.602Z",
   "specId": "010",
   "folderSlug": "stress-test-close-loop-measurement-rerun",
   "parentChain": [

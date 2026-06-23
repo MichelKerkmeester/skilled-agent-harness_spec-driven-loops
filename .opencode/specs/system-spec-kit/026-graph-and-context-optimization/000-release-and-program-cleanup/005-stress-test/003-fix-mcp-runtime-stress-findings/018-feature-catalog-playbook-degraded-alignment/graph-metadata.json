@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that mislead readers reproducing degraded-state scenarios:",
     "created_at": "2026-04-27T22:45:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.720Z",
+    "last_save_at": "2026-06-23T03:49:52.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:91f71bccfcf3f0803174fc9f997d2685d98aa8c949cda2de462841f7f815ed67",
+    "source_doc_hashes": {
+      "spec.md": "1a619c79dde2114be5e883693acb427480fc9864f382dfd6381cf191e26c5474",
+      "plan.md": "dfef43b862189e6d74bb4649b3a312db28c4ffdaa789bc51e6a909887cb89f96",
+      "tasks.md": "8878f4d8714697e24f21145f86162a4f30e86ff137f43941059b5ec9c0fa70cc",
+      "checklist.md": "81892dc15c74075e549d20a6c2f932243854dd97de942efbca20e4f9f1c55b8f",
+      "implementation-summary.md": "9c69bb210125be444e7b5917e19dc858469ccd3cbc227240dda0d7afcb6d5ccf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

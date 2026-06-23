@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph incremental scan silently loses cross-file edges when a file's *dependency* is refactored. Symbol IDs are path-coupled, `sha256(filePath + '::' + fqName + '::' + kind).slice(0,16)` (`indexer-types.ts:102,104`), so a rename, kind-flip or move of an exported symbol B mints a NEW id, while a dependent A that imports B is content-hash-stable and gets skipped by the incremental scan (`isFileStale` is **content-hash-gated, not mtime**, `code-graph-db.ts:1042`, skip site `structural-indexer.ts:2175`). Because cross-file edges are derived only from the parsed batch, A's outbound edge to B is never re-derived against B's new id. B's `replaceNodes` drops the old target node and `pruneDanglingEdges` (`code-graph-db.ts:1030`) physically deletes the now-dangling A→B edge. The relationship **silently vanishes until A itself changes**. The lever to fix it already exists but is wired to the wrong path: `queryFileImportDependents()` (`code-graph-db.ts:1343`) has exactly one non-test caller, `handlers/query.ts:1017`, a read-path / `detect_changes` consumer, so the scan loop never consults it.",
+    "causal_summary": "The code-graph incremental scan silently loses cross-file edges when a file's dependency is refactored",
     "created_at": "2026-06-19T05:52:29.579Z",
-    "last_save_at": "2026-06-22T18:55:03.710Z",
+    "last_save_at": "2026-06-23T03:49:58.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:305efd5df3eef4d884a2096149849f1e99b2ac65ce095bc5fc92a69c9985f9f0",
+    "source_doc_hashes": {
+      "spec.md": "b165f5e6e394e1768414ac8d13bff5f6e5436950f84da71f08dface4a9d9e69e",
+      "plan.md": "e35ac74ca73a9a89f1d4b012e1580acf5cfdc4bec9ee44548362e81fcbad5ccd",
+      "tasks.md": "fb1e7bbbb6fd5b6bcf4103baee26afa1ff443014daec0e266396f11c1fcdd0a7",
+      "checklist.md": "5dde771914beb43508ea6a2a8cadc0a2f790c666cdb84f2a0c53c6f22474ed7f",
+      "implementation-summary.md": "7367dc6d40684b9baeee3ed9caa4291fe54e0a8ededd6d1674c46058ab612d7a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

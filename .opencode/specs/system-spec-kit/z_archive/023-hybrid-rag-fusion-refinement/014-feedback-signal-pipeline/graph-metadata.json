@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 14** of the ESM Module Compliance specification and captures the feedback signal pipeline closeout workstream.",
+    "causal_summary": "The feedback signal pipeline is implemented in the current repo, but this packet no longer matched the shipped code or the available verification evidence",
     "created_at": "2026-04-12T09:02:50.340Z",
-    "last_save_at": "2026-05-30T10:12:03.455Z",
+    "last_save_at": "2026-06-23T03:50:00.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:171caf8646ceff9590096988d61549aab1eeca5f0ad8ddba716efa598dfb58e2",
+    "source_doc_hashes": {
+      "spec.md": "f9343b528e7852cfd15ff8569a17187e5f6237a3e4c08c6ded3b71935264f76f",
+      "plan.md": "9b4a831819ce0814b7860b239b53683632041733cd25a4d241f332551bf4ed80",
+      "tasks.md": "68ddf32af4384f3aab369d5b5c33fa16575350596a97afd17a1b4e06cc87c136",
+      "checklist.md": "56d7ff187a5642c40b5b2838b8999265ee1016ef3187f7bad1c6b6b68cd9b7d5",
+      "implementation-summary.md": "b1be00e78e7f8a65406e0926dbc30ead72c97476c34caa32552665e9c66a5663"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

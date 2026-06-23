@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The code graph index has three observable failure modes today:",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-06-22T18:55:02.794Z",
+    "last_save_at": "2026-06-23T03:49:55.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:c0982bb5cf7c37e88936d68d3fe2df8fd77898789f8f74039af9d61f1a358093",
+    "source_doc_hashes": {
+      "spec.md": "acc88da7516077525ab9b2ce6e1a310a7ec0622d38d4ccd6f11e1b069584870a",
+      "plan.md": "132e6189bb947a75878d4a778526bafb7380de7e489c813eee3ebf4e20cd84a7",
+      "tasks.md": "e4e587ac86cc92b30f324f3505d251684a94e4b28c8542e82d01411e93c36691",
+      "checklist.md": "f173587d7204f210638bcd06e2c4791ba337a42d1f9edadbbc5fa396989dd145",
+      "decision-record.md": "160f3d82487ffee6f0abeebed45129107a2e686fdaa55abb840d3d80a1a83d7f",
+      "implementation-summary.md": "fb9256b035928372265dfe9b12af1cb97f3c7b444bdbe297ff9f018293772b43",
+      "research/research.md": "0e40170ce320419b6bf8b1d73c31db964f1c849e8aa161453e3d4027701285dc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

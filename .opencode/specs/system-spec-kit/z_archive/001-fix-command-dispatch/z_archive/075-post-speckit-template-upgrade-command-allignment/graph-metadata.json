@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with current system-spec-kit state to determine command alignment needs.",
     "created_at": "2026-04-12T09:02:53.546Z",
-    "last_save_at": "2026-05-30T10:12:03.075Z",
+    "last_save_at": "2026-06-23T03:49:59.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:e7be8b32c5f4792be335df042399c5dd933590376bc5dc00ea8bbd9f51f6b109",
+    "source_doc_hashes": {
+      "spec.md": "4379420f6a55a9b78560e2f7d404e75e633c85de0286a982c76b8810aff028f3",
+      "plan.md": "0a56ece9e60ed1bde09d27454c280da676c6e12ff1d162ad82ab16f4bbb35205",
+      "tasks.md": "75120768f8d874472c8973e842adaa56288157ce5a986c2233dd280809177a70",
+      "checklist.md": "0cf7838fc8eaca08de800a823be9308ba9c01e39d6a656c675600500c5ee9470",
+      "decision-record.md": "a8c1645dbcf1f06303f3ce8bf1905b3f98219967024c36dfdacf8fc9f640cee1",
+      "research/research.md": "aaea8eec52c5ab4a74954e5a5d3949f30073e799f7ea425e857d88ded9306d0a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

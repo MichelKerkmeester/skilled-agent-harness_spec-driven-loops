@@ -1,17 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",
-  "description": "Feature Specification: Regression-Harness Alias-Awareness & Stale Test Path",
+  "description": "The regression harnesses (`skilladvisorregression.py` and the TS `evaluateRegressionCases` in `advisor-validate.ts`) match gold labels by strict strin",
   "keywords": [
-    "feature",
-    "specification",
-    "regression-harness",
-    "alias-awareness",
-    "stale",
-    "test",
-    "path"
+    "regression",
+    "harnesses",
+    "skilladvisorregression",
+    "evaluateregressioncases",
+    "advisor-validate",
+    "match",
+    "gold",
+    "labels",
+    "strict",
+    "strin"
   ],
-  "lastUpdated": "2026-05-27T11:54:01.400Z",
+  "lastUpdated": "2026-06-23T03:49:53.713Z",
   "specId": "007",
   "folderSlug": "harness-alias-and-stale-path",
   "parentChain": [

@@ -1,17 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan",
-  "description": "Feature Specification: Template Greenfield Implementation — C+F Hybrid Manifest-Driven (4 Phases)",
+  "description": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, fo",
   "keywords": [
-    "feature",
-    "specification",
+    "today",
+    "spec-kit",
     "template",
-    "greenfield",
-    "implementation",
-    "hybrid",
-    "manifest-driven",
-    "phases"
+    "system",
+    "files",
+    "13k",
+    "loc",
+    "split",
+    "across",
+    "core",
+    "addendum",
+    "level2-verify",
+    "level3-arch",
+    "level3-plus-govern",
+    "phase"
   ],
-  "lastUpdated": "2026-05-26T17:25:45.052Z",
+  "lastUpdated": "2026-06-23T03:49:53.753Z",
   "specId": "003",
   "folderSlug": "manifest-template-implementation-plan",
   "parentChain": [

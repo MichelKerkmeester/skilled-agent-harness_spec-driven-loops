@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle",
-  "description": "Feature Specification: manual-testing-per-playbook lifecycle phase",
+  "description": "Phase 005 lifecycle scenarios must be executed from scratch",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
+    "phase",
+    "005",
     "lifecycle",
-    "phase"
+    "scenarios",
+    "must",
+    "executed",
+    "scratch"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.464Z",
+  "lastUpdated": "2026-06-23T03:50:00.244Z",
   "specId": "005",
   "folderSlug": "lifecycle",
   "parentChain": [

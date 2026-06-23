@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Both the Code Graph subsystem and the Skill Advisor system have matured independently, but no systematic investigation has been conducted into their combined correctness, performance boundaries, and UX consistency. This research phase uses 20 deep-research iterations to produce actionable, evidence-based recommendations across both systems so that a follow-up implementation phase can make targeted improvements with confidence rather than guesswork.",
+    "causal_summary": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered piecemeal across prior packets",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:02.789Z",
+    "last_save_at": "2026-06-23T03:49:55.883Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1c358d00e69b227d1dead37a2213aa24f4de9e7cf2d4a54a9968758e1cf99906",
+    "source_doc_hashes": {
+      "spec.md": "1278732bd113545dd088255bd2863f2f621b73ad813c3b1254134dbb8b2d148d",
+      "plan.md": "70ef600b549c61a5c327944d0bdedde560214814c2f8bc3bed1c0aef44bdfef0",
+      "tasks.md": "eb36dfb2c4f071ded06f6f30cad78b29912c840f6961bff0a00c1583531633c8",
+      "checklist.md": "3063f7b391cf6e1742d16396c53be14443ae91bc07430cb2050eee1337a705d9",
+      "decision-record.md": "82326c3bafcc3db6a190bb4775912e1e88b54163e65ff7d305a6883065c64701",
+      "implementation-summary.md": "8c87285675eb97c33777b14d7f0f09225609cc0f3c6784661f4c009dd2365283"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

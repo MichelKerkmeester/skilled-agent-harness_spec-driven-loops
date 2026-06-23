@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance",
-  "description": "Feature Specification: manual-testing-per-playbook governance phase",
+  "description": "Manual governance scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
+    "manual",
     "governance",
-    "phase"
+    "scenarios",
+    "spec",
+    "kit",
+    "memory",
+    "system",
+    "live",
+    "inside",
+    "central",
+    "playbook",
+    "require",
+    "phase-specific",
+    "document",
+    "preserves",
+    "exact"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.549Z",
+  "lastUpdated": "2026-06-23T03:50:00.317Z",
   "specId": "017",
   "folderSlug": "governance",
   "parentChain": [

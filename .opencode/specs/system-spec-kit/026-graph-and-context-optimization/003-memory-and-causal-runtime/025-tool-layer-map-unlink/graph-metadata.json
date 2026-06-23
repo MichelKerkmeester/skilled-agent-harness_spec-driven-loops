@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This breaks two tests in `tests/layer-definitions.vitest.ts` on the clean baseline:",
+    "causal_summary": "`memorycausalunlink` is a registered MCP tool (added by commit `deee30b319`, defined in",
     "created_at": "2026-06-04T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.026Z",
+    "last_save_at": "2026-06-23T03:49:55.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:90f2dd2ad1d7b37c328a9b1406ebae75c3c0ece4a1375d5ec58401270339a9a1",
+    "source_doc_hashes": {
+      "spec.md": "21a780f183e2c04c17b997c0d0866fac7663f6f1d7c8ea4fbfe52e374d782b99",
+      "plan.md": "71f08ff19e5725c5388ef615853762091fe7361c9d640a603ca332a951ee0a15",
+      "tasks.md": "a983ed94c257b004503de84099245f27508b5023517860f1241e49bb6db25db9",
+      "implementation-summary.md": "3037f84106b698a09749925e3640e97fd384a671445dc8500e3b1d02a79ec628"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

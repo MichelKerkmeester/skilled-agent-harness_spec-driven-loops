@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
-  "description": "Feature Specification: B3 Retrieval-Learning Feedback Edge",
+  "description": "The retrieval-learning loop records only the positive selection edge",
   "keywords": [
-    "feature",
-    "specification",
     "retrieval-learning",
-    "feedback",
+    "loop",
+    "records",
+    "only",
+    "positive",
+    "selection",
     "edge"
   ],
-  "lastUpdated": "2026-06-21T10:22:32.518Z",
+  "lastUpdated": "2026-06-23T03:49:58.622Z",
   "specId": "013",
   "folderSlug": "b3-retrieval-feedback-edge",
   "parentChain": [

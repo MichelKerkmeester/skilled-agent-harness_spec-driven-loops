@@ -36,7 +36,7 @@
       "verification",
       "checklist",
       "decision",
-      "wrapper"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This wrapper packet preserves the historical 2026-03-08 through 2026-03-26 audit trail, but it must no longer be read as the live denominator source on its own.",
+    "causal_summary": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were current release-control truth",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-06-05T12:47:34.697Z",
+    "last_save_at": "2026-06-23T03:49:59.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:629988a47347337f34b8840d8253eaf24dce4b335587f29ce2ea1ec531b19ed8",
+    "source_doc_hashes": {
+      "spec.md": "9ea98a04880f1f77396a8ce4719e9259caec99cb5fbc6abed2a698da0a1eed4d",
+      "plan.md": "9f8a3436ee829f0bd62ac1bb32828f84df12bf03d52183897ca9be0d1b0b7b02",
+      "tasks.md": "a4cb2f11cf15defc04ed9a6b32b08c76bf5dc64390c0be45df9bc1e558ffd6c5",
+      "checklist.md": "ec11834dcf86f954796cfabe0678224a4896f98df46632021d6c479b7c7a4843",
+      "decision-record.md": "557025d2e0b8fa4589acfe905f4a25fc453c617a2428380680aa5ff2b1c92db7",
+      "implementation-summary.md": "d5785e04067af833e3a6850efc19d7e8433578cac91f920289905008e530bbe7",
+      "handover.md": "b1f6be2d83410deb34a7f101af5bc61d2ed0bab18a5aaad90bc17a169f59f884"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

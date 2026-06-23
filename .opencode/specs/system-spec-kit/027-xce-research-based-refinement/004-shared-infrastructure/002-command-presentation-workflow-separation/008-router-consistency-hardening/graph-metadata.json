@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A deeper audit of the command tree after the presentation/router split found two consistency defects. First, commit `493b3c822f` (#44) decided the canonical `allowed-tools` form is the fully-qualified `mcp__<server>__<tool>` prefix and applied it to `resume.md` + `search.md`, but seven routers still carry the same bare or mixed MCP names it fixed. Second, the sk-doc `command_template.md` §11 router standard claims all five split families use an identical six-section shape and own `_auto.yaml`/`_confirm.yaml`, which is false: `memory` and `doctor` have no workflow YAML and use different section vocabularies.",
+    "causal_summary": "A deeper audit of the command tree after the presentation/router split found two consistency defects",
     "created_at": "2026-06-12T13:01:21Z",
-    "last_save_at": "2026-06-16T14:27:21.622Z",
+    "last_save_at": "2026-06-23T03:49:57.786Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9d5e118ad991a846ceb78c8f32077e00ab4f3df10451976a1453a93e44d8c11",
+    "source_doc_hashes": {
+      "spec.md": "5d1a4477bf31e2d9242500897d4b1d7d3baaf60de26a2642cfa9d1e678cc029c",
+      "plan.md": "c80c92376137803f4b5ccd56914e25487085278ed44c9be82bae419302d0664a",
+      "tasks.md": "28d9ce3d6484d399f4ae889319a53c0a5eae5ea7dbe81bad8324e0a6c28ad0a3",
+      "implementation-summary.md": "c8e48263ed7de9457bfad0f0c3338701218669e6156873d64662975038574c69"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

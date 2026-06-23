@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
-  "description": "Feature Specification: reindex-scan responsiveness and cancellation",
+  "description": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
   "keywords": [
-    "feature",
-    "specification",
-    "reindex-scan",
-    "responsiveness",
-    "cancellation"
+    "background",
+    "memoryindexscan",
+    "ran",
+    "entire",
+    "scan",
+    "daemon",
+    "single",
+    "event-loop",
+    "thread"
   ],
-  "lastUpdated": "2026-06-17T12:03:13.967Z",
+  "lastUpdated": "2026-06-23T03:49:57.402Z",
   "specId": "017",
   "folderSlug": "reindex-scan-responsiveness-and-cancellation",
   "parentChain": [

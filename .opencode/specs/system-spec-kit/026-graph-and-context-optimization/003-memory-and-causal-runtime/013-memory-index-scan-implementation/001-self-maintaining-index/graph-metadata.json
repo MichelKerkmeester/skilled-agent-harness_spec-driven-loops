@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implement the **self-maintaining index** design that the 012 deep-research packet converged on (research.md §6): `memory_index_scan` becomes an **idempotent, coalescing, phased async scan job** that always commits lexical rows first, drains vectors in the background without ever failing the scan on embedder trouble, and self-heals moves/orphans behind a `memory_health.index` freshness surface. The 30s cooldown stays but becomes an internal worker-start guard, never a caller-visible error. Almost every building block already exists (async/deferred embedding path, `embedder_status` job model, atomic claim-by-update, batch chunking, two circuit breakers) — the work is mostly composition and contract change.",
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.672Z",
+    "last_save_at": "2026-06-23T03:49:55.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:128b8f1778f11fcd65d2d8c7e37f5acf43439f7d8a42a4982ce5b9ae813bfabf",
+    "source_doc_hashes": {
+      "spec.md": "3946ec65c7fc83a3a6b0c811878f2b41a1f7ceb004297b7d3657615407e06fe1",
+      "plan.md": "e286b2d73b7c7dc93150c0ad4899ccc42c5ef909ee25ee1796ebdae3c6782ea1",
+      "tasks.md": "f45af4f36ac7646ba396896980c89d2214da8bf3827e945f031aaee649c5693e",
+      "checklist.md": "2aae7d29741f73105bcb6b3161b8c9e9c8c9b62dbaa57bda605739f3d4400f0a",
+      "decision-record.md": "f05b7ed2ef99082839bf0bc32f5cf30d268008a5da95dcfc06eb6de77cd6bb59",
+      "implementation-summary.md": "3a29433cc8d47acdedf69bbe48b2df93c452b8e97a69df2eb8679970498427ac",
+      "handover.md": "be99bf2b7f52f8fe242a2ea58e653a835530db6173d6d017551bfebf46dabe44"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Three guard layers exist for contamination detection (lexical scrubber, prompt-quality pipeline, post-render V8/V9), but they run on different payloads and have significant blind spots",
     "created_at": "2026-04-12T09:02:50.268Z",
-    "last_save_at": "2026-05-30T10:12:03.293Z",
+    "last_save_at": "2026-06-23T03:50:00.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fa8fdbba88396c0e07b43a607f046127c00ed13df1036318bd368cfa637cd8b6",
+    "source_doc_hashes": {
+      "spec.md": "45cc0e2f635dd639d11fd918a9ba83ea5b37e1c9483d9b194504eb1ad70e675e",
+      "plan.md": "263e6bc3ad265929df09be9e85b6cf6371a4aaab217a04e2ed74a10654ff9177",
+      "tasks.md": "d59319182cb7683f1e97a57b40fbb47fe3faa7ab65db30cd273f032fd48b62f2",
+      "checklist.md": "12bc33cfa35fec0aa32011dbdcffd3c399dd99eb69fd6fd454066b1f768a783d",
+      "implementation-summary.md": "19c86ebc4ee60dbca5630b056d92562ec802f3722ac34bee9a4f780154356f17"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

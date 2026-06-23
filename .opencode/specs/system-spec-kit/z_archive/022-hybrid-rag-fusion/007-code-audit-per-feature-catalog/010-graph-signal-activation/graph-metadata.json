@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 16 Graph Signal Activation features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/10--graph-signal-activation/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Graph Signal Activation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-05-30T10:12:03.247Z",
+    "last_save_at": "2026-06-23T03:49:59.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4302f8f874e937082738ac0bd4750b8ce92c3ee1fcab87de4013b7cf84d5a2c7",
+    "source_doc_hashes": {
+      "spec.md": "ea198acd3589d5e19b0b30419026544d1b9f006b8418b756adb91556fc2233d0",
+      "plan.md": "93c88f8fdd6acf8255c685972f54b3bdebc28a8f20e216f478273f2e5e04c20d",
+      "tasks.md": "4f35246eb6d17e656a6ae729e1b86fed0f771d62e5971e6ebf5a14d3b1dbf29d",
+      "checklist.md": "ef1f0434df44ce05629cd1da7cee9c02cc2d620df81cb0e916fa3d59e04b1a85",
+      "implementation-summary.md": "05c82c9fa6dcf6376a6a5c9051e61d807d4b8e6375ced8debe0495b6fe83cb93"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

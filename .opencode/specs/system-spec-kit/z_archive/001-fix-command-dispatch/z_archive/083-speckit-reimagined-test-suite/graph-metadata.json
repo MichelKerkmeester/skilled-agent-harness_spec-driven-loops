@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This specification defines comprehensive test coverage for the SpecKit Reimagined implementation (082-speckit-reimagined). The test suite covers 33 features across 8 categories (Search, Decay, Session, Graph, Performance, UX, Architecture, Specialized Tools), extending existing test files and adding new test coverage for 107 implementation tasks across 5 workstreams (W-S, W-R, W-D, W-G, W-I).",
+    "causal_summary": "The 082-speckit-reimagined implementation introduced 33 features with 107 implementation tasks",
     "created_at": "2026-04-12T09:02:53.555Z",
-    "last_save_at": "2026-06-05T12:47:34.556Z",
+    "last_save_at": "2026-06-23T03:49:59.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8973db20556e2fcebc772190d406c0a28bfae1f16a061152abf725cc56399e6b",
+    "source_doc_hashes": {
+      "spec.md": "a1d8086d14ae066fdc76b573eeb0b6fae575bd074a3d1e236259e978c370575f",
+      "plan.md": "02ca0bcbb600525754c87befee6c9d74aa65aa631ab1e15f0ffedc0bdee65ff7",
+      "tasks.md": "5e13580f739e7d742aff0dd17614056b6f9cf7cff845436f63cfe3a3b1d851f8",
+      "checklist.md": "a59230e59b48b57113e277a25a63c4ea10e5ccdda4c04e4ed3bdd8b3b1fcec5f",
+      "decision-record.md": "3ca0dca26e0b00b75ead35cf80b76cfcb71618c1dafa2f76aabd704a92f14310",
+      "implementation-summary.md": "f2baf82d7c8e914261398c799b05d7ecb59f45c2770c5522c39d035731a06d75"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

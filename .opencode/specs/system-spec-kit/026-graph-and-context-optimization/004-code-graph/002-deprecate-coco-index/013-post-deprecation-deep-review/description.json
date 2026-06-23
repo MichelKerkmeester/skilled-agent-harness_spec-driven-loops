@@ -1,19 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
-  "description": "Feature Specification: Post-Deprecation Deep Review (014 CocoIndex/Rerank Arc)",
+  "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre",
   "keywords": [
-    "feature",
-    "specification",
-    "post-deprecation",
-    "deep",
-    "review",
     "014",
+    "deprecation",
+    "declared",
+    "complete",
+    "session",
+    "repeatedly",
+    "found",
+    "residual",
+    "grep",
+    "refinement",
     "cocoindex",
-    "rerank",
-    "arc"
+    "ccc",
+    "pre"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.310Z",
+  "lastUpdated": "2026-06-23T03:49:55.798Z",
   "specId": "013",
   "folderSlug": "post-deprecation-deep-review",
   "parentChain": [

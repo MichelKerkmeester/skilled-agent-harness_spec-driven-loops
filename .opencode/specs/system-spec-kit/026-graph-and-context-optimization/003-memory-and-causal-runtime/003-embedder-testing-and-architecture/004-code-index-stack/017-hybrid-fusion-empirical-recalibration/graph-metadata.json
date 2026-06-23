@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex's hybrid fusion uses **Reciprocal Rank Fusion (RRF)**:",
+    "causal_summary": "Re-grounds CocoIndex's hybrid (dense + FTS5) RRF fusion parameters (k, vec_weight, fts_weight) on EMPIRICAL evidence from the post-013/014/015/016 corrected pipeline instead of inherited defaults. Sweeps the small parameter grid against the 18-probe corrected fixture under bge-code-v1, picks the best-on-fixture config, freezes it as the new default, and documents the tradeoff (recall, precision, latency) per config. Embedder-agnostic, reranker-agnostic, future-proof: the grid+harness can be re-run any time the corpus, embedder, or reranker changes.",
     "created_at": "2026-05-19T14:26:30.924Z",
-    "last_save_at": "2026-06-22T18:55:02.404Z",
+    "last_save_at": "2026-06-23T03:49:54.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:884e2f227c5fa8ae0e5e1534d59d178de47e32d4b5f4bf04aa9833812702f1e1",
+    "source_doc_hashes": {
+      "spec.md": "f0af03a9a50fd922e2cf9b5f46779bc7441f83938dedb9f85068a8dbd7d4d3d1",
+      "plan.md": "ecbcc8e35c8cb1135acbab22eab18991570b5616a03bee74343f3843949ecdb5",
+      "tasks.md": "11ab55e9e36312e2ff6f7bb5af39300730af10ed780272beebe15b16d2dd6a0c",
+      "checklist.md": "3e39fb354feb495a23b6c5c30bcd43eacf3a630201a77b4890ceca0a249ef600",
+      "implementation-summary.md": "79c36bcda5fbc1e0a2af9c2ad1c3bb4f8f2fe2fe279f59ea5316f90afb86ae5d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

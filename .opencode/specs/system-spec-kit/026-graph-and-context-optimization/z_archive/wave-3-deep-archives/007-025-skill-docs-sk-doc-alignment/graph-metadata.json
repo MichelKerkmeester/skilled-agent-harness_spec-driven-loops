@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-code-graph skill docs had drift from current sk-doc expectations. `SKILL.md` still referenced old category-22 docs, some catalog entries pointed at stale schema line ranges and playbook prompts used RCAF framing where natural operator prompts fit better.",
+    "causal_summary": "The system-code-graph skill docs had drift from current sk-doc expectations",
     "created_at": "2026-05-14T17:43:47Z",
-    "last_save_at": "2026-05-30T10:12:02.812Z",
+    "last_save_at": "2026-06-23T03:49:56.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:aa9828d61abb36de922a082184ae1da594733ff30083e06629159a9dc3363280",
+    "source_doc_hashes": {
+      "spec.md": "439fedfc320276f7643692ef57a138ac52a8fde13fc19363b7acdd4e5b2b51b6",
+      "plan.md": "3d45f01683e21b573ba9c4a5e2c80c338394a050ca17262bb39580c2cef63623",
+      "tasks.md": "c5be511825746b803445ab8c7cc9c50909245a8440e81daea75f85175046b891",
+      "implementation-summary.md": "b553eaba1ff4ef34eece6964baf7d6a6998bc6bc4aac9753b0b2d44b7bdf267b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

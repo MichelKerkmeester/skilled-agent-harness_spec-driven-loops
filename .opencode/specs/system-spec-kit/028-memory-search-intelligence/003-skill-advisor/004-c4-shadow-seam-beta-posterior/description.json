@@ -1,17 +1,17 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior",
-  "description": "Feature Specification: Skill Advisor C4 Shadow Seam + Beta Posterior",
+  "description": "The Skill Advisor's shadow learning pipeline is structurally half-built and disconnected",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
     "advisor",
     "shadow",
-    "seam",
-    "beta",
-    "posterior"
+    "learning",
+    "pipeline",
+    "structurally",
+    "half-built",
+    "disconnected"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.866Z",
+  "lastUpdated": "2026-06-23T03:49:58.450Z",
   "specId": "004",
   "folderSlug": "c4-shadow-seam-beta-posterior",
   "parentChain": [

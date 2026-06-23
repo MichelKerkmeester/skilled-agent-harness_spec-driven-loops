@@ -1,14 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/016-tooling-and-scripts",
-  "description": "Feature Specification: 016-Tooling-and-Scripts Manual Testing",
+  "description": "The tooling-and-scripts category (16) contains 33 scenario files covering 65 exact scenario IDs that have not been manually tested against the live sy",
   "keywords": [
-    "feature",
-    "specification",
-    "016-tooling-and-scripts",
-    "manual",
-    "testing"
+    "tooling-and-scripts",
+    "category",
+    "contains",
+    "scenario",
+    "files",
+    "covering",
+    "exact",
+    "ids",
+    "manually",
+    "tested",
+    "against",
+    "live"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.542Z",
+  "lastUpdated": "2026-06-23T03:50:00.311Z",
   "specId": "016",
   "folderSlug": "tooling-and-scripts",
   "parentChain": [

@@ -1,12 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
-  "description": "Feature Specification: graph-signal-activation",
+  "description": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
   "keywords": [
-    "feature",
-    "specification",
-    "graph-signal-activation"
+    "manual",
+    "test",
+    "scenarios",
+    "graph-signal-activation",
+    "need",
+    "structured",
+    "per-phase",
+    "documentation",
+    "instead",
+    "relying",
+    "scattered",
+    "playbook",
+    "rows"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.489Z",
+  "lastUpdated": "2026-06-23T03:50:00.274Z",
   "specId": "010",
   "folderSlug": "graph-signal-activation",
   "parentChain": [

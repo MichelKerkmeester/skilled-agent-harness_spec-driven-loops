@@ -1,15 +1,22 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
-  "description": "Feature Specification: 023A1 Metadata Fingerprint",
+  "description": "The mcp-coco-index fork supported multiple embedders and exposed 023C retrieval fingerprints, but compatibility remained warning-only",
   "keywords": [
-    "feature",
-    "specification",
-    "023a1",
-    "metadata",
-    "fingerprint"
+    "mcp-coco-index",
+    "fork",
+    "supported",
+    "multiple",
+    "embedders",
+    "exposed",
+    "023c",
+    "retrieval",
+    "fingerprints",
+    "compatibility",
+    "remained",
+    "warning-only"
   ],
-  "lastUpdated": "2026-05-26T17:27:47.695Z",
+  "lastUpdated": "2026-06-23T03:49:54.709Z",
   "specId": "004",
   "folderSlug": "metadata-fingerprint",
   "parentChain": [

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase closes two **always-on correctness residuals** surfaced by the 008 retrieval-evaluation campaign. Both are Wave-0, they ship independent of the eval harness, carry no schema migration, and depend on no Wave-1 shared infrastructure [research: `../../research/synthesis/08-retrieval-evaluation-findings.md:14,69-76`].",
+    "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-06-22T18:55:03.673Z",
+    "last_save_at": "2026-06-23T03:49:58.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b3257ba978603ca28a577287161161dbf30e6e23756864d5c8f0e99e0d92d8c5",
+    "source_doc_hashes": {
+      "spec.md": "514f183c91af3158a3ccddbce4c2a78adcd64774c1cf9583eee6c9f0aa2bbd11",
+      "plan.md": "3f3d66f7b4fd1ec2cd38a86867e54aa8b3bac0ae2d776a303f487c4478bcfaaf",
+      "tasks.md": "485620de44891ff58acac84f0ba073519f9a98ad1ba916b00bbb86f113f5d84d",
+      "checklist.md": "dc19aa9e86e29b8248020fa3a9b77b128f211c143db6f1e966b07e01b2af0d4e",
+      "implementation-summary.md": "d928e56245d26518380ca993f62001a665e46004575e1a3959794b71a1594869"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

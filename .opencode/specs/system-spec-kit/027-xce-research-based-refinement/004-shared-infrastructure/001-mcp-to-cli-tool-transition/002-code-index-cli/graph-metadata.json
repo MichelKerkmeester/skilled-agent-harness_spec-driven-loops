@@ -33,9 +33,9 @@
       "028",
       "002",
       "research",
+      "mkcodeindex",
       "mcp",
-      "server",
-      "tools"
+      "server"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -88,14 +88,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mk_code_index MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path. The daemon architecture (launcher + IPC socket + owner lease, shared launcher-ipc-bridge.cjs) mirrors mk-spec-memory, whose CLI feasibility is already settled.",
+    "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-06-22T18:56:37.310Z",
+    "last_save_at": "2026-06-23T03:49:57.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:ff0f1aaab97b087d876ddc837cf12726343cdbc405f8f2dd3a722a7af971a4eb",
+    "source_doc_hashes": {
+      "spec.md": "2ff8204a46999535a4b39a6a5b064115fc0508d16dc7314140cfebbbd44c6f0c"
+    },
     "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
     "last_active_at": "2026-06-06T15:05:00.000Z"
   }

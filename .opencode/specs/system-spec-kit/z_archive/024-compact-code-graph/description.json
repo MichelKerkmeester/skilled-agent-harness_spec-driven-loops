@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph",
-  "description": "Feature Specification: Hybrid Context Injection — Hook + Tool Architecture",
+  "description": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`",
   "keywords": [
-    "feature",
-    "specification",
-    "hybrid",
-    "context",
-    "injection",
-    "hook",
-    "tool",
-    "architecture"
+    "024-compact-code-graph",
+    "packet",
+    "spans",
+    "large",
+    "phased",
+    "workstream",
+    "parent",
+    "folder",
+    "originally",
+    "metadata",
+    "without",
+    "canonical",
+    "root",
+    "spec"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.283Z",
+  "lastUpdated": "2026-06-23T03:50:00.570Z",
   "specId": "024",
   "folderSlug": "compact-code-graph",
   "parentChain": [

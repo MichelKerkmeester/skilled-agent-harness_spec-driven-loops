@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder. That missed the real stress-test surface, especially the search-quality harness, W-cell matrix cases, memory benchmarks, session benchmarks, skill-advisor concurrency coverage, and code-graph degraded sweeps.",
+    "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder",
     "created_at": "2026-04-29T18:45:00Z",
-    "last_save_at": "2026-05-30T10:12:01.754Z",
+    "last_save_at": "2026-06-23T03:49:52.752Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:24ca1452e4d1fcafe4949ad4037496590295191bcaeca3a8000648498f455b3b",
+    "source_doc_hashes": {
+      "spec.md": "c9c19d381b30d6eb4c7ccd8460644993c8721eee788a40e09529253aa64588de",
+      "plan.md": "4f072093c360b45c37135ad70f9f7200e72e98775e4ec0914d0d8c23736e16a2",
+      "tasks.md": "3389652abb34d019330ba669bec22273a9c2e03f93fbef31ae256a2533b10870",
+      "checklist.md": "c79a002e9ca9876b770c9ffe2c6ac1e1fe292883dea6d53b77dec85a879fa9d7",
+      "implementation-summary.md": "1e1daed004b76655e1d7d0babca5adadc981fbfd149f57a48834cf24df72026f",
+      "resource-map.md": "694ec6e3e6d6e6a8da2aa4075f31818b462b738f44c3a8798d0177d3e2514daa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

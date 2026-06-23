@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase closes phase 014's REQ-001 on the original 150MB RSS metric. The 014 deep review (adversarially verified) found that the packed BM25 engine's *retained* heap meets the budget (~105MB) but the transient *warmup* RSS spike breaches it (~687MB on a realistic 10,245-doc / 69.2MB corpus). The breach is allocation churn during warmup, not retained index size; 014 left the RSS test assertion advisory (`SPECKIT_BM25_RSS_GATE`) pending this fix.",
+    "causal_summary": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105MB",
     "created_at": "2026-06-11T05:11:29Z",
-    "last_save_at": "2026-06-12T04:40:47.920Z",
+    "last_save_at": "2026-06-23T03:49:57.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9a8ab126d891e132b44b7e2a13d9a54ff49aadbc82aac37e8cbdcb09f45533a0",
+    "source_doc_hashes": {
+      "spec.md": "ec8bd354cb48757dc613f0f2d96dbc8da5fe449c415a7e3f08c9b5e2e0085d13",
+      "plan.md": "8b8c840a83e7750c8f0c88a80a4c3d9ad9155857e18cf73d7a741cd9977a7c6a",
+      "tasks.md": "952e573e4d1d0167589e83e2c49052e5f0b666d2161f0e09aa533a7bc35229f6",
+      "implementation-summary.md": "74b3aa37da729cbe6b80b32eff942e4500fc13f1125a1d958df44cec75efcca1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

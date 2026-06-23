@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdowns). This packet (008) lands the actual TypeScript patches that make the live code-graph backend match those design targets. Without this packet the staleness predicate stays mtime-only, the resolver misses cross-file edges through path aliases / type-only imports / re-export barrels, edge weights are unconfigurable, self-healing is invisible to operators, and the gold-battery verification contract from `assets/code-graph-gold-queries.json` has no runtime to execute against.",
+    "causal_summary": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdowns)",
     "created_at": "2026-04-25T22:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.082Z",
+    "last_save_at": "2026-06-23T03:49:55.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e7abfd6aeac466064f7a5041dc48727f76ee2c90953263a58728662d0fdd7953",
+    "source_doc_hashes": {
+      "spec.md": "e6e8324fdfb48e2d3c8836ce4ccc23e2a07fa7cae68d29103bb73a450b91482e",
+      "plan.md": "37ba0e99f7c9f1a14a8f930003bb8b0ac22471fec326890f65250b59f1d45705",
+      "tasks.md": "309d08d3448bb006d5feef6d8be6d93a6235f8216ffdf9f15ab4669f04fd040f",
+      "checklist.md": "60fac6fa174c7b400834311084ebaa634d4f6268fe692f8a7d98d77ac41e1bfb",
+      "implementation-summary.md": "d68813e7fbebf05d1a751cf67685b516d435723e43b3c5939c4b3490ad7b97d8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

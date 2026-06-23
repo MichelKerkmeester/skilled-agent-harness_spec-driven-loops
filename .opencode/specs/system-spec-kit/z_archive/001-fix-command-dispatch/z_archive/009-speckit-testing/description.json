@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
-  "description": "Feature Specification: SpecKit Post-Rename Testing",
+  "description": "Verify all SpecKit features work correctly after the recent rename and consolidation changes",
   "keywords": [
-    "feature",
-    "specification",
+    "verify",
     "speckit",
-    "post-rename",
-    "testing"
+    "features",
+    "work",
+    "correctly",
+    "recent",
+    "rename",
+    "consolidation",
+    "changes"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.214Z",
+  "lastUpdated": "2026-06-23T03:49:58.882Z",
   "specId": "009",
   "folderSlug": "speckit-testing",
   "parentChain": [

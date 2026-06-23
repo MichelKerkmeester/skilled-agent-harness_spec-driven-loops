@@ -1,19 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane",
-  "description": "Feature Specification: Code Graph, Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease)",
+  "description": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
-    "doc-symbol",
+    "code-graph",
+    "doc",
     "lane",
-    "lease",
-    "telemetry",
-    "q5-c1",
-    "q7-lease"
+    "hash-only",
+    "excluded",
+    "tree-sitter",
+    "parser",
+    "type",
+    "tree-sitter-parser",
+    "parserlanguage",
+    "exclude"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.731Z",
+  "lastUpdated": "2026-06-23T03:49:58.415Z",
   "specId": "008",
   "folderSlug": "doc-symbol-lane",
   "parentChain": [

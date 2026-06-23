@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Memory Quality QP 0 4. Its earlier documents no longer matched the active templates, so validation failed even though the folder should remain as an archive record.",
+    "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Memory Quality QP 0 4",
     "created_at": "2026-04-12T09:02:53.572Z",
-    "last_save_at": "2026-06-05T12:47:34.623Z",
+    "last_save_at": "2026-06-23T03:49:59.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:36d6b447ad574480307fb7ef2ee1ee7ac368c0edf9cbcd36edb4b663e28f305d",
+    "source_doc_hashes": {
+      "spec.md": "c63524c189411b24bc968f727d232e392f824db2ab6c2ff532903d681dbc6529",
+      "plan.md": "235726037f90ae40a6ca06d3c8b536f4a3f45497e99a31ab47bfcf92b85e896c",
+      "tasks.md": "535f8e1d29cadbc79c6e9ba64bd6cfa6f5293be2c4811485ff167b263ac50000",
+      "checklist.md": "ef0f3f1f5817be43af242cbd486299e5505e548487f4acc6e664a88f2270bf37",
+      "decision-record.md": "adebc21e3dba1009c0ff7ee807568f9ff6b898b9a5965032a90638bd6fbe2bd4",
+      "implementation-summary.md": "08bde24f9065dca15ebb1b3f4aa6d79761abd68f11b7bd32ecef075e40f5017a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

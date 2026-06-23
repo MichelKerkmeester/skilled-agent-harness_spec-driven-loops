@@ -1,12 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization",
-  "description": "system-spec-kit References Reorganization",
+  "description": "The `system-spec-kit` skill's `references/` folder currently has a flat structure with all reference files at the root level",
   "keywords": [
     "system-spec-kit",
+    "skill",
     "references",
-    "reorganization"
+    "folder",
+    "currently",
+    "flat",
+    "structure",
+    "reference",
+    "files",
+    "root",
+    "level"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.940Z",
+  "lastUpdated": "2026-06-23T03:49:59.207Z",
   "specId": "056",
   "folderSlug": "spec-kit-references-reorganization",
   "parentChain": [

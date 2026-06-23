@@ -239,9 +239,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. The official multi-lineage loop then ran five distinct deep-research lineages across thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats, each verifying its ranked candidates against the live retrieval and validation code. All five lineages converged.",
+    "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
     "created_at": "2026-06-21T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.779Z",
+    "last_save_at": "2026-06-23T03:49:58.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -254,6 +254,17 @@
       "research/research.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:0372fc709b053e7723917eede318507b0d81a43693cc7c5575a87a2fbd2ff84c",
+    "source_doc_hashes": {
+      "spec.md": "ff5e324447ca716765494927f2c7e62327bc78789a758cad580be4e18018961b",
+      "plan.md": "2f14a5fa58606c4d7c453e28e1cce06891ac8c92d748a5b09462bb1c8aae72de",
+      "tasks.md": "92a09f90b74cc4cc4fbdc43b814164f0596337e53f74d284b7d904f9c6d1306c",
+      "checklist.md": "779783e6702d705f645dc22372bb257ef0538a14abc9746463bee32fd560544a",
+      "decision-record.md": "e78eee4b8891e303a9e36a9b0ea1533abdccdbb6dae407bec878076b930094de",
+      "implementation-summary.md": "896bf58a30a1efd3e7c53bd86c0cc40cda2a21a7523b557cae35d53cd5418e3c",
+      "research/research.md": "a068540b6b8cf204988f0813ce0741a6648dad9cf87c2fc014d15cf2706c54af",
+      "handover.md": "665829491f97cf6ba491641869c5656e96da6e783fff74bf9b3c88982f6a9aa1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

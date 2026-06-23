@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 16** under `002-spec-memory-stack`. The packet closes a latent regression that surfaced after ADR-012 (canonical vector shard split) and ADR-013 (nomic default) shipped: the runtime KNN search path was reading an empty `vec_memories` table because reindex only wrote the canonical `vec_<dim>` table, and the factory was scanning the wrong file for the dim-tagged pointer table.",
+    "causal_summary": "`memorysearch` was returning RRF score distributions with Z near 1.2, below the evidence-gap threshold of 1.5, which forced the response policy into `broadenorask` and `donotciteresults`",
     "created_at": "2026-05-19T18:51:11Z",
-    "last_save_at": "2026-05-30T10:12:02.221Z",
+    "last_save_at": "2026-06-23T03:49:54.360Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:15b4951b982826cff2f23fe7a4ea67c20b4a0a98cac962a40c8af323bd36fac8",
+    "source_doc_hashes": {
+      "spec.md": "c05e28859a6c45948c10f765f2e8b53ddc5857f4dedffe4609acfb4931f9a1f1",
+      "plan.md": "78cf56a2f1660599d0fd0c924089740a32a23f4233469324efb6b35ea2edee9b",
+      "tasks.md": "26e4d004f3bf465d38bdefabef537ecca87ce463a6c43e9ed5c7efc23065f080",
+      "implementation-summary.md": "3ef053a462d70ff84278ad2864620247afbe1e7f27c7a16647ec9469459bf9db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

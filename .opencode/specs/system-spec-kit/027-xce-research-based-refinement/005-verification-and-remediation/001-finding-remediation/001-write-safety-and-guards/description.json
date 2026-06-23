@@ -1,17 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards",
-  "description": "Feature Specification: Finding Remediation Lane: Write Safety And Guards",
+  "description": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 12 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "write",
-    "safety",
-    "guards"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.475Z",
+  "lastUpdated": "2026-06-23T03:49:57.881Z",
   "specId": "001",
   "folderSlug": "write-safety-and-guards",
   "parentChain": [

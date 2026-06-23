@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-skill-advisor` package had grown through extraction packets. Its docs still mixed early extraction language, stale root README paths, old four-tool advisor claims, old scorer weight values, and inconsistent regression-count wording.",
+    "causal_summary": "The `system-skill-advisor` package had grown through extraction packets",
     "created_at": "2026-05-18T08:53:19.989Z",
-    "last_save_at": "2026-05-30T10:12:01.894Z",
+    "last_save_at": "2026-06-23T03:49:53.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1846677c165d097b99f1f67d4e044b3f52a3e6871dc6492c74c6e8e9b12114f9",
+    "source_doc_hashes": {
+      "spec.md": "339ddd30423fdcb1f7cbd8da1750b4beb6045b30815af9586e9306e3b3b2630d",
+      "plan.md": "2b01549384f6f9757c0e7cffa0891e4408b1c8a3f1ad794f080f27707c0a8dff",
+      "tasks.md": "a2f1d692ff6a967f030722008ed4aebe1b476a74a9c0b5ffdd1a2762114f1092",
+      "checklist.md": "41423d9acc6843f9fb0efae2cb13805a959f4e631f15d2adaff3b9439358ec63",
+      "implementation-summary.md": "d3dd20a9e5e4941a98b3997fc25a546d68214bf3634f7657474a610167a83c08"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

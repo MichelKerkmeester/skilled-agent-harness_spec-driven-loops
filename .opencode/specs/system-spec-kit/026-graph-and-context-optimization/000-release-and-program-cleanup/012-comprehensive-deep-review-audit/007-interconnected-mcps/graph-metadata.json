@@ -23,11 +23,11 @@
       "skill-advisor",
       "review",
       "deep-loop-runtime",
-      "skills",
-      "deep-loop",
-      "runtime",
-      "correctness",
-      "integration-contract"
+      "system-spec-kit",
+      "interconnects",
+      "feature",
+      "specification",
+      "mcps"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -115,14 +115,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit the interconnected MCP skills and the deep-loop runtime for correctness, integration-contract drift, and concurrency/lifecycle bugs, reporting P0/P1/P2 findings with evidence. READ-ONLY review.",
+    "causal_summary": "system-spec-kit interconnects with the code-graph MCP, the skill-advisor MCP, and the deep-loop-runtime",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-06-05T12:47:33.222Z",
+    "last_save_at": "2026-06-23T03:49:53.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c9029a81439b67982c8c2e2693bb6d52bae0a28c28c462382ba14b6a24a3eebd",
+    "source_doc_hashes": {
+      "spec.md": "7eb1ab5809697e3d976697b621a797fd96778ff81864e11130fe0ab079b52d4f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

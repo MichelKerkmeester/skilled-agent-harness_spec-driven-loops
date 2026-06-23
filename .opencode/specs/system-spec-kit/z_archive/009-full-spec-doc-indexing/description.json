@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/009-full-spec-doc-indexing",
-  "description": "Feature Specification: Full Spec Folder Document Indexing",
+  "description": "This archived folder captures work that indexed full spec folder documents",
   "keywords": [
-    "feature",
-    "specification",
+    "archived",
+    "folder",
+    "captures",
+    "work",
+    "indexed",
     "full",
     "spec",
-    "folder",
-    "document",
-    "indexing"
+    "documents"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.589Z",
+  "lastUpdated": "2026-06-23T03:49:59.460Z",
   "specId": "009",
   "folderSlug": "full-spec-doc-indexing",
   "parentChain": [

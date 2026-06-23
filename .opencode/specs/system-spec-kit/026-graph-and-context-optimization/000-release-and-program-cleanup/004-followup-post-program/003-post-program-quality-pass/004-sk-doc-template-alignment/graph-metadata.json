@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs. Those documents needed a sk-doc template pass so README anchors, reference frontmatter, section anchors and DQI-sensitive structure stayed aligned before later quality packets built on them.",
+    "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-06-12T04:40:47.075Z",
+    "last_save_at": "2026-06-23T03:49:52.477Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:36ed34c206aeba1a7084dbb75abea0e3a1f8f35b4276ef878012261854b9f7db",
+    "source_doc_hashes": {
+      "spec.md": "77234246a0b252c2de1d5526d4c9be1dd5e93752dbc13927879ec64d6deac601",
+      "plan.md": "20f97e883d04cc5a4d19e49d603a441d72f6157698364869098f0d04a3d9a37e",
+      "tasks.md": "f911cc84a7b9d0d649c6161f6184e32913afec867f3993508d836b331e6e0080",
+      "checklist.md": "2bf9baff095e5cd463bdd9b8af6e29cab0d40e067c8a0d157f6cab025832ebab",
+      "implementation-summary.md": "ab256b81b0793621dcec3a2f4bef36e53d777cdc617b4223b464504f931cc211",
+      "resource-map.md": "dbd023232955e0ce952ad70902abd75883cfd89981beb37aa4c073df4f09a55b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

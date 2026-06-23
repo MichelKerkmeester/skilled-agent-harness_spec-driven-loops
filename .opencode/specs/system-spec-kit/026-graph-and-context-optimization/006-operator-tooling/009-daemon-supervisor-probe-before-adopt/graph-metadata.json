@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-memory daemon supervisor decides a daemon is healthy from process liveness (`process.kill(pid,0)`) plus socket-file existence, never a request/response probe. When a daemon is alive but its event loop is wedged (it accepts the socket connection but never services requests), the supervisor adopts it \"instead of reaping\" and bridges clients into a dead end — `ECONNREFUSED` forever, with no path to self-recovery. A real incident proved this: one daemon spun a full core for ~4 hours while every client call failed. This packet makes the stale-reclaim adoption path **deep-probe before adopting**, and reap+respawn on a failed probe.",
+    "causal_summary": "The stale-reclaim adoption branch (`mk-spec-memory-launcher.cjs:1580`) adopts a released daemon when `processLiveness(orphanChildPid) !== 'dead'` AND `bridgeReadiness(adoptResult).ready`",
     "created_at": "2026-06-14T17:37:27Z",
-    "last_save_at": "2026-06-15T09:09:34.629Z",
+    "last_save_at": "2026-06-23T03:49:56.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:69a5197abb541778576dc8068f9a9d43fbe03ebde66ac5b71bb8900644b9094e",
+    "source_doc_hashes": {
+      "spec.md": "bd4d42d7a3d0788439141e2ec80e8294b205b927a13c58dbb288107cc29cfa8f",
+      "plan.md": "5f818604bd5783f432f5679ad2cadac4133689c516f82fa8d6be9bc2dc820461",
+      "tasks.md": "a03e70306eda2199864bdc63e5e634c07f70a396272845337754fc12e2c9fa03",
+      "checklist.md": "19d868297c4b6f577474bda2f8616f008081b762f422ab8c5d06967b0ccb2654",
+      "decision-record.md": "78e8c00b5da14823ed03e5eeacb180f38ceea32503875794417ad345385dac25",
+      "implementation-summary.md": "3d828a07977f54516c252df3f4963f7a41f46b6c3bd418e51ab1a91f091c9c0a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

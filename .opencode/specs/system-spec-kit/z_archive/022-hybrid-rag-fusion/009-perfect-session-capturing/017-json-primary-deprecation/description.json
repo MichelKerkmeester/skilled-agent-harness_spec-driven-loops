@@ -1,13 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/017-json-primary-deprecation",
-  "description": "Feature Specification: JSON-Primary Deprecation",
+  "description": "Dynamic session capture reconstructs context from runtime databases after the fact",
   "keywords": [
-    "feature",
-    "specification",
-    "json-primary",
-    "deprecation"
+    "dynamic",
+    "session",
+    "capture",
+    "reconstructs",
+    "context",
+    "runtime",
+    "databases",
+    "fact"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.183Z",
+  "lastUpdated": "2026-06-23T03:50:00.128Z",
   "specId": "017",
   "folderSlug": "json-primary-deprecation",
   "parentChain": [

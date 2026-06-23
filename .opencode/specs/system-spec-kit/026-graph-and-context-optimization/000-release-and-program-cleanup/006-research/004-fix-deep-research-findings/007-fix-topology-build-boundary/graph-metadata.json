@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-30T10:12:01.811Z",
+    "last_save_at": "2026-06-23T03:49:52.863Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:555b2825b2d0dd8dbcd493ea80644f62f96aae699ebf961f2fb5a35681d0a86f",
+    "source_doc_hashes": {
+      "spec.md": "852442a2102f449a79cfb1c22e29d8e4599bb649f53c037e70984d3f2e07abdc",
+      "plan.md": "c92bd5884e838e640e919879db163f193685c9b3806de85b54465b0940aa26c7",
+      "tasks.md": "d6b9bfb0e614ed97c62828a7f05daef7136fa6817395b5c9556a1b17bb42dba8",
+      "checklist.md": "3260dc8d99b8be52698ae4d212407343435c936746a696434fd6a6c4f208e466",
+      "implementation-summary.md": "f29d3946929c2cedb880aee97cbdcd7deee5b2cb0433e0bd28a0ebdbaec59bda"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

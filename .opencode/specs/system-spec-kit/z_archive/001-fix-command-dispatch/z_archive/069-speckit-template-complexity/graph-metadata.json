@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Transform static system-spec-kit templates into a level-based folder system with pre-expanded templates for each documentation level.",
+    "causal_summary": "Current templates use a single set of files for all documentation levels:",
     "created_at": "2026-04-12T09:02:53.542Z",
-    "last_save_at": "2026-05-30T10:12:03.052Z",
+    "last_save_at": "2026-06-23T03:49:59.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:1079aae26ea64459b9c16f5ab85248555b862c00088a902544bcc13b03a4d845",
+    "source_doc_hashes": {
+      "spec.md": "e59143a895625fdb19514d73737facc03ad8c5f5ece3b3de0e0e9194a58286d7",
+      "plan.md": "8d0588ec0dd80c7132ed64a1db614da0fb3cbd52739b777a191b862133173323",
+      "tasks.md": "da8d0f4c539d9f07fdb3669f25be7795290136c02146d5e40ec0520466ac8047",
+      "checklist.md": "3945f2a1b3ea294f1c833615bca7699b092c05924f4ae3cfd05d7fc6fc1ae4f5",
+      "decision-record.md": "212b22ccd5fbcd4d29e3a86d0675fef786603404d947d8de7a98322b630e1477",
+      "implementation-summary.md": "86cb33b575827265bd56d8c0e42a557e9ea4fdec3d78eeb5cd90dea22eb26482",
+      "handover.md": "22b0dde11a9bbaae7d90835179f70023b9a007e428032805d28ba4031de1e07e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

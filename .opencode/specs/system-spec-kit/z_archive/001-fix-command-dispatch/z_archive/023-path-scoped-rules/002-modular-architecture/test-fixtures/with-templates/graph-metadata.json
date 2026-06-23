@@ -157,9 +157,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests that template directories are excluded from validation.",
+    "causal_summary": "This fixture tests that template directories are excluded from validation",
     "created_at": "2026-06-22T18:55:03.935Z",
-    "last_save_at": "2026-06-22T18:55:03.935Z",
+    "last_save_at": "2026-06-23T03:49:58.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,6 +167,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:18fc1cbd32a756e64cc6606562dbcb8131e9e09bf5569380076398ad805ad82f",
+    "source_doc_hashes": {
+      "spec.md": "bc2914f544ffba94986b5efa3eebf12d1ab2cb75d7e0005265578f873c0ecdfb",
+      "plan.md": "58e3d30d65bfc2251ddc8aaef737a0d1c533d47f6dd3ad5544398c8a88258334",
+      "tasks.md": "c87f821d90b2c475f2262492029e2b1e9df78b7548cfd0a674983c4861159d56"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

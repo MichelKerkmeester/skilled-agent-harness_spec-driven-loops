@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Normalization is lossy at multiple pipeline boundaries",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-05-30T10:12:03.294Z",
+    "last_save_at": "2026-06-23T03:50:00.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8b838508cdec1c9666a90328d5cc3fe9468c060bd8d6bf1bf5e31d14da829e98",
+    "source_doc_hashes": {
+      "spec.md": "113d076d0d68042b206b20affd65ca504eb0a342df3ce5aed0ab501dc69599ae",
+      "plan.md": "a5b1b6c9114d4ae5e2ee024709048fda8e84cae16f9af03a1fd2ee11baad7e10",
+      "tasks.md": "e9402fba17d6bec569fec6d19a5c3b1a8a47a8297050615899c815193fb95e73",
+      "checklist.md": "907e0c750c0b81d7e420683d9874333aeba1c4bcaefcc6810dac8c0fb7a2657c",
+      "implementation-summary.md": "e0b34226a67b5e52e888e31a4b22969f052c4e0358e24ea29c574d672539043b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

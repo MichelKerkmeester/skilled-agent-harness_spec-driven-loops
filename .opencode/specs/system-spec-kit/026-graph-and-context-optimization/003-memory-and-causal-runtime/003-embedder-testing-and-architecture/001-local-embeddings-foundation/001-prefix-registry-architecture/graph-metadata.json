@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of `014-local-embeddings-setup-a`. It is the load-bearing architectural change that makes the rest of the packet's model swaps (sub-phases 002–008) work without silent recall loss.",
+    "causal_summary": "`HfLocalProvider` (TS, transformers.js-backed) and `cocoindexcode/shared.py` both hardcode prefix conventions for ONE model family (Nomic)",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-05-30T10:12:02.072Z",
+    "last_save_at": "2026-06-23T03:49:53.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7b0a7271b6f4d283347eb769aaeacd98623f0bbc1deb5934d02676e173a83cd6",
+    "source_doc_hashes": {
+      "spec.md": "bddeac5991a9223d8a08560e96c9a4589b61ace1f221aa8066aaacb26bee63ed",
+      "plan.md": "140811a21d3a8ea85eec1657f77401e74caa5778223e58c8bff6d35d5dfa1c07",
+      "tasks.md": "98a3f30c8b1b310171dccb780660b069b547a5ccde6a7f990ddc38c4749a2640",
+      "decision-record.md": "56b766cbb578fc47c562342e964dc4289288e0bf95547d14ff5a5feaabf73e81",
+      "implementation-summary.md": "61b05664f63c97fd424d35b86486199d24efc2bd2cdceb5e7703249ae1a288e0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

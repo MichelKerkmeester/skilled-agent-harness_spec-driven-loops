@@ -1,15 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging",
-  "description": "Memory Plugin Debugging - bun:sqlite Migration",
+  "description": "The semantic memory plugin fails to load memories into the AI context dashboard, showing \"Loaded 0 memories for dashboard\" despite 66+ memories existi",
   "keywords": [
+    "semantic",
     "memory",
     "plugin",
-    "debugging",
-    "bun",
-    "sqlite",
-    "migration"
+    "fails",
+    "load",
+    "memories",
+    "context",
+    "dashboard",
+    "showing",
+    "loaded",
+    "despite",
+    "existi"
   ],
-  "lastUpdated": "2026-03-30T11:56:27.015Z",
+  "lastUpdated": "2026-06-23T03:49:59.038Z",
   "specId": "003",
   "folderSlug": "memory-plugin-debugging",
   "parentChain": [

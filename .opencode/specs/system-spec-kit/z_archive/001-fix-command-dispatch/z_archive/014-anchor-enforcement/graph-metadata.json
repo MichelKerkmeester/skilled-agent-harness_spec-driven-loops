@@ -23,13 +23,13 @@
       "enforcement",
       "spec",
       "014",
-      "enforce",
-      "correct",
-      "format",
-      "throughout",
       "memory",
-      "enable",
-      "section-specific"
+      "files",
+      "using",
+      "inconsistent",
+      "formats",
+      "system-spec-kit",
+      "001-fix-command-dispatch"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -94,14 +94,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Enforce correct anchor format throughout memory system to enable section-specific retrieval with 93% token savings.",
+    "causal_summary": "Memory files were using inconsistent anchor formats:",
     "created_at": "2026-04-12T09:02:53.512Z",
-    "last_save_at": "2026-05-30T10:12:02.948Z",
+    "last_save_at": "2026-06-23T03:49:58.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:fa759540ba75c29191c31fc71b933f6a1f4c38c5e014c97a5cb8531035e9efb9",
+    "source_doc_hashes": {
+      "spec.md": "ea70b712f0a7aefb426c9c00dc16931a6aaa502fe8bb6a52f8fc01a766654039"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

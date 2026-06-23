@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
-  "description": "Feature Specification: Phase 1: advisor-observability",
+  "description": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes o",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "advisor-observability"
+    "advisor",
+    "already",
+    "computes",
+    "scorer",
+    "evidence",
+    "internally",
+    "lib",
+    "types",
+    "80-87",
+    "strips",
+    "output",
+    "public",
+    "lanebreakdown",
+    "exposes"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.976Z",
+  "lastUpdated": "2026-06-23T03:49:57.448Z",
   "specId": "001",
   "folderSlug": "advisor-observability",
   "parentChain": [

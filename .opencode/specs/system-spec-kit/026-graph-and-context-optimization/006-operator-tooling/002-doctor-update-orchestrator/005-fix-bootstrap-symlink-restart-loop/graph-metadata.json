@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "branch",
-      "fired",
-      "whenever",
-      "symlink",
-      "absent",
-      "compatibility",
-      "unnecessary",
       "feature",
       "specification",
       "fix",
       "doctor",
-      "bootstrap"
+      "bootstrap",
+      "symlink",
+      "restart",
+      "loop",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Branch 3 fired whenever the symlink was absent. The compatibility symlink is unnecessary:",
+    "causal_summary": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
     "created_at": "2026-06-18T12:37:49.941Z",
-    "last_save_at": "2026-06-18T12:37:49.941Z",
+    "last_save_at": "2026-06-23T03:49:56.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e85aabedabf9d9b88324db354fa2e62f8b6aee9cf3e6f4d12338827cd2a2cd23",
+    "source_doc_hashes": {
+      "spec.md": "d808354aee8cf5502c32d3abd287a6f87e786fa983af82850f538a8ed310e93f",
+      "plan.md": "97d8f41d86ee21d1848acc8a96601f811267d785007176c160c9626bacb7f278",
+      "tasks.md": "2ffde3d36e412359a942849322fbdf123b735d1e5ad7a18b15b4448f2dea5d9c",
+      "checklist.md": "0f687c54db7036925f29e8f0438507cd13f72c700b9a082e2e2d1c1e9998241f",
+      "implementation-summary.md": "047186513d797081285b9492c93a8b7361c72b26e7c159c6fc29167c7ec68540"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

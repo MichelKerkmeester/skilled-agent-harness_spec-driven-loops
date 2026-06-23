@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit. The 029 model benchmark caught `kubernetes` scoring good at 0.78 on a semantically unrelated doc, identical across all four models, and the 005 improvement research traced it to a score-calibration miss, not an envelope-fidelity miss. The envelope reported good faithfully because the upstream absolute relevance genuinely returned 0.78. The banding reads the pre-calibration absolute value at `confidence-scoring.ts:400` with no grounding signal, no noise-floor correction and no evidence-gap bridge, so a fluent but unrelated doc that earns a high background cosine from the nomic embedder sails through to good and cite_results. Four facts shape this phase. First, the verdict band derives only from `topScore`, `qualityRatio` and `topMargin` with no query or lexical input (`confidence-scoring.ts:433-478`), so a borderline downgrade is invisible to the reader. Second, the raw absolute relevance is banded with no background-cosine subtraction, so an embedder that hands unrelated text a high floor inflates every band. Third, a borderline grounding case is dropped to weak with no middle tier, so a near-miss is treated the same as a clear miss. Fourth, `stage4.evidenceGapDetected` is computed but never bridged into the request-quality verdict, so a known evidence gap does not lower the band. The calibration curve is provably independent of the verdict because banding is taken off the pre-calibration value at `confidence-scoring.ts:400` with `value=maybeCalibrate` at `:388`, so a curve re-fit can never move good versus weak and is a non-fix that must be documented rather than attempted.",
+    "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.704Z",
+    "last_save_at": "2026-06-23T03:49:58.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fbe73e1013c7956a95dadb8fcd4f82f4bdd6197664e749eac60f770f6626094e",
+    "source_doc_hashes": {
+      "spec.md": "4e8b4057cadc170ffc74964554e123b5e46ad472a8587af5d04a1c03405551c8",
+      "plan.md": "5e249c251126494245389b348c19fe4890ada6283bcfe5a2916d916b4b29ed62",
+      "tasks.md": "206e215d950b5e595e1795be069e6802ef0200c97b199c83e6f3791a8155b2c7",
+      "checklist.md": "088abc01ee0a8363b2f2e76bcf7d3319593f1f2d9965faf4b46f97addcb4ba90",
+      "implementation-summary.md": "9fce78d92e2cc946c9e2a222a2dde94fd2ad78cbee61aaf7491a49f48360de81"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules",
-  "description": "Feature Specification: 023 Path Scoped Rules",
+  "description": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear",
   "keywords": [
-    "feature",
-    "specification",
+    "parent",
+    "packet",
+    "coordinates",
+    "phased",
+    "work",
     "023",
     "path",
     "scoped",
-    "rules"
+    "rules",
+    "child",
+    "packets",
+    "stay",
+    "discoverable",
+    "root",
+    "purpose",
+    "remains",
+    "clear"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.922Z",
+  "lastUpdated": "2026-06-23T03:49:58.941Z",
   "specId": "023",
   "folderSlug": "path-scoped-rules",
   "parentChain": [

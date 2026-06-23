@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix",
-  "description": "Spec: Hook Test Sandbox Fix",
+  "description": "The prior runtime hook matrix ran live runtime CLIs from inside a sandboxed",
   "keywords": [
-    "spec",
+    "prior",
+    "runtime",
     "hook",
-    "test",
-    "sandbox",
-    "fix"
+    "matrix",
+    "ran",
+    "live",
+    "clis",
+    "inside",
+    "sandboxed"
   ],
-  "lastUpdated": "2026-05-26T17:26:51.661Z",
+  "lastUpdated": "2026-06-23T03:49:52.339Z",
   "specId": "017",
   "folderSlug": "hook-test-sandbox-fix",
   "parentChain": [

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Several lower-priority but still valuable items were deferred in earlier sprints to protect delivery of core retrieval correctness and performance work. Without a dedicated deferred-features sprint, these items remain untracked or partially specified.",
+    "causal_summary": "Several lower-priority but still valuable items were deferred in earlier sprints to protect delivery of core retrieval correctness and performance work",
     "created_at": "2026-04-12T09:02:50.231Z",
-    "last_save_at": "2026-06-22T18:55:04.140Z",
+    "last_save_at": "2026-06-23T03:49:59.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:83c9f673ad824175128a63234bcc757b946d2a1337ee224d4567af0f7a8c0961",
+    "source_doc_hashes": {
+      "spec.md": "ade6f43a06e860dca4950c391fb56151fddf97161c6d74f29735543fccc751f6",
+      "plan.md": "3067d310ab9800cb3a3299785392598f9af958a461479cc93098232b9e6117ab",
+      "tasks.md": "70d6d7eb0787117906fdbe5b3d06a5142d95cb15dba3c973981b7fa0b39e1fee",
+      "checklist.md": "96aa5abd680b22cb2c1fcc1cfff3dfbc13731951d8a1a8f92920d1bdda039819",
+      "implementation-summary.md": "a5b9052dad5595f3aacbd307d92ec7b41dcbaf784a2498183bb9198e25497c3e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

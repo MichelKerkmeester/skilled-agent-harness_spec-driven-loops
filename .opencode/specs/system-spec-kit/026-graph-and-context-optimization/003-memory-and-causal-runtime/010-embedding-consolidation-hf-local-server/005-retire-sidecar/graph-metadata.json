@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5 of 6** of the embedding-consolidation and hf-local-server decomposition: Delete the hf-local sidecar apparatus and collapse the execution router so hf-local flows through the direct factory-backed adapter like other providers, with one-release env deprecation shims.",
+    "causal_summary": "Once hf-local is a client for a launcher-supervised model server, the sidecar branch becomes redundant lifecycle machinery",
     "created_at": "2026-05-29T05:06:24.645Z",
-    "last_save_at": "2026-06-22T18:55:02.622Z",
+    "last_save_at": "2026-06-23T03:49:55.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3677bf84c9f6afc88e21489b4128dfad41ca27bad486201311d4fcd74d3b6083",
+    "source_doc_hashes": {
+      "spec.md": "d3801fa7cc97d6546e3d800ec00a58099e840732840e67f5dd7617a49acbd62b",
+      "plan.md": "0119c59dd1046cd3becf3e27859cbcc973fbd9828dd7dd0961c1db0729a135be",
+      "tasks.md": "c03cad0bd08fa3da54b7d3c4dda83873795db2602f125f5ba20beb7d0157a70a",
+      "implementation-summary.md": "45902e3d8e887fc60199fe1897c8ee64e1300557df9ad18878e5b61e111a26de"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

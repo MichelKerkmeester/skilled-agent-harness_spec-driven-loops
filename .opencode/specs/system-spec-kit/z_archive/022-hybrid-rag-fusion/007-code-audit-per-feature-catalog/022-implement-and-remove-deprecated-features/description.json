@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features",
-  "description": "Feature Specification: Implement and Remove Deprecated Features",
+  "description": "The final audit phase identified a small set of deprecated-feature decisions that sat between documentation cleanup and runtime release readiness",
   "keywords": [
-    "feature",
-    "specification",
-    "implement",
-    "remove",
-    "deprecated",
-    "features"
+    "final",
+    "audit",
+    "phase",
+    "identified",
+    "small",
+    "set",
+    "deprecated-feature",
+    "decisions",
+    "sat",
+    "between",
+    "documentation",
+    "cleanup",
+    "runtime",
+    "release",
+    "readiness"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.306Z",
+  "lastUpdated": "2026-06-23T03:49:59.917Z",
   "specId": "022",
   "folderSlug": "implement-and-remove-deprecated-features",
   "parentChain": [

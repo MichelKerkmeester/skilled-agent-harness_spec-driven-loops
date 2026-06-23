@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
-  "description": "Feature Specification: Phase 4: mcp-contract-parity",
+  "description": "The four contract-parity MCP tools drifted across their public JSON schema, Zod validation schema, the allow-list, the handlers, and the docs",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "mcp-contract-parity"
+    "four",
+    "contract-parity",
+    "mcp",
+    "tools",
+    "drifted",
+    "across",
+    "public",
+    "json",
+    "schema",
+    "zod",
+    "validation",
+    "allow-list",
+    "handlers",
+    "docs"
   ],
-  "lastUpdated": "2026-06-04T21:14:22.604Z",
+  "lastUpdated": "2026-06-23T03:49:53.046Z",
   "specId": "004",
   "folderSlug": "mcp-contract-parity",
   "parentChain": [

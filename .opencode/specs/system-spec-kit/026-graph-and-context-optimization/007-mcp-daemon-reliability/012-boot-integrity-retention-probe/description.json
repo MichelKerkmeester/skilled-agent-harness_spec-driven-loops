@@ -1,19 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
-  "description": "Feature Specification: Boot Integrity-Check + Retention Durability + Probe Liveness Fix",
+  "description": "Three gaps remained after packet 010 made the at-rest WAL durable",
   "keywords": [
-    "feature",
-    "specification",
-    "boot",
-    "integrity-check",
-    "retention",
-    "durability",
-    "probe",
-    "liveness",
-    "fix"
+    "three",
+    "gaps",
+    "remained",
+    "packet",
+    "010",
+    "made",
+    "at-rest",
+    "wal",
+    "durable"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.005Z",
+  "lastUpdated": "2026-06-23T03:49:56.454Z",
   "specId": "012",
   "folderSlug": "boot-integrity-retention-probe",
   "parentChain": [

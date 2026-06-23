@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented. Key gaps: no integration tests for custom-path DB + embedding-dimension mismatch; no lifecycle tests for shutdown sequencing or tool-cache invalidation; `buildErrorResponse()` passes unsanitized provider error messages to callers; and launcher docs lack consolidated MEMORY_DB_PATH and clean-transport guidance.",
+    "causal_summary": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
     "created_at": "2026-04-12T09:02:50.314Z",
-    "last_save_at": "2026-05-30T10:12:03.409Z",
+    "last_save_at": "2026-06-23T03:50:00.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:177dd18f92c95a4e69f758013b8035241f70b2365cdcc76b28e29092407c910a",
+    "source_doc_hashes": {
+      "spec.md": "ea2fa7f6ebeae1b8c9e02afe652f33f0975628d62f4cbccbdb0dfc615f33a34f",
+      "plan.md": "6ba92880326d18188e269355e0a732920cfe354837bdda2d28e2b45174e804cc",
+      "tasks.md": "8d980c4a3a8eaf60ab19029103925864a2ffbd9176a9d54c7b888a7fbf678fa8",
+      "checklist.md": "f1d0f507018cc24b920b860394178202497d1e8fd46f234757a1ebeaec0fe83f",
+      "implementation-summary.md": "7b020f5f057f70b48b644846a1a0f02d911e99433e3f4e17f36731d62c080aac"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of `010-doctor-update-orchestrator`. The 10-iteration deep-review (commit `8d794afad`, 2026-05-11) emitted a **CONDITIONAL** verdict with 0 P0, 30 P1, and 30 P2 findings against the 013 phase parent + 001 + 002. This packet closes those findings out.",
+    "causal_summary": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries claim 95% complete; `lastactivechildid` null despite handover claiming it is set; resource-maps say \"PLANNED\" while files are on disk)",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-06-15T09:09:34.614Z",
+    "last_save_at": "2026-06-23T03:49:56.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a8a9e25f32d855ddae53e874715566a7a849ab712f79c15188e5496e6ee87ebb",
+    "source_doc_hashes": {
+      "spec.md": "c4b4732c2845d61d367ad947859167e9a336ca17677297af7d54ce73850f285f",
+      "plan.md": "e0a8a0c053c4d114f68825708bfb7c856fde7b053c33424fb5860b1bb65ab927",
+      "tasks.md": "e14d8dd59ffc4999b4cd0d4405e14875b4d635ae26521dd6efda70d9dd8c5042",
+      "checklist.md": "d7c5f793b88eb11672afebb0dd18377528d7474bbcca9cac8a28abf97bcb1610",
+      "implementation-summary.md": "d22a67f7ddedb426b0aae2e69f22f94263741585406af22b25aa1ab3da118d29"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,27 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
-  "description": "Spec: Deep-Research Investigation of System-Spec-Kit MCP Sidecar",
+  "description": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycl",
   "keywords": [
-    "spec",
-    "deep-research",
-    "investigation",
     "system-spec-kit",
     "mcp",
-    "sidecar"
+    "sidecar",
+    "surface",
+    "grown",
+    "quickly",
+    "across",
+    "typescript",
+    "client",
+    "worker",
+    "code",
+    "node",
+    "ensure",
+    "helper",
+    "supporting",
+    "embedder",
+    "lifecycl"
   ],
-  "lastUpdated": "2026-05-26T17:26:05.780Z",
+  "lastUpdated": "2026-06-23T03:49:55.188Z",
   "specId": "015",
   "folderSlug": "deep-research-drift-and-simplification",
   "parentChain": [

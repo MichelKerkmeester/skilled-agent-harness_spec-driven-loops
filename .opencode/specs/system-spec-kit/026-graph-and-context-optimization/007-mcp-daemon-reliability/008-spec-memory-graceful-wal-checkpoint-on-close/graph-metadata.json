@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `mk-spec-memory` close path (`close_db` in `vector-index-store.ts`) closes `context-index.sqlite` without first checkpointing its WAL. better-sqlite3's `.close()` only performs a passive checkpoint, so un-checkpointed WAL frames can remain. If the process is then killed abruptly (e.g. SIGKILL on an MCP reconnect) mid-write — notably an FTS5 segment write — a contiguous run of pages can be left malformed. This is the documented root cause of incident `026/004/012` (the `context-index.sqlite` FTS5 corruption).",
+    "causal_summary": "The `mk-spec-memory` close path (`closedb` in `vector-index-store.ts`) closes `context-index.sqlite` without first checkpointing its WAL",
     "created_at": "2026-05-29T12:05:57.545Z",
-    "last_save_at": "2026-05-30T10:12:02.752Z",
+    "last_save_at": "2026-06-23T03:49:56.428Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9d2c0f091d4c692d467cb621afe42844262e02539d84bbde07f2ae3da4835c5c",
+    "source_doc_hashes": {
+      "spec.md": "0d3d9ac446d48420c1f1d3fbc2d53905389f85c82256e0cae0d499c980294a84",
+      "plan.md": "970f96fe36fba155d6606369a6d6190b069d4e395daea4fff772d2769cdb45ab",
+      "tasks.md": "7d2a2bf3c49a63dac72b82c99c6fa5cf2d4d7d893ac98677bad8b5cbc865257b",
+      "checklist.md": "a533bc396cb852c103ecf65dab3ead6abd774d7b898c90e3c01060fdad30eb5b",
+      "implementation-summary.md": "da325a45fe3355931a5634368a43607b281ec93615951ec697d66a56d6ecfc0a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

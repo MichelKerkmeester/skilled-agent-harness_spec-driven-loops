@@ -1,14 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
-  "description": "Implementation Specification: Architecture Diagrams & Topology",
+  "description": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree",
   "keywords": [
-    "implementation",
-    "specification",
+    "only",
+    "shared",
+    "readme",
+    "ascii",
+    "box-art",
     "architecture",
-    "diagrams",
-    "topology"
+    "diagram",
+    "directory",
+    "topology",
+    "tree"
   ],
-  "lastUpdated": "2026-05-26T17:26:09.230Z",
+  "lastUpdated": "2026-06-23T03:49:52.388Z",
   "specId": "025",
   "folderSlug": "readme-architecture-diagrams-topology",
   "parentChain": [

@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 turned a research recommendation into runtime code by introducing one shared payload/provenance contract across startup, recovery, and compaction. The Level 3 repair keeps that same shipped scope intact and adds the architecture context needed for future recovery and review.",
+    "causal_summary": "The research found that the real prerequisite is not the OpenCode adapter shell itself, but a shared payload/provenance composition layer",
     "created_at": "2026-04-12T09:02:53.436Z",
-    "last_save_at": "2026-06-08T17:32:21.747Z",
+    "last_save_at": "2026-06-23T03:50:00.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ecdf7f27b42ac928163fe0d1a73adbd2e86252098ee467c244da595807af2d01",
+    "source_doc_hashes": {
+      "spec.md": "65a255f6ba3143b56cbaa229be3203e1a569ccb9c82c8d322d83a7d1a952f2ca",
+      "plan.md": "b337921e50b0c6388c55afd6c67695f350c85f9ef012b530f1ee7d6923fff749",
+      "tasks.md": "4c43a38975710bc05ab61ed42c569f5d9c301c40c7253abaf71a94fc75d8aa31",
+      "checklist.md": "b6c88ac086cbd125156f563da83526dc40db79b7857b9b4816d87e84ed5ee60f",
+      "decision-record.md": "c83558c8577b3a8fa188407a5748e88243aeaae9001a3ca5e31ed401fffb11a9",
+      "implementation-summary.md": "3e3ba4ab449fef789a967de45fc407ff678005bc87eeb2fca5b187e55e53d665"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

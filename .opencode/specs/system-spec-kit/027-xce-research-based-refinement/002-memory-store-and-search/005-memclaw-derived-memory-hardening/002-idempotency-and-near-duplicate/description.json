@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
-  "description": "Feature Specification: Phase 2: idempotency-and-near-duplicate",
+  "description": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and re",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "idempotency-and-near-duplicate"
+    "memorysave",
+    "memoryupdate",
+    "retryable",
+    "retried",
+    "save",
+    "create",
+    "duplicate",
+    "row",
+    "because",
+    "operation",
+    "receipt",
+    "recognize"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.926Z",
+  "lastUpdated": "2026-06-23T03:49:57.247Z",
   "specId": "002",
   "folderSlug": "idempotency-and-near-duplicate",
   "parentChain": [

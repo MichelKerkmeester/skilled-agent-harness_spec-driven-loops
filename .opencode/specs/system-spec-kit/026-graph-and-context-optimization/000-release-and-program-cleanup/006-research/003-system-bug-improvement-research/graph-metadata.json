@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-code bugs, miswired automation paths, and architectural shortcuts that have accumulated across `system-spec-kit` (the umbrella skill), `mcp_server` (the runtime), `code_graph` (subsystem), and `skill_advisor` (subsystem). These four surfaces have grown organically over many packets; this charter sets up a systematic deep research pass to surface findings before they ship.",
+    "causal_summary": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-code bugs, miswired automation paths, and architectural shortcuts that have accumulated across `system-spec-kit` (the umbrella skill), `mcpserver` (the runtime), `codegraph` (subsystem), and `skilladvisor` (subsystem)",
     "created_at": "2026-05-01T03:46:56Z",
-    "last_save_at": "2026-06-15T09:09:34.050Z",
+    "last_save_at": "2026-06-23T03:49:52.808Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:2d31334b9e2748259f4d3fbf44cf274358613e2f8454e968b9fcf107e73bfcac",
+    "source_doc_hashes": {
+      "spec.md": "3282f68446d58e87bc6ac1e4bdd042a089cd531cd68096e89e7fd9989273e282",
+      "plan.md": "d909bf913ad7564793729c675f7ed24d887d2a0f5f5acfb1854d8ee023943ccb",
+      "tasks.md": "8f9e51d509b1ebab4fd454a5115b9eabf9847c7b29e52dc936494ee309a3a5d4",
+      "checklist.md": "c6afe5ce2e25a68e05808e48270b3e87f8977cfade3324ca38445c9e142321ad",
+      "implementation-summary.md": "08a5199b6632fc88dbc2fee4090f35d38d84e2c636100729fd14ed7c2fd6db22",
+      "research/research.md": "8d2885744ccd9bdbddaf046d12573cf9a0a25a0f00fc9359f0c346fe8915f85b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

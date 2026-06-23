@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
-  "description": "Feature Specification: Sprint 0 — Measurement Foundation",
+  "description": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
   "keywords": [
-    "feature",
-    "specification",
-    "sprint",
-    "measurement",
-    "foundation"
+    "graph",
+    "channel",
+    "completely",
+    "broken",
+    "hit",
+    "rate",
+    "production",
+    "due",
+    "mem",
+    "edgeid",
+    "string",
+    "ids",
+    "compared",
+    "against",
+    "numeric",
+    "memory"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.092Z",
+  "lastUpdated": "2026-06-23T03:49:59.644Z",
   "specId": "001",
   "folderSlug": "sprint-0-measurement-foundation",
   "parentChain": [

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare across CLIs or over time. The parent spec mandates a deterministic test fixture; this sub-phase delivers it.",
+    "causal_summary": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare across CLIs or over time",
     "created_at": "2026-04-26T14:55:00Z",
-    "last_save_at": "2026-06-22T18:55:01.802Z",
+    "last_save_at": "2026-06-23T03:49:52.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3c87e3aa0bb342cb6647c1cd1e570067a1107a37b247a33de6435598bfa8d660",
+    "source_doc_hashes": {
+      "spec.md": "49b9623429c020bbc1881b2c40adb358b05038180f59b2df6700c3d378ea876e",
+      "plan.md": "35b3f7fc0598a6f125b7b27009c03a1fec386085cce4b21ad5daa5b4e6fb2db6",
+      "tasks.md": "99a490fbbc2cecf8f504c4a91bfdd221e954eca3ec297ef1e267d2636c09e176",
+      "implementation-summary.md": "45afa4d69fc888de42660958b6f3da53ebb872a552a476f8091e8c096b8fed8d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

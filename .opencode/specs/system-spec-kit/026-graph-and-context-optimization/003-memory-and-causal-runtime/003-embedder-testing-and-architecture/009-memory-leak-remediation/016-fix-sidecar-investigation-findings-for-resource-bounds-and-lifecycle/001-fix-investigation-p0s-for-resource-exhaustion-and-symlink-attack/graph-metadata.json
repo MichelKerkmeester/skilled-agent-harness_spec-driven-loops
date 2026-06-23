@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names. The affected findings are F12, F13, and F47.",
+    "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names",
     "created_at": "2026-05-23T03:50:22.749Z",
-    "last_save_at": "2026-06-05T12:47:33.867Z",
+    "last_save_at": "2026-06-23T03:49:55.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2d7600774cabd877e6b5e68cc5477d4365be5c236186946ca9b8c731f7ac17dd",
+    "source_doc_hashes": {
+      "spec.md": "e46c29d62867ea3b47526cd1727a5dd709c6b5f3a0dd0d07c9a4f35544742b3e",
+      "plan.md": "717ab6d0526256c4ca5022ff8fad2473a364ba74a1b5ae2bb74017144f0ad952",
+      "tasks.md": "80788103962103649616a898872c50161760d11a19b8edccfb0596e224ee1c7d",
+      "checklist.md": "a95c1139ca334d23c97f71453b7d3cf13e20b05bdb973d1c5d030db02861572e",
+      "decision-record.md": "bbe2905f79ee7c9292f3e994ef20b1a1eb47c4c73286d9d77c833c9c2ac233bf",
+      "implementation-summary.md": "f8a1e42655d4c1e2812ff04ea7cda7a5cefae34ef3cb91517b046623ab2eea57"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

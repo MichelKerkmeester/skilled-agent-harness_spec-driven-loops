@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `target_sqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`. Separately, daemon indexes only 1335 markdown chunks then idles at 0% CPU despite `include_patterns` covering .py/.ts/.js/.go/.rs/.md.",
+    "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`",
     "created_at": "2026-05-12T21:35:00Z",
-    "last_save_at": "2026-06-22T18:55:02.232Z",
+    "last_save_at": "2026-06-23T03:49:53.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c64ec57d1c351949910a0a93948eb41c8c12006b77720a2a6d6cbccf37cfb859",
+    "source_doc_hashes": {
+      "spec.md": "0a9f9d5474ff755dbf80a2ba2942e0c7cedbbac7f70411e2935951f814607931",
+      "plan.md": "5ed8bdde8a94c89dc2dd65e852524bbcb847997e91b6311dccff5c6a3a9255b4",
+      "tasks.md": "12c03a88753dec535508f74cc1214a7f58a478614170a13198f77b6f4faf97b4",
+      "implementation-summary.md": "13355175d5135761d37a6f82ab58fed3b1903b373bbd8709871a43432cae4fc5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

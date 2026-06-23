@@ -1,20 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon",
-  "description": "Feature Specification: Wire a second live code-graph daemon into the substrate stress harness",
+  "description": "Two defects compounded in `run-substrate-stress-harness.mjs`",
   "keywords": [
-    "feature",
-    "specification",
-    "wire",
-    "second",
-    "live",
-    "code-graph",
-    "daemon",
-    "substrate",
-    "stress",
-    "harness"
+    "two",
+    "defects",
+    "compounded",
+    "run-substrate-stress-harness",
+    "mjs"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.029Z",
+  "lastUpdated": "2026-06-23T03:49:56.513Z",
   "specId": "005",
   "folderSlug": "substrate-codegraph-2nd-daemon",
   "parentChain": [

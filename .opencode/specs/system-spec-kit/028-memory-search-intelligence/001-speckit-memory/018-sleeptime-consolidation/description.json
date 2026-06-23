@@ -1,17 +1,14 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
-  "description": "Feature Specification: Async Sleep-Time Consolidation (LT-bg-sleeptime-agent + LT-llm-transcript-chunking, governed)",
+  "description": "The internal Memory MCP has no off-turn memory reorganization",
   "keywords": [
-    "feature",
-    "specification",
-    "async",
-    "sleep-time",
-    "consolidation",
-    "lt-bg-sleeptime-agent",
-    "lt-llm-transcript-chunking",
-    "governed"
+    "internal",
+    "memory",
+    "mcp",
+    "off-turn",
+    "reorganization"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.806Z",
+  "lastUpdated": "2026-06-23T03:49:58.280Z",
   "specId": "018",
   "folderSlug": "sleeptime-consolidation",
   "parentChain": [

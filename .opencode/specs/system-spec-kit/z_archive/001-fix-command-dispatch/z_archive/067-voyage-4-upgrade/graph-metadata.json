@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Objective: Evaluate and plan the upgrade from current Voyage models to the newly released Voyage 4 model family for both Spec Kit Memory MCP and Narsil MCP systems.",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-05-30T10:12:03.033Z",
+    "last_save_at": "2026-06-23T03:49:59.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:eb2eaaa46f519cd8def7175b3278eac7fb9836d67468a64f3045779319358daf",
+    "source_doc_hashes": {
+      "spec.md": "3856254918138de10ab8e772dcf7bb4085c9fd71d1888a95d93616524bb5462e",
+      "plan.md": "429e9bcbe6e1752936f8a48e3420ca5eefe3307c7e3722e65862b96e8204a436",
+      "tasks.md": "9a63d14339d8674854e14393c55db88b226c85e9778c2e8c2a480ee31726b54e",
+      "checklist.md": "49c9ca3c7a3abe94e6d3f5dd9ef39a1276a9864f5e6365719a44d1e6243e485d",
+      "implementation-summary.md": "4e3ef1f0a1db3d598a3b329aafc113230388cffee23f779ea05a8e6df776b663"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

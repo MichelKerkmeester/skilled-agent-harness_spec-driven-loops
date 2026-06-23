@@ -22,15 +22,24 @@
     "007-mcp-daemon-reliability"
   ],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization",
-  "description": "Feature Specification: Graph and Context Optimization",
+  "description": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fix",
   "keywords": [
-    "feature",
-    "specification",
+    "spec-kit",
     "graph",
     "context",
-    "optimization"
+    "memory",
+    "operator-tooling",
+    "subsystems",
+    "needed",
+    "coordinated",
+    "improvement",
+    "program",
+    "rather",
+    "scattered",
+    "one-off",
+    "fix"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.081Z",
+  "lastUpdated": "2026-06-23T03:49:52.035Z",
   "specId": "026",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [

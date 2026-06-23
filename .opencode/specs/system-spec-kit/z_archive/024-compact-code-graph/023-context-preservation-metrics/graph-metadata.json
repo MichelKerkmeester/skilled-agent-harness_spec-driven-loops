@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
+    "causal_summary": "We needed a way to measure how well session context survives across runtimes instead of relying on parity claims and anecdotal failures",
     "created_at": "2026-04-13T04:55:10.699Z",
-    "last_save_at": "2026-06-22T18:55:04.800Z",
+    "last_save_at": "2026-06-23T03:50:00.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c86266c898baf8689c5707e3a865327a3aa93a102a36aac7db33f06cda7fcd70",
+    "source_doc_hashes": {
+      "spec.md": "c1da8af4a89c3d64886e8405cab669fafb9022bdf8247300c197f5b438aa289d",
+      "plan.md": "21cbf2112f56a7823ff5919dfd49441395a5485818069c1e69f1a5bb7e32ab85",
+      "tasks.md": "394e366f6eafb3749cad59498641ceee2834422bfe4e24e58a0918863009ab18",
+      "checklist.md": "98cb8d8f0ed4ec3d00d8fc8bdeda11fd046b395688be8a46fcc34405ad9e1698",
+      "implementation-summary.md": "378f92ae0612a3ef89c6e9096db1a6699c0c82f5a090161d75fc0cd988df2add"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

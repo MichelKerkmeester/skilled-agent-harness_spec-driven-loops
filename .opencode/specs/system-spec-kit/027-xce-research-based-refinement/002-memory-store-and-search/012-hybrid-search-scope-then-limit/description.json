@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit",
-  "description": "Feature Specification: Hybrid Search Scope Then Limit",
+  "description": "The in-memory BM25 path fetched only the caller-requested number of lexical hits before resolving `specFolder` scope and deprecated-tier exclusions",
   "keywords": [
-    "feature",
-    "specification",
-    "hybrid",
-    "search",
+    "in-memory",
+    "bm25",
+    "path",
+    "fetched",
+    "only",
+    "caller-requested",
+    "number",
+    "lexical",
+    "hits",
+    "resolving",
+    "specfolder",
     "scope",
-    "limit"
+    "deprecated-tier",
+    "exclusions"
   ],
-  "lastUpdated": "2026-06-11T08:19:31.530Z",
+  "lastUpdated": "2026-06-23T03:49:57.309Z",
   "specId": "012",
   "folderSlug": "hybrid-search-scope-then-limit",
   "parentChain": [

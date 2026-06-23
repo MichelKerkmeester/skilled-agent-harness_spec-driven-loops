@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-spec-kit` feature catalog is the canonical, operator-facing inventory of the Spec Kit Memory MCP server's behaviors. It has fallen behind the shipped runtime: the 013 memory-index-scan roadmap delivered checkpoint-v2 file-based snapshots (schema v29), the post-insert enrichment marker (schema v30), and the MCP launcher front-proxy, while the 128 work introduced the sk-git worktree convention. None of these are discoverable from the catalog, and the scattered error-code mentions (E429, -32001, -32002) are not unified anywhere. This packet expands and registers six catalog deltas so operators can find and reason about the shipped behaviors. It edits only `feature_catalog/` content — no runtime code.",
+    "causal_summary": "The feature catalog (`featurecatalog/featurecatalog.md` plus the per-capability files under `NN--category/`) is the inventory operators read to discover and reason about server behavior",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.690Z",
+    "last_save_at": "2026-06-23T03:49:55.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ed5917ff4bb1556cb25dacd51285bed1632828b50fca6b693405e5fe952d42c7",
+    "source_doc_hashes": {
+      "spec.md": "c3fe7c85bb12d9a4b36d9ec741632fcbc4717828f99ddaf7ae26201e419d4906",
+      "plan.md": "a710bd8d139a9f155a8cd4dec815db605b02f1d3f968b876a11601042898ba8f",
+      "tasks.md": "5e6531821a0c280859584025b3d035a8ae4cb9ee63883961236b8b3114a77d46",
+      "checklist.md": "4038449e1a8758ddb3fdc3b818e2b896542a943a048336f0f9e501ef6a400a4a",
+      "decision-record.md": "d2f6b63c0545a7a7bb140d9fd44b5ae924344f5a668f841fc3334503d4cc0152",
+      "implementation-summary.md": "6519daa926b5342ce1bebe760cbd325074d75536788d149866e4dc86d9de5e8a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

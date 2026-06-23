@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 10 Mutation features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/02--mutation/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Mutation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.245Z",
-    "last_save_at": "2026-05-30T10:12:03.235Z",
+    "last_save_at": "2026-06-23T03:49:59.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0972d2c41de4c012b99de381d6cdabcf0a2a379565c670d682c52afd0d0b1383",
+    "source_doc_hashes": {
+      "spec.md": "2b61ad8de8072b0cd66abbbd39f8ff23f63ef6b37474c3c2fb8102d3cf7a550f",
+      "plan.md": "897390a55b88f588786f5ab386e7c4f322519d30658d23a855284d9fd118333a",
+      "tasks.md": "ea8698ec9a55277718d7a7d2137d9a250ea3d7287461fde14a755afbdf364fea",
+      "checklist.md": "d704a887ffe14b27c7d9a14f316d7a61588e22d3f2faeb1e4650d8877863af22",
+      "implementation-summary.md": "4659016407f0569154d41e87a76e750ee02022806990292c0885878ddc552b42"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

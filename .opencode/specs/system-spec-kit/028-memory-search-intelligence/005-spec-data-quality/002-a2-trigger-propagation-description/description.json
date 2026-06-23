@@ -1,15 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description",
-  "description": "Feature Specification: A2 Trigger Propagation and Derived Description",
+  "description": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the",
   "keywords": [
-    "feature",
-    "specification",
-    "trigger",
-    "propagation",
-    "derived",
-    "description"
+    "per-folder",
+    "description",
+    "json",
+    "generator",
+    "never",
+    "propagates",
+    "curated",
+    "frontmatter",
+    "triggerphrases",
+    "verbatim",
+    "copy"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.452Z",
+  "lastUpdated": "2026-06-23T03:49:58.548Z",
   "specId": "002",
   "folderSlug": "a2-trigger-propagation-description",
   "parentChain": [

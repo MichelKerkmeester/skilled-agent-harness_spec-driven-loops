@@ -1,18 +1,17 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
-  "description": "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)",
+  "description": "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval.",
   "keywords": [
-    "spec",
-    "016",
-    "011",
-    "003-hybrid-search-bm25-fusion",
-    "hybrid",
-    "search",
-    "bm25",
-    "semantic",
-    "fusion"
+    "implemented",
+    "default-on",
+    "sqlite",
+    "fts5",
+    "rrf",
+    "fusion",
+    "cocoindex",
+    "retrieval"
   ],
-  "lastUpdated": "2026-05-26T17:27:36.679Z",
+  "lastUpdated": "2026-06-23T03:49:54.598Z",
   "specId": "009",
   "folderSlug": "hybrid-search-bm25-fusion",
   "parentChain": [

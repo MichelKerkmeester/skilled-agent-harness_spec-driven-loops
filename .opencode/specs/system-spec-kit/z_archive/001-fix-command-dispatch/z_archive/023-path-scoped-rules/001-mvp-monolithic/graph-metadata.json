@@ -197,7 +197,7 @@
     ],
     "causal_summary": "1. No quality enforcement: Incomplete specs pass silently",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-06-05T12:47:34.431Z",
+    "last_save_at": "2026-06-23T03:49:58.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3755fa06458d6dea93083921c678012cc1101288dc9b1f35dd287aa1d301676",
+    "source_doc_hashes": {
+      "spec.md": "53543317c7d7644be9c86ccb98bc66038d45c646e47d528ef76f47aed5dbebdb",
+      "plan.md": "40b3f283caa88484286345945dc00c12a3cc0ee78c4ade0710d95cb6eff1988b",
+      "tasks.md": "67462265d4f886ea0fa46633eb94f77a2fe40049f3ef82e3be30b007d2603fc9",
+      "checklist.md": "7ebc7a027e649acf0085cb7dc4613cb6787da62db82cffbd556280c0c5a1c384",
+      "decision-record.md": "74d2f9986e56003b2f44ad0e13f087e7846cb8def871d2b579dcb8ab9afa5831",
+      "implementation-summary.md": "de65da104ae2f7b8be088a27b48afe8a2c356cdb0fe38527780d1bedad324639"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

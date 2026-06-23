@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 of the graph-and-context-optimization research track investigates Contextador, a Bun-based TypeScript MCP server and CLI. The goal is to extract evidence-backed lessons about MCP-based query interfaces, self-healing context artifacts, Mainframe-style shared agent caches, and token-efficient codebase navigation, then map each lesson to a concrete `adopt now`, `prototype later`, or `reject` recommendation for `Code_Environment/Public`.",
+    "causal_summary": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
     "created_at": "2026-04-12T09:02:53.447Z",
-    "last_save_at": "2026-05-30T10:12:01.832Z",
+    "last_save_at": "2026-06-23T03:49:53.119Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5503339ef65cbc9e53e5cde5d27574d6670febdc8f0b10d0e94e8e7135e271ad",
+    "source_doc_hashes": {
+      "spec.md": "babce4df675d0b76e8f6375a3d82521d977fde8b66ede987a977f8a5acb87176",
+      "plan.md": "f258ecc44597e1ce7fbf6a7f4c90441e0c94dc42adee7b060e3492f8bd771afb",
+      "tasks.md": "ca071f07730da0423ae1c6b21d8a98d736da366022b65165dbcddb4f5cf15fd3",
+      "checklist.md": "b2666266f652e0070384cbdd5a78872bc38fbe05e53a802f07cac26fb8dea56d",
+      "decision-record.md": "1407c3bfbefe1cc1ff205f9d0c1f329acf8d6bc5a1ba215ccf253fb3e34089c7",
+      "implementation-summary.md": "1071082a580c00527e4fcb37b48c174865bbd9a9e668b2aefbf6d78203279c0f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

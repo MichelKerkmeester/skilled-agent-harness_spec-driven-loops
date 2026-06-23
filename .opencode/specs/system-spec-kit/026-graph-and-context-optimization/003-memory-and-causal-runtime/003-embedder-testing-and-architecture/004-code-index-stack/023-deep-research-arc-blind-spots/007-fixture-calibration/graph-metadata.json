@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage. It also had only one run, binary top-5 scoring, no residual miss taxonomy, and insufficient evidence for RRF, boost, top-K, and fusion choices.",
+    "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage",
     "created_at": "2026-05-19T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.328Z",
+    "last_save_at": "2026-06-23T03:49:54.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,16 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:6c4ff591729f74163056a098c7c5de504f78611e9e7ca6d8aaf31957ad8a6fa1",
+    "source_doc_hashes": {
+      "spec.md": "b609131f2f06c75254c812f444c9a6a8222a87c2b6b6c1cc25e9480382e17d80",
+      "plan.md": "16e8240d90101d0f6707e4afc398089f5f25d62d3879ceaefec77395cdaab8da",
+      "tasks.md": "6180e2fc638f33aaca0731a5477c934a2a5f0a0825f2f5278d3aa80e12da423b",
+      "checklist.md": "b42586df0f66f2f0eac1ec16765cde2b0f89fe954da829262f12edd886e5b9f5",
+      "decision-record.md": "6423d04cd813260524b779b62f488474dd961e5672d18df633c9147530c9ba53",
+      "implementation-summary.md": "8e409acbb8c133deda43975fae21c474ac805df98ebaf35b71695a25e5820509",
+      "research.md": "9352ae7f48f9ef3d97cf6093aaa7d843aec1ab0ab8a4eb51943bc50d3680f854"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

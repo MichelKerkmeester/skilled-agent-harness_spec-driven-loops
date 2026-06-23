@@ -1,16 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/003-advisor-source-db-tests-migration",
-  "description": "Feature Specification: Finalize Advisor Move Recalibration",
+  "description": "The advisor source tree and this spec packet were moved outside git tracking before this run",
   "keywords": [
-    "feature",
-    "specification",
-    "finalize",
     "advisor",
-    "move",
-    "recalibration"
+    "source",
+    "tree",
+    "spec",
+    "packet",
+    "moved",
+    "outside",
+    "git",
+    "tracking",
+    "run"
   ],
-  "lastUpdated": "2026-05-26T17:27:04.996Z",
+  "lastUpdated": "2026-06-23T03:49:53.243Z",
   "specId": "003",
   "folderSlug": "advisor-source-db-tests-migration",
   "parentChain": [

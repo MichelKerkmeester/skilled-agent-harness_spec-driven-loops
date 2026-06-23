@@ -236,9 +236,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase closes hook parity defects discovered on 2026-04-21 across the OpenCode plugin bridge, Codex advisor hooks, Copilot startup routing, Codex PreToolUse safety, and runtime documentation. The implementation keeps each runtime on its real capability surface: OpenCode injects through the plugin bridge, Codex uses prompt/pre-tool hooks plus `session_bootstrap` for startup recovery, and Copilot starts through the repo-local wrapper.",
+    "causal_summary": "The 2026-04-21 hook parity review found 10 runtime-hook issues",
     "created_at": "2026-04-21T10:15:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.675Z",
+    "last_save_at": "2026-06-23T03:49:56.224Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -249,6 +249,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e0847a80a64a122462bafe9a5a5c16376d148a98aa6435c31001d9c72481634f",
+    "source_doc_hashes": {
+      "spec.md": "63ac6efe00113589492d673589610312c383a18c4cb5ae99096d1a0ba8e64693",
+      "plan.md": "611601ccd149b12694bb58e5887844b932103415b6691dfd9af50bc9b6d7a59b",
+      "tasks.md": "4ce970b243f7f3398dbf201a967f65a75c5cdda211dc6598f3a51193e7a5b8a6",
+      "checklist.md": "03edd6845c7a0c226fdca59ac76d0632738fdd7393abbff2df6eb117f281a908",
+      "decision-record.md": "0cafe3949e00f92c06ed9a3efe7e175678372f0482e370d56f37e483c10b96a4",
+      "implementation-summary.md": "24d988ba6deff14376d658d0d82476a042dc8be0808254b37c2e2f74c292027c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

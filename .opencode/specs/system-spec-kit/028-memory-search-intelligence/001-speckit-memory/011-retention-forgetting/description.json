@@ -1,18 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
-  "description": "Feature Specification: Memory Retention / Forgetting + Recall-Diversity Result-Shaping (028 Wave-1)",
+  "description": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
   "keywords": [
-    "feature",
-    "specification",
+    "spec-kit",
     "memory",
-    "retention",
-    "forgetting",
-    "recall-diversity",
-    "result-shaping",
-    "028",
-    "wave-1"
+    "mcp",
+    "retains",
+    "recalls",
+    "memories",
+    "diversity",
+    "eligibility",
+    "shaping",
+    "result-set",
+    "boundary"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.071Z",
+  "lastUpdated": "2026-06-23T03:49:58.223Z",
   "specId": "011",
   "folderSlug": "retention-forgetting",
   "parentChain": [

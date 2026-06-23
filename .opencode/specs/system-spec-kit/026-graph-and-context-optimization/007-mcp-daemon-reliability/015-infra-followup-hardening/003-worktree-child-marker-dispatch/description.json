@@ -1,16 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
-  "description": "Feature Specification: Worktree child-marker dispatch documentation",
+  "description": "Packet 035 built `worktree-session.sh`, which isolates each top-level AI session in its own git worktree but exec's in place for orchestrated children",
   "keywords": [
-    "feature",
-    "specification",
+    "packet",
+    "035",
+    "built",
+    "worktree-session",
+    "isolates",
+    "top-level",
+    "session",
+    "own",
+    "git",
     "worktree",
-    "child-marker",
-    "dispatch",
-    "documentation"
+    "exec",
+    "place",
+    "orchestrated",
+    "children"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.776Z",
+  "lastUpdated": "2026-06-23T03:49:56.501Z",
   "specId": "003",
   "folderSlug": "worktree-child-marker-dispatch",
   "parentChain": [

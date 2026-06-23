@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "deep-context reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 10 references and 0 of 1 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:25Z",
-    "last_save_at": "2026-06-15T09:09:34.726Z",
+    "last_save_at": "2026-06-23T03:49:56.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5cc24956c3667b4ab59623328184d59ed141c49a1ed1564a4a8f1cce64961234",
+    "source_doc_hashes": {
+      "spec.md": "b72889a5343c4cdc377189aba730219526f9fee1000d5a13da3c3691e765171e",
+      "plan.md": "ca50d2f32007070f3675d9f14d290355557bc6c1d4e462eec51547d8c37f3b04",
+      "tasks.md": "cff6896c128c8a2830f3f6535f1184e83bf316abb9fd81b88dd8d38cbdf5d786",
+      "implementation-summary.md": "010204d612a51c4e54b1b476536f302791de7da314a3e950e01c343cabd6ad73"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

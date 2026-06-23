@@ -1,16 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate",
-  "description": "Feature Specification: 011 — Acceptance-Criteria Coverage Gate",
+  "description": "A spec folder claims its acceptance criteria are satisfied through a single self-attested checkbox (\"All acceptance criteria met\") in `checklist.md`",
   "keywords": [
-    "feature",
-    "specification",
-    "011",
-    "acceptance-criteria",
-    "coverage",
-    "gate"
+    "spec",
+    "folder",
+    "claims",
+    "acceptance",
+    "criteria",
+    "satisfied",
+    "single",
+    "self-attested",
+    "checkbox",
+    "met",
+    "checklist"
   ],
-  "lastUpdated": "2026-06-10T11:00:20.781Z",
+  "lastUpdated": "2026-06-23T03:49:57.103Z",
   "specId": "007",
   "folderSlug": "acceptance-coverage-gate",
   "parentChain": [

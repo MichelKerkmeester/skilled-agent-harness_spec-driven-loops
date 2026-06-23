@@ -139,15 +139,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Skill advisor work was scattered across two phase wrappers (`006-skill-advisor/` for search/routing/graph/smart-router, and parts of `007-hook-parity/` for hook surface, daemon unification, plugin hardening, standards alignment, and hook improvements). The split made it hard to see the advisor system as one coherent surface and forced cross-wrapper navigation when reasoning about advisor changes.",
+    "causal_summary": "Skill advisor work was scattered across two phase wrappers (`006-skill-advisor/` for search/routing/graph/smart-router, and parts of `007-hook-parity/` for hook surface, daemon unification, plugin hardening, standards alignment, and hook improvements)",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.274Z",
+    "last_save_at": "2026-06-23T03:49:53.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:e7a947c89a4ab0fcc793e445f253e840747341e21f548af9c24de7ecf3907d3b",
+    "source_doc_hashes": {
+      "spec.md": "49c445dd605125f69970b59a94b5cd1e86571083e9bae3a711951df63e35a381",
+      "resource-map.md": "43513e6c659ee0de94adb04bbf4e8d4f5655fa7f46db07e0c6ccdfd264b9ec20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

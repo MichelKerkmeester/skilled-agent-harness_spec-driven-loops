@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 10** of the ESM Module Compliance specification. It addresses six retrieval quality issues discovered during root-cause analysis of `memory_context` returning 0 results for \"semantic search\" — a query that should match 20+ memories.",
+    "causal_summary": "`memorycontext({ input: \"semantic search\", mode: \"deep\", intent: \"understand\" })` returns 0 results despite the database containing 1202 memories with 20+ relevant matches",
     "created_at": "2026-04-12T09:02:50.323Z",
-    "last_save_at": "2026-06-22T18:55:04.643Z",
+    "last_save_at": "2026-06-23T03:50:00.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bb2628b3343c014d0c9483af5c8256565bce1632ff986dd023cae6557f35e25e",
+    "source_doc_hashes": {
+      "spec.md": "fec549e008605ebb6d197daeb39ab2770d74af1368e66c1c322ded86f4bc334b",
+      "plan.md": "8340ac0f3cff5de20ef1e31de2d2ff3d5a9efc6d520e4c2ba061c140bc1bdc5a",
+      "tasks.md": "8bdc263afb72447b301758e6c9a985f70f7bb622015f3ef1d3a33e403c86a536",
+      "checklist.md": "3b7e8ff033e8d5d89c9fb53a70434b52a98b0d2c33d74375262c09222872f92c",
+      "implementation-summary.md": "1e4c8cb8274fd79cef79715a8fafbf7b412d3140acc3dfef123b155dd5fe5b38"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

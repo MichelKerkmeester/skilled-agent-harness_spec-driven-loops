@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
-  "description": "Spec: domain-tuned reranker fine-tune for spec-memory corpus",
+  "description": "Four spec-memory rerank benchmarks have produced HOLD verdicts with distinct failure modes:",
   "keywords": [
-    "spec",
-    "domain-tuned",
-    "reranker",
-    "fine-tune",
+    "four",
     "spec-memory",
-    "corpus"
+    "rerank",
+    "benchmarks",
+    "produced",
+    "hold",
+    "verdicts",
+    "distinct",
+    "failure",
+    "modes"
   ],
-  "lastUpdated": "2026-05-26T17:28:18.758Z",
+  "lastUpdated": "2026-06-23T03:49:55.028Z",
   "specId": "010",
   "folderSlug": "domain-tuned-reranker-finetune",
   "parentChain": [

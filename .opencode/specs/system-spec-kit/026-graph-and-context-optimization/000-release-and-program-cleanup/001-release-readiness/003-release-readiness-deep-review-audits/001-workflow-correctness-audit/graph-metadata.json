@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The release-readiness program needs a workflow-correctness audit for the canonical command surfaces before they are treated as safe operator paths. The risk is command-contract drift: markdown can promise gates, YAML can omit required bindings, and backend tools can accept mutation calls that bypass documented confirmation steps.",
+    "causal_summary": "The release-readiness program needs a workflow-correctness audit for the canonical command surfaces before they are treated as safe operator paths",
     "created_at": "2026-04-29T20:25:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.517Z",
+    "last_save_at": "2026-06-23T03:49:52.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5817cb785e7e6ae27cd569f145ed26b171f54a3fc504bfa54f65e76b44c22298",
+    "source_doc_hashes": {
+      "spec.md": "25aa25aefedd79677b412c7a8c86a271b113ddc1afc90ad2e5e7d678b5c0c529",
+      "plan.md": "7cdb743d2fa0cd207812d1e1c9368e82346d9ba141d143daf39b2a208e98a9b9",
+      "tasks.md": "7de9f002d3d3119adb01a4017fa409e77f012753381b0fa1e9481161614e1ed5",
+      "checklist.md": "9e35474f268443dd847248193a24e01eee321e4acfaaf759f4e2789e3308f75a",
+      "implementation-summary.md": "e64e255f2bfb20cba77df7aa07258e3af8e489d393ab108ee3be02d8cf39d0ce"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

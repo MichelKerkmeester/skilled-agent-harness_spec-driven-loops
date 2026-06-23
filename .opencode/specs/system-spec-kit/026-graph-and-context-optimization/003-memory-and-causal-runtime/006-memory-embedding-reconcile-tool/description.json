@@ -1,14 +1,24 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
-  "description": "Feature Specification: memory_embedding_reconcile() MCP maintenance tool",
+  "description": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` —",
   "keywords": [
-    "feature",
-    "specification",
-    "mcp",
-    "maintenance",
-    "tool"
+    "one-time",
+    "backlog",
+    "repair",
+    "vector-present",
+    "rows",
+    "whose",
+    "embeddingstatus",
+    "stale",
+    "failed",
+    "pending",
+    "retry",
+    "must",
+    "flipped",
+    "success"
   ],
-  "lastUpdated": "2026-05-27T08:48:41.839Z",
+  "lastUpdated": "2026-06-23T03:49:55.395Z",
   "specId": "006",
   "folderSlug": "memory-embedding-reconcile-tool",
   "parentChain": [
@@ -17,6 +27,5 @@
     "003-memory-and-causal-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

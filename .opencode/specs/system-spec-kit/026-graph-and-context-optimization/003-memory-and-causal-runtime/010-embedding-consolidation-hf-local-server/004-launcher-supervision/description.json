@@ -1,16 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision",
-  "description": "Feature Specification: Add launcher supervision for the hf model server",
+  "description": "A standalone model server solves the execution boundary but not lifecycle",
   "keywords": [
-    "feature",
-    "specification",
-    "add",
-    "launcher",
-    "supervision",
+    "standalone",
     "model",
-    "server"
+    "server",
+    "solves",
+    "execution",
+    "boundary",
+    "lifecycle"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.618Z",
+  "lastUpdated": "2026-06-23T03:49:55.453Z",
   "specId": "004",
   "folderSlug": "launcher-supervision",
   "parentChain": [

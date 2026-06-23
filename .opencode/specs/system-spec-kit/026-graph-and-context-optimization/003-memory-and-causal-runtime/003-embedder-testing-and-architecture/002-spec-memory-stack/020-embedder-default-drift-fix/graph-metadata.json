@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "ADR-013 (operator override) and ADR-014 (cascade reorder + nomic hf-local default) migrated the canonical embedder to `nomic-ai/nomic-embed-text-v1.5` via the registry MANIFESTS + `vec_metadata.active_embedder_name`. In practice 5 hardcoded string constants survived ADR-013/014 and continued to point at pre-ADR models:",
+    "causal_summary": "ADR-013/014 migrated the canonical spec-memory embedder to nomic-ai/nomic-embed-text-v1.5 but 5 hardcoded TS defaults survived (4 BAAI + 1 jina). When the resolution chain fell through to those stale strings the runtime loaded a model not in the registry — triggering circuit-breaker flapping, 1978 failed records, 786 null-embedding errors, 754 stuck pending. This packet adds getCanonicalFallback(provider) in registry.ts as the single source of truth, refactors all 5 sites, and locks the contract with 23 invariant assertions in registry.test.ts.",
     "created_at": "2026-05-23T11:24:22.644243Z",
-    "last_save_at": "2026-06-22T18:55:02.332Z",
+    "last_save_at": "2026-06-23T03:49:54.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a02b86a3bcb44e172b7caa41858a4be34da043241e0f219f8f873bd302a2d066",
+    "source_doc_hashes": {
+      "spec.md": "37d2803b8e7c36996dd4fe3a4c2f9f5368beddaa55b6ccf8f935203d7bfe04a9",
+      "plan.md": "595fa00fe3905a187e110c649a3acc7effc8428d359699ed0a838672ea20447d",
+      "tasks.md": "b33119f72cc1a39c392b21c02db1ed47dccf4c56ea522343465909a093ce968a",
+      "checklist.md": "f2ce49a064f1a4e8487eaaac39eabaf12efdcaabed92ca6c72dd3b15442fd756",
+      "decision-record.md": "3a61fa3278c27aa6a6dacb3823880b6a8a2b3ab7298385d3d9ea5b61cb175a76",
+      "implementation-summary.md": "8d0e3f30887d23387f2c077006ab420b872bcd326c56404c8fb5af9b41255adb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 18** under `002-spec-memory-stack`. The packet closes one of the two remediation classes surfaced by the 503-rejection investigation that followed packet 016/002/016 (see scratch file `2026-05-19-503-failed-rejection-investigation.md` in the 016 packet).",
+    "causal_summary": "Constitutional markdown files under `.opencode/skills//constitutional/` hard-rejected during `memoryindexscan` with `INSUFFICIENTCONTEXTABORT`",
     "created_at": "2026-05-19T19:40:59Z",
-    "last_save_at": "2026-05-30T10:12:02.224Z",
+    "last_save_at": "2026-06-23T03:49:54.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4203554eb58539dd3ad067cc7568397a413beda9a80f250ba8b305bb76e03693",
+    "source_doc_hashes": {
+      "spec.md": "3c3dbed985598340b9ec9431d35132e1cab98790ec3d2b2820ec21f83fad61e5",
+      "plan.md": "3358bbb5d99045b4c90630cf1d8173a3142083067e007bda3668beef31c24cdb",
+      "tasks.md": "25c466de173021663741ffb7ff814af9aba2bc7afa5443e49b4abf47b8501863",
+      "implementation-summary.md": "81c910ebc902526f64d85624decf71b52eaf84ba3c398c12346eeac594446f2a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

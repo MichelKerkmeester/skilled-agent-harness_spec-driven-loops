@@ -1,14 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/018-c5-llm-judge-scorer",
-  "description": "Feature Specification: C5 LLM-as-judge quality scorer",
+  "description": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
   "keywords": [
-    "feature",
-    "specification",
-    "llm-as-judge",
+    "retrieval",
+    "fusion",
+    "stage",
+    "already",
+    "applies",
+    "bounded",
     "quality",
-    "scorer"
+    "multiplier",
+    "composite",
+    "score"
   ],
-  "lastUpdated": "2026-06-21T10:22:33.264Z",
+  "lastUpdated": "2026-06-23T03:49:58.673Z",
   "specId": "018",
   "folderSlug": "c5-llm-judge-scorer",
   "parentChain": [

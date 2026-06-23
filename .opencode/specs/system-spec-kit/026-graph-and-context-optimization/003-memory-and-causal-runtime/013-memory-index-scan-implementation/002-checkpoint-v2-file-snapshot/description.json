@@ -1,16 +1,24 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot",
-  "description": "Feature Specification: Checkpoint v2 File-Based Full-DB Snapshots",
+  "description": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call",
   "keywords": [
-    "feature",
-    "specification",
-    "checkpoint",
-    "file-based",
-    "full-db",
-    "snapshots"
+    "checkpointcreate",
+    "takes",
+    "full",
+    "rollback",
+    "snapshot",
+    "risky",
+    "migrations",
+    "serializing",
+    "entire",
+    "database",
+    "one",
+    "json",
+    "stringify",
+    "call"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.209Z",
+  "lastUpdated": "2026-06-23T03:49:55.552Z",
   "specId": "002",
   "folderSlug": "checkpoint-v2-file-snapshot",
   "parentChain": [

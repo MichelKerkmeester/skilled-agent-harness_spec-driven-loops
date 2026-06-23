@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The launcher no longer respawns the daemon under a disposing session: the relaunch is gated at fire-time on whether the launcher is shutting down or its owning runtime has gone away.",
+    "causal_summary": "v3.5.0.2 fixed the Stop-hook cross-session kill but explicitly deferred the owner-shutdown/watchdog root causes",
     "created_at": "2026-06-07T12:55:23Z",
-    "last_save_at": "2026-06-08T17:32:21.340Z",
+    "last_save_at": "2026-06-23T03:49:56.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:731ca94b6cd41a2203f9b1cb023af49fc52ce309176f3e78c4aff19f73955b10",
+    "source_doc_hashes": {
+      "spec.md": "ca80c8243a4e429fcd5f8525c9060102fe16161891036ba16f5a0f160a476831",
+      "plan.md": "6cd206dc5b114a86dd2f0ec3c7f65e781f6a1c66c55b682507dff8979b795d81",
+      "tasks.md": "b82fdb7a045a043b292a8c174066fc846475a287a3314207aa1c0f95087bb720",
+      "checklist.md": "ecffd8419117a8de13655e392b7cf128742e50e271e5215bbbc6f67a8fa9d468",
+      "implementation-summary.md": "d3696c662465cefa796f326083fdb4179433734d738e57342a4c5b009f745b8e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

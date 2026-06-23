@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A document can carry curated `answerable_questions` and `semantic_intent` tags that name the queries it should win and the intent class it serves, but those tags are inert today. The frontmatter extractors in `memory-parser.ts` only pull a fixed set of known fields (`trigger_phrases` at L785-863, `content_type` at L864, `importance_tier` at L880), so an `answerable_questions` field persists on disk and is silently dropped from the vector and the metadata payload. The fusion stage in `stage2-fusion.ts` consumes only `validationMetadata.qualityScore` and a few spec signals (L260-289), so even if the tags reached the row there is no consumer to read them. This is the 028 dead-field trap: a field that exists on the JSON surface but never moves a single retrieval result.",
+    "causal_summary": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but those tags are inert today",
     "created_at": "2026-06-21T10:22:34.987Z",
-    "last_save_at": "2026-06-22T18:55:03.805Z",
+    "last_save_at": "2026-06-23T03:49:58.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4ff4d66a3e7e17e704f347164e8d9a469abe2354a793d9abc5235ad0f452af2a",
+    "source_doc_hashes": {
+      "spec.md": "d1c81573669b92eb657430ada6aa27260a31455a5d719db9b56e463a8318e9c6",
+      "plan.md": "d9d5fcee9c93ce406b09ee992671e98cde0eb3b1bc92381b328c560a7bc07a8b",
+      "tasks.md": "c64727818229ba7709b73b314e9df4f98d4aa6fa0a43eb837b898e51c7170263",
+      "checklist.md": "1aae849ca283e111e744d46b78b40fa99e537af55b6e46bea1e67949674fdfeb",
+      "implementation-summary.md": "a64cc5eec3b2571866500301b0c452810b7aa14ee5af2678ead0b24a7a065f00"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,23 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
-  "description": "Feature Specification: Comprehensive Audit Remediation",
+  "description": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-",
   "keywords": [
-    "feature",
-    "specification",
-    "comprehensive",
+    "packet-012",
     "audit",
-    "remediation"
+    "surfaced",
+    "verified",
+    "findings",
+    "one",
+    "true",
+    "infrastructure",
+    "two",
+    "governed-scope",
+    "calibrated",
+    "local",
+    "single"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.091Z",
+  "lastUpdated": "2026-06-23T03:49:53.022Z",
   "specId": "013",
   "folderSlug": "comprehensive-audit-remediation",
   "parentChain": [

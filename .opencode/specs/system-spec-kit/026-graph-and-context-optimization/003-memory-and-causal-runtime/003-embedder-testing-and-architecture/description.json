@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
-  "description": "013: Embedder testing and architecture (umbrella)",
+  "description": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA,",
   "keywords": [
-    "013",
+    "umbrella",
+    "phase",
+    "parent",
     "embedder",
-    "testing",
+    "reranker",
     "architecture",
-    "umbrella"
+    "across",
+    "mk-spec-memory",
+    "mcp-coco-index",
+    "skill-advisor",
+    "launcher",
+    "support",
+    "cross-cutting"
   ],
-  "lastUpdated": "2026-05-26T17:28:09.345Z",
+  "lastUpdated": "2026-06-23T03:49:53.921Z",
   "specId": "003",
   "folderSlug": "embedder-testing-and-architecture",
   "parentChain": [

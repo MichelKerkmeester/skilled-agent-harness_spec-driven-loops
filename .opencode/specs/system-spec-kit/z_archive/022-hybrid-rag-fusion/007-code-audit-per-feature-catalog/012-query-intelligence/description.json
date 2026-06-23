@@ -1,15 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/012-query-intelligence",
-  "description": "Feature Specification: Code Audit — Query Intelligence",
+  "description": "The feature catalog for Query Intelligence has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
+    "catalog",
     "query",
-    "intelligence"
+    "intelligence",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.252Z",
+  "lastUpdated": "2026-06-23T03:49:59.852Z",
   "specId": "012",
   "folderSlug": "query-intelligence",
   "parentChain": [

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the spec-027 feature adoption into the advisor and code-graph daemons. It consolidates the advisor's two hand-rolled BFS routines into one reusable helper.",
+    "causal_summary": "The advisor hand-rolls BFS twice for `transitivepath` and `subgraph` (`lib/skill-graph/skill-graph-queries.ts:296-354` and `:376-423`), duplicating caps and visited logic with no shared truncation signal",
     "created_at": "2026-06-10T19:24:10Z",
-    "last_save_at": "2026-06-12T04:40:47.926Z",
+    "last_save_at": "2026-06-23T03:49:57.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9a97481d31c4a066396b72def46789813d4e3e4d2f7c8f7823255b00a09a27e",
+    "source_doc_hashes": {
+      "spec.md": "d556972f4d87b25010a4410ff463fadb3e5cf8cc65415763c0dfab6377f07550",
+      "plan.md": "a9df995eba872c47d5c3a52d93b7f3251312082941444dc47eee5c53ab0bf32d",
+      "tasks.md": "8f3cec4f31d744ce08d11ecb3162a93c2351b3d2c536bc5aed56224f79a62d73",
+      "implementation-summary.md": "e43248ca277145fbfb665b2fe35958182ccef429a47f7e2639c356ab2145cc94"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

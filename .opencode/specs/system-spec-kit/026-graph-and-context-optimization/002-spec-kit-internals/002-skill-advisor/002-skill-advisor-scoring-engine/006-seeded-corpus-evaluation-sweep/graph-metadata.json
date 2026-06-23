@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 015/003 shipped the lane-weight sweep harness, the type extension, and a 24-prompt corpus, but the sweep run produced byte-identical numbers across all 7 candidate vectors (including V6-cosine-dominant at semantic=0.30). Root cause documented in 015/003 implementation-summary.md Known Limitation #2: the sweep test runs against `createFixtureProjection(...)` which does NOT seed the `embedding` column that the cosine lane reads via `loadSkillEmbeddings()`. So semantic_shadow contributed zero to every vector regardless of weight, and the sweep is currently a regression guard on the four non-semantic lanes only.",
+    "causal_summary": "Phase 015/003 shipped the lane-weight sweep harness, the type extension, and a 24-prompt corpus, but the sweep run produced byte-identical numbers across all 7 candidate vectors (including V6-cosine-dominant at semantic=0.30)",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.362Z",
+    "last_save_at": "2026-06-23T03:49:53.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:73263a63f1abe8294108dfaa03c6420e76973bd47a2ed5e3fa024f010d3ac04e",
+    "source_doc_hashes": {
+      "spec.md": "4ce7cc61008fb993419c7d42f9a27bbbdb8e0578de31f9e612fa9d418a168798",
+      "plan.md": "ed645401e501eed26d92d4ea91d686801b5a4238144d3f6e180cf28b61d653ec",
+      "tasks.md": "744f3e0d87994e7f015e264f27101f58c46e09caf530e4f846ef2a85fb4ccb18",
+      "checklist.md": "0713535e4e78f155cce35bdc8e8229d8fcf7f019d4738f0ec877632f1625a090",
+      "implementation-summary.md": "475cc4facf3019d8909953c8c9e8d87745a62d8ccff9456bf2fa36f81046a02f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

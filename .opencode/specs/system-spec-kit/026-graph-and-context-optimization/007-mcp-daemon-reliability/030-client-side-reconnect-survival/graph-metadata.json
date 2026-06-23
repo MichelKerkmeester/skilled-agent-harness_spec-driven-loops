@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 30** of the MCP daemon reliability packet. Phases 017–029 closed the",
+    "causal_summary": "When Claude Code's client-side MCP transport to a still-alive local stdio daemon drops",
     "created_at": "2026-06-08T15:19:03Z",
-    "last_save_at": "2026-06-08T17:32:21.357Z",
+    "last_save_at": "2026-06-23T03:49:56.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:91c45ec566803a6ff1ba2ddb9efbb79bfc3852fdbe29065a4ed0b8dfc880d211",
+    "source_doc_hashes": {
+      "spec.md": "f3e7746c59e947794701c523bf212782f976388a186413b5a0c1a1ab46c0b024",
+      "plan.md": "08017f059a1aa5f321b74cbc5182b20658453dddcf75bbd327792040c56305c3",
+      "tasks.md": "f8590198a1c635987dda0bd05829462ed11c872159ed1e9f9597e3a3ce106c47",
+      "implementation-summary.md": "55f43dd64b709a615175bc6714b18f7bf2716be4c4760b1309195e8cf74a0b4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

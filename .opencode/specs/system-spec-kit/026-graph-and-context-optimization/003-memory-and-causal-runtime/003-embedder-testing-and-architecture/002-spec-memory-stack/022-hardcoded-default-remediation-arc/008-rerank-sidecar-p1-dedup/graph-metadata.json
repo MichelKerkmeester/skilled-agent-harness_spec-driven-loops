@@ -39,10 +39,10 @@
       "tasks",
       "checklist",
       "shipped",
-      "port",
-      "8765",
-      "model",
-      "name"
+      "new",
+      "scripts",
+      "module",
+      "declares"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Port `8765`, model name `Qwen/Qwen3-Reranker-0.6B`, and revision hash `e61197ed4...` were duplicated as inline literals across 4 launcher surfaces. Cross-launcher drift risk: change one, forget the others; runtime would silently mismatch.",
+    "causal_summary": "New scripts/sidecar_defaults.py module declares canonical PORT (8765), MODEL_NAME (Qwen/Qwen3-Reranker-0.6B), MODEL_REVISION (e61197ed4...). Python launchers (rerank_sidecar.py + ensure_rerank_sidecar.py) import from it. Bash (start.sh) + Node (ensure-rerank-sidecar.cjs) launchers retain inline defaults but ship explicit cross-language sync comments pointing to canonical Python source. Closes 4 P1 audit findings on port/model/revision duplication.",
     "created_at": "2026-05-23T17:45:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.255Z",
+    "last_save_at": "2026-06-23T03:49:54.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:026cc6eba509403e3cfff9ffcdcba4bdffd84ac086d02946e4588feed265a7f8",
+    "source_doc_hashes": {
+      "spec.md": "552078bfaa8ebb8d6bc9eac279ffe99173a43be795aacae7e5f97fa272810521",
+      "plan.md": "2028d38d736830e70a396a4d58bc332a7ca535ba3eff1649e9730c4b0d9ea21d",
+      "tasks.md": "aae16208a6d44655276dc3e6f400278d08b8edd0f7c0ea2f419022ba06391991",
+      "checklist.md": "e97cbc5a042fd94385e2cb8b8082c2e616cb7a594f915a7d73b486313762df66",
+      "implementation-summary.md": "e28b8fbe85b2ae4f200cc11d98d7b696e7258e1b89ec7792218baad85ad618bb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

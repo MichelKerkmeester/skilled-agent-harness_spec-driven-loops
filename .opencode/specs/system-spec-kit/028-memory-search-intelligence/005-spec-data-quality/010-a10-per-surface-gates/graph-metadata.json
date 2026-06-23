@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time. The skill-doc surface has 20 SKILL.md files carrying two distinct version grammars (`vX.Y` and `version: N`, confirmed across the live skill corpus) with no linter to hold either steady. The command surface ships `route-validate.py` with eight assertions, but they run doctor-only, so 27 of 28 command docs are ungated against the router contract. About 30 workflow YAMLs have no schema validator. The intent-trigger vocabulary lives in three hand-synced copies (CLAUDE.md prose, `gate-3-classifier.ts` FILE_WRITE_TRIGGERS at line 67, and advisor `prompt-policy.default.json` WORK_INTENT_VERBS read at `prompt-policy.ts:42`) with no canary to catch divergence.",
+    "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
     "created_at": "2026-06-21T10:22:34.984Z",
-    "last_save_at": "2026-06-22T18:55:03.796Z",
+    "last_save_at": "2026-06-23T03:49:58.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f505e76c5a4fb1681588d794f8a0850ce5525367ad12a90f963e5d9d1d2be16f",
+    "source_doc_hashes": {
+      "spec.md": "1afbf616f874a9b975a34d15a04baa102b55c0d3e9035a824b3a5bc001994243",
+      "plan.md": "b3e7b14101c63ce9e1ede2dacdec5f6ff08b1bf49373e98bd45eb8b2daa0fee6",
+      "tasks.md": "ae4ddb36d6fbd1406466f9924ef957f2af94078473a6a751df2c34feba68ea0c",
+      "checklist.md": "04d4e166e557ddbcafd2531fe749f8b129f1e14e508726fe38b07cb0f0741186",
+      "implementation-summary.md": "d14a6af39dbdc53ab65de71d52a11f6c9e8f5e828594ffb8861d3bed599e998f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

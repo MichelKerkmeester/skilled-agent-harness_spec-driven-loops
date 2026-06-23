@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Comprehensive audit and remediation of the entire system-spec-kit ecosystem: MCP server code, skill files, agent definitions, command files, constitutional memories, scripts, and AGENTS.md integration. Found and fixed 3 critical bugs (SQL constraint violation, ghost tool references, stale file references), 15+ moderate misalignments (gate numbering, threshold inconsistencies, missing commands), and performed ecosystem-wide AGENTS.md-to-AGENTS.md migration across 30+ files.",
+    "causal_summary": "6 Opus agents analyzed the system-spec-kit ecosystem and found: (1) a SQL CHECK constraint that silently rejects valid `CREATELINKED` PE decisions, losing conflict tracking data; (2) the speckit.md agent references 2 non-existent MCP tools and uses a completely wrong 5-layer architecture instead of the actual 7-layer one; (3) SKILL.md references \"AGENTS.md\" (renamed to AGENTS.md) 5 times, causing incorrect cross-references for any agent loading the skill",
     "created_at": "2026-04-12T09:02:53.558Z",
-    "last_save_at": "2026-05-30T10:12:03.116Z",
+    "last_save_at": "2026-06-23T03:49:59.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c4f03ce87a841dfb0eb73270f3d1fb9b8e66ff69075b7e3c0d00307728e51dc1",
+    "source_doc_hashes": {
+      "spec.md": "446c2369f24916624b606a3fc387b0e6970e6a18825bb92ff5ba4910f0388996",
+      "plan.md": "dbf049904242a1e98fddef4725dd17bdfe1f1c58825f6a06ac9a90af4ff6b80c",
+      "tasks.md": "80ac860517a75b0607b1026fca899a817ea334fcb4ae1c99e39c1c476ce6ac53",
+      "checklist.md": "d53a509dc2f449b1c21cd4b65b75d1af3a33fd74bdc125899971325deaea0de2",
+      "decision-record.md": "e90685542aed93cc952b3f7837662cf3aecfd506c47c4783d75993541f6847eb",
+      "implementation-summary.md": "208b5b5ce8afe7dea9afd7bca8522124d7e89e86502abcd2834ed5686ebd5628"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

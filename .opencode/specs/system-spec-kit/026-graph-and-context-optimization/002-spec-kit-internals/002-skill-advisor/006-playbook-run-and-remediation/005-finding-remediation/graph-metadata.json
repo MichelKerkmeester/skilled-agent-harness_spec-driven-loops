@@ -131,15 +131,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, semantic_shadow lane-weight doc drift, the OpenCode plugin bridge native-route fail-open, and a stale vitest path in two playbook scenarios. They were recorded but not remediated.",
+    "causal_summary": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, semanticshadow lane-weight doc drift, the OpenCode plugin bridge native-route fail-open, and a stale vitest path in two playbook scenarios",
     "created_at": "2026-05-27T11:53:18.233Z",
-    "last_save_at": "2026-06-22T18:56:36.442Z",
+    "last_save_at": "2026-06-23T03:49:53.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:908282fb0c4e8d5e04094e7777e34858160462bfa2136bfec1af808e257b3000",
+    "source_doc_hashes": {
+      "spec.md": "fb41e3a8d99d70ab1198e8731a64cbe28f7dde0d96f68db620da8c8ccd92cfb3",
+      "research/research.md": "9a2a392297b504a2a79b2954c1fb33b3c7c194c511778fbd80ad619d722c1ff6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

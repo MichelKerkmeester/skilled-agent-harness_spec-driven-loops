@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current `system-skill-advisor/README.md` reads as a structural reference (PASS on sk-doc `skill_readme` template) but lacks marketing voice. The project root README and peer `system-code-graph/README.md` set the voice ceiling: technical-but-narrative, tables-heavy, ~2000 words, 9 numbered sections.",
+    "causal_summary": "The current `system-skill-advisor/README.md` reads as a structural reference (PASS on sk-doc `skillreadme` template) but lacks marketing voice",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:02.125Z",
+    "last_save_at": "2026-06-23T03:49:53.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:55f05aff5705b5ca3a65d207df1ce4be6ef9d8597c077d5a921c3f7d4f00e40a",
+    "source_doc_hashes": {
+      "spec.md": "32806aa1efb18bce23d3c895c0a6cb4126c94f6fadfc5e2860ceb2dc401de1ce",
+      "plan.md": "0032be20b4ac59db1c72926afcb045aff89dbb0c06131d27d3805096985072d0",
+      "tasks.md": "34090946b6217ad9c1c25b1ab04d893932506e7fb09ab995681c8d512d428e39",
+      "implementation-summary.md": "45dc641905015023874bc9f909131129059653d634723d0b3a8cf5acf902e9c2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

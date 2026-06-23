@@ -1,15 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/004-source-capabilities-and-structured-preference",
-  "description": "Feature Specification: Source Capabilities And Structured Preference",
+  "description": "The session-capturing pipeline still expressed source-aware policy with a raw source-name exception",
   "keywords": [
-    "feature",
-    "specification",
-    "source",
-    "capabilities",
-    "structured",
-    "preference"
+    "session-capturing",
+    "pipeline",
+    "still",
+    "expressed",
+    "source-aware",
+    "policy",
+    "raw",
+    "source-name",
+    "exception"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.130Z",
+  "lastUpdated": "2026-06-23T03:49:59.990Z",
   "specId": "004",
   "folderSlug": "source-capabilities-and-structured-preference",
   "parentChain": [

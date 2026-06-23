@@ -1,13 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research",
-  "description": "Research Charter: Automation & Self-Management",
+  "description": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing",
   "keywords": [
-    "research",
-    "charter",
-    "automation",
-    "self-management"
+    "system-spec-kit",
+    "skill",
+    "advisor",
+    "code-graph",
+    "memory",
+    "subsystems",
+    "documented",
+    "auto-managing",
+    "many",
+    "places",
+    "hook",
+    "injection",
+    "auto-reindexing"
   ],
-  "lastUpdated": "2026-05-26T17:27:06.391Z",
+  "lastUpdated": "2026-06-23T03:49:52.796Z",
   "specId": "001",
   "folderSlug": "automation-self-management-research",
   "parentChain": [

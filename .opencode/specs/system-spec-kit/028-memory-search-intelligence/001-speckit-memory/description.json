@@ -1,17 +1,26 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
-  "description": "Feature Specification: Spec-Kit Memory MCP Phase Parent",
+  "description": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
   "keywords": [
-    "feature",
-    "specification",
     "spec-kit",
     "memory",
     "mcp",
-    "phase",
-    "parent"
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "recall",
+    "retrieval",
+    "deterministic",
+    "ids",
+    "currentness",
+    "reliability",
+    "eval",
+    "coverage"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.056Z",
+  "lastUpdated": "2026-06-23T03:49:58.134Z",
   "specId": "001",
   "folderSlug": "speckit-memory",
   "parentChain": [

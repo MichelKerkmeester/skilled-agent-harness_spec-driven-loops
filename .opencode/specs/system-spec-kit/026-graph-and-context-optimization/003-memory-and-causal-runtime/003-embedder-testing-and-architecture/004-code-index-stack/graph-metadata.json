@@ -147,15 +147,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.",
+    "causal_summary": "CocoIndex code embedder stack parent. Current default is sbert/nomic-ai/CodeRankEmbed (768d, MIT) with hybrid search default-on, query expansion default-off, and Qwen rerank via sidecar default-on.",
     "created_at": "2026-05-18T16:14:38.272Z",
-    "last_save_at": "2026-05-30T10:12:02.280Z",
+    "last_save_at": "2026-06-23T03:49:54.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:bc3cd88502a7868374b6b9c98d834de49956296a598c8d9634c0a3dc57e41a1a",
+    "source_doc_hashes": {
+      "spec.md": "af501239a7c8e48e7fe09147e53219b6d6238fc253d2b7ac8d218fa7182efee0",
+      "decision-record.md": "e464946684788234de998c49b54865ec10df6d6f9c893022a5aeb9a8b845f9f3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

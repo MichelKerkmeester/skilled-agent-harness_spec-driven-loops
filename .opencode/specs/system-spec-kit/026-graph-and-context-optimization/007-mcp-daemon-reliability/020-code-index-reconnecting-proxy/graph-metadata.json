@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "mk-code-index bridged clients through a raw socket with no reconnect, so an owner death surfaced as a hard Connection closed. This packet ports the mk-spec-memory reconnecting session proxy to mk-code-index with a code-graph replayable tool set.",
+    "causal_summary": "mk-spec-memory fronts its daemon with a reconnecting session proxy so secondary clients survive a recycle or owner change transparently",
     "created_at": "2026-06-07T17:00:00Z",
-    "last_save_at": "2026-06-08T17:32:21.345Z",
+    "last_save_at": "2026-06-23T03:49:56.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:84ebc72a85ddf258fc9ab2244b2eb088bb34370c74e0606632ea14074dd82bf0",
+    "source_doc_hashes": {
+      "spec.md": "7eb08af80a106c44515ff19b53000f7c8ef71ba0588f69c210dde09fdd3076fd",
+      "plan.md": "09e51c3063d62a5bbd5977b88777e79adf0231b2fada7f0d0e99debc49c33dea",
+      "tasks.md": "8d77232bd531b5dd1d39b943bc45270e1cb05997e570f76353c3f14e306ff80a",
+      "checklist.md": "a898806b29509ad112374f5fd95b07dd168f4ff428f0334654fa557381b496e9",
+      "implementation-summary.md": "f63361f03d2cde94d2897af1589e31ccb6c3aa4504674d5fdd51aba2093103fc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

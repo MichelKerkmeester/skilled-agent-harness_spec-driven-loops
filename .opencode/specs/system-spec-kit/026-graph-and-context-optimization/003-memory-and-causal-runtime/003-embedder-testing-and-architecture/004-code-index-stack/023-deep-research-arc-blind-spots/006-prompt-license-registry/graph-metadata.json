@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make the model registry the single source for embedder prompts and embedder/reranker licenses, then expose stable accessors for CLI, daemon, config, fingerprint, and tests.",
+    "causal_summary": "023A1 persisted query/document prompt metadata and 023D added license metadata, but consumers still had to know which optional helper or metadata object to read",
     "created_at": "2026-05-19T22:55:00Z",
-    "last_save_at": "2026-05-30T10:12:02.326Z",
+    "last_save_at": "2026-06-23T03:49:54.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c103950a23d84072a3cca412016a8b1043c2f1aaab44db7d3b97046602617e11",
+    "source_doc_hashes": {
+      "spec.md": "c155608b0838e07110e0518ca195dd7d0ece4172eb8309260404f6531042f079",
+      "plan.md": "b5aac847e36a0393f95865133927a000ef4de3bb0109d4f1cabbbdc1e11566ea",
+      "tasks.md": "ea38976bf53fa5ed56499273f114ea223600d7e42e17139c10dae3904702bae0",
+      "checklist.md": "65216decd1293e4bc6e9562467699358b78d213702b360c8db6a4ca996038594",
+      "implementation-summary.md": "abcd4de8800752ba41fe6fd3ada50182cae0f47a6a48e68214eb65c023df56f1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -35,8 +35,8 @@
       "tasks",
       "checklist",
       "adr",
-      "spec-core",
-      "level2-verify"
+      "roadmap",
+      "aims"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "The roadmap aims to support cross-agent and collaborative memory, but sharing memory safely requires stronger controls than the current system provides today",
     "created_at": "2026-04-12T09:02:50.262Z",
-    "last_save_at": "2026-05-30T10:12:03.278Z",
+    "last_save_at": "2026-06-23T03:49:59.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5fece57719b598b1f14feda0c7fd11cecdb90224097b4638b8255eb81b8ff396",
+    "source_doc_hashes": {
+      "spec.md": "40ab5b6fbd8fdd30fb6d9dc558b9673bd76e27cb773c15e15029ef0949489e5a",
+      "plan.md": "7f83bd1c3864b237dcb19f3757a2f04826880e4ba68125a3e4a9ba613a593376",
+      "tasks.md": "ddfdf2dde2b5ba2a6f4c4f9b7c549f08b42aab71286f165ccd4078470f6bb171",
+      "checklist.md": "d9ee008de556baa054c89e01b6312f654540bd033402f6fd1cfccdf6c6df24ca",
+      "decision-record.md": "501b04871d78d0843872355d5a198b6fa23af6347845de3e41d7e8d15d107517",
+      "implementation-summary.md": "465a47a242fc662597ec7f5d73c9b64d93de746909bd1184a9569065df7a1bcc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

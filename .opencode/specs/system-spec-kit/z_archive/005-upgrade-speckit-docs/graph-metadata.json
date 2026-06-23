@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived folder captures work that improved documentation quality for OpenCode and system-spec-kit. The older archive shape had drifted into invalid higher-level structure, which caused strict validation errors.",
+    "causal_summary": "This archived folder captures work that improved documentation quality for OpenCode and system-spec-kit",
     "created_at": "2026-04-12T09:02:53.563Z",
-    "last_save_at": "2026-05-30T10:12:03.129Z",
+    "last_save_at": "2026-06-23T03:49:59.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:98e59458938ecd1570abd956483125ed15197b6d84382b0c7f46195b514ffc5d",
+    "source_doc_hashes": {
+      "spec.md": "dbd23774d88023d39b553674c590b457e56c38d678fe74dee9cc4b6afeeef154",
+      "plan.md": "ef8664992bd63ed089e5048d355e8dc93c2982dc28d06a2011848a311a9f1f52",
+      "tasks.md": "9209e0af05191913bbcfe89d3c0e2de2a5ae764ef9863bd5097928b1c27adc4c",
+      "implementation-summary.md": "8ca5652b6510ee329f59f522a95a492c5b1890ce77e56b0fa2aebe57cbeaa373"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

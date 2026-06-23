@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
-  "description": "Feature Specification: Phase 5: cosine-topn-reorder",
+  "description": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance s",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "cosine-topn-reorder"
+    "compressed",
+    "rrf",
+    "fusion",
+    "magnitudes",
+    "buried",
+    "semantically-on-target",
+    "memory",
+    "position",
+    "because",
+    "ordering",
+    "ignored",
+    "one",
+    "absolute",
+    "relevance"
   ],
-  "lastUpdated": "2026-06-18T03:33:51.822Z",
+  "lastUpdated": "2026-06-23T03:49:57.365Z",
   "specId": "005",
   "folderSlug": "cosine-topn-reorder",
   "parentChain": [

@@ -1,16 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
-  "description": "Feature Specification: Refactor /memory:learn → Constitutional Memory Manager",
+  "description": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight, opt",
   "keywords": [
-    "feature",
-    "specification",
-    "refactor",
+    "current",
     "memory",
     "learn",
-    "constitutional",
-    "manager"
+    "command",
+    "620",
+    "lines",
+    "generic",
+    "learning",
+    "capture",
+    "tool",
+    "classifies",
+    "inputs",
+    "types",
+    "pattern",
+    "mistake",
+    "insight",
+    "opt"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.066Z",
+  "lastUpdated": "2026-06-23T03:49:59.752Z",
   "specId": "003",
   "folderSlug": "constitutional-learn-refactor",
   "parentChain": [

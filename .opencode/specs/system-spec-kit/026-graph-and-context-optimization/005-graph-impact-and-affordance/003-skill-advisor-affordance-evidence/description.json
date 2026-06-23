@@ -1,17 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
-  "description": "Feature Specification: Skill Advisor Affordance Evidence (012/004)",
+  "description": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
     "advisor",
-    "affordance",
-    "evidence",
-    "012",
-    "004"
+    "compiler",
+    "whitelist",
+    "intentionally",
+    "limited",
+    "agent",
+    "script",
+    "config",
+    "reference"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.362Z",
+  "lastUpdated": "2026-06-23T03:49:56.189Z",
   "specId": "003",
   "folderSlug": "skill-advisor-affordance-evidence",
   "parentChain": [

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase addresses structured-input (`--json`/`--stdin`) quality regressions in memory save generation where normalization and extraction assumptions caused thin, low-value output. The work standardizes normalization, synthesis, quality scoring, and contamination handling for structured flows while preserving transcript-mode behavior.",
+    "causal_summary": "Structured memory saves (`--json`/`--stdin`) could degrade into poor outputs when normalization did not adequately feed downstream extraction/scoring paths",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-06-22T18:55:04.669Z",
+    "last_save_at": "2026-06-23T03:50:00.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:f217920f3557ddb8d19889ec51cbfe3d816f15fbfd0c6df828748f95278cd1cf",
+    "source_doc_hashes": {
+      "spec.md": "3a6c6edf140e4bba9392573d467017dac9f2bd1a1e9857bffc251f41b7e560b3",
+      "plan.md": "4ebe7234e985d60cf46307eaf3c7e9ffe2ed29aad30021415face7906433386d",
+      "tasks.md": "3d460bbd27729909a0474d70a5cc6b79eb7b03639ac4de9c848761e89d1ad10b",
+      "checklist.md": "375b0148855640301dc042fc011580121ba7c4d18e17e0765d20db43ae88fded",
+      "decision-record.md": "f5a36e80f44f4b5bd32a6ecddf7beb75e00dba1223af386690546ba44c011264",
+      "implementation-summary.md": "a396c1f2ca7ff2710df9d96fa62e5cc4a624c033b2af70db66c59c4c07ddfe54",
+      "research/research.md": "ba8086a312b128a6834ee967df9b992dc5dd74380605ded96c7545ab08df1508"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

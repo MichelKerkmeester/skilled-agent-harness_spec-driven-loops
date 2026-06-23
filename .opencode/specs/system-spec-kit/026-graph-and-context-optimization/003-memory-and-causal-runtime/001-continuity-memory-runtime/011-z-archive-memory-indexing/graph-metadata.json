@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two subsystems disagree about z_archive's role in the memory index. `lib/utils/index-scope.ts:EXCLUDED_FOR_MEMORY` blocks `z_archive/` paths from being indexed at all, while `shared/scoring/folder-scoring.ts:ARCHIVE_MULTIPLIERS` defines an explicit decay multiplier of 0.1 (90% penalty) for `z_archive/` to deprioritize but retain it in search rankings. The exclusion overrides the decay design — archived spec content is invisible to memory search even when its decay-adjusted relevance would otherwise place it ahead of newer noise. Un-exclude z_archive so the decay system operates as designed.",
+    "causal_summary": "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED_FOR_MEMORY block contradicts that decay design by removing archived content from the index entirely.",
     "created_at": "2026-05-16T13:35:00Z",
-    "last_save_at": "2026-06-05T12:47:33.500Z",
+    "last_save_at": "2026-06-23T03:49:53.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:aa47359315d17b19cc394aca1553b3998557472ddacab050b34752e30dad724f",
+    "source_doc_hashes": {
+      "spec.md": "b01e46e078d369ef5280f4d23ccc07d1fb5d50d387c25fb5c2844c0c3c8db964",
+      "plan.md": "07b3535d7101cae8d7534561f1d62dc47e38c385a1d2bdf75858cd529d784317",
+      "tasks.md": "42c486a69655cd41fd94285a6a27711004b6c62b411d7b89b28d8e003cae1772",
+      "implementation-summary.md": "958798f2684c23e07fa1be216e9972d83a7f0a7f99fd247b87d0aacd90dcd3e7",
+      "research/research.md": "38111184826104ba4941fed45ad757874c131bbc12f0835dcc2179d18bcd691f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

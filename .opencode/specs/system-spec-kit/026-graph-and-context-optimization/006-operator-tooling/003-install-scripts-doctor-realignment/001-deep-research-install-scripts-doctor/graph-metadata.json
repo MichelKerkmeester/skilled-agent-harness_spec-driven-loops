@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the Deep-research deep-dive + rework of install guides, scripts, and doctor commands for post-CocoIndex-deprecation reality, including 116 deep-skill-evolution impact specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-26T05:47:43Z",
-    "last_save_at": "2026-06-22T18:55:02.947Z",
+    "last_save_at": "2026-06-23T03:49:56.299Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:1bd31b41efcd0492e60f6012b88122282e3fd1f345cf8c4a2e3ee0354358cc69",
+    "source_doc_hashes": {
+      "spec.md": "d48f8e421973f1c303a66e052ddb81d0e05777a4dfb5752623404eca9571c24f",
+      "plan.md": "8350afa1a96db00b18f6804c4518e812d79e368524eeae07a6dab1c2a802a34e",
+      "tasks.md": "eb05cb7d06920690190eb32df77bb28dd059da0db2beea1751a0713d45402da5",
+      "implementation-summary.md": "2a154ddef44cb0ac85577d77e54ce4676ffe0a35858a6e9e7d5f20d4ab2dc4f3",
+      "research/research.md": "7aa2abcc94c751a8addc791ff9864e27fa93868d9bec30b9850916e192159319"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

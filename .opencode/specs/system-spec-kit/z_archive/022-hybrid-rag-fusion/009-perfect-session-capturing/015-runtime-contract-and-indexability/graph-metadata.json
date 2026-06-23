@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The session-capturing runtime used one broad `qualityValidation.valid` boolean as the last indexing gate. That made it hard to express the intended policy: some failures should abort the write, some should allow a write but skip indexing, and V10-only source-mismatch diagnostics should still be able to write and index when stronger gates pass.",
+    "causal_summary": "The session-capturing runtime used one broad `qualityValidation.valid` boolean as the last indexing gate",
     "created_at": "2026-04-12T09:02:50.276Z",
-    "last_save_at": "2026-05-30T10:12:03.313Z",
+    "last_save_at": "2026-06-23T03:50:00.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:86923fba049c12dac67258ad577bb5c9463c1d0f8ec5811cbd8505a9aa654390",
+    "source_doc_hashes": {
+      "spec.md": "6c4a99c5b18c3147607f7d943a00e99ef1e206f375ba36e2359cabe4b4ab82f6",
+      "plan.md": "fc9ea230b8155c2d1eb20864bded3fc845fe2bcf2615f9acf62e7d1d81e49c69",
+      "tasks.md": "417a0f561eacda3a56a00e714c824bef3274c6b179c88bf2c0e1a76ddf4bbb37",
+      "implementation-summary.md": "53363d1617fd97687b6531a2fbc8b95f5a6ed6751cb9b7a8a2aa77439ec5a3b0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

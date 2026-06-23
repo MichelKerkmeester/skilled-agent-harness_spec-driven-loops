@@ -1,14 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
-  "description": "Feature Specification: Skill Alignment — system-spec-kit",
+  "description": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
   "keywords": [
-    "feature",
-    "specification",
-    "skill",
-    "alignment",
-    "system-spec-kit"
+    "011-skill-alignment",
+    "pack",
+    "preserved",
+    "older",
+    "story",
+    "longer",
+    "matched",
+    "repository"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.227Z",
+  "lastUpdated": "2026-06-23T03:50:00.160Z",
   "specId": "011",
   "folderSlug": "skill-alignment",
   "parentChain": [

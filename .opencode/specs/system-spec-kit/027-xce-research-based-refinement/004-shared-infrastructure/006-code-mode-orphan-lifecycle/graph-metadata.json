@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mcp-code-mode stdio MCP server (`mcp_server/index.ts`) connected its transport and never handled session end: no stdin-EOF handler, no transport-close handler, no parent watchdog. A hard-killed parent session left the process alive, reparented to PID 1, permanently. Sixteen such orphans (up to 11 days old) had accumulated and degraded shared daemon infrastructure, contributing to bridge-probe timeouts in new sessions.",
+    "causal_summary": "The mcp-code-mode stdio MCP server (`mcpserver/index.ts`) connected its transport and never handled session end: no stdin-EOF handler, no transport-close handler, no parent watchdog",
     "created_at": "2026-06-11T16:30:00Z",
-    "last_save_at": "2026-06-12T04:40:47.940Z",
+    "last_save_at": "2026-06-23T03:49:57.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e5e71c1014aadfa818a25e635bb0e7b07e5f09e930ac06ce04b4c5d546eac531",
+    "source_doc_hashes": {
+      "spec.md": "4b9e5caac9ca06ca783ef70af7213a485aae34dc31e0f5b5680899dd93daf7e6",
+      "plan.md": "a56ed90c404599286931734d84613ea3e22cadd295769d6d265751356c1f2a49",
+      "tasks.md": "ccb03d17da71f5375846a518dc618698b1c060a4d1339e9bbd741fe183161a7a",
+      "implementation-summary.md": "cd6e3ce8bf5becc7a968fa63d4500817556291f3c9c05de37cf177eb0ca13932"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

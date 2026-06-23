@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
-  "description": "Spec: Deep-Review/Research Skill Contract Fixes",
+  "description": "Two contract violations in the deep-review/deep-research skill output:",
   "keywords": [
-    "spec",
-    "deep-review",
-    "research",
-    "skill",
+    "two",
     "contract",
-    "fixes"
+    "violations",
+    "deep-review",
+    "deep-research",
+    "skill",
+    "output"
   ],
-  "lastUpdated": "2026-05-26T17:27:51.185Z",
+  "lastUpdated": "2026-06-23T03:49:52.736Z",
   "specId": "028",
   "folderSlug": "deep-review-research-skill-contract-fixes",
   "parentChain": [

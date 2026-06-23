@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 4 Governance features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/17--governance/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Governance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.254Z",
-    "last_save_at": "2026-05-30T10:12:03.257Z",
+    "last_save_at": "2026-06-23T03:49:59.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:29f42670553e69be1f324383f300ea0b27e959b894e3c6a4bac9382dcc56684a",
+    "source_doc_hashes": {
+      "spec.md": "3b9ba002ff6bc2652e14a9f7b501ad916a9bd66ca0f385bf6685b137e28b991f",
+      "plan.md": "b367e4b69cf996272cf5a5dc12b8af346d6c719af00186a42a9f12e3239f2bd5",
+      "tasks.md": "5cfeb1f8df16f1ed3cc446c912ecd48c93831c52b2b2c57937e6998748f494b6",
+      "checklist.md": "483bb5e36e94e628051fb631a15f61ed72357b8ba6e35b75e9d8ac961c8a8d6c",
+      "implementation-summary.md": "e26e4b308cb8e522d8622534462176999f8ac663b603de0f8ffc8c5e275da116"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

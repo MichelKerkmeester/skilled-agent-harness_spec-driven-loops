@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only in research prose at `../research/research.md:104-118` and nowhere executable. Five dependency edges are inviolable (census before gate, engine before front doors, backfill before error, coverage guard before retrieval trust, C2 before retrieval promotion), but no phase owns the topological sort, so two parallel sessions can flip a hard rule before its backfill reads zero or promote a retrieval-class change before a prod-mode read exists. The four-beat migration discipline (WARN, BACKFILL, RE-MEASURE TO ZERO, ERROR) is described once and re-derived by hand per gate, so it can compress or skip a beat. The safety model rests on two structural invariants (INV-1 a body-touching fix is never safe, INV-2 a retrieval change is never promoted without a prod-at-3 read) that are stated at `../research/research.md:110` but not codified as a checklist any reviewer or CI step consults. The NO-GO list is split across the Tier-D table at `../research/research.md:55-66` and the eight non-unqualified-GO rows of the novel table at `../research/research.md:78-85`, eighteen items total, with no single artifact a contributor can read before proposing a new detector or lane.",
+    "causal_summary": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only in research prose at `../research/research.md:104-118` and nowhere executable",
     "created_at": "2026-06-21T10:22:34.994Z",
-    "last_save_at": "2026-06-22T18:55:03.823Z",
+    "last_save_at": "2026-06-23T03:49:58.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9cd2f23d123726351174209b047cbf90b41cb948c3bf6af2f754300bfcc327d",
+    "source_doc_hashes": {
+      "spec.md": "8b992f49013240af799f2a342ada62cb8282cf3e6f3ed08b7a8ace5213928b58",
+      "plan.md": "1415d16b5a36ea986f44dd6a35c77ed55b86dae5a51e71a84d413e2e6c4e4e16",
+      "tasks.md": "a3f01e0c34a4efbfac5155671d86388b3aedf609fb5ffe9b29aa831ea4a49992",
+      "checklist.md": "e832c837e65d3e8e87fd06ec80a9e32176ae4a5cb26b8823dbc1eaea5427daa0",
+      "implementation-summary.md": "87a4dea33c3b640890e6db3d9b661133f145091bd4649b3ea38b5ee118916b03"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

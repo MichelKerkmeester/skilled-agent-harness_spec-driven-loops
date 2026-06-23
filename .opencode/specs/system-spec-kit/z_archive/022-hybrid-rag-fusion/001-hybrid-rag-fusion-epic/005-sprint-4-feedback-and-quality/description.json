@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality",
-  "description": "Feature Specification: Sprint 4 — Feedback and Quality",
+  "description": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuabl",
   "keywords": [
-    "feature",
-    "specification",
-    "sprint",
-    "feedback",
-    "quality"
+    "chunked",
+    "memories",
+    "scored",
+    "individually",
+    "without",
+    "aggregation",
+    "memory",
+    "matching",
+    "chunks",
+    "gets",
+    "advantage",
+    "one",
+    "chunk",
+    "losing",
+    "valuabl"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.118Z",
+  "lastUpdated": "2026-06-23T03:49:59.669Z",
   "specId": "005",
   "folderSlug": "sprint-4-feedback-and-quality",
   "parentChain": [

@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three retrieval quality features — session boost, causal boost, and deep query expansion — are each gated behind explicit opt-in environment variables (`SPECKIT_SESSION_BOOST`, `SPECKIT_CAUSAL_BOOST`). Because `isFeatureEnabled()` in `rollout-policy.ts` treats an *undefined* env var as ON, but `session-boost.ts` and `causal-boost.ts` call `isFeatureEnabled` with their specific flag names that users typically do not set, the net effect is that the features are effectively OFF for all default installations. A test search for \"semantic search\" confirmed: `sessionBoostApplied: \"off\"`, `causalBoostApplied: \"off\"`, and `deepExpansion: false` even in `deep` mode.",
+    "causal_summary": "Three retrieval quality features — session boost, causal boost, and deep query expansion — are each gated behind explicit opt-in environment variables (`SPECKITSESSIONBOOST`, `SPECKITCAUSALBOOST`)",
     "created_at": "2026-04-12T09:02:50.334Z",
-    "last_save_at": "2026-06-05T12:47:34.943Z",
+    "last_save_at": "2026-06-23T03:50:00.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1fe02f24581e5d91aeae74d7a33d7388f0d3bb7a6a0db446d1353833e821b1af",
+    "source_doc_hashes": {
+      "spec.md": "f596621c5014b3a41160ef67b5d5d2468e1d2b929f1ca85f6392c9d8643391ac",
+      "plan.md": "fb5cb17cf71417ea3f49eae0c21ee368df081febb9d332f6e90acda489708b53",
+      "tasks.md": "15ed4bac6d75a91ce3a466ff72936a26c111a84db4f358cc707f16a7af6abe39",
+      "checklist.md": "a75467119efc0febfe19760f9384690032fa986a5534c9829b12cc88fb9a794b",
+      "implementation-summary.md": "71d8d837212a04aac0e7f00fee3509fbf472df605ec4f09cd7eafa4f941a57d6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

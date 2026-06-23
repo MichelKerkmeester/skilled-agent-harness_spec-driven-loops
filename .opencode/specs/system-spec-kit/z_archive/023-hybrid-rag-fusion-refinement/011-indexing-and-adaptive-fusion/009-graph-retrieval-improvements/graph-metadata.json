@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec Kit Memory graph has 3,854 causal edges at 79.92% coverage but is underutilized: `memory_search(\"Semantic Search\")` returns 0 results, graph signals are invisible to users, and the graph fires only reactively via causal boost. Phase 007 surveyed 7 external graph memory systems and produced a 12-item ranked improvement backlog. This spec implements the top 8 improvements across 4 dependency-ordered phases.",
+    "causal_summary": "The graph is structurally healthy but does not meaningfully improve retrieval",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-05-30T10:12:03.448Z",
+    "last_save_at": "2026-06-23T03:50:00.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a0de40c566626b1c0dbb3f86154efc690bd6d6e73124bce1fa52d537516f5fdb",
+    "source_doc_hashes": {
+      "spec.md": "17e54c5441ced12fda6854f99800c02f5e349d10de68fb25754dfbf8b248e3c6",
+      "plan.md": "6387607d2a4cb3eeeccd73695b52c5f2b67ba3f2b96a467548009aadbe4d2c1e",
+      "tasks.md": "30bfeaddbed996322c7a91ace9fe87f259f2b74dc0f2a89dd0c2a66ec20bc173",
+      "checklist.md": "692edc69a82200a33faa30169d5e4ddf71c19e2faff104c17fa6ebfb87d07d39",
+      "decision-record.md": "db4383ef82dddd3e40ef49f7af7c575a7845f9d93dd8610a5f2febd11ac81376",
+      "implementation-summary.md": "146f48029627929387b19318b1302b21a3643e3fd2821db9979f15a0252f702b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

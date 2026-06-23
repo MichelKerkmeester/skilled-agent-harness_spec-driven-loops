@@ -1,14 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
-  "description": "Feature Specification: Phase 5: stale-audit-and-tool-ownership",
+  "description": "Default `memorysearch` hard-excludes some rows: it forces `includeArchived=false` and the FTS path filters `importancetier != 'deprecated'`, so a depr",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "stale-audit-and-tool-ownership"
+    "default",
+    "memorysearch",
+    "hard-excludes",
+    "rows",
+    "forces",
+    "includearchived",
+    "false",
+    "fts",
+    "path",
+    "filters",
+    "importancetier",
+    "deprecated",
+    "depr"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.938Z",
+  "lastUpdated": "2026-06-23T03:49:57.267Z",
   "specId": "005",
   "folderSlug": "stale-audit-and-tool-ownership",
   "parentChain": [

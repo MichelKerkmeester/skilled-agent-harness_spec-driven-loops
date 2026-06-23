@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Manual test scenarios for scoring-and-calibration need structured per-phase documentation instead of a single playbook table buried inside the hybrid RAG fusion packet. Phase 011 must capture the exact test prompts, execution steps, evidence expectations, and verdict rules for all 22 scoring-focused playbook rows so operators can run the active scenarios consistently and reviewers can identify retired items that no longer exist in the MCP server.",
+    "causal_summary": "Manual test scenarios for scoring-and-calibration need structured per-phase documentation instead of a single playbook table buried inside the hybrid RAG fusion packet",
     "created_at": "2026-04-12T09:02:50.297Z",
-    "last_save_at": "2026-06-05T12:47:34.864Z",
+    "last_save_at": "2026-06-23T03:50:00.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dfbf54e0b6158f355eea2ece7504bd3d46f050a3bdbc3cc6aef110bc3a427593",
+    "source_doc_hashes": {
+      "spec.md": "cca3ba7b6ecedb984fd9cef0fd7d9eea585d4c7e92cd652d85f0312703ee4c4d",
+      "plan.md": "c3e82fccd474d88a3efbb4c27f358e411911fe0e99829af58d496a4bfa7b4c0b",
+      "tasks.md": "862ba94584311c0f234405486c6f64092098d7fa72ed0aea1e11d5f16b7eef79",
+      "checklist.md": "4aecd38728f2b9d30491a05de56a7a4be076e0701df3eef5ec517fbaaf5cf5aa",
+      "implementation-summary.md": "4eb4b55d326080538193832f85c5f2e8d18650e5e2d84f45eea95cb0d4aaf169"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 5 is the bounded follow-on under packet `030-opencode-graph-plugin` that is now implemented. Its goal was to make structural graph freshness behave more like CocoIndex: detect staleness on use, perform bounded inline refresh when safe, including small post-commit drift, and fall back to explicit stale reporting when refresh would be too expensive or risky.",
+    "causal_summary": "The code graph already has an auto-readiness engine, but the main structural read paths currently call it with inline indexing disabled",
     "created_at": "2026-04-12T09:02:53.438Z",
-    "last_save_at": "2026-05-30T10:12:03.520Z",
+    "last_save_at": "2026-06-23T03:50:00.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8624f846e581e99da9203c6491d89a47ea08e3033ebf5be6c94e425bf9c91af2",
+    "source_doc_hashes": {
+      "spec.md": "13d9b2818c2f8e0ec49942d6cd740c3124ad106868104081eaac5a9c58a01cbd",
+      "plan.md": "74ea4cb6cd22708bee106b47428080fcd272d006e300c14dda127e86a4bcf4cf",
+      "tasks.md": "9ec25b0860c17cec644314d059fb2050b79c69a90d0ff3ecdef36b6983ab4495",
+      "checklist.md": "0e31e09e4601a655129f1e69be1e1416a63ddd490eaaa369fb097f62443d1d0e",
+      "decision-record.md": "1d1d3fe2af8f301367ab18c6b2aa0007bda0b678c0e442d89203a3d33f5916a2",
+      "implementation-summary.md": "eb9908923b49e37e84d4ecb2d6a52afb8d7d80c85357f3f520a6285e8f7046dd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

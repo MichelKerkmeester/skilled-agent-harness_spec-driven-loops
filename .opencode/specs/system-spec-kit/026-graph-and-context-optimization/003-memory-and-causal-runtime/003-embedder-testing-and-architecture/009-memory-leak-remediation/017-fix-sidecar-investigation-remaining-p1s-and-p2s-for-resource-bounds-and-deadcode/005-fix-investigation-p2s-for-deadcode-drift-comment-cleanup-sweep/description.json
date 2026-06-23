@@ -1,17 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
-  "description": "Spec: Investigation P2 Deadcode Drift Comment Cleanup Sweep",
+  "description": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
   "keywords": [
-    "spec",
-    "investigation",
-    "deadcode",
-    "drift",
-    "comment",
+    "arc",
+    "010",
+    "001",
+    "recorded",
     "cleanup",
-    "sweep"
+    "findings",
+    "across",
+    "embedder",
+    "module",
+    "surfaces"
   ],
-  "lastUpdated": "2026-05-26T17:26:17.257Z",
+  "lastUpdated": "2026-06-23T03:49:55.264Z",
   "specId": "005",
   "folderSlug": "fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
   "parentChain": [

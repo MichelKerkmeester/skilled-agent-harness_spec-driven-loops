@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A 10-lineage parallel audit (round-2 re-verified: 73 confirmed, 0 false positives, +75 new) found the `/doctor` command router, its per-target assets, the three subsystem install guides, and the subsystem READMEs are **not** aligned with current reality. The drift is systemic across nine clusters: a code-graph DB-path that moved skill-local (2026-05-29) but is still documented at the old shared location; doctor-router mutation classes that promise apply/rebuild behavior the read-only `doctor.sh` scripts do not implement; tool-count/version drift (35→36 tools, Node 18→20.11, phantom v1.8.1, \"6 servers\"→5); incomplete colon-form `/doctor:*` deprecation; install guides that launch the backend directly instead of the front-proxy launcher; a Python `sentence-transformers` sidecar that is now pure-Node hf-local; stale tool lists with invalid MCP-call examples; wrong rebuild targets; and skill-advisor lane-id drift (`semantic_shadow` now live, not shadow-only).",
+    "causal_summary": "A 10-lineage parallel audit (round-2 re-verified: 73 confirmed, 0 false positives, +75 new) found the `/doctor` command router, its per-target assets, the three subsystem install guides, and the subsystem READMEs are not aligned with current reality",
     "created_at": "2026-06-02T18:35:05Z",
-    "last_save_at": "2026-06-05T12:47:34.265Z",
+    "last_save_at": "2026-06-23T03:49:56.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2a8811db519c4b877cb7784849a581f8b40d5faea2ade5a7d5597179fbefa1f1",
+    "source_doc_hashes": {
+      "spec.md": "01b6a584b3494461223a7dbb02e1349ed58a385a64d28dfa99c17b7b28a82318",
+      "plan.md": "1568e37c58a732a6849acdadb537f9abaed24ff63acdb228b70941af692d69c2",
+      "tasks.md": "7ae9c04fe3b455df67d6eae6669766f7ecd22b7e452b9a4e9918769c66e3300d",
+      "checklist.md": "1f1297ed90894df58a83ed8909f77667a68204a315642bacbc61c6d09994d821",
+      "implementation-summary.md": "445bc559ca3e42c162361f302e3fbd11e3a329a3593501717d77ee78f2e79129"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

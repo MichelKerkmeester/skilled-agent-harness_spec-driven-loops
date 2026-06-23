@@ -176,9 +176,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76 GB MTLBuffer. Packet 008 attacks this from the batch-size side. This packet attacks it from the weights side: loading weights in fp16 instead of fp32 cuts model memory roughly in half (~750 MB instead of ~1.5 GB) and may reduce per-call activation memory too.",
+    "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76 GB MTLBuffer",
     "created_at": "2026-05-23T11:55:15.622Z",
-    "last_save_at": "2026-06-05T12:47:33.824Z",
+    "last_save_at": "2026-06-23T03:49:55.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,6 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9ebf708553380561e0abb351a7cf7176c4a77cfaa0c64a200e191d1c14b9f488",
+    "source_doc_hashes": {
+      "spec.md": "0c3dd5a2dc19fee908fa2e25182dc868811ea569051dcaaa291721189ee34bed",
+      "plan.md": "f631aecf46f923e9f49e7b543d6e194ace90e337b4dac26af4d0c43ffc41879f",
+      "tasks.md": "4ecdac6e826ea259bd25ccecec1f9c890a4283facc10eb7d58a9aff7e358659f",
+      "implementation-summary.md": "7fd55911c75a573ed68ad494f45a9884e79920ec47b60d3e2a24d1335e8490af"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

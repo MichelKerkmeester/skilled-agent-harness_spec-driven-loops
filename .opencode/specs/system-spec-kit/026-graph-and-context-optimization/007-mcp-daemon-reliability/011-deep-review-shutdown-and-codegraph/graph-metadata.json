@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph fixes (012 empty-graph auto-establish + the 15-bug audit remediation) were shipped rapidly, partly by parallel sessions, into a safety-critical subsystem that just suffered a real data-integrity incident (026/004/012 FTS5 corruption). That surface deserves a hardening pass.",
+    "causal_summary": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph fixes (012 empty-graph auto-establish + the 15-bug audit remediation) were shipped rapidly, partly by parallel sessions, into a safety-critical subsystem that just suffered a real data-integrity incident (026/004/012 FTS5 corruption)",
     "created_at": "2026-05-29T13:33:41.028Z",
-    "last_save_at": "2026-06-05T12:47:34.290Z",
+    "last_save_at": "2026-06-23T03:49:56.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d79143947d8687ce2141b568544a0642af3b6b999c6c11806557f6cac89a27f0",
+    "source_doc_hashes": {
+      "spec.md": "67e1568ae3db2fb8bda31164602de04554e98460d98ab24304d16e96be177a16",
+      "plan.md": "837ff0ad4a319479b262d5231d50aa85ce0263b71854d15bd503f0decb1132a6",
+      "tasks.md": "4b1a5db8efe15db3d3e788b96d444118b004741aa7d6a85e457dc8d6890c86c7",
+      "checklist.md": "3817de6614886c59100b5a98f42c7e8479768917d5e942404721508ca3dae51f",
+      "implementation-summary.md": "b492e666c1016cf5d495bf94667ded36c8ee056af7a8a5083aab4df2bddf605e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

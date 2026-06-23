@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment",
-  "description": "Feature Specification: Retrieval Floor Experiment",
+  "description": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layer",
   "keywords": [
-    "feature",
-    "specification",
+    "prod",
     "retrieval",
+    "path",
+    "guarantees",
+    "never-cut-below-3",
+    "minimum",
+    "confidence-truncation",
+    "defaultminresults",
     "floor",
-    "experiment"
+    "cap",
+    "layer"
   ],
-  "lastUpdated": "2026-06-21T10:22:34.665Z",
+  "lastUpdated": "2026-06-23T03:49:58.727Z",
   "specId": "027",
   "folderSlug": "retrieval-floor-experiment",
   "parentChain": [

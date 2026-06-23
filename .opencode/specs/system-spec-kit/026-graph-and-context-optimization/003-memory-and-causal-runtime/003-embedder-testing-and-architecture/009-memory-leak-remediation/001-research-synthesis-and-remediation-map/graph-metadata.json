@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 is the Level 3 evidence-control packet for the memory leak remediation arc. It preserves the full original packet 020 and 024 research archives under `research/source-research/`, records the consolidated remediation map, and prepares phase 002 to build the telemetry and process verification harness before any runtime cleanup fixes begin.",
+    "causal_summary": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-30T10:12:02.424Z",
+    "last_save_at": "2026-06-23T03:49:55.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:7ebfe10ff5f183b69f2f56b640dc0d0acf86a2d915fd5c15b72f06cb3ae79049",
+    "source_doc_hashes": {
+      "spec.md": "4f213223127b43d803686b18ec5a4b2997b4eff1abb312aefae039a76617dd98",
+      "plan.md": "4154bbd9a1f79b20e5cab07feb865e00dd3d5e3dd0a78d7b33c5763ea180a95d",
+      "tasks.md": "7b4c7fb3dac751fe89b6f52e2a6d8de2206784bbde575281cb27af98bb7f9e28",
+      "checklist.md": "c9c01b5831bddb14feb50940c4b3cd29e0a9f43fa5df3de458105fc4bad3d645",
+      "decision-record.md": "0a64bcee7bef989ecfda663e68eb9b7ba4ab3c913dd85acaeb3e7adc88d30ea4",
+      "implementation-summary.md": "0ceb59656347987d9bea13820bd8255285596308cb5c8665932ed151c1fc2c0a",
+      "resource-map.md": "ec5d843c9efefe7797a66204f59c5b68a9725b6a5b4313bfe7428d19eb694bc1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

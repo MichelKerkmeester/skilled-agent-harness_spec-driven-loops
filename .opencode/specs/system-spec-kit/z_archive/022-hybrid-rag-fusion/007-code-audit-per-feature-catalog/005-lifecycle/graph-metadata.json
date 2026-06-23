@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 7 Lifecycle features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/05--lifecycle/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Lifecycle has evolved significantly",
     "created_at": "2026-04-12T09:02:50.247Z",
-    "last_save_at": "2026-06-05T12:47:34.714Z",
+    "last_save_at": "2026-06-23T03:49:59.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7e085e1812d0637f07d9cf2a07c73f3b45f61c60adaff9626b9f5b699de1231b",
+    "source_doc_hashes": {
+      "spec.md": "6d019daea28f04822f18b3264688216d077a7ae25dccef3c8816553e16afe9ac",
+      "plan.md": "ada692437d46ca301d598bd2e6e543f64aa4e683c715f4684987666101d50759",
+      "tasks.md": "9eb639e6e4b6e43122c749bc2db4c1bae64fff0daacfc57afa0e5f5e2d4bbb5d",
+      "checklist.md": "edfef9421eaf46264bb6e71af084e3d6d581f45ff41e5842312dff4950b4ccd9",
+      "implementation-summary.md": "d5994402e84be9c79387f20e775ca98bf48f863feaa944fdcd80b8d88ce47d5f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

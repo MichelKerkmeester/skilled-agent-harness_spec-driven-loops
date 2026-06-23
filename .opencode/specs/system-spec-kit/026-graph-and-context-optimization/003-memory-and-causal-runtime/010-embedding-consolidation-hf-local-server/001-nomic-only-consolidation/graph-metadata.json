@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1 of 6** of the embedding-consolidation and hf-local-server decomposition: the implement-now cleanup that makes nomic the only listed/default local embedding model.",
+    "causal_summary": "The local embedding model menu is scattered and inconsistent: `registry.ts` MANIFESTS list seven models; `factory.ts` keeps separate hardcoded `VALIDPROVIDERDIMENSIONS` maps for `hf-local` and `ollama`; provider/profile/type files mention multiple local choices; docs still name older alternatives such as `embeddinggemma-300m`",
     "created_at": "2026-05-29T05:06:24.627Z",
-    "last_save_at": "2026-06-22T18:55:02.599Z",
+    "last_save_at": "2026-06-23T03:49:55.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d847207ae13c9db2c4dcad4ee56860fb629acfe594b9daa9828760a687cb9597",
+    "source_doc_hashes": {
+      "spec.md": "fe5d6594d2a9e380d8fcc232faf153d0e50f5bd7c5e5116abd715c9bd4ede1ab",
+      "plan.md": "7ec75d3faaf5cda6bddeb434464a4c9152a25a5947c6c3c3b69a6dabf8716ac5",
+      "tasks.md": "eaf9edf7b9b25932051bf77afc924358f2bdeb9a179f14b0e48e1d54dd065ae7",
+      "implementation-summary.md": "093151892120ea56062452e1608485560ca241ce936f941ed5d081bbed3af159"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -2,16 +2,22 @@
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git",
-  "description": "Feature Specification: Phase 17: sk-git Frontmatter Alignment",
+  "description": "sk-git reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 3 assets carry the detailed memory-style bl",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
     "sk-git",
+    "reference",
+    "asset",
     "frontmatter",
-    "alignment"
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed",
+    "memory-style"
   ],
-  "lastUpdated": "2026-06-11T10:46:03.629Z",
+  "lastUpdated": "2026-06-23T03:49:57.015Z",
   "specId": "017",
   "folderSlug": "sk-git",
   "parentChain": [

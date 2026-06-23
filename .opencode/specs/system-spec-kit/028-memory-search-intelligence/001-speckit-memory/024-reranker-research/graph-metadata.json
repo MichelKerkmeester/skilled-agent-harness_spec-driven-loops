@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The new-feature arc closed with a hard architectural finding. The append-not-displace pattern is the only non-regressing way to add content, and prod confidence-truncation cuts the tail before a reader sees it, so any tail-additive feature reads as zero at prod K by construction. That law leaves exactly one recall lever untried. A reranker does not append to the cut tail, it reorders the survivors that already sit inside the prod top-3, so it is the one mechanism the truncation law permits. The campaign needed to know whether a reranker could earn a measured prod win, and whether a demote-only design could do it safely without the citation-emitter's under-counted positives ever fabricating a promotion.",
+    "causal_summary": "The new-feature arc closed with a hard architectural finding",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.829Z",
+    "last_save_at": "2026-06-23T03:49:58.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "implementation-summary.md",
       "research.md"
     ],
+    "source_fingerprint": "sha256:23bb5a753542c70f2c698d8932f81e6e3ca9583fd202d7e204d8497331a48032",
+    "source_doc_hashes": {
+      "spec.md": "d29cde52334af06ff87699f9ae6f09ed77307674022ba2072b60decb22d6526d",
+      "plan.md": "3d407a21e05a67459b16245096055a79e9c19773ee4dbe1ae0cfa41a6c80076e",
+      "tasks.md": "0f379cea0901e92e52c871bf500240a86a010ae91e2f3f7e18e80abb7275a28d",
+      "checklist.md": "5ba3cc3cba4c68584c8d09f51560fe60d3af76b50b0dd279bf2ee80791273fc6",
+      "implementation-summary.md": "8e7f07d01597eb8e369bb6a8a8fecfd7208b8f9f4417a1673978456452d3e412",
+      "research.md": "88b69f614279502e4422dcb94d74bef84df290c0b6504e948bee074839082767"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

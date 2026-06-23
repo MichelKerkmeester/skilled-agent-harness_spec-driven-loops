@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Two different quality gates validate file descriptions at different pipeline stages with partial overlap and divergent coverage",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-05-30T10:12:03.299Z",
+    "last_save_at": "2026-06-23T03:50:00.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e1d4b58b91cf6bed84bc7a595b0ef763ff600d16ff8a06e59187298a89e1e87f",
+    "source_doc_hashes": {
+      "spec.md": "b2943863b7beaa6bcd3c71423ca406001e3d32628e169578575c4ae9bc999431",
+      "plan.md": "0fecaa6c03a20daa68fcba3d53b73ac2a2ef3cccf321c2bb7bee71ffb030d270",
+      "tasks.md": "997659872fc250978beecaba1c69926c4976f017653a1f8d470c77c49ac03ac2",
+      "checklist.md": "dd0c63028d60ab4e3b64dfc4b4f395c227cc6aa19625bb29f82330702fae7eb1",
+      "implementation-summary.md": "671bd6327dd81efe31c0a890105a227b9056f844736c49c460f62884f5dcd180"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,25 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
-  "description": "Feature Specification: Template Levels — Phase Parent",
+  "description": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phas",
   "keywords": [
-    "feature",
-    "specification",
+    "spec-kit",
     "template",
-    "levels",
-    "phase",
-    "parent"
+    "system",
+    "today",
+    "maintains",
+    "files",
+    "13k",
+    "loc",
+    "split",
+    "across",
+    "core",
+    "addendum",
+    "level2-verify",
+    "level3-arch",
+    "level3-plus-govern",
+    "phas"
   ],
-  "lastUpdated": "2026-05-26T17:25:52.837Z",
+  "lastUpdated": "2026-06-23T03:49:53.725Z",
   "specId": "003",
   "folderSlug": "template-levels",
   "parentChain": [

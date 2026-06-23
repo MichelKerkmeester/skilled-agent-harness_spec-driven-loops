@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Fix critical bugs and performance issues identified during comprehensive codebase analysis.",
+    "causal_summary": "1",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-05-30T10:12:03.011Z",
+    "last_save_at": "2026-06-23T03:49:59.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:44f521be9603054ce793f7a86290fe513b8106dcd39ccfa13ab0fa1b1fe76886",
+    "source_doc_hashes": {
+      "spec.md": "a6d71a61f11d8e2c0d574db6fa6657eb0652a6833258b5a97bc42d09338580cd",
+      "plan.md": "af7de4087d4b7ddd241abdca417397e89c54372a881a9ab4d71fe70972c5235a",
+      "tasks.md": "6a4ff4a9d600a66871837c7f6158d1ba260d1face759b35db7c0e22cc3da53ea",
+      "checklist.md": "970992957df5bbe4842d4c0fcb260c06d854b0bba561b9bb4e2a9e37b4f4686d",
+      "implementation-summary.md": "7ba5c4d1b5490a3a47db40924792ac1d672c43e93384457371637e102f21fdb9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

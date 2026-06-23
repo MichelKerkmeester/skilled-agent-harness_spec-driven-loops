@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/001-touchpoint-research",
-  "description": "Feature Specification: Touchpoint Research — CocoIndex / Rerank-Sidecar Deprecation Discovery",
+  "description": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents, hook",
   "keywords": [
-    "feature",
-    "specification",
-    "touchpoint",
-    "research",
-    "cocoindex",
-    "rerank-sidecar",
-    "deprecation",
-    "discovery"
+    "deprecating",
+    "mcp-coco-index",
+    "system-rerank-sidecar",
+    "decoupling",
+    "system-code-graph",
+    "touches",
+    "large",
+    "dispersed",
+    "surface",
+    "skills",
+    "commands",
+    "agents",
+    "hook"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.268Z",
+  "lastUpdated": "2026-06-23T03:49:55.752Z",
   "specId": "001",
   "folderSlug": "touchpoint-research",
   "parentChain": [

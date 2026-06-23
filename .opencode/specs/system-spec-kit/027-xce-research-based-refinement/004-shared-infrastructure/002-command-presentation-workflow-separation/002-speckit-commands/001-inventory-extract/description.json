@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/001-inventory-extract",
-  "description": "Feature Specification: Speckit Commands - Inventory and Extract",
+  "description": "Speckit Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display",
   "keywords": [
-    "feature",
-    "specification",
     "speckit",
     "commands",
+    "needs",
+    "scoped",
     "inventory",
-    "extract"
+    "extract",
+    "phase",
+    "presentation",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing",
+    "display"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.739Z",
+  "lastUpdated": "2026-06-23T03:49:57.685Z",
   "specId": "001",
   "folderSlug": "inventory-extract",
   "parentChain": [

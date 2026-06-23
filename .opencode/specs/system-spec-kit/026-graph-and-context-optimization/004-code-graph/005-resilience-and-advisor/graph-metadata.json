@@ -84,14 +84,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta research, and doctor apply-mode.",
+    "causal_summary": "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta research, and doctor apply-mode",
     "created_at": "2026-05-26T16:51:06.173Z",
-    "last_save_at": "2026-06-05T12:47:34.073Z",
+    "last_save_at": "2026-06-23T03:49:55.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:be40dadc332b5acb37fe0749721a581fbd3f86204841c182d9bac674fa244dd9",
+    "source_doc_hashes": {
+      "spec.md": "9232489b94555b129fc0121af04782d34cb255063b06121fdb87046acc12d015"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

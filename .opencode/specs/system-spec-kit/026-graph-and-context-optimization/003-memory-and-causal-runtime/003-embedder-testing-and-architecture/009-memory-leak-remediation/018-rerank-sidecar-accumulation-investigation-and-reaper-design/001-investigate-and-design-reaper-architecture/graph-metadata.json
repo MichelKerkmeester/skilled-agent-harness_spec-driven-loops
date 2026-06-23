@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Investigation packet: cli-codex GPT-5.5 xhigh fast investigates why rerank_sidecar uvicorn workers accumulate (25 stale, ~16 GB on this machine), evaluates a three-layer reaper design, and emits ADRs ready for a follow-on implementation packet. No code modified.",
+    "causal_summary": "25 stale reranksidecar workers accumulated on this machine consuming ~16 GB RAM",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.495Z",
+    "last_save_at": "2026-06-23T03:49:55.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:ee530052f736c1341168cb079f998831e5bdecca3062ce6fb844f07aaf977395",
+    "source_doc_hashes": {
+      "spec.md": "97123a1a6e52d26720041273f357c77a5ab451af79bbbd5e14b62538caa5ffb7",
+      "plan.md": "24f13c130848ea3ee89ab2896f7d5f002e23a432c3b13109a2a0156cf034dd2e",
+      "tasks.md": "de7a2cc7ce935213336d51f0cefda7ed6db6cb55463b0641ba43d4519dd983e1",
+      "checklist.md": "7329028a484b44e0dbc31b731d1eb523e24d716929ec312a5a8dccef4c56da55",
+      "decision-record.md": "113859204b5566d5f4fd85b7be4fc19ce0e618ecb47d49edfb7ff5b2407db0ad",
+      "implementation-summary.md": "3526d438fa510a75966f41ce168343e4aa1d5edd6501818bc29e1382bef4041f",
+      "research/research.md": "93d0fa1b5ef08f8f652a3f54818b16d54f000bb9f3e3ab42ec74a47834d1d651"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

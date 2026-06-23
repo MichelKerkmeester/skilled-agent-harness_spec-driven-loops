@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
-  "description": "Feature Specification: 003 — Planner Reviewer-Focus & Spec-Drift Hint",
+  "description": "Review attention is not steered to the areas most likely to harbor defects: `@review` derives scope from the target and changed files alone, with no s",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "planner",
-    "reviewer-focus",
-    "spec-drift",
-    "hint"
+    "review",
+    "attention",
+    "steered",
+    "areas",
+    "likely",
+    "harbor",
+    "defects",
+    "derives",
+    "scope",
+    "target",
+    "changed",
+    "files",
+    "alone"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.941Z",
+  "lastUpdated": "2026-06-23T03:49:57.127Z",
   "specId": "003",
   "folderSlug": "planner-review-focus-and-drift-hint",
   "parentChain": [

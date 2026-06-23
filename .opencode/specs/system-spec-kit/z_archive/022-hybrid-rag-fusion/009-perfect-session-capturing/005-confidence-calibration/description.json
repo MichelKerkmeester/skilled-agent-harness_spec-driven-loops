@@ -1,13 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/005-confidence-calibration",
-  "description": "Feature Specification: Confidence Calibration",
+  "description": "The single `CONFIDENCE` field on `DecisionRecord` conflates two independent dimensions: certainty about the chosen option and certainty about the capt",
   "keywords": [
-    "feature",
-    "specification",
+    "single",
     "confidence",
-    "calibration"
+    "field",
+    "decisionrecord",
+    "conflates",
+    "two",
+    "independent",
+    "dimensions",
+    "certainty",
+    "about",
+    "chosen",
+    "option",
+    "capt"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.139Z",
+  "lastUpdated": "2026-06-23T03:50:00.025Z",
   "specId": "005",
   "folderSlug": "confidence-calibration",
   "parentChain": [

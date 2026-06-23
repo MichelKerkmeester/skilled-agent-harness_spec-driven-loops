@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the comprehensive audit remediation specification.",
+    "causal_summary": "The feature catalog and manual testing playbook contain 10 verified accuracy defects: universal coverage claims that contradict the measured 69% audit result, a stale tool count (36 vs canonical 37) in five README locations and one test assertion, a release-gate script threshold 4 files short of the real count, five broken scenario-to-catalog cross-links, a garbled scenario contract in scenario 232, stale implementation paths in the local-LLM category overview, a false \"cleanup complete\" claim about phase-label removal, a wrong verifier script path in scenario 234, stale scenario numbering (40",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-06-06T09:38:26.498Z",
+    "last_save_at": "2026-06-23T03:49:53.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e74a37e8c4f1f27e9a1a0fb76c6da996ca493a4ac1fe5bb13ae7c21d70b70565",
+    "source_doc_hashes": {
+      "spec.md": "648f9c1c8dc39c21581c9a3b6c98caef51b009e99383f7ba2e6d75cdfcb16477",
+      "plan.md": "79e10d7d451796bb0e4a26fcb9bb667b23baa7dcfb8a60e193a0520c4500da61",
+      "tasks.md": "2461da1877175846b1edd5cf59cafbcb98f905839e2cf1196132c54d52a1065d",
+      "implementation-summary.md": "b3fd2141f6e74259148ea4966b827c9bb49120e72c7e02c3c0a44451b2cb2add"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

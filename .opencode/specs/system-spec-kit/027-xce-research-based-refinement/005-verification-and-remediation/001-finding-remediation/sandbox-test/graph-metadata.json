@@ -19,10 +19,7 @@
       "mutation",
       "test",
       "validation",
-      "doc",
-      "temporary",
-      "document",
-      "testing"
+      "doc"
     ],
     "importance_tier": "temporary",
     "status": "planned",
@@ -61,14 +58,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is a temporary sandbox document for mutation testing validation.",
+    "causal_summary": "Sandbox Mutation Test Doc",
     "created_at": "2026-06-22T18:55:03.515Z",
-    "last_save_at": "2026-06-22T18:55:03.515Z",
+    "last_save_at": "2026-06-23T03:49:57.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:1d93aa3ac551d27e8318c2dd77accb855d6f5270a099d1d2e8c0e4e895e58282",
+    "source_doc_hashes": {
+      "spec.md": "1f75d32ca69078903f14d86164552085bc3f3f29ffc8fd9fc7ef0bdf5e980cfb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

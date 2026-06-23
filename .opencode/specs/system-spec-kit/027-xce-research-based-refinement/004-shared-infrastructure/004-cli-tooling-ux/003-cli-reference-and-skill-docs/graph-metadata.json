@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The daemon CLI documentation is accurate but scattered. Invocations, formats, exit codes, warm-only behavior, examples, and safety are spread across `README.md:100-110`, `AGENTS.md:133-143`, `ENV_REFERENCE.md:538-559`, the feature catalog, the playbooks, and the system READMEs, with no single canonical page. Recovery guidance is uneven across the three skills: system-spec-kit already documents it in `SKILL.md:413`, but code-index CLI docs live mostly in `system-code-graph/README.md:81-88` and advisor docs in `system-skill-advisor/README.md:73-79`, so an agent that opens SKILL.md first has to hunt through feature catalogs. The `jsonl` format is parsed as a single-line JSON payload in all three CLIs (`spec-memory-cli.ts:282-285`, `code-index-cli.ts:310-313`, `skill-advisor-cli.ts:295-298`) but is not documented as such, inviting automation to assume it is streaming.",
+    "causal_summary": "The daemon CLI documentation is accurate but scattered",
     "created_at": "2026-06-10T20:46:28.785Z",
-    "last_save_at": "2026-06-12T04:40:47.918Z",
+    "last_save_at": "2026-06-23T03:49:57.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3548eb27e8b6ceee7be70ab30a349f8aa202b6af3581c2f2b91f5f6e31f0e594",
+    "source_doc_hashes": {
+      "spec.md": "6af30052f61793339b5bdd972e0b6527bc51f5166a1b90fb5b7e6531c5378c3a",
+      "plan.md": "d596b524a03e9396c6bf6f2222dcd160a242f52e6ca4dd901cc3a47ee2e36e7e",
+      "tasks.md": "f114db8265cc457010c8be8592750b520dc40f7f031852366ba302b5bd9bd771",
+      "implementation-summary.md": "829f33ee83911473b3fceb0211a5630001b345929125e5aa248375a749279197"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

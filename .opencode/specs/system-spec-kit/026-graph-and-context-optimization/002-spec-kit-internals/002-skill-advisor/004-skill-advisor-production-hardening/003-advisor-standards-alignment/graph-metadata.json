@@ -176,9 +176,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 008 audit surfaced one standards gap and three plugin alignment items. This packet addresses both in one focused pass. No behavior change; documentation + code-cosmetic only.",
+    "causal_summary": "Two findings from the packet 008 audit:",
     "created_at": "2026-04-23T10:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.955Z",
+    "last_save_at": "2026-06-23T03:49:53.534Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,6 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ad0bb6ce370835f0eea0fdfc7e74ca9ef4d8b81975759b7eed11f25cf5a9fd19",
+    "source_doc_hashes": {
+      "spec.md": "c63e9812e63957849ea2052bcd3958bb876b551f3261631c5a3ca89206b3a4a3",
+      "plan.md": "cb73904a63387f78cb25aabb9a8d92e9a1798e8504fb3db98577a6627c1596ec",
+      "tasks.md": "c17a28567cd720a6a07a53db2141927162dc362aa77abc5e995cc25426dcd75d",
+      "implementation-summary.md": "d9d5f5e6925dcb55ea305a3bd449777ce82e9c0c6257830d55daa70ebb38dae4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

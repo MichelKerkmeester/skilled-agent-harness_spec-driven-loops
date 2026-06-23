@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-code-graph` references were still root-level kebab-case files and the skill router used static paths. This packet aligns those references with sk-doc's reference-template pattern, moves canonical docs into focused snake_case subfolders, leaves compatibility stubs at old paths, and updates active navigation to prefer the canonical files.",
+    "causal_summary": "The code-graph reference set did not follow sk-doc reference-template naming and structure 1:1",
     "created_at": "2026-05-24T07:58:55Z",
-    "last_save_at": "2026-05-30T10:12:02.610Z",
+    "last_save_at": "2026-06-23T03:49:55.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2622cc32370343d489457e7af4ea205f909ca9a045c2914177f80ea4d2b23307",
+    "source_doc_hashes": {
+      "spec.md": "5eff890debcebf755e599d60e45e6f2cc87477c71d7863ef5cc515002ed418c2",
+      "plan.md": "2bba7f507ac68c5f9b02f12a1b37efba4cef2ccd0f23b3cbe8322285ec42517a",
+      "tasks.md": "498f5c880410012ee4689e93ef9a569649b40bb4bbd65c2f2de54cfc2ffa9afc",
+      "checklist.md": "55fea5766092e15084fc76b76e21d10e202826cc248d65eebd266bf4f47bb0a8",
+      "decision-record.md": "f96ad0ba869779436e0b551e85ba03f7326cdd5780c0d21d6304e20d782bf9c4",
+      "implementation-summary.md": "7407c271b2d30afa1397e3852c9583423eaaadbfd989bcda9f68e7fcd47dad44"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

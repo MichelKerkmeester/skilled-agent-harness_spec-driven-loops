@@ -14,16 +14,23 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy",
-  "description": "Feature Specification: Research Memory Redundancy Follow-On",
+  "description": "The redundancy research finished with a clear contract, but the packet family still needed one coordination layer to apply it",
   "keywords": [
-    "feature",
-    "specification",
-    "research",
-    "memory",
     "redundancy",
-    "follow-on"
+    "research",
+    "finished",
+    "clear",
+    "contract",
+    "packet",
+    "family",
+    "still",
+    "needed",
+    "one",
+    "coordination",
+    "layer",
+    "apply"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.055Z",
+  "lastUpdated": "2026-06-23T03:49:53.142Z",
   "specId": "006",
   "folderSlug": "research-memory-redundancy",
   "parentChain": [

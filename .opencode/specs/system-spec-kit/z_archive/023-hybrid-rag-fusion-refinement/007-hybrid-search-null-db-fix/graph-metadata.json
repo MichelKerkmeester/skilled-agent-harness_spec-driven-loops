@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the ESM Module Compliance specification. It restores hybrid search correctness first, then records the follow-on search quality improvements applied after the initial fix.",
+    "causal_summary": "The Spec Kit Memory MCP server's hybrid search pipeline returns 0 results for ALL queries",
     "created_at": "2026-04-12T09:02:50.320Z",
-    "last_save_at": "2026-05-30T10:12:03.426Z",
+    "last_save_at": "2026-06-23T03:50:00.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:96fdff3f098a6bcbcad22a7a823a1efaaca6a0e1a9fa8dd0a099fd03c35d2f89",
+    "source_doc_hashes": {
+      "spec.md": "fa9fd7d89f2dc6cdceabec86d333b9fa7925ac50cd35e8e903fe4b3f5e070b31",
+      "plan.md": "08659082bcde937901727dcd65fbc17d41e9921afcb45e7bba8798cfe66be2c9",
+      "tasks.md": "1c7656ca90cc83976791d0b27ed14db635a5a2d7ef311546beb77a33e42a9396",
+      "checklist.md": "63a32dd6f10d372fab33f1065da68f1356cea75085683196e468c371133b3582",
+      "implementation-summary.md": "b030e4dc9f5fe95548cfb652b43be9b2d78c564ca6a656f1be3fe8d37e9bbdc7",
+      "research/research.md": "f2ba755c8027ba2399b6ceb530a400ec3c7c0219fb2c1d88035a0f3a575393d0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

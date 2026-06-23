@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final",
-  "description": "Specification: Post-Merge Refinement Final",
+  "description": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues",
   "keywords": [
-    "specification",
-    "post-merge",
+    "major",
+    "spec",
+    "kit",
+    "memory",
+    "system",
+    "merger",
+    "035",
+    "eight",
     "refinement",
-    "final"
+    "attempts",
+    "036-042",
+    "identified",
+    "300",
+    "issues"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.897Z",
+  "lastUpdated": "2026-06-23T03:49:59.128Z",
   "specId": "043",
   "folderSlug": "post-merge-refinement-final",
   "parentChain": [

@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec Kit Memory MCP daemon RSS-recycles under load: when resident memory crosses the ceiling, `recycleViaGracefulSelfExit` sets `launcherShutdownInProgress = true` and calls `process.exit(0)`, which exits the launcher that OpenCode spawned as the MCP `command`. That severs the client stdio pipe with no transparent reconnect, so the client sees its MCP server vanish (observed live: `mk_code_index` and `mk_skill_advisor` dropping; launcher pid churn). This packet keeps the launcher alive as a frame-aware reconnecting proxy that owns the client MCP session and recycles the daemon child in place, so an RSS recycle mid-request no longer breaks the client. In-flight read and idempotent-write requests are transparently replayed across the recycle; in-flight non-idempotent writes get a single retryable error instead of a double-apply or a dead pipe.",
+    "causal_summary": "Under memory pressure the daemon recycles by exiting the launcher process",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.977Z",
+    "last_save_at": "2026-06-23T03:49:55.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:ada4185c488734bec6e89c0b02a4365454308b938e392748b90a71dae1d8d6e0",
+    "source_doc_hashes": {
+      "spec.md": "df88c02e7fc4c3297152ecf9dffb65bdf9b8d8b397fdbb065b1035a72c3ea112",
+      "plan.md": "01b342a8230bf87eb34c4b6087a8f7c4ca962e6d80a31f07d82e4fe1608a3773",
+      "tasks.md": "94ac9242549164a90e2288d4fbaef3391c755e3faacac8fb4689ccc9e2671b49",
+      "checklist.md": "f9bb078dd4e2c336bc23a6e3b83ffedb60662815b47df37e7d9ba4e75ab4ea75",
+      "decision-record.md": "fcbd6f392e5caa991ff146d7115ada2073ad39e29925730a059ed37563fbb964",
+      "implementation-summary.md": "f5f6b544c0dfef5427427c5085958bf6553cdd16dfb3cd1128c5f613859cb8d5",
+      "research/research.md": "cdc0601690dee837c244f8f38dcaec974f01db4661a58aa716a8c03b817cbd76"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

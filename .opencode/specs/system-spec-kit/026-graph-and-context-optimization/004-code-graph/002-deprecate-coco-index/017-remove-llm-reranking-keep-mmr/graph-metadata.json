@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditional rerank gate, Stage 3 Step 1 cross-encoder reranking, and related tests. Residual confidence, explainability, audit, documentation, and test references still described or exercised dead reranker plumbing even though the live pipeline no longer assigned `rerankerScore`.",
+    "causal_summary": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditional rerank gate, Stage 3 Step 1 cross-encoder reranking, and related tests",
     "created_at": "2026-05-25T17:30:45Z",
-    "last_save_at": "2026-06-05T12:47:34.051Z",
+    "last_save_at": "2026-06-23T03:49:55.824Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:a27ceafe67775336720e9a7cd2ce07ad732f1c7d74a9be9d102bd86e3fea82e5",
+    "source_doc_hashes": {
+      "spec.md": "d291b83791ba929cc9e02b4debf2d60b88bed19f63005aea6df3841726c3ee55",
+      "plan.md": "8baddb2eba0aa1511942f1a0fb38e7c8c06d50096e27609e84cdacfc27247512",
+      "tasks.md": "3a4b0c47edb4748ff88ae14b5fe760a9a83d53eb29d21d7838ae5897cccef0bd",
+      "checklist.md": "23e4be98221d89ab307bc70f8823fdc44d5aa63a361d23a0e3163bd086cd4675",
+      "implementation-summary.md": "8d3701df9b4d5e516cca1117bab61ffb2a6e6aba9548dedc4b1a6ec110fa0d22",
+      "research/research.md": "6964eac1bd98b11cc55c046eef913f3de05cb9b86e31ece19989d13d1e550628"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

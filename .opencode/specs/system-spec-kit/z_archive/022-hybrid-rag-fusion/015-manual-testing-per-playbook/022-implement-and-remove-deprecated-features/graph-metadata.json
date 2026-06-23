@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph calibration, temporal contiguity, consumption logger) and 3 dead modules to remove entirely (channel attribution, fusion shadow V2, full-context ceiling eval). Manual testing scenarios are needed to verify that deprecated features are correctly identified, the safe removal process leaves no orphaned references, and post-removal the codebase is clean.",
+    "causal_summary": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph calibration, temporal contiguity, consumption logger) and 3 dead modules to remove entirely (channel attribution, fusion shadow V2, full-context ceiling eval)",
     "created_at": "2026-04-12T09:02:50.307Z",
-    "last_save_at": "2026-06-22T18:55:04.569Z",
+    "last_save_at": "2026-06-23T03:50:00.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1f041eca70524d79e6d4184d3a4d39d212a05cfc739e5f0f87e0b02514472d7d",
+    "source_doc_hashes": {
+      "spec.md": "7a77131c16e3a00872b3d1eb640f1aea77027008af3940ef246cc091af9c8ca3",
+      "plan.md": "83353abef7154ff11a257bf9000fa48fdb250b5ddba263d89d51dd7bbbb7959c",
+      "tasks.md": "f3af49ead1d88b81e5be569e57e18bb1e7f53271523977c146148d5873a39067",
+      "checklist.md": "ebdcaa02aff1af5e3d74980dccd75054b3d22db6a7d254e5beecc02e00b53f62",
+      "implementation-summary.md": "f7471ba8280db9c61e9f04e25c71282802c5499552eb24987e462fe0f8df8593"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

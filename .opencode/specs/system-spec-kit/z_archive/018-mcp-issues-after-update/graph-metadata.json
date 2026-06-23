@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Issues After Update. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
+    "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Issues After Update",
     "created_at": "2026-04-12T09:02:53.569Z",
-    "last_save_at": "2026-06-05T12:47:34.614Z",
+    "last_save_at": "2026-06-23T03:49:59.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:18ed92410442c0438afd1be1c2f6321f0ecf0412fe860552fbf480ef4483a416",
+    "source_doc_hashes": {
+      "spec.md": "dd3f6475b7d7267321c629fbe38a4b2999d1a61235ae20b0c15dd696983322a2",
+      "plan.md": "215b7eb393768175aa10020e345d5bb70eb44b7038bb2675366177207e6fe57c",
+      "tasks.md": "c7792c86f0d4b519076312937e047b47e0a97e0044e93a34675d6929ea62991b",
+      "checklist.md": "7bb0f9148f6b4b3f4363828e97ec4dd9032662842ff77a2da88bd3fd4edda31a",
+      "implementation-summary.md": "8d064a4c645f4e6cc818ee381eca2b9ddaa9c6eccb1b0d8223513e4506507ca1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMARY subsystem of packet 028's Memory Search Intelligence roadmap). It owns the shared total-comparator, the two SHA-256 content-id primitives (content-body and canonical-field) and the rank-time fusion-bonus / decay-clock seams that every other determinism candidate and every cross-subsystem consumer (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compares its output against. The cheap, reversible, no-benchmark wins already shipped in the flat Wave-0 implementation record (030). This sub-phase records them as DONE with their commit evidence and carries the residue, the render-order serialization stage (C5-A), the configured-channel multichannel bonus (C-X1 `'configured'`) and the single-tenant-refuted identity-hardening pair, as documented PENDING work with explicit gates.",
+    "causal_summary": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candidate-merge comparators sort score-only with non-content tie-breaks (input-order or clock-derived `updatedat`), the four ranked ANN `ORDER BY distance` queries have no tie-break so which rows survive the LIMIT into fusion is run-to-run unstable, and recall serialization is a bare `JSON.stringify` with no content-derived render-order stage (`research.md` Internal Baseline, `001` iter-3 Q5)",
     "created_at": "2026-06-19T05:40:47.071Z",
-    "last_save_at": "2026-06-22T18:55:03.618Z",
+    "last_save_at": "2026-06-23T03:49:58.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9c4ee6cee89d83e3f3b1946d7a73b7146a40ab5dcdcd32bbe33a4e1857985df6",
+    "source_doc_hashes": {
+      "spec.md": "b31e1af29df3cfd08bcc95cfacff9a2f67d598a466d413ec7051c397a1d97ca1",
+      "plan.md": "5842c972eac7aeefb5cc2c8955568c41167c2d2408fba83486254fd54ecf216c",
+      "tasks.md": "e470d6d3d594e574e4f05e51687a8c539c524787abc0c41d51d2ead51c782697",
+      "checklist.md": "c8f7698c1e45290de0232474198d3733d176bc2b6d724b8ac108a87f66329a0d",
+      "decision-record.md": "e6b3ad2319ed533063e4e3e0383ec70c72cf5d631034fc04620cc6be5891b2a1",
+      "implementation-summary.md": "a94268c7fc858ce08afa1055b587d74c9832212d8875ffb99366e369c855b04b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -13,16 +13,26 @@
     "009-code-graph-code-only-indexing"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
-  "description": "Feature Specification: Shared Infrastructure (Phase Parent)",
+  "description": "Several 027 phases live in the shared layers that span subsystems: the daemon CLI front-doors, command presentation/workflow separation, the storage a",
   "keywords": [
-    "feature",
-    "specification",
+    "several",
+    "027",
+    "phases",
+    "live",
     "shared",
-    "infrastructure",
-    "phase",
-    "parent"
+    "layers",
+    "span",
+    "subsystems",
+    "daemon",
+    "cli",
+    "front-doors",
+    "command",
+    "presentation",
+    "workflow",
+    "separation",
+    "storage"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.013Z",
+  "lastUpdated": "2026-06-23T03:49:57.525Z",
   "specId": "004",
   "folderSlug": "shared-infrastructure",
   "parentChain": [

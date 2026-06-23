@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the **same working tree on `main`**, with **shared, gitignored MCP databases** guarded only by single-writer leases. Measured live: HEAD moved under an active session twice in ~12 minutes; ~20 orphaned code-graph daemons accumulated; the working tree carried 1,500+ daemon-churned files to filter on every commit. This cross-session contention caused real damage in practice — misreading concurrent commits as corruption, double-reverting a good fix, and a tug-of-war over a packet's docs.",
+    "causal_summary": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the same working tree on `main`, with shared, gitignored MCP databases guarded only by single-writer leases",
     "created_at": "2026-05-30T14:07:30.760Z",
-    "last_save_at": "2026-06-22T18:55:02.956Z",
+    "last_save_at": "2026-06-23T03:49:56.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8030d95414c4ab568fa85e11c594dc00cbfc7bab549246a5f2d4e0d7a505bb46",
+    "source_doc_hashes": {
+      "spec.md": "895591971b048e58cc350b36b2a4a8e8545bfcfee3bff03b154561097718808c",
+      "plan.md": "adff3f9b5d69ebeb6ae97911e7711a397fefa23151591905bdfb7ce22296247e",
+      "tasks.md": "9938aea04cede1255b1ee1db810afd298fc4ebee290f9be6c459e4d9b0450db8",
+      "implementation-summary.md": "d043f9fbedc101a3c1d551b638c7e1880f16e38f253abc701f967e2cabdf5d6f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

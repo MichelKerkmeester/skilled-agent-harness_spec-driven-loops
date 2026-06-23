@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two post-010 MCP startup failures observed on macOS, plus the workaround applied and the one outstanding robustness gap that should follow.",
+    "causal_summary": "After `010-multi-client-stdio-socket-bridge` shipped (`feat(016/006/010)` at `088cb82a0`), the codex runtime could not complete the MCP handshake for `mkskilladvisor`, `mkcodeindex`, and intermittently `mk-spec-memory`",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-06-22T18:55:02.455Z",
+    "last_save_at": "2026-06-23T03:49:54.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e23ff2b13d3ffcbce2b82fe096127a21d0567e022c26b4d9fd9a355c0d68ef97",
+    "source_doc_hashes": {
+      "spec.md": "5454243bc706a1369639a0ad229e1e85eb610239fd4dfd258b2ed57d0231cb0f",
+      "plan.md": "bac04fa3198d285fe564705e5f686457f1a45d80fa58aff1f067cc1077bf6283",
+      "tasks.md": "84f9229ca45310b93ae27ca76f58b8e0170fdc65f9d07f5d908140cae056af16",
+      "implementation-summary.md": "2deb3d2786481ab654c79a2a9abab3f342f39661c2bbf72d25131cfe9e1e68ef"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

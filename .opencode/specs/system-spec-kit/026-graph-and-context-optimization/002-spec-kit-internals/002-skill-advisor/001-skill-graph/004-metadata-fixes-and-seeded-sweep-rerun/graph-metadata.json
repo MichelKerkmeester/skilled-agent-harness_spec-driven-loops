@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing changes. The report is advisory — no skill files were modified. We do not yet know whether applying those changes actually moves the seeded-sweep numbers from 015/004 (V0 baseline: `accuracyTotal 0.6667, todayCorrect 1.0000, intentDescribed 0.3333, flippedFromBaseline 0`).",
+    "causal_summary": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing changes",
     "created_at": "2026-05-14T01:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.284Z",
+    "last_save_at": "2026-06-23T03:49:53.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:00:00Z",
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f80c59c59bb4959d26c5f85973801b6decd8848f467056bb1dea8666e9005780",
+    "source_doc_hashes": {
+      "spec.md": "8053bad99eab777508ba86f839306150353772f04b289a8b33403ddb23c4ce05",
+      "plan.md": "84ad0d8b8e83d31925e9a0ee33ba93731c7b0119a0c77f52fe5dee7c0bdc9d39",
+      "tasks.md": "ba9a40899115a75980f2bfe2dce2e04900c5bad705d212f0e8a1af00eb19484a",
+      "checklist.md": "30028d6cb0bc2430e1ba52a4fe113a00d198693af29cb09f714617bb55d2fba0",
+      "implementation-summary.md": "c03dba4a757481d0371c780feddddcdd0a7a42ec61da476ac8734c76865c661f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

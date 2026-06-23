@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported **198 failed tests across 166 files** out of 11,829 total (11,587 passing). The v3.4.1.0 release note claims \"Core test suites — 11,606 passed, 0 net regressions\"; this is now demonstrably false at the full-repo level. Sampled failures sit in `skill_advisor/tests/scorer/` (e.g., `projection-fallback-049-005.vitest.ts` expects `'filesystem-fallback'` but receives `'filesystem'`), and across `tests/hooks/`, `tests/scaffold/`, `tests/alignment/`, `tests/code-graph/` — entirely outside Unit A's surface. Codex fixed 10 packet-adjacent failures during Unit A's run; the remaining 198 are pre-existing baseline drift that accumulated between v3.4.1.0's release-note measurement and Unit A's full-repo run. The drift was likely never captured because the v3.4.1.0 verification was an isolated-suite measurement (or the CI configuration filters certain suites).",
+    "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829 total (11,587 passing)",
     "created_at": "2026-05-08T21:35:00Z",
-    "last_save_at": "2026-05-30T10:12:01.563Z",
+    "last_save_at": "2026-06-23T03:49:52.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:48857bc6b67faf6d659ea58a1f59e55ac34e0f9d20c1f733a7bfc4e1437645ca",
+    "source_doc_hashes": {
+      "spec.md": "de319318402bfa1f75f25c4c021fc595d67cab995edae9012128bf752b563910",
+      "plan.md": "c714d1f261ab6ea3ef999430ef16a5e1677656ed76fc619f59cfdcb26f2e31af",
+      "tasks.md": "a09c02bb1481a75aaf3f78ae25bc989eaa409cfc5feacc0d056b848ce976b553",
+      "checklist.md": "7d9b9b86ecc7ab80b900dddc91a2a3dc0cfda4bec3250b615ad1ae54d8c69b31",
+      "implementation-summary.md": "eb19eda6431906ac9b01f0ef645e603f03984a607b5f4a9f167d3886c499faa0",
+      "resource-map.md": "2e8aaff3882a7cfb313bdd35620e1224a45b9d255834f059b900ddee7774b4cf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

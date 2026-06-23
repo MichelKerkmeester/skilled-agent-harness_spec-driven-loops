@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test). Eleven candidates were excluded as out-of-scope (policy changes, migration work, or unconfirmed by deep-dive). The 9 confirmed defects span a structurally-locked warm-tier savings metric, incorrect zero values in the all-anchors-missing branch, a NaN-returning age formatter, a false-positive shadow promotion gate for zero-delta signals, a dead error-classification ternary, a spurious last-active-child check-graph-metadata warning, two broken CLI auth pre-flight checks (gemini and codex), and a token-budget envelope that left `constitutionalCount` and `summary` desynced from survivors after truncation.",
+    "causal_summary": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test)",
     "created_at": "2026-06-03T09:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.205Z",
+    "last_save_at": "2026-06-23T03:49:52.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:632fc8933d6e5f7b514443aa28828962c5006cf4b481889746de12f920a4f807",
+    "source_doc_hashes": {
+      "spec.md": "6b263e54590d91b630cf0c206b4b08fab1767d2ff7c917b281cfefdf3caac558",
+      "plan.md": "2422b0c110175c383c10bbbe935663d98ef628297a5f995e95a0bbed07965ea6",
+      "tasks.md": "b3cbbc650164d6e26355929e70a035c7f833393d13fa9646033bd6427225c9fe",
+      "checklist.md": "01b36a39650ffc1290b82e8d1882fa07c877a451dd85a55c5da3e547b66ed9ee",
+      "implementation-summary.md": "c3a7bd33362f5311428de0af7f51b51121076f3dfacafad20fc17bb1f513be20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

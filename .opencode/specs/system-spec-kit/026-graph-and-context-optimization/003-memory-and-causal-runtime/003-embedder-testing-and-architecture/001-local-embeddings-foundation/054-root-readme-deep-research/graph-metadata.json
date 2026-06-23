@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 055 (Phase D) ran a single-pass audit on ./README.md. It found 16 claims, marked 1 DRIFTED + 1 UNVERIFIED, and Pass 2 cross-check added 2 missed items. 12 surgical edits shipped in commit 2d4086743 + patch 458b0e6b3. That audit was deliberately shallow — sampled rather than exhaustive.",
+    "causal_summary": "Catch the depth Phase D missed",
     "created_at": "2026-05-15T13:35:00Z",
-    "last_save_at": "2026-06-05T12:47:33.612Z",
+    "last_save_at": "2026-06-23T03:49:54.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:b004f2ce606e446330e17f373dc8ad2e68b52405eb14e7b4a83113304c59895a",
+    "source_doc_hashes": {
+      "spec.md": "fd2ddc20cdb54bff041d1168e41ac4cb473019c4f37651dc20d96b5147796d31",
+      "plan.md": "c0121fd3d883a0c5cbcbb427d15d52f4921ca8eb9eef7d8b20ba943953f0559f",
+      "tasks.md": "369946bc28987ae25d7dbdff5d1559eac3a5052131bc4c0025dd754d775ef3b6",
+      "implementation-summary.md": "e500c030fcf6703bafa48ed591da69a942a706ddfcb94df1bd4c92639917698b",
+      "research/research.md": "39e9eb8d1328d2af9f8826717edffe570645e699e0c8a9bb91c8499190447db7",
+      "resource-map.md": "65c0f592b7fe7160f173976b216e9da3de628eaec7fcf778534f60551b307f36"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -35,8 +35,8 @@
       "parent",
       "learning",
       "aggregation",
-      "coordinates",
-      "consume"
+      "phase-parent",
+      "control"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -87,14 +87,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 coordinates the learning feedback reducers that consume existing feedback signals after Phase 002 has landed the required correctness preconditions. The parent holds no implementation tasks itself; it routes work into four child packets with explicit dependency order and shadow-to-live safety gates.",
+    "causal_summary": "Phase-parent control packet for post-012 learning feedback reducers: shared aggregation foundation, session-trace causal reducer, learned retention reducer, and env/tests integration closeout.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-06-22T18:56:37.242Z",
+    "last_save_at": "2026-06-23T03:49:57.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c0f0f4ad7806d2715a8b463b8bb6616519bb5fe737cdb3c98fcd4ee535f90090",
+    "source_doc_hashes": {
+      "spec.md": "b5bce3a6434530bff0c5d94d0b45b70cd96f81652d3221e96a63566e76d8f7ee"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

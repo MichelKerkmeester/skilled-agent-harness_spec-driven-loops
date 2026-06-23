@@ -1,17 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
-  "description": "Feature Specification: Live coverage for the F2 clean-close reap barrier",
+  "description": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is",
   "keywords": [
-    "feature",
-    "specification",
-    "live",
-    "coverage",
     "clean-close",
-    "reap",
-    "barrier"
+    "barrier",
+    "reapleasechildbeforerespawn",
+    "mk-spec-memory-launcher",
+    "cjs",
+    "shipped",
+    "032",
+    "001",
+    "decides",
+    "whether",
+    "possibly-dirty"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.766Z",
+  "lastUpdated": "2026-06-23T03:49:56.488Z",
   "specId": "001",
   "folderSlug": "live-two-launcher-test",
   "parentChain": [

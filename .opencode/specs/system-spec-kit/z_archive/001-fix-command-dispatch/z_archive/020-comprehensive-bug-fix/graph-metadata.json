@@ -130,15 +130,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Comprehensive analysis and fix of the `system-spec-kit` skill and all `spec_kit` commands. This work identified and resolved **36+ issues** across P0-P3 priority levels, using **40 parallel AI agents** for analysis, implementation, and verification.",
+    "causal_summary": "Comprehensive analysis and fix of the system-spec-kit skill and all spec_kit commands. This work identified and resolved 36+ issues across P0-P3 priority levels, using 40 parall...",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-05-30T10:12:02.956Z",
+    "last_save_at": "2026-06-23T03:49:58.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2f81bb0d5e8cc232a497840e8fe65c597a6b27e17ee9f297b17e110b2e7435ba",
+    "source_doc_hashes": {
+      "spec.md": "901026eb3bb51eae44c83e17fe01b633f8eea6d4620dc313eb0d5b1a14c15bc7",
+      "implementation-summary.md": "46c116d7c6e98fb28e8dc216e0d5651e584fe23d481f339c028d89ce835340e6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

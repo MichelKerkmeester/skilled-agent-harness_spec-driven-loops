@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill advisor scoring system (explicit lane TOKEN_BOOSTS, PHRASE_BOOSTS, lexical CATEGORY_HINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow. Users have no command to analyze their repo's skills, detect coverage gaps, and apply optimized keywords, weights, and triggers. The existing plan for a \"SET-UP - Skill Advisor.md\" install guide exists only as a reference path but has no command backing it.",
+    "causal_summary": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-06-15T09:09:34.176Z",
+    "last_save_at": "2026-06-23T03:49:53.509Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cf56358b9b0fcf31f33932b09afb89c0e3d8e7e354597b864463f38271c0c4b0",
+    "source_doc_hashes": {
+      "spec.md": "d508eec5a47f8354b03b5a84443a5b7efd53a71fd61f51de3f3d2b47aca7cbb5",
+      "plan.md": "67e84bc20bb6d26e620e137f64d871c97473268996224bb173d50a43ee9855d2",
+      "tasks.md": "95378faa3c2a1c68af843e686c2c3d02cc75c4642c8017ac239bb5247fe90f87",
+      "checklist.md": "313e2d5637ed5c1f61e38c28accb1cf6570afdafb520f71e0df8a46b43bace78",
+      "implementation-summary.md": "9b219262f8c31d337e1e38cc33c1001cf67fa3bdd43b0f217fae63c395ab2262"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

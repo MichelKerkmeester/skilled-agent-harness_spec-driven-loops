@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.793Z",
+    "last_save_at": "2026-06-23T03:49:58.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:37c4f73442cc3ad9ec94aaf4d2eb5dfc032ca08ea8169ecf6737d90b85a3a14c",
+    "source_doc_hashes": {
+      "spec.md": "0cacb4ae03a527bd41bbe0d4c09015f8147773a2926ddcabd7d0fd7c44f2614b",
+      "plan.md": "e963ceadba3329bf5c81aea34164414a51acedaa1cc46623c0697612bf7df153",
+      "tasks.md": "12dde8b344bd0c3d8a3128e7b8e2ec830ff0709d248dbc99f5780566552896ce",
+      "checklist.md": "8ece9d535ecfdc12f59dac79eedcd135211722a54e54048f10572b67100e23f7",
+      "implementation-summary.md": "d90d6ce170533ba8f8efa9c15ebdd955e6c54f30aaeef35e53856619667ab530"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

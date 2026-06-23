@@ -1,15 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
-  "description": "Feature Specification: Docs and Catalogs Rollup",
+  "description": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the pr",
   "keywords": [
-    "feature",
-    "specification",
+    "spec",
+    "026",
+    "needed",
+    "two",
+    "related",
+    "documentation",
+    "deliverables",
+    "umbrella",
     "docs",
     "catalogs",
-    "rollup"
+    "rolled",
+    "reflect",
+    "shipped",
+    "capabilities"
   ],
-  "lastUpdated": "2026-06-01T13:35:43.795Z",
+  "lastUpdated": "2026-06-23T03:49:52.898Z",
   "specId": "008",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [

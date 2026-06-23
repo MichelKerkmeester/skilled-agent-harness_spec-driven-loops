@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface. The raw P0 count is inflated roughly 3x by false positives: `// Feature catalog:` comments that are gate-allowed, TSDoc `@example` illustrative values, and `dist/` build output. Fixing the raw set blindly would strip valid comments and produce wasted churn.",
+    "causal_summary": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface",
     "created_at": "2026-06-18T12:41:12.578Z",
-    "last_save_at": "2026-06-22T18:55:03.588Z",
+    "last_save_at": "2026-06-23T03:49:58.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:24d6d5df55c85ee43b3a572dd6b0d9a16f867f6b1d8c675f940d69f47dff677a",
+    "source_doc_hashes": {
+      "spec.md": "8d8b9d3fafb3df71084a22311aecff943c33e5c32340c7acac6906753777e8cc",
+      "plan.md": "3421ffa0128095098b9c3db4f68679809ed300208980bcc23e29c6fba8052590",
+      "tasks.md": "46c7fade0e426272538161b89c48c785923379e36d4de0249c5179e23ef97fd0",
+      "checklist.md": "e7e66c20d1bc56d98f8e3c0cb7f806192627a998dfa118baa7ab26df4bcd52f7",
+      "implementation-summary.md": "56c54b5544084b3273d663b6f3e9831d0699e194b899e089171be1e7305ea0f8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

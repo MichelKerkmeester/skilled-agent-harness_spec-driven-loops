@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-05-30T10:12:03.284Z",
+    "last_save_at": "2026-06-23T03:49:59.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4a8cf9a49421edf699cc939151218e44ef9a55aec446ee44c3d88c0f911e1689",
+    "source_doc_hashes": {
+      "spec.md": "a6946502dcfc27d6c34fea80e8648623a1af91a85eda5d9f4ea86fb7203712e0",
+      "plan.md": "2db19c20820a9d21d8c54a5a9c4178a933b7563e069ebb2feca23072208d9a37",
+      "tasks.md": "ba3a31e9e9a66a6ead3330ce9f0b05c3630090d17855a685e761844d23a92f9a",
+      "checklist.md": "ef2aeb99a010b625dfcee64750479fa5d20875f2254197389e5039d40e01423e",
+      "implementation-summary.md": "42082639825a5dba355613b13a7d86e7461cfbbdac1a518e411b6823bb12d79f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

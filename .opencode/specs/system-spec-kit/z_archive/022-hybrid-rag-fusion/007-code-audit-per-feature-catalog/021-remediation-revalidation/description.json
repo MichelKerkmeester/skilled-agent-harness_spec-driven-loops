@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/021-remediation-revalidation",
-  "description": "Feature Specification: Code Audit — Remediation and Revalidation",
+  "description": "After completing 20 feature-category audit phases covering 220+ features, a set of cross-cutting catalog hygiene issues emerged that require structure",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
+    "completing",
+    "feature-category",
     "audit",
-    "remediation",
-    "revalidation"
+    "phases",
+    "covering",
+    "220",
+    "features",
+    "set",
+    "cross-cutting",
+    "catalog",
+    "hygiene",
+    "issues",
+    "emerged",
+    "require",
+    "structure"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.300Z",
+  "lastUpdated": "2026-06-23T03:49:59.911Z",
   "specId": "021",
   "folderSlug": "remediation-revalidation",
   "parentChain": [

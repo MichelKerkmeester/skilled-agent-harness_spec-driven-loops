@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
-  "description": "Feature Specification: 003 — Hybrid Handler Integration",
+  "description": "The semantic matcher must be merged into `memorymatchtriggers` without weakening the lexical control surface",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "hybrid",
-    "handler",
-    "integration"
+    "semantic",
+    "matcher",
+    "must",
+    "merged",
+    "memorymatchtriggers",
+    "without",
+    "weakening",
+    "lexical",
+    "control",
+    "surface"
   ],
-  "lastUpdated": "2026-06-10T10:25:00.000Z",
+  "lastUpdated": "2026-06-23T03:49:57.195Z",
   "specId": "003",
   "folderSlug": "hybrid-handler",
   "parentChain": [

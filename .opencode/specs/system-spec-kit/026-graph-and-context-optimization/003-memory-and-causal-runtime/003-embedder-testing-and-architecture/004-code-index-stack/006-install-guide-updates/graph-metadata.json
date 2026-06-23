@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A new user clones the repo and runs CocoIndex. They get jina-code by default (post-018/001). But they don't know:",
+    "causal_summary": "Document the default + alternatives + swap runbook in INSTALL_GUIDE and README",
     "created_at": "2026-05-18T08:18:02.784Z",
-    "last_save_at": "2026-06-22T18:55:02.382Z",
+    "last_save_at": "2026-06-23T03:49:54.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:99d732f8b81ca30e5af7f8c5e248d0251fd8fbace4ad35c97ea624ce69ada948",
+    "source_doc_hashes": {
+      "spec.md": "41bed5f9a14e84d9f4bd95a63cbeb8b3f41fa171d6c066541d9508d2fcacccf7",
+      "plan.md": "9548d6c06af497368ebb135dea4610387a5cb86d3dbed333baeaef200735a52f",
+      "tasks.md": "e3711606dd521c5fbdf815c892ab00fe6eb4e60cb889b661c3e5df3e14da09e1",
+      "implementation-summary.md": "68cac0aa6a9e4c92b1856375e5d2e47dc40c762eedf4f57fb2ddc65341da5a4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

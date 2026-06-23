@@ -29,16 +29,21 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
-  "description": "Feature Specification: /doctor:code-graph apply-mode (Phase B)",
+  "description": "`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `005-doctor-diagnostic-command-phase-a/`, with apply-mode",
   "keywords": [
-    "feature",
-    "specification",
     "doctor",
     "code-graph",
-    "apply-mode",
-    "phase"
+    "shipped",
+    "phase",
+    "diagnostic-only",
+    "auto",
+    "confirm",
+    "modes",
+    "packet",
+    "005-doctor-diagnostic-command-phase-a",
+    "apply-mode"
   ],
-  "lastUpdated": "2026-05-26T17:26:26.744Z",
+  "lastUpdated": "2026-06-23T03:49:55.919Z",
   "specId": "005",
   "folderSlug": "doctor-apply-mode-implementation",
   "parentChain": [

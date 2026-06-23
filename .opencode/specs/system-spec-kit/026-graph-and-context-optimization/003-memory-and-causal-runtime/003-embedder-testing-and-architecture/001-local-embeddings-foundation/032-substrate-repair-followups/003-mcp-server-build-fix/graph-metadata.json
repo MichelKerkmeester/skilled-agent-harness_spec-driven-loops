@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The target build was reported to fail on three missing MCP SDK imports:",
+    "causal_summary": "Fix the 3 `Cannot find module '@modelcontextprotocol/sdk/*'` errors blocking `mcp_server/npm run build` by repairing the post-extraction dependency boundary.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-30T10:12:02.119Z",
+    "last_save_at": "2026-06-23T03:49:54.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:12:00Z",
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7b8dddb2942eafa3fe898c70672b53399f8296ae5f8a7f0794c048d9a40cfd08",
+    "source_doc_hashes": {
+      "spec.md": "19c9d834db18a5a5048b746d47a7c3fd7a92327992667d264723ed000ebf0fdb",
+      "plan.md": "bc19b672c713f27b79e84552587e75eb91d1523bbd323ca70ae9f99f81e59f74",
+      "tasks.md": "5bedffe553164541a37ef9247b3e63f67a9ec71608412fb140002855cc100ab3",
+      "checklist.md": "e2d2ceaedd974b449fecd0626c4afc8f1f66d0ba38a05ba49d9c1718339f3b92",
+      "implementation-summary.md": "a5d515189de05f8108f67d343a63a661049d7c3d3a6221c96771d9bdfdc38e8b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

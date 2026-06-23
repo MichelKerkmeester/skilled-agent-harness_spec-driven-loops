@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet extends the 018/003 bake-off with these 2 additional candidates using the same fixture + same measurement approach. bge-code-v1 retry deferred unless nomic is also stable.",
+    "causal_summary": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Measure hit-rate + p95 latency on the same 18-pair fixture.",
     "created_at": "2026-05-18T05:13:47.028Z",
-    "last_save_at": "2026-06-22T18:55:02.380Z",
+    "last_save_at": "2026-06-23T03:49:54.565Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:efad7b887526e0506e5ad7508724d3a1e105768bfca8d31f07d346570e7cc358",
+    "source_doc_hashes": {
+      "spec.md": "3bed28f0a8fa867b7c292870f29c9a8b5b3b51f39dfd357529bb8688e1682c2a",
+      "plan.md": "2feee7779082b267717a28ab47db294d3c11b687ba1522e750b004be38923dd7",
+      "tasks.md": "e9a01c1ce95762820313a6c44ba73fd6d173736a947eb11fcc69a598d1e4baa9",
+      "implementation-summary.md": "2c70b25a2db5221a95383162f672ecfec68382923e714feb4ea2a5e50a715052"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

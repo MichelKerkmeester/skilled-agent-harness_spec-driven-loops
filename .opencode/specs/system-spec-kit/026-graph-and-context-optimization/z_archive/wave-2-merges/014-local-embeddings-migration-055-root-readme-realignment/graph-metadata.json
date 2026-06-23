@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The project root `./README.md` was authored before several substrate changes shipped:",
+    "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
     "created_at": "2026-05-15T12:55:00Z",
-    "last_save_at": "2026-06-05T12:47:34.337Z",
+    "last_save_at": "2026-06-23T03:49:56.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:61bcbe5e2fd78bd83b0fb1a5ee4dc251256c0555eab2ebe95a8899616682bbdb",
+    "source_doc_hashes": {
+      "spec.md": "7bc19627a899d20f67a49464900e0281e8cab8beadd442a40eed28d05ef7890a",
+      "plan.md": "8ae75a031ff8af8f9255f41dba17cf4ebbc01559a6bad6e68804b03ecd64254d",
+      "tasks.md": "9dcc5e46025e5b1b3da664ef703ca41495c54d635ba0e55c4b0a040d24a8728b",
+      "implementation-summary.md": "c282af9911338e07bf18fe9e487f4f83d9832b92c202b3a2e93d011f7d2e3f40",
+      "resource-map.md": "33f949ff365521738e12e8fcf566450cc8d93b3543ae11c19a13ae1759cc4a4b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

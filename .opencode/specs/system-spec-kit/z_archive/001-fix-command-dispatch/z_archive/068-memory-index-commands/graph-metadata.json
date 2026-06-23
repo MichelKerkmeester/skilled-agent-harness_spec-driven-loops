@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Separate the unified `/memory:search` command into two focused commands: a read-only search command and a database management command.",
+    "causal_summary": "The current `/memory:search` command (667 lines) combines two fundamentally different concerns:",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-05-30T10:12:03.045Z",
+    "last_save_at": "2026-06-23T03:49:59.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:7750aaccda98499dc9bbdd4b0bbf7487d47bd737fd56dbf11565b22a8a3b95a3",
+    "source_doc_hashes": {
+      "spec.md": "2c474f560901cae1c58599ebf1b6c82cdce944acbf7643fe5b28683a2a16ee41",
+      "plan.md": "c364b5c1ddb781b7a0def3a551015147de57791ecd8647455b1a2fcff37b6651",
+      "tasks.md": "9d267dac5ffc42fb1bd9d35f2111a86aa8f5535da375cc466f2a673ca4b3f024",
+      "checklist.md": "cd881abfc96d53405acd55363d8e7f7e446c86ed18ec421b4d331dcc560fa996",
+      "decision-record.md": "96d9a12a2dd78b2bbb907ffe44f36a1de3422e2985483ff36df306e3876238a4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

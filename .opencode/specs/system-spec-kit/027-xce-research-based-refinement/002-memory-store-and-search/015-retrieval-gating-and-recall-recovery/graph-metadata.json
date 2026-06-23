@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "On-topic memory searches report `requestQuality: weak` and `do_not_cite_results` and appear to return almost nothing, even when the relevant specs are indexed and findable. The dominant cause is a calibration mismatch: the request-quality gate reads the RRF fusion score (magnitude ~0.01-0.05) as if it were an absolute 0-1 relevance, but its HIGH 0.7 / LOW 0.4 thresholds are calibrated for a cosine scale. As a result, `requestQuality: \"good\"` is structurally unreachable and every hybrid query collapses to weak/gap, forcing a conservative citation and response policy. This packet recalibrates the gate to read an absolute cosine relevance while leaving result ordering untouched, includes archived/cold (deprecated-tier) memories in retrieval by default for everyone (FSRS retrievability ranks them lower), and makes the result presentation truncation-resilient.",
+    "causal_summary": "On-topic memory searches return `requestQuality: weak`, `citationPolicy: donotciteresults`, and a \"Retrieval quality is weak\" response policy even when the exactly-right specs are indexed and surfaced",
     "created_at": "2026-06-17T19:57:25.095Z",
-    "last_save_at": "2026-06-17T19:57:25.095Z",
+    "last_save_at": "2026-06-23T03:49:57.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d6518d0b398e76da30c629b9794a0843498eed17d449973c0fe21692d24d560f",
+    "source_doc_hashes": {
+      "spec.md": "daef76effe84cbbcc40660bdd07edef3ad856a607df537061801b421d45ee2af",
+      "plan.md": "d3e23c24655cfbdfc79b8f71c6c74ae6334572310ab1e4f5ad5ff0615186b18d",
+      "tasks.md": "0dcf686d2a247c1faf41fab833eda9a2a19af60bf010ce7b71d83165d833005d",
+      "checklist.md": "32032c5f89ff9e8bfcb4ba13ce4576a5be1a0443780e0fd967e5cd102aeb768c",
+      "decision-record.md": "f0d764c5dca010b3a420658e0a6646b46fe0bc3d11c28a511d60a6fb32122188",
+      "implementation-summary.md": "7db6bf15cca55c8d421eda2710d65feca187d7c7477f3442ca41482039947d7d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

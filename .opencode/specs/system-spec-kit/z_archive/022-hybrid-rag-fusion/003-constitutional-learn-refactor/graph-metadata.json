@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight, optimization, constraint) and saves them to spec folder `memory/` directories via `generate-context.js`. This provides negligible value over the existing `/memory:save` command.",
+    "causal_summary": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight, optimization, constraint) and saves them to spec folder `memory/` directories via `generate-context.js`",
     "created_at": "2026-04-12T09:02:50.238Z",
-    "last_save_at": "2026-06-05T12:47:34.687Z",
+    "last_save_at": "2026-06-23T03:49:59.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3c2dffa16e32395120fde18d8742280c33a27263e5d7c3d2fb1cdebc3ce4696",
+    "source_doc_hashes": {
+      "spec.md": "68e7eeb34d95a619c688d34f157d84e0997a74e52e89f6abd8e187f5d6b87393",
+      "plan.md": "69b274272ac66c28ece663ee77c6b1046562dbe7be99d758c31a08e588b5c48b",
+      "tasks.md": "ea1d0f5bcfd580cbefcb71b964430a7e58bbf4e71d56c082b890577719b7e236",
+      "checklist.md": "ec210243daae28307eee9878a8a7c3cc6a8302553085cc14e0727ad1e79a6270",
+      "implementation-summary.md": "2e4dc7e8b193e8d903ad1be5af208b881ae4705dedf12f9b7617b42cc63cb747"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

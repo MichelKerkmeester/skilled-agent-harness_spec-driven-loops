@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "11-feature"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of the 11-feature live Retrieval category in the Spec Kit Memory MCP server. This packet currently preserves detailed findings for 10 audited features and explicitly tracks the remaining live-catalog delta for follow-up coverage sync.",
+    "causal_summary": "The feature catalog for Retrieval has evolved significantly",
     "created_at": "2026-04-12T09:02:50.244Z",
-    "last_save_at": "2026-06-22T18:55:04.195Z",
+    "last_save_at": "2026-06-23T03:49:59.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:27f52e240d339581408b51643f7e4bc0a6a9b364de8b5c642ceda1436ed0d0b4",
+    "source_doc_hashes": {
+      "spec.md": "568b0b03b8a762ff1ff34f5b2ebd01ed2a237030624618600c26f6bd77b6c9f9",
+      "plan.md": "517701efa6f6ea44c3f016245162ef050006195f0036d85a49f9b65ab4a51c44",
+      "tasks.md": "4abd135e6a52d015246ffe7d042d18c5e8c9abce0b9d1cccf5f163686b3f88ad",
+      "checklist.md": "9d59dfad9c8924ffebe9e65234fbb2cec8366402c5efe3e3a25b737c8316b567",
+      "implementation-summary.md": "b8251f1bdcd125671ee1970ce548010ee0f9f33fc483743be12ab3436a13fada"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

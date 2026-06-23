@@ -166,9 +166,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 10-iter SWE-1.6 deep-review on 007 returned verdict PASS with 2 P2 findings on `.opencode/bin/mk-skill-advisor-launcher.cjs`. Both are polish items in the 007 fix that landed in commit `65761c8fb`:",
+    "causal_summary": "Closes 2 P2 findings from 007 deep-review: move skill-advisor PID guard write inside the bootstrap-lock critical section, and gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.",
     "created_at": "2026-05-18T18:05:16.895Z",
-    "last_save_at": "2026-05-30T10:12:02.370Z",
+    "last_save_at": "2026-06-23T03:49:54.879Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,6 +177,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:06ac3c1ae8e4f081bc40c658f84fd2ecef238379fb4d7d50693977a46b9746f5",
+    "source_doc_hashes": {
+      "spec.md": "f116a6c7e38c88cd52b5d7d9450baeb9bf7615d579092a833a8621288095db29",
+      "plan.md": "569a6d0b8897ba43d984aa650e796167b1861482f3c4cf37ff9a2445d553d83b",
+      "tasks.md": "f0d15a564577fe9e25296fc3c74fd7bdc338ebcfb6b4254cafd00a9256ef8888",
+      "implementation-summary.md": "ed5ba5abd75726a206df617f3a65287a07381aeec8404266c04d17d6d8240b1b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

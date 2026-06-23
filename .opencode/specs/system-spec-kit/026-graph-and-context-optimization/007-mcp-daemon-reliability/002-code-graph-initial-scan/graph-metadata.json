@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the packet: with the code-graph server able to start (Phase 1), populate the empty graph so structural queries work.",
+    "causal_summary": "`codegraphstatus` reports `totalNodes: 0`, `freshness: \"empty\"`, `action: \"fullscan\"`",
     "created_at": "2026-05-28T16:38:37Z",
-    "last_save_at": "2026-06-05T12:47:34.269Z",
+    "last_save_at": "2026-06-23T03:49:56.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:93a06ed77fc0e36f8f1b2980e720aff7174a5181859663f2772aaf905e25f8bd",
+    "source_doc_hashes": {
+      "spec.md": "87790779a24b3d2f13530da6897dd22a4a2100c7ecfecac41f3fcc075d293a9b",
+      "plan.md": "3f4c7713c954e9f3e600df494b48d71782aa19eb4e8ae60e6897713258bcc97e",
+      "tasks.md": "bbacc31129522b8e4bc1d3d5d5c51b8e76ad4b6093e5dd978a28f0d7a4a079ec",
+      "implementation-summary.md": "35e1bc6968276e08d1fdd5e6e2b15300426472ff2dc20bd5a852b9df838b0335"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

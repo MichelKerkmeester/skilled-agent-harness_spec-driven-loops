@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
-  "description": "Spec: CocoIndex Remove, Cancel, and Index Lifecycle",
+  "description": "The code-index audit found that remove/close can race active indexing and that index operations lack a real protocol cancel surface",
   "keywords": [
-    "spec",
-    "cocoindex",
+    "code-index",
+    "audit",
+    "found",
     "remove",
-    "cancel",
+    "close",
+    "race",
+    "active",
+    "indexing",
     "index",
-    "lifecycle"
+    "operations",
+    "lack",
+    "real",
+    "protocol",
+    "cancel",
+    "surface"
   ],
-  "lastUpdated": "2026-05-26T17:25:52.227Z",
+  "lastUpdated": "2026-06-23T03:49:55.119Z",
   "specId": "006",
   "folderSlug": "cocoindex-remove-cancel-and-index-lifecycle",
   "parentChain": [

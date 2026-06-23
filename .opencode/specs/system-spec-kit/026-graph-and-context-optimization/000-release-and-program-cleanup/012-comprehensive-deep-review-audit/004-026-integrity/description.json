@@ -1,16 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
-  "description": "Feature Specification: 026 Program Integrity Review Slice",
+  "description": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated",
   "keywords": [
-    "feature",
-    "specification",
     "026",
     "program",
-    "integrity",
-    "review",
-    "slice"
+    "tracks",
+    "634",
+    "sub-packets",
+    "recently",
+    "changelog",
+    "audit",
+    "drift",
+    "completion-claim",
+    "reconciliation",
+    "remediated"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.957Z",
+  "lastUpdated": "2026-06-23T03:49:52.992Z",
   "specId": "004",
   "folderSlug": "026-integrity",
   "parentChain": [

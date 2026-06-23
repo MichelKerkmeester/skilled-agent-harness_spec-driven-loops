@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Reality diverged from ADR-001 in two ways. First, the user manually flattened the code-graph source tree so runtime code now lives directly at `.opencode/skills/system-code-graph/mcp_server/{lib,handlers,tools,tests}/` rather than under an intermediate `code_graph/` directory. Second, the user reversed ADR-001 Q3 and now requires a standalone MCP topology.",
+    "causal_summary": "Reality diverged from ADR-001 in two ways",
     "created_at": "2026-05-14T09:13:21Z",
-    "last_save_at": "2026-05-30T10:12:02.597Z",
+    "last_save_at": "2026-06-23T03:49:55.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T09:24:15Z",
     "source_docs": [
@@ -204,6 +204,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cff43dfe9ddd576c9cb43788780a1bfaa56efe4a834ba957e43579ec851ced74",
+    "source_doc_hashes": {
+      "spec.md": "3f1c2674b7df87c1ef9edbe3be1e4d08c396437c57dabb8b943ac04e08fbdeec",
+      "plan.md": "fc205b38f0db0b0e8a60bb98256c4f753e45fc2039b830bad19a356698b9f66b",
+      "tasks.md": "73af0dc300edbba38a55386f02d75c1c271e5246f0a00c5a166b9609a966aeb6",
+      "checklist.md": "8f8dd7ae5638db6b01f74b66b98249ac5198c8ffb2eed0c0ec9475a1a8aa15ae",
+      "decision-record.md": "514585b1c2a1232069b26f02702e33bf65c7b31b9882e5b3ae56eab55283e75c",
+      "implementation-summary.md": "cac1fd3eca0f1522467d48a0f8f77f7dc0188cd9bb860b8fb026c90955533d16"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

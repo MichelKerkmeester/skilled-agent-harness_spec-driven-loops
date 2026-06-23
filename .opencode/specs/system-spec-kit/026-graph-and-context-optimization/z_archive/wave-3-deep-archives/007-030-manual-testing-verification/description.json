@@ -17,16 +17,22 @@
     "status": "complete"
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
-  "description": "Feature Specification: 016 Manual Testing Verification",
+  "description": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook",
   "keywords": [
-    "feature",
-    "specification",
-    "016",
     "manual",
     "testing",
-    "verification"
+    "verification",
+    "packet",
+    "mk-code-index",
+    "rename",
+    "post-014",
+    "work",
+    "layer-1",
+    "execution",
+    "every",
+    "scenario"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.879Z",
+  "lastUpdated": "2026-06-23T03:49:56.790Z",
   "specId": "007",
   "folderSlug": "030-manual-testing-verification",
   "parentChain": [

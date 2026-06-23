@@ -1,17 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/003-remove-memory-rerank-path",
-  "description": "Feature Specification: Remove mk-spec-memory local cross-encoder path",
+  "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
   "keywords": [
-    "feature",
-    "specification",
-    "remove",
-    "mk-spec-memory",
-    "local",
-    "cross-encoder",
-    "path"
+    "part",
+    "cocoindex",
+    "rerank-sidecar",
+    "deprecation",
+    "arc",
+    "014"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.278Z",
+  "lastUpdated": "2026-06-23T03:49:55.762Z",
   "specId": "003",
   "folderSlug": "remove-memory-rerank-path",
   "parentChain": [

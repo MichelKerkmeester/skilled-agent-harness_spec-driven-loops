@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Expose additive per-query diagnostics and index/runtime fingerprints so retrieval behavior can be audited before 023B calibration and later request-budget work.",
+    "causal_summary": "mcp-coco-index had timing logs and result metadata, but it did not expose enough retrieval-stage evidence to explain quality regressions",
     "created_at": "2026-05-19T00:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.319Z",
+    "last_save_at": "2026-06-23T03:49:54.695Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e4d100a48a3e3fd41fba1f6a887493ae862f09f3200e1c4b6d782af4242d46bb",
+    "source_doc_hashes": {
+      "spec.md": "f55c1a4772285a509a4b5eb0f5640676ebef7c7ca5d11581eec59fb1372a941c",
+      "plan.md": "9d32b936d93f82ca2cd12359f56a276637e608c8e7e053776db05d7af0eff8ed",
+      "tasks.md": "8fcb6bc6cdd096e0d2eea0f2014b6078cb60ba5fee7a0d8d179740f2d77e6b86",
+      "checklist.md": "e7dca67ef0d2a2a31f8e0e2682a62377dc26553ff98bf75d889c6876cb98e32c",
+      "implementation-summary.md": "cd76f2e4f2eed2f33802697be4104d98a5fd2d70da570027c81684e74e4dfffa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

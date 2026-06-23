@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up parent directories looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md`. When the sentinel is not found within the depth cap, the function fell back to returning `start` itself. The advisor then joins its state path onto that root and `mkdirSync`s it, so an advisor-bearing process whose cwd is inside a `specs/` packet subtree — deep-loop fan-out seats (`context/seats/iter-NNN/`), deep-research iteration dirs (`research/`), prompt/asset working dirs — materialized a stray `.opencode/skills/.advisor-state/skill-graph-generation.json` inside that packet on every run.",
+    "causal_summary": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up parent directories looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md`",
     "created_at": "2026-06-18T18:41:11.390Z",
-    "last_save_at": "2026-06-18T18:41:11.390Z",
+    "last_save_at": "2026-06-23T03:49:57.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7d5a68d4b186b6bef723cb707ab5959d651815ddb30b5b6a1a5a611c354f227c",
+    "source_doc_hashes": {
+      "spec.md": "df7f0f349a45e8d21e4ca18e653fd7ff7dd909adbcbcc5be2d07b4aad3e11f8d",
+      "plan.md": "ce3f0f9d940ca789b130f12a611c0c689ae5869ca5e4ca6b19ca6a077b83a0d2",
+      "tasks.md": "14d0d2745362f571803a268d8bab693de557e0f001e1c904e8f8b83f5c209dca",
+      "checklist.md": "97fb64bd6a2019b0020d1455aca2917c7da3eca6d6ac92909c2c8f58fb6a6288",
+      "implementation-summary.md": "e4ba3c5b5873a27e68f88230f4efb95e73533c5427e332061c800da63183e292"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

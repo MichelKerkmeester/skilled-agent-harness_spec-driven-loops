@@ -1,14 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
-  "description": "Feature Specification: Envelope-Fidelity Enforcement",
+  "description": "The 029 model benchmark exposed soft spot B, envelope fidelity",
   "keywords": [
-    "feature",
-    "specification",
-    "envelope-fidelity",
-    "enforcement"
+    "029",
+    "model",
+    "benchmark",
+    "exposed",
+    "soft",
+    "spot",
+    "envelope",
+    "fidelity"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.698Z",
+  "lastUpdated": "2026-06-23T03:49:58.344Z",
   "specId": "027",
   "folderSlug": "envelope-fidelity-enforcement",
   "parentChain": [

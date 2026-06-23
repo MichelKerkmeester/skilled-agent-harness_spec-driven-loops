@@ -29,12 +29,12 @@
       "deep",
       "research",
       "charters",
-      "sub-phase",
-      "groups",
-      "remediation",
-      "work",
+      "phase",
+      "parent",
+      "covering",
       "automation",
-      "self-management"
+      "self-management",
+      "supplemental"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase groups deep research charters and remediation work for automation self-management, system bugs, and supplemental investigations. The four children bind together thematically through their focus on investigation-driven improvement: 016 and 017 explore automation capabilities and reality, while 046 conducts system-wide deep research and 049 remediates findings from those investigations.",
+    "causal_summary": "Phase parent for deep research charters covering automation self-management, supplemental investigations, and system bug/improvement research across 4 child packets.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.768Z",
+    "last_save_at": "2026-06-23T03:49:52.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:4181f94d7fbd990ba77fa582327da679398f3732905657f73a12e076e8b1d5ae",
+    "source_doc_hashes": {
+      "spec.md": "a960a183f43ef388019df70517479cd879d6f2234568ff7db515cdfd4cc48e4e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

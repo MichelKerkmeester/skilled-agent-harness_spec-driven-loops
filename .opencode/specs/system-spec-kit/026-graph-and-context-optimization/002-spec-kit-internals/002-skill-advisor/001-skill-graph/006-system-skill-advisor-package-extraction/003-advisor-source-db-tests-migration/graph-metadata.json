@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The advisor source tree and this spec packet were moved outside git tracking before this run. The physical source move was already complete, but references still pointed at the old packet lineage and parts of the bridge still imported advisor modules from the deleted source location. The standalone advisor package also needed local TypeScript/Vitest/package metadata and its DB resolver still defaulted to the old Spec Kit database directory.",
+    "causal_summary": "The advisor source tree and this spec packet were moved outside git tracking before this run",
     "created_at": "2026-05-14T10:45:00Z",
-    "last_save_at": "2026-05-30T10:12:01.877Z",
+    "last_save_at": "2026-06-23T03:49:53.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T10:45:00Z",
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:867adbad0c91f72a9af2f6153cbf01da1b5a211b7d52e994a1adb801466b1da8",
+    "source_doc_hashes": {
+      "spec.md": "04861747fbe2ac251ca5800857f4215af07e145f91c936e4d359bd1b959eba23",
+      "plan.md": "bb0550e2ca95d7c16ab3cde0dbf855d68f29f782ef53cfb482abc4b1860b29dc",
+      "tasks.md": "0c7b16e071901f5128a3948a9da01bc59ace8834a1cbdecf117ed524e00273c9",
+      "checklist.md": "f053feb45d9bd461f8b4424604dc5380a1e441b644e45c91e46b5af3e4d34e82",
+      "implementation-summary.md": "64f6e6fa6ea9b752ca6ed9565f4c256f3d70e3b9e628fda72b6153e62f498ef5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

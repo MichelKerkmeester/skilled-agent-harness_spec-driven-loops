@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The tooling-and-scripts category (16) contains 33 scenario files covering 65 exact scenario IDs that have not been manually tested against the live system. This is the second-largest phase by exact ID count, with two major sub-scenario expansions: M-007 (session capturing pipeline quality) with 17 sub-IDs and 153 (JSON mode structured summary hardening) with 15 sub-IDs. Each requires systematic validation with documented evidence.",
+    "causal_summary": "The tooling-and-scripts category (16) contains 33 scenario files covering 65 exact scenario IDs that have not been manually tested against the live system",
     "created_at": "2026-04-12T09:02:50.302Z",
-    "last_save_at": "2026-06-05T12:47:34.875Z",
+    "last_save_at": "2026-06-23T03:50:00.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:029326747f9d25e269b475be2a5891ca0a09973ae9a841652249d73f33469e4d",
+    "source_doc_hashes": {
+      "spec.md": "4911e5b9913bc3d62e2180443cc6a5871b7d0c233304496754e6b5e046203155",
+      "plan.md": "112391cedcb36b4d1beecb85097de31f9bfee40eb81cca827ea0ad0e135ebb7b",
+      "tasks.md": "34335bd598928d3e2eccfd561b6c29898096e544203d0a659ae179b78a8d3d4d",
+      "checklist.md": "25a50a07244f87bcb9ce3d98600b47eff3dfdc778f6339da5f708c1f71b027c6",
+      "implementation-summary.md": "f13ef0c774cd1089bb27252f88974c1636ef737114f97bfc709dd100b3341f62"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

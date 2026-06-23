@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptive overfetch, opt-in), W7 (degraded-readiness stress cells). The implementations passed measurement gates against synthetic fixtures, but several open questions remain:",
+    "causal_summary": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptive overfetch, opt-in), W7 (degraded-readiness stress cells)",
     "created_at": "2026-04-29T06:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.730Z",
+    "last_save_at": "2026-06-23T03:49:52.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:76289a02f5848ee4a0c8946a726e3f39ccd290ceecf758c6338e3438c1d7eec7",
+    "source_doc_hashes": {
+      "spec.md": "b13cdf69deecb23c743fd3445ee85684ffecbebeb00ace9d75ae4a6ab27b5209",
+      "plan.md": "ba0d715595b4931fa5c907359119ff13caef293f7f52a54cd655aeb16bee9809",
+      "tasks.md": "7b45e9873481e53bd784da5a53466b9f80251f4ede9968aef85bacb4288c10e3",
+      "checklist.md": "0c99e1e297d72c857b930ca4037675326d1d6e5808f1e652f9257b2d78023c8d",
+      "implementation-summary.md": "a3bf6d00a39449fb72d95abe8fbb4425ecedbded7e3b63ffa031677bc84fad7c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

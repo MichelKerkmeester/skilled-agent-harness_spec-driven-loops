@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Close all 7 P1 findings with surgical edits, add fixture tests for F14 (parent-liveness), F94 (pre-parse failure id), F95 (rejected-promise eviction), and verify no regressions in sidecar-hardening.vitest.ts.",
+    "causal_summary": "sidecar-worker.ts has 7 P1 findings from arc 010/001 deep-research covering: dead model-name fallback (F5), incorrect parent-liveness detection (F14), single-caller helper-function indirection chain (F19), 4 trivial-impl single-call helpers (F26), inconsistent error-message detail across module boundaries (F30), pre-parse failure responses use id=0 with silent loss (F94), cached rejected provider promise persists indefinitely (F95)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.485Z",
+    "last_save_at": "2026-06-23T03:49:55.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c52e9ef69d0c1235d6b6394991519d55d748900f833a7240814d375e17048899",
+    "source_doc_hashes": {
+      "spec.md": "17f8806305084548abfb2173ee3726a9341bb41f127bdda31a5fc8521055b5be",
+      "plan.md": "8b4db240d486a11884d830b13212035aebc03fb6c00681499c5050f70b524544",
+      "tasks.md": "a93df947a11187caeadc43c945498de9a6c05ec06790eef3c0c6e731d9ac56b9",
+      "checklist.md": "839e0c787afe510598769e71e6f61d94cad1d942a460be35209b4512ca2bf298",
+      "decision-record.md": "3a81609d93019e4773a091ae8a8423fb52d2d8c20894623dba8b21b4d8371896",
+      "implementation-summary.md": "9e463456e4e96a5ff4c36d2d3406a39dab07f3e9de67ec77920e566e70172888"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "title: \\\"Spec 089: system-spec-kit Reimagined Refinement\\\"",
     "created_at": "2026-04-12T09:02:53.559Z",
-    "last_save_at": "2026-05-30T10:12:03.120Z",
+    "last_save_at": "2026-06-23T03:49:59.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:4fb50a3d8407460428d5280f93bafd59a835fdadd0fb509541c10217a12241cd",
+    "source_doc_hashes": {
+      "spec.md": "b4642344d67dc933af128191af68e2e31178f9469d31860996b98f6358e2cf7a",
+      "plan.md": "7197e97a55fab5f65bc805e7cb99ebef679717ffec372a8c0d6fac78dc728850",
+      "tasks.md": "702c144ce45d0ab9e5a5e97faab68fc35925af7c7ab30196422f2670d3fcb13a",
+      "checklist.md": "e0738d9acd31a4bee5e83ec1603e5ea79dc9f4fecffd08bf424d420854eab365",
+      "decision-record.md": "0e3b011f6be0f9d3a09b7454be3a2aaffcf2efaa7aa38ed273f36a084dee6aa8",
+      "implementation-summary.md": "1e1e3b34b2d7ec4fc5c48b7ff987f45b0de6ab93419c388271d6a59d7d745101",
+      "research/research.md": "96b1eeb1de2a991d831f2c91e82f69e0eef98e3156933b2f0b6f638b74f38b99"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

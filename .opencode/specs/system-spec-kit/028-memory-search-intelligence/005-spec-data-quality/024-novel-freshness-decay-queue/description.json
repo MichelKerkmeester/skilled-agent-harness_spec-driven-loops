@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue",
-  "description": "Feature Specification: Novel Freshness Decay Auto-Refresh Queue",
+  "description": "The FSRS retrievability number is SHIPPED and computed live on every read",
   "keywords": [
-    "feature",
-    "specification",
-    "novel",
-    "freshness",
-    "decay",
-    "auto-refresh",
-    "queue"
+    "fsrs",
+    "retrievability",
+    "number",
+    "shipped",
+    "computed",
+    "live",
+    "every",
+    "read"
   ],
-  "lastUpdated": "2026-06-21T10:22:34.206Z",
+  "lastUpdated": "2026-06-23T03:49:58.709Z",
   "specId": "024",
   "folderSlug": "novel-freshness-decay-queue",
   "parentChain": [

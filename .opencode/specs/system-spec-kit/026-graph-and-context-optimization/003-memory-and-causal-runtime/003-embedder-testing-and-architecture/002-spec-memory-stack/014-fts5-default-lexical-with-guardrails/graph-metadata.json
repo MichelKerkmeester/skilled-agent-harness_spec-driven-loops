@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 013 recommended Option B: stop warming the resident JavaScript BM25 index by default and use SQLite FTS5 as the lexical BM25 rank provider, but only with guardrails. The risk is not RRF itself; the risk is losing shared synonym expansion, stemming visibility, identifier fixtures, and tests that distinguish implementation detail from retrieval quality.",
+    "causal_summary": "Implement Option B from packet 013: make SQLite FTS5 the default lexical BM25 provider while preserving legacy fallback and adding golden-query guardrails.",
     "created_at": "2026-05-19T19:25:52.541Z",
-    "last_save_at": "2026-06-22T18:55:02.319Z",
+    "last_save_at": "2026-06-23T03:49:54.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a206526a949da570d09e06c893cfc63bb024ffd1499ca115fd2f70b10cf10da7",
+    "source_doc_hashes": {
+      "spec.md": "586c819731392a1de6766c0ee3f1dd59472dd6dee8c0cf1947b2bfd546777f33",
+      "plan.md": "36b272b80daff40f1a41427dee7122dd5679ba4ee5a935b9cbe04f96cb092fbb",
+      "tasks.md": "5da1f16af2bf7a1d3cd2856405fe0d5c2636088181fbb98e10bb3f58bf27c0c5",
+      "checklist.md": "6b3485af585af104bfc6df9a556ba912def707b421c16fe66504208a210ab584",
+      "implementation-summary.md": "0c75f66a90ca908bb9e4cf4639e6d4f7393c7e0da2d8ae5cc3812be78fc985f7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,18 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment",
-  "description": "Spec: README & Install Guide Alignment",
+  "description": "The README files contain multiple factual errors that cause user confusion:",
   "keywords": [
-    "spec",
     "readme",
-    "install",
-    "guide",
-    "alignment"
+    "files",
+    "contain",
+    "multiple",
+    "factual",
+    "errors",
+    "cause",
+    "user",
+    "confusion"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.907Z",
+  "lastUpdated": "2026-06-23T03:49:59.141Z",
   "specId": "045",
   "folderSlug": "readme-alignment",
   "parentChain": [

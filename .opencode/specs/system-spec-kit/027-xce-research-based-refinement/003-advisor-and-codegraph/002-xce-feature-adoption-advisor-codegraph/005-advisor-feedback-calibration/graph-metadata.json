@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the spec-027 feature adoption into the advisor and code-graph daemons. It turns recorded validate outcomes into shadow calibration signal.",
+    "causal_summary": "The advisor already accepts accepted/corrected/ignored outcome events through `advisorvalidate` (`schemas/advisor-tool-schemas.ts:240-250`), but nothing consumes them, so real routing feedback is discarded",
     "created_at": "2026-06-10T19:24:11Z",
-    "last_save_at": "2026-06-12T04:40:47.927Z",
+    "last_save_at": "2026-06-23T03:49:57.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:98f6702834449ca835b6e12bd6d573a5e6b8ca37826f8f63e154a3a61e727350",
+    "source_doc_hashes": {
+      "spec.md": "ad6399bd21beb220912dc2a0e1badbb08a02c92f477949595ca9ab48b0767130",
+      "plan.md": "b4717a023e21fd8de88dc93e1d2a8bde4e14daa549f095f05bda7c4e0c466216",
+      "tasks.md": "7b86d0d8bd16dcd04ddde9e99e53ba6a46bce9ac8a83185e60022c4d4cb17a74",
+      "implementation-summary.md": "737589c4963e466716654329c3d22e5f08c95ae1f0ac1393b04d8dc88d20e848"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

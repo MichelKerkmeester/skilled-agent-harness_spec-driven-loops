@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification",
-  "description": "Feature Specification: Quality Scorer Unification",
+  "description": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
   "keywords": [
-    "feature",
-    "specification",
+    "pipeline",
+    "runs",
+    "three",
     "quality",
-    "scorer",
-    "unification"
+    "checks",
+    "split",
+    "contract",
+    "stored",
+    "indexed",
+    "uses",
+    "0-1",
+    "scale",
+    "workflow",
+    "gating",
+    "0-100"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.336Z",
+  "lastUpdated": "2026-06-23T03:50:00.001Z",
   "specId": "001",
   "folderSlug": "quality-scorer-unification",
   "parentChain": [

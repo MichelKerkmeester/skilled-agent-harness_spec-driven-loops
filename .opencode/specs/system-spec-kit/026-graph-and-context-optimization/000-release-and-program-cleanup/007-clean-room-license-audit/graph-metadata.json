@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Produce a single ADR in this sub-phase's `decision-record.md` (or surfaced into 012 phase-root `decision-record.md` ADR-012-001) confirming the license posture and explicit allow-list of pattern-only adaptations.",
+    "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-06-05T12:47:33.185Z",
+    "last_save_at": "2026-06-23T03:49:52.891Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e6825517da053ca1f4d8649c7f17870a0163cf6378858153badf04bdb66d4517",
+    "source_doc_hashes": {
+      "spec.md": "4141063764e4d1019db0e62cc6a38f0004fa8519e06c141aad19f25f53cc0e9a",
+      "plan.md": "97d50ee8f45d620ef3efa19bd2e6f23cf49c3722543bf697d19f53861734eb6d",
+      "tasks.md": "bcbcaf2e83686ce2908efb1382081ca4bb6ce09b8ebb4f376e36dce057cb755c",
+      "checklist.md": "7f12f9eed6e7528c4dd3d720907d316c1f0fcfca47bf64a77268902d90287e5b",
+      "decision-record.md": "d21905c0ae2d8789a17d7857e45df829e44cca4a946a4aeb63808b6f19049b2f",
+      "implementation-summary.md": "7a09acc8f5c77ebc0f78e430ecf58826903481fe443e39c3b43f08ddb3528d43"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

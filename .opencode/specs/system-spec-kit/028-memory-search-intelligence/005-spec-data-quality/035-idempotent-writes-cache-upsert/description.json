@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert",
-  "description": "Feature Specification: Idempotent Writes and Global-Cache Upsert",
+  "description": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged con",
   "keywords": [
-    "feature",
-    "specification",
-    "idempotent",
-    "writes",
-    "global-cache",
-    "upsert"
+    "spec-kit",
+    "description",
+    "generators",
+    "write",
+    "json",
+    "aggregate",
+    "descriptions",
+    "cache",
+    "non-idempotently",
+    "rerun",
+    "unchanged",
+    "con"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.857Z",
+  "lastUpdated": "2026-06-23T03:49:58.775Z",
   "specId": "035",
   "folderSlug": "idempotent-writes-cache-upsert",
   "parentChain": [

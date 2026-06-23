@@ -34,7 +34,7 @@
       "two-launcher",
       "substrate",
       "child-marker",
-      "coordinates"
+      "control"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Coordinates the three deferred follow-ups surfaced by the 032 (daemon-lifecycle healing) and 035 (worktree-per-session) work and triaged by an Opus scope+verify swarm. This is a CONTROL FILE — each child carries its own spec/plan/tasks and lands as an independent, gated commit.",
+    "causal_summary": "Control file coordinating the three deferred follow-ups from the 032/035 daemon-lifecycle + worktree session: live two-launcher integration test, substrate Code-Graph scenario correctness, and worktree child-marker dispatch documentation.",
     "created_at": "2026-05-30T19:40:11.242Z",
-    "last_save_at": "2026-06-05T12:47:34.299Z",
+    "last_save_at": "2026-06-23T03:49:56.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:04f6bb5ebb4c7a0367c4b86146eaff94b69522961a00dc4dfa88eb55d5874f9c",
+    "source_doc_hashes": {
+      "spec.md": "6c70c078c4e8d0120ae06955cace0580391c566f5ee1825a1e7b18252f55ad5f"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon",
     "last_active_at": "2026-05-31T05:10:00.000Z"
   }

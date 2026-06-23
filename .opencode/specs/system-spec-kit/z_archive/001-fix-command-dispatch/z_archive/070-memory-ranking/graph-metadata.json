@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory dashboard displays \"top folders\" ranked purely by **memory file count**. This creates several issues:",
+    "causal_summary": "The memory dashboard displays \\\"top folders\\\" ranked purely by memory file count. This creates several issues",
     "created_at": "2026-04-12T09:02:53.543Z",
-    "last_save_at": "2026-05-30T10:12:03.061Z",
+    "last_save_at": "2026-06-23T03:49:59.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:8219ff7920b0d49a4115698900a11210e0bc825e295bdf0831e1c866dff50f4e",
+    "source_doc_hashes": {
+      "spec.md": "9b4e3dd33637a0969e0c3a86344bda5ee7b98b6008f01d9fa5dfc1850ad492ce",
+      "plan.md": "8efc27620c049b38570b44e7f98452e134b36602beb78ff870dd13ba19348893",
+      "tasks.md": "1e65c4619ab894dd1599dcc106c99761c4056edc92b8345e053e6cfacb80a04d",
+      "checklist.md": "a16f918c4e04b1cfcec63277e4f1ef535cfbd28eda37a17937e64e74163577c1",
+      "decision-record.md": "18e2c8df980f05a22ec60b3ab63d37ba699a6f68f1cef488c9d52d236cdb4666",
+      "implementation-summary.md": "1c2ac603108be313d2a0bf485bf8ef1187611eef56f1c9f72dfd0b181915741a",
+      "research/research.md": "2b365de70d5ea4a84c6152755179f3f2106535b8fd8ea33aa45ba3a0803a6032"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal. The skill advisor's five-lane scorer (`scorer/lane-registry.ts`) carried a dormant `semantic_shadow` lane at `weight: 0.00, live: false` that was NOT a real semantic lane — it was token-overlap with a 0.8 multiplier (see `scorer/lanes/semantic-shadow.ts`). Prompts that describe intent without naming the skill's keywords got no semantic recall signal.",
+    "causal_summary": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-06-22T18:55:02.087Z",
+    "last_save_at": "2026-06-23T03:49:53.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3d122e4da31ec310796042ebd05db42c321b1a23c2edb855b2290d35f4243a43",
+    "source_doc_hashes": {
+      "spec.md": "f15414a00542b62e234ffecd6fc0ae17f30a173ed912d0816824e7fbca19ca40",
+      "plan.md": "394ae34feb68b3831ebf8cb15757b925f7885513a08a2f9d6da7528141c51d52",
+      "tasks.md": "2cf2dd4ac944f5ba8d4ff247bc82723c0f279d50f7ba04754be6e904782935d9",
+      "checklist.md": "e0ca9333a9a1625e547c5bb9b51456e72b5bb5b81243c894a02fba4978e80ca3",
+      "implementation-summary.md": "58c68101a685ad477535d2f30a284515801947056cc337e9727061618e7b4aac"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

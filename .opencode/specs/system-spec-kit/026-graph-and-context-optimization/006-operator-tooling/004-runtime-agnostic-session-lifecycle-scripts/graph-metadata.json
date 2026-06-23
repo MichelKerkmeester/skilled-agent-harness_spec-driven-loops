@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only. Three concrete problems:",
+    "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-06-22T18:55:02.954Z",
+    "last_save_at": "2026-06-23T03:49:56.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2934cf66678e43c35131bcb81ea5a987ee0f03c13a6c09575edf2ecf2017aca7",
+    "source_doc_hashes": {
+      "spec.md": "ab1a588d297627f9200ec05517e97babfc8dd44039b29cc5fa7398bd69080b1e",
+      "plan.md": "e078fb809c9a802b8f1322d7e6112587477f532d180bf727d213d85cd296576c",
+      "tasks.md": "8cffb52cde4d127745cbcd0677ac7e407a5688af3ed9c386bcde750ee66edf95",
+      "checklist.md": "708347528187d09c2d48efe014729d4a3f268f0a6a10543a80717d8d07416e85",
+      "implementation-summary.md": "59d9dbcad24bb600ab5b0a889a721cbbb6a85ece3a2fe3dfad035563184b6baa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

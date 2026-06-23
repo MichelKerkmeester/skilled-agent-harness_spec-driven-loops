@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
+    "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.652Z",
-    "last_save_at": "2026-05-30T10:12:03.490Z",
+    "last_save_at": "2026-06-23T03:50:00.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8916693bd035b64afde3d57def2a43409e616edbc95c2955a2aef6b3dd941ec2",
+    "source_doc_hashes": {
+      "spec.md": "21805470227426b8c1cbb3bf58919deb4238f1f137b30dd75f0c3de79dee4d18",
+      "plan.md": "52921c8baed9df5168dd4235c73a64e0a685558c10156ef9e90f3283def36f5b",
+      "tasks.md": "7c5848543fe12b4f3ed3c02af1190ee36fc7727a06cec22d5dfd93de7d83b7f3",
+      "checklist.md": "ded85eae8f8d697be0f591648964243de08fe82f05166c9a05e1c1cb67f4db1d",
+      "implementation-summary.md": "9afb1e695b1d8af14dc922606479dbc84b5dc0357f574dd773b378c8eaf9dbb0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

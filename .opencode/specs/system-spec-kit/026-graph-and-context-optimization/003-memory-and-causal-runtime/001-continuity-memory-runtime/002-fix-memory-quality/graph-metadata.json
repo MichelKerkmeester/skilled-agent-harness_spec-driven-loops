@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git provenance, and template structure. Shipping only the research would have left the save pipeline unrepaired, and shipping only the narrow code fixes would have left the packet without phase-level proof, operational tail decisions, or a durable closeout surface.",
+    "causal_summary": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git provenance, and template structure",
     "created_at": "2026-04-12T09:02:53.454Z",
-    "last_save_at": "2026-05-30T10:12:02.037Z",
+    "last_save_at": "2026-06-23T03:49:53.829Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:5d8e37edb2c4e6a2a033e829faeb66957231580f2d4eba5f25294b7750d57627",
+    "source_doc_hashes": {
+      "spec.md": "4b7b076324950e9ea3318db19c436336dc3f51c4ddd947a6521b0f32aa415c84",
+      "plan.md": "96278a6212c58b99f301ca226f0c229b668452e855a45a86096cf790c856b287",
+      "tasks.md": "c61dee249643c4bed435ce06881bfd8d237fb0e906c82cfdd2da9e94ebdb7378",
+      "checklist.md": "7ae14c4530609224db6ad9b8d973f4c91da23c53a76b4072d87eb8c19c4ff69f",
+      "implementation-summary.md": "8ec1e79da0f99cb8e36f3616f1fa6b193add09f892c151506e017e63ae9a87c7",
+      "research/research.md": "65dc042191d0aa13d5ebd3822d1df74da0a2b147fa57a49e07d6477622458f50"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

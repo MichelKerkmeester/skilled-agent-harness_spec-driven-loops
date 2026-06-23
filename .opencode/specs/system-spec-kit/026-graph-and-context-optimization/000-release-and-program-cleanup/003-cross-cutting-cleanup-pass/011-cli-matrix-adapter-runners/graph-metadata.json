@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNER_MISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`). Packet 030 had already established the target shape: F1-F14, external CLI executors, non-applicable cells as first-class outputs, and per-feature runners plus a meta-aggregator (`030-clean-infrastructure-full-matrix-stress-design/spec.md:48`, `:96`, `:97`, `:100`; `030-clean-infrastructure-full-matrix-stress-design/plan.md:52`, `:54`, `:95`, `:97`, `:99`).",
+    "causal_summary": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNERMISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`)",
     "created_at": "2026-04-29T17:16:00Z",
-    "last_save_at": "2026-06-22T18:55:01.735Z",
+    "last_save_at": "2026-06-23T03:49:52.299Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2f961f76b4645710cc20067afa2e4381197774d3e8cf89db10ee5e6e971a7653",
+    "source_doc_hashes": {
+      "spec.md": "99b62cf72affefe6f404d4c97e450548c69bea43138a07258921cf6636a74149",
+      "plan.md": "438d410e5cb95fc6c7ed62196f2e8805a29db666f258e9470ae5beb24b348c4c",
+      "tasks.md": "9211ebd9ab6be2d77ba1fff20175e5ad30c5b4dff4537ec1ae131a36dc22dcc8",
+      "checklist.md": "64143ef1bedf66288f0f13f3d901fd437f07d77dc04e0019bfc8e346966f36a8",
+      "implementation-summary.md": "ef268d1ad429d4f3dd895d8f208c50f36f377ac3fd572e0e07d1754bb8120c77",
+      "resource-map.md": "192b5f361794de12c53ffcf0dc1a3fd22ef621a7ac306614657a55b4325b0625"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

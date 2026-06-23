@@ -1,18 +1,18 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment",
-  "description": "Feature Specification: System Code Graph Reference Template Alignment",
+  "description": "The code-graph reference set did not follow sk-doc reference-template naming and structure 1:1",
   "keywords": [
-    "feature",
-    "specification",
-    "system",
-    "code",
-    "graph",
+    "code-graph",
     "reference",
-    "template",
-    "alignment"
+    "set",
+    "follow",
+    "sk-doc",
+    "reference-template",
+    "naming",
+    "structure"
   ],
-  "lastUpdated": "2026-05-26T17:25:45.375Z",
+  "lastUpdated": "2026-06-23T03:49:55.993Z",
   "specId": "006",
   "folderSlug": "reference-template-alignment",
   "parentChain": [

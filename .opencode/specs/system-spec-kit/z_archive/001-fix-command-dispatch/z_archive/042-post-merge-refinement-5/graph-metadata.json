@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Complete feature specification defining requirements, user stories, and success criteria for fixing critical bugs and improving quality following the Spec Kit Memory merger.",
+    "causal_summary": "Following the major Spec Kit Memory merger, a comprehensive 10-agent analysis revealed systemic issues across the codebase:",
     "created_at": "2026-04-12T09:02:53.526Z",
-    "last_save_at": "2026-05-30T10:12:02.990Z",
+    "last_save_at": "2026-06-23T03:49:59.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:cdb881d0957ba4b4a624a8a2d157d71c2369d01bc47e231faa49e946e2b174cc",
+    "source_doc_hashes": {
+      "spec.md": "66ac10bf2adc700fa334439ed7b823f5cc962111a8ae5513425a0a2d58d5d206",
+      "plan.md": "533b0422e57b993cf296ded7eb053355f341792a02014747c0313c785958b6c3",
+      "tasks.md": "6f92666d98e0c81b013ae70a1dc8bbea1172f4a2a46a4c26c3f22d3b8428def2",
+      "checklist.md": "9e2615fcc642df0704a24a30ed8c2350c48fe668e85cf9dc05829233ed8132ff",
+      "decision-record.md": "c30210dba48b55426e75b3cd5596af0ebfd90f5b7437040d74d4a8907f037ef8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

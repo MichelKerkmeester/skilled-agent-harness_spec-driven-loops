@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype. A prior cocoindex ONNX packet was rejected after measurement, but Memory MCP is a Node/TypeScript surface and already has `node-llama-cpp` installed as an optional dependency. The open question is whether a Node-native llama-cpp provider can improve local Gemma performance without corrupting vector-index compatibility.",
+    "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-05-30T10:12:02.093Z",
+    "last_save_at": "2026-06-23T03:49:54.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2472070259ebdc0182dbfd7f8c0522eb9dbf75d15eb07a0e17d9d4de17b56a71",
+    "source_doc_hashes": {
+      "spec.md": "c4b474ab8d235bcaabed0e5af897efaf1281c07b488405eb0318cd4f8ba12d12",
+      "plan.md": "642184384527724096882ef99f79d4b4e108acc2ca2087496bf984a540f92c15",
+      "tasks.md": "4fbbdcf548e074dc6ca1b67a0a390933acadb2d6830a7238db85c00b876c72df",
+      "checklist.md": "d4559542b6953e2016c88ff1602385e140632f6aeb2004477eb29fed0fad54ca",
+      "implementation-summary.md": "5a74a2438ee9d30e3b86a8cbcea338795ce8c4aa3dc497fb9544d4be01c48139"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

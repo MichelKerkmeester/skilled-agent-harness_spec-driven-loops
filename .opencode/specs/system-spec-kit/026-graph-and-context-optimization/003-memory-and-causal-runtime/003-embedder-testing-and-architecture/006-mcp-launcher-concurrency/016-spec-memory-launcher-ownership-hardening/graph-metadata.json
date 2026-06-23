@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implements the O6 follow-up recommended in `015-socket-server-reconvergence-and-hardening/o6-spec-memory-ownership-findings.md`: mk-spec-memory had the canonical IPC bridge (015) + probe-marker (014) but lacked the exclusive owner-lease discipline code-index/advisor already have.",
+    "causal_summary": "Under concurrent multi-session use mk-spec-memory could (O6-1) form a duplicate owner/daemon on concurrent cold start (lease checked before the bootstrap lock; a loser could skip the lock and both write a self-owned lease + launch); (O6-2) race a secondary's dead-socket respawn against the owner's scheduled relaunch (no reap of the recorded owner, no lease revalidation in launchServer()); and (O6-3) corrupt a client's MCP stream during the owner boot gap with a plaintext `LEASEHELDBY` line",
     "created_at": "2026-06-05T06:23:26.342Z",
-    "last_save_at": "2026-06-22T18:55:02.468Z",
+    "last_save_at": "2026-06-23T03:49:54.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70a853b6716375a51b2a5008dad14a8f2890f85cf85ba04e693ecc1d6d4625ae",
+    "source_doc_hashes": {
+      "spec.md": "3e573dc9ad723dd8cd28395a0b818ee9733607e2db000fc8f69e00ddc3772610",
+      "plan.md": "0b0d87cec9e8e086d5574a67ed56e3426020da026d835a6ffab6ed3533b2f2de",
+      "tasks.md": "d23526956f945a0fcc3625a33f73b657657ac5ff77fc59fcc77922023d743515",
+      "implementation-summary.md": "503c42188991a0ff8a246ae42b937f5669e70d6506106b66264dc627ba3f4bf5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

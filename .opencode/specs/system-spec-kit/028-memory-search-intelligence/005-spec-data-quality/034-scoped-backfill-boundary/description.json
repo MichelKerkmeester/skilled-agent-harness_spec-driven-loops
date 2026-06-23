@@ -1,17 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
-  "description": "Feature Specification: Scoped Backfill Boundary and Exclusion Unification",
+  "description": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual def",
   "keywords": [
-    "feature",
-    "specification",
-    "scoped",
-    "backfill",
-    "boundary",
-    "exclusion",
-    "unification"
+    "spec-kit",
+    "generators",
+    "produce",
+    "graph-metadata",
+    "json",
+    "description",
+    "over-reach",
+    "churn",
+    "031",
+    "research",
+    "traced",
+    "three",
+    "residual",
+    "def"
   ],
-  "lastUpdated": "2026-06-22T16:39:14.932Z",
+  "lastUpdated": "2026-06-23T03:49:58.769Z",
   "specId": "034",
   "folderSlug": "scoped-backfill-boundary",
   "parentChain": [

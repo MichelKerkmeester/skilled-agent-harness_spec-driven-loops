@@ -1,20 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
-  "description": "Spec: 016/004/013 Bench Harness Hardening + Full Fixture Audit",
+  "description": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018). Hardens the path-extraction regex in run-phase2-s",
   "keywords": [
-    "spec",
-    "016",
-    "004",
+    "measurement-quality",
+    "prerequisite",
+    "cocoindex-retrieval-pipeline",
+    "future-proofing",
+    "arc",
     "013",
-    "bench",
-    "harness",
-    "hardening",
-    "full",
-    "fixture",
-    "audit"
+    "018",
+    "hardens",
+    "path-extraction",
+    "regex",
+    "run-phase2-s"
   ],
-  "lastUpdated": "2026-05-26T17:27:57.001Z",
+  "lastUpdated": "2026-06-23T03:49:54.626Z",
   "specId": "013",
   "folderSlug": "bench-harness-and-fixture-audit",
   "parentChain": [

@@ -1,12 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/002-versioned-memory-state",
-  "description": "Feature Specification: 002-versioned-memory-state",
+  "description": "The current Memory MCP server stores valuable history and conflict information, but it does not expose a first-class lineage model that guarantees imm",
   "keywords": [
-    "feature",
-    "specification",
-    "002-versioned-memory-state"
+    "current",
+    "memory",
+    "mcp",
+    "server",
+    "stores",
+    "valuable",
+    "history",
+    "conflict",
+    "information",
+    "expose",
+    "first-class",
+    "lineage",
+    "model",
+    "guarantees",
+    "imm"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.093Z",
+  "lastUpdated": "2026-06-23T03:49:59.933Z",
   "specId": "002",
   "folderSlug": "versioned-memory-state",
   "parentChain": [

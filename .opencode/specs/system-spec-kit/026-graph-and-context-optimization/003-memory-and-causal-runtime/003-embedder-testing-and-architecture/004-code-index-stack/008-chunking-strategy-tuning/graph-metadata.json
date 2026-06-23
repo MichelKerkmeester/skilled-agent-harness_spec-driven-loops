@@ -30,8 +30,8 @@
       "plan",
       "tasks",
       "summary",
-      "packet",
-      "part"
+      "phase",
+      "structural"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.",
+    "causal_summary": "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan.",
     "created_at": "2026-05-18T05:13:46.123Z",
-    "last_save_at": "2026-06-22T18:55:02.385Z",
+    "last_save_at": "2026-06-23T03:49:54.590Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:51c0b61634250688aa337f5252131749dca70c77028fc9e08ee8c44d62abe8a0",
+    "source_doc_hashes": {
+      "spec.md": "1def5a43518d611e4ef8e88e205e1c6211d2165a449152222d81e051840d9d23",
+      "plan.md": "9631a56c1e30bd34d5f5cbbf9c682cc4a18d0f13c722f10e774f66d061bea5f9",
+      "tasks.md": "149755ec9aad63e525f1ae9c2fb15880c2f712fd82c89cd18b6a0c526a1cc8ce",
+      "implementation-summary.md": "d44e5719b8ca7474aff34a630d9f6cac4f7e5bf7d8c4a09b6a86b532f1109583",
+      "research/research.md": "dcd4b6fa0b2ac9c686d5ce00eeadf4c3026baebc77ff5d5bcc0f589d0d98b1c4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

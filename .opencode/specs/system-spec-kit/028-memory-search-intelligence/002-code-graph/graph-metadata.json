@@ -132,15 +132,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage. This parent needs to route those candidate groups to child folders while keeping code-level planning out of the subsystem root.",
+    "causal_summary": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-22T18:56:37.446Z",
+    "last_save_at": "2026-06-23T03:49:58.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:bf9bb4fc4bde9988022e91f36092b4d3e4765193bf34de5a4f39d0f6b319682a",
+    "source_doc_hashes": {
+      "spec.md": "d1931154bb1ab0daf99f6cc0ab9a405e4212f9a314f7d2536e3d09ba67437188",
+      "research/research.md": "39ee81cc0db963256d67b725dccb3b2f5b3cead87c2744874403be71636830e8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

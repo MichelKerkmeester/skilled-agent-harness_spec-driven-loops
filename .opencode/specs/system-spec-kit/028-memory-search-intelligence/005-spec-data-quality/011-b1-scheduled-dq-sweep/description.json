@@ -1,13 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
-  "description": "Feature Specification: B1 Scheduled DQ Sweep",
+  "description": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` retu",
   "keywords": [
-    "feature",
-    "specification",
-    "scheduled",
-    "sweep"
+    "eight",
+    "shipped",
+    "workflows",
+    "pullrequest",
+    "paths",
+    "filters",
+    "grep",
+    "schedule",
+    "cron",
+    "across",
+    "github",
+    "retu"
   ],
-  "lastUpdated": "2026-06-21T10:22:32.219Z",
+  "lastUpdated": "2026-06-23T03:49:58.608Z",
   "specId": "011",
   "folderSlug": "b1-scheduled-dq-sweep",
   "parentChain": [

@@ -86,14 +86,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The memory index must stay correct without operator intervention: new and changed spec docs need indexing, orphaned rows need sweeping, and packet renames/moves need reconciliation, all without flooding writers or stalling the daemon. The same index database also needs a durable rollback net so a corrupt or oversized state can be recovered.",
+    "causal_summary": "The memory index must stay correct without operator intervention: new and changed spec docs need indexing, orphaned rows need sweeping, and packet renames/moves need reconciliation, all without flooding writers or stalling the daemon",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-06-22T18:56:36.900Z",
+    "last_save_at": "2026-06-23T03:49:55.535Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:ddbd2a8f05909c01fbce566d07a847e857869fc40ad2d74d44253d2cfeca5c5e",
+    "source_doc_hashes": {
+      "spec.md": "3eac8a5db0b390cccfd9110eb9ef0e41b29e4cfa1f3f42b2c21de62699ad01c7"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy",
     "last_active_at": "2026-06-02T10:03:31.000Z"
   }

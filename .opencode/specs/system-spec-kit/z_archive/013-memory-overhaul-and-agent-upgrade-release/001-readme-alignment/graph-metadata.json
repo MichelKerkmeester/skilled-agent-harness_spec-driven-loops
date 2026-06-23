@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references reflect the post-implementation state of specs 014–016 and 122–129. Produce a changes.md file documenting every required edit.",
+    "causal_summary": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references reflect the post-implementation state of specs 014–016 and 122–129",
     "created_at": "2026-05-26T19:43:14.232Z",
-    "last_save_at": "2026-06-05T12:47:34.590Z",
+    "last_save_at": "2026-06-23T03:49:59.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:189b0a959254be1562fbaacde36a1e3f6efbd266b35e3fea32143ac199006428",
+    "source_doc_hashes": {
+      "spec.md": "7831b9f17d5e237dd0fd1a77aaa19926e5a7d2aa67e426dc0190302d6e825299",
+      "plan.md": "3afd25f42c4776bd8bd4b11fe2bdf7163426cda188c1963fd3c4b05cf524ba03",
+      "tasks.md": "2a0202482afc143b6ab79aa9f38a186df1d7bf9375bf3a04004396aa877e39fc",
+      "checklist.md": "665a497add02749ad15b4001b7f2857c2b7b5da74f9fb596aff963bccbc520b3",
+      "decision-record.md": "3f111734c2e86f656b70006ac91c160b25bf8e823f8fbbc5adaf2718d072072c",
+      "implementation-summary.md": "57d9acadb00ea5adb1deaef0f284a65acf47c1a53b508ef2c34e5d38468f2bdb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

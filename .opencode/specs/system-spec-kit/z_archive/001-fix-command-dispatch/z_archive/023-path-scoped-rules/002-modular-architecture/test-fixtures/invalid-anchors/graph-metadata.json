@@ -149,9 +149,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests detection of malformed ANCHOR tags.",
+    "causal_summary": "This fixture tests detection of malformed ANCHOR tags",
     "created_at": "2026-06-22T18:55:03.930Z",
-    "last_save_at": "2026-06-22T18:55:03.930Z",
+    "last_save_at": "2026-06-23T03:49:58.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -159,6 +159,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:c7926680267a34a322cf815c8585facc250793c4b92657d7c9191a1953fa67d3",
+    "source_doc_hashes": {
+      "spec.md": "ef1805a7074c9344219e6747f92e227bc41b8b07e11c881283c6dab0cce8fd60",
+      "plan.md": "15c9880fc23f1b44d5031c3296f6b79649efa1f07dddc42ba5ac2d30e53bc4ba",
+      "tasks.md": "e7e5377a7b8a133a790a784b119598b8489cbbdae92a93090895e75d7c53c20f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The user-facing command READMEs and the `system-spec-kit` references/assets had accumulated documentation drift: stale paths, outdated tool API signatures, wrong MCP entrypoints, and validation-reference statements that no longer matched the live validator registry. The most pervasive class was the `.opencode/skill` (singular) typo, which broke copy-paste verification commands, `init_skill.py --path` invocations, and inline doc links. Other classes contradicted the canonical sources of truth (`opencode.json`, `validator-registry.json`, `spec-kit-docs.json`, `recommend-level.sh`, the embeddings `registry.ts`), meaning a reader following the docs would run commands that fail or describe behavior the system no longer has.",
+    "causal_summary": "The user-facing command READMEs and the `system-spec-kit` references/assets had accumulated documentation drift: stale paths, outdated tool API signatures, wrong MCP entrypoints, and validation-reference statements that no longer matched the live validator registry",
     "created_at": "2026-06-03T07:33:00Z",
-    "last_save_at": "2026-06-05T12:47:33.193Z",
+    "last_save_at": "2026-06-23T03:49:52.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0b0c9aba6bb3951b70a62d32e0c851794da145fa56958141845f0b6cfedaae82",
+    "source_doc_hashes": {
+      "spec.md": "39a55b64f86682d4a9b698ed4c88100f4ae0e20273eb468df7fbadf4e83ee178",
+      "plan.md": "e2cd10da56de452e1fd0de05036ef0b143a9a7c6f75896c887d5ffbb31c5f9b6",
+      "tasks.md": "52997e24d67d8465503ba747d646c3efd72c315c2225899dbc359708d554ad42",
+      "checklist.md": "3f75c2d9c7374a8c40a7bc37d6b3282d4a858709339ce223c854a76db27b0be4",
+      "implementation-summary.md": "d8f40a026fc7eb0aa1de5bbafc80ad05299161addd1613bf5ca9285371635364"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

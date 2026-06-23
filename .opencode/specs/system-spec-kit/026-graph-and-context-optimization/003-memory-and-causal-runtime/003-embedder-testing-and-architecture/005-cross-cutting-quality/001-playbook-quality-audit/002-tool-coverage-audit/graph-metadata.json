@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Cross-reference the 42 mk-spec-memory MCP tools against pre-expansion playbook scenarios and classify coverage gaps.",
     "created_at": "2026-05-17T12:59:59Z",
-    "last_save_at": "2026-05-30T10:12:02.335Z",
+    "last_save_at": "2026-06-23T03:49:54.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,6 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8e39afa78671d8eb23cb22eabd66365940b11c5b0ba559d0b39b54472df6c59c",
+    "source_doc_hashes": {
+      "spec.md": "ccaaf86ede3fa8f1e7831f138a58c9598860c546bcabccc4193245ed53d25130",
+      "plan.md": "8955afc43a0b61a5ac00ce1bde48d94d14109c6d6472f008ac279444df29a33e",
+      "tasks.md": "f4f4968f838c2b3eae6d4e880475bb378007e3a90b5ad2b8dc2fa28b7dce30eb",
+      "implementation-summary.md": "1b971df8b43a59d0fb790b9a42480088ed9dd44b2514a3050044592de4e5ded4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

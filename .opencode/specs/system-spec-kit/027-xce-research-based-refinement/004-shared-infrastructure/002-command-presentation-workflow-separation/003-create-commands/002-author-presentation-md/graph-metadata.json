@@ -177,9 +177,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Create Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.905Z",
+    "last_save_at": "2026-06-23T03:49:57.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,6 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:66ccbf887fdee7f75d5e2a42e0331b60a1bf4a10f80c2daf115fb86f1db62016",
+    "source_doc_hashes": {
+      "spec.md": "9b66ddd7c8230f55a3e90b32585e9c63b34784dad218fe7ea182aee528a14a98",
+      "plan.md": "3f75c8ebf362cb8a95d44f8486e485702fa78692d5d62d55469d05c44fdac5fd",
+      "tasks.md": "854e372f0dbe2da23cc2bac947201d7c025ca2f8100e4741f8c676edfe23a65d",
+      "implementation-summary.md": "518fbcb446a1be463f489c09ee019b111f85a526e951db2528fcf547697e79fb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

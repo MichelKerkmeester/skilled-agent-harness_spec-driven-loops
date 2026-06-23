@@ -1,13 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
-  "description": "Feature Specification: Data Fidelity",
+  "description": "Normalization is lossy at multiple pipeline boundaries",
   "keywords": [
-    "feature",
-    "specification",
-    "data",
-    "fidelity"
+    "normalization",
+    "lossy",
+    "multiple",
+    "pipeline",
+    "boundaries"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.351Z",
+  "lastUpdated": "2026-06-23T03:50:00.013Z",
   "specId": "003",
   "folderSlug": "data-fidelity",
   "parentChain": [

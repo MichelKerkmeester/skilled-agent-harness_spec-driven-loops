@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Hold the optional tail packet that the refined plan keeps after cached-summary and publication work. This packet would define the verifier/discoverer workflow split and later token-insight contracts only after earlier governance and continuity contracts stabilize.",
+    "causal_summary": "The research left the workflow split and token-insight surfaces as later work because they depend on already-stable measurement, continuity, and publication contracts",
     "created_at": "2026-04-12T09:02:53.441Z",
-    "last_save_at": "2026-06-05T12:47:35.035Z",
+    "last_save_at": "2026-06-23T03:50:00.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a8799df4e6a3c798ed9618aa2f0fbc28985e39814ecda7e91338025778930d15",
+    "source_doc_hashes": {
+      "spec.md": "91deeae9ea8cd7b3846092593da63232d4455c6fa94f6845f73b1b9c64479f04",
+      "plan.md": "54c5db00d48b98ba1575eab79490f2544f8588405f4555d004161e0bcb26217c",
+      "tasks.md": "f83e38cb955184136899a5db4007536093f2f6b09683bc12a9652e55148e84bf",
+      "checklist.md": "64b15d8f15591be9f68c22830fd8807757ae1d19d4519eb7e69975d6f87ce033",
+      "decision-record.md": "9a567b4fab1bdd6e04925f391429faaa0cffc5e42946e77d41c83e86ea43c8b2",
+      "implementation-summary.md": "9749d2100c4226fb84ba9b08522d55cfd1005c14e0ac831c23b11eff9fbf0969"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

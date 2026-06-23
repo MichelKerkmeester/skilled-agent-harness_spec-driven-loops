@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CocoIndex fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` — but `code_graph_context` drops all of them when a CocoIndex result is supplied as a seed. Anchors returned to the model lose provenance information that would help the model explain why the fork ranked one chunk over another. v1.0.2 stress test confirmed `dedupedAliases:26` lives on the fork side and never reaches the consumer.",
+    "causal_summary": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` — but `codegraphcontext` drops all of them when a CocoIndex result is supplied as a seed",
     "created_at": "2026-04-27T19:55:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.707Z",
+    "last_save_at": "2026-06-23T03:49:52.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9857a95f18c106acffba8d526daf8e7603e45ced81daefc611a5c62b78a41fe8",
+    "source_doc_hashes": {
+      "spec.md": "43db11729d4c8dc9826e0c9ee6ad56539c10b28f297c6643add937788416cd71",
+      "plan.md": "a4dc8b8a10093c023ae58966f7b00e7e2472b2c1bfc7f406d6413178fc3faafb",
+      "tasks.md": "23eaf79c2c47927e8e79c37312dd1795e1b17344e9593f635644b293feb93e8a",
+      "checklist.md": "df8bc2f37ceb02fcec4ba565fee8314e0d9e653a7a1d1a1809b2d90f8d0726fc",
+      "implementation-summary.md": "ac59fd7815c34c9a5c0c2f7db76cb6b09288defa0ed020869a1ce5edfa4917a8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

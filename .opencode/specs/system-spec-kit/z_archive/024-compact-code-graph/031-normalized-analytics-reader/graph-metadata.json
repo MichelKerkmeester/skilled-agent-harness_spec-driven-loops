@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `024/003` proved the Stop hook can persist useful session-end facts, but those facts still lived in per-session hook-state JSON and could not answer cross-session questions safely. This packet closes that gap by adding a reader-owned normalized SQLite replay model that ingests the producer metadata seam without changing the writer or startup authority.",
+    "causal_summary": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains stranded in per-session JSON files",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-05-30T10:12:03.524Z",
+    "last_save_at": "2026-06-23T03:50:00.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:21a36e56740c2a901d308ce6781d39038807cf339ab7b6e61d0d622eec746012",
+    "source_doc_hashes": {
+      "spec.md": "62bcfde79665917dfaf2554ebdf4e172eb3611bc9a2af5abf62f8687b6d6dce9",
+      "plan.md": "de1ecaa9ac29cb0f6c7fd2eaaff7d77ae3ca3b9045f114f93d51aa634632025c",
+      "tasks.md": "b0dc6e2dac54aee29595918741be7f3fd2fb2249b0eed36219afc6217e7503eb",
+      "checklist.md": "9fa83e15ea690c716f4a60978a931cde92af89e0bc8c493b0c56001e8e63d04d",
+      "decision-record.md": "0453f804a13e215db47f83b6c8770eacc5eadd17b61284ce7f7e78fee2e4d34f",
+      "implementation-summary.md": "5a9a48656aaae135fa9ef97e6b8760e0be31e2a96dc7e1a774d0d9e6763f4e63"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved",
-  "description": "Feature Specification: Graph Impact and Affordance Uplift (012)",
+  "description": "Public's Code Graph, Memory causal graph, and Skill Advisor systems each carry known gaps that the 007-external-project deep-research effort surfaced",
   "keywords": [
-    "feature",
-    "specification",
+    "public",
+    "code",
     "graph",
-    "impact",
-    "affordance",
-    "uplift",
-    "012"
+    "memory",
+    "causal",
+    "skill",
+    "advisor",
+    "systems",
+    "carry",
+    "known",
+    "gaps",
+    "007-external-project",
+    "deep-research",
+    "effort",
+    "surfaced"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.444Z",
+  "lastUpdated": "2026-06-23T03:49:56.837Z",
   "specId": "004",
   "folderSlug": "external-project-adoption-dissolved",
   "parentChain": [

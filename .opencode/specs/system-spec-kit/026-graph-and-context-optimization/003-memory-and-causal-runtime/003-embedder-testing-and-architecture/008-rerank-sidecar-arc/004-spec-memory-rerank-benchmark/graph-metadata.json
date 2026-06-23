@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 004 of the 008 rerank-sidecar arc. Quantify the actual quality lift of Qwen reranking on spec-memory's own corpus before promoting to default. Closes the \"cargo-culting cocoindex's +1/73\" risk surfaced in the gpt-5.5 xhigh critique.",
+    "causal_summary": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 — a hit-rate delta of +1.4 pp",
     "created_at": "2026-05-23T11:55:15.610Z",
-    "last_save_at": "2026-06-22T18:55:02.487Z",
+    "last_save_at": "2026-06-23T03:49:54.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d256b37af43ce12e1d865d00d4d332ff38fcfa23ffa4eb6d235402541a88a4e1",
+    "source_doc_hashes": {
+      "spec.md": "de9fc9aa4dea9888ed67a8e571b1b83eb6d044967c5212559fbffa0c7562f6dc",
+      "plan.md": "f4c23e711d5d802575b791e89905f5de5bb2caf80301dd6aceceb125313e6b6f",
+      "tasks.md": "e7bf22054872b43488467541876ec7d432979f642b2b9872e03a9032479f8b5f",
+      "implementation-summary.md": "b95597a1d374b5a8ec32fcfc2c2d7f2680ee09bb5a2807d7b42befece0e7ff77"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

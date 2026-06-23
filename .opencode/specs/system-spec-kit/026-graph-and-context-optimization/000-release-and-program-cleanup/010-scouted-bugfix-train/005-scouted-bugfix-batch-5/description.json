@@ -1,14 +1,17 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
-  "description": "Feature Specification: Scouted Bugfix Batch 5",
+  "description": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed",
   "keywords": [
-    "feature",
-    "specification",
-    "scouted",
-    "bugfix",
-    "batch"
+    "verify-first",
+    "round-3",
+    "tail",
+    "left",
+    "targets",
+    "originally",
+    "classified",
+    "unconfirmed"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.930Z",
+  "lastUpdated": "2026-06-23T03:49:52.959Z",
   "specId": "005",
   "folderSlug": "scouted-bugfix-batch-5",
   "parentChain": [

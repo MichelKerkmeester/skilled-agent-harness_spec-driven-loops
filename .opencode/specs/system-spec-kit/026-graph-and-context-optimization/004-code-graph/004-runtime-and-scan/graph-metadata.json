@@ -84,14 +84,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph runtime and scan-correctness track: runtime upgrades, scan scope and correctness, resolver and hook improvements, and exclude tuning.",
+    "causal_summary": "The code-graph runtime and scan-correctness track: runtime upgrades, scan scope and correctness, resolver and hook improvements, and exclude tuning",
     "created_at": "2026-05-26T16:51:06.156Z",
-    "last_save_at": "2026-06-05T12:47:34.055Z",
+    "last_save_at": "2026-06-23T03:49:55.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:a18e7c7500187d9f420136336b7d7fe1ba42964749b1580d0cc3d9244f3e1104",
+    "source_doc_hashes": {
+      "spec.md": "146391037f9100c639e66c2a857f37da18076838025042536ad22516ddb1f6cc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -36,7 +36,7 @@
       "tasks",
       "verification",
       "checklist",
-      "phase"
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system-spec-kit specification.",
+    "causal_summary": "system-spec-kit's self-check lives in the global CLAUDE.md, not in the manifest templates an author actually fills in",
     "created_at": "2026-06-02T10:04:51Z",
-    "last_save_at": "2026-06-10T19:22:14.924Z",
+    "last_save_at": "2026-06-23T03:49:57.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:19519a972d0c640241b65ea82d3c5aa1a32677e62798b302e75a610611d2813e",
+    "source_doc_hashes": {
+      "spec.md": "a39ffc16c19cf066ce4894bea30c995526007c3789c558cefbff099300c91a7a",
+      "plan.md": "9bd65288be6ff544ce0815456ddb5fdcc81a06e07c277f1640fa1146a5239b1f",
+      "tasks.md": "0128e0f7e00bd85a9b4325d28fd54a6bf75490d3c6900ec9e9b9aa150bd44f9e",
+      "checklist.md": "2e3d9372562ae4ed338d2b8344a67c6c13a3101c97caa7a2b61f63a89c3f1c65",
+      "implementation-summary.md": "878ba8118db79d4517828b9eab0cc0adc2a9e29f21d6f6509f3931fbedc342bb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

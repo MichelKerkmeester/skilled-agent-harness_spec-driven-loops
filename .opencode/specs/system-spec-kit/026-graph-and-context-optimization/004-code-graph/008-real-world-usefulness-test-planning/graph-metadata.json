@@ -89,14 +89,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but not that they help an engineer move faster or decide better during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
+    "causal_summary": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces",
     "created_at": "2026-05-05T00:00:00.000Z",
-    "last_save_at": "2026-06-08T17:32:21.252Z",
+    "last_save_at": "2026-06-23T03:49:55.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:da4ae2a17646de7581bd996f3cdee800522bc6abced4783db0fe0e17f71eddbb",
+    "source_doc_hashes": {
+      "spec.md": "3e33a4eaa03999a7024b42429b58e95dc2839e81b69d6552c6d4885b57ab428a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

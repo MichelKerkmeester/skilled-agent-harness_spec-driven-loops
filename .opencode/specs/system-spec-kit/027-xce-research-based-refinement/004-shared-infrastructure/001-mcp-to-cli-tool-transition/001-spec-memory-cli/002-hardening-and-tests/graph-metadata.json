@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Dual-stack spec-memory CLI implementation: daemon-backed CLI alongside the MCP registration specification.",
+    "causal_summary": "The research verdict is conditional on a set of acceptance-test deltas that do not exist yet: the spawn-race and coexistence guarantees are code-traced but not regression-locked, and the orphan-reaping behavior on the CLI-spawn path has a real-world failure precedent (six orphaned launcher processes observed on this host)",
     "created_at": "2026-06-06T14:09:11.247Z",
-    "last_save_at": "2026-06-22T18:55:03.414Z",
+    "last_save_at": "2026-06-23T03:49:57.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:95a4a0199f65336119f452b151e0fe56779846a0e86314bdcc8c8fd6279ec2d9",
+    "source_doc_hashes": {
+      "spec.md": "9113b6821919736879c043db6153d06729fad69ed698b6a411b63be994247102",
+      "plan.md": "1efbe547ca3b41da05c51900403e62277b4034d41e6843da14fb6229f5deb898",
+      "tasks.md": "5aad8aeab4fc60345fc87f7f62794f47da9bcd1469b16dbc72f07d52fb6c231f",
+      "implementation-summary.md": "79c8e50f70e6501823cb77222d3e02f6c962257d73f7ee00c94208c4c8e2eb28"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

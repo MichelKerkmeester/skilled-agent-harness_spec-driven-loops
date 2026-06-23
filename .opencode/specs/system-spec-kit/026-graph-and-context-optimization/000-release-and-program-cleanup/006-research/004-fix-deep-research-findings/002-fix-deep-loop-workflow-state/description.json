@@ -1,16 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state",
-  "description": "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation",
+  "description": "Five findings flagged the deep-loop workflow state machine",
   "keywords": [
-    "feature",
-    "specification",
-    "002",
+    "five",
+    "findings",
+    "flagged",
     "deep-loop",
     "workflow",
-    "state-machine",
-    "remediation"
+    "state",
+    "machine"
   ],
-  "lastUpdated": "2026-05-26T17:27:31.878Z",
+  "lastUpdated": "2026-06-23T03:49:52.830Z",
   "specId": "002",
   "folderSlug": "fix-deep-loop-workflow-state",
   "parentChain": [

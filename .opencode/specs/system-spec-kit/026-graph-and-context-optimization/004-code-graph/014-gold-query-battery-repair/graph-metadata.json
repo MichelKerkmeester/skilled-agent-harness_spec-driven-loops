@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 14** of the Code Graph workstream. It is a verification-recovery phase: the runtime graph is indexed, but structural read tools still block because the persisted gold-query battery references pre-extraction file paths and ownership boundaries.",
+    "causal_summary": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
     "created_at": "2026-06-07T09:30:00Z",
-    "last_save_at": "2026-06-08T08:50:27.160Z",
+    "last_save_at": "2026-06-23T03:49:56.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:4030bdba2894ab0cdf4b2afdedf0f6657eaad6e1b96800a5fe2268e48b8322ee",
+    "source_doc_hashes": {
+      "spec.md": "c8ab089fa74084a3b4c42415f116f85399237fb3d70eaec31bd9545cc5817979",
+      "plan.md": "aa27bd5c79b7a1e2112d0a89b38ee7c66f74a1b591cd1ec4e3d66f0dd415d41c",
+      "tasks.md": "c6a7e58ca9c05eee02467c365dc52f52f3d1dfda7c6a1618fe35ce144688df23",
+      "checklist.md": "e0b2449014680465edbea63a467b6bef84d3346dacc61d3485d229443eb84b1f",
+      "implementation-summary.md": "a24f20bc4eccacb8bdc6d89f942b870db15a8a9c61aba412bf26b0e2d5fb5b6c",
+      "handover.md": "37e7a3ea9d68e98457b878cd210d83c2c51f2c38acb159966aebd9f4afd2e496"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

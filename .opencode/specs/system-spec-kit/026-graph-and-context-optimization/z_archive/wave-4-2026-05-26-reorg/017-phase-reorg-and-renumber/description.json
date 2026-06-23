@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
-  "description": "Feature Specification: 026 Wave-4 Phase Reorg & Renumber",
+  "description": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
   "keywords": [
-    "feature",
-    "specification",
     "026",
-    "wave-4",
-    "phase",
-    "reorg",
-    "renumber"
+    "accumulated",
+    "flat",
+    "top-level",
+    "phases",
+    "repeated",
+    "ad-hoc",
+    "restructures"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.196Z",
+  "lastUpdated": "2026-06-23T03:49:56.842Z",
   "specId": "017",
   "folderSlug": "phase-reorg-and-renumber",
   "parentChain": [

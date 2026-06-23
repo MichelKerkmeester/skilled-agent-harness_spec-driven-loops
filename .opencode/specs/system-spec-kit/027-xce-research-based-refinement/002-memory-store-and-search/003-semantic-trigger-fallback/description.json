@@ -28,18 +28,24 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
-  "description": "Feature Specification: 004 — Semantic Trigger Fallback (Phase Parent)",
+  "description": "Phase-parent control packet for the hybrid lexical+semantic trigger fallback: schema + backfill, semantic matcher, hybrid handler integration, and tes",
   "keywords": [
-    "feature",
-    "specification",
-    "004",
+    "phase-parent",
+    "control",
+    "packet",
+    "hybrid",
+    "lexical",
     "semantic",
     "trigger",
     "fallback",
-    "phase",
-    "parent"
+    "schema",
+    "backfill",
+    "matcher",
+    "handler",
+    "integration",
+    "tes"
   ],
-  "lastUpdated": "2026-06-12T14:18:51.262Z",
+  "lastUpdated": "2026-06-23T03:49:57.176Z",
   "specId": "003",
   "folderSlug": "semantic-trigger-fallback",
   "parentChain": [

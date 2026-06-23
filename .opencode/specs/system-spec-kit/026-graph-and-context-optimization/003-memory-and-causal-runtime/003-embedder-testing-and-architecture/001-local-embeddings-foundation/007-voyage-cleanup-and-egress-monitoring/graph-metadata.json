@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 003 purged `VOYAGE_API_KEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcp_server/database/` were stale: `context-index__voyage__voyage-4__1024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying. Disk space aside, the leftover files make \"is Voyage still in use?\" a slower question to answer.",
+    "causal_summary": "After 003 purged `VOYAGEAPIKEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcpserver/database/` were stale: `context-indexvoyagevoyage-41024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying",
     "created_at": "2026-05-12T16:27:51Z",
-    "last_save_at": "2026-06-22T18:55:02.229Z",
+    "last_save_at": "2026-06-23T03:49:53.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T22:00:00Z",
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f675eeb2becc47171ca4a7a098a2fe7c709848feb9663bfb03076c933e481995",
+    "source_doc_hashes": {
+      "spec.md": "5b649ca6f72aa94e92c90b33ee0ae7417d8a274fca6b31c28ac537cb382a1c20",
+      "plan.md": "611310fbe26a6e01ec8b2812e6b3146c3498aff5a5f0a796c7fbf12e0fea3a85",
+      "tasks.md": "98356154c0e3789614dd07ae2a4663b3874434f5784f41673520ce6e47d86df1",
+      "implementation-summary.md": "182a704c9cd28e8b49f73c4f8056a0010e43f6c3bd76a2fb398af03b02dadeeb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -126,15 +126,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Read-only deep-research packet investigating two root causes in the spec-kit launcher-coordination layer, both surfaced by the owner's heavy concurrent-session workflow. Canonical research output lives in `research/research.md`; this `spec.md` records the investigation ask, scope, and open questions.",
+    "causal_summary": "Under concurrent multi-session use (currently 2 Claude + 4 codex sessions sharing this repo), two runtime defects appear:",
     "created_at": "2026-06-04T18:16:47.573Z",
-    "last_save_at": "2026-06-22T18:56:36.936Z",
+    "last_save_at": "2026-06-23T03:49:55.722Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:451f1010e9cbd6e205beed5fd4aa8b090bf2b16712e6ab483c84e001b8f288f5",
+    "source_doc_hashes": {
+      "spec.md": "9d3682d6fee80075bd35859d93e11febee592179ecceb15b8cc0634c84a77b5a",
+      "research/research.md": "abbbfc84d81971ccad4132388cb2d0648e7a2d3b0e3952d46801c75eeec9a8bc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

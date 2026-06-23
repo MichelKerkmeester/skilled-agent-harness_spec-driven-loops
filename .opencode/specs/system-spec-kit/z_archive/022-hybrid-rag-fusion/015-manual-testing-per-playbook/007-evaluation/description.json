@@ -1,14 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
-  "description": "Feature Specification: manual-testing-per-playbook evaluation phase",
+  "description": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (s",
   "keywords": [
-    "feature",
-    "specification",
-    "manual-testing-per-playbook",
     "evaluation",
-    "phase"
+    "category",
+    "contains",
+    "manual",
+    "test",
+    "scenarios",
+    "covering",
+    "ablation",
+    "studies",
+    "channel-level",
+    "recall",
+    "delta",
+    "measurement",
+    "reporting",
+    "dashboard"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.231Z",
+  "lastUpdated": "2026-06-23T03:50:00.256Z",
   "specId": "007",
   "folderSlug": "evaluation",
   "parentChain": [

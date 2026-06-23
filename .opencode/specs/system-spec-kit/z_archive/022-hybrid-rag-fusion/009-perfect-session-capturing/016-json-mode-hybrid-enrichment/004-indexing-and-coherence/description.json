@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence",
-  "description": "Feature Specification: Indexing & Coherence",
+  "description": "The generate-context.js pipeline has no observable signal for embedding health: the retry manager runs a background job every 5 minutes with circuit-b",
   "keywords": [
-    "feature",
-    "specification",
-    "indexing",
-    "coherence"
+    "generate-context",
+    "pipeline",
+    "observable",
+    "signal",
+    "embedding",
+    "health",
+    "retry",
+    "manager",
+    "runs",
+    "background",
+    "job",
+    "every",
+    "minutes",
+    "circuit-b"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.178Z",
+  "lastUpdated": "2026-06-23T03:50:00.122Z",
   "specId": "004",
   "folderSlug": "indexing-and-coherence",
   "parentChain": [

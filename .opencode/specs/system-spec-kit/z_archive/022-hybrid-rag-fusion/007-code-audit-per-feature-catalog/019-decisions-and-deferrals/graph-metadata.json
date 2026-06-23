@@ -32,7 +32,7 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic"
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 5 Decisions and Deferrals features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/cross-cutting/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Decisions and Deferrals has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-06-05T12:47:34.736Z",
+    "last_save_at": "2026-06-23T03:49:59.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f34d21d97b65ed67f5f4f910e4380e62685ec7d333e9917d9f0f5c3ea6e23201",
+    "source_doc_hashes": {
+      "spec.md": "a435efcff802455ef791c91a36566d5a8343fb1256ec831b60e1c8df53f1ef76",
+      "plan.md": "270cff0968f3e3888c70b45fafde79ca764ee8f44de0af966b2405310be9ff97",
+      "tasks.md": "4dcfa8da33099966d6acaf2f3e55ae3bc23e84cbd8fa4601629ad13a8ce5feb8",
+      "checklist.md": "e396d3ef3456b892ff717c677a7d655a4144d9b63f04b13325a4e24425b4a82f",
+      "implementation-summary.md": "3060ed3a98cc9a9bec0118006979be2c5b88c068391ed6454521d930c91d2ce1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

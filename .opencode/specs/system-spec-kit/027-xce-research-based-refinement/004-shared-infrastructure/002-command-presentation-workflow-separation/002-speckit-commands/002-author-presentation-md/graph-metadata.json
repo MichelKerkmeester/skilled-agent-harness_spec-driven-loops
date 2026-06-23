@@ -177,9 +177,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Speckit Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Speckit Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.901Z",
+    "last_save_at": "2026-06-23T03:49:57.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,6 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f92ad8f4354a90ed8ebf26c24376d2bcaea4d895bfeb06dc4b1ce15ad08db50c",
+    "source_doc_hashes": {
+      "spec.md": "b125a48529109166d1a076c32556dd94edb55d2caf63f003f63994a0c39994b7",
+      "plan.md": "2df4c005318fa571cbf01e674c84773f73722e28d8ed010f422cac8f79d2a2b2",
+      "tasks.md": "a66222090ae5e6ca87c7d415613f926ef22f8935d4108b68fa1f6ab074467b79",
+      "implementation-summary.md": "1826dace4534b616da95ff0fcbc00e11b98e35227d0acd1ca36b1d57b443176d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,26 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist",
-  "description": "Feature Specification: Subprocess env whitelist",
+  "description": "Packet 018 deferred subprocess env hardening because the launcher, plugin bridge, and Python shim inherited broad parent environments",
   "keywords": [
-    "feature",
-    "specification",
+    "packet",
+    "018",
+    "deferred",
     "subprocess",
     "env",
-    "whitelist"
+    "hardening",
+    "because",
+    "launcher",
+    "plugin",
+    "bridge",
+    "python",
+    "shim",
+    "inherited",
+    "broad",
+    "parent",
+    "environments"
   ],
-  "lastUpdated": "2026-05-26T17:27:20.554Z",
+  "lastUpdated": "2026-06-23T03:49:53.365Z",
   "specId": "023",
   "folderSlug": "subprocess-environment-whitelist",
   "parentChain": [

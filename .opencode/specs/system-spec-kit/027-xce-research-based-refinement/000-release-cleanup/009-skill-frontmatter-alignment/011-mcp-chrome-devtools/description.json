@@ -2,16 +2,21 @@
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
-  "description": "Feature Specification: Phase 11: mcp-chrome-devtools Frontmatter Alignment",
+  "description": "mcp-chrome-devtools reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 3 references and 0 of 0 assets carry the detailed me",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
     "mcp-chrome-devtools",
+    "reference",
+    "asset",
     "frontmatter",
-    "alignment"
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
   ],
-  "lastUpdated": "2026-06-11T10:46:03.602Z",
+  "lastUpdated": "2026-06-23T03:49:56.980Z",
   "specId": "011",
   "folderSlug": "mcp-chrome-devtools",
   "parentChain": [

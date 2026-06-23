@@ -33,7 +33,7 @@
       "implementation",
       "summary",
       "closeout",
-      "module"
+      "spec-kit"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the ESM Module Compliance specification.",
+    "causal_summary": "`@spec-kit/mcp-server` has no `\"type\": \"module\"` in its `package.json`, inherits the root CommonJS compiler baseline, uses 839 relative import/export statements with only 3 `.js`-suffixed (all external SDK), and has 16 non-test files using CommonJS-only globals (`dirname`, `filename`, `createRequire`, `require()`)",
     "created_at": "2026-04-12T09:02:50.317Z",
-    "last_save_at": "2026-05-30T10:12:03.418Z",
+    "last_save_at": "2026-06-23T03:50:00.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8a4944d60c9278158079e709c5e4d14806a3016965005a8e6a2959d2b21b5162",
+    "source_doc_hashes": {
+      "spec.md": "d84788dd21f73cb68bf350fd771495f5fe6b8143732d8f62012ed9075e5a66c6",
+      "plan.md": "0fe1c8d02ee4952e26a671ee92f0a3af222aab974fd199a85898923b083cc9b5",
+      "tasks.md": "510b71c9069d709b7c0ce359571fca741268d3db2a581a54849cd3f85cb0a2e0",
+      "implementation-summary.md": "c469ca256f963fec6e6e90b2508b03f3981f9e40415069d16995828983ee23b5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

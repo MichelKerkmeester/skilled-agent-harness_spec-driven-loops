@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability. The reports contain active P0/P1/P2 findings that need a single aggregate verdict and immediate remediation for release blockers.",
+    "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability",
     "created_at": "2026-05-18T08:15:52.985Z",
-    "last_save_at": "2026-05-30T10:12:01.534Z",
+    "last_save_at": "2026-06-23T03:49:52.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:85120118d3e943e76146633e2d86102a86f2479b8eb4e1276ad36c54dab53a0e",
+    "source_doc_hashes": {
+      "spec.md": "c70a093b1d22a625a29beee6d751c407d770117168e350f7a4cdbb5a917eb564",
+      "plan.md": "2cc9c435f6916dd4fd30b8e8455c4a04645fc16b66d6ba09dc824c04d3aa295c",
+      "tasks.md": "fec6e8494ffbb8741666e61d8574357c33e3da81a3b97d0c1c0a0bae6aff7f25",
+      "checklist.md": "18bc43fae1efbd6a9595b34bb159aa54e4f99001ad98b86f12e5ef8781d0bfbb",
+      "implementation-summary.md": "2c8be383d957c3eeea5733436e29239e40bc03598fc2449a34d609a617460942",
+      "resource-map.md": "b36cf6efe380ba43a7b9f0b3ea5a2b8eba00fe0845bdd18bc9bca7d894a03b20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

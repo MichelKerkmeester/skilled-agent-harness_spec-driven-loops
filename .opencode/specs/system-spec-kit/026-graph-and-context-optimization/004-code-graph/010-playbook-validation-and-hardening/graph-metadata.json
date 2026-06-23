@@ -94,14 +94,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manual_testing_playbook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detect_changes, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook. These scenarios have no captured, dated operator run on record. Release readiness cannot be asserted without one.",
+    "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detectchanges, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook",
     "created_at": "2026-05-26T19:43:14.031Z",
-    "last_save_at": "2026-06-22T18:56:37.016Z",
+    "last_save_at": "2026-06-23T03:49:56.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:3193e88d71ffdc7bec4d54d57e1fdf6f28b76090e3865c00d4d57d5e27564706",
+    "source_doc_hashes": {
+      "spec.md": "6a363d7d5b932c265f4a957138ad5bf66ae0bf3f33ab1b3fdd2fd8e0ec893b51"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

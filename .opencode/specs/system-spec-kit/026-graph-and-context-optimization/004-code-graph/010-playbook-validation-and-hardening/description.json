@@ -1,15 +1,21 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
-  "description": "Feature Specification: Code Graph Playbook Validation",
+  "description": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime: r",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
+    "system-code-graph",
+    "skill",
+    "ships",
+    "22-scenario",
+    "manual",
+    "testing",
     "playbook",
-    "validation"
+    "manualtestingplaybook",
+    "validates",
+    "mk-code-index",
+    "mcp",
+    "runtime"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.978Z",
+  "lastUpdated": "2026-06-23T03:49:56.073Z",
   "specId": "010",
   "folderSlug": "playbook-validation-and-hardening",
   "parentChain": [

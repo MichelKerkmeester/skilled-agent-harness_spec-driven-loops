@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 is the substrate child of the Gem Team adoption work in 027. The phase-007 study (19 iterations) and the phase-009 integration synthesis (5 iterations) converged on one finding: the spec-kit's agents already carry rich, evidence-first contracts, but the orchestration-relevant facts (status, confidence, failure class, dispatch intent) are expressed in scattered prose and are not machine-parseable. This packet adds a typed, OPTIONAL adapter layer over the existing contracts — never replacing the rich-markdown bodies.",
+    "causal_summary": "The spec-kit agents pass work to each other through loose prose",
     "created_at": "2026-06-06T10:11:05.143Z",
-    "last_save_at": "2026-06-22T18:55:03.275Z",
+    "last_save_at": "2026-06-23T03:49:57.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7afce5910cde20bdc4fd1ca00703c5b8030c878ee025b37631ce0040c6edd225",
+    "source_doc_hashes": {
+      "spec.md": "d99726eda251fcca97a4d7d3ce2fff2a1284ba8497cbfbce6108a69681bc3c34",
+      "plan.md": "104069b817ff605277774f845b58bbf462559e1d430710afe0a59909e231cbfb",
+      "tasks.md": "dc06949d23efca99058f79348e86664284cfb90f8e8447de6d516c62f9b91a6b",
+      "checklist.md": "4b452f52b5ef5aad401190d525c56478a84afd77e59b0d557ed93a1bf0324cf5",
+      "implementation-summary.md": "9bc658742ba34f866c5d6ccd4bef4a8f02c3d4ae5c130069ae073d6a01d8e3a5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

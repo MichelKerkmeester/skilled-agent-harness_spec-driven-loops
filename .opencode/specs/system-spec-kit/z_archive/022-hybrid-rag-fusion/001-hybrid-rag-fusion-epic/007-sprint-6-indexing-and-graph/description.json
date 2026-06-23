@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph",
-  "description": "Feature Specification: Sprint 6 — Indexing and Graph",
+  "description": "Graph signal was established in Sprint 1 (R4) but lacks sophistication — centrality and community structures remain unexploited, leaving graph channel",
   "keywords": [
-    "feature",
-    "specification",
+    "graph",
+    "signal",
+    "established",
     "sprint",
-    "indexing",
-    "graph"
+    "lacks",
+    "sophistication",
+    "centrality",
+    "community",
+    "structures",
+    "remain",
+    "unexploited",
+    "leaving",
+    "channel"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.130Z",
+  "lastUpdated": "2026-06-23T03:49:59.681Z",
   "specId": "007",
   "folderSlug": "sprint-6-indexing-and-graph",
   "parentChain": [

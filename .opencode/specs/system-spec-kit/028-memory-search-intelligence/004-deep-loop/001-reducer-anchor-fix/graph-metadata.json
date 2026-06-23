@@ -182,9 +182,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file. `updateStrategyContent` (`reduce-state.cjs:734-745`) calls `replaceAnchorSection` for **7** reducer-owned sections: `key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`. `replaceAnchorSection` (`:699-714`) builds a regex over the `ANCHOR:<id>` … `/ANCHOR:<id>` HTML-comment marker pair and **throws `Missing anchor section <id> in strategy file` (`:709-711`)** when the pair is absent. The shipped template `deep-loop-workflows/deep-research/assets/deep_research_strategy.md` carried all 13 section headings and a machine-owned start marker but **ZERO `ANCHOR:*` markers** (grep count = 0). A freshly-copied strategy therefore hard-failed `Missing anchor section key-questions in strategy file` on the **first reduce** after iteration 1. [CONFIRMED iter-1 F16-18, research.md §\"Reducer-anchor template gap, CONFIRMED REAL BUG\".]",
+    "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file",
     "created_at": "2026-06-19T06:06:27.158Z",
-    "last_save_at": "2026-06-22T18:55:03.767Z",
+    "last_save_at": "2026-06-23T03:49:58.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,6 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8d5052f1322f347361a2b8715cc29818eb7a12d09ba4501d4847799146a31540",
+    "source_doc_hashes": {
+      "spec.md": "37ea3c02008b43ebf22e504cbc9b1fafa670a193e98f6164c3b0043912c11cc1",
+      "plan.md": "1c344f37ad923fdaf8d82de6349dde3e7d097a3b4d740348bdd43e0203f8440b",
+      "tasks.md": "d2175edb03c847ade0054b256c354bfa9e44a5e0260eaa418d5a62257e0769ed",
+      "implementation-summary.md": "ec3abd2081eaf3f0e0dff961f81acf0a2b9298b2ec6604f2558e0c069aadc168"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

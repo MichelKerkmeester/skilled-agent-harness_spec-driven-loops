@@ -1,14 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements",
-  "description": "Feature Specification: Graph Retrieval Improvements",
+  "description": "The graph is structurally healthy but does not meaningfully improve retrieval",
   "keywords": [
-    "feature",
-    "specification",
     "graph",
-    "retrieval",
-    "improvements"
+    "structurally",
+    "healthy",
+    "meaningfully",
+    "improve",
+    "retrieval"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.665Z",
+  "lastUpdated": "2026-06-23T03:50:00.544Z",
   "specId": "009",
   "folderSlug": "graph-retrieval-improvements",
   "parentChain": [

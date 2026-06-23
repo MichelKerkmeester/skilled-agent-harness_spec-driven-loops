@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work performed in spec 130.",
+    "causal_summary": "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work performed in spec 130",
     "created_at": "2026-05-26T19:43:14.241Z",
-    "last_save_at": "2026-05-30T10:12:03.146Z",
+    "last_save_at": "2026-06-23T03:49:59.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9e0a4c9e732d79b6fe9adbeb9e0c42a2650e5487da42c01cdfc6bda306912df4",
+    "source_doc_hashes": {
+      "spec.md": "873491b1864a41d0ae878d80471a989e3c79314f8eca333cc1ca5404d1e943de",
+      "plan.md": "c63e8ef4184b43324d7b75b39af45dea1d096a84f335ab1664aefec142ed0236",
+      "tasks.md": "7cfdae805497d58bb03b5cc64310e82fcb721a9ebe38d3a87c8f67377075fc29",
+      "checklist.md": "2696df6bb40bf055a2e4fb443b73378ef0ae541feb1894642f5f40db7c1fa18b",
+      "decision-record.md": "f3d141772e82a5fb5628a24b210bc411e1cb8771e3a56ae2bc1765925254b9bb",
+      "implementation-summary.md": "f58d35f7730135e707c04c16e4556e28a4e2a39feeb10115ed28c1ad95cd8830"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

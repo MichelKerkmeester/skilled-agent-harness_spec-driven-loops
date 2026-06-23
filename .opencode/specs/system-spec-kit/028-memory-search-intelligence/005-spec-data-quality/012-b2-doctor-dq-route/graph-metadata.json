@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a `data-quality` route to `/doctor` that is diagnostic by default and applies safe-class fixes only behind `--confirm` plus `--dry-run`, reusing the same B1 safe-fix engine and the same frozen `fixClass` registry so the interactive door and the scheduled sweep can never diverge.",
+    "causal_summary": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate source-doc and metadata-JSON quality",
     "created_at": "2026-06-21T10:22:34.985Z",
-    "last_save_at": "2026-06-22T18:55:03.799Z",
+    "last_save_at": "2026-06-23T03:49:58.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2cc39ecca26fb2b4998971ddacac76b66548b4d6ea7330e10e17c6a6a2e95cc1",
+    "source_doc_hashes": {
+      "spec.md": "96f106d6375a54a3e9ea6e0ddad35c30a9d70a631c684ef785f2a33e6e9d3851",
+      "plan.md": "38aa03c9581bb8bec736dfcfd512a38e335f7f9302c498a9500c0a99df2e64d8",
+      "tasks.md": "c4311814c9a72ab61c1214ae97e3282a7be9885aa56dbaac9e7e337f74745ffe",
+      "checklist.md": "5156e5003da8c605a201164226aca8f9072a2700cb9c136a870216ad1c5ca4b2",
+      "implementation-summary.md": "9a75ad2a8420a7e91598db19f5bbb1b03f022bd71c299f61a5d8fe84b27cf913"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

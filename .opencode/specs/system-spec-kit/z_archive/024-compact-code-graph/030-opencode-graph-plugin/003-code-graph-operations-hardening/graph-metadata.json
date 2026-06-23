@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 3 added one reusable graph-operations hardening contract below the transport shell. The Level 3 repair keeps that shipped runtime scope intact and explains the portability and repair boundaries cleanly.",
+    "causal_summary": "The additional research showed that the current graph runtime is good at compact context generation but still thin on durability, portability, and integrity operations",
     "created_at": "2026-04-12T09:02:53.437Z",
-    "last_save_at": "2026-05-30T10:12:03.517Z",
+    "last_save_at": "2026-06-23T03:50:00.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:de5f40bca0962b89b61c47a8c2077eb07927117f7044c53580516008b21b2855",
+    "source_doc_hashes": {
+      "spec.md": "77ac96f9f77caa919b9cb3946ab8d5502ed1416e61647d49b9d780ed5085ad6b",
+      "plan.md": "2c4625becec69cede73e689d377c079119c772178f2708baa4f533dcc87b87d4",
+      "tasks.md": "7d6419e1462664ee45f3c1390a283fecc696377f25c4f657bb9f4a24107709d6",
+      "checklist.md": "263f05b70de79488329f80e27377510d02b54aec56cefb2992d2326c07a96489",
+      "decision-record.md": "615b4dbf115e501e90721e557acb9f16727aea7e19a661c30d9fc51ce8e0b32a",
+      "implementation-summary.md": "8b3e1ff9c735ca1d864313ede24541dcdf4847d7652598bf5be615575e49f38f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

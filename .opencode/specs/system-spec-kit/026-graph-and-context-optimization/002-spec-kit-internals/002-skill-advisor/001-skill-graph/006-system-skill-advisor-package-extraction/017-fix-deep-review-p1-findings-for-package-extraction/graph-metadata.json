@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 10-iteration review identified two P1 edge-case risks in the extracted `mk_skill_advisor` server: a stale bootstrap lock directory could block a clean checkout after a hard crash, and the shadow delta sink accepted an environment-controlled path without workspace containment validation.",
+    "causal_summary": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a clean checkout after a hard crash, and the shadow delta sink accepted an environment-controlled path without workspace containment validation",
     "created_at": "2026-05-19T15:11:02.194Z",
-    "last_save_at": "2026-06-05T12:47:33.325Z",
+    "last_save_at": "2026-06-23T03:49:53.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:47d82c7f628d81ae74d90d65829312ef70f1b024712b5fc1815dec0801cb8c8d",
+    "source_doc_hashes": {
+      "spec.md": "4edaeb0c9e492021294a1c7b5964b892c9ce2b7f0c0ada9861296cf9e659dc9e",
+      "plan.md": "2cda2de1372dbc25fc11f2b197f0edd74302d5c6e0129645e19c3b23096f760e",
+      "tasks.md": "bd30e81fabd1b653039fcda32aa2aeed9c6a512f6a514af59233690da829dc79",
+      "checklist.md": "a64bd281bdda0736f3ec3ac7b5c274dc9ee0028b3915fc692997366cd3e91281",
+      "implementation-summary.md": "af7301b165f82deff68d5fc3e4252777b938b9bf85612df7840e1fd5587a4c33"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

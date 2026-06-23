@@ -181,9 +181,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests that completed P0/P1 items have evidence.",
+    "causal_summary": "This fixture tests that completed P0/P1 items have evidence",
     "created_at": "2026-06-22T18:55:03.933Z",
-    "last_save_at": "2026-06-22T18:55:03.933Z",
+    "last_save_at": "2026-06-23T03:49:58.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:a8d45364c47326099572543012c2df77e23496b80c5764706bd76e5448ca38e7",
+    "source_doc_hashes": {
+      "spec.md": "a8c16901cb549cbf21d3a6c7c4ec88f7696ceebdb72b391ce1cad13589386336",
+      "plan.md": "65d833f0ca08efb06b658cbd67a320b2a5b1a5328767a509b08b3e7c9c915ff0",
+      "tasks.md": "08b581fa8c872bfef01be8d53886042db233915a43584245eb58979f1df8201d",
+      "checklist.md": "a56bc024b3e0dc828c4e1b631462b9b34eaaaba9121fec7d9115587d19ab917c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn. The backfill CLI ignores its positional folder arg and defaults to the repo-wide root, runtime search regenerates a global cache as a side effect, the description path stamps wall-clock time and writes unconditionally, the status normalizer admits free-text prose with em-dashes, `mergeGraphMetadata` drops `parent_id` and `children_ids` on a re-derive, the `specFolder` path shape is inconsistent between the two generators, and the global `descriptions.json` regen pulls in other sessions' folders. The visible symptom is unscoped cross-session commit churn that buries real diffs, plus a latent lineage-loss risk on the merge path. No prior research has examined the generated-JSON quality and safety surface as a whole.",
+    "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-22T16:18:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.839Z",
+    "last_save_at": "2026-06-23T03:49:58.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:1fbef4c7e2891f3adb8be4919f858b52110f48ac3e0a136a0eb2847458daa2a7",
+    "source_doc_hashes": {
+      "spec.md": "6cba38c81f3991dfefefbff32b0bd3cd6d2ef47c36b70509713dfbd0bcba3f6b",
+      "plan.md": "1983a48ef26000624d41b30a778b3354326846b75f09dd5f8496c2d1527af80f",
+      "tasks.md": "3df61ef033a955abc0abb22b05746cbf9f65dd663f18b13918516d778f37c056",
+      "checklist.md": "43326d2463ec5108ea33c67673d7ffbad155f21b76fb0f67c8ca4ac3bc3f3cf3",
+      "implementation-summary.md": "67d16f168337f35d68ddce84e29f6ffcecffad4b78144e563f0932d6c300ce6d",
+      "research/research.md": "568f047d52c31eea4ccff3fbba8cc527fb3eba7dad8335fbeda54d0b1db3e6ba"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

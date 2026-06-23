@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The prod search path returns the post-floor result set with no density discipline. After `truncateByConfidence` runs at `hybrid-search.ts:2051`, the `reranked` set is passed straight through to the trace-metadata mapping at `hybrid-search.ts:2078` and returned, so near-duplicate packets and redundant chunks survive into the caller context unchecked. The pipeline already collapses adjacent same-document chunks via `collapseAndReassembleChunkResults` at `hybrid-search.ts:1757`, but that is structural reassembly within one document and does nothing for cross-document near-duplicates or for diversity. The result is wasted context budget: two packets that say nearly the same thing both occupy slots a more diverse packet could have used, which lowers the distinct-information-per-token a caller receives without changing what was recalled.",
+    "causal_summary": "The prod search path returns the post-floor result set with no density discipline",
     "created_at": "2026-06-21T10:22:34.991Z",
-    "last_save_at": "2026-06-22T18:55:03.814Z",
+    "last_save_at": "2026-06-23T03:49:58.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f0cff131c80f0554536f9c252e8361d821c4280730e36c3eafa8eea00c1fb59c",
+    "source_doc_hashes": {
+      "spec.md": "75eecc27e69694f3aaba975bfa8ca92d0b4cbe3b693f8b08fc98910e2d65c01d",
+      "plan.md": "7d0e6e20e25a6ef4dbef4cb15e778bfa9fb6674579ded50ae7349e0ed5d71428",
+      "tasks.md": "c05e2be3937b5454b94bb8b0f4fc7bec13b3985453f5cffe74062f5c7beebc28",
+      "checklist.md": "8e3ac691df044a24de0ca3f91892f981c254aae63efb46a11c483bb905464d06",
+      "implementation-summary.md": "a6174ea0c33872ea8709aca2aac88d23630c54d791d96df01d3e4dffdf1e7e3d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

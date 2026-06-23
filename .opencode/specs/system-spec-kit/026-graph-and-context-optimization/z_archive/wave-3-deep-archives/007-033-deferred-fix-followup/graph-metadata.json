@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 018 fixed 14 of 17 actionable findings from the 017 deep-review, deferring 5 (F001, F006/F011, F012, F017, F018) with documented rationale. The user requested all deferred items be addressed. This packet closes them.",
+    "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
     "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-06-06T09:38:27.228Z",
+    "last_save_at": "2026-06-23T03:49:56.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:00fc6e69b856a39572e1852de244ba46db3e3ccce7b39dc7dc1aa07d76801887",
+    "source_doc_hashes": {
+      "spec.md": "6afdf6e681ecf099815fe6103a5a393e7dac3cb2c4b7af95789d8061957f52e8",
+      "plan.md": "dc9c6afbaf67f2a08d9208ddfe29bcfb8fe308e3097f3f8ddf5e5361480d62c3",
+      "tasks.md": "0446d6fe3b21c794cfbdb1760b6974c1786098222de3806052e9535a954bceb9",
+      "implementation-summary.md": "54110582d22e7a40999f4bd87c32d7e01f85543f1ea6117fc3d4617c62d8a7be"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

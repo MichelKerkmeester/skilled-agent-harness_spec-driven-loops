@@ -1,15 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
-  "description": "Feature Specification: Idempotency Flag-On Correctness",
+  "description": "The default-off idempotency path had correctness defects that only matter when `SPECKITMEMORYIDEMPOTENCY` is explicitly enabled:",
   "keywords": [
-    "feature",
-    "specification",
+    "default-off",
     "idempotency",
-    "flag-on",
-    "correctness"
+    "path",
+    "correctness",
+    "defects",
+    "only",
+    "matter",
+    "speckitmemoryidempotency",
+    "explicitly",
+    "enabled"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.347Z",
+  "lastUpdated": "2026-06-23T03:49:57.322Z",
   "specId": "014",
   "folderSlug": "idempotency-flag-on-correctness",
   "parentChain": [

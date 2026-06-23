@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memory_health` response. The council identified RSS pressure and circuit instability as key signals, but the Memory MCP daemon did not expose process RSS or recent circuit-breaker transition state.",
+    "causal_summary": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memoryhealth` response",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-30T10:12:02.122Z",
+    "last_save_at": "2026-06-23T03:49:54.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:25:36Z",
     "source_docs": [
@@ -215,6 +215,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:fe7014731d236ddc29ddc1137124570345e8cb9abd644012128bb28b4fff3d7a",
+    "source_doc_hashes": {
+      "spec.md": "e8c60f31ff70805b0835aed8184df4d30b684446c21bbfa19f629b3994de268e",
+      "plan.md": "944eac7aab8203b1dd75a37087612ae3448ab5f4e10372fa48bd20d9f349396f",
+      "tasks.md": "2678a70266df17f3eb0e38a4b73e3d3cee3ca4a07dc64e5e76568aa7b7b7a250",
+      "checklist.md": "e7c8294dbe1f67e51e775429dc08ffa462fc5eafa9bd8f9eb7eb9fd62aa7c21b",
+      "implementation-summary.md": "5818aad925ed38dbf6093083f67dcb35669807fc207e66ec52a76f4e782a7840",
+      "resource-map.md": "8dab71fca0866696f828f2162b6e031a8d936b91813904246ae570f226ff4cde"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been folded into the skill, references, and tool-surface summaries. The affected docs still needed to describe JSON-first save patterns, the live 33-tool memory surface, and the current six-command structure without reopening runtime work.",
+    "causal_summary": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been folded into the skill, references, and tool-surface summaries",
     "created_at": "2026-04-12T09:02:50.285Z",
-    "last_save_at": "2026-06-05T12:47:34.830Z",
+    "last_save_at": "2026-06-23T03:50:00.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:976600dc5703e781c15a828a0b9b00957914cf7fd8bd22f600026ea2e7528cb2",
+    "source_doc_hashes": {
+      "spec.md": "384351b098d362d5b41faece2922dc91d080285d3363e66b221625775a04e6a8",
+      "plan.md": "fbac1bd148aaf7c30b10b317d262c30199c9eb72e75af63c6309f811d54a8307",
+      "tasks.md": "74e792d33ade6380165feba6a82ad9af5566a7e1489db3cfff99529f01adcc65",
+      "checklist.md": "6e4bcef899bb3cea74173d6de204ee4cc63b3f3cfd04d3ccd017eceba3381e71",
+      "implementation-summary.md": "4760185270f8dd6bb8a22b1b408e78bb011d38e1af36f435e4a1edcdc8dbd05f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

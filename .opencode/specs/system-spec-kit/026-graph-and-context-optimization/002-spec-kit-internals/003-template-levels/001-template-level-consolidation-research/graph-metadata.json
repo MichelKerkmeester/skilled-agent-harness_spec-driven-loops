@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit templates folder maintains **83 .md files / ~13K LOC** in a CORE + ADDENDUM v2.2 architecture, but composition runs at *build time* (`compose.sh` + `wrap-all-templates.sh`) and the resulting `level_1/` … `level_3+/` outputs are committed to disk alongside their sources — duplicating intent across ~60 files and creating two surfaces that drift independently. This packet investigates whether the per-level output directories can be eliminated entirely in favor of **on-demand generation** from a single source of truth (4 CORE files + 4 ADDENDUM manifests + a level-rules JSON), without breaking the validator, ~800+ existing spec folders, the phase-parent lean trio, or cross-cutting templates.",
+    "causal_summary": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level1/`, `level2/`, `level3/`, `level3+/`)",
     "created_at": "2026-05-01T07:40:58Z",
-    "last_save_at": "2026-05-30T10:12:02.007Z",
+    "last_save_at": "2026-06-23T03:49:53.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:8453bbefc8ef9e6261c7e5df90d971d3b42d3dcec47679dd2fb5174fc27b4c21",
+    "source_doc_hashes": {
+      "spec.md": "36a842cffdd430ca54d03b894b7d40b52ba71166946922e0b3d2e3a8152a5a68",
+      "plan.md": "092332fb26e873cf8bc5bac913d52c870a5b3b7c0624d1dd32f762b62278d8b9",
+      "tasks.md": "f6c9d434070c3483584a40056bf8cdfd117de441a13b823bff59bd5cd2f86aac",
+      "checklist.md": "97be3784a7f02965a4a485bc11137ad3efeb5defaf6e1cbf8dbc90fb4bf18399",
+      "decision-record.md": "d5d1a44f2b96e6ccb85191cf9ae0ee29fd0fdddeb10ba25d10cc1899a3b70772",
+      "implementation-summary.md": "76cb3b092affe82f43f6c73c74ceaaa47d952f60c9bc64e56d3ffd889186b005",
+      "research/research.md": "3d9493148238e10d65d5d74221a8c110eee94ffc37bd89e76f58ebbe31294ec5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

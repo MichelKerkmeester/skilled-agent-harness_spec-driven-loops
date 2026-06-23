@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
-  "description": "Feature Specification: Phase 2: advisor-provenance-guard",
+  "description": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no m",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "advisor-provenance-guard"
+    "advisor",
+    "auto",
+    "edge-patch",
+    "path",
+    "adds",
+    "autoaddedat",
+    "autoaddedreason",
+    "idempotent",
+    "target",
+    "carries",
+    "durable",
+    "sourcekind"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.981Z",
+  "lastUpdated": "2026-06-23T03:49:57.455Z",
   "specId": "002",
   "folderSlug": "advisor-provenance-guard",
   "parentChain": [

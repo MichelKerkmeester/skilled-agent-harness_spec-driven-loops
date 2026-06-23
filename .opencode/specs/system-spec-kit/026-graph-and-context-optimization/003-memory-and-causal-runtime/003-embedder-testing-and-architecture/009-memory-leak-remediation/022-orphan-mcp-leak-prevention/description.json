@@ -1,16 +1,25 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention",
-  "description": "Feature Specification: Orphan MCP Leak Prevention",
+  "description": "Manual cleanup on 2026-05-24 found repeated orphan MCP stacks under Codex.app and stale Claude Code launcher children",
   "keywords": [
-    "feature",
-    "specification",
+    "manual",
+    "cleanup",
+    "2026-05-24",
+    "found",
+    "repeated",
     "orphan",
     "mcp",
-    "leak",
-    "prevention"
+    "stacks",
+    "codex",
+    "app",
+    "stale",
+    "claude",
+    "code",
+    "launcher",
+    "children"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.257Z",
+  "lastUpdated": "2026-06-23T03:49:55.376Z",
   "specId": "022",
   "folderSlug": "orphan-mcp-leak-prevention",
   "parentChain": [

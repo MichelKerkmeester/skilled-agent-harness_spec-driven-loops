@@ -1,16 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
-  "description": "Feature Specification: Generated-Metadata Validator and Status Enum",
+  "description": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
   "keywords": [
-    "feature",
-    "specification",
-    "generated-metadata",
-    "validator",
-    "status",
-    "enum"
+    "generated-json",
+    "contract",
+    "weak",
+    "bad",
+    "statuses",
+    "leak",
+    "real",
+    "gate",
+    "catches",
+    "them"
   ],
-  "lastUpdated": "2026-06-22T17:00:25.366Z",
+  "lastUpdated": "2026-06-23T03:49:58.781Z",
   "specId": "036",
   "folderSlug": "metadata-validator-status-enum",
   "parentChain": [

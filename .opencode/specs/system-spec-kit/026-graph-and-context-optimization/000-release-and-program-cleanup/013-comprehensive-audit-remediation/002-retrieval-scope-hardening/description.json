@@ -1,14 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
-  "description": "Feature Specification: Phase 2: retrieval-scope-hardening",
+  "description": "Four retrieval/causal surfaces bypassed governed retrieval scope or trusted forged identity",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "retrieval-scope-hardening"
+    "four",
+    "retrieval",
+    "causal",
+    "surfaces",
+    "bypassed",
+    "governed",
+    "scope",
+    "trusted",
+    "forged",
+    "identity"
   ],
-  "lastUpdated": "2026-06-04T21:14:22.596Z",
+  "lastUpdated": "2026-06-23T03:49:53.034Z",
   "specId": "002",
   "folderSlug": "retrieval-scope-hardening",
   "parentChain": [

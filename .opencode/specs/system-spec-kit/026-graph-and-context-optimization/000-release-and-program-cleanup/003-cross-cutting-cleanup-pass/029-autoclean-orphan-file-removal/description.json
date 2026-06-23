@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
-  "description": "Feature Specification: 055 AutoClean Orphan Files",
+  "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is missi",
   "keywords": [
-    "feature",
-    "specification",
-    "055",
+    "verifyintegrity",
     "autoclean",
+    "true",
+    "only",
+    "auto-cleans",
     "orphan",
-    "files"
+    "vectors",
+    "chunks",
+    "never",
+    "deletes",
+    "memoryindex",
+    "rows",
+    "whose",
+    "filepath",
+    "missi"
   ],
-  "lastUpdated": "2026-05-26T17:26:55.572Z",
+  "lastUpdated": "2026-06-23T03:49:52.414Z",
   "specId": "029",
   "folderSlug": "autoclean-orphan-file-removal",
   "parentChain": [

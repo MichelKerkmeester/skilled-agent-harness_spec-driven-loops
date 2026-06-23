@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "During a comprehensive bug fix session (63+ bugs, 25+ files, 15 parallel agents), the AI:",
+    "causal_summary": "During a comprehensive bug fix session (63+ bugs, 25+ files, 15 parallel agents), the AI",
     "created_at": "2026-04-12T09:02:53.521Z",
-    "last_save_at": "2026-06-22T18:56:37.573Z",
+    "last_save_at": "2026-06-23T03:49:59.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:50de5c9ab217117fc0a5356b92f19a9fb902a230bb14b2d1681081178e8d497f",
+    "source_doc_hashes": {
+      "spec.md": "3d3b28b6a5426d05ba653f1a30484770f1fc00e4d3d580eb6bf5d5fd1a59b7a5",
+      "plan.md": "f3aeb954a25b35a77f0837a262434abf00727b380420fc0e5b78bfd806ff0d60",
+      "tasks.md": "ba75214993d05e535326ff53e2209a59a3fd8ce282f5e6d8b924cce13efc7b6d",
+      "checklist.md": "872ebae6d8d3594b41afdfdd6321abf6c49aa25edc760c1cf66739c8fc783773",
+      "handover.md": "c2fbe06d586ffb9ad1c5568966a9f363c94f9831cd29180ac500beef7fe1a051"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

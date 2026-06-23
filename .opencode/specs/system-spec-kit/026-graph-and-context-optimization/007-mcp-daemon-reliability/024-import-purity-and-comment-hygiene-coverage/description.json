@@ -1,17 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
-  "description": "Feature Specification: Import purity and comment-hygiene checker coverage",
+  "description": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups",
   "keywords": [
-    "feature",
-    "specification",
-    "import",
-    "purity",
-    "comment-hygiene",
-    "checker",
-    "coverage"
+    "post-merge",
+    "gpt-5",
+    "cross-check",
+    "daemon-reliability",
+    "work",
+    "surfaced",
+    "two",
+    "follow-ups"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.178Z",
+  "lastUpdated": "2026-06-23T03:49:56.571Z",
   "specId": "024",
   "folderSlug": "import-purity-and-comment-hygiene-coverage",
   "parentChain": [

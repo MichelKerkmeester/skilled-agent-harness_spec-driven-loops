@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver",
-  "description": "Feature Specification: Phase 9: codegraph-bm25-symbol-resolver",
+  "description": "Code-graph subject matching is exact equality on `fqname` or `name` (`handlers/query.ts:202-235`), so a near-miss symbol query returns nothing and the",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "codegraph-bm25-symbol-resolver"
+    "code-graph",
+    "subject",
+    "matching",
+    "exact",
+    "equality",
+    "fqname",
+    "name",
+    "handlers",
+    "query",
+    "202-235",
+    "near-miss",
+    "symbol",
+    "returns",
+    "nothing"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.999Z",
+  "lastUpdated": "2026-06-23T03:49:57.500Z",
   "specId": "009",
   "folderSlug": "codegraph-bm25-symbol-resolver",
   "parentChain": [

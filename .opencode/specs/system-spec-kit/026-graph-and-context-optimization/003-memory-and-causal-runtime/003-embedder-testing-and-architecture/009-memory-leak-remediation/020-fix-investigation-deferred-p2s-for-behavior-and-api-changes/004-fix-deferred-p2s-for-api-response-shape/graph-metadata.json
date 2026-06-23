@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface. F9 exposes a test-only environment helper from production code, F32/F39/F97 require canonical camelCase response fields without a hard break, and F99 reports an unsafe pending-map cast that bypasses request/response discriminator checks.",
+    "causal_summary": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.512Z",
+    "last_save_at": "2026-06-23T03:49:55.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:04d8294d7164b09df88d9d1ef91c38ab00af83c6f19783f877b0ee4ccfb09429",
+    "source_doc_hashes": {
+      "spec.md": "cd094f0e2e5296129188328f70387cb464b89cf15d68b5bc77baa529df4f205f",
+      "plan.md": "84e30be5efdc3fb4ebe722996fae9d955f0701cc1d8a3e1754f3b30ded6c4fea",
+      "tasks.md": "609d90b84866bf41b674e4dd32a8fb75c624c0c9b601e7e656dade1b0966eb59",
+      "checklist.md": "e1532803fcda2e4aaf9765f8c9dcf58238e515b3203df3cf29553c3a9c8cecfc",
+      "decision-record.md": "01e416ad948d365db485cec85fc517336b6aa0870079d937ee76b25dc3a4270c",
+      "implementation-summary.md": "305da42142313d9f0b0e492ad6216225d96d406a27b59a5c166ac0b7272eb1a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

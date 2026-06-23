@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface. F17 allows malformed config values to enter the canonical hash. F16 and F40 report env allowlist drift between launcher and in-process sidecar clients. F46 requires a documented config-prefix precedence rule where `SPECKIT_*` and `RERANK_*` can express the same sidecar intent.",
+    "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-06-05T12:47:33.895Z",
+    "last_save_at": "2026-06-23T03:49:55.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bac63405c3bb2897f9b42fd7e903f5586c7a93b5fac84be399dee6a8d93e381c",
+    "source_doc_hashes": {
+      "spec.md": "4480689aa359e24889fc1a2886ede5dc409f7c3a66df4062514f71700c8ff642",
+      "plan.md": "e80959696764a18fec57eee68c533e4cef426ce84c02eb3fb97cc82b70920edf",
+      "tasks.md": "5119bb2ba00de2b91e6e2bc29728eafbef24ed4c5307b5d8b92f6526458dde6f",
+      "checklist.md": "e6b74c8470bb28a56c24cbf426aa14c3297a1fb58420a7030e1a2f55c180451c",
+      "decision-record.md": "034dab43e33308b65f373b92fb535c538e484944816309223d25694db6d5775f",
+      "implementation-summary.md": "e8564ff4841b01535734ad6718e03fc81b439bb354d13ab9c9adf505b7ce0c7c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

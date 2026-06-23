@@ -1,15 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands",
-  "description": "Feature Specification: Command Documentation Cleanup",
+  "description": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits be",
   "keywords": [
-    "feature",
-    "specification",
+    "every",
     "command",
-    "documentation",
-    "cleanup"
+    "doc",
+    "opencode",
+    "plus",
+    "claude",
+    "codex",
+    "runtime",
+    "mirrors",
+    "needs",
+    "release-readiness",
+    "cleanup",
+    "contract",
+    "document",
+    "edits"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.299Z",
+  "lastUpdated": "2026-06-23T03:49:58.097Z",
   "specId": "006",
   "folderSlug": "commands",
   "parentChain": [

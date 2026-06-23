@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined from aionforge's `procedural-memory.md` against the live `system-spec-kit/mcp_server/` substrate (packet 028, child `001-speckit-memory`, PRIMARY). It bundles four research candidates into one coherent benchmark-first unit: **M-procedural-reliability-recall** (Beta-posterior reliability-weighted recall), **M-bad-pattern-negative-memory** (immutable negative procedural memory surfaced before reuse), **M-skill-induction-repetition** (off-by-default verbatim-procedure induction from recurrence) and **M-procedural-version-reset** (cut a new procedural version + reset reliability when the contract surface changes).",
+    "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-06-22T18:55:03.648Z",
+    "last_save_at": "2026-06-23T03:49:58.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:740d8b3dc5691a23962a7f81fe4e163329e5a4dccc2151d364685b3d1540a1ec",
+    "source_doc_hashes": {
+      "spec.md": "21aa33c62ba27190c5abccda959c25de7602ac6b05a33c7817e84358a6ef8d16",
+      "plan.md": "10b7dcaff30cc05bef00d93cea3ee2f6f7a166ad34ff1b76146980e4f673448f",
+      "tasks.md": "2c2c26e51a6a89f17a0fca72bf00b712cf69dcf416568634cb72a8fa36b6ac46",
+      "checklist.md": "c3a206faf0e66c9dd0d644c8f395e51a123b40f7ae09e82c7bb72fd7dd1d0f89",
+      "decision-record.md": "30ef331838d394fcc8a6ac2831fa447ecdf3fa32cf084341742a7d5da334595f",
+      "implementation-summary.md": "7c63f73f7b5942587c9f86a4b27fa9ee5943c68c86f2ab2bdc75c175af938a5d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

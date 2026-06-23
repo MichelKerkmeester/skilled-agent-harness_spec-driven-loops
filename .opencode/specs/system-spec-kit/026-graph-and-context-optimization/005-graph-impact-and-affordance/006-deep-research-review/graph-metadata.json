@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit. The completed research loop checked every system shipped under Phase 006, the 006/007 remediation claim set of 33 closures, and the 011 playbook coverage follow-up.",
+    "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit",
     "created_at": "2026-04-25T23:20:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.668Z",
+    "last_save_at": "2026-06-23T03:49:56.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:8834d4ab83557cd1c113d0b241e35aee687997d1f57787ee78bf8c8a7d23782c",
+    "source_doc_hashes": {
+      "spec.md": "e9c984b7a4986dd6d1ad2b614552ed834138fd0667dd1ea5b71f7a72c7d20f78",
+      "plan.md": "26fc7adf9b72eab20702df966e4ef2d788297beff890fdd031067a7ab1036ceb",
+      "tasks.md": "e109db63bf3c15ce21673277c2bdb92adfdf00a0c7ad1fb2e4398431a6b45649",
+      "checklist.md": "4f238f5350df688834a45f1a5c7686c7805e25b887d370f5fc4786e22b0ef440",
+      "implementation-summary.md": "5d357e5aa232caae226aa5641de92f3067ba733c1058487542a360479c3847bb",
+      "research/research.md": "480fa4bafa757e62a26ada68bdc6b847de8fbe279aa048ce5ed1ce8415c0f4f2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
-  "description": "Feature Specification: 054 Runtime Cleanup Followups",
+  "description": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.open",
   "keywords": [
-    "feature",
-    "specification",
-    "054",
+    "packet",
+    "096",
+    "singular",
+    "plural",
+    "path-residue",
+    "fix",
+    "three",
+    "follow-on",
+    "issues",
+    "remain",
     "runtime",
-    "cleanup",
-    "followups"
+    "findadvisorworkspaceroot",
+    "uses",
+    "bare",
+    "open"
   ],
-  "lastUpdated": "2026-05-26T17:26:50.321Z",
+  "lastUpdated": "2026-06-23T03:49:52.499Z",
   "specId": "004",
   "folderSlug": "runtime-root-memory-cleanup-followup-fixes",
   "parentChain": [

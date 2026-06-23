@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands. The empty-arguments gate fired correctly, but every downstream stage produced at least one observable defect: the intent classifier emitted `fix_bug` (confidence 0.098) for the query \"Semantic Search\" despite the spec mandating `understand` as the no-keyword-match fallback; the `memory_context` wrapper reported `truncated=true` and zero `results` while consuming only 2% of its 3000-3500 token budget; the assistant rendering used the explicitly-forbidden phrase \"Auto-triggered memories\"; `causal-stats` returned three of six valid relation types and labeled itself `health: \"healthy\"` while reporting `meetsTarget: false`. The root spec at `.opencode/commands/memory/search.md` documents the intended behavior, but the runtime drifts from it on multiple axes.",
+    "causal_summary": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands",
     "created_at": "2026-04-26T14:33:00Z",
-    "last_save_at": "2026-06-22T18:55:02.192Z",
+    "last_save_at": "2026-06-23T03:49:53.851Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:525dbab03a94a3f054fdb23e2b65ec491d914bb13dd6b77daa0549e8f4124727",
+    "source_doc_hashes": {
+      "spec.md": "a76b32ebd03b1473ecca5778a36eb80770b54bcb9a7ff2caafb028d5e67c49ee",
+      "plan.md": "fc7f9d291111a08c3d4f01a1ba2d685239c9b662f039a97d2880d0b8898b9c0d",
+      "tasks.md": "df1f392e157173e8c50146f8b1e2a53706e1434bc919fb45c9d6db30e104b7f8",
+      "implementation-summary.md": "64c6cdbf531e1d9bac1bcf4ea65c7547480a40fe15c8496b035d9cc25c49eb1e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

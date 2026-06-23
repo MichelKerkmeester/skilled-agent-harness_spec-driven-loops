@@ -1,14 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/005-cross-skill-doc-polish",
-  "description": "Feature Specification: Phase 1: cross-skill-doc-polish",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "cross-skill-doc-polish"
+    "broken",
+    "missing",
+    "inefficient",
+    "2-3",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-05-26T17:25:51.264Z",
+  "lastUpdated": "2026-06-23T03:49:55.987Z",
   "specId": "005",
   "folderSlug": "cross-skill-doc-polish",
   "parentChain": [

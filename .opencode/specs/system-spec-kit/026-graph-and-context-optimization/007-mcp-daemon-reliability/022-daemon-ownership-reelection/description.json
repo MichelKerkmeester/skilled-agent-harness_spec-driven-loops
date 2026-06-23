@@ -18,17 +18,16 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
-  "description": "Feature Specification: RC-2 daemon ownership re-election (foundation)",
+  "description": "The shared mk-spec-memory daemon is owned by one launcher",
   "keywords": [
-    "feature",
-    "specification",
-    "rc-2",
+    "shared",
+    "mk-spec-memory",
     "daemon",
-    "ownership",
-    "re-election",
-    "foundation"
+    "owned",
+    "one",
+    "launcher"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.168Z",
+  "lastUpdated": "2026-06-23T03:49:56.559Z",
   "specId": "022",
   "folderSlug": "daemon-ownership-reelection",
   "parentChain": [

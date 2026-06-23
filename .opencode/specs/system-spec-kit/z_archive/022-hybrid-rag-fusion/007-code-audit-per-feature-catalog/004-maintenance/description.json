@@ -1,14 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
-  "description": "Feature Specification: Code Audit — Maintenance",
+  "description": "The feature catalog for Maintenance has evolved significantly",
   "keywords": [
     "feature",
-    "specification",
-    "code",
-    "audit",
-    "maintenance"
+    "catalog",
+    "maintenance",
+    "evolved",
+    "significantly"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.211Z",
+  "lastUpdated": "2026-06-23T03:49:59.801Z",
   "specId": "004",
   "folderSlug": "maintenance",
   "parentChain": [

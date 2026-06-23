@@ -1,18 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
-  "description": "Feature Specification: CLI Freshness Gate Fix and Offline Smoke",
+  "description": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist en",
   "keywords": [
-    "feature",
-    "specification",
-    "cli",
+    "spec-memory",
+    "shim",
+    "mtime-based",
     "freshness",
     "gate",
-    "fix",
-    "offline",
-    "smoke"
+    "opencode",
+    "bin",
+    "cjs",
+    "24-42",
+    "guard",
+    "observed",
+    "29-40",
+    "exits",
+    "dist"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.027Z",
+  "lastUpdated": "2026-06-23T03:49:57.806Z",
   "specId": "001",
   "folderSlug": "cli-freshness-and-smoke",
   "parentChain": [

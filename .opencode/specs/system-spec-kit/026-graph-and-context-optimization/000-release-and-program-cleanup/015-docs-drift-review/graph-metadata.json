@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`). User-facing documentation (root README, skill READMEs/SKILL.md, MCP server READMEs, the feature_catalog, and the manual_testing_playbook) may now describe behavior that was removed, renamed, or changed by those packets, so a reader following the docs could trust a removed feature or run a command that fails.",
+    "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`)",
     "created_at": "2026-06-05T06:53:42.412Z",
-    "last_save_at": "2026-06-05T12:47:33.239Z",
+    "last_save_at": "2026-06-23T03:49:53.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4576ae715f837921c0029455c9b315611665788c42d8115c3d75863b228e79b3",
+    "source_doc_hashes": {
+      "spec.md": "8f0fe0e5024d306851ac39d958743469b730af06f8e337d5b97e91fa538b4d2d",
+      "plan.md": "eb07a6a95c5cdec2fb070d54d78b5f67b518592c6e417311d41174a833366ab3",
+      "tasks.md": "64c55f6b54a27c4c60d8f4f9100a08c354a932db352a3aa4369fe531e1ffffb7",
+      "implementation-summary.md": "9105b23dec28862ba5d82ff5d8552ca5b031de91ef9bdfed6409b4ce4d1fff9a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

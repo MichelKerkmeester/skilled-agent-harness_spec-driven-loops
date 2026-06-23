@@ -1,16 +1,26 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research",
-  "description": "Feature Specification: MCP Runtime Improvement Deep Research",
+  "description": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory",
   "keywords": [
-    "feature",
-    "specification",
+    "two",
+    "recent",
+    "investigation",
+    "packets",
+    "005",
+    "defects",
+    "catalog",
+    "006",
+    "cross-ai",
+    "stress-test",
+    "surfaced",
+    "coherent",
+    "set",
     "mcp",
     "runtime",
-    "improvement",
-    "deep",
-    "research"
+    "spanning",
+    "memory"
   ],
-  "lastUpdated": "2026-05-26T17:28:04.527Z",
+  "lastUpdated": "2026-06-23T03:49:52.552Z",
   "specId": "002",
   "folderSlug": "mcp-runtime-improvement-research",
   "parentChain": [

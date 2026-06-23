@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook. Each of the 13 retrieval scenarios must be executed, verdicted, and evidenced independently. Without a dedicated phase packet, testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or record results.",
+    "causal_summary": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.289Z",
-    "last_save_at": "2026-06-22T18:55:04.445Z",
+    "last_save_at": "2026-06-23T03:50:00.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c6ccf2e71e9be3ab682483048f2a7ef8598d9f0bd45020ca8cbca5f9cd48de73",
+    "source_doc_hashes": {
+      "spec.md": "57dd4a1e393d82171bb845f2b92fa4997ead6b1509395913c4d85794354d6908",
+      "plan.md": "ceb8d25d12856f13a3c2232e3a33cd78f4e25aa6c844a09ef9475775705e122e",
+      "tasks.md": "1252c940e4d460079be62e38a489a529b86a892e5812bf5e7333ca53971c6d64",
+      "checklist.md": "c71d068a945b68b386a693e7cf8959d7ec100e4ba78b24b325629be35b305ccd",
+      "implementation-summary.md": "2ffe596ba200dc2a009da9cd384ff796461cf420aa4cf21103c2f9eedc1f2b84"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

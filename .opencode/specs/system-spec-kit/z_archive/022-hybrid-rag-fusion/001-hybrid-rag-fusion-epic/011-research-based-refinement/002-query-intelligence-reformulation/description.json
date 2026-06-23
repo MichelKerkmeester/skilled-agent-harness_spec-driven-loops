@@ -1,14 +1,26 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/002-query-intelligence-reformulation",
-  "description": "Feature Specification: Query Intelligence & Reformulation",
+  "description": "The current retrieval pipeline treats every user query as a single opaque string — one embedding lookup, one keyword expansion, one graph probe",
   "keywords": [
-    "feature",
-    "specification",
+    "current",
+    "retrieval",
+    "pipeline",
+    "treats",
+    "every",
+    "user",
     "query",
-    "intelligence",
-    "reformulation"
+    "single",
+    "opaque",
+    "string",
+    "one",
+    "embedding",
+    "lookup",
+    "keyword",
+    "expansion",
+    "graph",
+    "probe"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.160Z",
+  "lastUpdated": "2026-06-23T03:49:59.719Z",
   "specId": "002",
   "folderSlug": "query-intelligence-reformulation",
   "parentChain": [

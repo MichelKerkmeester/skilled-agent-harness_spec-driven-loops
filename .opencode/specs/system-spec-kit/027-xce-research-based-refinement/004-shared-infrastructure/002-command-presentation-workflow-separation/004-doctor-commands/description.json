@@ -1,19 +1,19 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands",
-  "description": "Feature Specification: Doctor Commands Presentation Workflow Separation (Phase Parent)",
+  "description": "The doctor commands command family owns presentation instructions inline with routing instructions",
   "keywords": [
-    "feature",
-    "specification",
     "doctor",
     "commands",
+    "command",
+    "family",
+    "owns",
     "presentation",
-    "workflow",
-    "separation",
-    "phase",
-    "parent"
+    "instructions",
+    "inline",
+    "routing"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.776Z",
+  "lastUpdated": "2026-06-23T03:49:57.739Z",
   "specId": "004",
   "folderSlug": "doctor-commands",
   "parentChain": [

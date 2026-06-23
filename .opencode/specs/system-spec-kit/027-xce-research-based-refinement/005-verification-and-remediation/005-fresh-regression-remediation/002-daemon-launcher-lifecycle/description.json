@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle",
-  "description": "Feature Specification: Daemon Launcher & Lifecycle Remediation",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 15 findings (4 P1) in this subsystem, each carried as a task with its registry recommen",
   "keywords": [
-    "feature",
-    "specification",
-    "daemon",
-    "launcher",
-    "lifecycle",
-    "remediation"
+    "remediation",
+    "sub-phase",
+    "027",
+    "fresh",
+    "regression",
+    "deep-review",
+    "findings",
+    "subsystem",
+    "carried",
+    "task",
+    "registry",
+    "recommen"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.542Z",
+  "lastUpdated": "2026-06-23T03:49:57.965Z",
   "specId": "002",
   "folderSlug": "daemon-launcher-lifecycle",
   "parentChain": [

@@ -1,17 +1,24 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
-  "description": "Audit Scope — MCP Server Infrastructure (handlers / providers / daemon)",
+  "description": "Independent gpt-5.5 deep-review audit of the system-spec-kit MCP server infrastructure OUTSIDE the search pipeline (scope A) and the store/index/lifec",
   "keywords": [
+    "independent",
+    "gpt-5",
+    "deep-review",
     "audit",
-    "scope",
+    "system-spec-kit",
     "mcp",
     "server",
     "infrastructure",
-    "handlers",
-    "providers",
-    "daemon"
+    "outside",
+    "search",
+    "pipeline",
+    "scope",
+    "store",
+    "index",
+    "lifec"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.576Z",
+  "lastUpdated": "2026-06-23T03:49:58.019Z",
   "specId": "",
   "folderSlug": "c-rest-of-server",
   "parentChain": [

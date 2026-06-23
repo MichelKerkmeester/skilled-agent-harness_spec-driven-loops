@@ -157,9 +157,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create comprehensive documentation (README.md) for the constitutional memory system located at `.opencode/skills/system-spec-kit/constitutional/`. The README should explain how constitutional memories work, how to create new ones, and how to customize existing ones.",
+    "causal_summary": "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skills/system-spec-kit/constitutional/. The README should explain how con...",
     "created_at": "2026-04-12T09:02:53.530Z",
-    "last_save_at": "2026-06-05T12:47:34.479Z",
+    "last_save_at": "2026-06-23T03:49:59.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,6 +167,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:6c815c18f7969ed8d250039e7e795b6574e39f6180b7616e36f979dad7b13aea",
+    "source_doc_hashes": {
+      "spec.md": "8b3febbd6cde53e2193d3a6961410d2e4752edc48fa9d6393d761f304c615b18",
+      "plan.md": "06bee146def57bf15f7f8aa0de655d2dddfb718d550b847f74346e9b772d68a7",
+      "tasks.md": "3f433ea455b9832791175643fa33182013b27ad3ce4a583a0f5749a6b6347a40"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

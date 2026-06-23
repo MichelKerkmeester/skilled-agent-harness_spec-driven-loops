@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 13** of the ESM Module Compliance specification and captures the FTS5/search dashboard closure workstream.",
+    "causal_summary": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic search\"`",
     "created_at": "2026-04-12T09:02:50.339Z",
-    "last_save_at": "2026-06-05T12:47:34.954Z",
+    "last_save_at": "2026-06-23T03:50:00.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:f2718cc3516682b5aa22d346ed212e980434687d8367b8efe0cf07a189a73b69",
+    "source_doc_hashes": {
+      "spec.md": "5ce2d4865297b329a55442478d9b717e4dbda069baea54f94e3a2b959af5eeac",
+      "plan.md": "cb89c509751dbda2f034a2705cc2c53e356d9201d0908a94f1b1113824b50db0",
+      "tasks.md": "b59198416e2a7537ece50748f27a70a55a4fa12ab2a3ed72a2df707bd380eecf",
+      "checklist.md": "286f4c2c958897e1690ed35f01778a096c4bde3db087ce451557fdb7ba7f33d8",
+      "implementation-summary.md": "e74f7038e08730e5bd7dd61b897330d3e4d9c0c080ccfb243564f4a0f7ce1270",
+      "handover.md": "c5e0d72666c215095922067d19bd69ef2e9997f971ef2f238d7b11e9b0883149"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

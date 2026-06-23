@@ -27,10 +27,12 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-06-22T18:55:03.594Z",
-    "last_save_at": "2026-06-22T18:55:03.594Z",
+    "last_save_at": "2026-06-23T03:49:58.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
     "last_active_child_id": null,
     "last_active_at": null
   }

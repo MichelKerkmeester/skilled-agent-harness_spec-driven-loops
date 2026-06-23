@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Memory Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Memory Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.899Z",
+    "last_save_at": "2026-06-23T03:49:57.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8a98b1f4a6e4a0545095796caa46d969a6b62fc58e3e4c8ed3cb53a42fb3a240",
+    "source_doc_hashes": {
+      "spec.md": "eed013c94653f5ee1cb63870b9359d2aad7f6f5d6372fe9695b5072cd28e6be2",
+      "plan.md": "b3b94961e97a67dca93d2f0a52fdb6117b65882fa6d109a52049cc1511b7c737",
+      "tasks.md": "227397c39ca52beb68fa6b1d1c933f62c4670d82244e375f36524d0faf12baa7",
+      "implementation-summary.md": "954ac1ae48bc2f85e02de961999ba85be728830103c1c36748cba1a294b9226c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -148,15 +148,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
+    "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.200Z",
+    "last_save_at": "2026-06-23T03:49:56.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:b7bb98a9783b91ad63af1d63d2a7edcd6e3431ad0bcff1a60d1772d24391ca89",
+    "source_doc_hashes": {
+      "spec.md": "ec94e935159a4d07c0359de614cc4f57de9ac51732b8b32ddc800673f20c3e15",
+      "research/research.md": "6f9625aba20de941da54e21e48ef99bd1d07dbf74cfeb52746d2e1ca3d91002f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes fixes for the Memory MCP Server, Spec-Kit scripts, Skills system, Commands, and cross-system integration issues.",
+    "causal_summary": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes ...",
     "created_at": "2026-04-12T09:02:53.529Z",
-    "last_save_at": "2026-06-05T12:47:34.476Z",
+    "last_save_at": "2026-06-23T03:49:59.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:2e837847de83d3a6a9e9ba4d75ad240429a4bbbd66137d58c97fd281ba2e66b1",
+    "source_doc_hashes": {
+      "spec.md": "240ee7cae674b06f1acd1fb003920e2477b5755759538116c85a30522d37e591",
+      "plan.md": "07ffd4052030c6541bcd25bc9c0ebc30a1ec806069e4b1e4175845548c48c714",
+      "tasks.md": "636ad0f1d4aa6287fd7186542e84d6c126804c38df169a672f7e816694c0ef78",
+      "checklist.md": "42d469c4f886061c973eecaa717d9740f680df38bb7ea83e3006750c3d5874ac",
+      "decision-record.md": "623d873bb5765001bce721156af9c9aae6efb01d69e63aa2dec85d034d3b4314"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

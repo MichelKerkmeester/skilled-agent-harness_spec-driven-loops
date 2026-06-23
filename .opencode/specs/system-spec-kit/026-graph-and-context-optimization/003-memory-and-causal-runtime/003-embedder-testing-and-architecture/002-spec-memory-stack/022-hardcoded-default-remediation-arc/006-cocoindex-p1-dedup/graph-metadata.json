@@ -42,8 +42,8 @@
       "tasks",
       "checklist",
       "shipped",
-      "python",
-      "default-duplication"
+      "dedups",
+      "constants"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex Python had 2 P1 default-duplication sites:",
+    "causal_summary": "2 dedups: chunk-size constants (3 values) consolidated from indexer.py + config.py to single source in config.py; COCOINDEX_RERANK_VIA_SIDECAR default consolidated to module-level _DEFAULT_RERANK_VIA_SIDECAR constant. Closes 2 P1 audit findings.",
     "created_at": "2026-05-23T17:30:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.250Z",
+    "last_save_at": "2026-06-23T03:49:54.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4d346eca6776c07a023043c169a7bb8d1685e857a694dc873285cc266d620d6e",
+    "source_doc_hashes": {
+      "spec.md": "37f0d03d1b714619152dd605d92486551e994d98e569a9cd6bf5c9ed3afb4dd3",
+      "plan.md": "3f71dbd96a6b0b40125e6ec7b17f7c6ecbad6e4b8113628d2a2733b22bb581d9",
+      "tasks.md": "ee68f0d063860d676d42d39692e555d9459a756be5efc0242333f267ef7beaa7",
+      "checklist.md": "16ce9322788ed42b0513d1a6cd3a961955269d5e61ede2d0d2fd76590892a5f2",
+      "implementation-summary.md": "9847c6260977c61d821888181067df0e5c63020cc2ad7c90c989a82fdfc72bf2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

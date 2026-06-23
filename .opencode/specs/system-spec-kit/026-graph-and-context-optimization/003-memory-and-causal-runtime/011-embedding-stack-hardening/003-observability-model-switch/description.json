@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch",
-  "description": "Feature Specification: Observability + safe model-switch + cold-start timeout",
+  "description": "Operators have no read-only view of embedder state: `embedderstatus.ts:68-86` does not report model-server state, requested/effective provider, or fal",
   "keywords": [
-    "feature",
-    "specification",
-    "observability",
-    "safe",
-    "model-switch",
-    "cold-start",
-    "timeout"
+    "operators",
+    "read-only",
+    "view",
+    "embedder",
+    "state",
+    "embedderstatus",
+    "68-86",
+    "report",
+    "model-server",
+    "requested",
+    "effective",
+    "provider",
+    "fal"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.687Z",
+  "lastUpdated": "2026-06-23T03:49:55.489Z",
   "specId": "003",
   "folderSlug": "observability-model-switch",
   "parentChain": [

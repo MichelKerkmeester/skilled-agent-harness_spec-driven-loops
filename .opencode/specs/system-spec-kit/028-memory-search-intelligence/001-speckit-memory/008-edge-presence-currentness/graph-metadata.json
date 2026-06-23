@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query) and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark or shared-infra gates.",
+    "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-06-22T18:55:03.640Z",
+    "last_save_at": "2026-06-23T03:49:58.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:da1d6fb3c7cdacd4eec551536bb0d8830ed2e66fd39983ebf93df54be032c2d2",
+    "source_doc_hashes": {
+      "spec.md": "10d565960ebfb4fb236dd0e207a56cd55b77e7baf6dbfabfad5e5f0dc6e26944",
+      "plan.md": "371a61994de3269d7921366598ac09c528ef9b1e0a3933e6c773b41e839a4ec8",
+      "tasks.md": "286b63330739f3d236cf2770aadaa118f1a2ce88dcbf71544aa632883432078e",
+      "checklist.md": "a9c5fd62be60c355f72173bcd8a785b283860dea48b52d7fa476385b8c2c9743",
+      "decision-record.md": "bac8bab4ed67fecfb02c67496cc526064f5598b7e64ae38a315e448d3cde9ebd",
+      "implementation-summary.md": "bc5b9a8e85245cca4b95df6306652f19261a5048b2124ebad27f3a2ea3e2ab8e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make `handover_state` routing target the canonical `session-notes` handover anchor and keep router tests, structural merge validation, and memory-save planner behavior aligned with that contract.",
+    "causal_summary": "`memorysave({ filePath: \".../014-local-embeddings-migration/handover.md\", routeAs: \"handoverstate\" })` routed to `handover.md::session-log`, but the handover template and live handover files use the `session-notes` anchor",
     "created_at": "2026-05-14T16:48:27Z",
-    "last_save_at": "2026-05-30T10:12:02.154Z",
+    "last_save_at": "2026-06-23T03:49:54.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a033595b18246b6f81ff51a1d37d483e4708d7a4f49acbec2a86f53719fd4bff",
+    "source_doc_hashes": {
+      "spec.md": "a672cdc70f26d0dfb3b7a3e704462db2e17d9a78bb90a2548f028ce2f7d18da6",
+      "plan.md": "0fcc91b728fe57bae8aa95209083e8dd874fd6739aeeb9c57aefbfb5894ee7ba",
+      "tasks.md": "dc5b2327800c4f6cb566ddd2577fcc3f64e709db3d74a17c982b2d36f556b89f",
+      "checklist.md": "8f02dd575016bd0e09ca41a087af2abcd4ed2ba271b52d09f278361b131f5a28",
+      "implementation-summary.md": "907ba922e010151fc211ab8f72a1025ddf52c21a25d59f161cb5abc9553a40e4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

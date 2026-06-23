@@ -1,14 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
-  "description": "Feature Specification: Multi-CLI Parity Hardening",
+  "description": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
   "keywords": [
-    "feature",
-    "specification",
-    "multi-cli",
-    "parity",
-    "hardening"
+    "phase",
+    "016",
+    "already",
+    "landed",
+    "runtime",
+    "behavior",
+    "live",
+    "code",
+    "folder",
+    "still",
+    "claimed",
+    "completion",
+    "without",
+    "direct",
+    "parity-specific",
+    "proof"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.126Z",
+  "lastUpdated": "2026-06-23T03:49:59.984Z",
   "specId": "003",
   "folderSlug": "multi-cli-parity",
   "parentChain": [

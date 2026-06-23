@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "That left a production asymmetry. The index path can write Jina v3 vectors into `vec_1024`, while query-time `generateEmbedding()` and `generateQueryEmbedding()` can still instantiate llama-cpp and produce 768-dim EmbeddingGemma vectors. The live machine has `vec_metadata.active_embedder_name='jina-embeddings-v3'`, `active_embedder_dim=1024`, and a populated `vec_1024`, so search must encode queries with the same Ollama-backed model.",
+    "causal_summary": "Wire the shared embeddings factory to Ollama-backed active embedders so query-time encoding matches the re-indexed vec_<dim> table.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-06-22T18:55:02.308Z",
+    "last_save_at": "2026-06-23T03:49:54.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e811de2b5c5fc8ff1b093b5e482a7cfafc623e45aa3172154bb0550187df6b4c",
+    "source_doc_hashes": {
+      "spec.md": "259a5b84141709252b19fa63abbc2e3c517146bcc969d544406d3a6254bf4e4e",
+      "plan.md": "40695d2431dbe291e852863ad9b0e2bae33684982b43239cf752adeadab6b913",
+      "tasks.md": "17b75f47cad9ec5e8165790b7f69853670589b92c157a666a62d894cbbc38959",
+      "checklist.md": "2f6a961e528324dd3741b31ec12e2c208572a365b498a77260217ffab1da7ac8",
+      "implementation-summary.md": "ba5bfd23b19acfba138a311b22a328e9eeb36d212ac900f3e01b4b789c13175a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

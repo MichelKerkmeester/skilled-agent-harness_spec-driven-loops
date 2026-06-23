@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the standalone MCP topology created by packet 014.",
+    "causal_summary": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the standalone MCP topology created by packet 014",
     "created_at": "2026-05-14T19:30:00Z",
-    "last_save_at": "2026-06-22T18:55:03.074Z",
+    "last_save_at": "2026-06-23T03:49:56.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ed8b57077743dddb6202398a852313679d446992d1d6545ab5a0555eef110066",
+    "source_doc_hashes": {
+      "spec.md": "780442dafef0eb462764f2d0e1077ae0be13e965bc9af4c0bc8dcbe5a7b6d8de",
+      "plan.md": "d52ea89c654eb2639c3d8db2aa4b99971020effafbbf5137560510939fb9c5c9",
+      "tasks.md": "f289a37ffe995d61f31beef0317e34fb4bed154a9cac5c674720543aa1f3718e",
+      "implementation-summary.md": "3255a1903b0a3df629e929342e4de34272fc81976142fe360978b36acd4b613d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

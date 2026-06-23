@@ -1,15 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
-  "description": "Feature Specification: Generated JS and Declaration Alignment",
+  "description": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
   "keywords": [
-    "feature",
-    "specification",
-    "generated",
-    "declaration",
-    "alignment"
+    "packet",
+    "026",
+    "recorded",
+    "unresolved",
+    "sk-code",
+    "violations",
+    "readme",
+    "coverage",
+    "sweep"
   ],
-  "lastUpdated": "2026-05-26T17:27:36.030Z",
+  "lastUpdated": "2026-06-23T03:49:53.396Z",
   "specId": "028",
   "folderSlug": "generated-js-declaration-alignment",
   "parentChain": [

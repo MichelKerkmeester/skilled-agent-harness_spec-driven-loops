@@ -1,15 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
-  "description": "Spec: OFF baseline audit + WEIGHT_RERANKER penalty removal",
+  "description": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sid",
   "keywords": [
-    "spec",
-    "baseline",
-    "audit",
-    "penalty",
-    "removal"
+    "mk-spec-memory",
+    "reports",
+    "requestquality",
+    "weak",
+    "every",
+    "memorysearch",
+    "because",
+    "local",
+    "reranker",
+    "provider",
+    "slot",
+    "cross-encoder",
+    "sid"
   ],
-  "lastUpdated": "2026-05-26T17:28:21.462Z",
+  "lastUpdated": "2026-06-23T03:49:55.039Z",
   "specId": "001",
   "folderSlug": "off-baseline-audit",
   "parentChain": [

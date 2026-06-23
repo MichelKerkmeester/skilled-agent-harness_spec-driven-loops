@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared payload/provenance contracts, OpenCode transport surfacing, graph-operations hardening, cross-runtime startup parity, bounded code-graph auto-reindex parity, and Copilot startup-hook wiring. The remaining packet responsibility is to keep those shipped surfaces documented truthfully without reopening broader memory-durability work.",
+    "causal_summary": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared payload/provenance contracts, OpenCode transport surfacing, graph-operations hardening, cross-runtime startup parity, bounded code-graph auto-reindex parity, and Copilot startup-hook wiring",
     "created_at": "2026-04-12T09:02:53.435Z",
-    "last_save_at": "2026-05-30T10:12:03.511Z",
+    "last_save_at": "2026-06-23T03:50:00.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:5f7bd2ee6949697f70d4e8eafb5f98f18a6b17ecb75daf4cad8ab51a66005baa",
+    "source_doc_hashes": {
+      "spec.md": "7dc5fe24bd35cee76984ffe3d6304193da965d30bfb2bdfceadc95ab4dfa7fda",
+      "plan.md": "51d36d41f359879dd039376c82631398c44f3b3a74e96a6e403ce0b9a08f43ce",
+      "tasks.md": "43483fb9f19b9b963a5a17def2f4f2b959b5bcece55f40c9950bb852eb3a5e22",
+      "checklist.md": "a6c1abbff3a6973879103e8f9812ed0a45e8b0d68adc676c2ebc18f209f6f38a",
+      "decision-record.md": "7a459ba4252ed733b89a4ee370bc1152dedf5598642901f79567a8bd964e000c",
+      "implementation-summary.md": "c2d7405974f36823b3ef2d1d0a78046180cdbe62dbb8b90d68434b8ef20c5c47",
+      "research/research.md": "8d51b5ca396093fe17a0439ec603ac4dbc7cb03592c9951caf7d99476df119f6",
+      "resource-map.md": "69334cd879feef0b3f5d12575d06d6c528ac8254af4ef3dc14bb24ce648e4e26"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

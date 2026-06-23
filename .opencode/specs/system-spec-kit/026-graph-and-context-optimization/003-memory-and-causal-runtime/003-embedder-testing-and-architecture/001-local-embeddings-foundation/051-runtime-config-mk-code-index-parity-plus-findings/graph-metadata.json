@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Runtime MCP configs still carried the legacy `system_code_graph` server key in three active client mirrors after the code-graph server was renamed to `mk-code-index`. This packet aligns those mirrors, confirms `.claude/mcp.json` was already correct, and closes the bounded P1/P2 findings from the two cited deep-review reports.",
+    "causal_summary": "The `mk-code-index` rename had landed in source and `.claude/mcp.json`, but `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json` still used the legacy `systemcodegraph` config key and launcher path",
     "created_at": "2026-05-14T19:23:26Z",
-    "last_save_at": "2026-06-05T12:47:33.606Z",
+    "last_save_at": "2026-06-23T03:49:54.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:64acbc882dbd1a05c5ca0cfa60ad1e761a3b9020b55a9435529694c56dd6be99",
+    "source_doc_hashes": {
+      "spec.md": "7da65f787b50519adc8e8ccc0f3e9cf787b044bb4168bf45ee08731b1bdb33d3",
+      "plan.md": "5526f4e6b41d455fefd76eedd63be37ba9eebeee61ce6d113452fbd06385ee8c",
+      "tasks.md": "f9a942b1136ed848e4698961f07b320ddfd6d507b5a43c582b2a42d759f424fc",
+      "checklist.md": "e46ea348fe6304c81df1265349c1ec953e27741f7b89b1762ebabd46eec61d17",
+      "decision-record.md": "592eef9b432208b6678f647da27b434df46745c1f494784acfa9b125200a05b3",
+      "implementation-summary.md": "f71f4f003f838f5bb53faf87aa3ae635fa973aca790edec8302bf85607ebe001"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

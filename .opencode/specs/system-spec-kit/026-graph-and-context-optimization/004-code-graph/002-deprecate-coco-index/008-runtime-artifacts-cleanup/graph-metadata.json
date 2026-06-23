@@ -78,14 +78,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014). Clean venvs, daemon sockets/pids, index dirs, sidecar reaper telemetry, orphan-mcp-sweeper rerank/8765 probes, and scripts/README coco refs after the skills are deleted.",
+    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
     "created_at": "2026-05-25T07:55:14.207Z",
-    "last_save_at": "2026-05-30T10:12:02.547Z",
+    "last_save_at": "2026-06-23T03:49:55.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:5f6681fcb19952f05ac492fa12339dc08d69f52787a81459318bb754c24b3c54",
+    "source_doc_hashes": {
+      "spec.md": "af710fee034fc1894f111f20a3e7299be6c71d836ff1257fcf5039a168c62337"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

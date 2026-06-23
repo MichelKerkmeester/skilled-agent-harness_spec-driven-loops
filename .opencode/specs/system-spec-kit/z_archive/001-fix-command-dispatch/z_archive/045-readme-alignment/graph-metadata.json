@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Fix documentation misalignments, incorrect counts, and inconsistencies discovered by 10 parallel Opus agents auditing README files and install guides across the skill system.",
+    "causal_summary": "The README files contain multiple factual errors that cause user confusion:",
     "created_at": "2026-04-12T09:02:53.529Z",
-    "last_save_at": "2026-06-05T12:47:34.474Z",
+    "last_save_at": "2026-06-23T03:49:59.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:d0aaac3dcc354ee33dab25ce56bf4abbc1f1986fd88e4bcc832de5822e446a22",
+    "source_doc_hashes": {
+      "spec.md": "dd49a05f6764b29ec7089c3541579ada90f9413353868407f952bd5b71046717",
+      "plan.md": "2907c5d56d57434895c1547317837ed5710a7b4e1e2b2fa8be6d4f42d4dafadd",
+      "tasks.md": "473dcde39669c602d5d1586360deb9facf46de3dcd6e64eb2c139559d9a2c567",
+      "checklist.md": "b08f334ce54c7cd950466ad721e663d278d804e0c5a3efde671a1762ec5edccc",
+      "handover.md": "891645646e919d8b48dc7c381d8682835af3ded7d06db64736c4de5aad05f805"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
-  "description": "Feature Specification: 057 CocoIndex Voyage-Only on Local Machine",
+  "description": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a memory-saturat",
   "keywords": [
-    "feature",
-    "specification",
-    "057",
     "cocoindex",
-    "voyage-only",
-    "local",
-    "machine"
+    "ccc",
+    "run-daemon",
+    "pid",
+    "74669",
+    "15h",
+    "uptime",
+    "holding",
+    "rss",
+    "spiking",
+    "cpu",
+    "124",
+    "indirectly",
+    "contributing",
+    "memory-saturat"
   ],
-  "lastUpdated": "2026-05-26T17:26:33.474Z",
+  "lastUpdated": "2026-06-23T03:49:52.427Z",
   "specId": "031",
   "folderSlug": "cocoindex-local-voyage-embeddings-gate",
   "parentChain": [

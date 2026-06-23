@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Operator directive: \"remove all references to llama-cpp.\" Arc 016 phases 003/006/007 already purged llama-cpp from runtime code paths (factory, profile, auto-select, providers, types), but historical narrative and documentation residue remained across 11 live files: source-code comments documenting the prior purge, install-guide sections listing llama-cpp as a supported provider, a `NODE_LLAMA_CPP_GPU` env var setter in a repair script, two test-fixture strings, doctor-command examples, an embedder architecture table column, and two manual-testing-playbook scenario fixtures using `llama-cpp.ts` as the example subject path.",
+    "causal_summary": "Operator directive: remove all live references to llama-cpp. Runtime code was already purged in arc 016 phases 003/006/007; this packet sweeps the remaining narrative + doc/config residue (11 live files, ~26 line-level edits) so the codebase no longer mentions llama-cpp as a supported provider.",
     "created_at": "2026-05-23T20:00:00.000000Z",
-    "last_save_at": "2026-06-06T09:38:26.843Z",
+    "last_save_at": "2026-06-23T03:49:54.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:285379cb0644a7eeb5e2f4c3e8d5b69fcda161be1b20ed6a4f775394a5c0f4ac",
+    "source_doc_hashes": {
+      "spec.md": "56e149cc077e2c58bef638d6fa8aeed1836c109beb19267bc545f63a3299335c",
+      "plan.md": "17197f9eb35237e06c7b9acd3f5e58347fb9702e2b3c1bb0321abf9b954b41e3",
+      "tasks.md": "da9e9157b7468319b5881ad61dea249bea3e5bc0e751ee0103d8c4f1401208fc",
+      "implementation-summary.md": "274442d22a5c3b03c8e20d799de65db925b645cef89779231d8fcd01ab2ef47a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

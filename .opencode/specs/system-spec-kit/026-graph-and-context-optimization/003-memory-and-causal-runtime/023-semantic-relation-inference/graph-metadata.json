@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 021 built the bounded relation-inference backfill (`backfillRelationInference`) with two deterministic collectors and explicitly deferred the similarity `supports` and `contradicts` signals as best-effort extensions. This packet ships those two as OPT-IN collectors that reuse the same safety envelope: `dryRun` default true, bounded by `limit`, every edge `created_by='auto'` so it inherits `insertEdge`'s runtime guards.",
+    "causal_summary": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
     "created_at": "2026-06-04T13:30:00Z",
-    "last_save_at": "2026-06-22T18:55:02.718Z",
+    "last_save_at": "2026-06-23T03:49:55.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e6c0208cab7cbd24712304e6a59e352d862d1743dd593e957eca5998c20949f7",
+    "source_doc_hashes": {
+      "spec.md": "d88b762e0c5d5107b42894e742064f88f6239eee04c51dfae1938ae7d56c2e22",
+      "plan.md": "495fa7a48671c7dab1932a2398d85604249c32dcb7f0857f6daaa39e8a80518b",
+      "tasks.md": "bb4e11a57b8bb940a181f299d1bb64d812110ce3e74285f1ab8e7965be27a2b8",
+      "checklist.md": "326349e81da0fe4d831802409d44e162a5f1acab8ea5cb04cb8ad424da74b21f",
+      "decision-record.md": "381fc8ad51b9638f2d2c64dd3f6bcb4f0c858f723cd08caec3313e8b0c1c058f",
+      "implementation-summary.md": "43802b8d5287cc6f2be8df499b26fa299227c8739707447b94f74aa1dfe78180"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

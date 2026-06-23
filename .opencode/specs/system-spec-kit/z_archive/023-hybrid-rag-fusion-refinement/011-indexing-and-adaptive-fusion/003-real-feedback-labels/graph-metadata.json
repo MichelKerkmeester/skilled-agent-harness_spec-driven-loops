@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the adaptive-ranking packet.",
+    "causal_summary": "`buildReplayRanks()` originally derived replay relevance from the shadow proposal itself",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-05-30T10:12:03.438Z",
+    "last_save_at": "2026-06-23T03:50:00.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9f88fcffeb299f377bcdc7243433f5129cc3df775d3fbacbce0447e4cdb90568",
+    "source_doc_hashes": {
+      "spec.md": "e4e5000bb40c3ab5bd5e4a9a3a42fb7905b92747d1c3f96fc4443dcc3dcabb44",
+      "plan.md": "2c3489c1c1436ec5656038b331fd7ca6086ed30a7c3a64dbd8b8aeeebd7f6ec4",
+      "tasks.md": "acee1b9d5af98ea462724bf5445f924a44d7d6ef38ee811fcdac9efc2ebbf0aa",
+      "checklist.md": "a7f2391040fe2cfd719a485dccc7c03cea000baa4f868d17e52fac2816a5efab",
+      "implementation-summary.md": "19ebca976f968f21586376fd28535ff6eb55efe608d3dcc91787b5b762c6b82a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

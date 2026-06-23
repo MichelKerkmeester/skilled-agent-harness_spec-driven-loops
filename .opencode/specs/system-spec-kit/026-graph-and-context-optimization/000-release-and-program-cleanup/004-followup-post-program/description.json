@@ -1,14 +1,26 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
-  "description": "Phase Parent: 000-release-cleanup/004-followup-post-program",
+  "description": "Phase parent for post-program cleanup and followup quality work across 4 child packets. Covers quality passes, runtime cleanup, test recovery, and ite",
   "keywords": [
     "phase",
     "parent",
-    "000-release-cleanup",
-    "004-followup-post-program"
+    "post-program",
+    "cleanup",
+    "followup",
+    "quality",
+    "work",
+    "across",
+    "child",
+    "packets",
+    "covers",
+    "passes",
+    "runtime",
+    "test",
+    "recovery",
+    "ite"
   ],
-  "lastUpdated": "2026-05-26T17:26:54.261Z",
+  "lastUpdated": "2026-06-23T03:49:52.438Z",
   "specId": "004",
   "folderSlug": "followup-post-program",
   "parentChain": [

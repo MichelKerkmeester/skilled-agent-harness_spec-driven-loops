@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
-  "description": "Feature Specification: Applied Source & Doc Fixes",
+  "description": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
   "keywords": [
-    "feature",
-    "specification",
-    "applied",
-    "source",
-    "doc",
-    "fixes"
+    "011",
+    "audit",
+    "recorded",
+    "findings",
+    "system-code-graph",
+    "mcp",
+    "server"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.097Z",
+  "lastUpdated": "2026-06-23T03:49:56.135Z",
   "specId": "002",
   "folderSlug": "applied-source-and-doc-fixes",
   "parentChain": [

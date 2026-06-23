@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-  "description": "Feature Specification: Reverse Parent Research/Review Folder Placement",
+  "description": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and `review",
   "keywords": [
-    "feature",
-    "specification",
-    "reverse",
-    "parent",
+    "centralized",
+    "parent-root",
+    "placement",
+    "policy",
+    "made",
+    "child-phase",
+    "deep-research",
+    "deep-review",
+    "artifacts",
+    "land",
+    "ancestor",
+    "root",
     "research",
-    "review",
-    "folder",
-    "placement"
+    "review"
   ],
-  "lastUpdated": "2026-05-26T17:26:40.521Z",
+  "lastUpdated": "2026-06-23T03:49:53.160Z",
   "specId": "001",
   "folderSlug": "reverse-parent-research-review-folders",
   "parentChain": [

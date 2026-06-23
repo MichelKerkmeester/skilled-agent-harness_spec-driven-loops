@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Complete feature specification for addressing ~231 identified issues across the system-spec-kit skill and spec_kit commands.",
+    "causal_summary": "A comprehensive audit and re-analysis of the system-spec-kit skill and speckit commands revealed ~231 issues ranging from critical architectural problems to minor inconsistencies",
     "created_at": "2026-04-12T09:02:53.537Z",
-    "last_save_at": "2026-06-05T12:47:34.502Z",
+    "last_save_at": "2026-06-23T03:49:59.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:2ab6fcf4309c00f21b6d573a7847b6534204ace8c8c42282e428e2b22de211e5",
+    "source_doc_hashes": {
+      "spec.md": "3215a31271196c03746635a1313eb5294924255ed4dbc8324585c58227da769f",
+      "plan.md": "9d8b230c1e53012ae17615096d00084d702b08897e732db9c2ac99845c167bf2",
+      "tasks.md": "1f22440586f9cde35cd9bdb222be56083ed2bd8af3d3393f457e388a7a5047d3",
+      "checklist.md": "0fd1a1b7a89bb7c763d15e868b331632b6de757d7893684a1ed96230284f71db",
+      "decision-record.md": "857485b5eb5bf08561b1e4e649fcd9d09fe27a725257098ef370a5d55ee45815",
+      "implementation-summary.md": "8736a3a774cbe2d0d2ffb02c9b14d39c1ad99d047313b76990aef58b0d3f6df0",
+      "research/research.md": "2ba1d51d1a4ecadf7d313d7ac2b0b17612643cdbfd52188bf1960899a1d08343"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

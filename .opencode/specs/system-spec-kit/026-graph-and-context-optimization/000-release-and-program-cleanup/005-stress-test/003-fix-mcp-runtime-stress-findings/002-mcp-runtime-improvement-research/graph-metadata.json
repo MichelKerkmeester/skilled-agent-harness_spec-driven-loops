@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory layer, code graph, cocoindex mirror handling, intent classifier, and a new model-side hallucination class on weak retrieval signals. Source patches were claimed as landed for several P0 fixes, yet live MCP probes continue to show pre-fix behavior — implying phantom fixes (source compiled but not built into dist or daemon not restarted). A focused, autonomous, multi-iteration root cause and remediation investigation is required before scattered point fixes are attempted.",
+    "causal_summary": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory layer, code graph, cocoindex mirror handling, intent classifier, and a new model-side hallucination class on weak retrieval signals",
     "created_at": "2026-04-27T06:26:49.654Z",
-    "last_save_at": "2026-06-05T12:47:33.077Z",
+    "last_save_at": "2026-06-23T03:49:52.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:3b71071887be8cb03659c85ab53ddc92c8a8ba448b8250ac3459dc234558683c",
+    "source_doc_hashes": {
+      "spec.md": "97cd62dbeb942eb10d6d9945e4b5d0d4c3d5024f2b7b9befa2bff96421085a1b",
+      "plan.md": "021df036a99263fdc7e39ce44b2de536dc819dcc7c0d6eae13fa55c1b8d24e87",
+      "tasks.md": "d43e8de4e1f4252da93370c96db082ce52d22319c3e178f68db89a60de30f918",
+      "implementation-summary.md": "6a62a0c1e109086c9bdad4a444e7326822005df0a79d4ec1287d8141fd8c21f4",
+      "research/research.md": "5dfc71c6150d2da9660db65d7d53bf4427337327e24f58127f5fd0be17a309a4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,13 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade",
-  "description": "Voyage 4 Model Upgrade Analysis",
+  "description": "Objective: Evaluate and plan the upgrade from current Voyage models to the newly released Voyage 4 model family for both Spec Kit Memory MCP and Narsi",
   "keywords": [
-    "voyage",
-    "model",
+    "objective",
+    "evaluate",
+    "plan",
     "upgrade",
-    "analysis"
+    "current",
+    "voyage",
+    "models",
+    "newly",
+    "released",
+    "model",
+    "family",
+    "spec",
+    "kit",
+    "memory",
+    "mcp",
+    "narsi"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.964Z",
+  "lastUpdated": "2026-06-23T03:49:59.247Z",
   "specId": "067",
   "folderSlug": "voyage-4-upgrade",
   "parentChain": [

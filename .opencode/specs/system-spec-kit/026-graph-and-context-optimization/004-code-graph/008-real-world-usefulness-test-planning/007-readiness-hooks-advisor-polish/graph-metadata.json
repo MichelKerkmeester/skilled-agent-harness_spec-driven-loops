@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets. These findings affect read-path operator diagnostics, guarded freshness recovery, verify scope evidence, hook documentation parity, advisor staleness repair, CocoIndex seed interop, and scope fingerprints for scan glob arguments.",
+    "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets",
     "created_at": "2026-05-18T08:15:53.451Z",
-    "last_save_at": "2026-06-22T18:55:02.838Z",
+    "last_save_at": "2026-06-23T03:49:56.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2289d62ab3aedf9998c9754b263b80ebf2a5de44d214220f323b72bcf1b47de3",
+    "source_doc_hashes": {
+      "spec.md": "68fb70e804426d5e96ed7d8c8a16b415d60ebc23dd16fc7973b83dd804b14ac1",
+      "plan.md": "7e3c35c4f01b31d1bd225e6fe4c4999189e90a055147fc1abe45f9ba5170d2c2",
+      "tasks.md": "5a3c71ff67505e3b05ae41ea553b37c03619951a4f71e5021de438d7a3cc9359",
+      "checklist.md": "c191e82db53cc616fd35a796dfb3284f2c0935c83a50282fcf73a27b5f956981",
+      "decision-record.md": "1674114fbf43ad0b23c18d7d282cbf91360bc29f57d2b4d654af2d686bd1023b",
+      "implementation-summary.md": "e5f9cf842e9032bbd86f50cab6bc34696af136ecf091dba43e2eb7300eaa431c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

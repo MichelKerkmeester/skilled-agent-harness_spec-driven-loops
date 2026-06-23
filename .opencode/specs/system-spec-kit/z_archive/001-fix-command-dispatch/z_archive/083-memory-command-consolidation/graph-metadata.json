@@ -34,8 +34,8 @@
       "tasks",
       "checklist",
       "summary",
-      "namespace",
-      "grown"
+      "083-memory-command-consolidation",
+      "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/memory:*` command namespace has grown to **9 separate commands**, creating:",
+    "causal_summary": "Spec ID: 083-memory-command-consolidation",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-05-30T10:12:03.104Z",
+    "last_save_at": "2026-06-23T03:49:59.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:37c9bac3d95296d79a5ee41eb21cb8eea34e8502e6e594759d55b174d159d8ee",
+    "source_doc_hashes": {
+      "spec.md": "b2373ebc2609d4bd6bfa0dce5171e3d9143a84b1ba39e2db9218c3b2adcd67e1",
+      "plan.md": "0e97a49561264dd98d8cdfa32b74abea0fe59181526abc10e3bd15a90abc41e3",
+      "tasks.md": "a1d11a12ea6eccb7f465b0c3332adcbd293c35c421745530a3f75df68e68fb31",
+      "checklist.md": "8fb8245c5120f0907002140879967afe0ba7e92982d60661177c656edf4fd87b",
+      "implementation-summary.md": "95d2b1fbff48bf9af9ebde9eea945253af06e2d5abedd18926e4e55bf1dd187b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

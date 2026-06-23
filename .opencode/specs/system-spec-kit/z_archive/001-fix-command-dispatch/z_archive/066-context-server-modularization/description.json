@@ -1,16 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization",
-  "description": "Feature Specification: Context-Server Modularization - Requirements & User Stories",
+  "description": "The context-server.js file is 2,703 lines - too large for efficient AI-assisted development and human review",
   "keywords": [
-    "feature",
-    "specification",
     "context-server",
-    "modularization",
-    "requirements",
-    "user",
-    "stories"
+    "file",
+    "703",
+    "lines",
+    "too",
+    "large",
+    "efficient",
+    "ai-assisted",
+    "development",
+    "human",
+    "review"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.934Z",
+  "lastUpdated": "2026-06-23T03:49:59.240Z",
   "specId": "066",
   "folderSlug": "context-server-modularization",
   "parentChain": [

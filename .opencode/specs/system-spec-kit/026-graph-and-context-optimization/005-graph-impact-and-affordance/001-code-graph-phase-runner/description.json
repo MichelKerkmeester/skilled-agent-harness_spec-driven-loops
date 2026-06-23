@@ -1,18 +1,20 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner",
-  "description": "Feature Specification: Code Graph Phase Runner + detect_changes Preflight (012/002)",
+  "description": "`codegraph/lib/structural-indexer.ts:1369` `indexFiles()` runs scan stages inlined with no phase abstraction",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph",
+    "codegraph",
+    "lib",
+    "structural-indexer",
+    "1369",
+    "indexfiles",
+    "runs",
+    "scan",
+    "stages",
+    "inlined",
     "phase",
-    "runner",
-    "preflight",
-    "012",
-    "002"
+    "abstraction"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.353Z",
+  "lastUpdated": "2026-06-23T03:49:56.177Z",
   "specId": "001",
   "folderSlug": "code-graph-phase-runner",
   "parentChain": [

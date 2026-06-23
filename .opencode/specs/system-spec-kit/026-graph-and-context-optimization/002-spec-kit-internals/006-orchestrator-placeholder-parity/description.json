@@ -1,16 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity",
-  "description": "Feature Specification: Orchestrator vs Shell Placeholder-Detection Parity",
+  "description": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-place",
   "keywords": [
-    "feature",
-    "specification",
+    "canonical",
+    "node",
+    "validator",
+    "mcpserver",
+    "lib",
+    "validation",
     "orchestrator",
+    "validateplaceholders",
+    "legacy",
     "shell",
-    "placeholder-detection",
-    "parity"
+    "rule",
+    "scripts",
+    "rules",
+    "check-place"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.639Z",
+  "lastUpdated": "2026-06-23T03:49:53.807Z",
   "specId": "006",
   "folderSlug": "orchestrator-placeholder-parity",
   "parentChain": [

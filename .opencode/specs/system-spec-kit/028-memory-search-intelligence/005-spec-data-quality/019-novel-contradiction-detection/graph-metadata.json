@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts. A claim and its later correction can both sit live in the index at once, and the staleness case is the same defect on a time axis where an old assertion outlives the fact it stated. This is the logic-consistency reader the truncation law leaves wide open, since a contradiction is a finding and not a vector row, so no retrieval gate or recall measurement ever surfaces it.",
+    "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts",
     "created_at": "2026-06-21T10:22:34.989Z",
-    "last_save_at": "2026-06-22T18:55:03.809Z",
+    "last_save_at": "2026-06-23T03:49:58.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:17ff33e2f947748d6f565d3249ab16691e58dd2db1737165051fe59d425514b6",
+    "source_doc_hashes": {
+      "spec.md": "8636de2ff65469f63000deae59947a6679700ccef8e98fdf01865b21eb228592",
+      "plan.md": "aaf5f539070608bca4eaf8d0a16cca0b028e48a87ae589d8c551bfe5348e186f",
+      "tasks.md": "9199ff883618e4a8d942d982cfe9336ae375df6070201122d223dab43ed1088f",
+      "checklist.md": "751b024b31f32cfc68700446109d6c7341c54102711882994a230cdc9903e234",
+      "implementation-summary.md": "ec0ce2eeb528e7414864f66da64a17c5d935287b1031edc287697769a4c337a4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -9,16 +9,24 @@
     "002-gem-team-adoption"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
-  "description": "Feature Specification: Research and Doctrine (Phase Parent)",
+  "description": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
   "keywords": [
-    "feature",
-    "specification",
+    "027",
+    "program",
+    "drew",
+    "external",
     "research",
+    "sources",
+    "whose",
     "doctrine",
-    "phase",
-    "parent"
+    "adopted",
+    "spec",
+    "kit",
+    "process",
+    "agent",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.888Z",
+  "lastUpdated": "2026-06-23T03:49:57.050Z",
   "specId": "001",
   "folderSlug": "research-and-doctrine",
   "parentChain": [

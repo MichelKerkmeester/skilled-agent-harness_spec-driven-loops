@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 022/013 shipped, 4 deferred items remained on the arc. Three are actionable as a small bundled closeout:",
+    "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.270Z",
+    "last_save_at": "2026-06-23T03:49:54.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d388a0eff954694bd81268ed38685cac7eb903dd6760f70a2fdc1862df044899",
+    "source_doc_hashes": {
+      "spec.md": "b729d2f344617df0b0faa40bdc2d8ade807de99687b726392a4536c9f85398a3",
+      "plan.md": "d8b8d0da57483ecc6106bb5d780b19f6d4e4a1274bbffee9a5f8fc071b9f2180",
+      "tasks.md": "3d5c1c8aebf301efb07efe47949c33f220ee5fdcbaf78ed4f6ed3ece79c793bd",
+      "implementation-summary.md": "29d0cb10fff0f5ade45db4832cfc226b86cd575760356abb7d0af68a399b6528"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

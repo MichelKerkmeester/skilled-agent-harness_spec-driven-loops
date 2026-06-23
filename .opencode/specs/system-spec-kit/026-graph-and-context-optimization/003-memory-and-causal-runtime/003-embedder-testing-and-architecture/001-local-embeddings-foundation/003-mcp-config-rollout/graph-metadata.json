@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 5 MCP runtime configs all had `EMBEDDINGS_PROVIDER=auto` but no `HF_EMBEDDINGS_MODEL`, AND `VOYAGE_API_KEY` was exported from three places (`~/.zshrc:21`, project `.env:15`, macOS launchd). The auto-resolver picked Voyage on every MCP spawn because the key was present.",
+    "causal_summary": "The 5 MCP runtime configs all had `EMBEDDINGSPROVIDER=auto` but no `HFEMBEDDINGSMODEL`, AND `VOYAGEAPIKEY` was exported from three places (`~/.zshrc:21`, project `.env:15`, macOS launchd)",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-06-05T12:47:33.517Z",
+    "last_save_at": "2026-06-23T03:49:53.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:131167bc0cbcb13ff8676a2b81d43f1c3b7ff60bbcd8b9293812d1f2c52e8d27",
+    "source_doc_hashes": {
+      "spec.md": "aea8ded2095dc6beb0d99a74cdc0a4e5aab38676b352fa643811583730c8dd38",
+      "plan.md": "8222c13fd492a01b3a1e4cd775a5cbd0f6abc0384eef1fb59a0aaaf2a36b9d57",
+      "tasks.md": "bef87a310430c1092388afc6c951e60696e11d990f91121553d9621cdd582a51",
+      "implementation-summary.md": "ba142ec8d95cf74c0fd1bd58a247c726ef581d5f9c38a236c8cefd416718f939"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

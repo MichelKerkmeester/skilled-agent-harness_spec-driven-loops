@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase A research converged on a scoped Phase C implementation for the advisor packet. The advisor will gain an explicit Devin `UserPromptSubmit` hook variant under the skill-owned hook tree while retaining Devin's `read_config_from.claude=true` inheritance as a safety net, because Devin's documented Claude compatibility does not explicitly prove `hookSpecificOutput.additionalContext` injection for this event (F001/Q1, `research/iterations/iteration-01.md`).",
+    "causal_summary": "`system-skill-advisor` already supports Claude, Gemini, Codex, and OpenCode prompt-time guidance, but Devin CLI has no explicit advisor hook registration",
     "created_at": "2026-05-15T13:05:18.133Z",
-    "last_save_at": "2026-06-22T18:55:02.112Z",
+    "last_save_at": "2026-06-23T03:49:53.539Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,18 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2d26fcc3e3c3464f5b78054e3376a6748d8a01ad9befc14b468550353e1e7301",
+    "source_doc_hashes": {
+      "spec.md": "ca8a118eff30968bb42258822a7f866627bdc4e67b1d8aa561c17843985a50c0",
+      "plan.md": "d8108331856b483b1278471ffaf3382f4134035f2980ba6cdfb6daed396a1930",
+      "tasks.md": "713be34982f057c23e6eca3cd843f4cb493543dedcd5f570b00ae04dc8f9e2ff",
+      "checklist.md": "52ddf3be448a676741bd883aa3d89403c86412c8f888c6d9f1810446ee953df2",
+      "decision-record.md": "96eb283c73f19cf2b96f912eeb1b6fb500bc8f60549197d2b41745dd1b2f37ca",
+      "implementation-summary.md": "93432e6a64e17bd45cc3ec10b35983a5e2f2fb6ca9e2677560bc2e6eeee66113",
+      "research/research.md": "b47120f3449eddbca19578ce3175ebd92dfa9f91d4c000d5af5a065d12480ed7",
+      "handover.md": "09bc6a7f7a0413df84208505a92052f5c793d47298af274d29de1b8ef1a1ae61",
+      "resource-map.md": "98c1273d90fffa5b7a53e6446d170e8ef07a66f7d1e9d80f45fda6ffe7db12a3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -100,14 +100,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 028 is approaching release and its documentation surfaces need a focused release-readiness sweep. The cleanup must be split by document family so each pass has a clear target, explicit discovery method and verification contract.",
+    "causal_summary": "Packet 028 is approaching release and its documentation surfaces need a focused release-readiness sweep",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-22T18:56:37.390Z",
+    "last_save_at": "2026-06-23T03:49:58.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c477951b4380d6d030db66abde0544319689ad90961b6d86052a094942b7db59",
+    "source_doc_hashes": {
+      "spec.md": "fa7f3c210e112414629e8fb08286c247cf628a9ed3ed49fa1bebf2a6225aa205"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

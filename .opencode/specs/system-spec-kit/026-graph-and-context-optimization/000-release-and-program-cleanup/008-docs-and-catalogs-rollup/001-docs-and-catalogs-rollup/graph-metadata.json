@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec 026 shipped capabilities across 8 tracks over months. The umbrella docs (root README, the system-spec-kit SKILL.md and README, the mcp_server README and INSTALL_GUIDE) and the catalog indexes (feature_catalog, manual_testing_playbook) needed to reflect what actually shipped, without drifting into claims for work that did not land.",
+    "causal_summary": "Spec 026 shipped capabilities across 8 tracks over months",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-06-05T12:47:33.189Z",
+    "last_save_at": "2026-06-23T03:49:52.903Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:24e452f3e91ee795dcdb3db468108cb4309d423e83bb3693742c91cb00d2fee5",
+    "source_doc_hashes": {
+      "spec.md": "995804dcf85bdc25012c8e172a770c0ad30919c6e1a7f8c1a15ad9d3e373f4fc",
+      "plan.md": "fb6e6943ae18f6ca47fc8d50c9c34d5f2e418bd203b3d488b11634bf919cda46",
+      "tasks.md": "4cfc17d165da00b02e40afa05ef37009fc6d8952c046fd01a6c80f6bebd523bc",
+      "checklist.md": "d32c74339a76125bfff7eeffdc568ecacfd3b71d8fb099149b104a6752f9e2ee",
+      "implementation-summary.md": "c8bdc06040734b4e806337de15a6d844f3960ff30ca72893bbfc4de131641150"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

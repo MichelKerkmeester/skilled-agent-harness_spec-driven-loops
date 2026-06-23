@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A comprehensive audit of the SpecKit and Memory systems identified **16 verified bugs**, **10 alignment issues**, and **9 improvement opportunities** (35 total tasks). While the systems are fundamentally well-designed, several high-severity bugs require immediate attention to prevent crashes and data loss.",
+    "causal_summary": "A comprehensive audit of the SpecKit and Memory systems identified 16 verified bugs, 10 alignment issues, and 9 improvement opportunities (35 total tasks). While the systems are...",
     "created_at": "2026-04-12T09:02:53.531Z",
-    "last_save_at": "2026-05-30T10:12:03.002Z",
+    "last_save_at": "2026-06-23T03:49:59.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4014d75b80e47c9a9d94fdf747199a6fd80f239f60085f98f69fc534138777c5",
+    "source_doc_hashes": {
+      "spec.md": "29cb444d09de5555aa7ca988be2400e866393aa25d0a58d48cb175ffb436f88c",
+      "plan.md": "88d09f03da1121fa93874b2c553d1c24731d8ff7c060abbe30e880b51a2434e6",
+      "tasks.md": "ecdd129bfa67a612c097c471265b0b23f62bebe567b687c5248330d14453e46f",
+      "checklist.md": "a499b53b5eaf9cd01cfc0ff247a0b530761f833384b981d2d79292c1e543397f",
+      "decision-record.md": "45725e66d53277b025b7460a2debbfe4dc6d98504bf54d36ee4d4017fc78618b",
+      "implementation-summary.md": "44456e3ba0ef3826541451a160f4c23661529105ed0e3fdf148546c7224e05a7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

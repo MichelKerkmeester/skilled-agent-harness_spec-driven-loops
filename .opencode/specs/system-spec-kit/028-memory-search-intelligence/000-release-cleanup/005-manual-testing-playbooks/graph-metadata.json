@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
+    "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-21T07:23:18.792Z",
+    "last_save_at": "2026-06-23T03:49:58.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9b148e4f16759fcbf295308f1d0c7f9f1660e3781486b3919ccadb153e74d453",
+    "source_doc_hashes": {
+      "spec.md": "3628e8b501c8ee6888d1859430e96c96da9001546f6c2affba27188e3522cb3c",
+      "plan.md": "e8f7ce943dde24b0e7bddac77116823f0e4dea5d0a9f0bca3f1705fabd1ed4e9",
+      "tasks.md": "49cce04cc473ae44eadf31177b6bc30c537a7c6e3ca6e43ab8e69c48724aadd5",
+      "checklist.md": "a05af068b547456c946533addfe3ba6c459aca3e4c901bcac139ec180059e95a",
+      "implementation-summary.md": "4ba2d42ac3ec6af231bb39aae842f91cd66a883e228558313ad9c1397da19075"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

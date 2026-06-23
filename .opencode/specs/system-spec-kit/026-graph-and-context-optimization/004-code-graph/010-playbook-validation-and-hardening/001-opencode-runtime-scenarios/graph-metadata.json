@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Run these 15 scenarios inside `cli-opencode` (which loads the full project plugin/skill/MCP runtime) and capture per-scenario evidence so the parent release-readiness matrix can be assembled.",
+    "causal_summary": "15 of the 22 code-graph playbook scenarios require the live `mk-code-index` MCP runtime (scan, query, verify, status, context, detectchanges), the deep-loop coverage-graph runtime, or the doctor-code-graph slash surface",
     "created_at": "2026-05-26T19:43:14.032Z",
-    "last_save_at": "2026-06-05T12:47:34.173Z",
+    "last_save_at": "2026-06-23T03:49:56.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f302470660d3a7f9e5508761bb17fe2bfc133c060b5fc90575a45af6303d4ee8",
+    "source_doc_hashes": {
+      "spec.md": "ecf6aa453953645cec495063c76fa7b21c8141bf457950ec670ed559c2cc783b",
+      "plan.md": "26960c17d911d2cdc43d2105c3210d2c31ed8d720178980e01abe2c367df695b",
+      "tasks.md": "17fe5ba16f412d919e158b76bfc536b711849d83c0975a1ceabac45ee8f16e32",
+      "checklist.md": "826a1661ef0957d26c57c812315ca9df89e06d4f4ae09323dcf6fb25707dbaf8",
+      "implementation-summary.md": "fa47d3eeec1182fef8627aafaad47a5dfb8583bc03bba8fb0ef33150ec621ca1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

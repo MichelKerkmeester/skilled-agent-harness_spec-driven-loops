@@ -17,15 +17,18 @@
   "status": "code-complete-pending-track-a-live-rescan",
   "importance_tier": "important",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
-  "description": "Feature Specification: Memory Indexer Invariants",
+  "description": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
   "keywords": [
-    "feature",
-    "specification",
+    "two",
+    "distinct",
+    "invariant",
+    "failures",
+    "showed",
+    "simultaneously",
     "memory",
-    "indexer",
-    "invariants"
+    "indexer"
   ],
-  "lastUpdated": "2026-05-26T17:25:59.061Z",
+  "lastUpdated": "2026-06-23T03:49:53.891Z",
   "specId": "010",
   "folderSlug": "memory-indexer-invariants",
   "parentChain": [

@@ -1,15 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
-  "description": "Feature Specification: Flag Graduation Benchmark",
+  "description": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
   "keywords": [
-    "feature",
-    "specification",
+    "program",
+    "shipped",
+    "behavioral",
+    "change",
+    "behind",
+    "default-off",
     "flag",
-    "graduation",
-    "benchmark"
+    "rollout",
+    "never",
+    "mass-failed",
+    "existing",
+    "files",
+    "silently",
+    "shifted",
+    "ranking"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.878Z",
+  "lastUpdated": "2026-06-23T03:49:58.805Z",
   "specId": "040",
   "folderSlug": "flag-graduation-benchmark",
   "parentChain": [

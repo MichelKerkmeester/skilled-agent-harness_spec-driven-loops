@@ -1,15 +1,24 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
-  "description": "Feature Specification: A6 HVR Style Auto-Fix Linter",
+  "description": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts ev",
   "keywords": [
-    "feature",
-    "specification",
     "hvr",
-    "style",
-    "auto-fix",
-    "linter"
+    "house",
+    "voice",
+    "em-dashes",
+    "prose",
+    "semicolons",
+    "oxford",
+    "commas",
+    "documented",
+    "authoring",
+    "rule",
+    "tool",
+    "enforces",
+    "adherence",
+    "drifts"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.460Z",
+  "lastUpdated": "2026-06-23T03:49:58.575Z",
   "specId": "006",
   "folderSlug": "a6-hvr-style-autofix",
   "parentChain": [

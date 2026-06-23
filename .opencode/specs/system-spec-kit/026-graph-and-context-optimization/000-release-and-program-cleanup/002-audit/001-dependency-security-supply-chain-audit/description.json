@@ -1,16 +1,25 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
-  "description": "Feature Specification: Global Security Sweep + Supply-Chain Audit",
+  "description": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenanc",
   "keywords": [
-    "feature",
-    "specification",
-    "global",
-    "security",
-    "sweep",
+    "2026-05-15",
+    "tanstack",
+    "mini",
+    "shai-hulud",
+    "disclosure",
+    "watershed",
+    "npm",
     "supply-chain",
-    "audit"
+    "event",
+    "first",
+    "documented",
+    "worm",
+    "shipping",
+    "valid",
+    "slsa",
+    "provenanc"
   ],
-  "lastUpdated": "2026-05-26T17:27:22.141Z",
+  "lastUpdated": "2026-06-23T03:49:52.155Z",
   "specId": "001",
   "folderSlug": "dependency-security-supply-chain-audit",
   "parentChain": [

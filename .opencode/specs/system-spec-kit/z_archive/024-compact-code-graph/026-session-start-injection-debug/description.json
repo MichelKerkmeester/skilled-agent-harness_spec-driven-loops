@@ -1,19 +1,19 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/026-session-start-injection-debug",
-  "description": "Spec: Startup Context Injection Debug — Hook Runtime Brief + Sibling Handoff",
+  "description": "The startup priming path is still broken or too thin where true startup injection should happen",
   "keywords": [
-    "spec",
     "startup",
-    "context",
+    "priming",
+    "path",
+    "still",
+    "broken",
+    "too",
+    "thin",
+    "true",
     "injection",
-    "debug",
-    "hook",
-    "runtime",
-    "brief",
-    "sibling",
-    "handoff"
+    "happen"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.203Z",
+  "lastUpdated": "2026-06-23T03:50:00.752Z",
   "specId": "026",
   "folderSlug": "session-start-injection-debug",
   "parentChain": [

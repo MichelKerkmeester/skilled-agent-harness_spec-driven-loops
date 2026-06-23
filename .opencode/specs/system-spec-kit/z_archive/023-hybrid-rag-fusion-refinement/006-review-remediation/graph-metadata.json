@@ -36,7 +36,7 @@
       "plan",
       "tasks",
       "checklist",
-      "esm"
+      "10-iteration"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the ESM Module Compliance specification.",
+    "causal_summary": "The 10-iteration deep review found 14 P1 (required) and 4 P2 (advisory) findings across 5 workstreams",
     "created_at": "2026-04-12T09:02:50.320Z",
-    "last_save_at": "2026-06-22T18:55:04.635Z",
+    "last_save_at": "2026-06-23T03:50:00.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f30a398dfe6ef47c831084d3940e8952dcc2af2301b9d5aad3f434f50d90305e",
+    "source_doc_hashes": {
+      "spec.md": "5d715445a9f1039ec37e69501b8f832726248462f7f344558645f3fcdc224659",
+      "plan.md": "f778bd0eecbc339f404719966ec6d1efba856677ff2da657a5222024726ffdeb",
+      "tasks.md": "c761777503ff96446594bbf396bef6fa943aaa0e9d6197672d601a762c17b3eb",
+      "checklist.md": "b4cf0f41e26ad51b0e86a7e228f342a4f1784f919539a0ff9afa809e5062c8a2",
+      "implementation-summary.md": "003384eb1b4c5f3804057cd8031ccbfa013cba7281441c3756ad46d5c4777893"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

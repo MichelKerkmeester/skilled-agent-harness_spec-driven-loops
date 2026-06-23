@@ -1,14 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
-  "description": "Feature Specification: Cross-Skill Decoupling",
+  "description": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-skill",
-    "decoupling"
+    "three",
+    "coordinated",
+    "drift",
+    "issues",
+    "across",
+    "system-spec-kit",
+    "system-skill-advisor",
+    "system-code-graph",
+    "triad"
   ],
-  "lastUpdated": "2026-05-26T17:27:36.995Z",
+  "lastUpdated": "2026-06-23T03:49:53.627Z",
   "specId": "005",
   "folderSlug": "cross-skill-documentation-decoupling",
   "parentChain": [

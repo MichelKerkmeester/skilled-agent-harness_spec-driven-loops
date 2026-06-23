@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall **throws** instead of degrading to lexical. Both Stage-1 entry branches compute `effectiveEmbedding = queryEmbedding ?? await generateQueryEmbedding(query)` and then, if null, throw, the hybrid path at `stage1-candidate-gen.ts:700-707` and the vector path at `stage1-candidate-gen.ts:1014-1020` [CONFIRMED: iter-003 finding f-iter003-007]. There is no `useVector=false` keep-lexical fallback on this recall path and no `embedder_available:false` flag, even though the channel-gating substrate to drop the vector channel while keeping FTS5/BM25/graph already exists at `hybrid-search.ts:931-947` [CONFIRMED]. The result is a brittle inversion of the mined aionforge model, where dense falls back to the plain current-set path, lexical always runs and the bundle reports `embedder_available:false` [CONFIRMED: external/aionforge-memory-development/docs/retrieval.md:170, 299-300].",
+    "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall throws instead of degrading to lexical",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-22T18:55:03.628Z",
+    "last_save_at": "2026-06-23T03:49:58.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c6b676e585ed02dc476278f1ffb00a495804e01567c54260a38ec04ca5c6e94b",
+    "source_doc_hashes": {
+      "spec.md": "9a71ce028c0f72b0b184df2dcffc21ac2c09c90c29b439311f59b8e1492e3e0a",
+      "plan.md": "a182314cf509daf1ecd489328613956da6a7a4fc0a640f7ed5d9de641de67fa8",
+      "tasks.md": "75e980bb3cf1893204dc8c563984d1afa088f6602e382377851462bc3a2ccbf9",
+      "implementation-summary.md": "b4f78365512fb004654d649e2d7724e4b9506b626ea910fccda26acd3f5a3dbc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

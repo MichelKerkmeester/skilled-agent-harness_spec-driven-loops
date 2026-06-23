@@ -1,14 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/018-feature-catalog-playbook-degraded-alignment",
-  "description": "Feature Specification: Catalog and playbook degraded-alignment",
+  "description": "Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that mislead readers reproducing degraded-state scenari",
   "keywords": [
-    "feature",
-    "specification",
-    "catalog",
-    "playbook",
-    "degraded-alignment"
+    "three",
+    "operator-facing",
+    "documentation",
+    "surfaces",
+    "drifted",
+    "shipped",
+    "runtime",
+    "contract",
+    "ways",
+    "mislead",
+    "readers",
+    "reproducing",
+    "degraded-state",
+    "scenari"
   ],
-  "lastUpdated": "2026-05-26T17:28:16.018Z",
+  "lastUpdated": "2026-06-23T03:49:52.673Z",
   "specId": "018",
   "folderSlug": "feature-catalog-playbook-degraded-alignment",
   "parentChain": [

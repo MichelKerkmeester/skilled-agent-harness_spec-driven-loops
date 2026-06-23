@@ -136,14 +136,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-user model, and pervasive contract/metadata/doc drift — clustering into five systemic root causes. Left unremediated, the deep-loop fan-out engine reports failed reviewer lineages as successes, governed scope leaks on fallback/causal paths, a write-path cache goes stale, and the program's own status/metadata and operator docs misrepresent reality.",
+    "causal_summary": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-user model, and pervasive contract/metadata/doc drift — clustering into five systemic root causes",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-06-05T05:20:54.793Z",
+    "last_save_at": "2026-06-23T03:49:53.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e0e4db02c2a2f12bfd2c4fb9cc8aba5718706f226b1b8ea26fdff6aafda81c29",
+    "source_doc_hashes": {
+      "spec.md": "8a59194f185be9fc2fd57253c3ac992b8f11fb179bb548b9a91cb50983667f4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

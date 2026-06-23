@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
-  "description": "Feature Specification: Wire worktree-guard into the Claude SessionStart hook chain",
+  "description": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `m",
   "keywords": [
-    "feature",
-    "specification",
-    "wire",
+    "packet",
+    "035",
+    "created",
     "worktree-guard",
-    "claude",
+    "detect-and-warn",
     "sessionstart",
-    "hook",
-    "chain"
+    "guard",
+    "warns",
+    "top-level",
+    "session",
+    "running",
+    "directly",
+    "shared"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.785Z",
+  "lastUpdated": "2026-06-23T03:49:56.519Z",
   "specId": "006",
   "folderSlug": "sessionstart-worktree-guard",
   "parentChain": [

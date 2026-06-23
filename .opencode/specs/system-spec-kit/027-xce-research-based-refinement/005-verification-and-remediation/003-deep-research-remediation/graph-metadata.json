@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings. The 48 confirmed and 8 canonical adherence recommendations are actionable now; the 53 downgraded and 92 unadjudicated P2/P3 findings still need direct verification before they become work. Nothing is fixed unverified.",
+    "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings",
     "created_at": "2026-06-12T11:12:59.644Z",
-    "last_save_at": "2026-06-22T18:55:03.521Z",
+    "last_save_at": "2026-06-23T03:49:57.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:be1010419ee70eb7892021eeaf4fd56edd367393eff61ba1a136e7cd3d5a8ba9",
+    "source_doc_hashes": {
+      "spec.md": "3c981796a416af0103952277972f8dfedbb2436ba4ff8c0a21049268c9bd11b4",
+      "plan.md": "290ada33524de514c28738f500374d51a7e228bc8644a534c4f12364f657774d",
+      "tasks.md": "ec826d0ac8944c06f2f059610e54912a845f42646d3f34f0d08c1b417cda6b79",
+      "implementation-summary.md": "4d9bdba84d3894de6e05af8a84b883b5dcde05c96eb07fd1485a1efb4f6f52d0",
+      "handover.md": "944789acbe444ff62d32ab8ad5f2b0a6aaac87ac65a986999940ba3be3b2fff4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

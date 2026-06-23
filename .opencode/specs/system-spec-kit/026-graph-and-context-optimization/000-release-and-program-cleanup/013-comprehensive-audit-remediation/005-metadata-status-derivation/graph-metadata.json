@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the comprehensive audit remediation specification.",
+    "causal_summary": "`deriveStatus()` in `graph-metadata-parser.ts` populates spec status only from YAML frontmatter, but many 026/027 specs declare status only in the markdown metadata table row `| Status | Draft |`",
     "created_at": "2026-06-04T20:45:43Z",
-    "last_save_at": "2026-06-05T05:20:54.802Z",
+    "last_save_at": "2026-06-23T03:49:53.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:42484e6a785decc2b6b6e4028f56046de4c8a24e1a56b134884d38096edb2fe2",
+    "source_doc_hashes": {
+      "spec.md": "1900bbdb4768eed3ac5452278b792c0a035ecd52efc53d1a3767f3ee6a063e33",
+      "plan.md": "91144d100d523d905bd3b3b54b7fafb5fb374ffa589efa4ffca4878bc8b3a8fc",
+      "tasks.md": "82f21ff05cba0e6bb7d83e2322935292ab2b1c21ce827f3f7d4f4549db1285a4",
+      "implementation-summary.md": "ccdbc72eed2eec9bf7fd846ce64c47d42279f571ed0e4aa8a8f83fafd267d6b7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

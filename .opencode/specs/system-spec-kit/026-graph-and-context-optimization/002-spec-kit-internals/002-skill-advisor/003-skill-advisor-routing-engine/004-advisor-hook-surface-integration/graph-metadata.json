@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Today's skill-advisor (Gate 2) runs **only** when the AI explicitly invokes `skill_advisor.py` in a shell command. That limits its impact to three ways: (1) the AI remembering to call it, (2) a Claude Code harness running it before turns, (3) manual developer invocation. Codex, Gemini, and Copilot runtimes don't benefit from proactive routing at all — even when they're perfectly positioned to use the same skill catalog. Meanwhile the advisor's full JSON output is verbose (often 200-400 tokens with multiple candidates, uncertainty fields, graph-boost explanations). If it ran on every prompt and dumped full output, context would balloon quickly.",
+    "causal_summary": "Current state — skill-advisor invocation and context cost:",
     "created_at": "2026-04-19T05:20:26.002Z",
-    "last_save_at": "2026-06-08T17:32:20.838Z",
+    "last_save_at": "2026-06-23T03:49:53.502Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:0acc0a5e6535bc0d882fee643e2035d592493b52f1ea97e46573c18c09c6916b",
+    "source_doc_hashes": {
+      "spec.md": "d07576a03f7d593bf54837186f4f7a071432f97a8a75f3097288756e0e76e1ae",
+      "plan.md": "aec1f487ab8a11a48412165a8a4633333e09ae9e5eca55f3bcb13227404f4e27",
+      "tasks.md": "785d912d45afe120a78fb19a3586930e3d42bea35719e6ce39b144db504fe7f5",
+      "checklist.md": "834345c30dd84fbe015589957cf0d2e8a96d387d41990887185e99df0a64148f",
+      "decision-record.md": "7554febbd19c5b7ace0d6a1b1c1d2364efc680f64a6c56aa39ca9bd69d2cf778",
+      "implementation-summary.md": "2b2921e79aa703f95186752e1c4e1fef3028ce59a4362c5bd15bf098b03cf71f",
+      "handover.md": "683f976ae3985f1b2fd84ede79884cf703cf889beea5eb4d3b29e74d31036891"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

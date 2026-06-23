@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit README cluster lags the shipped runtime. Concretely, against the deployed source:",
+    "causal_summary": "The system-spec-kit README cluster lags the shipped runtime",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.692Z",
+    "last_save_at": "2026-06-23T03:49:55.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:450af2946d4e07049fac40fd4d65e8ab2687f97085f8d38c95ea3497094b76ad",
+    "source_doc_hashes": {
+      "spec.md": "0da0b34d3ab5a7cccd6a38fbe7a650863a2ae881440d700b0f16ea150ea71b8a",
+      "plan.md": "90cd68196425bdf5046760d2d35ea3643c66f597b47e1f334e25b0a468b80300",
+      "tasks.md": "12c2cf606e4e71e214d5d138d6ea208b91d38e9dbfcf89c3505cea0dbdcaf4e1",
+      "checklist.md": "1413539fae95414b8471091fc65d7b63b64163bb25a8ab63b8433ca0282dd0bf",
+      "decision-record.md": "c1436f7b0aa0e6cf067a72cc2a7f0f6ceaed72bf884f6abce3cf5d510078f2c8",
+      "implementation-summary.md": "73ac146d7b0ddd3f5508136decf519c5d44078c584e3c8bafc835e79905f93a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

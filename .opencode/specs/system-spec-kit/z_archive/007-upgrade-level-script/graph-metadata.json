@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived folder captures work that added or refined a spec folder level upgrade script. The older archive shape no longer matched the active template contract, which caused strict validation errors.",
+    "causal_summary": "This archived folder captures work that added or refined a spec folder level upgrade script",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-05-30T10:12:03.131Z",
+    "last_save_at": "2026-06-23T03:49:59.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2958a4747eb4fd95bcc72d9abaf42438b2de00adbc53401543d4c80bcc6172d3",
+    "source_doc_hashes": {
+      "spec.md": "ae47d8a881543ee0b4ff18db3f27802129925bfc499b09a2b2ef99b176cdc785",
+      "plan.md": "4d715655a3451c1ff4846c83c05a0b503d38d8acf10cbb2391b318c9a1a81ad6",
+      "tasks.md": "1371146400ba9c507379b38d8e00a1eed232b048e15e4eb1ce81dd573ab9c459",
+      "implementation-summary.md": "a7b65c2427b84025ec587f13dc89e940643e1372646e45796dc03e4301f711bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

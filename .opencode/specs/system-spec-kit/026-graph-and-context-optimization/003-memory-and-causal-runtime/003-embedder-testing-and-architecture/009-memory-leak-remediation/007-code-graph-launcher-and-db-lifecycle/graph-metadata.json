@@ -20,15 +20,15 @@
       "code-graph-launcher-and-db-lifecycle",
       "memory",
       "leak",
-      "phase",
-      "remediation",
-      "arc",
-      "scoped",
-      "source",
-      "evidence",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "code-index",
+      "audit",
+      "found",
+      "stale",
+      "orphan-prone",
+      "launcher",
+      "server",
+      "ownership",
+      "spec"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is phase 7 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
+    "causal_summary": "The code-index audit found stale/orphan-prone launcher and server ownership",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-30T10:12:02.436Z",
+    "last_save_at": "2026-06-23T03:49:55.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c7b7d8ee4dc9a04bf7ad6727d4d3b2b6b4c68e5b71d1fbfe9e9fd983f48a5154",
+    "source_doc_hashes": {
+      "spec.md": "b38e97895c7051b77c21fa0c21d119cc6480c2d03f53ebaf264b60ec914f0d67",
+      "plan.md": "5a5bc1e282e6970d1e208b47bc3382143a12d3f79109188a610c0eb1d1487731",
+      "tasks.md": "7c9aad9e4a7f106d2bcde85f9e27a37b6a5a5e8d0e0c79f4b041afa79e9ed4a3",
+      "implementation-summary.md": "82b5d3b388993456cadea3e98bae45f11ee1c6fb98f907b684ff1ee81a635ca7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

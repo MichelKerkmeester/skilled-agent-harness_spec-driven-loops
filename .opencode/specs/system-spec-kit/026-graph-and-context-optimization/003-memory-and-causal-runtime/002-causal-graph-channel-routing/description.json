@@ -1,18 +1,22 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
-  "description": "Phase Parent: 009 Causal Graph Channel Routing Utilization",
+  "description": "Phase parent for the graph-channel routing override and its post-delivery remediation. 001 ships the initial routing override (delivered 2026-05-08);",
   "keywords": [
     "phase",
     "parent",
-    "009",
-    "causal",
-    "graph",
-    "channel",
+    "graph-channel",
     "routing",
-    "utilization"
+    "override",
+    "post-delivery",
+    "remediation",
+    "001",
+    "ships",
+    "initial",
+    "delivered",
+    "2026-05-08"
   ],
-  "lastUpdated": "2026-05-26T17:25:46.952Z",
+  "lastUpdated": "2026-06-23T03:49:53.902Z",
   "specId": "002",
   "folderSlug": "causal-graph-channel-routing",
   "parentChain": [

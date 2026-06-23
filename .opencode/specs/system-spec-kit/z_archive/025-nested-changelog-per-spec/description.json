@@ -1,15 +1,19 @@
 {
   "specFolder": "system-spec-kit/z_archive/025-nested-changelog-per-spec",
-  "description": "Feature Specification: Nested Changelog Per Spec",
+  "description": "System Spec Kit already had `implementation-summary.md`, but packet-local changelog history was ad hoc and drift-prone",
   "keywords": [
-    "feature",
-    "specification",
-    "nested",
+    "system",
+    "spec",
+    "kit",
+    "already",
+    "implementation-summary",
+    "packet-local",
     "changelog",
-    "per",
-    "spec"
+    "history",
+    "hoc",
+    "drift-prone"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.420Z",
+  "lastUpdated": "2026-06-23T03:50:00.846Z",
   "specId": "025",
   "folderSlug": "nested-changelog-per-spec",
   "parentChain": [

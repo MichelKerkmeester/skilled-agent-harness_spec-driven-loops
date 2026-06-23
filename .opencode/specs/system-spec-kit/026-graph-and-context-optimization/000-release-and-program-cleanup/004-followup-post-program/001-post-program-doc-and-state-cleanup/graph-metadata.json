@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale. Completed remediation packets still present as `planned`, parent maps omit the remediation child, and the source packets 005/011 are not strict-validator green.",
+    "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-06-05T12:47:33.047Z",
+    "last_save_at": "2026-06-23T03:49:52.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f1a2bad54fdf282a25763fac800d660a443e7398b9041ee42a781dd633bc8630",
+    "source_doc_hashes": {
+      "spec.md": "5f2bc209c539734fb7a6675c19324096a1c19d35c9265f2a53498f9587c60cea",
+      "plan.md": "75776d5a4d1e03a02b17da0d756148405857e3fdf302e91655329886580b6559",
+      "tasks.md": "4ea831f13f64b2a8d89b9ed153e8d1c0ca86d274a072f8ca9f943c622d6e1e8b",
+      "checklist.md": "dc58d90f1eda86401a694d2818ba94e0c86895a7790df3d531380250c0bb25b0",
+      "implementation-summary.md": "245dcbaf308435c67cc6afb12c6c5071f417ce7d0901e1fcdf0aa2be7c7a7d47"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

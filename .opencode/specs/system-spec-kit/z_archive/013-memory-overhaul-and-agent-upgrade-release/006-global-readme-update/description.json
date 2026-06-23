@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/006-global-readme-update",
-  "description": "Task 06 — Root README Update",
+  "description": "Specify required updates to the project root `/README.md` to ensure all statistics, feature descriptions, and component references reflect the post-al",
   "keywords": [
-    "task",
+    "specify",
+    "required",
+    "updates",
+    "project",
     "root",
     "readme",
-    "update"
+    "ensure",
+    "statistics",
+    "feature",
+    "descriptions",
+    "component",
+    "references",
+    "reflect",
+    "post-al"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.061Z",
+  "lastUpdated": "2026-06-23T03:49:59.525Z",
   "specId": "006",
   "folderSlug": "global-readme-update",
   "parentChain": [

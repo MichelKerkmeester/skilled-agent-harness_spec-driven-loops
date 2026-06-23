@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Five deferred P2 findings remained in runtime/process lifecycle code. `reindex.ts` had test-only lifecycle controls and a silent in-memory database branch, while `execution-router.ts` had unsafe signal re-entry and indefinitely cached direct provider adapters.",
+    "causal_summary": "Five deferred P2 findings remained in runtime/process lifecycle code",
     "created_at": "2026-05-23T10:49:04Z",
-    "last_save_at": "2026-05-30T10:12:02.514Z",
+    "last_save_at": "2026-06-23T03:49:55.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:41cc5703197529e19ee6fb61c0cdac22a02d71d62eae3ff7a07c6626f2e376bf",
+    "source_doc_hashes": {
+      "spec.md": "e146b14bf2ff15efd02d00d371ed54a2f41cca638d7dc2e5c9f9c88e57aa0d9a",
+      "plan.md": "628c5517294bfea077d8bfa7c6c3e2f24af7734cec74d8d75abf91ef3bd56bcf",
+      "tasks.md": "64e3471982ac1872b4c38f19b563e1a42a51245b86416c51429c568d2b97e492",
+      "checklist.md": "126a3f2527d4d5293a453db409967806f2738db25dde81bbb2e135e2e152faed",
+      "decision-record.md": "151c3da2f2160fd00a618bba9daea8eaeca150f85415984caeaab1d60e3dd821",
+      "implementation-summary.md": "0df63634dc126be91be94428ea8900706bacabd0e67b88929e81fd8180aa9f14"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

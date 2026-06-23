@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implements the deferred follow-ups recorded in `014-launcher-overlap-spawn-and-bridge-fix` §7 and the research packet `027`: bring the weakest IPC `socket-server.ts` copy up to the hardened contract and stop the three copies from drifting again. Implemented by an Opus implementation sub-agent and independently verified by an Opus review sub-agent (GO, zero P0/P1).",
+    "causal_summary": "After 014, the IPC bridge `socket-server.ts` existed in three drifted copies",
     "created_at": "2026-06-04T20:36:31.198Z",
-    "last_save_at": "2026-06-22T18:55:02.460Z",
+    "last_save_at": "2026-06-23T03:49:54.921Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9b67da7933cc3e27e6a24335f1cef5627df1cf98dc9954182ead7b881c7674b5",
+    "source_doc_hashes": {
+      "spec.md": "038ae8fa9ac105277242d1e969985a0b7ab72890f6a25f1d3467b02f0a2669f8",
+      "plan.md": "43bd2b40d1832b9a978d80cbf1dda98bdfab2cd29c6f5443f8f7469568c64053",
+      "tasks.md": "8800a7a7dae58033d3a78fe3589b98ca4c2ff75ee97af8c9bee88db413bcdcfc",
+      "implementation-summary.md": "c7df09819b346cbae50ad4f73ab4fafcaf2c295298ab7132625cb60cdcfba321"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

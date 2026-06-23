@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memory_save` dry-runs rejected the same canonical docs with `missing_blank_line_after_frontmatter` and `missing_section` violations. The rejected sections were generated-memory wrapper sections, not V2.2 spec-doc anchors.",
+    "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the same canonical docs with `missingblanklineafterfrontmatter` and `missingsection` violations",
     "created_at": "2026-05-14T16:44:57Z",
-    "last_save_at": "2026-05-30T10:12:02.150Z",
+    "last_save_at": "2026-06-23T03:49:54.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:92475cb7a118649d8354b72c4bb0057c141551ba86ddd864268f6283b39ab6b1",
+    "source_doc_hashes": {
+      "spec.md": "ee1aa9367044086183c6a16b2b4ab4a0aadd3d04f75675c60b7f9af44f6197e8",
+      "plan.md": "17595f83abff1bbfa0094204b17232be1e37dd3d10327fa1154198d5c0409c64",
+      "tasks.md": "a6b95746ebb16b8c09b8733eeeddfddfb5dd2ce9c4262aee66b36e2023d00fef",
+      "checklist.md": "c42ef2b0d81f6fd66548e7e2578e9d3c4700b5a98c14c24368e80023e2e1376f",
+      "implementation-summary.md": "08e07a1587ec689926367211c675093368d3a94a20e16928cef077c5f7926ca8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

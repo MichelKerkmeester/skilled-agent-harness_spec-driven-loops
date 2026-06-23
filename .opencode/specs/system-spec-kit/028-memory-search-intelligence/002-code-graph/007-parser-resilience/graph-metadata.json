@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A single crashing file is permanently removed from the code graph with no bounded-retry escape. The parser skip-list classifies files only by tree-sitter WASM crash **cohort**, `SkipListErrorClass = 'B1' | 'B2' | 'OTHER'`, which is a crash taxonomy, **not** a retry policy [CONFIRMED: `parser-skip-list.ts:9,27-35`, research iter-002 finding 8]. Adding a file is an idempotent upsert that only bumps `attempt_count` [CONFIRMED: `parser-skip-list.ts:78-91`]. There is **no `max_retries` ceiling**, **no transient-leaves-pending** semantics and removal is an **intentional permanent no-op**, `recordSuccess()` is `@deprecated` with an empty body, documented \"must not auto-unskip… or imply self-heal support\" [CONFIRMED: `parser-skip-list.ts:93-97`]. So a file that crashes the WASM parser **once**, even for a transient reason like an OOM, a timeout or a deadline-abort, is skipped **forever** with no path back into the graph short of manual review.",
+    "causal_summary": "A single crashing file is permanently removed from the code graph with no bounded-retry escape",
     "created_at": "2026-06-19T05:52:29.582Z",
-    "last_save_at": "2026-06-22T18:55:03.724Z",
+    "last_save_at": "2026-06-23T03:49:58.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:36c00364c3a78743eb76394dcc4bb2d157ea70ab5a13c5b3c4c76993fa9300f8",
+    "source_doc_hashes": {
+      "spec.md": "03b37f10b0a654aecf7a0986bf530dc63084d8ec4b2a12df62dea0b3922fe99f",
+      "plan.md": "724bd2d0cdb1274b7f36b60cd91ed125d5de06be870160297e972931055d7623",
+      "tasks.md": "f6e277ae45e53761c525dea82bdcf68fad0970ad40427dbde23a978987c228fc",
+      "implementation-summary.md": "c6b3ba352c23921600d782c234847eceb294435f6cf860ef4ea9041a0e75237a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 13-iteration peck-source deep-research pass (cross-model verified by MiniMax M3) found a coherent \"peck verification discipline\" bundle implemented in peck's agent prompts that the 2026-06-02 README pass missed entirely. This packet adopts that bundle as five rules: completion-verdict freshness binding (T6, the anchor), implementer escalation gates (T5), anti-verdict-softening (T7), reviewer read-budget discipline (T8), and a docs-only numeric-severity calibration note (T9). All changes land on agent/skill prompts, the completion gate, and CLAUDE.md/AGENTS.md, with zero overlap with the 027 memory phases 002-008.",
+    "causal_summary": "Peck's source carries a coherent verification-discipline bundle in its agent prompts that the README-only analysis pass never surfaced, and live spec-kit has a real gap against each piece",
     "created_at": "2026-06-06T10:22:05.626Z",
-    "last_save_at": "2026-06-10T13:09:21.953Z",
+    "last_save_at": "2026-06-23T03:49:57.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:24405afcc8810c68c098925e7389ad2632e4d7ff29d9e6ec0571c1fbde39b228",
+    "source_doc_hashes": {
+      "spec.md": "3a1555d56d5828abfe6aaa7dcaec0d8991100e8e1d24a33d7ac4b0788c9d348e",
+      "plan.md": "da84968c97a1bb5afeb7cdcce2d77de2643c232119e8b854ff2090f62914dfa1",
+      "tasks.md": "8f6d17cea5055ccd6e443743b5ba0cea3da4bfa936bd9c52ae591cf84b8c60fd",
+      "checklist.md": "d448997b928ea31de05f649f769f473f4e5aa9240085fdbfa44f6ddb9468699c",
+      "decision-record.md": "7eece097c3d04bce60530059f15bcc8a35cb0487e6ff55deb54cdeed225a4636",
+      "implementation-summary.md": "873c1343addb98d1dc1863ec3d80d5ec9ed27dbee1cccf9c1ffafbc8f0622b82"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

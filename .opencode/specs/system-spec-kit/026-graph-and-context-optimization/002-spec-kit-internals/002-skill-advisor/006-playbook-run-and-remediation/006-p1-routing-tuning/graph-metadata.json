@@ -44,7 +44,7 @@
       "tasks",
       "impl",
       "summary",
-      "phase"
+      "fixes"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the 028 skill-advisor playbook packet — a focused scorer-tuning effort, separate from the 005 finding-remediation. It targets the P1 regression failures that remain after the P0 fixes (phase 005/002) and the alias-awareness fix (005/007). None are alias drift; each is a genuine routing or abstention decision.",
+    "causal_summary": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS harness (the extra TS failures are mostly TS abstaining where Python routes)",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.004Z",
+    "last_save_at": "2026-06-23T03:49:53.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:46e1dab653361b62fe2283c26c5fe8e71e15fa2cfdc6e1f511a412e9abf82cc1",
+    "source_doc_hashes": {
+      "spec.md": "9870a3626b485eeba725bbfaa80c7a88a0c47df214e0a03b5bc8dad395a44392",
+      "plan.md": "77f225405db75a9c42984cde55d4a822b72f8d7942f6e75993e2ef66d0071bb3",
+      "tasks.md": "a987a6f310ae3b84631ae49a4e87df9cd99022523825147333647083d85bdc8e",
+      "implementation-summary.md": "57e96f141b05fdaa5a8af97a241bf015810d600c2e601fff147086f68d521ccb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

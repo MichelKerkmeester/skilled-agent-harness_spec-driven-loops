@@ -1,15 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment",
-  "description": "Feature Specification: /doctor + Install-Guide Alignment",
+  "description": "A 10-lineage parallel audit (round-2 re-verified: 73 confirmed, 0 false positives, +75 new) found the `/doctor` command router, its per-target assets,",
   "keywords": [
-    "feature",
-    "specification",
+    "10-lineage",
+    "parallel",
+    "audit",
+    "round-2",
+    "re-verified",
+    "confirmed",
+    "false",
+    "positives",
+    "new",
+    "found",
     "doctor",
-    "install-guide",
-    "alignment"
+    "command",
+    "router",
+    "per-target",
+    "assets"
   ],
-  "lastUpdated": "2026-06-03T06:37:53.285Z",
+  "lastUpdated": "2026-06-23T03:49:56.336Z",
   "specId": "006",
   "folderSlug": "doctor-install-alignment",
   "parentChain": [

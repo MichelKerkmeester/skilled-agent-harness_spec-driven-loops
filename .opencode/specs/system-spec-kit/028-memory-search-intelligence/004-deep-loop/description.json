@@ -1,17 +1,27 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
-  "description": "Feature Specification: Deep Loop Runtime Phase Parent",
+  "description": "The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input",
   "keywords": [
-    "feature",
-    "specification",
     "deep",
     "loop",
     "runtime",
-    "phase",
-    "parent"
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "reducer",
+    "anchoring",
+    "fanout",
+    "determinism",
+    "failure",
+    "recovery",
+    "convergence",
+    "scoring",
+    "stop-input"
   ],
-  "lastUpdated": "2026-06-20T10:59:14.091Z",
+  "lastUpdated": "2026-06-23T03:49:58.484Z",
   "specId": "004",
   "folderSlug": "deep-loop",
   "parentChain": [

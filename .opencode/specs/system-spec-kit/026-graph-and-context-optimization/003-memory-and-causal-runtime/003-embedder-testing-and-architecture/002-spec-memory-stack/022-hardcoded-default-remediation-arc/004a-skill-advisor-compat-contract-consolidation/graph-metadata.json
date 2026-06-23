@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Closes 14 P0 audit findings from packet 021 on duplicate confidence/uncertainty threshold defaults across skill-advisor.",
+    "causal_summary": "Wire 5 production-path inline 0.8/0.35 sites in skill-advisor to import from SKILL_ADVISOR_COMPAT_CONTRACT.defaults. Closes 14 P0 audit findings on duplicate/inline confidenceThreshold + uncertaintyThreshold literals. Waves 2-4 (RoutingCalibration interface, env-var overrides, prompt-policy externalization) split to phase 004b based on Wave-1 structure discovery.",
     "created_at": "2026-05-23T17:20:00.000000Z",
-    "last_save_at": "2026-06-22T18:55:02.351Z",
+    "last_save_at": "2026-06-23T03:49:54.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b011bbf765bf067a49a0165b49ce84bed14035997db06580a2615b9069d999f0",
+    "source_doc_hashes": {
+      "spec.md": "d50485b9cebfc4d4c05834601745a61a18356f8b7f2f19d43874795d56433540",
+      "plan.md": "ec47b3a0cb0ffcab4436431e70adc31c4ccc5b672a4a013f60403b6079a2d1aa",
+      "tasks.md": "c64880453bce1ce2f52f7fcab1700941799543c2f6abb646e507de3b9f3e3a26",
+      "checklist.md": "6670b09f74f6db78f9e238360c5d6af9cfde148d964889614c349627224c1623",
+      "implementation-summary.md": "4cb5035feb3e1b300cf8710cbe49479405b0ea13de488f59d960361ebc259084"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the 006-skill-advisor track, addressing P1 findings from the 3-reviewer parallel audit of packets 006 and 007. The shipped code works on the happy path (typecheck + 9 vitest tests + manual probes all PASS), but reviewers surfaced 9 latent correctness gaps. This packet closes them.",
+    "causal_summary": "The 006 + 007 packets shipped working lease enforcement, but reviewers identified 9 P1 correctness gaps clustered in three themes: (1) race-window correctness — code-graph and spec-memory launchers can both pass the lease check then race the write, the SIGTERM handler in spec-memory clears the lease 5s after signal regardless of whether the child has exited, and env-var parsing accepts `'no'`/`'off'`/`'FALSE'`/empty as \"enabled\"; (2) error-surface correctness — `isLeaseHeld()` re-throws EPERM (different uid → guard bypass), `busytimeout=5000` is set AFTER `journalmode=WAL` (the WAL switch race",
     "created_at": "2026-05-18T06:19:31Z",
-    "last_save_at": "2026-06-05T12:47:33.777Z",
+    "last_save_at": "2026-06-23T03:49:54.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8480e3df4b7a0bcff8f6fdd25166493d9c4ee046ea637955d1164917c9856f8c",
+    "source_doc_hashes": {
+      "spec.md": "d4b0543c06584f3980d0a31d962fa9c4d799793bb8a5234353a226e9c609d52c",
+      "plan.md": "3ecf10ef043acc25fbec8b566cc9d5e044a23de7781502b160a900e95d618910",
+      "tasks.md": "4b9e85a2203d8a8ad4f82ed6c108774fcd43b7568bc3282dc113e4dcaa938101",
+      "checklist.md": "43bc286c963207f86f9118fc9fbe02d3998ff6bcb9e8c0fb6ac00a2641882f8a",
+      "implementation-summary.md": "e38c7254da12ce3c9c1016712899088349c3da303a48e9297c30e2148920e03c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

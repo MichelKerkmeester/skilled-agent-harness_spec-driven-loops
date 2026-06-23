@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "User queries are natural language (\"filesystem walker\", \"memory save\", \"rerank adapter\"). Code corpora store identifiers in conventions:",
+    "causal_summary": "Bridges the natural-language → code-identifier gap by expanding queries with camelCase / snake_case / PascalCase / kebab-case splits, common code-domain synonyms (walker/finder, util/helper, parser/lexer), and a configurable user-synonym dictionary. Runs BEFORE embedding so dense + FTS5 both benefit. Embedder-agnostic, reranker-agnostic, future-proof for any future identifier convention. Targets the 'natural language asks, but corpus stores identifiers' failure mode evidenced in 011 phase-2 bench probes 1, 5, 12, 15.",
     "created_at": "2026-05-19T16:20:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.402Z",
+    "last_save_at": "2026-06-23T03:49:54.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e7ef11e09212d7ba02f5deecd247f9a331bfc5ae801953e3558eb9e3d647be59",
+    "source_doc_hashes": {
+      "spec.md": "6dd0607d92ce84e25c83daa48b19183e8e7775a79382438cf36bd6e28114e190",
+      "plan.md": "4e1946775b60ee77bd440706cf7a804569509e74d361b9b5a94b5a0d4380ce0a",
+      "tasks.md": "2149fefcfff85044bf58d0003ce5e57aee2c1760b72681ad2c5aba71fd91c7e4",
+      "checklist.md": "1319eed82ef3407853c393355a6e92565fe91b02ad66161c2bbf26679eecd88f",
+      "implementation-summary.md": "007438bcde98892863411a4c45a12810b55e8bdefac4ce3b82d1d53e39ef448f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

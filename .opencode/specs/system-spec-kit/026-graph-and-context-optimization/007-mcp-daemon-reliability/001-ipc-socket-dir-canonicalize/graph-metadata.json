@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the MCP socket-dir reboot resilience packet: make the code-graph server's IPC socket-dir resolution survive a missing/cleared socket directory.",
+    "causal_summary": "The `mkcodeindex` (system-code-graph) MCP server failed to connect with `MCP error -32000: Connection closed`",
     "created_at": "2026-05-28T16:38:37Z",
-    "last_save_at": "2026-05-30T10:12:02.740Z",
+    "last_save_at": "2026-06-23T03:49:56.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:709a623f551694965409a2534b66da3a67d0d8c3883e102beae006bffcba72e0",
+    "source_doc_hashes": {
+      "spec.md": "bc9db6007e294c54d49211c233b7becfbf24e4a92e0c3cafdb53442183cd746f",
+      "plan.md": "4494ae2e710a109bc6dc3dfe8c02cde9fc5f2ca7fba90cc248bbeeed70f4e755",
+      "tasks.md": "fda641ef2150040553d9f9139e1e9b4aa9eb6a532dc9450a6dbb210672781da6",
+      "implementation-summary.md": "897612685d0297b2b47185660159a1443746156175d5883fabcba8900f9df755"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

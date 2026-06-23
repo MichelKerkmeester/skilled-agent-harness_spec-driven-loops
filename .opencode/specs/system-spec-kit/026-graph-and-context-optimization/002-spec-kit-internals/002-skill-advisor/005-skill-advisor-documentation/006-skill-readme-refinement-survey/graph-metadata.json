@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 005 (`a1a1ca9d3`) refined the 3 system-* skill READMEs. The 17 OTHER skill READMEs (cli-*, deep-*, mcp-*, sk-*) carried the same kinds of drift: tables in §1 OVERVIEW that fragment the reader's first impression, em dashes scattered through the body, and (potentially) banned words or banned phrases. A spot-check before the audit showed 15 of 17 READMEs had ≥19 table rows in §1 and 9 had em dashes (cli-devin alone with 29).",
+    "causal_summary": "Packet 005 (`a1a1ca9d3`) refined the 3 system- skill READMEs",
     "created_at": "2026-05-16T13:25:00Z",
-    "last_save_at": "2026-05-30T10:12:01.983Z",
+    "last_save_at": "2026-06-23T03:49:53.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8bf9c358fddb707e3ac15c5e22b2da4078fe0ab8788dfde10a987b2bfe6bf65f",
+    "source_doc_hashes": {
+      "spec.md": "01aede576de3dd827de0289191fa221e60b94ba657ed447a7e2f89c283478800",
+      "plan.md": "be22ba783c9bd1a1c279d5f09f0ad994b68971d9021bb8bb608fc7a3b2cdcfc4",
+      "tasks.md": "ddbec98153bf695cdd5c81aa86c569625c056628bf4470a5b8c5af6e45bd8965",
+      "implementation-summary.md": "4f711787bf08bcf6aaeb98265a873757486aa177a49bfd5f2e694d9d03bd2b32"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

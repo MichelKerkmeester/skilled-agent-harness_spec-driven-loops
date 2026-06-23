@@ -139,14 +139,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit MCP memory write path (mutation hooks, the save pipeline, CRUD update/delete/bulk-delete, and embedding reconcile) was heavily modified across the 026 program. A calibration pass already surfaced real P1 bugs here (stale entity-density cache after update/delete; reconcile dry-run/apply count drift; operator-doc contract drift). This slice audits the full write path in depth for correctness, security, and traceability or contract drift.",
+    "causal_summary": "The spec-kit MCP memory write path (mutation hooks, the save pipeline, CRUD update/delete/bulk-delete, and embedding reconcile) was heavily modified across the 026 program",
     "created_at": "2026-06-04T18:53:35.317Z",
-    "last_save_at": "2026-06-05T12:47:33.215Z",
+    "last_save_at": "2026-06-23T03:49:52.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:b648bc423e5816b9aee999c13ae48c27768b126b6154e8c33665cbd8d260a564",
+    "source_doc_hashes": {
+      "spec.md": "d8a3b4dc14a1e9f7470773d3062ff11643345c2ad2f0ab2b6aa76d4fd1552beb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

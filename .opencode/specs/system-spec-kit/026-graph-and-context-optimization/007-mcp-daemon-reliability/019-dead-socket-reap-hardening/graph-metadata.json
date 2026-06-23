@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The owner is declared dead only after N consecutive deep-probe failures, so a single transient miss no longer triggers a cross-session reap and duplicate respawn, while the retry budget stays inside the probe grace ceiling.",
+    "causal_summary": "`maybeBridgeLeaseHolder` ran the deep liveness probe once; a single failure returned an immediate `respawn` verdict, so the calling launcher reaped the lease owner and spawned a second daemon",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-06-08T17:32:21.343Z",
+    "last_save_at": "2026-06-23T03:49:56.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5910804ac0e8bd11cb0e9ff924ba2eaeb2bcb0144e9c83f97a953e33c2f0b4e4",
+    "source_doc_hashes": {
+      "spec.md": "5d757e915b7cd238002281bfd49fee22bc81672f1e315ddab0d912b8301a5570",
+      "plan.md": "21b99fe751409bff382e06b3a82a4dbc24c61175a7f6632be235495df10947d7",
+      "tasks.md": "5b483cbd14ffbabda118a59cf3e631bc9af8f25f3a812dd4d11774e4b21b866a",
+      "checklist.md": "154cc4301952267d3efcb9f15859e3976936c3184adb035016f207efb51cd95b",
+      "implementation-summary.md": "0235f246a766e57b591df3eb26300e9dcbd5a0557c820df2c95ef90e000ac1e0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings. In `graph-metadata-schema.ts:43-44` `importance_tier` and `status` are `z.string().min(1)` so any typo or drifted token validates clean, and `content_type` has no enum target on either schema. The description schema carries `type` as a bare `z.string().optional()` (`description-schema.ts:64`) with no `importance_tier` or `content_type` field at all. The command surface already proves the better rail. `route-validate.py` machine-checks a closed `mutation_class` enum (`VALID_MUTATING = {\"read-only\", \"add-only\", \"mutates\"}` at line 48, assertion E at line 13), and the same schema file already uses an in-house enum for `save_lineage` (`z.enum(SAVE_LINEAGE_VALUES)` at `graph-metadata-schema.ts:50`). The metadata enums are the unguarded gap.",
+    "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-21T10:22:34.979Z",
-    "last_save_at": "2026-06-22T18:55:03.784Z",
+    "last_save_at": "2026-06-23T03:49:58.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:12e5260c98accff70ffd8831def1c293cd744a6da55b755eb2f63b0a5b29aaf0",
+    "source_doc_hashes": {
+      "spec.md": "0d2d13021bd5027bdcfa9a1e1692c369ff363318352fdde8c7b8825d69c5eada",
+      "plan.md": "c84acba33ad218d6fdc9ed6426777fe0c3062f4f9e4fe6ed6e3617bbb2a7a6e8",
+      "tasks.md": "5f029b9821515587a48491cda45436d4f939decd8b39ce03a338ebd969072643",
+      "checklist.md": "f839b7414d201445b4ba31f06d7c563866c43d009544c0678e71063f64c0a5e2",
+      "implementation-summary.md": "be71e13588d657ee6aa20cb70093b68215d42b1dd4e9a63165d3e66056c07f41"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

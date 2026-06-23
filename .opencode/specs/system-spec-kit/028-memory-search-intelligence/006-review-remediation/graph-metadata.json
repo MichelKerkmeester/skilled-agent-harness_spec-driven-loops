@@ -96,14 +96,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding and an explicit verification contract.",
+    "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-22T18:56:37.532Z",
+    "last_save_at": "2026-06-23T03:49:58.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:7ea62d86e48e7e061f935c113efe50e24c303b415f288b85206609b416fc64d9",
+    "source_doc_hashes": {
+      "spec.md": "a211658d566c3e9fdb376f6d341638dcd4897dd1c559b0fc5e0efd8b89bc3841"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

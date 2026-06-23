@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 009 excluded `.opencode/skills/**` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.",
+    "causal_summary": "Packet 009 excluded `.opencode/skills/` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface",
     "created_at": "2026-05-09T19:30:52.527Z",
-    "last_save_at": "2026-05-30T10:12:02.573Z",
+    "last_save_at": "2026-06-23T03:49:55.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6cd5049c4145e34bc65eb768fc917fc536e2e9ba0bb718021dc2d0075ff74a1a",
+    "source_doc_hashes": {
+      "spec.md": "fb131b9fcdba8b59f23c01f6e92b961da7693481ffec4b7bc937d8ae10fd7371",
+      "plan.md": "0839199335f040b4398d0677336bd6676f3e5777af272e977f745449629f162f",
+      "tasks.md": "3ef90006cc76cebeb28ca4537d3aff0f7176362c10b62c9359ca90e55edf6d2a",
+      "checklist.md": "823eb48d5c87e83a16e435da6ecfa4fb4a6445636c576a3dcfa45f47bc7eecc2",
+      "implementation-summary.md": "233a49b7ce390cea506322272a79b814daaa8677e97e8058d1eaf00e8c533a50"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

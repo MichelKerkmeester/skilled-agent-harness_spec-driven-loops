@@ -1,18 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
-  "description": "Feature Specification: Local-LLM legacy and outdated-docs/config-drift review (post-014)",
+  "description": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m se",
   "keywords": [
-    "feature",
-    "specification",
-    "local-llm",
-    "legacy",
-    "outdated-docs",
-    "config-drift",
-    "review",
-    "post-014"
+    "packet",
+    "014",
+    "shipped",
+    "default-llm",
+    "embedding-stack",
+    "migration",
+    "voyage",
+    "embeddinggemma-300m",
+    "hf-local",
+    "memory",
+    "mcp",
+    "google"
   ],
-  "lastUpdated": "2026-05-26T17:26:39.563Z",
+  "lastUpdated": "2026-06-23T03:49:54.055Z",
   "specId": "021",
   "folderSlug": "local-llm-legacy-review",
   "parentChain": [

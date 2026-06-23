@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/017-c4-metadata-fusion",
-  "description": "Feature Specification: C4 metadata fusion alpha-blend",
+  "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-2",
   "keywords": [
-    "feature",
-    "specification",
-    "metadata",
     "fusion",
-    "alpha-blend"
+    "stage",
+    "scores",
+    "candidate",
+    "text",
+    "similarity",
+    "applies",
+    "bounded",
+    "validation",
+    "multiplier",
+    "composite",
+    "stage2-fusion",
+    "261-2"
   ],
-  "lastUpdated": "2026-06-21T16:38:16.487Z",
+  "lastUpdated": "2026-06-23T03:49:58.667Z",
   "specId": "017",
   "folderSlug": "c4-metadata-fusion",
   "parentChain": [

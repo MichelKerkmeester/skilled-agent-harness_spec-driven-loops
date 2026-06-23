@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise. Two findings from the 031 generated-JSON quality research drive this phase.",
+    "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.863Z",
+    "last_save_at": "2026-06-23T03:49:58.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6dae1040325b76a7ff14561d1a7abab0c8bf9b7616ea0a8b8dd4b61a4b01dd75",
+    "source_doc_hashes": {
+      "spec.md": "943d425f090b91c8113b02727c01a38b2d1591bc60e9069bc0923e29ae0d5b82",
+      "plan.md": "bd7fed8011719d2b5920f43036dcdc5b998a3dff3b78cc3d67dcafcf297a427b",
+      "tasks.md": "710a121fb1ea69ae7d461741bdc5a5d970f1f4e95ed10c82dee414ef03683d81",
+      "checklist.md": "087c6ab8beebaf15e2aebd32b47fba1ce903ceb447a1eec07d6849d22be2a5d6",
+      "implementation-summary.md": "6aa35eb53cc62ccb2d39ca24100becd68d2282a007e0e08c69e3f8556b10b667"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

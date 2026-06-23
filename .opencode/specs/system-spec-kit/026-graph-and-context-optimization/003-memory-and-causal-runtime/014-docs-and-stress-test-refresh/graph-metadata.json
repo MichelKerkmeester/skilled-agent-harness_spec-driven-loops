@@ -85,14 +85,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit documentation cluster and stress harness lag the shipped runtime. The 013 memory-index-scan roadmap (phases 001-005) added checkpoint-v2 file snapshots, the MCP front-proxy, memory_save enrichment (schema v30), and the post-restore rebuild sentinel, while the 128 work introduced the sk-git worktree convention. The manual testing playbook, feature catalog, README cluster, and stress harness do not yet describe these capabilities, so operators cannot exercise or discover them from the docs alone.",
+    "causal_summary": "The system-spec-kit documentation cluster and stress harness lag the shipped runtime",
     "created_at": "2026-06-02T10:03:31.000Z",
-    "last_save_at": "2026-06-22T18:56:36.912Z",
+    "last_save_at": "2026-06-23T03:49:55.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:4525befd8ff0ec73ade401ebc7509d4776da55e2d0f0228ff10427c96f632cef",
+    "source_doc_hashes": {
+      "spec.md": "f931972690a2284f345c4d3e50dc1a1d1ca8d25dc579d3cd812fa5090a469c1a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,12 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic",
-  "description": "Path-Scoped Validation Rules",
+  "description": "1. No quality enforcement: Incomplete specs pass silently",
   "keywords": [
-    "path-scoped",
-    "validation",
-    "rules"
+    "quality",
+    "enforcement",
+    "incomplete",
+    "specs",
+    "pass",
+    "silently"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.838Z",
+  "lastUpdated": "2026-06-23T03:49:58.947Z",
   "specId": "001",
   "folderSlug": "mvp-monolithic",
   "parentChain": [

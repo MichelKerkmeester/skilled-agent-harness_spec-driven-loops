@@ -1,16 +1,19 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring",
-  "description": "Feature Specification: Wire skill-advisor to the shared hf model server",
+  "description": "The architecture only pays off if mk-spec-memory and skill-advisor consume the same resident model server",
   "keywords": [
-    "feature",
-    "specification",
-    "wire",
+    "architecture",
+    "only",
+    "pays",
+    "mk-spec-memory",
     "skill-advisor",
-    "shared",
+    "consume",
+    "same",
+    "resident",
     "model",
     "server"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.682Z",
+  "lastUpdated": "2026-06-23T03:49:55.465Z",
   "specId": "006",
   "folderSlug": "skill-advisor-shared-wiring",
   "parentChain": [

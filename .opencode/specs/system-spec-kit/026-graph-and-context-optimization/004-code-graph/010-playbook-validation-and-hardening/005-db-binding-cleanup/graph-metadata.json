@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Remove the stale legacy DB so no legacy path lingers, satisfying scenario 019's \"no legacy paths active\" requirement; confirm the canonical DB remains the active, configured store.",
+    "causal_summary": "029 finding F-019-1 reported a legacy code-graph SQLite DB at `.opencode/skills/system-code-graph/mcpserver/database/code-graph.sqlite` (106 KB) alongside the canonical DB",
     "created_at": "2026-05-27T03:34:10.036Z",
-    "last_save_at": "2026-06-05T12:47:34.184Z",
+    "last_save_at": "2026-06-23T03:49:56.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7d4c040cbc4d63ce7e73f604160a45b119b33ae2b1acf9505e22271f36a7fdf6",
+    "source_doc_hashes": {
+      "spec.md": "90f181f8525dd23f977c9899f1e5cb099773ddbdaf53b595b3f2b70c14746ef0",
+      "plan.md": "ad0f4d583ff1a4c96ea473893ed002246cd7de773627cf85e201a5019381c516",
+      "tasks.md": "e4ada314b0e4aa2485e05a2fc7b27b4a5e4b93daaad30d38766540328792d2c5",
+      "implementation-summary.md": "1a42e9cf1bc5eabf24544efe8551b932cfbaf03a72f76bc420eb3eb918fa6baa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

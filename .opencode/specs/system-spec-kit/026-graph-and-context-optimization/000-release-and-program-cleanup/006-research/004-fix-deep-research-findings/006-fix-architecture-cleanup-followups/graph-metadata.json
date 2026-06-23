@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Fifteen architectural findings across the advisor, memory, freshness, and graph subsystems leak boundary violations, value-level dependency cycles, dead exports, and schema duplication identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-30T10:12:01.808Z",
+    "last_save_at": "2026-06-23T03:49:52.854Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:11c37164e195bd3f8d1b81ee09f1bcffc053a639e9e882d1cc5277c984543ec7",
+    "source_doc_hashes": {
+      "spec.md": "fdc06123f47cfddd631825c9d22d6966e6c4e177cee509ac0fc1ebae7d63266d",
+      "plan.md": "406b65f4a15388e46bce75042205f8fb9de5d2ae94cc2aee236a2abda61a3d5d",
+      "tasks.md": "e217835dd84c1f04028ad587ee3ce66268ab5a0cf596a15e5601063cbaec4925",
+      "checklist.md": "031f2bf25a9023f31bf6cf4e420d04b5b83af3e1c37487d5f228526ecf5b20dc",
+      "implementation-summary.md": "d2957a9d3fdfa52acabeafd7792a63f9ebb1e61ba1e66f87913b3c418803d347"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

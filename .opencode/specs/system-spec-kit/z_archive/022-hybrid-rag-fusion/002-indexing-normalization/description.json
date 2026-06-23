@@ -1,13 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
-  "description": "Feature Specification: Indexing Normalization",
+  "description": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
   "keywords": [
-    "feature",
-    "specification",
-    "indexing",
-    "normalization"
+    "index",
+    "scan",
+    "currently",
+    "collects",
+    "files",
+    "specs",
+    "opencode",
+    "roots"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.061Z",
+  "lastUpdated": "2026-06-23T03:49:59.746Z",
   "specId": "002",
   "folderSlug": "indexing-normalization",
   "parentChain": [

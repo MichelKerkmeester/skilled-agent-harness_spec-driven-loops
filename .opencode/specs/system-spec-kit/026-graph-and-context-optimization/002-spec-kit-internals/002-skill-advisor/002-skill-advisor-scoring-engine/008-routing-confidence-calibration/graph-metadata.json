@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30. The 015 next-steps advisory at `scratch/next-steps-advisory.md` identified the only remaining fusion-magnitude lever: **damping explicit/lexical contributions when their evidence is weak**.",
+    "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30",
     "created_at": "2026-05-14T02:15:00Z",
-    "last_save_at": "2026-06-05T12:47:33.365Z",
+    "last_save_at": "2026-06-23T03:49:53.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:15:00Z",
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:66a789a907db43479b7e098d520c3097104461799526c8a8cd3c292416701dc3",
+    "source_doc_hashes": {
+      "spec.md": "da5737edad635375ea8803f3fe5beaba74c6501c8089c5da7310cdbfeca1c27d",
+      "plan.md": "be32b5ac9777e38f8e7dbbd3e6aace9c098ceca54e47558ab9262a1b50acb5ee",
+      "tasks.md": "a23fdc4e597f0937d5828e8e5be25d68c5299871af16b5d860c76048c5d95b4d",
+      "checklist.md": "18aaffaf530eb872b7e408da22c83f4bdf7b45462a122c609ced27272122f902",
+      "implementation-summary.md": "b9de2ffe728b9511e655eb0f218b64aaf81e82cd79c4d36b792383a674453c80"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP transports kept dying mid-session despite the front-proxy work. Forensics traced the dominant path: `session-cleanup.sh` fell back to the hook's PPID when CLAUDE_SESSION_PID was unset, so under a shared terminal ancestor one ending session's cleanup walked EVERY session's descendants and SIGTERMed sibling launchers by name-glob. The cascade — dead launcher, dirty daemon exit, stale socket, bridge ECONNREFUSED, torn WAL — also explains the recurring \"database disk image is malformed\" warnings; the live context-index.sqlite was confirmed structurally corrupted (invalid page numbers, double-referenced pages) with no checkpoint to restore from.",
+    "causal_summary": "MCP transports kept dying mid-session despite the front-proxy work",
     "created_at": "2026-06-06T17:05:00Z",
-    "last_save_at": "2026-06-06T16:59:22.786Z",
+    "last_save_at": "2026-06-23T03:49:56.598Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6fad4fa3f06e42b144d4444eaebc404af0c0443e087860a311dbbd0380d439cb",
+    "source_doc_hashes": {
+      "spec.md": "d70d3ea1057ee046f1466ba873c3bc88ad67aa8d0d113257f382c69a1adad3c4",
+      "plan.md": "0a8924689c671bda7c201bbbb07305751cfb5aeeb590d174c3d9e6f5a28a7ddc",
+      "tasks.md": "85bced02b534dffc73ede8cd2419191edf9210711e64d547e087deaa17528c1d",
+      "implementation-summary.md": "77dbb5a70509122e61c23c14f3de095887ed10deed92542f55de8dfea8b4508e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

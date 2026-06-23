@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/012-cocoindex-ux-utilization",
-  "description": "Feature Specification: Phase 012 — CocoIndex UX, Utilization & Usefulness",
+  "description": "Phase 012 improved CocoIndex visibility and routing, but the packet drifted away from the Level 2 template and from current implementation reality",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
     "012",
+    "improved",
     "cocoindex",
-    "utilization",
-    "usefulness"
+    "visibility",
+    "routing",
+    "packet",
+    "drifted",
+    "away",
+    "level",
+    "template",
+    "current",
+    "implementation",
+    "reality"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.721Z",
+  "lastUpdated": "2026-06-23T03:50:00.666Z",
   "specId": "012",
   "folderSlug": "cocoindex-ux-utilization",
   "parentChain": [

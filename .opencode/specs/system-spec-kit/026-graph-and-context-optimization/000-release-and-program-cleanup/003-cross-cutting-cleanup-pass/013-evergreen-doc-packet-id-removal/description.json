@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal",
-  "description": "Feature Specification: Evergreen Doc Packet ID Removal",
+  "description": "Evergreen docs were carrying mutable packet and phase references",
   "keywords": [
-    "feature",
-    "specification",
     "evergreen",
-    "doc",
+    "docs",
+    "carrying",
+    "mutable",
     "packet",
-    "removal"
+    "phase",
+    "references"
   ],
-  "lastUpdated": "2026-05-26T17:26:21.765Z",
+  "lastUpdated": "2026-06-23T03:49:52.314Z",
   "specId": "013",
   "folderSlug": "evergreen-doc-packet-id-removal",
   "parentChain": [

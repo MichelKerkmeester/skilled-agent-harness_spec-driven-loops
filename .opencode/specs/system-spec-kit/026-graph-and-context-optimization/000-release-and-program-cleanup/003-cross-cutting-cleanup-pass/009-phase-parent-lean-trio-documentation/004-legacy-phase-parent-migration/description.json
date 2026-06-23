@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
-  "description": "Feature Specification: Retroactive Phase-Parent Migration",
+  "description": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs)",
   "keywords": [
-    "feature",
-    "specification",
-    "retroactive",
-    "phase-parent",
-    "migration"
+    "lean-trio",
+    "policy",
+    "enforced",
+    "new",
+    "phase",
+    "parents",
+    "validator",
+    "template",
+    "generator",
+    "resume",
+    "docs"
   ],
-  "lastUpdated": "2026-05-26T17:25:53.135Z",
+  "lastUpdated": "2026-06-23T03:49:52.289Z",
   "specId": "004",
   "folderSlug": "legacy-phase-parent-migration",
   "parentChain": [

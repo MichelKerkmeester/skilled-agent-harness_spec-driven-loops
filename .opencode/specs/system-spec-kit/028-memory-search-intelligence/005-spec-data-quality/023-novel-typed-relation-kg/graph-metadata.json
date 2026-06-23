@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The save-time LLM typed-relation backfill is scaffolded but unwired. `graph-lifecycle.ts:599-605` calls `_scheduleLlmBackfill` behind `SPECKIT_LLM_GRAPH_BACKFILL` for high-value docs, but `registerLlmBackfillFn` (`graph-lifecycle.ts:635`) is never called outside its own module, so the registered callback stays null and the scheduler is a no-op. Separately the deterministic extractor emits four STRUCTURAL relation types (`heading_link`, `alias_link`, `relation_phrase`, `technology_link` at `deterministic-extractor.ts:27-31`) while the `causal_edges.relation` column is CHECK-constrained to six SEMANTIC types (`caused`, `enabled`, `supersedes`, `contradicts`, `derived_from`, `supports` at `vector-index-schema.ts:1675-1677` and `:2343-2345`, canonical enum `RELATION_TYPES` at `causal-edges.ts:28-35`). Those structural edges fail the constraint and `createTypedEdges` swallows them via `INSERT OR IGNORE` (`deterministic-extractor.ts:202-206`). The result is a typed-relation knowledge graph with no LLM-derived semantic edges from document prose and no navigation or provenance surface a reader can use.",
+    "causal_summary": "The save-time LLM typed-relation backfill is scaffolded but unwired",
     "created_at": "2026-06-21T10:22:34.991Z",
-    "last_save_at": "2026-06-22T18:55:03.816Z",
+    "last_save_at": "2026-06-23T03:49:58.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d3eecd913ba843c56e361a3a85c1ae135fa4e561037607fd3e445092de6a0660",
+    "source_doc_hashes": {
+      "spec.md": "6dc9bdf757361ad771d9e212fb8f9d32b9316b5b8ecb28dddfe10ff3f296ea9a",
+      "plan.md": "f13138efde46c45a61d3b739bd883f281b0bd45402266b87a2bca6f5cf3bfb49",
+      "tasks.md": "224c37416ccc8f46efc2d19c28f4cc1f47733f2fa685cec14789ca0e90788f27",
+      "checklist.md": "484de9ca71cb3e564bbce944555c7bdef1761601bd640aa3deb35f008b0f864d",
+      "implementation-summary.md": "0955b0883c132c03d86920aaee45c71ae5e4e9921c77930086e1f62cfecf0574"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

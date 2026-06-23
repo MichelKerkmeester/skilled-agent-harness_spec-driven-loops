@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced **93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM**. Most findings are pre-existing legacy debt: spec folders authored under earlier sk-doc template versions that never got upgraded to current frontmatter / anchor / template-source-marker requirements.",
+    "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced 93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-06-12T04:40:47.027Z",
+    "last_save_at": "2026-06-23T03:49:52.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b81ccf5c7c20f49ebd7aa0e1971c93259bdb3de7260a16d22efc932b61e2e4b0",
+    "source_doc_hashes": {
+      "spec.md": "0aa24353699dd6c2a696328c6148ce4ce07a8b1e730ba53168099a17eb3268a7",
+      "plan.md": "3e1006d9fe5f4684198e13114f4560700d6360adb97f7954f9150067d60853d7",
+      "tasks.md": "39405786ff9cc6df62335c38f2cb37ec9c016751f596acfe3956002316e23b8e",
+      "checklist.md": "5136ba754cf21b479bdff8df3a20ace17938168c049e4f8430b2207164827b4d",
+      "implementation-summary.md": "2ff86e40908b5817243980072803d3700ee1d9508a34e60b2e9e24c967fc39c9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

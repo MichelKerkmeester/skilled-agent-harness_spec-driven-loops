@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `system-spec-kit` skill's `references/` folder currently has a flat structure with all reference files at the root level. This makes navigation difficult, slows down discovery of relevant documentation, and creates inconsistency with other skills like `workflows-code` that use organized sub-folder structures.",
+    "causal_summary": "The `system-spec-kit` skill's `references/` folder currently has a flat structure with all reference files at the root level",
     "created_at": "2026-04-12T09:02:53.535Z",
-    "last_save_at": "2026-05-30T10:12:03.017Z",
+    "last_save_at": "2026-06-23T03:49:59.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a50a50f1d3267fb8c498392ca5e1691fec853a6f5cc8f000a4331dc2a7b3c5b8",
+    "source_doc_hashes": {
+      "spec.md": "b15255dee0f642b2cc4ac0a9be9e8aea124bcce4f9ee2cbf5b8ca79e512aa979",
+      "plan.md": "d15a73820d1a436871f9d536832a79040617a50f8284ec96b8f45f06df93d962",
+      "tasks.md": "67fc76b6f8156194121a86e0c342ab0526b6897bd2e8bef28076dd095b8bd60e",
+      "checklist.md": "89ce9f3220e7ebf1816a8ab1104221b2d1c61c8654dcd4bac7cce6e2d8794263",
+      "decision-record.md": "b2662bd3dc6d0b7e7803298e5f0fe9befb8cf3eacccf70c90d468ec4f9dd39f5",
+      "implementation-summary.md": "5ccd38de83d6a05623d7dc7eea919c8717b317334709418538d392d050ccd4e3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

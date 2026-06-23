@@ -1,16 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
-  "description": "Feature Specification: embedding-status integrity (durable prevention fixes)",
+  "description": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable de",
   "keywords": [
-    "feature",
-    "specification",
-    "embedding-status",
-    "integrity",
-    "durable",
-    "prevention",
-    "fixes"
+    "004",
+    "deep-research",
+    "investigation",
+    "proved",
+    "bulk",
+    "re-embed",
+    "mk-spec-memory",
+    "store",
+    "cannot",
+    "reach",
+    "failed",
+    "pending",
+    "because",
+    "three",
+    "durable"
   ],
-  "lastUpdated": "2026-05-27T03:52:00.082Z",
+  "lastUpdated": "2026-06-23T03:49:55.389Z",
   "specId": "005",
   "folderSlug": "embedding-status-integrity",
   "parentChain": [

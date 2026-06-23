@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "causal_summary": "cli-codex reference/asset frontmatter is inconsistent with the repo-wide contract: 1 of 5 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:23Z",
-    "last_save_at": "2026-06-12T04:40:47.828Z",
+    "last_save_at": "2026-06-23T03:49:56.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f6ff8b64a96a9d81acdd99ecd7e36168c73c86140eab1caab730e9b36e270893",
+    "source_doc_hashes": {
+      "spec.md": "568066637388fa1ede2bfcaa5a06acbbbac610096e978da52a426671adc754e2",
+      "plan.md": "58b7ce4d30c9c39e881b9728916bee4be6ff26011ef121582a42a49effdd7510",
+      "tasks.md": "e1ab1164b47b3478b5a66491dc6416d6e49d2278fef5e1494c7ccd6055e5afad",
+      "implementation-summary.md": "dea0f449684500c314a8317d18722c3b0ec5e1902f89b201ae35000afac0ddd6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The release-readiness program needs a truth check for the MCP tool schema contract. Every public tool should have one canonical Zod schema, strict mode should reject hallucinated parameters by default, governed ingest should not be bypassable, validation errors should be operator-actionable, and tool counts should not silently inflate through deferred or duplicated registrations.",
+    "causal_summary": "The release-readiness program needs a truth check for the MCP tool schema contract",
     "created_at": "2026-04-29T21:20:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.526Z",
+    "last_save_at": "2026-06-23T03:49:52.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:681c07e7e8978bf99b8ca1c12832b13719c564047e438cb999de0b18a8eccc9e",
+    "source_doc_hashes": {
+      "spec.md": "0f4fa4831c438b0df57dfb8bcb2c721c420243f2f9d59c4ad5e462208d382546",
+      "plan.md": "78ba3b4f35cc99b48a4231d88aaaf648c519ac8348cf16ba82f0883c554032e8",
+      "tasks.md": "1e659d1dbedad63c423e22714a420dc26fa7f0a357894c65eaeb800861768e8c",
+      "checklist.md": "2598a5afd962069349e9fd65d768a6dfa46df5519e3f5ea2a8dbc5cb2cafda9f",
+      "implementation-summary.md": "a337e7caac7bb5a68305fe59d3f31af4b314cc89a13b2e68dfc008c55521cea6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

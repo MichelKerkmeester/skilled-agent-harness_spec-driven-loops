@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Feedback & Quality Learning closes the loop between retrieval and ranking by collecting implicit signals from the calling AI and using them to improve future results. The D4 deep-research agent discovered the system is **more mature than expected**: quality gates already exist in `save-quality-gate.ts` (0.4 density, 0.92 dedup, 50 char min), reconsolidation exists in `reconsolidation-bridge.ts` (opt-in, checkpoint-gated), and learned feedback exists in `learned-feedback.ts` with 10 safeguards. The real gap is **signal collection from the calling AI**, not safeguard design.",
+    "causal_summary": "Add implicit feedback event ledger, FSRS hybrid decay policy, quality gate exceptions, weekly batch learning, assistive reconsolidation, and shadow scoring with holdout evaluation.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-05-30T10:12:03.213Z",
+    "last_save_at": "2026-06-23T03:49:59.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:81a24a7c03b65327ac9dec53689d80d62ee04e6ddf2f47342d87d33cfeeacfd6",
+    "source_doc_hashes": {
+      "spec.md": "f280b1d2ca1aa788fcb2db1e3861ef89b90538fe0e6ec89e1c41c02711f273bc",
+      "plan.md": "65a6723438f7d88ad4c12c2921ecad6303a676974b62bf341b71b7239037992f",
+      "tasks.md": "be8c509ec99092ae01e1d991959b3265d9afd61bf9eb91d8069a65974ccf0c85",
+      "checklist.md": "271b62c82871884c59f2d1c54298c70115d7b4c2823367b1d99911c1e1162667"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

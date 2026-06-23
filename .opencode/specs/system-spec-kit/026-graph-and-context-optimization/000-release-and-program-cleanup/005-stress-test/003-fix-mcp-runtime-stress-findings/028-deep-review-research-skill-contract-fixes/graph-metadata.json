@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two contract violations in the deep-review/deep-research skill output:",
     "created_at": "2026-04-29T09:50:00.000Z",
-    "last_save_at": "2026-06-15T09:09:34.027Z",
+    "last_save_at": "2026-06-23T03:49:52.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:589d2d4fa8eb60b9e22b6eb7ffda8b621ffd72c4800ae5b6a13aa935cd9ae0e6",
+    "source_doc_hashes": {
+      "spec.md": "74a6bc582f560c16ad3e3e97c3a244b3350c3975c83f254ad841ab701ac18535",
+      "plan.md": "91e6754ad86c890833b28f46da31ff2f988ab1fe93ce3c97dc9eae71b1b95512",
+      "tasks.md": "26b0c61f28c9d72c669f0b6473c49100ba49abe9815a76694c0df0143bfce3d5",
+      "implementation-summary.md": "5d9cde37e63e7aeb25f8d33e8cbaed6eb52a30e1bf58d5c2e70c2f82d214c2ee",
+      "resource-map.md": "25cc561ab2857d9c59cada39ac31c460da46f3472799ca7d5ad96bb037e83b95"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

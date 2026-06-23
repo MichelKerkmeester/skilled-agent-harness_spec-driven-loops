@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class. (1) **Privacy:** `consumption_log.query_text` stored raw agent-prompt text — 241 live rows of it — exposing user-derived prompt content in internal telemetry. (2) **Dead path:** a `model_pricing_versioned` DB table (CREATE + seed INSERT) was read only by `listModelPricing()`, which had ZERO non-test callers; the live cost path already used the hardcoded `SEEDED_MODEL_PRICING_ROWS` constant, so the table was a confusing parallel source of pricing truth. (3) **Correctness:** the batch-learning boost formula divided the weighted score by event count (a per-event average), so the `Math.min(.., MAX_BOOST_DELTA)` cap never fired and signal VOLUME was ignored — 3 sessions and 300 sessions produced an identical boost.",
+    "causal_summary": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.210Z",
+    "last_save_at": "2026-06-23T03:49:52.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:af5b09ad32def922102383b404a14b2bd4fbae6352e67936353c33ce1a466b81",
+    "source_doc_hashes": {
+      "spec.md": "84ac6cf0de133be9424697cffd32c4ad385eb29a6d4954f2b66a4cb527f94568",
+      "plan.md": "432d3fdb1dfda137200849d57fb3609ed4d1343dc0d1b06c93e8f3844bbe6414",
+      "tasks.md": "0a125ac9a353ed2c3448280e3de0f7b0ff1ae4151cc66e0671090df1d3fddefa",
+      "checklist.md": "494ad570105971bc720b21c3b727dae97561ac54210addacf3bcc22eab1d95a8",
+      "implementation-summary.md": "e2f165b4e8aac9940a4d8ec8dc3b0c6d8eb95f5eebfbbcbc5ff60fa0a7bf727a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

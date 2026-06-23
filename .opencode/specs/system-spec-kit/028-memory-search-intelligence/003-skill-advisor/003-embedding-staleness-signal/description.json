@@ -1,16 +1,15 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal",
-  "description": "Feature Specification: Skill Advisor Embedding-Staleness Signal (SA8)",
+  "description": "The Skill Advisor has a load-time staleness blind spot",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
     "advisor",
-    "embedding-staleness",
-    "signal",
-    "sa8"
+    "load-time",
+    "staleness",
+    "blind",
+    "spot"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.862Z",
+  "lastUpdated": "2026-06-23T03:49:58.442Z",
   "specId": "003",
   "folderSlug": "embedding-staleness-signal",
   "parentChain": [

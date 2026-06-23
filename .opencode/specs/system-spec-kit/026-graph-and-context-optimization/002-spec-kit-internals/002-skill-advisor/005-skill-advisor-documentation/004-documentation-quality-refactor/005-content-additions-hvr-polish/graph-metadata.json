@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines troubleshooting, no daemon lease contract, no skill-graph drift reconciliation guide, and the hook-reference link is broken because the canonical file lives in system-spec-kit. HVR compliance also needs a sweep after all 004 alignment edits.",
+    "causal_summary": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines troubleshooting, no daemon lease contract, no skill-graph drift reconciliation guide, and the hook-reference link is broken because the canonical file lives in system-spec-kit",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:02.127Z",
+    "last_save_at": "2026-06-23T03:49:53.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f7579f4af0d2f689d20bfcb43b413b37d80dd4db0d188c2b17c12975cb675c39",
+    "source_doc_hashes": {
+      "spec.md": "33038956d7af786d030573ac8b334e5167a418066240bccaa32651c4e37f04b8",
+      "plan.md": "6ed4df632d7a947637e15c06dd567f69ad509ba206e3e3de8fa181e23f07b4e7",
+      "tasks.md": "bae2443e31e789e6a003378894dda866c70915a3e8b6d78af1f7abc5a46f7b5e",
+      "implementation-summary.md": "603148b00edf5e96bf2b9d084d07aeed99c18558812c621a6f770f49d3f6e72e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

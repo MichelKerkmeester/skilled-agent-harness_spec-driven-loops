@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `generate-context.js` pipeline contains two categories of correctness gap discovered during deep research Round 2 (74 findings, 20 recommendations). Domain A is a data-loss defect: when an AI sends both `userPrompts` (triggering the fast path) and `filesModified`, the file listing is silently discarded. Domain B is a set of five schema and validation weaknesses that allow typo'd fields, over-long strings, invalid enum values, malformed YAML frontmatter, and trivially short content to pass through to storage undetected. Together these eight changes harden the pipeline against both accidental data loss and silent quality degradation.",
+    "causal_summary": "The `generate-context.js` pipeline has a split code path in `input-normalizer.ts` (lines 414-530): a fast path triggered by `userPrompts`, `observations`, or `recentContext`, and a slow path for all other inputs",
     "created_at": "2026-04-12T09:02:50.278Z",
-    "last_save_at": "2026-05-30T10:12:03.320Z",
+    "last_save_at": "2026-06-23T03:50:00.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9864cdf1fb674bbd067b6bb5abf4a3a2764f98d1fee6bfcc40ceb188106ebc27",
+    "source_doc_hashes": {
+      "spec.md": "82140e78f00f6dbfbf1c4976f3cfb1bcd90155229d29e20983e6f9a9d5e0f8fd",
+      "plan.md": "7813a83feb643a7c317c96b5415f83ccf37a7d90563ff008233ef9212347e92e",
+      "tasks.md": "916fcd607fe95ea8436a69f96290081272af3cde46b8905389ea32d233ac6d39",
+      "checklist.md": "20b71cf0ac4ac23386c709517ef4111434d55b66d49b2f4360d9360dc06c5892",
+      "decision-record.md": "836570d5eed653829b6106dc66b124fbd98b7db700beb44f9cce75eb4fd2736c",
+      "implementation-summary.md": "3bad2d5bca8f4fce94ea0df21dcca2d9144015d20212abb871330d7cb33660a3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -32,18 +32,26 @@
     "005-verification-and-remediation"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
+  "description": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, sk",
   "keywords": [
-    "feature",
-    "specification",
-    "xce-derived",
     "spec",
     "kit",
+    "needed",
+    "coordinated",
     "refinement",
-    "phase",
-    "parent"
+    "program",
+    "spanning",
+    "memory",
+    "correctness",
+    "retrieval",
+    "causal-graph",
+    "hygiene",
+    "trigger",
+    "matching",
+    "learning",
+    "feedback"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.864Z",
+  "lastUpdated": "2026-06-23T03:49:56.848Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [

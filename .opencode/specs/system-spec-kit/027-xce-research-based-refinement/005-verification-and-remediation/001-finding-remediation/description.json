@@ -1,17 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
-  "description": "Feature Specification: Epic Finding Remediation (Phase Parent)",
+  "description": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed)",
   "keywords": [
-    "feature",
-    "specification",
+    "120-seat",
     "epic",
+    "deep-review",
+    "sweep",
+    "adjudicated",
+    "only",
+    "strongest",
     "finding",
-    "remediation",
-    "phase",
-    "parent"
+    "clusters",
+    "confirmed",
+    "fixed"
   ],
-  "lastUpdated": "2026-06-11T18:50:03.097Z",
+  "lastUpdated": "2026-06-23T03:49:57.876Z",
   "specId": "001",
   "folderSlug": "finding-remediation",
   "parentChain": [

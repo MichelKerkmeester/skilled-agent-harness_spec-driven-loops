@@ -1,13 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/080-speckit-bug-remediation",
-  "description": "Spec: Spec Kit Bug Remediation",
+  "description": "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase",
   "keywords": [
+    "comprehensive",
+    "audit",
+    "parallel",
+    "opus",
+    "agents",
+    "identified",
+    "bugs",
+    "across",
     "spec",
     "kit",
-    "bug",
-    "remediation"
+    "mcp",
+    "server",
+    "codebase"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.029Z",
+  "lastUpdated": "2026-06-23T03:49:59.337Z",
   "specId": "080",
   "folderSlug": "speckit-bug-remediation",
   "parentChain": [

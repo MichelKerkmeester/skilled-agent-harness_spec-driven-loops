@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "All spec documents should index successfully during `memory_index_scan`, with quality warnings logged instead of hard rejections.",
+    "causal_summary": "`memoryindexscan({ force: true })` rejects 1,807 out of 1,807 spec documents (spec.md, plan.md, tasks.md, checklist.md, etc.) with status `rejected` and no reason field",
     "created_at": "2026-04-12T09:02:50.312Z",
-    "last_save_at": "2026-06-05T12:47:34.899Z",
+    "last_save_at": "2026-06-23T03:50:00.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7be4bb255b20148bf42dcdc20861f5dc394a0c03599ea9c2e9e537ce0b227a1d",
+    "source_doc_hashes": {
+      "spec.md": "43bf73f683933dd96d2e0430a68be31b2e8acb0b84879b7dd653ea0057c1e181",
+      "plan.md": "4bc58cf1121b233f53b371b48dec5574764c4e4bdfdce819b8e11897d46c20c8",
+      "tasks.md": "49ab7b80ffd23e33ca7fad0591a075bb9054b3d1b6a420f94f48507131d64012",
+      "implementation-summary.md": "2e6e9cc3bf47f88646b3c2a9b7a2c8b3497644732bc7bbcc3827922cb5ab616f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

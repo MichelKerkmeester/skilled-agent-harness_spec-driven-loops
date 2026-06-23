@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment). A real-world parallel-agent collision pattern emerged: as 038 was dispatching, another agent shipped Path-1 isolation refactor (commit `6b6f41214` — 13 of 14 production imports removed), full SKILL.md alignment (`2b4abb3a1`, `68bce35cb`, `ec98af539`), and ccc_readiness_probe.ts real implementation. Three categories of work remained NOT-closed by either agent:",
+    "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment)",
     "created_at": "2026-05-15T18:08:38.450Z",
-    "last_save_at": "2026-06-22T18:55:03.186Z",
+    "last_save_at": "2026-06-23T03:49:56.828Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0cbe2e17d46386fbbd029b588a1e59f3a2f2a542258eff3f3db56c8821ae1976",
+    "source_doc_hashes": {
+      "spec.md": "233f00349be66eea4bdee07431222566736cc202ed3cb3a9db9ad105ddf3f472",
+      "plan.md": "485ed89411c1c96e7d1d8a3e5e37de6439571bae6c858648e82abac5ca8239d7",
+      "tasks.md": "5179e435756b522c23be0ca693fd54c8f3b0a16a4f827752dbeef19f2db71f41",
+      "checklist.md": "ff76f4f2cb8942cc36c4aa754efd1ce53c0d54b5ccaf2c4c67fb3138d6132601",
+      "implementation-summary.md": "9637e95b8f1feaa00bed8326b0251288d48eb2556864c13d8bb1735b48492f8f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

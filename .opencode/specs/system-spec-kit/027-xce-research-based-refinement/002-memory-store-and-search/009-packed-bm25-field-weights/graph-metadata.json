@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text). First, the legacy engine stores full token arrays per document (bm25-index.ts:197-207), an estimated 300-600 MB of heap if it ever warms the full corpus - a standing RAM hazard for the daemon whenever memory_fts is absent. Second, it flattens title/content/triggers/path into one field (bm25-index.ts:151-172), silently losing the title-x10 weighting that the FTS5 channel applies via bm25(memory_fts,10,5,2,1) - the engine slot packed-inmemory is reserved but unimplemented (bm25-index.ts:53,487-493) and BM25_FIELD_WEIGHTS is exported but unused there (:73-78). Source evidence: z_future/sqlite-to-turso 004 - gap-alternatives.md section 3.",
+    "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-06-22T18:55:03.340Z",
+    "last_save_at": "2026-06-23T03:49:57.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:aaa1cd9f4cefdf11ff1c5361029817456b65f9ee9ac8f86aac61445c745924ce",
+    "source_doc_hashes": {
+      "spec.md": "acce590c876812156288d52ce9059cf71230fd2d635f37cf96c2e86a69268387",
+      "plan.md": "4c30eb9cebe7bc0205fa053a6ec3f5edd65c7603cdfcc6bba5852f8c2168d917",
+      "tasks.md": "829a27e2e54d4a470f276d3b7d83e843663f1fb2ca67ad457ef23baf435b5f0a",
+      "implementation-summary.md": "b280e113d18d2975903d3a21f310374601a1282626e1d4d90a1c5e6b11ee0388"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

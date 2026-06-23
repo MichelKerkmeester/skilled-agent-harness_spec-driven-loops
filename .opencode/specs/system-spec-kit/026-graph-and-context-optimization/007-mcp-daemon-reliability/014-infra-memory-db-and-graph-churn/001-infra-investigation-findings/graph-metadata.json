@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two live-infra issues degrade the spec-memory subsystem. (1) The spec-memory MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on `memory_match_triggers`, `memory_index_scan`, and `memory_save`, blocking every memory write/index path — present since session start, caused by corrupted on-disk DB state after an unclean shutdown, not a logic defect. (2) The daemon (and any save path) rewrites ~634 `graph-metadata.json` `last_save_at` timestamps repo-wide — including `z_archive/` and `z_future/` — on essentially every save, burying real changes in working-tree noise and forcing wide manual git scoping on every commit.",
+    "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-06-08T11:22:12.712Z",
-    "last_save_at": "2026-06-22T18:55:03.016Z",
+    "last_save_at": "2026-06-23T03:49:56.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:4232938f67e434d19a6730035ef1f1dc3019d8368bd204074ebcf399a536cd0b",
+    "source_doc_hashes": {
+      "spec.md": "859370ea9886318a272734a184153e210d7a56ffdd8ade7b7881a15cf0502eb5",
+      "plan.md": "41ebed8d0874a1cc02beba7c1aaaf28a9cf59c8c1560cab3c6431d3f131a0d09",
+      "tasks.md": "cea4341daf9ea6646574bc15cfb1c550c0a4ba1cc67a57c22b28a4a6b32de311",
+      "implementation-summary.md": "b689d86a844702edc6a93732cef779e2399fee6607683964df19d1fb6c4aa398",
+      "research/research.md": "0dcf7b438b6fd9e41ca799c39b7aa89f5c23c2aa36ffeec527433b6eb835348d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read. `computeMemoryState` returns a per-memory `retrievability` plus a tier state (`tier-classifier.ts:325-328`), the inline power-law formula and the `calculateRetrievabilityScore` consumer both run today (`composite-scoring.ts:299,357`), and the tier thresholds are set (`tier-classifier.ts:39-41`, HOT at 0.80, WARM at 0.25, COLD at 0.05). Nothing reads that decayed number to flag a doc for a human refresh. A grep for `refresh_queue`, `freshness_queue`, or `auto.?refresh` across `mcp_server/` returns empty, so a doc that has decayed past COLD into DORMANT rots silently with no report-only maintenance signal.",
+    "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
     "created_at": "2026-06-21T10:22:34.992Z",
-    "last_save_at": "2026-06-22T18:55:03.817Z",
+    "last_save_at": "2026-06-23T03:49:58.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2e42c91ff6e489006e63c300d8c970ded308f4a8cb1540676bdd4468b4998ba6",
+    "source_doc_hashes": {
+      "spec.md": "20d899ef77e988a5f5c751ada512b739b10d134a74e6233f643634d30c92fcc6",
+      "plan.md": "3bf575f7eb5840c6806458d6959630bf60923c8950b121b91cbed8b956378986",
+      "tasks.md": "95a7e4e2104b8af925ab0e88a5c3e4843e51a7a8f4ee5203813105513185bf3a",
+      "checklist.md": "accd349760e6d22003b6066a9370eb16ee9f7676485a93dda9fe12c9c13e85cc",
+      "implementation-summary.md": "f88f32c672715eb66683890b6bb4493d9803a8083f4cfaaefe5711dceaa05f64"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

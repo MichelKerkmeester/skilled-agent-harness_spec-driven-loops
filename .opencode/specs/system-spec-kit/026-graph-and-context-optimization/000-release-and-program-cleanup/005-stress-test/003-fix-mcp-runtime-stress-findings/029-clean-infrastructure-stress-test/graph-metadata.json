@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H, packet 021) produced a CONDITIONAL verdict with three caveats:",
     "created_at": "2026-04-29T12:25:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.749Z",
+    "last_save_at": "2026-06-23T03:49:52.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6c2b3b99ff1618bb3e54452bfff4d2dec91df18ba60e27f5a4df051057ca908d",
+    "source_doc_hashes": {
+      "spec.md": "e04af1e88ff73235dc9c79591d46e84ce6dd4a289a7033a0459b5b12f229f356",
+      "plan.md": "acb29c9fc5d4ea8f2b130285412bc93fed2cfef6bca125737904ce05ed1405e3",
+      "tasks.md": "d76606f3586afae36f10792bb4147fca1893fc9c23b413c80edc5135a3f0ce5b",
+      "checklist.md": "2cff9d02efaa2bfadb47a451367ba39a1ef66dc1098b5e0887318c64041cc4e2",
+      "implementation-summary.md": "2e2381b27340f9652988c096937b32538bb89131fc19eae0661c1e6888126eb0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

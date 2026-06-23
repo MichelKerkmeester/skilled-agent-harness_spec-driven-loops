@@ -1,15 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
-  "description": "Spec: Live Handler Envelope Capture Seam",
+  "description": "The v1.0.3 stress test (Phase H) tried to capture full live-handler `SearchDecisionEnvelope` rows by importing `handleMemorySearch` directly and invok",
   "keywords": [
-    "spec",
-    "live",
-    "handler",
-    "envelope",
+    "stress",
+    "test",
+    "phase",
+    "tried",
     "capture",
-    "seam"
+    "full",
+    "live-handler",
+    "searchdecisionenvelope",
+    "rows",
+    "importing",
+    "handlememorysearch",
+    "directly",
+    "invok"
   ],
-  "lastUpdated": "2026-05-26T17:27:41.178Z",
+  "lastUpdated": "2026-06-23T03:49:52.705Z",
   "specId": "023",
   "folderSlug": "live-handler-envelope-capture-interface",
   "parentChain": [

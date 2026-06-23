@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web searches). The key finding: the system is more mature than expected — the gap is **calibration and wiring**, not missing code. Flat heuristic constants (k=60, convergence +0.10, graph boost 1.5x, FSRS decay, Stage 2 signal weights) need data-driven calibration. Graph value lies in typed traversal, not community detection. Feedback needs an event ledger before any learned ranking.",
+    "causal_summary": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web searches)",
     "created_at": "2026-04-12T09:02:50.233Z",
-    "last_save_at": "2026-06-22T18:55:04.151Z",
+    "last_save_at": "2026-06-23T03:49:59.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:51ffda7665a02c8c50dfd0c80b72d35172efa38ede21f897600d791808f0e5c4",
+    "source_doc_hashes": {
+      "spec.md": "b83f034e2aea14aaee5f3ce3317d38efb35012bd28533d27f319f4c056da6381",
+      "plan.md": "d79700dcf267802b10e7427f5fc4a801cc98f7a9d2f5db8566c2adbccf862279",
+      "tasks.md": "a9b937b5d6bf0bee07f8e253e425140a32681dde5bbc502e57c02114bf015a8a",
+      "checklist.md": "6f761f659dcff90cdde6e0095555649dd8381023972af75641b43096c0a2635e",
+      "implementation-summary.md": "841cda4140cdd1373ee1f0cb143b618508868444f1a5d22454a83267e4b5e380",
+      "resource-map.md": "e6a017726af698557ed89333e61f08f11a29d22ff39d6f75c96fc324c8a60820"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the **live** `dist/` before `tsc --build` repopulates it over several seconds. Any running daemon that lazy-imports a module during that window hits `MODULE_NOT_FOUND` and crashes (RC-4 in packet 030). The wipe also deletes `dist/tsconfig.tsbuildinfo`, forcing a full (slow) recompile every time instead of an incremental one.",
+    "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-06-05T12:47:34.273Z",
+    "last_save_at": "2026-06-23T03:49:56.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:67104f9bf06e5b1b89f44315380094eef416155e848e60d05023fcdc1831e315",
+    "source_doc_hashes": {
+      "spec.md": "b648a970799f3562f4a4fee0c0b5c5cf9d2e158f75b94804792060e9091ea7ac",
+      "plan.md": "d6e8ed7e9b9c4ca73370fb2596fd9bdfb48319fcd0218e8bcc78364fa0795183",
+      "tasks.md": "479d9be17c951c389c3f90ebf89352cc2c45a831b38a4ffba18c4722c05bf523",
+      "checklist.md": "54e14fb6682850b0e07a0c4058610f5c0dd7e825bd355655fc00fda85e7d07a5",
+      "implementation-summary.md": "7615d470134a7d63a7cd3b11cc7ffd9ac58ce9d5fce139939e7c2f75ee59cee7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

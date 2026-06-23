@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
-  "description": "Feature Specification: CocoIndex seed telemetry passthrough",
+  "description": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`, `rankingSignals",
   "keywords": [
-    "feature",
-    "specification",
     "cocoindex",
-    "seed",
+    "fork",
+    "cocoindexcode",
+    "spec-kit-fork",
+    "emits",
+    "new",
     "telemetry",
-    "passthrough"
+    "fields",
+    "per",
+    "query",
+    "result",
+    "rawscore",
+    "pathclass",
+    "rankingsignals"
   ],
-  "lastUpdated": "2026-05-26T17:28:02.406Z",
+  "lastUpdated": "2026-06-23T03:49:52.650Z",
   "specId": "015",
   "folderSlug": "cocoindex-seed-telemetry-passthrough",
   "parentChain": [

@@ -38,7 +38,7 @@
       "tasks",
       "summary",
       "impl",
-      "phase"
+      "compressed"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the search-and-output-intelligence implementation: cosine top-N head reorder (Problem 4 / S5).",
+    "causal_summary": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance signal the corpus carries (cosine)",
     "created_at": "2026-06-17T19:57:25.105Z",
-    "last_save_at": "2026-06-18T12:37:50.246Z",
+    "last_save_at": "2026-06-23T03:49:57.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7964038f7689f73382a3dc580f393062d2371238ffb724fe788731f41a1cfe12",
+    "source_doc_hashes": {
+      "spec.md": "e8b6b0d48900f2e4de8a4d0a86a0b6824e86c57c99a01386c1c0d87023ddb9f8",
+      "plan.md": "ec9eacfda2dca162b9e51648966aa4609505823bff5b05b19b33e22632e3b51f",
+      "tasks.md": "d7cf5ffa5e17a5726762c34115af82575454f4d3aee59667ffa8fac39ee89955",
+      "implementation-summary.md": "ca5848fbfb798b646ead5e6adde1b1901b2f32f28d0d374dbfaea7e1c85c30c3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

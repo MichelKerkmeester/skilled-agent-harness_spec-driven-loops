@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The rerank sidecar ledger currently records sidecar rows without process-owner identities. `kill(pid, 0)` alone cannot distinguish a live original owner from a recycled PID, so the three-layer reaper needs a v2 ledger owner schema and identity-verified liveness helpers before launcher and app reaper phases can safely consume ownership data.",
+    "causal_summary": "The rerank sidecar ledger currently records sidecar rows without process-owner identities",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-30T10:12:02.499Z",
+    "last_save_at": "2026-06-23T03:49:55.286Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d84a0c88984dc7cc327cc7fc25e5805c3129443eba59b546bc55a51b5a81156e",
+    "source_doc_hashes": {
+      "spec.md": "d839d15ea082033a991b139d5c0d024cb312ac403bbc22222d595c5754bd78bb",
+      "plan.md": "35b13f01391b85a435d9b3e7b205cfdfa926c520aad7c43635c2b0f4f04e2078",
+      "tasks.md": "cd57c16ad831a3c841d9a3e36869d74c0ceb7de36fc31eef483969f1cc83ee45",
+      "checklist.md": "484043ccdb73101b1d2f57af782790e30190751da8a3cf6b240d7da6fcb5b9ff",
+      "decision-record.md": "62610f1ddf51c95780389caf81e2f87bdbb4e245326a30ffa1f4f9c278d87fe0",
+      "implementation-summary.md": "aad855eedcb3d891996d396ee682f0a583fe4da3180e37fac3c427f7a7909f34"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

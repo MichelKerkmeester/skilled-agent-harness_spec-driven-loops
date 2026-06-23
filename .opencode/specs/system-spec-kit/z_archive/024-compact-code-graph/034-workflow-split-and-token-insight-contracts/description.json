@@ -1,16 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/034-workflow-split-and-token-insight-contracts",
-  "description": "Feature Specification: Workflow Split and Token Insight Contracts",
+  "description": "The research left the workflow split and token-insight surfaces as later work because they depend on already-stable measurement, continuity, and publi",
   "keywords": [
-    "feature",
-    "specification",
+    "research",
+    "left",
     "workflow",
     "split",
-    "token",
-    "insight",
-    "contracts"
+    "token-insight",
+    "surfaces",
+    "later",
+    "work",
+    "because",
+    "depend",
+    "already-stable",
+    "measurement",
+    "continuity",
+    "publi"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.415Z",
+  "lastUpdated": "2026-06-23T03:50:00.840Z",
   "specId": "034",
   "folderSlug": "workflow-split-and-token-insight-contracts",
   "parentChain": [

@@ -209,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.). But how much of that is **actually automatic at runtime** vs **operator-triggered** vs **manual fallback**? Specifically:",
+    "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.)",
     "created_at": "2026-04-29T13:15:00.000Z",
-    "last_save_at": "2026-06-12T04:40:47.132Z",
+    "last_save_at": "2026-06-23T03:49:52.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:1cc81f39160121e1603c1459ff57f9d24ba575e8c1a7aaa18ac908517665e6d7",
+    "source_doc_hashes": {
+      "spec.md": "389ebabb1d493e0184053f6870334331b8793281872b91c57f6f37c8ebc7929c",
+      "plan.md": "e5cd4c356466464f85d6945c7ad4b37053972f982db65eef62cf1ff1d88b1533",
+      "tasks.md": "c0963cf82611074240168cd49e24d568513de1adb5841f109aaeb7edf0ca0367",
+      "checklist.md": "f2898e635a8cfe759a71b6ab6626de0ce1a59ee9d7b03253c7f6a13dafe8ee4c",
+      "implementation-summary.md": "253280d63046428a417701d56986fd4d17eb377ae102498d845dc998b0c72539",
+      "resource-map.md": "106afa763573a190524f2cd955cfadffc6754f7ab33ca6f01991d4cc3601c730"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The registry's P1 resource-bound keyword selection contains F48, F85, F86, and F87. These findings leave local HTTP and IPC paths with predictable or unbounded behavior after the P0 fixes are complete.",
+    "causal_summary": "The registry's P1 resource-bound keyword selection contains F48, F85, F86, and F87",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-06-05T12:47:33.869Z",
+    "last_save_at": "2026-06-23T03:49:55.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c4b331a8f904973a6f99b56835cfb9d0faf73a46675cb5b15dda22029c438d1c",
+    "source_doc_hashes": {
+      "spec.md": "17eba815391ce5d19f95d3a60ca7373726ba25515495ab11456070b022ae9693",
+      "plan.md": "88cac9385a2a23686c86c01beb7eafbc8f96bfaee71197213883862945943438",
+      "tasks.md": "584e68e2d66de54f1d3e00e94c0625ea5f2c19d7496277d514584a46871eac1f",
+      "checklist.md": "b1adaef8c60b4cfbb85c2b5016f7942c27c5ff0e37dc95f0b71b8d7e7e34c4f0",
+      "implementation-summary.md": "420fdb07f414bfcb41b4b7d660591d17d4f58ef0df434cda99923ccd3b74c71a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

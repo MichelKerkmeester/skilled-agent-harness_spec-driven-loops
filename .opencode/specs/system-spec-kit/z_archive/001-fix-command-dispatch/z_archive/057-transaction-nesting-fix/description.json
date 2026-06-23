@@ -1,15 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/057-transaction-nesting-fix",
-  "description": "Spec: Fix SQLite Transaction Nesting Issue",
+  "description": "The memory_index_scan MCP tool fails with SQLite error",
   "keywords": [
-    "spec",
-    "fix",
+    "mcp",
+    "tool",
+    "fails",
     "sqlite",
-    "transaction",
-    "nesting",
-    "issue"
+    "error"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.945Z",
+  "lastUpdated": "2026-06-23T03:49:59.212Z",
   "specId": "057",
   "folderSlug": "transaction-nesting-fix",
   "parentChain": [

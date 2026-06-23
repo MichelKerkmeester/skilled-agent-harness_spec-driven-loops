@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Route the next continuity packet into the existing 024 train by turning cached summaries into a guarded consumer instead of a new authority surface.",
+    "causal_summary": "The research kept cached startup value only under fidelity and freshness gates",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-06-05T12:47:35.031Z",
+    "last_save_at": "2026-06-23T03:50:00.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d5fa25cd2c1753a00c612b8e32125e621d5ef81466f40d839d4e9bb13901bdaa",
+    "source_doc_hashes": {
+      "spec.md": "b5281c6bc4c6482970e8771b89010c77407d852d0d1874ab1ff4d568444e9332",
+      "plan.md": "6c33100477680cb84ed2834645caeccf6cbc3c83c1f714dd3124c6a58a342ada",
+      "tasks.md": "4bb2b16554546ca0bd53853b9c3782a35cf2e49b6f538354cd8f7a958153cc8b",
+      "checklist.md": "78b61317d6ff93bb456b7c2ba6d5601e8feb634c1f97bd6fe71a4237eec5d6d3",
+      "decision-record.md": "7287a2c39ab0fe1c71bf81b6377450bc9795f098e9caa148fca5cf56fca77662",
+      "implementation-summary.md": "4b1823d62697f8461483f219e80a610c24830ac89355ee33820ef45d2899fc0a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph impact/blast-radius walk previously ranked callers through flat reverse `CALLS`/`IMPORTS` enumeration. This phase implements the query-seeded multi-hop ranking mechanism behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` (default OFF): **Q3-C1** bounded personalized PageRank over the reused Memory weighted-walk substrate, **GATED** to impact/multi-hop modes only, with an undirected working projection and Q4-C2 confidence/evidence transition decay. The implementation does not claim a ranking-quality delta. Damping/cap/decay tuning remains blocked on a code-graph retrieval benchmark. The current-set intersection degrades to physical edge presence because `invalid_at`/`valid_at` columns require a separate schema migration. **lexical-vector-seed-union remains NO-GO**, the code-graph module deliberately has no vector backend.",
+    "causal_summary": "The code-graph `codegraphcontext` impact mode ranks callers/callees by a flat single-hop reverse-edge enumeration in DB iteration order, with no centrality, no recursive spread, no mass propagation [CONFIRMED: `research.md` Internal Baseline, iter-2 finding 12]",
     "created_at": "2026-06-19T06:06:27.142Z",
-    "last_save_at": "2026-06-22T18:55:03.720Z",
+    "last_save_at": "2026-06-23T03:49:58.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:df8d85e983a13512675ec970b30439fda29a8eb70a802400eab7529a50823c2b",
+    "source_doc_hashes": {
+      "spec.md": "c420137d9687b0e9e88d6497173ee3b49904df1f6982c26c5a4c44089cfa5192",
+      "plan.md": "e4a2e35d74c5a611fbda3f6e690d0e8926785243afec6c10f8e7ef95cb76eae4",
+      "tasks.md": "84b357155f6d59b1ad6cbb9c3d68a350e1ee507642efa9d4fddfbe5d5b6a4008",
+      "checklist.md": "fcd3bb44b7817999cdf044a9f7bde00b811e6643b9e44bbac68b6d975c70874e",
+      "decision-record.md": "0ae30996d35c2b4ce4940df4a43ddb8da14c63d9407be284d46fda389170d556",
+      "implementation-summary.md": "6f7b0c01f72a7f8584cee30c7c7e3f0e969bbe026795adbf3c68d5499b64feb6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

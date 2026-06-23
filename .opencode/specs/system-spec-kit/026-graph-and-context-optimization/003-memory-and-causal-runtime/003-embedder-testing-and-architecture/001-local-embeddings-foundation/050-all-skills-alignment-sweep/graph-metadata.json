@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Audit and align all 19 skill packages under `.opencode/skills/` plus the root skill index and repository README. The sweep applies sk-doc template expectations, fixes stale current-reality references from recent advisor/code-graph/CocoIndex/embedding restructures, and documents any work that cannot be safely completed inside this doc-only dispatch.",
+    "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-06-05T12:47:33.604Z",
+    "last_save_at": "2026-06-23T03:49:54.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e182abdef96168230be02dca7c158088262ea2332687a88810a46fcada981f9d",
+    "source_doc_hashes": {
+      "spec.md": "97bb69008d7954e7c2e41b4cec5bdc4c3a004997e8ff487d75cecbaacb43bcb9",
+      "plan.md": "dac6a02f9dbf086ab8ff666ba91ee88ef4060f40250b67c3017ca971ecd6149b",
+      "tasks.md": "43e12d68184318bab9cd491d9ae40de19d54063fdf7f7114ae41bcb97ca573ee",
+      "checklist.md": "7e930e333b0c98609d0723ed7066392489b5e447668d95c98d1b8ac296932661",
+      "decision-record.md": "c69e1c089df6baa07e306379cfad76f9a9ad362ace068ecad980702db3cf7353",
+      "implementation-summary.md": "90ad6de840def43d0e202a15441deeb5b7b0e5dfc8d6da8400721939aa7226d3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

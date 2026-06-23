@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet operationalizes the completed redundancy research in `research/research.md`. It does not rerun the investigation. It records how the parent research canonicals and the downstream packet train should react to the compact-wrapper conclusion that memory saves should point at canonical docs instead of replaying them.",
+    "causal_summary": "The redundancy research finished with a clear contract, but the packet family still needed one coordination layer to apply it",
     "created_at": "2026-04-12T09:02:53.452Z",
-    "last_save_at": "2026-06-05T12:47:33.261Z",
+    "last_save_at": "2026-06-23T03:49:53.140Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d26286947e43d1f7125dda899a278bcac3968bd61067401ddfc7168c8f1afa1d",
+    "source_doc_hashes": {
+      "spec.md": "e647fd9f6e5ddd6b46dcc7208d606f5ad14049cc467da6a3858d9b314f308359",
+      "plan.md": "27443a65be9e3df22076f0ee439c5ec9d13dbae2dcdcdb47e5b067752c85ddc3",
+      "tasks.md": "afb4ab2c9c156cccb1c29150354c2ee6392b3b0f0d9c339b791a7eb7f7402263",
+      "checklist.md": "1ac917091e079d8603584eee6477e4b1e17012edbb649f9b9ea9792f82b8048c",
+      "decision-record.md": "0d2d3505e2bb4eaca5ed94b406045c4f792a6ff950c34e06566f3c04a929f2d9",
+      "implementation-summary.md": "0e1dd1844a4197ae5b87131227f80e85381ed56370e5a1e47fc04f4eb51673ac"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

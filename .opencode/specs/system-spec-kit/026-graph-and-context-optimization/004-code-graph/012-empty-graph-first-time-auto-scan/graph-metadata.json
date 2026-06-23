@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When the code graph is empty (never built, or reset), the read tools (`code_graph_query`, `code_graph_context`) return `status:\"blocked\"` with `requiredAction: code_graph_scan` — they never build the index themselves. For a fresh repo clone (whose scope is just its own `/src` code), that forces a manual scan before the graph is useful, even though building from empty is safe (nothing to overwrite).",
+    "causal_summary": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with `requiredAction: codegraphscan` — they never build the index themselves",
     "created_at": "2026-05-29T10:44:34.652Z",
-    "last_save_at": "2026-05-30T10:12:02.654Z",
+    "last_save_at": "2026-06-23T03:49:56.152Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:286d0fb35030cf656b20b04e5be87f47858ee61c25f118ef05a79ec0ee8470c3",
+    "source_doc_hashes": {
+      "spec.md": "cf37031f136b9a67879c271da8145fe9e134b27a373d2e767e69c4ce8856ba09",
+      "plan.md": "6a465186be22ea2afeb63da5ab610c2a97aa41f28abb77e3e28c311c970738cf",
+      "tasks.md": "65af76f4de71da8afbff40660d9d6644551a8fd0dcc0f6662142e385e6c23f0c",
+      "checklist.md": "4be4e118ed2646151b068f9abdc9c13ee5a88c497fc53d0e90fb30e239c86a6e",
+      "implementation-summary.md": "35539ed0f747de595eeec8eac08e5a297d526aa1ac46819daa574b0191e51c22"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria. Without a dedicated query-intelligence packet, Phase 012 testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or review results. Wave 2-5 additions introduce LLM reformulation, HyDE shadow generation, query surrogates, and query decomposition.",
+    "causal_summary": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.299Z",
-    "last_save_at": "2026-06-22T18:55:04.499Z",
+    "last_save_at": "2026-06-23T03:50:00.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:13d3719601a6ac20489303194f1428178c5995794157f8bdcabd796fed70a911",
+    "source_doc_hashes": {
+      "spec.md": "78af4be1607c8a87b447e69f836e6081abfdb8e6b52342fb9d260c754cfbb6d4",
+      "plan.md": "f6089140befa621dcefbdead701e931cd12fd76afb583a1ab51beb8a826e61b5",
+      "tasks.md": "310cf86ec68e40ff5414732a2ae254cdc264ecb1a335c82b30957b0737e4a1a7",
+      "checklist.md": "4d5a428f0fadb7bcec0ea642b558ea99aacea5e9bc3ae240d316656e35cb20d5",
+      "implementation-summary.md": "cbde9ab78511dc5a2230b6bfc4d4df07b0236ad351769b682b8926ad48a14f5d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

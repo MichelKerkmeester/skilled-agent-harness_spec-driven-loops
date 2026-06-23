@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The live context-server RSS dropped sharply after the embedder cleanup packets, but `memory_health` still cannot attribute RSS to V8 heap, external memory, ArrayBuffers, or retained caches. Without byte-aware telemetry, future memory packets can mistake SQLite/native/external residency for JavaScript heap retention.",
+    "causal_summary": "The live context-server RSS dropped sharply after the embedder cleanup packets, but `memoryhealth` still cannot attribute RSS to V8 heap, external memory, ArrayBuffers, or retained caches",
     "created_at": "2026-05-18T21:07:21.497Z",
-    "last_save_at": "2026-05-30T10:12:02.197Z",
+    "last_save_at": "2026-06-23T03:49:54.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b828cf1d93fbea0591c6032d7f1e6093d356e6584e6df632ac1b762fe595712a",
+    "source_doc_hashes": {
+      "spec.md": "676ff2986a0250a51b7ccf5f236f6f1adb59cb2bdd0eaa5a925b11fcd9ce3425",
+      "plan.md": "9fb11a2f251d85d13fde30224141ee8ec6a4629e3abcf2f13b2ecda39ce166d4",
+      "tasks.md": "f28d560b68ec5c6a048f0e80d1246bbb6ef9155ec048b4bacdb3beecc855e92a",
+      "implementation-summary.md": "c80a9983f1a42abc3436b82cf1a3916761336f1167da2637726fc4b8710a2c56"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

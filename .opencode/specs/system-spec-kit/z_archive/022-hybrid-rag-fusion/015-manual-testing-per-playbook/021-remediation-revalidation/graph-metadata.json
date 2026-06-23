@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code audit remediation and revalidation phase (catalog phase 021) synthesized findings from all 20 prior audit phases, identifying ~45 PARTIAL verdicts across 220+ features with 5 issue categories (source file list inflation, stale references, deprecated-as-active modules, flag default contradictions, and behavioral description mismatches). Manual testing scenarios are needed to verify that remediation tracking captures all findings, the revalidation checklist works against fixed items, and the finding closure workflow operates end-to-end.",
+    "causal_summary": "The code audit remediation and revalidation phase (catalog phase 021) synthesized findings from all 20 prior audit phases, identifying ~45 PARTIAL verdicts across 220+ features with 5 issue categories (source file list inflation, stale references, deprecated-as-active modules, flag default contradictions, and behavioral description mismatches)",
     "created_at": "2026-04-12T09:02:50.306Z",
-    "last_save_at": "2026-06-22T18:55:04.563Z",
+    "last_save_at": "2026-06-23T03:50:00.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dd28cfff6c5192c77fc0193292770e526c57635fa11deef539c03921fc354e82",
+    "source_doc_hashes": {
+      "spec.md": "01a0256571db2a2591b8205e79271bee19e24afa00def2f485ffa5ddab028af4",
+      "plan.md": "b20ee0e69dcbee41395b5adb9b81fe61b2e286c8676a2a466c9cff534066bf0a",
+      "tasks.md": "0c198c348e33da3152f0001a9cf14bd0cf38a4a2b0122e6a66f87aef9ee990ce",
+      "checklist.md": "681e9b32fe74feefcfefefc41ff371bcad29d0353ae253579c9149f8e4a61e03",
+      "implementation-summary.md": "8854088d83bdf03976f0cfca754b116555e4b9b98ecb386d657fa04ffa5e3e7c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

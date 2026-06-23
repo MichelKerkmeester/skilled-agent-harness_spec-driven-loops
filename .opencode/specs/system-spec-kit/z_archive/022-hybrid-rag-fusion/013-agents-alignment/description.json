@@ -1,16 +1,19 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
-  "description": "013 — Agent Alignment: Runtime Lineage Truth Reconciliation",
+  "description": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses",
   "keywords": [
-    "013",
-    "agent",
-    "alignment",
+    "original",
+    "013-agents-alignment",
+    "packet",
+    "described",
+    "simpler",
     "runtime",
-    "lineage",
-    "truth",
-    "reconciliation"
+    "model",
+    "repository",
+    "now",
+    "uses"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.203Z",
+  "lastUpdated": "2026-06-23T03:50:00.205Z",
   "specId": "013",
   "folderSlug": "agents-alignment",
   "parentChain": [

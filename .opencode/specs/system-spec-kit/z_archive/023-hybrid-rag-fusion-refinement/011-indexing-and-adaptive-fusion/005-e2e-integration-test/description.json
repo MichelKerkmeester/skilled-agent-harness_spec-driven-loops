@@ -1,15 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
-  "description": "Feature Specification: Phase 5 — End-to-End Integration Test",
+  "description": "The lifecycle suite existed, but the docs overstated what it covered",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "end-to-end",
-    "integration",
-    "test"
+    "lifecycle",
+    "suite",
+    "existed",
+    "docs",
+    "overstated",
+    "covered"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.174Z",
+  "lastUpdated": "2026-06-23T03:50:00.518Z",
   "specId": "005",
   "folderSlug": "e2e-integration-test",
   "parentChain": [

@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
-  "description": "Feature Specification: Code Graph Auto-Reindex Parity",
+  "description": "The code graph already has an auto-readiness engine, but the main structural read paths currently call it with inline indexing disabled",
   "keywords": [
-    "feature",
-    "specification",
     "code",
     "graph",
-    "auto-reindex",
-    "parity"
+    "already",
+    "auto-readiness",
+    "engine",
+    "main",
+    "structural",
+    "read",
+    "paths",
+    "currently",
+    "call",
+    "inline",
+    "indexing",
+    "disabled"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.391Z",
+  "lastUpdated": "2026-06-23T03:50:00.810Z",
   "specId": "005",
   "folderSlug": "code-graph-auto-reindex-parity",
   "parentChain": [

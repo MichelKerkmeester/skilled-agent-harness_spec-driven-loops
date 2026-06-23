@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research validation in this packet's `research/` (see `research/research.md`) confirmed the \"skip-not-fail on live owner\" substrate-harness fix is sound, but surfaced three residual risks, all in `run-substrate-stress-harness.mjs`. This spec closes all three: a PID-recycling false-SKIP, a stale-pid TSV evidence hazard, and a maintainer-mode INDEX-scan leak that lets a clean-env / CI run rewrite `graph-metadata.json` tree-wide.",
+    "causal_summary": "The substrate stress harness reclassifies a connection failure as a tolerated SKIP whenever a live PID is found in a daemon's single-writer lease",
     "created_at": "2026-05-31T10:01:17.891Z",
-    "last_save_at": "2026-05-31T13:23:17.064Z",
+    "last_save_at": "2026-06-23T03:49:56.523Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:df7f84f011382dd95976a78c22c031a6f3f907f7a67b70e7149c07804f5102b5",
+    "source_doc_hashes": {
+      "spec.md": "7e235113e00b95a9e95f10f878b26391d2f7d6046c63e96a08b3641abbc79321",
+      "plan.md": "299d9e1aec81193e7ec9382abc2e59905c0ac961728909a4c003dc4858e81e5d",
+      "tasks.md": "72654117e23a9d219c4265cdaf4be97235225b5bb6adabccb5a835e09b391f54",
+      "checklist.md": "937452472f742d3a9b6a7b97c8801d18cf542e2e670e31d528d6e6f22194fa64",
+      "decision-record.md": "ff936ac7a636c96a5589698cc2ed700aeef80707fb9425dbe28ad90d744bf977",
+      "implementation-summary.md": "985deed568f8074395de6336810cea5f0c5390aebacb6855d348d56caaf93b69",
+      "research/research.md": "11b38d24ec611d377f36dc430ed149c7ecce2ef78131100818c1a1037a6b8057"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

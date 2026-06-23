@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the 006-skill-advisor track, directly propagating Phase 6's launcher-boundary lease into the two sibling MCP launchers that have the same architectural smell. Investigation after 006 shipped found `mk_code_index` running 3 concurrent daemons and `mk-spec-memory` running 4. Both already had WAL + busy_timeout from day one, which is why they accumulated zero `.corrupt` files despite the racing — but they have the same \"launcher does not refuse to start when a sibling is alive\" smell. Fixing it eliminates ~7 zombie processes worth of resource cost and aligns the three launchers on one concurrency model.",
+    "causal_summary": "`mkcodeindex` was running 3 concurrent launcher processes at the time of audit (PIDs 60648 1d 15h, 52517 1d 17h, 12919 8h elapsed)",
     "created_at": "2026-05-18T05:41:20Z",
-    "last_save_at": "2026-06-05T12:47:33.775Z",
+    "last_save_at": "2026-06-23T03:49:54.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f339f982f99cad73d9813e6b74e354486adfc514482ce6838a5714710296d48b",
+    "source_doc_hashes": {
+      "spec.md": "355251f04783a26357d2660f8c34e96ff3298ed2a0c48b31aac857c0c8785ccc",
+      "plan.md": "4af1730bf07a117d7070032170c9b21920ff54903ee5958262f0f10601279624",
+      "tasks.md": "fc720c30e0bcc3f6662744b2978df7bb7a5a3f2fad13a811d4d1619bfb548f48",
+      "checklist.md": "89ade1b55183cf578dc1d659f8afb25090f011df9f875c7270424ed7508410f5",
+      "implementation-summary.md": "883d868f7e49e725ba712f0630ba2a5e80668f5d491241ff7c270c12cf980dfa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

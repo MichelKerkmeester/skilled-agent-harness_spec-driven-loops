@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but it does not prove they help an engineer move faster or make better decisions during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
+    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
     "created_at": "2026-06-08T11:50:46.782Z",
-    "last_save_at": "2026-06-22T18:55:02.828Z",
+    "last_save_at": "2026-06-23T03:49:56.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8e15f3bfe175a68a85f13b01738527661a33186a442070c2f4a17d1b31f5f25a",
+    "source_doc_hashes": {
+      "spec.md": "f8f50bf9f0c88ddf07ee517f5d5b93ee21867800db359da4f44522224757efd7",
+      "plan.md": "f0b209dd4f6165665f774dea73dfdb267faa1216986aa8267c52f50645b251ce",
+      "tasks.md": "6ef20d8dffcfa4d5a75732fcd0e585a3582a793ac5fc351ca5a1f1e36ee381f9",
+      "checklist.md": "29f4a7b3f6ce83f86a3e4e5d1cc9fdbe59b8d1365057e7d4aa9a061c8642e1bb",
+      "decision-record.md": "21f40f83b82fc9907dd34867bb9bfb15c9d87eff5dbe45a2e6c37ec178909aea",
+      "implementation-summary.md": "a24d76ccf3efd3dda127237655d7a6fdb1fedc590ca596c90c9a8f33fbd3118d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

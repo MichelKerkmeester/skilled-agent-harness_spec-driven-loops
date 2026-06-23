@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-killed, nothing auto-restarts it, reconnects \"succeed\" into a dead socket, and rebuilding the server crashes the running daemon.",
+    "causal_summary": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-killed, nothing auto-restarts it, reconnects \"succeed\" into a dead socket, and rebuilding the server crashes the running daemon",
     "created_at": "2026-05-28T17:34:16Z",
-    "last_save_at": "2026-06-22T18:55:02.972Z",
+    "last_save_at": "2026-06-23T03:49:56.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:ee3caaf5e47e6b40d40fde9f54c3bf80b8a51d643cce7c7a27fdadbe0b47d54d",
+    "source_doc_hashes": {
+      "spec.md": "a9d15b620f0ad311d01acb83b2f824b3337fc320d265d51971f487c7d30d3b10",
+      "plan.md": "fe72c235ceb2c21fb9d32ece724f13f9b14a481734abf1a0a96a509cdd10a942",
+      "tasks.md": "ae6aa31c1b6f875b713a7ae05354d4425aa3d363c2c1a11fa21b6d29e67c846e",
+      "implementation-summary.md": "0c79c4a8145bee46aca27abb78e67e11d08c8bd57a49c7b1ad32be8e00ed961d",
+      "research/research.md": "09917f9cdf07dc245e74cac7cbb852804c9ed0bb94424e053669abb5ac907a74"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

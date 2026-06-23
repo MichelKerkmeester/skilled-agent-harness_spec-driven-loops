@@ -1,13 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined",
-  "description": "Feature Specification: SpecKit Reimagined",
+  "description": "SpecKit currently lacks critical capabilities present in competitor systems: no graph traversal (dotmd has 2-hop + LadybugDB), no session deduplicatio",
   "keywords": [
-    "feature",
-    "specification",
     "speckit",
-    "reimagined"
+    "currently",
+    "lacks",
+    "critical",
+    "capabilities",
+    "present",
+    "competitor",
+    "systems",
+    "graph",
+    "traversal",
+    "dotmd",
+    "2-hop",
+    "ladybugdb",
+    "session",
+    "deduplicatio"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.059Z",
+  "lastUpdated": "2026-06-23T03:49:59.346Z",
   "specId": "082",
   "folderSlug": "speckit-reimagined",
   "parentChain": [

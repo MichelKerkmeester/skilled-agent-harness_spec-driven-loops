@@ -78,14 +78,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014). Delete the mcp-coco-index skill folder, forked mcp_server, .venv, scripts, and the ccc CLI after code-graph is decoupled (002).",
+    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
     "created_at": "2026-05-25T07:55:14.205Z",
-    "last_save_at": "2026-05-30T10:12:02.545Z",
+    "last_save_at": "2026-06-23T03:49:55.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:84bf641fac8a5f4300c48fbf624cd38cc0b7853f606f24df0b0c5f147c4144b7",
+    "source_doc_hashes": {
+      "spec.md": "1f5f7a1020d3b5c8231f3fea35d84026ca41129a34f67b76dbd6310b718d94ec"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

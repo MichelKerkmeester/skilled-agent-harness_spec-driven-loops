@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Operators currently can't tell whether drift is \"fresh\" vs \"needs full scan\" vs \"needs selective reindex\" — they have to invoke `code_graph_scan` (mutating) just to find out. This is the exact pathology research §5.2 identified.",
+    "causal_summary": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
     "created_at": "2026-04-27T19:54:00.000Z",
-    "last_save_at": "2026-06-22T18:55:01.826Z",
+    "last_save_at": "2026-06-23T03:49:52.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5dae930830cebcbff1fa4d7a2aae39ad9a1e4505fd69bcc62bd9ee01e5d4e1b0",
+    "source_doc_hashes": {
+      "spec.md": "ee84608ef3443df0b43dd5040da9d2286bc7bc6fb2f9eaeb98cb719417c229a8",
+      "plan.md": "ae7f53dab0cbe2aa39faa337933502a6c0dc1206e088df87b6c730f190be5a2e",
+      "tasks.md": "b956f4b7046b39970542e7c906a6dff32044a68c57e903cf9df029dcc812ec9f",
+      "checklist.md": "09cb635c2697eb1e03f2bb24a7efec9f257973ef44ef200b06121f14bab8d244",
+      "implementation-summary.md": "ee69ef55862aa8dc5e4f4bb61745b11de3ed21d57320e7868c2bc4e03aa06046"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

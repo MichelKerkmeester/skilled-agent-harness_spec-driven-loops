@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Outcome: **mxbai failed early** (context-length limit, jaccard regression). The packet expanded into a **6-candidate bake-off**:",
+    "causal_summary": "mk-spec-memory's authoritative text-embedder benchmark. Entry hypothesis (mxbai-embed-large) failed; expanded into a 6-candidate bake-off (mxbai, jina-v3, nomic-v1.5, bge-m3, snowflake-arctic-l, gemma baseline). No pure dense swap closed cat-24/409 — added a retrieval-rescue layer (ADR-010/011). Final production default: jina-embeddings-v3 + rescue layer per ADR-012. Headline: benchmark-results.md.",
     "created_at": "2026-05-17T06:35:18.410Z",
-    "last_save_at": "2026-06-22T18:55:02.305Z",
+    "last_save_at": "2026-06-23T03:49:54.294Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f8ac0b0fcbd43b95ef853af008642661eeb37f74e6adef83d500a463d0a43cec",
+    "source_doc_hashes": {
+      "spec.md": "7a304690cee36e066d7d90f1c059aa84a3b25e1e4cc6afd90324ba2acb656692",
+      "plan.md": "dab3bd9ca740e7c11394d96b60560d13112f845c023d431cdfd2f837d9e6c1fe",
+      "tasks.md": "cfd12d951876c39a8e5216acd44315467ee18c87a2b2e8d41033a2ccb07865f5",
+      "decision-record.md": "e00d49a924aa013fed0dfe1465192867178ec61b635c9ce8524078cf466dff08",
+      "implementation-summary.md": "43997e91341d3e7556ee42e20fef12ae49caaca218bd395444c6f3a3c5c89cd7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

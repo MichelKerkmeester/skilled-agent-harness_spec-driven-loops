@@ -1,13 +1,23 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/004-ux-hooks-automation",
-  "description": "Feature Specification: UX Hooks Automation",
+  "description": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
   "keywords": [
-    "feature",
-    "specification",
-    "hooks",
-    "automation"
+    "mutation",
+    "handlers",
+    "inconsistent",
+    "post-mutation",
+    "follow-up",
+    "behavior",
+    "uneven",
+    "hint",
+    "output",
+    "across",
+    "save",
+    "update",
+    "delete",
+    "paths"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.071Z",
+  "lastUpdated": "2026-06-23T03:49:59.759Z",
   "specId": "004",
   "folderSlug": "ux-hooks-automation",
   "parentChain": [

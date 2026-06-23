@@ -1,16 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
-  "description": "Feature Specification: 010 — Reviewer-Prompt Benchmark Substrate",
+  "description": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer ag",
   "keywords": [
-    "feature",
-    "specification",
-    "010",
-    "reviewer-prompt",
-    "benchmark",
-    "substrate"
+    "spec-kit",
+    "ships",
+    "verification-discipline",
+    "rules",
+    "gates",
+    "009",
+    "freshness",
+    "anti-softening",
+    "read-budget",
+    "011",
+    "ac-coverage",
+    "gate",
+    "onto",
+    "reviewer"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.747Z",
+  "lastUpdated": "2026-06-23T03:49:57.087Z",
   "specId": "005",
   "folderSlug": "reviewer-prompt-benchmark-substrate",
   "parentChain": [

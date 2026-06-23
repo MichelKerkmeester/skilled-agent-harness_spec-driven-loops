@@ -30,8 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "systematic",
-      "features"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Systematic code audit of 7 Analysis features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/06--analysis/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
+    "causal_summary": "The feature catalog for Analysis has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-06-05T12:47:34.716Z",
+    "last_save_at": "2026-06-23T03:49:59.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b3de111b65f0618d4623728d4a2a8376b950389cd4edf20503365ece43205f45",
+    "source_doc_hashes": {
+      "spec.md": "182817f6b27917a122440770a6c3cf32fddb8b5a8d569ea9d74e3b237734adcf",
+      "plan.md": "5b5faa60e0a1d306a696c5cc54d61957e9f020166c17086853f5c0b8bd7b8988",
+      "tasks.md": "997f4beed15a9965b7a59080bb8d6b783e5f8e372f6b7c247b625649e7a85c45",
+      "checklist.md": "af62bf222c333cb1cdfff668433e39601b964fd5992a9b7e02d8ea4614ebdfd7",
+      "implementation-summary.md": "d9f0422853917ad94ec43b5b2bc999418478b85c8cbf4939428b6fee90986ef9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

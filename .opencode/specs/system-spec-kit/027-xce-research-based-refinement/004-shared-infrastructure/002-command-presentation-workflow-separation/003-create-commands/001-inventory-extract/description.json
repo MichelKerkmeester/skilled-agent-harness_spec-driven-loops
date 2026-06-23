@@ -1,16 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/001-inventory-extract",
-  "description": "Feature Specification: Create Commands - Inventory and Extract",
+  "description": "Create Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-",
   "keywords": [
-    "feature",
-    "specification",
     "create",
     "commands",
+    "needs",
+    "scoped",
     "inventory",
-    "extract"
+    "extract",
+    "phase",
+    "presentation",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing",
+    "display"
   ],
-  "lastUpdated": "2026-06-10T21:52:41.760Z",
+  "lastUpdated": "2026-06-23T03:49:57.717Z",
   "specId": "001",
   "folderSlug": "inventory-extract",
   "parentChain": [

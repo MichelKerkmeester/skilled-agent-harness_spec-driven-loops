@@ -1,16 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
-  "description": "Feature Specification: Manual Testing Playbook Cleanup",
+  "description": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits",
   "keywords": [
-    "feature",
-    "specification",
+    "every",
     "manual",
     "testing",
     "playbook",
-    "cleanup"
+    "document",
+    "across",
+    "skills",
+    "repo-level",
+    "packages",
+    "needs",
+    "release-readiness",
+    "cleanup",
+    "contract",
+    "edits"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.290Z",
+  "lastUpdated": "2026-06-23T03:49:58.091Z",
   "specId": "005",
   "folderSlug": "manual-testing-playbooks",
   "parentChain": [

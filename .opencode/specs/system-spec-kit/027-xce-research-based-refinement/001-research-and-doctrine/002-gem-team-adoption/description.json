@@ -8,17 +8,24 @@
     "003-planner-review-focus-and-drift-hint"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
-  "description": "Feature Specification: Gem Team Adoption (Phase Parent)",
+  "description": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) s",
   "keywords": [
-    "feature",
-    "specification",
-    "gem",
-    "team",
+    "gem-team",
     "adoption",
-    "phase",
-    "parent"
+    "research",
+    "007",
+    "recommended",
+    "three",
+    "small",
+    "additive",
+    "refinements",
+    "spec-kit",
+    "agent",
+    "runtime",
+    "integration",
+    "009"
   ],
-  "lastUpdated": "2026-06-11T16:04:31.626Z",
+  "lastUpdated": "2026-06-23T03:49:57.108Z",
   "specId": "002",
   "folderSlug": "gem-team-adoption",
   "parentChain": [

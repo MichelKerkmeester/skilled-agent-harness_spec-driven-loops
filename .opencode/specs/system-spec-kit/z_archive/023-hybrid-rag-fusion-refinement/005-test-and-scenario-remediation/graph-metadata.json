@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the ESM Module Compliance specification.",
+    "causal_summary": "After completing the ESM migration (Phases 1-4), the test suite shows 11 failing test files (58 failed tests out of 8994)",
     "created_at": "2026-04-12T09:02:50.319Z",
-    "last_save_at": "2026-06-22T18:55:04.633Z",
+    "last_save_at": "2026-06-23T03:50:00.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:25348d5425016265d0abed19cd04069736c679b998304f9c61dc40c95473bdd0",
+    "source_doc_hashes": {
+      "spec.md": "11a935a081ea12205e59b5ec515e969bae2ad45d4dd3fe9688f41e5f9aff3eb1",
+      "plan.md": "91b8543330128b673bccf3f2e496afc52ef409545c6049909fb1fc80d0d5e906",
+      "tasks.md": "0adb4a65146bd3fc8f688d033fe353de2fb68d9c4ae5f561d3a0338e91ca9798",
+      "implementation-summary.md": "2a0b3869aac841fcfe3cedd39bb3a37b3b1456496657e6f3fc22546b69c2a597"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

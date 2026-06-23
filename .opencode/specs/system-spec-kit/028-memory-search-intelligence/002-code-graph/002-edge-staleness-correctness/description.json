@@ -1,17 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness",
-  "description": "Feature Specification: Code-Graph Edge-Staleness Correctness (dependency-transitivity + rename SUPERSEDES)",
+  "description": "The code-graph incremental scan silently loses cross-file edges when a file's dependency is refactored",
   "keywords": [
-    "feature",
-    "specification",
     "code-graph",
-    "edge-staleness",
-    "correctness",
-    "dependency-transitivity",
-    "rename",
-    "supersedes"
+    "incremental",
+    "scan",
+    "silently",
+    "loses",
+    "cross-file",
+    "edges",
+    "file",
+    "dependency",
+    "refactored"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.826Z",
+  "lastUpdated": "2026-06-23T03:49:58.371Z",
   "specId": "002",
   "folderSlug": "edge-staleness-correctness",
   "parentChain": [

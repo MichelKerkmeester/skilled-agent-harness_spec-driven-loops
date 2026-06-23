@@ -1,17 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
-  "description": "Feature Specification: Copilot Writer Wiring via Claude Wrapper",
+  "description": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/sett",
   "keywords": [
-    "feature",
-    "specification",
+    "route",
     "copilot",
-    "writer",
-    "wiring",
-    "via",
+    "userpromptsubmitted",
+    "sessionstart",
+    "hooks",
+    "system-spec-kit",
+    "writers",
+    "replacing",
+    "bash",
+    "true",
+    "no-ops",
     "claude",
-    "wrapper"
+    "sett"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.862Z",
+  "lastUpdated": "2026-06-23T03:49:56.693Z",
   "specId": "009",
   "folderSlug": "007-copilot-writer-wiring",
   "parentChain": [

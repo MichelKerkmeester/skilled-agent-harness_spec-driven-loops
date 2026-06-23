@@ -1,19 +1,21 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading",
-  "description": "Feature Specification: Deep Loop Continuity Threading (028/004 continuity / iterative-retrieval cluster)",
+  "description": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode, each iteration rebuildi",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
+    "deep-research",
+    "iteration",
+    "cycle",
+    "itself",
+    "retrieval",
     "loop",
-    "continuity",
-    "threading",
-    "028",
-    "004",
-    "iterative-retrieval",
-    "cluster"
+    "threads",
+    "forward",
+    "reactive",
+    "reconstruct-cold",
+    "mode",
+    "rebuildi"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.903Z",
+  "lastUpdated": "2026-06-23T03:49:58.528Z",
   "specId": "006",
   "folderSlug": "continuity-threading",
   "parentChain": [

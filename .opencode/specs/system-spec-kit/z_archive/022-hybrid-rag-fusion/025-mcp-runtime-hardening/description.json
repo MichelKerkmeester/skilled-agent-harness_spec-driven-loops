@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
-  "description": "Feature Specification: MCP Runtime Hardening",
+  "description": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
   "keywords": [
-    "feature",
-    "specification",
-    "mcp",
+    "024-codex-memory-mcp-fix",
+    "packet",
+    "documented",
+    "six",
+    "follow-on",
+    "recommendations",
+    "t020-t025",
     "runtime",
-    "hardening"
+    "hardening",
+    "none",
+    "implemented"
   ],
-  "lastUpdated": "2026-06-22T18:55:04.603Z",
+  "lastUpdated": "2026-06-23T03:50:00.408Z",
   "specId": "025",
   "folderSlug": "mcp-runtime-hardening",
   "parentChain": [

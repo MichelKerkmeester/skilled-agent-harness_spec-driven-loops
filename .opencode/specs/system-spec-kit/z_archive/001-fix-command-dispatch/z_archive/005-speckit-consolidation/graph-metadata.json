@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Consolidate the standalone `.opencode/speckit/` folder into the `.opencode/skills/workflows-spec-kit/` skill folder, following the self-contained architecture pattern established by `workflows-memory`.",
+    "causal_summary": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories (`.opencode/speckit/` and `.opencode/skills/workflows-spec-kit/`)",
     "created_at": "2026-04-12T09:02:53.508Z",
-    "last_save_at": "2026-05-30T10:12:02.939Z",
+    "last_save_at": "2026-06-23T03:49:58.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:19e5909881ee0b4efeb4bde16dedc4e1075b2ec51163b718cdb0f2feac52aaed",
+    "source_doc_hashes": {
+      "spec.md": "ac4aeadcaa29feaef4520dd80aef78118b645864fdf1fe5498003154c4175ba4",
+      "plan.md": "ee701a440fa08359ab8792d973144f4739c2fa910c00f54d0476e641a0b59239",
+      "tasks.md": "78835a63e62d3eea77bd4bc6c30fc8e831ff3e7f0b627d760f24f2794687f9ce",
+      "checklist.md": "79fcaf7ec7fb4334123a605ad86e6666a44678f62bf0b9088ace8a68c1b099fb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

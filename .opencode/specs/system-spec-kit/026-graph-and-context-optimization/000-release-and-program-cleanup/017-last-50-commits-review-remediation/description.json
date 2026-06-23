@@ -1,17 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
-  "description": "Feature Specification: Remediation of the 016 Last-50-Commits Deep Review",
+  "description": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1",
   "keywords": [
-    "feature",
-    "specification",
-    "remediation",
-    "016",
-    "last-50-commits",
-    "deep",
-    "review"
+    "sibling",
+    "deep-review",
+    "packet",
+    "016-last-50-commits-deep-review",
+    "returned",
+    "conditional",
+    "verdict",
+    "last",
+    "commits",
+    "active",
+    "actionable"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.099Z",
+  "lastUpdated": "2026-06-23T03:49:53.089Z",
   "specId": "017",
   "folderSlug": "last-50-commits-review-remediation",
   "parentChain": [

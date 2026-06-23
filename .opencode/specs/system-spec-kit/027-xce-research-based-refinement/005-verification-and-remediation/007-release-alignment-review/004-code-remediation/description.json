@@ -1,16 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
-  "description": "Feature Specification: Code vs sk-code Remediation (Track B)",
+  "description": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode cod",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "sk-code",
-    "remediation",
-    "track"
+    "track",
+    "review",
+    "002-code-vs-sk-code-opencode",
+    "findings-all",
+    "json",
+    "surfaced",
+    "154",
+    "findings",
+    "against",
+    "opencode",
+    "cod"
   ],
-  "lastUpdated": "2026-06-18T18:03:07.704Z",
+  "lastUpdated": "2026-06-23T03:49:58.038Z",
   "specId": "004",
   "folderSlug": "code-remediation",
   "parentChain": [

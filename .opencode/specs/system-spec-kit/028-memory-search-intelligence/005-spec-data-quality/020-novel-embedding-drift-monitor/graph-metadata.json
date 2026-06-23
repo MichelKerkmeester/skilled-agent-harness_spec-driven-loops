@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The re-index path has no mixed-vector guard and never specified one. A chunk vector carries no first-class record of the embedding regime that produced it, so the model id and the normalizer behavior and the prefix strategy version are all invisible after the embed. The grep for `embedding_context_version` and `embeddingCoverage` and `coverageThreshold` is empty today, which research section 4 names as the missing guard the C1 chunk-prefix re-embed depends on. When a partial re-embed leaves old and new vectors mixed in one corpus, nothing detects the mixed regime, and a prod-mode completeRecall@3 read on that corpus measures a confound rather than the change under test. This is the trap research section 6 calls non-negotiable for retrieval, and the standing drift guards section 5 enumerates have no embedding-drift channel.",
+    "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
     "created_at": "2026-06-21T10:22:34.989Z",
-    "last_save_at": "2026-06-22T18:55:03.811Z",
+    "last_save_at": "2026-06-23T03:49:58.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7c017dc4aa2da6b5edb1a4a5202a06ad937bd9bf89aca1494b478842285122f7",
+    "source_doc_hashes": {
+      "spec.md": "33db8a39e1f332f6933f732a3074517e5a2a99a7338f8d153ccea8bec84fb6a8",
+      "plan.md": "269d2c1abf00d172d5a19427485e0376a0a461b64f6b3b9baeab2681b143aadf",
+      "tasks.md": "4818e152944e3db595f692481aadc2bad88312817806787f031cb57f493a5bea",
+      "checklist.md": "160e6a95ed8c7a0ff8fc1e78f9ac601502350044408ac861cac95391ed1606bf",
+      "implementation-summary.md": "bea41b564ea685028fcd5ad669e1abd7eaf79e8b0522a8e0f68f40831a717762"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,26 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
-  "description": "Feature Specification: Presentation Adherence Research",
+  "description": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search",
   "keywords": [
-    "feature",
-    "specification",
-    "presentation",
+    "live",
+    "bare-command",
+    "tests",
+    "showed",
+    "mixed",
+    "presentation-contract",
     "adherence",
-    "research"
+    "doctor",
+    "router",
+    "menu",
+    "gate-3",
+    "blocks",
+    "rendered",
+    "verbatim",
+    "while",
+    "memory",
+    "search"
   ],
-  "lastUpdated": "2026-06-12T06:12:47.954Z",
+  "lastUpdated": "2026-06-23T03:49:57.776Z",
   "specId": "006",
   "folderSlug": "presentation-adherence-research",
   "parentChain": [

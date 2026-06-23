@@ -120,14 +120,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The embedding stack exposes too many local model choices across separate registries, dimension maps, provider defaults, type strings, and docs. In parallel, `hf-local` still loads transformers inside daemon/sidecar execution paths instead of using the launcher-owned, health-probed local-service shape already used for long-lived daemon processes.",
+    "causal_summary": "The embedding stack exposes too many local model choices across separate registries, dimension maps, provider defaults, type strings, and docs",
     "created_at": "2026-05-29T05:06:24.626Z",
-    "last_save_at": "2026-06-22T18:56:36.877Z",
+    "last_save_at": "2026-06-23T03:49:55.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:92fb1dc0c94654d7539f3fad81c4ed207d9668f4cf27ae5bd9a0595030589c4d",
+    "source_doc_hashes": {
+      "spec.md": "1e3602ba1823fa639c5df024a131368f1ccf1d690ac50000661d0d4d841bd137"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria. Without a dedicated UX-hooks packet, Phase 018 testers must reassemble requirements across the playbook, review protocol, and feature catalog before they can execute or review results. Scenarios include result explainability, response profiles, progressive disclosure, session retrieval state, empty result recovery, and result confidence.",
+    "causal_summary": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.304Z",
-    "last_save_at": "2026-06-22T18:55:04.553Z",
+    "last_save_at": "2026-06-23T03:50:00.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:03e8cc3fdf8659ffbc94121183c5506a99fce248bf1f39bcf3cc970e9fdd1436",
+    "source_doc_hashes": {
+      "spec.md": "f84410e6cebe500e8f248a17bec0cfd77cd9ce990e1b47c258bae0b247909ea5",
+      "plan.md": "76b65bd93fd7dca5c9e9549180209c5399d84420158127967ca67c8629eb30fd",
+      "tasks.md": "56e347260a5b6118e64450e0363005d764cfbfc53b9a6b9f910a6089dcaa6784",
+      "checklist.md": "a55d2284e361594b4b04219ecbb933f40d64f250cd1cd4cd521ed62af0f47331",
+      "implementation-summary.md": "5242dd2ff7ffa95429aca0e5601fd83c948ff2a959ac66f9eb338ca36cbcf795"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

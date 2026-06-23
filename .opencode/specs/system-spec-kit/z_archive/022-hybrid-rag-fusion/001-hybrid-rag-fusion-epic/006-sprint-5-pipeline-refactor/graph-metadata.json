@@ -32,11 +32,11 @@
       "plan",
       "tasks",
       "checklist",
-      "phase",
-      "hybrid",
-      "rag",
-      "fusion",
-      "refinement"
+      "current",
+      "intermixes",
+      "scoring",
+      "filtering",
+      "annotation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.",
+    "causal_summary": "The current pipeline intermixes scoring, filtering, and annotation without clear stage boundaries",
     "created_at": "2026-04-12T09:02:50.229Z",
-    "last_save_at": "2026-06-22T18:55:04.122Z",
+    "last_save_at": "2026-06-23T03:49:59.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9caf406da5fd819eb35784d157cec8e5bdc44d86857ce5eb56c100eefc0a34d6",
+    "source_doc_hashes": {
+      "spec.md": "23f7f0c42e93ff5202d62a26b0b9f3d3fab210dd31cec9d2bd88a11ebd5f9cb6",
+      "plan.md": "ae229b6fb1c917c17fa484c2a0b34205b8ac191285b8879a854862c427aaa6a7",
+      "tasks.md": "07e5eacabd24bccf764cd2c010eb9c4271a628fe943a8de27e95aa506c3b4e15",
+      "checklist.md": "50306b8bf624c346c8a43a86293625c22ba4b7dece87f6b5ef91de0191c71b7b",
+      "implementation-summary.md": "ba86d88c540509dd9ae4e4801c45d0978c86bdcfc3a90a0158f4a762305b0466"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

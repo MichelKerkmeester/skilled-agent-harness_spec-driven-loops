@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-memory daemon's background-enrichment scheduler has a broken concurrency cap: it increments the in-flight counter *inside* the deferred `setImmediate` callback, not at schedule time. A burst of saves — most acutely a startup scan calling it once per indexed row — all read the still-zero counter before any callback runs, all pass the `< 4` gate, and pile up unbounded `setImmediate` callbacks that then self-drain as a synchronous microtask chain. The event loop never returns to the poll phase, so the daemon's IPC `accept()` is starved and the process spins at ~100% CPU serving nothing. This is the trigger behind the live incident the 009 supervisor fix recovers from. The fix reserves the slot at schedule time and re-arms queued work via `setImmediate`.",
+    "causal_summary": "`scheduleBackgroundEnrichment` (`handlers/memory-save.ts`) incremented `activeBackgroundEnrichments` inside the deferred `run` callback (executed later via `setImmediate`), then gated scheduling on `activeBackgroundEnrichments < MAXBACKGROUNDENRICHMENTS`",
     "created_at": "2026-06-14T18:42:07Z",
-    "last_save_at": "2026-06-15T09:09:34.630Z",
+    "last_save_at": "2026-06-23T03:49:56.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c70185b3d77459f47a508596c51d83f0ca6766c57ea7cf201e7851dcc64e6816",
+    "source_doc_hashes": {
+      "spec.md": "6b77ea93eb7e21ffc2b4dee5ae6688a23981c0a9befd79550e8005f225da146b",
+      "plan.md": "3f2ffde2387e7e8a0fae2f79e717521407028fd1bd61efda1607784a330ac8c4",
+      "tasks.md": "9e4b5465f374e360bcb3e436fcafda95cd2808e4a4a5c4112d9285c1f4f90873",
+      "checklist.md": "3b135174f8aed39ac729b96fba9823b7491b9c3b991553759783384c785459fe",
+      "decision-record.md": "2d3a9a5ada56112b26b1a658a4498025fdbb33e39da84789da971bbc671cc65e",
+      "implementation-summary.md": "267492d0fd72abd3d1e7da1e43b93b99b200c14f19065713f285c7785f03e02f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

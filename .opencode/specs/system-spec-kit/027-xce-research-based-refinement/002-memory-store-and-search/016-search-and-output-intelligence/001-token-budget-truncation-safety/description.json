@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
-  "description": "Feature Specification: Phase 1: token-budget-truncation-safety",
+  "description": "The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "token-budget-truncation-safety"
+    "token-budget",
+    "truncator",
+    "sorted",
+    "candidates",
+    "score",
+    "hard-stopped",
+    "first",
+    "result",
+    "overflowed",
+    "budget",
+    "one",
+    "large",
+    "top",
+    "memory",
+    "starved"
   ],
-  "lastUpdated": "2026-06-18T03:33:51.800Z",
+  "lastUpdated": "2026-06-23T03:49:57.341Z",
   "specId": "001",
   "folderSlug": "token-budget-truncation-safety",
   "parentChain": [

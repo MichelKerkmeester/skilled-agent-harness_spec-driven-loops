@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "System Spec Kit now supports a second changelog mode that lives inside a packet, not just at the global component-release layer. The new workflow adds a nested changelog generator, packet/phase templates, and command guidance so spec roots and nested phase folders can produce packet-local history without replacing `implementation-summary.md`.",
+    "causal_summary": "System Spec Kit already had `implementation-summary.md`, but packet-local changelog history was ad hoc and drift-prone",
     "created_at": "2026-04-12T09:02:53.442Z",
-    "last_save_at": "2026-06-05T12:47:35.037Z",
+    "last_save_at": "2026-06-23T03:50:00.844Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d3546b0c13d4b2aabc27569a83b12cd8c7a5f2be5f3768c9528513dbbb8c02b1",
+    "source_doc_hashes": {
+      "spec.md": "59c0461010762fb4bf21c48f2755d22d933e1a99100361f3224c7e41482caa7c",
+      "plan.md": "0fcb4a46d1101d66d2925d18d914738052392867486a39ef6318266202cbf30e",
+      "tasks.md": "a7f45680cdace00b4371a61d6a3a735ca12c14f525b338953a8b9abdd72b3f73",
+      "checklist.md": "5664b211a7974ae8b72d2071f73788e6e00de33e14c82197bf4241595631de57",
+      "decision-record.md": "2462e71432aabbeee5ca10be56572712f0185a7029ca9c92bf6d1e73e6c791fb",
+      "implementation-summary.md": "f15a44a82527557c15a82455d604ff807a320829341876c8b9586d7f1e6d8617"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

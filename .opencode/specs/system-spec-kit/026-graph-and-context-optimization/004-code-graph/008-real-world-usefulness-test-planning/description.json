@@ -2,15 +2,21 @@
   "level": 2,
   "name": "Real-World Usefulness Test",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
-  "description": "Feature Specification: Real-World Usefulness Test",
+  "description": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces",
   "keywords": [
-    "feature",
-    "specification",
-    "real-world",
-    "usefulness",
-    "test"
+    "earlier",
+    "code-graph",
+    "phases",
+    "shipped",
+    "capability",
+    "resilience",
+    "tooling",
+    "hooks",
+    "runtime",
+    "integration",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.046Z",
+  "lastUpdated": "2026-06-23T03:49:55.999Z",
   "specId": "008",
   "folderSlug": "real-world-usefulness-test-planning",
   "parentChain": [

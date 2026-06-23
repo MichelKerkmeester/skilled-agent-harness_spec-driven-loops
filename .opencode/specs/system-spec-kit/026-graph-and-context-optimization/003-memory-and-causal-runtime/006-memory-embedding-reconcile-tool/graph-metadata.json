@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The one-time backlog repair — vector-present rows whose `embedding_status` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8). That path is manual, easy to misapply against the wrong shard, and unsafe to re-run by an operator without re-deriving every predicate by hand. 004 `research.md` §7 and §13 call for a first-class, guarded MCP tool so the repair is repeatable instead of a copy-pasted transaction.",
+    "causal_summary": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8)",
     "created_at": "2026-05-27T08:49:42.820Z",
-    "last_save_at": "2026-06-22T18:55:02.578Z",
+    "last_save_at": "2026-06-23T03:49:55.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:25dbbb50abba1f86c98859c1ccd4662d94b6dce3d692be86a876016652e0c6b8",
+    "source_doc_hashes": {
+      "spec.md": "e366da01ca08c8d1b4960ce1e71911c9706fd1175645de946cfe9ddba14f96be",
+      "plan.md": "c5911f962892c63af162eeef4abdd5ecd27a4a15924e094f827817a05f2240d6",
+      "tasks.md": "dbeaa383059352ebd4ac32f3d729eccff2cfa367a3f41e31b560e3a4897a6c22",
+      "checklist.md": "0e7f4fcbbabd1661a481bb3dcdd2fece627d4a5db8d3170a91d7d4b5b6054ef9",
+      "implementation-summary.md": "163c8fc45fb27d1bbf5ef95beb5ed3f1a6ca29d5ec76fa885dabab3c6129642d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -153,9 +153,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Current implementation has 3 context mechanisms:",
+    "causal_summary": "Current implementation has 3 context mechanisms",
     "created_at": "2026-04-12T09:02:53.514Z",
-    "last_save_at": "2026-06-22T18:56:37.552Z",
+    "last_save_at": "2026-06-23T03:49:58.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,6 +163,12 @@
       "plan.md",
       "tasks.md"
     ],
+    "source_fingerprint": "sha256:7bbb9b89f9aac64247a69891581d5edeb9ad79d23848fc9fbdf029dedb5db93c",
+    "source_doc_hashes": {
+      "spec.md": "f159ac0a80b08bbb8efd28e4c74e2cc74be34407b580bcacc49baddc7627894c",
+      "plan.md": "9724c4d3a48b5906ca24e56251f96b6a05fe6f487c80dd87ecd0a492f5146732",
+      "tasks.md": "a5778f47d63e8d7be81e7a39c49ff6e8f3654cfbc29de8bcc95dcadf1ac72d84"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

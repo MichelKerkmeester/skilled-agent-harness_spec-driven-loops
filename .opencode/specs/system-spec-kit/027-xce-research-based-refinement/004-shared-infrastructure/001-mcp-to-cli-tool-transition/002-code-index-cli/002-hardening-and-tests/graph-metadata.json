@@ -34,9 +34,9 @@
       "plan",
       "tasks",
       "result",
-      "dual-stack",
-      "cli",
-      "implementation"
+      "code-trace",
+      "guarantees",
+      "research"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the code-index dual-stack CLI implementation (workstream 002-code-index-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.",
+    "causal_summary": "The code-trace guarantees from the research (lease races, dual-client safety, blocked-read discipline) are not regression-locked; any refactor can silently reopen them",
     "created_at": "2026-06-06T14:45:14Z",
-    "last_save_at": "2026-06-22T18:55:03.421Z",
+    "last_save_at": "2026-06-23T03:49:57.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:53e0592b5769170736123f1c0a0fed07b2a32d94ac2fd78e8cf00e79170ecb36",
+    "source_doc_hashes": {
+      "spec.md": "0924e962113894fc6d8552805fcdb81f81460e6ac7c4b0da2b73eaa20fe348f2",
+      "plan.md": "a800d84bad0c3c2849edb450e8310cf8471fa8f8adce9293994088dff3d9a841",
+      "tasks.md": "4ff8cd306d6acf8b0989f22c107605f8bbe3ccb7005757ccf92a5e0fe2692621",
+      "implementation-summary.md": "f380f9c5b62fe7cd9da3511824dec669e9d193917ddf94b8e846641cd4c51a43"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Align ALL SpecKit scripts, lib modules, and documentation with the new level-based template architecture from Spec 069.",
+    "causal_summary": "Scripts (`create-spec-folder.sh`, `expand-template.js`) copy from root templates instead of level-specific folders",
     "created_at": "2026-04-12T09:02:53.544Z",
-    "last_save_at": "2026-05-30T10:12:03.066Z",
+    "last_save_at": "2026-06-23T03:49:59.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:332fb712584f7032b3403b8ee427b2e9f7e5bdd25df6260ea7bcff173011cbb2",
+    "source_doc_hashes": {
+      "spec.md": "e98d4d7fdde459fa64ffb5c0fdb4b745297e88cd36b62188190aec8f8b0bf342",
+      "plan.md": "e1b07d262013ed6d2c7fb119e4fccd8ee4eebdf28bb9ff3694e2a6a8f58fd387",
+      "tasks.md": "140c12e773c7a7e0e46d8e95c7adf0b361b15c7118b1a2bb86acfa02432f6ec0",
+      "checklist.md": "ca5c40c1861d47c7f983ce4aac42183b88ebd1c5dfe09d7d41b8bc7a0fa1d3a2",
+      "decision-record.md": "8564cfabb44144d4c640d41f5463f0729b76fe2e3bdff7efcb390776de8cbbad",
+      "implementation-summary.md": "30d40629cc8ef5a7e4475478b3fbe5d8facbe692c9a94ceff7911e4cfbfc3dbe"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

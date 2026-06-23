@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited. The live quality machinery in `quality-loop.ts` scores triggers, anchors, budget and structure but carries no prose-style check (grep for em-dash, semicolon, oxford and fence in that file returns only unrelated JSDoc matches), and the destructive `runQualityLoop` auto-fix path is the wrong host because it trims content to an 8000-char budget via `substring` and would silently amputate a 10KB spec.",
+    "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
     "created_at": "2026-06-21T10:22:34.981Z",
-    "last_save_at": "2026-06-22T18:55:03.789Z",
+    "last_save_at": "2026-06-23T03:49:58.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ebfdd467d631b8f7664ab95a344e7b66975a0adcdfd97e47e2580f03a5a0eec5",
+    "source_doc_hashes": {
+      "spec.md": "26d5611819d0270c17c6ff27b7f14244917f92e71fee1ff939f66e60888dd64b",
+      "plan.md": "f3fa539607a7aa7e565ac49218af50e41f8bae69f47080d9a050686aae29a239",
+      "tasks.md": "99e9f57f754477cae4350a30fe2f5ccd1957e6bac352be4250ef3dbac34c3cb0",
+      "checklist.md": "897396365784dada3f912a65146d5a9069b743857b486984a967d77a79daed19",
+      "implementation-summary.md": "f3daf4a8abc6f8405e4c0e227e6a6360c6b0a2042a1f724bd547156e72e0f1d0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

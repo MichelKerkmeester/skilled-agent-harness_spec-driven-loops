@@ -15,15 +15,21 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador",
-  "description": "Feature Specification: Contextador Research Phase",
+  "description": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
   "keywords": [
-    "feature",
-    "specification",
-    "contextador",
-    "research",
-    "phase"
+    "codeenvironment",
+    "public",
+    "already",
+    "operates",
+    "cocoindex",
+    "code",
+    "graph",
+    "mcp",
+    "spec",
+    "kit",
+    "memory"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.558Z",
+  "lastUpdated": "2026-06-23T03:49:53.121Z",
   "specId": "003",
   "folderSlug": "contextador",
   "parentChain": [

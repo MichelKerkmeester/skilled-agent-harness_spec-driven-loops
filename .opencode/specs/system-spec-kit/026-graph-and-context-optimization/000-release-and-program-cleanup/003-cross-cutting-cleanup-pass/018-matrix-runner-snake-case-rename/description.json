@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename",
-  "description": "Feature Specification: 047 matrix_runners Snake Case Rename",
+  "description": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snakecase",
   "keywords": [
-    "feature",
-    "specification",
-    "047",
-    "snake",
-    "case",
-    "rename"
+    "cli",
+    "matrix",
+    "runner",
+    "folder",
+    "used",
+    "kebab-case",
+    "while",
+    "adjacent",
+    "mcp",
+    "server",
+    "support",
+    "directories",
+    "use",
+    "snakecase"
   ],
-  "lastUpdated": "2026-05-26T17:26:28.418Z",
+  "lastUpdated": "2026-06-23T03:49:52.345Z",
   "specId": "018",
   "folderSlug": "matrix-runner-snake-case-rename",
   "parentChain": [

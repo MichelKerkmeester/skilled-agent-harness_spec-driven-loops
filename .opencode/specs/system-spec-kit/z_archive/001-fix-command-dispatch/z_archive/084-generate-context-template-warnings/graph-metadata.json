@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When running `generate-context.js`, two issues occur:",
     "created_at": "2026-04-12T09:02:53.557Z",
-    "last_save_at": "2026-05-30T10:12:03.112Z",
+    "last_save_at": "2026-06-23T03:49:59.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1350c5da3b827f98068400092932c35a06bb5d641aeb3017f51eea6d04d97dba",
+    "source_doc_hashes": {
+      "spec.md": "4cbc27eb31aa10bbf3506219338fe2989c90d8bcd0b4098e283fa6bee310bea3",
+      "plan.md": "e2a3d7143d8cecb5c86fa7ae119d73d152de9ff2efa18e30c3d5320c82765612",
+      "tasks.md": "e0448cc346729be496a3d36396266531812018b9e7363cbf519b122a6c0595b8",
+      "implementation-summary.md": "582f504d7a36a2a4f16370809fa6ca9b8deb9f1226c25891cbff02b34bbcf890"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

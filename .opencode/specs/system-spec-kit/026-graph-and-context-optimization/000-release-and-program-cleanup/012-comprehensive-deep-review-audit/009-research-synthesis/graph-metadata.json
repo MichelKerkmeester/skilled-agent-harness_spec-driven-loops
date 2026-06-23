@@ -78,14 +78,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "An 8-slice deep-review audit of system-spec-kit and 026 surfaced ~50 distinct findings (3 P0, ~40 P1). Many cluster into recurring themes. This research charter investigates ROOT CAUSES and BLAST RADIUS so remediation targets causes, not just symptoms.",
+    "causal_summary": "An 8-slice deep-review audit of system-spec-kit and 026 surfaced ~50 distinct findings (3 P0, ~40 P1)",
     "created_at": "2026-06-04T18:53:35.323Z",
-    "last_save_at": "2026-06-05T12:47:33.224Z",
+    "last_save_at": "2026-06-23T03:49:53.016Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:43d5b8079275fb7ae0e457c2b1fdf9c49d21061250ec9a5d4c78aefa645fedc5",
+    "source_doc_hashes": {
+      "spec.md": "5ec22ad70d307b74860333aa213d40c60217a7d01cba7615f9735178f1603a20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

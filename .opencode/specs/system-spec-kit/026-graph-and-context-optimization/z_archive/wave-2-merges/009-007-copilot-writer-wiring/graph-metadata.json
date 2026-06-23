@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After packet 010 fixed the Copilot schema crash, the `userPromptSubmitted` hook still doesn't refresh the managed block in `$HOME/.copilot/copilot-instructions.md` because:",
+    "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
     "created_at": "2026-04-22T16:05:25.902Z",
-    "last_save_at": "2026-06-22T18:55:03.081Z",
+    "last_save_at": "2026-06-23T03:49:56.691Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6b937c8ca1714dca1bfec4a4b40019807ef30faf965ffa8692106eb03c82ac7e",
+    "source_doc_hashes": {
+      "spec.md": "1dbf56af19d259eb91ab77b547e2e578a1135dce22eb1be55c9c65d96039f5ea",
+      "plan.md": "122ad5093081c758263a1ac1d7fa68b9752b532040b08a5e42a728cf639bfd78",
+      "tasks.md": "d50025cc5a90a4661d88e421b714915af9e14b5550455823c5970352b28e2dbe",
+      "implementation-summary.md": "60a660aa47b0b8efafcc989015ca70f5f8822b8ee651e86725bca9067a612ea1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

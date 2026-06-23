@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The final arc 020 bucket left the highest-risk provider and adapter cleanup items. `execution-router.ts` used a single-instantiation `DirectProviderAdapter` class that mixed provider creation, provider promise caching, and Ollama registry delegation. `sidecar-worker.ts` still had silent fallback paths for invalid dimensions and missing provider configuration even though the router now resolves dimensions and the client injects provider env.",
+    "causal_summary": "The final arc 020 bucket left the highest-risk provider and adapter cleanup items",
     "created_at": "2026-05-23T11:03:25Z",
-    "last_save_at": "2026-05-30T10:12:02.516Z",
+    "last_save_at": "2026-06-23T03:49:55.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cde9d5db8f05e7713efb9e781e76258198bee2722764e274422e60e49f79c530",
+    "source_doc_hashes": {
+      "spec.md": "8d367bf47aaa4aaa1b28a35c19362daa9be353c1c31c853c036282fb2f230cac",
+      "plan.md": "1ec9fd36c26b704e17bebf21e9feef15842fd2e1ee72249b4dd79313fb993902",
+      "tasks.md": "860313cb36d30e0313f06665070b49eead3988fc14a3038e2367bbccae416094",
+      "checklist.md": "01c6e0c4ef4e14bd9c956fa4919a6cdf0a8a614bddd17fdf1b56aa239bce0fa1",
+      "decision-record.md": "0a0bc89bbf940709e03822853e48d3c179f1fd16802c1ab3647e74094386a2a5",
+      "implementation-summary.md": "b9fe3ffa948b3f5adbfcc721fd9d492eb44869c7839b7133db9b7ec3307d84f6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

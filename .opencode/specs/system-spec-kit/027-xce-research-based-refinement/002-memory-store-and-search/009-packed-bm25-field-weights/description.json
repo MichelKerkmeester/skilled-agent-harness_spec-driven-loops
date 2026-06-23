@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
-  "description": "Feature Specification: Packed In-Memory BM25 Engine with Field Weights",
+  "description": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
   "keywords": [
-    "feature",
-    "specification",
-    "packed",
     "in-memory",
     "bm25",
-    "engine",
-    "field",
-    "weights"
+    "fallback",
+    "channel",
+    "two",
+    "latent",
+    "defects",
+    "measured",
+    "corpus",
+    "245",
+    "docs",
+    "indexed",
+    "text"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.948Z",
+  "lastUpdated": "2026-06-23T03:49:57.291Z",
   "specId": "009",
   "folderSlug": "packed-bm25-field-weights",
   "parentChain": [

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add central request-budget validation before expensive retrieval work begins so pathological requests fail fast or clamp bounded fanout. The hardening closes FINDING-005-A, FINDING-015-A, FINDING-015-C, and FINDING-020-C without touching observability counters or unrelated retrieval components.",
+    "causal_summary": "mcp-coco-index search cost scaled unexpectedly with `offset`, `limit`, path filters, and multi-language requests",
     "created_at": "2026-05-19T20:10:29Z",
-    "last_save_at": "2026-05-30T10:12:02.318Z",
+    "last_save_at": "2026-06-23T03:49:54.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:563c7401f42083f4b84aaee3b414c4761ae8682f1155ce33406748f369748401",
+    "source_doc_hashes": {
+      "spec.md": "da344f6e499858cd1015cd73eb273ae0411da5c68f80ccb0fe09dffedd313b92",
+      "plan.md": "163a08c9caabe590e1666218a4d36379a164c76ea6328c3d20118b5a069f84e6",
+      "tasks.md": "112364db353dac20a5f0e00e7533991448c56be2571128902dcd480e0208537e",
+      "checklist.md": "bf736b5d2fad109489b8eda99285b46fc5b88050dfccee71eb9256b2e4058f97",
+      "implementation-summary.md": "b1337870563120a19af4af11b8416f33613d36cf561948e7fb866a65bafb9143"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

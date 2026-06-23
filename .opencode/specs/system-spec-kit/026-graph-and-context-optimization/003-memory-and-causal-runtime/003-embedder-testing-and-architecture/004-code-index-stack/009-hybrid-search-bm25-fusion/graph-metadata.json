@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now default-on behind `COCOINDEX_HYBRID=true`.",
+    "causal_summary": "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval.",
     "created_at": "2026-05-18T05:13:46.575Z",
-    "last_save_at": "2026-06-22T18:55:02.387Z",
+    "last_save_at": "2026-06-23T03:49:54.596Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:2344518e5997dd5999d5ed237fc9635cbfef227b5f379e96c35a1fc4f72a00c9",
+    "source_doc_hashes": {
+      "spec.md": "a384969215149e025ee78207dbe47b260d891daa5e4e95ded8068db0215dc67a",
+      "plan.md": "17d75171c27e5a52fdc690454506397eb37d9bd6420808c9ebf50568bdb8d639",
+      "tasks.md": "367a4acdc26f80f141aa381aae272236920b8544b79c4808d8a372667e8ec462",
+      "implementation-summary.md": "5f3f421c83081f2e93b03947210d364e118783f727edef44dfcfe8d4d73759ad",
+      "research/research.md": "15849b3facbfc9a1462491acde53a214ee12f3e39482ccfb31eb7a64ee40c97a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

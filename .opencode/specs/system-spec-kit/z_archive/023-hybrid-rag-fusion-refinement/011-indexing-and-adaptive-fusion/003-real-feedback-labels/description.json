@@ -1,15 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
-  "description": "Feature Specification: Real Feedback Labels for Evaluation",
+  "description": "`buildReplayRanks()` originally derived replay relevance from the shadow proposal itself",
   "keywords": [
-    "feature",
-    "specification",
-    "real",
-    "feedback",
-    "labels",
-    "evaluation"
+    "buildreplayranks",
+    "originally",
+    "derived",
+    "replay",
+    "relevance",
+    "shadow",
+    "proposal",
+    "itself"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.164Z",
+  "lastUpdated": "2026-06-23T03:50:00.507Z",
   "specId": "003",
   "folderSlug": "real-feedback-labels",
   "parentChain": [

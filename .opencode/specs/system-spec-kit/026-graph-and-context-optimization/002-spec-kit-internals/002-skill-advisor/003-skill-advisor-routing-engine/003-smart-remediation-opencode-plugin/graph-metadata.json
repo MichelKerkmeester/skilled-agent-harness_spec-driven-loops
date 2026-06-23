@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Two research packets just shipped with 10+ concrete recommendations:",
     "created_at": "2026-04-19T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:02.101Z",
+    "last_save_at": "2026-06-23T03:49:53.494Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T00:00:00.000Z",
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:94558cd036ecf2576d073d118c3ab68ae2c2832c7d5dcc7e2bcace678045bc05",
+    "source_doc_hashes": {
+      "spec.md": "2146d2d3cb0513b6408df1379ea25ed0fa2642e2c9b51a6fd10981abcdb76132",
+      "plan.md": "a892544fc5b0ce4bc2e4fbc316a4463392df4d4ee83f6337e73bfddbf9db16f8",
+      "tasks.md": "5f12a0c5c314317945fd94fb4b0959ca68a6c0f29a7304de1b580cedf5bede6f",
+      "checklist.md": "bb469b4ef5ec4726846abb0116889b1b90ba57034b76b2a17790f55d0f5efaf4",
+      "implementation-summary.md": "116ce4904df33ddbb2e233c37379c552e0371a08dfc5f03ca22bef4116a54ea6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

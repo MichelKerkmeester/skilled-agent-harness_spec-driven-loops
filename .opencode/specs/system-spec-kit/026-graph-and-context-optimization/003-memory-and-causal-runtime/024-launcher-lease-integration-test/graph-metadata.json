@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the comment \"known launcher process lifecycle flake.\" It is the only harness that boots a real `mk-spec-memory` launcher to exercise lease write/read end-to-end, and packet 020's `lease.socketPath` persistence was therefore verified by unit tests only, never by a real spawned launcher. The skip label was a misdiagnosis: the suite fails 100% of the time, not intermittently.",
+    "causal_summary": "The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the comment \"known launcher process lifecycle flake.\" It is the only harness that boots a real `mk-spec-memory` launcher to exercise lease write/read end-to-end, and packet 020's `lease.socketPath` persistence was therefore verified by unit tests only, never by a real spawned launcher",
     "created_at": "2026-06-04T11:36:31.373Z",
-    "last_save_at": "2026-06-04T11:36:31.373Z",
+    "last_save_at": "2026-06-23T03:49:55.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dcb4d2149dd8df8d61a9dad8b42dd6a62304905dcedc2da511e4bb16e6a8711a",
+    "source_doc_hashes": {
+      "spec.md": "cf70e8ec0f1e4706e32d06d4e5e5b94b41a7bccade913cb8f689608f1f619734",
+      "plan.md": "4150d4f59042036b95767e241cc8b5efe23ccf0a7559661085316157f0f9424b",
+      "tasks.md": "391cd7a747e24a7b0e2298110924f8b0419e32c8bd2192e0ede021b8a0c9cb7a",
+      "checklist.md": "c7cb61d1a101c3196a0c86059f076e5db52acfe2e2de501aee675d672ca1afcd",
+      "implementation-summary.md": "b73e07d527b2d26e7143eb83016028f66e9ff569cf8c65cba23e03c996e549c5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

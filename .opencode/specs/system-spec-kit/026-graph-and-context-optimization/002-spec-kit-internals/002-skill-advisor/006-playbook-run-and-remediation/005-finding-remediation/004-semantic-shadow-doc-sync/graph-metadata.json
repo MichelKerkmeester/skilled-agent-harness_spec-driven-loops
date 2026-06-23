@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The live `semantic_shadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/__tests__/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `04--scorer-fusion/01-five-lane-fusion.md:29` agrees). But SC-004 (`004-lane-attribution.md:47,57`) and SC-005 (`005-ablation.md:49`) still assume it is shadow-only/weight-0, a stale comment lingers in `lib/scorer/lanes/semantic-shadow.ts:160`, and the raw `LaneMatch.shadowOnly` returns true (line 167). This produced the SC-004 PARTIAL in the 028 run.",
+    "causal_summary": "The live `semanticshadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/tests/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `04--scorer-fusion/01-five-lane-fusion.md:29` agrees)",
     "created_at": "2026-05-26T21:20:46.369Z",
-    "last_save_at": "2026-06-05T12:47:33.432Z",
+    "last_save_at": "2026-06-23T03:49:53.695Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:182f9545531416076af3bb038c6b19ceeaed1f065e3a8a9e0d20c3e0f88ac338",
+    "source_doc_hashes": {
+      "spec.md": "68de1a9d04a0cb8aaefa43e21cbe71b6df0aaa72fa4dced5849f5544934b696f",
+      "plan.md": "5c94c4add352883444797ac05a47a30298cb8bf1cca548a038ac581dc58bb42e",
+      "tasks.md": "d550c94ca4349ee3fc6744314b8a8f0baf522d17b365b874384f122d2bb5466d",
+      "implementation-summary.md": "aa6eaa14845dabd8f9a5b3ef3957c647cbdf2d6ac785008c699a79d275652a30"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

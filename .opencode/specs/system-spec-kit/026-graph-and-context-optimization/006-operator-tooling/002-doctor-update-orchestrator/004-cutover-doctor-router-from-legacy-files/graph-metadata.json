@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 shipped the new `/doctor` router additively. That left the repository in an intentional temporary overlap: the final design wants 3 markdown command entrypoints (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`), but Phase 1 kept the 9 old per-target markdown files in place so validation could compare old and new behavior. The old surface also exists in runtime mirrors: `.claude/commands/doctor/` auto-syncs from `.opencode/commands/doctor/`, `.codex/prompts` symlinks to `.opencode/commands`, and `.gemini/commands/doctor/*.toml` is independent.",
+    "causal_summary": "Phase 1 shipped the new `/doctor` router additively",
     "created_at": "2026-05-11T17:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.252Z",
+    "last_save_at": "2026-06-23T03:49:56.286Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a9a0d516533015880dc2a108f13b8c8e357fbe422ab6c0afa8a991d559c4bc16",
+    "source_doc_hashes": {
+      "spec.md": "d4afacd9052b5f2ce49a6eff75e2e85deb576965974f4954ff660cc93d9156f4",
+      "plan.md": "991c3ac2f7044617ac314ffdf333067d8815db3cd854cf659d0b92f53661edaa",
+      "tasks.md": "dfc2b8fcb069df23fdc62b2c84da483b3d533e6951a625dd10a8a431ac0614ad",
+      "checklist.md": "fb851e8286945903880a211e136a8af72de08dcc42295c608c0d0e249ea0ef66",
+      "decision-record.md": "5ee252c8ed54fac1fae693e14b86f5b1693b6aeae7027e28d6e323d6905eae1e",
+      "implementation-summary.md": "02fa8cef65cb73143a1c8d396faba19ed8018123950f6438069e72350f7cbb61"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

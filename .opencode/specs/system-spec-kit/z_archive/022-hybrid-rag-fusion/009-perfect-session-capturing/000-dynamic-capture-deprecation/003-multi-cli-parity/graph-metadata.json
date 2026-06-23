@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
     "created_at": "2026-04-12T09:02:50.266Z",
-    "last_save_at": "2026-05-30T10:12:03.287Z",
+    "last_save_at": "2026-06-23T03:49:59.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:fb5a6cc9affbb9b84977b3fc0b4296a66db504571bdf67f00228f0b9db655844",
+    "source_doc_hashes": {
+      "spec.md": "236cdccf0a3996716911b4638b9d9655f65421eede78411f89d45d53f7cc70d8",
+      "plan.md": "cb8b71eee19d8281fe6d91652f99a4c3179a5f73a8c38d55bc6399c1992f6827",
+      "tasks.md": "f6f85935fe07b58bc5bd24b4c4a19ef014b36e9877b0db402e838f07a7354747",
+      "checklist.md": "1e54d21781e787e255228e6b55980ab0f83bff9242a8411552f3493879400352",
+      "implementation-summary.md": "9939a0e177227b85461f828574a555af37329d252065e54597976cb62c207bf1",
+      "research/research.md": "842a943d939210f06779ed7d65afafaf75492e15f995700332cc7780fb3e86f2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

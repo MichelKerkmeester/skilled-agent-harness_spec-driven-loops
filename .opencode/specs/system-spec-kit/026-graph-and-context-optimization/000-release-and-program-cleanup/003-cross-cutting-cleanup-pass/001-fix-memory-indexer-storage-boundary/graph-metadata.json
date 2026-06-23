@@ -213,9 +213,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013). The P1 specifically: parser/discovery correctly exclude constitutional/README.md, but storage-layer mutation paths (checkpoint restore, SQL update, post-insert metadata, cleanup CLI) only check the broader `isConstitutionalPath()` predicate. A poisoned checkpoint or pre-existing DB row can therefore preserve a constitutional README as `importance_tier='constitutional'` even though normal ingestion would reject it. Hunter→Skeptic→Referee adversarial self-check confirmed P1 severity.",
+    "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013)",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-06-22T18:55:01.711Z",
+    "last_save_at": "2026-06-23T03:49:52.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,6 +225,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5f63c0cb8bf2919f1118d9543196eea1b99cb0d2ac73bfaef3d1c351d13a86c9",
+    "source_doc_hashes": {
+      "spec.md": "ef9a67dde68b611c8f1438c6973f93a85ab2b9e270fbf20aceaa5e248d51cbc1",
+      "plan.md": "dee4424aa1c4d28c1801489e4e1c5f167f23814a392037526c85809296c15175",
+      "tasks.md": "5356929ab845866dbb57763f5588bea6a0b28f44c94dd8fc1e608701875c3624",
+      "checklist.md": "c190c102e0cbb3399b9bb4550370cda0a74361018c196b86477fcc54a951af55",
+      "implementation-summary.md": "19e64290b24b24c7ad12ac92909b0179d05f9d953096bb0a6b64b56799cdf0d6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

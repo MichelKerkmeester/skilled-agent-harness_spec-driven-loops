@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a memory-saturated Mac (free 73 MB, compressor 26 GB, load 10+). Investigation found two independent root causes: (1) the per-user config at `~/.cocoindex_code/global_settings.yml` selected `provider: sentence-transformers` which eagerly loaded a local PyTorch model and weights despite `VOYAGE_API_KEY` being set, and (2) an indexer crash-loop on a missing `.workflow-lock` file had filled the rotated daemon log to 7.3 GB.",
+    "causal_summary": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a memory-saturated Mac (free 73 MB, compressor 26 GB, load 10+)",
     "created_at": "2026-05-10T10:45:10.601Z",
-    "last_save_at": "2026-05-30T10:12:01.625Z",
+    "last_save_at": "2026-06-23T03:49:52.424Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e1055f4aad678028e13c07f3c41a138f4adfdb1691d6bbfe7c8119837001fc05",
+    "source_doc_hashes": {
+      "spec.md": "601c8491e0c0ab12faff71eefbe1feca5eebe551a94fb4cb1e72f1afb9b8b200",
+      "plan.md": "95a855bcbb92e284eb279005acf43836dc6b5db93f4d979cce8bd4b2e92850ff",
+      "tasks.md": "0221ec1358218f6565572c2c06905017449a80bb94fc297f837f5edfda1cb1f8",
+      "checklist.md": "861b5484a9c74f21336f36642439790171c90b730de2e04d84b9d529c9d7681e",
+      "implementation-summary.md": "41167d85cafcb8362335288decd92fb1b3381f94f7fb12a68639253e9885f9b3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

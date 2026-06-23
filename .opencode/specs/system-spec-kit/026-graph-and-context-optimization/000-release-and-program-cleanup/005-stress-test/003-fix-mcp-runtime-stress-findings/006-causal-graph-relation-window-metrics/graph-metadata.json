@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add `deltaByRelation`, `dominantRelation`, `dominantRelationShare`, `balanceStatus`, and `remediationHint` fields to `causal-stats` response per 007 §5 Q7. Add per-relation per-window auto-edge caps to prevent supersedes bursts. Zero-fill all 6 relation types in `by_relation` so missing types don't disappear. Reconcile `health` field with `meetsTarget`.",
+    "causal_summary": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-06-05T12:47:33.085Z",
+    "last_save_at": "2026-06-23T03:49:52.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5121438acf1cfb4a883bde710bb970ee72fe56459f0aaf3e67483c9187764e08",
+    "source_doc_hashes": {
+      "spec.md": "e65ca5929e6be519bde98e3a4ce526383e2eba22e5998e3efef473e4bb340f1a",
+      "plan.md": "1863ab68db754a5407fad32dfcbfbdeee16395ec15f35be1fe1d1b643987b90d",
+      "tasks.md": "b13d6954b95b2a2e61608eb58a6331b0cecdcddc08eef98f2ac9731f97cb8001",
+      "implementation-summary.md": "672f14d0224b2bcaadb4d648e219042123dbfe954afb7a71f2f9933818dc1f6d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

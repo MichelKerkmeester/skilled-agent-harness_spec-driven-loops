@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
-  "description": "Feature Specification: Graph Impact and Affordance",
+  "description": "Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and m",
   "keywords": [
-    "feature",
-    "specification",
-    "graph",
+    "deliver",
+    "external-project",
+    "adoption",
+    "uplift",
+    "code-graph",
+    "phase",
+    "runner",
+    "edge-explanation",
     "impact",
-    "affordance"
+    "display",
+    "skill-advisor",
+    "affordance",
+    "evidence"
   ],
-  "lastUpdated": "2026-05-26T16:53:24.976Z",
+  "lastUpdated": "2026-06-23T03:49:56.171Z",
   "specId": "005",
   "folderSlug": "graph-impact-and-affordance",
   "parentChain": [

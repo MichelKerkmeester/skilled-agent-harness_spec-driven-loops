@@ -1,14 +1,25 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
-  "description": "Feature Specification: 10-iter P1 remediation",
+  "description": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a cle",
   "keywords": [
-    "feature",
-    "specification",
-    "10-iter",
-    "remediation"
+    "10-iteration",
+    "review",
+    "identified",
+    "two",
+    "edge-case",
+    "risks",
+    "extracted",
+    "mkskilladvisor",
+    "server",
+    "stale",
+    "bootstrap",
+    "lock",
+    "directory",
+    "block",
+    "cle"
   ],
-  "lastUpdated": "2026-05-26T17:27:22.454Z",
+  "lastUpdated": "2026-06-23T03:49:53.330Z",
   "specId": "017",
   "folderSlug": "fix-deep-review-p1-findings-for-package-extraction",
   "parentChain": [

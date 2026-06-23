@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval. The four new scenarios (EX-046 through EX-049) expand coverage to comprehensive evaluation workflows and historical analysis. Each scenario must be executed with defined prompts, expected behaviors verified, and evidence captured to validate that evaluation tools function correctly.",
+    "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.294Z",
-    "last_save_at": "2026-06-22T18:55:04.473Z",
+    "last_save_at": "2026-06-23T03:50:00.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5f642d3f5189a8014318de7ced8ab65544bb968d396e6bd5fa6297209c747996",
+    "source_doc_hashes": {
+      "spec.md": "31b8555b747f76faf9337fcc1374a43c9f203fee58bd9048d4bfc708db86d981",
+      "plan.md": "87f228ca1ad72b47f51bcbecaf39f15c16ca6d1a194bd12e11c0f9eb00d3cae6",
+      "tasks.md": "6ceee8e6d55b219515a1f56b39f4cc14272c194f66c7ef8d19411096e66a7498",
+      "checklist.md": "1d786e40a65a46bf7212bd5f131a837fa54dce7f0d58bce32de8aa41daf82f04",
+      "implementation-summary.md": "4c506babd7722eb4b4477bf2ab28afdd11bf8acb09e69ff83db99fb32322149b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

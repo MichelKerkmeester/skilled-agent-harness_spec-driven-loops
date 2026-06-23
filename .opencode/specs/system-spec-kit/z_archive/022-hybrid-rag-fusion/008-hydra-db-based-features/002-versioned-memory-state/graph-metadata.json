@@ -36,7 +36,7 @@
       "tasks",
       "checklist",
       "adr",
-      "spec-core"
+      "current"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "The current Memory MCP server stores valuable history and conflict information, but it does not expose a first-class lineage model that guarantees immutable state transitions and deterministic temporal reads",
     "created_at": "2026-04-12T09:02:50.260Z",
-    "last_save_at": "2026-05-30T10:12:03.271Z",
+    "last_save_at": "2026-06-23T03:49:59.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:80a24e343e63bf71996e7d8e4b010f99eaeb3c377cf077d1635beef03c866289",
+    "source_doc_hashes": {
+      "spec.md": "cc066a8aade052d609bf6942bbe3e54345a8e4e80ae35dd60552898f12967534",
+      "plan.md": "c58e6206161e127bfc8077bf2f2dd596ed49fba7c1cd522b80b65fb35ca99a3e",
+      "tasks.md": "4dea044123c409af7cafd9c17fd4a01cf0ebd8ab2fb3b34f9cf65a37fe019b31",
+      "checklist.md": "11fede54a69a908adb2b53521f9cf5dcd8c77d05ae3a78214857eecc0ba47c7b",
+      "decision-record.md": "fcc938cf694fb6234f54eabb9e3fb899af4560a0ef08e5a111ba17b23003ada0",
+      "implementation-summary.md": "a1d503db79e568b7821d9fc36e51ced136747607b4cc38939db1b5b7ea96466c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

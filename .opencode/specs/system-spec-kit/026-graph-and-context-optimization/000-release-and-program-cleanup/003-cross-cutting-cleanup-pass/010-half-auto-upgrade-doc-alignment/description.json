@@ -1,12 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
-  "description": "Spec: Half-Auto Upgrades",
+  "description": "Packet 013 identified four Tier C surfaces where automation was easy to overstate:",
   "keywords": [
-    "spec",
-    "half-auto",
-    "upgrades"
+    "packet",
+    "013",
+    "identified",
+    "four",
+    "tier",
+    "surfaces",
+    "automation",
+    "easy",
+    "overstate"
   ],
-  "lastUpdated": "2026-05-26T17:26:24.561Z",
+  "lastUpdated": "2026-06-23T03:49:52.295Z",
   "specId": "010",
   "folderSlug": "half-auto-upgrade-doc-alignment",
   "parentChain": [

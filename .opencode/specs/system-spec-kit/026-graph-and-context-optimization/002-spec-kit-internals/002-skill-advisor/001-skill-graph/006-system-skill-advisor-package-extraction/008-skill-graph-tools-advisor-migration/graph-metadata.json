@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet completes the 013/009 advisor extraction by moving the four `skill_graph_*` MCP tools from `spec_kit_memory` ownership to `system_skill_advisor` ownership. The public tool ids stay unchanged: `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. Only the MCP server prefix changes for primary callers.",
+    "causal_summary": "The advisor extraction is structurally complete, but the four `skillgraph` MCP tools still live under `speckitmemory`",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.307Z",
+    "last_save_at": "2026-06-23T03:49:53.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b621bffe0a1de64282901b69ad967fba394e80f4ca01ec53c3a7c429ba3b33c1",
+    "source_doc_hashes": {
+      "spec.md": "6ae422665718706375ecfb59f2ed82310c428f580ec3cd37bfb93e51e94af1a2",
+      "plan.md": "d1974ae7a4a8d9c951bb49b5fad5027680830a390835cf258392b5a7f10f474e",
+      "tasks.md": "362e38bac4f0b7d2b1b002e1f33b998adeeb232325d278e40c37d5a2e26d61be",
+      "checklist.md": "c3eaf64f677a8e21b6722284d6eea735e8a45f6e656e82d665cbfdb55a33414a",
+      "decision-record.md": "261bb5ca3bf5f302604e010c4a2af29dfb503ad7c4bb1009f3d3c75675592c1d",
+      "implementation-summary.md": "64566ffc18a3ecc0fdd2f5e3bb67c93645dd2b56a2c7132ac1b600da9de090be"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

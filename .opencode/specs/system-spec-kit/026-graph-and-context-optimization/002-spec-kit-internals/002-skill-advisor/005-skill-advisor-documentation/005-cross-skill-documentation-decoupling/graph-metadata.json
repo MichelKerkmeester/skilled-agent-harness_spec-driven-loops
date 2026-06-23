@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad. (1) The three system-spec-kit docs (README, mcp_server/README, ARCHITECTURE) carry pre-extraction cross-skill references that couple them to sibling skills. (2) Section 1 (OVERVIEW) of each README has multiple tables that fragment what should be prose. (3) The three ARCHITECTURE.md files diverge significantly in shape, frontmatter, and depth even though they describe parallel runtimes.",
+    "causal_summary": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad",
     "created_at": "2026-05-16T12:33:24Z",
-    "last_save_at": "2026-05-30T10:12:01.981Z",
+    "last_save_at": "2026-06-23T03:49:53.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:68edc1e197661c24afb9dda15823d4c316bdcabcd4b29bfcc73fa1ca2352eb43",
+    "source_doc_hashes": {
+      "spec.md": "61c19e45c05b846413c47eec764e4cc94d777ac57ea13a625caea92a487c8f85",
+      "plan.md": "2c88710703b9409b1ba509d2d68e94aaa7c849b5f1d9fca8d9789726cc1ddd0d",
+      "tasks.md": "f788d7465bf5d98ce04bc1dcbe13e01f3320dad0860c67e6de14afbe25d0bff1",
+      "implementation-summary.md": "fbcdf25d0c47673c6f0b4976752aa76a5454f0908d61f0fe9896315deea8958f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

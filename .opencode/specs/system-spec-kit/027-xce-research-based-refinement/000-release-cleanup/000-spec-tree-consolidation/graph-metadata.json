@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `027-xce-research-based-refinement` packet accreted to 31 flat top-level phase children (`000`-`030`) as work was added over the epic. That flat list is hard to scan and no longer matches how the work is actually organized by system, the way `before-vs-after.md` already narrates it (memory store, skill-advisor, code-graph, shared infrastructure, verification/remediation).",
+    "causal_summary": "The `027-xce-research-based-refinement` packet accreted to 31 flat top-level phase children (`000`-`030`) as work was added over the epic",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.712Z",
+    "last_save_at": "2026-06-23T03:49:56.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b1f7259e3c75edd5a1277643d65edeffe8076dd328efe3c7854bd402b4a09e41",
+    "source_doc_hashes": {
+      "spec.md": "201c0b5a54373d9afa2e39f8a1f0090b7a1574efc6a02e888497f55a825989ee",
+      "plan.md": "8a2908a475b5bb9ddfffc0c5bd5f6c4c01a7adb99e4351d1c37c2ab6677b9ea6",
+      "tasks.md": "383b26d9debab18b4d1abba84195f4988ceb4f4c599ad147d1cc38e2208796fb",
+      "checklist.md": "99af31fd006f73aa244a92d8716afc1b35e02fb4f41eb552d052b75d66beeda0",
+      "implementation-summary.md": "8bbaa4ced8a04414b4e7c9184ba91914e619c9889ece9bcb9414902fb13a7d44"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency",
-  "description": "Feature Specification: Finding Remediation Lane: Continuity And Save Concurrency",
+  "description": "The epic deep-review sweep left this lane with 9 unverified P1 claims and 15 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "continuity",
-    "save",
-    "concurrency"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.506Z",
+  "lastUpdated": "2026-06-23T03:49:57.920Z",
   "specId": "007",
   "folderSlug": "continuity-and-save-concurrency",
   "parentChain": [

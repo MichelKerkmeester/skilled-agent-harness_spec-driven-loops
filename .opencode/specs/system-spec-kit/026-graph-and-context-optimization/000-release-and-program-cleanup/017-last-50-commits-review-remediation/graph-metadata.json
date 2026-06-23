@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet remediates the actionable findings from the sibling `016-last-50-commits-deep-review` (0 active P0, 3 P1, ~17 P2) across four parallel work streams plus a test round. Every actionable finding is fixed and verified; six items are accepted with no code change as deliberate decisions. Source fixes are complete; the dist build + deploy is deferred to the operator.",
+    "causal_summary": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1 (ingest-worker shutdown fence, compound concurrent-SIGTERM failure, runtime-fork drift guard), and ~17 P2 advisories spanning IPC/socket hardening, validator DoS, memory-write guards, MCP contract gaps, config-note drift, and test-integrity gaps",
     "created_at": "2026-06-05T12:47:33.243Z",
-    "last_save_at": "2026-06-10T19:22:14.365Z",
+    "last_save_at": "2026-06-23T03:49:53.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:a0a2efb7666a2de98a9517ef0f3879e11ec628c7612933af105090808ab4b2c0",
+    "source_doc_hashes": {
+      "spec.md": "d597f0707ce4c92dd5f6cf6d7db90ed816615a67e51946598ffae133e6de50f5",
+      "plan.md": "5c884f3ddc4249cccf7627d97d9f3317f68fe1d098700061a30f09e01d677f17",
+      "tasks.md": "909a5aafe4887bf812141c3c15e8120f83d15bdc4b639c90663a662b0c2a8a6f",
+      "checklist.md": "b124c89dd8785570f03733da619a68c865058b26c1d111f5443a39eeb1604ff7",
+      "decision-record.md": "bb751870a5ed37563e8665af81608d65bbdb892388d09d490b8ffb7148f89980",
+      "implementation-summary.md": "90c5625cde404eaa463088836fb4845a13bd465a231f6ad259a6c9b735450131",
+      "resource-map.md": "7e069bd32258df35cdf6b7ac0a7d3443e1e0a024c9f4c31b9f65541273ceabb2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Session traces already record `search_shown` and `result_cited` events, but those signals are never converted into weak causal edges. This child adds a deferred reducer that infers bounded `ENABLED(A -> B)` edges from same-session evidence.",
+    "causal_summary": "Level 2 child packet for deferred session-trace causal edge inference.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.311Z",
+    "last_save_at": "2026-06-23T03:49:57.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1c6adb2ad1c3fce6c92608a57d9ed4694ec53940f86eaac70dcfe97f44b0cbf5",
+    "source_doc_hashes": {
+      "spec.md": "88d686c7beaaa50e424c3be3c178dd3c172a98b82be6a43fc22253285816c99d",
+      "plan.md": "f0e3e333d8ffa321d0094340c3aea43e959e8c95163bb0b1497c1c83b6c9d00f",
+      "tasks.md": "b32d4ddad57edebcd92ea50ad2aaf1337f7e0a01fb90f0546ce20d3db5391bbe",
+      "checklist.md": "1dfea3e39101e28ab0d176f53a90f283a08f86beb2d151f3bba9bd4801dd2ffb",
+      "implementation-summary.md": "4bed548cdcc08e91a5746ba299219c6667346c0fd79ed1b528bfc4ca75ea3e4e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the May 2026 retrieval-pipeline arc (013-018 + nomic promotion + 023B Qwen3 reranker promotion + the mcp_server feature-grouped restructure), public-repo documentation drifted from current code defaults. The root README still cited `jina-embeddings-v3` as the auto-cascade default for mk-spec-memory and `jinaai/jina-embeddings-v2-base-code` as the CocoIndex default; no surface mentioned `Qwen3-Reranker-0.6B` or the two-stage pipeline architecture; module paths still pointed at the pre-restructure flat layout; and several runtime docs cited mutable spec/phase packet numbers, violating the evergreen packet-ID rule.",
+    "causal_summary": "Bring public-repo documentation back into alignment with current code defaults (Qwen3-Reranker-0.6B, nomic-embed-text-v1.5, nomic-CodeRankEmbed, mcp_server feature-grouped layout) after the May 2026 retrieval-pipeline arc, the 023B Qwen3 promotion, and the post-restructure rename of benchmark-2026-05-20-expanded → benchmark-2026-05-20.",
     "created_at": "2026-05-20T15:20:22.326Z",
-    "last_save_at": "2026-05-30T10:12:02.331Z",
+    "last_save_at": "2026-06-23T03:49:54.737Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b24de769adc8ea3c9d4887d56a887ae742e7b464cb4b7e2532e6882d7b47789c",
+    "source_doc_hashes": {
+      "spec.md": "aa0111220e8cfcbe4f41bda82fbc848e52b4dc523c35284f60c5aaf1283b996b",
+      "plan.md": "100b09ee7047c70b45edbbe631c0816ebd143a8c0a9ec1365592deac6083940b",
+      "tasks.md": "4c1697e33f394e46f0714b90d31362e393d3311ecc44915a8a9cf223ce646767",
+      "implementation-summary.md": "5bcc07319398dd34fcfc0802e488113c822a664e058c6fa7b6745f2e5e881324"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

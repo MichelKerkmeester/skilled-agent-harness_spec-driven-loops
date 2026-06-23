@@ -182,9 +182,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fixture tests proper priority tag validation.",
+    "causal_summary": "This fixture tests proper priority tag validation",
     "created_at": "2026-06-22T18:55:03.934Z",
-    "last_save_at": "2026-06-22T18:55:03.934Z",
+    "last_save_at": "2026-06-23T03:49:58.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,6 +193,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:5efb5725286d2e3448efe1aafb50ac235346c39df60f056385e9221c2d8907f5",
+    "source_doc_hashes": {
+      "spec.md": "e34f5afa918169efba25d5142b3a6eb2597a95f773b1c748f7c90509d4afaa6b",
+      "plan.md": "50397b70f0b15d56a8849cdb3d1bd4b5a99bd248d5299d6edf1f480aaa2abf48",
+      "tasks.md": "f84310173acaaf96df03ef0437f4dc4f8c6dfa0344ae2ae4865f353677400136",
+      "checklist.md": "ee54aa93e4e8a8b6cbcbdcdf6e1d1228fc86a7006ba38e129f07929d2a8dce09"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

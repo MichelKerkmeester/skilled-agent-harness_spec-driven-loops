@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call `mcp__mk_code_index__code_graph_query({query, num_results})`, which is rejected.",
+    "causal_summary": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call `mcpmkcodeindexcodegraphquery({query, numresults})`, which is rejected",
     "created_at": "2026-05-30T20:48:58.838Z",
-    "last_save_at": "2026-06-22T18:55:03.022Z",
+    "last_save_at": "2026-06-23T03:49:56.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d83b48be4645f4a61f32138856bed180a26c3b9619f89e3adc5372540512201f",
+    "source_doc_hashes": {
+      "spec.md": "d630cedfe2033c50667809471db47618a9aa75df83e5572a42e8cdab8319100d",
+      "plan.md": "8314477af5a8a29677d3cecd37337d0abb32027a2c18cdea0667f769ffb0ed86",
+      "tasks.md": "a94cb64f133852bd3553077dd7ef62b65167a153f6ef0835fd3d541d92c46245",
+      "checklist.md": "5435f1e642763a53b07336800096f2ecb66ac1937e47ea707f066543213225cb",
+      "implementation-summary.md": "6e4888d8f356f744356742b6441e3c9a879f6a524d24d653504aeac327986c0a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

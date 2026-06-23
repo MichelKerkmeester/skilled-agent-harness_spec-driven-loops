@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Level 3+ (+Govern) is appropriate when:",
+    "causal_summary": "Large, multi-session tasks (500+ LOC, 15+ files, cross-domain scope) currently produce monolithic spec folders whose documentation grows unwieldy and whose context files balloon beyond useful retrieval limits",
     "created_at": "2026-04-12T09:02:50.222Z",
-    "last_save_at": "2026-06-05T12:47:34.632Z",
+    "last_save_at": "2026-06-23T03:49:59.622Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2e5bfc98a364facc2d31cb15fe0124496398667cbfe89898fc75c46f2dcc9897",
+    "source_doc_hashes": {
+      "spec.md": "edd2c7fbafad6853e9f7fcd1c86e8e16ab6e4de950e81763b1e3505648d4298b",
+      "plan.md": "3bf876e3d64fe8ff3c27c9a4cea16815cc45351abfd19b85138d197617b99f25",
+      "tasks.md": "1785da2d7e22e8858ad845b072c7c23850bb4390bc076edaf1499ed4c3751047",
+      "checklist.md": "2ba792b4f5ee1e3cec4d29836913e6256b3a06b9392c921fadc9c81565e24a80",
+      "decision-record.md": "e9dfca61bcc3c003d2420bb25e8829d032dd84dd90d94d331e70b4f50d1b85ea",
+      "implementation-summary.md": "c06fc919781b17f6d9e783e94c85971a5ba30484015b4dd53db654510bf64435"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

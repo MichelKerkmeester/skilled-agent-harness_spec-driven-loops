@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 016 bake-offs (text + code) produced authoritative benchmark records in spec packets (`016/002/004-spec-memory-embedder-bake-off/` and `016/004/004-extended-bake-off/`). Both packets have detailed `benchmark-results.md` headline docs plus full `evidence/` directories with CSVs, JSONLs, runlogs, and ADR trails.",
+    "causal_summary": "Cross-cutting introduction of a new `mcp_server/benchmarks/` convention for any MCP server in this repo (our own + forks). Promotes spec-packet bake-off evidence + curated headline docs from `specs/` into skill-local discoverable locations. First two adopters: mk-spec-memory (May 17, 2026 text-embedder bake-off) and mcp-coco-index (May 18, 2026 code-embedder bake-off). Includes historical FORMAT.md convention doc + per-skill READMEs + per-bench dated subfolders with structured benchmark_report.md per sk-doc standards.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-06-22T18:55:02.432Z",
+    "last_save_at": "2026-06-23T03:49:54.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1b0009f496efd79acc4e5c33975ee414e824679266d2b6229f9f0dea4e99339b",
+    "source_doc_hashes": {
+      "spec.md": "0c177b0b1f5ed42a93fff8444638a51348e830a060d097963b6ac42b30a27ae0",
+      "plan.md": "ca86170e893a22f95ad63d17dd0ac43a628d6aa6189ec64edf6f6ca07057fda2",
+      "tasks.md": "c74da0c57e9fa40f187380d203c6fcf037f65a1a471337982ee4e6684fd7b8d4",
+      "implementation-summary.md": "d90d7cf38ab534391dd28237197b1febb432544ae9b6e8c168e390662b812e7d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 8-agent scout that fed batch 1 surfaced 20 high-risk deep-research targets; batch 1 fixed the top 5, leaving 15 latent code defects untriaged across chunking, the deep-loop runtime, embeddings, vector-index validation, skill-advisor, code-graph, and benchmark/runner tooling. Many of the 15 carried a loud headline that did not survive contact with the real code: some headlines were only partially correct (a genuine but lesser defect sat behind a wrong framing), and two were fully refuted — the `package.json` hook-tests `specs/` path is fine because `specs/` is a symlink to `.opencode/specs/`, and the reconsolidation env-leak does not actually leak. Acting on the headlines directly risked fixing defects that did not exist while missing the real ones.",
+    "causal_summary": "The 8-agent scout that fed batch 1 surfaced 20 high-risk deep-research targets; batch 1 fixed the top 5, leaving 15 latent code defects untriaged across chunking, the deep-loop runtime, embeddings, vector-index validation, skill-advisor, code-graph, and benchmark/runner tooling",
     "created_at": "2026-06-03T07:32:00Z",
-    "last_save_at": "2026-06-05T12:47:33.200Z",
+    "last_save_at": "2026-06-23T03:49:52.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e813ed33218fb149f3ace4fc82d9ad5155e9060d6421d698b27c2d15f5c700a4",
+    "source_doc_hashes": {
+      "spec.md": "557972e7d802e8c08f74a9482bb852994c5b637f7540f93ed8d74870127844c8",
+      "plan.md": "3d7bda22702593a848153088e0c8cb404fa3b0675e2bb6a45dc2cfa829b3d440",
+      "tasks.md": "5e2630761afbf78b66afb57fcb19a0feeb9cbeb4f5a945584c7cb072bdcfa9fe",
+      "checklist.md": "ac69886d29bfc93955cf20239e05d09333a107b8150bf545ba0c807823340160",
+      "implementation-summary.md": "52f4b7da7a3d8755b3cc262ce855d2c5915f0d2cf38fb1d2b6b60eead3fb8f95"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

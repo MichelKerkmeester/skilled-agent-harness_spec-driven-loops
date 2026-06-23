@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
-  "description": "Feature Specification: Finding Remediation Lane: Launchers And Cli",
+  "description": "The epic deep-review sweep left this lane with 18 unverified P1 claims and 19 P2 clusters",
   "keywords": [
-    "feature",
-    "specification",
-    "finding",
-    "remediation",
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
     "lane",
-    "launchers",
-    "cli"
+    "unverified",
+    "claims",
+    "clusters"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.501Z",
+  "lastUpdated": "2026-06-23T03:49:57.912Z",
   "specId": "006",
   "folderSlug": "launchers-and-cli",
   "parentChain": [

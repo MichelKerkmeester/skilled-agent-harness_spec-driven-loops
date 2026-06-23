@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 12 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact-and-affordance-uplift wrapper added causal-trust display and trust axes; this phase closes the runtime-utilization gap by ensuring the *channel selector* actually activates the graph channel for queries where causal traversal would surface results that vector+fts cannot.",
+    "causal_summary": "The query complexity router (`query-router.ts:75-79`) only includes the `graph` channel for queries classified as `complex` (`>8 terms` per `query-classifier.ts:29`)",
     "created_at": "2026-05-19T15:28:02.708Z",
-    "last_save_at": "2026-06-22T18:55:02.211Z",
+    "last_save_at": "2026-06-23T03:49:53.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:dee149687eba7c5a68ac20acfa856de82003e06526f7f679e104cd372fc9ee53",
+    "source_doc_hashes": {
+      "spec.md": "204175c6b341900dfb5652968e817fe13457e4cf7f1237413a84159e05709c9e",
+      "plan.md": "e2e8c2619506f6996fab08b68a431f17ed53234686ea81c2542783e544704e96",
+      "tasks.md": "cc5e64da3be803a431a9ab37f60d87acc94af02a302ce4d56f0d9f79da154073",
+      "checklist.md": "8e03ade7fa4a4a7753f92a19229d3bb139cfbc860d2dbacc1dca1a132c0bbd38",
+      "implementation-summary.md": "3c3a18e4c1b997a652626543c06004fe6723bd63af5139e8794db144b5e14814",
+      "handover.md": "99a55d398a03443b496c4fd592e2755ff831ea5c3ade09d169b496545afdf418",
+      "resource-map.md": "21e4d1ff15c1ba72d12ddc87fe746bd31ee8954e7e4c9182342019852074cc73"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
-  "description": "Feature Specification: advisor_validate Alias-Aware Gold Matching (F1a)",
+  "description": "`advisorvalidate` matches corpus gold labels to the recommended skill with strict equality (`result.topSkill === expected`, `handlers/advisor-validate",
   "keywords": [
-    "feature",
-    "specification",
-    "alias-aware",
+    "advisorvalidate",
+    "matches",
+    "corpus",
     "gold",
-    "matching",
-    "f1a"
+    "labels",
+    "recommended",
+    "skill",
+    "strict",
+    "equality",
+    "result",
+    "topskill",
+    "expected",
+    "handlers",
+    "advisor-validate"
   ],
-  "lastUpdated": "2026-05-27T11:54:04.051Z",
+  "lastUpdated": "2026-06-23T03:49:53.679Z",
   "specId": "001",
   "folderSlug": "advisor-validate-alias-matching",
   "parentChain": [

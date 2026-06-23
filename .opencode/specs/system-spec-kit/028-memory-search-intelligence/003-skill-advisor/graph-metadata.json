@@ -136,15 +136,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking. This parent needs to route those candidate groups to child folders while keeping implementation detail in the child specs.",
+    "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-22T18:56:37.459Z",
+    "last_save_at": "2026-06-23T03:49:58.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:1e6c111c0518cd09915547fc93317a2f5f2d82fd51a9808d3fec1c7d4e0c5f8f",
+    "source_doc_hashes": {
+      "spec.md": "8f394dce138f7bc25cd2a3defe061ae4005a4a95a216362b5ed67fa298a04681",
+      "research/research.md": "e059059c359a659407760183083cb505fa8eab8581cbd78e3b4ee50562efa8f3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 032 reported repeated-query CocoIndex MCP reliability failures in 24-- scenarios, especially scenarios 404 and 407. The two observed failure modes were:",
+    "causal_summary": "Packet 032 reported repeated-query CocoIndex MCP reliability failures in 24-- scenarios, especially scenarios 404 and 407",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.129Z",
+    "last_save_at": "2026-06-23T03:49:54.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cbde7ab3776e0b8eadb08565d84a5e6afa8b0e61640b24760f24a089a895068d",
+    "source_doc_hashes": {
+      "spec.md": "d9b4931824c30c733d2b54e6ee24c79e088669acc7ed57ebf21162c526686e22",
+      "plan.md": "4fc3c22d90ca8c3268e1f6c28569cfb832497acc1c3f26166f70bede182aeb94",
+      "tasks.md": "7c75bc3c05a9afe2ee65cdfb5835c3117acd7bb963b18d6cf9de06af6cac62a1",
+      "checklist.md": "3d84aae7e243b15044c491c2f3c73393f926cdf801b07e5b0ad7370c1627aa1d",
+      "implementation-summary.md": "5b2b5984be1e10ff98194f9d9779cc344c9d41842503dc1bb033293fab111ccf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

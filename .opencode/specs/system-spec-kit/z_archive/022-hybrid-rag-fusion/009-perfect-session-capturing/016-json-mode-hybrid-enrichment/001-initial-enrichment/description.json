@@ -1,16 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/001-initial-enrichment",
-  "description": "Feature Specification: JSON Mode Hybrid Enrichment (Phase 1B)",
+  "description": "The original phase-016 pack had drifted away from the code that actually shipped",
   "keywords": [
-    "feature",
-    "specification",
-    "json",
-    "mode",
-    "hybrid",
-    "enrichment",
-    "phase"
+    "original",
+    "phase-016",
+    "pack",
+    "drifted",
+    "away",
+    "code",
+    "actually",
+    "shipped"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.168Z",
+  "lastUpdated": "2026-06-23T03:50:00.101Z",
   "specId": "001",
   "folderSlug": "initial-enrichment",
   "parentChain": [

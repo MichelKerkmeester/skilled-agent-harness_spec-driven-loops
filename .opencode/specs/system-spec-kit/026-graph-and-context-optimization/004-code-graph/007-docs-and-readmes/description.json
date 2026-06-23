@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
-  "description": "Feature Specification: Code-Graph Docs and READMEs",
+  "description": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skil",
   "keywords": [
-    "feature",
-    "specification",
     "code-graph",
-    "docs",
-    "readmes"
+    "documentation",
+    "track",
+    "doctor",
+    "diagnostic",
+    "command",
+    "phase-a",
+    "system-code-graph",
+    "readmes",
+    "code-folder",
+    "doc-drift",
+    "alignment",
+    "cross-skil"
   ],
-  "lastUpdated": "2026-05-26T16:53:26.952Z",
+  "lastUpdated": "2026-06-23T03:49:55.956Z",
   "specId": "007",
   "folderSlug": "docs-and-readmes",
   "parentChain": [

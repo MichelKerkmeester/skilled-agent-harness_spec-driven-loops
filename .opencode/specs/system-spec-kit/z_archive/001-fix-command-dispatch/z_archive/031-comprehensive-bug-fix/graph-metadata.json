@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Comprehensive fix for 80 bugs identified across the semantic memory system through deep analysis by 10 parallel Opus agents.",
+    "causal_summary": "id: 018-comprehensive-bug-fix",
     "created_at": "2026-04-12T09:02:53.522Z",
-    "last_save_at": "2026-05-30T10:12:02.976Z",
+    "last_save_at": "2026-06-23T03:49:59.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:7a25aba17c5e9cc72151b15efb29240c50135a50c7def81f3747ddd00746d4e0",
+    "source_doc_hashes": {
+      "spec.md": "dcc1d24316b0ab013a1ccb00e36ba1588169741d88cf3d17ebc0213271895852",
+      "plan.md": "fe52d992898385c68e5543b5bd6a60eed3c8053977235a4f49731911c20696f3",
+      "tasks.md": "b4213aa3107ee1b69386e5275d4d536558d009f85bd2c5c24fb1f2ccafc0225d",
+      "checklist.md": "7e8b4b48b1a91b9a19fc4b7bb4355874daeec4f1871542e9a0db0b0a8c92ec21"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

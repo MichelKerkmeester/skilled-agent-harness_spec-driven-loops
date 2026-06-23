@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files. cli-opencode contradicts itself on subagent invocation (claims subagents are not directly invokable, then invokes them in references). cli-copilot's effort flag prose is inconsistent with the live CLI. The five prompt-templates files omit required model/effort/tier pins, embed `--yolo` write flags without approval gates, and miss explicit `--model` defaults.",
+    "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-06-05T12:47:33.183Z",
+    "last_save_at": "2026-06-23T03:49:52.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c78986b1a6580650a3bf6de96880b6ca0b0475e89397a1c72e0ed062e12e53bc",
+    "source_doc_hashes": {
+      "spec.md": "d0b80304948c85bff900ec81dd19f259c10107085b7555f8be00501617cf7fe6",
+      "plan.md": "452a462db7581ec6063bd34c644a022641b54db1dec9ed104d277f4d9fdca859",
+      "tasks.md": "40a9b4013bff8c13b26fbc56b534d2164612f43b725ba6a7e54f4cec05470131",
+      "checklist.md": "f5710c57f83480b9b2eb56bd6788cccbd6d607661c70282076b74d92fc01f1ed",
+      "implementation-summary.md": "e7c411c3a4d795d6e87c8788f597233682509eb089462a917dcac5779f910d61"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,20 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
-  "description": "Feature Specification: Physical move: code_graph source tree + database to system-code-graph (no consumer rewiring)",
+  "description": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database",
   "keywords": [
-    "feature",
-    "specification",
-    "physical",
-    "move",
+    "adr-001",
+    "accepted",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "new",
+    "owner",
+    "code-graph",
     "source",
     "tree",
-    "database",
-    "system-code-graph",
-    "consumer",
-    "rewiring"
+    "database"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.842Z",
+  "lastUpdated": "2026-06-23T03:49:56.658Z",
   "specId": "007",
   "folderSlug": "017-physical-move-and-database",
   "parentChain": [

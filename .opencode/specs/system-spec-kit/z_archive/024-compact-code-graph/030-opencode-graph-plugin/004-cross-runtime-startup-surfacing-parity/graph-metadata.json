@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 4 extended the shipped startup experience beyond OpenCode. The Level 3 repair keeps that runtime/config parity claim intact and turns the phase into a durable packet artifact with explicit runtime boundaries and evidence.",
+    "causal_summary": "OpenCode now injects a structured startup digest and session-context surfacing through the packet-030 plugin layer, but the other repo-managed CLI runtimes still split startup behavior across hooks, injected context, and manual bootstrap instructions",
     "created_at": "2026-04-12T09:02:53.438Z",
-    "last_save_at": "2026-06-08T17:32:21.750Z",
+    "last_save_at": "2026-06-23T03:50:00.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:20cf1f84c5633b751b818c8880b1d0f212d111055daf8b07b29e4aa6c80697a3",
+    "source_doc_hashes": {
+      "spec.md": "9bb266aff9e210b5f8495b9870c4063f56c088a2bca0e36ef4853d21bd29a0ca",
+      "plan.md": "29b71117e2e03d18b3800b7f7ecf77407512736c342b9b48c6071ed34556f7b0",
+      "tasks.md": "413a8982162386aa7e358abccad14ba8f9c34cbfa0136fd53060301c005844e0",
+      "checklist.md": "3b7c2e1edfc05e4c00e261ebf939423f14658ff07e3f7ae801846faaeddf4452",
+      "decision-record.md": "1011b8cda6aaf9ea5f6b0a8f97a0e88e8606ad11810e9036508431bc1a0665f6",
+      "implementation-summary.md": "475bd586d3d1d57adfe96d9d36af9c85a58804515b96c384840bb083b7cca6a8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

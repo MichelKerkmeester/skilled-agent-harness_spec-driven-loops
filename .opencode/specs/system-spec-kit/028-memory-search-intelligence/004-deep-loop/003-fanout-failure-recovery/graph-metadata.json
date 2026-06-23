@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12: `fanout-run.cjs` `process.exit` per run]. Its failure and recovery surface has four confirmed resilience gaps, all of which leave computed information discarded or in-flight work silently abandoned:",
+    "causal_summary": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12: `fanout-run.cjs` `process.exit` per run]",
     "created_at": "2026-06-19T06:06:27.159Z",
-    "last_save_at": "2026-06-21T07:23:18.854Z",
+    "last_save_at": "2026-06-23T03:49:58.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5469755f8a9f863c3289a3036ed9baadec67fadf4ae3be3d3b5deddad6f35c73",
+    "source_doc_hashes": {
+      "spec.md": "94cc30f7ef51590b0c8c291fd04c01f80fc623dcbfe78e322dd1b0c89db585ce",
+      "plan.md": "5e6f4241ae5f7a13bd85dab25cbe104f65281646de7ae065c176f35b50fc7635",
+      "tasks.md": "1971403e0112213fe55ba1e9145af82342c9a3e5fd051110dbb5dca202488f71",
+      "checklist.md": "2e40cc6d7e043fdeff0cf77356c915554b676a0dcc7ff42d2d5c8765a59ff153",
+      "implementation-summary.md": "ffa79001b7b14a6003311e15bfb49f8560da959523327395dc71cb1674d7068e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,18 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
-  "description": "Feature Specification: A3 Enum-Constrain JSON Metadata Schemas",
+  "description": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
   "keywords": [
-    "feature",
-    "specification",
-    "enum-constrain",
-    "json",
+    "two",
+    "zod",
     "metadata",
-    "schemas"
+    "schemas",
+    "type",
+    "controlled-vocabulary",
+    "fields",
+    "free",
+    "strings"
   ],
-  "lastUpdated": "2026-06-21T10:22:30.917Z",
+  "lastUpdated": "2026-06-23T03:49:58.555Z",
   "specId": "003",
   "folderSlug": "a3-enum-constrain-schemas",
   "parentChain": [

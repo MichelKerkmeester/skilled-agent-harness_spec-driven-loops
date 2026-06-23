@@ -98,14 +98,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`. They share that substrate but have independent delivery risk and rollout order, so they need a parent control document that points to child phases without duplicating implementation detail.",
+    "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`",
     "created_at": "2026-06-06T10:11:02.043Z",
-    "last_save_at": "2026-06-22T18:56:37.220Z",
+    "last_save_at": "2026-06-23T03:49:57.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:a6a5e1efa7e1674c5c25835036d17e1f751f21c7a1025a2f7c9e3dd421c0c4fe",
+    "source_doc_hashes": {
+      "spec.md": "0137d7ef6f246d64e381b8071cb3ef3fa795ee7ce648bc8cdbf384480c676cb8"
+    },
     "last_active_child_id": "003-planner-review-focus-and-drift-hint",
     "last_active_at": "2026-06-10T19:22:14.952Z"
   }

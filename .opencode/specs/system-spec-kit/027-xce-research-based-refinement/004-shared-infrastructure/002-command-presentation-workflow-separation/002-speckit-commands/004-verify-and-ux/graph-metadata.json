@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Speckit Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Speckit Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.903Z",
+    "last_save_at": "2026-06-23T03:49:57.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:34f78501fbad6e339e5a34dd271f1bc70961fa72ef521601e6486626159d2dd0",
+    "source_doc_hashes": {
+      "spec.md": "7b486540c7e8967c4bfe2c27e4a1e7769083d35c2b87f38b9eb66067aed7bb3e",
+      "plan.md": "b18183f7aaa5975b4cc3ccf053eae690a483bc776409129c1f87d3dc4aed288f",
+      "tasks.md": "a6eac5a1b6ebcb373d48e1b44601cd79f9fba06f069c34dd678e95e4869d6919",
+      "implementation-summary.md": "5b70b8a0d039429553fa29052c14ce403c552425793bafed34582dcc29df5eb1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

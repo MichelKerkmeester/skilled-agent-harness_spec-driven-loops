@@ -80,14 +80,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 020 found a class of bug: ADR-013/014 migrated the canonical spec-memory embedder to nomic-embed-text-v1.5, but 5 inline defaults in TypeScript code stayed pointing at pre-ADR models (4 × BAAI + 1 × jina). When the resolution chain's primary steps (env var → DB → cascade probe) didn't resolve, the runtime fell through to those stale strings and crashed. Triggered the 2026-05-23 production incident.",
+    "causal_summary": "10-iter deep-research dispatch via cli-opencode + deepseek-v4-pro auditing all subsystems for the same hardcoded-default anti-pattern that 020 just closed in the spec-memory embedder. Scope: code (TS + Python + Rust), config (JSON/YAML/TOML), READMEs, INSTALL_GUIDE.md, doctor commands, skill docs, ENV_REFERENCE.md, agent definitions, manifests. Goal: enumerate every inline default that should be registry-derived (or env-var-driven) and identify ADR-implementation drift like the BAAI / jina-embeddings-v3 leftovers that triggered the 2026-05-23 incident.",
     "created_at": "2026-05-23T11:55:15.467Z",
-    "last_save_at": "2026-06-22T18:56:36.619Z",
+    "last_save_at": "2026-06-23T03:49:54.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c3907cdbf44d2103834d44010dd8e1daf4829460de7a25c34467f0c339138282",
+    "source_doc_hashes": {
+      "spec.md": "86bddaa1c2281bff7e1b2e7c824851008ce320b6ecefadcce480e400d97644e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

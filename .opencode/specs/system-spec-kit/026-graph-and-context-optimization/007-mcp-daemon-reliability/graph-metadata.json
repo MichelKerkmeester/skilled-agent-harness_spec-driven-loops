@@ -59,7 +59,7 @@
       "build",
       "provider",
       "mk-spec-memory",
-      "daemons"
+      "mkcodeindex"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -117,14 +117,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mk-spec-memory and mk_code_index MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS grows until the OS OOM-kills the process, nothing auto-restarts a dead daemon, reconnects bridge to a dead socket, and rebuilding the server wipes the live `dist/` out from under it. Each forces a manual `/mcp` reconnect.",
+    "causal_summary": "The mk-spec-memory and mkcodeindex MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS grows until the OS OOM-kills the process, nothing auto-restarts a dead daemon, reconnects bridge to a dead socket, and rebuilding the server wipes the live `dist/` out from under it",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-06-15T09:09:34.635Z",
+    "last_save_at": "2026-06-23T03:49:56.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:27467cbeee5300e0dc52cb28bd47809feab9890ada822090bc8be8f5366f3c0b",
+    "source_doc_hashes": {
+      "spec.md": "3489631db7e3e6a036ec6bf99c6339294965bc4aa307979d2bfc5b4b20956521"
+    },
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival",
     "last_active_at": "2026-06-08T15:19:04Z"
   }

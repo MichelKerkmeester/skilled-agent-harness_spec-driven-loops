@@ -15,16 +15,21 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
-  "description": "Feature Specification: Stress Test Folder Completion",
+  "description": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder",
   "keywords": [
-    "feature",
-    "specification",
+    "packet",
+    "037",
+    "005",
+    "migrated",
+    "only",
+    "two",
+    "filename-matching",
     "stress",
-    "test",
-    "folder",
-    "completion"
+    "files",
+    "dedicated",
+    "folder"
   ],
-  "lastUpdated": "2026-05-26T17:28:03.293Z",
+  "lastUpdated": "2026-06-23T03:49:52.758Z",
   "specId": "004",
   "folderSlug": "stress-test-folder-completion",
   "parentChain": [

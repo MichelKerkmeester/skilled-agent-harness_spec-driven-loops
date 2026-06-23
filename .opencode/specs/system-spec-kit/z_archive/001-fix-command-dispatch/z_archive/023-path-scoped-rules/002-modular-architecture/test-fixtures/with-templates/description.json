@@ -1,13 +1,15 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/with-templates",
-  "description": "Spec: Template Test Fixture",
+  "description": "This fixture tests that template directories are excluded from validation",
   "keywords": [
-    "spec",
+    "fixture",
+    "tests",
     "template",
-    "test",
-    "fixture"
+    "directories",
+    "excluded",
+    "validation"
   ],
-  "lastUpdated": "2026-04-02T17:21:40.023Z",
+  "lastUpdated": "2026-06-23T03:49:58.994Z",
   "specId": "",
   "folderSlug": "with-templates",
   "parentChain": [

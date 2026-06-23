@@ -30,17 +30,25 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
-  "description": "Feature Specification: Memory search Clusters 4-7 remediation",
+  "description": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the caus",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
+    "005",
+    "audited",
     "memory",
     "search",
-    "clusters",
-    "4-7",
-    "remediation"
+    "against",
+    "indexed-continuity",
+    "runtime",
+    "catalogued",
+    "defects",
+    "spanning",
+    "retrieval",
+    "output",
+    "rendering",
+    "caus"
   ],
-  "lastUpdated": "2026-05-26T17:25:57.817Z",
+  "lastUpdated": "2026-06-23T03:49:53.860Z",
   "specId": "006",
   "folderSlug": "fix-memory-search-health-fallback-stability",
   "parentChain": [

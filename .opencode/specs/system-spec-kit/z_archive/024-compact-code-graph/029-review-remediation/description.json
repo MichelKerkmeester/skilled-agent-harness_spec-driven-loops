@@ -1,12 +1,24 @@
 {
   "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/029-review-remediation",
-  "description": "Spec: Review Remediation",
+  "description": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contract",
   "keywords": [
-    "spec",
+    "completed",
+    "deep",
     "review",
-    "remediation"
+    "024-compact-code-graph",
+    "found",
+    "seven",
+    "active",
+    "issues",
+    "leave",
+    "packet",
+    "internally",
+    "inconsistent",
+    "across",
+    "runtime",
+    "contract"
   ],
-  "lastUpdated": "2026-05-08T08:26:58.371Z",
+  "lastUpdated": "2026-06-23T03:50:00.770Z",
   "specId": "029",
   "folderSlug": "review-remediation",
   "parentChain": [

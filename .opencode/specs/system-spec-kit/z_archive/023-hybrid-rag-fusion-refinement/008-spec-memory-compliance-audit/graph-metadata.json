@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the ESM Module Compliance specification. It is the final cross-cutting documentation and database hygiene sweep after the runtime migration and search fixes completed.",
+    "causal_summary": "After completing 7 phases of ESM migration, the spec and memory ecosystem has accumulated document drift, template non-compliance, and memory quality degradation across 186 spec folders (66 active top-level + 65 archived + 55 phase children)",
     "created_at": "2026-04-12T09:02:50.321Z",
-    "last_save_at": "2026-06-05T12:47:34.926Z",
+    "last_save_at": "2026-06-23T03:50:00.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1e9b8e3eff99898e0785c0f7efb090961fc0cfaf189fd844d1cd2ce39be31c03",
+    "source_doc_hashes": {
+      "spec.md": "2bffd94bcf02473cdc2e80ecb40a349cf5627e429a683a389e2cce5e863cabf3",
+      "plan.md": "43517f76f81abaffdce070440231aa2ace8dcb44e4dcfc040d9f5322d18e5034",
+      "tasks.md": "72ac9fda9ff29d22303f7aa855a82ded607b9f0b4a52cb82b598e637cbccca31",
+      "checklist.md": "cbebca67dd6750927b25bc9d112645080925c42fe989258785f4a224b8962cfa",
+      "implementation-summary.md": "ea396c973aea05499a54a2897c7aca9d94cde5f2a210d8715bed8c5804d619d9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

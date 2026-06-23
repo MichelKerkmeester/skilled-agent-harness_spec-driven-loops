@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The live Spec Kit Memory command surface no longer matches the earlier 012 reconciliation story. The repo now ships **33 MCP tools** across L1-L7, a **4-command** memory suite (`search`, `learn`, `manage`, and `save`), and session recovery owned by `/spec_kit:resume`. Retrieval plus analysis now live under `/memory:search`, while shared-memory lifecycle now lives under `/memory:manage shared`.",
+    "causal_summary": "The 012 spec pack previously described a command surface that is no longer true on disk:",
     "created_at": "2026-04-12T09:02:50.286Z",
-    "last_save_at": "2026-06-22T18:55:04.433Z",
+    "last_save_at": "2026-06-23T03:50:00.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:806b37c1d33cc555b1a3a9237d37052e20cec127f92d12f5f0d1ce52d6e138ee",
+    "source_doc_hashes": {
+      "spec.md": "1b13e32ca5c845b5fdc414516ecf8b7fa1e625b8f2278bdb5bfe71167ec3a465",
+      "plan.md": "62906abb61e723290b9be20370603f3818050bc003755d20983d21b412508043",
+      "tasks.md": "04c2a518d5448fcd783e0fc22f5a126f509460cdbe02aa892ef0ebbde4b237c5",
+      "checklist.md": "74ceac52d0c9a3d5f9e65e4b44fb53baa1c5577db62359e0990ef0e83f191002",
+      "implementation-summary.md": "45aa5328bb398b2d95f6a0485ff7a6d9a459f471e87e1bb3d5215c267b709f3a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -83,14 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The create commands command family owns presentation instructions inline with routing instructions. That makes the display contract harder for assistants to find and follow, especially when command files are long or route through workflow assets.",
+    "causal_summary": "The create commands command family owns presentation instructions inline with routing instructions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.903Z",
+    "last_save_at": "2026-06-23T03:49:57.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e07b089dc752b06033e0ac3756ba7d0d084d14fa906647ba7cd67a2f7c3de3d2",
+    "source_doc_hashes": {
+      "spec.md": "eb903614f33ecb9c3b0c9a5871b720a76cbe58b960eca27c7724e84d74f431bc"
+    },
     "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux",
     "last_active_at": "2026-06-10T19:45:00Z"
   }

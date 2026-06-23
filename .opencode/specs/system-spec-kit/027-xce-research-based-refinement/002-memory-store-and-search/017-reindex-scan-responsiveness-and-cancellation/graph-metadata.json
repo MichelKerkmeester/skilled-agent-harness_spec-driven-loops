@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase came out of a live incident while deploying the 017 search work. A `memory_index_scan` with `{force:true, background:true}` was run to repair a `degraded` index. It pegged the daemon's single-thread event loop for over an hour, during which every IPC call timed out and the scan could not be cancelled, so the daemon had to be SIGKILLed.",
+    "causal_summary": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
     "created_at": "2026-06-17T12:03:13.967Z",
-    "last_save_at": "2026-06-22T18:55:03.371Z",
+    "last_save_at": "2026-06-23T03:49:57.400Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:97e6fcc18ee45f2a52e38e3a6213d81dcc075f7993d9d5087b2f738b678dc0d3",
+    "source_doc_hashes": {
+      "spec.md": "24dfca3e0589d94bd8e358c28d2ba87693eed5e46471cd58f88240d14e4e8df1",
+      "plan.md": "6afad4126a420fc1301727dcc9e08dd24eff9d0e0a573147fbb04e9e2dc7e41d",
+      "tasks.md": "f77b5848a9ad3f9d37970d72e769a8a7509390dde4eaafdbcf12af886d63c3c6",
+      "implementation-summary.md": "4613f639b2024534f5e3819652e152439d65b8955ef9bd6219d0e8d56fa10d4e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

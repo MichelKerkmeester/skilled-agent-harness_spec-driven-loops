@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
-  "description": "Feature Specification: Skill Advisor Outcome-Weighted Ranking Follow-On (aionforge-procedural)",
+  "description": "The Skill Advisor ranks skills by metadata similarity (the 5-lane fusion scorer), not by whether the recommended skill has historically WORKED on task",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
     "advisor",
-    "outcome-weighted",
-    "ranking",
-    "follow-on",
-    "aionforge-procedural"
+    "ranks",
+    "skills",
+    "metadata",
+    "similarity",
+    "5-lane",
+    "fusion",
+    "scorer",
+    "whether",
+    "recommended",
+    "historically",
+    "worked",
+    "task"
   ],
-  "lastUpdated": "2026-06-20T09:26:59.685Z",
+  "lastUpdated": "2026-06-23T03:49:58.472Z",
   "specId": "007",
   "folderSlug": "outcome-weighted-ranking-followon",
   "parentChain": [

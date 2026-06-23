@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4 of 5** of the embedding-stack hardening decomposition: turn the perf items from guesses into measured wins. Instrumentation comes FIRST — it is the gate that turns the next three changes from speculation into evidence.",
+    "causal_summary": "The perf items are guesses without instrumentation",
     "created_at": "2026-05-29T11:22:57.383Z",
-    "last_save_at": "2026-06-22T18:55:02.647Z",
+    "last_save_at": "2026-06-23T03:49:55.494Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d2ca5a71a7a4c197f7cb61430c22c3293153ac4c31f9786a9ef1a898820c2dc2",
+    "source_doc_hashes": {
+      "spec.md": "7e873cd2e4be4c8af503283da1cb1fc7a8fd19a1f7a9a0a9af21becfcca7f09d",
+      "plan.md": "ce5bef9b7bb0d4f0e845052f060f7a091e65447a11ac08ec26b2afcf944f7a3a",
+      "tasks.md": "042aeb28ed177aae5a12014f459ec48c744fe6ff2d3d83b32815be7309f6350f",
+      "implementation-summary.md": "8f9d1c0f6c85ca0bbf433a3b08a78a7167cea604cef073914199b2f66742bd07"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

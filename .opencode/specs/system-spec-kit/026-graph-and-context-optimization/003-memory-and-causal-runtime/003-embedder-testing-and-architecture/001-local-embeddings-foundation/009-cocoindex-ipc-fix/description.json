@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-  "description": "Feature Specification: Phase 9 — Cocoindex IPC Fix",
+  "description": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via d",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
+    "setup",
+    "embeddinggemma-300m",
+    "sentence-transformers",
+    "768-dim",
     "cocoindex",
-    "ipc",
-    "fix"
+    "daemon",
+    "writes",
+    "valid",
+    "embeddings",
+    "targetsqlite",
+    "proven",
+    "via"
   ],
-  "lastUpdated": "2026-05-26T17:26:27.403Z",
+  "lastUpdated": "2026-06-23T03:49:53.981Z",
   "specId": "009",
   "folderSlug": "cocoindex-ipc-fix",
   "parentChain": [

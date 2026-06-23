@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural quality issues. Manual review traced those defects to eight backend bugs across the `generate-context.js` extraction, normalization, and rendering pipeline: duplicated decision fields, wrong completion status, false blocker detection, generic pattern filler, noisy trigger phrases, contaminated file paths, over-aggressive tree thinning, and missing synthesized conversation messages.",
+    "causal_summary": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural quality issues",
     "created_at": "2026-04-12T09:02:50.281Z",
-    "last_save_at": "2026-05-30T10:12:03.327Z",
+    "last_save_at": "2026-06-23T03:50:00.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:44da6619c12eb0e8e17a148c73c71d91b53e8f14cacccc2417cded19389ecdbe",
+    "source_doc_hashes": {
+      "spec.md": "a62b9cae23a3e31ff053ae2597f4ac131aaa48963b70f9647920ba3d25e056c1",
+      "plan.md": "93409bcdeca814b02a4701de62ec41e6c4f409fd7162e2309b1d8710407d332d",
+      "tasks.md": "970ca7c1888822e26880d3eb03a03374c2455830c19ca21f887fac752678c621",
+      "checklist.md": "31d4360cf44e413711cd3a6dc093efa307068b446bd8bfcb50c8b8de490c313a",
+      "implementation-summary.md": "6a8da0a16197ba184e6deb25c1bd8cd7804f26ec52670b7fd5f617397c8e80bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

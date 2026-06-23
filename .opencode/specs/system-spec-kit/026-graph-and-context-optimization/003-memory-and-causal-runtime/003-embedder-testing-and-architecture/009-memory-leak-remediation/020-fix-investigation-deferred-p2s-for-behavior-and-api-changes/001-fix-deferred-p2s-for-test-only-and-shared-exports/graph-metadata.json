@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels. `listSupportedDimensions` is only needed by registry tests, and `EmbedderManifest` is only needed as a test type through the mcp-server embedders barrel.",
+    "causal_summary": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-05-30T10:12:02.507Z",
+    "last_save_at": "2026-06-23T03:49:55.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0ac48aeb1a0b55ca3f5cebdd10a5a31e4c0915d2145c1a47c862bd285ce9e00e",
+    "source_doc_hashes": {
+      "spec.md": "0a4dca81b80167facfdd1bd933e2dd316358c50a21f30af468dd9f82a6b9e723",
+      "plan.md": "3bb5f586c5929c438bcded0aed31aa6b1b59d0f871bad6f00584372c014372e6",
+      "tasks.md": "af014fc7969fb9aa08b2e05ce2880434fe0e4f1c903658b23074fa3a7730afff",
+      "checklist.md": "2ac156cc8252d48037ae0af232ee81308ec924c1b9d2be089e86a84fa4b59d6b",
+      "decision-record.md": "6cc0f37ebabc8b1bcb78c217eeb6fad2640b94e80a2ad5f75ba80ddbceac7354",
+      "implementation-summary.md": "7dfc6a0339028fed97b7fb790cd8926c2ecb8b9047c05b28f47b9035afc06ec1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

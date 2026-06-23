@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt",
-  "description": "Spec: sk-doc Legacy Template Debt Cleanup",
+  "description": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced 93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM",
   "keywords": [
-    "spec",
     "sk-doc",
-    "legacy",
     "template",
-    "debt",
-    "cleanup"
+    "alignment",
+    "audit",
+    "last",
+    "commits",
+    "scanned",
+    "384",
+    "documentation",
+    "files",
+    "surfaced",
+    "misalign-high",
+    "177",
+    "misalign-medium"
   ],
-  "lastUpdated": "2026-05-26T17:26:39.178Z",
+  "lastUpdated": "2026-06-23T03:49:52.256Z",
   "specId": "008",
   "folderSlug": "remove-sk-doc-legacy-template-debt",
   "parentChain": [

@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader. Each runtime had its own schema, wrapper wiring, and remediation backlog, and those fixes were scattered across packets that also bundled unrelated advisor and code-graph work.",
+    "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-06-08T17:32:21.288Z",
+    "last_save_at": "2026-06-23T03:49:56.217Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:5ee6cd0275bc7f06447eda0a9291bf99ca1dabc0fc23740fb597e6b6c4d2f6ab",
+    "source_doc_hashes": {
+      "spec.md": "99c9a2c61b4fa154761682f7c6ab07069e10cd5c73c139f3a710c6865231b2e0",
+      "research/research.md": "e3ddf3443f627d914eb70741b3760c129fb201007302d5254f3e887d89b41798",
+      "resource-map.md": "fec9f1ee242d857076052822649f443ca5b5abcf5b75771a55a1c53f25dda6b3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

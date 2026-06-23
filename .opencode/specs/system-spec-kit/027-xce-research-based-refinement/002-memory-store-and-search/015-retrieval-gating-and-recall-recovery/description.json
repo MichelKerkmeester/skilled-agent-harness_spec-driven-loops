@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
-  "description": "Feature Specification: Retrieval Gating and Recall Recovery",
+  "description": "On-topic memory searches return `requestQuality: weak`, `citationPolicy: donotciteresults`, and a \"Retrieval quality is weak\" response policy even whe",
   "keywords": [
-    "feature",
-    "specification",
+    "on-topic",
+    "memory",
+    "searches",
+    "return",
+    "requestquality",
+    "weak",
+    "citationpolicy",
+    "donotciteresults",
     "retrieval",
-    "gating",
-    "recall",
-    "recovery"
+    "quality",
+    "response",
+    "policy",
+    "even",
+    "whe"
   ],
-  "lastUpdated": "2026-06-20T10:59:13.959Z",
+  "lastUpdated": "2026-06-23T03:49:57.329Z",
   "specId": "015",
   "folderSlug": "retrieval-gating-and-recall-recovery",
   "parentChain": [

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the ESM Module Compliance specification.",
+    "causal_summary": "`@spec-kit/scripts` is intentionally pinned to CommonJS (`\"type\": \"commonjs\"`) and owns 20 files that consume `@spec-kit/shared` and `@spec-kit/mcp-server`",
     "created_at": "2026-04-12T09:02:50.318Z",
-    "last_save_at": "2026-05-30T10:12:03.420Z",
+    "last_save_at": "2026-06-23T03:50:00.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a74e17bd0f87bad1d9457eebdf35a2afbcd6207968cf406be0868a7e92ff3ce7",
+    "source_doc_hashes": {
+      "spec.md": "64bd3747c871dc13fd51a4caa7b3e6e03c62e6815381c9f65c68afcfa40095f8",
+      "plan.md": "dbbd2de3afa2538fcdb933cc82e9295e2750e52730cef0625beb6c8de4da1ff2",
+      "tasks.md": "b47604f6f88e48c38ad1d7b0440f703cc304acc4a5636109588049852609bbb5",
+      "implementation-summary.md": "9eb93651f980e6a7d68f35f96a558ba1e80712c21f7a08ded2c9daf06cad5792"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

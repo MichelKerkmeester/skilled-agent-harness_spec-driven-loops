@@ -1,18 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
-  "description": "MCP Topology Pivot: ADR-002 Supersedes ADR-001 Q3 (Co-Resident -> Standalone)",
+  "description": "Reality diverged from ADR-001 in two ways",
   "keywords": [
-    "mcp",
-    "topology",
-    "pivot",
-    "adr-002",
-    "supersedes",
+    "reality",
+    "diverged",
     "adr-001",
-    "co-resident",
-    "standalone"
+    "two",
+    "ways"
   ],
-  "lastUpdated": "2026-05-26T17:26:04.493Z",
+  "lastUpdated": "2026-06-23T03:49:55.945Z",
   "specId": "003",
   "folderSlug": "standalone-mcp-topology-pivot",
   "parentChain": [

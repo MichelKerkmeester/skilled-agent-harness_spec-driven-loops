@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term. The term `kubernetes` scored good at 0.78 on a semantically unrelated doc, identical across all four models, and the 005 improvement research diagnosed it as a score-calibration miss where a fluent but unrelated doc earns a high background cosine and a lone spurious hit sails through to good. The eval harness cannot reproduce that defect today. All six existing ground-truth hard-negatives are in-corpus decoys with a real relevance-3 target (`ground-truth.json:914-971`, `ground-truth-data.ts:18-30`), so every hard-negative still has a correct answer in the corpus and no sample tests the absent-term case the benchmark exposed. The metric that would measure the defect already exists but is dormant. `computeCitabilityConfusionMetrics` with `falseGoodOnHardNegatives` is present (`eval-metrics.ts:885-902`) yet no `scripts/evals` driver calls it, and the ablation framework wires only the weaker `computeGateVerdictMetrics`. The net effect is that the benchmarked off-corpus false-positive is a one-off manual finding with no fixture to reproduce it and no permanent guard to catch a regression.",
+    "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.693Z",
+    "last_save_at": "2026-06-23T03:49:58.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:64685218dd9e19886b617b9c02e49ee5c353de22a61471a74c14b5ce9ad1d601",
+    "source_doc_hashes": {
+      "spec.md": "be75dde2236ad334b0ad12e784d16ac6fabf5a95a9bd960041a02fa82b684828",
+      "plan.md": "4ae2f127090fb3d74ead9e171e7129b5551a0408a6d69c92c5888c04646d66f0",
+      "tasks.md": "531ad6a83446f04130e66aa9e96b51092b2eb5ca7aeec6864bfd90e07bbd73e9",
+      "checklist.md": "08355542521855ac16f39d758430b19617f893970d9066e50c3ece0b685e2b09",
+      "implementation-summary.md": "cbf8ded0498a5403628d266b166eb5593c95b6557a03f38eb6aa0d325b19030a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

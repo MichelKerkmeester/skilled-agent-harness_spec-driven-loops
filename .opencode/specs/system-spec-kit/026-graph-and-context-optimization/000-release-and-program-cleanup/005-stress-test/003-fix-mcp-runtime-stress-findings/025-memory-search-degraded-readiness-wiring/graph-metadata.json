@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "PP-1's behavioral test TC-3 is encoded as `expected_fail` to document this gap (`mcp_server/tests/handler-memory-search-live-envelope.vitest.ts`). The W10 integration test already demonstrates the canonical mapping from a graph readiness payload to `DegradedReadinessTelemetry` (`mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:46-66`).",
+    "causal_summary": "`SearchDecisionEnvelope.degradedReadiness` (defined in `mcpserver/lib/search/search-decision-envelope.ts:31-42`) is currently always undefined when emitted by `memorysearch`",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-06-22T18:55:01.845Z",
+    "last_save_at": "2026-06-23T03:49:52.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:13d1732f2059ce6e2eea7e99431f9d23891abacf387d6d3a3161cd74c1a33258",
+    "source_doc_hashes": {
+      "spec.md": "3364ee621383f66ae5ee315d5a0ee87c318d584fc00d7e0d11e5daff9ec04e7d",
+      "plan.md": "c06813900d04d5c0bf00c57f1723a5723d05ec710ea8cb410ab9eca6365b74fe",
+      "tasks.md": "0a6f669a0b57e6337948f548b85bb910df06f75766393a5962148b968f24aab1",
+      "implementation-summary.md": "5715273b5920e3fb39e108246b02c34ee87e02192a892e4f1e601e044b761508",
+      "resource-map.md": "5b653dd60564f4098cc8cedfe93213fa59d37f6c6fa9e421ff7cc624f50ec712"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,20 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
-  "description": "Feature Specification: Dispose the embedding provider's native ONNX session on swap (F2′ / RC-1)",
+  "description": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s nat",
   "keywords": [
-    "feature",
-    "specification",
+    "invalidateprovidersingleton",
+    "shared",
+    "embeddings",
+    "nulls",
+    "providerinstance",
+    "without",
+    "calling",
     "dispose",
-    "embedding",
-    "provider",
-    "native",
-    "onnx",
-    "session",
-    "swap",
-    "rc-1"
+    "outgoing",
+    "hflocalprovider",
+    "nat"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.001Z",
+  "lastUpdated": "2026-06-23T03:49:56.412Z",
   "specId": "005",
   "folderSlug": "provider-dispose",
   "parentChain": [

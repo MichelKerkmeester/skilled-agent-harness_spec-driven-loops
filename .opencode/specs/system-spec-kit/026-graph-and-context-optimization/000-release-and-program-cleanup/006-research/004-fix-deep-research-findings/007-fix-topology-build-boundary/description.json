@@ -1,17 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary",
-  "description": "Feature Specification: 007 Topology And Build/Dist Boundary Remediation",
+  "description": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist",
   "keywords": [
-    "feature",
-    "specification",
-    "007",
-    "topology",
+    "six",
+    "findings",
+    "packet",
+    "046",
+    "deep",
+    "research",
+    "phase-topology",
     "build",
     "dist",
     "boundary",
-    "remediation"
+    "leak",
+    "topology",
+    "drift",
+    "cache-signature",
+    "stale"
   ],
-  "lastUpdated": "2026-05-26T17:27:16.184Z",
+  "lastUpdated": "2026-06-23T03:49:52.865Z",
   "specId": "007",
   "folderSlug": "fix-topology-build-boundary",
   "parentChain": [

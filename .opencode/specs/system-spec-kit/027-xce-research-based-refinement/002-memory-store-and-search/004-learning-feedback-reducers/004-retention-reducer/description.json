@@ -25,15 +25,18 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer",
-  "description": "Feature Specification: Feedback Retention Reducer",
+  "description": "Level 2 child packet for learned retention and edge-floor reducer logic.",
   "keywords": [
-    "feature",
-    "specification",
-    "feedback",
+    "level",
+    "child",
+    "packet",
+    "learned",
     "retention",
-    "reducer"
+    "edge-floor",
+    "reducer",
+    "logic"
   ],
-  "lastUpdated": "2026-06-10T11:40:00.000Z",
+  "lastUpdated": "2026-06-23T03:49:57.225Z",
   "specId": "004",
   "folderSlug": "retention-reducer",
   "parentChain": [

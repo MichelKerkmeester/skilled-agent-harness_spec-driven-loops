@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them. The status normalizer `normalizeDerivedStatus` returns the raw normalized string in its default branch at `graph-metadata-parser.ts:179-180`, and the Zod schema in `graph-metadata-schema.ts` accepts any non-empty string for `derived.status`, so an em-dash prose value becomes a valid status. The current `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` checks registered in the rule registry are shallow shell guards run at warning level, while the real Zod schemas already exist and are not used as a completion gate. The parser also preserves a legacy bad status. When a packet has no `implementation-summary.md`, the parser keeps the existing status after a normalization that admits arbitrary strings, so a folder that once carried a prose status keeps carrying it across re-derives. The combined effect is that the status enum, the path-prefix shape and the schema invariants regress silently because nothing errors on them under strict mode. The 031 research confirmed each leak against live code in its section 4 ranked proposals 6, 9 and 7 and in its section 6 verification table.",
+    "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:03.861Z",
+    "last_save_at": "2026-06-23T03:49:58.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e0b07fa4556e0d0ae90e799e08a5e59f835f1faca8b29a6c93abedd3043c1225",
+    "source_doc_hashes": {
+      "spec.md": "cd15a02ff177a89ac33df2c551fa54b2a1aabecc19bccd72a3f8a89bc730d1ae",
+      "plan.md": "2c05e7bb0e6b2d8bd3be5c7f09849558a31727e9994ab23d611b9437d9a12004",
+      "tasks.md": "666594393643982d5bc577d90c2985909a98db531fb81e6e0fcccfa741921b8a",
+      "checklist.md": "596732d54b3c56c4cb23087b27f2da605007f5a5bf64ad31db3301422b99e3fc",
+      "implementation-summary.md": "04b48ae6dff145841a6f01a16f6f087db9208d32dce72386d361d1a3e64f713e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

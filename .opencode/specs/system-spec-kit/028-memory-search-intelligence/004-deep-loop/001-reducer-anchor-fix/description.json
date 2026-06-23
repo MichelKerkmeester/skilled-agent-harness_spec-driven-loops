@@ -1,20 +1,20 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix",
-  "description": "Feature Specification: Deep Research Reducer-Anchor Template Fix (028/004 ship-first correctness)",
+  "description": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "research",
-    "reducer-anchor",
-    "template",
-    "fix",
-    "028",
-    "004",
-    "ship-first",
-    "correctness"
+    "deep-research",
+    "loop",
+    "folds",
+    "cross-iteration",
+    "state",
+    "rewriting",
+    "anchored",
+    "sections",
+    "per-run",
+    "strategy",
+    "file"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.883Z",
+  "lastUpdated": "2026-06-23T03:49:58.491Z",
   "specId": "001",
   "folderSlug": "reducer-anchor-fix",
   "parentChain": [

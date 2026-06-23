@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The shared mk-spec-memory daemon is owned by one launcher. Phase 017 made that owner exit cleanly on disposal (no flap), but the daemon still dies with its owner: `shutdownLauncherForSignal` explicitly `child.kill(signal)`s the context-server. So every secondary session bridged to that daemon loses the backend for a few seconds plus a cold FTS rebuild until someone respawns it. This is the \"complete\" RC-2 fix the investigation deferred.",
+    "causal_summary": "The shared mk-spec-memory daemon is owned by one launcher",
     "created_at": "2026-06-07T17:32:00Z",
-    "last_save_at": "2026-06-22T18:55:03.043Z",
+    "last_save_at": "2026-06-23T03:49:56.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b3ff3d852fa248c6095fe7aef4dba80f4c06b4d6d9023f847056c6516fdb4b89",
+    "source_doc_hashes": {
+      "spec.md": "468a467c7307a2a1a5616148012f2011dfd3629ee9acb5693faa9261d295128e",
+      "plan.md": "ee6c055d5b14c80caf16328ac73ecbbc23e10e62c6e3b8303670e0f1b8d244ac",
+      "tasks.md": "a14d3bb447c88b261e86cfeb63bce0537828f80e4965883450f39d78c10739b9",
+      "checklist.md": "8afa80c50b06d2c68b26fd2e11540e8b34dc3d88c0348cdd1d324c1daf94788f",
+      "implementation-summary.md": "66ad252d47f204e7254f4ab8aefc789b1c888120d5703087781289611bda4eea"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

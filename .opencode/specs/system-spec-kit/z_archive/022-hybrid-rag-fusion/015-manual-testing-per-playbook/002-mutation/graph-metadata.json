@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook. Each of the 9 mutation scenarios must be executed, verdicted, and evidenced independently. Two scenarios (EX-008 and EX-009) are destructive and require sandbox isolation — without a bounded phase packet, sandbox preconditions risk being overlooked.",
+    "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-06-22T18:55:04.451Z",
+    "last_save_at": "2026-06-23T03:50:00.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:03482842beb4a048bf4201edf0e29a5d12cdda58d6364b0b62c0506b521649b0",
+    "source_doc_hashes": {
+      "spec.md": "b4e8125aa00c57a2662d094193c28172afa4c1623cf793c2e0faa444918ab2b4",
+      "plan.md": "568f1a2f2c35d7c38a8055dafe49bb8aca49cb8c79681ff129aa34bc33c03654",
+      "tasks.md": "140a5287bceb198d19cebbd87f66f2271c53c3f960ccfc728a2a78ccbe8546e7",
+      "checklist.md": "3be682f11901358137fb42e48b48e1104611a3880870e41f231cfe0ee401a2d0",
+      "implementation-summary.md": "e2514a46077be727b565149112147f5f252c2a4bbbb892b9f14444182c730c2b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

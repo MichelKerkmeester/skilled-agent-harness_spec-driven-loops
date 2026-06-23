@@ -1,14 +1,24 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
-  "description": "Phase Parent: 000-release-cleanup/006-research",
+  "description": "Phase parent for deep research charters covering automation self-management, supplemental investigations, and system bug/improvement research across 4",
   "keywords": [
     "phase",
     "parent",
-    "000-release-cleanup",
-    "006-research"
+    "deep",
+    "research",
+    "charters",
+    "covering",
+    "automation",
+    "self-management",
+    "supplemental",
+    "investigations",
+    "system",
+    "bug",
+    "improvement",
+    "across"
   ],
-  "lastUpdated": "2026-05-26T17:27:39.265Z",
+  "lastUpdated": "2026-06-23T03:49:52.789Z",
   "specId": "006",
   "folderSlug": "research",
   "parentChain": [

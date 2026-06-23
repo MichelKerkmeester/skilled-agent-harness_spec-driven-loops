@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 019 completes the full import isolation slice: advisor-owned source, hooks, tests, and stress coverage live in `system-skill-advisor`; spec-kit retains only process-boundary compatibility stubs and local utilities. Advisor tests pass after the moved fixture path repair, and memory full-suite failures are classified as baseline-red because the failed test count did not increase.",
+    "causal_summary": "`system-spec-kit/mcpserver` still contained advisor source imports after advisor extraction",
     "created_at": "2026-05-15T06:55:51.323Z",
-    "last_save_at": "2026-05-30T10:12:01.905Z",
+    "last_save_at": "2026-06-23T03:49:53.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3a60aa8d7b0e52148b03e9673bf770df2a9ca6420e8bc9e1399b1056ec325c9f",
+    "source_doc_hashes": {
+      "spec.md": "2046993408c47c13897fce20f632e535c60c1636512095c405f6bb00c14c12d8",
+      "plan.md": "a5ae898ed10117157e20517e384e45e7cd3db955b98eb5a85f6756371c866155",
+      "tasks.md": "fac43f7298876ff71b49304cd93f4fc3e5f36928f0c690117bda350e3518051d",
+      "checklist.md": "da81d072bd265648d4e582be38ff0e2cd1b886cbac664892ffebb9d627eaf327",
+      "decision-record.md": "2a670a894ea8c8c626d9d157768648a215f9f90a44b504bac1a00785545db689",
+      "implementation-summary.md": "23ae1cd0f250b1d7f4c929be2420665d128d269628be0d740e071c8996b96736"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

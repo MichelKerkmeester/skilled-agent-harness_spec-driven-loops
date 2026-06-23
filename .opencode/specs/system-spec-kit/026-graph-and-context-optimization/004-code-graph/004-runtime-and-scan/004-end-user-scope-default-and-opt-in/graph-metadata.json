@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The code graph (`mcp__mk_spec_memory__code_graph_scan`) currently indexes ALL workspace code, including 1,619 files / 34,844 nodes / 17,846 edges that include hundreds of spec-kit internal files end users never query. End users querying their application code get results polluted with spec-kit internals. This packet investigates and decides: make end-user-repo-only the **default**, gate skill indexing behind a new opt-in feature flag. Deep-research will produce the implementation plan.",
+    "causal_summary": "Latest scan: 1,619 files / 34,844 nodes / 17,846 edges, with hundreds of those nodes being spec-kit MCP server internals (skilladvisor, codegraph subsystems, sk- skills)",
     "created_at": "2026-05-02T11:04:14Z",
-    "last_save_at": "2026-06-22T18:55:02.783Z",
+    "last_save_at": "2026-06-23T03:49:55.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,17 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:be0353874bcf732e15017bdfd4fc52b40f1d3e33b0cf0297168a532168fbe2fc",
+    "source_doc_hashes": {
+      "spec.md": "9d1f0cc326b42555834b7634730ed04cea19226e963b9dd6d4e78eaecad2e156",
+      "plan.md": "abf3a36648a6833c07a22c28bd9aafc1d945514488d942c7e5accad65c186adc",
+      "tasks.md": "3ff9c298e44a7e67cff82bedd0ef6743c9dbef27f68b77d06c7f4b169e8f8b42",
+      "checklist.md": "28b216f72c186f422e340063418958bd22d21bfaf03c41ad983c811cc79a17e7",
+      "decision-record.md": "aacce8ee90444972f682580c5ea203664cb5448422abb7648b15d37a91c55138",
+      "implementation-summary.md": "4d681d22867376bd80d0b8a29be5bb72b5423464822f81421dba9f5dae74ef56",
+      "research/research.md": "1505b26a9d6d20f15afee78af4c2b08d3e4a1a0c3198c72e68148728447eb252",
+      "resource-map.md": "d85e8c3a1e104a7e0b47cfa2e48cc12ce6ca60fddbef727321381a8ae90dc3b9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

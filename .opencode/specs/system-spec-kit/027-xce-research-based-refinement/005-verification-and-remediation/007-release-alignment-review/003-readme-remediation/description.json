@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
-  "description": "Feature Specification: README Currency Remediation (Track A)",
+  "description": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs",
   "keywords": [
-    "feature",
-    "specification",
+    "track",
+    "release-alignment",
+    "review",
+    "001-readmes-vs-027",
+    "findings-all",
+    "json",
+    "surfaced",
+    "confirmed",
     "readme",
-    "currency",
-    "remediation",
-    "track"
+    "code-readme",
+    "staleness",
+    "readmes"
   ],
-  "lastUpdated": "2026-06-18T18:03:07.695Z",
+  "lastUpdated": "2026-06-23T03:49:58.032Z",
   "specId": "003",
   "folderSlug": "readme-remediation",
   "parentChain": [

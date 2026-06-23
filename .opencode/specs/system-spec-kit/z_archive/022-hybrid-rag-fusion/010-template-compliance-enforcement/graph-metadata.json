@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Agents across all 4 CLI surfaces (Claude Code, Copilot, ChatGPT, Codex) produce structurally non-compliant spec folder documents. A clean-slate rewrite of 20 spec folders (commit b88c07f82) revealed 637 header/anchor structural changes across 54 errors, requiring approximately 270 fix edits. The three dominant failure modes are TEMPLATE_HEADERS (wrong section names, numbering, or order), ANCHORS_VALID (missing, misspelled, or unclosed anchor tags), and SPEC_DOC_INTEGRITY (broken cross-file references). The current validation system runs only after files are written.",
+    "causal_summary": "Agents across all 4 CLI surfaces (Claude Code, Copilot, ChatGPT, Codex) produce structurally non-compliant spec folder documents",
     "created_at": "2026-04-12T09:02:50.283Z",
-    "last_save_at": "2026-05-30T10:12:03.332Z",
+    "last_save_at": "2026-06-23T03:50:00.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:4384e2069c9a6339f4db3bb8185e6539c10d73ac312ae61dc0377fdbf322cf09",
+    "source_doc_hashes": {
+      "spec.md": "05cf898af9420eb6d210fd683fb467f3c9bfe408f26fd85e5343291c4038510d",
+      "plan.md": "ce72fe2e699349dc948fc71959671928be82c337bb3195aae191accbbcae4a57",
+      "tasks.md": "c1250074b2653c513c0eff9a049768427aaf62ec699e8a7f762ccd9e2d131436",
+      "checklist.md": "24d6f87600e6d8fe6c9ab68a2f874fac178a5c49425e11b276c5c92b95d3b525",
+      "implementation-summary.md": "e53b17f21b2d9633e1185647d2757e4817e1c94e797802c93f4173b5e1154a58",
+      "research/research.md": "b1d7b69ee87a25dadbe38f7033664051e830825645e28e659cc7ad44c138279e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

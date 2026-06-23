@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The two feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.",
+    "causal_summary": "Level 2 closeout child for ENV_REFERENCE flags and integration tests across feedback reducer consumers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-06-10T19:22:14.947Z",
+    "last_save_at": "2026-06-23T03:49:57.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fd0f93a6bd9676474465a5cab6924955657d14256ca55d3dc1409c8f192ac9ab",
+    "source_doc_hashes": {
+      "spec.md": "9bd866116c8311a6809d82d654002a4aeec8fcca34ffcbf17e7cf52aa7d81ba1",
+      "plan.md": "8544f19392835a286802bacd59d62c0ca065289ce3a9b9d30835ef71311c20f0",
+      "tasks.md": "b7af0ca5441c32860d35e929ee6bf27615db1fe7a0127e51fc2943d7dae9056c",
+      "checklist.md": "0958428109e7748ceb2ccf9d03160342e432be04f1d670c99d1ebba69c89860a",
+      "implementation-summary.md": "983c110f24efcbe2ffeffe2b8dfdca6d0d51b87af8d8d6c9e5608fe1ed3a7886"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,18 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
-  "description": "Feature Specification: maintenance-grace daemon survives re-election",
+  "description": "After 018 made the background scan cooperative, a full reindex still could not complete",
   "keywords": [
-    "feature",
-    "specification",
-    "maintenance-grace",
-    "daemon",
-    "survives",
-    "re-election"
+    "018",
+    "made",
+    "background",
+    "scan",
+    "cooperative",
+    "full",
+    "reindex",
+    "still",
+    "complete"
   ],
-  "lastUpdated": "2026-06-18T03:33:51.836Z",
+  "lastUpdated": "2026-06-23T03:49:57.410Z",
   "specId": "018",
   "folderSlug": "maintenance-grace-daemon-survives-reelection",
   "parentChain": [

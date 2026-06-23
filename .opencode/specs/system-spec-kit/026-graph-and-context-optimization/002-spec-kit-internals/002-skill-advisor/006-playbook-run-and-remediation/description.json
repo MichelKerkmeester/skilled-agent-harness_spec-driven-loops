@@ -1,17 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
-  "description": "Feature Specification: Skill Advisor Manual Testing Playbook Run",
+  "description": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manualtestingplaybook/`) spanning native MCP tools, CLI runtime hooks,",
   "keywords": [
-    "feature",
-    "specification",
+    "system-skill-advisor",
     "skill",
-    "advisor",
+    "ships",
+    "46-scenario",
     "manual",
     "testing",
     "playbook",
-    "run"
+    "manualtestingplaybook",
+    "spanning",
+    "native",
+    "mcp",
+    "tools",
+    "cli",
+    "runtime",
+    "hooks"
   ],
-  "lastUpdated": "2026-05-27T11:53:58.347Z",
+  "lastUpdated": "2026-06-23T03:49:53.644Z",
   "specId": "006",
   "folderSlug": "playbook-run-and-remediation",
   "parentChain": [

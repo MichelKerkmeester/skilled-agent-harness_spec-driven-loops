@@ -39,7 +39,7 @@
       "tasks",
       "summary",
       "impl",
-      "phase"
+      "broken"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Deep research child loop specification.",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-06-17T19:57:25.099Z",
-    "last_save_at": "2026-06-22T18:55:03.370Z",
+    "last_save_at": "2026-06-23T03:49:57.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ef12a4d82b19e5bf5ee81a5731c0da29acad492811eb519ef88a06a8470b3fcd",
+    "source_doc_hashes": {
+      "spec.md": "7c74dd9feee1fb7fb8bfccea1bbe31fd4113fb3d18838d1b2b1129e13f2006d1",
+      "plan.md": "63ae964dbbc946cc8a0105fb506b47a0d2811f755973992698c3d1ef4db1e074",
+      "tasks.md": "8877d64631b226493b7fe267cef3624a8c83385700199b48e9ee000f1146de71",
+      "implementation-summary.md": "03c16d3fd7be30faa7ac0af528a63a7bff1fd8d61d4339aa4179dc3852b2f972"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

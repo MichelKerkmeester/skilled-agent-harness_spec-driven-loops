@@ -1,14 +1,22 @@
 {
   "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/077-speckit-upgrade-from-research",
-  "description": "Specification: System-Spec-Kit Upgrade from Research Synthesis",
+  "description": "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit",
   "keywords": [
     "specification",
-    "system-spec-kit",
-    "upgrade",
+    "consolidates",
+    "findings",
+    "four",
+    "prior",
     "research",
-    "synthesis"
+    "specs",
+    "060-063",
+    "single",
+    "implementation",
+    "plan",
+    "upgrading",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.998Z",
+  "lastUpdated": "2026-06-23T03:49:59.312Z",
   "specId": "077",
   "folderSlug": "speckit-upgrade-from-research",
   "parentChain": [

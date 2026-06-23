@@ -1,15 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
-  "description": "Feature Specification: Token-Aware Chunking for LlamaCppProvider",
+  "description": "`LlamaCppProvider` currently caps input by characters before passing text to `LlamaEmbeddingContext.getEmbeddingFor`",
   "keywords": [
-    "feature",
-    "specification",
-    "token-aware",
-    "chunking",
-    "llamacppprovider"
+    "llamacppprovider",
+    "currently",
+    "caps",
+    "input",
+    "characters",
+    "passing",
+    "text",
+    "llamaembeddingcontext",
+    "getembeddingfor"
   ],
-  "lastUpdated": "2026-05-26T17:26:33.796Z",
+  "lastUpdated": "2026-06-23T03:49:54.170Z",
   "specId": "039",
   "folderSlug": "token-aware-chunking",
   "parentChain": [

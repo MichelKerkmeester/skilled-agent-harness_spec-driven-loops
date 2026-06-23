@@ -1,16 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration",
-  "description": "Feature Specification: Move skill_graph_* MCP tools from spec_kit_memory to system_skill_advisor ownership",
+  "description": "The advisor extraction is structurally complete, but the four `skillgraph` MCP tools still live under `speckitmemory`",
   "keywords": [
-    "feature",
-    "specification",
-    "move",
+    "advisor",
+    "extraction",
+    "structurally",
+    "complete",
+    "four",
+    "skillgraph",
     "mcp",
     "tools",
-    "ownership"
+    "still",
+    "live",
+    "speckitmemory"
   ],
-  "lastUpdated": "2026-05-26T17:27:28.904Z",
+  "lastUpdated": "2026-06-23T03:49:53.276Z",
   "specId": "008",
   "folderSlug": "skill-graph-tools-advisor-migration",
   "parentChain": [

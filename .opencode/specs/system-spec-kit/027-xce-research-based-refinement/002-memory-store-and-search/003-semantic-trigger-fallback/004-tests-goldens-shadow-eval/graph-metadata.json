@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** (final) of the semantic trigger fallback decomposition (parent `004-semantic-trigger-fallback`).",
+    "causal_summary": "Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union",
     "created_at": "2026-06-06T13:35:46Z",
-    "last_save_at": "2026-06-22T18:55:03.307Z",
+    "last_save_at": "2026-06-23T03:49:57.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b0916f2fcd708e95068ad38433d8a39eb77d9b4908c526d6ad8554dd5cf8990f",
+    "source_doc_hashes": {
+      "spec.md": "e9d52bdca840fdea7c76ed2a124b7123da023418ddeb3003cf58f4b0ebfe01f9",
+      "plan.md": "ec17d12dec34c8425565fd34faaf4a079b7490982f50afe482f2c1d327fe2b47",
+      "tasks.md": "15fcedb3b9b73736ede8ea56f6c4189e5db959e0ac698457c82f3581710f505d",
+      "implementation-summary.md": "4ce5a6fe84b161e4e07b413e5233e182b66e2a643d2187fe7816b25a6eeccdce"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

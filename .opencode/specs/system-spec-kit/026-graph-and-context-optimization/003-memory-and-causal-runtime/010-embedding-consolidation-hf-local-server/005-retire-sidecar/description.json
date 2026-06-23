@@ -1,16 +1,20 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar",
-  "description": "Feature Specification: Retire the embedding sidecar execution path",
+  "description": "Once hf-local is a client for a launcher-supervised model server, the sidecar branch becomes redundant lifecycle machinery",
   "keywords": [
-    "feature",
-    "specification",
-    "retire",
-    "embedding",
+    "hf-local",
+    "client",
+    "launcher-supervised",
+    "model",
+    "server",
     "sidecar",
-    "execution",
-    "path"
+    "branch",
+    "becomes",
+    "redundant",
+    "lifecycle",
+    "machinery"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.678Z",
+  "lastUpdated": "2026-06-23T03:49:55.459Z",
   "specId": "005",
   "folderSlug": "retire-sidecar",
   "parentChain": [

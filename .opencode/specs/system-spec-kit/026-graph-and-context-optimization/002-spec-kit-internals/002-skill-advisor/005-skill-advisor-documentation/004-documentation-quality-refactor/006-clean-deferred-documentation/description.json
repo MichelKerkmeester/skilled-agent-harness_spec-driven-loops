@@ -1,12 +1,17 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
-  "description": "Feature Specification: 006-clean-deferred-documentation",
+  "description": "Children 002-005 deferred a set of findings from the 001 research synthesis",
   "keywords": [
-    "feature",
-    "specification",
-    "006-clean-deferred-documentation"
+    "children",
+    "002-005",
+    "deferred",
+    "set",
+    "findings",
+    "001",
+    "research",
+    "synthesis"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.111Z",
+  "lastUpdated": "2026-06-23T03:49:53.609Z",
   "specId": "006",
   "folderSlug": "clean-deferred-documentation",
   "parentChain": [

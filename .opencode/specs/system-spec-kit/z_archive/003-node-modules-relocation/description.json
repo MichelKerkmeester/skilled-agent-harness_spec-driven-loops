@@ -1,14 +1,20 @@
 {
   "specFolder": "system-spec-kit/z_archive/003-node-modules-relocation",
-  "description": "Feature Specification: Node Modules Relocation",
+  "description": "This archived folder captures work that relocated nodemodules closer to the MCP server dependency boundary",
   "keywords": [
-    "feature",
-    "specification",
-    "node",
-    "modules",
-    "relocation"
+    "archived",
+    "folder",
+    "captures",
+    "work",
+    "relocated",
+    "nodemodules",
+    "closer",
+    "mcp",
+    "server",
+    "dependency",
+    "boundary"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.561Z",
+  "lastUpdated": "2026-06-23T03:49:59.425Z",
   "specId": "003",
   "folderSlug": "node-modules-relocation",
   "parentChain": [

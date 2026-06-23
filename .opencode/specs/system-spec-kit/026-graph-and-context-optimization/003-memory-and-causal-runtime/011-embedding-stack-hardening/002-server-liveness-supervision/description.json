@@ -1,16 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision",
-  "description": "Feature Specification: Server liveness + supervision hardening",
+  "description": "The supervision layer cannot tell a healthy server from a wedged one",
   "keywords": [
-    "feature",
-    "specification",
-    "server",
-    "liveness",
     "supervision",
-    "hardening"
+    "layer",
+    "cannot",
+    "tell",
+    "healthy",
+    "server",
+    "wedged",
+    "one"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.640Z",
+  "lastUpdated": "2026-06-23T03:49:55.483Z",
   "specId": "002",
   "folderSlug": "server-liveness-supervision",
   "parentChain": [

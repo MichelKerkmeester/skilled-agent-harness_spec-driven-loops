@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "The pipeline uses 3 real extraction engines plus 1 wrapper, each with different stopwords, weighting, and placeholder rules:",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-05-30T10:12:03.302Z",
+    "last_save_at": "2026-06-23T03:50:00.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:78ea3b6abe735708ad9cc13d94cfcacf25643ab1bb91fcc17a673310cf4017b3",
+    "source_doc_hashes": {
+      "spec.md": "31ea2228c969c3cdb0c50ce4644c0a44b744e6827fc8c97459aef01769a5ef08",
+      "plan.md": "a8897f6a43c57ef1dd1af129ef5708d4a7a5a152f35d1544b7ad82c71949b108",
+      "tasks.md": "e6aea55fe9a6f04b01e49592d7bcd9f4df954d1594b3c9801a34f8aaa5c14fc6",
+      "checklist.md": "59216e7e42ef9dfa76130a9a0f61f148ebb9ad712e84c515b697742d81655e10",
+      "implementation-summary.md": "662ef763beedde70b932fb4123b83b7d36c1b6ba711df1ababb717b4e2ecdc05"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

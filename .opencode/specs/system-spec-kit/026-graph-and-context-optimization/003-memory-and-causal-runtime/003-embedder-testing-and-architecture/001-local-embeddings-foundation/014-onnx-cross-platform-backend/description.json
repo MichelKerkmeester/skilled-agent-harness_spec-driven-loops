@@ -1,18 +1,17 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
-  "description": "Feature Specification: 014/014 ONNX Runtime cross-platform embedding backend",
+  "description": "Cocoindex currently encodes embeddings via sentence-transformers on PyTorch",
   "keywords": [
-    "feature",
-    "specification",
-    "014",
-    "onnx",
-    "runtime",
-    "cross-platform",
-    "embedding",
-    "backend"
+    "cocoindex",
+    "currently",
+    "encodes",
+    "embeddings",
+    "via",
+    "sentence-transformers",
+    "pytorch"
   ],
-  "lastUpdated": "2026-05-26T17:26:12.736Z",
+  "lastUpdated": "2026-06-23T03:49:54.010Z",
   "specId": "014",
   "folderSlug": "onnx-cross-platform-backend",
   "parentChain": [

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Codex-facing `spec_kit_memory` runtime reliability is now stable across the narrow slice owned by this packet: startup writes the SQLite database to a writable home path, structured logs stay on stderr, and `initializeDb(':memory:')` / custom-path test flows now promote their connection into the active shared DB state so later reads and writes stay isolated from the persistent live database. This packet records that landed remediation as a narrow green slice, then captures the remaining broader runtime, documentation, and release-control cleanup as explicit follow-on recommendations so future work does not keep stretching `020-post-release-fixes`.",
+    "causal_summary": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startup-time structured logs could leak onto stdout during background memory scans",
     "created_at": "2026-04-12T09:02:50.313Z",
-    "last_save_at": "2026-06-05T12:47:34.903Z",
+    "last_save_at": "2026-06-23T03:50:00.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:49821be1deb22c89cfdaeb740a384240d9e7ff7bfa578879f8395165bb064f60",
+    "source_doc_hashes": {
+      "spec.md": "c84fc93c424be4d5e005465e79b022f234cef8d23173a8b05ddeb34d5fd5eedd",
+      "plan.md": "c641369479871e9b6e7e79d6eb07b5e8b9f1a249608291d8d8a16b4256d82a17",
+      "tasks.md": "84531d43795a89efc2c0b98d3306937137e4d9ca2856fbba79bbb84df5a489d4",
+      "checklist.md": "62eee2b75c1e4bf406cb09836bc5fb9528ffc825c8ed321aa84571e44ff3bb80",
+      "decision-record.md": "54a4759e849f96120ed225f4173ce4490d02eb5754160a182b5b5f90e0d10f53",
+      "implementation-summary.md": "c0afe410f67444903b57e2147c2e74f84ac9a4943b2d2dd75f4549628e0c8ad3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

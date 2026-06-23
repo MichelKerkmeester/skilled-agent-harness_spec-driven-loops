@@ -1,16 +1,22 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap",
-  "description": "Spec: P1 + P2 Stress-Test Remediation — Close 36 Remaining Coverage Gaps",
+  "description": "Packet 042 surfaced 36 features with thin or absent stress coverage that were not blocking but represent ongoing release-readiness debt: 6 P1 (thin di",
   "keywords": [
-    "spec",
-    "stress-test",
-    "remediation",
-    "close",
-    "remaining",
+    "packet",
+    "042",
+    "surfaced",
+    "features",
+    "thin",
+    "absent",
+    "stress",
     "coverage",
-    "gaps"
+    "blocking",
+    "represent",
+    "ongoing",
+    "release-readiness",
+    "debt"
   ],
-  "lastUpdated": "2026-05-26T17:27:06.694Z",
+  "lastUpdated": "2026-06-23T03:49:52.142Z",
   "specId": "006",
   "folderSlug": "fix-stress-test-coverage-gap",
   "parentChain": [

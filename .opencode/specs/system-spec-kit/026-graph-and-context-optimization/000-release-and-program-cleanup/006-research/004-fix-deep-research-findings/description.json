@@ -1,17 +1,23 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
-  "description": "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent)",
+  "description": "Packet 046's 20-iteration deep research surfaced 82 findings (0 P0, 31 P1, 51 P2) across daemon concurrency, code-graph consistency, advisor quality,",
   "keywords": [
-    "feature",
-    "specification",
-    "049",
-    "deep-research",
-    "finding",
-    "remediation",
-    "phase",
-    "parent"
+    "packet",
+    "046",
+    "20-iteration",
+    "deep",
+    "research",
+    "surfaced",
+    "findings",
+    "across",
+    "daemon",
+    "concurrency",
+    "code-graph",
+    "consistency",
+    "advisor",
+    "quality"
   ],
-  "lastUpdated": "2026-05-26T17:27:27.968Z",
+  "lastUpdated": "2026-06-23T03:49:52.817Z",
   "specId": "004",
   "folderSlug": "fix-deep-research-findings",
   "parentChain": [

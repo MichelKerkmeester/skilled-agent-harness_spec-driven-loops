@@ -1,13 +1,24 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
-  "description": "Feature Specification: Skill Advisor",
+  "description": "Skill advisor work was scattered across two phase wrappers (`006-skill-advisor/` for search/routing/graph/smart-router, and parts of `007-hook-parity/",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
-    "advisor"
+    "advisor",
+    "work",
+    "scattered",
+    "across",
+    "two",
+    "phase",
+    "wrappers",
+    "006-skill-advisor",
+    "search",
+    "routing",
+    "graph",
+    "smart-router",
+    "parts",
+    "007-hook-parity"
   ],
-  "lastUpdated": "2026-05-27T11:58:52.662Z",
+  "lastUpdated": "2026-06-23T03:49:53.181Z",
   "specId": "002",
   "folderSlug": "skill-advisor",
   "parentChain": [

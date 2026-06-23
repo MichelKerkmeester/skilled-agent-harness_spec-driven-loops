@@ -31,9 +31,9 @@
       "tasks",
       "checklist",
       "shipped",
-      "inline",
-      "provider",
-      "model"
+      "cli-opencode",
+      "deepseek-v4-pro",
+      "variant"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec-memory had inline provider model defaults duplicated across 4 sites (providers/voyage.ts, providers/openai.ts, auto-select.ts, cross-encoder.ts) despite registry.ts already exporting `getCanonicalFallback(provider)` since packet 020. Reranker side had no canonical helper at all — `cross-encoder/ms-marco-MiniLM-L-6-v2` was inline in PROVIDER_CONFIG.local.",
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object + getRerankerFallback helper; consolidated providers/voyage.ts + providers/openai.ts + auto-select.ts + cross-encoder.ts to import from registry. Closes 7 P1 cleanup findings.",
     "created_at": "2026-05-23T18:10:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.248Z",
+    "last_save_at": "2026-06-23T03:49:54.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bc6e4d87ea9dd7bae83fcb2de6aa8004e08fd30fad32c9b1bf70fd3a98ea8305",
+    "source_doc_hashes": {
+      "spec.md": "b794ebf04bd64348de04b6f223c7dd3f585b0dbd730633e98b899cc2fca1ef72",
+      "plan.md": "8981b592f30cf29871ec0f92b152f0476a6183f3ba803e81f4791c66e9e2948a",
+      "tasks.md": "7cb2008ca7ecd891416a546be49066510f07adbfa9a82e5ec5952d8153413ca4",
+      "checklist.md": "7b6108665f5b26e65b4bd0541fae4ccfe076660ad57770e2baf78b66bf1ac5ea",
+      "implementation-summary.md": "e5ab13597a6426a6c567c5741de26fe0658ae0d0cf198eedc1bb697b71636c7a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

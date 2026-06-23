@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Finding F-022-1 (phase 007): `code_graph_query` blast_radius ignores the `includeTransitive` flag. The tool schema documents `includeTransitive` (default false) as \"Enable multi-hop BFS traversal\" and `maxDepth` as applying \"when includeTransitive is true\", but the blast_radius branch derives depth solely from `args.maxDepth` (default 3) at `handlers/query.ts:1218-1219` and never reads `includeTransitive`. So blast_radius is always multi-hop (up to depth 3), the flag is a silent no-op, and scenario 022's `transitive > nontransitive` assertion is unachievable.",
+    "causal_summary": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
     "created_at": "2026-05-27T04:57:41.642Z",
-    "last_save_at": "2026-06-05T12:47:34.192Z",
+    "last_save_at": "2026-06-23T03:49:56.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:905046f7e52d1f3536d9b005960a504a10f70d45f14f3d23335a867ad1c07ac6",
+    "source_doc_hashes": {
+      "spec.md": "d94b989a657bdb3ab116c5495f01e7bdaf058d75cc84154e271bad051432fd38",
+      "plan.md": "614fce3c60f0385fc49dfd807d8b3b19c459f1ec7fde8d71a1d8e753b0db487d",
+      "tasks.md": "c56f464ac636923c9a1f48ccce9076c4ed0f98822eed7333d4968ebea6e9c0e0",
+      "checklist.md": "e71421e4948fd2a798030d5044bc2d481eb5af4caa7c939f1ecdf80a8bb6dfe3",
+      "implementation-summary.md": "b838895f222d688e88e18c5966acb043160c77f9e76f62f110eb88fe79207b96"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

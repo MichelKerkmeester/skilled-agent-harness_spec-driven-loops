@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds. The per-seam sanitizers and their tests exist and pass in isolation, `sanitizeSkillLabel` (`lib/utils/skill-label-sanitizer.ts`), `architecture-seam.vitest.ts` (which asserts `'ignore previous instructions' → null`), `bm25-security.vitest.ts`, the adversarial-unicode suite (`tests/security/adversarial-unicode.vitest.ts`) and the poisoning fixtures (`tests/advisor-fixtures/promptPoisoningAdversarial.json`). What is missing, confirmed in research (001 iter-19, 006 SB7), is a single named aggregating CI probe-gate with structured reports and a fixed zero-success ceiling, so the security posture is a scatter of green checkmarks rather than one honest pass/fail. One seam stays entirely uncovered: the deep-loop prompt-pack render path (`deep-loop-runtime/lib/deep-loop/prompt-pack.ts`), where recalled or fanned-out content reaches a prompt template with no injection probe at all.",
+    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
     "created_at": "2026-06-19T05:40:37.443Z",
-    "last_save_at": "2026-06-22T18:55:03.636Z",
+    "last_save_at": "2026-06-23T03:49:58.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6dc1c2a677009eb1a9f15162b152593445adac65b94ca9e1085cebc07428f717",
+    "source_doc_hashes": {
+      "spec.md": "f3bf3ea1c7711b1778212ce93b719ec2e421f5a7c55486aa139c8f2756f22064",
+      "plan.md": "897f059c145f6eec84cf639b3fc93230c69bc46f43028dcbc2e03e6209e2a831",
+      "tasks.md": "ad793fd9ab8be8d1c8323a733aa9f64a56995602a71056e969c7f7ccf74c54af",
+      "checklist.md": "50fca43cce7fdab918c99e35160215c2ef400c0c377e965a4a5dad1ee462a562",
+      "implementation-summary.md": "cab1791709dc2d61515c0674de3e3695c4751c4e1af00bb0afe3ce38ed59c0f4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

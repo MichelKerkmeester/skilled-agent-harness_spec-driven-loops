@@ -1,17 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope",
-  "description": "Feature Specification: Fix advisor-script filesystem-scope resolution bugs",
+  "description": "Two production advisor scripts resolve filesystem paths one directory too high",
   "keywords": [
-    "feature",
-    "specification",
-    "fix",
-    "advisor-script",
-    "filesystem-scope",
-    "resolution",
-    "bugs"
+    "two",
+    "production",
+    "advisor",
+    "scripts",
+    "resolve",
+    "filesystem",
+    "paths",
+    "one",
+    "directory",
+    "too",
+    "high"
   ],
-  "lastUpdated": "2026-05-26T17:27:00.018Z",
+  "lastUpdated": "2026-06-23T03:49:53.282Z",
   "specId": "009",
   "folderSlug": "fix-script-filesystem-scope",
   "parentChain": [

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the spec-027 feature adoption into the advisor and code-graph daemons. It covers the advisor's retrieval observability surface — the same surface for both transfers, so they are scoped together.",
+    "causal_summary": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes only numeric lane fields and Gate 2 routing decisions are hard to debug (`handlers/advisor-recommend.ts:177-184`)",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-06-12T04:40:47.922Z",
+    "last_save_at": "2026-06-23T03:49:57.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:93d7b447a290a24a51b67fc19d26b16fc1a5f057e505a3bd2cfb9c17d03149d5",
+    "source_doc_hashes": {
+      "spec.md": "8ce59b0f104b2ee80a79bdeaef03c61d306e41ba8aefff9cfca4e5a5e4972c3d",
+      "plan.md": "e5a3c05cde8d32e17967c98fbfb00fc45b3ea6be2e108a905869aa0e36d6b502",
+      "tasks.md": "c82a244f0865058fab65596b51213167ba8d32dc1ba20a560642e466d700a038",
+      "implementation-summary.md": "17d8c56d74ae87e635d8e62dc970352440e0a306678d8fd849fc766b927db51a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

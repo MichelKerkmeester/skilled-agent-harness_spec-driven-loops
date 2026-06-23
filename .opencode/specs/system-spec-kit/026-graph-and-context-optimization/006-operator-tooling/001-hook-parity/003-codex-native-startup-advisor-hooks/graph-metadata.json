@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "User-verified on 2026-04-22 that Codex CLI sessions return \"no startup context observed\" and \"no advisor brief observed\" — identical user-visible symptoms to the Copilot CLI gap (sibling phase 004). Root cause is different: **Codex natively supports the hook transport**. The file `~/.codex/hooks.json` already registers `SessionStart`, `UserPromptSubmit`, and `Stop` hooks — but only wires Superset's `notify.sh` (notification script), not Spec Kit Memory's advisor/context emitter.",
+    "causal_summary": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
     "created_at": "2026-04-22T06:39:13.790Z",
-    "last_save_at": "2026-05-30T10:12:02.680Z",
+    "last_save_at": "2026-06-23T03:49:56.236Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:8cd0ca48fc23e35c36fc0694aca8f0159aa3fd1db052464bb8fa117df4f5e127",
+    "source_doc_hashes": {
+      "spec.md": "76bafd6b3de703071575134724d36a96adbd4dc46882250099a3b36a27905904",
+      "plan.md": "a67a62c3dc4b34ff7665fe2c07e5db573985bb5c4c42558a56025f9dfb544a14",
+      "tasks.md": "44a3f3e4a8ad0a78530d62f3377eeb75ca8bc8bf53e0a2d0e2727bd4d8db8dc0",
+      "checklist.md": "910a2b8c8eff64a782dede4bdc9eea4c275fb07e5d2e04df84c29a5d873c30bf",
+      "decision-record.md": "67ea39b824cbc3d6fc04f0d2e274639f7b4d32fe3bf96e80efd0e6596232da9b",
+      "implementation-summary.md": "aa081797a42555d7a1320a09a4d42e20b6311351dd620e2a9df9ae94b55e4c03",
+      "research/research.md": "d627709fd46a07b61398c463290c44c026c3cb569a303723de3a283681e6325a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

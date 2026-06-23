@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The three AGENTS.md governance framework files reference outdated Quick Reference workflow tables that show 5 memory commands instead of the current 4-command memory surface. The `/memory:learn` constitutional memory row only documents the `[rule]` creation subcommand, missing `list`, `edit`, `remove`, and `budget`. The `/memory:manage` database maintenance row is missing the `ingest` subcommand and the nested `/memory:manage shared` shared-memory lifecycle route. The retrieval row still points at the retired analyze command name instead of `/memory:search`. Additionally, the FS-Enterprises variant has a stale Research/exploration row missing the `memory_context()` unified alternative.",
+    "causal_summary": "The three AGENTS.md governance framework files reference outdated Quick Reference workflow tables that show 5 memory commands instead of the current 4-command memory surface",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-05-30T10:12:03.343Z",
+    "last_save_at": "2026-06-23T03:50:00.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d20788a8891659f1eaa675f4ac809513f0127535544ca8007aca894bffa68bf2",
+    "source_doc_hashes": {
+      "spec.md": "0f2d7c02a43bfd47aa06f3d517b6500c2cbdcb47a37de6917b5750f84b5ac050",
+      "plan.md": "a6c6a5c80f6cbff07eb27b398181a6ff42da22fa08aabb801f17e8fa25abf8f8",
+      "tasks.md": "5110c245600c21d84890b79acea690f336b9c68505705834a66f8478609767d8",
+      "checklist.md": "09195a63f28914a74a0471e1e9177cfbd7e3b83da30ccc1047e57bf6a6c9e508",
+      "implementation-summary.md": "301dab4ca275f0cf82c52a9e2e9e57b0ae415e3399f9e11595204bccc617cc05"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

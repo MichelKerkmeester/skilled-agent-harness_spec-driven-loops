@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-054-code-folder-readmes",
-  "description": "Phase C: sk-doc-aligned READMEs for system-spec-kit",
+  "description": "Close the gap using the proven 2-pass cli-devin + cli-opencode pipeline with the new 3-check verification gate (`feedbackbundlegatesmokerun`)",
   "keywords": [
-    "phase",
-    "sk-doc-aligned",
-    "readmes",
-    "system-spec-kit"
+    "close",
+    "gap",
+    "using",
+    "proven",
+    "2-pass",
+    "cli-devin",
+    "cli-opencode",
+    "pipeline",
+    "new",
+    "3-check",
+    "verification",
+    "gate",
+    "feedbackbundlegatesmokerun"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.868Z",
+  "lastUpdated": "2026-06-23T03:49:56.721Z",
   "specId": "014",
   "folderSlug": "local-embeddings-migration-054-code-folder-readmes",
   "parentChain": [

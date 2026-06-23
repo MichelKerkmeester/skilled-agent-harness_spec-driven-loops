@@ -36,7 +36,7 @@
       "verification",
       "adr",
       "decision",
-      "skill"
+      "advisor"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor MCP server currently advertises the runtime id `system_skill_advisor`, while the custom MCP naming pattern has moved to `mk_*` ids such as `mk_code_index`. This packet renames only the MCP runtime identity and launcher surface to `mk_skill_advisor`.",
+    "causal_summary": "The advisor runtime is still registered as `systemskilladvisor`, which no longer matches the custom MCP identity pattern established by `mkcodeindex`",
     "created_at": "2026-05-14T20:09:35Z",
-    "last_save_at": "2026-06-17T19:57:24.186Z",
+    "last_save_at": "2026-06-23T03:49:53.316Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a10421fd81887fa0036a8ed37d6a30c0680e56a8367feb5c899a41899d9bd1f1",
+    "source_doc_hashes": {
+      "spec.md": "1f084dc29e858e63266eeb782629cf91f280e564f17d2cdd96aa248e4c223db7",
+      "plan.md": "8d61d4a084659fc677f1bacd314867ef6ba5e0e8a44ab421e6f3d1960427bba7",
+      "tasks.md": "0f9a4cd02d7932ee82a7ad7b50cdcae64dc7c3cc419522fdb7ccf03883ee2ab9",
+      "checklist.md": "b025fe5da90408099735be51ac0f585112b828efc9fc509a1d225b8e716a8c5b",
+      "decision-record.md": "37e4069b73aae90d8965a68d1eb738ca03e4bff9356db3a250f511a35bedcd6c",
+      "implementation-summary.md": "8f51982c84b49cb906c7041abe4fc9fb9ac74ef296df1614cc6fb922eed897ff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

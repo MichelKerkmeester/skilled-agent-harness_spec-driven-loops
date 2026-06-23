@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rename the `workflows-spec-kit` skill to `system-spec-kit` across the entire codebase, ensuring all references are properly updated while preserving historical documentation.",
+    "causal_summary": "Rename the workflows-spec-kit skill to system-spec-kit across the entire codebase, ensuring all references are properly updated while preserving historical documentation.",
     "created_at": "2026-04-12T09:02:53.509Z",
-    "last_save_at": "2026-06-17T19:57:25.227Z",
+    "last_save_at": "2026-06-23T03:49:58.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:1c552338701276d46c85b546902cd55a8fc7706bd588c1cc58a89722037539de",
+    "source_doc_hashes": {
+      "spec.md": "d2ea90a58c01d75f159ecbf71038775df99320410050efc059ded86b41d24a5d",
+      "plan.md": "625ad9f9f432ac487ac3979019387f27dc388c55bec56e7e1195954a128dbe5f",
+      "tasks.md": "90d8cef0592152eea9255e05271a86b05c70abe4fc9fb984ad1a1f84e7e20b09",
+      "checklist.md": "ae6036f32ed31f5d76eba8885ef4ff13cd885831aa132d2d0258bd9dbdac2dc7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

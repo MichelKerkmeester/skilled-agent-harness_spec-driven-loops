@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Child 006 is the final validation and cleanup pass for ADR-001's standalone advisor MCP migration. It proves the extracted `.opencode/skills/system-skill-advisor/mcp_server/` package works from its new home, verifies all four runtime MCP configurations expose both required servers, and removes the temporary `spec_kit_memory` advisor proxy once caller evidence is clean.",
+    "causal_summary": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-06-22T18:55:02.045Z",
+    "last_save_at": "2026-06-23T03:49:53.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dbcc1c5fd5d41dbe43ad8de3a98d7283b793a905ab069f300099821d0deeb810",
+    "source_doc_hashes": {
+      "spec.md": "9f8e49f1c754d42d3706c75db4edbc6057f3d3f0532b6ce74b9b2aebef885e0d",
+      "plan.md": "8d6ba092d5e6302b64e050be3279c76fd985703522639e076be991c07c8b0ea9",
+      "tasks.md": "e8ea9ec83bacaa18fc39b70d327cc177110b9a49b7fb16402023fbdd7a9c01a1",
+      "checklist.md": "16d417d0cf8191f16a7fac82542c72940a4ba6a54c5540dadfa9c9124c3e9480",
+      "decision-record.md": "7774b7e560c9a3b37a36b7fd9ef679ef0c056b6bb6e7624f5295980036b704ca",
+      "implementation-summary.md": "8bbd9fb8835ef6a56d05c8174e6868a589fc4cebd7a930d9f55729d2fc5e3616"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

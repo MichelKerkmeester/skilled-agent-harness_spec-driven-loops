@@ -1,16 +1,21 @@
 {
   "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag",
-  "description": "Feature Specification: MCP Working Memory Hybrid Rag",
+  "description": "This archived system-spec-kit archive folder captures work related to MCP Working Memory Hybrid Rag",
   "keywords": [
-    "feature",
-    "specification",
+    "archived",
+    "system-spec-kit",
+    "archive",
+    "folder",
+    "captures",
+    "work",
+    "related",
     "mcp",
     "working",
     "memory",
     "hybrid",
     "rag"
   ],
-  "lastUpdated": "2026-05-02T10:39:49.117Z",
+  "lastUpdated": "2026-06-23T03:49:59.571Z",
   "specId": "020",
   "folderSlug": "mcp-working-memory-hybrid-rag",
   "parentChain": [

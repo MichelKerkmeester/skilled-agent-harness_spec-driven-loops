@@ -1,14 +1,22 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
-  "description": "Feature Specification: Code Graph",
+  "description": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime,",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "graph"
+    "build",
+    "harden",
+    "code-graph",
+    "structural-indexing",
+    "surface",
+    "standalone",
+    "package",
+    "cocoindex",
+    "decoupling",
+    "startup",
+    "fixes",
+    "runtime"
   ],
-  "lastUpdated": "2026-06-10T04:53:31.032Z",
+  "lastUpdated": "2026-06-23T03:49:55.732Z",
   "specId": "004",
   "folderSlug": "code-graph",
   "parentChain": [

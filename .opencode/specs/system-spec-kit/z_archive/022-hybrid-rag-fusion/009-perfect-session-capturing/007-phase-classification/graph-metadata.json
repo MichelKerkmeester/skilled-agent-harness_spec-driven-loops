@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.",
+    "causal_summary": "Conversation phase handling previously lived in a keyword-precedence ladder that favored early matches over richer context, so ambiguous exchanges like \"grep in debug output\" could resolve to Research instead of Debugging",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-05-30T10:12:03.300Z",
+    "last_save_at": "2026-06-23T03:50:00.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0e1f4f1e6ec0831496afcfe8a714fa109a9ab8fb802c931e580363c1f25b7b84",
+    "source_doc_hashes": {
+      "spec.md": "2c412e39a5258a63b4919db19ea97f29f43113997ab1f0dfd7d2ca53759353d5",
+      "plan.md": "949ecbeeca1b25cf158cbc70f9a75e8e926f8bd12fc8da5feed3ad1b3d192bed",
+      "tasks.md": "66d6108bc5e95a9452d1981329a6014b4b2f2692860f8112f2ae7e8cf4876060",
+      "checklist.md": "3de8dc7863b1e460e7c419f54b64e42376b5828bed5b77292fa16fbd306340e4",
+      "implementation-summary.md": "35a60e112bdf2c29c5a7eaa0565726f8b5496757d9781b6352259588855ac857"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -17,16 +17,24 @@
     ]
   },
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
-  "description": "Feature Specification: Phase 6 — Continuity Refactor Gates",
+  "description": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into siblin",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "continuity",
-    "refactor",
-    "gates"
+    "006-continuity-refactor-gates",
+    "now",
+    "owns",
+    "only",
+    "six",
+    "execution",
+    "gates",
+    "remain",
+    "reorganization",
+    "promoted",
+    "former",
+    "follow-on",
+    "work",
+    "siblin"
   ],
-  "lastUpdated": "2026-05-26T17:25:45.701Z",
+  "lastUpdated": "2026-06-23T03:49:53.839Z",
   "specId": "003",
   "folderSlug": "continuity-refactor-gates",
   "parentChain": [

@@ -1,15 +1,14 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
-  "description": "Feature Specification: Code Graph Doctor Command",
+  "description": "Code graph operations have no doctor surface",
   "keywords": [
-    "feature",
-    "specification",
     "code",
     "graph",
+    "operations",
     "doctor",
-    "command"
+    "surface"
   ],
-  "lastUpdated": "2026-05-26T17:25:54.596Z",
+  "lastUpdated": "2026-06-23T03:49:55.963Z",
   "specId": "001",
   "folderSlug": "doctor-diagnostic-command-phase-a",
   "parentChain": [

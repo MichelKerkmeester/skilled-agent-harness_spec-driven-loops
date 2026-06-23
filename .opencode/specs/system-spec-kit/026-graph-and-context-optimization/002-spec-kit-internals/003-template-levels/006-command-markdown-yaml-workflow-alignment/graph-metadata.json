@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet audits the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The command Markdown files and YAML workflow assets must describe the current manifest-backed Level contract, current validation semantics, and current hardening behavior without preserving deleted script or folder references.",
+    "causal_summary": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy template folders, or the old architecture label",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-06-15T09:09:34.223Z",
+    "last_save_at": "2026-06-23T03:49:53.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a097a8fb9949e4a8df011f46904c6b1716a393e7e0edbc90f04e5f845ed01e93",
+    "source_doc_hashes": {
+      "spec.md": "d92c8f9f9954057a23639d2806c7dfa8a2b2a68d063d981b7e818dbca874630e",
+      "plan.md": "45b36555a491de7074e59f953e8d8f76ec07c6b561c20296959283b0c121dff1",
+      "tasks.md": "f7b848ccaf5a917974cfc0817c967641821f0289d378862098ad2f83ef498884",
+      "checklist.md": "30a5df1d4ad94fb1e8b5eccb581dfd1f7b146c02b2babc3273edbe21b8270a83",
+      "decision-record.md": "e8d828ff19262255dffa8b7ce93169346464e6209331de4aa769d95ce39dba6b",
+      "implementation-summary.md": "a71942322a04556f89b3e490de72afacb62526d5ff9eb0cc3ed3ac5161a9529e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

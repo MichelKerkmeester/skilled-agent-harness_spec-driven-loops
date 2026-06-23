@@ -2,16 +2,22 @@
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
-  "description": "Feature Specification: Phase 4: cli-opencode Frontmatter Alignment",
+  "description": "cli-opencode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 2 assets carry the detailed memory-st",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
     "cli-opencode",
+    "reference",
+    "asset",
     "frontmatter",
-    "alignment"
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed",
+    "memory-st"
   ],
-  "lastUpdated": "2026-06-11T10:46:03.568Z",
+  "lastUpdated": "2026-06-23T03:49:56.938Z",
   "specId": "004",
   "folderSlug": "cli-opencode",
   "parentChain": [

@@ -11,15 +11,22 @@
   "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-llama-cpp-metal-investigation",
   "level": 1,
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
-  "description": "Feature Specification: llama-cpp Metal Investigation",
+  "description": "Every observed llama-cpp embedding call emits Metal-related stderr before falling back to CPU behavior",
   "keywords": [
-    "feature",
-    "specification",
+    "every",
+    "observed",
     "llama-cpp",
-    "metal",
-    "investigation"
+    "embedding",
+    "call",
+    "emits",
+    "metal-related",
+    "stderr",
+    "falling",
+    "back",
+    "cpu",
+    "behavior"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.123Z",
+  "lastUpdated": "2026-06-23T03:49:56.748Z",
   "specId": "014",
   "folderSlug": "041-llama-cpp-metal-investigation",
   "parentChain": [

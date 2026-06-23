@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
+      "remediation",
       "sub-phase",
-      "005-fresh-regression-remediation",
-      "phase",
-      "parent",
-      "owns",
-      "subsystem",
-      "cluster",
+      "027",
       "fresh",
       "regression",
       "deep-review",
       "findings",
-      "registry"
+      "subsystem",
+      "carried",
+      "task",
+      "registry",
+      "recommendation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Sub-phase of `005-fresh-regression-remediation` (phase parent). It owns the subsystem cluster from the fresh+regression deep-review's findings registry. Per operator directive every finding is carried (refuted ones as hardening, asserted ones fix-as-stated). Source: `../../review/fresh-regression-75/deep-review-findings-registry.json`.",
+    "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-06-18T12:37:50.431Z",
-    "last_save_at": "2026-06-22T18:55:03.559Z",
+    "last_save_at": "2026-06-23T03:49:57.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a5310b18b7415051b401b423240c081d11fd08bb64336f249015cb9699a6e2d3",
+    "source_doc_hashes": {
+      "spec.md": "23ee7499981e540ae17bbae9ed173ed68e9f6e2f560689855cc66e2a693bf522",
+      "plan.md": "2d9bc46b1343fb7ae46ed20fcfee66f6685b69691c6548dd712e68728b5c3c15",
+      "tasks.md": "5274b61600e92de3cc9910ae91bf45e9387764e98da355468b235bd223e3292a",
+      "implementation-summary.md": "db24fccfa0411df62e568af8e874e749f8fe7413b96e10f1282bc740697d6fde"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

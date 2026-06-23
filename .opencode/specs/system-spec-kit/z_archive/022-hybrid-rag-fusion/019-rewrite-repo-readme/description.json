@@ -1,11 +1,25 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/019-rewrite-repo-readme",
-  "description": "Specification: 019-rewrite-repo-readme",
+  "description": "The root README (`README.md`, ~822 lines) was previously rewritten but uses flat technical prose without the two-tier voice (narrative analogies + ref",
   "keywords": [
-    "specification",
-    "019-rewrite-repo-readme"
+    "root",
+    "readme",
+    "822",
+    "lines",
+    "previously",
+    "rewritten",
+    "uses",
+    "flat",
+    "technical",
+    "prose",
+    "without",
+    "two-tier",
+    "voice",
+    "narrative",
+    "analogies",
+    "ref"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.101Z",
+  "lastUpdated": "2026-06-23T03:50:00.371Z",
   "specId": "019",
   "folderSlug": "rewrite-repo-readme",
   "parentChain": [

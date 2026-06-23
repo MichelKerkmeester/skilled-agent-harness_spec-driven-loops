@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A spec folder carries the same `trigger_phrases` concept in three separate surfaces that are never asserted to agree. The curated set lives in spec.md frontmatter, the indexed set lives in `description.json`, and a third copy lives in `graph-metadata.derived`. The `description.json` set is not the frontmatter set copied over. It is rebuilt by `spec-folder-extractor.ts:387-390` as `dedupe([...]).slice(0, 12)`, so it is capped at 12 entries and may legitimately differ from a longer curated frontmatter list. Today nothing checks that these three surfaces stay consistent, so a curated trigger that never reached the index, or a stale derived copy after a frontmatter edit, ships silently and degrades retrieval routing.",
+    "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
     "created_at": "2026-06-21T10:22:34.980Z",
-    "last_save_at": "2026-06-22T18:55:03.788Z",
+    "last_save_at": "2026-06-23T03:49:58.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:11d56afd4cfa0c98141855a73ceef361115a7b5db514f241bcedbf115d3bced0",
+    "source_doc_hashes": {
+      "spec.md": "d88f2094be8002f247c86619f3b68cee2809d31d6c2f4cf5d1ddd83f1385fbc2",
+      "plan.md": "d7ec36a533d82bc9e46e2da0d423b539615e3b3878e5d7e86f409af807b6d12b",
+      "tasks.md": "8618491552ce03823f36df79b4c380cd13be9cd588dd27ee7e1b5af8524d26eb",
+      "checklist.md": "48b391df943386449747bedd981bef96b8790288519d0ecc5b785fa3f9f673b4",
+      "implementation-summary.md": "104bad0b8b5caa5bb8eac731d2ac17de4e3fa1d5dd1f295f7843fbb30cb46f31"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

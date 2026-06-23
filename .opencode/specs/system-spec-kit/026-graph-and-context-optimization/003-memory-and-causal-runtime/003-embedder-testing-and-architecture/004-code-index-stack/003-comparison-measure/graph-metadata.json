@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 018/001 (swap mechanism) and 018/002 (fixture), we still don't know which embedder actually wins for OUR repo. Without measurement, the swap is a leap of faith.",
+    "causal_summary": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-05-30T10:12:02.284Z",
+    "last_save_at": "2026-06-23T03:49:54.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1d69baf0712d823d52442ecd04e248a6329153779f48de29e3063029c599a035",
+    "source_doc_hashes": {
+      "spec.md": "4f9e2a3604cbd4d9b42dbfa042256d802840c7deff3b6278928702a46fb0967f",
+      "plan.md": "024623d003ff48a82505d25f77b86f8b6a136d5c00c116e93a4dce274a5c2e81",
+      "tasks.md": "23bd64c5b475e55ffc9cf6c3ceb89443a29547099c328734703df5f1729af9ec",
+      "decision-record.md": "08ad7e2b7edbb4f2c36a0ca0079b80a3b9cf79211a193a7eea5e9555aa680aa1",
+      "implementation-summary.md": "d0158b4f82bb08b9798626b88d5109ea3f95d36cd54ebe37d5b5b333fa2db3d1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

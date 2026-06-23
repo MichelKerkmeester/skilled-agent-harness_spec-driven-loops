@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
-  "description": "Feature Specification: Phase 5: advisor-feedback-calibration",
+  "description": "The advisor already accepts accepted/corrected/ignored outcome events through `advisorvalidate` (`schemas/advisor-tool-schemas.ts:240-250`), but nothi",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "advisor-feedback-calibration"
+    "advisor",
+    "already",
+    "accepts",
+    "accepted",
+    "corrected",
+    "ignored",
+    "outcome",
+    "events",
+    "advisorvalidate",
+    "schemas",
+    "advisor-tool-schemas",
+    "240-250",
+    "nothi"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.386Z",
+  "lastUpdated": "2026-06-23T03:49:57.474Z",
   "specId": "005",
   "folderSlug": "advisor-feedback-calibration",
   "parentChain": [

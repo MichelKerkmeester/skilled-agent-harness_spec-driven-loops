@@ -36,7 +36,7 @@
       "plan",
       "tasks",
       "checklist",
-      "add"
+      "finding"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a production recovery path so an explicit full scan (`code_graph_scan({incremental:false})`) clears the quarantine and re-initializes the parser on a fresh WASM heap, without requiring a daemon restart.",
+    "causal_summary": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'` (`tree-sitter-parser.ts:813-815`), after which every parse early-returns a sentinel (`:770-772`)",
     "created_at": "2026-05-27T03:49:59.734Z",
-    "last_save_at": "2026-06-05T12:47:34.187Z",
+    "last_save_at": "2026-06-23T03:49:56.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a33e1d0dfff4ce5a7dc84618b4d683beef7681c07be071d432ab2e2da5bf62c3",
+    "source_doc_hashes": {
+      "spec.md": "02024eba57aacb019f64c2dcaf8348ac3c63754ff6dc4162b225fcee14af3e27",
+      "plan.md": "baeb25a0a6147924825a2f8a0f672fb4e756f536902728c8c89a425831874a05",
+      "tasks.md": "1dd35c8a52eb3d81c029d107505bfa0f0cfa0b14e021c46ae1fbc2b41855182f",
+      "checklist.md": "f1e4b4d46fe62f6274822fd4d2bba6abf2509782f3e4bb76fe5df44024ba475e",
+      "implementation-summary.md": "189417e8620a80a831e9cdfd71ceab7f430109d893d6d87110e92c837bd39760"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

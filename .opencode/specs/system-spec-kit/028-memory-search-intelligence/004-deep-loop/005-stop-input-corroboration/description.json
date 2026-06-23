@@ -1,19 +1,19 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
-  "description": "Feature Specification: Deep Loop STOP-Input Corroboration (028/004 convergence-hardening cluster)",
+  "description": "The deep-loop convergence verdict decides STOP-vs-CONTINUE from a fixed set of structural graph signals",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "loop",
-    "stop-input",
-    "corroboration",
-    "028",
-    "004",
-    "convergence-hardening",
-    "cluster"
+    "deep-loop",
+    "convergence",
+    "verdict",
+    "decides",
+    "stop-vs-continue",
+    "fixed",
+    "set",
+    "structural",
+    "graph",
+    "signals"
   ],
-  "lastUpdated": "2026-06-19T22:04:55.899Z",
+  "lastUpdated": "2026-06-23T03:49:58.521Z",
   "specId": "005",
   "folderSlug": "stop-input-corroboration",
   "parentChain": [

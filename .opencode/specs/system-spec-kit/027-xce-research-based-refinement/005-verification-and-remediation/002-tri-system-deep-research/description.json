@@ -1,15 +1,23 @@
 {
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
-  "description": "Feature Specification: Tri-System Deep Research Program",
+  "description": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
   "keywords": [
-    "feature",
-    "specification",
-    "tri-system",
-    "deep",
-    "research",
-    "program"
+    "027",
+    "epic",
+    "shipped",
+    "twenty-four",
+    "phases",
+    "finding-remediation",
+    "program",
+    "database",
+    "recovery",
+    "every",
+    "review",
+    "far",
+    "scoped",
+    "diffs"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.774Z",
+  "lastUpdated": "2026-06-23T03:49:57.933Z",
   "specId": "002",
   "folderSlug": "tri-system-deep-research",
   "parentChain": [

@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is the first implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements two paired retrieval-intelligence candidates that both operate on the already-built summary/community substrate:",
+    "causal_summary": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coarse-to-fine grounding prelude:",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-06-21T07:23:18.816Z",
+    "last_save_at": "2026-06-23T03:49:58.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9d30ab31afe40e84b2225180e18f25b8fac952867832db44737c0c6ff64382a5",
+    "source_doc_hashes": {
+      "spec.md": "59a24b4a19db776250486873f011d30e9d59c980ecded31331aea890925f54bb",
+      "plan.md": "e6cca66a6cd794c160dce19f28d51f280a4b0ce838d781fa8a19095fe3886c58",
+      "tasks.md": "d79ab77b1c240506e3b81f2bfadfe3e365b4fa7437f94d9892684f5bd76ceca0",
+      "checklist.md": "f2086874b14aead2eb4a2e5317e600849bbcb437db914a5525532b2bb7c612de",
+      "implementation-summary.md": "af285f61c04f41b9bbe9d962577eb8cc835a5d2f5cd042897384738baf8e8ac9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

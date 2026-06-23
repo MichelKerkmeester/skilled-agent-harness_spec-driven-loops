@@ -1,14 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
-  "description": "Feature Specification: Docs and Catalogs Rollup",
+  "description": "Spec 026 shipped capabilities across 8 tracks over months",
   "keywords": [
-    "feature",
-    "specification",
-    "docs",
-    "catalogs",
-    "rollup"
+    "spec",
+    "026",
+    "shipped",
+    "capabilities",
+    "across",
+    "tracks",
+    "months"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.613Z",
+  "lastUpdated": "2026-06-23T03:49:52.904Z",
   "specId": "001",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [

@@ -171,14 +171,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The MCP session lifecycle, incremental indexing, ingest, embedder management, the context-server entrypoint/dispatch, and the tool-schema layer all changed across 026. A calibration pass already found tool-schema-to-handler drift (an advertised option ignored; install-guide call shape stale), so schema-to-handler parity is a priority drift target here.",
+    "causal_summary": "The MCP session lifecycle, incremental indexing, ingest, embedder management, the context-server entrypoint/dispatch, and the tool-schema layer all changed across 026",
     "created_at": "2026-06-04T18:53:35.319Z",
-    "last_save_at": "2026-06-05T12:47:33.217Z",
+    "last_save_at": "2026-06-23T03:49:52.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:8da87345ca26da8c854f2e1b8f545118ef232f19665b96b4e22996e7aa716b07",
+    "source_doc_hashes": {
+      "spec.md": "d08899adc05178c81c677c6ec08618aa215a88d44317b485a64224eef6d5bf5e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

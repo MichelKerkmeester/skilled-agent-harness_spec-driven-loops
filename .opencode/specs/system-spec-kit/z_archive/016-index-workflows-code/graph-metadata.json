@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived system-spec-kit archive folder captures work related to Index Workflows Code. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
+    "causal_summary": "This archived system-spec-kit archive folder captures work related to Index Workflows Code",
     "created_at": "2026-04-12T09:02:53.568Z",
-    "last_save_at": "2026-06-05T12:47:34.610Z",
+    "last_save_at": "2026-06-23T03:49:59.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:33ef2191ae23253ca2851c862e846963dbfbcdff32ce14d098bc8bf412c435bc",
+    "source_doc_hashes": {
+      "spec.md": "d1a7f1d1187af67dfedf01e8d56ef2aebf2567275afddfc4c604366bceee5564",
+      "plan.md": "98d687c74341b6be03ab0e185c6621a0f79ecff9f94dc7410cea8292a91e4833",
+      "tasks.md": "8760c7418e71fb4f8e0b5b8abcae07404c7859580dfef7ef2bc7cf79ae8d3738",
+      "checklist.md": "1d38c76159636275775bdf6867c645cb9007c66c1e7ec1729b41d90f7debdea2",
+      "decision-record.md": "20144d90de3c0b2b30483779fecb9cd75a739bc82c5bb7b9e7b058781f78279b",
+      "implementation-summary.md": "81ad55847319a59de1c666e0cea54339e235e1fb6f3f9842621aee39ae14e15b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

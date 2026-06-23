@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the finding-remediation packet — two P1 defects surfaced while implementing phase 002 (scorer P0 routing), deliberately deferred so they did not expand the P0 scope.",
+    "causal_summary": "The regression harnesses (`skilladvisorregression.py` and the TS `evaluateRegressionCases` in `advisor-validate.ts`) match gold labels by strict string equality, so fixtures/corpus rows labelled `sk-deep-research` / `sk-deep-review` / `sk-deep-agent-improvement` fail against the live graph IDs `deep-research` / `deep-review` / `deep-agent-improvement`",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.003Z",
+    "last_save_at": "2026-06-23T03:49:53.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d509272e1c069ce27e9146093dae97b010d1b04d317243d530de792be20b65bd",
+    "source_doc_hashes": {
+      "spec.md": "2aa1588803e1c1394bcf203f21f3d4d98ba5067962735fcc5b9736436bd6aac7",
+      "plan.md": "fcc455e4544eb609f980d1da74b4012ed859005eebb2662cc739835f4b7d4fb9",
+      "tasks.md": "439f57210a5a48dbf354e2e8218a1cdf9dc02d32fba1ab5ff93d7517e6571c0b",
+      "implementation-summary.md": "f504645d7a667cda4ad31f69583de98fa3634dfc308aa60290916ade778f2aa8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

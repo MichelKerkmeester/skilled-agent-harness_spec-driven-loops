@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The predecessor diagnosis confirmed that the pipx-installed `ccc` executable is stale/non-editable and missing newer modules, while the local venv points at the editable source. Repair was not applied because sandbox permissions blocked pipx log rotation and direct pip entry-point writes.",
+    "causal_summary": "The predecessor diagnosis confirmed that the pipx-installed `ccc` executable is stale/non-editable and missing newer modules, while the local venv points at the editable source",
     "created_at": "2026-05-23T11:55:15.564Z",
-    "last_save_at": "2026-06-05T12:47:33.768Z",
+    "last_save_at": "2026-06-23T03:49:54.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c6d839ac4a95295b0209a8557a07944df5a2b9f84abe1522b20f34e48d5fd35a",
+    "source_doc_hashes": {
+      "spec.md": "0da3c3dc72cc77aa5cae4f5a359b15920def9f2921bba42b58be1b95ddf25c5f",
+      "plan.md": "66e6ca92c1125d1b92fe923748a7191c5db7ff245b4a3b514d3d51361758a8b8",
+      "tasks.md": "1483f261ec14290ad03ba8abd6a1ae5419b7cd12954b7006120c565354cd1e1d",
+      "implementation-summary.md": "12c71561119c57d242964c651834bdaf101c8d84bdf60f39d59976c3a459f0a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

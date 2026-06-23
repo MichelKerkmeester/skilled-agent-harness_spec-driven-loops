@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The prior runtime hook matrix ran live runtime CLIs from inside a sandboxed",
     "created_at": "2026-04-29T21:45:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.599Z",
+    "last_save_at": "2026-06-23T03:49:52.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:82164e9d7814c1f2013c67ffd4a768704126db924efefab4d77c9e974e833c6e",
+    "source_doc_hashes": {
+      "spec.md": "d3281bafef08e7f3a7c70ae845ce4e189a8ddb9bbf69995a9beb2a8b096ed244",
+      "plan.md": "fe1ce15973d3d503e36ddad4e381139913fc84a9f895b0cd29459edf135a36d3",
+      "tasks.md": "4cb0f3cee19f46939587066183e9a6fb5e47ec7b48157d5be839847eff7dff4d",
+      "checklist.md": "96ce8df8ab9b7e73fc2900d18c92aeed824e7852b61ea016cb218d1c2f044ecc",
+      "implementation-summary.md": "34b860ea0dab1ed06c78538fcd2f7efe3809de3bc0614cd6f59b601dc004296e",
+      "resource-map.md": "d3f428bbfdd189095938931ec9a9084468acadc04c77789d640935c14dd174a2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

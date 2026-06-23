@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity. The memory-search tool always computes and ships `requestQuality` and `citationPolicy` on a non-empty result, the verdict itself is correct, but the command render contract lets a weaker model drop the two fields from the rendered block. The benchmark scored fidelity from rendered prose and the cross-model disagreements were null omissions rather than conflicts, so the field is model-dependently absent. The research verified this against the live code. The verdict is computed and shipped at `handlers/memory-search.ts:1325-1327` and the field is presence-gated by `isResultConfidenceEnabled`, so the contract is mandatory-when-enabled (`benchmark-results.md:79`). The render contract names `requestQuality` and `citationPolicy` as the only sanctioned extras but states their absence is valid (`commands/memory/search.md:76`, `:144`), and the presentation asset lists them as optional trailing fields (`assets/search_presentation.txt:103`, `:110-111`). The net effect is that a reader of a weak-model render cannot tell whether the verdict was withheld or simply dropped, so the correct verdict is robust only when a strong model renders it.",
+    "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:03.697Z",
+    "last_save_at": "2026-06-23T03:49:58.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:61e87c10e793c468a4d4159a7b92b11e04443e2dfd52b14e3e1e0b59d5173e91",
+    "source_doc_hashes": {
+      "spec.md": "6e99001dea13127e1cdaf043d65eb06535ff8b72c9aa50b2ca13cd6820504491",
+      "plan.md": "2bfaa21415262d03d4946e16c6f1ae50b58d357724b859ca6cc6a3ec4934660b",
+      "tasks.md": "97f02c09ec3df659f9a3fdcf984f2ed7fd8b04036049271db35fbbd73aba83d6",
+      "checklist.md": "c022cdd4fcfdf3e7eb6127b8ab397c6529028c768aa013aacdb25286d7b1f68e",
+      "implementation-summary.md": "83ca20f6d4e60ee19a50f80de66415b279bb643ab6a4ce58b0ecaebccd6c59db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

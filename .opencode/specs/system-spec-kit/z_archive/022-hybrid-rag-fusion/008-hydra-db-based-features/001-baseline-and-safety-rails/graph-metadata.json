@@ -35,8 +35,8 @@
       "tasks",
       "checklist",
       "verification",
-      "spec-core",
-      "level2-verify"
+      "roadmap",
+      "cannot"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "The Hydra roadmap cannot safely progress while the baseline runtime and documentation disagree about what exists",
     "created_at": "2026-04-12T09:02:50.259Z",
-    "last_save_at": "2026-06-22T18:55:04.313Z",
+    "last_save_at": "2026-06-23T03:49:59.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ab44e63a724221d37ffe6da02be21d1c4afddc33b8733b3cd530e8310973c5cd",
+    "source_doc_hashes": {
+      "spec.md": "b8b3ecc52ac132e72dc0a206a1ebe80b61cfb9add5f1f7622075eab1ee60b07a",
+      "plan.md": "0544411454dd631a462614bc19c342171b5a0741a23cae71aa4052623f4994c0",
+      "tasks.md": "10aba9082557721d163ca22bf7336221ab2523acfe084763587ef0629f236958",
+      "checklist.md": "22561d33466ba605c6d44ec9fc11e3b4a3df2900b682141b675901b1c3daaa80",
+      "decision-record.md": "2a668a67e4e6ca742bb95b32d66da1957bb9b630e84c58de5e0dd749243f901f",
+      "implementation-summary.md": "a8959cc188add9a66dbce7c8ccd5c8f07649c7dca749433f9efaa4717cc1ac1c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

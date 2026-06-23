@@ -1,17 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
-  "description": "Feature Specification: blast_radius includeTransitive Flag Fix (029 Phase 008)",
+  "description": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
   "keywords": [
-    "feature",
-    "specification",
-    "includetransitive",
-    "flag",
-    "fix",
-    "029",
+    "finding",
+    "f-022-1",
     "phase",
-    "008"
+    "007",
+    "codegraphquery",
+    "blastradius",
+    "ignores",
+    "includetransitive",
+    "flag"
   ],
-  "lastUpdated": "2026-06-22T18:55:02.884Z",
+  "lastUpdated": "2026-06-23T03:49:56.119Z",
   "specId": "008",
   "folderSlug": "blast-radius-transitive-flag",
   "parentChain": [

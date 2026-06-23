@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface. The current launcher needs stronger rename durability, consistent temp naming, state directory validation, owner-only log permissions, stable log fd stdio, normalized health payloads, caller-consistent `skipIfDisabled` handling, dependency injection seams for tests, and a smaller orchestrator split into focused helpers.",
+    "causal_summary": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-05-30T10:12:02.511Z",
+    "last_save_at": "2026-06-23T03:49:55.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b2bba193da798fde8e9935889e9071140ffdd843393021f326cb0bb33249ee10",
+    "source_doc_hashes": {
+      "spec.md": "fba4f85098de3176746b5895a6d4bf28c13ad5a0deef3aa7d072f5447dea2de1",
+      "plan.md": "57ba83eadfc7044ce5817f24b9d05781d310ce75a7b2516896706df8533d35c2",
+      "tasks.md": "9b712f0b0483305529ceacbd1d49c3b11ebe8023246f94872cd4216402f20fe4",
+      "checklist.md": "1217dfdee8c7db6a8d0c69b8c6d844df1ac40027b3bb3d8c316a8e7f9becac92",
+      "decision-record.md": "9a0edf42a325007b414e50a7ca0935187de360a6544eb13f9bbb261279ee5c8b",
+      "implementation-summary.md": "48703dac6a0fb26082d8b8d6c8af705e2bc4281bb8ad75308181e6d6cb164efa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex docs cite `google/embeddinggemma-300m` as the \"default embedding\" in 3 `_NOTE_2` lines of `config_templates.md`, even though `DEFAULT_EMBEDDER_NAME = \"sbert/nomic-ai/CodeRankEmbed\"` shipped on 2026-05-19 (per the 018 follow-on). Per packet 021 finding f-iter006-001, this is **P0 doc-drift**: an operator copy-pasting the template would believe embeddinggemma is the default and misconfigure or under-resource accordingly.",
+    "causal_summary": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annotation + ENV_REFERENCE.md date refresh + SKILL.md keywords. Reranker-side doc edits (BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B prose) deferred to follow-on packet because they need Qwen3 disk-footprint + daemon-log behavior verification beyond the mechanical-edit threshold.",
     "created_at": "2026-05-23T16:15:00.000000Z",
-    "last_save_at": "2026-05-30T10:12:02.242Z",
+    "last_save_at": "2026-06-23T03:49:54.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:08d8e28e4726de36a4ed6e746247e352f355b5dc131420b01b5a5eb5827f8d27",
+    "source_doc_hashes": {
+      "spec.md": "9394f6b03240e03447697c220248d10d731f81cb503d0e2c4ecb408d9eee74d2",
+      "plan.md": "f192c8d8ad2913eb731314ae27fd01f7f06209a462b7e7a329fae1bbcb7d6497",
+      "tasks.md": "34d56d9536443013af2f116caa86bdfcb0e56ecb1b18ddf2a0d96c59a60de745",
+      "checklist.md": "26f135eee24e15a1ebfbc7c600bd289bb23e8e0d3b772413bd5e5ab48e15c725",
+      "implementation-summary.md": "df00e5cdb87db5e9e759a65a756c76d4eb948ea41ea50fbc914512d841bfe584"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

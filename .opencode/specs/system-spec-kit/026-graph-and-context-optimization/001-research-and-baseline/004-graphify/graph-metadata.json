@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 4 of `001-research-graph-context-systems` is a read-only audit of the graphify external Python skill to translate its two-pass codebase knowledge graph patterns into concrete improvements for Code_Environment/Public's existing structural retrieval stack (Code Graph MCP, CocoIndex, Spec Kit Memory). The deliverable is an evidence-backed Adopt/Adapt/Reject table grounded in specific `external/graphify/` file:line citations, not a generic feature inventory. No source files outside this spec folder are modified during the research phase.",
+    "causal_summary": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for persistent context, and hook-based context injection patterns",
     "created_at": "2026-04-12T09:02:53.448Z",
-    "last_save_at": "2026-05-30T10:12:01.834Z",
+    "last_save_at": "2026-06-23T03:49:53.126Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:991c49ec9cb494c2e713266912894611f098f268f3532386ad7855cbcc46c228",
+    "source_doc_hashes": {
+      "spec.md": "ced7414aaae9a6d6a7779747887b3bc04459f1ab7f721b676c02e8784a583b85",
+      "plan.md": "237d12271028ec817e59c202ad53853a90f891d5efec5576695dfe39b45efae5",
+      "tasks.md": "828de746bf1e180dd8a961f1d4c28e0835a5a67f87d399a6314d6ce1dc54150e",
+      "checklist.md": "0240972138ac67239e35769aedd1a8827c82786596177f93b403d996bbe7a387",
+      "decision-record.md": "7d22044c599a442ad9660d5091b21c8a51fa9bfe6b913beab3f85121c9815528",
+      "implementation-summary.md": "4773106195124cf89fe95d82c41badae449162ea2c603db69b83342dd67b5b5d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

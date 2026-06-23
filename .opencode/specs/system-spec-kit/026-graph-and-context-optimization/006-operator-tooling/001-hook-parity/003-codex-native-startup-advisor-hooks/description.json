@@ -1,16 +1,18 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
-  "description": "Feature Specification: Codex CLI Hook Parity Remediation",
+  "description": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
   "keywords": [
-    "feature",
-    "specification",
     "codex",
     "cli",
-    "hook",
-    "parity",
-    "remediation"
+    "sessions",
+    "receive",
+    "two",
+    "payloads",
+    "claude",
+    "code",
+    "receives"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.396Z",
+  "lastUpdated": "2026-06-23T03:49:56.239Z",
   "specId": "003",
   "folderSlug": "codex-native-startup-advisor-hooks",
   "parentChain": [

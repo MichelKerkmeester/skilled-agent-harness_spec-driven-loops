@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code graph operations have no doctor surface. When the index goes stale or bloats with `node_modules/`, `dist/`, generated artifacts, etc., users have to manually inspect `code_graph_status`, edit scanner config blind, run `code_graph_scan`, and spot-check queries. There is no command that walks them through diagnosis-first remediation with the same safety guarantees `/doctor:skill-advisor` provides (canonical-path validator, per-run rollback, dry-run preview, build-status branching).",
+    "causal_summary": "Code graph operations have no doctor surface",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-06-05T12:47:34.102Z",
+    "last_save_at": "2026-06-23T03:49:55.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:724d8c2c80d5abc52acb024318f9d916d30fc88a24d710586f983f235933b190",
+    "source_doc_hashes": {
+      "spec.md": "21847a0598dc385088a36cac14581a09337ab282d75201e1a3f9a2586a82ebb6",
+      "plan.md": "7722a8f6fedd6026e58f3533de4e4a167c3918575501194c6e2e73c855473d7d",
+      "tasks.md": "0559361e068f116e6f2113329672770b30b8229c4d3735350a34be15aa4102aa",
+      "checklist.md": "777c5750d1484f57d10025ff6912eaad8f9b0beebefdd4bca4ebcbf2cb6cbf55",
+      "implementation-summary.md": "8fdf01b9382a316fedc54d08659b138181dfa6353ecb8d389834571c5ee2c032"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three system skills evolved through extraction events without consistent styling:",
+    "causal_summary": "20 cli-devin SWE 1.6 deep-review iterations identify drift + gaps",
     "created_at": "2026-05-15T15:00:00Z",
-    "last_save_at": "2026-06-05T12:47:34.339Z",
+    "last_save_at": "2026-06-23T03:49:56.731Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:be2f3d5f68174a8386e6c405ae695206af8a7e4900c1061d501d2756b2f78719",
+    "source_doc_hashes": {
+      "spec.md": "200b7b9845b759bf9a547b23391c83ca6076c27821da43b7449dc917a4393025",
+      "plan.md": "999d0bc53dae80d0ec4d4ce3c3f991456169b62c0e402ab16542d009bca4d9df",
+      "tasks.md": "e93ff2df013231ac083d311c42a168120fc5a7cdb4ee70681fc17aa7a92efb57",
+      "implementation-summary.md": "5bc03002d84260b0bfa7ab788c7cc31e9cb6ba05a58290c608adb3c61c970366",
+      "research/research.md": "586be93dad1f5a28b251cdfb99b3f0d0e53f22046411708f5ebd1ec52f0b5e74",
+      "resource-map.md": "ec31c2c28996569a7c5ce017f27707f2d64c02f91c1aad2d3d4b14fead5f69ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

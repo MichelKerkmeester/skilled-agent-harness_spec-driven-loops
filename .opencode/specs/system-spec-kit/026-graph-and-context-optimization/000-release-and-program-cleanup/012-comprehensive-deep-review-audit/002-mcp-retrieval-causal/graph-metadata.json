@@ -118,14 +118,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The MCP retrieval and causal-graph read path (semantic search, unified context, trigger matching, causal links) was heavily reworked across 026 (graph-channel routing, query intelligence, scoring/calibration). This slice audits it for correctness, security, and contract/traceability drift.",
+    "causal_summary": "The MCP retrieval and causal-graph read path (semantic search, unified context, trigger matching, causal links) was heavily reworked across 026 (graph-channel routing, query intelligence, scoring/calibration)",
     "created_at": "2026-06-04T18:53:35.318Z",
-    "last_save_at": "2026-06-05T12:47:33.216Z",
+    "last_save_at": "2026-06-23T03:49:52.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:67a40d4665fd5ef6bda39afc451d6679b08b1fd896165b6c55444cac8500915d",
+    "source_doc_hashes": {
+      "spec.md": "af07fe769b29786134af823bc4e9f319703ab9f327afe6539050561a26f5b610"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

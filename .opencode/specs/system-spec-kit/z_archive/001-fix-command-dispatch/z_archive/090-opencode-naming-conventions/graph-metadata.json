@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Align JavaScript naming conventions in the OpenCode framework with ecosystem standards (camelCase) instead of the current non-standard snake_case enforcement. Migrate all ~206 JS files in `.opencode/skills/system-spec-kit/` and update the `sk-code-opencode` skill documentation.",
+    "causal_summary": "The `sk-code-opencode` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
     "created_at": "2026-04-12T09:02:53.560Z",
-    "last_save_at": "2026-06-05T12:47:34.572Z",
+    "last_save_at": "2026-06-23T03:49:59.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:555ca55fa56ac8583ebceb2a058e3bd4cc453354c1185cfefe7a86505f444fb4",
+    "source_doc_hashes": {
+      "spec.md": "22399649f1911dbc8e86cb8d20194adc2edbdce2c14ae709c210f720d6ba7be8",
+      "plan.md": "0ef7888b7ddd6d4518047181fee67b361273d37e43667a72ee6700386eb45fdf",
+      "tasks.md": "4feb4bd3452ef8a99232240585f82e1421a74d3624c151823efba0d16457df00",
+      "checklist.md": "aa0e13ed97e98acf08df399ae917bdadfc7e98d81ba2aa96f274938989829905",
+      "decision-record.md": "e737e59b194f75adb3d20982aaa88b40fb8fe2bbf2b102ea43eda3c63a1de929",
+      "implementation-summary.md": "177a57ee2a3e01851d5522bcd50670a1156018283bf113b606eee99b28262967"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

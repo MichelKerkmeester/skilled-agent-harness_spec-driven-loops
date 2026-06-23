@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 4-phase MCP launcher concurrency arc shipped with a CONDITIONAL deep-review verdict: no P0s, but 13 P1s remained across documentation drift, missing test evidence, and real correctness gaps. The highest-risk issue was lease ownership following workspace paths instead of the resolved SQLite database directory, allowing two workspaces that share one DB override to bypass the single-writer boundary.",
+    "causal_summary": "The 4-phase MCP launcher concurrency arc shipped with a CONDITIONAL deep-review verdict: no P0s, but 13 P1s remained across documentation drift, missing test evidence, and real correctness gaps",
     "created_at": "2026-05-18T12:28:18.618Z",
-    "last_save_at": "2026-05-30T10:12:02.364Z",
+    "last_save_at": "2026-06-23T03:49:54.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f7aca0874c7281b92438840d404c462ff7bf9559cfd59619fc635c9591a7f24d",
+    "source_doc_hashes": {
+      "spec.md": "e2e3d78ffa1d62cea03ebbaf8636141566f25691d612b4ce7460f8df72150ec1",
+      "plan.md": "55efb59c1f2e78176ed4b0816be6e9d021b6257e13c1b6404a0782b8af3a8425",
+      "tasks.md": "f7b50064f704d84a88e30cdcca5ffe321373b676d9658e12549b01125c226714",
+      "checklist.md": "791b9d88d034335164b4683567d16d212db7694aaea6df03808fe35508c58097",
+      "implementation-summary.md": "0937336cf4fe94a9320bf53c19024de803992a005ba4b6169e1b5c3b2a2de23d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

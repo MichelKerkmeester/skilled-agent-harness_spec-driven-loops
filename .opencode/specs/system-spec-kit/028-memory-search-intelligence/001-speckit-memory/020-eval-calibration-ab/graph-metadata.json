@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is a Wave-2 implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers*, both downstream of the C9→A8 build spine and shipping only once that harness can produce the evidence they promote on:",
+    "causal_summary": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers that were never measured:",
     "created_at": "2026-06-19T05:52:29.576Z",
-    "last_save_at": "2026-06-22T18:55:03.670Z",
+    "last_save_at": "2026-06-23T03:49:58.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f2dcfa476cffd5962c70ecf8b0d1474227cdb9ebffcc7e85e41b71343cdb1a16",
+    "source_doc_hashes": {
+      "spec.md": "527e817c5084b11c10b9a5241dc475b32f08f62182931d41f1b1b7abf3c24f60",
+      "plan.md": "8c6afffbf5b6940d1ddd09499175235ac85322f7854173c3b24be4992fc6645b",
+      "tasks.md": "67634687951eaebb27ed4289bd0d05e81172c1593d08610c24d313dd1be5b7e1",
+      "checklist.md": "6ffd9d2b819b8abed019d89f68e9118e5ab46110376be68808aedf25d19b836d",
+      "implementation-summary.md": "594105bf3796ee3afc3f53386f8b1e06acfb3e41947adf8171454f36a0dbc36a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

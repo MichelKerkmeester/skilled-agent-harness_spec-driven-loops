@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resolution (Voyage → OpenAI → llama-cpp → hf-local), profile-keyed sqlite filenames, auto-migration between hf-local and llama-cpp, model-keyed prefix registry, q8 default quantization, and Apple-Silicon Metal acceleration via llama-cpp. **No single test artifact verifies that every documented behavior is actually delivered by the runtime.** Without a feature-test suite, regressions in any of these subsystems would land silently and only be discovered via production failures or downstream review.",
+    "causal_summary": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resolution (Voyage → OpenAI → llama-cpp → hf-local), profile-keyed sqlite filenames, auto-migration between hf-local and llama-cpp, model-keyed prefix registry, q8 default quantization, and Apple-Silicon Metal acceleration via llama-cpp",
     "created_at": "2026-05-13T19:09:45Z",
-    "last_save_at": "2026-05-30T10:12:02.111Z",
+    "last_save_at": "2026-06-23T03:49:54.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b894af2d22dbf7321ff3f23d65fe5f9e8bc8fe3a7dcae1dd492e6b7325d68bd9",
+    "source_doc_hashes": {
+      "spec.md": "a188a0a41a1f93bcd8532ed59cdcc22eb0270517403b02eca699913a6bd20c73",
+      "plan.md": "bff975441c903c2b8e168584c582d8da81b44b77c7062f67288706d19eb2f31e",
+      "tasks.md": "a23396f2468adeb3ca50f47864765359ca74c6f764a6f09666dc0cda21faeb3e",
+      "checklist.md": "b2e0262ca29597d0c30a542d956f01a825f3be5a288a47fede0532092b153c79",
+      "implementation-summary.md": "b8833fefbc4f053c9eb29df742b5aad095285d49131ac45f2d927bb3a0d212db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

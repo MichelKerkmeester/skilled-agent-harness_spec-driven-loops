@@ -181,9 +181,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Working Memory Hybrid Rag. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
+    "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Working Memory Hybrid Rag",
     "created_at": "2026-04-12T09:02:53.570Z",
-    "last_save_at": "2026-06-05T12:47:34.618Z",
+    "last_save_at": "2026-06-23T03:49:59.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,6 +191,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2849c155255cd0d5ebcf72e6a2dfbb8e5504d838fc5e49faa17d2a6b94a5fd74",
+    "source_doc_hashes": {
+      "spec.md": "85184af7d7a5dbd7860a0bd61aed15a9c512251d63f41ea04f65bf3d1fd0331b",
+      "research/research.md": "179f4d49a437183d7be17b9723d34d7d331ecde7535264c5efaec7af23ce5e9f",
+      "resource-map.md": "4917e9b4c09a147bcf9f63875ade338e5a812ce8661f79ed7d6b834906dc7599"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

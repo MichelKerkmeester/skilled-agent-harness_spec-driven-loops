@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the search-and-output-intelligence implementation: generic-query deep routing (S3).",
+    "causal_summary": "Generic short queries read \"weak\" because the cheap `simple` route stripped them of the recall machinery they need: a ≤3-term query was trimmed to two channels with both rule-based and embedding expansion suppressed, and produced an empty `suggestedQueries` list, so the agent had no way to broaden",
     "created_at": "2026-06-17T19:57:25.103Z",
-    "last_save_at": "2026-06-18T12:37:50.232Z",
+    "last_save_at": "2026-06-23T03:49:57.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:13d0438709175ba46fbfdf2decb55e8e2887bc772277a87e1ab69c956fd5eec6",
+    "source_doc_hashes": {
+      "spec.md": "9fc2eb6d21e7c7de4f1923145202250e83b746554b7de431b47f60f16d39a422",
+      "plan.md": "fbc02de0bace88160a485adfa60a9aab12f71fcfc964f0f880cf519e5147fa17",
+      "tasks.md": "973ec6a1f7369d479865e9c12f4840bbbdb5ece7cfa389caa92340baf9469247",
+      "implementation-summary.md": "7aa19eab327b5cb0e2a73ce38784685b4e0d10bd5fe6a37fb8cc6cf34bca51da"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

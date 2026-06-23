@@ -1,15 +1,17 @@
 {
   "specFolder": "system-spec-kit/z_archive/010-documentation-alignment",
-  "description": "Feature Specification: Documentation Alignment for Spec 126",
+  "description": "This archived folder captures work that aligned documentation for Spec 126",
   "keywords": [
-    "feature",
-    "specification",
+    "archived",
+    "folder",
+    "captures",
+    "work",
+    "aligned",
     "documentation",
-    "alignment",
     "spec",
     "126"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.595Z",
+  "lastUpdated": "2026-06-23T03:49:59.467Z",
   "specId": "010",
   "folderSlug": "documentation-alignment",
   "parentChain": [

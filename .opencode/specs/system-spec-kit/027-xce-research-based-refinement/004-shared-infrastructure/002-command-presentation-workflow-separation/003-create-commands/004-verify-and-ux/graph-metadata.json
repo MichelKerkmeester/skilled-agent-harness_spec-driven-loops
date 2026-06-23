@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions.",
+    "causal_summary": "Create Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.906Z",
+    "last_save_at": "2026-06-23T03:49:57.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:35c4d6240f470d1d041e0377d40dd390fe1e482dbc89537e71a46dc37d5cecb1",
+    "source_doc_hashes": {
+      "spec.md": "7b0fb7a9e4196f9274cefaa6b8dce7b2764ed7bd5ab20c6adc156ec7796e7073",
+      "plan.md": "8909091777b22f1319d56cb11f48398d0117c929aa49889a3b5c1d31faf49146",
+      "tasks.md": "60006dd36843d57ab95841906b9520c180af7d7ba82b8a226e837b37c9590d80",
+      "implementation-summary.md": "0c511333d1b15d7f05325ea12289f64ebaada332007e3f03d50e07dbb36a937b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

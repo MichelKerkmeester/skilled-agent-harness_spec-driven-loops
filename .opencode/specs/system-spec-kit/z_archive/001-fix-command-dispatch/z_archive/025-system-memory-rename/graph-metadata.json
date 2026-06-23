@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `workflows-memory` skill needs to be renamed to `system-memory` to align with the naming convention established by the recent `workflows-spec-kit` → `system-spec-kit` rename. The \"system-\" prefix better reflects that this is a core infrastructure skill rather than a domain workflow.",
+    "causal_summary": "The `workflows-memory` skill needs to be renamed to `system-memory` to align with the naming convention established by the recent `workflows-spec-kit` → `system-spec-kit` rename",
     "created_at": "2026-04-12T09:02:53.517Z",
-    "last_save_at": "2026-06-22T18:56:37.564Z",
+    "last_save_at": "2026-06-23T03:49:59.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:b62d7c6a8baeb5a68dd48f47c586673a24ed0eea422a99bc23929b4d52250c04",
+    "source_doc_hashes": {
+      "spec.md": "0dbfa4dc0d06a865c1e91a39a8b6b758ea9d6d49cebe6b4a7496fefa39f87a5d",
+      "plan.md": "6df5dcfa0888ead35290bb0fa1a88cd47a554efb8d4c660f8c0e33a73b117a55",
+      "tasks.md": "a4a86eaa78f5bc9b2f7a26da88408caee81441aa6c6ffd5b22d46a9020144430",
+      "checklist.md": "726ce4e8ac70234b9386eb4a595c2921e7a536d7a22bd560ac1055c322f80fbf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }
