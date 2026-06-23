@@ -156,6 +156,7 @@ describe('source_doc_hashes freshness key (REQ-003, SC-004)', () => {
   it('persists source_doc_hashes on the derived metadata only when the flag is on', () => {
     const folder = writeFolder({ 'spec.md': specWithOverview(LONG_OVERVIEW) });
 
+    process.env[DRIFT_GATE_FLAG] = 'false';
     const flagOff = deriveGraphMetadata(folder);
     expect(flagOff.derived.source_doc_hashes).toBeUndefined();
 

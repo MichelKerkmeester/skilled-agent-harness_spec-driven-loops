@@ -84,6 +84,7 @@ afterEach(() => {
 
 describe('source_fingerprint (REQ-001)', () => {
   it('omits the field when the flag is off so a flag-off derive stays byte-identical', () => {
+    process.env[HARDENING] = 'false';
     const folder = path.join(makeTrackRoot(), '038-fp-off');
     writeSpecFolder(folder);
 
@@ -264,7 +265,9 @@ describe('schema tolerance and strict read under grandfather (REQ-004, REQ-005)'
     const folder = path.join(makeTrackRoot(), '038-missing');
     writeSpecFolder(folder);
     // Generate with the flag off so the file carries no fingerprint, then validate under the rollout.
+    process.env[HARDENING] = 'false';
     refreshGraphMetadataForSpecFolder(folder, { now: NOW });
+    delete process.env[HARDENING];
 
     process.env[HARDENING] = 'true';
     const report = checkGeneratedMetadataIntegrity(folder);
