@@ -23,6 +23,8 @@ Dimensions: correctness-and-bugs, schema-migration-safety, test-coverage-and-qua
 
 No P0 surfaced. Fifty findings survived tri-model review and claude adversarial verification. The single P1 is the only finding that changes how the packet's own benchmark evidence is produced. The forty-nine P2s split into two clean families: shipped-code hardening gaps (untested defensive branches, fail-open guards, latent injection seams that are not live today) and packet-doc drift (phase-map and changelog status tables that disagree with each other). None of the P2s is a shipped runtime defect on a default-on path.
 
+> **Remediation status (2026-06-23):** These findings were routed into the scoped `006-review-remediation` track. Child `001-eval-benchmark-fidelity` shipped the P1 flag-eval harness fix and the criterion-4 no-flip re-run, and child `003-doc-accuracy` shipped the P1-6 reclassification and the phase-map and changelog staleness reconciliation. Children `002-memory-schema-and-concurrency` and `004-p2-triage` remain PENDING scaffolds over the storage-layer hardening items and the grouped P2 families. See [`changelog/006-review-remediation/changelog-006-root.md`](./changelog/006-review-remediation/changelog-006-root.md).
+
 ---
 
 ## P0 - Blockers

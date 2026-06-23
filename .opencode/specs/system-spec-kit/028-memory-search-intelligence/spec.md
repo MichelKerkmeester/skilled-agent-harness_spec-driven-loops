@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-19T06:45:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Added release cleanup phase parent scaffold"
-    next_safe_action: "Resume subsystem parents 001-004 or release cleanup parent 000"
+    last_updated_at: "2026-06-23T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Logged the 005 build, migration and flag-graduation phases"
+    next_safe_action: "Track complete, twelve flags graduated and one deleted"
     blockers: []
     key_files:
       - "spec.md"
@@ -64,7 +64,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its seven top-level children span a release-cleanup phase parent, four subsystem phase parents, the spec-data-quality research packet and a review-remediation phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its seven top-level children span a release-cleanup phase parent, four subsystem phase parents, the spec-data-quality research packet and a review-remediation phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement and scoring-hardening builds as children 025 through 028.
 
 ### Purpose
 Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 000 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
@@ -111,11 +111,11 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
-| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 24 implementation child plans, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases now nested as 022 through 024 | Phase parent |
+| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 28 implementation child plans, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024 and the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement and scoring-hardening builds as 025 through 028 | Phase parent |
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
-| 005 | `005-spec-data-quality/` | Spec-kit data-quality deep research, 19 iterations, go/no-go tiering of 1 GO and 5 GO-on-cost and 4 conditional and 5 NO-GO | Complete |
+| 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 40 child phases spanning the go/no-go research tiering, the generated-metadata build phases 033 through 038, the full-repo JSON migration 039 and the flag-graduation benchmark 040 that kept twelve flags and deleted one | Complete |
 | 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
 
 ### Phase Transition Rules

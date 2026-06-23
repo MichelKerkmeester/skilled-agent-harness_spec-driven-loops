@@ -12,6 +12,24 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
+## 2026-06-23
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` (Level 3)
+
+### Summary
+
+The data-quality lineage moved from research to shipped code. Beyond the 28-phase research scaffold, children 029 through 040 landed. The vague-query model benchmark (029), the improvement and generated-JSON quality research (030, 031), the z_future exclusion (032), the generated-metadata build (033 identity-merge-safety, 034 z-exclusion, 035 idempotent-writes, 036 metadata-validator, 037 drift-gate, 038 generator-hardening), the full-repo JSON migration (039) and the flag-graduation benchmark (040). The migration restamped every `description.json` and `graph-metadata.json` in the whole tree to the new format, z_archive included and z_future excluded by operator decision, gated on a byte-stable second run and 2049 folders at zero violations. The benchmark then ran the earn-or-delete reckoning on the thirteen built flags. Twelve graduated to default-ON or enforcing and one, grounding-signal, was deleted as purely informational. The historical 2026-06-22 and 2026-06-21 entries below record the research-scaffold state and are superseded for the shipped phases.
+
+### Verification
+
+- Full-repo JSON migration - COMPLETE, 2049 folders at 0 violations, byte-stable second run, validate-clean
+- Flag-graduation benchmark - COMPLETE, twelve flags kept and one deleted under the earn-or-delete bar
+- Per-phase changelogs - COMPLETE, one leaf per phase 029 through 040 under this directory
+
+### Follow-Ups
+
+- The research scaffold 001 through 028 stays a future build plan, kept by operator intent. The shipped lineage is 029 through 040.
+
 ## 2026-06-22
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` (Level 3)
@@ -82,6 +100,18 @@ This packet ran the full spec-kit data-quality research as the official multi-li
 | `026-shared-safe-fix-engine` | Draft | Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and checklist are authored and the work is PLANNED. The engine is the foundation the program builds first, right after the Stage-0 census, so the front doors A1, B1 and B2 wait on it. |
 | `027-retrieval-floor-experiment` | Draft | Status PLANNED. This phase is scaffolded and not yet implemented. No code change has landed and nothing below has shipped. The section describes the change the phase will make once it is built. |
 | `028-governance-rollout` | Draft | Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, plan, tasks and checklist are authored and the five governance deliverables are described, but no governance document has landed and no acceptance criterion has been verified. |
+| `029-vague-query-model-benchmark` | Complete, benchmark | Vague-query model-behavior benchmark over 144 cells across four models. The quality and citation verdict held model-robust, with measured data and a model recommendation. No code shipped. |
+| `030-improvement-research` | Complete, research | Improvement research that diagnosed a calibration miss and produced twelve ranked proposals. No code modified. |
+| `031-generated-json-quality-research` | Complete, research | Generated-JSON quality research that diagnosed four safety classes and produced fourteen ranked proposals. The research that drove the 033 through 040 build. No code modified. |
+| `032-z-future-always-ignored` | Complete | `z_future` added to the `EXCLUDED_DIRS` set so it is always ignored by the generated-metadata backfill. `z_archive` left untouched. |
+| `033-identity-resolver-merge-safety` | Complete, graduated default-on | One specs-root-relative spec-folder identity with non-null parent and unioned children on a merge re-derive, behind `SPECKIT_IDENTITY_MERGE_SAFETY`. Graduated to default-ON after the migration. |
+| `034-scoped-backfill-boundary` | Complete, default-on by construction | The `z_*` exclusion from the descriptions cache behind `SPECKIT_GENERATED_METADATA_Z_EXCLUSION`, shipped default-ON with a one-var opt-out because it cannot mass-fail. |
+| `035-idempotent-writes-cache-upsert` | Complete, graduated default-on | Skip a description write whose only delta is the volatile stamp plus a targeted aggregate upsert, behind `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES`. Graduated to default-ON. |
+| `036-metadata-validator-status-enum` | Complete, graduated enforcing | The generated-metadata integrity validator and status enum, with `SPECKIT_GENERATED_METADATA_GRANDFATHER` report-only during the migration window then flipped OFF to a hard strict error. |
+| `037-drift-gate-synopsis-extractor` | Complete, graduated default-on | One shared synopsis extractor for `description` and `causal_summary`, a `source_doc_hashes` freshness key and a drift gate behind `SPECKIT_GENERATED_METADATA_DRIFT_GATE`. Graduated after the migration re-run wrote the hashes tree-wide. |
+| `038-generator-hardening` | Complete, graduated default-on | A graph-metadata `source_fingerprint`, one `listPhaseChildren` enumeration and index-layer telemetry behind `SPECKIT_GENERATOR_HARDENING`. Graduated after the re-run wrote the fingerprint tree-wide. |
+| `039-full-repo-json-migration` | Complete | The scoped per-folder migration driver regenerated every `description.json` and `graph-metadata.json` in the whole tree to the new format, `z_archive` included and `z_future` excluded by operator decision. Gated on a byte-stable second run and 2049 folders at 0 violations. This migration earned the flag flips. |
+| `040-flag-graduation-benchmark` | Complete | The earn-or-delete benchmark on the thirteen built flags. Twelve graduated to default-ON or enforcing and one, grounding-signal, was deleted as purely informational. |
 
 ### Added
 

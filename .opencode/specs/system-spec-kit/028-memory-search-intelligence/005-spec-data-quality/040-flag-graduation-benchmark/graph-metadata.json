@@ -208,7 +208,7 @@
     ],
     "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.803Z",
+    "last_save_at": "2026-06-23T06:05:13.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62bc49defd1f236ccd7d8ef9e21c5a5dddf3e78fc2b7e268251dfcca9c4a8676",
+    "source_fingerprint": "sha256:13497940fdb668940d87f35d5a0ff43f604d66d8cf0d97b3fdf216bf351baf77",
     "source_doc_hashes": {
       "spec.md": "9b76e3ecb92dd838ac089c90e4192c89f3332c947f5886ea964344fc52d7b308",
       "plan.md": "5bfa7e31b7906a05fb4719cdc180844e534e9c553120080e0b2700ad3befc2ec",
       "tasks.md": "a24b19f2ad89d8f79f2f918dfcef27507483327dda92932cfd6b8d32dfa1dbb2",
       "checklist.md": "61d1553ed717a63b80df4d34b733e28d90ef9b4944901930714037614bcee00f",
-      "implementation-summary.md": "a81facda26448de710a0d6134728718d04d584d3c6b2ee753aa5c4d879fb2ea6"
+      "implementation-summary.md": "a4a4da35b50a3527ac25052b8f96898508fe805340dd724b70bcd79173ba3a79"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status IN_PROGRESS. The Stage 3 full-repo generated-JSON migration driver and its vitest are built and green, and a no-write dry-run sample over eight folders including two z_future folders has proven the enumerator, the writer-rule exclusion and the scoped-only call pattern. The driver enumerates every spec folder including z_archive and z_future and regenerates description.json and graph-metadata.json through the scoped per-folder path only. The live full-repo run is the high-blast step the orchestrator owns and is still pending. One contract boundary surfaced: the hardened writer rules refuse graph-metadata under z_future, so the driver enumerates z_future for coverage but records it skipped on the writer rule rather than rewriting it."
+description: "Status COMPLETE. The Stage 3 full-repo generated-JSON migration driver and its vitest are built and green, and the live full-repo run is done. The scoped per-folder driver regenerated description.json and graph-metadata.json across the whole tree, z_archive included and z_future excluded by operator decision, and the integrity validator read 2049 folders at 0 violations with a byte-stable second run. One contract boundary held: the hardened writer rules refuse graph-metadata under z_future, so the driver enumerates z_future for coverage but records it skipped on the writer rule rather than rewriting it."
 trigger_phrases:
   - "full repo json migration"
   - "stage 3 generated json migration"
@@ -12,12 +12,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    last_updated_at: "2026-06-23T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Built and tested the migration driver and ran a green dry-run sample"
-    next_safe_action: "Orchestrator runs the live full-repo migration then verifies a no-diff re-run"
-    blockers:
-      - "z_future graph-metadata is refused by the hardened writer rules, so the spec REQ-001 expectation that z_future is rewritten needs an amendment decision the orchestrator owns"
+    recent_action: "Ran the live full-repo migration, 2049 folders at 0 violations"
+    next_safe_action: "Migration complete and committed, byte-stable re-run verified"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts"
       - ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts"
@@ -26,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-039-full-repo-json-migration"
       parent_session_id: null
-    completion_pct: 60
-    open_questions:
-      - "Whether z_future keeps its legacy generated JSON, has it deleted, or stays excluded once the writer rules refuse to rewrite it"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The description-side scoping mechanism is generatePerFolderDescription plus savePerFolderDescription, which touches one folder only and never the aggregate descriptions.json cache"
+      - "z_future stays excluded by operator decision, the writer rules refuse it and the migration honors that exclusion"
 ---
 # Implementation Summary
 
@@ -46,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 039-full-repo-json-migration |
-| **Completed** | Not yet, status IN_PROGRESS, driver and tests built, live full-repo run pending |
+| **Completed** | Yes, 2026-06-23, 2049 folders at 0 violations, byte-stable re-run, z_future excluded by operator decision |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Status IN_PROGRESS. The migration driver and its vitest are built and green, and a no-write dry-run sample has proven the driver works end to end. The live full-repo run is the high-blast step the orchestrator owns and is still pending.
+Status COMPLETE. The migration driver and its vitest are built and green, and the live full-repo run is done. The scoped driver regenerated both generated files across the whole tree, and the integrity validator read 2049 folders at 0 violations with a byte-stable second run.
 
 ### Driver
 
@@ -80,7 +79,7 @@ The hardened writer rules from phase 034 classify which folders are eligible. A 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The J1 to J4 generators were confirmed built in the shipped dist, then the enumerator, the scoped regeneration loop, the writer-rule gate and the verify companion were built into one driver. The vitest was authored and run green at ten of ten. A no-write dry-run sample over eight folders, two of them under `z_future`, proved the enumeration, the writer-rule exclusion, the scoped-only call pattern and that a dry-run dirties nothing. The live full-repo run, the byte-stable second run and the scoped commits batched by track are the high-blast steps the orchestrator owns and are still pending.
+The J1 to J4 generators were confirmed built in the shipped dist, then the enumerator, the scoped regeneration loop, the writer-rule gate and the verify companion were built into one driver. The vitest was authored and run green at ten of ten. A no-write dry-run sample over eight folders, two of them under `z_future`, proved the enumeration, the writer-rule exclusion, the scoped-only call pattern and that a dry-run dirties nothing. The live full-repo run then regenerated all spec folders, the byte-stable second run confirmed no diff and the scoped commits were batched by track.
 
 ### Deviations from the plan
 
@@ -123,8 +122,8 @@ The dry-run `--verify` reported six violations across the sample. That is a pre-
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Live full-repo run pending.** The driver and tests are built and proven on a dry-run sample, but the high-blast live run over all spec folders is the orchestrator's to execute, then re-run for a byte-stable no-diff and a validate-clean tree.
-2. **z_future is excluded by the writer rules.** The hardened writer refuses graph-metadata under `z_future`, so the driver enumerates it for coverage but does not rewrite it. The end state for `z_future` legacy generated JSON needs an amendment decision.
+1. **Live full-repo run complete.** The driver and tests were built and proven, then the live run over all spec folders landed at 2049 folders with 0 violations, a byte-stable no-diff re-run and a validate-clean tree.
+2. **z_future is excluded by the writer rules.** The hardened writer refuses graph-metadata under `z_future`, so the driver enumerates it for coverage but does not rewrite it. The operator decided z_future stays excluded, so its legacy generated JSON is left in place.
 3. **Dry-run does not byte-diff the graph file.** A dry-run reports the graph side as a planned create or a planned refresh, the real byte delta is resolved by the content-hash skip at write time. The description side prediction is exact.
 4. **Regenerates derived JSON only.** The migration rewrites the generated `description.json` and `graph-metadata.json`, it never touches authored doc content.
 5. **Graduation is a separate phase.** Flipping the default-OFF flags to default-ON is the Stage 4 follow-on, phase 040, gated on this migration landing first.

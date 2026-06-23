@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "The Stage 4 flag graduation benchmark is built and run. A harness under scripts measures every default-OFF packet 028 flag against the migrated live tree, reusing the phase 036 integrity validator through the migrate driver verify pass for the migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the benchmark-gated flags. Six flags graduate, one graduates by flipping OFF to enforce, four stay off neutral and two cannot graduate until the migration is re-run with their field-writing flag on. No flag default was changed, the orchestrator owns the flips. Verdicts are in benchmark-results.md."
+description: "The Stage 4 flag graduation benchmark is built and run, and the earn-or-delete reckoning is complete. A harness under scripts measured every default-OFF packet 028 flag against the migrated live tree, reusing the phase 036 integrity validator for the migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the verdict flags. The first pass graduated six. A migration re-run then graduated the drift gate and generator hardening once their fields were written, and a fixture re-benchmark graduated cite-with-caveat, evidence-gap and envelope-fidelity. Of the thirteen built flags, twelve graduated to default-ON or enforcing and one, grounding-signal, was deleted as purely informational. The flips are committed. Verdicts are in benchmark-results.md."
 trigger_phrases:
   - "flag graduation benchmark"
   - "stage 4 before and after benchmark"
@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    last_updated_at: "2026-06-23T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Built and ran the Stage 4 graduation benchmark, recorded per-flag verdicts"
-    next_safe_action: "Hand verdicts to the orchestrator, re-run migration for drift-gate and hardening"
+    recent_action: "Graduated twelve flags and deleted one under earn-or-delete"
+    next_safe_action: "Reckoning complete, flips committed and deployed"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-040-flag-graduation-benchmark"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "A flag with a neutral measured delta stays off by default with the neutral result recorded as the reason"
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 040-flag-graduation-benchmark |
-| **Completed** | Benchmark built and run on 2026-06-22, flag flips deferred to the orchestrator |
+| **Completed** | Yes, 2026-06-23, twelve flags graduated and one deleted, flips committed |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ A self-contained benchmark harness at `scripts/flag-graduation-benchmark.mjs` th
 
 ### The verdict
 
-Six flags earn graduation, one of them by flipping OFF to enforce. Four stay off as measured neutral. Two cannot graduate yet because the migration ran without the flag that writes the field they enforce against.
+The first pass earned six graduations, one of them by flipping OFF to enforce. A migration re-run then graduated the drift gate and generator hardening once their freshness fields were written, and a fixture re-benchmark graduated cite-with-caveat, evidence-gap and envelope-fidelity on built fixtures. Of the thirteen built flags, twelve graduated to default-ON or enforcing and one, grounding-signal, was deleted as purely informational.
 
 | Flag | Verdict |
 |------|---------|

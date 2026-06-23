@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind default-OFF flags so the on-disk repo is untouched",
     "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.797Z",
+    "last_save_at": "2026-06-23T06:05:13.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +223,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac239c262a02688ef540c4a3bfe8e74086699689b06681d414193bed00dd15a9",
+    "source_fingerprint": "sha256:42ccb477ab9ed6f7af0a757fcf9cb68a2c4b6c84cde1eeaa90d0407bee526acf",
     "source_doc_hashes": {
       "spec.md": "0ae2e4776801faa19f697420d36dcfd921d6b10a19e39cc2b8c68361c0ef9355",
       "plan.md": "b28675eefd687e243169861aaff78a38b4f1d35ae6b89a7651d9ea457b37a02c",
       "tasks.md": "50c810b8cde0f2857db17cea12e24207fa3c7a1afa9599714fdd37bdf6829228",
       "checklist.md": "0364edcb9885c79a93b8425d8088c9ab3576fc168126e5764dcebe00881f9c50",
-      "implementation-summary.md": "3c3eb4b0a2924565e374e8d0251015ec7ae1b90c24cb161796ffaa743a285a13"
+      "implementation-summary.md": "bc655fb7cfcea032512e63f51aac18efd396d7a70480fec8a0eaeb88f1880b31"
     },
     "last_active_child_id": null,
     "last_active_at": null

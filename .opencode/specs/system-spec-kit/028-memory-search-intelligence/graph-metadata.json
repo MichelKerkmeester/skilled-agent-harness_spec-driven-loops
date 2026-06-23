@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-23T03:49:58.047Z",
+    "last_save_at": "2026-06-23T06:04:35.125Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:78557d637f574c1f0181ce96afbb93fd3762e10669808d2168a2ba87c21919ae",
+    "source_fingerprint": "sha256:28f00781e044997de12e8279ac48a680c4177de0bca123c3de9761e02b9eb716",
     "source_doc_hashes": {
-      "spec.md": "2e981040f7fd508b55f5056c5b376e94ce963c04c34849cf3737a1cfa35dd59f",
+      "spec.md": "03a1091c5dc1c259da8e282178743e0160964dff664bf6962779f5f922120da7",
       "research/research.md": "0ca48b10a71cbbce24603941b831f0184c1371959a33363276b7bebb688c78a3",
-      "handover.md": "91d38d0b75eb8faf80e58b9736948543b9206ec75836c1e443b186adcfdf3db2"
+      "handover.md": "76d08d445b698c6d60fff25380b935cbac662b57bc01d75dfabf988c315555c4"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-06-20T14:47:33.596Z"
+    "last_active_at": "2026-06-23T05:30:28.328Z"
   }
 }

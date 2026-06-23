@@ -503,3 +503,18 @@ under system-skill-advisor with surgical metadata only and no content change. Th
 category-scoped `before-vs-after.md` inside each of the five subsystem parents, `001-speckit-memory`,
 `002-code-graph`, `003-skill-advisor`, `004-deep-loop` and `005-spec-data-quality`, each telling only its own
 subsystem story while the packet-root `before-vs-after.md` stays the comprehensive cross-subsystem record.
+
+On 2026-06-23 the data-quality lineage that the 2026-06-21 and 2026-06-22 notes left as a research scaffold then
+shipped. Under `001-speckit-memory` the scoring and eval build landed as children 025 through 028, the off-corpus eval
+fixture and false-confirm CI gate, the lexical-grounding floor that drove the off-corpus false-confirm rate from 0.833
+to 0, the envelope-fidelity enforcement and the four-flag scoring hardening. Under `005-spec-data-quality` the
+generated-metadata build landed as children 033 through 038, the identity resolver and merge safety, the
+scoped-backfill z-exclusion, the idempotent writes and cache upsert, the metadata validator and status enum, the drift
+gate and shared synopsis extractor and the generator hardening. Phase `039-full-repo-json-migration` then ran the
+scoped per-folder migration driver over the whole tree, restamping every `description.json` and `graph-metadata.json`
+to the new enum-clean, prefixed-path and content-hashed format, z_archive included and z_future excluded by operator
+decision, gated on a byte-stable second run, 2049 folders at zero violations and a validate-clean tree. Phase
+`040-flag-graduation-benchmark` then ran the earn-or-delete reckoning. Of the thirteen built flags, twelve graduated to
+default-ON or enforcing on a measured before-and-after and one, grounding-signal, was deleted with its code as purely
+informational. Every phase across the seven tracks now carries a leaf changelog under `changelog/`, and the living flag
+record is `feature-flags.md`, `keep-off-flag-roadmap.md` and `benchmark-status.md`.

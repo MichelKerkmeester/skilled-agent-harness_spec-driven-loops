@@ -29,7 +29,8 @@ contextType: "implementation"
 | `003-skill-advisor` | Phase Parent | > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem --> |
 | `004-deep-loop` | Phase Parent | > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem --> |
 | `000-release-cleanup` | Phase Parent | > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem --> |
-| `005-spec-data-quality` | Phase Parent | Research-only data-quality track. 28 scaffolded phases, nothing shipped. Rollup: [changelog-005-root.md](./005-spec-data-quality/changelog-005-root.md). |
+| `005-spec-data-quality` | Phase Parent | Data-quality research that then shipped. 40 phases spanning the go/no-go research, the generated-metadata build, the full-repo JSON migration and the flag-graduation benchmark that kept twelve flags and deleted one. Rollup: [changelog-005-root.md](./005-spec-data-quality/changelog-005-root.md). |
+| `006-review-remediation` | Phase Parent | Scoped remediation of the epic deep review across four children: eval-benchmark fidelity, memory schema and concurrency, doc accuracy and P2 triage. Rollup: [changelog-006-root.md](./006-review-remediation/changelog-006-root.md). |
 
 ### Added
 
