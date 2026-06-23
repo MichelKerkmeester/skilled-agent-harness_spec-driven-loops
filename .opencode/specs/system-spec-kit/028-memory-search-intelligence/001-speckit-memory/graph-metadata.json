@@ -31,7 +31,8 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
-    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -230,7 +231,7 @@
       "spec.md": "191ebefc8060ad013d32d7c8aab87700fc3b6d3a0bf02a0b99403d50c6f17892",
       "research/research.md": "2a9367720adbdc512305f6a7362d5fd5dfd4277168a1072812e0efbebe5412e8"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
+    "last_active_at": "2026-06-23T00:00:00Z"
   }
 }

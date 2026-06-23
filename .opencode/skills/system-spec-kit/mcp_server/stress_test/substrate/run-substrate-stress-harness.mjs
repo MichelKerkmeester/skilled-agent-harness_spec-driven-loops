@@ -10,10 +10,8 @@ import { spawnSync } from 'node:child_process';
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../../../../../..');
 const MEMORY_SERVER_ROOT = path.join(REPO_ROOT, '.opencode/skills/system-spec-kit/mcp_server');
-const SANDBOX_EVIDENCE_DIR = path.join(
-  REPO_ROOT,
-  '_sandbox/24--local-llm-query-intelligence/evidence',
-);
+const SANDBOX_RUN_DIR = path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence');
+const SANDBOX_EVIDENCE_DIR = path.join(SANDBOX_RUN_DIR, 'evidence');
 const PLAYBOOK_DIR = path.join(
   REPO_ROOT,
   '.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence',
@@ -104,7 +102,7 @@ export function parseScenarioList(value) {
 }
 
 function parseArgs(argv) {
-  const options = { scenarios: DEFAULT_SCENARIOS, stderrLog: true };
+  const options = { scenarios: DEFAULT_SCENARIOS, stderrLog: true, clean: false };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--scenarios') {
@@ -114,6 +112,8 @@ function parseArgs(argv) {
       options.scenarios = parseScenarioList(arg.slice('--scenarios='.length));
     } else if (arg === '--no-stderr-log') {
       options.stderrLog = false;
+    } else if (arg === '--clean') {
+      options.clean = true;
     }
   }
   return options;
@@ -785,6 +785,28 @@ function hermeticCodeIndexExtras() {
   return { SPECKIT_CODE_GRAPH_DB_DIR: dir };
 }
 
+// The sandbox under the repo root holds only regenerated run artifacts: the summary TSV and a
+// workload dump, plus a throwaway hermetic code-graph DB. The DB is scratch and is always removed
+// once the daemons are closed. `clean` additionally drops the whole sandbox for standalone runs;
+// the vitest runner omits it because it reads the summary TSV after the harness process exits and
+// clears the sandbox itself.
+function cleanupSandbox({ clean = false } = {}) {
+  try {
+    fs.rmSync(path.join(SANDBOX_RUN_DIR, '.tmp-cg-db'), { recursive: true, force: true });
+  } catch {
+    // best-effort scratch cleanup
+  }
+  if (clean) {
+    try {
+      fs.rmSync(SANDBOX_RUN_DIR, { recursive: true, force: true });
+      // Drop the now-empty _sandbox parent too. rmdir fails closed if anything else lives there.
+      fs.rmdirSync(path.dirname(SANDBOX_RUN_DIR));
+    } catch {
+      // best-effort cleanup; a shared or non-empty parent is left in place
+    }
+  }
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   fs.mkdirSync(SANDBOX_EVIDENCE_DIR, { recursive: true });
@@ -862,6 +884,7 @@ async function main() {
       connection.client ? connection.client.close().catch(() => {}) : Promise.resolve()
     ));
     await Promise.all(connections.map((connection) => connection.stderr.end()));
+    cleanupSandbox({ clean: options.clean });
   }
 }
 

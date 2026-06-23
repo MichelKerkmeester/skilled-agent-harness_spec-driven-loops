@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 
 const execFileAsync = promisify(execFile);
 
@@ -29,6 +29,18 @@ const TSV_PATH = path.join(
 );
 
 describe('substrate stress harness (045 promoted)', () => {
+  // The harness writes its sandbox under the repo root. Remove it once the suite has read the
+  // summary TSV so a test run never leaves scratch evidence behind.
+  afterAll(() => {
+    try {
+      fs.rmSync(path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence'), { recursive: true, force: true });
+      // Drop the now-empty _sandbox parent too. rmdir fails closed if anything else lives there.
+      fs.rmdirSync(path.join(REPO_ROOT, '_sandbox'));
+    } catch {
+      // best-effort cleanup; a non-empty _sandbox parent is left in place
+    }
+  });
+
   it('runs scenarios 403/404/407/410 against the real mk-spec-memory and mk-code-index daemons with no connection or scenario failures (tolerates a live-owner skip)', async () => {
     await execFileAsync('node', [HARNESS, '--no-stderr-log', '--scenarios', '403,404,407,410'], {
       cwd: REPO_ROOT,
