@@ -7,6 +7,7 @@ trigger_phrases:
   - "hybrid search dedup fix"
   - "string number id mismatch dedup"
   - "canonical result id normalization"
+version: 3.6.0.16
 ---
 
 # Canonical ID dedup hardening

@@ -7,6 +7,7 @@ trigger_phrases:
   - ablation study
   - channel ablation
   - evaluation artifact persistence
+version: 3.6.0.9
 ---
 
 # Eval Runner CLI

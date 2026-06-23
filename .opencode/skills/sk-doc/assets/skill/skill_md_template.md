@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
+version: 1.8.0.38
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -81,7 +82,7 @@ SKILL.md architecture follows progressive disclosure:
 | `name` | ✅ | hyphen-case | `my-skill-name` |
 | `description` | ✅ | Single line, **≤ 130 chars** for skills (≤ 110 for commands); 1,536-char hard cap | `"Handles X when Y occurs"` |
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
-| `version` | ⭐ | Semver | `1.0.0` |
+| `version` | ⭐ | 4-part X.Y.Z.W | `1.0.0.0` |
 
 > **Description budget & trim style**: see [`frontmatter_templates.md` § Description Budget & Trim Style](../frontmatter_templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
@@ -92,7 +93,7 @@ SKILL.md architecture follows progressive disclosure:
 name: sk-example
 description: Example workflow skill demonstrating proper frontmatter format with specific capabilities, use cases, and key differentiators for AI agent discovery.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0
+version: 1.0.0.0
 ---
 ```
 
@@ -129,7 +130,7 @@ Packaging enforcement note:
 name: example-skill
 description: Example skill demonstrating proper template structure with specific capabilities for semantic code search and context preservation workflows.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0
+version: 1.0.0.0
 ---
 
 <!-- Keywords: [KEYWORDS] -->

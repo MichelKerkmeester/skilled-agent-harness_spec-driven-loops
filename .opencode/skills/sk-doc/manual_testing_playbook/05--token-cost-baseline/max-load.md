@@ -28,6 +28,7 @@ expected_resources:
 expected_token_range_input: 5000-10000
 expected_token_range_output: 2000-3000
 created: 2026-05-05
+version: 1.8.0.9
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)

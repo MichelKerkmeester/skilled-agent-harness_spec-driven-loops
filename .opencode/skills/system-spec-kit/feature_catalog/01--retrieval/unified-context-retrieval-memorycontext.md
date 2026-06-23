@@ -7,6 +7,7 @@ trigger_phrases:
   - "context orchestration"
   - "intent-based retrieval routing"
   - "auto-detect task intent"
+version: 3.6.0.24
 ---
 
 # Unified context retrieval (memory_context)

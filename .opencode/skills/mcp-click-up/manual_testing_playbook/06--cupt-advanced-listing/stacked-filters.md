@@ -1,6 +1,7 @@
 ---
 title: "CU-016 -- Stacked Filters — AND logic for --tag"
 description: "This scenario validates Stacked Filters — AND logic for --tag for `CU-016`. Objective: Verify stacking two --tag flags returns only tasks with BOTH tags."
+version: 1.0.0.5
 ---
 
 # CU-016 -- Stacked Filters — AND logic for --tag

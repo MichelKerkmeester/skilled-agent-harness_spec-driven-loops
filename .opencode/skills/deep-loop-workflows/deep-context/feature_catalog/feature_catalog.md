@@ -8,6 +8,7 @@ trigger_phrases:
   - "gather context for feature"
   - "heterogeneous parallel sweep"
 last_updated: "2026-06-06"
+version: 1.2.0.4
 ---
 
 # deep-context: Feature Catalog

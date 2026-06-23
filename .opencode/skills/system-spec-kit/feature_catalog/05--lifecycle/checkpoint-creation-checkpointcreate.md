@@ -9,6 +9,7 @@ trigger_phrases:
   - "rollback safety snapshot"
   - "checkpoint v2 vacuum into snapshot"
   - "full db checkpoint snapshot_format snapshot_path"
+version: 3.6.0.25
 ---
 
 # Checkpoint creation (checkpoint_create)

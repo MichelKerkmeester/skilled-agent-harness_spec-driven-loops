@@ -8,6 +8,7 @@ trigger_phrases:
   - "javascript error handling standards"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.11
 ---
 
 # JavaScript Quality Standards

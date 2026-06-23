@@ -7,6 +7,7 @@ trigger_phrases:
   - "probabilistic graph edges LLM"
   - "high-value document enrichment"
   - "LLM backfill after deterministic extraction"
+version: 3.6.0.8
 ---
 
 # Async LLM graph backfill

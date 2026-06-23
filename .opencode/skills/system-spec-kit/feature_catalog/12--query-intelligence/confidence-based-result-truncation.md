@@ -7,6 +7,7 @@ trigger_phrases:
   - "trim irrelevant result tail"
   - "score gap analysis"
   - "SPECKIT_CONFIDENCE_TRUNCATION"
+version: 3.6.0.13
 ---
 
 # Confidence-based result truncation

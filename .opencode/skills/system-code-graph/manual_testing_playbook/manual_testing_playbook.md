@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph validation"
   - "code graph runtime playbook"
 importance_tier: "important"
+version: 1.2.0.21
 ---
 # Code Graph: Manual Testing Playbook
 

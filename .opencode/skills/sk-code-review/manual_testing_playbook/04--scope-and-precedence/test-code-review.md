@@ -1,6 +1,7 @@
 ---
 title: "CR-012 -- Test code review"
 description: "This scenario validates Test code review for `CR-012`. It focuses on Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions."
+version: 1.5.0.4
 ---
 
 # CR-012 -- Test code review

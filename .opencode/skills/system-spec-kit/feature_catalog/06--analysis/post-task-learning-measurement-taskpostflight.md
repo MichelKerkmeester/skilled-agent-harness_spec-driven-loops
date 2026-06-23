@@ -7,6 +7,7 @@ trigger_phrases:
   - "learning index"
   - "postflight delta computation"
   - "measure what was learned"
+version: 3.6.0.21
 ---
 
 # Post-task learning measurement (task_postflight)

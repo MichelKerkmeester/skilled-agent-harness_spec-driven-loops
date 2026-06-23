@@ -1,6 +1,7 @@
 ---
 title: "CX-002 -- gpt-5.5 model lock"
 description: "This scenario validates the gpt-5.5 model lock for `CX-002`. It focuses on confirming gpt-5.5 is the only supported model and that the explicit pin succeeds end-to-end."
+version: 1.4.0.8
 ---
 
 # CX-002 -- gpt-5.5 model lock

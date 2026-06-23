@@ -7,6 +7,7 @@ trigger_phrases:
   - "background retry manager vectors"
   - "embedding lifecycle utilities"
   - "failed vector creation retry"
+version: 3.6.0.10
 ---
 
 # Embeddings and Retry API

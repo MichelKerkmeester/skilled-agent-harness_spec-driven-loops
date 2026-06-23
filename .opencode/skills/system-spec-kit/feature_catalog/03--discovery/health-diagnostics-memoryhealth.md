@@ -7,6 +7,7 @@ trigger_phrases:
   - "check system readiness"
   - "alias conflict detection"
   - "auto-repair memory health"
+version: 3.6.0.18
 ---
 
 # Health diagnostics (memory_health)

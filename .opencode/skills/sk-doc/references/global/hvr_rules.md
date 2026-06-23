@@ -9,6 +9,7 @@ trigger_phrases:
   - "natural writing standards"
 importance_tier: important
 contextType: general
+version: 1.8.0.13
 ---
 
 # Human Voice Rules (HVR) - Writing Standards Reference

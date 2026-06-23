@@ -7,6 +7,7 @@ trigger_phrases:
   - "trace decision history"
   - "why was this decision made"
   - "graph traversal causal"
+version: 3.6.0.21
 ---
 
 # Causal chain tracing (memory_drift_why)

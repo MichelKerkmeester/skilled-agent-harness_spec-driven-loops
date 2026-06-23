@@ -8,6 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.17
 ---
 
 # Universal Patterns - Cross-Language Code Standards

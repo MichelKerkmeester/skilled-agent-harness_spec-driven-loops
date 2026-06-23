@@ -7,6 +7,7 @@ trigger_phrases:
   - "causal edges 2-hop graph walk"
   - "relation-type weighted amplification"
   - "post-fusion causal score boost"
+version: 3.6.0.11
 ---
 
 # Causal neighbor boost and injection

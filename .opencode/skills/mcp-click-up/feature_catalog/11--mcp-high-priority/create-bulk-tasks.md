@@ -7,6 +7,7 @@ trigger_phrases:
   - "batch task creation"
   - "create multiple tasks at once"
   - "sprint setup bulk import"
+version: 1.0.0.3
 ---
 
 # clickup_create_bulk_tasks

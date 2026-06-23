@@ -6,6 +6,7 @@ trigger_phrases:
   - "derive choices from the revised plan"
   - "remove one accessory restraint"
   - "design step 3 and 4"
+version: 1.5.0.2
 ---
 
 # Build and self-critique

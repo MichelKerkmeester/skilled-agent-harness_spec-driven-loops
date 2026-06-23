@@ -6,6 +6,7 @@ trigger_phrases:
   - "feature flag reference mapping note"
   - "slug-based mapping contract"
   - "feature-flag-reference category"
+version: 3.6.0.9
 ---
 
 # Feature flag reference mapping note

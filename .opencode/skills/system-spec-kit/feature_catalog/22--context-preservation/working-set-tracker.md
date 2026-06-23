@@ -7,6 +7,7 @@ trigger_phrases:
   - "recency-weighted file scoring"
   - "session file access tracking"
   - "compaction priority working set"
+version: 3.6.0.10
 ---
 
 # Working-set tracker

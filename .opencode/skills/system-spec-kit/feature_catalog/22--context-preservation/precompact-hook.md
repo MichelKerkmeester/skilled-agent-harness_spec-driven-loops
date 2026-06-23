@@ -7,6 +7,7 @@ trigger_phrases:
   - "pre-compaction context cache"
   - "compaction context precompute"
   - "hook state caching before compaction"
+version: 3.6.0.7
 ---
 
 # PreCompact hook context caching

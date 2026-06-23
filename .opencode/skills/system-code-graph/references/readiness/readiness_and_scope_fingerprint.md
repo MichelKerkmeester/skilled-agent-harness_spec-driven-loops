@@ -9,6 +9,7 @@ trigger_phrases:
   - "trust state"
 importance_tier: "important"
 contextType: "implementation"
+version: 1.2.0.6
 ---
 
 # System Code Graph Readiness and Scope Fingerprint

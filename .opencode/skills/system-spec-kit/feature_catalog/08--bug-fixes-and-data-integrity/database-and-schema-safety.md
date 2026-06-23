@@ -7,6 +7,7 @@ trigger_phrases:
   - "ddl placement fix"
   - "edge deletion filter fix"
   - "connection isolation fix"
+version: 3.6.0.15
 ---
 
 # Database and schema safety

@@ -8,6 +8,7 @@ trigger_phrases:
   - "config file quality checklist"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.14
 ---
 
 # Config File Quality Checklist

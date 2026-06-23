@@ -1,6 +1,7 @@
 ---
 title: "CS-002: Non-Webflow Plus Motion.dev Peer References"
 description: "Verify generic vanilla HTML/CSS/JS Motion.dev work loads motion_dev references without being misclassified as WEBFLOW."
+version: 3.5.0.5
 ---
 
 # CS-002: Non-Webflow Plus Motion.dev Peer References

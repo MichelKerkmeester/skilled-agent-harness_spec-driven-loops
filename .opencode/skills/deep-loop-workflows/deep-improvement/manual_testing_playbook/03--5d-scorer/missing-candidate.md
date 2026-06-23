@@ -3,6 +3,7 @@ title: "5D-011 -- Missing Candidate File Returns infra_failure"
 description: "Manual validation scenario for 5D-011: Missing Candidate File Returns infra_failure."
 feature_id: "5D-011"
 category: "5D Scorer"
+version: 1.17.0.13
 ---
 
 # 5D-011 -- Missing Candidate File Returns infra_failure

@@ -7,6 +7,7 @@ trigger_phrases:
   - "topological phase ordering"
   - "dependency graph cycle detection"
   - "structural indexer scan flow"
+version: 3.6.0.7
 ---
 
 # Code Graph phase-DAG runner

@@ -1,6 +1,7 @@
 ---
 title: "DAC-027 -- Unresolved disagreement triage: graph vs no-graph baseline"
 description: "Real-world scenario comparing operator effort to identify unresolved critical disagreements after a multi-round council, with vs without the council graph. Anchors to `runtime query CLI mode='unresolved_disagreements'`."
+version: 2.3.0.9
 ---
 
 # DAC-027 -- Unresolved disagreement triage: graph vs no-graph baseline

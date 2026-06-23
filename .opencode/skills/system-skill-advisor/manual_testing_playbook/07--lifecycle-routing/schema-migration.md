@@ -6,6 +6,7 @@ trigger_phrases:
   - "schema migration"
   - "v1 to v2 backfill"
   - "additive migration"
+version: 0.8.0.15
 ---
 
 # LC-004 Schema v1 to v2 Additive Backfill

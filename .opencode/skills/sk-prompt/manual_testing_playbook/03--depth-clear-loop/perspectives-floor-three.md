@@ -1,6 +1,7 @@
 ---
 title: "SP-010 -- Discover blocks below 3 perspectives"
 description: "This scenario validates Discover perspective-floor enforcement for `SP-010`. It focuses on blocking advancement when fewer than 3 perspectives are evaluated."
+version: 2.3.0.5
 ---
 
 # SP-010 -- Discover blocks below 3 perspectives

@@ -7,6 +7,7 @@ trigger_phrases:
   - "revalidate memory at save time"
   - "preflight V-rule checkpoint rollback"
   - "how do I repair bad memory entries automatically"
+version: 3.6.0.12
 ---
 
 # Runtime remediation, revalidation, and auto-repair workflows

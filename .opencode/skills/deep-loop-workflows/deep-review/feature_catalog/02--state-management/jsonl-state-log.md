@@ -7,6 +7,7 @@ trigger_phrases:
   - "append-only review history"
   - "iteration event spine"
   - "convergence replay"
+version: 1.11.0.6
 ---
 
 # JSONL state log

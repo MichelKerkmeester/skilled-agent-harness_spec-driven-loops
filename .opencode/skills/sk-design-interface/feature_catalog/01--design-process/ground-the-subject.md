@@ -6,6 +6,7 @@ trigger_phrases:
   - "name subject audience and page job"
   - "design step 0"
   - "pin the design direction"
+version: 1.5.0.2
 ---
 
 # Ground the subject

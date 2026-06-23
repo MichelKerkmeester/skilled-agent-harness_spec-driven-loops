@@ -1,6 +1,7 @@
 ---
 title: "ID-004 -- Read a design system as the default, then deviate"
 description: "This scenario validates Read a design system as the default, then deviate for `ID-004`. It focuses on confirming a matching real design system is read live as the default to deviate from, with a negative control proving it is never surfaced as a style-chooser menu and never copied."
+version: 1.5.0.4
 ---
 
 # ID-004 -- Read a design system as the default, then deviate

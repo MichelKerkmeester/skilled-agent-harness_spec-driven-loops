@@ -6,6 +6,7 @@ trigger_phrases:
   - "codex user-prompt-submit"
   - "codex prompt-wrapper"
   - "codex advisor hook"
+version: 0.8.0.14
 ---
 
 # Codex CLI SessionStart and UserPromptSubmit Hooks

@@ -1,6 +1,7 @@
 ---
 title: "SP-017 -- CLEAR 40/50 threshold triggers improvement"
 description: "This scenario validates total CLEAR threshold enforcement for `SP-017`. It focuses on iterating when total score is below 40/50, capped at 3 attempts."
+version: 2.3.0.5
 ---
 
 # SP-017 -- CLEAR 40/50 threshold triggers improvement

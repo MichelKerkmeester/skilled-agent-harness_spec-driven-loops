@@ -1,6 +1,7 @@
 ---
 title: "CO-028 -- Ablation suite via parallel detached sessions"
 description: "This scenario validates the ablation suite pattern for `CO-028`. It focuses on confirming TEMPLATE 7 from prompt_templates.md (CIDI framework, parallel detached) can drive a small ablation comparison with results captured to per-session state files."
+version: 1.3.0.11
 ---
 
 # CO-028 -- Ablation suite via parallel detached sessions

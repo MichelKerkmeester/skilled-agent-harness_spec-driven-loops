@@ -1,6 +1,7 @@
 ---
 title: "CX-010 -- medium reasoning (skill default)"
 description: "This scenario validates the medium reasoning level as the documented skill default for `CX-010`. It focuses on confirming explicit medium dispatches succeed and align with SKILL.md §3."
+version: 1.4.0.8
 ---
 
 # CX-010 -- medium reasoning (skill default)

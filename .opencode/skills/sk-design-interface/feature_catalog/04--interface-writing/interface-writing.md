@@ -6,6 +6,7 @@ trigger_phrases:
   - "ui copy active voice end-user vocabulary"
   - "consistent action names across a flow"
   - "errors and empty states as direction"
+version: 1.5.0.2
 ---
 
 # Interface writing as design material

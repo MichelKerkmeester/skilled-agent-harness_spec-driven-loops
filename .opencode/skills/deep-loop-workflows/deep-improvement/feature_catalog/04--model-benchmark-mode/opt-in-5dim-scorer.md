@@ -7,6 +7,7 @@ trigger_phrases:
   - "enable 5dim scorer"
   - "--scorer 5dim flag"
   - "grader selection"
+version: 1.17.0.9
 ---
 
 # Opt-in 5-dimension scorer

@@ -8,6 +8,7 @@ trigger_phrases:
   - "codex advisor brief"
 importance_tier: important
 contextType: implementation
+version: 1.4.0.12
 ---
 
 # Codex CLI Hook Contract

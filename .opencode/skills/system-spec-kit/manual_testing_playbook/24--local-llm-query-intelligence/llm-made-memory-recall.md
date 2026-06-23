@@ -4,6 +4,7 @@ description: "The local LLM has been storing memories through generate-context.j
 audited_post_018: true
 fixture_version: "post-surgery"
 fixture_file: "409-fixture.json"
+version: 3.6.0.3
 ---
 
 # 409 - LLM-made memory recall (round-trip quality)

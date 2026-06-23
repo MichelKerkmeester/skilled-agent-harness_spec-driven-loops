@@ -9,6 +9,7 @@ trigger_phrases:
   - "indexable content sources"
 importance_tier: normal
 contextType: general
+version: 3.6.0.55
 ---
 
 # Memory System Reference - MCP Tools & Behavior

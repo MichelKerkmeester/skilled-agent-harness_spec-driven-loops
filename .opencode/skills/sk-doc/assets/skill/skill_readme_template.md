@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
+version: 1.8.0.5
 ---
 
 # Skill README Template
@@ -88,6 +89,7 @@ description: "[One sentence: what the skill does and who reaches for it.]"
 trigger_phrases:
   - "[primary routing phrase]"
   - "[secondary routing phrase]"
+version: 1.0.0.0
 ---
 
 # [skill-name]

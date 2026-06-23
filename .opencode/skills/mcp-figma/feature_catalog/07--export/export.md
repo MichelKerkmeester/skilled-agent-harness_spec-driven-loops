@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma export-jsx"
   - "figma export-storybook"
   - "export figma asset"
+version: 1.0.0.2
 ---
 
 # Export (figma-ds-cli export / export-jsx / export-storybook)

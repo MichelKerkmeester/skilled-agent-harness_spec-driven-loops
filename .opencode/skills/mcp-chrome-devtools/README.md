@@ -7,6 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
+version: 1.0.0.22
 ---
 
 # mcp-chrome-devtools

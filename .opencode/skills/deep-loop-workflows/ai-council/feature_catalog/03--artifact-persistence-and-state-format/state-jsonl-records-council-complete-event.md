@@ -7,6 +7,7 @@ trigger_phrases:
   - "council_complete terminal event"
   - "council run completion state"
   - "check council run completed"
+version: 2.3.0.9
 ---
 
 # State JSONL records council_complete event

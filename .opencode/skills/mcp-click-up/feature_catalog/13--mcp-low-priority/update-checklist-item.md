@@ -7,6 +7,7 @@ trigger_phrases:
   - "check off checklist item"
   - "mark item resolved"
   - "uncheck checklist entry"
+version: 1.0.0.3
 ---
 
 # clickup_update_checklist_item

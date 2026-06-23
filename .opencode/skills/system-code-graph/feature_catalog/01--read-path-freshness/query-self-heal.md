@@ -6,6 +6,7 @@ trigger_phrases:
   - "system-code-graph feature catalog"
   - "query self-heal"
 importance_tier: "important"
+version: 1.2.0.12
 ---
 
 # Query self-heal

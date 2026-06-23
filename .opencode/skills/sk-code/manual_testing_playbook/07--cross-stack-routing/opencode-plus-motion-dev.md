@@ -1,6 +1,7 @@
 ---
 title: "CS-003: OPENCODE Plus Motion.dev Supplementary References"
 description: "Verify OPENCODE target precedence wins for a TypeScript tool that includes a Motion.dev preview, while motion_dev references load as supplementary context."
+version: 3.5.0.5
 ---
 
 # CS-003: OPENCODE Plus Motion.dev Supplementary References

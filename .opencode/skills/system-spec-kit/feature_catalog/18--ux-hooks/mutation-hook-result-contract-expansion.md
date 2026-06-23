@@ -7,6 +7,7 @@ trigger_phrases:
   - "cache-clear booleans"
   - "post-mutation hook results"
   - "hook result contract"
+version: 3.6.0.14
 ---
 
 # Mutation hook result contract expansion

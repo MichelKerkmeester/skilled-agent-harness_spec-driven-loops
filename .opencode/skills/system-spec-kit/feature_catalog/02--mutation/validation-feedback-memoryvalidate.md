@@ -7,6 +7,7 @@ trigger_phrases:
   - "validate memory"
   - "confidence score adjustment"
   - "auto-promotion learned feedback"
+version: 3.6.0.22
 ---
 
 # Validation feedback (memory_validate)

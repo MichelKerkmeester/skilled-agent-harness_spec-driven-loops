@@ -7,6 +7,7 @@ trigger_phrases:
   - "per-tool in-memory TTL cache"
   - "SHA-256 tool cache deduplication"
   - "cache invalidation mutation hooks"
+version: 3.6.0.12
 ---
 
 # Tool-level TTL cache

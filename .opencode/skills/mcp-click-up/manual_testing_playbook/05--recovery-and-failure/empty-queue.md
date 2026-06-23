@@ -1,6 +1,7 @@
 ---
 title: "FAIL-002 -- Empty Queue Is Valid"
 description: "This scenario validates Empty Queue Is Valid for `FAIL-002`. Objective: Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0 — not a."
+version: 1.0.0.6
 ---
 
 # FAIL-002 -- Empty Queue Is Valid

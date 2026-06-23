@@ -1,6 +1,7 @@
 ---
 title: "271 -- Code Graph phase-DAG runner"
 description: "This scenario validates the Code Graph phase-DAG runner for `271`. It focuses on proving the runner enforces declared dependencies, rejects malformed DAGs, and that the structural-indexer scan flow runs through the wrapped phases without changing observable behavior."
+version: 3.6.0.10
 ---
 
 # 271 -- Code Graph phase-DAG runner

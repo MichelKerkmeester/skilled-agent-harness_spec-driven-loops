@@ -9,6 +9,7 @@ trigger_phrases:
   - "decision evaluation framework"
 importance_tier: normal
 contextType: planning
+version: 3.6.0.14
 ---
 
 # Five Checks Framework

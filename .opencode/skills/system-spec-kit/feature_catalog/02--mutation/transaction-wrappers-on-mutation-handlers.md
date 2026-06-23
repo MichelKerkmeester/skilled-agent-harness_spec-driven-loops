@@ -6,6 +6,7 @@ trigger_phrases:
   - "mutation atomicity"
   - "database transaction rollback"
   - "atomic mutation path"
+version: 3.6.0.14
 ---
 
 # Transaction wrappers on mutation handlers

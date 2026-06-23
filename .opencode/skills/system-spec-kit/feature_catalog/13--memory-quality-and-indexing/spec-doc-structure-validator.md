@@ -7,6 +7,7 @@ trigger_phrases:
   - "frontmatter continuity block validation"
   - "merge legality check"
   - "fail-close malformed spec doc"
+version: 3.6.0.4
 ---
 
 # Spec-doc structure validator

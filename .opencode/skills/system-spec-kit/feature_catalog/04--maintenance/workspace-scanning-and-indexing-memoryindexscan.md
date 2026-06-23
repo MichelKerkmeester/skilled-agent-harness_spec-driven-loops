@@ -7,6 +7,7 @@ trigger_phrases:
   - "index workspace"
   - "incremental spec-doc indexing"
   - "how do I sync spec folders to the database"
+version: 3.6.0.29
 ---
 
 # Workspace scanning and indexing (memory_index_scan)

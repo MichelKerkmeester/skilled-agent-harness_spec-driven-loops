@@ -1,6 +1,7 @@
 ---
 title: "DAC-023 -- runtime convergence CLI three-state decision matrix"
 description: "This scenario validates that `runtime convergence CLI` emits `CONTINUE`, `STOP_ALLOWED`, or `STOP_BLOCKED` based on agreement, evidence, confidence, and unresolved-critical-disagreement signals for `DAC-023`. Anchors to council-graph-script.vitest.ts tests for all three convergence buckets."
+version: 2.3.0.8
 ---
 
 # DAC-023 -- runtime convergence CLI three-state decision matrix

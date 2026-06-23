@@ -1,6 +1,7 @@
 ---
 title: "CM-004 -- call_tool_chain execution"
 description: "This scenario validates call_tool_chain execution for `CM-004`. It focuses on confirming that `call_tool_chain` executes a TypeScript snippet that invokes external tools and returns the result."
+version: 1.0.0.6
 ---
 
 # CM-004 -- call_tool_chain execution

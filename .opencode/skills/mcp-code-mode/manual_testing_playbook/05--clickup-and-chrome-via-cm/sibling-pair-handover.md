@@ -1,6 +1,7 @@
 ---
 title: "CM-016 -- Sibling-pair handover"
 description: "This scenario validates the cross-MCP handover pattern for `CM-016`. It focuses on confirming a chain can capture a Chrome screenshot then create a ClickUp task referencing the screenshot — both MCPs in one execution."
+version: 1.0.0.7
 ---
 
 # CM-016 -- Sibling-pair handover

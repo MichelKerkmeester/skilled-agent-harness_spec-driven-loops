@@ -9,6 +9,7 @@ trigger_phrases:
   - "one-shot analysis"
   - "multi-seat-dispatch"
   - "dispatchCouncilSeats"
+version: 1.2.0.4
 ---
 
 # CLI Council Seats

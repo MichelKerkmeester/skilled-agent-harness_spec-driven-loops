@@ -8,6 +8,7 @@ trigger_phrases:
   - "webflow api limits"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.14
 ---
 
 # Webflow Platform Patterns - Development Guide

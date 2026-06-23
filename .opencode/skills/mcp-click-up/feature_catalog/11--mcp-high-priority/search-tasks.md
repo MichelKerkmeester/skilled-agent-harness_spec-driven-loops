@@ -7,6 +7,7 @@ trigger_phrases:
   - "full-text task search"
   - "find tasks by keyword"
   - "workspace task search"
+version: 1.0.0.3
 ---
 
 # clickup_search_tasks

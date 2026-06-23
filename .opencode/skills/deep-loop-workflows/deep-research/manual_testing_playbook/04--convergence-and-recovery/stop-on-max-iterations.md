@@ -1,6 +1,7 @@
 ---
 title: "DR-011 -- Stop on max iterations"
 description: "Verify that max iterations is a hard stop checked before softer convergence signals."
+version: 1.14.0.15
 ---
 
 # DR-011 -- Stop on max iterations

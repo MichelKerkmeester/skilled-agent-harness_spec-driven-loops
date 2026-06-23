@@ -8,6 +8,7 @@ trigger_phrases:
   - "no-go conditions"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.14
 ---
 
 # Promotion Rules

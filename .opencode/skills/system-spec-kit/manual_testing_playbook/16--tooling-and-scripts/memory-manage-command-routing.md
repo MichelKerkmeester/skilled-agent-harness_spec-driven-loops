@@ -1,6 +1,7 @@
 ---
 title: "186 -- /memory:manage command routing"
 description: "This scenario validates /memory:manage command routing for `186`. It focuses on verifying the command's default stats mode and supported subcommand routing: scan, cleanup, bulk-delete, tier, triggers, validate, delete, health, checkpoint, and ingest."
+version: 3.6.0.16
 ---
 
 # 186 -- /memory:manage command routing

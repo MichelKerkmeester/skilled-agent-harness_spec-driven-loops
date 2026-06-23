@@ -10,6 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
+version: 1.14.0.29
 ---
 
 # Loop Protocol Reference

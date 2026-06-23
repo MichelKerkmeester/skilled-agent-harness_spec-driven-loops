@@ -7,6 +7,7 @@ trigger_phrases:
   - "dispatch council seats"
   - "parallel seat execution"
   - "per-seat outcome aggregation"
+version: 1.4.0.4
 ---
 
 # Multi-seat dispatch

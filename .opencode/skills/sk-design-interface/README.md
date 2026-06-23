@@ -7,6 +7,7 @@ trigger_phrases:
   - "make it look good"
   - "looks templated"
   - "redesign"
+version: 1.5.0.9
 ---
 
 # sk-design-interface

@@ -7,6 +7,7 @@ trigger_phrases:
   - "response envelope assertions"
   - "hint append verification"
   - "envelope regression tests"
+version: 3.6.0.13
 ---
 
 # End-to-end success-envelope verification

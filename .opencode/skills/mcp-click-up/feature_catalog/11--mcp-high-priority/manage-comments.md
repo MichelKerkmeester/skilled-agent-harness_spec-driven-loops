@@ -7,6 +7,7 @@ trigger_phrases:
   - "post task comment mcp"
   - "list comments mcp"
   - "mcp comment creation"
+version: 1.0.0.3
 ---
 
 # clickup_manage_comments

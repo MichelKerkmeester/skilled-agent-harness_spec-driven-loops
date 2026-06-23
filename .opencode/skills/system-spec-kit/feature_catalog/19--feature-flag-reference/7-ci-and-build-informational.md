@@ -6,6 +6,7 @@ trigger_phrases:
   - "git branch annotation"
   - "ci metadata variables"
   - "checkpoint branch context"
+version: 3.6.0.12
 ---
 
 # 7. CI and Build (informational)

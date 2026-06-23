@@ -7,6 +7,7 @@ trigger_phrases:
   - "context injection fallback"
   - "hook missing recovery"
   - "spec kit resume fallback"
+version: 3.6.0.19
 ---
 
 # Cross-runtime tool fallback

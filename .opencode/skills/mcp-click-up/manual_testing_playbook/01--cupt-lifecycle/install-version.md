@@ -1,6 +1,7 @@
 ---
 title: "CU-001 -- cupt Version Check"
 description: "This scenario validates cupt Version Check for `CU-001`. It focuses on Verify `cupt --version` exits 0 and prints a version string matching semver patt."
+version: 1.0.0.5
 ---
 
 # CU-001 -- cupt Version Check

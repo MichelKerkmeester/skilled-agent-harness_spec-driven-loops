@@ -3,6 +3,7 @@ title: "402 - Synonymy across vocabularies"
 description: "Verifies that domain-jargon and plain-language queries surface the same canonical results. Uses live memory IDs and code paths so stale fixture targets do not masquerade as embedder failures."
 audited_post_018: true
 fixture_version: "post-surgery"
+version: 3.6.0.4
 ---
 
 # 402 - Synonymy across vocabularies

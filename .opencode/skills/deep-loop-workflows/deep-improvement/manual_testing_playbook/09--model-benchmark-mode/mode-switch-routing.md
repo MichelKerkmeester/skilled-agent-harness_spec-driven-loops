@@ -3,6 +3,7 @@ title: "MB-038 -- Mode Switch Routing via loop-host"
 description: "Manual validation scenario for MB-038: Mode Switch Routing via loop-host."
 feature_id: "MB-038"
 category: "Model-Benchmark Mode"
+version: 1.17.0.10
 ---
 
 # MB-038 -- Mode Switch Routing via loop-host

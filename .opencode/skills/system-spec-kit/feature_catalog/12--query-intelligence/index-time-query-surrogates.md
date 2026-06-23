@@ -7,6 +7,7 @@ trigger_phrases:
   - "surrogate metadata at index time"
   - "alias and heading extraction"
   - "heuristic surrogate questions"
+version: 3.6.0.8
 ---
 
 # Index-time query surrogates

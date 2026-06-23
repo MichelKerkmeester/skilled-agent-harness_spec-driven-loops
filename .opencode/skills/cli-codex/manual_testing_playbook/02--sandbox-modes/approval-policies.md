@@ -1,6 +1,7 @@
 ---
 title: "CX-008 -- --full-auto vs explicit approval policies"
 description: "This scenario validates the four documented approval policies for `CX-008` (--full-auto, --ask-for-approval untrusted/on-request/never). It focuses on confirming each variant behaves as documented."
+version: 1.4.0.8
 ---
 
 # CX-008 -- --full-auto vs explicit approval policies

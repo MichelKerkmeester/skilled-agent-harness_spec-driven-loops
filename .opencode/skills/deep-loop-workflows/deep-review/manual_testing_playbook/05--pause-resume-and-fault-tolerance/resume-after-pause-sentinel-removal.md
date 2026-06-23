@@ -1,6 +1,7 @@
 ---
 title: "DRV-022 -- Resume after pause sentinel removal"
 description: "Verify that removing the pause sentinel lets the review loop resume from its persisted state."
+version: 1.11.0.14
 ---
 
 # DRV-022 -- Resume after pause sentinel removal

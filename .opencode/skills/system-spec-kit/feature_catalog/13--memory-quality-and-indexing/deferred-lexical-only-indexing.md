@@ -7,6 +7,7 @@ trigger_phrases:
   - "index_memory_deferred"
   - "BM25 fallback when embedding fails"
   - "deferred memory indexing"
+version: 3.6.0.12
 ---
 
 # Deferred lexical-only indexing

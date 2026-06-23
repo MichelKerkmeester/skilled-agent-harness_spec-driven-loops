@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove checklist item"
   - "delete single checklist entry"
   - "drop one checklist item"
+version: 1.0.0.3
 ---
 
 # clickup_delete_checklist_item

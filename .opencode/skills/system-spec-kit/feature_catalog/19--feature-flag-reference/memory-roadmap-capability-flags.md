@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_MEMORY_*"
   - "roadmap capability flags"
   - "adaptive ranking roadmap metadata"
+version: 3.6.0.9
 ---
 
 # Memory roadmap flags (SPECKIT_MEMORY_*)

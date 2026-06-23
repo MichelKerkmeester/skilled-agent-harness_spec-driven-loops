@@ -6,6 +6,7 @@ trigger_phrases:
   - "reuse ground or critique against"
   - "real design system read live"
   - "name the default to deviate from"
+version: 1.5.0.1
 ---
 
 # Design-system grounding (reuse or critique-against)

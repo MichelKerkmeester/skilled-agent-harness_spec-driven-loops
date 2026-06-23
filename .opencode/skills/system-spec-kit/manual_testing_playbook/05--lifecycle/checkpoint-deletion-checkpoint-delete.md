@@ -1,6 +1,7 @@
 ---
 title: "EX-018 -- Checkpoint deletion (checkpoint_delete)"
 description: "This scenario validates Checkpoint deletion (checkpoint_delete) for `EX-018`. It focuses on Old snapshot cleanup."
+version: 3.6.0.15
 ---
 
 # EX-018 -- Checkpoint deletion (checkpoint_delete)

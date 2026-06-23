@@ -4,6 +4,7 @@ description: "Code-facing README for .opencode/skills/sk-code/assets/universal/p
 trigger_phrases:
   - "sk-code assets/universal/patterns"
   - "code README"
+version: 3.5.0.5
 ---
 
 # sk code assets universal patterns

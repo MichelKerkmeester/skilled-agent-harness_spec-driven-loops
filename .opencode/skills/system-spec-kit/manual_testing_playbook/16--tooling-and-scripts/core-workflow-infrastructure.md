@@ -1,6 +1,7 @@
 ---
 title: "240 -- Core Workflow Infrastructure"
 description: "This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared indexing, post-save review, scoring, and workflow helper modules through targeted regression suites."
+version: 3.6.0.12
 ---
 
 # 240 -- Core Workflow Infrastructure

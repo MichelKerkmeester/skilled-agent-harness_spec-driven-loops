@@ -9,6 +9,7 @@ trigger_phrases:
   - "terminal escalation after recovery"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.3
 ---
 
 # Deep Context: Convergence Recovery

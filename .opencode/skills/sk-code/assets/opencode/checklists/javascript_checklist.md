@@ -8,6 +8,7 @@ trigger_phrases:
   - "use strict checklist"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.19
 ---
 
 # JavaScript Code Quality Checklist

@@ -3,6 +3,7 @@ title: "MB-042 -- Criteria-Exec Hardening Gate"
 description: "Manual validation scenario for MB-042: Criteria-Exec Hardening Gate."
 feature_id: "MB-042"
 category: "Model-Benchmark Mode"
+version: 1.17.0.8
 ---
 
 # MB-042 -- Criteria-Exec Hardening Gate

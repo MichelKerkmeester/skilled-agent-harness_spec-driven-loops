@@ -2,6 +2,7 @@
 title: "264 -- Query-intent routing in memory_context"
 description: "This scenario validates Query-intent routing for 264. It focuses on verifying structural queries route to code graph and semantic queries route to Code Graph."
 audited_post_018: true
+version: 3.6.0.18
 ---
 
 # 264 -- Query-intent routing in memory_context

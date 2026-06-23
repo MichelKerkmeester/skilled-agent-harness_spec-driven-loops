@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph context readiness block"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 008 code_graph_context readiness block
 

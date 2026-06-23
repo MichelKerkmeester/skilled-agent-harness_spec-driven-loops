@@ -7,6 +7,7 @@ trigger_phrases:
   - "search pipeline feature flags"
   - "retrieval-shaping toggles"
   - "speckit flag reference"
+version: 3.6.0.55
 ---
 
 # Search Pipeline Features (SPECKIT_*)

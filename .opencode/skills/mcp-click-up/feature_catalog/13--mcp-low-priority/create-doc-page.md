@@ -7,6 +7,7 @@ trigger_phrases:
   - "add page to doc"
   - "new doc section"
   - "document sub-page creation"
+version: 1.0.0.3
 ---
 
 # clickup_create_document_page

@@ -1,6 +1,7 @@
 ---
 title: "MCP-L015 -- Create and List Document Pages"
 description: "This scenario validates Create and List Document Pages for `MCP-L015`. Objective: Verify `clickup_create_document_page` adds a page and `clickup_get_document_page."
+version: 1.0.0.5
 ---
 
 # MCP-L015 -- Create and List Document Pages

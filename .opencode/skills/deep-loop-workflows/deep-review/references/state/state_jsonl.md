@@ -9,6 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
+version: 1.11.0.5
 ---
 
 # Deep Review State Log Records

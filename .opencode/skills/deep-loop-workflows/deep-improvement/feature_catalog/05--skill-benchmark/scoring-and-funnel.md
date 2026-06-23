@@ -7,6 +7,7 @@ trigger_phrases:
   - "score benchmark dimensions"
   - "headline bottleneck funnel"
   - "per-scenario aggregate scoring"
+version: 1.17.0.8
 ---
 
 # D1-D5 scoring and funnel

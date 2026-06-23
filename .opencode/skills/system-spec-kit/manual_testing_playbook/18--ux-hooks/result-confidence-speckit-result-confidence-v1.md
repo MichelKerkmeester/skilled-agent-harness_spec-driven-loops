@@ -1,6 +1,7 @@
 ---
 title: "180 -- Result confidence (SPECKIT_RESULT_CONFIDENCE_V1)"
 description: "This scenario validates result confidence scoring (SPECKIT_RESULT_CONFIDENCE_V1) for `180`. It focuses on the default-on graduated rollout and verifying per-result calibrated confidence with 3-factor weighting."
+version: 3.6.0.17
 ---
 
 # 180 -- Result confidence (SPECKIT_RESULT_CONFIDENCE_V1)

@@ -9,6 +9,7 @@ trigger_phrases:
   - "wire open design mcp"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.4.0.3
 ---
 
 # Open Design MCP Wiring

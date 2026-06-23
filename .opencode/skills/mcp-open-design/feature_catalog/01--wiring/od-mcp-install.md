@@ -7,6 +7,7 @@ trigger_phrases:
   - "connect open design mcp"
   - "mcp install opencode"
   - "mcp install claude"
+version: 1.4.0.1
 ---
 
 # od mcp install (od mcp install)

@@ -1,6 +1,7 @@
 ---
 title: "ID-006 -- Documentation task routes away to sk-doc"
 description: "This scenario validates Documentation task routes away to sk-doc for `ID-006`. It focuses on confirming a prose or documentation task with no interface surface routes to sk-doc instead of producing a design plan."
+version: 1.5.0.2
 ---
 
 # ID-006 -- Documentation task routes away to sk-doc

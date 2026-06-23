@@ -1,6 +1,7 @@
 ---
 title: "235 -- Eval Runner CLI"
 description: "This scenario validates eval runner CLI for `235`. It focuses on confirming flag gating, channel parsing, report output, and artifact persistence for ablation runs."
+version: 3.6.0.13
 ---
 
 # 235 -- Eval Runner CLI

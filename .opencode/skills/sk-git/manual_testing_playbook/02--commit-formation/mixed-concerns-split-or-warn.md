@@ -1,6 +1,7 @@
 ---
 title: "GIT-006 -- Mixed concerns split or warn"
 description: "This scenario validates Mixed concerns split or warn for `GIT-006`. It focuses on verify unrelated changes are split into separate commits or clearly warned before committing."
+version: 1.1.0.3
 ---
 
 # GIT-006 -- Mixed concerns split or warn

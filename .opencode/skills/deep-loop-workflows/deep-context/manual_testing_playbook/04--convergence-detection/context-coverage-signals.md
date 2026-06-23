@@ -1,6 +1,7 @@
 ---
 title: "CONV-001 -- Context Coverage Signals"
 description: "This scenario validates Context Coverage Signals for `CONV-001`. It focuses on the ContextConvergenceSignals interface in coverage-graph-signals.ts and the five signal computations from graph state."
+version: 1.2.0.4
 ---
 
 # CONV-001 -- Context Coverage Signals

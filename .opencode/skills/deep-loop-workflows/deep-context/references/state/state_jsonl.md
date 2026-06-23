@@ -9,6 +9,7 @@ trigger_phrases:
   - "context config record"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.4
 ---
 
 # Deep Context JSONL State Reference

@@ -7,6 +7,7 @@ trigger_phrases:
   - "eager cache population"
   - "preload tasks offline"
   - "batch cache before offline use"
+version: 1.0.0.3
 ---
 
 # Prefetch Cache

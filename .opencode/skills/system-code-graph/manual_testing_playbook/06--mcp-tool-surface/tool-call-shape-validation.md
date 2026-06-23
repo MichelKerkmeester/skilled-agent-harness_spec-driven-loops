@@ -6,6 +6,7 @@ trigger_phrases:
   - "tool call shape validation"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.7
 ---
 # 011 tool call shape validation
 

@@ -7,6 +7,7 @@ trigger_phrases:
   - "create from template"
   - "task template instantiation"
   - "pre-populated task from template"
+version: 1.0.0.3
 ---
 
 # clickup_use_task_template

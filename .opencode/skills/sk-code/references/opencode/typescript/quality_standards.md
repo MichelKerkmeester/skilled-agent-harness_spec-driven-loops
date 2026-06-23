@@ -8,6 +8,7 @@ trigger_phrases:
   - "tsconfig baseline standards"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.8
 ---
 
 # TypeScript Quality Standards

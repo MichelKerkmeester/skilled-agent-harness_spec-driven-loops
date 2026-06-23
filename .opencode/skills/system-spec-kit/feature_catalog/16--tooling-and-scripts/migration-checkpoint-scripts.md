@@ -7,6 +7,7 @@ trigger_phrases:
   - restore-checkpoint
   - SQLite file backup
   - pre-migration safety
+version: 3.6.0.10
 ---
 
 # Migration checkpoint scripts

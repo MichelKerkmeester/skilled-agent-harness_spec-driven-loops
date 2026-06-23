@@ -6,6 +6,7 @@ trigger_phrases:
   - "weights-config.ts"
   - "canonical weights"
   - "lane weight source of truth"
+version: 0.8.0.14
 ---
 
 # Lane Weights Configuration

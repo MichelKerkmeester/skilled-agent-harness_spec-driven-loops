@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill-advisor cli"
   - "advisor_recommend warm-only cli"
   - "trusted mutation gate"
+version: 3.6.0.1
 ---
 
 # Daemon-backed skill-advisor CLI surface

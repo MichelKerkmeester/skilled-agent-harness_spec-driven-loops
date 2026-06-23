@@ -7,6 +7,7 @@ trigger_phrases:
   - "constitutional memory injection"
   - "triggered memory auto-surface"
   - "mcp response enrichment"
+version: 3.6.0.8
 ---
 
 # Passive context enrichment

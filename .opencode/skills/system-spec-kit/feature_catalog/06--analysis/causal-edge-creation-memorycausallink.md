@@ -7,6 +7,7 @@ trigger_phrases:
   - "link memories"
   - "directed relationship edge"
   - "causal graph edge"
+version: 3.6.0.23
 ---
 
 # Causal edge creation (memory_causal_link)

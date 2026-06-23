@@ -8,6 +8,7 @@ trigger_phrases:
   - "graph aware review convergence"
 importance_tier: normal
 contextType: implementation
+version: 1.11.0.3
 ---
 
 # Deep Review Convergence Recovery and Reporting

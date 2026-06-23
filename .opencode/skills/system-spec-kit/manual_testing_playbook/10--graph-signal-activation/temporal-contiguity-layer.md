@@ -2,6 +2,7 @@
 title: "195 -- Temporal contiguity layer"
 description: "This scenario validates Temporal contiguity layer for `195`. It focuses on Confirm Stage 1 temporal proximity reinforcement with cap and flag behavior."
 audited_post_018: true
+version: 3.6.0.13
 ---
 
 # 195 -- Temporal contiguity layer

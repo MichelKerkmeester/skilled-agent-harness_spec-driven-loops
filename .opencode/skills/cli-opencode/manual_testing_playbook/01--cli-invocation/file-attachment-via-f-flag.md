@@ -1,6 +1,7 @@
 ---
 title: "CO-004 -- File attachment via -f / --file flag"
 description: "This scenario validates the `-f` / `--file` flag for `CO-004`. It focuses on confirming the dispatched session can read attached file contents without manual @./path embedding in the prompt body."
+version: 1.3.0.10
 ---
 
 # CO-004 -- File attachment via -f / --file flag

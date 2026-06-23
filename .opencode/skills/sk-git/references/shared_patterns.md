@@ -10,6 +10,7 @@ trigger_phrases:
   - "failed push rejected remote"
 importance_tier: normal
 contextType: general
+version: 1.1.0.12
 ---
 
 # Shared Patterns - Cross-Workflow Reference

@@ -7,6 +7,7 @@ trigger_phrases:
   - "permanently remove task"
   - "irreversible task deletion"
   - "destroy clickup task"
+version: 1.0.0.3
 ---
 
 # clickup_delete_task

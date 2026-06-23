@@ -9,6 +9,7 @@ trigger_phrases:
   - "feature catalog folder structure"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.11
 ---
 
 # Feature Catalog Creation - Standards and Workflow
@@ -118,7 +119,7 @@ Required structure:
 4. `## 4. SOURCE METADATA`
 
 **Per-feature files must include**:
-- frontmatter with stable `title`, one-line `description`, and `trigger_phrases` list
+- frontmatter with stable `title`, one-line `description`, `trigger_phrases` list, and a 4-part `version` (root catalog and per-feature files both carry it; see [frontmatter_versioning.md](frontmatter_versioning.md))
 - a concise overview of the feature
 - HOW IT WORKS behavior description (see sub-heading rule below)
 - implementation source tables with `File | Layer | Role` columns

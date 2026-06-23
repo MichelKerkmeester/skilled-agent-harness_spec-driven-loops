@@ -6,6 +6,7 @@ trigger_phrases:
   - "native advisor_validate slice bundle"
   - "native advisor_validate"
   - "native"
+version: 0.8.0.12
 ---
 
 # NC-003 Native advisor_validate Slice Bundle

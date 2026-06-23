@@ -7,6 +7,7 @@ trigger_phrases:
   - "view evaluation metrics"
   - "sprint-level channel performance report"
   - "how do I see search quality trends over time"
+version: 3.6.0.20
 ---
 
 # Reporting dashboard (eval_reporting_dashboard)

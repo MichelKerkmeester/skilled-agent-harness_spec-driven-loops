@@ -1,6 +1,7 @@
 ---
 title: "CX-009 -- low / minimal / none reasoning baseline"
 description: "This scenario validates the low-end reasoning levels for `CX-009`. It focuses on confirming none/minimal/low produce successful, low-latency responses for trivial tasks."
+version: 1.4.0.8
 ---
 
 # CX-009 -- low / minimal / none reasoning baseline

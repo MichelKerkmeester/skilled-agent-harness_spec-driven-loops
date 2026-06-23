@@ -247,6 +247,20 @@ describe('formatSearchResults', () => {
     expect(envelope.data.results[0].similarity).toBe(72.3);
   });
 
+  it('C7b: graph and degree rows surface a displayable score without similarity', async () => {
+    const mockResults = [{
+      id: 21,
+      spec_folder: 'specs/021',
+      file_path: '/graph.md',
+      title: 'Graph row',
+      rrfScore: 0.42,
+    }];
+    const res = await formatSearchResults(mockResults, 'hybrid');
+    const envelope = parseEnvelope(res);
+    expect(envelope.data.results[0].similarity).toBeUndefined();
+    expect(envelope.data.results[0].score).toBe(0.42);
+  });
+
   it('C8: Response is valid MCP envelope structure', async () => {
     const mockResults = [{ id: 30, spec_folder: 's', file_path: '/f.md', title: 'T' }];
     const res = await formatSearchResults(mockResults, 'semantic');

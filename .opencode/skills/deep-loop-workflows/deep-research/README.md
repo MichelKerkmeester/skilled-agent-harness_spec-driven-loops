@@ -8,6 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
+version: 1.14.0.45
 ---
 
 # deep-research

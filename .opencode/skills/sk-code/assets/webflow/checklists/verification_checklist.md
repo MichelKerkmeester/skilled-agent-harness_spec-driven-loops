@@ -8,6 +8,7 @@ trigger_phrases:
   - "evidence before claims"
 importance_tier: important
 contextType: implementation
+version: 3.5.0.5
 ---
 
 # Browser Verification Checklist

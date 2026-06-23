@@ -1,6 +1,7 @@
 ---
 title: "EX-038 -- Post-insert enrichment lifecycle (schema v30)"
 description: "This scenario validates the schema v30 post-insert enrichment lifecycle for `EX-038`. It focuses on the post_insert_enrichment_status lifecycle after memory_save, plus repair-on-replay and scan-lease backfill of incomplete markers."
+version: 3.6.0.2
 ---
 
 # EX-038 -- Post-insert enrichment lifecycle (schema v30)

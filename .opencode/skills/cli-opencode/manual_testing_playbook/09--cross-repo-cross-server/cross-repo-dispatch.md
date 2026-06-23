@@ -1,6 +1,7 @@
 ---
 title: "CO-029 -- Cross-repo dispatch via --dir"
 description: "This scenario validates cross-repo dispatch for `CO-029`. It focuses on confirming `--dir <other-repo-path>` targets a different repo's plugin / skill / MCP runtime without leaving the calling session."
+version: 1.3.0.11
 ---
 
 # CO-029 -- Cross-repo dispatch via --dir

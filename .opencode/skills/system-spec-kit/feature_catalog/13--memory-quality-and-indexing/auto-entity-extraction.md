@@ -7,6 +7,7 @@ trigger_phrases:
   - "regex entity rules"
   - "technology name extraction"
   - "entity catalog from memory"
+version: 3.6.0.15
 ---
 
 # Auto entity extraction

@@ -9,6 +9,7 @@ trigger_phrases:
   - "fsync rename"
   - "half-written registry"
   - "loadStateSafety"
+version: 1.2.0.3
 ---
 
 # Atomic State

@@ -6,6 +6,7 @@ trigger_phrases:
   - "redirect_from"
   - "redirect_to"
   - "asymmetric supersession"
+version: 0.8.0.13
 ---
 
 # Asymmetric Supersession Routing

@@ -3,6 +3,7 @@ title: "5D-010 -- Dimension Details Array with Individual Check Results"
 description: "Manual validation scenario for 5D-010: Dimension Details Array with Individual Check Results."
 feature_id: "5D-010"
 category: "5D Scorer"
+version: 1.17.0.14
 ---
 
 # 5D-010 -- Dimension Details Array with Individual Check Results

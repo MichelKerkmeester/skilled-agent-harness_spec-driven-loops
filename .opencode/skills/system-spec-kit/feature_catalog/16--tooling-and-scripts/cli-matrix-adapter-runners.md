@@ -6,6 +6,7 @@ trigger_phrases:
   - "CLI matrix adapters"
   - "F1-F14 matrix"
   - "adapter-cli-codex"
+version: 3.6.0.13
 ---
 
 # CLI matrix adapter runners

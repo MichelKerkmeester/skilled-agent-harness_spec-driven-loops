@@ -1,6 +1,7 @@
 ---
 title: "DRV-009 -- Review iteration writes findings, JSONL, and strategy update"
 description: "Verify that each iteration writes iteration-NNN.md with P0/P1/P2 findings, appends a JSONL record, and updates the strategy."
+version: 1.11.0.14
 ---
 
 # DRV-009 -- Review iteration writes findings, JSONL, and strategy update

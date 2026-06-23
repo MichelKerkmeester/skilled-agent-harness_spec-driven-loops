@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.1
 ---
 
 # Skill Creation Process

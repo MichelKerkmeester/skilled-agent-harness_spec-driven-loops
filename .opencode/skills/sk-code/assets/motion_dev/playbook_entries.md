@@ -8,6 +8,7 @@ trigger_phrases:
   - "prefers reduced motion scenario"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Motion.dev Playbook Entries

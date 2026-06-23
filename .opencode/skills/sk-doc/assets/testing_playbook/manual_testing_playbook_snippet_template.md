@@ -8,6 +8,7 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
+version: 1.8.0.11
 ---
 
 # Manual Testing Playbook Snippet Template
@@ -47,6 +48,7 @@ Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
 ---
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
+version: 1.0.0.0
 ---
 
 # {FEATURE_ID} -- {FEATURE_NAME}

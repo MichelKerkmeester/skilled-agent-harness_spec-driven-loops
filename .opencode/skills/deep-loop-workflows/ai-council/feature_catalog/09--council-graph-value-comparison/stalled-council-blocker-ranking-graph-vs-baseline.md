@@ -7,6 +7,7 @@ trigger_phrases:
   - "rank council blockers after max rounds"
   - "prioritized blocker list council"
   - "council did not converge top blockers"
+version: 2.3.0.10
 ---
 
 # Stalled-council blocker ranking: graph vs baseline

@@ -3,6 +3,7 @@ title: "PG-006 -- OUTPUT VERIFICATION Checklist Extraction (Debug)"
 description: "Manual validation scenario for PG-006: OUTPUT VERIFICATION Checklist Extraction (Debug)."
 feature_id: "PG-006"
 category: "Profile Generator"
+version: 1.17.0.12
 ---
 
 # PG-006 -- OUTPUT VERIFICATION Checklist Extraction (Debug)

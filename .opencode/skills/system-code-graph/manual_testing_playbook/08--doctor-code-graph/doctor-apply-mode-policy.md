@@ -6,6 +6,7 @@ trigger_phrases:
   - "doctor apply mode policy"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.5
 ---
 # 015 doctor code-graph route policy
 

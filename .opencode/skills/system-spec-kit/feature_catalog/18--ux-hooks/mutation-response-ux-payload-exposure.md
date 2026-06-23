@@ -7,6 +7,7 @@ trigger_phrases:
   - "post-mutation hook data"
   - "tool response ux hints"
   - "mutation response payload"
+version: 3.6.0.13
 ---
 
 # Mutation response UX payload exposure

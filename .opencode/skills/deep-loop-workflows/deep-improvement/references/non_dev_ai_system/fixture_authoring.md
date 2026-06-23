@@ -9,6 +9,7 @@ trigger_phrases:
   - "dimension-sensitive fixtures"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.3
 ---
 
 # Lane D Fixture Authoring

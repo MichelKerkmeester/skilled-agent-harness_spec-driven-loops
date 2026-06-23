@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph-metadata.json v1 normalization"
   - "E_LINEAGE stale logical key repair"
   - "importance_tier enum repair"
+version: 3.6.0.3
 ---
 
 # Graph-metadata and lineage repair runner

@@ -8,6 +8,7 @@ trigger_phrases:
   - "exhausted quota pool"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.7
 ---
 
 # Quota-Pool-Aware Fallback

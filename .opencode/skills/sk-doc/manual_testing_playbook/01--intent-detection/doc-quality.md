@@ -11,6 +11,7 @@ expected_resources:
 expected_token_range_input: 1000-2500
 expected_token_range_output: 800-2500
 created: 2026-05-05
+version: 1.8.0.5
 ---
 
 # SD-001: DOC_QUALITY Intent Detection

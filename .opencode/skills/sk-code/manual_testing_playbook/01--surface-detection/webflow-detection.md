@@ -1,6 +1,7 @@
 ---
 title: "SD-001: WEBFLOW Surface Detection"
 description: "Verify sk-code routes vanilla-JS / animation-library prompts to the WEBFLOW surface and loads the webflow/* reference and asset trees."
+version: 3.5.0.6
 ---
 
 # SD-001: WEBFLOW Surface Detection

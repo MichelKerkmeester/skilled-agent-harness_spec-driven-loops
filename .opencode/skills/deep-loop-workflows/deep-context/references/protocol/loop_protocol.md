@@ -9,6 +9,7 @@ trigger_phrases:
   - "host writes state invariant"
 importance_tier: important
 contextType: implementation
+version: 1.2.0.6
 ---
 
 # Deep Context: Loop Protocol

@@ -7,6 +7,7 @@ trigger_phrases:
   - "_memory.continuity block"
   - "canonical save routing"
   - "resume ladder preservation"
+version: 3.6.0.8
 ---
 
 # Canonical continuity save substrate

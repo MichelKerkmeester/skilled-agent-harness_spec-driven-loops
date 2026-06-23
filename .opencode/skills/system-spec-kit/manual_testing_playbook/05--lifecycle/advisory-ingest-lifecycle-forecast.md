@@ -1,6 +1,7 @@
 ---
 title: "144 -- Advisory ingest lifecycle forecast"
 description: "This scenario validates Advisory ingest lifecycle forecast for `144`. It focuses on Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress."
+version: 3.6.0.17
 ---
 
 # 144 -- Advisory ingest lifecycle forecast

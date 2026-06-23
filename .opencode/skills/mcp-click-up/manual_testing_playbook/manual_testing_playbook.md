@@ -1,6 +1,7 @@
 ---
 title: "mcp-click-up: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 96 features across cupt CLI and the official ClickUp MCP."
+version: 1.0.0.7
 ---
 
 # mcp-click-up: Manual Testing Playbook

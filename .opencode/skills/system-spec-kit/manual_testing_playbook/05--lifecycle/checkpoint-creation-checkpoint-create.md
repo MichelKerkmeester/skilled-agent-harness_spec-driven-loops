@@ -1,6 +1,7 @@
 ---
 title: "EX-015 -- Checkpoint creation (checkpoint_create)"
 description: "This scenario validates Checkpoint creation (checkpoint_create) for `EX-015`. It focuses on Pre-destructive backup."
+version: 3.6.0.15
 ---
 
 # EX-015 -- Checkpoint creation (checkpoint_create)

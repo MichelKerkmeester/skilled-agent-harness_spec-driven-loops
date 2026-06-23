@@ -1,6 +1,7 @@
 ---
 title: "DR-002 -- Confirm mode checkpointed execution"
 description: "Verify that confirm mode adds approval checkpoints without changing the core loop phases or artifact contract."
+version: 1.14.0.15
 ---
 
 # DR-002 -- Confirm mode checkpointed execution

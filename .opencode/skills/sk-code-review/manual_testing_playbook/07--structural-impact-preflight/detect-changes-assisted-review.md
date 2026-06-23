@@ -1,6 +1,7 @@
 ---
 title: "CR-019 -- detect_changes-assisted review"
 description: "This scenario validates detect_changes-assisted review for `CR-019`. It focuses on confirming local-diff review attempts structural-impact preflight and still completes with a caveat when graph readiness is stale."
+version: 1.5.0.1
 ---
 
 # CR-019 -- detect_changes-assisted review

@@ -1,6 +1,7 @@
 ---
 title: "DRV-006 -- Invalid or contradictory review state halts for repair"
 description: "Verify that invalid state (missing JSONL, corrupted config, contradictory artifacts) halts with a repair message instead of proceeding."
+version: 1.11.0.13
 ---
 
 # DRV-006 -- Invalid or contradictory review state halts for repair

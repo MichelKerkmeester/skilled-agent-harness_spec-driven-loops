@@ -7,6 +7,7 @@ trigger_phrases:
   - "DocScore damped folder aggregation"
   - "four-factor spec folder scoring"
   - "two-phase retrieval folder ranking"
+version: 3.6.0.14
 ---
 
 # Folder-level relevance scoring

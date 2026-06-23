@@ -1,6 +1,7 @@
 ---
 title: "208 -- Template Compliance Contract Enforcement"
 description: "This scenario validates Template Compliance Contract Enforcement for `208`. It focuses on confirming the 3-layer contract prevents non-compliant spec documents from passing strict validation."
+version: 3.6.0.12
 ---
 
 # 208 -- Template Compliance Contract Enforcement

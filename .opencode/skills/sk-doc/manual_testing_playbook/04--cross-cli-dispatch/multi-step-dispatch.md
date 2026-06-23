@@ -13,6 +13,7 @@ expected_resources:
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000
 created: 2026-05-05
+version: 1.8.0.8
 ---
 
 # SD-012: Multi-Step Dispatch Stability

@@ -11,6 +11,7 @@ trigger_phrases:
   - "fluid typography webflow"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.2
 ---
 
 # Webflow CSS Quality Standards

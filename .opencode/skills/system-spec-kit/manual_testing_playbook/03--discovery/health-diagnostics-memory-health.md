@@ -1,6 +1,7 @@
 ---
 title: "EX-013 -- Health diagnostics (memory_health)"
 description: "This scenario validates Health diagnostics (memory_health) for `EX-013`. It focuses on Index/FTS integrity check."
+version: 3.6.0.15
 ---
 
 # EX-013 -- Health diagnostics (memory_health)

@@ -8,6 +8,7 @@ trigger_phrases:
   - "recursive council"
 importance_tier: "normal"
 contextType: "planning"
+version: 2.3.0.7
 ---
 
 # AI Council Anti-Patterns

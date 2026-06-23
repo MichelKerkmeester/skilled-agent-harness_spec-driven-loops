@@ -7,6 +7,7 @@ trigger_phrases:
   - "SCHEMA_VERSION 37 timeline"
   - "vector index schema migrations"
   - "what did migration v34 v37 add"
+version: 3.6.0.3
 ---
 
 # Schema version history (v28 to v37)

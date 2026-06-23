@@ -7,6 +7,7 @@ trigger_phrases:
   - "Louvain modularity clustering"
   - "BFS connected components memories"
   - "co-member injection stage 2"
+version: 3.6.0.13
 ---
 
 # Community detection

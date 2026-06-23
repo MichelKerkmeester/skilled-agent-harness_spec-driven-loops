@@ -6,6 +6,7 @@ trigger_phrases:
   - "EMBEDDINGS_PROVIDER"
   - "embedding provider selection"
   - "voyage openai embedding keys"
+version: 3.6.0.27
 ---
 
 # 5. Embedding and API

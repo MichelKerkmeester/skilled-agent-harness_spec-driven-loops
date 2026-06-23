@@ -1,6 +1,7 @@
 ---
 title: "DOC-327 -- Doctor memory disk pressure"
 description: "Manual scenario validating /doctor memory refusal when the snapshot disk-free preflight has less than two times the memory DB total available."
+version: 3.6.0.10
 ---
 
 # DOC-327 -- Doctor memory disk pressure

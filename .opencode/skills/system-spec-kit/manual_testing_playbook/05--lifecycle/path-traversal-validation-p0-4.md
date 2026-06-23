@@ -1,6 +1,7 @@
 ---
 title: "114 -- Path traversal validation (P0-4)"
 description: "This scenario validates Path traversal validation (P0-4) for `114`. It focuses on Verify memory_ingest_start rejects paths outside allowed base directories and paths containing traversal segments."
+version: 3.6.0.16
 ---
 
 # 114 -- Path traversal validation (P0-4)

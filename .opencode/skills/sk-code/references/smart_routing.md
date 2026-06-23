@@ -9,6 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
+version: 3.5.0.8
 ---
 
 # Smart Router - Routing Logic and Resource Maps

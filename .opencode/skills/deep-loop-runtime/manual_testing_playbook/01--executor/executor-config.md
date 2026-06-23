@@ -1,6 +1,7 @@
 ---
 title: "DLR-001 -- Executor config"
 description: "Manual validation scenario for Executor config in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-001 -- Executor config

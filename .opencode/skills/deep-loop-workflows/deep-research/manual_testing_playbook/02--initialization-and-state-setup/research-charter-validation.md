@@ -1,6 +1,7 @@
 ---
 title: "DR-027 -- Research charter validated at init"
 description: "Verify strategy.md contains Non-Goals and Stop Conditions sections after initialization."
+version: 1.14.0.14
 ---
 
 # DR-027 -- Research charter validated at init

@@ -7,6 +7,7 @@ trigger_phrases:
   - "untag task via mcp"
   - "strip tag mcp"
   - "mcp tag remove"
+version: 1.0.0.3
 ---
 
 # clickup_remove_tag_from_task

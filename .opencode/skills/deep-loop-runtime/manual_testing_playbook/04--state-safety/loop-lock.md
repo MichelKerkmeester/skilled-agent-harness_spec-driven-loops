@@ -1,6 +1,7 @@
 ---
 title: "DLR-008 -- Loop lock"
 description: "Manual validation scenario for Loop lock in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-008 -- Loop lock

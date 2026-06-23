@@ -9,6 +9,7 @@ trigger_phrases:
   - "opencode dispatch framework precedence"
 importance_tier: normal
 contextType: planning
+version: 1.3.0.21
 ---
 
 # OpenCode CLI — Prompt Quality Card

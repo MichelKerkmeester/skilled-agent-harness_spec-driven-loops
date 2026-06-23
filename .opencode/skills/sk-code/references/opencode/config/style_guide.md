@@ -8,6 +8,7 @@ trigger_phrases:
   - "json style conventions"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.9
 ---
 
 # Config Style Guide

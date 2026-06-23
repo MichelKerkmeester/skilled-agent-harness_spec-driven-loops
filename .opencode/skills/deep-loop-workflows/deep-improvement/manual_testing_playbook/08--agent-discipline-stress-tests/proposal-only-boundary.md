@@ -1,6 +1,7 @@
 ---
 title: "CP-033 -- PROPOSAL_ONLY_BOUNDARY no canonical mutation **(SANDBOXED)**"
 description: "Validate that @deep-improvement writes only packet-local candidates and never mutates canonical targets or mirrors."
+version: 1.17.0.20
 ---
 
 # CP-033 -- PROPOSAL_ONLY_BOUNDARY no canonical mutation **(SANDBOXED)**

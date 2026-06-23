@@ -7,6 +7,7 @@ trigger_phrases:
   - "type-aware no-decay rules"
   - "FSRS schedule exemption"
   - "permanent artifact decay exemption"
+version: 3.6.0.6
 ---
 
 # Hybrid decay policy

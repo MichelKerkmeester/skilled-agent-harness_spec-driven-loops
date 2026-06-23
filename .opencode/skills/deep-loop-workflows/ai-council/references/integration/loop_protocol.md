@@ -8,6 +8,7 @@ trigger_phrases:
   - "council persistence flow"
 importance_tier: "normal"
 contextType: "planning"
+version: 2.3.0.5
 ---
 
 # AI Council Loop Protocol

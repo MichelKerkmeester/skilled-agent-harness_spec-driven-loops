@@ -7,6 +7,7 @@ trigger_phrases:
   - "destructive checkpoint deletion"
   - "checkpoint deletion safety"
   - "delete confirmation guard"
+version: 3.6.0.16
 ---
 
 # Checkpoint delete confirmName safety

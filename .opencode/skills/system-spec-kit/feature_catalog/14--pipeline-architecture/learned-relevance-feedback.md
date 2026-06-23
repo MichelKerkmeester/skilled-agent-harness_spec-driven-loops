@@ -7,6 +7,7 @@ trigger_phrases:
   - "query term boost from selections"
   - "relevance feedback weight"
   - "boost future searches from user picks"
+version: 3.6.0.13
 ---
 
 # Learned relevance feedback

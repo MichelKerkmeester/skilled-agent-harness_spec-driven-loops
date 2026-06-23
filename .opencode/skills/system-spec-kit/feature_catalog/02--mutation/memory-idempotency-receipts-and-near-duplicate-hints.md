@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_MEMORY_IDEMPOTENCY"
   - "idempotency receipt replay"
   - "near_duplicate_of advisory hint"
+version: 3.6.0.2
 ---
 
 # Memory idempotency receipts and near-duplicate hints

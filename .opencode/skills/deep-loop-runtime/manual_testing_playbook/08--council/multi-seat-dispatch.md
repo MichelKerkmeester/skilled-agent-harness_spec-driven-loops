@@ -1,6 +1,7 @@
 ---
 title: "DLR-018 -- Multi-seat dispatch"
 description: "Manual validation scenario for Multi-seat dispatch in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-018 -- Multi-seat dispatch

@@ -6,6 +6,7 @@ trigger_phrases:
   - "filters.jsonc"
   - "content-filter pipeline"
   - "noise dedupe quality thresholds"
+version: 3.6.0.8
 ---
 
 # Filter Config Contract

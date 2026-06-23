@@ -6,6 +6,7 @@ trigger_phrases:
   - "watcher scope"
   - "chokidar narrow scope"
   - "auto update daemon watcher"
+version: 0.8.0.14
 ---
 
 # AU-001 Chokidar Watcher Narrow Scope

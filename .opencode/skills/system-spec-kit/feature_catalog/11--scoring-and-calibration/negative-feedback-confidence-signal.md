@@ -7,6 +7,7 @@ trigger_phrases:
   - "negative validation demotion multiplier"
   - "30-day half-life score recovery"
   - "memory_validate wasUseful false demotion"
+version: 3.6.0.14
 ---
 
 # Negative feedback confidence signal

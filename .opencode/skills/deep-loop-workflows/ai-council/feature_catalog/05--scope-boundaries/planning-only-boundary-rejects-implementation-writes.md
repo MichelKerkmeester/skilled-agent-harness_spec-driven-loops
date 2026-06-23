@@ -7,6 +7,7 @@ trigger_phrases:
   - "council write scope enforcement"
   - "planning agent boundary"
   - "council cannot implement"
+version: 2.3.0.8
 ---
 
 # Planning-only boundary rejects implementation writes

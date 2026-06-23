@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill_nodes skill_edges"
   - "graph causal projection"
   - "projection layer"
+version: 0.8.0.12
 ---
 
 # Skill-Nodes / Skill-Edges Projection

@@ -3,6 +3,7 @@ title: "SB-048 -- Dual Report And Remediation Taxonomy"
 description: "Manual validation scenario for SB-048: Dual Report And Remediation Taxonomy."
 feature_id: "SB-048"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.6
 ---
 
 # SB-048 -- Dual Report And Remediation Taxonomy

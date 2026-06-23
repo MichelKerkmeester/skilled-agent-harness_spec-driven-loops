@@ -6,6 +6,7 @@ trigger_phrases:
   - "retention sweep"
   - "delete_after rows"
   - "retention_expired"
+version: 3.6.0.11
 ---
 
 # Memory retention sweep (memory_retention_sweep)

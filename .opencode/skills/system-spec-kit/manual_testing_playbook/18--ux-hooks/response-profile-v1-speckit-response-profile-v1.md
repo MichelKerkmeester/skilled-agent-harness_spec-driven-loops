@@ -1,6 +1,7 @@
 ---
 title: "167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1)"
 description: "This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while keeping the live context-side profile routing in view."
+version: 3.6.0.15
 ---
 
 # 167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1)

@@ -6,6 +6,7 @@ trigger_phrases:
   - "od mcp"
   - "feature catalog"
 last_updated: "2026-06-14"
+version: 1.4.0.4
 ---
 
 # mcp-open-design: Feature Catalog

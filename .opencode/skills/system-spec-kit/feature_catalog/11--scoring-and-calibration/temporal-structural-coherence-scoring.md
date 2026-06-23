@@ -7,6 +7,7 @@ trigger_phrases:
   - "future-dated completion claim penalty"
   - "self-referential causal link detection"
   - "structural content quality score"
+version: 3.6.0.15
 ---
 
 # Temporal-structural coherence scoring

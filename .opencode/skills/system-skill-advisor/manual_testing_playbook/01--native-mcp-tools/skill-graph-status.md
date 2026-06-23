@@ -1,6 +1,7 @@
 ---
 title: "283 -- Skill graph status"
 description: "Manual scenario for validating skill_graph_status health output."
+version: 0.8.0.7
 ---
 
 # 283 -- Skill graph status

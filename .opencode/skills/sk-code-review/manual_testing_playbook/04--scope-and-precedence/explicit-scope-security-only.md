@@ -1,6 +1,7 @@
 ---
 title: "CR-010 -- Explicit scope security only"
 description: "This scenario validates Explicit scope security only for `CR-010`. It focuses on Confirm a security-only review still enforces correctness minimums when security impact exists and avoids style drift."
+version: 1.5.0.4
 ---
 
 # CR-010 -- Explicit scope security only

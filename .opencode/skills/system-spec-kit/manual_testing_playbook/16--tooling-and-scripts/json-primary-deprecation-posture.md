@@ -1,6 +1,7 @@
 ---
 title: "154 -- JSON-primary deprecation posture"
 description: "This scenario validates the JSON-primary deprecation posture: routine saves prefer --json/--stdin, direct positional JSON file input remains supported on the same structured path, and operator guidance reflects the JSON-first save contract."
+version: 3.6.0.23
 ---
 
 # 154 -- JSON-primary deprecation posture

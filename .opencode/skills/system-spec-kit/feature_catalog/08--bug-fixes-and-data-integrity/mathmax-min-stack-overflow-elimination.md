@@ -7,6 +7,7 @@ trigger_phrases:
   - "math.max array spread crash"
   - "stack-safe extrema logic"
   - "rangerror large array fix"
+version: 3.6.0.15
 ---
 
 # Math.max/min stack overflow hardening

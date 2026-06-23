@@ -1,6 +1,7 @@
 ---
 title: "DRV-015 -- Review iterations emit structured graphEvents"
 description: "Verify that review iteration records carry a graphEvents array consumed by the coverage-graph reducer with loop_type=review nodes and edges."
+version: 1.11.0.14
 ---
 
 # DRV-015 -- Review iterations emit structured graphEvents

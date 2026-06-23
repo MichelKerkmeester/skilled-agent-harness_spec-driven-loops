@@ -7,6 +7,7 @@ trigger_phrases:
   - "strip api keys from errors"
   - "bearer token redaction"
   - "buildErrorResponse credential leak fix"
+version: 3.6.0.5
 ---
 
 # Error response credential sanitization

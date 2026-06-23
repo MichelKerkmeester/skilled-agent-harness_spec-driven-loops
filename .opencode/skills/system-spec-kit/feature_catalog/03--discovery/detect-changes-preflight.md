@@ -7,6 +7,7 @@ trigger_phrases:
   - "map diff to affected symbols"
   - "code graph change-safety check"
   - "unified-diff impact analysis"
+version: 3.6.0.7
 ---
 
 # detect_changes preflight (Code Graph)

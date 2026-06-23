@@ -8,6 +8,7 @@ trigger_phrases:
   - "agreement weighted registry"
   - "deep context dashboard"
   - "registry bucket"
+version: 1.2.0.3
 ---
 
 # Reduce-State Merge

@@ -6,6 +6,7 @@ trigger_phrases:
   - "python bench"
   - "skill_advisor_bench.py"
   - "latency bench runner"
+version: 0.8.0.14
 ---
 
 # PC-005 Python Bench Runner

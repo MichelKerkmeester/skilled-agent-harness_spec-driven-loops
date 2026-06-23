@@ -7,6 +7,7 @@ trigger_phrases:
   - create.sh upgrade-level.sh
   - spec folder archival
   - completeness measurement
+version: 3.6.0.7
 ---
 
 # Spec Lifecycle Automation

@@ -2,6 +2,7 @@
 title: "401 — Paraphrase recall"
 description: "Validates that a memory stored with one phrasing is retrievable when the operator queries with a paraphrase. Probes BGE local fallback's semantic compression: cosine similarity between original and paraphrase should beat the lexical-overlap-only baseline."
 audited_post_018: true
+version: 3.6.0.5
 ---
 
 # 401 — Paraphrase recall

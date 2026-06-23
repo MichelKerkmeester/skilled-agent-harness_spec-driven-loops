@@ -6,6 +6,7 @@ trigger_phrases:
   - "a7 sanitizer"
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
+version: 0.8.0.14
 ---
 
 # AI-002 A7 Sanitizer at Every Write Boundary

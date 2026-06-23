@@ -7,6 +7,7 @@ trigger_phrases:
   - "temporal degree delta"
   - "degree snapshots trending edges"
   - "momentum additive bonus stage 2"
+version: 3.6.0.14
 ---
 
 # Graph momentum scoring

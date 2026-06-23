@@ -8,6 +8,7 @@ trigger_phrases:
   - "lease env-var override"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.6
 ---
 
 # Spec Memory Launcher Lease

@@ -7,6 +7,7 @@ trigger_phrases:
   - "lexical search baseline"
   - "bm25 mrr baseline score"
   - "keyword search vs hybrid retrieval"
+version: 3.6.0.16
 ---
 
 # BM25-only baseline

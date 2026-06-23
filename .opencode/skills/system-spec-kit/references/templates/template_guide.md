@@ -8,6 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
+version: 3.6.0.49
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards

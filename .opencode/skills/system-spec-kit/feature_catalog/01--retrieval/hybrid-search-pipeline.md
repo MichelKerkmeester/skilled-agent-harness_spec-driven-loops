@@ -7,6 +7,7 @@ trigger_phrases:
   - "five search channels"
   - "tiered fallback retrieval"
   - "multi-channel retrieval engine"
+version: 3.6.0.29
 ---
 
 # Hybrid search pipeline

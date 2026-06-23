@@ -7,6 +7,7 @@ trigger_phrases:
   - "impact analysis"
   - "structural search"
   - "code_graph_query"
+version: 1.2.0.26
 ---
 
 # system-code-graph

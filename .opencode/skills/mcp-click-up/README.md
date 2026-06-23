@@ -7,6 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
+version: 1.0.0.6
 ---
 
 # mcp-click-up

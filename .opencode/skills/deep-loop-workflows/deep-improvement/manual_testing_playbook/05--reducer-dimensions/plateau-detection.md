@@ -3,6 +3,7 @@ title: "RD-016 -- Plateau Detection on Identical Dimension Scores"
 description: "Manual validation scenario for RD-016: Plateau Detection on Identical Dimension Scores."
 feature_id: "RD-016"
 category: "Reducer Dimensions"
+version: 1.17.0.14
 ---
 
 # RD-016 -- Plateau Detection on Identical Dimension Scores

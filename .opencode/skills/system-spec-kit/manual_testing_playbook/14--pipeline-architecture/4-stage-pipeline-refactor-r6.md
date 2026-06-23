@@ -2,6 +2,7 @@
 title: "049 -- 4-stage pipeline refactor (R6)"
 description: "This scenario validates 4-stage pipeline refactor (R6) for `049`. It focuses on Confirm stage flow and invariant."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 049 -- 4-stage pipeline refactor (R6)

@@ -1,6 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
+version: 1.0.0.6
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook

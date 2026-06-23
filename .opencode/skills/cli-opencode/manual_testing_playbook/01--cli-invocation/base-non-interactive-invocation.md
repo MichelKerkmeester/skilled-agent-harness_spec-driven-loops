@@ -1,6 +1,7 @@
 ---
 title: "CO-001 -- Base non-interactive invocation"
 description: "This scenario validates the canonical opencode run dispatch for `CO-001`. It focuses on confirming the default skill shape (model + agent + variant + format + dir) returns a coherent JSON event stream and exits cleanly."
+version: 1.3.0.11
 ---
 
 # CO-001 -- Base non-interactive invocation

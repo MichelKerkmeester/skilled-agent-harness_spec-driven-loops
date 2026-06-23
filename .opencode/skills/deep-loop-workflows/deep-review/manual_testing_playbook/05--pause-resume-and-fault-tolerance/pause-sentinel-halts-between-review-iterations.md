@@ -1,6 +1,7 @@
 ---
 title: "DRV-021 -- Pause sentinel halts between review iterations"
 description: "Verify that the review/.deep-review-pause sentinel halts the review loop between iterations and logs a pause event."
+version: 1.11.0.14
 ---
 
 # DRV-021 -- Pause sentinel halts between review iterations

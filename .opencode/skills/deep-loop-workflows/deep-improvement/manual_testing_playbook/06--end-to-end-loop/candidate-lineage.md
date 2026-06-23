@@ -3,6 +3,7 @@ title: "E2E-021 -- Candidate Lineage Graph Tracking"
 description: "Manual validation scenario for E2E-021: Candidate Lineage Graph Tracking."
 feature_id: "E2E-021"
 category: "End-to-End Loop"
+version: 1.17.0.14
 ---
 
 # E2E-021 -- Candidate Lineage Graph Tracking

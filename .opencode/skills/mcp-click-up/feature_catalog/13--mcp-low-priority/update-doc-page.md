@@ -7,6 +7,7 @@ trigger_phrases:
   - "edit doc page content"
   - "replace page body"
   - "document page content update"
+version: 1.0.0.3
 ---
 
 # clickup_update_document_page

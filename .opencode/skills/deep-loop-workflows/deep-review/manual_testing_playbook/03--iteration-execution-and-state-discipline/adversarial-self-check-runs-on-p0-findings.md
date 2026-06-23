@@ -1,6 +1,7 @@
 ---
 title: "DRV-012 -- Adversarial self-check runs on P0 findings"
 description: "Verify that the Hunter/Skeptic/Referee adversarial self-check runs on P0 candidates before recording them as confirmed findings."
+version: 1.11.0.14
 ---
 
 # DRV-012 -- Adversarial self-check runs on P0 findings

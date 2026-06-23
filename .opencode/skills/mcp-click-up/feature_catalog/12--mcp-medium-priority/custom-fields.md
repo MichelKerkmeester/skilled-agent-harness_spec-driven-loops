@@ -7,6 +7,7 @@ trigger_phrases:
   - "create custom field"
   - "custom field definition"
   - "list field schema"
+version: 1.0.0.3
 ---
 
 # clickup_manage_custom_fields

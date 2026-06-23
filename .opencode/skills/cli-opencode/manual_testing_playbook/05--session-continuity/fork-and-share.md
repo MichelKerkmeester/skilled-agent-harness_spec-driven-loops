@@ -1,6 +1,7 @@
 ---
 title: "CO-020 -- Fork session (--fork) and share URL gate (--share)"
 description: "This scenario validates the `--fork` and `--share` flags for `CO-020`. It focuses on confirming `--fork` (with `--continue` or `--session`) branches an existing session, and that `--share` requires explicit operator confirmation per CHK-033."
+version: 1.3.0.11
 ---
 
 # CO-020 -- Fork session (--fork) and share URL gate (--share)

@@ -1,6 +1,7 @@
 ---
 title: "DRV-062 -- graphlessFallbackGate STOP blocker"
 description: "Verify the legal-stop decision tree blocks STOP with named gate graphlessFallbackGate when graphCoverageMode is graphless_fallback but the searchLedger has no fallback evidence."
+version: 1.11.0.10
 ---
 
 # DRV-062 -- graphlessFallbackGate STOP blocker

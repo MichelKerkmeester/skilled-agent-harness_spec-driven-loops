@@ -1018,3 +1018,19 @@ export function isDeterministicMultihopEnabled(): boolean {
 export function isLaneChampionBackfillEnabled(): boolean {
   return isOptInEnabled('SPECKIT_LANE_CHAMPION_BACKFILL');
 }
+
+/**
+ * Deterministic ranking: remove wall-clock inputs from the ranking score so a
+ * fixed query string is reproducible across evaluations. When enabled it passes
+ * useDecay=false into the vector lane (dropping the julianday('now') decay term)
+ * and zeroes the timestampBoost and computeRecencyScore recency contributions on
+ * the hybrid and fusion ranking paths, so the score no longer moves with the
+ * wall clock. The id tie-break on the trigger SQL ordering is independent of this
+ * flag and always on. Default: FALSE (opt-in): with the flag OFF the recency and
+ * decay terms run exactly as before, so flag-off ranking is byte-identical. Set
+ * SPECKIT_DETERMINISTIC_RANKING=true to enable.
+ */
+export function isDeterministicRankingEnabled(): boolean {
+  const rawValue = process.env.SPECKIT_DETERMINISTIC_RANKING?.trim().toLowerCase();
+  return rawValue === 'true' || rawValue === '1';
+}

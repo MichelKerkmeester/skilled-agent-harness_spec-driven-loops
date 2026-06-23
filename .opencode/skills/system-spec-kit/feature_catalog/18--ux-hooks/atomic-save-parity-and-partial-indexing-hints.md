@@ -7,6 +7,7 @@ trigger_phrases:
   - "postMutationHooks envelope"
   - "atomic save ux parity"
   - "partial indexing hints"
+version: 3.6.0.19
 ---
 
 # Atomic-save parity and partial-indexing hints

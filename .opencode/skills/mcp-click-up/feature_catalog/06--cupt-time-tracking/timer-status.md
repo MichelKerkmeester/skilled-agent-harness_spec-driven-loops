@@ -7,6 +7,7 @@ trigger_phrases:
   - "check running timer"
   - "current timer state"
   - "orphaned timer check"
+version: 1.0.0.3
 ---
 
 # Timer Status

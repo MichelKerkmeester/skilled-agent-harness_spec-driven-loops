@@ -1,6 +1,7 @@
 ---
 title: "SWEEP-004 -- Per-Model Prompt Framework"
 description: "This scenario validates Per-Model Prompt Framework for `SWEEP-004`. It focuses on per-seat prompt framing (MiMo → COSTAR, MiniMax/DeepSeek → TIDD-EC, native → none) and the mandatory four-part lineage contract in every rendered prompt."
+version: 1.2.0.4
 ---
 
 # SWEEP-004 -- Per-Model Prompt Framework

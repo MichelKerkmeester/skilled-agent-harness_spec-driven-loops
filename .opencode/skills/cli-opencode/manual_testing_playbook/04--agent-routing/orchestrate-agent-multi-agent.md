@@ -1,6 +1,7 @@
 ---
 title: "CO-034 -- Orchestrate agent multi-agent coordination"
 description: "This scenario validates the orchestrate agent for `CO-034`. It focuses on confirming `--agent orchestrate` produces a sequenced multi-agent decomposition without nested opencode run invocations."
+version: 1.3.0.13
 ---
 
 # CO-034 -- Orchestrate agent multi-agent coordination

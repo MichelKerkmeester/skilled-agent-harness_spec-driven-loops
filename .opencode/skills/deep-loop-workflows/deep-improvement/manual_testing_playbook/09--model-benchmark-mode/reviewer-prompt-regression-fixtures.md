@@ -3,6 +3,7 @@ title: "MB-R01 -- Reviewer Prompt Regression Fixtures"
 description: "Manual validation scenario for MB-R01: Reviewer Prompt Regression Fixtures."
 feature_id: "MB-R01"
 category: "Model-Benchmark Mode"
+version: 1.17.0.1
 ---
 
 # MB-R01 -- Reviewer Prompt Regression Fixtures

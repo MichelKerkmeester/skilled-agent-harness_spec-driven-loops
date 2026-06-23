@@ -5,6 +5,7 @@ trigger_phrases:
   - "code graph test assets"
   - "gold query fixture"
   - "verification battery"
+version: 1.2.0.2
 ---
 
 # Code Graph Test Assets: Static Verification Data

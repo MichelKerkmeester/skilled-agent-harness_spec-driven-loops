@@ -1,6 +1,7 @@
 ---
 title: "LS-001: OPENCODE TypeScript Sub-Detection"
 description: "Verify that within OPENCODE surface, TypeScript file extensions trigger loading of typescript/* references (not python, shell, or config)."
+version: 3.5.0.3
 ---
 
 # LS-001: OPENCODE TypeScript Sub-Detection

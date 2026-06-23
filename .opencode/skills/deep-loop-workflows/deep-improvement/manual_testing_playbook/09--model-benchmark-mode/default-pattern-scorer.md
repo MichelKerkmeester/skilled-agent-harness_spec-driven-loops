@@ -3,6 +3,7 @@ title: "MB-039 -- Default Pattern Scorer"
 description: "Manual validation scenario for MB-039: Default Pattern Scorer."
 feature_id: "MB-039"
 category: "Model-Benchmark Mode"
+version: 1.17.0.10
 ---
 
 # MB-039 -- Default Pattern Scorer

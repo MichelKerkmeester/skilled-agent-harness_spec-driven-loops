@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_NOVELTY_BOOST inert"
   - "novelty boost disabled"
   - "graph-flags legacy forwarding"
+version: 3.6.0.9
 ---
 
 # Inert scoring flags and compatibility shims

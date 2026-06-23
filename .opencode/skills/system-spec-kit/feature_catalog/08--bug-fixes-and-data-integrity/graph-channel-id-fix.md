@@ -7,6 +7,7 @@ trigger_phrases:
   - "fix graph hit rate"
   - "string vs numeric id mismatch"
   - "graph channel zero hit rate"
+version: 3.6.0.15
 ---
 
 # Graph channel ID fix

@@ -7,6 +7,7 @@ trigger_phrases:
   - "automatic query routing"
   - "structural semantic backend routing"
   - "query intent auto-route"
+version: 3.6.0.11
 ---
 
 # Query-intent routing

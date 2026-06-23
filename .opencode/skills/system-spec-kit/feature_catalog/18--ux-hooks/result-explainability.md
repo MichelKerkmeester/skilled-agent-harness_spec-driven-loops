@@ -7,6 +7,7 @@ trigger_phrases:
   - "why explanations search results"
   - "channelContribution"
   - "result scoring explainability"
+version: 3.6.0.7
 ---
 
 # Two-tier result explainability

@@ -7,6 +7,7 @@ trigger_phrases:
   - "dispatch doctor manifest"
   - "argv-positional subsystem route"
   - "how do I add a new doctor route"
+version: 3.6.0.12
 ---
 
 # Doctor router and manifest-driven dispatch

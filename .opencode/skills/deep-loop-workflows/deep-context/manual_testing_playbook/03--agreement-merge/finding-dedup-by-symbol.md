@@ -1,6 +1,7 @@
 ---
 title: "MERGE-001 -- Finding Dedup by Symbol"
 description: "This scenario validates Finding Dedup by Symbol for `MERGE-001`. It focuses on unit_id computation (sha256 of path:symbol:kind), per-executor attribution union into producedBy, and agreement-eligibility marking."
+version: 1.2.0.4
 ---
 
 # MERGE-001 -- Finding Dedup by Symbol

@@ -7,6 +7,7 @@ trigger_phrases:
   - "restore canonical target"
   - "undo promotion"
   - "archived backup restore"
+version: 1.17.0.14
 ---
 
 # Rollback

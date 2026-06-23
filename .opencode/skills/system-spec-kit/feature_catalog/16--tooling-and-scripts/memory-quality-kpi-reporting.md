@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory defect rate"
   - "kpi report"
   - "empty trigger phrases"
+version: 3.6.0.7
 ---
 
 # Memory Quality KPI Reporting

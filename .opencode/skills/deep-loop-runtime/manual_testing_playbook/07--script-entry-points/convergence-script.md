@@ -1,6 +1,7 @@
 ---
 title: "DLR-014 -- convergence.cjs"
 description: "Manual validation scenario for convergence.cjs in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-014 -- convergence.cjs

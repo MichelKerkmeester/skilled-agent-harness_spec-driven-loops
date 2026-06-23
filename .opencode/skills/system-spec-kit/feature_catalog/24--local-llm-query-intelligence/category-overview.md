@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-AI memory handoff"
   - "hf-local ONNX cascade drift detection"
   - "how do I use a local model for memory search"
+version: 3.6.0.6
 ---
 
 # Local-LLM query intelligence

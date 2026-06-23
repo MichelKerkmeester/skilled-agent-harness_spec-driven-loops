@@ -9,6 +9,7 @@ trigger_phrases:
   - "deviate from templated default"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.7
 ---
 
 # Design Inventory (reuse-ground or critique-against)

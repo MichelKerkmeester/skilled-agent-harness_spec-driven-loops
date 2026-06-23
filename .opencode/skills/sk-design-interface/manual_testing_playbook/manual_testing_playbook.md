@@ -1,6 +1,7 @@
 ---
 title: "sk-design-interface: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-design-interface skill."
+version: 1.5.0.10
 ---
 
 # sk-design-interface: Manual Testing Playbook

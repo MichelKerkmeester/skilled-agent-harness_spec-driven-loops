@@ -3,7 +3,7 @@ name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search]
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.13.1.0
+version: 1.14.0.0
 ---
 
 <!-- Keywords: autoresearch, deep-research, iterative-research, autonomous-loop, convergence-detection, externalized-state, fresh-context, research-agent, JSONL-state, strategy-file -->

@@ -6,6 +6,7 @@ trigger_phrases:
   - "why_ranked"
   - "degraded vector state"
   - "maintenance counters"
+version: 3.6.0.1
 ---
 
 # Retrieval observability diagnostics

@@ -8,6 +8,7 @@ trigger_phrases:
   - "performance audit agents"
 importance_tier: normal
 contextType: research
+version: 3.5.0.5
 ---
 
 # Multi-Agent Research Patterns

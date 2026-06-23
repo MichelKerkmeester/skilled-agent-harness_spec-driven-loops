@@ -6,6 +6,7 @@ trigger_phrases:
   - "age haircut derived"
   - "age decay"
   - "lifecycle age"
+version: 0.8.0.14
 ---
 
 # LC-001 Derived-Lane-Only Age Haircut

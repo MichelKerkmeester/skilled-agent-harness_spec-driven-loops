@@ -7,6 +7,7 @@ trigger_phrases:
   - "sweep expired memory rows"
   - "delete_after governance cleanup"
   - "how do I preview which memories will be deleted"
+version: 3.6.0.3
 ---
 
 # Memory retention sweep

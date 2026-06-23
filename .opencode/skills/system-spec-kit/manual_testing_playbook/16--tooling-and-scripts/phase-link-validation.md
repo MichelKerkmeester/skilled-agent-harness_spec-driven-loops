@@ -1,6 +1,7 @@
 ---
 title: "PHASE-004 -- Phase link validation"
 description: "This scenario validates Phase link validation for `PHASE-004`. It focuses on Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity."
+version: 3.6.0.16
 ---
 
 # PHASE-004 -- Phase link validation

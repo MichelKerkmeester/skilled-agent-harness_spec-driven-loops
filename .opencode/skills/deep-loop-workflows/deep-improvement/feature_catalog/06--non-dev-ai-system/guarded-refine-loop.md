@@ -9,6 +9,7 @@ trigger_phrases:
   - "--mode=non-dev-ai-system-refine"
   - "benchmark/_loop/loop.py contract"
   - "frozen scoring surface"
+version: 1.17.0.6
 ---
 
 # Guarded packaging refine loop

@@ -7,6 +7,7 @@ trigger_phrases:
   - "poll embedder swap job"
   - "active embedder pointer"
   - "swap job status"
+version: 3.6.0.6
 ---
 
 # Embedder status and active pointer

@@ -7,6 +7,7 @@ trigger_phrases:
   - "file footprint catalog"
   - "packet resource map"
   - "analyzed created updated removed paths"
+version: 3.6.0.8
 ---
 
 # Resource map template

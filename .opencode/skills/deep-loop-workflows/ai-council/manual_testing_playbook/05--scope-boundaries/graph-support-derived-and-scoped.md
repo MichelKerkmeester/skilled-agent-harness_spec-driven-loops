@@ -1,6 +1,7 @@
 ---
 title: "DAC-011 -- Graph support stays derived and scoped"
 description: "This scenario validates derived graph-support boundaries for DAC-011."
+version: 2.3.0.10
 ---
 
 # DAC-011 -- Graph support stays derived and scoped

@@ -1,6 +1,7 @@
 ---
 title: "BDG-021 -- Dead session (DESTRUCTIVE)"
 description: "This scenario validates dead-session recovery for `BDG-021`. It focuses on confirming that killing the underlying Chrome process produces a clear bdg error and that a fresh session restart fully recovers. DESTRUCTIVE: kills the active Chrome process."
+version: 1.0.0.7
 ---
 
 # BDG-021 -- Dead session (DESTRUCTIVE)

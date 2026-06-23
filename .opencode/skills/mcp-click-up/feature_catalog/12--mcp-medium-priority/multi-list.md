@@ -7,6 +7,7 @@ trigger_phrases:
   - "add task to multiple lists"
   - "cross-team task visibility"
   - "task in multiple lists"
+version: 1.0.0.3
 ---
 
 # clickup_add_task_to_multiple_lists

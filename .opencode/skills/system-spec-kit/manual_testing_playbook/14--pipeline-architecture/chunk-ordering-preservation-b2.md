@@ -2,6 +2,7 @@
 title: "051 -- Chunk ordering preservation (B2)"
 description: "This scenario validates Chunk ordering preservation (B2) for `051`. It focuses on Confirm ordered reassembly."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 051 -- Chunk ordering preservation (B2)

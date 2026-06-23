@@ -8,6 +8,7 @@ trigger_phrases:
   - "owasp top ten frontend"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.3
 ---
 
 # Security Patterns - OWASP Top 10 Integration

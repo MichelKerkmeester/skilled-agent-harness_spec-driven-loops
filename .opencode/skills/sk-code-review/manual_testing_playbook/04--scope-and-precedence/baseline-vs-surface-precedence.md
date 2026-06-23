@@ -1,6 +1,7 @@
 ---
 title: "CR-011 -- Baseline vs surface precedence"
 description: "This scenario validates Baseline vs surface precedence for `CR-011`. It focuses on Confirm surface conventions override generic process advice while baseline security and correctness remain mandatory."
+version: 1.5.0.4
 ---
 
 # CR-011 -- Baseline vs surface precedence

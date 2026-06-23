@@ -1,6 +1,7 @@
 ---
 title: "MCP-M016 -- Get Document via MCP"
 description: "This scenario validates Get Document via MCP for `MCP-M016`. Objective: Verify `clickup_get_document` returns the document created in MCP-M015."
+version: 1.0.0.5
 ---
 
 # MCP-M016 -- Get Document via MCP

@@ -8,6 +8,7 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.12
 ---
 
 # TypeScript Style Guide

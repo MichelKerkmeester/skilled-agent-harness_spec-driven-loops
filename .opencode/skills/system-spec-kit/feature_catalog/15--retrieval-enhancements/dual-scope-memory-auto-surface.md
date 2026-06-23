@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory auto-surface"
   - "tool dispatch memory injection"
   - "session compaction re-injection"
+version: 3.6.0.17
 ---
 
 # Dual-scope memory auto-surface

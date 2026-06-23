@@ -9,6 +9,7 @@ trigger_phrases:
   - "tool name lookup"
 importance_tier: normal
 contextType: general
+version: 1.0.0.11
 ---
 
 # Tool Catalog - Complete List of Available MCP Tools

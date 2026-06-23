@@ -1,6 +1,7 @@
 ---
 title: "CO-026 -- Parallel detached session (use case 2 — port + share)"
 description: "This scenario validates the parallel detached session pattern (use case 2) for `CO-026`. It focuses on confirming an in-OpenCode operator can spawn a SEPARATE OpenCode session via `--share --port <N>` with its own session id and state directory."
+version: 1.3.0.11
 ---
 
 # CO-026 -- Parallel detached session (use case 2 -- port + share)

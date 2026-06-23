@@ -1,6 +1,7 @@
 ---
 title: "DR-030 -- Thought status handling in convergence"
 description: "Verify that thought iterations are handled correctly in convergence and do not count as stuck or toward rolling average."
+version: 1.14.0.15
 ---
 
 # DR-030 -- Thought status handling in convergence

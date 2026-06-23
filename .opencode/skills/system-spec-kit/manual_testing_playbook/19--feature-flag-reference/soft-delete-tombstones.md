@@ -1,6 +1,7 @@
 ---
 title: "441 -- Soft-Delete Tombstones"
 description: "Manual check that memory deletion remains hard-delete by default, writes tombstones only when explicitly enabled, and returns to hard-delete behavior when disabled."
+version: 3.6.0.1
 ---
 
 # 441 -- Soft-Delete Tombstones

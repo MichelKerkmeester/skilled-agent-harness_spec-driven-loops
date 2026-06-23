@@ -1,6 +1,7 @@
 ---
 title: "224 -- Filter Config Contract"
 description: "This scenario validates Filter Config Contract for `224`. It focuses on confirming the content-filter loader honors file-backed pipeline settings, stage order, thresholds, and deep-merge fallback behavior."
+version: 3.6.0.11
 ---
 
 # 224 -- Filter Config Contract

@@ -7,6 +7,7 @@ trigger_phrases:
   - "wire skill-benchmark mode"
   - "lane c orchestration"
   - "--mode=skill-benchmark"
+version: 1.17.0.7
 ---
 
 # Mode wiring and orchestration

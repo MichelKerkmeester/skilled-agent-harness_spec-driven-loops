@@ -7,6 +7,7 @@ trigger_phrases:
   - "repair memory database"
   - "FTS rebuild orphan cleanup"
   - "how do I fix inconsistent memory index"
+version: 3.6.0.8
 ---
 
 # Memory health auto-repair

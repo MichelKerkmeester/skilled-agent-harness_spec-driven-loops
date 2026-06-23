@@ -1,6 +1,7 @@
 ---
 title: "DOC-340 -- Doctor update G7 SIGINT"
 description: "Manual scenario validating /doctor:update Ctrl-C handling during the memory rebuild step, including snapshot restore and exit 130."
+version: 3.6.0.7
 ---
 
 # DOC-340 -- Doctor update G7 SIGINT

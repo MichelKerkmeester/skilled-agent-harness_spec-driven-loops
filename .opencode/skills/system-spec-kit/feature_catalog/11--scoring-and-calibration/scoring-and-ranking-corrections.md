@@ -7,6 +7,7 @@ trigger_phrases:
   - "causal-boost cycle deduplication"
   - "ablation binomial overflow logBinomial"
   - "citation fallback chain removal"
+version: 3.6.0.13
 ---
 
 # Scoring and ranking corrections

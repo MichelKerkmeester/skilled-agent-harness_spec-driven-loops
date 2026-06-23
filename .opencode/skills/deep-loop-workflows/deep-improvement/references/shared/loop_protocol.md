@@ -8,6 +8,7 @@ trigger_phrases:
   - "guarded promotion and stop decisions"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.10
 ---
 
 # Loop Protocol

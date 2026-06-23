@@ -1,6 +1,7 @@
 ---
 title: "EX-042 -- Checkpoint v2 .needs-rebuild self-heal (boot / scan-lease)"
 description: "This scenario validates the post-restore .needs-rebuild sentinel self-heal for `EX-042`. It focuses on the sentinel being written when derived artifacts go stale after a v2 restore, and repaired at boot and during a leased index scan."
+version: 3.6.0.2
 ---
 
 # EX-042 -- Checkpoint v2 .needs-rebuild self-heal (boot / scan-lease)

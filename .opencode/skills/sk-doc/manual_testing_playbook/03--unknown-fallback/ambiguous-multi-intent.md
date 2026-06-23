@@ -11,6 +11,7 @@ expected_resources:
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
 created: 2026-05-05
+version: 1.8.0.6
 ---
 
 # SD-007: Ambiguous Multi-Intent Disambiguation

@@ -7,6 +7,7 @@ trigger_phrases:
   - "severity-graded findings after save"
   - "post-save propagation check"
   - "quality review before indexing"
+version: 3.6.0.13
 ---
 
 # Post-save quality review

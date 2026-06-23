@@ -8,6 +8,7 @@ trigger_phrases:
   - "packaging parity after promotion"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.13
 ---
 
 # Mirror Drift Policy

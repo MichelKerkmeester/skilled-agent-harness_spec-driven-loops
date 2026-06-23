@@ -59,6 +59,7 @@ import {
   isCosineTopnReorderEnabled,
   isDegreeBoostEnabled,
   isDeterministicMultihopEnabled,
+  isDeterministicRankingEnabled,
   isDocscoreAggregationEnabled,
   isLaneChampionBackfillEnabled,
   isMMREnabled,
@@ -760,7 +761,8 @@ function exactTriggerSearch(
       WHERE ${conditions.join(' AND ')}
       ORDER BY
         CASE WHEN LOWER(m.trigger_phrases) LIKE ? THEN 0 ELSE 1 END,
-        COALESCE(m.updated_at, m.created_at, '') DESC
+        COALESCE(m.updated_at, m.created_at, '') DESC,
+        m.id ASC
       LIMIT ${candidateLimit}
     `).all(...params, exactPhraseLike) as Array<Record<string, unknown>>;
 
@@ -773,7 +775,11 @@ function exactTriggerSearch(
         const importance = typeof row.importance_weight === 'number' && Number.isFinite(row.importance_weight)
           ? Math.max(0, Math.min(1, row.importance_weight))
           : 0.5;
-        const recency = timestampBoost(row.updated_at ?? row.created_at);
+        // Deterministic ranking drops the wall-clock recency term so the score is
+        // reproducible. OFF keeps the original timestampBoost contribution.
+        const recency = isDeterministicRankingEnabled()
+          ? 0
+          : timestampBoost(row.updated_at ?? row.created_at);
         const score = Math.min(1, matchScore + importance * 0.03 + recency * 0.04);
 
         return {
@@ -1189,6 +1195,9 @@ async function hybridSearch(
         minSimilarity,
         includeConstitutional: false, // Handler manages constitutional separately
         includeArchived,
+        // Deterministic ranking drops the julianday('now') decay term so the
+        // vector score is reproducible. OFF leaves useDecay at its default.
+        ...(isDeterministicRankingEnabled() ? { useDecay: false } : {}),
       });
       for (const r of vectorResults) {
         results.push({
@@ -1392,6 +1401,9 @@ async function collectAndFuseHybridResults(
           includeConstitutional: false,
           includeArchived: options.includeArchived || false,
           includeEmbeddings: true,
+          // Deterministic ranking drops the julianday('now') decay term so the
+          // vector score is reproducible. OFF leaves useDecay at its default.
+          ...(isDeterministicRankingEnabled() ? { useDecay: false } : {}),
         });
         semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
           ...r,

@@ -7,6 +7,7 @@ trigger_phrases:
   - Feature catalog annotation
   - MODULE header convention
   - code-to-catalog linkage
+version: 3.6.0.19
 ---
 
 # Feature catalog code references

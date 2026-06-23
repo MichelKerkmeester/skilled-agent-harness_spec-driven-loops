@@ -6,6 +6,7 @@ trigger_phrases:
   - "launcher startup prefix"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.2
 ---
 # 017 launcher startup prefix
 

@@ -1,6 +1,7 @@
 ---
 title: "168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1)"
 description: "This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response."
+version: 3.6.0.15
 ---
 
 # 168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1)

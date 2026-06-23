@@ -7,6 +7,7 @@ trigger_phrases:
   - "hook policy classification"
   - "active ai runtime identification"
   - "areHooksAvailable"
+version: 3.6.0.15
 ---
 
 # Runtime detection and hook policy

@@ -1,6 +1,7 @@
 ---
 title: "SP-009 -- DEPTH executes 5 phases in mandatory order"
 description: "This scenario validates DEPTH phase ordering for `SP-009`. It focuses on proving D->E->P->T->H execution without shortcuts."
+version: 2.3.0.5
 ---
 
 # SP-009 -- DEPTH executes 5 phases in mandatory order

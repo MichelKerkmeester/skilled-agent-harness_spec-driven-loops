@@ -9,6 +9,7 @@ trigger_phrases:
   - "runtime agent placement"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.10
 ---
 
 # Agent Creation - Standards and Workflow

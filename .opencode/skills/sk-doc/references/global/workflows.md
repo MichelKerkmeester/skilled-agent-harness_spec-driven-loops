@@ -8,6 +8,7 @@ trigger_phrases:
   - "mode one document quality"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.19
 ---
 
 # Document Quality Workflows - Mode 1 Reference

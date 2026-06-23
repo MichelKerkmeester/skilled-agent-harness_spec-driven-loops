@@ -8,6 +8,7 @@ trigger_phrases:
   - "feature decision matrix"
 importance_tier: normal
 contextType: planning
+version: 3.6.0.18
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection

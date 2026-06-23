@@ -2,6 +2,7 @@
 title: "096 -- Provenance-rich response envelopes (P0-2)"
 description: "This scenario validates Provenance-rich response envelopes (P0-2) for `096`. It focuses on Confirm includeTrace opt-in exposes scores/source/trace."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 096 -- Provenance-rich response envelopes (P0-2)

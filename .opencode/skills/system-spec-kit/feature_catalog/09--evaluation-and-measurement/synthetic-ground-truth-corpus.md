@@ -7,6 +7,7 @@ trigger_phrases:
   - "110 query ground truth"
   - "hard negative queries evaluation"
   - "retrieval evaluation dataset"
+version: 3.6.0.15
 ---
 
 # Synthetic ground truth corpus

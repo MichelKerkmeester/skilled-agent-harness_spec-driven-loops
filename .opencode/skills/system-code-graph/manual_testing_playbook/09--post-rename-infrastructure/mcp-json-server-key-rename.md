@@ -6,6 +6,7 @@ trigger_phrases:
   - "mcp.json server key rename"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.1
 ---
 # 018 mcp.json server key rename
 

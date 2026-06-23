@@ -6,6 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
+version: 0.8.0.13
 ---
 
 # CP-003 Global Disable Flag

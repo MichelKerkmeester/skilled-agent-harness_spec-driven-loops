@@ -1,6 +1,7 @@
 ---
 title: "MCP-L009 -- Checklist Lifecycle — create, add item, check off, delete"
 description: "This scenario validates Checklist Lifecycle — create, add item, check off, delete for `MCP-L009`. Objective: Verify full checklist CRUD: create checklist, add item, resolve item, delete che."
+version: 1.0.0.5
 ---
 
 # MCP-L009 -- Checklist Lifecycle — create, add item, check off, delete

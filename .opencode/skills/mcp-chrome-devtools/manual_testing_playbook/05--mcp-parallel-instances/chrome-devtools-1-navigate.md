@@ -1,6 +1,7 @@
 ---
 title: "BDG-014 -- chrome_devtools_1 navigate via Code Mode"
 description: "This scenario validates Code Mode invocation of `chrome_devtools_1` for `BDG-014`. It focuses on confirming a navigate + screenshot round-trip via the manual-namespace contract returns valid bytes."
+version: 1.0.0.6
 ---
 
 # BDG-014 -- chrome_devtools_1 navigate via Code Mode

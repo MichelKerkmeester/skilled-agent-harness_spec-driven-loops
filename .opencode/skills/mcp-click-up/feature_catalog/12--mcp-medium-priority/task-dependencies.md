@@ -7,6 +7,7 @@ trigger_phrases:
   - "set task dependency"
   - "depends_on relationship"
   - "block task sequencing"
+version: 1.0.0.3
 ---
 
 # clickup_manage_task_dependencies

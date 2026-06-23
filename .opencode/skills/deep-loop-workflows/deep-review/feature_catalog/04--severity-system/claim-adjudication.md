@@ -7,6 +7,7 @@ trigger_phrases:
   - "typed claim packet"
   - "claimAdjudicationGate"
   - "severity downgrade rules"
+version: 1.11.0.7
 ---
 
 # Claim adjudication

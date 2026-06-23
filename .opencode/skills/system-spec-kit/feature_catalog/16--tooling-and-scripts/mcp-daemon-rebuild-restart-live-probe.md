@@ -7,6 +7,7 @@ trigger_phrases:
   - "rebuild and restart mcp"
   - "dist-marker grep"
   - "mcp daemon verification"
+version: 3.6.0.8
 ---
 
 # MCP daemon rebuild, restart, and live-probe protocol

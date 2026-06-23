@@ -1,6 +1,7 @@
 ---
 title: "CG-003 -- Context Convergence Signals"
 description: "This scenario validates Context Convergence Signals for `CG-003`. It focuses on `computeContextSignalsFromData` as a pure exported function with vacuous-pass semantics, `createSnapshot` using `ON CONFLICT DO UPDATE`, and the five convergence signal fields."
+version: 1.2.0.4
 ---
 
 # CG-003 -- Context Convergence Signals

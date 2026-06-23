@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
+  "description": "The bulk of the corpus is per-feature catalog and playbook leaves (~1,700+ files) with frontmatter that varies (often only `title` + `description`) an",
+  "keywords": [
+    "bulk",
+    "corpus",
+    "per-feature",
+    "catalog",
+    "playbook",
+    "leaves",
+    "700",
+    "files",
+    "frontmatter",
+    "varies",
+    "often",
+    "only",
+    "title",
+    "description"
+  ],
+  "lastUpdated": "2026-06-23T08:14:01.575Z",
+  "specId": "004",
+  "folderSlug": "apply-catalogs-and-playbooks",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-frontmatter-versioning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

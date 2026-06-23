@@ -8,6 +8,7 @@ trigger_phrases:
   - "integration scan report"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.23
 ---
 
 # Integration Scanning

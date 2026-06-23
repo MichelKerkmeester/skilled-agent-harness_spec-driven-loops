@@ -7,6 +7,7 @@ trigger_phrases:
   - "new clickup doc"
   - "create doc with markdown"
   - "document creation mcp"
+version: 1.0.0.3
 ---
 
 # clickup_create_document

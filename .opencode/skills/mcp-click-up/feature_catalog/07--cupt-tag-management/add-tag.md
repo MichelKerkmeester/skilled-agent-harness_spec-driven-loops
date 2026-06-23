@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply tag to task"
   - "tag task"
   - "label task with tag"
+version: 1.0.0.3
 ---
 
 # Add Tag

@@ -8,6 +8,7 @@ trigger_phrases:
   - "library loading pattern webflow"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.4
 ---
 
 # Third-Party Library Integrations

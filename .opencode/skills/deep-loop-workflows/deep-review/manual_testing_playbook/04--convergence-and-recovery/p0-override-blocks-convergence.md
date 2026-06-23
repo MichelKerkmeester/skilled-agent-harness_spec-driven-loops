@@ -1,6 +1,7 @@
 ---
 title: "DRV-017 -- P0 override blocks convergence"
 description: "Verify that a new P0 finding sets newFindingsRatio >= 0.50, blocking convergence regardless of other signals."
+version: 1.11.0.14
 ---
 
 # DRV-017 -- P0 override blocks convergence

@@ -7,6 +7,7 @@ expected_resources: []
 expected_token_range_input: 500-1500
 expected_token_range_output: 500-1500
 created: 2026-05-05
+version: 1.8.0.6
 ---
 
 # SD-008: UNKNOWN Fallback (Zero Keyword Match)

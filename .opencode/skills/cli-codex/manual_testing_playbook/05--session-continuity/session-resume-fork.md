@@ -1,6 +1,7 @@
 ---
 title: "CX-017 -- session resume / fork"
 description: "This scenario validates codex resume and codex fork for `CX-017`. It focuses on confirming a multi-turn session can be resumed and that fork creates a divergent branch."
+version: 1.4.0.9
 ---
 
 # CX-017 -- session resume / fork

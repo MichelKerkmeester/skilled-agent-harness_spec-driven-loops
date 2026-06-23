@@ -2,6 +2,7 @@
 title: "203 -- Memory causal trust display"
 description: "This scenario validates display-only trust badges for `203`. It focuses on additive envelope badges, orphan detection, age rendering, weight-history surfacing, and response-profile preservation."
 audited_post_018: true
+version: 3.6.0.11
 ---
 
 # 203 -- Memory causal trust display

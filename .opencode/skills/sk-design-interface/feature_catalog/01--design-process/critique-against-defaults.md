@@ -6,6 +6,7 @@ trigger_phrases:
   - "avoid templated default design"
   - "revise generic design plan"
   - "design step 2"
+version: 1.5.0.3
 ---
 
 # Critique against AI-default looks

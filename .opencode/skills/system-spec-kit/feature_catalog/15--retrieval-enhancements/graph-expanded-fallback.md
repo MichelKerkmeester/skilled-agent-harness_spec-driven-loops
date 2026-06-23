@@ -6,6 +6,7 @@ trigger_phrases:
   - "buildGraphExpandedFallback"
   - "SPECKIT_GRAPH_FALLBACK"
   - "causal edge recovery candidates"
+version: 3.6.0.5
 ---
 
 # Graph-expanded fallback

@@ -1,6 +1,7 @@
 ---
 title: "012 -- Agent consumption instrumentation (G-NEW-2)"
 description: "This scenario validates Agent consumption instrumentation (G-NEW-2) for `012`. It focuses on Confirm wiring with inert runtime."
+version: 3.6.0.16
 ---
 
 # 012 -- Agent consumption instrumentation (G-NEW-2)

@@ -1,6 +1,7 @@
 ---
 title: "DOC-341 -- Doctor update G8 migration gap"
 description: "Manual scenario validating /doctor:update --migrate refusal when a synthetic installed version is not listed in migration-manifest.json valid_source_versions."
+version: 3.6.0.5
 ---
 
 # DOC-341 -- Doctor update G8 migration gap

@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply scoring rubric"
   - "dimension weights"
   - "5-dimension evaluation"
+version: 1.17.0.13
 ---
 
 # Five-dimension rubric

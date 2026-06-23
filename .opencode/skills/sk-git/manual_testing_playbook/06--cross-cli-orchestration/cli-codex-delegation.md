@@ -1,6 +1,7 @@
 ---
 title: "GIT-021 -- cli-codex delegation"
 description: "This scenario validates cli-codex delegation for `GIT-021`. It focuses on verify cli-codex can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope."
+version: 1.1.0.3
 ---
 
 # GIT-021 -- cli-codex delegation

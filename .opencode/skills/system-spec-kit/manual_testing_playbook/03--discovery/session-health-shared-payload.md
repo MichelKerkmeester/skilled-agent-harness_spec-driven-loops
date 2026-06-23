@@ -2,6 +2,7 @@
 title: "017 -- Session health shared payload"
 description: "Validates session_health reports shared payload freshness and degraded-state recovery hints."
 audited_post_017: true
+version: 3.6.0.1
 ---
 
 # 017 -- Session health shared payload

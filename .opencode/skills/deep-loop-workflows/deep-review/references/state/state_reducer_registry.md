@@ -8,6 +8,7 @@ trigger_phrases:
   - "review state reconstruction"
 importance_tier: important
 contextType: implementation
+version: 1.11.0.4
 ---
 
 # Deep Review State Reducer And Registry

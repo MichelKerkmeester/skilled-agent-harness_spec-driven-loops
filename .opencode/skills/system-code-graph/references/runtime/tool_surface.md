@@ -8,6 +8,7 @@ trigger_phrases:
   - "code-graph tool contracts"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.2.0.9
 ---
 
 # System Code Graph Tool Surface

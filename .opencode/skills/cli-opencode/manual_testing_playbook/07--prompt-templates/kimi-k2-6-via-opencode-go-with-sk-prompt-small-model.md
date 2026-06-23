@@ -1,6 +1,7 @@
 ---
 title: "CO-036 -- Kimi-k2.6 via opencode-go through sk-prompt-small-model + sk-prompt"
 description: "Verifies the opencode-go dispatch path for Kimi-k2.6 and the sk-prompt composition for a large-context multi-file analysis dispatched via opencode-go."
+version: 1.3.0.8
 ---
 
 # CO-036 -- Kimi-k2.6 via opencode-go through sk-prompt-small-model + sk-prompt

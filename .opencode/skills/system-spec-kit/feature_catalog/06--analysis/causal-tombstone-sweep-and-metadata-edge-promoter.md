@@ -6,6 +6,7 @@ trigger_phrases:
   - "causal_edge_tombstones"
   - "frontmatter promoter"
   - "metadata edge promoter"
+version: 3.6.0.1
 ---
 
 # Causal tombstone sweep and metadata-edge promoter

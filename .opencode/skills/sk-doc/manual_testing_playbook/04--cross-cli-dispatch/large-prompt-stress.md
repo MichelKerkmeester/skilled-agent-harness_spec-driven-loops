@@ -11,6 +11,7 @@ expected_resources:
 expected_token_range_input: 8000-12000
 expected_token_range_output: 2000-3000
 created: 2026-05-05
+version: 1.8.0.7
 ---
 
 # SD-011: Large-Prompt Stress (cli-codex stall mitigation)

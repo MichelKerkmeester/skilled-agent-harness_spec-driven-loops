@@ -7,6 +7,7 @@ trigger_phrases:
   - "busy owner false reap duplicate daemon"
   - "SPECKIT_LEASE_PROBE_RETRIES"
   - "probeLeaseHolderWithRetries"
+version: 3.6.0.2
 ---
 
 # Lease probe retry reap hardening

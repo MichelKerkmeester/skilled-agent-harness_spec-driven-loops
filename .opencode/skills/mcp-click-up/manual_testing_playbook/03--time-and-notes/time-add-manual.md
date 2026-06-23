@@ -1,6 +1,7 @@
 ---
 title: "CU-030 -- Log Time Manually"
 description: "This scenario validates Log Time Manually for `CU-030`. Objective: Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp."
+version: 1.0.0.6
 ---
 
 # CU-030 -- Log Time Manually

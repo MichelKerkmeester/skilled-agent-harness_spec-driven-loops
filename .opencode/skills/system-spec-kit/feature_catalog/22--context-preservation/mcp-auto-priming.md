@@ -7,6 +7,7 @@ trigger_phrases:
   - "first-call session context injection"
   - "constitutional memories priming"
   - "session priming mcp"
+version: 3.6.0.8
 ---
 
 # MCP auto-priming

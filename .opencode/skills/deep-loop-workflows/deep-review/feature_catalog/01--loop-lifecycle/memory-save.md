@@ -7,6 +7,7 @@ trigger_phrases:
   - "generate-context.js"
   - "review packet continuity"
   - "post-synthesis preservation"
+version: 1.11.0.6
 ---
 
 # Memory save

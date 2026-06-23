@@ -2,6 +2,7 @@
 title: "118 -- Stage-2 score field synchronization (P0-8)"
 description: "This scenario validates Stage-2 score field synchronization (P0-8) for `118`. It focuses on Verify intentAdjustedScore reflects all downstream signal modifications after non-hybrid intent weighting."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 118 -- Stage-2 score field synchronization (P0-8)

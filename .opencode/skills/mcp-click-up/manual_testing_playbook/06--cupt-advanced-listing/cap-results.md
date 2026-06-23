@@ -1,6 +1,7 @@
 ---
 title: "CU-014 -- Cap Results — -n N"
 description: "This scenario validates Cap Results — -n N for `CU-014`. Objective: Verify `cupt list -n 3 --json` returns at most 3 tasks regardless of total queue."
+version: 1.0.0.5
 ---
 
 # CU-014 -- Cap Results — -n N

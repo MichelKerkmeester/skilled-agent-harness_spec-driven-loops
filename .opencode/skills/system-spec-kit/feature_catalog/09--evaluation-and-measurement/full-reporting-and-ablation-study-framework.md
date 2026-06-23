@@ -7,6 +7,7 @@ trigger_phrases:
   - "retrieval channel ablation"
   - "eval_run_ablation eval_reporting_dashboard"
   - "per-sprint metric dashboard"
+version: 3.6.0.16
 ---
 
 # Full reporting and ablation study framework

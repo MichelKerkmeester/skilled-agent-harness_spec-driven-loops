@@ -7,6 +7,7 @@ trigger_phrases:
   - "track dimension trends"
   - "per-dimension trajectory"
   - "improvement dashboard"
+version: 1.17.0.11
 ---
 
 # Dimensional progress

@@ -4,6 +4,7 @@ description: "Code-facing README for .opencode/skills/sk-code/assets/motion_dev/
 trigger_phrases:
   - "sk-code assets/motion_dev/snippets"
   - "code README"
+version: 3.5.0.6
 ---
 
 # sk code assets motion dev snippets

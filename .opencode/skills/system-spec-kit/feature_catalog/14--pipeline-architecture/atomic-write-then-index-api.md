@@ -7,6 +7,7 @@ trigger_phrases:
   - "crash-safe file persistence"
   - "decoupled asynchronous indexing"
   - "write then index atomically"
+version: 3.6.0.13
 ---
 
 # Atomic write-then-index API

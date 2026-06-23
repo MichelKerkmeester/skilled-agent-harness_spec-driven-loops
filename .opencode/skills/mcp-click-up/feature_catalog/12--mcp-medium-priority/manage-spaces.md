@@ -7,6 +7,7 @@ trigger_phrases:
   - "create clickup space"
   - "delete workspace space"
   - "project area management"
+version: 1.0.0.3
 ---
 
 # clickup_manage_spaces

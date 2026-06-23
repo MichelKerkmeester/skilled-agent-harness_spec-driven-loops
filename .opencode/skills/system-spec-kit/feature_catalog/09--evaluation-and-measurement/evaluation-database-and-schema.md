@@ -7,6 +7,7 @@ trigger_phrases:
   - "speckit-eval.db setup"
   - "fail-safe eval logging hooks"
   - "retrieval quality data storage"
+version: 3.6.0.17
 ---
 
 # Evaluation database and schema

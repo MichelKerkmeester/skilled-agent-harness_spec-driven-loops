@@ -6,6 +6,7 @@ trigger_phrases:
   - "sessionTransition envelope"
   - "includeTrace"
   - "trace-gated session metadata"
+version: 3.6.0.4
 ---
 
 # Session transition trace contract

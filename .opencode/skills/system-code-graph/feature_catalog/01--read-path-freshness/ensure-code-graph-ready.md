@@ -5,6 +5,7 @@ trigger_phrases:
   - "ensure code graph ready"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.11
 ---
 
 # Ensure code graph ready

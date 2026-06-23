@@ -1,6 +1,7 @@
 ---
 title: "119-A -- Comment Hygiene — Checker Script Baseline"
 description: "This scenario validates the shared comment hygiene checker script for `119-A`. It focuses on verifying violation detection, allowed-class pass-through, escape-hatch suppression, and zero false-positives on production source — the foundation all runtime enforcement tiers depend on."
+version: 3.6.0.4
 ---
 
 # 119-A -- Comment Hygiene — Checker Script Baseline

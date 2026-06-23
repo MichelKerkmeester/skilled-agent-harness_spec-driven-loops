@@ -8,6 +8,7 @@ trigger_phrases:
   - "mode registry routing"
 importance_tier: normal
 contextType: general
+version: 1.8.0.3
 ---
 
 # Parent Skill Hub Template - Routing-Only SKILL.md
@@ -43,7 +44,7 @@ Exactly **one** `graph-metadata.json` per parent skill (the hub's, `skill_id == 
 name: [parent-skill-name]
 description: "[Unified skill: routes a request to one of N modes ([mode-a], [mode-b], …) over the shared [backend] backend. Holds no per-mode logic — dispatches by [modeKey] through mode-registry.json.]"
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0
+version: 1.0.0.0
 ---
 ```
 
@@ -62,7 +63,7 @@ Copy the block below into the hub `SKILL.md` and fill the bracketed placeholders
 name: [parent-skill-name]
 description: "[Unified skill that routes to N modes over a shared backend; holds no per-mode logic.]"
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0
+version: 1.0.0.0
 ---
 
 <!-- Keywords: [parent-skill-name], [mode-a], [mode-b], [modeKey], mode-registry, [backend], [domain keywords] -->

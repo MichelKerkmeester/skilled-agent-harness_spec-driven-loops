@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_RESULT_PROVENANCE"
   - "graph evidence ranking trace"
   - "causal edge provenance"
+version: 3.6.0.5
 ---
 
 # Result provenance (graph evidence)

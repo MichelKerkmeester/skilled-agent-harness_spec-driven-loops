@@ -1,6 +1,7 @@
 ---
 title: "DR-020 -- Quality Guard — Source Diversity"
 description: "Verify that convergence STOP is blocked when an answered question cites <2 independent sources."
+version: 1.14.0.15
 ---
 
 # DR-020 -- Quality Guard — Source Diversity

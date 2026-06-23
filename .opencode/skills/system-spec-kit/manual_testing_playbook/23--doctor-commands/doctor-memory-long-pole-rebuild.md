@@ -1,6 +1,7 @@
 ---
 title: "DOC-325 -- Doctor memory long-pole rebuild"
 description: "Manual scenario validating the /doctor memory full rebuild path with ETA prompt, snapshots, state-log duration, and gold-battery verification."
+version: 3.6.0.10
 ---
 
 # DOC-325 -- Doctor memory long-pole rebuild

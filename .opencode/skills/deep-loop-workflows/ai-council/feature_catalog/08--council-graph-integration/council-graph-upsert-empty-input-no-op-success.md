@@ -7,6 +7,7 @@ trigger_phrases:
   - "upsert empty council graph"
   - "no-op upsert branch"
   - "empty diff upsert handling"
+version: 2.3.0.10
 ---
 
 # runtime upsert CLI empty input no-op success

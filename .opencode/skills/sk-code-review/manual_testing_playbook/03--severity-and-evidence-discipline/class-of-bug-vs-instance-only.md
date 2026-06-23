@@ -1,6 +1,7 @@
 ---
 title: "CR-008 -- Class of bug vs instance-only"
 description: "This scenario validates Class of bug vs instance-only for `CR-008`. It focuses on Confirm findings classify same-class inventory instead of patching only the cited instance by default."
+version: 1.5.0.4
 ---
 
 # CR-008 -- Class of bug vs instance-only

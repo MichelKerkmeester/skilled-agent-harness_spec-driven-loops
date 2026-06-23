@@ -1,6 +1,7 @@
 ---
 title: "DLR-022 -- Session state hierarchy"
 description: "Manual validation scenario for Session state hierarchy in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-022 -- Session state hierarchy

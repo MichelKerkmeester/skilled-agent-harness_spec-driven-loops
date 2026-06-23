@@ -9,6 +9,7 @@ trigger_phrases:
   - "evaluatecontext stop path"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.3
 ---
 
 # Deep Context: Graph-Aware Convergence

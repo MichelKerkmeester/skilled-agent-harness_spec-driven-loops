@@ -1,6 +1,7 @@
 ---
 title: "CO-021 -- Cross-AI orchestration handback (use case 3, Codex calling)"
 description: "This scenario validates the cross-AI orchestration handback (use case 3) for `CO-021`. It focuses on confirming Codex (or another non-Anthropic CLI) can dispatch into OpenCode for a spec-kit-specific workflow that the calling CLI cannot execute on its own."
+version: 1.3.0.10
 ---
 
 # CO-021 -- Cross-AI orchestration handback (use case 3, Codex calling)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "route fallback"
   - "quota pool fallback"
   - "fail-fast model routing"
+version: 1.4.0.5
 ---
 
 # Fallback router

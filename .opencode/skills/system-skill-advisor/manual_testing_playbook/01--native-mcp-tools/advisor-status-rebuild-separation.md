@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor_status diagnostic only"
   - "advisor_rebuild explicit repair"
   - "skill advisor stale rebuild"
+version: 0.8.0.9
 ---
 
 # NC-006 Advisor Status and Rebuild Separation

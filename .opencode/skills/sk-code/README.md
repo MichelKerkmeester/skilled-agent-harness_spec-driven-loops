@@ -8,6 +8,7 @@ trigger_phrases:
   - "verification"
   - "webflow"
   - "opencode"
+version: 3.5.0.16
 ---
 
 # sk-code

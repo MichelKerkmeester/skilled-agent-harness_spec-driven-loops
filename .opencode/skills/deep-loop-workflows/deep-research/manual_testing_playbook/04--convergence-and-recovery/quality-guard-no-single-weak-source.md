@@ -1,6 +1,7 @@
 ---
 title: "DR-022 -- Quality Guard — No Single-Weak-Source"
 description: "Verify that convergence STOP is blocked when an answered question relies solely on a tentative source."
+version: 1.14.0.15
 ---
 
 # DR-022 -- Quality Guard — No Single-Weak-Source

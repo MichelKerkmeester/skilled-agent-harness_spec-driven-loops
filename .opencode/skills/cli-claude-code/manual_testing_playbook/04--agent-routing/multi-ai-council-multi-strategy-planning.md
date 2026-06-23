@@ -1,6 +1,7 @@
 ---
 title: "CC-014 -- Ultra-think multi-strategy planning"
 description: "This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent ai-council --model claude-opus-4-6 --permission-mode plan` produces multiple distinct scored strategies."
+version: 1.1.0.2
 ---
 
 # CC-014 -- Ultra-think multi-strategy planning

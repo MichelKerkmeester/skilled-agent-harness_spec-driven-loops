@@ -7,6 +7,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "git worktree branch setup"
   - "pull request commit hygiene"
+version: 1.1.0.26
 ---
 
 # sk-git

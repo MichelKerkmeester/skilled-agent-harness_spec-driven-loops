@@ -1,6 +1,7 @@
 ---
 title: "MCP-M019 -- Create Goal via MCP"
 description: "This scenario validates Create Goal via MCP for `MCP-M019`. Objective: Verify `clickup_manage_goals` creates a goal and returns a goal_id."
+version: 1.0.0.5
 ---
 
 # MCP-M019 -- Create Goal via MCP

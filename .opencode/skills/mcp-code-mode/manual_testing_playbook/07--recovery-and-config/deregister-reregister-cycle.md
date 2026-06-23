@@ -1,6 +1,7 @@
 ---
 title: "CM-024 -- Deregister/re-register cycle (DESTRUCTIVE)"
 description: "This scenario validates dynamic manual deregister/re-register for `CM-024`. It focuses on confirming `deregister_manual` removes a manual at runtime and `register_manual` restores it without restarting Code Mode."
+version: 1.0.0.6
 ---
 
 # CM-024 -- Deregister/re-register cycle (DESTRUCTIVE)

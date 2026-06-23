@@ -7,6 +7,7 @@ trigger_phrases:
   - "broaden retrieval with related terms"
   - "SPECKIT_EMBEDDING_EXPANSION"
   - "deep-mode synonym variants"
+version: 3.6.0.18
 ---
 
 # Query expansion

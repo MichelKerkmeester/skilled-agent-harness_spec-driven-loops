@@ -6,6 +6,7 @@ trigger_phrases:
   - "Codex freshness smoke check"
   - "cold-start context"
   - "codex hook freshness"
+version: 3.6.0.8
 ---
 
 # Codex hook freshness smoke check

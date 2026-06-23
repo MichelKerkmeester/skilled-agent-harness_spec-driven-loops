@@ -1,6 +1,7 @@
 ---
 title: "LS-002: OPENCODE Python Sub-Detection"
 description: "Verify that within OPENCODE surface, Python file extensions trigger loading of python/* references (not typescript, shell, or config)."
+version: 3.5.0.3
 ---
 
 # LS-002: OPENCODE Python Sub-Detection

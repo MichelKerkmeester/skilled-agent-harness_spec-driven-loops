@@ -1,6 +1,7 @@
 ---
 title: "DLR-004 -- Prompt pack"
 description: "Manual validation scenario for Prompt pack in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-004 -- Prompt pack

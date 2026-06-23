@@ -7,6 +7,7 @@ trigger_phrases:
   - "transcript token usage parsing"
   - "token cost estimate per model"
   - "session-end token metrics"
+version: 3.6.0.6
 ---
 
 # Stop hook token tracking

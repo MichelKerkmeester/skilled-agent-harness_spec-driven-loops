@@ -1,6 +1,7 @@
 ---
 title: "CR-013 -- Re-review after fixes"
 description: "This scenario validates Re-review after fixes for `CR-013`. It focuses on Confirm re-review verifies previous findings against the new diff instead of rubber-stamping."
+version: 1.5.0.4
 ---
 
 # CR-013 -- Re-review after fixes

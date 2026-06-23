@@ -3,6 +3,7 @@ title: "E2E-020 -- Trade-Off Detection Across Dimensions"
 description: "Manual validation scenario for E2E-020: Trade-Off Detection Across Dimensions."
 feature_id: "E2E-020"
 category: "End-to-End Loop"
+version: 1.17.0.14
 ---
 
 # E2E-020 -- Trade-Off Detection Across Dimensions

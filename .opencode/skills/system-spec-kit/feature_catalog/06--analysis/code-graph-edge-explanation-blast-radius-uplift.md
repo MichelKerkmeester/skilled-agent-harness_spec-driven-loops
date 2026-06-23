@@ -7,6 +7,7 @@ trigger_phrases:
   - "blast_radius analysis"
   - "edge reason and step metadata"
   - "structural relationship audit"
+version: 3.6.0.7
 ---
 
 # Code Graph edge explanation and blast radius uplift

@@ -75,7 +75,7 @@ Field mapping:
 | --- | --- |
 | User query or `memory_context.input` | `"<query>"` |
 | Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
-| Returned result count | `results=<count>` and `RESULTS=<count>` |
+| Count of result rows actually rendered | `results=<count>` and `RESULTS=<count>`. When rows are omitted under the output budget render `<shown> of <total>` (for example `RESULTS=2 of 5`) so the count never exceeds the visible rows |
 | `result.specFolder` leaf | `<leaf-folder>/` |
 | `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
 | `result.id` or `result.memory_id` | `#<id>` |
@@ -120,14 +120,17 @@ Folder display rules:
 - Group by spec folder.
 - Show only the leaf folder name unless two leaves collide.
 - Each result line shows only score, id, and title.
+- Render the leaf folder name or a short title for `<title>`, never the full folder path, so long paths do not force a `(truncated)` cut.
 - Include trace/provenance only when requested or needed to explain a degraded result.
 
 Truncation-resilient rendering:
 - When `meta.tokenBudgetTruncated` is true (or `meta.returnedResultCount` < `meta.originalResultCount`),
-  the fully-materialized `data.results` array was trimmed to fit the token budget — it is NOT the
-  true result count. Render every entry from `data.progressiveDisclosure.results` (id + title from
-  the snippet), not just the 1–2 detailed rows that survived truncation. Use `meta.originalResultCount`
-  for `results=<count>`.
+  the fully-materialized `data.results` array was trimmed to fit the token budget. Render every entry
+  from `data.progressiveDisclosure.results` (id + title from the snippet), not just the 1–2 detailed rows
+  that survived truncation, so the rendered rows match `meta.originalResultCount`. If rows are still
+  omitted under the output budget, render `<shown> of <total>` for `results=<count>` (shown =
+  `meta.returnedResultCount`, total = `meta.originalResultCount`) so the footer never claims more rows
+  than are visible.
 - Constitutional rows are context, not ranked hits: exclude any result whose `isConstitutional` is
   true (or `importanceTier` is `constitutional`) from the ranked block. List them, if relevant, under
   a separate `Constitutional rules` heading — never as scored result lines.

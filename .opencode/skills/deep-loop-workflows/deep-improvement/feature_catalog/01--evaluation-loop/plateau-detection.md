@@ -7,6 +7,7 @@ trigger_phrases:
   - "detect improvement plateau"
   - "loop stop condition"
   - "convergence eligibility"
+version: 1.17.0.13
 ---
 
 # Plateau detection

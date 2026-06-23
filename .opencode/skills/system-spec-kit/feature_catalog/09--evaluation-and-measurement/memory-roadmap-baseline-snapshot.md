@@ -7,6 +7,7 @@ trigger_phrases:
   - "capturememorystatebaselinesnapshot"
   - "retrieval volume baseline metrics"
   - "memory roadmap rollout gating"
+version: 3.6.0.14
 ---
 
 # Memory roadmap baseline snapshot

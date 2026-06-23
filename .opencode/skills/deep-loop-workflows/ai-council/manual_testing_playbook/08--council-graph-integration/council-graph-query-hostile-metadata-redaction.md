@@ -1,6 +1,7 @@
 ---
 title: "DAC-021 -- runtime query CLI hostile metadata redaction"
 description: "This scenario validates that `runtime query CLI` redacts arbitrary metadata keys and bounds string lengths before returning prompt-safe output. Anchors to council-graph-script.vitest.ts test 'redacts arbitrary metadata from prompt-safe query output'."
+version: 2.3.0.8
 ---
 
 # DAC-021 -- runtime query CLI hostile metadata redaction

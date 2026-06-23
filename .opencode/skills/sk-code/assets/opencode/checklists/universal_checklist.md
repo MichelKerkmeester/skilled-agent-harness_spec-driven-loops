@@ -8,6 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.20
 ---
 
 # Universal Code Quality Checklist

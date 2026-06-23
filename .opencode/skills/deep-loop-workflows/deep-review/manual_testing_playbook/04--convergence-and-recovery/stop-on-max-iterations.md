@@ -1,6 +1,7 @@
 ---
 title: "DRV-030 -- Stop on max iterations"
 description: "Verify review stops at maxIterations (default 7) even if dimensions remain uncovered."
+version: 1.11.0.16
 ---
 
 # DRV-030 -- Stop on max iterations

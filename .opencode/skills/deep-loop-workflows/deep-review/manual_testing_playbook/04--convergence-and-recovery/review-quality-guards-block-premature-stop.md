@@ -1,6 +1,7 @@
 ---
 title: "DRV-018 -- Review quality guards block premature stop"
 description: "Verify that 3 binary gates (evidence, scope, coverage) must all pass before the review loop can issue STOP."
+version: 1.11.0.15
 ---
 
 # DRV-018 -- Review quality guards block premature stop

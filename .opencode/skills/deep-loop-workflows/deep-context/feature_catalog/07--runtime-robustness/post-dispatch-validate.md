@@ -9,6 +9,7 @@ trigger_phrases:
   - "invalid finding"
   - "unknown kind"
   - "missing path symbol"
+version: 1.2.0.3
 ---
 
 # Post-Dispatch Validate (Seat Validation)

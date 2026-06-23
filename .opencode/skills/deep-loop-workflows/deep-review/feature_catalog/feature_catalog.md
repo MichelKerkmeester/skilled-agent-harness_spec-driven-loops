@@ -1,6 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
+version: 1.11.0.12
 ---
 
 # deep-review: Feature Catalog

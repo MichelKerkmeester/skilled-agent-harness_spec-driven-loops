@@ -7,6 +7,7 @@ trigger_phrases:
   - "export alignment"
   - "ux-hook module documentation sync"
   - "hooks readme sync"
+version: 3.6.0.15
 ---
 
 # Hooks README and export alignment

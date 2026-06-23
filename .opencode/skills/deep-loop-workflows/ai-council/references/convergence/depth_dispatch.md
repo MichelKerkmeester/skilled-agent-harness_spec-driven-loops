@@ -9,6 +9,7 @@ trigger_phrases:
   - "ndp compliant council"
 importance_tier: "important"
 contextType: "planning"
+version: 2.3.0.13
 ---
 
 # AI Council Depth Dispatch

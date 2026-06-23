@@ -7,6 +7,7 @@ trigger_phrases:
   - "MemoryResultEnvelope trust badges"
   - "causal lineage confidence display"
   - "trust badge on search results"
+version: 3.6.0.5
 ---
 
 # Memory causal trust display

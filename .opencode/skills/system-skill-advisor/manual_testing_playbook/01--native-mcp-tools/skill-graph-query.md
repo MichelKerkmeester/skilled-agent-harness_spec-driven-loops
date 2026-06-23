@@ -1,6 +1,7 @@
 ---
 title: "284 -- Skill graph query"
 description: "Manual scenario for validating skill_graph_query relationship reads."
+version: 0.8.0.7
 ---
 
 # 284 -- Skill graph query

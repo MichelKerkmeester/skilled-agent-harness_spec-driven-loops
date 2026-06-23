@@ -3,6 +3,7 @@ title: "E2E-017 -- Full Pipeline Loop with Debug Target"
 description: "Manual validation scenario for E2E-017: Full Pipeline Loop with Debug Target."
 feature_id: "E2E-017"
 category: "End-to-End Loop"
+version: 1.17.0.16
 ---
 
 # E2E-017 -- Full Pipeline Loop with Debug Target

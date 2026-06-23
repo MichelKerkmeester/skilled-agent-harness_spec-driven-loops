@@ -8,6 +8,7 @@ trigger_phrases:
   - "sk-design-interface integration"
   - "reuse before generate"
 importance_tier: "important"
+version: 1.4.0.5
 ---
 
 # Grounding and reuse loop (sk-design-interface integration)

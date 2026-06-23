@@ -5,6 +5,7 @@ trigger_phrases:
   - "deep_loop_graph_status"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.10
 ---
 
 # deep_loop_graph_status

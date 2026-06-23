@@ -5,6 +5,7 @@ trigger_phrases:
   - "tool registrations"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.12
 ---
 
 # Tool registrations

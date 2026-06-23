@@ -9,6 +9,7 @@ expected_resources:
 expected_token_range_input: 1000-2000
 expected_token_range_output: 1000-2500
 created: 2026-05-05
+version: 1.8.0.7
 ---
 
 # SD-009: Disambiguation Required (FEATURE_CATALOG ↔ PLAYBOOK)

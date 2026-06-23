@@ -7,6 +7,7 @@ trigger_phrases:
   - "upload attachment mcp"
   - "list attachments mcp"
   - "file upload via mcp"
+version: 1.0.0.3
 ---
 
 # clickup_manage_task_attachments

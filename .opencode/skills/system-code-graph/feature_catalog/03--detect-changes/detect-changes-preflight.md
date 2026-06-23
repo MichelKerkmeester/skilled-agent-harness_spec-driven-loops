@@ -6,6 +6,7 @@ trigger_phrases:
   - "system-code-graph feature catalog"
   - "detect_changes preflight"
 importance_tier: "important"
+version: 1.2.0.10
 ---
 
 # detect_changes preflight

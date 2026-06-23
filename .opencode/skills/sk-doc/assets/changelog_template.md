@@ -8,6 +8,7 @@ trigger_phrases:
   - "expanded changelog format"
 importance_tier: normal
 contextType: general
+version: 1.8.0.13
 ---
 
 # Changelog & Release Notes Templates - Format Reference

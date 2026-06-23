@@ -1,6 +1,7 @@
 ---
 title: "DLR-005 -- Post-dispatch validate"
 description: "Manual validation scenario for Post-dispatch validate in the deep-loop-runtime skill."
+version: 1.4.0.5
 ---
 
 # DLR-005 -- Post-dispatch validate

@@ -8,6 +8,7 @@ trigger_phrases:
   - "pagespeed evidence verification"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Core Web Vitals Remediation Guide

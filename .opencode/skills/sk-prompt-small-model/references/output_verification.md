@@ -8,6 +8,7 @@ trigger_phrases:
   - "verification hard fail policy"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.8
 ---
 
 # Output Verification Pipeline

@@ -7,6 +7,7 @@ trigger_phrases:
   - "route model prompt"
   - "executor cli routing"
   - "model-agnostic dispatch"
+version: 1.17.0.9
 ---
 
 # Model dispatcher

@@ -7,6 +7,7 @@ trigger_phrases:
   - "promote under-represented channels"
   - "top-k result diversity"
   - "SPECKIT_CHANNEL_MIN_REP"
+version: 3.6.0.15
 ---
 
 # Channel min-representation

@@ -7,6 +7,7 @@ trigger_phrases:
   - "stable evaluation import boundary"
   - "mcp_server/api/eval.ts"
   - "public evaluation export surface"
+version: 3.6.0.9
 ---
 
 # Evaluation API Surface

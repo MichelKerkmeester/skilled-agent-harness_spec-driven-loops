@@ -3,6 +3,7 @@ title: "143 -- Bounded graph diagnostics and ordering stability"
 description: "This scenario validates the bounded graph bonus diagnostics that remain after the graph-walk rollout ladder was retired."
 audited_post_018: true
 phase_018_replaces: graph-walk rollout-state ladder and diagnostics
+version: 3.6.0.16
 ---
 
 # 143 -- Bounded graph diagnostics and ordering stability

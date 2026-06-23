@@ -7,6 +7,7 @@ trigger_phrases:
   - "invite guest user"
   - "remove guest access"
   - "contractor workspace access"
+version: 1.0.0.3
 ---
 
 # clickup_manage_guests

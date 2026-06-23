@@ -6,6 +6,7 @@ trigger_phrases:
   - "native advisor_status transitions"
   - "native advisor_status"
   - "native"
+version: 0.8.0.11
 ---
 
 # NC-002 Native advisor_status Transitions

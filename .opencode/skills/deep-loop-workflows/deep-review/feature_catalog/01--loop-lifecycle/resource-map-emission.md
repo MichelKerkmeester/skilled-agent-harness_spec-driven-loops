@@ -7,6 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "review coverage ledger"
   - "P0 P1 P2 per-file counts"
+version: 1.11.0.8
 ---
 
 # Resource Map Emission

@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill-local code graph database"
 importance_tier: "important"
 contextType: "implementation"
+version: 1.2.0.10
 ---
 
 # System Code Graph Database Path Policy

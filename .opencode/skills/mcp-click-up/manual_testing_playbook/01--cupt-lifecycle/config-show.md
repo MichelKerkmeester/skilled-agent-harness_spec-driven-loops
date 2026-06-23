@@ -1,6 +1,7 @@
 ---
 title: "CU-006 -- Config Show"
 description: "This scenario validates Config Show for `CU-006`. It focuses on Verify `cupt config --show` prints workspace ID, default list ID, and masked tok."
+version: 1.0.0.5
 ---
 
 # CU-006 -- Config Show

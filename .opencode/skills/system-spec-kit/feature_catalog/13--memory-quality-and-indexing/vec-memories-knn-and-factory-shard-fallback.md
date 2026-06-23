@@ -10,6 +10,7 @@ trigger_phrases:
   - "recallDegradation degradedVector"
   - "KNN query shape benchmark"
   - "KNN table empty semantic retrieval"
+version: 3.6.0.6
 ---
 
 # vec_memories KNN dual-write, factory shard fallback, and vector read-path resilience

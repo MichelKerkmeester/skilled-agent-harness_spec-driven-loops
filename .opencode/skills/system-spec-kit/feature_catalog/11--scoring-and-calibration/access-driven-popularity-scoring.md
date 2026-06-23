@@ -7,6 +7,7 @@ trigger_phrases:
   - "soft-accumulator batched access counting"
   - "calculatePopularityScore access tracker"
   - "dormancy detection archival"
+version: 3.6.0.13
 ---
 
 # Access-driven popularity scoring

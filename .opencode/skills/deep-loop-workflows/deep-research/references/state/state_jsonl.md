@@ -10,6 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
+version: 1.14.0.3
 ---
 
 # Deep Research JSONL State Reference

@@ -1,6 +1,7 @@
 ---
 title: "sk-code-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-code-review skill."
+version: 1.5.0.11
 ---
 
 # sk-code-review: Manual Testing Playbook

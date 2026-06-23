@@ -8,6 +8,7 @@ trigger_phrases:
   - "stale lease reclaim"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.2.0.8
 ---
 
 # Code Graph Launcher Lease

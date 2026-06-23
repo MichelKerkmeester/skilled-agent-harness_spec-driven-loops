@@ -8,6 +8,7 @@ trigger_phrases:
   - "reference creation guidelines"
 importance_tier: normal
 contextType: general
+version: 1.8.0.16
 ---
 
 # Skill Reference File Templates - AI Agent Skills
@@ -66,6 +67,7 @@ trigger_phrases:
   - "[distinctive phrase three]"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # [Title]

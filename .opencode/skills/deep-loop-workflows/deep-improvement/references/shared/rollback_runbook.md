@@ -8,6 +8,7 @@ trigger_phrases:
   - "restore canonical target"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.11
 ---
 
 # Rollback Runbook

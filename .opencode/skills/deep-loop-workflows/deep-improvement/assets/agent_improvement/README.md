@@ -6,6 +6,7 @@ trigger_phrases:
   - "improvement_config.json"
   - "target manifest"
   - "agent-improvement config"
+version: 1.17.0.4
 ---
 
 # agent-improvement: Lane A data and config

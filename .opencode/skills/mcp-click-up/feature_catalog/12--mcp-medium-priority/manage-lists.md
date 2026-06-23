@@ -7,6 +7,7 @@ trigger_phrases:
   - "create clickup list"
   - "delete list"
   - "sprint list management"
+version: 1.0.0.3
 ---
 
 # clickup_manage_lists

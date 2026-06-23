@@ -2,6 +2,7 @@
 title: "004 -- SHA-256 content-hash deduplication (TM-02)"
 description: "This scenario validates SHA-256 content-hash deduplication (TM-02) for `004`. It focuses on Confirm identical re-save skips embedding."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # 004 -- SHA-256 content-hash deduplication (TM-02)

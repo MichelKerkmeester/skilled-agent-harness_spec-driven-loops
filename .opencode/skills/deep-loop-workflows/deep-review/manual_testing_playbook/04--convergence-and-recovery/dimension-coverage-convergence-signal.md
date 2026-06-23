@@ -1,6 +1,7 @@
 ---
 title: "DRV-020 -- Dimension coverage convergence signal"
 description: "Verify the dimension coverage signal (weight 0.45) requires all 4 dimensions plus minStabilizationPasses >= 1 before contributing to convergence."
+version: 1.11.0.14
 ---
 
 # DRV-020 -- Dimension coverage convergence signal

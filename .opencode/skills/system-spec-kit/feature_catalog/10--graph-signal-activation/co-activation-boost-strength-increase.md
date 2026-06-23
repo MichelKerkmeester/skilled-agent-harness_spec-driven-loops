@@ -7,6 +7,7 @@ trigger_phrases:
   - "co-activation multiplier"
   - "graph signal contribution retrieval"
   - "spreading activation boost"
+version: 3.6.0.16
 ---
 
 # Co-activation boost strength increase

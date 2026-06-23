@@ -9,6 +9,7 @@ trigger_phrases:
   - "open design mutating tools"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.4.0.6
 ---
 
 # Open Design MCP Tool Surface

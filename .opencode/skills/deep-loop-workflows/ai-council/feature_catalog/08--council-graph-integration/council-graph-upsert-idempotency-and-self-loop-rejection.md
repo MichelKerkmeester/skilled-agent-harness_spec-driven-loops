@@ -7,6 +7,7 @@ trigger_phrases:
   - "upsert council session twice"
   - "self-loop edge rejection"
   - "idempotent council graph upsert"
+version: 2.3.0.7
 ---
 
 # runtime upsert CLI idempotency and self-loop rejection

@@ -1,6 +1,7 @@
 ---
 title: "DLR-002 -- Executor audit"
 description: "Manual validation scenario for Executor audit in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-002 -- Executor audit

@@ -6,6 +6,7 @@ trigger_phrases:
   - "save-time validation limits"
   - "mcp token budget"
   - "duplicate threshold preflight"
+version: 3.6.0.16
 ---
 
 # 3. MCP Configuration

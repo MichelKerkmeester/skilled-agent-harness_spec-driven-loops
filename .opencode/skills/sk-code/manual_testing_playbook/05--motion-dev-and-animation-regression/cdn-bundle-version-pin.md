@@ -1,6 +1,7 @@
 ---
 title: "MR-002: CDN Bundle Version Pin"
 description: "Verify Motion CDN usage is version-pinned and the loaded exports match the documented API surface for the pinned version."
+version: 3.5.0.4
 ---
 
 # MR-002: CDN Bundle Version Pin

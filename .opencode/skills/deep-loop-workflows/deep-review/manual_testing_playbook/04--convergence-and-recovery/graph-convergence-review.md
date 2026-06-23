@@ -1,6 +1,7 @@
 ---
 title: "DRV-032 -- Review graph convergence signals participate in legal-stop gates"
 description: "Verify that graph-backed dimension coverage can block premature STOP in deep review."
+version: 1.11.0.15
 ---
 
 # DRV-032 -- Review graph convergence signals participate in legal-stop gates

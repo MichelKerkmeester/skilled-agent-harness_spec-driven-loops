@@ -5,6 +5,7 @@ trigger_phrases:
   - "code_graph_status"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.14
 ---
 
 # code_graph_status

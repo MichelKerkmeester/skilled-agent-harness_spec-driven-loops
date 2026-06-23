@@ -1,6 +1,7 @@
 ---
 title: "FS-001 -- Frontier Initialization"
 description: "This scenario validates Frontier Initialization for `FS-001`. It focuses on session classification logic and canonical state file creation before the first parallel sweep."
+version: 1.2.0.3
 ---
 
 # FS-001 -- Frontier Initialization

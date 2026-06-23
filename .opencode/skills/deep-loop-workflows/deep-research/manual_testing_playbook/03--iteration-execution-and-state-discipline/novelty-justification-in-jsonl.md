@@ -1,6 +1,7 @@
 ---
 title: "DR-025 -- Novelty justification present in JSONL"
 description: "Verify every iteration JSONL record includes noveltyJustification alongside newInfoRatio."
+version: 1.14.0.15
 ---
 
 # DR-025 -- Novelty justification present in JSONL

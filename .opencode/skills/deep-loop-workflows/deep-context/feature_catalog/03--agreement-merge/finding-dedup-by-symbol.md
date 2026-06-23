@@ -8,6 +8,7 @@ trigger_phrases:
   - "per-executor attribution"
   - "agreement count"
   - "sha256 path symbol kind"
+version: 1.2.0.3
 ---
 
 # Finding Dedup by Symbol

@@ -7,6 +7,7 @@ trigger_phrases:
   - "session priming stdout injection"
   - "compact startup resume clear routing"
   - "claude sessionstart context"
+version: 3.6.0.9
 ---
 
 # SessionStart priming (Claude)

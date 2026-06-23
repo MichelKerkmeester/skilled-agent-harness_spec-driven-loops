@@ -2,6 +2,7 @@
 title: "406 — Specificity ladder"
 description: "Three queries about the same topic at increasing levels of specificity ('local LLM' → 'Q8_0 GGUF quantization' → 'unsloth/bge-base-en-v1.5-GGUF') should each return results matched to that level — not collapse to the most-specific match for every query."
 audited_post_018: true
+version: 3.6.0.4
 ---
 
 # 406 — Specificity ladder

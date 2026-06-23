@@ -7,6 +7,7 @@ trigger_phrases:
   - "test false-pass pattern fix"
   - "deletion exception propagation fix"
   - "cross-model code review findings"
+version: 3.6.0.17
 ---
 
 # Cross-AI validation fixes

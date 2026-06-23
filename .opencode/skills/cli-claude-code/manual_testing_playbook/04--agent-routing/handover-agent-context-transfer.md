@@ -1,6 +1,7 @@
 ---
 title: "CC-021 -- Handover agent context transfer"
 description: "This scenario validates Handover agent context transfer for `CC-021`. It focuses on confirming `--agent handover` produces a structured session-state capture suitable for cross-session resume."
+version: 1.1.0.7
 ---
 
 # CC-021 -- Handover agent context transfer

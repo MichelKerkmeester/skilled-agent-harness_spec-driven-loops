@@ -8,6 +8,7 @@ trigger_phrases:
   - "coverage graph signals"
   - "blendedScore"
   - "createSnapshot"
+version: 1.2.0.5
 ---
 
 # Context Convergence Signals

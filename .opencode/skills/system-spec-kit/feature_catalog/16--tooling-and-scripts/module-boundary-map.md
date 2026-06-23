@@ -7,6 +7,7 @@ trigger_phrases:
   - module ownership documentation
   - dependency direction enforcement
   - lib subdirectory canonical locations
+version: 3.6.0.7
 ---
 
 # Module boundary map

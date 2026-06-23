@@ -1,6 +1,7 @@
 ---
 title: "DLR-016 -- query.cjs"
 description: "Manual validation scenario for query.cjs in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-016 -- query.cjs

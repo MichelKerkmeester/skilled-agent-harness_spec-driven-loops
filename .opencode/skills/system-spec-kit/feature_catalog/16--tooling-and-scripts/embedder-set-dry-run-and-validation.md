@@ -7,6 +7,7 @@ trigger_phrases:
   - "plan embedder swap"
   - "embedder swap dry run"
   - "validate embedder name"
+version: 3.6.0.6
 ---
 
 # Embedder set dry-run and validation

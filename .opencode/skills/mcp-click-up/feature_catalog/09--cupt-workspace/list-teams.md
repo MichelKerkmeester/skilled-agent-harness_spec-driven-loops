@@ -7,6 +7,7 @@ trigger_phrases:
   - "list user groups"
   - "workspace teams"
   - "discover team names"
+version: 1.0.0.3
 ---
 
 # List Teams

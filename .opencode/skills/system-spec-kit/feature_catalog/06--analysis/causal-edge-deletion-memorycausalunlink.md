@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove relationship edge"
   - "delete causal link"
   - "unlink memories"
+version: 3.6.0.22
 ---
 
 # Causal edge deletion (memory_causal_unlink)

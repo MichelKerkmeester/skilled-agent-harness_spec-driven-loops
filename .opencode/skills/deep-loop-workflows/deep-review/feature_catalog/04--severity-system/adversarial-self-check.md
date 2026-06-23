@@ -7,6 +7,7 @@ trigger_phrases:
   - "disprove P0 finding"
   - "blocker validation"
   - "overcalling prevention"
+version: 1.11.0.6
 ---
 
 # Adversarial self-check

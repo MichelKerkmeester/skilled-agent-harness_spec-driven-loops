@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph bonus ranking"
   - "appliedBonus capApplied"
   - "search result graph contribution"
+version: 3.6.0.4
 ---
 
 # Bounded graph diagnostics

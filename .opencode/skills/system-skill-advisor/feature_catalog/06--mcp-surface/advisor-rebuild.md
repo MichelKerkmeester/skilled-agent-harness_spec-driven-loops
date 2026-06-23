@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor rebuild"
   - "rebuild advisor index"
   - "skill graph rebuild"
+version: 0.8.0.11
 ---
 
 # advisor_rebuild MCP Tool

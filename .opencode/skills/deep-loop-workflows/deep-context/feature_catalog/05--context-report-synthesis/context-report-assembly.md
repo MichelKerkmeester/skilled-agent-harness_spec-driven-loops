@@ -8,6 +8,7 @@ trigger_phrases:
   - "seven section report"
   - "context report JSON"
   - "compile context report"
+version: 1.2.0.3
 ---
 
 # Context Report Assembly

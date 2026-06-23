@@ -1,6 +1,7 @@
 ---
 title: "CX-006 -- workspace-write sandbox (generation)"
 description: "This scenario validates the workspace-write sandbox mode for `CX-006`. It focuses on confirming --sandbox workspace-write actually writes the requested file during a code-generation run."
+version: 1.4.0.8
 ---
 
 # CX-006 -- workspace-write sandbox (generation)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "stamp mode field"
   - "env hardening gates"
   - "scorer security controls"
+version: 1.17.0.8
 ---
 
 # Mode records and hardening gates

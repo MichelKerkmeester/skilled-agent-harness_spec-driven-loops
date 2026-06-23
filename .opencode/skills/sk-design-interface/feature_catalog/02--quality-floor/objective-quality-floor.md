@@ -6,6 +6,7 @@ trigger_phrases:
   - "accessibility motion touch responsive forms charts gate"
   - "ux quality reference"
   - "design pass fail gate"
+version: 1.5.0.4
 ---
 
 # Objective quality floor

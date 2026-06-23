@@ -7,6 +7,7 @@ trigger_phrases:
   - "retire shadow scoring runtime"
   - "read-only comparison helpers"
   - "shadow scoring persistence disabled"
+version: 3.6.0.8
 ---
 
 # Shadow-scoring retirement

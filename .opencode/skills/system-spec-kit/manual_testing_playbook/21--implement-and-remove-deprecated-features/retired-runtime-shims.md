@@ -3,6 +3,7 @@ title: "228 -- Retired runtime shims and inert compatibility flags"
 description: "This scenario validates Retired runtime shims and inert compatibility flags for `228`. It focuses on Confirm deprecated runtime flags remain visible for compatibility while no longer steering live behavior."
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; keeps the compatibility-only checks for lazy warmup, shadow scoring, novelty, and adaptive fusion."
+version: 3.6.0.13
 ---
 
 # 228 -- Retired runtime shims and inert compatibility flags

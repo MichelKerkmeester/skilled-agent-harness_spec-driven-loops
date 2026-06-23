@@ -7,6 +7,7 @@ trigger_phrases:
   - "review verdict"
   - "release blocker verdict"
   - "post-verdict routing"
+version: 1.11.0.7
 ---
 
 # Verdicts

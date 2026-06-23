@@ -1,6 +1,7 @@
 ---
 title: "MCP-H005 -- Search Tasks via MCP"
 description: "This scenario validates Search Tasks via MCP for `MCP-H005`. Objective: Verify `clickup_search_tasks` returns tasks matching a keyword."
+version: 1.0.0.5
 ---
 
 # MCP-H005 -- Search Tasks via MCP

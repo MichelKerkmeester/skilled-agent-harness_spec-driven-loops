@@ -1,6 +1,7 @@
 ---
 title: "deep-improvement: Feature Catalog"
 description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, skill-benchmark mode, and non-dev-ai-system mode surfaces that currently ship in deep-improvement."
+version: 1.17.0.28
 ---
 
 # deep-improvement: Feature Catalog

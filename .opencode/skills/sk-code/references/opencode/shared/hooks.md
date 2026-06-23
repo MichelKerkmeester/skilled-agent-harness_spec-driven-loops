@@ -8,6 +8,7 @@ trigger_phrases:
   - "claude codex copilot hooks"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.8
 ---
 
 # Runtime Hooks - Spec Kit MCP Hook Entrypoints

@@ -11,6 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
+version: 1.1.0.9
 ---
 
 # Git Worktrees - Detailed Workflow Reference

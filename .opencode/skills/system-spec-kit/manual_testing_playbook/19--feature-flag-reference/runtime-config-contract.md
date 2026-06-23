@@ -1,6 +1,7 @@
 ---
 title: "223 -- Runtime Config Contract"
 description: "This scenario validates Runtime Config Contract for `223`. It focuses on confirming the runtime loader consumes only the active Section 1 keys, validates and normalizes configured values, and leaves documentation-only sections non-binding."
+version: 3.6.0.11
 ---
 
 # 223 -- Runtime Config Contract

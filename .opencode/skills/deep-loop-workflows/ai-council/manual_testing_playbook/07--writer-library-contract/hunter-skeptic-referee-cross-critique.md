@@ -1,6 +1,7 @@
 ---
 title: "DAC-016 -- Hunter Skeptic Referee cross-critique"
 description: "This scenario validates the adversarial cross-critique pattern for `DAC-016`. It focuses on HUNTER, SKEPTIC, REFEREE, and post-critique score adjustment."
+version: 2.3.0.8
 ---
 
 # DAC-016 -- Hunter Skeptic Referee cross-critique

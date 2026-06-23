@@ -7,6 +7,7 @@ trigger_phrases:
   - "findings-first"
   - "pull request"
   - "security review"
+version: 1.5.0.19
 ---
 
 # sk-code-review

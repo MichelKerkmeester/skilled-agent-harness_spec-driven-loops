@@ -54,6 +54,7 @@
       "decision-record.md",
       "spec.md",
       "tests/checkpoints-v2-create.vitest.ts",
+      "mcp_server/database/.unclean-shutdown",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "shared/embeddings/factory.ts",
       "dist/context-server.js",
@@ -119,6 +120,12 @@
         "name": "checkpoints-v2-create.vitest.ts",
         "kind": "test",
         "path": "tests/checkpoints-v2-create.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": ".unclean-shutdown",
+        "kind": "file",
+        "path": "mcp_server/database/.unclean-shutdown",
         "source": "derived"
       },
       {
@@ -198,17 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:55.549Z",
+    "last_save_at": "2026-06-23T05:29:59.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

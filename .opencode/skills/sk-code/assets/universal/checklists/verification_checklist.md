@@ -8,6 +8,7 @@ trigger_phrases:
   - "done works complete claims"
 importance_tier: important
 contextType: implementation
+version: 3.5.0.7
 ---
 
 # Universal Verification Checklist - The Pre-Claim Gate

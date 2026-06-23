@@ -8,6 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
+version: 3.6.0.39
 ---
 
 # Template Mapping - Level to File Assignments

@@ -5,6 +5,7 @@ trigger_phrases:
   - "target profiles empty"
   - "dynamic profile catalog"
   - "agent improvement profileCatalog"
+version: 1.17.0.1
 ---
 
 # target-profiles: intentionally empty (dynamic-only)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "run channel ablation"
   - "RRF K-sensitivity sweep"
   - "how do I measure which search channel matters most"
+version: 3.6.0.24
 ---
 
 # Ablation studies (eval_run_ablation)

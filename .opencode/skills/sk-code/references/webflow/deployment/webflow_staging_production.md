@@ -9,6 +9,7 @@ trigger_phrases:
   - "per environment custom code"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.2
 ---
 
 # Webflow Staging vs Production Workflow

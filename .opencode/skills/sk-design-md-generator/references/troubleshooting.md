@@ -9,6 +9,7 @@ trigger_phrases:
   - "extract.ts not running"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.0.0.5
 ---
 
 # Troubleshooting

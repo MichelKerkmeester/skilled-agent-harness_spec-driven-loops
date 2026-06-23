@@ -1,6 +1,7 @@
 ---
 title: "DAC-019 -- runtime upsert CLI idempotency and self-loop rejection"
 description: "This scenario validates idempotent upsert behavior and strict-schema rejection of self-loop edges for `DAC-019`. It anchors to the council-graph-script.vitest.ts test 'upserts prompt-safe council graph data and queries unresolved disagreements and decision support'."
+version: 2.3.0.4
 ---
 
 # DAC-019 -- runtime upsert CLI idempotency and self-loop rejection

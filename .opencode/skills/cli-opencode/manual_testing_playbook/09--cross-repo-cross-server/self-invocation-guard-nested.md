@@ -1,6 +1,7 @@
 ---
 title: "CO-031 -- Self-invocation guard fires on nested cross-repo dispatch"
 description: "This scenario validates the self-invocation guard contract for nested dispatches in `CO-031`. It focuses on confirming the layered detection (env + ancestry + lockfile) refuses a nested opencode dispatch from inside an existing OpenCode session, even when the nested target is a different repo via --dir."
+version: 1.3.0.7
 ---
 
 # CO-031 -- Self-invocation guard fires on nested cross-repo dispatch

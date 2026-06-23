@@ -1,6 +1,7 @@
 ---
 title: "CM-007 -- list_tools dot vs underscore"
 description: "This scenario validates the dot-vs-underscore translation for `CM-007`. It focuses on confirming that `list_tools()` returns names in `a.b.c` dot form but the calling syntax requires the dot-to-underscore translation `a.b_c`."
+version: 1.0.0.8
 ---
 
 # CM-007 -- list_tools dot vs underscore

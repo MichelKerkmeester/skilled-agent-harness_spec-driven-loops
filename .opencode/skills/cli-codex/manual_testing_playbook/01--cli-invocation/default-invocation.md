@@ -1,6 +1,7 @@
 ---
 title: "CX-001 -- Default invocation (gpt-5.5 medium fast)"
 description: "This scenario validates the canonical zero-input default dispatch (gpt-5.5 + medium reasoning + service_tier=fast) for `CX-001`. It focuses on confirming the documented skill default produces a working code-generation answer with exit code 0."
+version: 1.4.0.8
 ---
 
 # CX-001 -- Default invocation (gpt-5.5 medium fast)

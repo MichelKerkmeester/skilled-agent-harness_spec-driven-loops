@@ -1,6 +1,7 @@
 ---
 title: "GIT-010 -- Force-push to main refused"
 description: "This scenario validates Force-push to main refused for `GIT-010`. It focuses on verify force-push requests against protected branches are refused without execution."
+version: 1.1.0.3
 ---
 
 # GIT-010 -- Force-push to main refused

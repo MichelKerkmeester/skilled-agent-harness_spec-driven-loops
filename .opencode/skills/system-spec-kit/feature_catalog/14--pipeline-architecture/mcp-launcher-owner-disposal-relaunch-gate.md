@@ -7,6 +7,7 @@ trigger_phrases:
   - "owner ppid changed relaunch abort"
   - "mcp transport drop on session end"
   - "shouldAbortRelaunchOnFire"
+version: 3.6.0.2
 ---
 
 # MCP launcher owner-disposal relaunch gate

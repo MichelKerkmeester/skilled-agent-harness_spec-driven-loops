@@ -9,6 +9,7 @@ trigger_phrases:
   - "deepseek dispatch gotchas"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.11
 ---
 
 # DeepSeek-v4-Pro Prompt-Craft Profile

@@ -1,6 +1,7 @@
 ---
 title: "DR-018 -- JSONL reconstruction from iteration files"
 description: "Verify that missing or unusable JSONL can be reconstructed from `iteration-NNN.md` files."
+version: 1.14.0.15
 ---
 
 # DR-018 -- JSONL reconstruction from iteration files

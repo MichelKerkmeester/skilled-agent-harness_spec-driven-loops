@@ -9,6 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
+version: 1.8.0.19
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -116,9 +117,11 @@ Level 3: Field Format
 
 | Document Type | Add Frontmatter? | Required Fields | Optional Fields |
 |---------------|------------------|-----------------|-----------------|
-| **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools` | `tags`, `category`, `version` |
+| **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools`, `version` | `tags`, `category` |
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
-| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType` | — |
+| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | — |
+
+> **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter_versioning.md](../references/frontmatter_versioning.md). Commands and agents are out of scope (their `version` stays optional).
 | **Knowledge (outside skills)** | ❌ Never | — | — |
 | **Spec** | ❌ Avoid | — | Use inline metadata instead |
 | **README** | ⚪ Rarely | Only if in `.opencode/skills/*/` | — |
@@ -175,7 +178,7 @@ Is this document invoked programmatically?
 | `allowed-tools` | ✅ Required | ✅ Required | Comma-separated tool list |
 | `argument-hint` | ❌ N/A | ✅ Required | Syntax hint: `<required> [optional]` |
 | `model` | ❌ N/A | ⚪ Optional | Override default model (rarely used) |
-| `version` | ⚪ Optional | ⚪ Optional | Semantic version |
+| `version` | ✅ Required | ⚪ Optional | 4-part `X.Y.Z.W` for skill docs; see [frontmatter_versioning.md](../references/frontmatter_versioning.md) |
 | `tags` | ⚪ Optional | ❌ N/A | Categorization keywords |
 
 ---
@@ -357,6 +360,7 @@ model: opus
 | `trigger_phrases` | YAML block list | 3-8 items; distinctive lowercase multi-word phrases drawn from the doc's content |
 | `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated` — default `normal`; `important` only for formal contract/invariant docs |
 | `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general` |
+| `version` | `X.Y.Z.W` | Required; 4-part; inserted as the last key in the block; derived per [frontmatter_versioning.md](../references/frontmatter_versioning.md) |
 
 **Trigger phrase quality**:
 ```yaml
@@ -384,6 +388,7 @@ trigger_phrases:
 name: skill-name
 description: Brief one-line description of what this skill does and when to use it
 allowed-tools: Read, Write, Edit, Bash, Grep
+version: 1.0.0.0
 ---
 ```
 
@@ -433,6 +438,7 @@ trigger_phrases:
   - "distinctive phrase three"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 ```
 
@@ -447,6 +453,7 @@ trigger_phrases:
   - "banned vocabulary list"
 importance_tier: important
 contextType: general
+version: 1.7.0.0
 ---
 ```
 
@@ -503,11 +510,14 @@ validation_rules:
       - name
       - description
       - allowed-tools
+      - version
     optional_fields:
       - tags
       - category
-      - version
     field_formats:
+      version:
+        pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+        description: "4-part X.Y.Z.W; see frontmatter_versioning.md"
       name:
         pattern: "^[a-z][a-z0-9-]*$"
         description: "lowercase-with-hyphens"
@@ -543,7 +553,11 @@ validation_rules:
       - trigger_phrases
       - importance_tier
       - contextType
+      - version
     field_formats:
+      version:
+        pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+        description: "4-part X.Y.Z.W; last key in the block; see frontmatter_versioning.md"
       description:
         type: "single-line"
       trigger_phrases:

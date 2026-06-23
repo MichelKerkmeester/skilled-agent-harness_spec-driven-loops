@@ -3,6 +3,7 @@ title: "SB-044 -- Contamination Gate For Public Fixtures"
 description: "Manual validation scenario for SB-044: Contamination Gate For Public Fixtures."
 feature_id: "SB-044"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.5
 ---
 
 # SB-044 -- Contamination Gate For Public Fixtures

@@ -7,6 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
+version: 1.14.0.4
 ---
 
 # Fan-out loop dispatch

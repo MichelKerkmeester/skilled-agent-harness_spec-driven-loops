@@ -1,6 +1,7 @@
 ---
 title: "DR-023 -- Composite Convergence Passes but Guard Fails → CONTINUE"
 description: "Verify the full override path: composite score >0.60 → STOP → guards check → guard fails → override to CONTINUE."
+version: 1.14.0.15
 ---
 
 # DR-023 -- Composite Convergence Passes but Guard Fails → CONTINUE

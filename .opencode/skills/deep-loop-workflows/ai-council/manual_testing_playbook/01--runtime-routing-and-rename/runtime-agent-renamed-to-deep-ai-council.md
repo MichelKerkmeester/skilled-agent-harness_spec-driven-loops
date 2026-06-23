@@ -1,6 +1,7 @@
 ---
 title: "DAC-001 -- Runtime agent renamed to deep-ai-council"
 description: "This scenario validates runtime agent rename coverage for DAC-001."
+version: 2.3.0.6
 ---
 
 # DAC-001 -- Runtime agent renamed to deep-ai-council

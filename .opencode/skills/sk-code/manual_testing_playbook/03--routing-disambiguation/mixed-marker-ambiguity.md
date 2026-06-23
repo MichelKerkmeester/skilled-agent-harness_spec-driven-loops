@@ -1,6 +1,7 @@
 ---
 title: "RD-001: Mixed-Marker Ambiguity"
 description: "Verify sk-code asks for clarification (or applies a documented precedence rule) when WEBFLOW library markers and OPENCODE path markers co-occur in the same prompt."
+version: 3.5.0.7
 ---
 
 # RD-001: Mixed-Marker Ambiguity

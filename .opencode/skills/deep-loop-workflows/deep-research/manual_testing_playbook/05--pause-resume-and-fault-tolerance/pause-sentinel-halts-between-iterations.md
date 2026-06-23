@@ -1,6 +1,7 @@
 ---
 title: "DR-015 -- Pause sentinel halts between iterations"
 description: "Verify that the pause sentinel halts the loop between iterations and logs a pause event."
+version: 1.14.0.17
 ---
 
 # DR-015 -- Pause sentinel halts between iterations

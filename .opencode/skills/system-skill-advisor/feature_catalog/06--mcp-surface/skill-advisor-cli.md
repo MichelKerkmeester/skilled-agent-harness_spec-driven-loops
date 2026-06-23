@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor cli fallback"
   - "trusted mutation gate"
   - "MK_SKILL_ADVISOR_CLI_TRUSTED"
+version: 0.8.0.2
 ---
 
 # Daemon-backed skill-advisor CLI

@@ -2,6 +2,7 @@
 title: "413 — Drift detection quality (memory_drift_why explainability)"
 description: "Save a memory, then save 5 contradictory memories about the same concept. Call memory_drift_why and verify it surfaces the contradicting memories with sensible drift reasons. Probes the local LLM's ability to detect semantic conflict, not just lexical match."
 audited_post_018: true
+version: 3.6.0.6
 ---
 
 # 413 — Drift detection quality (memory_drift_why explainability)

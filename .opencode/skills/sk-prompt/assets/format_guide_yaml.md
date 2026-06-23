@@ -9,6 +9,7 @@ trigger_phrases:
   - "configuration-style prompt template"
 importance_tier: normal
 contextType: implementation
+version: 2.3.0.3
 ---
 
 # Format Guide -- YAML

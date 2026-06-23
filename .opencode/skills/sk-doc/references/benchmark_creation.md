@@ -12,6 +12,7 @@ trigger_phrases:
   - "benchmark adoption criteria"
 importance_tier: "important"
 contextType: "implementation"
+version: 1.8.0.4
 ---
 
 # Benchmark Creation: Standards and Workflow

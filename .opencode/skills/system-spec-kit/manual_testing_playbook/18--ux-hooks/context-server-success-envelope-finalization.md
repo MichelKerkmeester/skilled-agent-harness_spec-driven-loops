@@ -1,6 +1,7 @@
 ---
 title: "105 -- Context-server success-envelope finalization"
 description: "This scenario validates Context-server success-envelope finalization for `105`. It focuses on Confirm `appendAutoSurfaceHints()` runs before budget enforcement and preserves the finalized envelope contract."
+version: 3.6.0.16
 ---
 
 # 105 -- Context-server success-envelope finalization

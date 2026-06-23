@@ -1,6 +1,7 @@
 ---
 title: "CO-024 -- CLEAR quality card 5-check"
 description: "This scenario validates the prompt quality card for `CO-024`. It focuses on confirming `assets/prompt_quality_card.md` documents the CLEAR 5-check, the 7-framework selection table, and the escalation rule to @prompt-improver at complexity >= 7/10."
+version: 1.3.0.9
 ---
 
 # CO-024 -- CLEAR quality card 5-check

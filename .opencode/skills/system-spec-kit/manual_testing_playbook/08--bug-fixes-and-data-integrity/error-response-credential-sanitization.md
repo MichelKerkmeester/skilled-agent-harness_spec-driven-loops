@@ -2,6 +2,7 @@
 title: "118 -- Error response credential sanitization"
 description: "This scenario validates credential sanitization in MCP tool error responses. It focuses on verifying API keys and tokens are stripped from buildErrorResponse() output."
 audited_post_018: true
+version: 3.6.0.12
 ---
 
 # 118 -- Error response credential sanitization

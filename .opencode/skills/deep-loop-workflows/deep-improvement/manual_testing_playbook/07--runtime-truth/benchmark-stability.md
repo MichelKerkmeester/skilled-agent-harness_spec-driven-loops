@@ -3,6 +3,7 @@ title: "RT-026 -- Benchmark Stability Measurement"
 description: "Manual validation scenario for RT-026: Benchmark Stability Measurement."
 feature_id: "RT-026"
 category: "Runtime Truth"
+version: 1.17.0.5
 ---
 
 # RT-026 -- Benchmark Stability Measurement

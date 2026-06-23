@@ -1,6 +1,7 @@
 ---
 title: "CB-003: GPU Compositing"
 description: "Verify Motion animations prefer GPU-composited properties and identify layout-thrashing animations through Chrome DevTools."
+version: 3.5.0.3
 ---
 
 # CB-003: GPU Compositing

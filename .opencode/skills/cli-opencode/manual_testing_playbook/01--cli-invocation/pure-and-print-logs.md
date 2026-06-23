@@ -1,6 +1,7 @@
 ---
 title: "CO-005 -- Plugin disable (--pure) and verbose logs (--print-logs / --log-level)"
 description: "This scenario validates `--pure`, `--print-logs`, and `--log-level` for `CO-005`. It focuses on confirming plugin loading can be selectively disabled for debugging and that verbose logs surface to stderr without contaminating the JSON event stream on stdout."
+version: 1.3.0.10
 ---
 
 # CO-005 -- Plugin disable (--pure) and verbose logs (--print-logs / --log-level)

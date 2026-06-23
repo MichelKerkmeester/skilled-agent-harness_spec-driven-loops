@@ -1,6 +1,7 @@
 ---
 title: "CX-011 -- high / xhigh override"
 description: "This scenario validates the high and xhigh reasoning overrides for `CX-011`. It focuses on confirming both levels engage deeper analysis on a security-audit prompt."
+version: 1.4.0.11
 ---
 
 # CX-011 -- high / xhigh override

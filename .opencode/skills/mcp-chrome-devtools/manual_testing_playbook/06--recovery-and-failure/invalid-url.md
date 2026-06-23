@@ -1,6 +1,7 @@
 ---
 title: "BDG-020 -- Invalid URL"
 description: "This scenario validates the invalid-URL error path for `BDG-020`. It focuses on confirming `bdg <bad-url>` exits non-zero and stderr names the URL parse failure."
+version: 1.0.0.7
 ---
 
 # BDG-020 -- Invalid URL

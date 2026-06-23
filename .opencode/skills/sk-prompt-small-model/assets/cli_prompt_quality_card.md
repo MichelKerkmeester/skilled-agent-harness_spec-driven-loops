@@ -9,6 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
+version: 0.8.0.18
 ---
 
 # CLI Prompt Quality Card

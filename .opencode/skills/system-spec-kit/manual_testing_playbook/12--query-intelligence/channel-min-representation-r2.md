@@ -2,6 +2,7 @@
 title: "035 -- Channel min-representation (R2)"
 description: "This scenario validates Channel min-representation (R2) for `035`. It focuses on Confirm top-k channel diversity rule."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # 035 -- Channel min-representation (R2)

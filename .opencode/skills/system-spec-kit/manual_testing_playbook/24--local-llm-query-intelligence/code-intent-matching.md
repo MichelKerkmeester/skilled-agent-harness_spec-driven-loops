@@ -2,6 +2,7 @@
 title: "403 — Code-intent matching (implementation vs docs)"
 description: "Question-form queries ('how does X work?') should rank the implementation file higher than its README. Probes whether the embedding distinguishes between explanatory and definitional content."
 audited_post_018: true
+version: 3.6.0.4
 ---
 
 # 403 — Code-intent matching (implementation vs docs)

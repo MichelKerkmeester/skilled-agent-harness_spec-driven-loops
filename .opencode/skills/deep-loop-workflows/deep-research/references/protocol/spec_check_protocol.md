@@ -9,6 +9,7 @@ trigger_phrases:
   - "research spec conflict detection"
 importance_tier: important
 contextType: implementation
+version: 1.14.0.9
 ---
 
 # Spec Check Protocol

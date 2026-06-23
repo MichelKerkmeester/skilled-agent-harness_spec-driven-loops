@@ -1,6 +1,7 @@
 ---
 title: "DR-029 -- Research iterations emit flat graphEvents"
 description: "Verify that research iteration records carry a graphEvents array using the current flat type-based schema (`question`, `finding`, `source`, `edge`)."
+version: 1.14.0.15
 ---
 
 # DR-029 -- Research iterations emit flat graphEvents

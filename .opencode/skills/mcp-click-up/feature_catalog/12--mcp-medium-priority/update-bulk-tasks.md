@@ -7,6 +7,7 @@ trigger_phrases:
   - "batch task update"
   - "bulk status change"
   - "mass task reassignment"
+version: 1.0.0.3
 ---
 
 # clickup_update_bulk_tasks

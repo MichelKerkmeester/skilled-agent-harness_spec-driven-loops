@@ -8,6 +8,7 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.14
 ---
 
 # TypeScript Code Quality Checklist

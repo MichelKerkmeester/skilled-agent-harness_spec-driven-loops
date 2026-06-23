@@ -1,6 +1,7 @@
 ---
 title: "CC-013 -- Review agent security audit"
 description: "This scenario validates Review agent security audit for `CC-013`. It focuses on confirming `--agent review --permission-mode plan` produces a structured security review with severity-tagged findings."
+version: 1.1.0.7
 ---
 
 # CC-013 -- Review agent security audit

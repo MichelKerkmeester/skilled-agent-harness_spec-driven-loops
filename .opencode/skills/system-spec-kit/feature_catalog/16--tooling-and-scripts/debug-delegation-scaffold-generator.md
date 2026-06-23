@@ -7,6 +7,7 @@ trigger_phrases:
   - "generate debug-delegation"
   - "debug handoff document"
   - "failure trail scaffold"
+version: 3.6.0.8
 ---
 
 # Debug-delegation scaffold generator

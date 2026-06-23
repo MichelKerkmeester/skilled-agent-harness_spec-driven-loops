@@ -7,6 +7,7 @@ trigger_phrases:
   - "pipeline scoring provenance"
   - "includeTrace search results"
   - "search result scoring transparency"
+version: 3.6.0.12
 ---
 
 # Provenance-rich response envelopes

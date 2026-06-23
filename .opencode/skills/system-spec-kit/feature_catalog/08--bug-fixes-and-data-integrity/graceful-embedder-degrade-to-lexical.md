@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedder_available false"
   - "vector search skipped"
   - "search degrade to bm25"
+version: 3.6.0.1
 ---
 
 # Graceful embedder-degrade to lexical

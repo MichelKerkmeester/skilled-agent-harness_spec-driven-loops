@@ -1,6 +1,7 @@
 ---
 title: "CP-054 -- Resource-map coverage gate **(SANDBOXED)**"
 description: "Validate that deep-review command flow detects resource-map.md and carries coverage-gate evidence into state and synthesis."
+version: 1.11.0.10
 ---
 
 # CP-054 -- Resource-map coverage gate **(SANDBOXED)**

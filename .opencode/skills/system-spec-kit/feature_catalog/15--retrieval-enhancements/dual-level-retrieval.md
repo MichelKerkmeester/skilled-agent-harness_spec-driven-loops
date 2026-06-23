@@ -6,6 +6,7 @@ trigger_phrases:
   - "retrievalLevel parameter"
   - "SPECKIT_DUAL_RETRIEVAL"
   - "local global auto retrieval mode"
+version: 3.6.0.5
 ---
 
 # Dual-level retrieval

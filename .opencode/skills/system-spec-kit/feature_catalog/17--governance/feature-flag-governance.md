@@ -7,6 +7,7 @@ trigger_phrases:
   - "manage feature flags"
   - "flag sunset and audit"
   - "rollout policy"
+version: 3.6.0.20
 ---
 
 # Feature flag governance

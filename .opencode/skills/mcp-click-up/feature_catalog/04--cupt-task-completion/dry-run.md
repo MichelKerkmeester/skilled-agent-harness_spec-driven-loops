@@ -7,6 +7,7 @@ trigger_phrases:
   - "preview completion"
   - "dry run task close"
   - "simulate task completion"
+version: 1.0.0.3
 ---
 
 # Dry-Run Preview

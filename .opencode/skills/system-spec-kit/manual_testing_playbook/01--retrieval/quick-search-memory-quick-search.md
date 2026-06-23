@@ -2,6 +2,7 @@
 title: "187 -- Quick search (memory_quick_search)"
 description: "This scenario validates `memory_quick_search` for `187`. It focuses on Verify simplified query-only retrieval returns results with optional spec-folder scoping and governed retrieval boundaries."
 audited_post_018: true
+version: 3.6.0.19
 ---
 
 # 187 -- Quick search (memory_quick_search)

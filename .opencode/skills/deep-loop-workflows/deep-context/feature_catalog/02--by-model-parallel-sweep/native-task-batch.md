@@ -8,6 +8,7 @@ trigger_phrases:
   - "parallel Task dispatch"
   - "native concurrent batch"
   - "@deep-context agent"
+version: 1.2.0.3
 ---
 
 # Native Task Batch

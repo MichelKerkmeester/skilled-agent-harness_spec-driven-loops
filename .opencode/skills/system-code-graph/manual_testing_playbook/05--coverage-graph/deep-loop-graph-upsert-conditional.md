@@ -6,6 +6,7 @@ trigger_phrases:
   - "deep loop graph upsert conditional"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.6
 ---
 # 010 deep_loop_graph_upsert conditional
 

@@ -1,6 +1,7 @@
 ---
 title: "MR-003: Prefers Reduced Motion"
 description: "Verify Motion-driven interactions respect prefers-reduced-motion by disabling transform-heavy motion or replacing it with instant or opacity-only state changes."
+version: 3.5.0.3
 ---
 
 # MR-003: Prefers Reduced Motion

@@ -2,6 +2,7 @@
 title: "283 -- Embedder status job and active pointer"
 description: "Validates embedder_status reports active pointer state and handles unknown job IDs cleanly."
 audited_post_017: true
+version: 3.6.0.1
 ---
 
 # 283 -- Embedder status job and active pointer

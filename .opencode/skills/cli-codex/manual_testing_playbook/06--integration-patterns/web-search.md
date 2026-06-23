@@ -1,6 +1,7 @@
 ---
 title: "CX-019 -- Web search via --search"
 description: "This scenario validates --search live web browsing for `CX-019`. It focuses on confirming the response cites URLs for time-sensitive information."
+version: 1.4.0.8
 ---
 
 # CX-019 -- Web search via --search

@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill benchmark dimensions"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.6
 ---
 
 # Lane C Skill-Benchmark Scoring Contract

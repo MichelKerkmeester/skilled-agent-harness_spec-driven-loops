@@ -7,6 +7,7 @@ trigger_phrases:
   - "rename checklist"
   - "reorder checklist"
   - "checklist container update"
+version: 1.0.0.3
 ---
 
 # clickup_update_checklist

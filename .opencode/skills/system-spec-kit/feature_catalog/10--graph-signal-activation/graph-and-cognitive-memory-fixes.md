@@ -7,6 +7,7 @@ trigger_phrases:
   - "working memory score clamping"
   - "double-decay removal cognitive scoring"
   - "graph integrity bug fixes"
+version: 3.6.0.14
 ---
 
 # Graph and cognitive memory fixes

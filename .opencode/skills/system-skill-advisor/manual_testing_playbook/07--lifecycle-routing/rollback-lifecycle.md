@@ -6,6 +6,7 @@ trigger_phrases:
   - "lifecycle rollback"
   - "atomic rollback"
   - "lifecycle revert"
+version: 0.8.0.15
 ---
 
 # LC-005 Lifecycle-Level Rollback

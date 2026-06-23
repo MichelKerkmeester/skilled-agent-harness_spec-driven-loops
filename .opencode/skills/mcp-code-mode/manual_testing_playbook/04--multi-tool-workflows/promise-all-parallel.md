@@ -1,6 +1,7 @@
 ---
 title: "CM-012 -- Promise.all parallel"
 description: "This scenario validates Promise.all parallel execution for `CM-012`. It focuses on confirming that three independent tool calls inside `Promise.all` execute in parallel and all results return."
+version: 1.0.0.7
 ---
 
 # CM-012 -- Promise.all parallel

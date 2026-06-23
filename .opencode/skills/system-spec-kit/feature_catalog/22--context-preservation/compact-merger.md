@@ -7,6 +7,7 @@ trigger_phrases:
   - "unified compact brief"
   - "context source merging"
   - "compaction brief builder"
+version: 3.6.0.11
 ---
 
 # Compact merger

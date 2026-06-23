@@ -7,6 +7,7 @@ trigger_phrases:
   - "cursor pagination"
   - "snippet extraction search results"
   - "progressive disclosure search"
+version: 3.6.0.6
 ---
 
 # Progressive disclosure with cursor pagination

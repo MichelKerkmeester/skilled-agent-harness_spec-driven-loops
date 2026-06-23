@@ -1,6 +1,7 @@
 ---
 title: "CS-001: WEBFLOW Plus Motion.dev Peer References"
 description: "Verify WEBFLOW animation work also loads cross-stack motion_dev references and assets when the user request uses Motion.dev APIs."
+version: 3.5.0.5
 ---
 
 # CS-001: WEBFLOW Plus Motion.dev Peer References

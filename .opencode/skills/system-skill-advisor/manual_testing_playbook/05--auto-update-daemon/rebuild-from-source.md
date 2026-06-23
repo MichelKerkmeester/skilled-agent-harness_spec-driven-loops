@@ -6,6 +6,7 @@ trigger_phrases:
   - "rebuild from source"
   - "corrupt sqlite advisor"
   - "daemon recovery rebuild"
+version: 0.8.0.15
 ---
 
 # AU-005 Rebuild From Source on Corrupt SQLite

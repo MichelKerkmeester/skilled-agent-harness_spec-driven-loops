@@ -7,6 +7,7 @@ trigger_phrases:
   - "discover agent surfaces"
   - "repo surface inventory"
   - "integration surface scan"
+version: 1.17.0.12
 ---
 
 # Surface discovery

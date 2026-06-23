@@ -1,6 +1,7 @@
 ---
 title: "DRV-027 -- Final synthesis memory save and guardrail behavior"
 description: "Verify memory save via generate-context.js after review completion, LEAF-only agent enforcement, and the boundary between live and reference-only features."
+version: 1.11.0.12
 ---
 
 # DRV-027 -- Final synthesis memory save and guardrail behavior

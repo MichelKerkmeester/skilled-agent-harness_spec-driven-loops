@@ -2,6 +2,7 @@
 title: "EX-022 -- Causal chain tracing (memory_drift_why)"
 description: "This scenario validates Causal chain tracing (memory_drift_why) for `EX-022`. It focuses on Decision why-trace."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # EX-022 -- Causal chain tracing (memory_drift_why)

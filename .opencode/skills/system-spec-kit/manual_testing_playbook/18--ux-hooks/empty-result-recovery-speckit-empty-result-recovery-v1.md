@@ -1,6 +1,7 @@
 ---
 title: "179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)"
 description: "This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results."
+version: 3.6.0.14
 ---
 
 # 179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)

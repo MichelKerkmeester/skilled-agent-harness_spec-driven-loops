@@ -1,6 +1,7 @@
 ---
 title: "RUNTIME-002 -- JSONL Repair"
 description: "This scenario validates JSONL Repair for `RUNTIME-002`. It focuses on `repairJsonlTail` and `stateLogRepair` being present in `reduce-state.cjs`, confirming that the reducer repairs trailing malformed JSONL before reading the state log."
+version: 1.2.0.3
 ---
 
 # RUNTIME-002 -- JSONL Repair

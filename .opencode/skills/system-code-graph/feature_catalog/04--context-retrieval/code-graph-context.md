@@ -5,6 +5,7 @@ trigger_phrases:
   - "code_graph_context"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.13
 ---
 
 # code_graph_context

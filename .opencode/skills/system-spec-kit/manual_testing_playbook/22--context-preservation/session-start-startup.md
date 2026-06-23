@@ -3,6 +3,7 @@ title: "250 -- SessionStart primes fresh session"
 description: "This scenario validates SessionStart priming (startup) for 250. It focuses on SessionStart outputs Spec Kit Memory overview on fresh startup."
 audited_post_018: true
 phase_018_change: "Updated startup recovery wording so the resume instruction points at /speckit:resume and the canonical packet continuity chain."
+version: 3.6.0.19
 ---
 
 # 250 -- SessionStart primes fresh session

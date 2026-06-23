@@ -7,6 +7,7 @@ trigger_phrases:
   - "pairwise temporal proximity boost"
   - "vectorSearchWithContiguity"
   - "memories created close together in time"
+version: 3.6.0.14
 ---
 
 # Temporal contiguity layer

@@ -8,6 +8,7 @@ trigger_phrases:
   - "refero code mode invocation"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.3
 ---
 
 # Refero MCP Tools Reference

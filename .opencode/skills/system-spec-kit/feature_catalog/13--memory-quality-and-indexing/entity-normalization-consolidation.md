@@ -7,6 +7,7 @@ trigger_phrases:
   - "unify normalization functions"
   - "entity name normalization"
   - "consolidate divergent normalizers"
+version: 3.6.0.15
 ---
 
 # Entity normalization consolidation

@@ -6,6 +6,7 @@ trigger_phrases:
   - "TF-IDF extractive summary"
   - "summary embedding search"
   - "retrieval precision large memories"
+version: 3.6.0.15
 ---
 
 # Memory summary search channel

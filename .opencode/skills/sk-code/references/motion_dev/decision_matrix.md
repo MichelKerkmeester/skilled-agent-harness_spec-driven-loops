@@ -9,6 +9,7 @@ trigger_phrases:
   - "smallest animation tool"
 importance_tier: normal
 contextType: planning
+version: 3.5.0.5
 ---
 
 # Motion.dev Decision Matrix

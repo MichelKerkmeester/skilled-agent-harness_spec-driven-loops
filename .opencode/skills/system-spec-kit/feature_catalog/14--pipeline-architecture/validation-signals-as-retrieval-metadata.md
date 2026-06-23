@@ -7,6 +7,7 @@ trigger_phrases:
   - "stage 2 scoring multiplier"
   - "bounded quality multiplier"
   - "integrate validation into retrieval"
+version: 3.6.0.14
 ---
 
 # Validation signals as retrieval metadata

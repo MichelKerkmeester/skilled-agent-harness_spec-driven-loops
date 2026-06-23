@@ -1,6 +1,7 @@
 ---
 title: "CP-057 -- Write boundary and reducer-owned files **(SANDBOXED)**"
 description: "Validate that @deep-review refuses instructions to edit review targets, runtime mirrors, config, registry, dashboard, or report files."
+version: 1.11.0.11
 ---
 
 # CP-057 -- Write boundary and reducer-owned files **(SANDBOXED)**

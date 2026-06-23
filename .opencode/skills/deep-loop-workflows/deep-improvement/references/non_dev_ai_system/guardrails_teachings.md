@@ -9,6 +9,7 @@ trigger_phrases:
   - "n-sample averaging"
 importance_tier: normal
 contextType: research
+version: 1.17.0.5
 ---
 
 # Lane D Guardrails and Teachings

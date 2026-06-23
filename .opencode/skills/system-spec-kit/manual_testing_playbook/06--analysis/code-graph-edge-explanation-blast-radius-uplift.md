@@ -1,6 +1,7 @@
 ---
 title: "EX-026 -- Code Graph edge explanation and blast radius uplift"
 description: "This scenario validates Code Graph edge explanation and blast radius uplift for `EX-026`. Covers baseline reason/step + depthGroups + riskLevel + minConfidence + ambiguityCandidates + failureFallback (010/003) AND 010/007 hardening: exact-limit overflow detection (R-007-P2-4), multi-subject seed preservation (R-007-P2-5), failureFallback.code enumeration (R-007-P2-6), edge reason/step control-character sanitization (R-007-P2-3)."
+version: 3.6.0.12
 ---
 
 # EX-026 -- Code Graph edge explanation and blast radius uplift

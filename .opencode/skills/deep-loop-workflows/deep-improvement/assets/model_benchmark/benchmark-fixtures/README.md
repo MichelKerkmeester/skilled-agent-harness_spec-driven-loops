@@ -6,6 +6,7 @@ trigger_phrases:
   - "tiered fixture taxonomy"
   - "hard partial-credit fixtures"
   - "validation fixture pack"
+version: 1.17.0.2
 ---
 
 # benchmark-fixtures: tiered oracle fixtures

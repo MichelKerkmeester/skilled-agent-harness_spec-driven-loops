@@ -7,6 +7,7 @@ trigger_phrases:
   - "workspace details mcp"
   - "discover user ids"
   - "verify mcp connection"
+version: 1.0.0.3
 ---
 
 # clickup_get_workspace

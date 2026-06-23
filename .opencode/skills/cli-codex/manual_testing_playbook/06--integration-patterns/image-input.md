@@ -1,6 +1,7 @@
 ---
 title: "CX-020 -- Image input via --image"
 description: "This scenario validates --image visual input for `CX-020`. It focuses on confirming Codex incorporates an attached PNG into its response."
+version: 1.4.0.8
 ---
 
 # CX-020 -- Image input via --image

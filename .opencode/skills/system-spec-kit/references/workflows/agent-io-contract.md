@@ -8,6 +8,7 @@ trigger_phrases:
   - "advisory metadata fields"
 importance_tier: important
 contextType: implementation
+version: 3.6.0.8
 ---
 
 # Agent I/O Contract

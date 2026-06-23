@@ -7,6 +7,7 @@ trigger_phrases:
   - "council graph scope boundary"
   - "derived graph projection"
   - "does council write to graph storage"
+version: 2.3.0.8
 ---
 
 # Graph support stays derived and scoped

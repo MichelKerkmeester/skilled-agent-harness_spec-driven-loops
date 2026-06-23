@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph scan full"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 004 code_graph_scan full
 

@@ -7,6 +7,7 @@ trigger_phrases:
   - toolCalls exchanges fields
   - post-save quality review
   - structured json save contract
+version: 3.6.0.16
 ---
 
 # JSON mode structured summary hardening

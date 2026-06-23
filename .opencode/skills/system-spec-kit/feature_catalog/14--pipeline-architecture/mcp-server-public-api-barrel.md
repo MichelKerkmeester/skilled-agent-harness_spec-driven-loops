@@ -7,6 +7,7 @@ trigger_phrases:
   - "stable top-level import surface"
   - "re-export public MCP helpers"
   - "hide internal lib core handlers"
+version: 3.6.0.10
 ---
 
 # MCP Server Public API Barrel

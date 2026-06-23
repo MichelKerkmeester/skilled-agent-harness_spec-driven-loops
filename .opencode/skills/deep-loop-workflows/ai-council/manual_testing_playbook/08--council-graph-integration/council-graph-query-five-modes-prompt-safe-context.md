@@ -1,6 +1,7 @@
 ---
 title: "DAC-022 -- runtime query CLI five modes return prompt-safe context"
 description: "This scenario validates that all 5 query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context for `DAC-022`. Anchors to council-graph-script.vitest.ts test 'upserts prompt-safe council graph data and queries unresolved disagreements and decision support'."
+version: 2.3.0.8
 ---
 
 # DAC-022 -- runtime query CLI five modes return prompt-safe context

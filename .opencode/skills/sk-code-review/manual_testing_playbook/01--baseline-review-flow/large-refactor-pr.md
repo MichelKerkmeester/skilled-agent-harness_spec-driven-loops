@@ -1,6 +1,7 @@
 ---
 title: "CR-002 -- Large refactor PR"
 description: "This scenario validates Large refactor PR for `CR-002`. It focuses on Confirm large refactors trigger scope control, surface evidence, and risk-ranked findings."
+version: 1.5.0.2
 ---
 
 # CR-002 -- Large refactor PR

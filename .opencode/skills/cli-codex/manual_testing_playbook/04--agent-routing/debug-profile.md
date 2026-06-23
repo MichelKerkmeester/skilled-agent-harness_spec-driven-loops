@@ -1,6 +1,7 @@
 ---
 title: "CX-014 -- @debug profile (workspace-write fix)"
 description: "This scenario validates the codex exec -p debug profile for `CX-014`. It focuses on confirming the debug profile applies a minimal fix and provides a root-cause explanation."
+version: 1.4.0.9
 ---
 
 # CX-014 -- @debug profile (workspace-write fix)

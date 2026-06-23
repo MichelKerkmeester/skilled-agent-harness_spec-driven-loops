@@ -7,6 +7,7 @@ trigger_phrases:
   - "response profile formatters"
   - "quick research resume debug profiles"
   - "memory search response profiles"
+version: 3.6.0.8
 ---
 
 # Mode-aware response profiles

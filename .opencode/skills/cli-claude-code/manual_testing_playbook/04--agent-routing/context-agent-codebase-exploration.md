@@ -1,6 +1,7 @@
 ---
 title: "CC-011 -- Context agent codebase exploration"
 description: "This scenario validates Context agent codebase exploration for `CC-011`. It focuses on confirming `--agent context --permission-mode plan` produces a structured architecture map in read-only mode."
+version: 1.1.0.7
 ---
 
 # CC-011 -- Context agent codebase exploration

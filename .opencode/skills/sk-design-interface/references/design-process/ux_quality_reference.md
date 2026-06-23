@@ -9,6 +9,7 @@ trigger_phrases:
   - "data visualization a11y rules"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.5
 ---
 
 # UX Quality Reference

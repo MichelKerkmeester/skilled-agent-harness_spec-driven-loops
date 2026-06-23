@@ -9,6 +9,7 @@ trigger_phrases:
   - "worktree status report"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.10
 ---
 
 # Worktree Creation Checklist - Branch Isolation Setup

@@ -7,6 +7,7 @@ trigger_phrases:
   - broken markdown links
   - link integrity guard
   - dead doc link detection
+version: 3.6.0.1
 ---
 
 # Markdown link integrity guard

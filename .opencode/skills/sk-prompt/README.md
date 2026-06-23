@@ -7,6 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt"
+version: 2.3.0.21
 ---
 
 # sk-prompt

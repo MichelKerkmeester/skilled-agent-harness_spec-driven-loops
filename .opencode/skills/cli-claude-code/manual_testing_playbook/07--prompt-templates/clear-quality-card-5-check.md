@@ -1,6 +1,7 @@
 ---
 title: "CC-020 -- CLEAR quality card 5-check"
 description: "This scenario validates CLEAR quality card 5-check for `CC-020`. It focuses on confirming the prompt quality card defines the CLEAR 5-check, the framework selection table, and the escalation rule to `@prompt-improver`."
+version: 1.1.0.9
 ---
 
 # CC-020 -- CLEAR quality card 5-check

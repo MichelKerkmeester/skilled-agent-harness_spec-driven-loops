@@ -1,6 +1,7 @@
 ---
 title: "DR-003: Intentional-simplification ceiling comment"
 description: "Verify that when sk-code takes a deliberate shortcut it emits a neutral ceiling: comment naming the shortcut, its ceiling, and the upgrade trigger as a durable WHY, and that comment-hygiene passes it without allow-listing."
+version: 3.5.0.1
 ---
 
 # DR-003: Intentional-simplification ceiling comment

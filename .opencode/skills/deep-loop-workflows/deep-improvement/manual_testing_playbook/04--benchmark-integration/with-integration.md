@@ -3,6 +3,7 @@ title: "BI-013 -- Benchmark With Integration Report"
 description: "Manual validation scenario for BI-013: Benchmark With Integration Report."
 feature_id: "BI-013"
 category: "Benchmark Integration"
+version: 1.17.0.16
 ---
 
 # BI-013 -- Benchmark With Integration Report

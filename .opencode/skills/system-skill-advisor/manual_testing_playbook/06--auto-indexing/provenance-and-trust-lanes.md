@@ -6,6 +6,7 @@ trigger_phrases:
   - "provenance fingerprint"
   - "trust lanes"
   - "derived provenance"
+version: 0.8.0.15
 ---
 
 # AI-003 Provenance Fingerprints and Trust Lanes

@@ -1,6 +1,7 @@
 ---
 title: "CP-036 -- IMPROVEMENT_GATE_DELTA acceptable is not better **(SANDBOXED)**"
 description: "Validate that candidate-acceptable absolute score does not satisfy improvementGate without baseline delta."
+version: 1.17.0.17
 ---
 
 # CP-036 -- IMPROVEMENT_GATE_DELTA acceptable is not better **(SANDBOXED)**

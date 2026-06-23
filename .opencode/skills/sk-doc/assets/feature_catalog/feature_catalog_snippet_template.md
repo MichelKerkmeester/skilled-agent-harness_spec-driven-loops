@@ -8,6 +8,7 @@ trigger_phrases:
   - "split catalog feature file"
 importance_tier: normal
 contextType: general
+version: 1.8.0.5
 ---
 
 # Feature Catalog Snippet Template
@@ -43,6 +44,7 @@ trigger_phrases:                                   # required — drives skill-a
   - "{tool or command name}"
   - "{user-visible label if different}"
 importance_tier: "important"                       # optional — omit unless this is a Tier 1 critical feature
+version: 1.0.0.0
 ---
 ```
 
@@ -67,6 +69,7 @@ trigger_phrases:
   - "{tool or command name}"
   - "{user-visible label if different}"
 # importance_tier: "important"   # uncomment only for Tier 1 critical features
+version: 1.0.0.0
 ---
 
 # {FEATURE_NAME} ({tool_name_or_command})

@@ -7,6 +7,7 @@ trigger_phrases:
   - "ridge regression stage 2 ranking"
   - "SHAP feature importance linear ranker"
   - "shadow-mode learned weight combiner"
+version: 3.6.0.8
 ---
 
 # Learned Stage 2 weight combiner

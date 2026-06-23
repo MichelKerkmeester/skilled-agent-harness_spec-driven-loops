@@ -7,6 +7,7 @@ trigger_phrases:
   - "get active context"
   - "read design system"
   - "read tokens css"
+version: 1.4.0.2
 ---
 
 # Read-only content access (list_projects / get_file / design-systems read)

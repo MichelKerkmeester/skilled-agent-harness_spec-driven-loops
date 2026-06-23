@@ -6,6 +6,7 @@ trigger_phrases:
   - "detect_changes diff cross file"
 importance_tier: "important"
 contextType: "verification"
+version: 1.2.0.2
 ---
 
 # Scenario 024 — `detect_changes` with multi-file diff

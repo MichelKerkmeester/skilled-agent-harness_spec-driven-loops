@@ -1,6 +1,7 @@
 ---
 title: "M-009 -- Runtime Family Count Census"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-009`."
+version: 3.6.0.16
 ---
 
 # M-009 -- Runtime Family Count Census

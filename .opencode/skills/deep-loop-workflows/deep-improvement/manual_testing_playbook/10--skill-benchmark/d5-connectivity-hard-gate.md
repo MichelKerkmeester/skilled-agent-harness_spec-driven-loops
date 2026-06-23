@@ -3,6 +3,7 @@ title: "SB-046 -- D5 Connectivity Hard Gate"
 description: "Manual validation scenario for SB-046: D5 Connectivity Hard Gate."
 feature_id: "SB-046"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.5
 ---
 
 # SB-046 -- D5 Connectivity Hard Gate

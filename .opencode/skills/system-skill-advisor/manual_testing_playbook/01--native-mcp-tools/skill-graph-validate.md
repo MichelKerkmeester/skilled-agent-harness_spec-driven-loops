@@ -1,6 +1,7 @@
 ---
 title: "285 -- Skill graph validate"
 description: "Manual scenario for validating skill_graph_validate diagnostics."
+version: 0.8.0.7
 ---
 
 # 285 -- Skill graph validate

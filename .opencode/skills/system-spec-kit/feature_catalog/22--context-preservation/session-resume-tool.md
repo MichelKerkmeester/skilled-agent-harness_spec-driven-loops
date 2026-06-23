@@ -7,6 +7,7 @@ trigger_phrases:
   - "resume recovery payload"
   - "merged session recovery"
   - "structural bootstrap hints session"
+version: 3.6.0.15
 ---
 
 # Session resume tool

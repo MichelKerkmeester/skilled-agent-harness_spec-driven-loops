@@ -2,7 +2,7 @@
 name: deep-context
 description: "Iterative codebase-context-gathering deep loop. Runs a configurable pool over a shared scope in parallel (native-only by default; optional heterogeneous CLI seats) and synthesizes a reuse-first Context Report for planning/implementation. Use before /speckit:plan or /speckit:implement to map existing code, integration points, and conventions."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: deep-context, context-gathering, codebase-context, reuse-catalog, by-model-parallel-sweep, agreement-merge, convergence-detection, coverage-graph, context-report, heterogeneous-executor-pool, pre-planning-context, relevance-gated-coverage -->

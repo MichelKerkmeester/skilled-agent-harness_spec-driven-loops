@@ -1,6 +1,7 @@
 ---
 title: "CC-010 -- Haiku fast classification"
 description: "This scenario validates Haiku fast classification for `CC-010`. It focuses on confirming Haiku handles batch classification quickly and cheaply."
+version: 1.1.0.7
 ---
 
 # CC-010 -- Haiku fast classification

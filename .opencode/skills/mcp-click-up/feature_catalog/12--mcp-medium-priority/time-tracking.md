@@ -7,6 +7,7 @@ trigger_phrases:
   - "log time entry mcp"
   - "precise time entry with timestamps"
   - "start end time log"
+version: 1.0.0.3
 ---
 
 # clickup_manage_time_tracking

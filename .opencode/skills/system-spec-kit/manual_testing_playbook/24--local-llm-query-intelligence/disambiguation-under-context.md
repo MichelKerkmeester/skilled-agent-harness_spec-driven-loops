@@ -2,6 +2,7 @@
 title: "404 — Disambiguation under context"
 description: "A polysemous query token ('save context') has multiple senses — memory_save vs git stash vs file-system serialization. Verify that surrounding query context biases the result toward the intended sense."
 audited_post_018: true
+version: 3.6.0.4
 ---
 
 # 404 — Disambiguation under context

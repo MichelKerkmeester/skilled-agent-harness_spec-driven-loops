@@ -2,6 +2,7 @@
 title: "147 -- Causal graph boost graduated"
 description: "Validates the causal graph traversal boost: weighted 2-hop CTE walk, relation-type multipliers, hop decay, and the SPECKIT_CAUSAL_BOOST kill-switch."
 audited_post_018: true
+version: 3.6.0.5
 ---
 
 # 147 -- Causal graph boost graduated

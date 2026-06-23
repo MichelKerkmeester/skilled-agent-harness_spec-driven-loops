@@ -1,6 +1,7 @@
 ---
 title: "097 -- Async ingestion job lifecycle (P0-3)"
 description: "This scenario validates Async ingestion job lifecycle (P0-3) for `097`. It focuses on Confirm job state machine and crash recovery."
+version: 3.6.0.19
 ---
 
 # 097 -- Async ingestion job lifecycle (P0-3)

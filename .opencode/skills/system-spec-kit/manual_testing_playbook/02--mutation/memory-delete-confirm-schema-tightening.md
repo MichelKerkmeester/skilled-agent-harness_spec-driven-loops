@@ -2,6 +2,7 @@
 title: "101 -- memory_delete confirm schema tightening"
 description: "This scenario validates memory_delete confirm schema tightening for `101`. It focuses on Confirm confirm field accepts only literal true."
 audited_post_018: true
+version: 3.6.0.14
 ---
 
 # 101 -- memory_delete confirm schema tightening

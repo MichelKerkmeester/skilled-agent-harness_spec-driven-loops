@@ -2,6 +2,7 @@
 title: "196 -- Tool-level TTL cache"
 description: "This scenario validates tool-level TTL cache for `196`. It focuses on confirming per-tool cache hits, TTL expiry, and mutation-driven invalidation."
 audited_post_018: true
+version: 3.6.0.12
 ---
 
 # 196 -- Tool-level TTL cache

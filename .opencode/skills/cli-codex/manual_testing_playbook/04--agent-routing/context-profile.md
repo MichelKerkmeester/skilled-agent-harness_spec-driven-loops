@@ -1,6 +1,7 @@
 ---
 title: "CX-013 -- @context profile (architecture mapping)"
 description: "This scenario validates the codex exec -p context profile for `CX-013`. It focuses on confirming the context profile produces a structural map without modifying files."
+version: 1.4.0.8
 ---
 
 # CX-013 -- @context profile (architecture mapping)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "content type classification"
   - "document code structured_data heuristic"
   - "classify content at index time"
+version: 3.6.0.14
 ---
 
 # Encoding-intent capture at index time

@@ -6,6 +6,7 @@ trigger_phrases:
   - "force-native flag"
   - "force-local flag"
   - "compat force toggles"
+version: 0.8.0.13
 ---
 
 # PC-002 --force-native and --force-local Toggles

@@ -1,6 +1,7 @@
 ---
 title: "PHASE-003 -- Recursive phase validation"
 description: "This scenario validates Recursive phase validation for `PHASE-003`. It focuses on Run `validate.sh --recursive` on a phase parent folder and verify per-phase results."
+version: 3.6.0.16
 ---
 
 # PHASE-003 -- Recursive phase validation

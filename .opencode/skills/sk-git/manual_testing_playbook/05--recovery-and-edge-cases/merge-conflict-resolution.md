@@ -1,6 +1,7 @@
 ---
 title: "GIT-016 -- Merge conflict resolution"
 description: "This scenario validates Merge conflict resolution for `GIT-016`. It focuses on verify merge conflicts stop for human resolution instead of silent auto-resolution."
+version: 1.1.0.3
 ---
 
 # GIT-016 -- Merge conflict resolution

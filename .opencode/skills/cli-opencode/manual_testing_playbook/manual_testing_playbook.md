@@ -1,6 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
+version: 1.3.0.34
 ---
 
 # cli-opencode: Manual Testing Playbook

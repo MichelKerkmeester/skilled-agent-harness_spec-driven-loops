@@ -7,6 +7,7 @@ trigger_phrases:
   - "FSRS decay rate multiplier matrix"
   - "importance tier decay rate"
   - "decisions never decay scratch notes fast"
+version: 3.6.0.17
 ---
 
 # Classification-based decay

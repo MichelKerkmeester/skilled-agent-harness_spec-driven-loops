@@ -2,6 +2,7 @@
 title: "414 — Cross-AI memory handoff (one AI stores, another retrieves)"
 description: "AI-A (e.g., Claude) saves a memory through Memory MCP. AI-B (e.g., Codex via CLI) later queries it. Verifies the local-LLM embedding produces vectors that any MCP-connected AI can find — not just the AI that wrote them."
 audited_post_018: true
+version: 3.6.0.7
 ---
 
 # 414 — Cross-AI memory handoff (one AI stores, another retrieves)

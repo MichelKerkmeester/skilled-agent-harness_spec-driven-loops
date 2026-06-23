@@ -1,6 +1,7 @@
 ---
 title: "CX-005 -- read-only sandbox (analysis)"
 description: "This scenario validates the read-only sandbox mode for `CX-005`. It focuses on confirming --sandbox read-only blocks all writes during a Codex analysis run."
+version: 1.4.0.9
 ---
 
 # CX-005 -- read-only sandbox (analysis)

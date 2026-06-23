@@ -1,6 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
+version: 1.11.0.20
 ---
 
 # deep-review: Manual Testing Playbook

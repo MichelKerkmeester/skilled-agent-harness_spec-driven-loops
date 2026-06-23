@@ -8,6 +8,7 @@ trigger_phrases:
   - "opencode truncation marker"
 importance_tier: normal
 contextType: general
+version: 1.3.0.7
 ---
 
 # cli-opencode Context Budget Mirror

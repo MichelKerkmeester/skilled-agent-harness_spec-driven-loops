@@ -2,6 +2,7 @@
 title: "288 -- Passive context enrichment"
 description: "Validates the server-side auto-enrichment pipeline that appends constitutional memories, triggered memories, and code graph status to every MCP response."
 audited_post_018: true
+version: 3.6.0.5
 ---
 
 # 288 -- Passive context enrichment

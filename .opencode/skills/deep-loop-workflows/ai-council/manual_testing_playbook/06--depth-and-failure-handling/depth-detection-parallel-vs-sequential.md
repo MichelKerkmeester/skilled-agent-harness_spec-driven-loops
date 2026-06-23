@@ -1,6 +1,7 @@
 ---
 title: "DAC-014 -- Depth detection parallel vs sequential"
 description: "This scenario validates Depth 0 versus Depth 1 dispatch detection for `DAC-014`. It focuses on selecting sequential_thinking inline mode for explicit nested council calls."
+version: 2.3.0.8
 ---
 
 # DAC-014 -- Depth detection parallel vs sequential

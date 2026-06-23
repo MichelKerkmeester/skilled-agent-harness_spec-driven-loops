@@ -7,6 +7,7 @@ trigger_phrases:
   - "display configuration"
   - "masked token display"
   - "check cupt defaults"
+version: 1.0.0.3
 ---
 
 # Show Config

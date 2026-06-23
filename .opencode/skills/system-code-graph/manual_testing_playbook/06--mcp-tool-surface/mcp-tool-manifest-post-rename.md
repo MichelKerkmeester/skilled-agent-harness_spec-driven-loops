@@ -6,6 +6,7 @@ trigger_phrases:
   - "mcp tool manifest post rename"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.4
 ---
 # 016 MCP tool manifest post-rename
 

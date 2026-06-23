@@ -7,6 +7,7 @@ trigger_phrases:
   - "similarity cluster penalty"
   - "near-identical results demotion"
   - "Jaccard word token similarity interference"
+version: 3.6.0.15
 ---
 
 # Interference scoring

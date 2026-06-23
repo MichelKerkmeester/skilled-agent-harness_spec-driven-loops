@@ -3,6 +3,7 @@ title: "232 -- Adaptive-fusion mode flag"
 description: "This scenario validates Adaptive-fusion mode flag for `232`. It focuses on confirming live hybrid search honors `SPECKIT_ADAPTIVE_FUSION` while the install guide documents the operator-facing disable switch."
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; adaptive fusion stays live and the install-guide disable switch remains aligned with the runtime flag gate."
+version: 3.6.0.14
 ---
 
 # 232 -- Adaptive-fusion mode flag

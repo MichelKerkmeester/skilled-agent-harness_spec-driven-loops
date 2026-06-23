@@ -1,6 +1,7 @@
 ---
 title: "CC-022 -- Orchestrate agent multi-step coordination"
 description: "This scenario validates Orchestrate agent multi-step coordination for `CC-022`. It focuses on confirming `--agent orchestrate` decomposes a complex task into a sequenced agent pipeline."
+version: 1.1.0.8
 ---
 
 # CC-022 -- Orchestrate agent multi-step coordination

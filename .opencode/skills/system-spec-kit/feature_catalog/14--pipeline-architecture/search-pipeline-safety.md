@@ -7,6 +7,7 @@ trigger_phrases:
   - "quality floor RRF range mismatch"
   - "summary quality bypass fix"
   - "pipeline bug fixes"
+version: 3.6.0.17
 ---
 
 # Search pipeline safety

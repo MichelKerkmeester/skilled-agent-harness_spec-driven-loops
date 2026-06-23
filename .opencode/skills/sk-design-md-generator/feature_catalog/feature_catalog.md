@@ -9,6 +9,7 @@ trigger_phrases:
   - "anti-hallucination design reference"
   - "design md feature catalog"
 last_updated: "2026-06-22"
+version: 1.0.0.8
 ---
 
 # sk-design-md-generator: Feature Catalog

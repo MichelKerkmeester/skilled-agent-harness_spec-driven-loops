@@ -1,6 +1,7 @@
 ---
 title: "430 -- code-index CLI Blocked-Read Rendering"
 description: "Manual check that the code-index CLI preserves status:blocked readiness refusals as actionable exit-0 answers, lifting requiredAction into both JSON and the fixed two-line text rendering."
+version: 3.6.0.1
 ---
 
 # 430 -- code-index CLI Blocked-Read Rendering

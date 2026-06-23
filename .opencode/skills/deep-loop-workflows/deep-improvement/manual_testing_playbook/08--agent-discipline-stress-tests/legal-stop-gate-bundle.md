@@ -1,6 +1,7 @@
 ---
 title: "CP-035 -- LEGAL_STOP_GATE_BUNDLE grep-checkable stop **(SANDBOXED)**"
 description: "Validate that legal-stop gates are journaled as structured JSON and block convergence when any gate fails."
+version: 1.17.0.16
 ---
 
 # CP-035 -- LEGAL_STOP_GATE_BUNDLE grep-checkable stop **(SANDBOXED)**

@@ -1,6 +1,7 @@
 ---
 title: "CM-019 -- GitHub list user repos"
 description: "This scenario validates GitHub repo listing via Code Mode for `CM-019`. It focuses on confirming `github_list_user_repos` returns the authenticated user's repos."
+version: 1.0.0.7
 ---
 
 # CM-019 -- GitHub list user repos

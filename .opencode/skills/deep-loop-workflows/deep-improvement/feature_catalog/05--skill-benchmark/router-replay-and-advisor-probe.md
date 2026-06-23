@@ -7,6 +7,7 @@ trigger_phrases:
   - "replay skill router"
   - "advisor probe inter-skill"
   - "INTENT_SIGNALS substring matching"
+version: 1.17.0.6
 ---
 
 # Router replay and advisor probe

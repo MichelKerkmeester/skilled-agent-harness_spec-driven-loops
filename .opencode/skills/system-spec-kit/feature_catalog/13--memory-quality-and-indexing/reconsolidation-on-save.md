@@ -7,6 +7,7 @@ trigger_phrases:
   - "merge supersede complement"
   - "duplicate memory handling"
   - "save-time reconsolidation"
+version: 3.6.0.22
 ---
 
 # Reconsolidation-on-save

@@ -1,6 +1,7 @@
 ---
 title: "234 -- Ops Self-Healing Runbooks"
 description: "This scenario validates ops self-healing runbooks for `234`. It focuses on confirming the runbook dispatcher, metadata surfaces, successful drills, and bounded escalation behavior."
+version: 3.6.0.12
 ---
 
 # 234 -- Ops Self-Healing Runbooks

@@ -7,6 +7,7 @@ trigger_phrases:
   - "fail-safe eval degradation"
   - "non-fatal eval logging"
   - "evaluation overhead mitigation"
+version: 3.6.0.16
 ---
 
 # Observer effect mitigation

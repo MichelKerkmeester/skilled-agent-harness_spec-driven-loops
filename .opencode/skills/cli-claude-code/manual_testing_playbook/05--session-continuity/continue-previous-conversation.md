@@ -1,6 +1,7 @@
 ---
 title: "CC-015 -- Continue previous conversation"
 description: "This scenario validates Continue previous conversation for `CC-015`. It focuses on confirming `--continue` resumes the most recent Claude Code session with prior-turn context intact."
+version: 1.1.0.7
 ---
 
 # CC-015 -- Continue previous conversation

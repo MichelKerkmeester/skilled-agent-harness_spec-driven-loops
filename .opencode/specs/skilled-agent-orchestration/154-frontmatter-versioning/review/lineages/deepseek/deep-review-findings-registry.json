@@ -1,0 +1,45 @@
+{
+  "sessionId": "fanout-deepseek-1782210787185-rpc3p9",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Parent spec scope estimate (~2500) overstates actual corpus by ~278 files (2222)","file":"spec.md","line":74,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}],"content_hash":"sha256:spec.md_74_correctness_parent_spec_scope_estimate_2500_overstates_actual_corpus_by"},
+    {"findingId":"F002","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Core-doc count ~436 in scope table underestimates actual 469 (33 file undercount)","file":"spec.md","line":103,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}],"content_hash":"sha256:spec.md_103_correctness_core_doc_count_436_in_scope_table_underestimates_actual"},
+    {"findingId":"F010","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"Three child-phase specs report completion_pct 0 in _memory.continuity but Status Complete in metadata","file":"001-versioning-standard/spec.md","line":28,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P1","reason":"Initial discovery"}],"content_hash":"sha256:001_versioning_standard_spec_md_28_traceability_three_child_phase_specs_report"},
+    {"findingId":"F012","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"graph-metadata.json derived.status is planned and last_active_child_id null despite all phases complete","file":"graph-metadata.json","line":41,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P1","reason":"Initial discovery"}],"content_hash":"sha256:graph_metadata_json_41_traceability_graph_metadata_derived_status_is_planned"},
+    {"findingId":"F003","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Phase 4 leaf estimate ~1700 vs actual 1753 (53 file minor undercount)","file":"spec.md","line":120,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:spec.md_120_correctness_phase_4_leaf_estimate_1700_vs_actual_1753"},
+    {"findingId":"F004","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Continuity session_dedup fingerprint is all-zero sha256 (null tracking)","file":"spec.md","line":27,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:spec.md_27_correctness_continuity_session_dedup_fingerprint_all_zero_sha256"},
+    {"findingId":"F005","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Phase-parent graph-metadata last_active_child_id not verified as current","file":"graph-metadata.json","line":0,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:graph_metadata_json_0_correctness_phase_parent_graph_metadata_last_active_child_id"},
+    {"findingId":"F006","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Phase map doesn't document the 4 pre-existing 3-part SKILL.md files requiring normalization","file":"spec.md","line":116,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:spec.md_116_correctness_phase_map_doesnt_document_4_pre_existing_3part_skill_md"},
+    {"findingId":"F007","severity":"P2","category":"security","status":"active","dimension":"security","title":"Shell wrapper dispatches without verifying node/mjs existence","file":"check-frontmatter-versions.sh","line":12,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:check_frontmatter_versions_sh_12_security_shell_wrapper_dispatches_without"},
+    {"findingId":"F008","severity":"P2","category":"security","status":"active","dimension":"security","title":"64MB maxBuffer for git log could cause unhandled crash on pathological histories","file":"frontmatter-version.mjs","line":69,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:frontmatter_version_mjs_69_security_64mb_maxbuffer_for_git_log_could_cause"},
+    {"findingId":"F009","severity":"P2","category":"security","status":"active","dimension":"security","title":"SKILL.md reconcile auto-updates version without --update flag (asymmetric with other classes)","file":"frontmatter-version.mjs","line":411,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:frontmatter_version_mjs_411_security_skill_md_reconcile_auto_updates_version"},
+    {"findingId":"F011","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Phase 2 spec references frontmatter-version.ts in key_files but implementation is .mjs","file":"002-derivation-engine/spec.md","line":21,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:002_derivation_engine_spec_md_21_traceability_phase_2_spec_references_frontmatter"},
+    {"findingId":"F013","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Three child-phase specs carry scaffolding recent_action text never updated post-implementation","file":"001-versioning-standard/spec.md","line":17,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:001_versioning_standard_spec_md_17_traceability_three_child_phase_specs_carry"},
+    {"findingId":"F014","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"All child-phase session_dedup fingerprints are all-zero sha256 (systematic scaffolding artifact)","file":"001-versioning-standard/spec.md","line":25,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:001_versioning_standard_spec_md_25_traceability_all_child_phase_session_dedup"},
+    {"findingId":"F015","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Standard doc says W = min(realEditCount, 99) and engine correctly applies W_CAP=99 Math.min","file":"frontmatter_versioning.md","line":81,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}],"content_hash":"sha256:frontmatter_versioning_md_81_traceability_standard_doc_says_w_min_realEditCount"}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 16
+  },
+  "openFindingsCount": 22,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.70,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

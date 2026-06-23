@@ -1,6 +1,7 @@
 ---
 title: "PHASE-009 -- Spec-folder literal naming (remediation rule via SKILL.md rule 20)"
 description: "Verify that external CLI agents presented with a deep-review FAIL verdict propose a remediation packet slug that names both the source (deep-review findings) and the specific target component, per system-spec-kit SKILL.md ALWAYS rule 20 added in Packet 012 REQ-006."
+version: 3.6.0.6
 ---
 
 # PHASE-009 -- Spec-folder literal naming (remediation rule via SKILL.md rule 20)

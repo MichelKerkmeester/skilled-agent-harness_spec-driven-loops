@@ -1,6 +1,7 @@
 ---
 title: "CM-001 -- list_tools enumeration"
 description: "This scenario validates list_tools enumeration for `CM-001`. It focuses on confirming that `list_tools()` returns the full set of registered external MCP tools using the canonical `manual.manual_tool` namespace pattern."
+version: 1.0.0.6
 ---
 
 # CM-001 -- list_tools enumeration

@@ -1,6 +1,7 @@
 ---
 title: "RD-002: sk-code vs sk-doc Anti-Pattern Routing"
 description: "Verify the skill advisor routes documentation-edit prompts to sk-doc, NOT sk-code, even when the prompt mentions code-related vocabulary."
+version: 3.5.0.3
 ---
 
 # RD-002: sk-code vs sk-doc Anti-Pattern Routing

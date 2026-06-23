@@ -1,6 +1,7 @@
 ---
 title: "CR-015 -- AI-generated suspect quality"
 description: "This scenario validates AI-generated suspect quality for `CR-015`. It focuses on Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly."
+version: 1.5.0.4
 ---
 
 # CR-015 -- AI-generated suspect quality

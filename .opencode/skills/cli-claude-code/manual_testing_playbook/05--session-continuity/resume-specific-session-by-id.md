@@ -1,6 +1,7 @@
 ---
 title: "CC-016 -- Resume specific session by ID"
 description: "This scenario validates Resume specific session by ID for `CC-016`. It focuses on confirming `--resume SESSION_ID` resumes a specific session captured from prior JSON output."
+version: 1.1.0.6
 ---
 
 # CC-016 -- Resume specific session by ID

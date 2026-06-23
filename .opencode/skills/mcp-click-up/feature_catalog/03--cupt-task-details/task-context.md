@@ -7,6 +7,7 @@ trigger_phrases:
   - "task hierarchy"
   - "parent and subtasks"
   - "task structure traversal"
+version: 1.0.0.3
 ---
 
 # Task Context

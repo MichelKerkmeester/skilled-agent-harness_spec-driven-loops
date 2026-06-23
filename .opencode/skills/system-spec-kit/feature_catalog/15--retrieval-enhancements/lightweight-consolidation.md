@@ -7,6 +7,7 @@ trigger_phrases:
   - "contradiction scanning"
   - "Hebbian edge strengthening"
   - "staleness detection"
+version: 3.6.0.17
 ---
 
 # Lightweight consolidation

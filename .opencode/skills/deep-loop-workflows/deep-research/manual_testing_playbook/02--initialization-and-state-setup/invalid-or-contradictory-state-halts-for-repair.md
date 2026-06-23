@@ -1,6 +1,7 @@
 ---
 title: "DR-006 -- Invalid or contradictory state halts for repair"
 description: "Verify that partial or contradictory scratch artifacts trigger a halt for repair instead of a guessed resume path."
+version: 1.14.0.15
 ---
 
 # DR-006 -- Invalid or contradictory state halts for repair

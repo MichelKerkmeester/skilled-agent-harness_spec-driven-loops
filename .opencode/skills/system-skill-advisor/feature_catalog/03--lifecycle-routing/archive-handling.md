@@ -6,6 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed but not routed"
+version: 0.8.0.12
 ---
 
 # Archive and Future Skills Indexed But Not Routed

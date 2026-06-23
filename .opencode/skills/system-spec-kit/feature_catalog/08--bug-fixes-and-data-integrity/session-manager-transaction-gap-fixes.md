@@ -7,6 +7,7 @@ trigger_phrases:
   - "concurrent limit violation fix"
   - "session entry limit atomicity"
   - "transactional entry limit enforcement"
+version: 3.6.0.13
 ---
 
 # Session-manager transaction gap fixes

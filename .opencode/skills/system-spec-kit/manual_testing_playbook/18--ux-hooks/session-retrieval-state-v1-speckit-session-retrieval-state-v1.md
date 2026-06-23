@@ -1,6 +1,7 @@
 ---
 title: "169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1)"
 description: "This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata."
+version: 3.6.0.15
 ---
 
 # 169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1)

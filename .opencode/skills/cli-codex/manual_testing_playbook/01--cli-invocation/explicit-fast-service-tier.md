@@ -1,6 +1,7 @@
 ---
 title: "CX-004 -- Explicit fast service tier"
 description: "This scenario validates the explicit fast service tier rule for `CX-004`. It focuses on enforcing the auto-memory rule that -c service_tier=fast must be passed explicitly on every codex exec invocation."
+version: 1.4.0.8
 ---
 
 # CX-004 -- Explicit fast service tier

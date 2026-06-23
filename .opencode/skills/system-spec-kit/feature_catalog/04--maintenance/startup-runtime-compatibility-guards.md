@@ -7,6 +7,7 @@ trigger_phrases:
   - "SQLite version compatibility"
   - "Node.js ABI startup check"
   - "how do I fix a runtime mismatch on startup"
+version: 3.6.0.13
 ---
 
 # Startup runtime compatibility guards

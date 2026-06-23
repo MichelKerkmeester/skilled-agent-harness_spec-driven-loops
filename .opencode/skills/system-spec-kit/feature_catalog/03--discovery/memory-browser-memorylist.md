@@ -7,6 +7,7 @@ trigger_phrases:
   - "list indexed memories"
   - "paginated memory browse"
   - "browse stored spec-doc records"
+version: 3.6.0.16
 ---
 
 # Memory browser (memory_list)

@@ -1,6 +1,7 @@
 ---
 title: "238 -- Spec Validation Rule Engine"
 description: "This scenario validates spec validation rule engine for `238`. It focuses on confirming compliant validation, warning escalation, and recursive phase validation behavior."
+version: 3.6.0.14
 ---
 
 # 238 -- Spec Validation Rule Engine

@@ -1,6 +1,7 @@
 ---
 title: "090 -- INT8 quantization evaluation (R5)"
 description: "This scenario validates INT8 quantization evaluation (R5) for `090`. It focuses on Confirm no-go decision remains valid."
+version: 3.6.0.16
 ---
 
 # 090 -- INT8 quantization evaluation (R5)

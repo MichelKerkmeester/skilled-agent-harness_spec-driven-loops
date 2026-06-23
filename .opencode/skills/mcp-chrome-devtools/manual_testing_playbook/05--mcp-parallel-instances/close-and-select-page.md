@@ -1,6 +1,7 @@
 ---
 title: "BDG-016 -- Close + select page"
 description: "This scenario validates page-level lifecycle operations for `BDG-016`. It focuses on confirming `close_page` and `select_page` correctly manage multiple pages within a single MCP instance."
+version: 1.0.0.6
 ---
 
 # BDG-016 -- Close + select page

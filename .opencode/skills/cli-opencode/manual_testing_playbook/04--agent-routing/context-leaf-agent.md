@@ -1,6 +1,7 @@
 ---
 title: "CO-014 -- Context LEAF agent (read-only)"
 description: "This scenario validates the context LEAF agent for `CO-014`. It focuses on confirming `--agent context` enforces read-only behavior with no sub-dispatches and no writes."
+version: 1.3.0.12
 ---
 
 # CO-014 -- Context LEAF agent (read-only)

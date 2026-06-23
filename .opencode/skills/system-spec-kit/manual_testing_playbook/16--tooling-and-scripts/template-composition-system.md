@@ -1,6 +1,7 @@
 ---
 title: "244 -- Template Composition System"
 description: "This scenario validates Level-based packet generation and vocabulary invariance for the current template flow."
+version: 3.6.0.13
 ---
 
 # 244 -- Template Composition System

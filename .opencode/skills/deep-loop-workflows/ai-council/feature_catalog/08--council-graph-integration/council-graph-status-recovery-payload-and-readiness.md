@@ -7,6 +7,7 @@ trigger_phrases:
   - "council graph readiness check"
   - "namespace-scoped recovery payload"
   - "graph ready or broken status"
+version: 2.3.0.10
 ---
 
 # runtime status CLI recovery payload and readiness

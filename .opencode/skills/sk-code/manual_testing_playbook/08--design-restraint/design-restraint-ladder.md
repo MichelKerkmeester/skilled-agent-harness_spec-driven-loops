@@ -1,6 +1,7 @@
 ---
 title: "DR-001: Design Restraint Ladder (pre-write rung selection)"
 description: "Verify sk-code walks the Design Restraint Ladder and selects the laziest viable rung before writing new code, after surface and intent routing, without overriding surface precedence or the Iron Law."
+version: 3.5.0.1
 ---
 
 # DR-001: Design Restraint Ladder (pre-write rung selection)

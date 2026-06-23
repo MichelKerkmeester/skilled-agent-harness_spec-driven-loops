@@ -8,6 +8,7 @@ trigger_phrases:
   - "context file protection rules"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.3
 ---
 
 # State Format Reference

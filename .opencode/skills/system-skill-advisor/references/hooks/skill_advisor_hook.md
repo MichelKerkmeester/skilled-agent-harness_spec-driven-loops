@@ -9,6 +9,7 @@ trigger_phrases:
   - "copilot next-prompt freshness"
 importance_tier: "important"
 contextType: "implementation"
+version: 0.8.0.32
 ---
 
 # Skill Advisor Hook Reference

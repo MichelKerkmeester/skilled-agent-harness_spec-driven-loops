@@ -3,6 +3,7 @@ title: "MB-040 -- Opt-In 5-Dimension Scorer"
 description: "Manual validation scenario for MB-040: Opt-In 5-Dimension Scorer."
 feature_id: "MB-040"
 category: "Model-Benchmark Mode"
+version: 1.17.0.10
 ---
 
 # MB-040 -- Opt-In 5-Dimension Scorer

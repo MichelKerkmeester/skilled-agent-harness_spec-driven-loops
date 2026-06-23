@@ -1,6 +1,7 @@
 ---
 title: "CX-026 -- @research profile (web-grounded investigation)"
 description: "This scenario validates the codex exec -p research profile for `CX-026`. It focuses on confirming the research profile combines `--search` web grounding with a comparative trade-off analysis."
+version: 1.4.0.4
 ---
 
 # CX-026 -- @research profile (web-grounded investigation)

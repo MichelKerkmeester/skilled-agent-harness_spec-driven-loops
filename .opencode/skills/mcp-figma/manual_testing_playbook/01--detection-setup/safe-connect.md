@@ -1,6 +1,7 @@
 ---
 title: "CONNECT-001 -- Safe Connect (No Patch)"
 description: "This scenario validates safe connect for `CONNECT-001`. It focuses on confirming connect --safe runs the FigCli plugin bridge with no app.asar patch and keeps yolo gated behind consent."
+version: 1.0.0.1
 ---
 
 # CONNECT-001 -- Safe Connect (No Patch)

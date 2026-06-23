@@ -7,6 +7,7 @@ trigger_phrases:
   - "fresh-context review cycle"
   - "leaf review agent"
   - "focus dimension dispatch"
+version: 1.11.0.9
 ---
 
 # Iteration dispatch

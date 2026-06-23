@@ -7,6 +7,7 @@ trigger_phrases:
   - "list my tasks"
   - "assigned task listing"
   - "show open tasks"
+version: 1.0.0.3
 ---
 
 # List Assigned

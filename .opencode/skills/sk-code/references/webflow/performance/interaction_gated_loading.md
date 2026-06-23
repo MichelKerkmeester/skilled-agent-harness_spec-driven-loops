@@ -8,6 +8,7 @@ trigger_phrases:
   - "idle time script loading"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Interaction-Gated Loading

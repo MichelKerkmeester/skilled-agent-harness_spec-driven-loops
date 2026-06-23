@@ -1,6 +1,7 @@
 ---
 title: "CO-008 -- Self-invocation guard refusal (ADR-001)"
 description: "This scenario validates the self-invocation guard for `CO-008`. It focuses on confirming the cli-opencode skill refuses a circular dispatch when the originating runtime IS OpenCode and the prompt does NOT include explicit parallel-session keywords."
+version: 1.3.0.8
 ---
 
 # CO-008 -- Self-invocation guard refusal (ADR-001)

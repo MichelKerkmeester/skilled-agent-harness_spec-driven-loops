@@ -1,6 +1,7 @@
 ---
 title: "CP-051 -- EXHAUSTED_APPROACH_RESPECT resume-state discipline **(SANDBOXED)**"
 description: "Validate that command-dispatched @deep-research reads existing state and does not retry a BLOCKED exhausted approach."
+version: 1.14.0.9
 ---
 
 # CP-051 -- EXHAUSTED_APPROACH_RESPECT resume-state discipline **(SANDBOXED)**

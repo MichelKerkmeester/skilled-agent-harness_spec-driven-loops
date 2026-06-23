@@ -6,6 +6,7 @@ trigger_phrases:
   - "codex cli hook and prompt wrapper"
   - "codex cli"
   - "codex"
+version: 0.8.0.11
 ---
 
 # CL-004 Codex CLI Native Hooks And Wrapper Fallback

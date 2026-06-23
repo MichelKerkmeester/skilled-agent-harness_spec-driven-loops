@@ -10,6 +10,7 @@ trigger_phrases:
   - "staged deny pattern assertion"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.9
 ---
 
 # Git Commit - Detailed Workflow Reference

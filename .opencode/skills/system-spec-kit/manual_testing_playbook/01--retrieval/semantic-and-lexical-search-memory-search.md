@@ -2,6 +2,7 @@
 title: "EX-002 -- Semantic and lexical search (memory_search)"
 description: "This scenario validates Semantic and lexical search (memory_search) for `EX-002`. It focuses on Hybrid precision check."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # EX-002 -- Semantic and lexical search (memory_search)

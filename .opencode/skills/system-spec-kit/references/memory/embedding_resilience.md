@@ -9,6 +9,7 @@ trigger_phrases:
   - "embedding retry policy"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.17
 ---
 
 # Embedding Resilience

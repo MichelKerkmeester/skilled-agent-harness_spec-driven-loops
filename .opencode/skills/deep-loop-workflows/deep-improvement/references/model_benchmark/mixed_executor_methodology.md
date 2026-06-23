@@ -8,6 +8,7 @@ trigger_phrases:
   - "adjudication-iter false-positive filter"
 importance_tier: normal
 contextType: research
+version: 1.17.0.8
 ---
 
 # Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps

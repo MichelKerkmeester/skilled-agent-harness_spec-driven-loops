@@ -6,6 +6,7 @@ trigger_phrases:
   - "root dist cleanup"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.2
 ---
 # 021 root dist cleanup verification
 

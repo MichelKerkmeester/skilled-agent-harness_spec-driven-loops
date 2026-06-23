@@ -1,6 +1,7 @@
 ---
 title: "438 -- 028 CLI Stress: Trust-Gate Fuzz"
 description: "Stress scenario fuzzing the skill-advisor trusted-mutation gate with adversarial flag and payload shapes: every untrusted mutation attempt must exit 64 client-side, with zero attempts reaching IPC."
+version: 3.6.0.1
 ---
 
 # 438 -- 028 CLI Stress: Trust-Gate Fuzz

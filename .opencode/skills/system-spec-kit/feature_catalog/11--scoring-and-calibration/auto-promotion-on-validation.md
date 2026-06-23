@@ -7,6 +7,7 @@ trigger_phrases:
   - "tier promotion positive validations"
   - "promotion throttle 8-hour window"
   - "automatic importance tier upgrade"
+version: 3.6.0.17
 ---
 
 # Auto-promotion on validation

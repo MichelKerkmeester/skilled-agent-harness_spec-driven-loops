@@ -7,6 +7,7 @@ trigger_phrases:
   - "speckit_consumption_log feature flag"
   - "retrieval handler consumption wiring"
   - "agent retrieval usage logging"
+version: 3.6.0.16
 ---
 
 # Agent consumption instrumentation

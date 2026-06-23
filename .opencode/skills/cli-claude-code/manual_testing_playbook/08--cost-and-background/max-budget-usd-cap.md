@@ -1,6 +1,7 @@
 ---
 title: "CC-026 -- Max budget USD cap behavior"
 description: "This scenario validates `--max-budget-usd` cost cap behavior for `CC-026`. It focuses on confirming the budget flag is accepted and that JSON cost metadata stays within the cap."
+version: 1.1.0.7
 ---
 
 # CC-026 -- Max budget USD cap behavior

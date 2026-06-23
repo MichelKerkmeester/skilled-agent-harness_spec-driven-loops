@@ -8,6 +8,7 @@ trigger_phrases:
   - "STOP_BLOCKED decision"
   - "convergence script"
   - "graph convergence context"
+version: 1.2.0.3
 ---
 
 # Evaluate Context

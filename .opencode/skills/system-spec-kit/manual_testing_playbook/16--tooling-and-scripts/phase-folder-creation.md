@@ -1,6 +1,7 @@
 ---
 title: "PHASE-002 -- Phase folder creation"
 description: "This scenario validates Phase folder creation for `PHASE-002`. It focuses on Run `create.sh \"Test\" --phase --level 3 --phases 3` and verify parent+children structure."
+version: 3.6.0.17
 ---
 
 # PHASE-002 -- Phase folder creation

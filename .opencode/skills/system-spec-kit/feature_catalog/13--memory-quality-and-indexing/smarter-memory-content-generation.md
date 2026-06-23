@@ -7,6 +7,7 @@ trigger_phrases:
   - "strip markdown formatting noise"
   - "normalize before embedding"
   - "BM25 indexing quality"
+version: 3.6.0.16
 ---
 
 # Smarter memory content generation

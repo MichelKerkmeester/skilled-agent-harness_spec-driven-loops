@@ -3,6 +3,7 @@ title: "M-008 -- Feature 09 Direct Manual Scenario (Per-memory History Log)"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-008`."
 audited_post_018: true
 phase_018_replaces: "legacy memory-file fixture with spec-doc anchored history verification"
+version: 3.6.0.14
 ---
 
 # M-008 -- Feature 09 Direct Manual Scenario (Per-memory History Log)

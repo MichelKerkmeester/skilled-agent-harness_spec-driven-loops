@@ -6,6 +6,7 @@ trigger_phrases:
   - "entity-cooccurrence-is-not-causal"
   - "cooccurrence is not causation"
   - "causal graph provenance rule"
+version: 3.6.0.1
 ---
 
 # Entity co-occurrence is not causal constitutional rule

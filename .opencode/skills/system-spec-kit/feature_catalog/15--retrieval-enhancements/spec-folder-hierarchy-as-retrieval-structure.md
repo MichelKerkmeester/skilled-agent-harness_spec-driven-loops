@@ -7,6 +7,7 @@ trigger_phrases:
   - "parent sibling ancestor memories"
   - "buildHierarchyTree"
   - "folder-based retrieval structure"
+version: 3.6.0.14
 ---
 
 # Spec folder hierarchy as retrieval structure

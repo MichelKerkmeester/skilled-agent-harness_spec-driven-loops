@@ -7,6 +7,7 @@ trigger_phrases:
   - "query-aware overlap bonus RRF"
   - "convergence bonus calibrated scaling"
   - "multi-channel retrieval agreement reward"
+version: 3.6.0.5
 ---
 
 # Calibrated overlap bonus

@@ -8,6 +8,7 @@ trigger_phrases:
   - "od automation"
   - "gated mutating verb"
 importance_tier: "important"
+version: 1.4.0.3
 ---
 
 # Headless runs and mutating verbs (start_run / get_run / get_artifact)

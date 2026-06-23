@@ -1,6 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across native MCP tools, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
+version: 0.8.0.15
 ---
 
 # Skill Advisor: Manual Testing Playbook

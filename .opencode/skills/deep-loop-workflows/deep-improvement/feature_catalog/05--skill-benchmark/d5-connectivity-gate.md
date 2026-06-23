@@ -7,6 +7,7 @@ trigger_phrases:
   - "run connectivity gate"
   - "dead resource path detection"
   - "BLOCKED-BY-STRUCTURE verdict"
+version: 1.17.0.6
 ---
 
 # D5 structural connectivity hard gate

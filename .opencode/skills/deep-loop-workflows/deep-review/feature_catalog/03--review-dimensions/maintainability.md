@@ -7,6 +7,7 @@ trigger_phrases:
   - "follow-on change safety"
   - "fourth review dimension"
   - "documentation quality review"
+version: 1.11.0.6
 ---
 
 # Maintainability

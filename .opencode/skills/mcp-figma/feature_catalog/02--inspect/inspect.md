@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma node tree"
   - "figma get node"
   - "read-only figma inspect"
+version: 1.0.0.1
 ---
 
 # Inspect (figma-ds-cli find / get / inspect / node tree)

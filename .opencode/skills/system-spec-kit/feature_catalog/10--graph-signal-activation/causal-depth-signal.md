@@ -7,6 +7,7 @@ trigger_phrases:
   - "computeCausalDepthScores"
   - "structural distance root component"
   - "causal depth additive bonus"
+version: 3.6.0.16
 ---
 
 # Causal depth signal

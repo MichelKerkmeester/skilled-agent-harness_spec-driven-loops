@@ -3,6 +3,7 @@ title: "RT-029 -- Journal Wiring Boundary Coverage"
 description: "Manual validation scenario for RT-029: Journal Wiring Boundary Coverage."
 feature_id: "RT-029"
 category: "Runtime Truth"
+version: 1.17.0.2
 ---
 
 # RT-029 -- Journal Wiring Boundary Coverage

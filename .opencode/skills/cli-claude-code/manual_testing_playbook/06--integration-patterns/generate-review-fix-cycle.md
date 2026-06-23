@@ -1,6 +1,7 @@
 ---
 title: "CC-017 -- Generate-review-fix cycle"
 description: "This scenario validates Generate-review-fix cycle for `CC-017`. It focuses on confirming the canonical cross-AI pattern where the calling AI generates code, Claude Code reviews it, and the calling AI applies the fixes."
+version: 1.1.0.6
 ---
 
 # CC-017 -- Generate-review-fix cycle

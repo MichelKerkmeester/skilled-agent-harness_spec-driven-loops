@@ -10,6 +10,7 @@ trigger_phrases:
   - "css decision matrix"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.2
 ---
 
 # Webflow CSS Quick Reference

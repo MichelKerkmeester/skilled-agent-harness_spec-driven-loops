@@ -7,6 +7,7 @@ trigger_phrases:
   - "legal stop decision"
   - "weighted stop vote"
   - "blocked-stop event"
+version: 1.11.0.7
 ---
 
 # Convergence check

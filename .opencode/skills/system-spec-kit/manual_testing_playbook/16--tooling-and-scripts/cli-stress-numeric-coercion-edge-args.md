@@ -1,6 +1,7 @@
 ---
 title: "437 -- 028 CLI Stress: Numeric-Coercion Edge Args"
 description: "Stress scenario fuzzing schema-driven argv coercion in the code-index CLI: numeric strings must coerce and pass validation while garbage values exit 64, using the warm-only 75/64 discriminator so no daemon is needed."
+version: 3.6.0.1
 ---
 
 # 437 -- 028 CLI Stress: Numeric-Coercion Edge Args

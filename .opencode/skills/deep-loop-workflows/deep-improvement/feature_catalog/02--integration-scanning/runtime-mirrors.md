@@ -7,6 +7,7 @@ trigger_phrases:
   - "check mirror parity"
   - "mirror signal matching"
   - "agent mirror drift"
+version: 1.17.0.15
 ---
 
 # Runtime mirrors

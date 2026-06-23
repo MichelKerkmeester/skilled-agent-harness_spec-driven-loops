@@ -7,6 +7,7 @@ trigger_phrases:
   - "batch ingest with job queue"
   - "SQLite-persisted ingestion queue"
   - "ingest ETA forecast"
+version: 3.6.0.18
 ---
 
 # Async ingestion job lifecycle

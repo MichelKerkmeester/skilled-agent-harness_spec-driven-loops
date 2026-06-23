@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply 5-dimension rubric"
   - "council seat scoring weights"
   - "score hypothetical seat output"
+version: 2.3.0.9
 ---
 
 # Five-dimension scoring rubric application

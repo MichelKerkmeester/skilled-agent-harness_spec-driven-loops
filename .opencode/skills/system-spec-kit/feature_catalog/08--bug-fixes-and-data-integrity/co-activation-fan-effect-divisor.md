@@ -7,6 +7,7 @@ trigger_phrases:
   - "hub memory domination fix"
   - "co-activation boost dampening"
   - "sqrt neighbor count divisor"
+version: 3.6.0.20
 ---
 
 # Co-activation fan-effect divisor

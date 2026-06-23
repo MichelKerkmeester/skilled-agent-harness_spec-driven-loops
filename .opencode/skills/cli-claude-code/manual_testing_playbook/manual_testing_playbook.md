@@ -1,6 +1,7 @@
 ---
 title: "Claude Code CLI Orchestrator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-claude-code cross-AI delegation skill."
+version: 1.1.0.18
 ---
 
 # Claude Code CLI Orchestrator: Manual Testing Playbook

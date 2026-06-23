@@ -1,6 +1,7 @@
 ---
 title: "SP-020 -- User-named framework override wins"
 description: "This scenario validates explicit framework override handling for `SP-020`. It focuses on honoring a user-named framework over automatic routing."
+version: 2.3.0.5
 ---
 
 # SP-020 -- User-named framework override wins

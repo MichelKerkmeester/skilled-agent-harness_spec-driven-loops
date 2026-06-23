@@ -1,6 +1,7 @@
 ---
 title: "CO-011 -- deepseek direct API (deepseek-v4-pro)"
 description: "This scenario validates the deepseek direct API provider for `CO-011`. It focuses on confirming `--model deepseek/deepseek-v4-pro --variant high` runs successfully via the direct deepseek provider (bypasses opencode-go) and produces a coherent response."
+version: 1.3.0.10
 ---
 
 # CO-011 -- deepseek direct API (deepseek-v4-pro)

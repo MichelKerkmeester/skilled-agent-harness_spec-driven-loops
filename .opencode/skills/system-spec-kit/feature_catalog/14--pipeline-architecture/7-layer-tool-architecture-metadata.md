@@ -7,6 +7,7 @@ trigger_phrases:
   - "L1-L7 tool layers"
   - "MCP tool governance metadata"
   - "tool priority and use-case guidance"
+version: 3.6.0.12
 ---
 
 # 7-layer tool architecture metadata

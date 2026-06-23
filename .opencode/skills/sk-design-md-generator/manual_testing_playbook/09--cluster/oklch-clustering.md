@@ -1,6 +1,7 @@
 ---
 title: "CLUSTER-001 -- OKLCH Clustering And Stability Classification"
 description: "Validates OKLCH color clustering and L1-L4 stability classification. Confirms cluster.ts groups visually similar colors into named roles and assigns L1 (permanent/brand), L2 (system), L3 (campaign), L4 (content) stability classes that gate DESIGN.md inclusion."
+version: 1.0.0.4
 ---
 
 # CLUSTER-001 -- OKLCH Clustering And Stability Classification

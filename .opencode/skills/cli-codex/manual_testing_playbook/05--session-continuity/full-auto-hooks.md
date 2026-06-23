@@ -1,6 +1,7 @@
 ---
 title: "CX-016 -- --full-auto + native hook integration"
 description: "This scenario validates --full-auto plus native Codex hooks for `CX-016`. It focuses on confirming Spec Kit Memory's SessionStart and UserPromptSubmit hooks fire and inject the advisor brief."
+version: 1.4.0.9
 ---
 
 # CX-016 -- --full-auto + native hook integration

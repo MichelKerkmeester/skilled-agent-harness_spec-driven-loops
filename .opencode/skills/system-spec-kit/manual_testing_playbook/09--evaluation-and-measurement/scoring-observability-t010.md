@@ -1,6 +1,7 @@
 ---
 title: "013 -- Scoring observability (T010)"
 description: "This scenario validates Scoring observability (T010) for `013`. It focuses on Confirm sample logging + fail-safe."
+version: 3.6.0.16
 ---
 
 # 013 -- Scoring observability (T010)

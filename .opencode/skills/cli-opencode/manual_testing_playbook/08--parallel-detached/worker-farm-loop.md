@@ -1,6 +1,7 @@
 ---
 title: "CO-027 -- Worker farm loop with </dev/null background dispatch"
 description: "This scenario validates the worker-farm loop pattern for `CO-027`. It focuses on confirming N parallel detached sessions can be spawned in a `while read` loop with the documented `</dev/null` redirect to prevent silent stdin consumption."
+version: 1.3.0.11
 ---
 
 # CO-027 -- Worker farm loop with `</dev/null` background dispatch

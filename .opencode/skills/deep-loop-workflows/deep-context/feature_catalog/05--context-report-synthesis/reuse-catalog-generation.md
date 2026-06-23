@@ -8,6 +8,7 @@ trigger_phrases:
   - "file:symbol verification"
   - "context report reuse section"
   - "code reuse catalog"
+version: 1.2.0.3
 ---
 
 # Reuse Catalog Generation

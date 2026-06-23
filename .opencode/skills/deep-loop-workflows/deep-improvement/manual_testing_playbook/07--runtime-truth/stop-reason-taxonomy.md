@@ -3,6 +3,7 @@ title: "RT-022 -- Stop-Reason Taxonomy Validation"
 description: "Manual validation scenario for RT-022: Stop-Reason Taxonomy Validation."
 feature_id: "RT-022"
 category: "Runtime Truth"
+version: 1.17.0.17
 ---
 
 # RT-022 -- Stop-Reason Taxonomy Validation

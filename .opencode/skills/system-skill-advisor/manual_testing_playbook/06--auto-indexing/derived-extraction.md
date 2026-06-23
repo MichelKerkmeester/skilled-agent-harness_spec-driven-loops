@@ -6,6 +6,7 @@ trigger_phrases:
   - "derived extraction"
   - "deterministic n-gram"
   - "graph-metadata derived"
+version: 0.8.0.14
 ---
 
 # AI-001 Deterministic Derived Extraction

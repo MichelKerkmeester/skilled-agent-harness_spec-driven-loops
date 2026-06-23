@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph scan incremental"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 003 code_graph_scan incremental
 

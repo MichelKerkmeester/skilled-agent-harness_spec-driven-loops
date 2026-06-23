@@ -1,6 +1,7 @@
 ---
 title: "Fan-out research with two CLI lineages"
 description: "Validate that a two-CLI-lineage fan-out research config triggers step_fanout_spawn → fanout-run.cjs pool → two isolated lineages sub-packets → step_fanout_merge → canonical research.md."
+version: 1.14.0.3
 ---
 
 # DR-052 -- Fan-out research with two CLI lineages

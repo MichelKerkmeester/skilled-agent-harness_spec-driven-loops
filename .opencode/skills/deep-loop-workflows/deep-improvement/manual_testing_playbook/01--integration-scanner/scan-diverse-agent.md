@@ -3,6 +3,7 @@ title: "IS-003 -- Scan Diverse Agent (Debug)"
 description: "Manual validation scenario for IS-003: Scan Diverse Agent (Debug)."
 feature_id: "IS-003"
 category: "Integration Scanner"
+version: 1.17.0.12
 ---
 
 # IS-003 -- Scan Diverse Agent (Debug)

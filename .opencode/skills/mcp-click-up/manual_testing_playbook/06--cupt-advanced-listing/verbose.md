@@ -1,6 +1,7 @@
 ---
 title: "CU-015 -- Verbose Output — --verbose"
 description: "This scenario validates Verbose Output — --verbose for `CU-015`. Objective: Verify `cupt list --verbose` adds assignee and time columns to the output."
+version: 1.0.0.5
 ---
 
 # CU-015 -- Verbose Output — --verbose

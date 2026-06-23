@@ -1,6 +1,7 @@
 ---
 title: "CC-027 -- Background execution"
 description: "This scenario validates background execution for `CC-027`. It focuses on confirming a Claude Code dispatch can run in the background and the parent shell can collect output without blocking."
+version: 1.1.0.7
 ---
 
 # CC-027 -- Background execution

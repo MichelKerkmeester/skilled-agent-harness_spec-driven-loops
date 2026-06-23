@@ -1,6 +1,7 @@
 ---
 title: "DOC-329 -- Doctor causal graph confidence threshold"
 description: "This scenario validates /doctor causal-graph confidence threshold enforcement for DOC-329. It focuses on linking only candidates with confidence >= 0.7 and logging lower-confidence candidates as skipped."
+version: 3.6.0.10
 ---
 
 # DOC-329 -- Doctor causal graph confidence threshold

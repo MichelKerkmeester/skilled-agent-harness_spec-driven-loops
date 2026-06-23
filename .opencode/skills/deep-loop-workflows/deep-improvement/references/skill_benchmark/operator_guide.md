@@ -8,6 +8,7 @@ trigger_phrases:
   - "opt-in advisor probe"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.8
 ---
 
 # Lane C Skill-Benchmark Operator Guide

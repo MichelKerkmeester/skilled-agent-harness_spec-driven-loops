@@ -3,6 +3,7 @@ title: "RT-023 -- Audit Journal Lifecycle Event Emission"
 description: "Manual validation scenario for RT-023: Audit Journal Lifecycle Event Emission."
 feature_id: "RT-023"
 category: "Runtime Truth"
+version: 1.17.0.19
 ---
 
 # RT-023 -- Audit Journal Lifecycle Event Emission

@@ -1,6 +1,7 @@
 ---
 title: "DRV-031 -- Composite review convergence stop behavior"
 description: "Verify the three-signal composite convergence model with severity-weighted newFindingsRatio, weights 0.30/0.25/0.45, and threshold 0.60."
+version: 1.11.0.15
 ---
 
 # DRV-031 -- Composite review convergence stop behavior

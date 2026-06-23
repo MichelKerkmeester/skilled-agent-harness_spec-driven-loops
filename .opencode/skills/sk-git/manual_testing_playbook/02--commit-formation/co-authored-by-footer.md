@@ -1,6 +1,7 @@
 ---
 title: "GIT-007 -- Co-Authored-By footer"
 description: "This scenario validates Co-Authored-By footer for `GIT-007`. It focuses on verify the canonical Claude Opus co-author footer is preserved exactly when required."
+version: 1.1.0.3
 ---
 
 # GIT-007 -- Co-Authored-By footer

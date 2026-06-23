@@ -7,6 +7,7 @@ trigger_phrases:
   - "tiered fallback chain"
   - "searchWithFallbackTiered"
   - "progressive retrieval widening"
+version: 3.6.0.15
 ---
 
 # Quality-aware 3-tier search fallback

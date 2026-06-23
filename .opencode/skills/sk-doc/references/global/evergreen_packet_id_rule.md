@@ -8,6 +8,7 @@ trigger_phrases:
   - "feature names over packet ids"
 importance_tier: important
 contextType: general
+version: 1.8.0.6
 ---
 
 # Evergreen Packet ID Rule

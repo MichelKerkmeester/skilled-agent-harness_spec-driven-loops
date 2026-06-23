@@ -1,6 +1,7 @@
 ---
 title: "CP-055 -- Synthesis and save boundary **(SANDBOXED)**"
 description: "Validate that deep-review synthesis writes reducer-owned review artifacts and routes continuity through generate-context.js, not retired memory files."
+version: 1.11.0.10
 ---
 
 # CP-055 -- Synthesis and save boundary **(SANDBOXED)**

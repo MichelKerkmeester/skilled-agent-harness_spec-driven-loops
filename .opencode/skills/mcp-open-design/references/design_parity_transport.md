@@ -8,6 +8,7 @@ trigger_phrases:
   - "open design run self healing"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.2
 ---
 
 # Design Parity Transport (Open Design terminal)

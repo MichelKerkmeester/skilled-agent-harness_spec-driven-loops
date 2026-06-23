@@ -2,6 +2,7 @@
 title: "161 -- LLM reformulation (SPECKIT_LLM_REFORMULATION)"
 description: "This scenario validates LLM reformulation (SPECKIT_LLM_REFORMULATION) for `161`. It focuses on deep mode behavior and verifying the reformulation pipeline runs."
 audited_post_018: true
+version: 3.6.0.14
 ---
 
 # 161 -- LLM reformulation (SPECKIT_LLM_REFORMULATION)

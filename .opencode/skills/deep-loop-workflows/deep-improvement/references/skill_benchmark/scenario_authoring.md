@@ -8,6 +8,7 @@ trigger_phrases:
   - "anti-circularity tiers"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.4
 ---
 
 # Lane C Skill-Benchmark Scenario Authoring

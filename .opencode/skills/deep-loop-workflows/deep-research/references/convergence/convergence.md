@@ -9,6 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
+version: 1.14.0.20
 ---
 
 # Convergence Detection Reference

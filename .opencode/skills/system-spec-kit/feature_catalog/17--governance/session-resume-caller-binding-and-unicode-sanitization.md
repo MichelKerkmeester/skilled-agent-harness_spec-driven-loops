@@ -7,6 +7,7 @@ trigger_phrases:
   - "bind resume to caller identity"
   - "unicode sanitization gate 3"
   - "NFKC zero-width sanitization"
+version: 3.6.0.5
 ---
 
 # Session-resume caller binding and Unicode sanitization

@@ -10,6 +10,7 @@ trigger_phrases:
   - "discard failed experiment branch"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.16
 ---
 
 # Git Finish - Detailed Workflow Reference

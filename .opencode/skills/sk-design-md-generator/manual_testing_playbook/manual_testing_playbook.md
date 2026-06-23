@@ -1,6 +1,7 @@
 ---
 title: "sk-design-md-generator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the sk-design-md-generator skill. Covers live extraction, v3 Style Reference fidelity validation, the cardinal verbatim-value rule, Quick-Start fidelity, dark-mode gating, tool setup, and anti-bot escalation."
+version: 1.0.0.9
 ---
 
 # sk-design-md-generator: Manual Testing Playbook

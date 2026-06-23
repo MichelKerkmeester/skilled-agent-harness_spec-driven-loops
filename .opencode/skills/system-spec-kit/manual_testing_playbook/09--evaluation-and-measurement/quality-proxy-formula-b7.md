@@ -1,6 +1,7 @@
 ---
 title: "009 -- Quality proxy formula (B7)"
 description: "This scenario validates Quality proxy formula (B7) for `009`. It focuses on Confirm proxy formula correctness."
+version: 3.6.0.16
 ---
 
 # 009 -- Quality proxy formula (B7)

@@ -1,6 +1,7 @@
 ---
 title: "DRV-061 -- candidateCoverageGate STOP blocker"
 description: "Verify the legal-stop decision tree blocks STOP with named gate candidateCoverageGate when required bug classes remain uncovered."
+version: 1.11.0.9
 ---
 
 # DRV-061 -- candidateCoverageGate STOP blocker

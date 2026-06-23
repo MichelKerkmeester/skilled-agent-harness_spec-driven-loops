@@ -7,6 +7,7 @@ trigger_phrases:
   - "external CLI save payload"
   - "nextSteps field persistence"
   - "agent handback validation"
+version: 3.6.0.23
 ---
 
 # Outsourced agent memory capture

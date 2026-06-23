@@ -9,6 +9,7 @@ trigger_phrases:
   - "embedder_set runbook"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.17
 ---
 
 # Embedder Architecture

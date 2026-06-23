@@ -6,6 +6,7 @@ trigger_phrases:
   - "read_spec_section"
   - "heading-level document access"
   - "markdown AST parsing"
+version: 3.6.0.15
 ---
 
 # AST-level section retrieval tool

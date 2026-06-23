@@ -1,6 +1,7 @@
 ---
 title: "CG-001 -- Loop Type: Context Schema"
 description: "This scenario validates the Loop Type Context Schema for `CG-001`. It focuses on `LoopType` including `'context'`, `VALID_KINDS.context` having 8 entries, `VALID_RELATIONS.context` having 11 entries, and `CONTEXT_WEIGHTS.REUSES=1.5` being the highest weight."
+version: 1.2.0.3
 ---
 
 # CG-001 -- Loop Type: Context Schema

@@ -7,6 +7,7 @@ trigger_phrases:
   - "release daemon for secondary adoption"
   - "SPECKIT_DAEMON_REELECTION"
   - "daemonReelectionEnabled"
+version: 3.6.0.4
 ---
 
 # Daemon ownership re-election

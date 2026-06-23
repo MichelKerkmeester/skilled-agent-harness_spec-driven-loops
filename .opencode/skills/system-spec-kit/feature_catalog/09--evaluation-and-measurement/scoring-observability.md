@@ -7,6 +7,7 @@ trigger_phrases:
   - "5% sampled score delta logging"
   - "scoring_observations table"
   - "before after score snapshot"
+version: 3.6.0.15
 ---
 
 # Scoring observability

@@ -9,6 +9,7 @@ trigger_phrases:
   - "minimax m3 dispatch gotchas"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.11
 ---
 
 # MiniMax-M3 Prompt-Craft Profile

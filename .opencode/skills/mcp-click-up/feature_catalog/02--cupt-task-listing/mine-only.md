@@ -7,6 +7,7 @@ trigger_phrases:
   - "self-assigned tasks"
   - "restrict to my tasks"
   - "override scope to self"
+version: 1.0.0.3
 ---
 
 # Mine Only

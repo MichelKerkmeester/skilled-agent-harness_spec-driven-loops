@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor mcp server boundary"
 importance_tier: "normal"
 contextType: "implementation"
+version: 0.8.0.3
 ---
 
 # Standalone MCP Shape

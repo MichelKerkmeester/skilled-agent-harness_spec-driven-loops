@@ -1,6 +1,6 @@
 ---
 name: deep-loop-workflows
-version: 1.0.0
+version: 1.0.0.0
 description: "Unified deep-loop workflow skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared deep-loop-runtime backend. Holds no per-mode logic — it dispatches by workflowMode through mode-registry.json. Use for codebase-context gathering, autonomous research, iterative code review, multi-seat AI Council planning, and evaluator-first agent/model/skill/non-dev-system improvement."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---

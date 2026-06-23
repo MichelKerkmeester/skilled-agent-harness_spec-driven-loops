@@ -1,6 +1,7 @@
 ---
 title: "CO-032 -- Deep-research agent iteration loop"
 description: "This scenario validates the deep-research agent for `CO-032`. It focuses on confirming `--agent deep-research` executes a single research iteration with externalized JSONL state per the LEAF agent contract."
+version: 1.3.0.12
 ---
 
 # CO-032 -- Deep-research agent iteration loop

@@ -9,6 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.1
 ---
 
 # Skill Anatomy and Structure System

@@ -34,14 +34,14 @@ from typing import Dict, List, Optional, Tuple
 # 1. VALIDATION CONSTANTS (aligned with skill_creation.md)
 # ───────────────────────────────────────────────────────────────
 
-# Required frontmatter fields
-REQUIRED_FRONTMATTER_FIELDS = ['name', 'description', 'allowed-tools']
+# Required frontmatter fields (version is required for skills per the versioning standard)
+REQUIRED_FRONTMATTER_FIELDS = ['name', 'description', 'allowed-tools', 'version']
 
 # Optional frontmatter fields (validated if present, but not required)
-OPTIONAL_FRONTMATTER_FIELDS = ['version']
+OPTIONAL_FRONTMATTER_FIELDS = []
 
 # Recommended frontmatter fields (warning if missing)
-RECOMMENDED_FRONTMATTER_FIELDS = ['version']
+RECOMMENDED_FRONTMATTER_FIELDS = []
 
 # Required SKILL.md sections (from skill_md_template.md)
 # Note: HOW IT WORKS and HOW TO USE are treated as equivalent
@@ -155,13 +155,18 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
             if ',' in tools_value:
                 return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
 
-    for field in RECOMMENDED_FRONTMATTER_FIELDS:
-        if f'{field}:' not in frontmatter:
-            warnings.append(f"Missing recommended field '{field}' in frontmatter")
-        else:
-            field_match = re.search(rf'{field}:\s*(.+)', frontmatter)
-            if field_match:
-                parsed[field] = field_match.group(1).strip()
+    # version is required (enforced by REQUIRED_FRONTMATTER_FIELDS above) and must be 4-part X.Y.Z.W.
+    version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
+    if version_match:
+        parsed['version'] = version_match.group(1).strip()
+
+    if 'version' in parsed:
+        version_value = parsed['version'].strip().strip('"\'')
+        if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
+            return False, (
+                f"version '{version_value}' must be 4-part X.Y.Z.W "
+                f"(see references/frontmatter_versioning.md)"
+            ), warnings, parsed
 
     return True, "Frontmatter valid", warnings, parsed
 

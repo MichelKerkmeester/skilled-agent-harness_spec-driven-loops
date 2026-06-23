@@ -7,6 +7,7 @@ trigger_phrases:
   - "save deduplication decision"
   - "semantic similarity save classification"
   - "supersede reinforce create linked"
+version: 3.6.0.17
 ---
 
 # Prediction-error save arbitration

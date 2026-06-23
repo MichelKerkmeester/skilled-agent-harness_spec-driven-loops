@@ -1,6 +1,7 @@
 ---
 title: "EX-014 -- Workspace scanning and indexing (memory_index_scan)"
 description: "This scenario validates Workspace scanning and indexing (memory_index_scan) for `EX-014`. It focuses on Incremental sync and atomic lease validation."
+version: 3.6.0.18
 ---
 
 # EX-014 -- Workspace scanning and indexing (memory_index_scan)

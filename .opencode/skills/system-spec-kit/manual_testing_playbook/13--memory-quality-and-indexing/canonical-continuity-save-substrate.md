@@ -2,6 +2,7 @@
 title: "202 -- Canonical continuity save substrate"
 description: "This scenario validates canonical continuity save substrate for `202`. It focuses on 8-category routing, anchor merge, atomic save promotion, and the thin `_memory.continuity` block."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 202 -- Canonical continuity save substrate

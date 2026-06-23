@@ -1,6 +1,7 @@
 ---
 title: "DR-009 -- Strategy “Next Focus” and exhausted-approach discipline"
 description: "Verify that the loop honors the strategy file’s Next Focus and avoids approaches marked exhausted or blocked."
+version: 1.14.0.15
 ---
 
 # DR-009 -- Strategy “Next Focus” and exhausted-approach discipline

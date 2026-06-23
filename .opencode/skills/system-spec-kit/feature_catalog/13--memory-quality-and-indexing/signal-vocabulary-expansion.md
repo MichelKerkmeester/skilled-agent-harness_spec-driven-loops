@@ -7,6 +7,7 @@ trigger_phrases:
   - "correction and preference signals"
   - "intent detection"
   - "expand signal vocabulary"
+version: 3.6.0.15
 ---
 
 # Signal vocabulary expansion

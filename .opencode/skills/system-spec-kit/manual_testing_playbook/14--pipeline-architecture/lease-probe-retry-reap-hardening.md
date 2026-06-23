@@ -1,6 +1,7 @@
 ---
 title: "423 -- Lease Probe Retry Reap Hardening"
 description: "Manual check for the automated-test-backed lease-probe path that retries the lease holder several times before declaring a dead socket, so a single slow probe no longer triggers a spurious daemon reap."
+version: 3.6.0.2
 ---
 
 # 423 -- Lease Probe Retry Reap Hardening

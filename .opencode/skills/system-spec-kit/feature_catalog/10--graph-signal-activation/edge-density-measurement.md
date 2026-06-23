@@ -7,6 +7,7 @@ trigger_phrases:
   - "total_edges / total_memories"
   - "graph density runtime guard"
   - "entity-linking density threshold"
+version: 3.6.0.13
 ---
 
 # Edge density measurement

@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory database path"
   - "SPEC_KIT_DB_DIR"
   - "index scan batch settings"
+version: 3.6.0.16
 ---
 
 # 4. Memory and Storage

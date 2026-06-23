@@ -1,6 +1,7 @@
 ---
 title: "CO-013 -- General agent default route"
 description: "This scenario validates the general agent default route for `CO-013`. It focuses on confirming `--agent general` is the documented default and produces the expected implementation-style behavior."
+version: 1.3.0.11
 ---
 
 # CO-013 -- General agent default route

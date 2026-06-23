@@ -6,6 +6,7 @@ trigger_phrases:
   - "design-context snapshot intake"
   - "reuse before generate design system"
   - "design-system adherence check"
+version: 1.5.0.3
 ---
 
 # Ground and reuse before generate

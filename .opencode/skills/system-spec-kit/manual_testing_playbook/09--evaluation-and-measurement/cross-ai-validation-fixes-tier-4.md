@@ -1,6 +1,7 @@
 ---
 title: "088 -- Cross-AI validation fixes (Tier 4)"
 description: "This scenario validates Cross-AI validation fixes (Tier 4) for `088`. It focuses on Confirm tier-4 fix pack behavior."
+version: 3.6.0.16
 ---
 
 # 088 -- Cross-AI validation fixes (Tier 4)

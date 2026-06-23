@@ -7,6 +7,7 @@ trigger_phrases:
   - "session quality scoring"
   - "recency recovery graph freshness continuity"
   - "context-metrics"
+version: 3.6.0.7
 ---
 
 # Context preservation metrics

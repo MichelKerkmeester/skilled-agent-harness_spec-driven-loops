@@ -1,6 +1,7 @@
 ---
 title: "RUN-001 -- Gated Verb Requires Confirmation"
 description: "This scenario validates the gating of mutating verbs for `RUN-001`. It focuses on confirming a mutating verb runs only after approval, with a negative control proving an unconfirmed call is refused."
+version: 1.4.0.3
 ---
 
 # RUN-001 -- Gated Verb Requires Confirmation

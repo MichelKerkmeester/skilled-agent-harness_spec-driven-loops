@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph apply rescan prune repair"
 importance_tier: "important"
 contextType: "verification"
+version: 1.2.0.3
 ---
 
 # Scenario 023 — `code_graph_apply` sub-operations

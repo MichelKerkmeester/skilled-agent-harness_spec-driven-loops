@@ -1,6 +1,7 @@
 ---
 title: "CX-024 -- --search live browsing in exec"
 description: "This scenario validates --search in non-interactive exec mode for `CX-024`. It focuses on confirming the response indicates web access was used."
+version: 1.4.0.8
 ---
 
 # CX-024 -- --search live browsing in exec

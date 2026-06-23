@@ -2,6 +2,7 @@
 title: "053 -- Validation signals as retrieval metadata (S3)"
 description: "This scenario validates Validation signals as retrieval metadata (S3) for `053`. It focuses on Confirm bounded multiplier."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 053 -- Validation signals as retrieval metadata (S3)

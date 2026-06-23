@@ -7,6 +7,7 @@ trigger_phrases:
   - "compaction budget distribution"
   - "overflow redistribution"
   - "4000-token budget allocation"
+version: 3.6.0.11
 ---
 
 # Token budget allocator

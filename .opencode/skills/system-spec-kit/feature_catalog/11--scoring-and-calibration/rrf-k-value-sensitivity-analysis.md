@@ -7,6 +7,7 @@ trigger_phrases:
   - "MRR@5 Kendall tau K grid search"
   - "RRF K empirical grounding"
   - "K value rank fusion tuning"
+version: 3.6.0.14
 ---
 
 # RRF K-value sensitivity analysis

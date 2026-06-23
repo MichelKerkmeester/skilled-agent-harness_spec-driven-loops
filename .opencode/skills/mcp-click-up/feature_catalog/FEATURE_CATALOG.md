@@ -1,6 +1,7 @@
 ---
 title: "mcp-click-up: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill — cupt CLI (v0.7.1+) and Official ClickUp MCP (46 tools)."
+version: 1.0.0.3
 ---
 
 # mcp-click-up: Feature Catalog

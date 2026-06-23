@@ -8,6 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
+version: 1.1.0.20
 ---
 
 # cli-claude-code

@@ -2,6 +2,7 @@
 title: "287 -- Query-intent classifier"
 description: "Validates the heuristic query-intent classifier that routes queries to structural (code graph), semantic (Code Graph), or hybrid backends and emits IntentTelemetry."
 audited_post_018: true
+version: 3.6.0.6
 ---
 
 # 287 -- Query-intent classifier

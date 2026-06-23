@@ -8,6 +8,7 @@ trigger_phrases:
   - "color role naming"
   - "cluster tokens by stability"
 importance_tier: "normal"
+version: 1.0.0.6
 ---
 
 # Cluster and classify (cluster.ts / types.ts)

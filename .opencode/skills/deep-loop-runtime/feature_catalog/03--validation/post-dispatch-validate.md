@@ -7,6 +7,7 @@ trigger_phrases:
   - "validate after dispatch"
   - "verification confidence scoring"
   - "degraded verification events"
+version: 1.4.0.5
 ---
 
 # Post-dispatch validate

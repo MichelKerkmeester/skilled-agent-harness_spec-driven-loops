@@ -7,6 +7,7 @@ trigger_phrases:
   - "split multi-faceted query"
   - "facet-aware sub-query retrieval"
   - "conjunction-based query splitting"
+version: 3.6.0.8
 ---
 
 # Query decomposition

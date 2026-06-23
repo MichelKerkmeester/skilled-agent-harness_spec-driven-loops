@@ -7,6 +7,7 @@ trigger_phrases:
   - "add checklist to task"
   - "task checklist creation"
   - "named checklist in task"
+version: 1.0.0.3
 ---
 
 # clickup_create_checklist

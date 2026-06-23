@@ -7,6 +7,7 @@ trigger_phrases:
   - "hybrid retrieval pipeline"
   - "multi-channel search"
   - "natural language search"
+version: 3.6.0.27
 ---
 
 # Semantic and lexical search (memory_search)

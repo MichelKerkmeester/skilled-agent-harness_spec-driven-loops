@@ -7,6 +7,7 @@ trigger_phrases:
   - "constitutional-tier memories"
   - "retrieval_directive metadata"
   - "always-surface memory rules"
+version: 3.6.0.13
 ---
 
 # Constitutional memory as expert knowledge injection

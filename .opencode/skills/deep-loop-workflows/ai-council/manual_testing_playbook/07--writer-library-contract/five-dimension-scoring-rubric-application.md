@@ -1,6 +1,7 @@
 ---
 title: "DAC-015 -- Five-dimension scoring rubric application"
 description: "This scenario validates the five-dimension scoring rubric for `DAC-015`. It focuses on rubric weights and comparison-table application."
+version: 2.3.0.8
 ---
 
 # DAC-015 -- Five-dimension scoring rubric application

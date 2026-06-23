@@ -8,6 +8,7 @@ trigger_phrases:
   - "language sub detection"
 importance_tier: important
 contextType: general
+version: 3.5.0.8
 ---
 
 # Router Reference - Code Surface Detection

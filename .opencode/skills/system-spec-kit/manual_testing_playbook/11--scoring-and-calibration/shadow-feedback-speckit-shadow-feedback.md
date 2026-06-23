@@ -2,6 +2,7 @@
 title: "160 -- Shadow feedback (SPECKIT_SHADOW_FEEDBACK)"
 description: "This scenario validates shadow feedback (SPECKIT_SHADOW_FEEDBACK) for `160`. It separates library scoring evidence from clean-schema scheduled replay, where an empty replay pool is expected."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # 160 -- Shadow feedback (SPECKIT_SHADOW_FEEDBACK)

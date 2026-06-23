@@ -8,6 +8,7 @@ trigger_phrases:
   - "intersectionobserver autoplay"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.4
 ---
 
 # Swiper.js Integration Patterns

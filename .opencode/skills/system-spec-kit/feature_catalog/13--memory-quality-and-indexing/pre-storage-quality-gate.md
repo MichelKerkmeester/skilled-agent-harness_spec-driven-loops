@@ -7,6 +7,7 @@ trigger_phrases:
   - "semantic deduplication before index"
   - "content quality check"
   - "gate before indexing"
+version: 3.6.0.18
 ---
 
 # Pre-storage quality gate

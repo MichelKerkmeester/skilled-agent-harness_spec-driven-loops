@@ -1,6 +1,7 @@
 ---
 title: "DAC-032 -- Mid-run interruption recovery: graph vs no-graph baseline"
 description: "Real-world scenario where a council process is interrupted mid-round. Graph status returns counts, readiness, and a namespace-scoped recovery payload; baseline requires manual JSONL parsing. Anchors to `runtime status CLI`."
+version: 2.3.0.9
 ---
 
 # DAC-032 -- Mid-run interruption recovery: graph vs no-graph baseline

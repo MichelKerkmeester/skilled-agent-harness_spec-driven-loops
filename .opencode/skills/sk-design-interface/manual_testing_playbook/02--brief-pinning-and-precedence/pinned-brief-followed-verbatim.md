@@ -1,6 +1,7 @@
 ---
 title: "ID-002 -- Pinned brief is followed verbatim"
 description: "This scenario validates Pinned brief is followed verbatim for `ID-002`. It focuses on confirming the skill follows a brief that pins the direction and never overrides it, even when the brief asks for an AI-default look."
+version: 1.5.0.3
 ---
 
 # ID-002 -- Pinned brief is followed verbatim

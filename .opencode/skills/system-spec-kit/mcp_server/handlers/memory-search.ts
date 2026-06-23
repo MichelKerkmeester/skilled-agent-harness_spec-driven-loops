@@ -11,6 +11,7 @@ import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 // TierClassifier, crossEncoder imports removed — only used by legacy V1 pipeline.
 import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
+import { isRetrievalProfileWeightsEnabled } from '../lib/search/retrieval-profile.js';
 import { searchCommunities } from '../lib/search/community-search.js';
 // 4-stage pipeline architecture
 import { executePipeline } from '../lib/search/pipeline/index.js';
@@ -1385,6 +1386,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       extraData.evidenceGapWarning = pipelineResult.annotations.evidenceGapWarning;
     }
 
+    // Bridge the Stage 4 gap signal into the verdict-cap input. The warning above
+    // drives the banner. Without this the cap that demotes a good verdict on a real
+    // gap never receives the signal, so the banner and the verdict can disagree.
+    extraData.evidenceGap = pipelineResult.metadata.stage4.evidenceGapDetected;
+
     if (detectedIntent) {
       extraData.intent = {
         type: detectedIntent,
@@ -1393,6 +1399,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         weightsApplied: pipelineResult.metadata.stage2.intentWeightsApplied,
       };
     }
+
+    // Report the retrieval-class profile-weight flag on its own field. A reader must
+    // not read intent.weightsApplied as profile status, that field tracks the unrelated
+    // Stage 2 intent weighting which is always off for hybrid search.
+    extraData.retrievalProfileWeightsEnabled = isRetrievalProfileWeightsEnabled();
 
     if (artifactRouting) {
       extraData.artifactRouting = artifactRouting;

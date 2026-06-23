@@ -8,6 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
+version: 1.4.0.2
 ---
 
 # Deep Loop Runtime Script Interface Contract

@@ -6,6 +6,7 @@ trigger_phrases:
   - "generation counter"
   - "snapshot publication"
   - "reindex commit"
+version: 0.8.0.14
 ---
 
 # AU-004 Generation-Tagged Snapshot Publication

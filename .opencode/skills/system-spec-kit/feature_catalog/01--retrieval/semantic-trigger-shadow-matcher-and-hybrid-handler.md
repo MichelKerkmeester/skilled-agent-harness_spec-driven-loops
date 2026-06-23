@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_SEMANTIC_TRIGGERS"
   - "SPECKIT_SEMANTIC_TRIGGERS_MODE"
   - "semantic union fallback"
+version: 3.6.0.1
 ---
 
 # Semantic trigger shadow matcher and hybrid handler

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
+version: 1.0.0.30
 ---
 
 # mcp-code-mode

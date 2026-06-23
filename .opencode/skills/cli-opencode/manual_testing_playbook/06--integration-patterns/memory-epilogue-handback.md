@@ -1,6 +1,7 @@
 ---
 title: "CO-022 -- Memory Epilogue handback to generate-context.js"
 description: "This scenario validates the Memory Epilogue handback for `CO-022`. It focuses on confirming the dispatched OpenCode session emits a properly-delimited MEMORY_HANDBACK_START / END block with a structured JSON payload that the calling AI can extract and feed to generate-context.js."
+version: 1.3.0.11
 ---
 
 # CO-022 -- Memory Epilogue handback to generate-context.js

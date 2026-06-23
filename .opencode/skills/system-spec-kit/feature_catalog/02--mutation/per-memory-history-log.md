@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_history"
   - "mutation audit trail"
   - "add update delete history events"
+version: 3.6.0.13
 ---
 
 # Per-memory history log

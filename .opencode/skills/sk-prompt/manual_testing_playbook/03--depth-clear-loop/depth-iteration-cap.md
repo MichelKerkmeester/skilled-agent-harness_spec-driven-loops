@@ -1,6 +1,7 @@
 ---
 title: "SP-011 -- DEPTH iteration cap at 3 CLEAR loops"
 description: "This scenario validates CLEAR re-score loop capping for `SP-011`. It focuses on delivering the best version with a quality note after 3 failed improvement cycles."
+version: 2.3.0.5
 ---
 
 # SP-011 -- DEPTH iteration cap at 3 CLEAR loops

@@ -2,6 +2,7 @@
 title: "122 -- Governed ingest and scope isolation (Phase 5)"
 description: "This scenario validates Governed ingest and scope isolation (Phase 5) for `122`. It focuses on Confirm governed saves require provenance and scope markers and scoped retrieval blocks cross-actor leakage."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # 122 -- Governed ingest and scope isolation (Phase 5)

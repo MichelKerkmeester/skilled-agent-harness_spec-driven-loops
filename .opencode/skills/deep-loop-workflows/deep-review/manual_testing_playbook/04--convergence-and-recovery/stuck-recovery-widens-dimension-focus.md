@@ -1,6 +1,7 @@
 ---
 title: "DRV-019 -- Stuck recovery widens dimension focus"
 description: "Verify that stuck recovery switches the review loop to the least-covered dimension when progress stalls."
+version: 1.11.0.14
 ---
 
 # DRV-019 -- Stuck recovery widens dimension focus

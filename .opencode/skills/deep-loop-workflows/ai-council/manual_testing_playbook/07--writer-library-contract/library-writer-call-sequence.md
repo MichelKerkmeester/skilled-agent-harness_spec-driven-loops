@@ -1,6 +1,7 @@
 ---
 title: "DAC-013 -- Library writer call sequence"
 description: "This scenario validates the canonical writer sequence for `DAC-013`. It focuses on named writer exports and artifact_written audit events."
+version: 2.3.0.9
 ---
 
 # DAC-013 -- Library writer call sequence

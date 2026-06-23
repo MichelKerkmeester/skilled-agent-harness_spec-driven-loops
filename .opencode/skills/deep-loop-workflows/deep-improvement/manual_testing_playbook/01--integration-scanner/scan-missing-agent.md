@@ -3,6 +3,7 @@ title: "IS-002 -- Scan Missing Agent (Nonexistent)"
 description: "Manual validation scenario for IS-002: Scan Missing Agent (Nonexistent)."
 feature_id: "IS-002"
 category: "Integration Scanner"
+version: 1.17.0.12
 ---
 
 # IS-002 -- Scan Missing Agent (Nonexistent)

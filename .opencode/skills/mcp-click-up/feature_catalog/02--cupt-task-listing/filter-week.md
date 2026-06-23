@@ -7,6 +7,7 @@ trigger_phrases:
   - "tasks due this week"
   - "weekly task filter"
   - "sprint planning tasks"
+version: 1.0.0.3
 ---
 
 # Filter Week

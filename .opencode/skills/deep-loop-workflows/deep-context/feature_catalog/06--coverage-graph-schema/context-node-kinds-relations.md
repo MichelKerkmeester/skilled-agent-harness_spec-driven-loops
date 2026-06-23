@@ -8,6 +8,7 @@ trigger_phrases:
   - "context graph relations"
   - "COVERED_BY edge"
   - "CONFIRMS edge context"
+version: 1.2.0.4
 ---
 
 # Context Node Kinds and Relations

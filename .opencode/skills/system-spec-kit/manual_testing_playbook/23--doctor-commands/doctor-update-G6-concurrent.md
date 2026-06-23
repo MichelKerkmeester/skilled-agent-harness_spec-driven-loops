@@ -1,6 +1,7 @@
 ---
 title: "DOC-339 -- Doctor update G6 concurrent refusal"
 description: "Manual scenario validating /doctor:update concurrent dispatch protection through .doctor-update.flock refusal."
+version: 3.6.0.5
 ---
 
 # DOC-339 -- Doctor update G6 concurrent refusal

@@ -7,6 +7,7 @@ trigger_phrases:
   - "dispatch candidate scoring"
   - "reducer refresh"
   - "evidence capture"
+version: 1.17.0.2
 ---
 
 # Scoring dispatch

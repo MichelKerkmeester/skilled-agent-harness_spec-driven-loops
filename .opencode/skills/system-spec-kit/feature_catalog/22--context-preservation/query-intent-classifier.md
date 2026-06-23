@@ -7,6 +7,7 @@ trigger_phrases:
   - "retrieval backend routing"
   - "structural semantic hybrid routing"
   - "paraphraseGroup"
+version: 3.6.0.12
 ---
 
 # Query-intent classifier

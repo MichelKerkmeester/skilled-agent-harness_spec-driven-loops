@@ -7,6 +7,7 @@ trigger_phrases:
   - "false mutation hook suppression"
   - "duplicate save feedback"
   - "cache-clearing hint suppression"
+version: 3.6.0.17
 ---
 
 # Duplicate-save no-op feedback hardening

@@ -1,6 +1,7 @@
 ---
 title: "CO-019 -- Resume specific session by id (-s / --session)"
 description: "This scenario validates the `-s <id>` / `--session <id>` flag for `CO-019`. It focuses on confirming a specific session can be resumed by id and the resumed turn has access to that session's prior context."
+version: 1.3.0.11
 ---
 
 # CO-019 -- Resume specific session by id (-s / --session)

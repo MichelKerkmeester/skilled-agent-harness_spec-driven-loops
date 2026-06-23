@@ -7,6 +7,7 @@ trigger_phrases:
   - "read coverage graph views"
   - "session-scoped graph query"
   - "gaps claims contradictions provenance"
+version: 1.4.0.4
 ---
 
 # query.cjs

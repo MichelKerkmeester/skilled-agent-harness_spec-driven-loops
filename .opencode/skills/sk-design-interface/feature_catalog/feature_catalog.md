@@ -6,6 +6,7 @@ trigger_phrases:
   - "interface design feature catalog"
   - "feature catalog"
 last_updated: "2026-06-14"
+version: 1.5.0.8
 ---
 
 # sk-design-interface: Feature Catalog

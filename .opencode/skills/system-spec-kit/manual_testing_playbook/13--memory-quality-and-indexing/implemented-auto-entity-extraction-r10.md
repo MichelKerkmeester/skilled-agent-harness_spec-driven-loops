@@ -2,6 +2,7 @@
 title: "092 -- Implemented: auto entity extraction (R10)"
 description: "This scenario validates Implemented: auto entity extraction (R10) for `092`. It focuses on Confirm deferred->implemented status."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # 092 -- Implemented: auto entity extraction (R10)

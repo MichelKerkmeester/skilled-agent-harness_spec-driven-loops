@@ -1,6 +1,7 @@
 ---
 title: "MCP-H007 -- Manage Comments via MCP"
 description: "This scenario validates Manage Comments via MCP for `MCP-H007`. Objective: Verify `clickup_manage_comments` creates and lists comments."
+version: 1.0.0.5
 ---
 
 # MCP-H007 -- Manage Comments via MCP

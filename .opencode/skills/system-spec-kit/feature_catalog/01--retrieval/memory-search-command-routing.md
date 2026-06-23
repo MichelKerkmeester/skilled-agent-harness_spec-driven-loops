@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory search command"
   - "first-token routing"
   - "memory search subcommand dispatch"
+version: 3.6.0.4
 ---
 
 # /memory:search command routing

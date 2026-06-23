@@ -6,6 +6,7 @@ trigger_phrases:
   - "opencode plugin bridge"
   - "opencode plugin"
   - "opencode"
+version: 0.8.0.17
 ---
 
 # CL-005 OpenCode Plugin Bridge

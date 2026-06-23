@@ -2,6 +2,7 @@
 title: "059 -- Memory summary search channel (R8)"
 description: "This scenario validates Memory summary search channel (R8) for `059`. It focuses on Confirm scale-gated summary channel."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 059 -- Memory summary search channel (R8)

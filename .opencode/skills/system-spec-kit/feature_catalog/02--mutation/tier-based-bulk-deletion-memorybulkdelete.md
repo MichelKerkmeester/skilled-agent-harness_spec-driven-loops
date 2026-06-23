@@ -7,6 +7,7 @@ trigger_phrases:
   - "bulk delete memories"
   - "importance tier cleanup"
   - "constitutional protection bulk delete"
+version: 3.6.0.23
 ---
 
 # Tier-based bulk deletion (memory_bulk_delete)

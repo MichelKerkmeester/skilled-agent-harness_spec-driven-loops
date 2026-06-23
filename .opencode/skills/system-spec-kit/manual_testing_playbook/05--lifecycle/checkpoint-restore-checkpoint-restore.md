@@ -1,6 +1,7 @@
 ---
 title: "EX-017 -- Checkpoint restore (checkpoint_restore)"
 description: "This scenario validates Checkpoint restore (checkpoint_restore) for `EX-017`. It focuses on Rollback restore drill."
+version: 3.6.0.16
 ---
 
 # EX-017 -- Checkpoint restore (checkpoint_restore)

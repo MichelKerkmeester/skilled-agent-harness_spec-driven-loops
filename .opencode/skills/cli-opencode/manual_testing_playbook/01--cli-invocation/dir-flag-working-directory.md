@@ -1,6 +1,7 @@
 ---
 title: "CO-003 -- Working directory pinning via --dir"
 description: "This scenario validates `--dir` for `CO-003`. It focuses on confirming the dispatched session's working directory matches the pinned path so the session loads the correct repository's plugins, skills, and MCP servers."
+version: 1.3.0.10
 ---
 
 # CO-003 -- Working directory pinning via --dir

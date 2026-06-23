@@ -7,6 +7,7 @@ trigger_phrases:
   - "valid_at invalid_at causal_edges"
   - "invalidateEdge time-bounded traversal"
   - "getValidEdges currently valid"
+version: 3.6.0.5
 ---
 
 # Temporal edge validity

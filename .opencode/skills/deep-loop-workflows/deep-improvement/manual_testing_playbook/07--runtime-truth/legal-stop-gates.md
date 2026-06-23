@@ -3,6 +3,7 @@ title: "RT-025 -- Legal-Stop Gate Blocking"
 description: "Manual validation scenario for RT-025: Legal-Stop Gate Blocking."
 feature_id: "RT-025"
 category: "Runtime Truth"
+version: 1.17.0.18
 ---
 
 # RT-025 -- Legal-Stop Gate Blocking

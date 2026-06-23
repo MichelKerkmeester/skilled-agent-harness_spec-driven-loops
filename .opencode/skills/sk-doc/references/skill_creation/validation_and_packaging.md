@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.1
 ---
 
 # Skill Validation and Packaging
@@ -93,7 +94,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 - ✅ Final review completed (no critical gaps)
 - ✅ All bundled resources included
 - ✅ README or documentation provided
-- ✅ Version number in frontmatter
+- ✅ Version number in frontmatter (4-part `X.Y.Z.W`; see [frontmatter_versioning.md](../frontmatter_versioning.md))
 - ✅ License information (if applicable)
 
 ### Installation

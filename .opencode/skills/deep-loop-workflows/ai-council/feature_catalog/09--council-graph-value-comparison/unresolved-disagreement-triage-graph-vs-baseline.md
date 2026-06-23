@@ -7,6 +7,7 @@ trigger_phrases:
   - "find critical disagreements council"
   - "graph-driven disagreement triage"
   - "unresolved council disagreements after rounds"
+version: 2.3.0.10
 ---
 
 # Unresolved disagreement triage: graph vs baseline

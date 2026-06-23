@@ -1,6 +1,7 @@
 ---
 title: "CG-002 -- Context Node Kinds and Relations"
 description: "This scenario validates Context Node Kinds and Relations for `CG-002`. It focuses on the semantic alignment between `ContextNodeKind` values in the DB schema, their usage in `loop_protocol.md`, and their resolution in `convergence.md`."
+version: 1.2.0.5
 ---
 
 # CG-002 -- Context Node Kinds and Relations

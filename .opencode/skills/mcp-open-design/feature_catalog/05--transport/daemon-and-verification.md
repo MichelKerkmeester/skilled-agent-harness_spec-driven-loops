@@ -8,6 +8,7 @@ trigger_phrases:
   - "open design socket discovery"
   - "od daemon not running"
 importance_tier: "important"
+version: 1.4.0.1
 ---
 
 # Daemon model and tool-surface verification (locate CLI, confirm daemon, verify tools/list)

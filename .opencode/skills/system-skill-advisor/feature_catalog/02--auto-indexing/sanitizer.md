@@ -6,6 +6,7 @@ trigger_phrases:
   - "sanitizeSkillLabel"
   - "write boundary sanitizer"
   - "skill label hygiene"
+version: 0.8.0.13
 ---
 
 # A7 Sanitizer at Every Write Boundary

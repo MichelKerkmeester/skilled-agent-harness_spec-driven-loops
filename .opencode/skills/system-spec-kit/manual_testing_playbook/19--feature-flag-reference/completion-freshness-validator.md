@@ -1,6 +1,7 @@
 ---
 title: "445 -- Completion Freshness Validator"
 description: "Manual check that completion freshness is disabled by default, warns on stale continuity when enabled, and promotes stale state to strict failure only with enforce mode."
+version: 3.6.0.1
 ---
 
 # 445 -- Completion Freshness Validator

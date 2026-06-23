@@ -7,6 +7,7 @@ trigger_phrases:
   - "createClassifyFrame replay sets"
   - "code_graph read query replay"
   - "connection closed code index recovery"
+version: 3.6.0.2
 ---
 
 # MCP code-index reconnecting proxy

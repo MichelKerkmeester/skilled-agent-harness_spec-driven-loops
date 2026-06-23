@@ -7,6 +7,7 @@ trigger_phrases:
   - "fetch task by id"
   - "full task details mcp"
   - "retrieve task custom fields"
+version: 1.0.0.3
 ---
 
 # clickup_get_task

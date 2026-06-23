@@ -7,6 +7,7 @@ trigger_phrases:
   - "install spec kit mcp"
   - "native module rebuild"
   - "check-native-modules"
+version: 3.6.0.13
 ---
 
 # Setup, Native Module Health, and MCP Installation

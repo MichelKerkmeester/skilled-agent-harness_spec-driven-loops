@@ -1,6 +1,7 @@
 ---
 title: "MCP-H008 -- Bulk Create Tasks via MCP"
 description: "This scenario validates Bulk Create Tasks via MCP for `MCP-H008`. Objective: Verify `clickup_create_bulk_tasks` creates 3+ tasks in one API call."
+version: 1.0.0.5
 ---
 
 # MCP-H008 -- Bulk Create Tasks via MCP

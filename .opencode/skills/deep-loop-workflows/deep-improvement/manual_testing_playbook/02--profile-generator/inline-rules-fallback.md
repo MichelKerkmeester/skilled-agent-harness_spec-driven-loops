@@ -3,6 +3,7 @@ title: "PG-007 -- Inline NEVER Rules Fallback (No Dedicated Section)"
 description: "Manual validation scenario for PG-007: Inline NEVER Rules Fallback (No Dedicated Section)."
 feature_id: "PG-007"
 category: "Profile Generator"
+version: 1.17.0.12
 ---
 
 # PG-007 -- Inline NEVER Rules Fallback (No Dedicated Section)

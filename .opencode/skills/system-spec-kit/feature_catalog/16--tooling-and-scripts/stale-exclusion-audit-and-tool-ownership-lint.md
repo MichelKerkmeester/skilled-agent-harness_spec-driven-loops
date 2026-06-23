@@ -6,6 +6,7 @@ trigger_phrases:
   - "hard exclusion audit"
   - "tool ownership lint"
   - "39-tool ownership map"
+version: 3.6.0.2
 ---
 
 # Stale-exclusion audit and tool-ownership lint

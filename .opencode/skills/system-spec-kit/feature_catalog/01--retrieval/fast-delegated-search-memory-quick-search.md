@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_quick_search"
   - "simplified search wrapper"
   - "quick search defaults"
+version: 3.6.0.8
 ---
 
 # Fast delegated search (memory_quick_search)

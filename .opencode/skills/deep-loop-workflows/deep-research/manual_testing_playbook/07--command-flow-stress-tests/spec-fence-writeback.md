@@ -1,6 +1,7 @@
 ---
 title: "CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**"
 description: "Validate that /deep:research uses the lock, spec_check_protocol and generated findings fence rather than freeform spec.md mutation."
+version: 1.14.0.9
 ---
 
 # CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**

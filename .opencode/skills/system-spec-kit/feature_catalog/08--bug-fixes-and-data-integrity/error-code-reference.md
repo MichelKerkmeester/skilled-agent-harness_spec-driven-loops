@@ -7,6 +7,7 @@ trigger_phrases:
   - "-32001 retryable recycle error"
   - "-32002 protocol mismatch"
   - "which mcp error codes are retryable"
+version: 3.6.0.3
 ---
 
 # Error code reference (E429, -32001, -32002)

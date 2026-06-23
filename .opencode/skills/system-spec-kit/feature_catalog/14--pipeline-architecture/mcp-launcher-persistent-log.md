@@ -7,6 +7,7 @@ trigger_phrases:
   - "launcher log file rotation"
   - "SPECKIT_LAUNCHER_LOG"
   - "persistLauncherLogLine"
+version: 3.6.0.2
 ---
 
 # MCP launcher persistent log

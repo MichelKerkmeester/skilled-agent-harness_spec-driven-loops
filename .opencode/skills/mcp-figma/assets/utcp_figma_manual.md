@@ -8,6 +8,7 @@ trigger_phrases:
   - "figma mcp env key"
 importance_tier: normal
 contextType: implementation
+version: 1.0.0.2
 ---
 
 # Figma Code Mode Manual - Framelink figma snippet

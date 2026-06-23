@@ -2,6 +2,7 @@
 title: "410 — Query latency + throughput under realistic load"
 description: "Fire a mixed-workload of 50 queries (short, medium, long; semantic, mixed, exact) and measure p50/p95/p99 latency + queries/sec. Verifies the local-LLM stack performs acceptably for interactive use."
 audited_post_018: true
+version: 3.6.0.2
 ---
 
 # 410 — Query latency + throughput under realistic load

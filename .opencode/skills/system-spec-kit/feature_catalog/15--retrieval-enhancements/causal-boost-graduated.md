@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_CAUSAL_BOOST"
   - "causal edge traversal boost"
   - "2-hop CTE graph walk"
+version: 3.6.0.5
 ---
 
 # Causal graph boost (graduated default-ON)

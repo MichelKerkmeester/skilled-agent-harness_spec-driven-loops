@@ -8,6 +8,7 @@ trigger_phrases:
   - "promotion eligibility"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.13
 ---
 
 # Deep Agent Improvement Promotion Gate Contract

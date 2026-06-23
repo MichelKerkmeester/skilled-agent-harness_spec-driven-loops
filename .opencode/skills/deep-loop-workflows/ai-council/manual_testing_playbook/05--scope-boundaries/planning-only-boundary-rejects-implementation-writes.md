@@ -1,6 +1,7 @@
 ---
 title: "DAC-012 -- Planning-only boundary rejects implementation writes"
 description: "This scenario validates planning-only write boundaries for DAC-012."
+version: 2.3.0.7
 ---
 
 # DAC-012 -- Planning-only boundary rejects implementation writes

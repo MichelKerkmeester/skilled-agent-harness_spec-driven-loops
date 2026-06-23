@@ -7,6 +7,7 @@ trigger_phrases:
   - "list enterprise user groups"
   - "discover user ids bulk"
   - "workspace user group members"
+version: 1.0.0.3
 ---
 
 # clickup_get_user_groups

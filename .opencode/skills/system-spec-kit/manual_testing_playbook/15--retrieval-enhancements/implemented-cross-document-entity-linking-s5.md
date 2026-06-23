@@ -2,6 +2,7 @@
 title: "094 -- Implemented: cross-document entity linking (S5)"
 description: "This scenario validates Implemented: cross-document entity linking (S5) for `094`. It focuses on Confirm deferred->implemented status."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 094 -- Implemented: cross-document entity linking (S5)

@@ -1,6 +1,7 @@
 ---
 title: "150 -- Source-dist alignment validation"
 description: "This scenario validates the check-source-dist-alignment.ts script detects no orphaned dist files. It focuses on verifying every dist/lib/*.js maps to a source .ts file."
+version: 3.6.0.16
 ---
 
 # 150 -- Source-dist alignment validation

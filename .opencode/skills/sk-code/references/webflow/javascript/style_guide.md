@@ -9,6 +9,7 @@ trigger_phrases:
   - "numbered section banner"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Webflow JavaScript Style Guide

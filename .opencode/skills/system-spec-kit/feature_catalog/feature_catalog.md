@@ -8,6 +8,7 @@ trigger_phrases:
   - "what does spec kit memory do"
   - "memory MCP feature catalog"
 last_updated: "2026-06-11"
+version: 3.6.0.99
 ---
 
 # Spec Kit Memory: Feature Catalog

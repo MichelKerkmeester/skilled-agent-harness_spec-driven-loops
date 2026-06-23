@@ -1,6 +1,7 @@
 ---
 title: "SYN-002 -- Context Report Assembly"
 description: "This scenario validates Context Report Assembly for `SYN-002`. It focuses on the seven-section Context Report structure, [HARD]/[soft] integration point markers, the context-report.json companion, and the config status update."
+version: 1.2.0.3
 ---
 
 # SYN-002 -- Context Report Assembly

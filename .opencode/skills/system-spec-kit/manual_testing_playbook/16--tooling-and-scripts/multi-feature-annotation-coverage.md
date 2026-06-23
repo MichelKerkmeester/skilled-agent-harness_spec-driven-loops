@@ -1,6 +1,7 @@
 ---
 title: "137 -- Multi-feature annotation coverage"
 description: "This scenario validates Multi-feature annotation coverage for `137`. It focuses on Verify known multi-feature files have annotation count >= 2."
+version: 3.6.0.15
 ---
 
 # 137 -- Multi-feature annotation coverage

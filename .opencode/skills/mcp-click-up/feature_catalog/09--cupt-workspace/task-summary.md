@@ -7,6 +7,7 @@ trigger_phrases:
   - "workspace overview"
   - "task count by status"
   - "situational awareness dashboard"
+version: 1.0.0.3
 ---
 
 # Task Summary

@@ -8,6 +8,7 @@ trigger_phrases:
   - "structured json handback"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.14
 ---
 
 # Memory Handback Protocol (cli-* family)

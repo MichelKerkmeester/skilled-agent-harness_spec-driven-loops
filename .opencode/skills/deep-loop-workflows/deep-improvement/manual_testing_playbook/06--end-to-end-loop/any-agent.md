@@ -3,6 +3,7 @@ title: "E2E-018 -- Full Pipeline Loop with Non-Standard Agent (Debug)"
 description: "Manual validation scenario for E2E-018: Full Pipeline Loop with Non-Standard Agent (Debug)."
 feature_id: "E2E-018"
 category: "End-to-End Loop"
+version: 1.17.0.16
 ---
 
 # E2E-018 -- Full Pipeline Loop with Non-Standard Agent (Debug)

@@ -2,6 +2,7 @@
 title: "EX-033 -- 6. Debug and Telemetry"
 description: "This scenario validates 6. Debug and Telemetry for `EX-033`. It focuses on Observability toggle check."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # EX-033 -- 6. Debug and Telemetry

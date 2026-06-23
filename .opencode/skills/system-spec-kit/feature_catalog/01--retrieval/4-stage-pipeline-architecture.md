@@ -7,6 +7,7 @@ trigger_phrases:
   - "score immutability"
   - "candidate generation fusion rerank filter"
   - "search pipeline stages"
+version: 3.6.0.28
 ---
 
 # 4-stage pipeline architecture

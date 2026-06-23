@@ -7,6 +7,7 @@ trigger_phrases:
   - "frozen corpus stress cycle"
   - "release-readiness findings rubric"
   - "how do I run a stress test for a spec-kit release"
+version: 3.6.0.5
 ---
 
 # Stress testing

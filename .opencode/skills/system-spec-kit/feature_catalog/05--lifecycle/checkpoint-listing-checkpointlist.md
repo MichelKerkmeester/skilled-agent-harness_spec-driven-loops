@@ -7,6 +7,7 @@ trigger_phrases:
   - "list available snapshots"
   - "browse checkpoint metadata"
   - "see all checkpoints"
+version: 3.6.0.20
 ---
 
 # Checkpoint listing (checkpoint_list)

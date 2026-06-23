@@ -7,6 +7,7 @@ trigger_phrases:
   - "ai-derived slug rule"
   - "generate literal phase names"
   - "SKILL.md rule 20"
+version: 3.6.0.8
 ---
 
 # Spec folder literal naming: AI-derived slugs

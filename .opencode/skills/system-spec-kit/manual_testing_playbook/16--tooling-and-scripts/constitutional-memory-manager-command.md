@@ -1,6 +1,7 @@
 ---
 title: "147 -- Constitutional memory manager command"
 description: "This scenario validates Constitutional memory manager command for `147`. It focuses on Verify `/memory:learn` flows and active docs all reflect the constitutional-only workflow."
+version: 3.6.0.20
 ---
 
 # 147 -- Constitutional memory manager command

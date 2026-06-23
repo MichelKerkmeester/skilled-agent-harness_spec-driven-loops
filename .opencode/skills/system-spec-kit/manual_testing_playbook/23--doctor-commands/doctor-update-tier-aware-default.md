@@ -1,6 +1,7 @@
 ---
 title: "DOC-344 -- Doctor update tier-aware default"
 description: "Manual scenario validating default /doctor:update tier-aware prompt behavior across short, medium, and long-pole steps."
+version: 3.6.0.5
 ---
 
 # DOC-344 -- Doctor update tier-aware default

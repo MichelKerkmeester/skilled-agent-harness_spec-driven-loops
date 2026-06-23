@@ -1,6 +1,7 @@
 ---
 title: "237 -- Spec Lifecycle Automation"
 description: "This scenario validates spec lifecycle automation for `237`. It focuses on confirming the lifecycle toolchain exposes recommendation, upgrade, completeness, completion, and archival entrypoints."
+version: 3.6.0.12
 ---
 
 # 237 -- Spec Lifecycle Automation

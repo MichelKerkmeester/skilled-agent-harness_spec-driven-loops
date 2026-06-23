@@ -6,6 +6,7 @@ trigger_phrases:
   - "entity-based causal edges"
   - "entity linker"
   - "cross-folder memory connections"
+version: 3.6.0.14
 ---
 
 # Cross-document entity linking

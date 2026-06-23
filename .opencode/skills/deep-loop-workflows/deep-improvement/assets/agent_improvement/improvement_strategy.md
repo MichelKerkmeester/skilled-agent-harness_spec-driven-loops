@@ -8,6 +8,7 @@ trigger_phrases:
   - "machine-owned status fields"
 importance_tier: normal
 contextType: planning
+version: 1.17.0.9
 ---
 
 # Recursive Agent Strategy

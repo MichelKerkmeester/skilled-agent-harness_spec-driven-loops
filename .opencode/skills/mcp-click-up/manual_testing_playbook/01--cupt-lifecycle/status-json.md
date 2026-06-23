@@ -1,6 +1,7 @@
 ---
 title: "CU-007 -- Auth Status Check"
 description: "This scenario validates Auth Status Check for `CU-007`. It focuses on Verify `cupt status` exits 0, shows workspace name, user email, and workspace ID."
+version: 1.0.0.5
 ---
 
 # CU-007 -- Auth Status Check

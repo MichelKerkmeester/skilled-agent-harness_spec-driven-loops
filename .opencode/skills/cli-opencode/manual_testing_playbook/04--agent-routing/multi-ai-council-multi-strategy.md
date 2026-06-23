@@ -1,6 +1,7 @@
 ---
 title: "CO-017 -- Ultra-think multi-strategy planning"
 description: "This scenario validates the ai-council planning-only agent for `CO-017`. It focuses on confirming `--agent ai-council` produces multiple distinct strategies scored across a rubric and respects the planning-only constraint (no file modifications)."
+version: 1.3.0.3
 ---
 
 # CO-017 -- Ultra-think multi-strategy planning

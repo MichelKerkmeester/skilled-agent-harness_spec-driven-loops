@@ -7,6 +7,7 @@ trigger_phrases:
   - "getBackgroundEnrichmentStats pending failed"
   - "enrichment backlog health"
   - "post insert enrichment gauges"
+version: 3.6.0.1
 ---
 
 # Background enrichment pending and failed gauges

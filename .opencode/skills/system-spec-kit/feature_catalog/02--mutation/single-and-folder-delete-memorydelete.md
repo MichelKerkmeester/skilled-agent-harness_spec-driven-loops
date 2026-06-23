@@ -7,6 +7,7 @@ trigger_phrases:
   - "delete memory"
   - "bulk folder deletion"
   - "atomic delete transaction"
+version: 3.6.0.22
 ---
 
 # Single and folder delete (memory_delete)

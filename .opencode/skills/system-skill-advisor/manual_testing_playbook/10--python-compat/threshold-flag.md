@@ -6,6 +6,7 @@ trigger_phrases:
   - "threshold flag"
   - "confidence cutoff shim"
   - "dual threshold shim"
+version: 0.8.0.13
 ---
 
 # PC-003 --threshold Confidence Flag

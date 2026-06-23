@@ -7,6 +7,7 @@ trigger_phrases:
   - "route improvement command"
   - "workflow asset routing"
   - "slash command entrypoint"
+version: 1.17.0.9
 ---
 
 # Command dispatch

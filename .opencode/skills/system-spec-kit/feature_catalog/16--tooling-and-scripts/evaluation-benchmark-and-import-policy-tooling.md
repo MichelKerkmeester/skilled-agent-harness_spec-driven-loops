@@ -7,6 +7,7 @@ trigger_phrases:
   - "run eval benchmarks"
   - "architecture boundary enforcement"
   - "check-handler-cycles-ast"
+version: 3.6.0.9
 ---
 
 # Evaluation, benchmark, and import-policy tooling

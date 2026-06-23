@@ -6,6 +6,7 @@ trigger_phrases:
   - "compat index"
   - "stable advisor entrypoint"
   - "plugin bridge entrypoint"
+version: 0.8.0.14
 ---
 
 # Stable compat/index.ts Entrypoint

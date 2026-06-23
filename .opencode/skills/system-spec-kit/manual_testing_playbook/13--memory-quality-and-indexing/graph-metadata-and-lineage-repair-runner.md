@@ -2,6 +2,7 @@
 title: "418 -- Graph-metadata and lineage repair runner"
 description: "This scenario validates the direct-run repair runner that normalizes graph-metadata.json to v1, maps legacy importance_tier values to the accepted enum, compacts V8-rejected archived metadata, and realigns stale memory_lineage logical keys with current memory_index identities."
 audited_post_018: true
+version: 3.6.0.3
 ---
 
 # 418 -- Graph-metadata and lineage repair runner

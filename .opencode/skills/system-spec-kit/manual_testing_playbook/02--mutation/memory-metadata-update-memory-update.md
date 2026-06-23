@@ -3,6 +3,7 @@ title: "EX-007 -- Memory metadata update (memory_update)"
 description: "This scenario validates Memory metadata update (memory_update) for `EX-007`. It focuses on Metadata + re-embed update."
 audited_post_018: true
 phase_018_change: "Metadata update scenario remains live under the post-018 save pipeline"
+version: 3.6.0.15
 ---
 
 # EX-007 -- Memory metadata update (memory_update)

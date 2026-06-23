@@ -11,6 +11,7 @@ trigger_phrases:
   - "install guide"
   - "playbook"
   - "feature catalog"
+version: 1.8.0.36
 ---
 
 # sk-doc

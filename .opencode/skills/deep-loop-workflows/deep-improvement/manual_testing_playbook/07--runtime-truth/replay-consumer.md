@@ -3,6 +3,7 @@ title: "RT-031 -- Replay Consumer Artifact Verification"
 description: "Manual validation scenario for RT-031: Replay Consumer Artifact Verification."
 feature_id: "RT-031"
 category: "Runtime Truth"
+version: 1.17.0.17
 ---
 
 # RT-031 -- Replay Consumer Artifact Verification

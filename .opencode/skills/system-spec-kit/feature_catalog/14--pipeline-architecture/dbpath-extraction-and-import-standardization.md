@@ -7,6 +7,7 @@ trigger_phrases:
   - "shared/config.ts database path"
   - "workspace alias imports"
   - "centralize database path resolution"
+version: 3.6.0.12
 ---
 
 # DB_PATH extraction and import standardization

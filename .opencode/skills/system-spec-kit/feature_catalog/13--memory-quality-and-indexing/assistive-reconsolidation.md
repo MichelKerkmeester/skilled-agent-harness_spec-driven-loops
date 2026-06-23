@@ -7,6 +7,7 @@ trigger_phrases:
   - "three-tier cosine similarity classification"
   - "advisory reconsolidation"
   - "near-duplicate memory detection"
+version: 3.6.0.12
 ---
 
 # Assistive reconsolidation

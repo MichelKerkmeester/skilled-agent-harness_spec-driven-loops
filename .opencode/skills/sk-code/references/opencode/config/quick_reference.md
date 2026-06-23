@@ -8,6 +8,7 @@ trigger_phrases:
   - "json section headers"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.7
 ---
 
 # Config Quick Reference

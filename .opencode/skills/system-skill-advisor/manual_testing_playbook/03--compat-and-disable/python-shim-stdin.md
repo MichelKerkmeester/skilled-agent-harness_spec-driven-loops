@@ -6,6 +6,7 @@ trigger_phrases:
   - "python shim --stdin mode"
   - "python shim"
   - "python"
+version: 0.8.0.13
 ---
 
 # CP-001 Python Shim --stdin Mode

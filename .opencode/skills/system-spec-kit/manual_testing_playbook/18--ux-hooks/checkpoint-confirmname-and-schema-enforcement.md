@@ -1,6 +1,7 @@
 ---
 title: "107 -- Checkpoint confirmName and schema enforcement"
 description: "This scenario validates Checkpoint confirmName and schema enforcement for `107`. It focuses on Confirm delete safety is required across handler and validation layers."
+version: 3.6.0.17
 ---
 
 # 107 -- Checkpoint confirmName and schema enforcement

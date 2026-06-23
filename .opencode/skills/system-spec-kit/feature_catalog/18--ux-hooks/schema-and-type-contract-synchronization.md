@@ -7,6 +7,7 @@ trigger_phrases:
   - "runtime validation alignment"
   - "mutation-safety contract"
   - "typescript schema alignment"
+version: 3.6.0.12
 ---
 
 # Schema and type contract synchronization

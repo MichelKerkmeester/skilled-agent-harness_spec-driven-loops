@@ -7,6 +7,7 @@ trigger_phrases:
   - "dirty-node tracking recomputation"
   - "write_local scheduled graph refresh"
   - "graph recompute after save"
+version: 3.6.0.9
 ---
 
 # Graph lifecycle refresh

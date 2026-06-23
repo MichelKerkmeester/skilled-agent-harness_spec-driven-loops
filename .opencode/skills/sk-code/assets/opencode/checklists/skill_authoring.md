@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill validation path"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Skill Authoring Checklist

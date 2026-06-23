@@ -1,6 +1,7 @@
 ---
 title: "427 -- CLI list-tools Parity Per System"
 description: "Manual check that each 028 daemon-backed CLI enumerates exactly its system's tool surface — spec-memory 37, code-index 8, skill-advisor 9 — generated from the same schema source the MCP registration uses."
+version: 3.6.0.2
 ---
 
 # 427 -- CLI list-tools Parity Per System

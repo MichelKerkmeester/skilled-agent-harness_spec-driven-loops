@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_health routing telemetry"
   - "channel invocation rate monitoring"
   - "intent-driven graph-channel preservation"
+version: 3.6.0.4
 ---
 
 # Routing telemetry and channel invocation rates

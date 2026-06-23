@@ -1,6 +1,7 @@
 ---
 title: "SP-013 -- Mechanism-first prototype"
 description: "This scenario validates mechanism-first prompt structure for `SP-013`. It focuses on WHY-before-WHAT ordering in the Prototype phase."
+version: 2.3.0.5
 ---
 
 # SP-013 -- Mechanism-first prototype

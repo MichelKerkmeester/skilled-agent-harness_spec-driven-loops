@@ -11,6 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
+version: 1.3.0.30
 ---
 
 # OpenCode CLI - Prompt Templates

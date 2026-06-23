@@ -2,6 +2,7 @@
 title: "204 -- Embedding retry orchestrator"
 description: "This scenario validates Embedding retry orchestrator for `204`. It focuses on verifying lexical-only fallback, pending retry state, cache-aware background retries, and successful vector refresh after provider recovery."
 audited_post_018: true
+version: 3.6.0.13
 ---
 
 # 204 -- Embedding retry orchestrator

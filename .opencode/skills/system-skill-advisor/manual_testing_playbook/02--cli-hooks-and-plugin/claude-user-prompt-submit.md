@@ -6,6 +6,7 @@ trigger_phrases:
   - "claude code userpromptsubmit hook"
   - "claude code"
   - "claude"
+version: 0.8.0.11
 ---
 
 # CL-001 Claude Code UserPromptSubmit Hook

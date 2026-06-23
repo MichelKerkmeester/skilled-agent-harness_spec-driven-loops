@@ -1,6 +1,7 @@
 ---
 title: "025 -- code-index CLI Fallback Surface"
 description: "Operator check for the daemon-backed code-index CLI: 8-command list-tools parity, warm-only no-spawn exit 75, usage-error exit 64, dist-freshness exit 69, and suite-backed blocked-read rendering."
+version: 1.2.0.1
 ---
 
 # 025 -- code-index CLI Fallback Surface

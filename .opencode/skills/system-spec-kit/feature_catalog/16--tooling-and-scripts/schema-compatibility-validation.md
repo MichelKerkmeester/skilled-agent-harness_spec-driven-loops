@@ -7,6 +7,7 @@ trigger_phrases:
   - database readiness check
   - required table column check
   - schema migration probe
+version: 3.6.0.10
 ---
 
 # Schema compatibility validation

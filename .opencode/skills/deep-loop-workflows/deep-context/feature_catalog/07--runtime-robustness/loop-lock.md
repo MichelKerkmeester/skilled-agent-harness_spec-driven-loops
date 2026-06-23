@@ -11,6 +11,7 @@ trigger_phrases:
   - "stale lock reclaim"
   - "step_acquire_lock"
   - "step_release_lock"
+version: 1.2.0.4
 ---
 
 # Loop Lock

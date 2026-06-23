@@ -3,6 +3,7 @@ title: "PG-005 -- ALWAYS/NEVER Rules Extraction"
 description: "Manual validation scenario for PG-005: ALWAYS/NEVER Rules Extraction."
 feature_id: "PG-005"
 category: "Profile Generator"
+version: 1.17.0.13
 ---
 
 # PG-005 -- ALWAYS/NEVER Rules Extraction

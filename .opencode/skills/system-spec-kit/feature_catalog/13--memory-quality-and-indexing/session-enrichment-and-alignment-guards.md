@@ -7,6 +7,7 @@ trigger_phrases:
   - "block misaligned saves"
   - "spec-folder git context enrichment"
   - "session alignment guard"
+version: 3.6.0.15
 ---
 
 # Stateless enrichment and alignment guards

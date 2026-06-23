@@ -7,6 +7,7 @@ trigger_phrases:
   - database maintenance commands
   - bulk-delete reindex
   - schema-downgrade
+version: 3.6.0.14
 ---
 
 # Standalone admin CLI

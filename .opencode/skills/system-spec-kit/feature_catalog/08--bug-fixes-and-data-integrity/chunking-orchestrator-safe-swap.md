@@ -7,6 +7,7 @@ trigger_phrases:
   - "re-chunking data loss fix"
   - "atomic chunk replacement"
   - "safe chunk swap transaction"
+version: 3.6.0.12
 ---
 
 # Chunking Orchestrator Safe Swap

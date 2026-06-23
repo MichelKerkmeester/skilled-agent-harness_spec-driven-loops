@@ -7,6 +7,7 @@ trigger_phrases:
   - "create clickup webhook"
   - "event subscription endpoint"
   - "webhook event automation"
+version: 1.0.0.3
 ---
 
 # clickup_manage_webhooks

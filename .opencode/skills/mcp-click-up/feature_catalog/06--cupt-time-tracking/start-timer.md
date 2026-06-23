@@ -7,6 +7,7 @@ trigger_phrases:
   - "begin time tracking"
   - "start running timer"
   - "track time on task"
+version: 1.0.0.3
 ---
 
 # Start Timer

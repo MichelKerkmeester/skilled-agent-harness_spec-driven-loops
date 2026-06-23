@@ -1,6 +1,7 @@
 ---
 title: "440 -- Memory Idempotency Replay and Conflict"
 description: "Manual check that memory idempotency is inert by default, replays identical retries when enabled, fails closed on changed-payload retries, and returns to default behavior when disabled."
+version: 3.6.0.2
 ---
 
 # 440 -- Memory Idempotency Replay and Conflict

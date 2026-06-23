@@ -7,6 +7,7 @@ trigger_phrases:
   - "transport-down fail-open"
   - "opencode plugin cli bridge"
   - "mk-spec-memory plugin"
+version: 3.6.0.1
 ---
 
 # Warm-only CLI hook fallbacks and plugin bridges

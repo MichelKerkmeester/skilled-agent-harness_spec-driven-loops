@@ -1,6 +1,7 @@
 ---
 title: "DLR-019 -- Round-state JSONL"
 description: "Manual validation scenario for Round-state JSONL in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-019 -- Round-state JSONL

@@ -7,6 +7,7 @@ trigger_phrases:
   - "figma code mode"
   - "figma_FIGMA_API_KEY"
   - "pull figma design context"
+version: 1.0.0.2
 ---
 
 # Optional MCP context (Code Mode figma.figma_<tool>)

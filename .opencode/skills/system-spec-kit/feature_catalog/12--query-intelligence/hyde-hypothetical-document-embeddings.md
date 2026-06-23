@@ -7,6 +7,7 @@ trigger_phrases:
   - "pseudo-document retrieval"
   - "low-confidence query fallback"
   - "hypothetical document embedding"
+version: 3.6.0.8
 ---
 
 # HyDE (Hypothetical Document Embeddings)

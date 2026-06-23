@@ -1,6 +1,7 @@
 ---
 title: "PHASE-001 -- Phase detection scoring"
 description: "This scenario validates Phase detection scoring for `PHASE-001`. It focuses on Run `recommend-level.sh --recommend-phases --json` on a high-complexity spec and verify scoring output."
+version: 3.6.0.17
 ---
 
 # PHASE-001 -- Phase detection scoring

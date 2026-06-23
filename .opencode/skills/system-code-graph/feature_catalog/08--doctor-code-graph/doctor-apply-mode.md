@@ -6,6 +6,7 @@ trigger_phrases:
   - "system-code-graph feature catalog"
   - "doctor apply mode"
 importance_tier: "important"
+version: 1.2.0.12
 ---
 
 # Doctor code-graph route policy

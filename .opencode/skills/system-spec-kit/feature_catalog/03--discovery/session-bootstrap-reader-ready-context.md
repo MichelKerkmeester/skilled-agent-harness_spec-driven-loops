@@ -7,6 +7,7 @@ trigger_phrases:
   - "get reader-ready startup context"
   - "graph readiness on startup"
   - "recommended next action for session"
+version: 3.6.0.3
 ---
 
 # Session bootstrap reader-ready context

@@ -6,6 +6,7 @@ trigger_phrases:
   - "source_kind provenance"
   - "automated overwrite guard"
   - "mutation ledger deduped audit"
+version: 3.6.0.1
 ---
 
 # Provenance source_kind write-ingress guard and mutation audit

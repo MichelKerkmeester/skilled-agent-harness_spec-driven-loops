@@ -7,6 +7,7 @@ trigger_phrases:
   - "preflight baseline"
   - "knowledge baseline before task"
   - "record uncertainty before starting"
+version: 3.6.0.20
 ---
 
 # Epistemic baseline capture (task_preflight)

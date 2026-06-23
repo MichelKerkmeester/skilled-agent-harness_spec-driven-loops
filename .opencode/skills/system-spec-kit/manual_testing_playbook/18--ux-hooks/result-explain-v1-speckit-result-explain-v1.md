@@ -1,6 +1,7 @@
 ---
 title: "166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1)"
 description: "This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results."
+version: 3.6.0.14
 ---
 
 # 166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1)

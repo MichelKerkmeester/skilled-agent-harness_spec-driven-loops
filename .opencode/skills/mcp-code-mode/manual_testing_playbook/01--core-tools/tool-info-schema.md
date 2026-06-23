@@ -1,6 +1,7 @@
 ---
 title: "CM-003 -- tool_info schema"
 description: "This scenario validates tool_info schema for `CM-003`. It focuses on confirming that `tool_info` returns parameter schema, description, and required fields for a known tool."
+version: 1.0.0.7
 ---
 
 # CM-003 -- tool_info schema

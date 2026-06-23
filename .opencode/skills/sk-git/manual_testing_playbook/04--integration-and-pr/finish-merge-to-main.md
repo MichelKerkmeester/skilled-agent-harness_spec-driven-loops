@@ -1,6 +1,7 @@
 ---
 title: "GIT-012 -- Finish merge to main"
 description: "This scenario validates Finish merge to main for `GIT-012`. It focuses on verify finished work can be merged locally only after tests pass and base branch is current."
+version: 1.1.0.3
 ---
 
 # GIT-012 -- Finish merge to main

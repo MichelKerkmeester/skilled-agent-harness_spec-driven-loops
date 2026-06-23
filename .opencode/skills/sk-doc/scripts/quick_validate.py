@@ -9,8 +9,8 @@ Quick validation script for skills - enhanced version
 Validates:
 - SKILL.md exists
 - YAML frontmatter present and valid
-- Required fields: name, description
-- Optional fields: allowed-tools, version
+- Required fields: name, description, version (skills only; 4-part X.Y.Z.W -- see references/frontmatter_versioning.md)
+- Optional fields: allowed-tools
 - Name format: hyphen-case
 - Description: single line (no YAML block format)
 - Description length within budget (packet 086): soft warn at 130/110, hard fail at 1536
@@ -116,8 +116,8 @@ def validate_skill(
     skill_path = Path(skill_path)
     warnings: List[str] = []
 
+    kind = _detect_target_kind(skill_path)
     if description_soft_target is None:
-        kind = _detect_target_kind(skill_path)
         description_soft_target = (
             DESCRIPTION_SOFT_TARGET_COMMAND if kind == 'command' else DESCRIPTION_SOFT_TARGET_SKILL
         )
@@ -190,6 +190,22 @@ def validate_skill(
         if tools_value and not tools_value.startswith('['):
             if ',' in tools_value:
                 return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings
+
+    # version is REQUIRED for skills (4-part X.Y.Z.W); commands keep it optional.
+    # See references/frontmatter_versioning.md.
+    version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
+    if version_match:
+        version_value = strip_matching_quotes(version_match.group(1))
+        if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
+            return False, (
+                f"version '{version_value}' must be 4-part X.Y.Z.W "
+                f"(see references/frontmatter_versioning.md)"
+            ), warnings
+    elif kind == 'skill':
+        return False, (
+            "Missing required 'version' in frontmatter "
+            "(4-part X.Y.Z.W; see references/frontmatter_versioning.md)"
+        ), warnings
 
     return True, "Skill is valid!", warnings
 

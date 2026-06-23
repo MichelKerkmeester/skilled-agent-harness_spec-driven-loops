@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli exit taxonomy"
   - "warm-only cli probe"
   - "dist freshness guard"
+version: 3.6.0.3
 ---
 
 # Daemon-backed spec-memory CLI surface

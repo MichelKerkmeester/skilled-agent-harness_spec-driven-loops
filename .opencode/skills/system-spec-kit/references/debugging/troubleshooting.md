@@ -9,6 +9,7 @@ trigger_phrases:
   - "hybrid search fallback"
 importance_tier: normal
 contextType: general
+version: 3.6.0.39
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide

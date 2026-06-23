@@ -1,6 +1,7 @@
 ---
 title: "M-007 -- Session Capturing Pipeline Quality"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-007`."
+version: 3.6.0.26
 ---
 
 # M-007 -- Session Capturing Pipeline Quality

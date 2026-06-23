@@ -6,6 +6,7 @@ trigger_phrases:
   - "real world default initiative or ask"
   - "shipped ui reference read live"
   - "name the real world default then deviate"
+version: 1.5.0.1
 ---
 
 # Design-references grounding (Mobbin and Refero, initiative or ask)

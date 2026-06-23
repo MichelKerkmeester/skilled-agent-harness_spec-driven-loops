@@ -1,6 +1,7 @@
 ---
 title: "SP-025 -- @prompt-improver input payload"
 description: "This scenario validates the `@prompt-improver` input contract for `SP-025`. It focuses on required `raw_task` plus four optional fields."
+version: 2.3.0.7
 ---
 
 # SP-025 -- @prompt-improver input payload

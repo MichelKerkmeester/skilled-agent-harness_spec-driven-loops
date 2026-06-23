@@ -7,6 +7,7 @@ trigger_phrases:
   - "STOP_ALLOWED STOP_BLOCKED"
   - "graph-assisted stop decision"
   - "combined-stop rule"
+version: 1.11.0.5
 ---
 
 # Graph convergence event

@@ -9,6 +9,7 @@ trigger_phrases:
   - "install guide scaffold"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.16
 ---
 
 # Install Guide Creation - Phase-Based Installation Documentation

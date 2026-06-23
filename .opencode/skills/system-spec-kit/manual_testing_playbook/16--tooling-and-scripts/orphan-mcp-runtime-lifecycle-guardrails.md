@@ -1,6 +1,7 @@
 ---
 title: "419 -- Orphan MCP Runtime Lifecycle Guardrails"
 description: "Manual validation for dry-run orphan MCP cleanup, preservation rules, LaunchAgent template lint, Claude cleanup syntax, and launcher idle-timeout discoverability."
+version: 3.6.0.8
 ---
 
 # 419 -- Orphan MCP Runtime Lifecycle Guardrails

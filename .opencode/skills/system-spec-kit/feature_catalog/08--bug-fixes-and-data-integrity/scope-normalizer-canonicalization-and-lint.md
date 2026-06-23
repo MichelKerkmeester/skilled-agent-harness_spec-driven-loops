@@ -7,6 +7,7 @@ trigger_phrases:
   - "normalizescopevalue canonical helper"
   - "duplicate scope normalizer fix"
   - "scope governance lint rule"
+version: 3.6.0.5
 ---
 
 # Scope normalizer canonicalization and lint

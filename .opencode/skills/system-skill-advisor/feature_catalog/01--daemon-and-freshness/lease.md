@@ -6,6 +6,7 @@ trigger_phrases:
   - "single writer lease"
   - "heartbeat reclaim"
   - "workspace lease"
+version: 0.8.0.13
 ---
 
 # Workspace Single-Writer Lease

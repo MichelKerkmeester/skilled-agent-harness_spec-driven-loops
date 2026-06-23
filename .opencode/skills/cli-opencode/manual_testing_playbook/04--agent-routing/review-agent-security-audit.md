@@ -1,6 +1,7 @@
 ---
 title: "CO-015 -- Review agent security audit"
 description: "This scenario validates the review agent for `CO-015`. It focuses on confirming `--agent review` produces a structured P0/P1/P2-tagged security review of a target file with file:line citations."
+version: 1.3.0.11
 ---
 
 # CO-015 -- Review agent security audit

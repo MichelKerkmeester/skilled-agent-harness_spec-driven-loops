@@ -7,6 +7,7 @@ trigger_phrases:
   - "mark complete and comment"
   - "completion with handoff note"
   - "done with audit comment"
+version: 1.0.0.3
 ---
 
 # Complete with Note

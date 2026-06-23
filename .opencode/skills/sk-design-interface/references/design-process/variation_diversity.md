@@ -9,6 +9,7 @@ trigger_phrases:
   - "seed of thought debias"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.2
 ---
 
 # Variation Diversity (Seed of Thought)

@@ -1,6 +1,7 @@
 ---
 title: "271 -- Research metadata backfill"
 description: "This scenario validates the research metadata backfill script for `271`. It focuses on proving missing iteration metadata is created without rewriting already-complete folders."
+version: 3.6.0.8
 ---
 
 # 271 -- Research metadata backfill

@@ -7,6 +7,7 @@ trigger_phrases:
   - "warmEmbeddingModel"
   - "runMemoryIndexScan"
   - "bootstrap indexing dependencies"
+version: 3.6.0.12
 ---
 # Indexing runtime bootstrap API
 

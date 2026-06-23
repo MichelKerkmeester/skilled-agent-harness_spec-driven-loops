@@ -8,6 +8,7 @@ trigger_phrases:
   - "relevanceFloor threshold"
   - "blocked_stop event"
   - "convergence blocked"
+version: 1.2.0.4
 ---
 
 # Relevance Gate

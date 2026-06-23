@@ -4,6 +4,7 @@ description: "Code-facing README for .opencode/skills/sk-code/assets/scripts."
 trigger_phrases:
   - "sk-code assets/scripts"
   - "code README"
+version: 3.5.0.5
 ---
 
 # sk code assets scripts

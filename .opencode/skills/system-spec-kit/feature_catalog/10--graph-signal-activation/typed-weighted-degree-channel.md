@@ -7,6 +7,7 @@ trigger_phrases:
   - "degree boosting"
   - "typed edge weights graph scoring"
   - "hub cap connection-count dominance"
+version: 3.6.0.17
 ---
 
 # Typed-weighted degree channel

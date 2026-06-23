@@ -1,6 +1,7 @@
 ---
 title: "DOC-338 -- Doctor update G5 failure injection mid-rebuild"
 description: "Manual scenario validating /doctor:update failure handling when SPECKIT_FAIL_STEP=causal-edges-init injects a synthetic mid-run failure."
+version: 3.6.0.7
 ---
 
 # DOC-338 -- Doctor update G5 failure injection mid-rebuild

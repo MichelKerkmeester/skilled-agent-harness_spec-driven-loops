@@ -7,6 +7,7 @@ trigger_phrases:
   - "per-intent K-value selection NDCG@10"
   - "runJudgedKSweep RRF"
   - "judged K-value selection reciprocal rank fusion"
+version: 3.6.0.6
 ---
 
 # RRF K experimental tuning

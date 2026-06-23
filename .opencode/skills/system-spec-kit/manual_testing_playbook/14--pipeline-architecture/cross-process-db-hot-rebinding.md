@@ -2,6 +2,7 @@
 title: "112 -- Cross-process DB hot rebinding"
 description: "This scenario validates Cross-process DB hot rebinding for `112`. It focuses on Confirm marker-file triggers DB reinitialization."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 112 -- Cross-process DB hot rebinding

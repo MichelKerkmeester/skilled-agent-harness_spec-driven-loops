@@ -3,6 +3,7 @@ title: "IS-004 -- JSON Output File via --output Flag"
 description: "Manual validation scenario for IS-004: JSON Output File via --output Flag."
 feature_id: "IS-004"
 category: "Integration Scanner"
+version: 1.17.0.13
 ---
 
 # IS-004 -- JSON Output File via --output Flag

@@ -1,6 +1,7 @@
 ---
 title: "EX-016 -- Checkpoint listing (checkpoint_list)"
 description: "This scenario validates Checkpoint listing (checkpoint_list) for `EX-016`. It focuses on Recovery asset discovery."
+version: 3.6.0.15
 ---
 
 # EX-016 -- Checkpoint listing (checkpoint_list)

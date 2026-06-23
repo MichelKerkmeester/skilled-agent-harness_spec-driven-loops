@@ -6,6 +6,7 @@ trigger_phrases:
   - "log level configuration"
   - "speckit debug flags"
   - "retrieval telemetry settings"
+version: 3.6.0.24
 ---
 
 # 6. Debug and Telemetry

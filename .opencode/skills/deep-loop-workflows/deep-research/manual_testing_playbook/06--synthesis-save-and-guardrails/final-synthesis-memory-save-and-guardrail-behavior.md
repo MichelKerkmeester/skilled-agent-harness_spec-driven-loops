@@ -1,6 +1,7 @@
 ---
 title: "DR-019 -- Final synthesis plus memory save and guardrail behavior"
 description: "Verify final synthesis, supported memory save, LEAF-only agent behavior, and the boundary between live and reference-only features."
+version: 1.14.0.16
 ---
 
 # DR-019 -- Final synthesis plus memory save and guardrail behavior

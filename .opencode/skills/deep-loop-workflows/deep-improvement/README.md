@@ -9,6 +9,7 @@ trigger_phrases:
   - "model-benchmark mode"
   - "skill-benchmark mode"
   - "non-dev-ai-system mode"
+version: 1.17.0.37
 ---
 
 # deep-improvement

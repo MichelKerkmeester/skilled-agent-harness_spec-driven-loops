@@ -1,6 +1,7 @@
 ---
 title: "239 -- Memory Maintenance and Migration CLIs"
 description: "This scenario validates memory maintenance and migration CLIs for `239`. It focuses on confirming dry-run reporting, cleanup and parser regression coverage, and ranking output."
+version: 3.6.0.12
 ---
 
 # 239 -- Memory Maintenance and Migration CLIs

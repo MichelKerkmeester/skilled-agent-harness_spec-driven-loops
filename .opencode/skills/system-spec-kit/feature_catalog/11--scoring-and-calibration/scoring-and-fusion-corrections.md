@@ -7,6 +7,7 @@ trigger_phrases:
   - "RRF ID canonicalization canonicalRrfId"
   - "BM25 specFolder filter fix"
   - "single-pass fusion precomputation"
+version: 3.6.0.23
 ---
 
 # Scoring and fusion corrections

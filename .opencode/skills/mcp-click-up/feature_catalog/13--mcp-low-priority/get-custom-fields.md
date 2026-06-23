@@ -7,6 +7,7 @@ trigger_phrases:
   - "list custom field definitions"
   - "discover field ids"
   - "custom field schema for list"
+version: 1.0.0.3
 ---
 
 # clickup_get_custom_fields

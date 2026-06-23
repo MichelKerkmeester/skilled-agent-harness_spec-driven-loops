@@ -1,6 +1,7 @@
 ---
 title: "DOC-323 -- Doctor memory fresh install"
 description: "Manual scenario validating /doctor memory bootstrap behavior when the memory continuity-index database does not exist yet."
+version: 3.6.0.11
 ---
 
 # DOC-323 -- Doctor memory fresh install

@@ -3,6 +3,7 @@ title: "177 -- Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)"
 description: "This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) for `177` with executable source checks and targeted Vitest coverage for the default-on no-decay policy."
 audited_post_018: true
 phase_018_change: "Remove rollout framing; keep the no-decay policy validation and source checks"
+version: 3.6.0.17
 ---
 
 # 177 -- Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)

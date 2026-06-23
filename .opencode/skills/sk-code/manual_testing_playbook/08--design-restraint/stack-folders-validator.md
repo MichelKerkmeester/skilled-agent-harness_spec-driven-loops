@@ -1,6 +1,7 @@
 ---
 title: "DR-004: STACK_FOLDERS validator"
 description: "Verify verify_stack_folders.py confirms every declared surface resolves to on-disk references and assets folders, flags an orphan surface folder in either tree, and exits non-zero on a mismatch."
+version: 3.5.0.1
 ---
 
 # DR-004: STACK_FOLDERS validator

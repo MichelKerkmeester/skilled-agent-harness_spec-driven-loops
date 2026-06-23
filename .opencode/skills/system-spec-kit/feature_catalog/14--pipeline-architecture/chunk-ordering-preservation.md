@@ -7,6 +7,7 @@ trigger_phrases:
   - "document order results"
   - "collapsed multi-chunk ordering"
   - "preserve chunk sequence"
+version: 3.6.0.14
 ---
 
 # Chunk ordering preservation

@@ -6,6 +6,7 @@ trigger_phrases:
   - "ambiguous brief rendering"
   - "ambiguous brief"
   - "ambiguous"
+version: 0.8.0.13
 ---
 
 # NC-004 Ambiguous Brief Rendering

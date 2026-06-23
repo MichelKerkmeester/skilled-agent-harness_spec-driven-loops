@@ -1,6 +1,7 @@
 ---
 title: "MR-001: Motion.dev API Smoke"
 description: "Verify a sandboxed Webflow-style page can load Motion via a pinned CDN module and smoke-test animate(), inView(), and spring() without console errors."
+version: 3.5.0.3
 ---
 
 # MR-001: Motion.dev API Smoke

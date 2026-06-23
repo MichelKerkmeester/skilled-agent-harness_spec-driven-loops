@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove old pipeline"
   - "sole runtime search path"
   - "v1 pipeline deprecation"
+version: 3.6.0.20
 ---
 
 # Legacy V1 pipeline removal

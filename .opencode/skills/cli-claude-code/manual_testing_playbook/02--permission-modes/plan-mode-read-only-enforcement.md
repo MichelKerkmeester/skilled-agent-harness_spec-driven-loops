@@ -1,6 +1,7 @@
 ---
 title: "CC-005 -- Plan mode read-only enforcement"
 description: "This scenario validates Plan mode read-only enforcement for `CC-005`. It focuses on confirming `--permission-mode plan` blocks file writes and shell commands while still permitting read tools."
+version: 1.1.0.7
 ---
 
 # CC-005 -- Plan mode read-only enforcement

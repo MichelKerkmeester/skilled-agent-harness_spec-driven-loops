@@ -1,6 +1,7 @@
 ---
 title: "CO-025 -- Template applied to a real dispatch"
 description: "This scenario validates a template-driven dispatch end-to-end for `CO-025`. It focuses on confirming a chosen template (TEMPLATE 5 — Code review) populated with real placeholders produces a successful opencode run dispatch and the response matches the template's intended output shape."
+version: 1.3.0.12
 ---
 
 # CO-025 -- Template applied to a real dispatch

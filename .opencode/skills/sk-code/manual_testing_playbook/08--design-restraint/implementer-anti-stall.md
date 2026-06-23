@@ -1,6 +1,7 @@
 ---
 title: "DR-002: Implementer anti-stall rule"
 description: "Verify that when part of a requirement looks unnecessary, sk-code builds the simplest correct implementation as specified AND raises a scope-amendment recommendation in the same response, without stalling to ask and without silently cutting scope."
+version: 3.5.0.1
 ---
 
 # DR-002: Implementer anti-stall rule

@@ -7,6 +7,7 @@ trigger_phrases:
   - "resume interrupted council run"
   - "council state continuation"
   - "recover from council interruption"
+version: 2.3.0.9
 ---
 
 # Resume after interrupted state

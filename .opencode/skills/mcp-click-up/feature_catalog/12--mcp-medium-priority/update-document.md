@@ -7,6 +7,7 @@ trigger_phrases:
   - "edit clickup doc"
   - "replace document content"
   - "document content update"
+version: 1.0.0.3
 ---
 
 # clickup_update_document

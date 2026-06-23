@@ -10,6 +10,7 @@ trigger_phrases:
   - "codex validation pipeline"
 importance_tier: normal
 contextType: planning
+version: 1.4.0.13
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Codex CLI

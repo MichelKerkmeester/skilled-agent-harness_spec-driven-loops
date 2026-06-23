@@ -1,6 +1,7 @@
 ---
 title: "DRV-033 -- Review reducer surfaces blocked-stop history across registry, dashboard, and next-focus"
 description: "Verify that blocked_stop events preserve the review gate bundle in blockedStopHistory, render in the dashboard, and rewrite the strategy next-focus anchor with recovery guidance."
+version: 1.11.0.14
 ---
 
 # DRV-033 -- Review reducer surfaces blocked-stop history across registry, dashboard, and next-focus

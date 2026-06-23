@@ -1,6 +1,7 @@
 ---
 title: "448 -- Stale-Exclusion Audit and Tool-Ownership Lint"
 description: "Manual check that memory_health surfaces hard-exclusion audit metadata and the tool-ownership lint fails closed on drift from the registered 39-tool schema."
+version: 3.6.0.2
 ---
 
 # 448 -- Stale-Exclusion Audit and Tool-Ownership Lint

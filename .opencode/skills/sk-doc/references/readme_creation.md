@@ -9,6 +9,7 @@ trigger_phrases:
   - "readme quality"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.8
 ---
 
 # README Creation - Workflow and Quality Standards

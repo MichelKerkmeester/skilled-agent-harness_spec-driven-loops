@@ -1,6 +1,7 @@
 ---
 title: "CC-018 -- Structured output with json-schema"
 description: "This scenario validates Structured output with json-schema for `CC-018`. It focuses on confirming `--json-schema '...' --output-format json` produces a Claude Code response that conforms to the supplied schema."
+version: 1.1.0.8
 ---
 
 # CC-018 -- Structured output with json-schema

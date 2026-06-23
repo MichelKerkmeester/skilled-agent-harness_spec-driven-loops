@@ -1,6 +1,7 @@
 ---
 title: "SWEEP-003 -- CLI Council Seats"
 description: "This scenario validates CLI Council Seats for `SWEEP-003`. It focuses on the concurrent dispatch of CLI executor seats via multi-seat-dispatch.cjs and the per-kind CLI flag requirements."
+version: 1.2.0.5
 ---
 
 # SWEEP-003 -- CLI Council Seats

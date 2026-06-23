@@ -7,6 +7,7 @@ trigger_phrases:
   - "token budgeting efficiency"
   - "mutation ledger scan cost"
   - "reduce pipeline runtime cost"
+version: 3.6.0.16
 ---
 
 # Performance improvements

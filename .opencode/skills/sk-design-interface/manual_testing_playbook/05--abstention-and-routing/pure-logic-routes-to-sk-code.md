@@ -1,6 +1,7 @@
 ---
 title: "ID-005 -- Pure-logic task routes away to sk-code"
 description: "This scenario validates Pure-logic task routes away to sk-code for `ID-005`. It focuses on confirming a back-end task with no visual surface routes to sk-code instead of producing a design plan."
+version: 1.5.0.2
 ---
 
 # ID-005 -- Pure-logic task routes away to sk-code

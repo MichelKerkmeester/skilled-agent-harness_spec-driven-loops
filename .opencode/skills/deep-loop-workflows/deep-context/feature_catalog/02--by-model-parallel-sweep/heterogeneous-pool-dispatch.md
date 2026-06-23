@@ -8,6 +8,7 @@ trigger_phrases:
   - "by-model shared scope"
   - "deep context parallel dispatch"
   - "native and CLI seats together"
+version: 1.2.0.3
 ---
 
 # Heterogeneous Pool Dispatch

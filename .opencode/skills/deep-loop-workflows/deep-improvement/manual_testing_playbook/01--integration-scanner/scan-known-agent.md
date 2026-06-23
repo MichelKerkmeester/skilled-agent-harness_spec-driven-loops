@@ -3,6 +3,7 @@ title: "IS-001 -- Scan Known Agent (Debug)"
 description: "Manual validation scenario for IS-001: Scan Known Agent (Debug)."
 feature_id: "IS-001"
 category: "Integration Scanner"
+version: 1.17.0.14
 ---
 
 # IS-001 -- Scan Known Agent (Debug)

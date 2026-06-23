@@ -7,6 +7,7 @@ trigger_phrases:
   - "task with comments"
   - "show task history"
   - "include comments in task output"
+version: 1.0.0.3
 ---
 
 # Show with Notes

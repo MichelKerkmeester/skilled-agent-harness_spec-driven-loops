@@ -1,6 +1,7 @@
 ---
 title: "DAC-004 -- Cross-seat critique blocks premature convergence"
 description: "This scenario validates that cross-seat critique prevents premature convergence."
+version: 2.3.0.8
 ---
 
 # DAC-004 -- Cross-seat critique blocks premature convergence

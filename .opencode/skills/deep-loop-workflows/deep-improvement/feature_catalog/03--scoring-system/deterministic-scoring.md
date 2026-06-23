@@ -7,6 +7,7 @@ trigger_phrases:
   - "produce repeatable scores"
   - "dynamic-5d scoring mode"
   - "fixture runner output"
+version: 1.17.0.14
 ---
 
 # Deterministic scoring

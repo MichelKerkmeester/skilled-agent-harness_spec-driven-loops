@@ -1,6 +1,7 @@
 ---
 title: "ID-009 -- Render fidelity check gated on the quality floor and anti-default critique"
 description: "This scenario validates the render fidelity check for `ID-009`. It focuses on confirming the dev-server build's render is judged against the quality floor and the anti-default critique, never claimed from a build that did not actually render."
+version: 1.5.0.1
 ---
 
 # ID-009 -- Render fidelity check gated on the quality floor and anti-default critique

@@ -1,6 +1,7 @@
 ---
 title: "SP-001 -- Default mode routing through 10-round DEPTH"
 description: "This scenario validates default-mode (no `$` prefix) routing for `SP-001`. It focuses on confirming the unmarked path runs full DEPTH (10 rounds) plus CLEAR scoring."
+version: 2.3.0.4
 ---
 
 # SP-001 -- Default mode routing through 10-round DEPTH

@@ -7,6 +7,7 @@ trigger_phrases:
   - "session readiness status"
   - "graph freshness quality score"
   - "ok warning stale session status"
+version: 3.6.0.7
 ---
 
 # Session health tool

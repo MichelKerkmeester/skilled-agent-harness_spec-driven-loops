@@ -9,6 +9,7 @@ trigger_phrases:
   - "verified code pointers"
 importance_tier: normal
 contextType: planning
+version: 1.2.0.2
 ---
 
 # Deep Context: Context Report Template

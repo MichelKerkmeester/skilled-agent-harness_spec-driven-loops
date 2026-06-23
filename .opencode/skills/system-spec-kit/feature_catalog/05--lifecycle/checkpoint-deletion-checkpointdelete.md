@@ -7,6 +7,7 @@ trigger_phrases:
   - "delete a named checkpoint"
   - "remove memory snapshot"
   - "confirmName safety gate"
+version: 3.6.0.20
 ---
 
 # Checkpoint deletion (checkpoint_delete)

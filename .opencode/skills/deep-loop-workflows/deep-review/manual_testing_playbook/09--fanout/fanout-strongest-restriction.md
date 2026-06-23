@@ -1,6 +1,7 @@
 ---
 title: "Fan-out review strongest-restriction verdict"
 description: "Validate that clean lineage A + P0 lineage B → mergedVerdict=FAIL bound to p0_count=1 fed into step_derive_verdict → review-report verdict=FAIL. Verify all 5 verdict combinations."
+version: 1.11.0.2
 ---
 
 # DRV-065 -- Fan-out review strongest-restriction verdict

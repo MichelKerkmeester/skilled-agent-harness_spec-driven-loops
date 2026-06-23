@@ -1,6 +1,7 @@
 ---
 title: "CR-003 -- Multi-commit feature branch"
 description: "This scenario validates Multi-commit feature branch for `CR-003`. It focuses on Confirm branch review preserves commit lineage and distinguishes PR scope from unrelated churn."
+version: 1.5.0.2
 ---
 
 # CR-003 -- Multi-commit feature branch

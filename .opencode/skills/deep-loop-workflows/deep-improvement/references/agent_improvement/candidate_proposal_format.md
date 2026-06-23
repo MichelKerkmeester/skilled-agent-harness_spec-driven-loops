@@ -8,6 +8,7 @@ trigger_phrases:
   - "mutation representation format"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.12
 ---
 
 # Deep Agent Improvement Candidate Proposal Format

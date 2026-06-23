@@ -3,6 +3,7 @@ title: "SB-047 -- Scoring Against Private Gold"
 description: "Manual validation scenario for SB-047: Scoring Against Private Gold."
 feature_id: "SB-047"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.6
 ---
 
 # SB-047 -- Scoring Against Private Gold

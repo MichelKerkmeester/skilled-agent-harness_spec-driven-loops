@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph status readonly"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.4
 ---
 # 006 code_graph_status readonly
 

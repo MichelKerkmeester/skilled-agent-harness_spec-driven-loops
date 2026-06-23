@@ -7,6 +7,7 @@ trigger_phrases:
   - "expectedHash compare and swap"
   - "E_CONSTITUTIONAL_SELF_EDIT"
   - "E_STALE_CONSTITUTIONAL_UPDATE"
+version: 3.6.0.1
 ---
 
 # Constitutional self-edit and compare-and-swap guard

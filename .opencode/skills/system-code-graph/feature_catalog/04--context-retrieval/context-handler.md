@@ -5,6 +5,7 @@ trigger_phrases:
   - "context handler"
   - "system-code-graph feature catalog"
 importance_tier: "important"
+version: 1.2.0.11
 ---
 
 # Context handler

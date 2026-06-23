@@ -8,6 +8,7 @@ trigger_phrases:
   - "target manifest guardrails"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.15
 ---
 
 # Target Onboarding Guide

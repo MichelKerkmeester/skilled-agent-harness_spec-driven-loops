@@ -1,6 +1,7 @@
 ---
 title: "CX-023 -- /review TUI command"
 description: "This scenario validates the /review interactive TUI command for `CX-023`. It focuses on confirming /review surfaces categorized findings against staged git changes."
+version: 1.4.0.7
 ---
 
 # CX-023 -- /review TUI command

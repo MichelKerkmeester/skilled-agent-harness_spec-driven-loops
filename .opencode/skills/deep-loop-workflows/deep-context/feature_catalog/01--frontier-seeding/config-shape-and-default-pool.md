@@ -8,6 +8,7 @@ trigger_phrases:
   - "deep_context_config.json"
   - "by-model shared scope pool"
   - "executor pool configuration"
+version: 1.2.0.3
 ---
 
 # Config Shape and Default Pool

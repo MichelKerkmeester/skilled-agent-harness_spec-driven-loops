@@ -7,6 +7,7 @@ trigger_phrases:
   - "dual intent weight systems"
   - "INTENT_WEIGHT_PROFILES adaptive fusion"
   - "intent weighting double-count prevention"
+version: 3.6.0.16
 ---
 
 # Double intent weighting investigation

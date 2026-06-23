@@ -30,6 +30,7 @@ SKILL_TEMPLATE: Final[str] = """---
 name: {skill_name}
 description: This skill [TODO: Complete - what does it do?]. This skill should be used when [TODO: Complete - when to use it? Specific scenarios, file types, or tasks that trigger it.]
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+version: 1.0.0.0
 ---
 
 # {skill_title}

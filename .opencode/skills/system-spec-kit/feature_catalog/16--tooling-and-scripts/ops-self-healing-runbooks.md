@@ -7,6 +7,7 @@ trigger_phrases:
   - operational failure remediation
   - index-drift ledger-mismatch healing
   - escalation payload
+version: 3.6.0.8
 ---
 
 # Ops Self-Healing Runbooks

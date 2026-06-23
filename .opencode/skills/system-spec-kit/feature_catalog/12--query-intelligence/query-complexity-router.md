@@ -7,6 +7,7 @@ trigger_phrases:
   - "search channel routing"
   - "simple moderate complex query"
   - "SPECKIT_COMPLEXITY_ROUTER"
+version: 3.6.0.17
 ---
 
 # Query complexity router

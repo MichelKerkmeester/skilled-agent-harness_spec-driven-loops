@@ -1,6 +1,7 @@
 ---
 title: "CP-032 -- SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**"
 description: "Validate that /deep:agent-improvement executes the deep-improvement protocol instead of merely reading SKILL.md and improvising."
+version: 1.17.0.18
 ---
 
 # CP-032 -- SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**

@@ -1,6 +1,7 @@
 ---
 title: "GATE-001 -- Mandatory sk-design-interface Precondition"
 description: "This scenario validates the hard sk-design-interface precondition for `GATE-001`. It focuses on confirming a design generation RUN, and a design-feeding READ, are blocked when sk-design-interface is not loaded, that the work proceeds once it is loaded and ground -> token-system -> critique is applied, and that pure transport is exempt."
+version: 1.4.0.2
 ---
 
 # GATE-001 -- Mandatory sk-design-interface Precondition

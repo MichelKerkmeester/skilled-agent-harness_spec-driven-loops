@@ -3,6 +3,7 @@ title: "MB-041 -- Unknown Scorer and Unknown Mode Fallback"
 description: "Manual validation scenario for MB-041: Unknown Scorer and Unknown Mode Fallback."
 feature_id: "MB-041"
 category: "Model-Benchmark Mode"
+version: 1.17.0.10
 ---
 
 # MB-041 -- Unknown Scorer and Unknown Mode Fallback

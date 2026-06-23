@@ -7,6 +7,7 @@ trigger_phrases:
   - "untouched resource map entries"
   - "review scope coverage report"
   - "resource_map_present"
+version: 1.11.0.5
 ---
 
 # Resource Map Coverage Gate

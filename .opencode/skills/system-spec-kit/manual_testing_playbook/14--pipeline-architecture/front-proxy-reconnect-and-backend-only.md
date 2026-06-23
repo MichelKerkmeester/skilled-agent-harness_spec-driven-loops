@@ -1,6 +1,7 @@
 ---
 title: "EX-040 -- MCP front-proxy reconnect, SPECKIT_BACKEND_ONLY, and -32002 vs -32001"
 description: "This scenario validates the MCP front-proxy reconnect contract for `EX-040`. It focuses on transparent backend RSS-recycle (-32001 retryable-recycle), SPECKIT_BACKEND_ONLY backend mode, and the -32002 fail-closed protocol-mismatch terminal reconnect."
+version: 3.6.0.2
 ---
 
 # EX-040 -- MCP front-proxy reconnect, SPECKIT_BACKEND_ONLY, and -32002 vs -32001

@@ -2,6 +2,7 @@
 title: "018 -- Edge density measurement"
 description: "This scenario validates Edge density measurement for `018`. It focuses on Confirm edges-per-node thresholding."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 018 -- Edge density measurement

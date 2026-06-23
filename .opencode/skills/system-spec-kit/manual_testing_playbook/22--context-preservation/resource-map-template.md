@@ -2,6 +2,7 @@
 title: "270 -- Resource map template"
 description: "This scenario validates the resource-map template rollout across the template, discovery, and spec-document classification surfaces."
 audited_post_018: true
+version: 3.6.0.9
 ---
 
 # 270 -- Resource map template

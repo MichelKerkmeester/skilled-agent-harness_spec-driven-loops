@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_EAGER_WARMUP deprecated"
   - "permanent lazy embedding initialization"
   - "SPECKIT_LAZY_LOADING shim"
+version: 3.6.0.8
 ---
 
 # Lazy-loading migration and warmup compatibility

@@ -1,6 +1,7 @@
 ---
 title: "CX-012 -- @review profile (read-only)"
 description: "This scenario validates the codex exec -p review profile for `CX-012`. It focuses on confirming the review profile produces categorized findings without modifying files."
+version: 1.4.0.8
 ---
 
 # CX-012 -- @review profile (read-only)

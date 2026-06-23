@@ -1,6 +1,7 @@
 ---
 title: "CS-006: Animation-Heavy Core Web Vitals Gates"
 description: "Verify animation-heavy Webflow performance prompts load both Motion.dev performance guidance and Webflow CWV remediation guidance."
+version: 3.5.0.4
 ---
 
 # CS-006: Animation-Heavy Core Web Vitals Gates

@@ -1,6 +1,7 @@
 ---
 title: "DOC-347 -- Version migration no-op"
 description: "Manual scenario validating /doctor:update --migrate no-op behavior when the installed version already equals migration-manifest.json current_version."
+version: 3.6.0.5
 ---
 
 # DOC-347 -- Version migration no-op

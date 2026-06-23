@@ -2,6 +2,7 @@
 title: "Spec Kit Memory: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the Spec Kit Memory MCP server."
 last_updated: "2026-06-11"
+version: 3.6.0.99
 ---
 
 # Spec Kit Memory: Manual Testing Playbook

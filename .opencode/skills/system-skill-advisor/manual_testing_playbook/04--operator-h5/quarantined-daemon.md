@@ -5,6 +5,7 @@ trigger_phrases:
   - "op-002"
   - "quarantined daemon"
   - "quarantined"
+version: 0.8.0.12
 ---
 
 # OP-002 Quarantined Daemon

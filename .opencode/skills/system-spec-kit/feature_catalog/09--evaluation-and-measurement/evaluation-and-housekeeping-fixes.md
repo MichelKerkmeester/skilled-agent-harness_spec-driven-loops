@@ -7,6 +7,7 @@ trigger_phrases:
   - "evalrunid persistence fix"
   - "ablation recallk parameter fix"
   - "exit handler cleanup fix"
+version: 3.6.0.16
 ---
 
 # Evaluation and housekeeping fixes

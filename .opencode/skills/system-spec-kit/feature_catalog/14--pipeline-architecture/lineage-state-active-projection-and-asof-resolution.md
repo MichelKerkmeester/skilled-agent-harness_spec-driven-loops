@@ -7,6 +7,7 @@ trigger_phrases:
   - "immutable lineage rows"
   - "deterministic state projection"
   - "resolve effective state at timestamp"
+version: 3.6.0.12
 ---
 
 # Lineage state active projection and asOf resolution

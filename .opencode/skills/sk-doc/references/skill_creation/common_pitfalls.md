@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill description trim rules"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.2
 ---
 
 # Common Skill-Creation Pitfalls

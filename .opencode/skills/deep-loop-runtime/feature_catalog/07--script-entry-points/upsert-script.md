@@ -7,6 +7,7 @@ trigger_phrases:
   - "upsert graph nodes edges"
   - "iteration graph event file"
   - "store coverage graph records"
+version: 1.4.0.4
 ---
 
 # upsert.cjs

@@ -1,6 +1,7 @@
 ---
 title: "DR-007 -- Iteration reads state before research"
 description: "Verify that each dispatched iteration reads JSONL and strategy state before performing research actions."
+version: 1.14.0.15
 ---
 
 # DR-007 -- Iteration reads state before research

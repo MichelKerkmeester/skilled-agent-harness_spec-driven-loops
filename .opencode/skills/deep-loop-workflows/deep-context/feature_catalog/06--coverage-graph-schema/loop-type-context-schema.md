@@ -8,6 +8,7 @@ trigger_phrases:
   - "CONTEXT_WEIGHTS"
   - "loop_type context"
   - "coverage graph database schema"
+version: 1.2.0.3
 ---
 
 # Loop Type: Context Schema

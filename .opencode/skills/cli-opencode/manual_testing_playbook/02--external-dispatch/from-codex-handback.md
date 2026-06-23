@@ -1,6 +1,7 @@
 ---
 title: "CO-007 -- External dispatch from Codex into OpenCode (use case 1)"
 description: "This scenario validates use case 1 (external runtime to OpenCode) for `CO-007`. It focuses on confirming OpenAI Codex (a non-Anthropic runtime) can dispatch into OpenCode via cli-opencode for general full-runtime tasks distinct from the spec-kit handback (use case 3)."
+version: 1.3.0.13
 ---
 
 # CO-007 -- External dispatch from Codex into OpenCode (use case 1)

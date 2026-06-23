@@ -7,6 +7,7 @@ trigger_phrases:
   - "learning index trends"
   - "completed task learning summary"
   - "knowledge growth over time"
+version: 3.6.0.22
 ---
 
 # Learning history (memory_get_learning_history)

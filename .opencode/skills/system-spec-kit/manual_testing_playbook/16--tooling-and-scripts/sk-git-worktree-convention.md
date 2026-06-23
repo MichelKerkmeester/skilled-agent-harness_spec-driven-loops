@@ -1,6 +1,7 @@
 ---
 title: "EX-041 -- sk-git worktree convention (wt/{NNNN}-{name} under .worktrees/)"
 description: "This scenario validates the sk-git numbered-worktree convention for `EX-041`. It focuses on creating a wt/{NNNN}-{name} branch in a .worktrees/{NNNN}-{name} directory and confirming the 4-digit global max+1 numbering rule."
+version: 3.6.0.2
 ---
 
 # EX-041 -- sk-git worktree convention (wt/{NNNN}-{name} under .worktrees/)

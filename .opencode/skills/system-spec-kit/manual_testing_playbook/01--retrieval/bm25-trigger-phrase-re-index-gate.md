@@ -2,6 +2,7 @@
 title: "086 -- BM25 trigger phrase re-index gate"
 description: "This scenario validates BM25 trigger phrase re-index gate for `086`. It focuses on confirming trigger edits cause re-index when BM25 is explicitly enabled."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # 086 -- BM25 trigger phrase re-index gate

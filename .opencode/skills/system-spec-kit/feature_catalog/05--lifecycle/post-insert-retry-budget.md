@@ -7,6 +7,7 @@ trigger_phrases:
   - "bounded enrichment retry"
   - "stop looping on post-insert failure"
   - "causal link retry limit"
+version: 3.6.0.7
 ---
 
 # Post-insert retry budget

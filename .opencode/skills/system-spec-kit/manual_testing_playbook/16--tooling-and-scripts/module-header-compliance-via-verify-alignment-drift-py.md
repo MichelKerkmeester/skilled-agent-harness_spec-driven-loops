@@ -1,6 +1,7 @@
 ---
 title: "138 -- MODULE: header compliance via verify_alignment_drift.py"
 description: "This scenario validates MODULE: header compliance via verify_alignment_drift.py for `138`. It focuses on Verify `verify_alignment_drift.py` returns 0 TS-MODULE-HEADER findings."
+version: 3.6.0.19
 ---
 
 # 138 -- MODULE: header compliance via verify_alignment_drift.py

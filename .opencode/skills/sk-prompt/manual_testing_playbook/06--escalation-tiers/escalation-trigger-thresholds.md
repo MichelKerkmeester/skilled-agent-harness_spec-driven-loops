@@ -1,6 +1,7 @@
 ---
 title: "SP-024 -- Escalation trigger thresholds"
 description: "This scenario validates deep-path escalation to `@prompt-improver` for `SP-024`. It focuses on complexity, sensitivity, multi-stakeholder, and ambiguity routing to the deep path."
+version: 2.3.0.7
 ---
 
 # SP-024 -- Escalation trigger thresholds

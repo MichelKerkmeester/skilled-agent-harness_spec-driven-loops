@@ -8,6 +8,7 @@ trigger_phrases:
   - "small model verification score"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.7
 ---
 
 # Confidence Scoring Rubric

@@ -1,6 +1,7 @@
 ---
 title: "FAIL-001 -- Daemon Not Running Is Handled Gracefully"
 description: "This scenario validates the daemon failure path for `FAIL-001`. It focuses on confirming a tool call with the app closed fails with a clear daemon-unreachable message and a recovery path."
+version: 1.4.0.1
 ---
 
 # FAIL-001 -- Daemon Not Running Is Handled Gracefully

@@ -61,9 +61,10 @@ function parseCell(key) {
     [/MEMORY:SEARCH/.test(full), topScore > 0, /#\d+/.test(full),
      full.length > 40, /STATUS=OK/.test(full), rq != null, cite != null]
       .filter(Boolean).length
-  // The command's binding rule: cite_results iff requestQuality is good.
-  const citeExpected = rq === 'good' ? 'cite_results' : 'do_not_cite_results'
-  const citeCorrect = cite == null ? null : cite === citeExpected
+  // A weak verdict is correct whether it hedges or drops, so score citation
+  // policy against the valid set per request-quality tier.
+  const VALID_CITE = { good: ['cite_results'], weak: ['cite_with_caveat', 'do_not_cite_results'], gap: ['do_not_cite_results'] }
+  const citeCorrect = cite == null ? null : (VALID_CITE[rq] || []).includes(cite)
   let latencyMs = null, exit = null
   const mp = join(META_DIR, `${key}.meta.json`)
   if (existsSync(mp)) {

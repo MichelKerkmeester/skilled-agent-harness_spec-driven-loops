@@ -1,6 +1,7 @@
 ---
 title: "119-E -- Comment Hygiene — Codex CLI Hook + Pre-Commit Gate"
 description: "This scenario validates comment hygiene enforcement for Codex CLI sessions in `119-E`. Codex supports UserPromptSubmit hooks when `codex_hooks=true` is enabled, which injects the Spec Kit Memory advisor brief (including the hygiene rule) into each session. The pre-commit gate is the mandatory blocking backstop."
+version: 3.6.0.4
 ---
 
 # 119-E -- Comment Hygiene — Codex CLI UserPromptSubmit Hook + Pre-Commit Gate

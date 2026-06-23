@@ -9,6 +9,7 @@ trigger_phrases:
   - "playbook release review"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.14
 ---
 
 # Manual Testing Playbook Creation - Standards and Workflow
@@ -125,7 +126,7 @@ Required structure:
 5. `## 5. SOURCE METADATA`
 
 **Per-feature files must include**:
-- frontmatter with `title` and `description`
+- frontmatter with `title`, `description`, and a 4-part `version` (root playbook and per-feature files both carry it; see [frontmatter_versioning.md](frontmatter_versioning.md))
 - realistic user request when that clarifies user intent
 - operator prompt or orchestrator prompt
 - exact prompt in the scenario table when a table is used

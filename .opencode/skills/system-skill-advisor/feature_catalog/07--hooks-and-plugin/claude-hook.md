@@ -6,6 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
+version: 0.8.0.16
 ---
 
 # Claude Code user-prompt-submit Hook

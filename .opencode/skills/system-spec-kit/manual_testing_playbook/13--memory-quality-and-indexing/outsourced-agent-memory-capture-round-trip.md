@@ -2,6 +2,7 @@
 title: "M-005 -- Outsourced Agent Memory Capture Round-Trip"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-005`."
 audited_post_018: true
+version: 3.6.0.18
 ---
 
 # M-005 -- Outsourced Agent Memory Capture Round-Trip

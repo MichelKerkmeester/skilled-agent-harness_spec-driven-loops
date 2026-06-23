@@ -1,6 +1,7 @@
 ---
 title: "207 -- Watcher delete/rename cleanup"
 description: "This scenario validates watcher delete/rename cleanup for `207`. It focuses on confirming stale index entries are purged on delete and rename."
+version: 3.6.0.11
 ---
 
 # 207 -- Watcher delete/rename cleanup

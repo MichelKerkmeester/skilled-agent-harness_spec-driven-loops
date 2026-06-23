@@ -9,6 +9,7 @@ trigger_phrases:
   - "code mode token savings"
 importance_tier: normal
 contextType: general
+version: 1.0.0.12
 ---
 
 # System Architecture - Code Mode UTCP

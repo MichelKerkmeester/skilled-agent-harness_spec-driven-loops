@@ -3,6 +3,7 @@ title: "RD-015 -- JSONL With Dimensions Produces Dimensional Progress Table"
 description: "Manual validation scenario for RD-015: JSONL With Dimensions Produces Dimensional Progress Table."
 feature_id: "RD-015"
 category: "Reducer Dimensions"
+version: 1.17.0.15
 ---
 
 # RD-015 -- JSONL With Dimensions Produces Dimensional Progress Table

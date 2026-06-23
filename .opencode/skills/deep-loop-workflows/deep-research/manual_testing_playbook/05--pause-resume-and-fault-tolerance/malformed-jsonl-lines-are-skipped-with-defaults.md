@@ -1,6 +1,7 @@
 ---
 title: "DR-017 -- Malformed JSONL lines are skipped with defaults"
 description: "Verify that malformed JSONL lines are skipped and missing fields are defaulted instead of crashing the loop."
+version: 1.14.0.14
 ---
 
 # DR-017 -- Malformed JSONL lines are skipped with defaults

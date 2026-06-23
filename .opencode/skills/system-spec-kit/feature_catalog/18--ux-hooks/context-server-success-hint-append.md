@@ -7,6 +7,7 @@ trigger_phrases:
   - "success path hint injection"
   - "auto-surface contract"
   - "ux hint append"
+version: 3.6.0.18
 ---
 
 # Context-server success-path hint append

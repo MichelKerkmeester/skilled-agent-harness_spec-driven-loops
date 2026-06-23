@@ -8,6 +8,7 @@ trigger_phrases:
   - "when to run deep context"
 importance_tier: normal
 contextType: general
+version: 1.2.0.4
 ---
 
 # Deep Context Quick Reference

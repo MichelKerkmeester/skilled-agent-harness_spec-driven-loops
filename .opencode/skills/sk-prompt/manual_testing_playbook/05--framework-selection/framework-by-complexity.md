@@ -1,6 +1,7 @@
 ---
 title: "SP-019 -- Framework selection by complexity"
 description: "This scenario validates complexity-based framework routing for `SP-019`. It focuses on routing to RACE, RCAF, COSTAR, CIDI, TIDD-EC, CRISPE, or CRAFT based on task characteristics."
+version: 2.3.0.7
 ---
 
 # SP-019 -- Framework selection by complexity

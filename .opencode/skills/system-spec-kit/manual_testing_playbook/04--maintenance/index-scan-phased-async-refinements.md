@@ -1,6 +1,7 @@
 ---
 title: "EX-039 -- index_scan phased-async refinements (move reconciliation, active-row uniqueness, repair counts)"
 description: "This scenario validates the index_scan phased-async refinements for `EX-039`. It focuses on the walk -> commit-lexical -> async vector drain phasing, packet_id move reconciliation, active-row logical-key uniqueness (mig 28), and the repair counts surfaced in the response."
+version: 3.6.0.3
 ---
 
 # EX-039 -- index_scan phased-async refinements (move reconciliation, active-row uniqueness, repair counts)

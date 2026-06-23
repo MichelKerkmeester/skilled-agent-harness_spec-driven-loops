@@ -9,6 +9,7 @@ trigger_phrases:
   - "thin routing hub skill"
 importance_tier: normal
 contextType: implementation
+version: 1.8.0.2
 ---
 
 # Parent Skills with Nested Mode Packets

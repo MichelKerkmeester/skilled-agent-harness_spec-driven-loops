@@ -1,6 +1,7 @@
 ---
 title: "BDG-008 -- Query selector"
 description: "This scenario validates DOM querying for `BDG-008`. It focuses on confirming `bdg dom query \"h1\"` returns the matching element with text content from the active page."
+version: 1.0.0.7
 ---
 
 # BDG-008 -- Query selector

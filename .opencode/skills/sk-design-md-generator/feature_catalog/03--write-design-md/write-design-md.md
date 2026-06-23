@@ -8,6 +8,7 @@ trigger_phrases:
   - "6-digit lowercase hex"
   - "v3 Style Reference design system handoff"
 importance_tier: "normal"
+version: 1.0.0.9
 ---
 
 # Write DESIGN.md (Phase 2)

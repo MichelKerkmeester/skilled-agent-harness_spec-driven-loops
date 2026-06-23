@@ -7,6 +7,7 @@ trigger_phrases:
   - "create clickup folder"
   - "delete folder"
   - "folder organization in space"
+version: 1.0.0.3
 ---
 
 # clickup_manage_folders

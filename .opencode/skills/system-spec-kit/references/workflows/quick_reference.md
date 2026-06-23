@@ -8,6 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
+version: 3.6.0.52
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting

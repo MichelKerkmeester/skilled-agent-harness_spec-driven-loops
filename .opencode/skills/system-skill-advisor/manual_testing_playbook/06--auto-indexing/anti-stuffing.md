@@ -6,6 +6,7 @@ trigger_phrases:
   - "anti stuffing"
   - "cardinality cap"
   - "repetition density demote"
+version: 0.8.0.15
 ---
 
 # AI-005 Anti-Stuffing and Cardinality Caps

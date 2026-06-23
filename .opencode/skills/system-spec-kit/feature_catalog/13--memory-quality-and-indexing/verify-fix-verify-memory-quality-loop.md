@@ -7,6 +7,7 @@ trigger_phrases:
   - "auto-retry memory fix"
   - "memory quality evaluation"
   - "auto-fix before save"
+version: 3.6.0.20
 ---
 
 # Verify-fix-verify memory quality loop

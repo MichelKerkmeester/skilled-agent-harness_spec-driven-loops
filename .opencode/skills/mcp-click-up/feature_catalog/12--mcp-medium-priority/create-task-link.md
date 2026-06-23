@@ -7,6 +7,7 @@ trigger_phrases:
   - "link related tasks"
   - "non-dependency task relationship"
   - "related task reference"
+version: 1.0.0.3
 ---
 
 # clickup_create_task_link

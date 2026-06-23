@@ -1,6 +1,7 @@
 ---
 title: "GIT-008 -- No-verify bypass refused"
 description: "This scenario validates No-verify bypass refused for `GIT-008`. It focuses on verify requests to bypass hooks with `--no-verify` or `--no-gpg-sign` are refused."
+version: 1.1.0.3
 ---
 
 # GIT-008 -- No-verify bypass refused

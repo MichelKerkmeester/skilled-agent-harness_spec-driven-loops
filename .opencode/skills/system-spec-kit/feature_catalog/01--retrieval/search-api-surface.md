@@ -7,6 +7,7 @@ trigger_phrases:
   - "api/search.ts"
   - "vector index namespace"
   - "hybrid search public API"
+version: 3.6.0.10
 ---
 # Search API surface
 

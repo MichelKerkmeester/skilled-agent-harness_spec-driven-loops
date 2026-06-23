@@ -6,6 +6,7 @@ trigger_phrases:
   - "code-index cli"
   - "code_graph_status warm-only cli"
   - "mk-code-index CLI front door"
+version: 3.6.0.1
 ---
 
 # Daemon-backed code-index CLI surface

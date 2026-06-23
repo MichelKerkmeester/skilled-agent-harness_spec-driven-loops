@@ -7,6 +7,7 @@ trigger_phrases:
   - "initialize deep-improvement run"
   - "runtime packet setup"
   - "baseline state recording"
+version: 1.17.0.2
 ---
 
 # Initialization

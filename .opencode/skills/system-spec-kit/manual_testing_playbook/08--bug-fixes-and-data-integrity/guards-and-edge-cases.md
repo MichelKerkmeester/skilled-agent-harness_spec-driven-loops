@@ -2,6 +2,7 @@
 title: "068 -- Guards and edge cases"
 description: "This scenario validates Guards and edge cases for `068`. It focuses on Confirm edge-case guard fixes."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 068 -- Guards and edge cases

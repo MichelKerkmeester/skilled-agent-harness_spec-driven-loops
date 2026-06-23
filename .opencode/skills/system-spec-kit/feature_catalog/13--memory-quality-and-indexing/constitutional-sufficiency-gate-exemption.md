@@ -7,6 +7,7 @@ trigger_phrases:
   - "INSUFFICIENT_CONTEXT_ABORT constitutional"
   - "sufficiency gate exemption"
   - "constitutional file indexing"
+version: 3.6.0.3
 ---
 
 # Constitutional sufficiency-gate exemption

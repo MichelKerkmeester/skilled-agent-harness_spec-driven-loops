@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove checklist from task"
   - "permanently delete checklist"
   - "drop checklist and all items"
+version: 1.0.0.3
 ---
 
 # clickup_delete_checklist

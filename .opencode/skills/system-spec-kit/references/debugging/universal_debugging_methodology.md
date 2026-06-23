@@ -8,6 +8,7 @@ trigger_phrases:
   - "stack-agnostic debugging"
 importance_tier: normal
 contextType: general
+version: 3.6.0.8
 ---
 
 # Universal Debugging Methodology

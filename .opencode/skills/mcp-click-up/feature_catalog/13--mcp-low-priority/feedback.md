@@ -7,6 +7,7 @@ trigger_phrases:
   - "submit product feedback"
   - "send feedback to clickup"
   - "user rating submission"
+version: 1.0.0.3
 ---
 
 # clickup_provide_feedback

@@ -1,6 +1,7 @@
 ---
 title: "RUNTIME-001 -- Atomic State"
 description: "This scenario validates Atomic State for `RUNTIME-001`. It focuses on `writeStateAtomic` and `writeTextAtomic` being present in `reduce-state.cjs`, the `loadStateSafety` export, and the temp+fsync+rename pattern in `atomic-state.ts`."
+version: 1.2.0.3
 ---
 
 # RUNTIME-001 -- Atomic State

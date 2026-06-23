@@ -7,6 +7,7 @@ trigger_phrases:
   - "vectorEmbeddingCache MMR reranking"
   - "LRU embedding eviction"
   - "avoid redundant embedding API calls"
+version: 3.6.0.14
 ---
 
 # Embedding cache

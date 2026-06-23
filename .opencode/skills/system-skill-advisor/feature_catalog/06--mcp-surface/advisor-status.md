@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor freshness status"
   - "trust state status"
   - "semanticLaneHealth"
+version: 0.8.0.15
 ---
 
 # advisor_status MCP Tool

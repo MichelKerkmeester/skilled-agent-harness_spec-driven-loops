@@ -9,6 +9,7 @@ trigger_phrases:
   - "model-benchmark mode config"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.12
 ---
 
 # Improvement Config Reference

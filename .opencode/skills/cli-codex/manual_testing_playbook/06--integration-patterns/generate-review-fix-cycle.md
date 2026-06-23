@@ -1,6 +1,7 @@
 ---
 title: "CX-018 -- Cross-AI generate-review-fix cycle"
 description: "This scenario validates the cross-AI generate-review-fix loop for `CX-018`. It focuses on confirming the documented Codex-generates-Codex-reviews pattern produces a fix that addresses an inserted defect."
+version: 1.4.0.8
 ---
 
 # CX-018 -- Cross-AI generate-review-fix cycle

@@ -1,6 +1,7 @@
 ---
 title: "GIT-002 -- Current branch no worktree"
 description: "This scenario validates Current branch no worktree for `GIT-002`. It focuses on verify explicit user choice to work on the current branch is honored without creating a worktree."
+version: 1.1.0.2
 ---
 
 # GIT-002 -- Current branch no worktree

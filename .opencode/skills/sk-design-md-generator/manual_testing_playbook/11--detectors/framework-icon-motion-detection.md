@@ -1,6 +1,7 @@
 ---
 title: "DETECT-001 -- Framework, Icon, And Motion Detection"
 description: "Validates that framework-detect.ts, icon-detect.ts, motion-extract.ts, and design-boundary-detect.ts populate their tokens.json sections with measured data or honest absence markers. Tests inline detector enrichment during extraction and confirms no detector fabricates data."
+version: 1.0.0.5
 ---
 
 # DETECT-001 -- Framework, Icon, And Motion Detection

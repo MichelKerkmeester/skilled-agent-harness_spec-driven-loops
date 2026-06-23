@@ -7,6 +7,7 @@ trigger_phrases:
   - "new clickup task"
   - "task creation mcp"
   - "add task to list"
+version: 1.0.0.3
 ---
 
 # clickup_create_task

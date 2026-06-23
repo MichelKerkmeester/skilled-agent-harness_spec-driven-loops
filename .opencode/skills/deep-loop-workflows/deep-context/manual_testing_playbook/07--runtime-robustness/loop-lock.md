@@ -1,6 +1,7 @@
 ---
 title: "RUNTIME-004 -- Loop Lock"
 description: "This scenario validates Loop Lock for `RUNTIME-004`. It focuses on `loop-lock.cjs` syntax correctness and the presence of `step_acquire_lock`/`step_release_lock` references in both the auto and confirm YAML workflow files."
+version: 1.2.0.3
 ---
 
 # RUNTIME-004 -- Loop Lock

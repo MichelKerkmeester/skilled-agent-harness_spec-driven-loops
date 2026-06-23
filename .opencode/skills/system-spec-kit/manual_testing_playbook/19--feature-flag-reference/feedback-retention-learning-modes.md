@@ -1,6 +1,7 @@
 ---
 title: "443 -- Feedback Retention Learning Modes"
 description: "Manual check that feedback retention learning is default-off, shadow mode writes audit-only decisions, active mode requires explicit evidence, and disabling restores inert behavior."
+version: 3.6.0.2
 ---
 
 # 443 -- Feedback Retention Learning Modes

@@ -1,6 +1,7 @@
 ---
 title: "CX-003 -- codex exec review subcommand"
 description: "This scenario validates the codex exec review subcommand for `CX-003`. It focuses on confirming diff-aware review of the current uncommitted git changes produces structured findings with exit 0."
+version: 1.4.0.7
 ---
 
 # CX-003 -- codex exec review subcommand

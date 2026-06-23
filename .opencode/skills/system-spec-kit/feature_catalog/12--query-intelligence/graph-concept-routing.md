@@ -7,6 +7,7 @@ trigger_phrases:
   - "noun phrase concept extraction"
   - "concept alias table matching"
   - "stage 1 trace metadata"
+version: 3.6.0.9
 ---
 
 # Graph concept routing

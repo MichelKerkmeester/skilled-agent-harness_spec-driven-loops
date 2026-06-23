@@ -7,6 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
+version: 3.6.0.14
 ---
 
 # Session recovery via /speckit:resume

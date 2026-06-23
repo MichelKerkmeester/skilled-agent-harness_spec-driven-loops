@@ -1,6 +1,7 @@
 ---
 title: "DAC-024 -- runtime status CLI recovery payload and readiness"
 description: "This scenario validates that `runtime status CLI` returns readiness, counts, schema version, signals, and a namespace-scoped `recovery` payload — never false-safe empty success on missing or corrupt graph state for `DAC-024`. Anchors to council-graph-script.vitest.ts test 'blocks convergence for empty derived graphs instead of returning false-safe success' and the P2-001 recovery payload remediation."
+version: 2.3.0.8
 ---
 
 # DAC-024 -- runtime status CLI recovery payload and readiness

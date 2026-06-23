@@ -1,6 +1,7 @@
 ---
 title: "CO-033 -- Deep-review agent audit loop"
 description: "This scenario validates the deep-review agent for `CO-033`. It focuses on confirming `--agent deep-review` executes a single audit iteration with severity-weighted P0/P1/P2 findings per the LEAF agent contract."
+version: 1.3.0.12
 ---
 
 # CO-033 -- Deep-review agent audit loop

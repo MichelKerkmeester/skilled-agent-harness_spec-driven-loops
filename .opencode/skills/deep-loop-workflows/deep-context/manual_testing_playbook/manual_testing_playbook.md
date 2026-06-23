@@ -1,6 +1,7 @@
 ---
 title: "deep-context: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-context skill."
+version: 1.2.0.4
 ---
 
 # deep-context: Manual Testing Playbook

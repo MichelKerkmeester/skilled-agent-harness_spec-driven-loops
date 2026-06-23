@@ -1,6 +1,7 @@
 ---
 title: "LS-003: OPENCODE Shell Sub-Detection"
 description: "Verify that within OPENCODE surface, shell-script extensions trigger loading of shell/* references (not typescript, python, or config)."
+version: 3.5.0.2
 ---
 
 # LS-003: OPENCODE Shell Sub-Detection

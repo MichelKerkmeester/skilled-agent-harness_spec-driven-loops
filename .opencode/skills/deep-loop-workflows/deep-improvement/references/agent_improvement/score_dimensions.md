@@ -8,6 +8,7 @@ trigger_phrases:
   - "evaluation dimensions"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.10
 ---
 
 # Deep Agent Improvement 5-Dimension Scoring Rubric

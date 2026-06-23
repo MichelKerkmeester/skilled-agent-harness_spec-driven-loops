@@ -3,6 +3,7 @@ title: "125: Memory roadmap flags"
 description: "Manual-testing reference for validating the live memory roadmap resolvers."
 audited_post_018: true
 phase_018_change: updated to use the dedicated roadmap-flag catalog reference and corrected the snapshot count
+version: 3.6.0.12
 ---
 
 # 125: Memory roadmap flags

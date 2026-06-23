@@ -1,6 +1,7 @@
 ---
 title: "FS-002 -- Scope Binding and Code-Graph Seeding"
 description: "This scenario validates Scope Binding and Code-Graph Seeding for `FS-002`. It focuses on how the host extracts anchors from the operator-supplied scope and expands them via code_graph_query into ranked SLICE nodes before the first sweep."
+version: 1.2.0.4
 ---
 
 # FS-002 -- Scope Binding and Code-Graph Seeding

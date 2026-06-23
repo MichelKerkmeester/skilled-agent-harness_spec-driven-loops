@@ -10,6 +10,7 @@ trigger_phrases:
   - "team filter slow"
 importance_tier: "normal"
 contextType: "general"
+version: 1.0.0.3
 ---
 
 # mcp-click-up Troubleshooting Guide

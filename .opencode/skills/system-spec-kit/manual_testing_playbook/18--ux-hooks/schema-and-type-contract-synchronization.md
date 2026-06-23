@@ -1,6 +1,7 @@
 ---
 title: "211 -- Schema and type contract synchronization"
 description: "This scenario validates Schema and type contract synchronization for `211`. It focuses on Confirm `checkpoint_delete.confirmName` and mutation-hook result contracts stay aligned across schema, handler, and tool boundaries."
+version: 3.6.0.13
 ---
 
 # 211 -- Schema and type contract synchronization

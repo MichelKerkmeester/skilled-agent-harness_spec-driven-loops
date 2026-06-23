@@ -7,6 +7,7 @@ trigger_phrases:
   - "preserve graph channel for short queries"
   - "entity-density routing override"
   - "find_decision find_spec intent routing"
+version: 3.6.0.6
 ---
 
 # Graph channel preservation

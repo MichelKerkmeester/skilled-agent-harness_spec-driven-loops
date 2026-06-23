@@ -1,6 +1,7 @@
 ---
 title: "446 -- Retrieval Observability Trace and Health"
 description: "Manual check that includeTrace exposes why_ranked, degraded-vector state appears in trace/health surfaces, and maintenance counters update after maintenance tools run."
+version: 3.6.0.1
 ---
 
 # 446 -- Retrieval Observability Trace and Health

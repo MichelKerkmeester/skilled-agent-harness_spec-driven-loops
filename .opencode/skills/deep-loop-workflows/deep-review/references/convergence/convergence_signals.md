@@ -8,6 +8,7 @@ trigger_phrases:
   - "review blocked stop"
 importance_tier: normal
 contextType: implementation
+version: 1.11.0.3
 ---
 
 # Deep Review Convergence Signals

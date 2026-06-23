@@ -1,6 +1,7 @@
 ---
 title: "ID-001 -- Free-axis brainstorm critique and deliberate deviation"
 description: "This scenario validates Free-axis brainstorm critique and deliberate deviation for `ID-001`. It focuses on confirming the skill brainstorms a token system, critiques it against the three AI-default clusters, and deviates deliberately."
+version: 1.5.0.3
 ---
 
 # ID-001 -- Free-axis brainstorm critique and deliberate deviation

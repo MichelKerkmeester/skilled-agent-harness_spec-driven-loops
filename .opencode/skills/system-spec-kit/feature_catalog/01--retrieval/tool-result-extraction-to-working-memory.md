@@ -7,6 +7,7 @@ trigger_phrases:
   - "session-scoped attention items"
   - "cross-turn context continuity"
   - "salient tool result storage"
+version: 3.6.0.13
 ---
 
 # Tool-result extraction to working memory

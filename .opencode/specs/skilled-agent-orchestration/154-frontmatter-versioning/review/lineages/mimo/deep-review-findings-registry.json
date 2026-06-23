@@ -1,0 +1,195 @@
+{
+  "sessionId": "fanout-mimo-1782210787185-rpc3p9",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "tasks.md files are scaffold templates never updated",
+      "file": "001-versioning-standard/tasks.md",
+      "line": 50,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "graph-metadata.json derived.status is 'planned' while spec is complete",
+      "file": "graph-metadata.json",
+      "line": 41,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "No checklist.md exists at parent or child level",
+      "file": "spec.md",
+      "line": 1,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Spec states ~2500 files but actual count is 2222",
+      "file": "spec.md",
+      "line": 74,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Build segment cap at 99 undocumented in spec",
+      "file": "002-derivation-engine/implementation-summary.md",
+      "line": 113,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "No explicit path boundary validation on file writes",
+      "file": "frontmatter-version.mjs",
+      "line": 295,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "plan.md files are scaffold templates never updated",
+      "file": "001-versioning-standard/plan.md",
+      "line": 44,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent spec says ~436 core docs but Phase 3 versioned 457",
+      "file": "spec.md",
+      "line": 103,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "description.json description field truncated mid-sentence",
+      "file": "description.json",
+      "line": 4,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Unused variable trailing in applyVersion",
+      "file": "frontmatter-version.mjs",
+      "line": 292,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Anchor cache grows unbounded during corpus-wide run",
+      "file": "frontmatter-version.mjs",
+      "line": 144,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 8
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 1.01,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mcp-level tool routing"
   - "5-layer routing enforcement"
   - "active tool selection enforcement"
+version: 3.6.0.10
 ---
 
 # Tool routing enforcement

@@ -2,6 +2,7 @@
 title: "148 -- Community-level search fallback"
 description: "Validates searchCommunities() word-overlap scoring against community summaries and the fallback surfacing when primary channels return weak results."
 audited_post_018: true
+version: 3.6.0.5
 ---
 
 # 148 -- Community-level search fallback

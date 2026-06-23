@@ -1,6 +1,7 @@
 ---
 title: "RUNTIME-005 -- Executor Audit"
 description: "This scenario validates Executor Audit for `RUNTIME-005`. It focuses on `SPECKIT_CLI_DISPATCH_STACK` and the `executor-audit` contract being referenced in the auto YAML's `cli_contract`, confirming the recursion-guard wiring."
+version: 1.2.0.2
 ---
 
 # RUNTIME-005 -- Executor Audit

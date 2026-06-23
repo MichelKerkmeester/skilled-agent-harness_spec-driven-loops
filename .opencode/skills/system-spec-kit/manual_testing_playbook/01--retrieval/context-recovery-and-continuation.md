@@ -3,6 +3,7 @@ title: "M-001 -- Context Recovery and Continuation"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-001`."
 audited_post_018: true
 phase_018_change: Re-centered the resume path on `/speckit:resume`, `handover.md`, `_memory.continuity`, and supporting spec docs instead of legacy CONTINUE_SESSION wording.
+version: 3.6.0.19
 ---
 
 # M-001 -- Context Recovery and Continuation

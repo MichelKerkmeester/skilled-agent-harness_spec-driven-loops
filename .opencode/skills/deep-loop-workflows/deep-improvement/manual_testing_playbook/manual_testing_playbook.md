@@ -1,6 +1,7 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
 description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark, skill-benchmark and non-dev-ai-system lanes."
+version: 1.17.0.42
 ---
 
 # deep-improvement Manual Testing Playbook

@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-opencode"
   - "prompt framework"
   - "small model dispatch"
+version: 0.8.0.14
 ---
 
 # sk-prompt-small-model

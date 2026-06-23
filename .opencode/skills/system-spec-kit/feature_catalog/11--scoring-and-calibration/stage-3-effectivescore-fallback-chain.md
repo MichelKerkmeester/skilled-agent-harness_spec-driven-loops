@@ -7,6 +7,7 @@ trigger_phrases:
   - "intentAdjustedScore rrfScore score fallback"
   - "MMR candidate scoring effectiveScore"
   - "stage2Score auditability pipeline"
+version: 3.6.0.17
 ---
 
 # Stage 3 effectiveScore fallback chain

@@ -6,6 +6,7 @@ trigger_phrases:
   - "public private fixture split"
   - "Mode A fixtures-dir corpus"
   - "agent-improve-001 fixture"
+version: 1.17.0.1
 ---
 
 # fixtures: legacy Mode A skill-benchmark corpus

@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove duplicate chunks"
   - "dedup conditional gate"
   - "duplicate search results fix"
+version: 3.6.0.17
 ---
 
 # Chunk collapse deduplication

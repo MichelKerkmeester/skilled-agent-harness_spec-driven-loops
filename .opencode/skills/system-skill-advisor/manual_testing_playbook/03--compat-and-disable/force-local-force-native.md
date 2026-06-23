@@ -6,6 +6,7 @@ trigger_phrases:
   - "force local and force native toggles"
   - "force local"
   - "force"
+version: 0.8.0.13
 ---
 
 # CP-002 Force Local And Force Native Toggles

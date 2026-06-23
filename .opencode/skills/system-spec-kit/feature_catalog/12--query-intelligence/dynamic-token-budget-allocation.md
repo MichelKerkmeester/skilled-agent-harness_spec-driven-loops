@@ -7,6 +7,7 @@ trigger_phrases:
   - "scale response by complexity"
   - "context window budget"
   - "SPECKIT_CONTEXT_HEADERS token overhead"
+version: 3.6.0.17
 ---
 
 # Dynamic token budget allocation

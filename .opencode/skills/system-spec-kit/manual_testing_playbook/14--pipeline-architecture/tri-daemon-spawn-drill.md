@@ -1,6 +1,7 @@
 ---
 title: "432 -- Tri-Daemon Spawn Drill (028 Program Gate)"
 description: "Manual invocation of the env-gated tri-daemon spawn drill: all three CLI launchers auto-spawning simultaneously in one sandbox, verifying per-launcher single-owner leases, respawn-lock serialization, divergent SIGTERM reap, and zero orphans."
+version: 3.6.0.1
 ---
 
 # 432 -- Tri-Daemon Spawn Drill (028 Program Gate)

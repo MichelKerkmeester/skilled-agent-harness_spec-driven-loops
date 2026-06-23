@@ -1,6 +1,7 @@
 ---
 title: "CU-017 -- Show Task — cupt show --json"
 description: "This scenario validates Show Task — cupt show --json for `CU-017`. Objective: Verify `cupt show TASK_ID --json` returns a complete task object."
+version: 1.0.0.6
 ---
 
 # CU-017 -- Show Task — cupt show --json

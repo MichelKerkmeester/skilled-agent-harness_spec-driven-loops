@@ -7,6 +7,7 @@ trigger_phrases:
   - "update memory metadata"
   - "embedding regeneration on title change"
   - "rename memory record"
+version: 3.6.0.20
 ---
 
 # Memory metadata update (memory_update)

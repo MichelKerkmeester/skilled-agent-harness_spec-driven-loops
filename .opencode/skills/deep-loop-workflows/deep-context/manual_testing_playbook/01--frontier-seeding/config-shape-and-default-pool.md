@@ -1,6 +1,7 @@
 ---
 title: "FS-003 -- Config Shape and Default Pool"
 description: "This scenario validates Config Shape and Default Pool for `FS-003`. It focuses on the default config template fields and the default heterogeneous executor pool written during fresh initialization."
+version: 1.2.0.3
 ---
 
 # FS-003 -- Config Shape and Default Pool

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mrr ndcg recall hit rate"
   - "eval-metrics.ts"
   - "diagnostic retrieval metrics"
+version: 3.6.0.17
 ---
 
 # Core metric computation

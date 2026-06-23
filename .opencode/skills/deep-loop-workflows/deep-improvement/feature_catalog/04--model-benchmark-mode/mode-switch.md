@@ -7,6 +7,7 @@ trigger_phrases:
   - "switch benchmark mode"
   - "model-benchmark routing"
   - "--mode flag resolution"
+version: 1.17.0.9
 ---
 
 # Mode switch

@@ -7,6 +7,7 @@ trigger_phrases:
   - "supplementary stop signals"
   - "conceptual novelty plateau"
   - "finding-set stability"
+version: 1.11.0.5
 ---
 
 # Semantic convergence signals

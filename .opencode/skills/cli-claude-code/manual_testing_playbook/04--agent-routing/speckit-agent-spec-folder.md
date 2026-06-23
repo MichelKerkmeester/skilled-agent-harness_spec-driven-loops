@@ -1,6 +1,7 @@
 ---
 title: "CC-024 -- Speckit agent spec folder workflow"
 description: "This scenario validates Speckit agent spec folder workflow for `CC-024`. It focuses on confirming `--agent speckit` produces a Level 1 spec folder scaffolding plan."
+version: 1.1.0.6
 ---
 
 # CC-024 -- Speckit agent spec folder workflow

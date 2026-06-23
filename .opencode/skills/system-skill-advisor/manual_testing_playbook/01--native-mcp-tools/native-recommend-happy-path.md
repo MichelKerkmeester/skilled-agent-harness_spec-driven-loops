@@ -6,6 +6,7 @@ trigger_phrases:
   - "native advisor_recommend happy path"
   - "native advisor_recommend"
   - "native"
+version: 0.8.0.6
 ---
 
 # NC-001 Native advisor_recommend Happy Path

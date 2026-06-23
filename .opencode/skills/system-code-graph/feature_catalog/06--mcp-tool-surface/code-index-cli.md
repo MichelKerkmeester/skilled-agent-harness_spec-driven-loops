@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph cli fallback"
   - "blocked-read rendering"
   - "code_graph cli commands"
+version: 1.2.0.1
 ---
 
 # code-index CLI fallback surface

@@ -3,6 +3,7 @@ title: "SB-043 -- Mode Wiring And Routing via loop-host"
 description: "Manual validation scenario for SB-043: Mode Wiring And Routing via loop-host."
 feature_id: "SB-043"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.6
 ---
 
 # SB-043 -- Mode Wiring And Routing via loop-host

@@ -1,6 +1,7 @@
 ---
 title: "MCP-M007 -- Manage Lists via MCP"
 description: "This scenario validates Manage Lists via MCP for `MCP-M007`. Objective: Verify `clickup_manage_lists` creates a list in SPACE_ID and returns a list_id."
+version: 1.0.0.5
 ---
 
 # MCP-M007 -- Manage Lists via MCP

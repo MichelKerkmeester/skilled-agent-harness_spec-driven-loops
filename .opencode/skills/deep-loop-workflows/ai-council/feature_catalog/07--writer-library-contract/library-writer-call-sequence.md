@@ -7,6 +7,7 @@ trigger_phrases:
   - "council writer sequence"
   - "artifact_written event"
   - "7 named writers contract"
+version: 2.3.0.9
 ---
 
 # Library writer call sequence

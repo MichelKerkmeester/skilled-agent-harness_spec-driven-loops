@@ -1,6 +1,7 @@
 ---
 title: "MCP-H002 -- Get Task via MCP"
 description: "This scenario validates Get Task via MCP for `MCP-H002`. Objective: Verify `clickup_get_task` returns full task object for a known task ID."
+version: 1.0.0.5
 ---
 
 # MCP-H002 -- Get Task via MCP

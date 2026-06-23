@@ -6,6 +6,7 @@ trigger_phrases:
   - "injectGraphContext"
   - "SPECKIT_GRAPH_CONTEXT_INJECTION"
   - "unconditional causal graph context"
+version: 3.6.0.5
 ---
 
 # Always-on graph context injection

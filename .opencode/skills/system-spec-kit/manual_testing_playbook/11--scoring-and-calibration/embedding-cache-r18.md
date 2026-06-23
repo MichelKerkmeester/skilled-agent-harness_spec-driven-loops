@@ -2,6 +2,7 @@
 title: "028 -- Embedding cache (R18)"
 description: "This scenario validates Embedding cache (R18) for `028`. It focuses on Confirm cache hit/miss behavior."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 028 -- Embedding cache (R18)

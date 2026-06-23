@@ -8,6 +8,7 @@ trigger_phrases:
   - "code graph recovery procedures"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.2.0.5
 ---
 
 # Code Graph Readiness Check

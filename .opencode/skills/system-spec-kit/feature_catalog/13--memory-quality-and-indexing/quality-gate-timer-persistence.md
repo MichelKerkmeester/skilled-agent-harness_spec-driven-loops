@@ -7,6 +7,7 @@ trigger_phrases:
   - "warn-only countdown timestamp"
   - "14-day graduation period"
   - "persist quality gate timer across restarts"
+version: 3.6.0.13
 ---
 
 # Quality gate timer persistence

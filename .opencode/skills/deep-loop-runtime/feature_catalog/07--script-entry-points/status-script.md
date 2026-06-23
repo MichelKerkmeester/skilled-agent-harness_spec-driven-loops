@@ -7,6 +7,7 @@ trigger_phrases:
   - "report graph health"
   - "coverage graph schema version"
   - "graph counts and signals"
+version: 1.4.0.4
 ---
 
 # status.cjs

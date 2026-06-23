@@ -7,6 +7,7 @@ trigger_phrases:
   - "temporal contiguity double-counting fix"
   - "entity resolution fallback removal"
   - "embedding dimension validation"
+version: 3.6.0.14
 ---
 
 # Guards and edge cases

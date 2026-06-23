@@ -2,6 +2,7 @@
 title: "Stress Testing Manual Playbook"
 description: "Section index and ownership guide for stress-test manual playbooks in system-spec-kit."
 audited_post_018: true
+version: 3.6.0.8
 ---
 
 # Stress Testing Manual Playbook

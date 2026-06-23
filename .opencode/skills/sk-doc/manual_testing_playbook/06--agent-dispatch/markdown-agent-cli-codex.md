@@ -12,6 +12,7 @@ expected_token_range_input: 800-2500
 expected_token_range_output: 1500-4000
 created: 2026-05-11
 revised: 2026-05-11
+version: 1.8.0.6
 ---
 
 # SD-019: @markdown agent inline-contract execution via cli-codex

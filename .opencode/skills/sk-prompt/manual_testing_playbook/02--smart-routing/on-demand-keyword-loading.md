@@ -1,6 +1,7 @@
 ---
 title: "SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP"
 description: "This scenario validates ON_DEMAND_KEYWORDS for `SP-006`. It focuses on confirming keywords like \"deep dive\", \"all frameworks\", \"format guide\" trigger loading every RESOURCE_MAP entry."
+version: 2.3.0.5
 ---
 
 # SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP

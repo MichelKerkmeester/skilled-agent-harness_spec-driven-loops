@@ -2,6 +2,7 @@
 title: "290 -- Context preservation metrics"
 description: "Validates the in-memory session quality scoring (QualityScore) computed from recency, recovery, graphFreshness, and continuity factors."
 audited_post_018: true
+version: 3.6.0.5
 ---
 
 # 290 -- Context preservation metrics

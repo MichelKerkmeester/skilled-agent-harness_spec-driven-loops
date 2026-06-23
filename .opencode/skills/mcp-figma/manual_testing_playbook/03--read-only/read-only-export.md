@@ -1,6 +1,7 @@
 ---
 title: "EXPORT-001 -- Read-Only Export To An Explicit Path"
 description: "This scenario validates read-only export for `EXPORT-001`. It focuses on writing to an explicit operator-chosen output path and never silently overwriting an existing file."
+version: 1.0.0.1
 ---
 
 # EXPORT-001 -- Read-Only Export To An Explicit Path

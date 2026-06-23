@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
+  "description": "The well-structured core docs carry no consistent version: 21 SKILL.md exist but four are 3-part and several are stale versus their changelog; 22 READ",
+  "keywords": [
+    "well-structured",
+    "core",
+    "docs",
+    "carry",
+    "consistent",
+    "version",
+    "skill",
+    "exist",
+    "four",
+    "3-part",
+    "several",
+    "stale",
+    "versus",
+    "changelog",
+    "read"
+  ],
+  "lastUpdated": "2026-06-23T08:14:01.570Z",
+  "specId": "003",
+  "folderSlug": "apply-core-skill-docs",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-frontmatter-versioning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

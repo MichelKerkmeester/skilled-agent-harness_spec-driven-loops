@@ -1,6 +1,7 @@
 ---
 title: "061 -- Tree thinning for spec folder consolidation (PI-B1)"
 description: "This scenario validates Tree thinning for spec folder consolidation (PI-B1) for `061`. It focuses on Confirm small-file merge thinning."
+version: 3.6.0.15
 ---
 
 # 061 -- Tree thinning for spec folder consolidation (PI-B1)

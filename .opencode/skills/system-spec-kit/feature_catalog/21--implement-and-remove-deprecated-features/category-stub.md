@@ -7,6 +7,7 @@ trigger_phrases:
   - "deprecated feature flags"
   - "post-remediation shim pattern"
   - "legacy flags no longer active"
+version: 3.6.0.13
 ---
 
 # Retired runtime shims and inert compatibility flags

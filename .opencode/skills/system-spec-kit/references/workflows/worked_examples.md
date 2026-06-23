@@ -8,6 +8,7 @@ trigger_phrases:
   - "feature implementation example"
 importance_tier: normal
 contextType: general
+version: 3.6.0.15
 ---
 
 # Worked Examples Reference

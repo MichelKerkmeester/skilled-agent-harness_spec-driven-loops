@@ -7,6 +7,7 @@ trigger_phrases:
   - "basic flow diagram example"
 importance_tier: normal
 contextType: general
+version: 1.8.0.5
 ---
 
 # Simple Workflow Example - Linear Sequential Process

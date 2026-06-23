@@ -8,6 +8,7 @@ trigger_phrases:
   - "code graph verification"
   - "freshness unverified"
   - "agreement rate metric"
+version: 1.2.0.3
 ---
 
 # Cross-Executor Agreement

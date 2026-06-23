@@ -7,6 +7,7 @@ trigger_phrases:
   - "fallbackDecision vitest sweep"
   - "SPEC_KIT_DB_DIR isolation"
   - "sha256 byte-equality guard"
+version: 3.6.0.6
 ---
 
 # Graph degraded stress cell with SPEC_KIT_DB_DIR isolation

@@ -6,6 +6,7 @@ trigger_phrases:
   - "forceAllChannels"
   - "quality fallback channel override"
   - "simple-route channel bypass"
+version: 3.6.0.16
 ---
 
 # Tier-2 fallback channel forcing

@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph weight cap enforcement"
   - "Louvain activation threshold"
   - "applyCalibrationProfile stage 2"
+version: 3.6.0.9
 ---
 
 # Graph calibration profiles and community thresholds

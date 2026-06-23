@@ -9,6 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
+version: 1.14.0.29
 ---
 
 # State Format Reference

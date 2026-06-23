@@ -7,6 +7,7 @@ trigger_phrases:
   - "step-back query abstraction"
   - "corpus-grounded query rewrite"
   - "deep mode query variants"
+version: 3.6.0.7
 ---
 
 # LLM query reformulation

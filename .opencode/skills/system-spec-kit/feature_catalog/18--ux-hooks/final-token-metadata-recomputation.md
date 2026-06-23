@@ -7,6 +7,7 @@ trigger_phrases:
   - "token count recalculation"
   - "token budget enforcement alignment"
   - "hint append token recompute"
+version: 3.6.0.15
 ---
 
 # Final token metadata recomputation

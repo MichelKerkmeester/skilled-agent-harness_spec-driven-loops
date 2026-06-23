@@ -11,6 +11,7 @@ flag: SPECKIT_ONTOLOGY_HOOKS
 status: graduated
 default: 'true'
 category: 10--graph-signal-activation
+version: 3.6.0.8
 ---
 
 # Ontology-Guided Extraction Hooks

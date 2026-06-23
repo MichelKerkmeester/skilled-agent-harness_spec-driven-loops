@@ -1,6 +1,7 @@
 ---
 title: "CM-015 -- Chrome navigate + screenshot"
 description: "This scenario validates Chrome DevTools navigation and screenshot capture via Code Mode for `CM-015`. It focuses on confirming a chain can navigate Chrome to a URL then take a screenshot through `chrome_devtools_1` MCP."
+version: 1.0.0.7
 ---
 
 # CM-015 -- Chrome navigate + screenshot

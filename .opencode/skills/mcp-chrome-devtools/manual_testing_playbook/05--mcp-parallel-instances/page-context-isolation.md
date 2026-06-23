@@ -1,6 +1,7 @@
 ---
 title: "BDG-018 -- Page-context isolation cross-instance"
 description: "This scenario validates cookie/storage isolation between `chrome_devtools_1` and `chrome_devtools_2` for `BDG-018`. It focuses on confirming a cookie set in instance 1 does not appear in instance 2."
+version: 1.0.0.6
 ---
 
 # BDG-018 -- Page-context isolation cross-instance

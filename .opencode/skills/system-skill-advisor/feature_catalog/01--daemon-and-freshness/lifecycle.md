@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon boot shutdown"
   - "sigterm daemon"
   - "daemon health"
+version: 0.8.0.14
 ---
 
 # Daemon Lifecycle and Health Reporting

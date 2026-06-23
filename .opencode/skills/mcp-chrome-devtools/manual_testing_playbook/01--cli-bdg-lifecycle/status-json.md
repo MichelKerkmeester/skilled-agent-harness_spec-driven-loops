@@ -1,6 +1,7 @@
 ---
 title: "BDG-003 -- Status JSON"
 description: "This scenario validates bdg status JSON output for `BDG-003`. It focuses on confirming `bdg status` returns valid JSON with state and url fields."
+version: 1.0.0.6
 ---
 
 # BDG-003 -- Status JSON

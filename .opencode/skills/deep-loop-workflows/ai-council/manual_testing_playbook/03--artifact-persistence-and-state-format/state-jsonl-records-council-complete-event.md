@@ -1,6 +1,7 @@
 ---
 title: "DAC-006 -- State JSONL records council_complete event"
 description: "This scenario validates council_complete event persistence for DAC-006."
+version: 2.3.0.7
 ---
 
 # DAC-006 -- State JSONL records council_complete event

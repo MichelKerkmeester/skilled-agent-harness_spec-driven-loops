@@ -8,6 +8,7 @@ trigger_phrases:
   - "executor confirmation minimum"
   - "single executor finding"
   - "agreement threshold convergence"
+version: 1.2.0.3
 ---
 
 # Agreement Gate

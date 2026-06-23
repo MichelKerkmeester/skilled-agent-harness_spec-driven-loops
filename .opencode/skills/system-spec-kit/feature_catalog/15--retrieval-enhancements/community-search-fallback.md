@@ -6,6 +6,7 @@ trigger_phrases:
   - "searchCommunities"
   - "SPECKIT_COMMUNITY_SEARCH_FALLBACK"
   - "topic-level memory retrieval"
+version: 3.6.0.5
 ---
 
 # Community-level search fallback

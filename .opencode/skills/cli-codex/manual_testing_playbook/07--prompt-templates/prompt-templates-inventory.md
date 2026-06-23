@@ -1,6 +1,7 @@
 ---
 title: "CX-021 -- Use prompt_templates.md inventory"
 description: "This scenario validates the prompt_templates.md inventory for `CX-021`. It focuses on confirming the documented templates produce a successful Codex dispatch when placeholders are filled."
+version: 1.4.0.9
 ---
 
 # CX-021 -- Use prompt_templates.md inventory

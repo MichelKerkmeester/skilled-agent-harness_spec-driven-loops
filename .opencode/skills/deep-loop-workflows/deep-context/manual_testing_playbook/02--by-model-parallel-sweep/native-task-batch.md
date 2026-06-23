@@ -1,6 +1,7 @@
 ---
 title: "SWEEP-002 -- Native Task Batch"
 description: "This scenario validates Native Task Batch for `SWEEP-002`. It focuses on the concurrent parallel Task dispatch of @deep-context LEAF seats and the read-only boundary enforced by the agent definition."
+version: 1.2.0.4
 ---
 
 # SWEEP-002 -- Native Task Batch

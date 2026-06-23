@@ -7,6 +7,7 @@ trigger_phrases:
   - --json --stdin preference
   - structured input routing
   - positional json file support
+version: 3.6.0.15
 ---
 
 # JSON-primary deprecation posture

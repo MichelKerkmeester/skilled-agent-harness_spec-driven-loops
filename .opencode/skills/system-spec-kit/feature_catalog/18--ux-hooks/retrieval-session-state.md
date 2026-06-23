@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-turn deduplication"
   - "goal-aware refinement"
   - "per-session retrieval context"
+version: 3.6.0.9
 ---
 
 # Retrieval session state

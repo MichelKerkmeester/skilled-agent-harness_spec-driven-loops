@@ -6,6 +6,7 @@ trigger_phrases:
   - "remediation taxonomy"
   - "lane C fixtures"
   - "default_profile json"
+version: 1.17.0.4
 ---
 
 # skill-benchmark assets: Lane C reference data

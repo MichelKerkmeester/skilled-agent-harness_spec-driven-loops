@@ -51,7 +51,7 @@ SKILL_TEMPLATE = """---
 name: {name}
 description: "{description}"
 allowed-tools: [Read, Write]
-version: 1.0.0
+version: 1.0.0.0
 ---
 # {title}
 

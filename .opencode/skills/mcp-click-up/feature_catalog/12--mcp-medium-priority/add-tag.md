@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply tag via mcp"
   - "tag task via mcp"
   - "mcp tag add"
+version: 1.0.0.3
 ---
 
 # clickup_add_tag_to_task

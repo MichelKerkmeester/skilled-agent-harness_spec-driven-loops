@@ -10,6 +10,7 @@ trigger_phrases:
   - "low confidence bucket"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.4
 ---
 
 # Deep Context Reducer And Registry Reference

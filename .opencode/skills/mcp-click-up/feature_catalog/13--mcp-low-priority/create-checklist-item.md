@@ -7,6 +7,7 @@ trigger_phrases:
   - "add item to checklist"
   - "append checklist entry"
   - "checklist item creation"
+version: 1.0.0.3
 ---
 
 # clickup_create_checklist_item

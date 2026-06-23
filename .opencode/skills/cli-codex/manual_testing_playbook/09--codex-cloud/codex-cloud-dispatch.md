@@ -1,6 +1,7 @@
 ---
 title: "CX-028 -- codex cloud dispatch"
 description: "This scenario validates the codex cloud subcommand for `CX-028`. It focuses on confirming the cloud subcommand surface (auth + dispatch contract) is documented and reachable in the live binary."
+version: 1.4.0.6
 ---
 
 # CX-028 -- codex cloud dispatch

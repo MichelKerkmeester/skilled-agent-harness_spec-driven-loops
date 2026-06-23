@@ -7,6 +7,7 @@ trigger_phrases:
   - "ambiguous brief"
   - "0.05 ambiguity window"
   - "dual-margin ambiguity"
+version: 0.8.0.15
 ---
 
 # Top-2 Ambiguity Window

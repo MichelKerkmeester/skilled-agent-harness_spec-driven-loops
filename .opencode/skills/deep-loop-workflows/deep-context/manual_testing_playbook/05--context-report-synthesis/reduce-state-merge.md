@@ -1,6 +1,7 @@
 ---
 title: "SYN-003 -- Reduce-State Merge"
 description: "This scenario validates Reduce-State Merge for `SYN-003`. It focuses on reduce-state.cjs syntax correctness, its exports, constant values, and the artifact paths it reads from the spec folder."
+version: 1.2.0.3
 ---
 
 # SYN-003 -- Reduce-State Merge

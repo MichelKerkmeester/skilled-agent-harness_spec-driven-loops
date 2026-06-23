@@ -8,6 +8,7 @@ trigger_phrases:
   - "level contract headings"
 importance_tier: important
 contextType: implementation
+version: 3.6.0.16
 ---
 
 # Template Compliance Contract

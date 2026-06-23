@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply promotion gate"
   - "canonical promotion policy"
   - "promotion prerequisite checks"
+version: 1.17.0.13
 ---
 
 # Promotion gates

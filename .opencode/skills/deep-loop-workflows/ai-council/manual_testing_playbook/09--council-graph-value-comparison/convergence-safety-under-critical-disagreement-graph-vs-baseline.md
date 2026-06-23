@@ -1,6 +1,7 @@
 ---
 title: "DAC-029 -- Convergence safety under critical disagreement: graph vs no-graph baseline"
 description: "Real-world scenario where the graph PREVENTS premature stop. Two-of-three rule (no-graph baseline) would trigger convergence; graph returns STOP_BLOCKED because one critical disagreement is unresolved. Anchors to `runtime convergence CLI`."
+version: 2.3.0.9
 ---
 
 # DAC-029 -- Convergence safety under critical disagreement: graph vs no-graph baseline

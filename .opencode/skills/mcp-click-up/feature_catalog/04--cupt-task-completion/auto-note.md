@@ -7,6 +7,7 @@ trigger_phrases:
   - "ai-drafted completion note"
   - "automatic handoff note"
   - "local ai note generation"
+version: 1.0.0.3
 ---
 
 # Auto-Note

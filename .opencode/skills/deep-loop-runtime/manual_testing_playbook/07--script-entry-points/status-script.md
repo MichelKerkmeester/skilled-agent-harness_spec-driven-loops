@@ -1,6 +1,7 @@
 ---
 title: "DLR-017 -- status.cjs"
 description: "Manual validation scenario for status.cjs in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-017 -- status.cjs

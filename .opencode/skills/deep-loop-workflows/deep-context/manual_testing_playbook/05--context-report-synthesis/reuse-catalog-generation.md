@@ -1,6 +1,7 @@
 ---
 title: "SYN-001 -- Reuse Catalog Generation"
 description: "This scenario validates Reuse Catalog Generation for `SYN-001`. It focuses on the REUSE catalog as the first and highest-value section of the Context Report, with code-graph-verified file:symbol citations and pointers-not-bodies discipline."
+version: 1.2.0.3
 ---
 
 # SYN-001 -- Reuse Catalog Generation

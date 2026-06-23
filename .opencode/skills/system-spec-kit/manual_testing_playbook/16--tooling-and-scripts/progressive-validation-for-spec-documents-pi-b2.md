@@ -1,6 +1,7 @@
 ---
 title: "062 -- Progressive validation for spec documents (PI-B2)"
 description: "This scenario validates Progressive validation for spec documents (PI-B2) for `062`. It focuses on Confirm level 1-4 behavior."
+version: 3.6.0.15
 ---
 
 # 062 -- Progressive validation for spec documents (PI-B2)

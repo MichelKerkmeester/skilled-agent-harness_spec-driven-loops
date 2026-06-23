@@ -7,6 +7,7 @@ trigger_phrases:
   - "always-surface memory path"
   - "constitutional retrieval injection"
   - "constitutional cache invalidation"
+version: 3.6.0.9
 ---
 
 # Constitutional Memory end-to-end lifecycle

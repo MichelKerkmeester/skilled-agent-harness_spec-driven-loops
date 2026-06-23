@@ -9,6 +9,7 @@ trigger_phrases:
   - "context loop dashboard"
 importance_tier: normal
 contextType: implementation
+version: 1.2.0.4
 ---
 
 # Deep Context Output Files Reference

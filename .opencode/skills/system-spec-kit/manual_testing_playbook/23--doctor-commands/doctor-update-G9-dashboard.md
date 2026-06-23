@@ -1,6 +1,7 @@
 ---
 title: "DOC-342 -- Doctor update G9 dashboard"
 description: "Manual scenario validating /doctor:update cross-subsystem dashboard rendering across all seven dashboard subsystems with status, age, and recommended action."
+version: 3.6.0.6
 ---
 
 # DOC-342 -- Doctor update G9 dashboard

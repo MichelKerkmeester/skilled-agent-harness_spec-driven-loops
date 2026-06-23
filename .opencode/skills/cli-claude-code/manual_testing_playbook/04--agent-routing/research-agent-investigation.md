@@ -1,6 +1,7 @@
 ---
 title: "CC-023 -- Research agent deep investigation"
 description: "This scenario validates Research agent deep investigation for `CC-023`. It focuses on confirming `--agent research` produces an evidence-backed feasibility analysis with comparative trade-offs."
+version: 1.1.0.6
 ---
 
 # CC-023 -- Research agent deep investigation

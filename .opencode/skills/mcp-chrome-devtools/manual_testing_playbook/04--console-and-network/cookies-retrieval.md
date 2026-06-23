@@ -1,6 +1,7 @@
 ---
 title: "BDG-012 -- Cookies retrieval"
 description: "This scenario validates cookie retrieval for `BDG-012`. It focuses on confirming `bdg network getCookies` returns a valid JSON array (possibly empty) for the active page."
+version: 1.0.0.7
 ---
 
 # BDG-012 -- Cookies retrieval

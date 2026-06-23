@@ -1,6 +1,7 @@
 ---
 title: "DAC-020 -- runtime upsert CLI empty input no-op success"
 description: "This scenario validates that `runtime upsert CLI` returns explicit no-op success on empty input rather than erroring. Anchors to council-graph-script.vitest.ts test 'treats empty upsert as an explicit no-op success'."
+version: 2.3.0.5
 ---
 
 # DAC-020 -- runtime upsert CLI empty input no-op success

@@ -1,6 +1,7 @@
 ---
 title: "FIDELITY-001 -- Cardinal Verbatim-Value Rule Enforced"
 description: "This scenario validates the cardinal verbatim-value rule for FIDELITY-001. It focuses on confirming the v3 Style Reference copies every hex, pixel, font weight, shadow, radius, and layout max-width verbatim from tokens.json (so 100% stays 100%, never 100rem) with no estimation, 6-digit lowercase hex, L4 excluded, and L3 under the Subject-to-change sub-table."
+version: 1.0.0.6
 ---
 
 # FIDELITY-001 -- Cardinal Verbatim-Value Rule Enforced

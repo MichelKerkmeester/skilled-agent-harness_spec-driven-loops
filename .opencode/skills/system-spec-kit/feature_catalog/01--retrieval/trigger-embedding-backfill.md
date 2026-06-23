@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_trigger_embeddings"
   - "schema v34 semantic trigger"
   - "semantic trigger storage substrate"
+version: 3.6.0.1
 ---
 
 # Trigger embedding backfill

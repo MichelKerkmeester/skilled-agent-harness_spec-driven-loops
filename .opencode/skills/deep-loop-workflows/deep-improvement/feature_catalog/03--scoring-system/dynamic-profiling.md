@@ -7,6 +7,7 @@ trigger_phrases:
   - "build scoring profile"
   - "target-specific profile"
   - "agent profile generation"
+version: 1.17.0.14
 ---
 
 # Dynamic profiling

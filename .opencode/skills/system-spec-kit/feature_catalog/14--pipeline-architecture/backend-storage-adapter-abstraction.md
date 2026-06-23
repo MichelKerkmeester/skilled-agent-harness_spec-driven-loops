@@ -7,6 +7,7 @@ trigger_phrases:
   - "storage adapter interface"
   - "sqlite concrete backend"
   - "swap storage backend"
+version: 3.6.0.15
 ---
 
 # Backend storage adapter abstraction

@@ -1,6 +1,7 @@
 ---
 title: "089 -- Code standards alignment"
 description: "This scenario validates Code standards alignment for `089`. It focuses on Confirm standards conformance."
+version: 3.6.0.15
 ---
 
 # 089 -- Code standards alignment

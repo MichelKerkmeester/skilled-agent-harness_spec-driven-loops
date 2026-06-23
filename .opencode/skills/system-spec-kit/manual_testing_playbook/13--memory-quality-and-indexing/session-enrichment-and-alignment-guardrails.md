@@ -3,6 +3,7 @@ title: "M-006 -- Session Enrichment and Alignment Guardrails"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-006`."
 audited_post_018: true
 phase_018_replaces: "archived phase 014 quality-gate framing and external memory-continuity assumptions"
+version: 3.6.0.20
 ---
 
 # M-006 -- Session Enrichment and Alignment Guardrails

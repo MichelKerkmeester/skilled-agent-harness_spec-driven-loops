@@ -112,6 +112,8 @@ export interface FormattedSearchResult {
   title: string | null;
   /** Raw vector cosine similarity (0-100 scale from sqlite-vec), or averageSimilarity for multi-concept. */
   similarity?: number;
+  /** Resolved composite score for display (0-1 scale), present for graph and degree rows that carry no similarity. */
+  score?: number | null;
   isConstitutional: boolean;
   importanceTier?: string;
   triggerPhrases: string[];
@@ -923,6 +925,7 @@ export async function formatSearchResults(
       filePath: rawResult.file_path ?? String(rawResult.filePath ?? ''),
       title: rawResult.title ?? null,
       similarity: rawResult.similarity ?? rawResult.averageSimilarity,
+      score: resolveCompositeScore(rawResult),
       isConstitutional: rawResult.isConstitutional || false,
       importanceTier: rawResult.importance_tier,
       sourceKind: normalizeRecallSourceKind(rawResult.source_kind ?? rawResult.sourceKind),

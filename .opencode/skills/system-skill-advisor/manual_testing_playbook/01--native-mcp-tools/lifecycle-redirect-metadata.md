@@ -6,6 +6,7 @@ trigger_phrases:
   - "lifecycle redirect metadata"
   - "lifecycle redirect"
   - "lifecycle"
+version: 0.8.0.12
 ---
 
 # NC-005 Lifecycle Redirect Metadata

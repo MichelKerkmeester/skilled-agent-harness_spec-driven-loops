@@ -7,6 +7,7 @@ trigger_phrases:
   - "marker file database detection"
   - "module rebinding on external mutation"
   - "reinitialize db connection"
+version: 3.6.0.11
 ---
 
 # Cross-process DB hot rebinding

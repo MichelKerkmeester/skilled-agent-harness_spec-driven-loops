@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
+  "description": "Populating the corpus is not enough — without enforcement, new docs would drift back to no version",
+  "keywords": [
+    "populating",
+    "corpus",
+    "enough",
+    "without",
+    "enforcement",
+    "new",
+    "docs",
+    "drift",
+    "back",
+    "version"
+  ],
+  "lastUpdated": "2026-06-23T09:30:54.370Z",
+  "specId": "005",
+  "folderSlug": "verify-and-enforce",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-frontmatter-versioning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

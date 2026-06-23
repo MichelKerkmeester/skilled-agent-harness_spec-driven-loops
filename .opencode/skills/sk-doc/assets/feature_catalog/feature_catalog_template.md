@@ -8,6 +8,7 @@ trigger_phrases:
   - "numbered category sections"
 importance_tier: normal
 contextType: general
+version: 1.8.0.10
 ---
 
 # Feature Catalog Creation - Templates and Standards
@@ -98,6 +99,7 @@ trigger_phrases:
   - "{primary capability phrase}"
   - "feature catalog"
 last_updated: "{YYYY-MM-DD}"
+version: 1.0.0.0
 ---
 
 # {SYSTEM_NAME}: Feature Catalog
@@ -179,6 +181,7 @@ trigger_phrases:
   - "{tool or command name}"
   - "{user-visible label if different}"
 # importance_tier: "important"   # uncomment only for Tier 1 critical features
+version: 1.0.0.0
 ---
 
 # {FEATURE_NAME} ({tool_name_or_command})

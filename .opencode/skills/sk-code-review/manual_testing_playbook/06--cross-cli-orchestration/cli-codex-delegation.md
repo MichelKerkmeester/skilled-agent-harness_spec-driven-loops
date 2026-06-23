@@ -1,6 +1,7 @@
 ---
 title: "CR-017 -- cli-codex delegation"
 description: "This scenario validates cli-codex delegation for `CR-017`. It focuses on Confirm external Codex delegation preserves the exact review scope and returns sk-code-review-compatible findings."
+version: 1.5.0.4
 ---
 
 # CR-017 -- cli-codex delegation

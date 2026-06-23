@@ -2,6 +2,7 @@
 title: "002 -- Chunk collapse deduplication (G3)"
 description: "This scenario validates Chunk collapse deduplication (G3) for `002`. It focuses on Confirm dedup in default mode."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 002 -- Chunk collapse deduplication (G3)

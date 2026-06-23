@@ -7,6 +7,7 @@ trigger_phrases:
   - "repair metadata"
   - "partial-success tracking"
   - "memory health check repair"
+version: 3.6.0.17
 ---
 
 # Memory health autoRepair metadata

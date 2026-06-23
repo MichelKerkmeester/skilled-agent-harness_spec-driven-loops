@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisoryPreset rename"
   - "reconsolidation transaction helper"
   - "post-insert extraction helper"
+version: 3.6.0.5
 ---
 
 # Maintainability extracts

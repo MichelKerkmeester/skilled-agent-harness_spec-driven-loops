@@ -1,6 +1,7 @@
 ---
 title: "REPORT-001 -- Report And Preview Generation"
 description: "This scenario validates report, preview, and proof generation for REPORT-001. It focuses on confirming report-gen.ts, preview-gen.ts, and proof.ts each run and emit their HTML/visual artifacts from a DESIGN.md + tokens.json pair."
+version: 1.0.0.4
 ---
 
 # REPORT-001 -- Report And Preview Generation

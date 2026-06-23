@@ -8,6 +8,7 @@ trigger_phrases:
   - "deterministic fixture replay"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.2
 ---
 
 # Reviewer Fixture Schema

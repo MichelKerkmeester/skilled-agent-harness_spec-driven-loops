@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon absent fallback"
   - "daemon absent"
   - "daemon"
+version: 0.8.0.13
 ---
 
 # CP-004 Daemon Absent Fallback

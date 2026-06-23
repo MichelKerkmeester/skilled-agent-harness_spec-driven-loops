@@ -1,6 +1,7 @@
 ---
 title: "DLR-021 -- Cost guards"
 description: "Manual validation scenario for Cost guards in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-021 -- Cost guards

@@ -8,6 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
+version: 3.6.0.40
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements

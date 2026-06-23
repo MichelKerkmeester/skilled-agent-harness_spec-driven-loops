@@ -7,6 +7,7 @@ trigger_phrases:
   - "skip embedding on re-save"
   - "sha256 hash lookup"
   - "identical content detection"
+version: 3.6.0.17
 ---
 
 # SHA-256 content-hash deduplication

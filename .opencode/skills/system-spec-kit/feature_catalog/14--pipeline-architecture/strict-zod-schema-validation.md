@@ -7,6 +7,7 @@ trigger_phrases:
   - "reject hallucinated parameters"
   - "MCP tool input validation"
   - "schema-backed tool surface"
+version: 3.6.0.17
 ---
 
 # Strict Zod schema validation

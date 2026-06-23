@@ -10,6 +10,7 @@ trigger_phrases:
   - "cli_contract"
   - "executor-audit.ts"
   - "dispatch stack"
+version: 1.2.0.4
 ---
 
 # Executor Audit

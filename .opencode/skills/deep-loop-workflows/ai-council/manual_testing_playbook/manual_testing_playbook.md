@@ -1,6 +1,7 @@
 ---
 title: "deep-ai-council: Manual Testing Playbook"
 description: "Operator-facing manual validation package for the deep-ai-council skill, runtime routing, council deliberation, artifact persistence, convergence, rollback, scope boundaries, and council graph integration."
+version: 2.3.0.16
 ---
 
 # deep-ai-council: Manual Testing Playbook

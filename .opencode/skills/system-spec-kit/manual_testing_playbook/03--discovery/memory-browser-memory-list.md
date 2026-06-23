@@ -1,6 +1,7 @@
 ---
 title: "EX-011 -- Memory browser (memory_list)"
 description: "This scenario validates Memory browser (memory_list) for `EX-011`. It focuses on Folder inventory audit."
+version: 3.6.0.15
 ---
 
 # EX-011 -- Memory browser (memory_list)

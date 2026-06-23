@@ -1,6 +1,7 @@
 ---
 title: "MCP-001 -- Optional Framelink MCP Discovery Via Code Mode"
 description: "This scenario validates optional MCP discovery for `MCP-001`. It focuses on discovering the community Framelink figma manual and tool names live through Code Mode before any invocation."
+version: 1.0.0.1
 ---
 
 # MCP-001 -- Optional Framelink MCP Discovery Via Code Mode

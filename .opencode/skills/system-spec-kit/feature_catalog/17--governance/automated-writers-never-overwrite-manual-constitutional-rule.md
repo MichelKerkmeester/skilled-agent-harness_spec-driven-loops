@@ -6,6 +6,7 @@ trigger_phrases:
   - "automated-writers-never-overwrite-manual"
   - "protected manual overwrite guard"
   - "constitutional automated writer rule"
+version: 3.6.0.1
 ---
 
 # Automated writers never overwrite manual constitutional rule

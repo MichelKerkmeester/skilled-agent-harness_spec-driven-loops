@@ -8,6 +8,7 @@ trigger_phrases:
   - "cross-runtime hook smoke"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.20
 ---
 
 # Skill Advisor Hook Validation Playbook

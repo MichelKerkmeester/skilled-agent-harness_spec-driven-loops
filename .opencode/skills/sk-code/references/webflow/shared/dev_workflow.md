@@ -9,6 +9,7 @@ trigger_phrases:
   - "browser compatibility webflow"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.6
 ---
 
 # Webflow Dev Workflow: Cross-Language Patterns

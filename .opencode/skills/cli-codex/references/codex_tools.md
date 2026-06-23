@@ -10,6 +10,7 @@ trigger_phrases:
   - "codex image input"
 importance_tier: normal
 contextType: implementation
+version: 1.4.0.6
 ---
 
 # Codex CLI Built-in Tools Reference

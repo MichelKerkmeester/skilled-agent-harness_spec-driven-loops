@@ -6,6 +6,7 @@ trigger_phrases:
   - "undo correction"
   - "inter-memory relationship signals"
   - "stability score adjustment"
+version: 3.6.0.15
 ---
 
 # Correction tracking with undo

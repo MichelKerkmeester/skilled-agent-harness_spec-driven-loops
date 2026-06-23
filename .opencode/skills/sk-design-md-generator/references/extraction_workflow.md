@@ -9,6 +9,7 @@ trigger_phrases:
   - "design extraction handoff"
 importance_tier: "high"
 contextType: "implementation"
+version: 1.0.0.7
 ---
 
 # Extraction Workflow

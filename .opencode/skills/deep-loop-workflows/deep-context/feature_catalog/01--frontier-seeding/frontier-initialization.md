@@ -8,6 +8,7 @@ trigger_phrases:
   - "resume deep-context"
   - "restart context loop"
   - "create context state files"
+version: 1.2.0.3
 ---
 
 # Frontier Initialization

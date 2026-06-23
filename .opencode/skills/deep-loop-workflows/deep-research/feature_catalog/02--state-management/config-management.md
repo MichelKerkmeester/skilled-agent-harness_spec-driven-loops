@@ -7,6 +7,7 @@ trigger_phrases:
   - "manage research config"
   - "runtime capability matrix"
   - "immutable loop contract"
+version: 1.14.0.11
 ---
 
 # Config management

@@ -1,6 +1,7 @@
 ---
 title: "GIT-020 -- Native Claude Code invocation"
 description: "This scenario validates Native Claude Code invocation for `GIT-020`. It focuses on verify sk-git guidance can be executed by a native Claude Code conductor without losing safety gates."
+version: 1.1.0.3
 ---
 
 # GIT-020 -- Native Claude Code invocation

@@ -3,6 +3,7 @@ title: "EX-001 -- Unified context retrieval (memory_context)"
 description: "This scenario validates Unified context retrieval (memory_context) for `EX-001`. It focuses on Intent-aware context pull."
 audited_post_018: true
 phase_018_change: Re-centered the resume path on `/speckit:resume`, `handover.md`, `_memory.continuity`, and supporting spec docs instead of legacy CONTINUE_SESSION wording.
+version: 3.6.0.18
 ---
 
 # EX-001 -- Unified context retrieval (memory_context)

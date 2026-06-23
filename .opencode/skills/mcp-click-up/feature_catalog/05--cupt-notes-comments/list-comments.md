@@ -7,6 +7,7 @@ trigger_phrases:
   - "show task comments"
   - "chronological comment history"
   - "read task notes"
+version: 1.0.0.3
 ---
 
 # List Comments

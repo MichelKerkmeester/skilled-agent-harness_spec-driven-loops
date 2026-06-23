@@ -7,6 +7,7 @@ trigger_phrases:
   - "sparse-first graph policy"
   - "intent-aware edge traversal"
   - "INTENT_EDGE_PRIORITY causal boost"
+version: 3.6.0.6
 ---
 
 # Typed traversal

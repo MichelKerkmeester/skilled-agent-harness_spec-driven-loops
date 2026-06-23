@@ -1,6 +1,7 @@
 ---
 title: "CP-034 -- ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**"
 description: "Validate that @deep-improvement challenges scorer overfit before returning a candidate."
+version: 1.17.0.19
 ---
 
 # CP-034 -- ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**

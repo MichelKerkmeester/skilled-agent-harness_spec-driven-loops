@@ -1,6 +1,7 @@
 ---
 title: "DRV-007 -- Scope discovery and dimension ordering"
 description: "Verify that scope discovery resolves target type to a file list and dimensions are ordered by risk priority (Correctness > Security > Traceability > Maintainability)."
+version: 1.11.0.14
 ---
 
 # DRV-007 -- Scope discovery and dimension ordering

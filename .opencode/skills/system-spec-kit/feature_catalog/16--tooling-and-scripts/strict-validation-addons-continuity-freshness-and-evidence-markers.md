@@ -7,6 +7,7 @@ trigger_phrases:
   - "evidence-marker lint"
   - "bracket-depth audit"
   - "normalizer lint guardrail"
+version: 3.6.0.5
 ---
 
 # Strict validation add-ons: continuity freshness and evidence markers

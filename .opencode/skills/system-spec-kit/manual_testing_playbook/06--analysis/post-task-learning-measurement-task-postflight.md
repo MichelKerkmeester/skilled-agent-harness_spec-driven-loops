@@ -2,6 +2,7 @@
 title: "EX-024 -- Post-task learning measurement (task_postflight)"
 description: "This scenario validates Post-task learning measurement (task_postflight) for `EX-024`. It focuses on Learning closeout."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # EX-024 -- Post-task learning measurement (task_postflight)

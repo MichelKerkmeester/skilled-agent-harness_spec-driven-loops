@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/004-bento-visuals",
+  "spec_folder": "anobel.com/004-bento-visuals",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bento visuals",
+      "design tokens",
+      "open design",
+      "prototyping",
+      "feature-visuals",
+      "anobel",
+      "bento",
+      "design system",
+      "generation",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "bento",
+      "visuals",
+      "design",
+      "tokens",
+      "open",
+      "prototyping",
+      "feature-visuals",
+      "anobel",
+      "system",
+      "generation",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "scratch/faithful-import/build-faithful.mjs",
+      "scratch/faithful-import/_audit.mjs",
+      "scratch/faithful-import/_audit3.mjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "build-faithful.mjs",
+        "kind": "file",
+        "path": "scratch/faithful-import/build-faithful.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "_audit.mjs",
+        "kind": "file",
+        "path": "scratch/faithful-import/_audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "_audit3.mjs",
+        "kind": "file",
+        "path": "scratch/faithful-import/_audit3.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bento Visual Recreation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Import Anobel",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anobel Design Tokens",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anobel Visuals",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design System Import",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four Anobel bento feature-visual prototypes exist as Design Component `.dc.html` files with inline styles and `<sc-for>` templating loops",
+    "created_at": "2026-06-22T13:16:29.310Z",
+    "last_save_at": "2026-06-23T03:49:48.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6fe2c75d025ea1520aa50b17935c0f94e45a06aaf1ff86843c7cdd3911a6969c",
+    "source_doc_hashes": {
+      "spec.md": "a91ed42243731131179876fe9e13608f61591ae911819d186efe88d2a38f68c3",
+      "plan.md": "4c1e79328b27795b17512d343536c100935721f5c07dab0cd725fd031ba0aa3e",
+      "tasks.md": "88eda5d95a9129db2bdf80e1c4b39907dbd9e8aec39f1ca5831aa967366b85dc",
+      "checklist.md": "d0de6ddc7e606f610fac166f850a0eff539dc267bc680877a9ad924b82419522",
+      "implementation-summary.md": "fd21b9215bf429cfbe7680c58537539cc0d0604b352966d9ee72d708bd2ad1c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

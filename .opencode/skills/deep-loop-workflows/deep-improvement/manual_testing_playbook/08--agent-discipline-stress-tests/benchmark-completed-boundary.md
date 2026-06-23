@@ -1,6 +1,7 @@
 ---
 title: "CP-037 -- BENCHMARK_COMPLETED_BOUNDARY action is not evidence **(SANDBOXED)**"
 description: "Validate that benchmark execution emits a benchmark_completed journal boundary, not only a repeatability file or action prose."
+version: 1.17.0.20
 ---
 
 # CP-037 -- BENCHMARK_COMPLETED_BOUNDARY action is not evidence **(SANDBOXED)**

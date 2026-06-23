@@ -1,6 +1,7 @@
 ---
 title: "Fan-out single-executor parity for research loop"
 description: "Validate that all three fan-out YAML steps (step_resolve_artifact_root if_absent, step_fanout_spawn, step_fanout_merge) are fully bypassed in single-executor mode, preserving byte-identical behavior."
+version: 1.14.0.3
 ---
 
 # DR-054 -- Fan-out single-executor parity for research loop

@@ -7,6 +7,7 @@ trigger_phrases:
   - "check startup channel status"
   - "shared payload freshness"
   - "degraded session recovery hint"
+version: 3.6.0.3
 ---
 
 # Session health shared payload

@@ -9,6 +9,7 @@ trigger_phrases:
   - "strict-json grader reply"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.3
 ---
 
 # Lane D Grader Calibration

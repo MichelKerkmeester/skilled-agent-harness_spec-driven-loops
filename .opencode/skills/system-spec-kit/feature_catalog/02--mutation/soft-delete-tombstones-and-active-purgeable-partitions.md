@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_SOFT_DELETE_TOMBSTONES"
   - "schema v37 tombstone partition"
   - "purgeable retention partition"
+version: 3.6.0.1
 ---
 
 # Soft-delete tombstones and active/purgeable partitions

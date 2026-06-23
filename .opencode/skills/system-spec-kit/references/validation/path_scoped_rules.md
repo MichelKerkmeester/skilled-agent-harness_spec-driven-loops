@@ -8,6 +8,7 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
+version: 3.6.0.26
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation

@@ -7,6 +7,7 @@ trigger_phrases:
   - unlink event handling
   - file rename detection
   - orphaned index cleanup
+version: 3.6.0.13
 ---
 
 # Watcher delete/rename cleanup

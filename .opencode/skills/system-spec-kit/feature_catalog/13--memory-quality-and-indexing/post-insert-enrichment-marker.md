@@ -7,6 +7,7 @@ trigger_phrases:
   - "deferred enrichment repair"
   - "enrichment marker columns memory_index"
   - "incomplete enrichment backfill"
+version: 3.6.0.2
 ---
 
 # Post-insert enrichment marker (post_insert_enrichment_status)

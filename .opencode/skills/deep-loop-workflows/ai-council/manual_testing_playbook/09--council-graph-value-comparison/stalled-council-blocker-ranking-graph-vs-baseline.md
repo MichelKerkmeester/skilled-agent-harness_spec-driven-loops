@@ -1,6 +1,7 @@
 ---
 title: "DAC-030 -- Stalled-council blocker ranking: graph vs no-graph baseline"
 description: "Real-world scenario where a council hits max_rounds without convergence. Operator needs to know what blocked progress and what to fix first. Graph returns ranked blockers; baseline requires unranked artifact survey. Anchors to `runtime query CLI mode='convergence_blockers'`."
+version: 2.3.0.9
 ---
 
 # DAC-030 -- Stalled-council blocker ranking: graph vs no-graph baseline

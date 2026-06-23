@@ -1,6 +1,7 @@
 ---
 title: "MERGE-002 -- Cross-Executor Agreement"
 description: "This scenario validates Cross-Executor Agreement for `MERGE-002`. It focuses on the relevance gate that routes below-threshold findings to a lowConfidence bucket and drives the per-iteration saturation check from agreement-eligible counts."
+version: 1.2.0.4
 ---
 
 # MERGE-002 -- Cross-Executor Agreement

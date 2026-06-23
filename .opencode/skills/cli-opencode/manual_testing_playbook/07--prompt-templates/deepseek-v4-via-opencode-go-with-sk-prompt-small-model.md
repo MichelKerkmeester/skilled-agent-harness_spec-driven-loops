@@ -1,6 +1,7 @@
 ---
 title: "CO-035 -- DeepSeek-v4-pro via opencode-go through sk-prompt-small-model + sk-prompt (triple-skill flow)"
 description: "Verifies the canonical three-skill happy-path for opencode-go-pool DeepSeek work: sk-prompt-small-model surfaces via the advisor, sk-prompt composes a CLEAR-passing prompt with --variant high, and cli-opencode dispatches via opencode-go/deepseek-v4-pro."
+version: 1.3.0.8
 ---
 
 # CO-035 -- DeepSeek-v4-pro via opencode-go through sk-prompt-small-model + sk-prompt (triple-skill flow)

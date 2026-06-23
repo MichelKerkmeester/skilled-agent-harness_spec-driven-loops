@@ -7,6 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
+version: 1.4.0.3
 ---
 
 # Fan-out cross-lineage merge

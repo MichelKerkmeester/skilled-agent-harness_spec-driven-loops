@@ -8,6 +8,7 @@ trigger_phrases:
   - "scroll triggered effects"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.9
 ---
 
 # Animation Workflows - Phase 1 Implementation

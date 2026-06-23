@@ -10,6 +10,7 @@ expected_resources:
 expected_token_range_input: 400-1500
 expected_token_range_output: 1500-4000
 created: 2026-05-11
+version: 1.8.0.5
 ---
 
 # SD-018: @markdown agent dispatch via cli-claude-code

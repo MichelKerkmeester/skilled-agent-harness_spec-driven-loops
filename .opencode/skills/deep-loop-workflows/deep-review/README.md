@@ -8,6 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
+version: 1.11.0.34
 ---
 
 # deep-review

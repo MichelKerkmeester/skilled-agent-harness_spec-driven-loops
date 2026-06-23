@@ -7,6 +7,7 @@ trigger_phrases:
   - "check authentication"
   - "credential health check"
   - "agent preflight verification"
+version: 1.0.0.3
 ---
 
 # Auth Status

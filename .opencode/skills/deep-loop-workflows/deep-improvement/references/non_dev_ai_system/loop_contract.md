@@ -9,6 +9,7 @@ trigger_phrases:
   - "lock and resume semantics"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.4
 ---
 
 # Lane D Loop Contract

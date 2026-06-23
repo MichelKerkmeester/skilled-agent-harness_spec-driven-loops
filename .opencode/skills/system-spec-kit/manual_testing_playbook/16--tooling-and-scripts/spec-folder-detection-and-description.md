@@ -1,6 +1,7 @@
 ---
 title: "242 -- Spec-Folder Detection and Description Metadata"
 description: "This scenario validates spec-folder detection and description metadata for `242`. It focuses on confirming folder detection, alignment validation, subfolder resolution, and description generation."
+version: 3.6.0.15
 ---
 
 # 242 -- Spec-Folder Detection and Description Metadata

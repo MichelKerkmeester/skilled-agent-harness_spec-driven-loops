@@ -9,6 +9,7 @@ trigger_phrases:
   - "rollback smoke tests"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.5
 ---
 
 # Rollback Runbook: Working Memory Automation

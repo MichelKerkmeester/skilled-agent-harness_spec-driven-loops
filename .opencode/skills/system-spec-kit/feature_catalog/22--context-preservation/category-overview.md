@@ -7,6 +7,7 @@ trigger_phrases:
   - "context preservation category overview"
   - "compaction working-set integration"
   - "hook-based context injection"
+version: 3.6.0.17
 ---
 
 # Context preservation and code graph

@@ -8,6 +8,7 @@ trigger_phrases:
   - "shell variable quoting check"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.13
 ---
 
 # Shell Code Quality Checklist

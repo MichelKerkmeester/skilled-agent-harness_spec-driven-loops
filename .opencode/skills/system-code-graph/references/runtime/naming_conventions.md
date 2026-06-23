@@ -9,6 +9,7 @@ trigger_phrases:
   - "code graph hook location"
 importance_tier: "important"
 contextType: "general"
+version: 1.2.0.9
 ---
 
 # System Code Graph Naming Conventions

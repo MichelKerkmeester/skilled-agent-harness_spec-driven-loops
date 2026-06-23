@@ -7,6 +7,7 @@ trigger_phrases:
   - constitutional memory workflow
   - always-surface rules
   - memory learn command
+version: 3.6.0.12
 ---
 
 # Constitutional memory manager command

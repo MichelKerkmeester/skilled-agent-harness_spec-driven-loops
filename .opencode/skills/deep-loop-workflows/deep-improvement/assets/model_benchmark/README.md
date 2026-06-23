@@ -6,6 +6,7 @@ trigger_phrases:
   - "benchmark profiles"
   - "model benchmark data"
   - "framework bakeoff profile"
+version: 1.17.0.4
 ---
 
 # model-benchmark: Lane B benchmark data

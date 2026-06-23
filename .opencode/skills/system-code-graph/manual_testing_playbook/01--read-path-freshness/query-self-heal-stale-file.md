@@ -6,6 +6,7 @@ trigger_phrases:
   - "query self heal stale file"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 002 query self-heal stale file
 

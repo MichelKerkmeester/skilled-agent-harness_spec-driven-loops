@@ -6,6 +6,7 @@ trigger_phrases:
   - "design fidelity check loop"
   - "render screenshot check"
   - "element-target revision grammar"
+version: 1.5.0.4
 ---
 
 # Fidelity check and revision grammar

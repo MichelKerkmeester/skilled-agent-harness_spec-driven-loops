@@ -1,6 +1,7 @@
 ---
 title: "233 -- Completion Verification Workflow"
 description: "This scenario validates completion verification workflow for `233`. It focuses on confirming advisory handling for Level 1 specs, checklist gating for richer specs, and evidence-aware blocking statuses."
+version: 3.6.0.12
 ---
 
 # 233 -- Completion Verification Workflow

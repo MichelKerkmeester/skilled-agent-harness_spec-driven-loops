@@ -1,6 +1,7 @@
 ---
 title: "ID-007 -- Licensing and provenance integrity"
 description: "This scenario validates Licensing and provenance integrity for `ID-007`. It focuses on confirming the skill is Apache-2.0 only: design_principles.md is unchanged Apache content, LICENSE.txt is present, and no vendored MIT data, search-script, vendored-license, or third party notice material remains on disk."
+version: 1.5.0.5
 ---
 
 # ID-007 -- Licensing and provenance integrity

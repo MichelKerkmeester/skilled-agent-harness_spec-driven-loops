@@ -1,6 +1,7 @@
 ---
 title: "014 -- Full reporting and ablation study framework (R13-S3)"
 description: "This scenario validates Full reporting and ablation study framework (R13-S3) for `014`. It focuses on Confirm ablation+report workflow."
+version: 3.6.0.16
 ---
 
 # 014 -- Full reporting and ablation study framework (R13-S3)

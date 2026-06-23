@@ -2,6 +2,7 @@
 title: "003 -- Co-activation fan-effect divisor (R17)"
 description: "This scenario validates Co-activation fan-effect divisor (R17) for `003`. It focuses on Confirm hub dampening."
 audited_post_018: true
+version: 3.6.0.16
 ---
 
 # 003 -- Co-activation fan-effect divisor (R17)

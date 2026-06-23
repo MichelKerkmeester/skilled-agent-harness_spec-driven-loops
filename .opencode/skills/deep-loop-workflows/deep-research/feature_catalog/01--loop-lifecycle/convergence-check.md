@@ -7,6 +7,7 @@ trigger_phrases:
   - "legal-stop gates"
   - "blocked-stop handling"
   - "statistical stop vote"
+version: 1.14.0.11
 ---
 
 # Convergence check

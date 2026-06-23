@@ -1,6 +1,7 @@
 ---
 title: "CC-006 -- AcceptEdits mode auto-approve writes (SANDBOXED)"
 description: "This scenario validates AcceptEdits mode auto-approve writes for `CC-006`. It focuses on confirming `--permission-mode acceptEdits` allows file writes without per-edit prompts. Runs only against `/tmp/cli-claude-code-playbook/scratch.ts`."
+version: 1.1.0.6
 ---
 
 # CC-006 -- AcceptEdits mode auto-approve writes (SANDBOXED)

@@ -1,6 +1,7 @@
 ---
 title: "LS-004: OPENCODE JSON/JSONC Sub-Detection"
 description: "Verify that within OPENCODE surface, JSON/JSONC extensions trigger loading of config/* references."
+version: 3.5.0.3
 ---
 
 # LS-004: OPENCODE JSON/JSONC Sub-Detection

@@ -1,6 +1,7 @@
 ---
 title: "MCP-L019 -- Set Custom Field Value via MCP"
 description: "This scenario validates Set Custom Field Value via MCP for `MCP-L019`. Objective: Verify `clickup_set_custom_field_value` sets a field value readable back via get."
+version: 1.0.0.5
 ---
 
 # MCP-L019 -- Set Custom Field Value via MCP

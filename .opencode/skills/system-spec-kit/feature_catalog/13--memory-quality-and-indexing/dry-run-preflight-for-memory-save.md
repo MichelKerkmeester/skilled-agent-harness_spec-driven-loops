@@ -7,6 +7,7 @@ trigger_phrases:
   - "preflight validation without saving"
   - "dry run memory save"
   - "validate before commit"
+version: 3.6.0.14
 ---
 
 # Dry-run preflight for memory_save

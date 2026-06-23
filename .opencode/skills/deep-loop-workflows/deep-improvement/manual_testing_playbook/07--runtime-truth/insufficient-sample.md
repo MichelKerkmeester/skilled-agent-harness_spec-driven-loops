@@ -3,6 +3,7 @@ title: "RT-030 -- Insufficient Sample Propagation"
 description: "Manual validation scenario for RT-030: Insufficient Sample Propagation."
 feature_id: "RT-030"
 category: "Runtime Truth"
+version: 1.17.0.1
 ---
 
 # RT-030 -- Insufficient Sample Propagation

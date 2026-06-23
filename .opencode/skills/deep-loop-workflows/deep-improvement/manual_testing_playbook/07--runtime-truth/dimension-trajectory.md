@@ -3,6 +3,7 @@ title: "RT-027 -- Dimension Trajectory and Convergence Eligibility"
 description: "Manual validation scenario for RT-027: Dimension Trajectory and Convergence Eligibility."
 feature_id: "RT-027"
 category: "Runtime Truth"
+version: 1.17.0.1
 ---
 
 # RT-027 -- Dimension Trajectory and Convergence Eligibility

@@ -8,6 +8,7 @@ trigger_phrases:
   - "standard asset structure"
 importance_tier: normal
 contextType: general
+version: 1.8.0.19
 ---
 
 # Skill Asset File Templates - Creation Guidelines
@@ -137,6 +138,7 @@ trigger_phrases:
   - "[distinctive phrase three]"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # [Title]
@@ -239,6 +241,7 @@ trigger_phrases:
   - "[distinctive phrase three]"
 importance_tier: normal
 contextType: general
+version: 1.0.0.0
 ---
 
 # Asset Title - Descriptive Subtitle

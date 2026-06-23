@@ -7,6 +7,7 @@ trigger_phrases:
   - "adaptive vs fixed fusion"
   - "intent-aware fusion weights"
   - "hybrid search fusion mode"
+version: 3.6.0.10
 ---
 
 # Adaptive-fusion mode flag

@@ -3,7 +3,7 @@ name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.10.2.0
+version: 1.11.0.0
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
 

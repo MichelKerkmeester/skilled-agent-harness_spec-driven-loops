@@ -10,6 +10,7 @@ trigger_phrases:
   - "mcp tools"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.0.0.3
 ---
 
 # Official ClickUp MCP Tools Reference

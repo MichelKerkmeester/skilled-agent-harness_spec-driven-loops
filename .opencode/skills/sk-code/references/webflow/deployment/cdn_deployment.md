@@ -8,6 +8,7 @@ trigger_phrases:
   - "minified js deploy"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.17
 ---
 
 # CDN Deployment Guide

@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory count dashboard"
   - "folder ranking and tier breakdown"
   - "embedding status summary"
+version: 3.6.0.17
 ---
 
 # System statistics (memory_stats)

@@ -3,6 +3,7 @@ title: "PG-008 -- Profile JSON File Output via --output Flag"
 description: "Manual validation scenario for PG-008: Profile JSON File Output via --output Flag."
 feature_id: "PG-008"
 category: "Profile Generator"
+version: 1.17.0.12
 ---
 
 # PG-008 -- Profile JSON File Output via --output Flag

@@ -7,6 +7,7 @@ trigger_phrases:
   - "evaluate tool permissions"
   - "default-deny tool access"
   - "glob specificity permission rules"
+version: 1.4.0.4
 ---
 
 # Permissions gate

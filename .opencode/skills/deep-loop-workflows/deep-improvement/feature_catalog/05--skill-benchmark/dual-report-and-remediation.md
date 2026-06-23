@@ -7,6 +7,7 @@ trigger_phrases:
   - "render skill benchmark report"
   - "remediation_taxonomy.json"
   - "anti-drift report projection"
+version: 1.17.0.7
 ---
 
 # Dual report and remediation taxonomy

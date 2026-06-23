@@ -8,6 +8,7 @@ trigger_phrases:
   - "what can I reuse"
   - "deep context loop"
   - "/deep:context"
+version: 1.2.0.9
 ---
 
 # deep-context

@@ -6,6 +6,7 @@ trigger_phrases:
   - "executeAtomicReconsolidationTxn"
   - "reconsolidation atomicity"
   - "shared conflict transaction envelope"
+version: 3.6.0.5
 ---
 
 # Reconsolidation conflict transaction helper

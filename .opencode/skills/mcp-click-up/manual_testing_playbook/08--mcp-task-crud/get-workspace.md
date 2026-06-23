@@ -1,6 +1,7 @@
 ---
 title: "MCP-H006 -- Get Workspace via MCP — CRITICAL PATH"
 description: "This scenario validates Get Workspace via MCP — CRITICAL PATH for `MCP-H006`. Objective: Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP."
+version: 1.0.0.5
 ---
 
 # MCP-H006 -- Get Workspace via MCP — CRITICAL PATH

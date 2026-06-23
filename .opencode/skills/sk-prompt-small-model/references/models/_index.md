@@ -8,6 +8,7 @@ trigger_phrases:
   - "which framework for which model"
 importance_tier: normal
 contextType: general
+version: 0.8.0.12
 ---
 
 # Small-Model Prompt-Craft Profiles — Index

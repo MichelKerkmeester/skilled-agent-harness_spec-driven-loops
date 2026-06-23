@@ -7,6 +7,7 @@ trigger_phrases:
   - "rebuild council graph from artifacts"
   - "derived projection replay"
   - "append-only council audit history"
+version: 2.3.0.11
 ---
 
 # Derived projection rebuilds from artifacts

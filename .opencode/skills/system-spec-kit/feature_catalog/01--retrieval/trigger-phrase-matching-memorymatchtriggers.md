@@ -7,6 +7,7 @@ trigger_phrases:
   - "fast-path retrieval"
   - "direct string matching"
   - "sub-100ms search"
+version: 3.6.0.22
 ---
 
 # Trigger phrase matching (memory_match_triggers)

@@ -1,6 +1,7 @@
 ---
 title: "278 -- MCP daemon rebuild, restart, and live-probe protocol"
 description: "This scenario validates the canonical 4-part rebuild + restart + live-probe contract for MCP TypeScript fixes. Source diff -> targeted vitest -> dist marker check + restart -> live MCP probe. Codifies the phantom-fix prevention loop."
+version: 3.6.0.11
 ---
 
 # 278 -- MCP daemon rebuild, restart, and live-probe protocol

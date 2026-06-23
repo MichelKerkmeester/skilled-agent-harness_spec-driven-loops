@@ -7,6 +7,7 @@ trigger_phrases:
   - "append-only ledger"
   - "iteration event records"
   - "packet event trail"
+version: 1.14.0.11
 ---
 
 # JSONL state log

@@ -1,6 +1,7 @@
 ---
 title: "011 -- BM25-only baseline (G-NEW-1)"
 description: "This scenario validates BM25/FTS5-only baseline (G-NEW-1) for `011`. It focuses on confirming baseline reproducibility with the BM25 path active."
+version: 3.6.0.17
 ---
 
 # 011 -- BM25-only baseline (G-NEW-1)

@@ -1,6 +1,7 @@
 ---
 title: "DARKMODE-001 -- Dark-Mode Values Appear Only When Detected"
 description: "This scenario validates the dark-mode gate for DARKMODE-001. It focuses on confirming the v3 Style Reference carries dark-mode values only when tokens.json contains a detected dark-mode palette and never fabricates them from light tokens."
+version: 1.0.0.6
 ---
 
 # DARKMODE-001 -- Dark-Mode Values Appear Only When Detected

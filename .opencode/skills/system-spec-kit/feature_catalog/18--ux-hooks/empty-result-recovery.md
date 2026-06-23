@@ -7,6 +7,7 @@ trigger_phrases:
   - "no results recovery payload"
   - "low-confidence result handling"
   - "search failure recovery"
+version: 3.6.0.6
 ---
 
 # Empty result recovery

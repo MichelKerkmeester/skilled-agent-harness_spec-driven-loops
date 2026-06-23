@@ -3,6 +3,7 @@ title: "5D-009 -- Dynamic 5D Scoring on Non-Hardcoded Agent (Orchestrate)"
 description: "Manual validation scenario for 5D-009: Dynamic 5D Scoring on Non-Hardcoded Agent (Orchestrate)."
 feature_id: "5D-009"
 category: "5D Scorer"
+version: 1.17.0.13
 ---
 
 # 5D-009 -- Dynamic 5D Scoring on Non-Hardcoded Agent (Orchestrate)

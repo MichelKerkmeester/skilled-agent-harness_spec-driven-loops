@@ -7,6 +7,7 @@ trigger_phrases:
   - "create workspace tag"
   - "space-level tag definition"
   - "tag color configuration"
+version: 1.0.0.3
 ---
 
 # clickup_manage_space_tags

@@ -1,6 +1,7 @@
 ---
 title: "CC-003 -- Output format text vs json"
 description: "This scenario validates Output format text vs json for `CC-003`. It focuses on confirming the difference between `--output-format text` (plain prose) and `--output-format json` (envelope with metadata)."
+version: 1.1.0.6
 ---
 
 # CC-003 -- Output format text vs json

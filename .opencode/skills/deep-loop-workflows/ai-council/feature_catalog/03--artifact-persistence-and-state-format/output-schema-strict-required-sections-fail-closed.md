@@ -7,6 +7,7 @@ trigger_phrases:
   - "reject incomplete council report"
   - "required section validation"
   - "fail-closed schema enforcement"
+version: 2.3.0.9
 ---
 
 # Output schema strict required sections fail closed

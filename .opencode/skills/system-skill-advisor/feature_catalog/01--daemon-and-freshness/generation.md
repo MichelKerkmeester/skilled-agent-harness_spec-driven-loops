@@ -6,6 +6,7 @@ trigger_phrases:
   - "snapshot publication"
   - "post commit publication"
   - "atomic reindex"
+version: 0.8.0.12
 ---
 
 # Generation-Tagged Snapshot Publication

@@ -1,6 +1,7 @@
 ---
 title: "BDG-007 -- Search CDP method"
 description: "This scenario validates CDP method search for `BDG-007`. It focuses on confirming `bdg cdp --search screenshot` returns matches that include `Page.captureScreenshot` or equivalent."
+version: 1.0.0.7
 ---
 
 # BDG-007 -- Search CDP method

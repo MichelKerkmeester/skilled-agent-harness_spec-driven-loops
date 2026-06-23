@@ -2,6 +2,7 @@
 title: "EX-025 -- Learning history (memory_get_learning_history)"
 description: "This scenario validates Learning history (memory_get_learning_history) for `EX-025`. It focuses on Trend review."
 audited_post_018: true
+version: 3.6.0.15
 ---
 
 # EX-025 -- Learning history (memory_get_learning_history)

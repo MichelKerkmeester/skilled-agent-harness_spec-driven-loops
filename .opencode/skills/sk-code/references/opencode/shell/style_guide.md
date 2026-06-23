@@ -8,6 +8,7 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.11
 ---
 
 # Shell Style Guide

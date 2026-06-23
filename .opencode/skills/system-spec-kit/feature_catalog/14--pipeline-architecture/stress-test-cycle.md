@@ -7,6 +7,7 @@ trigger_phrases:
   - "machine-readable sidecar"
   - "adversarial regression checks"
   - "packet evaluation with comparison deltas"
+version: 3.6.0.11
 ---
 
 # Stress test cycle

@@ -10,6 +10,7 @@ trigger_phrases:
   - "codex session resume fork"
 importance_tier: important
 contextType: implementation
+version: 1.4.0.12
 ---
 
 # Codex CLI - Complete Command Reference

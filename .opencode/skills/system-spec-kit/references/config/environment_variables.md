@@ -8,6 +8,7 @@ trigger_phrases:
   - "token budget configuration"
 importance_tier: normal
 contextType: general
+version: 3.6.0.59
 ---
 
 # Environment Variables Reference

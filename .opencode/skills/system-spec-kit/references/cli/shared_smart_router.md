@@ -9,6 +9,7 @@ trigger_phrases:
   - "resource map scoring"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.11
 ---
 
 # Shared Smart-Router Helpers (cli-* family)

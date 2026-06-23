@@ -3,6 +3,7 @@ title: "PR-001 -- Synthetic-Deficit Promotion And Red-Team Gauntlet"
 description: "Manual validation scenario for PR-001: Synthetic-Deficit Promotion And Red-Team Gauntlet via loop-host --mode=non-dev-ai-system-refine."
 feature_id: "PR-001"
 category: "Non-Dev-AI-System Mode"
+version: 1.17.0.5
 ---
 
 # PR-001 -- Synthetic-Deficit Promotion And Red-Team Gauntlet

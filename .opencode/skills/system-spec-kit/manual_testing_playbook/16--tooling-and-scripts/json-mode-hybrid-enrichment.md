@@ -1,6 +1,7 @@
 ---
 title: "153 -- JSON mode structured summary hardening"
 description: "This scenario validates the structured JSON summary contract for generate-context.js, including toolCalls/exchanges fields, file-backed JSON authority, and Wave 2 hardening."
+version: 3.6.0.25
 ---
 
 # 153 -- JSON mode structured summary hardening

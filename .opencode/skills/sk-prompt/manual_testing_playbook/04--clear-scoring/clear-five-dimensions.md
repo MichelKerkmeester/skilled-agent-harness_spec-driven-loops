@@ -1,6 +1,7 @@
 ---
 title: "SP-015 -- CLEAR scores all five dimensions"
 description: "This scenario validates five-dimension CLEAR scoring for `SP-015`. It focuses on Correctness, Logic, Expression, Arrangement, and Reusability being scored separately."
+version: 2.3.0.5
 ---
 
 # SP-015 -- CLEAR scores all five dimensions

@@ -3,6 +3,7 @@ title: "SB-045 -- Router-Replay Mode A Determinism"
 description: "Manual validation scenario for SB-045: Router-Replay Mode A Determinism."
 feature_id: "SB-045"
 category: "Skill-Benchmark Mode"
+version: 1.17.0.6
 ---
 
 # SB-045 -- Router-Replay Mode A Determinism

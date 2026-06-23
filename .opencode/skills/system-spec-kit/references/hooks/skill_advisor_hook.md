@@ -9,6 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
+version: 3.6.0.30
 ---
 
 # Skill Advisor Hook Reference

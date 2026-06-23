@@ -7,6 +7,7 @@ trigger_phrases:
   - "log-scale ranking boost access count"
   - "usage tracking popularity ranking"
   - "frequently accessed memory ranking reward"
+version: 3.6.0.6
 ---
 
 # Usage-weighted ranking signal

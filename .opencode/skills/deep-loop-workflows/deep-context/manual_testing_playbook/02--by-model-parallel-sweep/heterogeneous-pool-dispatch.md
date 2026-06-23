@@ -1,6 +1,7 @@
 ---
 title: "SWEEP-001 -- Heterogeneous Pool Dispatch"
 description: "This scenario validates Heterogeneous Pool Dispatch for `SWEEP-001`. It focuses on the concurrent launch of native and CLI seat groups and the barrier-join before merge."
+version: 1.2.0.4
 ---
 
 # SWEEP-001 -- Heterogeneous Pool Dispatch

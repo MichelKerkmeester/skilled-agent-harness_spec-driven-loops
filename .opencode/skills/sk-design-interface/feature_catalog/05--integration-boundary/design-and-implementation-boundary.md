@@ -6,6 +6,7 @@ trigger_phrases:
   - "sk-design-interface owns the look sk-code implements"
   - "hand implementation to sk-code"
   - "screenshot self-critique tooling"
+version: 1.5.0.6
 ---
 
 # Design and implementation boundary

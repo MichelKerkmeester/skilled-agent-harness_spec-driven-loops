@@ -8,6 +8,7 @@ trigger_phrases:
   - "SLICE nodes"
   - "frontier seeding"
   - "code graph query deep context"
+version: 1.2.0.3
 ---
 
 # Scope Binding and Code-Graph Seeding

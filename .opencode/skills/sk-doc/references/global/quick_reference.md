@@ -8,6 +8,7 @@ trigger_phrases:
   - "quality gates at a glance"
 importance_tier: normal
 contextType: general
+version: 1.8.0.31
 ---
 
 # Markdown Optimizer - Quick Reference

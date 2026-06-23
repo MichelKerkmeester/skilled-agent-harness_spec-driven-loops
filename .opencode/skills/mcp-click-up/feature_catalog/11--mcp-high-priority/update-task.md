@@ -7,6 +7,7 @@ trigger_phrases:
   - "change task status"
   - "modify task fields"
   - "update task priority or assignee"
+version: 1.0.0.3
 ---
 
 # clickup_update_task

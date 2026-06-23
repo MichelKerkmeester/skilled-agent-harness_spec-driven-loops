@@ -6,6 +6,7 @@ trigger_phrases:
   - "typescript build and entry point"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 020 TypeScript build and entry point
 

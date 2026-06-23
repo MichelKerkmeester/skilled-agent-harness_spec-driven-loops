@@ -8,6 +8,7 @@ trigger_phrases:
   - "validation items by phase"
 importance_tier: normal
 contextType: general
+version: 3.6.0.18
 ---
 
 # Phase Checklists - Validation Items by Development Phase

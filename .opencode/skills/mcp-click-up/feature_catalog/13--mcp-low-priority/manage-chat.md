@@ -7,6 +7,7 @@ trigger_phrases:
   - "send chat message"
   - "post to clickup channel"
   - "channel notification automation"
+version: 1.0.0.3
 ---
 
 # clickup_manage_chat

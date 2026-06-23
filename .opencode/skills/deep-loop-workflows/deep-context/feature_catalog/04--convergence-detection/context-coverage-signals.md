@@ -8,6 +8,7 @@ trigger_phrases:
   - "convergence signals context"
   - "ContextConvergenceSignals"
   - "five coverage signals"
+version: 1.2.0.4
 ---
 
 # Context Coverage Signals

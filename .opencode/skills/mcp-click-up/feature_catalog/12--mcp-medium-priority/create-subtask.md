@@ -7,6 +7,7 @@ trigger_phrases:
   - "add subtask to task"
   - "child task creation"
   - "nested task under parent"
+version: 1.0.0.3
 ---
 
 # clickup_create_subtask

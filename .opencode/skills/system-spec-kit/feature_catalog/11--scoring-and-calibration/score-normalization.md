@@ -7,6 +7,7 @@ trigger_phrases:
   - "min-max normalization RRF composite"
   - "normalizeRrfScores normalizeCompositeScores"
   - "retrieval score comparable scale"
+version: 3.6.0.15
 ---
 
 # Score normalization

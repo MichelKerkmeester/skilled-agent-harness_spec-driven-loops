@@ -8,6 +8,7 @@ trigger_phrases:
   - "prompt framing deep context"
   - "sk-prompt-small-model seat"
   - "lineage prompt contract"
+version: 1.2.0.3
 ---
 
 # Per-Model Prompt Framework

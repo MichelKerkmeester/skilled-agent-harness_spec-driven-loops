@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor architectural deferrals"
 importance_tier: "normal"
 contextType: "general"
+version: 0.8.0.11
 ---
 
 # Deferred Decisions (Tier D)

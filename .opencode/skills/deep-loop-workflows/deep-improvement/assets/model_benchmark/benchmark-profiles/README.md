@@ -6,6 +6,7 @@ trigger_phrases:
   - "framework-bakeoff profile"
   - "model-vs-model profile"
   - "default.json benchmark"
+version: 1.17.0.4
 ---
 
 # benchmark-profiles: Lane B run profiles

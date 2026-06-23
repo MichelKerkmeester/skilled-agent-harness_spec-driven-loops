@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory-level score"
   - "damped bonus formula"
   - "combine chunk scores"
+version: 3.6.0.14
 ---
 
 # MPAB chunk-to-memory aggregation

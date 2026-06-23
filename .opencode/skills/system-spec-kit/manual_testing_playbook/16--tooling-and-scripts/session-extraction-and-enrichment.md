@@ -1,6 +1,7 @@
 ---
 title: "241 -- Session Extraction and Enrichment"
 description: "This scenario validates session extraction and enrichment for `241`. It focuses on confirming extractor loading, session enrichment, phase classification, and description enrichment behavior."
+version: 3.6.0.12
 ---
 
 # 241 -- Session Extraction and Enrichment

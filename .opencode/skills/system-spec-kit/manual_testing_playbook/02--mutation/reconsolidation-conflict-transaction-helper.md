@@ -1,6 +1,7 @@
 ---
 title: "276 -- Reconsolidation conflict transaction helper"
 description: "This scenario validates the shared reconsolidation conflict transaction helper for `276`. It focuses on proving both conflict branches still share one atomic transaction envelope."
+version: 3.6.0.8
 ---
 
 # 276 -- Reconsolidation conflict transaction helper

@@ -7,6 +7,7 @@ trigger_phrases:
   - "list doc pages"
   - "document page listing"
   - "retrieve page ids from doc"
+version: 1.0.0.3
 ---
 
 # clickup_get_document_pages

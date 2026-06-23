@@ -1,6 +1,7 @@
 ---
 title: "CR-006 -- Secrets and hardcoded credentials"
 description: "This scenario validates Secrets and hardcoded credentials for `CR-006`. It focuses on Confirm committed secrets and sensitive logs are treated as security blockers."
+version: 1.5.0.4
 ---
 
 # CR-006 -- Secrets and hardcoded credentials

@@ -8,6 +8,7 @@ trigger_phrases:
   - "design handoff manifest"
 importance_tier: normal
 contextType: implementation
+version: 1.5.0.8
 ---
 
 # Real-UI Loop

@@ -2,6 +2,7 @@
 title: "025 -- Interference scoring (TM-01)"
 description: "This scenario validates Interference scoring (TM-01) for `025`. It focuses on Confirm cluster penalty."
 audited_post_018: true
+version: 3.6.0.17
 ---
 
 # 025 -- Interference scoring (TM-01)

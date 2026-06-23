@@ -1,6 +1,7 @@
 ---
 title: "deep-loop-runtime: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the deep-loop-runtime skill."
+version: 1.4.0.8
 ---
 
 # deep-loop-runtime: Manual Testing Playbook

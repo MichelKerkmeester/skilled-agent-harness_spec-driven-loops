@@ -1,6 +1,7 @@
 ---
 title: "mcp-open-design: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-open-design skill. Covers wiring, read-only content access, gated mutating runs, and the daemon failure path."
+version: 1.4.0.7
 ---
 
 # mcp-open-design: Manual Testing Playbook

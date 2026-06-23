@@ -8,6 +8,7 @@ trigger_phrases:
   - "profiling log retention"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.10
 ---
 
 # Profile-Selection Audit Log for DAI

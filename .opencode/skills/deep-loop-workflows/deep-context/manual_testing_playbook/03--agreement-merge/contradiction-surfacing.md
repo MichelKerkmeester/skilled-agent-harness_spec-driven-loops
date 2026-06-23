@@ -1,6 +1,7 @@
 ---
 title: "MERGE-003 -- Contradiction Surfacing"
 description: "This scenario validates Contradiction Surfacing for `MERGE-003`. It focuses on detecting and recording incompatible seat assertions for the same unit_id and surfacing them in the registry and dashboard — never auto-resolved."
+version: 1.2.0.4
 ---
 
 # MERGE-003 -- Contradiction Surfacing

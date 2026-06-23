@@ -1,6 +1,7 @@
 ---
 title: "DRV-029 -- Review resource-map emission"
 description: "Verify synthesis emits review/resource-map.md from converged deltas and honors the opt-out path."
+version: 1.11.0.13
 ---
 
 # DRV-029 -- Review resource-map emission

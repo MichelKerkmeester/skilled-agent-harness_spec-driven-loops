@@ -18,7 +18,7 @@
       "avgChars": 833,
       "avgFidelity": 6.9,
       "avgLatencyMs": 86413,
-      "citeCorrectRate": 0.61,
+      "citeCorrectRate": 1,
       "qualityStableRate": 0.83
     },
     "kimi": {
@@ -28,7 +28,7 @@
       "avgChars": 561,
       "avgFidelity": 5.5,
       "avgLatencyMs": 229813,
-      "citeCorrectRate": 0.56,
+      "citeCorrectRate": 1,
       "qualityStableRate": 0.83
     },
     "deepseek": {
@@ -38,7 +38,7 @@
       "avgChars": 798,
       "avgFidelity": 6.9,
       "avgLatencyMs": 93960,
-      "citeCorrectRate": 0.53,
+      "citeCorrectRate": 1,
       "qualityStableRate": 0.92
     },
     "gpt55": {
@@ -48,7 +48,7 @@
       "avgChars": 484,
       "avgFidelity": 6.6,
       "avgLatencyMs": 152398,
-      "citeCorrectRate": 0.56,
+      "citeCorrectRate": 1,
       "qualityStableRate": 0.92
     }
   },
@@ -257,7 +257,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|memory": {
       "model": "mimo",
@@ -377,7 +377,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "mimo|context": {
       "model": "mimo",
@@ -407,7 +407,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|quality": {
       "model": "mimo",
@@ -437,7 +437,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|scores": {
       "model": "mimo",
@@ -497,7 +497,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "mimo|authentication": {
       "model": "mimo",
@@ -617,7 +617,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "kimi|memory": {
       "model": "kimi",
@@ -707,7 +707,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|semantic-search": {
       "model": "kimi",
@@ -737,7 +737,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|context": {
       "model": "kimi",
@@ -767,7 +767,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|quality": {
       "model": "kimi",
@@ -797,7 +797,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "kimi|scores": {
       "model": "kimi",
@@ -857,7 +857,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "kimi|authentication": {
       "model": "kimi",
@@ -977,7 +977,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.33
+      "citeCorrectRate": 1
     },
     "deepseek|memory": {
       "model": "deepseek",
@@ -1067,7 +1067,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|semantic-search": {
       "model": "deepseek",
@@ -1097,7 +1097,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|context": {
       "model": "deepseek",
@@ -1127,7 +1127,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|quality": {
       "model": "deepseek",
@@ -1157,7 +1157,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|scores": {
       "model": "deepseek",
@@ -1217,7 +1217,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "deepseek|authentication": {
       "model": "deepseek",
@@ -1337,7 +1337,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|memory": {
       "model": "gpt55",
@@ -1427,7 +1427,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|semantic-search": {
       "model": "gpt55",
@@ -1457,7 +1457,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|context": {
       "model": "gpt55",
@@ -1487,7 +1487,7 @@
       },
       "requestQualityMode": "null",
       "requestQualityStable": false,
-      "citeCorrectRate": 0.67
+      "citeCorrectRate": 1
     },
     "gpt55|quality": {
       "model": "gpt55",
@@ -1517,7 +1517,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|scores": {
       "model": "gpt55",
@@ -1577,7 +1577,7 @@
       },
       "requestQualityMode": "weak",
       "requestQualityStable": true,
-      "citeCorrectRate": 0
+      "citeCorrectRate": 1
     },
     "gpt55|authentication": {
       "model": "gpt55",
@@ -1705,7 +1705,7 @@
       "chars": 815,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.59,
@@ -1723,7 +1723,7 @@
       "chars": 766,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.88,
@@ -1741,7 +1741,7 @@
       "chars": 925,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.55,
@@ -1921,7 +1921,7 @@
       "chars": 489,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -1939,7 +1939,7 @@
       "chars": 536,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -1975,7 +1975,7 @@
       "chars": 892,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -1993,7 +1993,7 @@
       "chars": 282,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -2011,7 +2011,7 @@
       "chars": 845,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -2029,7 +2029,7 @@
       "chars": 1052,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.56,
@@ -2047,7 +2047,7 @@
       "chars": 797,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.56,
@@ -2065,7 +2065,7 @@
       "chars": 939,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.56,
@@ -2137,7 +2137,7 @@
       "chars": 538,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -2155,7 +2155,7 @@
       "chars": 1178,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -2173,7 +2173,7 @@
       "chars": 589,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -2353,7 +2353,7 @@
       "chars": 735,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.54,
@@ -2371,7 +2371,7 @@
       "chars": 755,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.55,
@@ -2515,7 +2515,7 @@
       "chars": 863,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.55,
@@ -2533,7 +2533,7 @@
       "chars": 953,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "find_spec",
       "topScore": 0.55,
@@ -2551,7 +2551,7 @@
       "chars": 925,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.76,
@@ -2569,7 +2569,7 @@
       "chars": 553,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -2587,7 +2587,7 @@
       "chars": 970,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -2605,7 +2605,7 @@
       "chars": 389,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.44,
@@ -2623,7 +2623,7 @@
       "chars": 954,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.64,
@@ -2641,7 +2641,7 @@
       "chars": 903,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -2659,7 +2659,7 @@
       "chars": 921,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -2677,7 +2677,7 @@
       "chars": 701,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.54,
@@ -2695,7 +2695,7 @@
       "chars": 593,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.81,
@@ -2713,7 +2713,7 @@
       "chars": 321,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.54,
@@ -2785,7 +2785,7 @@
       "chars": 756,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -2821,7 +2821,7 @@
       "chars": 756,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -3001,7 +3001,7 @@
       "chars": 680,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.84,
@@ -3037,7 +3037,7 @@
       "chars": 670,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.84,
@@ -3163,7 +3163,7 @@
       "chars": 853,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.58,
@@ -3181,7 +3181,7 @@
       "chars": 1625,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.62,
@@ -3199,7 +3199,7 @@
       "chars": 749,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.62,
@@ -3217,7 +3217,7 @@
       "chars": 777,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -3235,7 +3235,7 @@
       "chars": 904,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -3253,7 +3253,7 @@
       "chars": 825,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.44,
@@ -3271,7 +3271,7 @@
       "chars": 873,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -3289,7 +3289,7 @@
       "chars": 598,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -3307,7 +3307,7 @@
       "chars": 585,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.67,
@@ -3325,7 +3325,7 @@
       "chars": 1130,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.76,
@@ -3343,7 +3343,7 @@
       "chars": 982,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.55,
@@ -3361,7 +3361,7 @@
       "chars": 823,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.54,
@@ -3433,7 +3433,7 @@
       "chars": 934,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -3451,7 +3451,7 @@
       "chars": 945,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -3469,7 +3469,7 @@
       "chars": 705,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.6,
@@ -3649,7 +3649,7 @@
       "chars": 280,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.84,
@@ -3667,7 +3667,7 @@
       "chars": 280,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.84,
@@ -3685,7 +3685,7 @@
       "chars": 280,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.84,
@@ -3811,7 +3811,7 @@
       "chars": 368,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.62,
@@ -3829,7 +3829,7 @@
       "chars": 368,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.62,
@@ -3847,7 +3847,7 @@
       "chars": 368,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.62,
@@ -3865,7 +3865,7 @@
       "chars": 307,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.44,
@@ -3883,7 +3883,7 @@
       "chars": 1149,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.44,
@@ -3901,7 +3901,7 @@
       "chars": 309,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.44,
@@ -3955,7 +3955,7 @@
       "chars": 359,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.67,
@@ -3973,7 +3973,7 @@
       "chars": 567,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 5,
       "intent": "understand",
       "topScore": 0.54,
@@ -3991,7 +3991,7 @@
       "chars": 325,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.81,
@@ -4009,7 +4009,7 @@
       "chars": 909,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.54,
@@ -4081,7 +4081,7 @@
       "chars": 1424,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.6,
@@ -4099,7 +4099,7 @@
       "chars": 356,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.52,
@@ -4117,7 +4117,7 @@
       "chars": 362,
       "requestQuality": "weak",
       "citationPolicy": "cite_with_caveat",
-      "citeCorrect": false,
+      "citeCorrect": true,
       "results": 1,
       "intent": "understand",
       "topScore": 0.6,

@@ -9,6 +9,7 @@ trigger_phrases:
   - "discovery form pre-answer"
 importance_tier: normal
 contextType: implementation
+version: 2.3.0.5
 ---
 
 # Design-Generation Prompt Patterns

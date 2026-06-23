@@ -1,6 +1,7 @@
 ---
 title: "CONV-004 -- Evaluate Context via Convergence Script"
 description: "This scenario validates Evaluate Context via Convergence Script for `CONV-004`. It focuses on the convergence.cjs --loop-type context invocation, argument parsing, output structure, and exit-code contract."
+version: 1.2.0.2
 ---
 
 # CONV-004 -- Evaluate Context via Convergence Script

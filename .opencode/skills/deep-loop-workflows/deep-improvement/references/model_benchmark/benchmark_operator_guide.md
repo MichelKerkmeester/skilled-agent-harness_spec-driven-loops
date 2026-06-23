@@ -8,6 +8,7 @@ trigger_phrases:
   - "benchmark output layout"
 importance_tier: normal
 contextType: implementation
+version: 1.17.0.18
 ---
 
 # Benchmark Operator Guide

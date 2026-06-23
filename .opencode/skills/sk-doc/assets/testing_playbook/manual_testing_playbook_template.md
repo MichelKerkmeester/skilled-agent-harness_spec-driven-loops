@@ -8,6 +8,7 @@ trigger_phrases:
   - "playbook root structure"
 importance_tier: normal
 contextType: general
+version: 1.8.0.16
 ---
 
 # Manual Testing Playbook Creation - Templates and Standards
@@ -149,6 +150,7 @@ Copy this scaffold to create `{SKILL_PATH}/manual_testing_playbook/manual_testin
 ---
 title: "{SKILL_NAME}: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the {SKILL_NAME} skill."
+version: 1.0.0.0
 ---
 
 # {SKILL_NAME}: Manual Testing Playbook
@@ -360,6 +362,7 @@ Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature-na
 ---
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
+version: 1.0.0.0
 ---
 
 # {FEATURE_ID} -- {FEATURE_NAME}

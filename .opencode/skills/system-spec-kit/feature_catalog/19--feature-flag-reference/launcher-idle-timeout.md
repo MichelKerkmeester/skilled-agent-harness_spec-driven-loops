@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN"
   - "mcp server idle self-exit"
   - "orphan mcp server prevention"
+version: 3.6.0.6
 ---
 
 # Launcher Idle Timeout

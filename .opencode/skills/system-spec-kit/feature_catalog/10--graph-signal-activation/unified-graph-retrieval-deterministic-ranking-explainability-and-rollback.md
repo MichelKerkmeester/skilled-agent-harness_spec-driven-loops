@@ -7,6 +7,7 @@ trigger_phrases:
   - "deterministic ranking contract"
   - "retrieval trace explainability"
   - "graph unified rollback gate"
+version: 3.6.0.11
 ---
 
 # Unified graph retrieval, deterministic ranking, explainability, and rollback

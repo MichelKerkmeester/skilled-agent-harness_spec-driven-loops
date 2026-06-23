@@ -8,6 +8,7 @@ expected_resources:
 expected_token_range_input: 200-800
 expected_token_range_output: 800-2000
 created: 2026-05-05
+version: 1.8.0.8
 ---
 
 # SD-010: Short-Prompt Baseline (CHANGELOG)

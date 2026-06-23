@@ -1,6 +1,7 @@
 ---
 title: "DOC-326 -- Doctor memory SIGINT cancellation"
 description: "Manual scenario validating graceful Ctrl-C handling during /doctor memory full rebuild, including ADR-001 settle, snapshot restore, and exit 130."
+version: 3.6.0.10
 ---
 
 # DOC-326 -- Doctor memory SIGINT cancellation

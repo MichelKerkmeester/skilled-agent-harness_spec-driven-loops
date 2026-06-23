@@ -9,6 +9,7 @@ trigger_phrases:
   - "kimi k2.7 dispatch gotchas"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.7
 ---
 
 # Kimi-k2.7-code Prompt-Craft Profile

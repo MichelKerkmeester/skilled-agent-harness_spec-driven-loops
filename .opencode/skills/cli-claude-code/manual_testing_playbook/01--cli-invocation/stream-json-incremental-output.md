@@ -1,6 +1,7 @@
 ---
 title: "CC-004 -- Stream-json incremental output"
 description: "This scenario validates Stream-json incremental output for `CC-004`. It focuses on confirming that `--output-format stream-json` emits newline-delimited JSON events for real-time progress consumption."
+version: 1.1.0.6
 ---
 
 # CC-004 -- Stream-json incremental output

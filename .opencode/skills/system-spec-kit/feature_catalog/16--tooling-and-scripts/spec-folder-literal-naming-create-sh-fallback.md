@@ -6,6 +6,7 @@ trigger_phrases:
   - "PROVIDE-DESCRIPTIVE-SLUG"
   - "phase name placeholder"
   - "generic phase name warning"
+version: 3.6.0.6
 ---
 
 # Spec folder literal naming: create.sh fallback

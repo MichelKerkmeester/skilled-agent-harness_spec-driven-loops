@@ -6,6 +6,7 @@ trigger_phrases:
   - "mcp recommend tool"
   - "native recommend"
   - "skill recommendation tool"
+version: 0.8.0.9
 ---
 
 # advisor_recommend MCP Tool

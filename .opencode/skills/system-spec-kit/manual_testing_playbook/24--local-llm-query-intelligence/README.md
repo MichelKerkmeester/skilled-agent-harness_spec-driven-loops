@@ -2,6 +2,7 @@
 title: "24 — Local-LLM memory substrate (query intelligence + causal graph + cross-AI handoff)"
 description: "Operator-driven scenarios that evaluate the real-world behavior of the local-first LLM stack (Ollama nomic-embed-text-v1.5 by default, with hf-local nomic-ai/nomic-embed-text-v1.5 fallback via the Hugging Face hub cache) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
 audited_post_018: true
+version: 3.6.0.10
 ---
 
 # 24 — Local-LLM memory substrate

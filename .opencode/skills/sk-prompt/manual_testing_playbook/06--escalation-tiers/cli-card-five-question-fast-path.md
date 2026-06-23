@@ -1,6 +1,7 @@
 ---
 title: "SP-023 -- Inline fast path: low-complexity prompts are not escalated"
 description: "This scenario validates the inline fast path for `SP-023`. It focuses on passing routine prompts inline through the CLEAR check without escalating to `@prompt-improver`."
+version: 2.3.0.7
 ---
 
 # SP-023 -- Inline fast path: low-complexity prompts are not escalated

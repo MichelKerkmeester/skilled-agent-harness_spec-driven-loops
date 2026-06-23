@@ -7,6 +7,7 @@ trigger_phrases:
   - "lint fixture for leaks"
   - "banned vocabulary check"
   - "public private fixture pair"
+version: 1.17.0.7
 ---
 
 # Hint-free fixtures and contamination gate

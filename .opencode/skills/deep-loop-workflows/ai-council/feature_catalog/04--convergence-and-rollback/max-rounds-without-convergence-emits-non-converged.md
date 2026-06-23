@@ -7,6 +7,7 @@ trigger_phrases:
   - "council max rounds exceeded"
   - "non-converged completion"
   - "truthful stop without consensus"
+version: 2.3.0.9
 ---
 
 # Max rounds without convergence emits non-converged

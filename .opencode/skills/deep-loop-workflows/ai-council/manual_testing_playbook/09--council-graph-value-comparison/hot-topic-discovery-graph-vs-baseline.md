@@ -1,6 +1,7 @@
 ---
 title: "DAC-031 -- Hot-topic discovery: graph vs no-graph baseline"
 description: "Real-world scenario for surfacing the most-contested claims/decisions in a multi-round council. Graph returns ranked hot nodes by edge-degree; baseline requires manual cross-referencing. Anchors to `runtime query CLI mode='hot_nodes'`."
+version: 2.3.0.9
 ---
 
 # DAC-031 -- Hot-topic discovery: graph vs no-graph baseline

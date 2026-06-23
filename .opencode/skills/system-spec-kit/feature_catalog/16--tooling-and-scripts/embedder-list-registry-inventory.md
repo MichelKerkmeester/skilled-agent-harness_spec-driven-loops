@@ -7,6 +7,7 @@ trigger_phrases:
   - "list embedders"
   - "embedder registry"
   - "active embedder"
+version: 3.6.0.7
 ---
 
 # Embedder list registry inventory

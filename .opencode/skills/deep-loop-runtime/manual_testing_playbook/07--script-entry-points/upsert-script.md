@@ -1,6 +1,7 @@
 ---
 title: "DLR-015 -- upsert.cjs"
 description: "Manual validation scenario for upsert.cjs in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-015 -- upsert.cjs

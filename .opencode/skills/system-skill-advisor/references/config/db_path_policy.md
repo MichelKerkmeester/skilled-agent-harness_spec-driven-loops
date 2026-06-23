@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor database policy"
 importance_tier: "important"
 contextType: "implementation"
+version: 0.8.0.9
 ---
 
 # System Skill Advisor DB Path Policy

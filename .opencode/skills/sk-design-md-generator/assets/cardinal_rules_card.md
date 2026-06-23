@@ -8,6 +8,7 @@ trigger_phrases:
   - "design md pre-validate check"
 importance_tier: "high"
 contextType: "implementation"
+version: 1.0.0.3
 ---
 
 # Cardinal Rules Card

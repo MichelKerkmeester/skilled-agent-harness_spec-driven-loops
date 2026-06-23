@@ -1,6 +1,7 @@
 ---
 title: "128 -- Schema compatibility validation"
 description: "This scenario validates Schema compatibility validation for `128`. It focuses on Verify backward-compatibility validation flags required schema gaps without throwing on partial databases."
+version: 3.6.0.16
 ---
 
 # 128 -- Schema compatibility validation

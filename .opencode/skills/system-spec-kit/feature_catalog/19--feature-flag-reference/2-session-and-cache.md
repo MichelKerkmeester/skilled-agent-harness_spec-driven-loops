@@ -6,6 +6,7 @@ trigger_phrases:
   - "session deduplication"
   - "tool cache settings"
   - "session ttl configuration"
+version: 3.6.0.14
 ---
 
 # 2. Session and Cache

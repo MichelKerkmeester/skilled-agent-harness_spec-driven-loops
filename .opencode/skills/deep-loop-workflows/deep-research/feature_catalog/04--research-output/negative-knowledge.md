@@ -7,6 +7,7 @@ trigger_phrases:
   - "dead ends tracking"
   - "eliminated alternatives table"
   - "ruledOut array"
+version: 1.14.0.10
 ---
 
 # Negative knowledge

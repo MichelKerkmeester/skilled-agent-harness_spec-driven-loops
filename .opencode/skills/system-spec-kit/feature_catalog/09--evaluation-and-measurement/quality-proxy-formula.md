@@ -7,6 +7,7 @@ trigger_phrases:
   - "automated regression detection score"
   - "eval-quality-proxy.ts"
   - "weighted quality score 0-1"
+version: 3.6.0.17
 ---
 
 # Quality proxy formula

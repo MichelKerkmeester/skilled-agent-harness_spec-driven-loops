@@ -6,6 +6,7 @@ trigger_phrases:
   - "chokidar narrow scope"
   - "skill.md watcher"
   - "key_files watcher"
+version: 0.8.0.13
 ---
 
 # Chokidar Narrow-Scope Watcher

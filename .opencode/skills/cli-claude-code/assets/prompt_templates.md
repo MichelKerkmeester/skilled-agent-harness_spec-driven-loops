@@ -9,6 +9,7 @@ trigger_phrases:
   - "claude code test generation prompt"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.19
 ---
 
 # Prompt Templates - Claude Code CLI

@@ -1,6 +1,7 @@
 ---
 title: "CONV-003 -- Agreement Gate"
 description: "This scenario validates the Agreement Gate for `CONV-003`. It focuses on agreementRate less than 0.50 triggering STOP_BLOCKED and the documented 1-seat pool warning."
+version: 1.2.0.4
 ---
 
 # CONV-003 -- Agreement Gate

@@ -7,6 +7,7 @@ trigger_phrases:
   - "reject oversized content"
   - "embedding token budget"
   - "preflight token check"
+version: 3.6.0.16
 ---
 
 # Pre-flight token budget validation

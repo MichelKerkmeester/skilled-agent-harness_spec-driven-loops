@@ -7,6 +7,7 @@ trigger_phrases:
   - "conflicting superseding edge detection"
   - "graph consistency causal relationships"
   - "automatic edge invalidation on conflict"
+version: 3.6.0.5
 ---
 
 # Contradiction detection

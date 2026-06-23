@@ -7,6 +7,7 @@ trigger_phrases:
   - "generate candidate"
   - "proposal-only subagent"
   - "packet-local candidate"
+version: 1.17.0.9
 ---
 
 # Candidate generation

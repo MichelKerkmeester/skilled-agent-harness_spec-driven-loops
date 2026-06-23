@@ -8,6 +8,7 @@ trigger_phrases:
   - "rename surface taxonomy"
 importance_tier: normal
 contextType: implementation
+version: 3.6.0.7
 ---
 
 # Rename Pattern — mechanical refactor template

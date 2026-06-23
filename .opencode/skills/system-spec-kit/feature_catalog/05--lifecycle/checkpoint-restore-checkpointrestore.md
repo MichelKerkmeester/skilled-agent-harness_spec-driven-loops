@@ -9,6 +9,7 @@ trigger_phrases:
   - "partial restore merge semantics"
   - "checkpoint v2 restore file swap journal"
   - "reopenActiveDatabase swap-pending swap-done"
+version: 3.6.0.23
 ---
 
 # Checkpoint restore (checkpoint_restore)

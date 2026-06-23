@@ -2,6 +2,7 @@
 title: "407 — Adversarial near-miss (lexical overlap, semantic distance)"
 description: "Fire a query whose stem overlaps lexically with multiple corpus files but is semantically distant from most of them. Verify the semantically-correct file outranks the lexical decoys."
 audited_post_018: true
+version: 3.6.0.4
 ---
 
 # 407 — Adversarial near-miss (lexical overlap, semantic distance)

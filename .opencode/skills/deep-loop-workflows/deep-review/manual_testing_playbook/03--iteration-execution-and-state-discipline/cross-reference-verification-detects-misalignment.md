@@ -1,6 +1,7 @@
 ---
 title: "DRV-011 -- Cross-reference verification detects misalignment"
 description: "Verify that cross-reference checks (spec_code, checklist_evidence, skill_agent protocols) detect misalignment between documentation and implementation."
+version: 1.11.0.14
 ---
 
 # DRV-011 -- Cross-reference verification detects misalignment

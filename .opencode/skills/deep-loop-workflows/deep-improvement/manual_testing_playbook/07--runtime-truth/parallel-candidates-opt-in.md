@@ -3,6 +3,7 @@ title: "RT-028 -- Parallel Candidates Opt-In Default"
 description: "Manual validation scenario for RT-028: Parallel Candidates Opt-In Default."
 feature_id: "RT-028"
 category: "Runtime Truth"
+version: 1.17.0.19
 ---
 
 # RT-028 -- Parallel Candidates Opt-In Default

@@ -7,6 +7,7 @@ trigger_phrases:
   - feature flag removal
   - orphaned export cleanup
   - module-level state removal
+version: 3.6.0.21
 ---
 
 # Dead code removal

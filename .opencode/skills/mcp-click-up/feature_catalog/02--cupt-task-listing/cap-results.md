@@ -7,6 +7,7 @@ trigger_phrases:
   - "limit task results"
   - "result count cap"
   - "stop pagination after n tasks"
+version: 1.0.0.3
 ---
 
 # Cap Results

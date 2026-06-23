@@ -2,6 +2,7 @@
 title: "278 -- Governed ingest cancel lifecycle"
 description: "Validates memory_ingest_start/status/cancel with a tiny deterministic fixture folder."
 audited_post_017: true
+version: 3.6.0.1
 ---
 
 # 278 -- Governed ingest cancel lifecycle

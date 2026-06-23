@@ -1,6 +1,7 @@
 ---
 title: "CM-002 -- search_tools relevance"
 description: "This scenario validates search_tools relevance for `CM-002`. It focuses on confirming that `search_tools` returns tools relevant to a task description, bounded by `limit`."
+version: 1.0.0.6
 ---
 
 # CM-002 -- search_tools relevance

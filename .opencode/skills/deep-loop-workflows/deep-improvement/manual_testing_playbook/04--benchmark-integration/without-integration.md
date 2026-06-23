@@ -3,6 +3,7 @@ title: "BI-012 -- Benchmark Without Integration Report"
 description: "Manual validation scenario for BI-012: Benchmark Without Integration Report."
 feature_id: "BI-012"
 category: "Benchmark Integration"
+version: 1.17.0.16
 ---
 
 # BI-012 -- Benchmark Without Integration Report

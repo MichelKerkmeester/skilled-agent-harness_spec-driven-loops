@@ -6,6 +6,7 @@ trigger_phrases:
   - "python regression suite"
   - "regression harness coverage"
   - "skill_advisor_regression.py"
+version: 0.8.0.14
 ---
 
 # PC-004 Python Regression Dataset

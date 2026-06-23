@@ -7,6 +7,7 @@ trigger_phrases:
   - "sqlite javascript timestamp format fix"
   - "active session deleted incorrectly"
   - "cleanupoldsessions datetime fix"
+version: 3.6.0.13
 ---
 
 # Working Memory Session Cleanup Timestamp Fix

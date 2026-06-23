@@ -1,6 +1,7 @@
 ---
 title: "426 -- Daemon Ownership Reelection"
 description: "Manual check for the default-on daemon-ownership reelection path: the launcher releases the shared daemon on owner disposal for a live secondary to keep, and a fresh session reaps the released daemon before respawn so the database keeps a single writer."
+version: 3.6.0.4
 ---
 
 # 426 -- Daemon Ownership Reelection

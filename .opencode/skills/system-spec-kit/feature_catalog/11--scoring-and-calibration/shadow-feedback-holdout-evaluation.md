@@ -7,6 +7,7 @@ trigger_phrases:
   - "holdout query shadow ranking comparison"
   - "Kendall tau NDCG shadow scoring"
   - "promotion gate weekly improvement cycle"
+version: 3.6.0.9
 ---
 
 # Shadow scoring with holdout evaluation

@@ -7,6 +7,7 @@ trigger_phrases:
   - "validate memory usefulness"
   - "confidence update auto-promotion negative feedback"
   - "how do I mark a memory as useful or not useful"
+version: 3.6.0.8
 ---
 
 # Feedback-driven revalidation

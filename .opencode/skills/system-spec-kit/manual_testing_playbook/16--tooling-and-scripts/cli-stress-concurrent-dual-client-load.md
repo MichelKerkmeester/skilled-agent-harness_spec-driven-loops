@@ -1,6 +1,7 @@
 ---
 title: "434 -- 028 CLI Stress: Concurrent Dual-CLI+MCP Load"
 description: "Stress scenario driving the three systems' sandboxed dual-client suites concurrently so real MCP and CLI clients hammer one daemon per system at the same time, with host daemons untouched."
+version: 3.6.0.2
 ---
 
 # 434 -- 028 CLI Stress: Concurrent Dual-CLI+MCP Load

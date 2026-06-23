@@ -1,6 +1,7 @@
 ---
 title: "DOC-328 -- Doctor causal graph low coverage"
 description: "This scenario validates /doctor causal-graph low-coverage reporting for DOC-328. It focuses on read-only causal coverage drift, degraded status, and explicit apply-mode recommendation."
+version: 3.6.0.10
 ---
 
 # DOC-328 -- Doctor causal graph low coverage

@@ -7,6 +7,7 @@ trigger_phrases:
   - "council graph query modes"
   - "five query views council graph"
   - "prompt-safe bounded context query"
+version: 2.3.0.10
 ---
 
 # runtime query CLI five modes return prompt-safe context

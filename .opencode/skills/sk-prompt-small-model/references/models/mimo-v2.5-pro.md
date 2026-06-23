@@ -9,6 +9,7 @@ trigger_phrases:
   - "mimo dispatch gotchas"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.10
 ---
 
 # MiMo-V2.5-Pro Prompt-Craft Profile

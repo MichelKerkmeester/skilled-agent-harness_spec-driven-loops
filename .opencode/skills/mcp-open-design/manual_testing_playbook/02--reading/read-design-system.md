@@ -1,6 +1,7 @@
 ---
 title: "READ-001 -- Read A Design System"
 description: "This scenario validates read-only content access for `READ-001`. It focuses on reading a registered design system's DESIGN.md and tokens.css with nothing written."
+version: 1.4.0.2
 ---
 
 # READ-001 -- Read A Design System

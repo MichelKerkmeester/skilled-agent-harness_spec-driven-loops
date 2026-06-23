@@ -1,6 +1,7 @@
 ---
 title: "RUNTIME-003 -- Post-Dispatch Validate (Seat Validation)"
 description: "This scenario validates Post-Dispatch Seat Validation for `RUNTIME-003`. It focuses on `validateSeatFinding` and `seatValidationWarnings` being present in `reduce-state.cjs`, confirming that invalid seat findings are surfaced rather than silently merged."
+version: 1.2.0.3
 ---
 
 # RUNTIME-003 -- Post-Dispatch Validate (Seat Validation)

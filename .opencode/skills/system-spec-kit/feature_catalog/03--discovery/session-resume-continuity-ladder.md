@@ -7,6 +7,7 @@ trigger_phrases:
   - "resume from spec folder"
   - "continuity ladder priority order"
   - "phase-parent continuity redirect"
+version: 3.6.0.6
 ---
 
 # Session resume continuity ladder

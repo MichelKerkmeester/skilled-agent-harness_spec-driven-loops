@@ -9,6 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
+version: 1.3.0.20
 ---
 
 # OpenCode CLI - Unique Capabilities

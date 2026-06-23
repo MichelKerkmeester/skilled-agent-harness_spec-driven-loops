@@ -7,6 +7,7 @@ trigger_phrases:
   - "semantic type metadata"
   - "pipeline row metadata"
   - "attach type without modifying scores"
+version: 3.6.0.17
 ---
 
 # Template anchor optimization

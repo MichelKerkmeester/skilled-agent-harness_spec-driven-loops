@@ -7,6 +7,7 @@ trigger_phrases:
   - "persist council artifacts"
   - "packet-local artifact layout"
   - "council output persistence"
+version: 2.3.0.9
 ---
 
 # Persist-artifacts helper writes packet-local tree

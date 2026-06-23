@@ -8,6 +8,7 @@ trigger_phrases:
   - "council resume semantics"
 importance_tier: "important"
 contextType: "implementation"
+version: 2.3.0.13
 ---
 
 # AI Council State Format

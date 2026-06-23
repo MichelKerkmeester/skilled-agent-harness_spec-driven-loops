@@ -1,6 +1,7 @@
 ---
 title: "CONV-002 -- Relevance Gate"
 description: "This scenario validates the Relevance Gate for `CONV-002`. It focuses on the combined host-saturation + graph-decision acceptance rule and the STOP_BLOCKED → CONTINUE override when blocking guards fail."
+version: 1.2.0.4
 ---
 
 # CONV-002 -- Relevance Gate

@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT"
   - "bounded restore panel"
   - "authored continuity snapshot"
+version: 3.6.0.1
 ---
 
 # OpenLTM continuity resilience

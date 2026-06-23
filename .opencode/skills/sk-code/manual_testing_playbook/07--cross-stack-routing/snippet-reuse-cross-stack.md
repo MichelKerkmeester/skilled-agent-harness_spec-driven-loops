@@ -1,6 +1,7 @@
 ---
 title: "CS-005: Snippet Reuse Across Stacks"
 description: "Verify cross-stack Motion.dev snippet reuse surfaces the reusable snippet and flags the snake_case Webflow convention caveat."
+version: 3.5.0.4
 ---
 
 # CS-005: Snippet Reuse Across Stacks

@@ -3,6 +3,7 @@ title: "RT-024 -- Fresh-Session Continuation After Archive"
 description: "Manual validation scenario for RT-024: Fresh-Session Continuation After Archive."
 feature_id: "RT-024"
 category: "Runtime Truth"
+version: 1.17.0.18
 ---
 
 # RT-024 -- Fresh-Session Continuation After Archive

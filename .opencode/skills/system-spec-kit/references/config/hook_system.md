@@ -9,6 +9,7 @@ trigger_phrases:
   - "codex timeout fallback"
 importance_tier: important
 contextType: implementation
+version: 3.6.0.34
 ---
 
 # Hook System Reference

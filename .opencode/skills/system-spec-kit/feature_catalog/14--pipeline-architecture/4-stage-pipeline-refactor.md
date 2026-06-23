@@ -7,6 +7,7 @@ trigger_phrases:
   - "retrieval pipeline stages"
   - "score-immutability invariant"
   - "candidate generation fusion reranking"
+version: 3.6.0.23
 ---
 
 # 4-stage pipeline refactor

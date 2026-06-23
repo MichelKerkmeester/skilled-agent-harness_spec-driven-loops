@@ -9,6 +9,7 @@ trigger_phrases:
   - "graph convergence graceful degradation"
 importance_tier: normal
 contextType: implementation
+version: 1.14.0.3
 ---
 
 # Graph-Aware Convergence Reference

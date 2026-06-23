@@ -7,6 +7,7 @@ trigger_phrases:
   - "bypass minimum content length check"
   - "decision-type document exception"
   - "short high-value memory allowed"
+version: 3.6.0.5
 ---
 
 # Save quality gate exceptions

@@ -8,6 +8,7 @@ trigger_phrases:
   - "CONTRADICTS edge"
   - "contradiction detection"
   - "conflicting findings"
+version: 1.2.0.3
 ---
 
 # Contradiction Surfacing

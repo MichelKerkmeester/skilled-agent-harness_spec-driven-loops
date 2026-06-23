@@ -1,6 +1,7 @@
 ---
 title: "DR-001 -- Auto mode deep-research kickoff"
 description: "Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow."
+version: 1.14.0.16
 ---
 
 # DR-001 -- Auto mode deep-research kickoff

@@ -1,6 +1,7 @@
 ---
 title: "CC-001 -- Base non-interactive invocation"
 description: "This scenario validates Base non-interactive invocation for `CC-001`. It focuses on confirming the canonical `claude -p \"<prompt>\" --output-format text 2>&1` dispatch returns coherent text and exits cleanly."
+version: 1.1.0.6
 ---
 
 # CC-001 -- Base non-interactive invocation

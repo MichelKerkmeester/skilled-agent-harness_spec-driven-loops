@@ -7,6 +7,7 @@ trigger_phrases:
   - "drop low-value chunks"
   - "content density scoring"
   - "thin index chunks"
+version: 3.6.0.13
 ---
 
 # Anchor-aware chunk thinning

@@ -7,6 +7,7 @@ trigger_phrases:
   - "od mcp"
   - "od cli"
   - "drive open design from the terminal"
+version: 1.4.0.10
 ---
 
 # mcp-open-design

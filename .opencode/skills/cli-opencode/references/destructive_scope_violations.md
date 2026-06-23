@@ -9,6 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
+version: 1.3.0.7
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)

@@ -7,6 +7,7 @@ trigger_phrases:
   - "daemon recycle transparency"
   - "SPECKIT_BACKEND_ONLY backend-only mode"
   - "-32002 protocol mismatch fail closed"
+version: 3.6.0.2
 ---
 
 # MCP launcher front-proxy (reconnecting session proxy)

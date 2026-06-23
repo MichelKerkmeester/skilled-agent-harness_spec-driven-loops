@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning",
+  "description": "Phase parent for retroactively versioning skill-doc frontmatter and making version a generated, enforced standard.",
+  "keywords": [
+    "phase",
+    "parent",
+    "retroactively",
+    "versioning",
+    "skill-doc",
+    "frontmatter",
+    "making",
+    "version",
+    "generated",
+    "enforced",
+    "standard"
+  ],
+  "lastUpdated": "2026-06-23T12:57:22.802Z",
+  "specId": "154",
+  "folderSlug": "frontmatter-versioning",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-06-26_11-33__shipped-the-skill-frontmatter-versioning-standard.md",
+    "23-06-26_13-57__phase-6-remediation-closed-every-mimo-deepseek.md"
+  ]
+}

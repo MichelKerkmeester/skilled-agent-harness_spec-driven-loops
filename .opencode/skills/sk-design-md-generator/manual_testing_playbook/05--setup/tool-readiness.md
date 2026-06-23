@@ -1,6 +1,7 @@
 ---
 title: "SETUP-001 -- Tool Readiness From A Fresh Checkout"
 description: "This scenario validates tool setup for SETUP-001. It focuses on confirming npm install and npx playwright install chromium prepare the embedded tool, and a missing Chromium binary is reported clearly rather than as a crash."
+version: 1.0.0.5
 ---
 
 # SETUP-001 -- Tool Readiness From A Fresh Checkout

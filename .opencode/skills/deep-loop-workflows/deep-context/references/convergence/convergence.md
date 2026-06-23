@@ -9,6 +9,7 @@ trigger_phrases:
   - "agreement and relevance guards"
 importance_tier: important
 contextType: implementation
+version: 1.2.0.3
 ---
 
 # Deep Context: Convergence

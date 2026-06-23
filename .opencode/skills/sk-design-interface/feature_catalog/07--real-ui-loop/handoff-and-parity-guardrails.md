@@ -6,6 +6,7 @@ trigger_phrases:
   - "design handoff manifest"
   - "generated versus presentational boundary"
   - "no style presets guardrail"
+version: 1.5.0.1
 ---
 
 # Handoff and loop guardrails

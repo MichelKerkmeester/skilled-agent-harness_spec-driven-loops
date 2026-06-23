@@ -6,6 +6,7 @@ trigger_phrases:
   - "doc harvest smoke"
   - "matchedDocs validation"
   - "doc trigger flag"
+version: 0.8.0.1
 ---
 
 # AI-006 Doc-Frontmatter Trigger Harvest

@@ -1,6 +1,7 @@
 ---
 title: "WIRE-001 -- Install And Verify The Live Tools"
 description: "This scenario validates od mcp install for `WIRE-001`. It focuses on writing the open-design MCP entry after a reviewed dry-run and confirming the live tools/list."
+version: 1.4.0.1
 ---
 
 # WIRE-001 -- Install And Verify The Live Tools

@@ -11,6 +11,7 @@ trigger_phrases:
   - "fallback router"
   - "jsonl repair"
   - "loop lock"
+version: 1.4.0.14
 ---
 
 # deep-loop-runtime

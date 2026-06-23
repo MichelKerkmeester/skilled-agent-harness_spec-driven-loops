@@ -7,6 +7,7 @@ trigger_phrases:
   - "create okr goal"
   - "workspace goals management"
   - "goal and key result setup"
+version: 1.0.0.3
 ---
 
 # clickup_manage_goals

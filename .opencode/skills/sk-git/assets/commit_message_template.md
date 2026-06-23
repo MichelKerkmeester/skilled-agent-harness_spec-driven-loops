@@ -9,6 +9,7 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.10
 ---
 
 # Commit Message Template - Conventional Format Guide

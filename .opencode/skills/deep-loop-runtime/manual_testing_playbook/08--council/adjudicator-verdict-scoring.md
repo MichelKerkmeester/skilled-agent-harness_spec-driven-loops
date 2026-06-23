@@ -1,6 +1,7 @@
 ---
 title: "DLR-020 -- Adjudicator verdict scoring"
 description: "Manual validation scenario for Adjudicator verdict scoring in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-020 -- Adjudicator verdict scoring

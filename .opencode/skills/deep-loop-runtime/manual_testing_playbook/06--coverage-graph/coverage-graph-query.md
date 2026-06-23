@@ -1,6 +1,7 @@
 ---
 title: "DLR-012 -- Coverage graph query"
 description: "Manual validation scenario for Coverage graph query in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-012 -- Coverage graph query

@@ -9,6 +9,7 @@ trigger_phrases:
   - "daemon-cli.mjs od"
 importance_tier: "normal"
 contextType: "implementation"
+version: 1.4.0.6
 ---
 
 # Open Design CLI Reference

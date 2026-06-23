@@ -6,6 +6,7 @@ trigger_phrases:
   - "df-idf corpus"
   - "active corpus stats"
   - "idf debounce"
+version: 0.8.0.14
 ---
 
 # AI-004 DF/IDF Corpus Stats Active-Only

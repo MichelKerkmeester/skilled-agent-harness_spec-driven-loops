@@ -1,6 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
+version: 1.14.0.12
 ---
 
 # deep-research: Feature Catalog

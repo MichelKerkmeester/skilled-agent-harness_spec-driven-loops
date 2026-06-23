@@ -1,6 +1,7 @@
 ---
 title: "MCP-L004 -- Create Webhook via MCP"
 description: "This scenario validates Create Webhook via MCP for `MCP-L004`. Objective: Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id."
+version: 1.0.0.5
 ---
 
 # MCP-L004 -- Create Webhook via MCP

@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE"
   - "SPECKIT_FEEDBACK_RETENTION_LEARNING"
   - "SPECKIT_FEEDBACK_RETENTION_MODE"
+version: 3.6.0.1
 ---
 
 # Learning feedback reducers

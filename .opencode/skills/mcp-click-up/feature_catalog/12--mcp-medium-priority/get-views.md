@@ -7,6 +7,7 @@ trigger_phrases:
   - "list clickup views"
   - "discover board views"
   - "available view types"
+version: 1.0.0.3
 ---
 
 # clickup_get_views

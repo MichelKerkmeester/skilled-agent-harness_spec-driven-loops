@@ -2,6 +2,7 @@
 title: "162 -- HyDE (SPECKIT_HYDE)"
 description: "This scenario validates HyDE (SPECKIT_HYDE) for `162`. It focuses on enabling the flag in deep mode and verifying a HyDE pseudo-document is generated."
 audited_post_018: true
+version: 3.6.0.14
 ---
 
 # 162 -- HyDE (SPECKIT_HYDE)

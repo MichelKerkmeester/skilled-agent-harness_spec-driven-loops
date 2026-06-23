@@ -1,6 +1,7 @@
 ---
 title: "GIT-004 -- Conventional commit from diff"
 description: "This scenario validates Conventional commit from diff for `GIT-004`. It focuses on verify sk-git derives a Conventional Commit subject from the staged diff."
+version: 1.1.0.3
 ---
 
 # GIT-004 -- Conventional commit from diff

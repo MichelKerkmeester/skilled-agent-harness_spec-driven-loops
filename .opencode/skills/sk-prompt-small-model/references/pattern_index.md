@@ -8,6 +8,7 @@ trigger_phrases:
   - "where is the small model pattern"
 importance_tier: normal
 contextType: general
+version: 0.8.0.19
 ---
 
 # Small-Model Pattern Index

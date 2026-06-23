@@ -7,6 +7,7 @@ trigger_phrases:
   - "mutation feedback modules"
   - "response hint logic"
   - "shared hook boundaries"
+version: 3.6.0.16
 ---
 
 # Dedicated UX hook modules

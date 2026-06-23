@@ -1,6 +1,7 @@
 ---
 title: "GIT-018 -- Empty commit or no changes"
 description: "This scenario validates Empty commit or no changes for `GIT-018`. It focuses on verify commit flow refuses no-op commits unless the user explicitly asks for an empty commit with rationale."
+version: 1.1.0.3
 ---
 
 # GIT-018 -- Empty commit or no changes

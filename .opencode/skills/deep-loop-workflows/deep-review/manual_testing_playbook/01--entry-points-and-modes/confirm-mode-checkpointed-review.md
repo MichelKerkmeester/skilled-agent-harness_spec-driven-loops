@@ -1,6 +1,7 @@
 ---
 title: "DRV-002 -- Confirm mode checkpointed review"
 description: "Verify that confirm mode pauses at each phase for user approval before proceeding."
+version: 1.11.0.14
 ---
 
 # DRV-002 -- Confirm mode checkpointed review

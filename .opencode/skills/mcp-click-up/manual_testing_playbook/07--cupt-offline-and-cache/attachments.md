@@ -1,6 +1,7 @@
 ---
 title: "CU-033 -- List Attachments"
 description: "This scenario validates List Attachments for `CU-033`. Objective: Verify `cupt attach list TASK_ID` returns attachment metadata or 'no attachments."
+version: 1.0.0.5
 ---
 
 # CU-033 -- List Attachments

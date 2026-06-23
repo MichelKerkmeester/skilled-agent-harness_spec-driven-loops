@@ -1,6 +1,7 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
 description: "This scenario validates setup, native module health, and MCP installation for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, marker recording, and installer execution."
+version: 3.6.0.12
 ---
 
 # 243 -- Setup, Native Module Health, and MCP Installation

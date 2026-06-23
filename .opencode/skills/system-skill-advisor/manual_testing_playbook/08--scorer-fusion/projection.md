@@ -6,6 +6,7 @@ trigger_phrases:
   - "scorer projection"
   - "skill_nodes skill_edges"
   - "graph projection"
+version: 0.8.0.16
 ---
 
 # SC-002 Projection of Skill Nodes and Edges

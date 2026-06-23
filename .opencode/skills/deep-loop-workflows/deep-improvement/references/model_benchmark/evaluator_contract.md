@@ -8,6 +8,7 @@ trigger_phrases:
   - "infra failure vs weak candidate"
 importance_tier: important
 contextType: implementation
+version: 1.17.0.14
 ---
 
 # Evaluator Contract

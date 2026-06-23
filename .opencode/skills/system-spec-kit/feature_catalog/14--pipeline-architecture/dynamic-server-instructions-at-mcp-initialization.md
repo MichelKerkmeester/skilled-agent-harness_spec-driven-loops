@@ -7,6 +7,7 @@ trigger_phrases:
   - "inject server instructions"
   - "spec-doc record-system overview"
   - "dynamic MCP startup context"
+version: 3.6.0.18
 ---
 
 # Dynamic server instructions at MCP initialization

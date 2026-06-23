@@ -8,6 +8,7 @@ trigger_phrases:
   - "dimension weights"
 importance_tier: normal
 contextType: general
+version: 1.17.0.20
 ---
 
 # Quick Reference

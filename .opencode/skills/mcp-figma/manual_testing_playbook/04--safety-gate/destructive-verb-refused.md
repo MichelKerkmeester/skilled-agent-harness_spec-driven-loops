@@ -1,6 +1,7 @@
 ---
 title: "REFUSE-001 -- Destructive Verb Refused Without Confirmation + Target"
 description: "This scenario validates the destructive-verb gate for `REFUSE-001`. It is a NEGATIVE CONTROL: an unconfirmed, untargeted destructive verb must be refused, never executed."
+version: 1.0.0.2
 ---
 
 # REFUSE-001 -- Destructive Verb Refused Without Confirmation + Target

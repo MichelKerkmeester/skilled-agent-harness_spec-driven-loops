@@ -7,6 +7,7 @@ trigger_phrases:
   - "short-circuit vector search"
   - "per-folder identity card"
   - "folder-level search routing"
+version: 3.6.0.20
 ---
 
 # Spec folder description discovery

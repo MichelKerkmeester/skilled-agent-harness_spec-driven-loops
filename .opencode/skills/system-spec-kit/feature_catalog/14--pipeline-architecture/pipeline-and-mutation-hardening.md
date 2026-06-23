@@ -7,6 +7,7 @@ trigger_phrases:
   - "schema completeness fixes"
   - "stemmer quality improvement"
   - "embedding efficiency hardening"
+version: 3.6.0.17
 ---
 
 # Pipeline and mutation hardening

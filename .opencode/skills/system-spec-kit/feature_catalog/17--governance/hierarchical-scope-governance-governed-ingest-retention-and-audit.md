@@ -7,6 +7,7 @@ trigger_phrases:
   - "govern ingest with provenance"
   - "governance audit trail"
   - "retention policy enforcement"
+version: 3.6.0.15
 ---
 
 # Hierarchical scope governance, governed ingest, retention, and audit

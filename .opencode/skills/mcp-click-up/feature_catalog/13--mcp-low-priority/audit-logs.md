@@ -7,6 +7,7 @@ trigger_phrases:
   - "workspace audit trail"
   - "compliance log review"
   - "security event history"
+version: 1.0.0.3
 ---
 
 # clickup_get_audit_logs

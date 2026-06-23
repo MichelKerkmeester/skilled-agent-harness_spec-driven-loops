@@ -1,6 +1,7 @@
 ---
 title: "CO-002 -- Output format default vs json"
 description: "This scenario validates `--format default` vs `--format json` for `CO-002`. It focuses on confirming the formatted log and the newline-delimited JSON event stream both run successfully and produce the expected output shape."
+version: 1.3.0.10
 ---
 
 # CO-002 -- Output format default vs json

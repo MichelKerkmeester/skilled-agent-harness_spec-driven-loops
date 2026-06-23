@@ -7,6 +7,7 @@ trigger_phrases:
   - "rebuild memory embeddings"
   - "cleanup orphaned vectors"
   - "rank memories"
+version: 3.6.0.8
 ---
 
 # Memory Maintenance and Migration CLIs

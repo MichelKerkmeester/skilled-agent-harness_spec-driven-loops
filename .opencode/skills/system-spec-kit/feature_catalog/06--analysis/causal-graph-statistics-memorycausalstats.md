@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph health metrics"
   - "link coverage percentage"
   - "causal edge count"
+version: 3.6.0.23
 ---
 
 # Causal graph statistics (memory_causal_stats)

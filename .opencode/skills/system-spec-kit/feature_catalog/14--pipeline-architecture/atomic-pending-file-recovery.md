@@ -7,6 +7,7 @@ trigger_phrases:
   - "interrupted save recovery"
   - "complete pending rename"
   - "recover orphaned pending files"
+version: 3.6.0.11
 ---
 
 # Atomic pending-file recovery

@@ -6,6 +6,7 @@ trigger_phrases:
   - "design plan color type layout signature"
   - "ascii wireframe design plan"
   - "design step 1"
+version: 1.5.0.2
 ---
 
 # Brainstorm a token system

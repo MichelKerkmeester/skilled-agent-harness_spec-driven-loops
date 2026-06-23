@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph blast radius testing"
 importance_tier: "important"
 contextType: "verification"
+version: 1.2.0.4
 ---
 
 # Scenario 022 — `code_graph_query` blast_radius (multi-subject + transitive)

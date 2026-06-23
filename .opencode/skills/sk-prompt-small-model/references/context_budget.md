@@ -8,6 +8,7 @@ trigger_phrases:
   - "context eviction order"
 importance_tier: normal
 contextType: implementation
+version: 0.8.0.4
 ---
 
 # Small-Model Context Budget Engine

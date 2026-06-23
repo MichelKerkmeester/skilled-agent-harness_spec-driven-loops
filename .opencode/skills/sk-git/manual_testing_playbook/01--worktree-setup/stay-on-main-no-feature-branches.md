@@ -1,6 +1,7 @@
 ---
 title: "GIT-003 -- Stay on main no feature branches"
 description: "This scenario validates Stay on main no feature branches for `GIT-003`. It focuses on verify a main-only user preference is restored after a helper creates or suggests an automatic branch."
+version: 1.1.0.3
 ---
 
 # GIT-003 -- Stay on main no feature branches

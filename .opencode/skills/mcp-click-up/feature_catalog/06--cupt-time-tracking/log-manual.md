@@ -7,6 +7,7 @@ trigger_phrases:
   - "manual time entry"
   - "retroactive time log"
   - "log duration without timer"
+version: 1.0.0.3
 ---
 
 # Log Time Manually

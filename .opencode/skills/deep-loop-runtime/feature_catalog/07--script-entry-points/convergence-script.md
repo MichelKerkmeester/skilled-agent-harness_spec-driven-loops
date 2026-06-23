@@ -7,6 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
+version: 1.4.0.4
 ---
 
 # convergence.cjs

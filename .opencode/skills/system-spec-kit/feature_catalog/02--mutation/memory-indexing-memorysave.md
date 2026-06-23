@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory indexing"
   - "memory_save"
   - "index memory"
+version: 3.6.0.5
 ---
 
 # Memory indexing (memory_save)

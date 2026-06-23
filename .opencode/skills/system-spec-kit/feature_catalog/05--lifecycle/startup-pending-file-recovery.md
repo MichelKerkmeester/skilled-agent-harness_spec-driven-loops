@@ -7,6 +7,7 @@ trigger_phrases:
   - "recover orphaned pending files"
   - "atomic-write crash recovery"
   - "startup file recovery routine"
+version: 3.6.0.11
 ---
 
 # Startup pending-file recovery

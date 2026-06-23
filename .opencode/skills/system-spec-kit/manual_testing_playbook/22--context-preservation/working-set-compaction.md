@@ -2,6 +2,7 @@
 title: "257 -- Working-set tracker feeds compaction"
 description: "This scenario validates Working-set tracker for 257. It focuses on Tracked files appear in compaction priority."
 audited_post_018: true
+version: 3.6.0.14
 ---
 
 # 257 -- Working-set tracker feeds compaction

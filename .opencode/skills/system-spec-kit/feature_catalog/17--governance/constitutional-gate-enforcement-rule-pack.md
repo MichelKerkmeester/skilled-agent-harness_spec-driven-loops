@@ -7,6 +7,7 @@ trigger_phrases:
   - "enforce spec kit gates"
   - "always-surface governance bundle"
   - "compaction recovery gate rules"
+version: 3.6.0.9
 ---
 
 # Constitutional Gate-Enforcement Rule Pack

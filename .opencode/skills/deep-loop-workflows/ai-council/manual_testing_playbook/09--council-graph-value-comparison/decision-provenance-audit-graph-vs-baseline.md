@@ -1,6 +1,7 @@
 ---
 title: "DAC-028 -- Decision provenance audit: graph vs no-graph baseline"
 description: "Real-world scenario comparing operator effort to justify a council decision via evidence chain, with vs without the council graph. Anchors to `runtime query CLI mode='decision_support'`."
+version: 2.3.0.9
 ---
 
 # DAC-028 -- Decision provenance audit: graph vs no-graph baseline

@@ -7,6 +7,7 @@ trigger_phrases:
   - "cancel an ingest job"
   - "async ingest job lifecycle"
   - "ingest job status and cancellation"
+version: 3.6.0.5
 ---
 
 # Governed ingest cancel lifecycle

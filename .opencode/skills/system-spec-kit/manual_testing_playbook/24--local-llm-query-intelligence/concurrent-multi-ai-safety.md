@@ -2,6 +2,7 @@
 title: "415 — Concurrent multi-AI safety (save during search)"
 description: "AI-A is mid-search through Memory MCP when AI-B fires a memory_save into the same DB. Verifies the local-LLM substrate stays consistent under interleaved access: search either returns the pre-save snapshot OR the post-save state — never a corrupt mix."
 audited_post_018: true
+version: 3.6.0.6
 ---
 
 # 415 — Concurrent multi-AI safety (save during search)

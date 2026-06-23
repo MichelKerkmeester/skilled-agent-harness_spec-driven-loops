@@ -7,6 +7,7 @@ trigger_phrases:
   - "write custom field"
   - "set task field value"
   - "custom field value assignment"
+version: 1.0.0.3
 ---
 
 # clickup_set_custom_field_value

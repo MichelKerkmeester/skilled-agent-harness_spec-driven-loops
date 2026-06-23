@@ -8,6 +8,7 @@ trigger_phrases:
   - "stack agnostic debugging"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.5
 ---
 
 # Universal Debugging Checklist - Surface-Agnostic 4-Phase Workflow

@@ -3,6 +3,7 @@ title: "RD-014 -- JSONL Without Dimensions Produces Normal Dashboard"
 description: "Manual validation scenario for RD-014: JSONL Without Dimensions Produces Normal Dashboard."
 feature_id: "RD-014"
 category: "Reducer Dimensions"
+version: 1.17.0.14
 ---
 
 # RD-014 -- JSONL Without Dimensions Produces Normal Dashboard

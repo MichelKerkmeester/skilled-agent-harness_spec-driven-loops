@@ -6,6 +6,7 @@ trigger_phrases:
   - "BM25 re-index gate"
   - "trigger phrase index update"
   - "BM25 index invalidation"
+version: 3.6.0.14
 ---
 
 # BM25 trigger phrase re-index gate

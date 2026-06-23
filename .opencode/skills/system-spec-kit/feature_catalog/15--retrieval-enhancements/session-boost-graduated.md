@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_SESSION_BOOST"
   - "session-based result re-ranking"
   - "recently accessed memory amplification"
+version: 3.6.0.5
 ---
 
 # Session attention boost (graduated default-ON)

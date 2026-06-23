@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding quantization evaluation"
   - "corpus size latency threshold check"
   - "quantization storage trade-off decision"
+version: 3.6.0.12
 ---
 
 # INT8 quantization evaluation

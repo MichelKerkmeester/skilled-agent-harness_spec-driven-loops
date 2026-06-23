@@ -9,6 +9,7 @@ expected_resources:
 expected_token_range_input: 800-2500
 expected_token_range_output: 1500-3500
 created: 2026-05-05
+version: 1.8.0.6
 ---
 
 # SD-017: INSTALL_GUIDE Intent Detection

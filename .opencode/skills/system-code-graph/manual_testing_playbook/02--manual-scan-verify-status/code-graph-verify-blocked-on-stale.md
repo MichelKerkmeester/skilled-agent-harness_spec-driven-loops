@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph verify blocked on stale"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 005 code_graph_verify blocked on stale
 

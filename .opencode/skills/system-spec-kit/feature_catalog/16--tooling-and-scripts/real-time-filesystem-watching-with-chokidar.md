@@ -7,6 +7,7 @@ trigger_phrases:
   - file watcher
   - push indexing
   - debounce deduplication
+version: 3.6.0.18
 ---
 
 # Real-time filesystem watching with chokidar

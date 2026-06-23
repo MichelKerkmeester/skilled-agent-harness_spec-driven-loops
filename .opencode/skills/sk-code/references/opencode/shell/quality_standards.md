@@ -8,6 +8,7 @@ trigger_phrases:
   - "shell quality validation"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.9
 ---
 
 # Shell Quality Standards

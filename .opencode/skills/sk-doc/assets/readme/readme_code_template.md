@@ -8,6 +8,7 @@ trigger_phrases:
   - "architecture zones readme"
 importance_tier: normal
 contextType: general
+version: 1.8.0.3
 ---
 
 # Code Folder README Template

@@ -7,6 +7,7 @@ trigger_phrases:
   - "derive slug from task context"
   - "generateContentSlug"
   - "session-derived filename"
+version: 3.6.0.22
 ---
 
 # Content-aware memory filename generation

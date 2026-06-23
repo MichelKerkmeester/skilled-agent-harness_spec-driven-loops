@@ -1,6 +1,7 @@
 ---
 title: "DAC-008 -- Two-of-three agree triggers convergence"
 description: "This scenario validates two-of-three convergence guidance for DAC-008."
+version: 2.3.0.7
 ---
 
 # DAC-008 -- Two-of-three agree triggers convergence

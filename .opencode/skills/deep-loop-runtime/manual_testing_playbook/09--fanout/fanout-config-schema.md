@@ -1,6 +1,7 @@
 ---
 title: "DLR-023 -- Fan-out config schema"
 description: "Validate parseFanoutConfig + expandLineages: unique-label enforcement, collision detection, count expansion, per-entry kind validation reuse, and lineageId byte-identity when absent."
+version: 1.4.0.3
 ---
 
 # DLR-023 -- Fan-out config schema

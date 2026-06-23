@@ -8,6 +8,7 @@ trigger_phrases:
   - "secondary factors override"
 importance_tier: normal
 contextType: planning
+version: 3.6.0.33
 ---
 
 # Level Decision Matrix - Complexity Scoring Guide

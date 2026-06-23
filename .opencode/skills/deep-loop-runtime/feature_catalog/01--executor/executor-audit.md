@@ -7,6 +7,7 @@ trigger_phrases:
   - "audit executor"
   - "recursion guard"
   - "dispatch-failure emission"
+version: 1.4.0.4
 ---
 
 # Executor audit

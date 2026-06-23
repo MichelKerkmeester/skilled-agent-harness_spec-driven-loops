@@ -9,6 +9,7 @@ trigger_phrases:
   - "legal-stop gate bundles"
 importance_tier: normal
 contextType: planning
+version: 1.17.0.12
 ---
 
 # Recursive Agent Charter

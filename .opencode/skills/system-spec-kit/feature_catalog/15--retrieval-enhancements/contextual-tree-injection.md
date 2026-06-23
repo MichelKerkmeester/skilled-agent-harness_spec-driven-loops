@@ -6,6 +6,7 @@ trigger_phrases:
   - "hierarchical context headers"
   - "SPECKIT_CONTEXT_HEADERS"
   - "chunk context prefix"
+version: 3.6.0.18
 ---
 
 # Contextual tree injection

@@ -8,6 +8,7 @@ trigger_phrases:
   - "json config validation rules"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.10
 ---
 
 # Config Quality Standards

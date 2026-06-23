@@ -6,6 +6,7 @@ trigger_phrases:
   - "deep loop graph convergence yaml fire"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.8
 ---
 # 009 deep-loop-runtime convergence yaml fire
 

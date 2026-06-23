@@ -7,6 +7,7 @@ trigger_phrases:
   - "causal edge provenance"
   - "edge bounds enforcement auto-generated"
   - "rollbackWeights causal edge"
+version: 3.6.0.13
 ---
 
 # Weight history audit tracking

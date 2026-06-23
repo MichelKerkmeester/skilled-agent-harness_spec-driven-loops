@@ -7,6 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
+version: 0.8.0.16
 ---
 
 # SC-004 Lane Contribution Attribution

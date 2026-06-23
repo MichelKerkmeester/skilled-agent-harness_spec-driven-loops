@@ -1,6 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
+version: 1.8.0.14
 ---
 
 # sk-doc: Manual Testing Playbook

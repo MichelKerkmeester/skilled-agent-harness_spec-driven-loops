@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-frontmatter-versioning",
+  "spec_folder": "skilled-agent-orchestration/154-frontmatter-versioning",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/154-frontmatter-versioning/001-versioning-standard",
+    "skilled-agent-orchestration/154-frontmatter-versioning/002-derivation-engine",
+    "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
+    "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
+    "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
+    "skilled-agent-orchestration/154-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill frontmatter versioning",
+      "154 frontmatter versioning",
+      "doc version field standard",
+      "retroactive frontmatter version",
+      "changelog-anchored version derivation"
+    ],
+    "key_topics": [
+      "skill",
+      "frontmatter",
+      "versioning",
+      "154",
+      "doc",
+      "version",
+      "field",
+      "standard",
+      "retroactive",
+      "changelog-anchored",
+      "derivation",
+      "documentation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Frontmatter Versioning Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Model",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Coordinate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill documentation (`SKILL.md`, `README.md`, `references/.md`, `assets//.md`, feature catalogs, testing playbooks) carries YAML frontmatter consumed by the skill advisor and system-spec-kit",
+    "created_at": "2026-06-23T07:33:08Z",
+    "last_save_at": "2026-06-23T12:57:24.738Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:67a542afde94d6fe82d6131177f33d58c760d0a4eb71926e60a78d8c24e26933",
+    "source_doc_hashes": {
+      "spec.md": "faaceee9417fc098ba4d680432889b70602c5d4b2bd515e0de0f94847bf48490"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-23T12:57:24.738Z"
+  }
+}

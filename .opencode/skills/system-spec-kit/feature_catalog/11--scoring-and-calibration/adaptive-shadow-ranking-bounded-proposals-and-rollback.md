@@ -7,6 +7,7 @@ trigger_phrases:
   - "adaptive threshold SQLite persistence"
   - "shadow proposal adaptive ranking"
   - "buildAdaptiveShadowProposal promotion gate"
+version: 3.6.0.13
 ---
 
 # Adaptive shadow ranking, bounded proposals, and rollback

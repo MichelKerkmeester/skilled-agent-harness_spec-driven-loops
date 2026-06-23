@@ -1,6 +1,7 @@
 ---
 title: "CM-008 -- Prefixed env load"
 description: "This scenario validates prefixed env-var loading for `CM-008`. It focuses on confirming a `.env` entry like `clickup_CLICKUP_API_KEY=pk_xxx` is visible to the wrapped ClickUp MCP server."
+version: 1.0.0.8
 ---
 
 # CM-008 -- Prefixed env load

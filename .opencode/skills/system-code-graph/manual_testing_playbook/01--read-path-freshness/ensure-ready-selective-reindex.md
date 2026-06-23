@@ -6,6 +6,7 @@ trigger_phrases:
   - "ensure ready selective reindex"
   - "system-code-graph manual testing"
 importance_tier: "normal"
+version: 1.2.0.3
 ---
 # 001 ensure-ready selective reindex
 

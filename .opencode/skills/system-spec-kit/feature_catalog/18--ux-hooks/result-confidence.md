@@ -7,6 +7,7 @@ trigger_phrases:
   - "confidence score per result"
   - "multi-channel agreement scoring"
   - "anchor density confidence"
+version: 3.6.0.8
 ---
 
 # Result confidence scoring

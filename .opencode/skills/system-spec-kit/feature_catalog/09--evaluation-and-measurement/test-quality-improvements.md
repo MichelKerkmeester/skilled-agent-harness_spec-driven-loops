@@ -7,6 +7,7 @@ trigger_phrases:
   - "tautological test rewrite"
   - "handle leak prevention tests"
   - "flaky test fixes"
+version: 3.6.0.16
 ---
 
 # Test quality improvements

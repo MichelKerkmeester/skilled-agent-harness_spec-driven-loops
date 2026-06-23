@@ -8,6 +8,7 @@ trigger_phrases:
   - "spec-kit code-graph split"
 importance_tier: "important"
 contextType: "general"
+version: 1.2.0.9
 ---
 
 # Ownership Boundary: system-spec-kit vs system-code-graph

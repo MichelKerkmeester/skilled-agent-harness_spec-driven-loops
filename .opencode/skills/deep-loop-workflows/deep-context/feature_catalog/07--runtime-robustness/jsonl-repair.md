@@ -9,6 +9,7 @@ trigger_phrases:
   - "droppedBytes"
   - "partial write recovery"
   - "jsonl tail truncation"
+version: 1.2.0.3
 ---
 
 # JSONL Repair

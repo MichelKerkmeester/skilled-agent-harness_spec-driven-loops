@@ -1,6 +1,7 @@
 ---
 title: "082 -- Evaluation and housekeeping fixes"
 description: "This scenario validates Evaluation and housekeeping fixes for `082`. It focuses on Confirm eval/housekeeping reliability."
+version: 3.6.0.16
 ---
 
 # 082 -- Evaluation and housekeeping fixes

@@ -7,6 +7,7 @@ trigger_phrases:
   - "failed embedding generation"
   - "progressive backoff embeddings"
   - "batch retry with cache dedup"
+version: 3.6.0.13
 ---
 
 # Embedding retry orchestrator

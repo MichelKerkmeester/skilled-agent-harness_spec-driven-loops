@@ -8,6 +8,7 @@ trigger_phrases:
   - "mcp error envelopes"
 importance_tier: normal
 contextType: implementation
+version: 3.5.0.8
 ---
 
 # MCP Server Authoring Checklist

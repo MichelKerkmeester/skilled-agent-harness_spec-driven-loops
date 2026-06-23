@@ -7,6 +7,7 @@ trigger_phrases:
   - "trace council decision evidence"
   - "decision provenance graph"
   - "why did council recommend plan"
+version: 2.3.0.10
 ---
 
 # Decision provenance audit: graph vs baseline

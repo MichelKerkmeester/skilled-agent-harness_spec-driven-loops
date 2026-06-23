@@ -8,6 +8,7 @@ trigger_phrases:
   - "claude code prompt precedence rule"
 importance_tier: normal
 contextType: implementation
+version: 1.1.0.13
 ---
 
 # Claude Code — Prompt Quality Card

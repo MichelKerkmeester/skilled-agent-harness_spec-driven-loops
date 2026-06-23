@@ -7,6 +7,7 @@ trigger_phrases:
   - "council graph no mcp context"
   - "mk-spec-memory council graph absent"
   - "council graph runtime cli only"
+version: 2.3.0.10
 ---
 
 # Council graph MCP surface retired

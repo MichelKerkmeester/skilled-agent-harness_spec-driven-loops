@@ -1,6 +1,7 @@
 ---
 title: "GIT-005 -- Scope inference skill folder"
 description: "This scenario validates Scope inference skill folder for `GIT-005`. It focuses on verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope."
+version: 1.1.0.4
 ---
 
 # GIT-005 -- Scope inference skill folder

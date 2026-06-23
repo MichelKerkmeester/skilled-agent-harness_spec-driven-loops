@@ -8,6 +8,7 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
+version: 3.6.0.17
 ---
 
 # Template Style Guide - Formatting Standards

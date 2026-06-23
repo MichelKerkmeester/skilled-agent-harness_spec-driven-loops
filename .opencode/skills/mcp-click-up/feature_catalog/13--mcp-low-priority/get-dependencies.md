@@ -7,6 +7,7 @@ trigger_phrases:
   - "read task dependency graph"
   - "depends_on query"
   - "task blocking relationships"
+version: 1.0.0.3
 ---
 
 # clickup_get_task_dependencies

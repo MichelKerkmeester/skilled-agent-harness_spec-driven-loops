@@ -2,6 +2,7 @@
 title: "412 — Causal coverage under bulk save (does the local LLM cluster correctly?)"
 description: "Save 20 memories spanning 4 distinct topics (5 per topic). Verify causal_edges form within each topic cluster but not across. Probes BGE local fallback's intra-cluster cohesion vs inter-cluster separation."
 audited_post_018: true
+version: 3.6.0.6
 ---
 
 # 412 — Causal coverage under bulk save (does the local LLM cluster correctly?)

@@ -1,6 +1,7 @@
 ---
 title: "CO-006 -- External dispatch from Claude Code into OpenCode"
 description: "This scenario validates use case 1 (external runtime to OpenCode) for `CO-006`. It focuses on confirming Claude Code can dispatch into a fresh OpenCode session via cli-opencode and load the project's full plugin / skill / MCP / Spec Kit Memory runtime."
+version: 1.3.0.12
 ---
 
 # CO-006 -- External dispatch from Claude Code into OpenCode

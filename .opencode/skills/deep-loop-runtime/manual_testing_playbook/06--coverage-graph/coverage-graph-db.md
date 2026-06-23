@@ -1,6 +1,7 @@
 ---
 title: "DLR-011 -- Coverage graph DB"
 description: "Manual validation scenario for Coverage graph DB in the deep-loop-runtime skill."
+version: 1.4.0.4
 ---
 
 # DLR-011 -- Coverage graph DB
