@@ -238,10 +238,9 @@ behavioral flags. The false-confirm baseline reproduced the documented 0.833 rat
 driver is wired to the live verdict path. The full numbers live in
 [`005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md`](./005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md).
 
-**Verdict tally: six graduate, two stay off pending a migration re-run, four stay off on a neutral or
-fixture-blocked read, one stays default-ON by construction.**
+**Final verdict tally: twelve of thirteen kept, one deleted.** Eleven graduated on a measured before-and-after, one stays default-ON by construction, and grounding-signal was deleted as purely informational. A migration re-run then wrote the drift-gate and generator-hardening fields and a fixture re-benchmark measured the verdict and render flags, so the two pending-re-run rows and three of the four neutral rows below have since graduated, recorded in place.
 
-### Graduated (6)
+### Graduated on the first benchmark (6)
 
 Four flip default-ON, one flips OFF to enforce and one sets its CI ceiling. Each rests on a measured before-and-after.
 
@@ -254,29 +253,30 @@ Four flip default-ON, one flips OFF to enforce and one sets its CI ceiling. Each
 | `SPECKIT_GENERATED_METADATA_GRANDFATHER` | 036 | GRADUATE default-OFF enforcing | Verify pass on the restamped tree read 2049 folders with 0 violations, exit 0, so the integrity rule flips from report-only `info` to a hard strict error. |
 | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | 025 | GRADUATE ceiling 0 | The CI gate exits 0 with lexical grounding on and exits 1 with the verdict flags off, so the ceiling is set to 0 and the gate now fails on any off-corpus false confirm. |
 
-### Stay off, needs a migration re-run (2)
+### Graduated after a migration re-run (2)
 
 The phase 039 migration restamped the tree under identity-merge-safety and idempotent-writes only, so the two
-fields these flags enforce against were never written. Neither can be measured for a real before-and-after until
-the migration is re-run with its field-writing flag on. The revisit condition is that re-run.
+fields these flags enforce against were never written on the first pass. A migration re-run with both field-writing
+flags on then stamped source_doc_hashes and source_fingerprint across the tree, and both graduated.
 
 | Flag | Phase | Verdict | Measured evidence |
 |------|-------|---------|-------------------|
-| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | 037 | STAY-OFF, needs a migration re-run | Field census reads `source_doc_hashes` on 0 of 2093 folders, so the drift gate has no freshness baseline to compare against. |
-| `SPECKIT_GENERATOR_HARDENING` | 038 | STAY-OFF, needs a migration re-run | Field census reads `source_fingerprint` on 0 of 2093 folders. The verify pass with the flag forced on mass-failed 2049 of 2049 folders, all `SOURCE_FINGERPRINT_MISSING`, exit 1. |
+| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | 037 | GRADUATE default-ON | The re-run stamped `source_doc_hashes` across the tree (treeDocHashes 2021), and the validator with the gate on then read 2049 folders with 0 violations, so it flipped ON. |
+| `SPECKIT_GENERATOR_HARDENING` | 038 | GRADUATE default-ON | The re-run stamped `source_fingerprint` (treeFingerprint 2049), and the verify pass with the flag on fell from mass-failing 2049 of 2049 to 0 violations, so it flipped ON. |
 
-### Stay off, neutral or fixture-blocked (4)
+### Graduated on built fixtures (3), one deleted (1)
 
-Three verdict-or-formatter flags do not move the off-corpus false-confirm rate because the off-corpus class does
-not exercise their input, a measured structural reason rather than a missing run. The fourth has no captured
-render corpus to score against. Each keep-off names the fixture that would exercise it.
+These four do not move the off-corpus false-confirm rate because that class never exercises their input. A fixture
+re-benchmark then built the borderline, gap and render-corpus fixtures the class could not produce. Three showed a
+measurable effect and graduated. Grounding-signal set its display field correctly but moved no retrieval metric, so
+it was deleted with its code under the earn-or-delete bar.
 
 | Flag | Phase | Verdict | Measured evidence |
 |------|-------|---------|-------------------|
-| `SPECKIT_GROUNDING_SIGNAL_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture, the class does not exercise its input, so the false-confirm rate does not move. |
-| `SPECKIT_CITE_WITH_CAVEAT_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture for the same structural reason, no measured before-and-after move. |
-| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture, the off-corpus class does not exercise the Stage 4 gap signal. |
-| `SPECKIT_ENVELOPE_FIDELITY_V1` | 027 | STAY-OFF, fixture-blocked | The envelope replay proves the mechanics both ways, a conforming render passes and a dropped render fails, but no captured render corpus exists in the repo for a real grandfather report over live renders. |
+| `SPECKIT_GROUNDING_SIGNAL_V1` | 028-scoring-hardening | DELETED | A grounded-vs-low fixture confirmed it sets the field correctly, but it moves no retrieval metric: a display-only field. Deleted with its flag, reader, fixture and test under earn-or-delete. |
+| `SPECKIT_CITE_WITH_CAVEAT_V1` | 028-scoring-hardening | GRADUATE default-ON | On a borderline-grounded fixture it recovered one result the binary policy drops to do_not_cite and fired only on the borderline, a measurable effect. |
+| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | 028-scoring-hardening | GRADUATE default-ON | On a Stage-4 gap fixture it capped one otherwise-good verdict to weak and left a no-gap verdict unchanged, a measurable safety effect. |
+| `SPECKIT_ENVELOPE_FIDELITY_V1` | 027 | GRADUATE default-ON | A captured render corpus showed the checker flags 3 of 3 dropped renders a no-checker baseline passes silently and passes 3 of 3 faithful renders, a measurable effect. |
 
 ### Default-ON by construction (1)
 
@@ -284,7 +284,4 @@ render corpus to score against. Each keep-off names the fixture that would exerc
 |------|-------|---------|-------------------|
 | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | 034 | Stays default-ON | Cannot mass-fail, ships ON on cost with a one-var opt-out, needs no benchmark to keep. |
 
-The drift gate and generator hardening are the honest blocker. The migration restamped the tree under
-identity-merge-safety and idempotent-writes only, so `source_doc_hashes` and `source_fingerprint` were never
-written, and a re-run with the field-writing flag on is the prerequisite for either verdict. This was measured,
-not assumed.
+The drift gate and generator hardening were the first-pass blocker, measured not assumed: the field census read both fields on 0 of 2093 folders. The resolution was a migration re-run with both field-writing flags on, which stamped the fields tree-wide and graduated both. The four verdict and render flags then graduated or were deleted on built fixtures. The reckoning is complete: twelve kept, one deleted, no flag left in a pending state.
