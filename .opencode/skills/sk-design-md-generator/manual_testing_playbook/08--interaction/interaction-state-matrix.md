@@ -77,7 +77,7 @@ If the operator wants to confirm the full pipeline writes interaction states, ru
 | `../../backend/scripts/interaction-capture.ts` | Interaction state capture engine -- element discovery, state simulation, style-diff computation, loading/empty/error state detection |
 | `../../backend/scripts/extract.ts` | Extraction orchestrator -- interaction capture is default-on (`noInteraction = false`); `--no-interaction` / `--fast-no-interaction` opt out, `--with-interaction` is the redundant default; invokes captureInteractions() when not opted out |
 | `../../backend/scripts/validate.ts` | Style Reference validator -- `checkSectionCompleteness` requires the named v3 sections including `## Components`, where interaction states are characterized |
-| `../../references/design_md_format_v3.md` | v3 Style Reference section specification -- §6 Components captures hover/focus states |
+| `../../references/design_md_format.md` | v3 Style Reference section specification -- §6 Components captures hover/focus states |
 | `../../feature_catalog/07--interaction-capture/interaction-capture.md` | Feature catalog entry for interaction-capture.ts |
 | `../../SKILL.md` | SS2 SMART ROUTING -- the --with-interaction flag documentation; SS3 HOW IT WORKS -- the three-phase pipeline |
 

@@ -60,7 +60,7 @@ The `InteractionData` payload contains an array of `InteractionCapture` objects 
 
 ### Validation enforcement
 
-Section 11 (State Matrix) is data-driven: the v2 format specification (`design_md_format_v3.md`) marks it conditional on interaction data being captured. Because capture runs by default, most extractions populate section 11 from real data. When capture is skipped (via `--fast-no-interaction` or `--no-interaction`), section 11 is stamped ABSENT with an explicit absence note (e.g., `_No interaction data was extracted._`) rather than fabricated. The validator (`validate.ts`) flags a section-coverage violation only when section 11 is present and non-empty while its backing interaction tokens are empty and it was not stamped ABSENT.
+Section 11 (State Matrix) is data-driven: the v2 format specification (`design_md_format.md`) marks it conditional on interaction data being captured. Because capture runs by default, most extractions populate section 11 from real data. When capture is skipped (via `--fast-no-interaction` or `--no-interaction`), section 11 is stamped ABSENT with an explicit absence note (e.g., `_No interaction data was extracted._`) rather than fabricated. The validator (`validate.ts`) flags a section-coverage violation only when section 11 is present and non-empty while its backing interaction tokens are empty and it was not stamped ABSENT.
 
 ---
 

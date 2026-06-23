@@ -16,7 +16,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Produces the v3 **Style Reference** `DESIGN.md` that AI agents consume as a hallucination-proof, ship-ready design-system handoff — named colour tokens, a semantic type scale, named components, Surfaces, Elevation, an Agent Prompt Guide, Similar Brands, and a copy-paste Quick Start (CSS + Tailwind). This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v3 section specification from `references/design_md_format_v3.md` and the voice/tone rules from `references/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+Produces the v3 **Style Reference** `DESIGN.md` that AI agents consume as a hallucination-proof, ship-ready design-system handoff — named colour tokens, a semantic type scale, named components, Surfaces, Elevation, an Agent Prompt Guide, Similar Brands, and a copy-paste Quick Start (CSS + Tailwind). This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v3 section specification from `references/design_md_format.md` and the voice/tone rules from `references/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
 
 To remove the AI from the highest-risk value surface, the phase runs `backend/scripts/build-write-prompt.ts` first: it pre-renders the deterministic value sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, Quick Start) directly from tokens via `backend/scripts/formatters-v3.ts` and assembles a FACTS block of locked values (type scale, shadow/gradient/motion/icon/focus counts) for the prose sections. The WRITE phase runs it first, pastes those pre-rendered tables unchanged, and writes prose only for the remaining sections — every value sourced from a pre-rendered section or the FACTS block.
 
@@ -58,11 +58,11 @@ The v3 voice is named, confident, and restrained: assign evocative colour names 
 
 ### Header
 
-The file opens with `# <Brand> — Style Reference`, an evocative one-line `> tagline`, and a `**Theme:**` line (light | dark | mixed), followed by an unlabeled 4–6 sentence intro paragraph, per `references/design_md_format_v3.md`.
+The file opens with `# <Brand> — Style Reference`, an evocative one-line `> tagline`, and a `**Theme:**` line (light | dark | mixed), followed by an unlabeled 4–6 sentence intro paragraph, per `references/design_md_format.md`.
 
 ### Write-phase prompt
 
-The WRITE phase runs `backend/scripts/build-write-prompt.ts` first; it pre-renders the deterministic value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts`, assembles a FACTS block of locked values, and emits a complete v3 WRITE prompt with the hard rules inline (paste the pre-rendered sections unchanged, source every other value from the FACTS block, named/confident/restrained voice, no false systems). The prompt template in `assets/design_md_prompt_template.md` then provides a ready-to-fill composition prompt for the prose sections. Load the format spec (`design_md_format_v3.md`) and writing style guide alongside, paste the pre-rendered tables unchanged, and hand to the writing agent.
+The WRITE phase runs `backend/scripts/build-write-prompt.ts` first; it pre-renders the deterministic value sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts`, assembles a FACTS block of locked values, and emits a complete v3 WRITE prompt with the hard rules inline (paste the pre-rendered sections unchanged, source every other value from the FACTS block, named/confident/restrained voice, no false systems). The prompt template in `assets/design_md_prompt_template.md` then provides a ready-to-fill composition prompt for the prose sections. Load the format spec (`design_md_format.md`) and writing style guide alongside, paste the pre-rendered tables unchanged, and hand to the writing agent.
 
 ### Pre-validate self-check
 
@@ -80,7 +80,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 | `backend/scripts/formatters-v3.ts` | Script | Deterministic v3 emitters: hue+lightness colour namer, Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start (every value verbatim from tokens, L4 excluded) |
 | `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
-| `references/design_md_format_v3.md` | Shared | Authoritative v3 Style Reference section specification |
+| `references/design_md_format.md` | Shared | Authoritative v3 Style Reference section specification |
 | `references/anti_patterns.md` | Shared | Authoring anti-patterns including AP-29 Interpretive Fabrication |
 
 ### Validation And Tests

@@ -79,7 +79,7 @@ Prose-discipline / dual-score assertion: `validate.ts` reports two scores — `v
 | `../../backend/scripts/validate.ts` | Fidelity validator — recognizes the v3 Style Reference schema; `checkPhantomColors`, `checkQuickStartFidelity` (Quick Start hex traceability + `--page-max-width` vs `tokens.spacingSystem.maxContentWidth`), `checkStabilityGating`, `checkUnknownFonts`, `checkFormatConsistency`, `checkSectionCompleteness`, plus semantic checks `checkProseDiscipline` and `checkSectionCoverage` (WARNING-tier); emits dual `valuesScore` + `claimsScore`; `isPass()` requires score >= 80 AND claimsScore >= 80 AND no critical failure |
 | `../../backend/scripts/cluster.ts` | Token classifier — produces the colorTokens that validate.ts checks against |
 | `../../backend/scripts/types.ts` | Shared type definitions — `DesignTokens`, `ValidationResult`, `ValidationIssue` |
-| `../../references/design_md_format_v3.md` | v3 Style Reference section specification — defines the named token tables, Components, Quick Start, and Similar Brands sections |
+| `../../references/design_md_format.md` | v3 Style Reference section specification — defines the named token tables, Components, Quick Start, and Similar Brands sections |
 | `../../references/quality_checklist.md` | Pre-validate self-check list |
 | `../../SKILL.md` | §3 VALIDATE phase definition and §4 ALWAYS rule 5 (run validate.ts before claiming completion) |
 

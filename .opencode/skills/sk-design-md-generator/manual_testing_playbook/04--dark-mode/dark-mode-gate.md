@@ -76,7 +76,7 @@ Run a second extraction of the same site with `--no-dark-mode` and confirm no da
 | `../../backend/scripts/dark-mode-detect.ts` | Dark-mode detection — keys on `prefers-color-scheme` media query, collects CSS variable diffs across viewports |
 | `../../backend/scripts/extract.ts` | Orchestrator — passes `noDarkMode` flag, calls `detectDarkMode` |
 | `../../backend/scripts/types.ts` | Type definitions — `DarkModeData` with detectionMethod, variableDiff, darkTokens |
-| `../../references/design_md_format_v3.md` | v3 Style Reference section specification — verbatim-value rule and the token tables where detected dark values appear |
+| `../../references/design_md_format.md` | v3 Style Reference section specification — verbatim-value rule and the token tables where detected dark values appear |
 | `../../references/troubleshooting.md` | §3 Crawl Failures — dark-mode detection gaps and recovery |
 | `../../SKILL.md` | §3 Cardinal Fidelity Rule (dark mode paragraph), §4 ALWAYS rule 6, §4 ESCALATE IF rule 2 |
 

@@ -98,7 +98,7 @@ Produces the v3 Style Reference `DESIGN.md` from `tokens.json` — a named, role
 - Elevation renders FLAT when there are 0 shadow tokens (it states how depth is achieved instead — border contrast, whitespace — never "gradient-as-depth").
 - Voice is named, confident, and restrained: evocative colour names and roles, inferred Similar Brands. No frequency dumps, no "div"/"Variant-N", no extractor-internal var names, and no false systems the data contradicts.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
-- The writer loads the v3 section spec from `references/design_md_format_v3.md` and voice rules from `references/writing_style_guide.md` before composing.
+- The writer loads the v3 section spec from `references/design_md_format.md` and voice rules from `references/writing_style_guide.md` before composing.
 - Doc-as-view: the value-bearing sections Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start are rendered DETERMINISTICALLY from tokens by `backend/scripts/formatters-v3.ts` (a hue+lightness colour namer keeps the Name, token slug, and Quick Start mutually consistent — no AI on the value surface). `backend/scripts/build-write-prompt.ts` pre-renders those sections plus a FACTS block of locked values; the WRITE phase runs it first, pastes the pre-rendered tables unchanged, and writes prose only.
 - Sections are honest about absence: Elevation states the system is flat when there are no shadows, conditional sections with no backing data are stamped ABSENT rather than invented, and every value the prose states comes from a pre-rendered section or the FACTS block — never invented or concretized.
 

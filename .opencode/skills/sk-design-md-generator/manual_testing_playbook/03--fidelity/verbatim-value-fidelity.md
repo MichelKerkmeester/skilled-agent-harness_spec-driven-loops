@@ -43,7 +43,7 @@ Operators run the exact command sequence for `FIDELITY-001` and confirm the expe
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faithful v3 Style Reference must exist, written from the Wave 2 tokens.json per the v3 format specification in `references/design_md_format_v3.md`.
+PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faithful v3 Style Reference must exist, written from the Wave 2 tokens.json per the v3 format specification in `references/design_md_format.md`.
 
 1. extract sample values from tokens.json: `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('HEX:', t.colorTokens.slice(0,5).map(c=>c.hex)); console.log('PX:', t.spacingScale?.slice(0,3).map(s=>s.value)); console.log('WEIGHT:', t.typographyLevels?.slice(0,2).map(l=>l.fontWeight)); console.log('SHADOW:', t.shadowTokens?.slice(0,2).map(s=>s.value)); console.log('MAXWIDTH:', t.spacingSystem?.maxContentWidth)"` (run from `backend/`)  # -> sample values printed, including the layout max-width
 2. locate each sample value in the Style Reference: `bash: rg '<sample-hex>' <style-reference.md>` (repeat for each value, including the max-width — confirm `100%` is not rendered as `100rem`)  # -> each value found verbatim
@@ -79,7 +79,7 @@ Run the full `validate.ts` against the Style Reference and confirm it passes (va
 | `../../backend/scripts/formatters-v3.ts` | Deterministic v3 emitters — emit every hex/size/weight/radius/max-width verbatim (`100%` stays `100%`) |
 | `../../backend/scripts/validate.ts` | Fidelity validator — `checkFormatConsistency` verifies 6-digit lowercase hex, `checkPhantomColors` verifies hex provenance, `checkQuickStartFidelity` verifies Quick Start hex traceability + `--page-max-width` |
 | `../../backend/scripts/types.ts` | Shared type definitions — `StabilityClassification`, `DesignTokens`, `ColorToken` |
-| `../../references/design_md_format_v3.md` | v3 Style Reference section specification — defines the named token tables and which receive L1/L2/L3 tokens |
+| `../../references/design_md_format.md` | v3 Style Reference section specification — defines the named token tables and which receive L1/L2/L3 tokens |
 | `../../references/writing_style_guide.md` | Voice and tone rules — named/confident/restrained voice, no frequency dumps, and the "Subject to change" sub-table for L3 tokens |
 | `../../references/anti_patterns.md` | Common mistakes — invented values, wrong hex case, L4 leaks, dark-mode fabrication |
 | `../../assets/cardinal_rules_card.md` | One-page fidelity checklist for pre-validate self-check |

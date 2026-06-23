@@ -86,7 +86,7 @@ TASK CONTEXT
 The router discovers knowledge from a single root domain — this skill's `references/` directory: eight reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the quality checklist, and the operational extraction-workflow and troubleshooting guides. Examples under `references/examples/` are study artifacts, not resources.
 
 ```text
-references/design_md_format_v3.md    # v3 Style Reference section specification
+references/design_md_format.md    # v3 Style Reference section specification
 references/writing_style_guide.md    # voice, tone, section composition rules
 references/color_role_taxonomy.md    # color role naming + classification
 references/component_taxonomy.md     # component naming + hierarchy patterns
@@ -101,7 +101,7 @@ references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md 
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `references/design_md_format_v3.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
+| ALWAYS      | Every invocation                     | `references/design_md_format.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
 | CONDITIONAL | EXTRACT_WRITE intent                 | `references/color_role_taxonomy.md`, `references/component_taxonomy.md`, `references/anti_patterns.md` |
 | CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
@@ -116,7 +116,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references",)
-DEFAULT_RESOURCE = "references/design_md_format_v3.md"
+DEFAULT_RESOURCE = "references/design_md_format.md"
 
 INTENT_MODEL = {
     "EXTRACT_WRITE": {"keywords": [("extract", 4), ("crawl", 4), ("url", 4), ("design.md", 4), ("generate", 3),
@@ -130,13 +130,13 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "EXTRACT_WRITE": ["references/design_md_format_v3.md", "references/writing_style_guide.md",
+    "EXTRACT_WRITE": ["references/design_md_format.md", "references/writing_style_guide.md",
                        "references/color_role_taxonomy.md", "references/component_taxonomy.md",
                        "references/anti_patterns.md"],
     "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
-                       "references/design_md_format_v3.md"],
-    "REPORT":        ["references/design_md_format_v3.md"],
-    "STUDY":         ["references/design_md_format_v3.md", "references/writing_style_guide.md"],
+                       "references/design_md_format.md"],
+    "REPORT":        ["references/design_md_format.md"],
+    "STUDY":         ["references/design_md_format.md", "references/writing_style_guide.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -220,7 +220,7 @@ WRITE (Phase 2)
     ├─ Run build-write-prompt.ts FIRST: it pre-renders Tokens — Colors, Tokens — Spacing &
     │    Shapes, Surfaces, and Quick Start deterministically from tokens (doc-as-view, no AI on
     │    the value tables) via formatters-v3.ts, plus a FACTS block of locked values
-    ├─ Read tokens.json and references/design_md_format_v3.md for the v3 Style Reference spec
+    ├─ Read tokens.json and references/design_md_format.md for the v3 Style Reference spec
     ├─ Paste the pre-rendered value sections UNCHANGED; write prose only (intro, Typography role
     │    prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands)
     ├─ Every value comes from a pre-rendered section or the FACTS block — never invented or concretized
@@ -264,7 +264,7 @@ cd backend && npm install && npx playwright install chromium
 # tokens.json is written to <--output>/.
 npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
-# Phase 2 — write DESIGN.md per references/design_md_format_v3.md, every value from tokens.json.
+# Phase 2 — write DESIGN.md per references/design_md_format.md, every value from tokens.json.
 # Run build-write-prompt.ts first: it pre-renders Tokens—Colors/Spacing&Shapes/Surfaces/Quick Start
 # (via formatters-v3.ts) plus a FACTS block, then you paste those unchanged and write prose only:
 npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json
@@ -299,7 +299,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### ✅ ALWAYS
 
-1. **ALWAYS read `references/design_md_format_v3.md` and `references/writing_style_guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
+1. **ALWAYS read `references/design_md_format.md` and `references/writing_style_guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
 2. **ALWAYS copy every numeric CSS value verbatim from `tokens.json`.** Hex colors, pixel sizes, font weights, box shadows, border radii, spacing values — every number must match `tokens.json` exactly. This is the cardinal fidelity rule.
 3. **ALWAYS use 6-digit lowercase hex** for every color in DESIGN.md (e.g., `#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 4. **ALWAYS apply stability gates:** L1 and L2 colours in the main token table; L3 colours in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens excluded entirely.
@@ -330,7 +330,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### Core References (Format & Style)
 
-- [design_md_format_v3.md](references/design_md_format_v3.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
+- [design_md_format.md](references/design_md_format.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
 - [writing_style_guide.md](references/writing_style_guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
 - [color_role_taxonomy.md](references/color_role_taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
 - [component_taxonomy.md](references/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
@@ -356,7 +356,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### Reference Loading Notes
 
-- `references/design_md_format_v3.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
+- `references/design_md_format.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
 - Load the taxonomy docs (`color_role_taxonomy.md`, `component_taxonomy.md`) and `anti_patterns.md` only when the intent is EXTRACT_WRITE.
 - Load `quality_checklist.md` before any validation or completion claim.
 - Load one example site at a time from `references/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
@@ -368,7 +368,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 **Extraction complete when:**
 - [x] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
-- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design_md_format_v3.md`.
+- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design_md_format.md`.
 - [x] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
 - [x] All hex codes use 6-digit lowercase format.
 - [x] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
@@ -410,13 +410,13 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### Knowledge Base Dependencies
 
-**Required** (every invocation): `references/design_md_format_v3.md` (v3 Style Reference section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
+**Required** (every invocation): `references/design_md_format.md` (v3 Style Reference section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers resource and reference docs dynamically. Start from `references/design_md_format_v3.md` for the v3 Style Reference section specification, load `references/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
+The router (Section 2) discovers resource and reference docs dynamically. Start from `references/design_md_format.md` for the v3 Style Reference section specification, load `references/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
 
 Examples: `references/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
 

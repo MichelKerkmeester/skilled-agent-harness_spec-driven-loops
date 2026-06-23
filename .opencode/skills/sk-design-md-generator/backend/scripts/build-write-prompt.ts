@@ -61,7 +61,7 @@ export function buildWritePrompt(tokens: DesignTokens): string {
   return [
     '# WRITE phase — v3 Style Reference',
     '',
-    'Follow references/design_md_format_v3.md for the section order and voice. Voice is',
+    'Follow references/design_md_format.md for the section order and voice. Voice is',
     'NAMED, CONFIDENT, and RESTRAINED — like a design-system handoff, not an extraction report.',
     '',
     'HARD RULES:',

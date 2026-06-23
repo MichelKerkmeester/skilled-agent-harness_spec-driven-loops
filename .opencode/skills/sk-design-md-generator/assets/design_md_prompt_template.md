@@ -26,7 +26,7 @@ The WRITE phase used to be where hallucination risk was highest: an agent readin
 
 **Run the builder first (mandatory).** Run `npx ts-node backend/scripts/build-write-prompt.ts <TOKENS_JSON_PATH>`. It pre-renders the deterministic value sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — directly from the tokens via `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters), and emits a FACTS block (type scale, shadow/gradient/dark-mode/focus honesty) for the prose sections. Its output IS the prompt: paste the PRE-RENDERED sections into the doc UNCHANGED — never rewrite a value, a colour name, a token slug, or the Quick Start — and write only the prose sections it asks for.
 
-Then fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`) and hand the prompt below to the writing agent. Load `references/design_md_format_v3.md` (the section spec) and `references/writing_style_guide.md` (voice) alongside it.
+Then fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`) and hand the prompt below to the writing agent. Load `references/design_md_format.md` (the section spec) and `references/writing_style_guide.md` (voice) alongside it.
 
 ---
 
@@ -38,7 +38,7 @@ Write a v3 Style Reference for <DOMAIN> from the extracted tokens.
 Source of truth: <TOKENS_JSON_PATH>. Output: <DESIGN_MD_PATH>.
 First run: npx ts-node backend/scripts/build-write-prompt.ts <TOKENS_JSON_PATH>
 That output gives you the PRE-RENDERED value sections and a FACTS block — it is your
-working material. Read references/design_md_format_v3.md for the section order and
+working material. Read references/design_md_format.md for the section order and
 references/writing_style_guide.md for voice before writing.
 
 VOICE: named, confident, restrained — like a design-system handoff, not an extraction

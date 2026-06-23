@@ -46,7 +46,7 @@ npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/spec
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format_v3.md` and `references/writing_style_guide.md`. The value-bearing sections are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you write prose only and never type a value by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
+**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format.md` and `references/writing_style_guide.md`. The value-bearing sections are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you write prose only and never type a value by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
 
 **Step 4: Validate before claiming completion.**
 
@@ -178,7 +178,7 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format_v3.md`. `build-write-prompt.ts` pre-renders the value-bearing sections (colors, typography, spacing, Quick Start) via `formatters-v3.ts`; the agent writes the surrounding prose only, so no value is ever hand-copied. The skill validates the result.
+A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format.md`. `build-write-prompt.ts` pre-renders the value-bearing sections (colors, typography, spacing, Quick Start) via `formatters-v3.ts`; the agent writes the surrounding prose only, so no value is ever hand-copied. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 
@@ -207,6 +207,6 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`references/design_md_format_v3.md`](./references/design_md_format_v3.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
+| [`references/design_md_format.md`](./references/design_md_format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
 | [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
