@@ -1,0 +1,1674 @@
+{
+  "generatedFrom": "gap-threshold-calibration-benchmark.mjs",
+  "generatedAt": "2026-06-23T16:37:10.648Z",
+  "subject": "Stage-4 evidence-gap detector Z-score threshold (Z_SCORE_THRESHOLD)",
+  "shippedThreshold": 1.3,
+  "minAbsoluteScore": 0.015,
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-gap-cal-eval-dBJoss/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-gap-cal-eval-dBJoss/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "pipelineLimit": 200,
+  "topK": 10,
+  "detectorDirection": "gap when zScore < threshold (confirmed from evidence-gap-detector.ts line 206)",
+  "statisticSource": "detectEvidenceGap recomputed on resolveEffectiveScore over the full returned result set; recomputed gapDetected@1.3 asserted equal to pipeline metadata.stage4.evidenceGapDetected per query.",
+  "verdictSource": "assessRequestQuality over computeResultConfidence with Stage-4 evidenceGapDetected threaded in, under shipped default feature flags.",
+  "notes": [
+    "gapStatistic = top-score Z-score over the result-set effective scores.",
+    "gapDetectedAt13 = production Stage-4 binary at the shipped 1.3 threshold.",
+    "sweep classifies gap when gapStatistic < threshold, matching the detector direction.",
+    "degenerate queries (stdDev === 0) carry a meaningless Z=0 and are excluded from the sweep and distributions.",
+    "separation = (should-good correctly not-gap + should-gap correctly gap) / total over non-degenerate queries."
+  ],
+  "summary": {
+    "queryCount": 18,
+    "mislabeledCount": 0,
+    "atCurrentThreshold": {
+      "threshold": 1.3,
+      "shouldGoodFalsePositiveRate": 0.6667,
+      "shouldGoodFalsePositives": [
+        "good-retrieval-class-routing",
+        "good-evidence-gap-detection",
+        "good-skill-advisor-daemon",
+        "good-spec-folder-validation"
+      ],
+      "shouldGapDetectionRate": 0.3333,
+      "shouldGapMissed": [
+        "gap-kafka",
+        "gap-terraform",
+        "gap-graphql",
+        "gap-redis-cluster"
+      ],
+      "boundaryClassification": [
+        {
+          "id": "boundary-graph",
+          "text": "graph",
+          "gapStatistic": 0.455362,
+          "gapDetectedAt13": true,
+          "verdict": "weak",
+          "topScore": 0.75057578
+        },
+        {
+          "id": "boundary-agent",
+          "text": "agent",
+          "gapStatistic": 1.433123,
+          "gapDetectedAt13": false,
+          "verdict": "weak",
+          "topScore": 0.73390536
+        },
+        {
+          "id": "boundary-memory",
+          "text": "memory",
+          "gapStatistic": 3.192067,
+          "gapDetectedAt13": false,
+          "verdict": "weak",
+          "topScore": 0.75753355
+        },
+        {
+          "id": "boundary-routing",
+          "text": "routing",
+          "gapStatistic": 1.990362,
+          "gapDetectedAt13": false,
+          "verdict": "weak",
+          "topScore": 0.7527276
+        },
+        {
+          "id": "boundary-context",
+          "text": "context",
+          "gapStatistic": 1.351099,
+          "gapDetectedAt13": false,
+          "verdict": "weak",
+          "topScore": 0.73567139
+        },
+        {
+          "id": "boundary-scores",
+          "text": "scores",
+          "gapStatistic": 0.937546,
+          "gapDetectedAt13": true,
+          "verdict": "weak",
+          "topScore": 0.6773869
+        }
+      ]
+    },
+    "sweep": {
+      "thresholdRange": [
+        0.5,
+        3
+      ],
+      "step": 0.1,
+      "optimalThreshold": 0.8,
+      "separationAtOptimal": 0.5,
+      "separationAt13": 0.3333,
+      "distributions": {
+        "note": "Computed over non-degenerate queries (stdDev > 0). Degenerate queries are listed separately.",
+        "should-good": {
+          "count": 6,
+          "min": 0.651923,
+          "median": 1.167768,
+          "max": 2.444309
+        },
+        "should-gap": {
+          "count": 6,
+          "min": 0.60328,
+          "median": 2.526145,
+          "max": 3.264257
+        },
+        "boundary": {
+          "count": 6,
+          "min": 0.455362,
+          "median": 1.392111,
+          "max": 3.192067
+        },
+        "degenerateQueries": []
+      }
+    }
+  },
+  "mislabeledQueries": [],
+  "perQuery": [
+    {
+      "id": "good-retrieval-class-routing",
+      "text": "retrieval class routing",
+      "label": "should-good",
+      "resultCount": 23,
+      "gapStatistic": 1.209472,
+      "gapStatisticMean": 0.54014511,
+      "gapStatisticStdDev": 0.24053546,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.83106601,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23686,
+          "score": 0.83106601
+        },
+        {
+          "rank": 1,
+          "id": 23270,
+          "score": 0.82480678
+        },
+        {
+          "rank": 2,
+          "id": 23273,
+          "score": 0.82544927
+        },
+        {
+          "rank": 3,
+          "id": 23271,
+          "score": 0.82814532
+        },
+        {
+          "rank": 4,
+          "id": 23272,
+          "score": 0.81449472
+        },
+        {
+          "rank": 5,
+          "id": 22146,
+          "score": 0.61824543
+        },
+        {
+          "rank": 6,
+          "id": 21811,
+          "score": 0.69833313
+        },
+        {
+          "rank": 7,
+          "id": 23269,
+          "score": 0.69833313
+        },
+        {
+          "rank": 8,
+          "id": 22182,
+          "score": 0.56638938
+        },
+        {
+          "rank": 9,
+          "id": 21799,
+          "score": 0.54670846
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "good-evidence-gap-detection",
+      "text": "evidence gap detection",
+      "label": "should-good",
+      "resultCount": 23,
+      "gapStatistic": 1.126064,
+      "gapStatisticMean": 0.46378828,
+      "gapStatisticStdDev": 0.18425886,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.6712756,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 22301,
+          "score": 0.6712756
+        },
+        {
+          "rank": 1,
+          "id": 23571,
+          "score": 0.66116807
+        },
+        {
+          "rank": 2,
+          "id": 2658,
+          "score": 0.56056
+        },
+        {
+          "rank": 3,
+          "id": 2845,
+          "score": 0.5206443
+        },
+        {
+          "rank": 4,
+          "id": 6065,
+          "score": 0.5299401
+        },
+        {
+          "rank": 5,
+          "id": 23342,
+          "score": 0.50704992
+        },
+        {
+          "rank": 6,
+          "id": 22010,
+          "score": 0.51313112
+        },
+        {
+          "rank": 7,
+          "id": 23297,
+          "score": 0.49764
+        },
+        {
+          "rank": 8,
+          "id": 4275,
+          "score": 0.48623952
+        },
+        {
+          "rank": 9,
+          "id": 10919,
+          "score": 0.511212
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "good-constitutional-memory",
+      "text": "constitutional memory",
+      "label": "should-good",
+      "resultCount": 20,
+      "gapStatistic": 2.165902,
+      "gapStatisticMean": 0.63318737,
+      "gapStatisticStdDev": 0.0168828,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.66975387,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 20648,
+          "score": 0.66975387
+        },
+        {
+          "rank": 1,
+          "id": 16203,
+          "score": 0.64564487
+        },
+        {
+          "rank": 2,
+          "id": 11505,
+          "score": 0.64703496
+        },
+        {
+          "rank": 3,
+          "id": 23690,
+          "score": 0.62076918
+        },
+        {
+          "rank": 4,
+          "id": 4642,
+          "score": 0.65997218
+        },
+        {
+          "rank": 5,
+          "id": 4171,
+          "score": 0.61542039
+        },
+        {
+          "rank": 6,
+          "id": 7572,
+          "score": 0.61636824
+        },
+        {
+          "rank": 7,
+          "id": 3235,
+          "score": 0.61025272
+        },
+        {
+          "rank": 8,
+          "id": 21908,
+          "score": 0.64535219
+        },
+        {
+          "rank": 9,
+          "id": 23248,
+          "score": 0.62896514
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "good-skill-advisor-daemon",
+      "text": "skill advisor daemon",
+      "label": "should-good",
+      "resultCount": 23,
+      "gapStatistic": 0.840172,
+      "gapStatisticMean": 0.63478828,
+      "gapStatisticStdDev": 0.24759657,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.84281207,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3518,
+          "score": 0.84281207
+        },
+        {
+          "rank": 1,
+          "id": 3529,
+          "score": 0.82658935
+        },
+        {
+          "rank": 2,
+          "id": 3530,
+          "score": 0.82281828
+        },
+        {
+          "rank": 3,
+          "id": 5068,
+          "score": 0.7264366
+        },
+        {
+          "rank": 4,
+          "id": 3528,
+          "score": 0.76753352
+        },
+        {
+          "rank": 5,
+          "id": 23146,
+          "score": 0.70892035
+        },
+        {
+          "rank": 6,
+          "id": 17850,
+          "score": 0.72261047
+        },
+        {
+          "rank": 7,
+          "id": 3753,
+          "score": 0.68719284
+        },
+        {
+          "rank": 8,
+          "id": 3843,
+          "score": 0.71997294
+        },
+        {
+          "rank": 9,
+          "id": 4737,
+          "score": 0.69006797
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "good-spec-folder-validation",
+      "text": "spec folder validation",
+      "label": "should-good",
+      "resultCount": 23,
+      "gapStatistic": 0.651923,
+      "gapStatisticMean": 0.60063097,
+      "gapStatisticStdDev": 0.23218886,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.75200018,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 9516,
+          "score": 0.75200018
+        },
+        {
+          "rank": 1,
+          "id": 3035,
+          "score": 0.73029632
+        },
+        {
+          "rank": 2,
+          "id": 3643,
+          "score": 0.71643
+        },
+        {
+          "rank": 3,
+          "id": 4455,
+          "score": 0.67843942
+        },
+        {
+          "rank": 4,
+          "id": 4069,
+          "score": 0.6768358
+        },
+        {
+          "rank": 5,
+          "id": 8055,
+          "score": 0.6812832
+        },
+        {
+          "rank": 6,
+          "id": 4470,
+          "score": 0.6908616
+        },
+        {
+          "rank": 7,
+          "id": 4140,
+          "score": 0.66612
+        },
+        {
+          "rank": 8,
+          "id": 4094,
+          "score": 0.706095
+        },
+        {
+          "rank": 9,
+          "id": 5990,
+          "score": 0.69923568
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "good-memory-search-pipeline",
+      "text": "memory search pipeline",
+      "label": "should-good",
+      "resultCount": 20,
+      "gapStatistic": 2.444309,
+      "gapStatisticMean": 0.61806278,
+      "gapStatisticStdDev": 0.03472893,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.70295103,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3223,
+          "score": 0.70295103
+        },
+        {
+          "rank": 1,
+          "id": 23272,
+          "score": 0.64322507
+        },
+        {
+          "rank": 2,
+          "id": 16437,
+          "score": 0.6292
+        },
+        {
+          "rank": 3,
+          "id": 3221,
+          "score": 0.69272219
+        },
+        {
+          "rank": 4,
+          "id": 3220,
+          "score": 0.68992587
+        },
+        {
+          "rank": 5,
+          "id": 5183,
+          "score": 0.5927168
+        },
+        {
+          "rank": 6,
+          "id": 18029,
+          "score": 0.612105
+        },
+        {
+          "rank": 7,
+          "id": 5574,
+          "score": 0.61347
+        },
+        {
+          "rank": 8,
+          "id": 21944,
+          "score": 0.59471163
+        },
+        {
+          "rank": 9,
+          "id": 3213,
+          "score": 0.60175287
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-kubernetes",
+      "text": "kubernetes",
+      "label": "should-gap",
+      "resultCount": 20,
+      "gapStatistic": 1.120001,
+      "gapStatisticMean": 0.43809977,
+      "gapStatisticStdDev": 0.25235171,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.72073385,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 22278,
+          "score": 0.72073385
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "score": 0.70544712
+        },
+        {
+          "rank": 2,
+          "id": 23374,
+          "score": 0.71502276
+        },
+        {
+          "rank": 3,
+          "id": 23373,
+          "score": 0.70116329
+        },
+        {
+          "rank": 4,
+          "id": 23372,
+          "score": 0.70292722
+        },
+        {
+          "rank": 5,
+          "id": 23616,
+          "score": 0.51473601
+        },
+        {
+          "rank": 6,
+          "id": 23381,
+          "score": 0.50620812
+        },
+        {
+          "rank": 7,
+          "id": 23609,
+          "score": 0.51660682
+        },
+        {
+          "rank": 8,
+          "id": 23377,
+          "score": 0.5071759
+        },
+        {
+          "rank": 9,
+          "id": 22279,
+          "score": 0.52097032
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-oauth",
+      "text": "oauth",
+      "label": "should-gap",
+      "resultCount": 23,
+      "gapStatistic": 0.60328,
+      "gapStatisticMean": 0.42010681,
+      "gapStatisticStdDev": 0.164309,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "gap",
+      "topScore": 0.51923117,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 10955,
+          "score": 0.51923117
+        },
+        {
+          "rank": 1,
+          "id": 22343,
+          "score": 0.49764
+        },
+        {
+          "rank": 2,
+          "id": 22394,
+          "score": 0.5062897
+        },
+        {
+          "rank": 3,
+          "id": 18005,
+          "score": 0.51028895
+        },
+        {
+          "rank": 4,
+          "id": 23374,
+          "score": 0.513474
+        },
+        {
+          "rank": 5,
+          "id": 2928,
+          "score": 0.502164
+        },
+        {
+          "rank": 6,
+          "id": 17836,
+          "score": 0.49591616
+        },
+        {
+          "rank": 7,
+          "id": 2937,
+          "score": 0.51882381
+        },
+        {
+          "rank": 8,
+          "id": 4061,
+          "score": 0.48823008
+        },
+        {
+          "rank": 9,
+          "id": 22486,
+          "score": 0.44336071
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-kafka",
+      "text": "kafka",
+      "label": "should-gap",
+      "resultCount": 23,
+      "gapStatistic": 3.26402,
+      "gapStatisticMean": 0.06580336,
+      "gapStatisticStdDev": 0.13938123,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.52074652,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23374,
+          "score": 0.52074652
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "score": 0.51299009
+        },
+        {
+          "rank": 2,
+          "id": 20046,
+          "score": 0.02879211
+        },
+        {
+          "rank": 3,
+          "id": 18039,
+          "score": 0.0237829
+        },
+        {
+          "rank": 4,
+          "id": 11530,
+          "score": 0.02364833
+        },
+        {
+          "rank": 5,
+          "id": 21933,
+          "score": 0.02349427
+        },
+        {
+          "rank": 6,
+          "id": 20443,
+          "score": 0.02511844
+        },
+        {
+          "rank": 7,
+          "id": 9371,
+          "score": 0.02346505
+        },
+        {
+          "rank": 8,
+          "id": 16263,
+          "score": 0.02358461
+        },
+        {
+          "rank": 9,
+          "id": 19888,
+          "score": 0.02472095
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-terraform",
+      "text": "terraform",
+      "label": "should-gap",
+      "resultCount": 23,
+      "gapStatistic": 3.264257,
+      "gapStatisticMean": 0.06699269,
+      "gapStatisticStdDev": 0.13900685,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.5207468,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23374,
+          "score": 0.5207468
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "score": 0.51299032
+        },
+        {
+          "rank": 2,
+          "id": 16341,
+          "score": 0.02771284
+        },
+        {
+          "rank": 3,
+          "id": 19530,
+          "score": 0.02687721
+        },
+        {
+          "rank": 4,
+          "id": 16264,
+          "score": 0.02343298
+        },
+        {
+          "rank": 5,
+          "id": 23653,
+          "score": 0.02394096
+        },
+        {
+          "rank": 6,
+          "id": 11528,
+          "score": 0.02499744
+        },
+        {
+          "rank": 7,
+          "id": 22549,
+          "score": 0.02599213
+        },
+        {
+          "rank": 8,
+          "id": 21023,
+          "score": 0.02473314
+        },
+        {
+          "rank": 9,
+          "id": 4644,
+          "score": 0.02600224
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-graphql",
+      "text": "graphql",
+      "label": "should-gap",
+      "resultCount": 20,
+      "gapStatistic": 3.006395,
+      "gapStatisticMean": 0.08805212,
+      "gapStatisticStdDev": 0.14392488,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.5207472,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23374,
+          "score": 0.5207472
+        },
+        {
+          "rank": 1,
+          "id": 23371,
+          "score": 0.51323941
+        },
+        {
+          "rank": 2,
+          "id": 19280,
+          "score": 0.05933718
+        },
+        {
+          "rank": 3,
+          "id": 17082,
+          "score": 0.06181016
+        },
+        {
+          "rank": 4,
+          "id": 23098,
+          "score": 0.07650858
+        },
+        {
+          "rank": 5,
+          "id": 10208,
+          "score": 0.032902
+        },
+        {
+          "rank": 6,
+          "id": 22074,
+          "score": 0.06614747
+        },
+        {
+          "rank": 7,
+          "id": 16843,
+          "score": 0.02923832
+        },
+        {
+          "rank": 8,
+          "id": 16264,
+          "score": 0.02582993
+        },
+        {
+          "rank": 9,
+          "id": 3477,
+          "score": 0.02954607
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "gap-redis-cluster",
+      "text": "redis cluster",
+      "label": "should-gap",
+      "resultCount": 20,
+      "gapStatistic": 2.045895,
+      "gapStatisticMean": 0.47458876,
+      "gapStatisticStdDev": 0.03776578,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.55185358,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23479,
+          "score": 0.55185358
+        },
+        {
+          "rank": 1,
+          "id": 23413,
+          "score": 0.50592476
+        },
+        {
+          "rank": 2,
+          "id": 9322,
+          "score": 0.49926864
+        },
+        {
+          "rank": 3,
+          "id": 4995,
+          "score": 0.48461088
+        },
+        {
+          "rank": 4,
+          "id": 4169,
+          "score": 0.488592
+        },
+        {
+          "rank": 5,
+          "id": 9580,
+          "score": 0.47782488
+        },
+        {
+          "rank": 6,
+          "id": 5557,
+          "score": 0.493116
+        },
+        {
+          "rank": 7,
+          "id": 10955,
+          "score": 0.502164
+        },
+        {
+          "rank": 8,
+          "id": 23477,
+          "score": 0.53379768
+        },
+        {
+          "rank": 9,
+          "id": 23697,
+          "score": 0.465465
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-graph",
+      "text": "graph",
+      "label": "boundary",
+      "resultCount": 23,
+      "gapStatistic": 0.455362,
+      "gapStatisticMean": 0.63894507,
+      "gapStatisticStdDev": 0.24514739,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.75057578,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 5773,
+          "score": 0.75057578
+        },
+        {
+          "rank": 1,
+          "id": 3566,
+          "score": 0.72966216
+        },
+        {
+          "rank": 2,
+          "id": 22021,
+          "score": 0.7225784
+        },
+        {
+          "rank": 3,
+          "id": 3482,
+          "score": 0.73326791
+        },
+        {
+          "rank": 4,
+          "id": 5754,
+          "score": 0.73425622
+        },
+        {
+          "rank": 5,
+          "id": 2726,
+          "score": 0.73880397
+        },
+        {
+          "rank": 6,
+          "id": 4198,
+          "score": 0.73436264
+        },
+        {
+          "rank": 7,
+          "id": 3610,
+          "score": 0.73738569
+        },
+        {
+          "rank": 8,
+          "id": 3629,
+          "score": 0.73270147
+        },
+        {
+          "rank": 9,
+          "id": 3496,
+          "score": 0.73285032
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-agent",
+      "text": "agent",
+      "label": "boundary",
+      "resultCount": 20,
+      "gapStatistic": 1.433123,
+      "gapStatisticMean": 0.71648189,
+      "gapStatisticStdDev": 0.01215769,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.73390536,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23242,
+          "score": 0.73390536
+        },
+        {
+          "rank": 1,
+          "id": 23338,
+          "score": 0.73357591
+        },
+        {
+          "rank": 2,
+          "id": 23351,
+          "score": 0.72839815
+        },
+        {
+          "rank": 3,
+          "id": 16220,
+          "score": 0.70803446
+        },
+        {
+          "rank": 4,
+          "id": 20392,
+          "score": 0.71475833
+        },
+        {
+          "rank": 5,
+          "id": 21877,
+          "score": 0.71145689
+        },
+        {
+          "rank": 6,
+          "id": 23241,
+          "score": 0.72995398
+        },
+        {
+          "rank": 7,
+          "id": 23246,
+          "score": 0.72838253
+        },
+        {
+          "rank": 8,
+          "id": 23336,
+          "score": 0.72826356
+        },
+        {
+          "rank": 9,
+          "id": 23339,
+          "score": 0.7318103
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-memory",
+      "text": "memory",
+      "label": "boundary",
+      "resultCount": 20,
+      "gapStatistic": 3.192067,
+      "gapStatisticMean": 0.72819856,
+      "gapStatisticStdDev": 0.00918996,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.75753355,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 4131,
+          "score": 0.75753355
+        },
+        {
+          "rank": 1,
+          "id": 18025,
+          "score": 0.72975879
+        },
+        {
+          "rank": 2,
+          "id": 2867,
+          "score": 0.73886205
+        },
+        {
+          "rank": 3,
+          "id": 23213,
+          "score": 0.72858995
+        },
+        {
+          "rank": 4,
+          "id": 2738,
+          "score": 0.73955254
+        },
+        {
+          "rank": 5,
+          "id": 3235,
+          "score": 0.7306528
+        },
+        {
+          "rank": 6,
+          "id": 4178,
+          "score": 0.73497338
+        },
+        {
+          "rank": 7,
+          "id": 23289,
+          "score": 0.72445149
+        },
+        {
+          "rank": 8,
+          "id": 23351,
+          "score": 0.71910062
+        },
+        {
+          "rank": 9,
+          "id": 23270,
+          "score": 0.72320146
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-routing",
+      "text": "routing",
+      "label": "boundary",
+      "resultCount": 20,
+      "gapStatistic": 1.990362,
+      "gapStatisticMean": 0.7277517,
+      "gapStatisticStdDev": 0.01254842,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.7527276,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 23270,
+          "score": 0.7527276
+        },
+        {
+          "rank": 1,
+          "id": 4202,
+          "score": 0.74475279
+        },
+        {
+          "rank": 2,
+          "id": 3830,
+          "score": 0.73207125
+        },
+        {
+          "rank": 3,
+          "id": 23449,
+          "score": 0.73230255
+        },
+        {
+          "rank": 4,
+          "id": 22402,
+          "score": 0.7141826
+        },
+        {
+          "rank": 5,
+          "id": 23246,
+          "score": 0.71392535
+        },
+        {
+          "rank": 6,
+          "id": 4198,
+          "score": 0.73262263
+        },
+        {
+          "rank": 7,
+          "id": 20471,
+          "score": 0.71328293
+        },
+        {
+          "rank": 8,
+          "id": 3235,
+          "score": 0.72229536
+        },
+        {
+          "rank": 9,
+          "id": 23686,
+          "score": 0.73877439
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-context",
+      "text": "context",
+      "label": "boundary",
+      "resultCount": 20,
+      "gapStatistic": 1.351099,
+      "gapStatisticMean": 0.71886175,
+      "gapStatisticStdDev": 0.01244146,
+      "degenerateStat": false,
+      "gapDetectedAt13": false,
+      "verdict": "weak",
+      "topScore": 0.73567139,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 3470,
+          "score": 0.73567139
+        },
+        {
+          "rank": 1,
+          "id": 3830,
+          "score": 0.73541538
+        },
+        {
+          "rank": 2,
+          "id": 22024,
+          "score": 0.71343405
+        },
+        {
+          "rank": 3,
+          "id": 3230,
+          "score": 0.72869157
+        },
+        {
+          "rank": 4,
+          "id": 23584,
+          "score": 0.7232823
+        },
+        {
+          "rank": 5,
+          "id": 11934,
+          "score": 0.70983564
+        },
+        {
+          "rank": 6,
+          "id": 4413,
+          "score": 0.70647247
+        },
+        {
+          "rank": 7,
+          "id": 17131,
+          "score": 0.72834381
+        },
+        {
+          "rank": 8,
+          "id": 5735,
+          "score": 0.72872209
+        },
+        {
+          "rank": 9,
+          "id": 3091,
+          "score": 0.70602379
+        }
+      ],
+      "mislabeled": null
+    },
+    {
+      "id": "boundary-scores",
+      "text": "scores",
+      "label": "boundary",
+      "resultCount": 23,
+      "gapStatistic": 0.937546,
+      "gapStatisticMean": 0.4931897,
+      "gapStatisticStdDev": 0.19646735,
+      "degenerateStat": false,
+      "gapDetectedAt13": true,
+      "verdict": "weak",
+      "topScore": 0.6773869,
+      "topK": [
+        {
+          "rank": 0,
+          "id": 22511,
+          "score": 0.6773869
+        },
+        {
+          "rank": 1,
+          "id": 4514,
+          "score": 0.67115288
+        },
+        {
+          "rank": 2,
+          "id": 22413,
+          "score": 0.63954268
+        },
+        {
+          "rank": 3,
+          "id": 22509,
+          "score": 0.63863927
+        },
+        {
+          "rank": 4,
+          "id": 22668,
+          "score": 0.54065101
+        },
+        {
+          "rank": 5,
+          "id": 19888,
+          "score": 0.60417548
+        },
+        {
+          "rank": 6,
+          "id": 20250,
+          "score": 0.52016952
+        },
+        {
+          "rank": 7,
+          "id": 22300,
+          "score": 0.52357147
+        },
+        {
+          "rank": 8,
+          "id": 20634,
+          "score": 0.59391171
+        },
+        {
+          "rank": 9,
+          "id": 5744,
+          "score": 0.51932516
+        }
+      ],
+      "mislabeled": null
+    }
+  ],
+  "sweepTable": [
+    {
+      "threshold": 0.5,
+      "goodCorrect": 6,
+      "goodTotal": 6,
+      "gapCorrect": 0,
+      "gapTotal": 6,
+      "separation": 0.5,
+      "boundaryFlaggedGap": [
+        "boundary-graph"
+      ]
+    },
+    {
+      "threshold": 0.6,
+      "goodCorrect": 6,
+      "goodTotal": 6,
+      "gapCorrect": 0,
+      "gapTotal": 6,
+      "separation": 0.5,
+      "boundaryFlaggedGap": [
+        "boundary-graph"
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "goodCorrect": 5,
+      "goodTotal": 6,
+      "gapCorrect": 1,
+      "gapTotal": 6,
+      "separation": 0.5,
+      "boundaryFlaggedGap": [
+        "boundary-graph"
+      ]
+    },
+    {
+      "threshold": 0.8,
+      "goodCorrect": 5,
+      "goodTotal": 6,
+      "gapCorrect": 1,
+      "gapTotal": 6,
+      "separation": 0.5,
+      "boundaryFlaggedGap": [
+        "boundary-graph"
+      ]
+    },
+    {
+      "threshold": 0.9,
+      "goodCorrect": 4,
+      "goodTotal": 6,
+      "gapCorrect": 1,
+      "gapTotal": 6,
+      "separation": 0.4167,
+      "boundaryFlaggedGap": [
+        "boundary-graph"
+      ]
+    },
+    {
+      "threshold": 1,
+      "goodCorrect": 4,
+      "goodTotal": 6,
+      "gapCorrect": 1,
+      "gapTotal": 6,
+      "separation": 0.4167,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.1,
+      "goodCorrect": 4,
+      "goodTotal": 6,
+      "gapCorrect": 1,
+      "gapTotal": 6,
+      "separation": 0.4167,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.2,
+      "goodCorrect": 3,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.4167,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.3,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.4,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.5,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.6,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.7,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.8,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 1.9,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 2,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.1,
+      "goodCorrect": 2,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.4167,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.2,
+      "goodCorrect": 1,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.3,
+      "goodCorrect": 1,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.4,
+      "goodCorrect": 1,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.3333,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.5,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.6,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.7,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.8,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 2.9,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    },
+    {
+      "threshold": 3,
+      "goodCorrect": 0,
+      "goodTotal": 6,
+      "gapCorrect": 3,
+      "gapTotal": 6,
+      "separation": 0.25,
+      "boundaryFlaggedGap": [
+        "boundary-graph",
+        "boundary-agent",
+        "boundary-routing",
+        "boundary-context",
+        "boundary-scores"
+      ]
+    }
+  ]
+}
