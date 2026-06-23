@@ -1,0 +1,87 @@
+{
+  "sessionId": "2026-06-23-029-search-findings-research",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-keystone-why-does-the-evidence-gap-detected-banner-fire-on-19-of-144-cells-wh",
+      "text": "Q1 (keystone): Why does the `[EVIDENCE GAP DETECTED]` banner fire on 19 of 144 cells while `requestQuality` stays `good`? Trace `detectEvidenceGap` in `stage4-filter.ts` versus the verdict cap in `confidence-scoring.ts:668` that reads `safeExtraData.evidenceGap` at `search-results.ts:1141`. Is the graduated `SPECKIT_EVIDENCE_GAP_VERDICT_V1` cap actually reaching the live render path, or are the banner signal and the cap signal decoupled?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-how-do-requestquality-citationpolicy-the-evidence-gap-detector-and-the-gradua",
+      "text": "Q2: How do `requestQuality`, `citationPolicy`, the evidence-gap detector, and the graduated noise-floor / lexical-grounding / cite-with-caveat flags compose in the live `search-results.ts` render path? Where could two confidence signals diverge?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-the-citecorrect-metric-in-extract-metrics-mjs-66-scores-against-the-binary-ci",
+      "text": "Q3: The `citeCorrect` metric in `extract-metrics.mjs:66` scores against the binary cite-iff-good rule and mislabels every `cite_with_caveat` cell. Design the three-tier-aware fix and confirm no other consumer depends on the binary rule.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-why-does-the-intent-classifier-return-understand-for-132-of-144-cells-with-we",
+      "text": "Q4: Why does the intent classifier return `understand` for 132 of 144 cells with `weightsApplied off`? Where is intent classified, what gates the retrieval-class weights, and should one-word queries differentiate or is the inert default correct?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-root-cause-the-dashboard-presentation-issues-the-bare-dash-score-on-graph-cha",
+      "text": "Q5: Root-cause the dashboard presentation issues: the bare-dash score on graph-channel and degree-channel rows, the result-count header that exceeds the rows shown under token-budget truncation, and the truncated long-path titles. Locate each in the formatter or the presentation contract.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-why-is-retrieval-model-deterministic-for-clearly-aligned-queries-graph-spread",
+      "text": "Q6: Why is retrieval model-deterministic for clearly-aligned queries (graph spread 0.0) but model-sensitive for ambiguous ones (agent spread 0.88, deep-loop 0.61)? What in the dispatch or the query path makes the same word resolve differently, and what stabilizes it?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-across-q1-to-q6-which-fixes-are-highest-value-and-lowest-risk-produce-a-seque",
+      "text": "Q7: Across Q1 to Q6, which fixes are highest-value and lowest-risk? Produce a sequenced fix plan with effort and blast-radius estimates.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "Q1 (keystone): Why does the `[EVIDENCE GAP DETECTED]` banner fire on 19 of 144 cells while `requestQuality` stays `good`? Trace `detectEvidenceGap` in `stage4-filter.ts` versus the verdict cap in `confidence-scoring.ts:668` that reads `safeExtraData.evidenceGap` at `search-results.ts:1141`. Is the graduated `SPECKIT_EVIDENCE_GAP_VERDICT_V1` cap actually reaching the live render path, or are the banner signal and the cap signal decoupled?",
+    "Q2: How do `requestQuality`, `citationPolicy`, the evidence-gap detector, and the graduated noise-floor / lexical-grounding / cite-with-caveat flags compose in the live `search-results.ts` render path? Where could two confidence signals diverge?",
+    "Q3: The `citeCorrect` metric in `extract-metrics.mjs:66` scores against the binary cite-iff-good rule and mislabels every `cite_with_caveat` cell. Design the three-tier-aware fix and confirm no other consumer depends on the binary rule.",
+    "Q4: Why does the intent classifier return `understand` for 132 of 144 cells with `weightsApplied off`? Where is intent classified, what gates the retrieval-class weights, and should one-word queries differentiate or is the inert default correct?",
+    "Q5: Root-cause the dashboard presentation issues: the bare-dash score on graph-channel and degree-channel rows, the result-count header that exceeds the rows shown under token-budget truncation, and the truncated long-path titles. Locate each in the formatter or the presentation contract.",
+    "Q6: Why is retrieval model-deterministic for clearly-aligned queries (graph spread 0.0) but model-sensitive for ambiguous ones (agent spread 0.88, deep-loop 0.61)? What in the dispatch or the query path makes the same word resolve differently, and what stabilizes it?",
+    "Q7: Across Q1 to Q6, which fixes are highest-value and lowest-risk? Produce a sequenced fix plan with effort and blast-radius estimates."
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c697dbe91c56",
+      "text": "Threshold mismatch between detector and cap (both ultimately trace to the same Stage-4 TRM signal; the gap is in field-bridging, not thresholds).",
+      "contentHash": "c697dbe91c56",
+      "addedAtIteration": 1
+    }
+  ],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 7,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}
