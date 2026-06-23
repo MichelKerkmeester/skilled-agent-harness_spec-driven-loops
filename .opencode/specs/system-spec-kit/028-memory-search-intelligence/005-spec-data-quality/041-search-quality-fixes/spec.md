@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-23 |
 | **Parent Packet** | `005-spec-data-quality` |
 | **Source** | `029-vague-query-model-benchmark/research/research.md` |
@@ -101,10 +101,83 @@ Land all six fixes, each small and cited, then verify the keystone fires live wi
 
 ---
 
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The keystone cap fires live. With `SPECKIT_EVIDENCE_GAP_VERDICT_V1` on, an off-corpus search whose Stage 4 detects a gap returns `requestQuality: weak` or `gap` and the banner and verdict agree, where the prior behavior was `good` rendered beside the gap banner
+- **SC-002**: The benchmark `citeCorrect` metric reads honest. A `cite_with_caveat` citation scores correct for a `weak` verdict, and the re-extracted rate returns near 1.0 across the open-source models
+- **SC-003**: The remaining four fixes land additive and reversible. The telemetry field, the row score, the deterministic-ranking flag and the presentation contract change behavior only where intended and leave default ranking byte-identical when the flag is off
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Activating the dead cap changes the recovery-classification side effect | A true gap could shift recovery status unexpectedly | Verified that `recovery-payload.ts` returns `partial` only on a true gap and non-gaps fall through unchanged |
+| Risk | The deterministic-ranking change touches the production ranking path | A regression could shift default ranking | Gated behind a new default-off flag `SPECKIT_DETERMINISTIC_RANKING`, default behavior stays byte-identical, 163 ranking tests pass off |
+| Risk | The Stage-4 gap threshold caps an aligned one-word query | An over-conservative cap on `graph` | Recorded as a tuning question for a later packet, the banner and verdict still agree so it is conservative not a contradiction |
+| Dependency | The graduated `SPECKIT_EVIDENCE_GAP_VERDICT_V1` flag and the 029 benchmark harness | The keystone proof needs both the live flag and the fast-subset re-run | Both confirmed present, the re-run reused the 029 scripts and config |
+<!-- /ANCHOR:risks -->
+
+---
+
 <!-- ANCHOR:questions -->
-## 5. OPEN QUESTIONS
-- None. The deep-research answered all six; structure and scope are operator-confirmed.
+## 7. OPEN QUESTIONS
+- None. The deep-research answered all six. Structure and scope are operator-confirmed.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The deterministic-ranking flag adds only a tie-break and a frozen-clock branch, so the on path carries no measurable ranking-latency cost over the default path
+- **NFR-P02**: The row-score and telemetry fields are additive envelope writes, introducing no extra retrieval work
+
+### Security
+- **NFR-S01**: No fix widens the trust surface. The presentation contract renders a leaf title from an already-trusted path and the new envelope fields are derived from existing internal state
+- **NFR-S02**: The fast-subset re-run dispatches only bare-query retrieval, which is read-only, so verification creates no memory record
+
+### Reliability
+- **NFR-R01**: The deterministic-ranking flag defaults off and leaves default ranking byte-identical, so the change is reversible by leaving the flag unset
+- **NFR-R02**: The keystone cap is conservative. When Stage 4 detects a gap the verdict is capped to `weak` or `gap` rather than dropped, so a borderline query degrades gracefully into a no-cite policy
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Off-corpus query: `authentication` and `kubernetes` have no real corpus match and now cap to `gap` and `weak` with a no-cite or cite-with-caveat policy, the discriminating false-relevance case
+- Aligned one-word query: `graph` is on-corpus yet the Stage-4 gap detector still fires and caps it to `weak`, conservative but with banner and verdict in agreement, flagged as a threshold-tuning question not a wiring bug
+- Long result path: a path too long for the row renders its leaf title rather than a truncated or dash-only label
+
+### Error Scenarios
+- Graph or degree row with no similarity: the resolved composite score is surfaced so the row shows a number rather than a bare dash
+- Verdict-banner contradiction: the prior failure mode was a `good` verdict rendered beside the evidence-gap banner on 19 of 144 cells, now zero after the cap is bridged
+
+### State Transitions
+- Flag off to on for deterministic ranking: with the flag off ranking keeps the wall-clock inputs and stays byte-identical, with it on the vector decay, trigger boost and recency drop out and the trigger id becomes the final tie-break
+- Cite tier transition: a `weak` verdict now maps to `cite_with_caveat` and a `gap` verdict to `do_not_cite_results`, and the benchmark metric scores both honestly
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 9/25 | Six small cited fixes across five source files plus one benchmark script and one presentation asset |
+| Risk | 8/25 | One keystone touches the live verdict path and one fix touches production ranking, both gated or verified, the rest are additive |
+| Research | 12/20 | The fixes are pre-scoped by the 029 deep-research, the work is implementation plus a fast-subset proof re-run |
+| **Total** | **29/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ---
 
