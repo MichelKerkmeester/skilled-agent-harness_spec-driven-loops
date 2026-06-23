@@ -693,15 +693,15 @@ export function isLexicalGroundingEnabled(): boolean {
  * conditionally-mandatory render slots, required-when-present, and to re-emit a
  * tool-shipped field the render dropped.
  *
- * Default: FALSE (opt-in). The existing renders carry the looser
- * absence-is-valid contract this mandate rejects, so it ships dark and graduates
- * only after a clean grandfather report confirms aligned good and correctly-weak
- * renders do not regress. With the flag OFF the response shape is byte-for-byte
- * the shipped behavior, no envelopeRender field is added. An unparseable value
- * resolves to OFF. Set SPECKIT_ENVELOPE_FIDELITY_V1=true to enable.
+ * Default: TRUE, graduated after a captured render corpus showed the fidelity checker
+ * flags every dropped or altered verdict render a no-checker baseline passes silently
+ * while passing every faithful render. An explicit false, 0, or off restores the
+ * byte-for-byte shipped response shape with no envelopeRender field. Set
+ * SPECKIT_ENVELOPE_FIDELITY_V1=false to opt out.
  */
 export function isEnvelopeFidelityEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_ENVELOPE_FIDELITY_V1');
+  const value = process.env.SPECKIT_ENVELOPE_FIDELITY_V1?.toLowerCase().trim();
+  return !(value === 'false' || value === '0' || value === 'off');
 }
 
 /**
@@ -755,14 +755,14 @@ export function isNoiseFloorSubtractionEnabled(): boolean {
  * miss (ungrounded or gap) stays do_not_cite_results. A fully ungrounded hit is
  * never promoted to the caveat tier.
  *
- * Default: FALSE (opt-in). It adds a citation-policy state the shipped contract
- * does not carry, so it ships dark and graduates only after validating on the
- * off-corpus fixtures. With the flag OFF the citation policy is the shipped
- * two-state output. An unparseable value resolves to OFF. Set
- * SPECKIT_CITE_WITH_CAVEAT_V1=true to enable.
+ * Default: TRUE, graduated after a borderline-grounded fixture showed it recovers a
+ * hedged-but-usable result the binary policy drops to do_not_cite, and fires only on
+ * the borderline tier. An explicit false, 0, or off opts back to the shipped two-state
+ * output. Set SPECKIT_CITE_WITH_CAVEAT_V1=false to opt out.
  */
 export function isCiteWithCaveatEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_CITE_WITH_CAVEAT_V1');
+  const value = process.env.SPECKIT_CITE_WITH_CAVEAT_V1?.toLowerCase().trim();
+  return !(value === 'false' || value === '0' || value === 'off');
 }
 
 /**
@@ -773,14 +773,14 @@ export function isCiteWithCaveatEnabled(): boolean {
  * longer ride along as a confident good. The gap is read from the Stage 4 signal
  * the caller threads in, never recomputed here.
  *
- * Default: FALSE (opt-in). It lowers a verdict the shipped path would award good,
- * so it ships dark and graduates only after validating on the off-corpus fixtures.
- * With the flag OFF the verdict ignores evidenceGapDetected exactly as today. An
- * unparseable value resolves to OFF. Set SPECKIT_EVIDENCE_GAP_VERDICT_V1=true to
- * enable.
+ * Default: TRUE, graduated after a Stage-4 gap fixture showed it caps an otherwise-good
+ * verdict to weak on a detected evidence gap, a safety improvement, and leaves the verdict
+ * unchanged without a gap. An explicit false, 0, or off makes the verdict ignore
+ * evidenceGapDetected as before. Set SPECKIT_EVIDENCE_GAP_VERDICT_V1=false to opt out.
  */
 export function isEvidenceGapVerdictEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EVIDENCE_GAP_VERDICT_V1');
+  const value = process.env.SPECKIT_EVIDENCE_GAP_VERDICT_V1?.toLowerCase().trim();
+  return !(value === 'false' || value === '0' || value === 'off');
 }
 
 /**

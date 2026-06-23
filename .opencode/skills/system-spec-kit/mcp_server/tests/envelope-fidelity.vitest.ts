@@ -109,7 +109,7 @@ describe('Phase 027: envelope-fidelity render fragment', () => {
   });
 
   it('is absent when the flag is off, leaving the shipped shape unchanged', async () => {
-    delete process.env[ENVELOPE_FLAG];
+    process.env[ENVELOPE_FLAG] = 'false';
     const flagOff = await formatEnvelope(goodResults());
     expect('envelopeRender' in flagOff.data).toBe(false);
 

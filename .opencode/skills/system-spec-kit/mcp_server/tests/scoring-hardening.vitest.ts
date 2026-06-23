@@ -52,12 +52,14 @@ const saved = new Map<string, string | undefined>();
 beforeEach(() => {
   for (const flag of MANAGED_FLAGS) saved.set(flag, process.env[flag]);
   // Reset to a stable baseline, then pin the verdict-moving flags OFF for a visible
-  // verdict. The grounding floor and noise-floor flags now default ON, so they are
-  // pinned OFF explicitly here and each opts back in per case.
+  // verdict. The grounding floor, noise-floor, cite-with-caveat, and evidence-gap flags
+  // now default ON, so they are pinned OFF explicitly here and each opts back in per case.
   for (const flag of MANAGED_FLAGS) delete process.env[flag];
   process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
   process.env[NOISE_FLOOR_FLAG] = 'false';
   process.env[LEXICAL_GROUNDING_FLAG] = 'false';
+  process.env[CITE_CAVEAT_FLAG] = 'false';
+  process.env[EVIDENCE_GAP_FLAG] = 'false';
 });
 
 afterEach(() => {

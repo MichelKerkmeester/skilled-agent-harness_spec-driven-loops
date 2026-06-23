@@ -74,7 +74,7 @@ describe('flag graduation: cite_with_caveat tier', () => {
   });
 
   it('recovers the borderline result the binary policy drops to do_not_cite', () => {
-    delete process.env[CITE_CAVEAT_FLAG];
+    process.env[CITE_CAVEAT_FLAG] = 'false';
     const binary = policyOf(borderline);
     process.env[CITE_CAVEAT_FLAG] = 'true';
     const hedged = policyOf(borderline);
@@ -86,7 +86,7 @@ describe('flag graduation: cite_with_caveat tier', () => {
   });
 
   it('reduces to the shipped two-state policy with the flag off', () => {
-    delete process.env[CITE_CAVEAT_FLAG];
+    process.env[CITE_CAVEAT_FLAG] = 'false';
     expect(policyOf(borderline)).toBe('do_not_cite_results');
     expect(policyOf(clearGood)).toBe('cite_results');
   });

@@ -77,7 +77,7 @@ describe('flag graduation: evidence-gap verdict bridge', () => {
   });
 
   it('ignores a detected gap with the flag off, unchanged from the shipped path', () => {
-    delete process.env[EVIDENCE_GAP_FLAG];
+    process.env[EVIDENCE_GAP_FLAG] = 'false';
     expect(verdict(withGap.rows, true)).toBe('good');
   });
 });
