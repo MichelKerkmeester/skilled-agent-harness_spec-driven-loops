@@ -49,12 +49,17 @@ type BackfillSummary = ReturnType<typeof runBackfill>;
 // z_future are deliberately absent so the enumerator reaches the archive trees.
 const TRAVERSAL_SKIP_DIRS = new Set(['node_modules', '.git', 'external']);
 
-// The two safety flags the migration runs the generators under. Identity merge
-// safety resolves specs-root-relative identity and preserves the parent links,
-// idempotent writes settle the content-hashed skip so the second run is a no-op.
+// The safety and field-writing flags the migration runs the generators under.
+// Identity merge safety resolves specs-root-relative identity and preserves the
+// parent links, idempotent writes settle the content-hashed skip so the second
+// run is a no-op, and the drift gate plus generator hardening persist the synopsis
+// freshness hashes and the source fingerprint so the metadata carries its own
+// staleness key and the enforcing integrity rule has the fields to check against.
 const MIGRATION_FLAGS = {
   SPECKIT_IDENTITY_MERGE_SAFETY: '1',
   SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES: '1',
+  SPECKIT_GENERATED_METADATA_DRIFT_GATE: '1',
+  SPECKIT_GENERATOR_HARDENING: '1',
 } as const;
 
 /** What happened to one generated file during a folder migration. */
