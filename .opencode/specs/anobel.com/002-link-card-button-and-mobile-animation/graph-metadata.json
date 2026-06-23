@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-06-22T18:54:58.925Z",
+    "last_save_at": "2026-06-23T03:49:48.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:2929a1935f66d9fd0b785270d9035cb990ef1851bce9849870d7d8f83499fd90",
+    "source_doc_hashes": {
+      "spec.md": "15af0f7a3ee225fa9d6e00bad082358c478423647d4cfec21bd6d27306b95388",
+      "plan.md": "76377011b68d7767f5d77bd4415176cfba1a148331a0736fd7561f408f8b8161",
+      "tasks.md": "72891c0ac5867cb3c00150034e8d980a703214efab2988a5b2d2332d693bc258",
+      "checklist.md": "9b26755dfe939a8e9fb8af4efee321f46f62e7a16414a38f351227873c2c18ea",
+      "implementation-summary.md": "0f09dda69bff6e863ccb1b9694a1b24551f4d0c54b63423863b280d3b28d233e",
+      "handover.md": "fd94bdbce8977d2d9130c9bcac47723ae124d570959f23e699b1e2a17a3bf5df"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

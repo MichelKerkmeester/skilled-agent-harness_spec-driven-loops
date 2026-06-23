@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "anobel.com/001-button-text-link-disabled-state",
-  "description": "Feature Specification: Text Link Button Disabled State",
+  "description": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override",
   "keywords": [
-    "feature",
-    "specification",
-    "text",
-    "link",
-    "button",
+    "text-link",
+    "buttons",
+    "currently",
+    "define",
+    "enabled",
+    "hover",
+    "focus",
+    "active",
+    "states",
+    "expose",
+    "dedicated",
     "disabled",
-    "state"
+    "override"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.100Z",
+  "lastUpdated": "2026-06-23T03:49:48.277Z",
   "specId": "001",
   "folderSlug": "button-text-link-disabled-state",
   "parentChain": [

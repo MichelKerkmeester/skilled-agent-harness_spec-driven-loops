@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "anobel.com/003-slider-refactor",
-  "description": "Feature Specification: Slider JS Refactor & Variant Split",
+  "description": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `tes",
   "keywords": [
-    "feature",
-    "specification",
+    "carousel",
     "slider",
-    "refactor",
-    "variant",
-    "split"
+    "named",
+    "attributed",
+    "specifically",
+    "testimonials",
+    "testimonial",
+    "data-testimonial-slider",
+    "testimonial-slide-x",
+    "tes"
   ],
-  "lastUpdated": "2026-06-22T18:54:58.929Z",
+  "lastUpdated": "2026-06-23T03:49:48.292Z",
   "specId": "003",
   "folderSlug": "slider-refactor",
   "parentChain": [

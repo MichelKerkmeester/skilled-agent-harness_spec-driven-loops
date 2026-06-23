@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `__testimonialSliderCdnInit`, etc.). This prevented the same engine from being reused for other slider patterns without renaming collisions and conflicting injected styles.",
+    "causal_summary": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `testimonialSliderCdnInit`, etc.)",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:32.954Z",
+    "last_save_at": "2026-06-23T03:49:48.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:504cb2c67706646b9771ced7efd1370917be811ea1ab0869b14b6aac6d1ea1bb",
+    "source_doc_hashes": {
+      "spec.md": "dc67caabc79e16cfae9ec6764e697300e47627da65a7d423d8057880d5353913",
+      "plan.md": "3f941df97d30db52f58ba120612f617398ae7ed48cb5a0d291e1ddfb2b9cbe20",
+      "tasks.md": "5e53856bd03f359da7a44b6d53cdc0f63ccfff14b9e3a70959d258986398519c",
+      "implementation-summary.md": "5a4fc58eb668cd2427ea6c5cb31ced281ac5ae424b4ed3873326ac69ee2dc630",
+      "handover.md": "f3909fe15b43a8859000b6f45afad4ab553eeedc08fabfa03a2e5cb0301a56b4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

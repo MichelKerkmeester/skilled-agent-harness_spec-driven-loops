@@ -1,20 +1,20 @@
 {
   "level": "2",
   "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
-  "description": "Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes",
+  "description": "The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS",
   "keywords": [
-    "feature",
-    "specification",
+    "sector-menu",
     "link",
     "card",
-    "collapse",
-    "expand",
-    "button",
-    "mobile",
-    "animation",
-    "fixes"
+    "data-link-card",
+    "three",
+    "original",
+    "defects",
+    "one",
+    "follow-up",
+    "ios"
   ],
-  "lastUpdated": "2026-06-07T14:08:17.958Z",
+  "lastUpdated": "2026-06-23T03:49:48.285Z",
   "specId": "002",
   "folderSlug": "link-card-button-and-mobile-animation",
   "parentChain": [
