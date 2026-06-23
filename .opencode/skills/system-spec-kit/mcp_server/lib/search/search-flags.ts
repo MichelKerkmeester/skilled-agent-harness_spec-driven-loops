@@ -1034,3 +1034,21 @@ export function isDeterministicRankingEnabled(): boolean {
   const rawValue = process.env.SPECKIT_DETERMINISTIC_RANKING?.trim().toLowerCase();
   return rawValue === 'true' || rawValue === '1';
 }
+
+/**
+ * Relevance-aware evidence-gap decision: replace the Z-score peakedness check in
+ * detectEvidenceGap with the noise-floor-subtracted absolute relevance the
+ * request-quality banding already computes, banded at the same LOW_THRESHOLD. A
+ * 043 benchmark proved the Z-score measures peakedness, not relevance, so it
+ * over-flags strong tight clusters and misses flat off-corpus ones. When ON, the
+ * gap fires when the subtracted top relevance falls below the band's low floor;
+ * when no embedder noise-floor resolves it fails closed to the Z-score path.
+ * Default: FALSE (opt-in): with the flag OFF detectEvidenceGap returns the exact
+ * Z-score result unchanged, so flag-off is byte-identical. It must earn promotion
+ * on an off-vs-on benchmark before running by default. Set
+ * SPECKIT_RELEVANCE_AWARE_GAP=true to enable.
+ */
+export function isRelevanceAwareGapEnabled(): boolean {
+  const rawValue = process.env.SPECKIT_RELEVANCE_AWARE_GAP?.trim().toLowerCase();
+  return rawValue === 'true' || rawValue === '1';
+}

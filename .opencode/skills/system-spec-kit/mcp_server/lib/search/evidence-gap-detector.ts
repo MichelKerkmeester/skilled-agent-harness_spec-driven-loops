@@ -7,6 +7,9 @@
 // Warnings for the MCP markdown output layer.
 // ───────────────────────────────────────────────────────────────
 import type { ParserProvenance } from '../context/shared-payload.js';
+import { isNoiseFloorSubtractionEnabled, isRelevanceAwareGapEnabled } from './search-flags.js';
+import { resolveNoiseFloor } from './noise-floor.js';
+import { LOW_THRESHOLD } from './confidence-scoring.js';
 
 // 1. CONSTANTS
 
@@ -155,6 +158,47 @@ export function predictGraphCoverage(
 }
 
 /**
+ * Override the Z-score gap decision with a relevance-aware one when the flag is
+ * on. The Z-score measures peakedness, not relevance: it over-flags strong tight
+ * clusters and misses flat off-corpus ones. The request-quality banding instead
+ * reads the noise-floor-subtracted absolute top relevance, so this computes that
+ * same signal and flags a gap when the subtracted relevance falls below the
+ * band's low floor. Reuses resolveNoiseFloor and LOW_THRESHOLD, never reimplements
+ * them. When the flag is off the base Z-score result passes through untouched, so
+ * flag-off is byte-identical. When no embedder noise-floor resolves (null) it fails
+ * closed to the base Z-score path rather than banding on an unknown floor. The
+ * zScore, mean and stdDev fields are preserved from the base result either way.
+ */
+function applyRelevanceAwareGap(
+  base: TRMResult,
+  topScore: number,
+  options?: { embedder?: string },
+): TRMResult {
+  if (!isRelevanceAwareGapEnabled()) {
+    return base;
+  }
+
+  // Mirror the request-quality band's floor resolution: subtract the measured
+  // per-embedder noise floor when subtraction is enabled, else subtract nothing
+  // (floor 0, band on raw relevance). Only an enabled-but-unresolved floor (null,
+  // an embedder with no measured floor) is the fail-closed signal that keeps the
+  // base Z-score decision rather than banding on an unknown floor.
+  let floor: number;
+  if (isNoiseFloorSubtractionEnabled()) {
+    const resolved = resolveNoiseFloor(options?.embedder);
+    if (!resolved) {
+      return base;
+    }
+    floor = resolved.floor;
+  } else {
+    floor = 0;
+  }
+
+  const subtracted = Math.max(0, topScore - floor);
+  return { ...base, gapDetected: subtracted < LOW_THRESHOLD };
+}
+
+/**
  * Detect evidence gaps in an RRF score distribution.
  *
  * A gap is detected when either:
@@ -162,10 +206,20 @@ export function predictGraphCoverage(
  * - The top score is below `MIN_ABSOLUTE_SCORE` (all scores too small), or
  * - The input array is empty.
  *
+ * When SPECKIT_RELEVANCE_AWARE_GAP is on, the Z-score gap decision is replaced by
+ * the noise-floor-subtracted absolute top relevance banded at LOW_THRESHOLD, the
+ * same signal the request-quality verdict already uses. The flag is default-off,
+ * so the returned object is byte-identical to the Z-score path when it is unset.
+ *
  * @param rrfScores - Array of Reciprocal Rank Fusion scores (any length).
+ * @param options - Optional embedder identifier, threaded through to resolve the
+ *   per-embedder noise floor for the relevance-aware path.
  * @returns TRMResult with gap flag, Z-score, mean, and standard deviation.
  */
-export function detectEvidenceGap(rrfScores: number[]): TRMResult {
+export function detectEvidenceGap(
+  rrfScores: number[],
+  options?: { embedder?: string },
+): TRMResult {
   if (rrfScores.length === 0) {
     return { gapDetected: true, zScore: 0, mean: 0, stdDev: 0 };
   }
@@ -178,12 +232,13 @@ export function detectEvidenceGap(rrfScores: number[]): TRMResult {
   if (finiteScores.length === 1) {
     // Single score: can't compute a meaningful Z-score, fall back to absolute threshold.
     const score = finiteScores[0];
-    return {
+    const base: TRMResult = {
       gapDetected: score < MIN_ABSOLUTE_SCORE,
       zScore: 0,
       mean: score,
       stdDev: 0,
     };
+    return applyRelevanceAwareGap(base, score, options);
   }
 
   const mean = finiteScores.reduce((acc, s) => acc + s, 0) / finiteScores.length;
@@ -205,7 +260,7 @@ export function detectEvidenceGap(rrfScores: number[]): TRMResult {
     ? topScore < MIN_ABSOLUTE_SCORE
     : zScore < Z_SCORE_THRESHOLD || topScore < MIN_ABSOLUTE_SCORE;
 
-  return { gapDetected, zScore, mean, stdDev };
+  return applyRelevanceAwareGap({ gapDetected, zScore, mean, stdDev }, topScore, options);
 }
 
 /**

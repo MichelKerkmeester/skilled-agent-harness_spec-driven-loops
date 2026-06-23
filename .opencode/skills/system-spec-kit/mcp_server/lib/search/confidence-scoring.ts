@@ -43,6 +43,10 @@ declare const rankingConfidenceBrand: unique symbol;
 const HIGH_THRESHOLD = 0.7;
 const LOW_THRESHOLD = 0.4;
 
+// Re-exported so the evidence-gap detector can band its relevance-aware decision
+// on the same low floor the verdict uses, rather than redeclaring the constant.
+export { LOW_THRESHOLD };
+
 // Weights for each active confidence factor. The former reranker weight (0.20)
 // was removed with the LLM reranker; its term was already inert (always 0), so
 // rawValue stays capped at 0.80 exactly as before, behavior-neutral. The 0.20

@@ -329,6 +329,13 @@ export interface Stage4Input {
   config: PipelineConfig;
   /** Stage 1 metadata passed through for constitutional count */
   stage1Metadata?: { constitutionalInjected?: number };
+  /**
+   * Active embedder identifier, threaded into the relevance-aware evidence-gap
+   * path so its per-embedder noise floor resolves the same way the request-quality
+   * banding does. Undefined resolves the default-embedder floor, matching the
+   * banding call which also omits it in production.
+   */
+  embedder?: string;
 }
 
 /**

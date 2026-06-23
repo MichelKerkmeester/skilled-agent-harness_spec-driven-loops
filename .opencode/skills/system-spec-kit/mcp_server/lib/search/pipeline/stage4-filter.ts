@@ -263,7 +263,9 @@ export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
 
   if (isTRMEnabled()) {
     const scores = workingResults.map(extractScoringValue);
-    const trm = detectEvidenceGap(scores);
+    // Thread the active embedder so the relevance-aware gap path (when enabled)
+    // resolves the same per-embedder noise floor the request-quality banding reads.
+    const trm = detectEvidenceGap(scores, { embedder: input.embedder });
 
     evidenceGapDetected = trm.gapDetected;
 
