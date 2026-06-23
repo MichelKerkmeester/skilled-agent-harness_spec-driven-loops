@@ -159,12 +159,13 @@ describe('per-folder failure isolation', () => {
 });
 
 describe('authoritative z_* exclusion helper', () => {
-  it('flags every z_* segment for generated metadata while memory keeps z_archive', () => {
+  it('excludes only z_future from generated metadata while keeping z_archive', () => {
     expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z_future/001-x/graph-metadata.json')).toBe(true);
-    expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z_archive/001-x/graph-metadata.json')).toBe(true);
+    expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z_archive/001-x/graph-metadata.json')).toBe(false);
     expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/910-active/graph-metadata.json')).toBe(false);
 
-    // The two policies do not collide: z_archive stays searchable in memory.
+    // The two policies now agree: z_archive stays in both the generated metadata
+    // and the memory index, only the z_future staging area is dropped.
     expect(shouldIndexForMemory('/specs/system-spec-kit/z_archive/001-x/spec.md')).toBe(true);
     expect(shouldIndexForMemory('/specs/system-spec-kit/z_future/001-x/spec.md')).toBe(false);
   });

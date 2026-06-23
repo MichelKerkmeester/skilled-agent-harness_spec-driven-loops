@@ -199,15 +199,15 @@ export const EXCLUDED_FOR_CODE_GRAPH = [
   compileSegmentPattern('z_archive'),
 ] as const;
 
-// Authoritative z_* exclusion for generated metadata (description.json and
-// graph-metadata caches). Every z_-prefixed segment is a staging or archive
-// area that must never seed generated JSON, so this is the single source of
-// truth the traversal boundaries share instead of four divergent skip lists.
-// It is deliberately distinct from EXCLUDED_FOR_MEMORY: the memory index keeps
-// z_archive (deprioritized by ARCHIVE_MULTIPLIERS), so the two policies answer
-// different questions and never collide.
+// Authoritative z_future exclusion for generated metadata (description.json and
+// graph-metadata caches). z_future is a staging area whose unfinished folders
+// must never seed generated JSON. z_archive is deliberately kept: archived spec
+// content stays in the generated metadata and the memory index (deprioritized by
+// ARCHIVE_MULTIPLIERS) so it remains discoverable, matching the migration that
+// regenerates it. This is the single source of truth the traversal boundaries
+// share instead of divergent skip lists.
 export const EXCLUDED_FOR_GENERATED_METADATA = [
-  compileSegmentPattern('z_[^/]+'),
+  compileSegmentPattern('z_future'),
 ] as const;
 
 function getCodeGraphPolicy(
