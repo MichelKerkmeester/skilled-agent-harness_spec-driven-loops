@@ -20,15 +20,15 @@
       "002-agent-debug",
       "debug",
       "optimization",
-      "improvement",
-      "focus",
-      "5-phase",
-      "root-cause",
-      "discipline",
-      "user-invoked-only",
-      "constraint",
-      "debug-delegation",
-      "write"
+      "506",
+      "loc",
+      "sk-improve-agent",
+      "lens",
+      "spec",
+      "agent",
+      "sub-phase",
+      "061-agent-optimization",
+      "applying"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Improvement focus: **5-phase root-cause discipline; user-invoked-only constraint; debug-delegation.md write boundary**. USER-INVOKED ONLY — never auto-dispatched (per memory rule). Retains exclusive write access for debug-delegation.md.",
+    "causal_summary": "`@debug` (506 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.102Z",
-    "last_save_at": "2026-06-05T12:47:32.734Z",
+    "last_save_at": "2026-06-23T03:49:49.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5c185a182421fe704a9a75f9f960fd6829d603ee7e7605594a8ed46642bf38c5",
+    "source_doc_hashes": {
+      "spec.md": "b4057eb6d6ecdfc6e7c06baf564567b5bfc106383d62bccbe0d8483d68bd1d63",
+      "plan.md": "3460cdca1612bf0beafaefe4bf8b61a98da62f2aed633a1a088c55f5a9bdc197",
+      "tasks.md": "b368d5718a57fd6a834d37f48b84eeda29a7a1293e2b87e1852ce3b71c8303bf",
+      "implementation-summary.md": "e99c39c3f1cf073a17819401f49e3b2c8a2aa7603920c3591e205b7217dbd8f1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

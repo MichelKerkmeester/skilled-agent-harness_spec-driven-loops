@@ -1,15 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
-  "description": "Feature Specification: Parity baseline and runtime-ownership ADR",
+  "description": "A structure-only merge can silently change behavior",
   "keywords": [
-    "feature",
-    "specification",
-    "parity",
-    "baseline",
-    "runtime-ownership",
-    "adr"
+    "structure-only",
+    "merge",
+    "silently",
+    "change",
+    "behavior"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.689Z",
+  "lastUpdated": "2026-06-23T03:49:48.672Z",
   "specId": "001",
   "folderSlug": "parity-baseline-and-runtime-ownership-adr",
   "parentChain": [

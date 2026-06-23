@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/007-deep-context-readme",
-  "description": "Feature Specification: deep-context README",
+  "description": "The deep-context README is a tabular reference card with no problem-first entry point, and its Key Statistics carry stale facts: version 1.0.0 (the sk",
   "keywords": [
-    "feature",
-    "specification",
     "deep-context",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "key",
+    "statistics",
+    "carry",
+    "stale",
+    "facts",
+    "version"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.553Z",
+  "lastUpdated": "2026-06-23T03:49:51.857Z",
   "specId": "007",
   "folderSlug": "deep-context-readme",
   "parentChain": [

@@ -1,14 +1,26 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/012-catalog-playbook-realignment",
-  "description": "Feature Specification: Phase 12: catalog-playbook-realignment",
+  "description": "Phase 009 added the Mobbin/Refero design-reference capability and phase 011 gave it a hybrid initiative/ask routing gate, but the featurecatalog never",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "catalog-playbook-realignment"
+    "009",
+    "added",
+    "mobbin",
+    "refero",
+    "design-reference",
+    "capability",
+    "011",
+    "gave",
+    "hybrid",
+    "initiative",
+    "ask",
+    "routing",
+    "gate",
+    "featurecatalog",
+    "never"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.008Z",
+  "lastUpdated": "2026-06-23T03:49:48.459Z",
   "specId": "012",
   "folderSlug": "catalog-playbook-realignment",
   "parentChain": [

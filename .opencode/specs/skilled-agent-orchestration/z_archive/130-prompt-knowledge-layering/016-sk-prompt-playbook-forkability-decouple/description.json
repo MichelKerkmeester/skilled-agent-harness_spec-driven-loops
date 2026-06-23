@@ -1,13 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
-  "description": "Feature Specification: sk-prompt-playbook-forkability-decouple",
+  "description": "Two playbook scenarios (`SP-023` CLI card fast path, `SP-024` escalation thresholds) tested the CLI",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-prompt-playbook-forkability-decouple"
+    "two",
+    "playbook",
+    "scenarios",
+    "sp-023",
+    "cli",
+    "card",
+    "fast",
+    "path",
+    "sp-024",
+    "escalation",
+    "thresholds",
+    "tested"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.383Z",
+  "lastUpdated": "2026-06-23T03:49:51.663Z",
   "specId": "016",
   "folderSlug": "sk-prompt-playbook-forkability-decouple",
   "parentChain": [

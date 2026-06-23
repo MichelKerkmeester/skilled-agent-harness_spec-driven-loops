@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Our OpenCode plugins (`mk-skill-advisor.js` + `mk-code-graph.js`) use env-only or hardcoded config. Operators can't override behavior at runtime without editing source (which requires a rebuild). Upstream auto-review demonstrates a 3-tier resolution (`~/.config/opencode/plugin/<name>.json` > env vars > hardcoded defaults) that lets operators tune debug flags, thresholds, and target paths without source edits.",
+    "causal_summary": "Our OpenCode plugins (`mk-skill-advisor.js` + `mk-code-graph.js`) use env-only or hardcoded config",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.181Z",
+    "last_save_at": "2026-06-23T03:49:50.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:152b009090653cff6ecb0c0104f719192be740e1417eae191060d1818ce62d4d",
+    "source_doc_hashes": {
+      "spec.md": "b40966d9894c1638113f53609e0848b6b9a102f10a6dbbc3f9bb28213a594bee",
+      "plan.md": "e404b7250a5b1742b5eecd48750dc7bdad183eaba12a036b3b21efa35362d10a",
+      "tasks.md": "1fb12de28ce2d7024b71d42a0a6e24ed1c1ae9fb105aa6a9e4e5d3181770a676",
+      "implementation-summary.md": "6d8fe4f1c2806e8704e967e04ee7fd05abf265625bd2fd17291fd41f8c1be2f1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

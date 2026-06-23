@@ -27,10 +27,10 @@
       "adr",
       "implementation",
       "summary",
-      "packet",
-      "121",
-      "closes",
-      "119"
+      "convergence",
+      "references",
+      "use",
+      "question"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 121 closes DR-003 from the 119 uplift roadmap by adding a reducer-owned `uncoveredQuestions` field to the deep-research findings registry and dashboard. The contract is additive: compute uncovered questions from the strategy question list minus the union of iteration `answeredQuestions`.",
+    "causal_summary": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained uncovered",
     "created_at": "2026-05-23T03:56:52.598Z",
-    "last_save_at": "2026-06-15T09:09:33.797Z",
+    "last_save_at": "2026-06-23T03:49:50.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9ff41cc8de8d6a2634b131800f2d6c91ea20ff61bd228abd4a75d9044134065",
+    "source_doc_hashes": {
+      "spec.md": "41b4ec29591fce59663c509eaabcc46b28194a491b0288f2ca858a8d15ac1901",
+      "plan.md": "586846256433c6edba6aa2549bd2b0413412d78b626370696ac692d93fbaf66f",
+      "tasks.md": "52fcabd902ea82ab8c6eca68269b82ea9ee1d2ea523c7ed639b19a9153b72bba",
+      "checklist.md": "4fe8e27d6ee68c88455fd4d359ae45718b677998b51fc74cdd1708c1284446cc",
+      "decision-record.md": "2a8159f263f119401689306383b4f20777c41b9ad8dd9d8318fbb8e996fd04fb",
+      "implementation-summary.md": "ec6c94f75bbb27e81ceffe4253198798d1eebd6fd031575813e5cd65f736e3f6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

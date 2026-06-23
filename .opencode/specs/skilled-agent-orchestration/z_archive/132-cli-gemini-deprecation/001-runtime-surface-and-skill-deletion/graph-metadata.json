@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repository still ships a project-level `.gemini/` runtime mirror even though the current workflow is OpenCode-centered and the user has requested that surface be deleted. This packet removes the checked-in project `.gemini` directory and updates active, non-spec references so the repo no longer directs maintainers or tooling to project `.gemini` files.",
+    "causal_summary": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance",
     "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-06-17T19:57:23.766Z",
+    "last_save_at": "2026-06-23T03:49:51.679Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:94fdeb4e6e458e070025e3ce6a243047299b22b197c6dfed9d088b99b9aafe29",
+    "source_doc_hashes": {
+      "spec.md": "fd52dd98ec8719ef3194a5629be0051b5ef7dd6b079d5167b6d910a4f088531d",
+      "plan.md": "aa5cac0c761689f5ff776db6ae6004688bee484f2539e730f46c559f3476fd61",
+      "tasks.md": "8d8050888359a699b5b4ffdb696360a8d1d32434d12aea8463df3e2c237e4e75",
+      "checklist.md": "c531e0ccbdd0961b4067417a80a5871c2b01bc2a6a6efea412f4ba7726b2086c",
+      "decision-record.md": "4169a35f01b59c65236c2b64dc5f4b627b713832cd9709a7065dcb409a507a93",
+      "implementation-summary.md": "414904907f37d6ed94d5df4371be95fe59c884db9721ea88c726a1f7fc2c5639",
+      "resource-map.md": "62aac0b54703077f3b8f058c16d473091a24df82d9b039806760ac6ad0a1abae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

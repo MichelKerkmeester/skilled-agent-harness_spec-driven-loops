@@ -36,7 +36,7 @@
       "tasks",
       "verification",
       "checklist",
-      "land"
+      "agents"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Land the three cheapest, lowest-blast doctrine wins from the fable-5 recommendation map (A1, A2, A3): the dead pointer resolves and a fail-loud check stops it (or any sibling pointer) from rotting again, the byte-synced AGENTS.md/CLAUDE.md twins carry a compact efficiency doctrine spine, and the handover template hands a cold successor an explicit scar-tissue ledger plus a numbered read order.",
+    "causal_summary": "`AGENTS.md:217` points readers at `references/hooks/skill-advisor-hook.md` (hyphens), but the real file is `skilladvisorhook.md` (underscores), so the pointer resolves to nothing",
     "created_at": "2026-06-15T14:06:36Z",
-    "last_save_at": "2026-06-16T06:06:34.793Z",
+    "last_save_at": "2026-06-23T03:49:48.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bd0058426d4ae638ad8feacc5b6d569f00f18869508a3a887a02a9ec3ff9964b",
+    "source_doc_hashes": {
+      "spec.md": "1f5ac91487174e93a56b103484a5bdf303991391ae3322ef7b2d0acee1cf2c3b",
+      "plan.md": "f60c4c759c69eef264e385548cc5358448428596d43dcf1159ed0a6814f9aa94",
+      "tasks.md": "a7ce4ecb84ca8706e461c353201f45cc137df875159458bc1831c745aaaa713f",
+      "checklist.md": "6033bea76d0f7a58739f417aa9bcd4e96167fbdb91b2ab4f5dccc069caa69ba8",
+      "implementation-summary.md": "cf2e9b860c86884ec67a311c8eaf29c0050c1181465310308645b7067cf35ef3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

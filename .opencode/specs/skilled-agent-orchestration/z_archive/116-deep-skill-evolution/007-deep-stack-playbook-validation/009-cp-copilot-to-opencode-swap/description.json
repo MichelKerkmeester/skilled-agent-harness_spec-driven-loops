@@ -1,20 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
-  "description": "Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (007 Phase 009)",
+  "description": "The 007 validation run recorded 19 SKIP verdicts",
   "keywords": [
-    "feature",
-    "specification",
-    "stress",
-    "scenarios",
-    "copilot",
-    "opencode",
-    "executor",
-    "swap",
     "007",
-    "phase",
-    "009"
+    "validation",
+    "run",
+    "recorded",
+    "skip",
+    "verdicts"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.838Z",
+  "lastUpdated": "2026-06-23T03:49:51.079Z",
   "specId": "009",
   "folderSlug": "cp-copilot-to-opencode-swap",
   "parentChain": [

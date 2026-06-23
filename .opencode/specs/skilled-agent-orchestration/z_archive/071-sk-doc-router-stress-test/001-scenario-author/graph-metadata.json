@@ -30,9 +30,9 @@
       "plan",
       "tasks",
       "summary",
-      "phase",
-      "packet",
-      "creates"
+      "smart",
+      "router",
+      "distinct"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is Phase 1 of the 071 packet. It creates `.opencode/skills/sk-doc/manual_testing_playbook/` from scratch — sk-doc previously had no test playbook (just `assets/testing_playbook/` templates for OTHER projects).",
+    "causal_summary": "sk-doc has a smart router with 11 distinct intents but NO test playbook to verify router behavior across model interpretations",
     "created_at": "2026-05-05T10:27:19Z",
-    "last_save_at": "2026-06-05T12:47:32.813Z",
+    "last_save_at": "2026-06-23T03:49:49.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9f24c111ab40911a6fe639dfb5ad6d3ebcab0c093e58f21055c1fec1692b61bd",
+    "source_doc_hashes": {
+      "spec.md": "ea2d31b3f5866f03e59ed1fea556d7cfd165496b5f687eca75f23268b7f9715d",
+      "plan.md": "fbbc5182c6c66ca2db19e8b0ef1f9ed0f13220aba6e77370cd8836679b506c96",
+      "tasks.md": "c45ac31b66d000bca7c6f70fc3ac40c970453d259ebc058ba9be445ac4d88e77",
+      "implementation-summary.md": "a6ee777e9a11cc6fcfef44eda282c0fabc987875f84b3b0df086a216ecbec504"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

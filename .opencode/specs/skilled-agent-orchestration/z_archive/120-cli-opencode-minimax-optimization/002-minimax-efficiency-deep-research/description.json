@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
-  "description": "Feature Specification: Phase 2: minimax-efficiency-deep-research",
+  "description": "After phase 001 wires the `minimax` provider, we still have no guidance for using MiniMax 2.7 efficiently through cli-opencode: no context-budget tupl",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "minimax-efficiency-deep-research"
+    "001",
+    "wires",
+    "minimax",
+    "provider",
+    "still",
+    "guidance",
+    "using",
+    "efficiently",
+    "cli-opencode",
+    "context-budget",
+    "tupl"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.910Z",
+  "lastUpdated": "2026-06-23T03:49:51.156Z",
   "specId": "002",
   "folderSlug": "minimax-efficiency-deep-research",
   "parentChain": [

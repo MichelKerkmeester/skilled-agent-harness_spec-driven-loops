@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts because `skill-graph-db.ts` and its dist mirror hardcode a SQL `CHECK` constraint that still lists `sk-deep`.",
+    "causal_summary": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts because `skill-graph-db.ts` and its dist mirror hardcode a SQL `CHECK` constraint that still lists `sk-deep`",
     "created_at": "2026-05-05T18:25:00Z",
-    "last_save_at": "2026-06-15T09:09:33.469Z",
+    "last_save_at": "2026-06-23T03:49:49.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T18:25:00Z",
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:932f33ca74a3e1eb57c07792dcdc59d9dedda757ee2766ce8c42fe56b57f9b77",
+    "source_doc_hashes": {
+      "spec.md": "7c56d1e3e390c1a144ac5a431bddbba4c3c371134bce6729c208fc2cfb026dc9",
+      "plan.md": "adbab5bc4290856adabc349148e12d234beffef1ecb3255795a44a4e5a8b7290",
+      "tasks.md": "ae2f8a635153f83732feeaab29bb357e3dc85147a5ee6a6662a5e2d110f98027",
+      "checklist.md": "3dbbb94872bc6eb6eab65a60b2f4567864eb00f60117ccc31a1672562ee9d01e",
+      "decision-record.md": "4ac904e571be14ee6c1b4109fd504282d384b488823fb5e02c6b24b9dd93f828",
+      "implementation-summary.md": "33f8c8f52a2299d0b11b62e4ac124146dc554e43e7c26c4496d8b954d1048e3d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

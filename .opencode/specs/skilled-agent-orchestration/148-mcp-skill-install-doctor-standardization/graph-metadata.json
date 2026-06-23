@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The five mcp-* skills had drifted out of a shared shape. mcp-figma was still labelled pre-1.0 (`0.1.0`) even though its CLI was live-verified and an embedded install scaffold was added. mcp-open-design had no INSTALL_GUIDE and no `scripts/` at all, so it could not be installed or diagnosed like its siblings. mcp-chrome-devtools and mcp-click-up had an `install.sh` but no read-only `doctor.sh`. The central `/doctor:mcp` command knew only the registered MCP servers, so the CLI-primary design skills were invisible to it. Finally, the three design skills (mcp-figma, mcp-open-design, sk-design-interface) referenced each other only partially.",
+    "causal_summary": "The five mcp- skills had drifted out of a shared shape",
     "created_at": "2026-06-15T05:45:12Z",
-    "last_save_at": "2026-06-22T18:54:59.107Z",
+    "last_save_at": "2026-06-23T03:49:48.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ac27dcb4c506f7ee4ca9f3bbfd95d6032ef21bfbf5a957da07879a54f4a95014",
+    "source_doc_hashes": {
+      "spec.md": "072fb329630d19c952e4452ae2f2050b189ca61808c6cf7f2647d78c37f6bde5",
+      "plan.md": "00c37bfcf0f0719d1609459efa46fd4738d4b0fddc06e2e046969b981141ac24",
+      "tasks.md": "8d21fb8e590e75db858c4d319352c5e52e47eaf485d8e43bd1859350abc39df6",
+      "checklist.md": "c290b9d98c3612ea254163a209c6cdde0933e4574e9b4237c98864eef14529ae",
+      "implementation-summary.md": "6172a9132fcb1bece98a89efe2d06b7d73c3b37da39700c487112d2f91c59781"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

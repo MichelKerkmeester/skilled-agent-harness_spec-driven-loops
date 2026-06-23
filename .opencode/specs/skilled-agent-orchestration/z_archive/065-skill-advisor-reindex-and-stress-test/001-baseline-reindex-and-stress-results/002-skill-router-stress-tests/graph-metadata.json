@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the 001 reindex refreshes the skill advisor, validate that:",
+    "causal_summary": "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-codex, cli-gemini)",
     "created_at": "2026-05-18T07:49:27.130Z",
-    "last_save_at": "2026-05-30T10:12:01.335Z",
+    "last_save_at": "2026-06-23T03:49:49.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:bbd13e2252d9f6e301b9acd20eacdfb6c4350cbd602f08ac5b918270d8c55641",
+    "source_doc_hashes": {
+      "spec.md": "572dcbbbe5c6717dccf34879abcfe4529e4e2c43bb8966e83d65c9356c57d076",
+      "plan.md": "c5cc8916c2ed6d6bb292bb5961ad3212c2267424387f175bb4fbd5a90d55a697",
+      "tasks.md": "98fd705bb0ea91fb6b57b019fe8550e3f454e191c899a243e666a918c0c9953c",
+      "checklist.md": "1da6be9a8c979968e8e2c941c3b75a10f8c5f93df143c215e7c5c1ac31bdf5fc",
+      "implementation-summary.md": "200232d68cdf00a21dafb54628c7f24cbc4344fe45d48e97cbace2f255ed6ea4",
+      "resource-map.md": "8f8cbc977cddcdacd098896c6deb367f4d6081ec95924426ec9ba93fc1e7276b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

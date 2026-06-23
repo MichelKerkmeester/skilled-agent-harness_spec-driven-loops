@@ -1,17 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
-  "description": "Feature Specification: Purge the cli-gemini executor everywhere outside specs",
+  "description": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-im",
   "keywords": [
-    "feature",
-    "specification",
-    "purge",
+    "phases",
+    "001",
+    "002",
     "cli-gemini",
+    "still",
+    "existed",
+    "first-class",
     "executor",
-    "everywhere",
-    "outside",
-    "specs"
+    "across",
+    "active",
+    "source",
+    "deep-loop",
+    "unions",
+    "audit",
+    "maps",
+    "deep-im"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.414Z",
+  "lastUpdated": "2026-06-23T03:49:51.697Z",
   "specId": "003",
   "folderSlug": "cli-gemini-full-purge",
   "parentChain": [

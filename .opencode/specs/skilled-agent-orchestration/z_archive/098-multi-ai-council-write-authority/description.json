@@ -30,16 +30,14 @@
   },
   "lastUpdatedAt": null,
   "specFolder": "skilled-agent-orchestration/z_archive/098-multi-ai-council-write-authority",
-  "description": "Feature Specification: Multi-AI Council write authority",
+  "description": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
   "keywords": [
-    "feature",
-    "specification",
-    "multi-ai",
-    "council",
-    "write",
-    "authority"
+    "multi-ai-council",
+    "agent",
+    "intentionally",
+    "planning-only"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.005Z",
+  "lastUpdated": "2026-06-23T03:49:50.160Z",
   "specId": "098",
   "folderSlug": "multi-ai-council-write-authority",
   "parentChain": [

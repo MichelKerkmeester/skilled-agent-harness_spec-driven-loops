@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
-  "description": "Feature Specification: H-2 Loop-prevention header markers",
+  "description": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion",
   "keywords": [
-    "feature",
-    "specification",
-    "h-2",
-    "loop-prevention",
-    "header",
-    "markers"
+    "review",
+    "research",
+    "skills",
+    "sk-code-review",
+    "deep-review",
+    "deep-research",
+    "lack",
+    "runtime",
+    "guard",
+    "against",
+    "review-of-review",
+    "recursion"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.154Z",
+  "lastUpdated": "2026-06-23T03:49:50.344Z",
   "specId": "002",
   "folderSlug": "h2-loop-prevention-markers",
   "parentChain": [

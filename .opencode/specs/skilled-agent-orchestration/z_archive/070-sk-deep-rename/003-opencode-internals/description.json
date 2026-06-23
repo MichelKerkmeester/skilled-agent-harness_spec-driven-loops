@@ -1,16 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/003-opencode-internals",
-  "description": "Feature Specification: Phase 003 OpenCode Internal References",
+  "description": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "003",
+    "002",
+    "renamed",
+    "skill",
+    "folders",
+    "updated",
+    "advisor",
+    "graph",
+    "source",
+    "many",
     "opencode",
-    "internal",
-    "references"
+    "consumers",
+    "still",
+    "point",
+    "sk-deep-review",
+    "sk-deep"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.447Z",
+  "lastUpdated": "2026-06-23T03:49:49.714Z",
   "specId": "003",
   "folderSlug": "opencode-internals",
   "parentChain": [

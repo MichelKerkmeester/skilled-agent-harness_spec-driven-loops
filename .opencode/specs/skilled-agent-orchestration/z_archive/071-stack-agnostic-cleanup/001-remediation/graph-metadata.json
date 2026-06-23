@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup. Five are P0 blockers in non-sk-code authored content, one is a P1 semantic mismatch, and three are P2 documentation or scope-handling items.",
+    "causal_summary": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup",
     "created_at": "2026-05-05T19:52:59Z",
-    "last_save_at": "2026-06-05T12:47:32.819Z",
+    "last_save_at": "2026-06-23T03:49:49.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:eda712a8b987982d7014488c871c858c3beebd87e91966b29d263f3bdddf9b70",
+    "source_doc_hashes": {
+      "spec.md": "5adabd7c07fa48780fa8af18ff62e077d0b4b0722284f4fcd8bdc062d49d8c2a",
+      "plan.md": "9ac0dcfb8b2f0b2d61e4d65d46bf8e63125f2d7ba5ed245aae629807fb6080e5",
+      "tasks.md": "0b75904a423e5eff92a509fa006b0924f175d5a5386aab10cbc0479d360bf99b",
+      "checklist.md": "c06c5bfcb33e49f05acffb26b23b4f2af5207b78603fb4cae38e1e6ef502f16c",
+      "decision-record.md": "bd3d42dad76942a369ea14b43ff2a914ce3c41932b86fe9ea4c598b0b7bec41e",
+      "implementation-summary.md": "ea7be4436efcd2bb56f1c1e1e252f43252649473308846db31e0aabc2af1df88"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

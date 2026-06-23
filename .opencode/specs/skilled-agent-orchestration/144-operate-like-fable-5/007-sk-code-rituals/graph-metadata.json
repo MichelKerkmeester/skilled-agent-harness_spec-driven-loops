@@ -36,7 +36,7 @@
       "tasks",
       "verification",
       "checklist",
-      "phase"
+      "sk-code"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After this phase, the `sk-code` verification guidance makes a test prove it bites before it counts as evidence, names the blind spot left by each verification rung, and replaces bare `TODO`s with named seams and fail-closed-by-construction invariants — without changing how the smart router detects or routes any code surface.",
+    "causal_summary": "`sk-code` Phase 3 (`.opencode/skills/sk-code/SKILL.md` lines 41, 208-214) tells the agent to \"run surface verification commands and record evidence,\" but it never says how to know the evidence is honest",
     "created_at": "2026-06-15T14:06:39Z",
-    "last_save_at": "2026-06-16T06:06:34.799Z",
+    "last_save_at": "2026-06-23T03:49:48.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b8ea99fd7d5b1ddd2112fbf9b1f15da438d0cc36bf63e97ffa4df94d7159da10",
+    "source_doc_hashes": {
+      "spec.md": "f6243e6decdf028f3603b24146d1bddb790f7e6a322a3f42cf086f52f20d6c0f",
+      "plan.md": "8c775bd4fc8dde6a20ee119d6c114fcb6554fcc913d216bcee5a79a1ffb62366",
+      "tasks.md": "54cb5ff357ecc8a069fe6be980285f5a10d9b1b1309168454891bc881d47d48d",
+      "checklist.md": "ce2f448131068da7ea0b9c387867c0479b876329cee0317b7dbe66a836a1f85c",
+      "implementation-summary.md": "5b599cb7ea4bcee24f25820590682c3f7638effbd4498cc47ff82fc8af5b81bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.193Z",
+    "last_save_at": "2026-06-23T03:49:50.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:915795c70219d92acf7cfa3afac66f5ae24644d9d8b8778574e663e859e43b70",
+    "source_doc_hashes": {
+      "spec.md": "1c39586b2b3b2aad19201ace8f5b0471946ff4365ede24709392b7435b2a8d6d",
+      "plan.md": "2df5ed9757dd74e20ce0bf8f04bf2394fbf1ba96d20680c1c08bbe127c34121e",
+      "tasks.md": "2f9e941a920497de3376dbaabfb71c4d22154afdb1d5961a61276f0272b13a92",
+      "implementation-summary.md": "c745a6dc15ef63e2812425f803e65d36e80bda69ebc9e6af1e8aae92baa880ed"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

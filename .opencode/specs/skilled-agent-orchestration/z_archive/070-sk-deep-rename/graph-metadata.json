@@ -193,15 +193,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The two deep-* skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it. Since then, several skills have been renamed without the prefix (e.g., system-spec-kit, mcp-coco-index, cli-codex). The two `sk-deep-*` names now stand out as inconsistent. The user wants them renamed to `deep-review` and `deep-research` to match the rest of the family.",
+    "causal_summary": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
     "created_at": "2026-05-05T18:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.796Z",
+    "last_save_at": "2026-06-23T03:49:49.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:75e31e3f8249e8fa5f178df328815fdd7b154b1c9ce604cef61ea2f0d6ad2e96",
+    "source_doc_hashes": {
+      "spec.md": "76bab82fd392f2ab7e14b8aa13d2f93cb8a5a1f0e8643a61d5646c884a8bdeeb",
+      "resource-map.md": "029c9828148f0b9332c6559f208ad8c53df861f8c8671b466a55ac60d8f6bb7f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

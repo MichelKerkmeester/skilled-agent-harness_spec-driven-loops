@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The framework has two UI-design skills: `sk-design-interface` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath canvas-generation CLI that already depends on sk-design-interface). The operator wants their results to get closer to **Claude Design** (Anthropic Labs' conversational design tool): conversational generation of designs, prototypes, presentations, and more, with org design-system inheritance, canvas plus inline-comment iteration, context attachments, multi-format export, and Claude Code handoff. Where the two skills fall short of that experience is not yet mapped.",
+    "causal_summary": "The framework has two UI-design skills: `sk-design-interface` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath canvas-generation CLI that already depends on sk-design-interface)",
     "created_at": "2026-06-14T08:30:00Z",
-    "last_save_at": "2026-06-15T09:09:33.171Z",
+    "last_save_at": "2026-06-23T03:49:48.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:9ba98482eeeeea92e18b8bdb16d36861fbfe379a38a171a6b26d76600af2523b",
+    "source_doc_hashes": {
+      "spec.md": "841341d37f39875bec8dd9b66e4ed0c4e61cfde97e76753a70a4f060dae8c169",
+      "plan.md": "34eeeae219bf28bffa1521960d8291ab1473bafd0be1c5cedd414708fa53d9fb",
+      "tasks.md": "6f30040d192e25dd29d27be07fba856f9a49bd285458a674ea049844cdaab698",
+      "implementation-summary.md": "8547528b0b2bdb8604393802ba47c8f11bc5a0f2481610f83a289ed36684e5cf",
+      "research/research.md": "7a6b822422ee1a5d1c928401836696f608dae98216c75af5e0c1934025c5f805"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

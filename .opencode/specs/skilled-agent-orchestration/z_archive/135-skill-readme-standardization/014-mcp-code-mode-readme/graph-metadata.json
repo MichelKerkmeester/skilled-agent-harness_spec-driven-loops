@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "code",
-      "mode",
-      "engine",
-      "closes"
+      "tabular",
+      "reference",
+      "card",
+      "table",
+      "contents"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 14**, the Code Mode engine that closes Batch C (mcp-*).",
+    "causal_summary": "The mcp-code-mode README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T13:05:42Z",
-    "last_save_at": "2026-06-17T19:57:23.839Z",
+    "last_save_at": "2026-06-23T03:49:51.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9aefa4173b509ba64669a0de444f435aff65ae6aea507b2c7fa0fbdf4c5044f0",
+    "source_doc_hashes": {
+      "spec.md": "19bdcd7d427ac5b638bf47bd5bcaffac2ae90ca94e19ed9021e5c94ae8bf4f72",
+      "plan.md": "4ec0dcb0e23ce027a614dffc8e1af07937a69e804865cf35b049c8ef7e413944",
+      "tasks.md": "cbee89c18be92f7b03b92544d9755226ab86ec31e9ab4421c5ee97459024fbca",
+      "implementation-summary.md": "9859ae2f13665e45ed8e71f40aecbee05e1a57d3258fe7bca71f6ebc078acedc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

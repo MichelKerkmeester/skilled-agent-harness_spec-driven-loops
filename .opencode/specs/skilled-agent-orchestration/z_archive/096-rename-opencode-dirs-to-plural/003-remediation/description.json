@@ -26,16 +26,22 @@
   "created_at": "2026-05-07T18:30:00Z",
   "last_updated_at": "2026-05-07T18:30:00Z",
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation",
-  "description": "Feature Specification: 098 - 097 deep-review remediation",
+  "description": "Phase parent for 7 remediation sub-phases addressing 22 active findings (P0=1, P1=12, P2=9) from packet 097 deep-review of the 093-096 track.",
   "keywords": [
-    "feature",
-    "specification",
-    "098",
+    "phase",
+    "parent",
+    "remediation",
+    "sub-phases",
+    "addressing",
+    "active",
+    "findings",
+    "packet",
     "097",
     "deep-review",
-    "remediation"
+    "093-096",
+    "track"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.536Z",
+  "lastUpdated": "2026-06-23T03:49:50.069Z",
   "specId": "003",
   "folderSlug": "remediation",
   "parentChain": [

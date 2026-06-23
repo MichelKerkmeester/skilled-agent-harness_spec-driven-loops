@@ -1,15 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/034-sk-deep-research-review-folders",
-  "description": "Feature Specification: sk-deep-research Review Folder Contract",
+  "description": "Review mode is currently modeled as a `scratch/` workflow",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-deep-research",
     "review",
-    "folder",
-    "contract"
+    "mode",
+    "currently",
+    "modeled",
+    "scratch",
+    "workflow"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.205Z",
+  "lastUpdated": "2026-06-23T03:49:49.080Z",
   "specId": "034",
   "folderSlug": "sk-deep-research-review-folders",
   "parentChain": [

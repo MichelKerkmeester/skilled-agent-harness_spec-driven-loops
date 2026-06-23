@@ -1,16 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/004-deep-loop-runtime-reference-asset-alignment",
-  "description": "Feature Specification: Deep Skills Reference And Asset Alignment",
+  "description": "The three deep skills now share a runtime family but their references and assets were uneven",
   "keywords": [
-    "feature",
-    "specification",
+    "three",
     "deep",
     "skills",
-    "reference",
-    "asset",
-    "alignment"
+    "now",
+    "share",
+    "runtime",
+    "family",
+    "references",
+    "assets",
+    "uneven"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.392Z",
+  "lastUpdated": "2026-06-23T03:49:50.600Z",
   "specId": "004",
   "folderSlug": "deep-loop-runtime-reference-asset-alignment",
   "parentChain": [

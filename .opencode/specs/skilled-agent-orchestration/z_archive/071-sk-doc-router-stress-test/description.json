@@ -1,21 +1,20 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test",
-  "description": "Feature Specification: sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)",
+  "description": "sk-doc has a smart router (§2 of SKILL.md) with INTENTMODEL, RESOURCEMAP, scoreintents(), selectintents() — but NO manualtestingplaybook to verify it",
   "keywords": [
-    "feature",
-    "specification",
     "sk-doc",
     "smart",
     "router",
-    "stress",
-    "test",
-    "scenarios",
-    "clis",
-    "cell",
-    "matrix"
+    "skill",
+    "intentmodel",
+    "resourcemap",
+    "scoreintents",
+    "selectintents",
+    "manualtestingplaybook",
+    "verify"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.459Z",
+  "lastUpdated": "2026-06-23T03:49:49.755Z",
   "specId": "071",
   "folderSlug": "sk-doc-router-stress-test",
   "parentChain": [

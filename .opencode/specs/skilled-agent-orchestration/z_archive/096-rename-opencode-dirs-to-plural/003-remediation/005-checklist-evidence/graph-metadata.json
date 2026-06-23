@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Backfill required checklist evidence for completed packets 093-096 and add 093 supersession notes for the 094 ADR.",
+    "causal_summary": "094 Level 2 checklist has unchecked required CHK- items despite complete status, and the pattern repeats across 093/095/096",
     "created_at": "2026-05-18T07:49:27.242Z",
-    "last_save_at": "2026-06-05T12:47:32.903Z",
+    "last_save_at": "2026-06-23T03:49:50.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:930301e67115448936803709677ca3518d2929e39acd48d500457a40f7602739",
+    "source_doc_hashes": {
+      "spec.md": "bfa0ce43c0cf60fb0453f508e8a44c59fdab24013bd4af2403ee5046039d89ce",
+      "plan.md": "fb69bcadf7e63e31b336a5951e9dafbf28d4ebc52499df197f7d0c56143334c1",
+      "tasks.md": "0eff1e9767eb87723b63207916ab59c69e712fe7579d20c051eac1ae21c24854",
+      "checklist.md": "23ccd2066101f6bcbd1fb06e39066fd5476bc45e690d8ab4ed8411a53e9cc101",
+      "implementation-summary.md": "b27a9d2797128b29138a2b86ca554c9e9fd27db1e6e739da7a36ace265a6fec4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

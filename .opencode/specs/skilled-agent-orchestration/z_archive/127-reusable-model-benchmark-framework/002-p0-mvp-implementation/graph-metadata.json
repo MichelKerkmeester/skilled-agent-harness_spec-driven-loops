@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt. The one-off rigs (`120/003`, `126/004`) still require new code per model/situation, and `126/004` exposed correctness-saturation producing misleading \"winners.\"",
+    "causal_summary": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt",
     "created_at": "2026-06-02T04:33:50.234Z",
-    "last_save_at": "2026-06-17T19:57:23.725Z",
+    "last_save_at": "2026-06-23T03:49:51.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3b5c819b263eee058a5bd2529639b352b791fd8aa6f822f7b12fab9d7a7effa",
+    "source_doc_hashes": {
+      "spec.md": "76ac906b2bbac6b398bd802624c6f3ea26d8435ef3988eafaa8e5d78a8739026",
+      "plan.md": "7ec32705bfe84ed2080c1210ee369fe0bdcac5e8d09edb432f819e80845867a9",
+      "tasks.md": "402ac691054fe07af04a933c1f2bc4cba50026262637a8015950aba44c27486f",
+      "checklist.md": "fbb482f9930af2c7991d2ea2908321f7968bdbbb300f107286bc78c698e6e30a",
+      "implementation-summary.md": "b14641693f68ffc2d2cebc8fbc7200b1cbd0cad5417800a476cd7e83e584492f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

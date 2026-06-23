@@ -1,14 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/005-historical-record-reference-sweep",
-  "description": "Feature Specification: Phase 5: historical-record-reference-sweep",
+  "description": "cli-devin is mentioned in ~1760 historical files (specs/, changelog/, benchmark state/eval)",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "historical-record-reference-sweep"
+    "cli-devin",
+    "mentioned",
+    "1760",
+    "historical",
+    "files",
+    "specs",
+    "changelog",
+    "benchmark",
+    "state",
+    "eval"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.862Z",
+  "lastUpdated": "2026-06-23T03:49:52.005Z",
   "specId": "005",
   "folderSlug": "historical-record-reference-sweep",
   "parentChain": [

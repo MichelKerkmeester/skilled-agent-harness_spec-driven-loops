@@ -1,14 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/115-cmd-speckit-family-rename",
-  "description": "Feature Specification: rename commands/spec_kit/ -> commands/speckit/",
+  "description": "The SpecKit slash-command directory was named `speckit/` (snakecase with underscore), inconsistent with the recent rename convention shipping `speckit",
   "keywords": [
-    "feature",
-    "specification",
+    "speckit",
+    "slash-command",
+    "directory",
+    "named",
+    "snakecase",
+    "underscore",
+    "inconsistent",
+    "recent",
     "rename",
-    "commands",
-    "speckit"
+    "convention",
+    "shipping"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.354Z",
+  "lastUpdated": "2026-06-23T03:49:50.559Z",
   "specId": "115",
   "folderSlug": "cmd-speckit-family-rename",
   "parentChain": [

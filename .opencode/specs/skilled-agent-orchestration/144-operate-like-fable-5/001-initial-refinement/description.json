@@ -1,19 +1,24 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5/001-initial-refinement",
-  "description": "Feature Specification: Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces",
+  "description": "`external/Fable5.md` is a distilled agent operating doctrine — verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline",
   "keywords": [
-    "feature",
-    "specification",
-    "distribute",
-    "fable",
+    "external",
+    "fable5",
+    "distilled",
+    "agent",
     "operating",
     "doctrine",
-    "across",
-    "spec-kit",
-    "surfaces"
+    "verify",
+    "claim",
+    "make",
+    "confirmed-vs-inferred",
+    "claims",
+    "legible",
+    "capture",
+    "baseline"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.019Z",
+  "lastUpdated": "2026-06-23T03:49:48.473Z",
   "specId": "001",
   "folderSlug": "initial-refinement",
   "parentChain": [

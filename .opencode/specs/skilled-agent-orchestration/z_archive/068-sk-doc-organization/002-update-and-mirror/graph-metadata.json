@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Reorganize sk-doc/assets reorganization. After Phase 1 physically moved 4 asset items to `assets/` root and deleted the empty `agents/` subfolder, all dependent references still point to the OLD paths. Phase 2 closes that gap by applying 4 fixed-string substring substitutions across the canonical `.opencode/` tree and then replicating the changes to the other 3 runtime mirrors (`.claude/`, `.codex/`, `.gemini/`).",
+    "causal_summary": "After Phase 1 moves the 4 asset items to `assets/` root, every dependent reference across sk-doc internal docs, `/create:` commands × 4 runtimes, the `@create` agent × 4 runtimes, and the install guide still points to the OLD paths",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-06-22T18:54:59.638Z",
+    "last_save_at": "2026-06-23T03:49:49.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b188b31c20525121573a0eb9f0c46cb51f4b26451f33ee6c9d9b647634c635b6",
+    "source_doc_hashes": {
+      "spec.md": "e2042f19a3d361bf3afedc0c59ed232f2a36fb96cbf16b8c371e8dab0de37685",
+      "plan.md": "ac7bcb82df1f3632b1ab8efdedd822494f886073241561c17c1dd02ef88b80ac",
+      "tasks.md": "6af9ac76f172438086374c8cd9ea2e2e98c3b88d07f385363ca1e127629de797",
+      "implementation-summary.md": "1ffb550cecbe60fa0247ce820f2aebc7917d4638186272e0da290e293ae335cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

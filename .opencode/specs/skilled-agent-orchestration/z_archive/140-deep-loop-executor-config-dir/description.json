@@ -1,17 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/140-deep-loop-executor-config-dir",
-  "description": "Feature Specification: Deep loop executor config-dir override",
+  "description": "Deep-loop fan-out can dispatch `cli-claude-code` seats with a selected model, but it had no per-executor way to select a Claude account directory",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "loop",
-    "executor",
-    "config-dir",
-    "override"
+    "deep-loop",
+    "fan-out",
+    "dispatch",
+    "cli-claude-code",
+    "seats",
+    "selected",
+    "model",
+    "per-executor",
+    "way",
+    "select",
+    "claude",
+    "account",
+    "directory"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.901Z",
+  "lastUpdated": "2026-06-23T03:49:52.022Z",
   "specId": "140",
   "folderSlug": "deep-loop-executor-config-dir",
   "parentChain": [

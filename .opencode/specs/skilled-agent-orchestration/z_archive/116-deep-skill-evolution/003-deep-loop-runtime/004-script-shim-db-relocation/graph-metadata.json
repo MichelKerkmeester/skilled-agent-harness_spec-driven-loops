@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 replaces the 4 `deep_loop_graph_*` MCP tools with 4 standalone `.cjs` script entry points and relocates `deep-loop-graph.sqlite` ownership from the MCP-server-managed storage path into the new `deep-loop-runtime/` peer skill. Each script opens its own SQLite connection on invocation, performs the operation, and closes the connection before exit — the canonical \"per-invocation owner\" pattern already used by `deep-review/scripts/reduce-state.cjs`. This decouples deep-loop runtime from the MCP server lifecycle and removes a tool-surface contract that the 117 council had flagged as load-bearing but is now relaxable per user directive.",
+    "causal_summary": "The 4 `deeploopgraph` MCP tools (`deeploopgraphconvergence`, `deeploopgraphupsert`, `deeploopgraphquery`, `deeploopgraphstatus`) are dispatched by deep-review and deep-research workflow YAMLs through the MCP transport",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-06-22T18:55:00.620Z",
+    "last_save_at": "2026-06-23T03:49:50.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a723c60663a34dd898a784b86c6fb4254a9664acde17d95604abb9f3a39fc321",
+    "source_doc_hashes": {
+      "spec.md": "431183fa2cd81fbace3bce1e2c972bf5291952c7d8ddf70aa40ad41194d20254",
+      "plan.md": "b143810a0870ad15f54c3f7543330880d2bee1b20489bc690e0ce684146a1161",
+      "tasks.md": "54d96b2e5f1499296fd31c1bdc066652aece1d63cc570ce973d067cffe36c02e",
+      "checklist.md": "e88fd7ea453c52f0ff5e4b5045b2771b955eaab509a33a43a93d48f8bf4175d4",
+      "decision-record.md": "34baae407d0b822936df2f5687133804363c67ac13f777c0866405dd77cb547c",
+      "implementation-summary.md": "0d020d79df0928c0d1e9807d94e71640773644c85283b7cf11c9f8034d8eb5e9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

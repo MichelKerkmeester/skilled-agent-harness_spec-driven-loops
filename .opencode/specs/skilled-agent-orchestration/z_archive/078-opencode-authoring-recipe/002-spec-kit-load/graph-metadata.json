@@ -33,7 +33,7 @@
       "plan",
       "tasks",
       "summary",
-      "add"
+      "077"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add authoring-time sk-code load to both `/speckit:complete:auto` and `:confirm` YAMLs. Add a paragraph to system-spec-kit/SKILL.md documenting the cross-skill load contract (pull-style: the workflow tells the orchestrator WHEN to consult sk-code). Add a complementary paragraph to sk-code/SKILL.md declaring the contract from its side (push-style: the resources sk-code will surface when called from `/speckit:complete` with an `.opencode/` target). Closes 4 P1 findings: F-009-001, F-009-002, F-008-004, F-006-004.",
+    "causal_summary": "077 finding F-009-001: `/speckit:complete` workflow loads sk-code only at REVIEW TIME (Phase A \"Pre-Commit code review\", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development)",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-06-05T12:47:32.835Z",
+    "last_save_at": "2026-06-23T03:49:49.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e13fd23071819961cfe7e64e8d10966b0b55d12bc457c45fb5737a6283a6b599",
+    "source_doc_hashes": {
+      "spec.md": "476433f02af34af294a70fd52a3525dfb6be243d7948c10e7ed20c698b5ecd3f",
+      "plan.md": "ac7e2498db434004092c6179f494bc18307db0ee974b0d33a1fe524c920807c6",
+      "tasks.md": "91dae823dd650a9ec7159eecc919e36acfef7f232fc4cb4365167b28c30c713c",
+      "implementation-summary.md": "319aac809fa8fd896c1b076bc36bbcb26dc9a5aa07f17886935eabdbeb4da9c8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

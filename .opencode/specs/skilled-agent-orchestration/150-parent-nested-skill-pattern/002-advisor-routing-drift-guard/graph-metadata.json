@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make the registry the authoritative declarative description of routing (a per-mode `advisorRouting` block), and close the drift gap with a **CI drift-guard test** rather than runtime coupling. The phase-2 research (15 iterations, adversarial pass) chose this **C-plus** mechanism over runtime-derive: the advisor's only existing import-time `json.load` is advisor-local, so reaching into a skill's registry on the hot path would be novel cross-skill coupling for no gain over a test. This phase is additive — it changes no routing behavior; the existing parity fixtures stay green.",
+    "causal_summary": "`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it — the mode projection was hardcoded in two places with three different cardinalities (Python `DEEPROUTINGMODEBYKEY` = 3, TS `DEEPMODEBYCANONICAL` = 4, registry = 8 modes)",
     "created_at": "2026-06-15T10:47:50.954Z",
-    "last_save_at": "2026-06-15T10:47:50.954Z",
+    "last_save_at": "2026-06-23T03:49:48.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7c0640936534d018d9b78e2e7cc518c79ec9d3aabe51bf11e92c722d72f2c71a",
+    "source_doc_hashes": {
+      "spec.md": "35cf4b8ca50a6c46a6678fb87dfd546b273e1a4b136b1785a21f7a3477343819",
+      "plan.md": "18079acba09bb328189e2605b3db3dcf593dd16aa7f4c181acc1fbbf0fc0d96d",
+      "tasks.md": "85a90cc4573a4a444b9d72b4764a6f2f68f0eb571c450ac1534f48d903c3a519",
+      "checklist.md": "a042b45f82274cf4a08e7229c2389b68f965218bca11837b34ceab34bc2e63d9",
+      "implementation-summary.md": "3bf9a6d2cb5a2ad715756377801c63d360a61bbe77aebc07215c26a1b9131751"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

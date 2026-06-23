@@ -1,19 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/128-sk-git-worktree-convention-and-advisor-routing",
-  "description": "Feature Specification: sk-git Worktree Convention (wt/NNNN-name) + Skill-Advisor Routing Optimization",
+  "description": "sk-git's documented worktree convention is directory `.worktrees/{short-desc}` plus branch `type/{short-desc}` with no number and no single grouping n",
   "keywords": [
-    "feature",
-    "specification",
     "sk-git",
+    "documented",
     "worktree",
     "convention",
-    "nnnn-name",
-    "skill-advisor",
-    "routing",
-    "optimization"
+    "directory",
+    "worktrees",
+    "short-desc",
+    "plus",
+    "branch",
+    "type",
+    "number",
+    "single",
+    "grouping"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.291Z",
+  "lastUpdated": "2026-06-23T03:49:51.555Z",
   "specId": "128",
   "folderSlug": "sk-git-worktree-convention-and-advisor-routing",
   "parentChain": [

@@ -1,19 +1,19 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/005-rename-root-docs-hooks-index",
-  "description": "Feature Specification: 115/005 — root docs + hooks + skills index",
+  "description": "Root docs still reference old names post-002/003 rename",
   "keywords": [
-    "feature",
-    "specification",
-    "115",
-    "005",
     "root",
     "docs",
-    "hooks",
-    "skills",
-    "index"
+    "still",
+    "reference",
+    "old",
+    "names",
+    "post-002",
+    "003",
+    "rename"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.485Z",
+  "lastUpdated": "2026-06-23T03:49:50.730Z",
   "specId": "005",
   "folderSlug": "rename-root-docs-hooks-index",
   "parentChain": [

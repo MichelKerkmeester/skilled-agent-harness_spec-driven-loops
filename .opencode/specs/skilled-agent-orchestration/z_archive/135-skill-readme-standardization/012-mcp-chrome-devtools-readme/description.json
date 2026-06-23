@@ -1,14 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-  "description": "Feature Specification: mcp-chrome-devtools README",
+  "description": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
   "keywords": [
-    "feature",
-    "specification",
     "mcp-chrome-devtools",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "table",
+    "contents",
+    "problem-first",
+    "entry",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.578Z",
+  "lastUpdated": "2026-06-23T03:49:51.888Z",
   "specId": "012",
   "folderSlug": "mcp-chrome-devtools-readme",
   "parentChain": [

@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "third",
-      "skill",
-      "batch",
-      "system"
+      "1084-line",
+      "reference",
+      "manual",
+      "functional",
+      "headers"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 23**, the third skill in Batch E (system-*) and the largest README in the repo (1084 lines).",
+    "causal_summary": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive house-voice violations (double-hyphen separators, Oxford-comma lists, prose semicolons)",
     "created_at": "2026-06-07T17:55:00Z",
-    "last_save_at": "2026-06-17T19:57:23.849Z",
+    "last_save_at": "2026-06-23T03:49:51.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e95d25f5a85e32f1025c3b67a9f3c34a05a17a491f6a6282ba0acb3b53a5f604",
+    "source_doc_hashes": {
+      "spec.md": "ec64a27757303639e0a8d40c0f381091494f5b79a3c7992f54678600b14cfa3e",
+      "plan.md": "07414001d25e46f8dcf906ca94280abe3f51581111c1f22b332ba7a555c1fcf1",
+      "tasks.md": "695ac5abf52619e2c746f3edf49a02feeec110263e803e074d3f7585b59774ff",
+      "implementation-summary.md": "e0f6ccf51552659a866340dae165cb40462784b6a9a176cfb0c0da7859f4d4e6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

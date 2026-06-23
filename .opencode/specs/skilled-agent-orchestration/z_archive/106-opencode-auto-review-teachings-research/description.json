@@ -1,16 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/106-opencode-auto-review-teachings-research",
-  "description": "Feature Specification: Upstream auto-review package research",
+  "description": "The upstream `dzianisv/opencode-plugins` repository ships an `auto-review` OpenCode plugin (branch `issue-136-package-auto-review`) that automatically",
   "keywords": [
-    "feature",
-    "specification",
     "upstream",
+    "dzianisv",
+    "opencode-plugins",
+    "repository",
+    "ships",
     "auto-review",
-    "package",
-    "research"
+    "opencode",
+    "plugin",
+    "branch",
+    "issue-136-package-auto-review",
+    "automatically"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.137Z",
+  "lastUpdated": "2026-06-23T03:49:50.326Z",
   "specId": "106",
   "folderSlug": "opencode-auto-review-teachings-research",
   "parentChain": [

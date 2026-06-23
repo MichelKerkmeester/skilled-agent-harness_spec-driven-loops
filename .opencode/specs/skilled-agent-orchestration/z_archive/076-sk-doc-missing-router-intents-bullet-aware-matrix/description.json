@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/076-sk-doc-missing-router-intents-bullet-aware-matrix",
-  "description": "Feature Specification: 076 sk-doc Router Coverage v3",
+  "description": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents",
   "keywords": [
-    "feature",
-    "specification",
-    "076",
+    "packet",
+    "071",
+    "stress-matrix",
+    "covered",
+    "scenarios",
+    "exercised",
+    "only",
     "sk-doc",
     "router",
-    "coverage"
+    "intents"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.805Z",
+  "lastUpdated": "2026-06-23T03:49:49.826Z",
   "specId": "076",
   "folderSlug": "sk-doc-missing-router-intents-bullet-aware-matrix",
   "parentChain": [

@@ -1,15 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/086-skill-description-guardrails",
-  "description": "Feature Specification: Skill Description Budget Guardrails",
+  "description": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden con",
   "keywords": [
-    "feature",
-    "specification",
+    "packets",
+    "083",
     "skill",
     "description",
     "budget",
-    "guardrails"
+    "trim",
+    "084",
+    "ambiguity",
+    "dual-margin",
+    "fix",
+    "revealed",
+    "command",
+    "agent",
+    "authoring",
+    "hidden",
+    "con"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.892Z",
+  "lastUpdated": "2026-06-23T03:49:49.961Z",
   "specId": "086",
   "folderSlug": "skill-description-guardrails",
   "parentChain": [

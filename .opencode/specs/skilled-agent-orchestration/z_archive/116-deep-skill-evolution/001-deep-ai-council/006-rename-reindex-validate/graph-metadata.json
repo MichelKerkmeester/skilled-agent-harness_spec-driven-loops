@@ -31,8 +31,8 @@
       "tasks",
       "impl",
       "summary",
-      "phase",
-      "final"
+      "002-005",
+      "land"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 6 of 6 (final). Sequential after 002+003+004+005 ALL land. Runs compiler + advisor smoke + parity vitest + strict validate + parent reconcile + nested changelog.",
+    "causal_summary": "After 002-005 land file edits, the compiled skill-graph.json + advisor cache need to be refreshed so the advisor surfaces the renamed identities",
     "created_at": "2026-05-21T06:57:11Z",
-    "last_save_at": "2026-06-07T09:00:45.838Z",
+    "last_save_at": "2026-06-23T03:49:50.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:347f9235d9513376d34a4d0b77ccb822b2e720950d608d96fd3a1ce80fb06250",
+    "source_doc_hashes": {
+      "spec.md": "62fd09fac6002d975594bf04deca6bcea5ade8690d5699c06cd3efd45ca3cf4b",
+      "plan.md": "13ef842a81ce3ef09e006a623ec8916854f50a1637215d0682937900b83f2eab",
+      "tasks.md": "163264c5b2f2aa304b6deb31bca94275c90ba6726616687d9e9ab6ec84a69e3e",
+      "implementation-summary.md": "3f5e58a208f3f05ee8ab0be7497523614d9df46d61419360bb5989fa8a1e2d25"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/013-cmd-create-codex-compatibility",
-  "description": "Feature Specification: Create Commands Codex Compatibility",
+  "description": "Codex misinterprets agent routing metadata in create command files in three ways:",
   "keywords": [
-    "feature",
-    "specification",
-    "create",
-    "commands",
     "codex",
-    "compatibility"
+    "misinterprets",
+    "agent",
+    "routing",
+    "metadata",
+    "create",
+    "command",
+    "files",
+    "three",
+    "ways"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.245Z",
+  "lastUpdated": "2026-06-23T03:49:48.951Z",
   "specId": "013",
   "folderSlug": "cmd-create-codex-compatibility",
   "parentChain": [

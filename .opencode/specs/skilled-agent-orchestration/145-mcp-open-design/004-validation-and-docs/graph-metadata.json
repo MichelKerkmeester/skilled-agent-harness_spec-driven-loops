@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-design-interface` de-vendor (phase 003) shipped without an independent audit. Two gaps remained. First, the run direction was never exercised against the real app, so whether generation worked as the skill described was unconfirmed. Second, no adversarial review had checked the shipped skills for accuracy, broken paths, stale licensing wording, or graph-metadata defects. Both needed closing before the spec-150 work could be called done.",
+    "causal_summary": "The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-design-interface` de-vendor (phase 003) shipped without an independent audit",
     "created_at": "2026-06-14T16:30:00Z",
-    "last_save_at": "2026-06-15T09:09:33.186Z",
+    "last_save_at": "2026-06-23T03:49:48.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:434fad364aad731d73f36b2b67a2201d19e8c8f535eafef9dcc36a2890d9432b",
+    "source_doc_hashes": {
+      "spec.md": "7f4abf40d2800bad7057728655dd8bdcc580e82cebbdbe654d1653598d278d91",
+      "plan.md": "d35504fd063b694d59782d9a8cc231c636ae76fb9a20cc896ee49ed24f698e7d",
+      "tasks.md": "63710e5700b1b98ab9b7f0c7a5c6e803d02fb9fef2132d2b957e8d08c5fa26ec",
+      "checklist.md": "0eb67180c67662143bf9e174210ac37a2ab5921f0daaaa358263ca995e1d08e5",
+      "implementation-summary.md": "91a5e8def832965c122bb038474d3bf833dfd2052a7fbf4579e1be164c89dafb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

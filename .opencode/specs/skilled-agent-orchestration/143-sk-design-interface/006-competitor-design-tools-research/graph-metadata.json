@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 005 research targeted parity with one product (Claude Design). The broader AI UI/design-generation space (v0, Lovable, Figma Make, Subframe, and others) has matured fast and ships patterns the Claude-Design-only lens misses. We need to know which of those are worth adopting into `sk-design-interface` (judgment) and `mcp-magicpath` (canvas/CLI), and which to skip.",
+    "causal_summary": "The 005 research targeted parity with one product (Claude Design)",
     "created_at": "2026-06-14T08:50:00Z",
-    "last_save_at": "2026-06-15T09:09:33.173Z",
+    "last_save_at": "2026-06-23T03:49:48.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:d831ed59a994a1779ee4b0dd081b850f755272ca236dc962c065f89a50e9af59",
+    "source_doc_hashes": {
+      "spec.md": "a9d354115b2e5c004926c2bd28de1131d2da02067f1ee601ec69164d3d6018d8",
+      "plan.md": "8f271a5360ebe654ba7b2db88ebd8bad576708c874d9de278fb06fbde660cbc1",
+      "tasks.md": "36465d639dc7e9b4607e840ed5d36d11e9629a362d4855dc377375e8836060ee",
+      "implementation-summary.md": "c975582da2b36d992e472c3442f33106ac5ee11173d400273902312705ee7892",
+      "research/research.md": "7dea8bdcc79eef8bd2a1852dbeaa82ed0d6d02cce99271a682574aaa1eb39c20"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

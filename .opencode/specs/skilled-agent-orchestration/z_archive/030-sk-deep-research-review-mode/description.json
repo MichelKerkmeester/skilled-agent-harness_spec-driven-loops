@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/030-sk-deep-research-review-mode",
-  "description": "Feature Specification: sk-deep-research Review Mode",
+  "description": "Currently, reviewing spec folders, code changes, skills, and their cross-references for release readiness is a manual, single-pass process",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-deep-research",
-    "review",
-    "mode"
+    "currently",
+    "reviewing",
+    "spec",
+    "folders",
+    "code",
+    "changes",
+    "skills",
+    "cross-references",
+    "release",
+    "readiness",
+    "manual",
+    "single-pass",
+    "process"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.193Z",
+  "lastUpdated": "2026-06-23T03:49:49.056Z",
   "specId": "030",
   "folderSlug": "sk-deep-research-review-mode",
   "parentChain": [

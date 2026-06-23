@@ -1,15 +1,16 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/008-final-cleanup",
-  "description": "Feature Specification: Phase 008 Final Cleanup",
+  "description": "Packet 070 still has three approved P1 cleanup gaps",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "008",
-    "final",
-    "cleanup"
+    "packet",
+    "070",
+    "still",
+    "three",
+    "approved",
+    "cleanup",
+    "gaps"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.724Z",
+  "lastUpdated": "2026-06-23T03:49:49.744Z",
   "specId": "008",
   "folderSlug": "final-cleanup",
   "parentChain": [

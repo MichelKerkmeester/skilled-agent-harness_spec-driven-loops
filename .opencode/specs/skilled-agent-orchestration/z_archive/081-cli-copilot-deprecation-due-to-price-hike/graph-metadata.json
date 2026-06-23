@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:",
+    "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-06-15T09:09:33.507Z",
+    "last_save_at": "2026-06-23T03:49:49.881Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:ef051588b2ea2fb4b096caa81fdc10c1f6de6696a38f6f2f3370e47845f80ffc",
+    "source_doc_hashes": {
+      "spec.md": "e0fce39ca21d513f52e9d0e8124960f6813906844edc76c18efde9edb8406d5a",
+      "plan.md": "f200e0bff0b977c1fefb48b95ec791ee581abe10cca4282113d23e50184fac15",
+      "tasks.md": "378a134144be9f4c47fe0ab61b5726cb09e3cb17c1f877afbb683ced1e4f4ccd",
+      "checklist.md": "14a04fce22850d2e72e94fba10358564ad3bbc627086d531a7157c8a854ee737",
+      "implementation-summary.md": "449978bc6840cfeb5af079092891ee4e86f71a996b96037defd1bab619929dec",
+      "resource-map.md": "01c78866a2e6fc420bf8fd71f55da170d5e0e2147bc0d14d53bec5d1c4f5f69a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

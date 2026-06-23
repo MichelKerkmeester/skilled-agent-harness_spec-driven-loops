@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/004-doc-alignment-catalog-playbook",
-  "description": "Feature Specification: sk-design-interface doc alignment, catalog, playbook",
+  "description": "After the ui-ux-pro-max merge, `sk-design-interface` has new references, data assets, and scripts, but it lacks a feature catalog and a manual testing",
   "keywords": [
-    "feature",
-    "specification",
+    "ui-ux-pro-max",
+    "merge",
     "sk-design-interface",
-    "doc",
-    "alignment",
+    "new",
+    "references",
+    "data",
+    "assets",
+    "scripts",
+    "lacks",
+    "feature",
     "catalog",
-    "playbook"
+    "manual",
+    "testing"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.876Z",
+  "lastUpdated": "2026-06-23T03:49:48.408Z",
   "specId": "004",
   "folderSlug": "doc-alignment-catalog-playbook",
   "parentChain": [

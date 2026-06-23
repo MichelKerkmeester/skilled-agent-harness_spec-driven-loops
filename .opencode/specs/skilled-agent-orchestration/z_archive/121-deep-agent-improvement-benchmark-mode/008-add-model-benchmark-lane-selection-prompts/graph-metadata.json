@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the two-lane program. The deep-agent-improvement skill already has two runtime lanes: Lane A (agent-improvement, improve an agent `.md` file) and Lane B (model-benchmark, benchmark or optimize a model or prompt framework). Lane B works as a skill mode but has no command entry. This phase makes Lane B first-class at the command layer.",
+    "causal_summary": "The model-benchmark lane of deep-agent-improvement runs end-to-end at the runtime layer (`loop-host.cjs --mode=model-benchmark`) but has no command entry, so a user cannot start a benchmark run without hand-writing the loop-host invocation",
     "created_at": "2026-05-29T06:52:14Z",
-    "last_save_at": "2026-06-17T19:57:23.651Z",
+    "last_save_at": "2026-06-23T03:49:51.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:86a67597b6702bbe5e3c0d81bad5e6b9fa7455dc034ebfa619e6287591c1674e",
+    "source_doc_hashes": {
+      "spec.md": "bde786ee13582a8e8a11e7c5afc2fa4d8ab9ad396ed28c7ea7d0397d2bf93f01",
+      "plan.md": "fc0bbd3710103e916249e8dac9773eca5761794d0a459cdb1ad542f48f3f9fc4",
+      "tasks.md": "aef6c3cee5fd8fdf7e69cb1f85f913a48449fa5f8d77ab3067560276424ffba3",
+      "checklist.md": "595f637c04725dc0d56d2fca6c351ea8c54b164ca65187d38829434e04db0922",
+      "implementation-summary.md": "0ec938b59ff9bd93bc540bb4754f67d1f7764463c2ee204ebcddb7f11ac8cb75"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

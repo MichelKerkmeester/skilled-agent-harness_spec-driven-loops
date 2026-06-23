@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 16** of the two-lane deep-agent-improvement program. The two-lane reorg (phases 008-015) moved scripts into `agent-improvement/`, `model-benchmark/`, and `shared/` lane subtrees, plus a nested `model-benchmark/scorer/` tree. The on-disk lane layout is now stable, but most lane folders have no local README.",
+    "causal_summary": "The source script tree under `.opencode/skills/deep-agent-improvement/scripts/` is split into two lanes plus shared and a nested scorer subtree, but only `scripts/`, `scripts/lib/`, and `scripts/tests/` carry a README",
     "created_at": "2026-05-29T13:17:54Z",
-    "last_save_at": "2026-06-17T19:57:23.663Z",
+    "last_save_at": "2026-06-23T03:49:51.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:488d14b250f947cbc87888888547c7130e5d542a6f204ff34fa9f80cf13d4a44",
+    "source_doc_hashes": {
+      "spec.md": "551685e455eb2555d6e705e6aee3bf3472a2d9d4b3912ed1995e1397c673c13a",
+      "plan.md": "7b3ac212229f076a068b6342574a27c5dc4bfe825fc25fa6babfa1014dbb9ba0",
+      "tasks.md": "c6671ee59008f6b823ae8bab2a6b4ee7e54aaf4b34587bdc5d633d92e88fce09",
+      "checklist.md": "daf73a45d802f29cf45dc6bfd168518dd3c26836f46639e81f785262c6642d65",
+      "implementation-summary.md": "a8311625a771b8df37afd15aa923e7ca9f40e38a7c3cc9eb2a3b5e15183e6a64"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

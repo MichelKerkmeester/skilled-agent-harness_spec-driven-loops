@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 007-track-rereview deep-review strategy doc lists `aliases.ts` as one of the \"6 surfaces\" 101-cli-opencode-executor touched. It does not. Iter-1 of the review caught the discrepancy as a `CROSS_REF_BROKEN` and re-framed the underlying P2 finding (P2-027) as an asymmetric advisor-coverage defect. The strategy doc that produced the false framing was never patched, and the drift was logged as P2-032 in 008-remediation as cosmetic-deferred.",
+    "causal_summary": "The 007-track-rereview deep-review strategy doc lists `aliases.ts` as one of the \"6 surfaces\" 101-cli-opencode-executor touched",
     "created_at": "2026-05-08T20:45:00Z",
-    "last_save_at": "2026-06-05T12:47:32.915Z",
+    "last_save_at": "2026-06-23T03:49:50.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:dbc17417786e3f0d330f09057cb0bdcf5b89ffeb0c53beacf6604ffac900f5ad",
+    "source_doc_hashes": {
+      "spec.md": "87bf13725d42b244a28973609dc005166165e44e4712f8047b761a546fa5f46a",
+      "plan.md": "f5503aeec76678641e9675bb9fbd488f936847c49b411e8fa307daa038bee6d0",
+      "tasks.md": "6e97e2f8ab933df6bcafec3970a3a7474a4b7b0214a15a8f49e67539ccdf5bd6",
+      "implementation-summary.md": "1e48f0be3ca8f005edcbe740872e288f8bcb5278674893e09d41e669bb6111d8",
+      "resource-map.md": "d37493b9a7bbf7dedb06e1bc6d957509730858caed966344a9099645d6560b43"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

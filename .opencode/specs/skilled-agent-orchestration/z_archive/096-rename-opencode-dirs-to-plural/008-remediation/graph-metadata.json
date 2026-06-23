@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 102 deep-review surfaced 2 NEW P1 regressions in 101's cli-opencode executor wiring plus 4 P2 advisories. Aggregate verdict: CONDITIONAL — release blocked until P1s addressed.",
+    "causal_summary": "Packet 102 deep-review surfaced 2 NEW P1 regressions in 101's cli-opencode executor wiring plus 4 P2 advisories",
     "created_at": "2026-05-18T07:49:27.252Z",
-    "last_save_at": "2026-05-30T10:12:01.494Z",
+    "last_save_at": "2026-06-23T03:49:50.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c877533c646acdafa6ce5e19a05640e8f1a2de135b3628b4206864397a02d44b",
+    "source_doc_hashes": {
+      "spec.md": "674f07d6a71a8c541189d25522aee19dc82c98f9783292fceecae69d666bcc70",
+      "plan.md": "78f24a62fb1272fc109122685b929528fd64b456e81fce7bae8048ae06c10d83",
+      "tasks.md": "a96adb3689fcf1f52e4ee38a64701da3007e97312f6cbddfa833e52659c3f8da",
+      "checklist.md": "2cc7dba88fbdb8c90bcd2dc92ce1007ea2f22b225913bfa33e2cecf65fdef76d",
+      "implementation-summary.md": "ec26ace0c1b9905ece771b5d669598f5cb916a78587555a56e6ed5bfff739608"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

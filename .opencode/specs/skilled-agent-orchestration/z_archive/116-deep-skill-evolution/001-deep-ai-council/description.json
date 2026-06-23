@@ -1,19 +1,17 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council",
-  "description": "Feature Specification: AI Council cluster (rename + shared runtime + iterative multi-topic)",
+  "description": "This cluster groups 13 sub-phases that share a single thematic focus",
   "keywords": [
-    "feature",
-    "specification",
-    "council",
     "cluster",
-    "rename",
-    "shared",
-    "runtime",
-    "iterative",
-    "multi-topic"
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.458Z",
+  "lastUpdated": "2026-06-23T03:49:50.699Z",
   "specId": "001",
   "folderSlug": "deep-ai-council",
   "parentChain": [

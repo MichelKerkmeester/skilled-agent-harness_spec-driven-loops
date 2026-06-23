@@ -1,16 +1,20 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/071-stack-agnostic-cleanup/001-remediation",
-  "description": "Feature Specification: Phase 071 Verifier Remediation",
+  "description": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup",
   "keywords": [
-    "feature",
-    "specification",
+    "independent",
+    "verifier",
     "phase",
     "071",
-    "verifier",
-    "remediation"
+    "found",
+    "nine",
+    "remaining",
+    "issues",
+    "stack-agnostic",
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.772Z",
+  "lastUpdated": "2026-06-23T03:49:49.789Z",
   "specId": "001",
   "folderSlug": "remediation",
   "parentChain": [

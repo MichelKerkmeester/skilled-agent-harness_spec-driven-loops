@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The baseline router campaign found two related memory-save issues. `memory:save` scored 0.82 for `save the file I'm working on`, which is a file operation rather than context preservation. The advisor also missed `preserve everything we figured out today so the next session doesn't lose it`, which is context preservation without literal `save` or `context`.",
+    "causal_summary": "Plan phase to reduce memory:save false positives for ordinary file-save prompts while preserving context-preservation routing.",
     "created_at": "2026-05-18T07:49:27.132Z",
-    "last_save_at": "2026-05-30T10:12:01.337Z",
+    "last_save_at": "2026-06-23T03:49:49.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:3ba68ae1fe97360357e83bb2c419291f42c537145bde22e907e0e5cb3c3d40a3",
+    "source_doc_hashes": {
+      "spec.md": "b4186418a5aca044bae4f87d68a64646e93f7e0fd98dea149bc801988156e7e1",
+      "plan.md": "3b168c3f976768d92701dd0a0dfd786469d71095afc03e8a37d345507211077b",
+      "tasks.md": "a17fd5c3e8ee7241cb4b3e2d48e42aff4ab6a3de5df2691e0f19474ad7ff7fea",
+      "checklist.md": "24d770b3c698ce91efc513f019720df859409ad975af9fdbdbb303e49e16066b",
+      "implementation-summary.md": "4541bbfd7e32cd71e668e9106796ae1acadfdba2ed76a64728802a08204e06fc",
+      "resource-map.md": "e32c124c3910adac0a0e653904dfaaf68b54e6dfd2cc43f2f4bb3c4c25f15b0b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

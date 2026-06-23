@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skills/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy \"opencode\" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.",
+    "causal_summary": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant delegate work to an external AI binary",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.682Z",
+    "last_save_at": "2026-06-23T03:49:49.307Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5d7fb7b0fee474c25a61fd51c7438d23e88d60578eb86ab26ec1804024135327",
+    "source_doc_hashes": {
+      "spec.md": "b84a5a9af6774ed3eedcd4d00f654e7d9905d4a97f39a8843c45624bf34091a5",
+      "plan.md": "bb52c474c58ef5e142769b3c077b02edf7fe7788d481dc77d894e593591d3b54",
+      "tasks.md": "47e3c8ac1e84580f2c0114986c3bda9d050370697e89ecb465455bd7e2a96759",
+      "checklist.md": "eccd2c0cca3b05bbf118ed83d4096e7cb8e171b84fb23b2cb8a9f643e8fcfb1c",
+      "decision-record.md": "821492dcc27a69d3240402be5c7363b30de93dca95ed4b031c2da8ecae77338d",
+      "implementation-summary.md": "b02bb62774bbd3d246b58d4ef2f158db6dd0f2f613d5c33432abf898d8cdab4d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

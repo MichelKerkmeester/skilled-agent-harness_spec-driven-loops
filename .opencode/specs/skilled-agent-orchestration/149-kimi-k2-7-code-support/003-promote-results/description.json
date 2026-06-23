@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/003-promote-results",
-  "description": "Feature Specification: Phase 3: promote-results",
+  "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "promote-results"
+    "002",
+    "runs",
+    "bakeoff",
+    "empirical",
+    "winner",
+    "exists",
+    "only",
+    "run",
+    "output",
+    "benchmarks",
+    "006-kimi-k2",
+    "7-prompt-framework"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.775Z",
+  "lastUpdated": "2026-06-23T03:49:48.764Z",
   "specId": "003",
   "folderSlug": "promote-results",
   "parentChain": [

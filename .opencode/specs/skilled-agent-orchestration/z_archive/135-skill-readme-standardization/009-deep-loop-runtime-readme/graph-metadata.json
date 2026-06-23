@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "shared",
-      "engine",
-      "batch",
-      "feature"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 9**, the deep-loop-runtime shared engine in Batch B.",
+    "causal_summary": "The deep-loop-runtime README is a tabular reference card with no problem-first entry point, and its Key Features table carries stale counts (27 vitest files when the suite has more, and four script entry points when there are eight)",
     "created_at": "2026-06-07T13:30:00Z",
-    "last_save_at": "2026-06-17T19:57:23.833Z",
+    "last_save_at": "2026-06-23T03:49:51.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b5a958b7429f2d8a94fb7153d30e119da6198bc18057109956a6e26e7982c7a6",
+    "source_doc_hashes": {
+      "spec.md": "8162511b170d3596fe546b00174e8e73e1f8d234ff428d537c6a6049f02a4efc",
+      "plan.md": "15949cda58690bfbb2b5a1576edc943f9c40a790a9f59ce59dc3809f71985f4f",
+      "tasks.md": "eb3a52b88c8aa8b3d22d72b68f1660bb42edfb1f912442aaebf5118dfbddfd37",
+      "implementation-summary.md": "cf4ffa9c0f2c39bd51efed8c9eb9409799e828377ffd7a9f0423ac9c3cf17942"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

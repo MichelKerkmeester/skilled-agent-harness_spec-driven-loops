@@ -1,17 +1,17 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime",
-  "description": "Feature Specification: Deep Loop runtime isolation arc",
+  "description": "This cluster groups 9 sub-phases that share a single thematic focus",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "loop",
-    "runtime",
-    "isolation",
-    "arc"
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.595Z",
+  "lastUpdated": "2026-06-23T03:49:50.841Z",
   "specId": "003",
   "folderSlug": "deep-loop-runtime",
   "parentChain": [

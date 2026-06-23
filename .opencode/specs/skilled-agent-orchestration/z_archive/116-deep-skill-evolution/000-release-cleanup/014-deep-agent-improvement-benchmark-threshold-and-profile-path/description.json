@@ -1,15 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
-  "description": "Feature Specification: fix deep-research LG-0004 + LG-0006",
+  "description": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile be",
   "keywords": [
-    "feature",
-    "specification",
-    "fix",
+    "remediation",
+    "two",
+    "code",
+    "config",
+    "gaps",
+    "005-deep-agent-improvement",
+    "phase-5",
     "deep-research",
-    "lg-0004",
-    "lg-0006"
+    "loop",
+    "surfaced",
+    "escalated",
+    "align",
+    "dynamic-profile"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.447Z",
+  "lastUpdated": "2026-06-23T03:49:50.688Z",
   "specId": "014",
   "folderSlug": "deep-agent-improvement-benchmark-threshold-and-profile-path",
   "parentChain": [

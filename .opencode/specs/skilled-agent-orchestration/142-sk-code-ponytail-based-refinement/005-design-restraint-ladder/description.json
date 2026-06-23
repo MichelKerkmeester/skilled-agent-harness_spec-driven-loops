@@ -1,15 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
-  "description": "Phase 5: Design Restraint Ladder in sk-code Phase 1",
+  "description": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the",
   "keywords": [
-    "phase",
-    "design",
-    "restraint",
+    "encode",
+    "ponytail",
+    "6-rung",
+    "really",
+    "need",
     "ladder",
-    "sk-code"
+    "15-line",
+    "subsection",
+    "sk-code",
+    "always-loaded",
+    "universal",
+    "quality",
+    "doc",
+    "attached"
   ],
-  "lastUpdated": "2026-06-13T17:55:07.437Z",
+  "lastUpdated": "2026-06-23T03:49:48.358Z",
   "specId": "005",
   "folderSlug": "design-restraint-ladder",
   "parentChain": [

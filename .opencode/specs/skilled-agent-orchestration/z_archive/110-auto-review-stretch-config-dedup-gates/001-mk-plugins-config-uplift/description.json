@@ -1,19 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
-  "description": "Feature Specification: H-5 3-tier config + M-6 async init for mk-* plugins",
+  "description": "Our OpenCode plugins (`mk-skill-advisor.js` + `mk-code-graph.js`) use env-only or hardcoded config",
   "keywords": [
-    "feature",
-    "specification",
-    "h-5",
-    "3-tier",
-    "config",
-    "m-6",
-    "async",
-    "init",
-    "plugins"
+    "opencode",
+    "plugins",
+    "mk-skill-advisor",
+    "mk-code-graph",
+    "use",
+    "env-only",
+    "hardcoded",
+    "config"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.183Z",
+  "lastUpdated": "2026-06-23T03:49:50.374Z",
   "specId": "001",
   "folderSlug": "mk-plugins-config-uplift",
   "parentChain": [

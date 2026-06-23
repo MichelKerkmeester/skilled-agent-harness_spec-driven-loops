@@ -24,15 +24,20 @@
     "last_active_child_id": null
   },
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
-  "description": "Feature Specification: P2-032 strategy-doc cleanup",
+  "description": "The 007-track-rereview deep-review strategy doc lists `aliases.ts` as one of the \"6 surfaces\" 101-cli-opencode-executor touched",
   "keywords": [
-    "feature",
-    "specification",
-    "p2-032",
-    "strategy-doc",
-    "cleanup"
+    "007-track-rereview",
+    "deep-review",
+    "strategy",
+    "doc",
+    "lists",
+    "aliases",
+    "one",
+    "surfaces",
+    "101-cli-opencode-executor",
+    "touched"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.571Z",
+  "lastUpdated": "2026-06-23T03:49:50.146Z",
   "specId": "009",
   "folderSlug": "p2-032-cleanup",
   "parentChain": [

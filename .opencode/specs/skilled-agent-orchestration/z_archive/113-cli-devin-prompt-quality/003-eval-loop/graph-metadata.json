@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Run the bespoke deep-loop. Each iteration picks a council-seeded variant or mutates the current best along one axis, dispatches cli-devin against SWE 1.6 for each fixture (parallel wave of 3), scores via the 002 rig (deterministic + grader, cached), aggregates a variant score, then evaluates convergence via 3-signal weighted vote. Loop legal-stops when stopScore > 0.60 AND coverage + quality + budget gates pass. Min 6 iterations. Synthesis ranks variants with confidence scores and key insights. Output is `synthesis.md` — the binding handoff for 004 to apply winners.",
+    "causal_summary": "We have a rig (002) and a ratified design contract (001)",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-07T09:00:45.752Z",
+    "last_save_at": "2026-06-23T03:49:50.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dd93dad9cf2d522220333149b8b4a6803e442111019cf469eda89063e46b9fc9",
+    "source_doc_hashes": {
+      "spec.md": "ca5330e0d15043b1b6389010a5f003487f9b6ad7b914f0ecbbb3395f111aff51",
+      "plan.md": "87b8f52ea58846fddffdd1b71275a20d6ce2d165646867c9c5824b450482533f",
+      "tasks.md": "e8bc92c388f58aee92744a06148adf6d32ff342f41b4ec5aac44af0bfe97344c",
+      "checklist.md": "715a318091d4ef2eba69d69d3d6016376fe94c63b705957cc45f86f0ea579dfd",
+      "decision-record.md": "a553c2880deb7ef810394b7205944aa4ead691e52afaf2171d537d87d3208b5f",
+      "implementation-summary.md": "8523c757ee9b74a7875df4f9587b5cf672d3f9727b676a3e198afc837bea28cf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

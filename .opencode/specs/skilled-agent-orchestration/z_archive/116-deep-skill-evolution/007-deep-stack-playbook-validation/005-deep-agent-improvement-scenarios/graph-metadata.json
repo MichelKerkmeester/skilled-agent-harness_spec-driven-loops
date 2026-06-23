@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Execute all 37 `deep-agent-improvement` scenarios via `cli-devin` SWE-1.6 (deterministic `node` script invocation piped to `python3` JSON assertions, with exit-code corroboration), record a verdict + evidence per scenario, and surface the runtime-truth category (07) release gate so no downstream false-green is recorded for the packet's release-readiness synthesis.",
+    "causal_summary": "`deep-agent-improvement` is the evaluator-first bounded agent improvement skill (integration scanner, dynamic profile generator, 5-dimension scorer, benchmark integration, dimensional reducer/dashboard, end-to-end loop, runtime-truth surfaces, and agent-discipline stress tests)",
     "created_at": "2026-05-27T07:08:08.397Z",
-    "last_save_at": "2026-06-22T18:55:00.813Z",
+    "last_save_at": "2026-06-23T03:49:51.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:12f450834d1a823320ce4ac55096fa2073509d8c677544c021c3df6b1c424d9a",
+    "source_doc_hashes": {
+      "spec.md": "1bd6e52c2eecd5ab662d4c88187993711cb57b97e68c6a51ab8027bb1d6226ed",
+      "plan.md": "091c0358c0777fa55ff3ecffb642a8ff36389be9c99c8420a636a8ca83c0dd34",
+      "tasks.md": "297ea89416b91a3b69369547c6837ef6cc93e1d6146994fee99ef95420dabd6c",
+      "checklist.md": "200c7a1042ee4e306fb94eff6c20e3d4c4cf065650ed999f734ec051165a530d",
+      "implementation-summary.md": "2b5e7bb6c5bb71535fb5744d976b66ab13642543e8318fb7b2af110320fef22a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

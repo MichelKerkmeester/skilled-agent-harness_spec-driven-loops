@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase implements the actionable findings from the 5-iteration improvement research (`../improvement-research/improvement-research.md`). The architecture was judged SOUND, so there is no rearchitecture; the dominant theme is making the \"C-plus\" routing guarantee REAL (the drift-guard test existed but nothing ran it), plus runtime self-containment, loop-lock unification, and low-regret hardening. The work is decomposed into four independent clusters (A/B/C/D) plus the orchestrator.",
+    "causal_summary": "The 5-iteration improvement research found the deep-loop architecture is sound but the C-plus routing guarantee is aspirational (the drift-guard test exists but nothing runs it; the guard + `/doctor` are hardcoded to the canonical skill, so a 2nd parent skill's `advisorRouting` is inert + unguarded), the runtime is \"MCP-free in name but parasitic on `system-spec-kit`'s nodemodules\", loop-locking is inconsistent (prose-only / missing across modes), and a set of low-regret hardening gaps exist",
     "created_at": "2026-06-15T14:54:56.469Z",
-    "last_save_at": "2026-06-15T14:54:56.469Z",
+    "last_save_at": "2026-06-23T03:49:48.809Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bd4607d9e6efa154b6c2b27046020b42c5ae2abf92848319bc85d548c74a4e98",
+    "source_doc_hashes": {
+      "spec.md": "b2b7310ac7b6c0e909596cc726c35f7a57c158b4c8c5adcdba10d87baf87afec",
+      "plan.md": "8775661b1c4bbfde6ec4eda6a9533ec18b0e6fde03858dc0ac4f1d234a5e9b11",
+      "tasks.md": "939057a5b25d0e5b327c669911fa61903a0b486f67c947c9d4eb2fb947c7bbd6",
+      "checklist.md": "81f16d47564029630640b9947abb10f72c4236766bb312814cd40b70e6effc63",
+      "decision-record.md": "9dfae8b0aef74bb1db47a39a99f9409e74f10698032f6252b5c12d00945e470e",
+      "implementation-summary.md": "513cbeb2f58516aba622584395642ad64d348e5f181cffa3cb36eb696e00a79c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill",
-  "description": "Feature Specification: 115/002 — skill dir rename",
+  "description": "The `deep-ai-council` skill needs to move to the `sk-ai-council` name per parent 115/spec.md naming convention rationale",
   "keywords": [
-    "feature",
-    "specification",
-    "115",
-    "002",
+    "deep-ai-council",
     "skill",
-    "dir",
-    "rename"
+    "needs",
+    "move",
+    "sk-ai-council",
+    "name",
+    "per",
+    "parent",
+    "115",
+    "spec",
+    "naming",
+    "convention",
+    "rationale"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.470Z",
+  "lastUpdated": "2026-06-23T03:49:50.712Z",
   "specId": "002",
   "folderSlug": "rename-sk-skill",
   "parentChain": [

@@ -1,16 +1,25 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/071-stack-agnostic-cleanup",
-  "description": "Feature Specification: Phase 071 Stack-Agnostic Cleanup",
+  "description": "Non-`sk-code` skills currently include frontend stack names, library names, repo-specific paths, and internal surface tag examples",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "071",
-    "stack-agnostic",
-    "cleanup"
+    "non",
+    "sk-code",
+    "skills",
+    "currently",
+    "include",
+    "frontend",
+    "stack",
+    "names",
+    "library",
+    "repo-specific",
+    "paths",
+    "internal",
+    "surface",
+    "tag",
+    "examples"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.761Z",
+  "lastUpdated": "2026-06-23T03:49:49.783Z",
   "specId": "071",
   "folderSlug": "stack-agnostic-cleanup",
   "parentChain": [

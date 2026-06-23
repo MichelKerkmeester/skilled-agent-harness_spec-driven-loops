@@ -8,17 +8,17 @@
     ]
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
-  "description": "Feature Specification: Deep AI Council Research + Architecture Design",
+  "description": "`deep-ai-council` had a current single-session, flat round artifact model",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "council",
-    "research",
-    "architecture",
-    "design"
+    "deep-ai-council",
+    "current",
+    "single-session",
+    "flat",
+    "round",
+    "artifact",
+    "model"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.502Z",
+  "lastUpdated": "2026-06-23T03:49:50.748Z",
   "specId": "008",
   "folderSlug": "iterative-research-and-architecture",
   "parentChain": [

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
     "created_at": "2026-05-16T05:50:00Z",
-    "last_save_at": "2026-06-15T09:09:33.599Z",
+    "last_save_at": "2026-06-23T03:49:50.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a2d81bf9487df62252a4e7f1427c081f10be0c882d464e3d48c44eb5546a4501",
+    "source_doc_hashes": {
+      "spec.md": "d6d67e9f69a0110f236528907faee4be671b14eb6c47d8becd0f86767b8f8d12",
+      "plan.md": "00e3c73b23c2f57f5c91e3ed78930a8e0ce9c3f6af401eec9fe6e230824f6849",
+      "tasks.md": "554e8c99154cb715f1e32dd1fdc4b294abd73128b77cd765023b8b484ba72c94",
+      "implementation-summary.md": "2a881e68f4c25c3d31a78b74974c3232006ed86d4279a98af086dd6704d065e6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

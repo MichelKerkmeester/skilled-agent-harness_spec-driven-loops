@@ -1,14 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
-  "description": "Spec: deep-review Stress Runs (004)",
+  "description": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
   "keywords": [
-    "spec",
-    "deep-review",
-    "stress",
-    "runs",
-    "004"
+    "sub-phase",
+    "062-deep-loop-command-flow-stress-tests",
+    "apply",
+    "060",
+    "004",
+    "methodology"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.408Z",
+  "lastUpdated": "2026-06-23T03:49:49.516Z",
   "specId": "004",
   "folderSlug": "deep-review-stress-runs",
   "parentChain": [

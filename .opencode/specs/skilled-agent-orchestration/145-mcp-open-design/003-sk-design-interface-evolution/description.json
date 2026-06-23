@@ -1,14 +1,25 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/003-sk-design-interface-evolution",
-  "description": "Feature Specification: sk-design-interface evolution",
+  "description": "The `sk-design-interface` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, p",
   "keywords": [
-    "feature",
-    "specification",
     "sk-design-interface",
-    "evolution"
+    "skill",
+    "still",
+    "vendored",
+    "data",
+    "scripts",
+    "derived",
+    "mit",
+    "ui-ux-pro-max",
+    "repo",
+    "nine",
+    "csv",
+    "inventories",
+    "colors",
+    "typography"
   ],
-  "lastUpdated": "2026-06-15T13:45:21.700Z",
+  "lastUpdated": "2026-06-23T03:49:48.556Z",
   "specId": "003",
   "folderSlug": "sk-design-interface-evolution",
   "parentChain": [

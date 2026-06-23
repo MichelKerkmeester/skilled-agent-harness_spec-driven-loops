@@ -1,15 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
-  "description": "Phase 004: cli-devin Rewrite Prompts",
+  "description": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
   "keywords": [
-    "phase",
-    "004",
-    "cli-devin",
+    "795-commit",
+    "retroactive",
     "rewrite",
-    "prompts"
+    "too",
+    "large",
+    "single",
+    "cli-devin",
+    "dispatch"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.237Z",
+  "lastUpdated": "2026-06-23T03:49:50.434Z",
   "specId": "004",
   "folderSlug": "cli-devin-rewrite-prompts",
   "parentChain": [

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase. `/speckit:plan` discovers context ad-hoc (4 one-shot exploration agents in Step 5) and `/speckit:implement` relies on whatever the plan captured, so reusable code is missed (violating the \"reuse, avoid new code\" principle), context-rot and stale references creep in, and there is no saturation signal for \"enough context gathered.\"",
+    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
     "created_at": "2026-06-06T14:09:09.974Z",
-    "last_save_at": "2026-06-17T19:57:23.806Z",
+    "last_save_at": "2026-06-23T03:49:51.761Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:3e10f7fa8d13a448d5a33c172640815bb2d28f798e20a7d36de1425ada8e026a",
+    "source_doc_hashes": {
+      "spec.md": "a4c012279a301992df4249f97ea66ff064caac20503f841659048a3115145434",
+      "plan.md": "25c37b92ffd3e67500fcc8521b6bdcb99577423e810c20c5bc791c1b09a88d27",
+      "tasks.md": "3a9e360cb2abb059a83277bd286132a15b7837c3d8b2630d1a7c992af2f031bc",
+      "checklist.md": "ad847e94cd298d90da8608e7a722b2564d453bf862813dce21d2aa20f1767d53",
+      "decision-record.md": "1ff63e214d124b2f2278f191d19581b8c31671c20deaa5c98aa575d20ff9987b",
+      "implementation-summary.md": "034c91a52e78ca323e41533ec497254d5926fd479dfd55d7d467b20c39797b93",
+      "research/research.md": "667691b2407452078297f737d74fc2b2d4dba1c1f4f78ecef7a7ac983f8bf3f0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

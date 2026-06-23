@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is the final phase of the 112 packet. Runs the cli-devin loop authored in Phase 004, synthesizes the rewrite mapping, applies it via `git filter-repo`, and verifies the result against the Phase 001 baseline.",
+    "causal_summary": "The 2,795 HEAD commits do not follow the standard locked in Phase 002",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-06-22T18:55:00.241Z",
+    "last_save_at": "2026-06-23T03:49:50.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6d3eb39335015d9e782fcf20d3b0b7ca7c79e3822bcd80df4fc9ebd44e0d1501",
+    "source_doc_hashes": {
+      "spec.md": "6feec0a3129163cd2d381a723d43fbacfd71facd417a4f8e3de970f066899fc3",
+      "plan.md": "1429644bbefa506d028fc834049c3fa96af538ab275d0fdb622ffcbe68e4262a",
+      "tasks.md": "c61907951cfbe459a85d0574bc1df522cb8ea0cb5d30bfb1626b368e2c11b116",
+      "implementation-summary.md": "ba5312c26a7ffaa77731896ad35560ffdd26c6e306d3aaa79ecf5c48b3b4ebcd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

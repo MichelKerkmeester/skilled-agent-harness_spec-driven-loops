@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 implements dedicated derived graph support for Deep AI Council deliberation. The graph adds bounded MCP query and convergence context without making graph rows authoritative over packet-local council artifacts.",
+    "causal_summary": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for research and review coverage",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-06-15T09:09:33.577Z",
+    "last_save_at": "2026-06-23T03:49:50.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2ae1a4438cfc698d4a63b26a4230a2c5a536b25f53c05c32f97299c90aea6aca",
+    "source_doc_hashes": {
+      "spec.md": "3712adb328b00a2747c5027f08b541dfa1b4b91a967c79a1541511802d706d62",
+      "plan.md": "079e58112dc7f30e5d370fda5f83bf0647db9958cdf7d1435fbb12e865a6ffc7",
+      "tasks.md": "b5bdcda3b27b1cf5e5eeb9cd5828a5be4a97f0f6de8d19af245caa2efadc496b",
+      "checklist.md": "3ce83c3e579f3585e3a8b62c4bef3ae6069642d61f252f08e9fb99f0f30ebef9",
+      "decision-record.md": "8a780d89f26c6bc0c8d3cfc0f37fd6137a98a78ecf0d9d48452abc1ede60a915",
+      "implementation-summary.md": "0815c9030e290a820edd45e6902f51fc205124285b8e7240cd45aa9906668309"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -129,12 +129,16 @@
     ],
     "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-06-05T12:47:32.864Z",
+    "last_save_at": "2026-06-23T03:49:49.942Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:da6171ed6a5888e9cb22c01d505bc4644d2e34ea76d7940082908fc10615ba03",
+    "source_doc_hashes": {
+      "spec.md": "818210b82966f3d15d4af460812d573f7f4722d639fb043c6dda9f4ec8caa065"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

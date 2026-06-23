@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
-  "description": "Phase 3: Exact-Wording Guards + Iron Law Cleanup",
+  "description": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron",
   "keywords": [
-    "phase",
-    "exact-wording",
-    "guards",
-    "iron",
-    "law",
-    "cleanup"
+    "add",
+    "standalone",
+    "canary",
+    "guard",
+    "locks",
+    "automation-parsed",
+    "exact",
+    "strings",
+    "review",
+    "status",
+    "triplet",
+    "canonicalizing",
+    "3-way-drifted",
+    "iron"
   ],
-  "lastUpdated": "2026-06-13T13:42:38.223Z",
+  "lastUpdated": "2026-06-23T03:49:48.345Z",
   "specId": "003",
   "folderSlug": "wording-invariant-guards",
   "parentChain": [

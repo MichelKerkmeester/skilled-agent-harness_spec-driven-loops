@@ -106,12 +106,16 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-05-31T00:00:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.705Z",
+    "last_save_at": "2026-06-23T03:49:51.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:bd44f5f1a19558597262123177bf7db385aaa627def7fe40e9b8a73581e8eee2",
+    "source_doc_hashes": {
+      "spec.md": "87be33278730ecef6e0d6da01708fb7d24c9d66dc0cce1f7620ffbc70b6df894"
+    },
     "last_active_child_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
     "last_active_at": null
   }

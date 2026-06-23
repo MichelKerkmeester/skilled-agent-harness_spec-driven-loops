@@ -1,16 +1,17 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review",
-  "description": "Feature Specification: Deep Review complexity-hardening arc",
+  "description": "This cluster groups 8 sub-phases that share a single thematic focus",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "review",
-    "complexity-hardening",
-    "arc"
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.536Z",
+  "lastUpdated": "2026-06-23T03:49:50.784Z",
   "specId": "002",
   "folderSlug": "deep-review",
   "parentChain": [

@@ -1,15 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime-release-cleanup",
-  "description": "Feature Specification: deep-loop-runtime skill release cleanup",
+  "description": "The `deep-loop-runtime` skill carries 266 lines of SKILL.md, 174 lines of README, 4 references (732 lines), 18 feature-catalog files plus 1 index (101",
   "keywords": [
-    "feature",
-    "specification",
     "deep-loop-runtime",
     "skill",
-    "release",
-    "cleanup"
+    "carries",
+    "266",
+    "lines",
+    "174",
+    "readme",
+    "references",
+    "732",
+    "feature-catalog",
+    "files",
+    "plus",
+    "index",
+    "101"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.373Z",
+  "lastUpdated": "2026-06-23T03:49:50.580Z",
   "specId": "001",
   "folderSlug": "deep-loop-runtime-release-cleanup",
   "parentChain": [

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `od_cli_reference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete. Live `od` CLI usage reveals several commands that are absent from the formal classification: `od project create`, `od files list`/`read`, `od skills list`, `od design-systems list`, `od daemon start`, `od doctor`, and `od status --json`. Agents and operators relying on the skill's documentation are unaware of these commands or their read-only vs mutating classification. Additionally, `od doctor` is flagged as `[UNVERIFIED]` in the current table despite being confirmed working from live usage.",
+    "causal_summary": "The `odclireference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete",
     "created_at": "2026-06-21T13:29:37Z",
-    "last_save_at": "2026-06-22T18:54:59.058Z",
+    "last_save_at": "2026-06-23T03:49:48.640Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9d846d3767304dc7e8f6afc1bff59fae94753774267a7d67643cfd4e5c850494",
+    "source_doc_hashes": {
+      "spec.md": "0b0d164fd324f7e60a20d226b4b5f4ca087564851304982172c4a9f0e3380e33",
+      "plan.md": "1204f5f2a8e61dbe3e14493b5aef37e3891bac4099e19c2f69eea683fcf0263e",
+      "tasks.md": "8ba31611632c94f5501fd111d5424db65b168516826879f0967c44955f78e587",
+      "implementation-summary.md": "e09846f718bcfc1904b3bcae25ff4098720a0e5357206e73c8395c047d77ca8b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

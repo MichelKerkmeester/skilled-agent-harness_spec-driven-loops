@@ -25,17 +25,22 @@
     "last_active_child_id": null
   },
   "specFolder": "skilled-agent-orchestration/z_archive/097-cli-opencode-stdin-fix",
-  "description": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
+  "description": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-opencode",
-    "dev",
-    "null",
-    "stdin-redirect",
-    "fix"
+    "opencode",
+    "run",
+    "entry",
+    "point",
+    "cross-ai",
+    "dispatch",
+    "claude",
+    "code",
+    "codex",
+    "gemini",
+    "shell",
+    "automation"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.577Z",
+  "lastUpdated": "2026-06-23T03:49:50.153Z",
   "specId": "097",
   "folderSlug": "cli-opencode-stdin-fix",
   "parentChain": [

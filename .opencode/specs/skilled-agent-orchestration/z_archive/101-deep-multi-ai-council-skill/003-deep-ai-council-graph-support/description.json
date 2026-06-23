@@ -1,18 +1,25 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
-  "description": "Feature Specification: 101/003 Deep AI Council Graph Support",
+  "description": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for resea",
   "keywords": [
-    "feature",
-    "specification",
-    "101",
-    "003",
-    "deep",
     "council",
+    "deliberation",
+    "needs",
+    "durable",
+    "structural",
+    "context",
+    "beyond",
+    "append-only",
+    "artifacts",
+    "existing",
+    "deep-loop",
+    "coverage",
     "graph",
-    "support"
+    "specialized",
+    "resea"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.038Z",
+  "lastUpdated": "2026-06-23T03:49:50.217Z",
   "specId": "003",
   "folderSlug": "deep-ai-council-graph-support",
   "parentChain": [

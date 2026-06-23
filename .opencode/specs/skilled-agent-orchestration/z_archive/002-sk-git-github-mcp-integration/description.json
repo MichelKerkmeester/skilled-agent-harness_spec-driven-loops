@@ -1,16 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/002-sk-git-github-mcp-integration",
-  "description": "Feature Specification: GitHub MCP Integration for sk-git Skill",
+  "description": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead",
   "keywords": [
-    "feature",
-    "specification",
+    "sk-git",
+    "skill",
+    "documented",
     "github",
     "mcp",
-    "integration",
-    "sk-git",
-    "skill"
+    "usage",
+    "incorrect",
+    "call",
+    "syntax",
+    "incomplete",
+    "tool",
+    "coverage",
+    "weak",
+    "guidance",
+    "use",
+    "instead"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.189Z",
+  "lastUpdated": "2026-06-23T03:49:48.879Z",
   "specId": "002",
   "folderSlug": "sk-git-github-mcp-integration",
   "parentChain": [

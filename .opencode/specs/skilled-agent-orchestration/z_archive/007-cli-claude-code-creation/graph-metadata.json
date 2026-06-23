@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "No skill exists for external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) to delegate tasks to Claude Code CLI. The existing `cli-gemini` and `cli-codex` skills enable Claude Code to invoke *other* AIs, but the reverse direction — other AIs invoking Claude Code — has no structured skill. This leaves Claude Code's unique capabilities (extended thinking, `--json-schema`, `--permission-mode plan`, `--max-budget-usd`) inaccessible to external orchestrators.",
+    "causal_summary": "No skill exists for external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) to delegate tasks to Claude Code CLI",
     "created_at": "2026-04-12T09:02:50.203Z",
-    "last_save_at": "2026-05-30T10:12:01.139Z",
+    "last_save_at": "2026-06-23T03:49:48.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8e88f9e8925a11b84d3abd61325920c36b55ef1d6a60ce11b306a745b5410d7b",
+    "source_doc_hashes": {
+      "spec.md": "5b161cc2c82c1bb482b3f112512fc03b007a633d9dec730507044e172b7c42dc",
+      "plan.md": "8a8565448b511b92948a28cef1c8265cd7456f6fa8223a5c22df4e4a53de54e3",
+      "tasks.md": "0109ab769a5148c8756e797cd124c349d55010533a3d8d090a4b86fb0ea9c07e",
+      "checklist.md": "08a7ee8460b7e1655e1d1ade4910fcab4c003c2cbc149d76dab0bea124c0b6cb",
+      "implementation-summary.md": "f7f4db5c2606f102a28e27e255c79864c3ea768323fcaeafb8dfa1b6b3bc4071"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

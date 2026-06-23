@@ -1,17 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/006-competitor-design-tools-research",
-  "description": "Research Specification: Competitor AI design-tool ideas for sk-design-interface and mcp-magicpath",
+  "description": "The 005 research targeted parity with one product (Claude Design)",
   "keywords": [
+    "005",
     "research",
-    "specification",
-    "competitor",
-    "design-tool",
-    "ideas",
-    "sk-design-interface",
-    "mcp-magicpath"
+    "targeted",
+    "parity",
+    "one",
+    "product",
+    "claude",
+    "design"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.883Z",
+  "lastUpdated": "2026-06-23T03:49:48.421Z",
   "specId": "006",
   "folderSlug": "competitor-design-tools-research",
   "parentChain": [

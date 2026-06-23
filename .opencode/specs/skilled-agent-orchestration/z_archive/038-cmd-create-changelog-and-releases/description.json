@@ -1,17 +1,16 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/038-cmd-create-changelog-and-releases",
-  "description": "Feature Specification: Upgrade create:changelog with GitHub Release Creation",
+  "description": "The `create:changelog` command generates changelog markdown files but stops there",
   "keywords": [
-    "feature",
-    "specification",
-    "upgrade",
     "create",
     "changelog",
-    "github",
-    "release",
-    "creation"
+    "command",
+    "generates",
+    "markdown",
+    "files",
+    "stops"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.345Z",
+  "lastUpdated": "2026-06-23T03:49:49.105Z",
   "specId": "038",
   "folderSlug": "cmd-create-changelog-and-releases",
   "parentChain": [

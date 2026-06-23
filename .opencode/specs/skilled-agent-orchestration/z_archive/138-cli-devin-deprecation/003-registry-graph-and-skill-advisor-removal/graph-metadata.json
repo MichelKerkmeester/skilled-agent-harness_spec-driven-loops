@@ -29,10 +29,10 @@
       "tasks",
       "implementation",
       "summary",
-      "specification",
-      "verified",
-      "line-resolved",
-      "edit"
+      "registry",
+      "entries",
+      "sk-prompt-small-model",
+      "model-profiles"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the cli-devin deprecation specification. The verified, line-resolved edit list lives in ../context/context-report.md §2.",
+    "causal_summary": "cli-devin had registry entries (sk-prompt-small-model model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON exports, skill-advisor docs + the 'devin' runtime enum + Devin hooks (.devin/hooks.v1.json + hooks/devin/ sources), and the swe-1.6 model was cli-devin-exclusive",
     "created_at": "2026-06-08T16:10:29Z",
-    "last_save_at": "2026-06-17T19:57:23.857Z",
+    "last_save_at": "2026-06-23T03:49:51.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a7765f3556e23a306439bafdb88ae562d0ac05b22b0a0ba1619aa40ab60d5d2a",
+    "source_doc_hashes": {
+      "spec.md": "0f0982c0b09d20274a84e0f3986e58da88d602dda4aac4b9e0ff7454ecfd39c7",
+      "plan.md": "24006c5260550224c33c3263d260293a1bcf01d90cd89c75ce289c265d6a0940",
+      "tasks.md": "a64bb5126dbee08ddc1989427a70df7022893720f8c1613366536d9774fb0088",
+      "implementation-summary.md": "b303c4761b822d3f8d52472d8d9295e235a0e100e8457385aa9b396a91f41e03"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,13 +1,22 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-  "description": "Feature Specification: cli-cross-rcaf-propagation",
+  "description": "The 113/003 cli-devin eval-loop measured that medium-density pre-planning outperformed dense pre-planning by roughly 10-15% on SWE 1.6",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-cross-rcaf-propagation"
+    "113",
+    "003",
+    "cli-devin",
+    "eval-loop",
+    "measured",
+    "medium-density",
+    "pre-planning",
+    "outperformed",
+    "dense",
+    "roughly",
+    "10-15",
+    "swe"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.283Z",
+  "lastUpdated": "2026-06-23T03:49:50.487Z",
   "specId": "006",
   "folderSlug": "cross-cli-rcaf-propagation",
   "parentChain": [

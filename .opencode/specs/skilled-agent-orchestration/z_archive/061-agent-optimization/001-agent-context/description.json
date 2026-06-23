@@ -1,13 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context",
-  "description": "Spec: @context Agent Optimization",
+  "description": "`@context` (444 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
-    "spec",
     "context",
-    "agent",
-    "optimization"
+    "444",
+    "loc",
+    "sk-improve-agent",
+    "lens"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.275Z",
+  "lastUpdated": "2026-06-23T03:49:49.449Z",
   "specId": "001",
   "folderSlug": "agent-context",
   "parentChain": [

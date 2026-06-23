@@ -1,18 +1,17 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
-  "description": "Feature Specification: 116/005 — Search Ledger Persistence and Reporting",
+  "description": "Valid v2 ledger rows are not useful if the reducer drops them",
   "keywords": [
-    "feature",
-    "specification",
-    "116",
-    "005",
-    "search",
+    "valid",
     "ledger",
-    "persistence",
-    "reporting"
+    "rows",
+    "useful",
+    "reducer",
+    "drops",
+    "them"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.573Z",
+  "lastUpdated": "2026-06-23T03:49:50.816Z",
   "specId": "005",
   "folderSlug": "complexity-search-ledger-persistence",
   "parentChain": [

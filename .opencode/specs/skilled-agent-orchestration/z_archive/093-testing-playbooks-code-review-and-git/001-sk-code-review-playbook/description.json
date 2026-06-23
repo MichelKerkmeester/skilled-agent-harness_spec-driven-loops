@@ -2,17 +2,17 @@
   "completionPct": 0,
   "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
   "specFolder": "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
-  "description": "Feature Specification: 001 - sk-code-review manual testing playbook",
+  "description": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
   "keywords": [
-    "feature",
-    "specification",
-    "001",
     "sk-code-review",
-    "manual",
-    "testing",
-    "playbook"
+    "findings-first",
+    "review",
+    "baseline",
+    "used",
+    "deep-review",
+    "speckit"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.517Z",
+  "lastUpdated": "2026-06-23T03:49:50.004Z",
   "specId": "001",
   "folderSlug": "sk-code-review-playbook",
   "parentChain": [

@@ -82,14 +82,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side. The findings cluster into 4 dependent stages: sk-code OpenCode authoring assets are missing (Phase 1 = foundation), `/speckit:complete` loads sk-code at review-time not authoring-time (Phase 2 = integration), CocoIndex canonical-priority semantics are missing (Phase 3 = indexing), and system-spec-kit validator + MCP tool registry drift remains (Phase 4 = cleanup). Bundling them loses the dependency signal; splitting them into 4 child phases preserves the sequence.",
+    "causal_summary": "The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side",
     "created_at": "2026-05-05T17:36:51Z",
-    "last_save_at": "2026-06-05T12:47:32.832Z",
+    "last_save_at": "2026-06-23T03:49:49.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:04d5713de35b359b0c72fd79eda0e3c751c027a370521e5d30f91ad05f7c3d3d",
+    "source_doc_hashes": {
+      "spec.md": "c73986c2a5f245d7e0f9f003c872089f17f9eafd6119593c2a7c6f421c234cec"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

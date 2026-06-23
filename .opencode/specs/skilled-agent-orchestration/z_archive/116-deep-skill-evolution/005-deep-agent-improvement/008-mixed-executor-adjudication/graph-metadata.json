@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 128 brings the methodology patterns proven in arc 119 (deep-research uplift) into deep-agent-improvement: mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter. The 119 research demonstrated a 90%+ false-positive rate on adversarial passes without adjudication, and the mixed-executor pattern (8+2 split) provided better breadth/synthesis balance than single-executor approaches. This packet documents these patterns as recommended methodology for DAI multi-iter sweeps and adds DAI-004 audit logging for dynamic profiling.",
+    "causal_summary": "Deep-agent-improvement currently lacks the methodology patterns proven in arc 119's deep-research uplift: (1) mixed-executor dispatch for multi-iter sweeps, and (2) adjudication-iter false-positive filtering",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-06-07T09:00:45.912Z",
+    "last_save_at": "2026-06-23T03:49:50.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:761af28d4a60e5588e1cbb7ccc85dccf5cea06f085803d5e36876c5167826c54",
+    "source_doc_hashes": {
+      "spec.md": "fa46b47ff052e79a615a7dd43818a89b8cc9c95f0aa5929e09626cfd5569aa6e",
+      "plan.md": "26c4486f36047f80976ea46ebc6317a3a5e3fb333728c0356f68eb85825c8da8",
+      "tasks.md": "38c0c766001d48fcb5632022a00af44fab8871a874b223da3ecbbf9a5af02ceb",
+      "checklist.md": "957edd2cab4f133393d6d0cc1e953c0c20d0f2cc156c4aa058aa4da00306ea4b",
+      "decision-record.md": "d83361f4a6453bfeaaf035ed96910b3feda8f739361b3740e9bb00ea87d06f7b",
+      "implementation-summary.md": "167c8296f3b8afc15dd4f150b04107d599a067211b336ee98858b0e706ad9914"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/004-runtime-mirrors",
-  "description": "Feature Specification: Phase 004 Runtime Mirrors",
+  "description": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "004",
+    "001",
+    "found",
     "runtime",
-    "mirrors"
+    "mirror",
+    "files",
+    "claude",
+    "codex",
+    "gemini",
+    "still",
+    "reference",
+    "old",
+    "deep-loop",
+    "skill",
+    "names"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.452Z",
+  "lastUpdated": "2026-06-23T03:49:49.720Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [

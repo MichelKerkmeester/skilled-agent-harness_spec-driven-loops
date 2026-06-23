@@ -24,12 +24,12 @@
       "plan",
       "tasks",
       "summary",
-      "phase",
-      "packet",
-      "extracts",
-      "metrics",
       "raw",
-      "cell"
+      "cell",
+      "logs",
+      "phase",
+      "contain",
+      "cli-specific"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is Phase 3 of the 071 packet. Extracts metrics from 45 raw cell logs (Phase 2 output) into structured matrix.csv, then authors review-report.md with cross-CLI rankings + P0/P1/P2 findings registry.",
+    "causal_summary": "45 raw cell logs from Phase 2 contain CLI-specific output formats (codex stdout with token line, copilot Tokens summary block, opencode JSONL stream)",
     "created_at": "2026-05-05T10:27:21Z",
-    "last_save_at": "2026-05-30T10:12:01.397Z",
+    "last_save_at": "2026-06-23T03:49:49.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0af234a0fb5f26cbafc395f7e014a2a240e9b20540a54c717f1dfdd334b4d4f5",
+    "source_doc_hashes": {
+      "spec.md": "f8d8c1ca028aa0c150d7a084fcd00fc31693653fbccbe122fc8f0999dfbc8082",
+      "plan.md": "24dd04b48632b051c00d3902338855e92e0072d6cba246c7db575fbea789c82b",
+      "tasks.md": "2bdaeab169f527b6f8c33b846f415c6e610695c09f35ab0bc6bf508cb7139ef3",
+      "implementation-summary.md": "2bcbf85a54c680f7263ba99ed430ca2e48ec0e7cc68ddb5a7a1a5907a727413a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

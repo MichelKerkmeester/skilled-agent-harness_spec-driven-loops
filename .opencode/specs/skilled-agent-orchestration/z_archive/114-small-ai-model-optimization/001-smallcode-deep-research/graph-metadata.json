@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Mine the external `smallcode-master` corpus (MIT, terminal-native AI coding agent purpose-built for 7B–20B local models, 87% single-file success on Gemma 4 4B-active) for runtime patterns that small models like SWE-1.6 need to produce reliable output. Dogfood the research on cli-devin SWE-1.6 across 20 deep-research iterations against 5 locked research questions (context budget engine, output verification pipeline, per-model profiles + escalation, structured permissions, skill architecture). Synthesize `research/research.md` with per-RQ candidate skill-deltas (file paths + acceptance criteria) ready to spawn follow-on remediation packets. The dogfood policy itself validates RQ1's budget-engine thesis in flight, since SWE-1.6's smaller context window forces every iteration to cite the preflight context-card rather than re-read smallcode source from scratch.",
+    "causal_summary": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-hallucination secondary, sequentialthinking 2-layer)",
     "created_at": "2026-05-18T09:01:17.095Z",
-    "last_save_at": "2026-06-08T17:32:20.451Z",
+    "last_save_at": "2026-06-23T03:49:50.503Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:d2b4f4b492541bf06852a640be7707fb314d02715ec46b4f8b8603c777d40002",
+    "source_doc_hashes": {
+      "spec.md": "6a4b9fb01cb0f9d71059972f6c1a1c47d4e491048ff987c3d521c9d4e31ca84e",
+      "plan.md": "1490cd6815667acd4576140fa77c2bbd650583544886e803bc09a1fbd03863d5",
+      "tasks.md": "b2aa4c79cb9b9298e298cfe0793cae2359f8e6a2aa12909f7636f4ec47a80711",
+      "checklist.md": "8758d14522678438bd9ea6c9c9e233a5b0b38d280876169fa64424435b9b8d99",
+      "decision-record.md": "5cf6dc824366420dbd9c4c91cbf916296214f773d9e60d973368aadad22eb5da",
+      "implementation-summary.md": "76550ebd074c826bc526400756213059917bcd02d0e69bd2e0ce8f175feb034a",
+      "research/research.md": "3431bbb49b650dc479364697e88c84a4f98f2c497c954d2e432e0dbaf7117325"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

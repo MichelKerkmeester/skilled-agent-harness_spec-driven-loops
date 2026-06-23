@@ -113,13 +113,18 @@
     ],
     "causal_summary": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
     "created_at": "2026-06-04T13:19:25.656Z",
-    "last_save_at": "2026-06-17T19:57:23.707Z",
+    "last_save_at": "2026-06-23T03:49:51.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:6d18dbd3148a534a1dfc635532f4a71aa42dc3ecd4c0695dcaf4c80d0db23db5",
+    "source_doc_hashes": {
+      "spec.md": "5052c1169f6785cf4c3e28d32ad78e71db2652635c5237f72e7ee6e69c9a77f6",
+      "plan.md": "ac301268c806cb042be7a73e55ef13b81b0d5ecaaa2c8a078ca55da0177ee4fd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

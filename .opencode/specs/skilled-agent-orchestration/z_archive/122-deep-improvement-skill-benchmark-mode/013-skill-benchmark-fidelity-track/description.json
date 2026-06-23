@@ -1,15 +1,20 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
-  "description": "Feature Specification: Skill-Benchmark D3/D4 Fidelity Track",
+  "description": "The benchmark reports D3 50 / D4 49 for sk-code, but round-2 research showed those numbers do not measure what their names claim",
   "keywords": [
-    "feature",
-    "specification",
-    "skill-benchmark",
-    "fidelity",
-    "track"
+    "benchmark",
+    "reports",
+    "sk-code",
+    "round-2",
+    "research",
+    "showed",
+    "numbers",
+    "measure",
+    "names",
+    "claim"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.105Z",
+  "lastUpdated": "2026-06-23T03:49:51.354Z",
   "specId": "013",
   "folderSlug": "skill-benchmark-fidelity-track",
   "parentChain": [

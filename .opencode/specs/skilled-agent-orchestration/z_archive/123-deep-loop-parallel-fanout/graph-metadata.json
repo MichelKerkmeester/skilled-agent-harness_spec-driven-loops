@@ -33,11 +33,11 @@
       "multi-executor",
       "deep-research",
       "deep-review",
+      "phase",
+      "parent",
       "add",
       "opt-in",
-      "layer",
-      "existing",
-      "single-executor"
+      "layer"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -160,15 +160,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add an **opt-in fan-out layer ABOVE the existing single-executor sequential loop** for both `/deep:start-research-loop` and `/deep:start-review-loop` (which share the `deep-loop-runtime` peer skill). N executor \"lineages\" run concurrently with a concurrency cap; each lineage runs the **existing loop verbatim** in its own isolated sub-packet; a consumer-specific cross-lineage merge produces the canonical output (`research.md` / `review-report.md`).",
+    "causal_summary": "Phase parent: add an opt-in fan-out layer above the existing single-executor sequential loop so /deep:start-research-loop and /deep:start-review-loop can run N executor lineages concurrently (capped), each in an isolated sub-packet, then a consumer-specific cross-lineage merge. Single-executor stays the default and byte-identical. Generalizes the proven manual pattern from packet 122.",
     "created_at": "2026-05-30T10:12:01.126Z",
-    "last_save_at": "2026-06-17T19:57:23.692Z",
+    "last_save_at": "2026-06-23T03:49:51.370Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:b6d07c544ac17134b3b715a196f7a13af6da28e49598cdc13351dfe7f9127402",
+    "source_doc_hashes": {
+      "spec.md": "d7423cddd8d484ada78f0577beb92493bed13891b44d999d1dc004891b7f208b",
+      "handover.md": "6fbb8535d01c801fd5b83a1ae0e18213e8791ad6c7b6cf6f1e6158237e842ceb"
+    },
     "last_active_child_id": null,
     "last_active_at": "2026-05-30T14:31:20.568Z"
   }

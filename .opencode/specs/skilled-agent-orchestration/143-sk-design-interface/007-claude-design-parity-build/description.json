@@ -1,17 +1,24 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/007-claude-design-parity-build",
-  "description": "Feature Specification: Claude Design parity keystone build",
+  "description": "The 005 (hardened) and 006 research converged on a keystone: wire `sk-design-interface` (judgment) and `mcp-magicpath` (canvas/CLI) into the loop Clau",
   "keywords": [
-    "feature",
-    "specification",
-    "claude",
-    "design",
-    "parity",
+    "005",
+    "hardened",
+    "006",
+    "research",
+    "converged",
     "keystone",
-    "build"
+    "wire",
+    "sk-design-interface",
+    "judgment",
+    "mcp-magicpath",
+    "canvas",
+    "cli",
+    "loop",
+    "clau"
   ],
-  "lastUpdated": "2026-06-14T09:49:50.996Z",
+  "lastUpdated": "2026-06-23T03:49:48.427Z",
   "specId": "007",
   "folderSlug": "claude-design-parity-build",
   "parentChain": [

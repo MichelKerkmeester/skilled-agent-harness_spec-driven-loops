@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "skills",
-      "partial",
-      "adoption",
-      "files",
-      "across",
-      "concentrated",
-      "phase",
-      "004",
-      "audits",
+      "add",
+      "improve",
+      "skill-advisor",
+      "snippets",
+      "code-graph",
+      "audit",
       "existing",
       "phrases",
-      "quality"
+      "quality",
+      "fill",
+      "gaps",
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -107,15 +107,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Both skills have partial trigger_phrases adoption (the 57 files with trigger_phrases across all skills are concentrated here). Phase 004 audits existing phrases for quality and fills remaining gaps. These are smaller, faster to complete than spec-kit.",
+    "causal_summary": "Add or improve trigger_phrases in 40 skill-advisor snippets and 14 code-graph snippets. Audit existing phrases for quality; fill all gaps.",
     "created_at": "2026-06-18T12:37:48.688Z",
-    "last_save_at": "2026-06-18T12:37:48.688Z",
+    "last_save_at": "2026-06-23T03:49:51.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:a7e7ea1f7574a0e0f3c8bcfeac7240dcc6e85a64de3a3bb07fcfe603046d394f",
+    "source_doc_hashes": {
+      "spec.md": "cc64fa0330ebb93fdaa8360f0275c70b72f82e83425ff37d85b19d1a54f8f8db",
+      "plan.md": "40cccaaa6b8a0f864cd0aef9b9d5e9749ff05a7dc290c66d7b725296660b8d33"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

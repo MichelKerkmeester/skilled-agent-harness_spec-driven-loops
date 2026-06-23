@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
-  "description": "Feature Specification: H-1 Final-line exact-string contract",
+  "description": "Our review skills (sk-code-review, deep-review) emit free-form verdicts that are unreliable to parse via regex or NLP",
   "keywords": [
-    "feature",
-    "specification",
-    "h-1",
-    "final-line",
-    "exact-string",
-    "contract"
+    "review",
+    "skills",
+    "sk-code-review",
+    "deep-review",
+    "emit",
+    "free-form",
+    "verdicts",
+    "unreliable",
+    "parse",
+    "via",
+    "regex",
+    "nlp"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.148Z",
+  "lastUpdated": "2026-06-23T03:49:50.338Z",
   "specId": "001",
   "folderSlug": "h1-final-line-contract",
   "parentChain": [

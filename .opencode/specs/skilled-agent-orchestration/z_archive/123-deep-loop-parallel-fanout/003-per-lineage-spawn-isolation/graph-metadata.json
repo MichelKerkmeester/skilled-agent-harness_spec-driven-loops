@@ -123,15 +123,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet.",
+    "causal_summary": "Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet",
     "created_at": "2026-05-30T10:12:01.127Z",
-    "last_save_at": "2026-06-17T19:57:23.695Z",
+    "last_save_at": "2026-06-23T03:49:51.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
+    "source_fingerprint": "sha256:0ab1c4129a9a1e204b796a05379ec7498ce5adca25c7c2fcd4a8aade86d8a548",
+    "source_doc_hashes": {
+      "spec.md": "d5ce95178a21ffebebf1e3dc6d432ba13c020b355b1d5a4911314ebf7f40e0b6",
+      "decision-record.md": "7c2a4092830cbde5792376f6e779a511c49736c17ed1ce0c0af03c441afcb37b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

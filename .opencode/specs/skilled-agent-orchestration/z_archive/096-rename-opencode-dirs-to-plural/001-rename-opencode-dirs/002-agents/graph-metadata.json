@@ -32,7 +32,7 @@
       "checklist",
       "implementation",
       "summary",
-      "files"
+      "docs"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rename `.opencode/agents/` → `.opencode/agents/` (12 agent files moved). Update all 1,532 reference-bearing files. Patch 4 critical configs (CLAUDE.md §5, sk-prompt graph-metadata mirrorPath, deep-research runtime_capabilities mirrorPath, audit_descriptions.py agent-half validators).",
+    "causal_summary": "opencode docs (`https://opencode.ai/docs/agents`) say project-level agent discovery looks for `.opencode/agents/` (plural)",
     "created_at": "2026-05-18T07:49:27.233Z",
-    "last_save_at": "2026-06-15T09:09:33.546Z",
+    "last_save_at": "2026-06-23T03:49:50.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fc5ed778e799f23a5ab48d4d0a7644aaadc86bd897e1e55708147be7745ccee2",
+    "source_doc_hashes": {
+      "spec.md": "6d191c89ad86ef3aee6cd36b75b82882c98ca77a6d5e57e5ee86fb1f6dbca70a",
+      "plan.md": "fd72edcf1ec5bef61016668f65bdf22452aa0c19109355416c312f63a9830890",
+      "tasks.md": "b2505eb04dd0499e054ab36aa34e0eca5c6f3b0a2e5b4024c1aa030015ff7548",
+      "checklist.md": "1f33b8ae9a405fddc4bb3182dc58378e23b255537e0fba136f412c0f99908ba7",
+      "implementation-summary.md": "6684e5f9ef9a740f18b527c4cbcc87891e5bb39006a38687d3afbad4dc11fbf6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

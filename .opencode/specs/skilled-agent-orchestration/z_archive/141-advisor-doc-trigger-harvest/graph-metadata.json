@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation`) proved with code evidence that the detailed frontmatter block (`trigger_phrases`, `importance_tier`, `contextType`) carried by 103 of 369 skill reference/asset docs has **zero runtime consumers**: Spec Kit Memory's index gate (`memory-parser.ts` `isIndexablePath`) admits only spec documents and constitutional memories; the skill advisor compiles only each skill's root `graph-metadata.json` (`skill_graph_compiler.py`, `indexSkillMetadata`, with a 24-phrase schema cap in `skill-derived-v2.ts:43`); and the code graph excludes `.opencode/skills/**` by default (`index-scope.ts`).",
+    "causal_summary": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation`) proved with code evidence that the detailed frontmatter block (`triggerphrases`, `importancetier`, `contextType`) carried by 103 of 369 skill reference/asset docs has zero runtime consumers: Spec Kit Memory's index gate (`memory-parser.ts` `isIndexablePath`) admits only spec documents and constitutional memories; the skill advisor compiles only each skill's root `graph-metadata.json` (`skillgraphcompiler.py`, `indexSkillMetadata`,",
     "created_at": "2026-06-11T07:50:07Z",
-    "last_save_at": "2026-06-17T19:57:23.870Z",
+    "last_save_at": "2026-06-23T03:49:52.026Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:1942b48f09d624f93c01966af0b737ffc7bbef76bc921c27a147028eb0c9d02d",
+    "source_doc_hashes": {
+      "spec.md": "5337bf1906b21c206247dacbc12aa2e6fef2a3d09a73a83072458cda8914a1e7",
+      "plan.md": "ea9aa146972d9c8ba266f4efa7bfc7148a2bcf440c6b48d77c7d1048a027b445",
+      "tasks.md": "615821f339130383e1e06f3a5a4d0150461542894d5f7b1d552589387890759c",
+      "checklist.md": "907c590fc785f5c2705b763399956aeec8256922cb0e42619e66615d43d65b33",
+      "implementation-summary.md": "6e8d175314d5c05347fe0edf2c7f7be6462a154a7accae826f198648e0d51a77",
+      "handover.md": "3851ea85fa0fbef1c665c6e9d3b1cbdec368533005156705242361baf515c857"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

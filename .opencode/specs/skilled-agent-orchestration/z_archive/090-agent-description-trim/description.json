@@ -1,14 +1,26 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/090-agent-description-trim",
-  "description": "Feature Specification: Agent Description Trim",
+  "description": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by pac",
   "keywords": [
-    "feature",
-    "specification",
-    "agent",
-    "description",
-    "trim"
+    "doctor",
+    "skill-budget",
+    "audit",
+    "shipped",
+    "packet",
+    "086",
+    "surfaced",
+    "agents",
+    "whose",
+    "descriptions",
+    "exceed",
+    "130-char",
+    "soft",
+    "target",
+    "none",
+    "touched",
+    "pac"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.362Z",
+  "lastUpdated": "2026-06-23T03:49:49.981Z",
   "specId": "090",
   "folderSlug": "agent-description-trim",
   "parentChain": [

@@ -1,16 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout",
-  "description": "Spec 123 — deep-loop native fan-out parallel multi-executor",
+  "description": "Phase parent: add an opt-in fan-out layer above the existing single-executor sequential loop so /deep:start-research-loop and /deep:start-review-loop",
   "keywords": [
-    "spec",
-    "123",
-    "deep-loop",
-    "native",
+    "phase",
+    "parent",
+    "add",
+    "opt-in",
     "fan-out",
-    "parallel",
-    "multi-executor"
+    "layer",
+    "existing",
+    "single-executor",
+    "sequential",
+    "loop",
+    "deep",
+    "start-research-loop",
+    "start-review-loop"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.122Z",
+  "lastUpdated": "2026-06-23T03:49:51.372Z",
   "specId": "123",
   "folderSlug": "deep-loop-parallel-fanout",
   "parentChain": [

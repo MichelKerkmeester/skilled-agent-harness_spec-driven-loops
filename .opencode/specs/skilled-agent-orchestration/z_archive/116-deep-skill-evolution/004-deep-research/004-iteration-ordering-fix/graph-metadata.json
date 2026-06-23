@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Surfaced by deep-review iter-5 (`DR-006`); confirmed by iter-7 + iter-8.",
+    "causal_summary": "`reduce-state.cjs:874` uses default `.sort()` (lexical) on iteration filenames",
     "created_at": "2026-05-23T05:45:00Z",
-    "last_save_at": "2026-06-22T18:55:00.675Z",
+    "last_save_at": "2026-06-23T03:49:50.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d0a9aca330dacbd9b79247d5143cb32dafdf71345efe4df7a1522060bb672dff",
+    "source_doc_hashes": {
+      "spec.md": "a13c6bca69774037305544e6a7c5ad2482d28e1c54ae885191dee99870141676",
+      "plan.md": "14c7371cd9ea7c4e6b49bfe92a6f63f9dde45e251614b697715cdd66af47d9a0",
+      "tasks.md": "670f7b3646e4b527f144e0739621f2f0858f2b26c1a89fd89d681bac6e1d01a0",
+      "checklist.md": "0aaa1ab4d7387a05abe6dc44dd3689a88e9f46b0216db03c77aabfa5cf21a278",
+      "implementation-summary.md": "3464593bb7c95629e0ab30650b110794b3ba598c2c36b62c1e902456d34d40d2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

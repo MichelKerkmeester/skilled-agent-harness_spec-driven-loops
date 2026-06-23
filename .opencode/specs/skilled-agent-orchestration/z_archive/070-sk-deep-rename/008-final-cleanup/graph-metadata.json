@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 070 still has three approved P1 cleanup gaps. Advisor routing can prefer single-pass `sk-code-review` over `deep-review` for iterative review-loop audit prompts, the internal graph family still uses the old `sk-deep` identity, and `sk-code` metadata uses a rejected `reference-category` entity kind.",
+    "causal_summary": "Packet 070 still has three approved P1 cleanup gaps",
     "created_at": "2026-05-05T17:45:00Z",
-    "last_save_at": "2026-06-15T09:09:33.467Z",
+    "last_save_at": "2026-06-23T03:49:49.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:45:00Z",
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:29fef4f4b5ff16d10ba71a7fc14bce4b45c77c8734faf70b5f874e6a03ce1d60",
+    "source_doc_hashes": {
+      "spec.md": "593fd9d396d328cbcf62d6300bf958acf2b8a7478354ddbbe304340c438b9fe4",
+      "plan.md": "b556a8e35d888a72231076f821d1f2e94a348f61028a5b525adc4a5fe2a49853",
+      "tasks.md": "4334fb4ff4b3ef69aea7a51c0276624361cf65f2ef1e721241c09b858c56828e",
+      "checklist.md": "e87ef99fdfbb68b3df0f832e99821af92ca868224101498b9ad521175369d129",
+      "decision-record.md": "c2f815ef3a67995ad692c6a6539368b379cb5bfabdfd0a00f0a8cbcd8f8711d2",
+      "implementation-summary.md": "10eb05a3d3acc1aaae7ba0ec0b1a7756156d45cc74a060ae0d1ebcc3ad3ed296"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

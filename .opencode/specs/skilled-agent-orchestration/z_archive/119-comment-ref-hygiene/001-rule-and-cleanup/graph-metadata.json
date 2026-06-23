@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and task/checklist ids — directly into inline code comments. Those artifacts get renamed, renumbered, or archived while the code lives on, so the comment rots into a dangling, misleading pointer. This packet adds a durable rule to the `sk-code` skill (covering both the OpenCode and Webflow surfaces) that forbids the practice, reconciles the existing sk-code guidance that currently *teaches* it, and cleans the existing offenders out of the deep and system skills' source-code comments.",
+    "causal_summary": "Inline code comments across the deep and system skills name specific ephemeral artifacts (`// Phase 002 T011: ...`, `// ADR-004: ...`, `featurecatalog/...`)",
     "created_at": "2026-05-27T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:00.886Z",
+    "last_save_at": "2026-06-23T03:49:51.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:d7ade7aca6f27accab3d1900c38cd460eb47b1b1d4fe1d56be8e85fb9e0431b4",
+    "source_doc_hashes": {
+      "spec.md": "604822c8004c21c054d005db3889a248ec1d5a1b765b591b4b3d25642e8ce1fb",
+      "plan.md": "be5e61986e32d994f808ceccdea5570510316b10ed00c89bc77925ca3fa5621c",
+      "tasks.md": "49c9b313dafe065db404738ff13618f2223fba69da68a12f1f64ca983de6e311",
+      "checklist.md": "927788ad7c209cde8b1c63fdf6896c127e78cb823c3ae57ae5b997b01dec0d58",
+      "decision-record.md": "74adaa6a06f3b624bc17b1c1bcb5eb4b2285a3e01c10b0cf40bc83b7444125e2",
+      "implementation-summary.md": "39d846670dbd860de296eb1a8de2d130a421a21d4b9f40d1a43ef3cdb20094f4",
+      "handover.md": "54b8a19814349d1dc055835f105d27bf6995933701ff46181020132d8bb3e6a9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

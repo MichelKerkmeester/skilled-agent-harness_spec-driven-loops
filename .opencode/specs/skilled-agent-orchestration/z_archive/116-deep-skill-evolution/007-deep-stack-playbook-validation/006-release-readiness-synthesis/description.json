@@ -1,16 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
-  "description": "Feature Specification: Release-Readiness Synthesis (Deep-Loop Playbook 006)",
+  "description": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
   "keywords": [
-    "feature",
-    "specification",
-    "release-readiness",
-    "synthesis",
-    "deep-loop",
-    "playbook",
-    "006"
+    "validation",
+    "run",
+    "spans",
+    "177",
+    "scenarios",
+    "across",
+    "five",
+    "per-skill",
+    "children",
+    "001-005",
+    "maintaining",
+    "own",
+    "verdict",
+    "ledger"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.821Z",
+  "lastUpdated": "2026-06-23T03:49:51.063Z",
   "specId": "006",
   "folderSlug": "release-readiness-synthesis",
   "parentChain": [

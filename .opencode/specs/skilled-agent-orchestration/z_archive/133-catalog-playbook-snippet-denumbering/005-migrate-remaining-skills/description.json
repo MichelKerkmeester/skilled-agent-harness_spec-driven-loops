@@ -1,16 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
-  "description": "Feature Specification: Migrate Remaining Skills (Wave C)",
+  "description": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli- + 5 sk- + 3 mcp-), most of which are playbook-only",
   "keywords": [
-    "feature",
-    "specification",
-    "migrate",
     "remaining",
+    "310",
+    "numbered",
+    "snippet",
+    "files",
+    "live",
+    "twelve",
+    "smaller",
     "skills",
-    "wave"
+    "system-code-graph",
+    "cli",
+    "mcp",
+    "playbook-only"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.454Z",
+  "lastUpdated": "2026-06-23T03:49:51.741Z",
   "specId": "005",
   "folderSlug": "migrate-remaining-skills",
   "parentChain": [

@@ -14,15 +14,14 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "re-architect",
-      "opencode",
-      "skills",
+      "007",
       "deep-improvement",
-      "lanes",
-      "handover",
       "3-lane",
       "doc",
       "rebuild",
+      "re-architect",
+      "lanes",
+      "handover",
       "packet",
       "122",
       "child"
@@ -120,15 +119,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Re-architect both `.opencode/skills/deep-improvement/feature_catalog/` and",
+    "causal_summary": "007 — Deep-Improvement 3-Lane Doc Rebuild",
     "created_at": "2026-06-18T12:37:48.645Z",
-    "last_save_at": "2026-06-18T12:37:48.645Z",
+    "last_save_at": "2026-06-23T03:49:51.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:377fa11b06507bbe474e3e7bdffaabcdc7401a93c6f044f9cbddfb1adf0262f5",
+    "source_doc_hashes": {
+      "spec.md": "760637c1843bf8abd575109506ef0ad295391c01c0f1d991eb19bb1a5926dcdd",
+      "handover.md": "380e4e5927088b72b8a8504d947854562e09dda0caccf32e826bf1e0e10e91d8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

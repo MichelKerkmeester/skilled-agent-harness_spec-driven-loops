@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/003-opencode-internals",
-  "description": "Feature Specification: Phase 003 Opencode Internals",
+  "description": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "003",
+    "skill",
+    "folder",
+    "renamed",
+    "active",
     "opencode",
-    "internals"
+    "consumers",
+    "still",
+    "load",
+    "score",
+    "document",
+    "test",
+    "old"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.338Z",
+  "lastUpdated": "2026-06-23T03:49:49.909Z",
   "specId": "003",
   "folderSlug": "opencode-internals",
   "parentChain": [

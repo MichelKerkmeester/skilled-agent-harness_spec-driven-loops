@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 12** of the sk-design-interface specification — a doc-realignment phase in the same spirit as phase 008.",
+    "causal_summary": "Phase 009 added the Mobbin/Refero design-reference capability and phase 011 gave it a hybrid initiative/ask routing gate, but the featurecatalog never catalogued the design-references capability and the manualtestingplaybook never tested it",
     "created_at": "2026-06-17T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:22.997Z",
+    "last_save_at": "2026-06-23T03:49:48.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f4a21dd4c3ba1bf671f21fb66ee5e55e6439f7a9b956e3d0c7351c9a1abe1ac6",
+    "source_doc_hashes": {
+      "spec.md": "ed89f41cc6cdb2835e9a7032c082f2794c182d95654dae4d477d9ad859c84899",
+      "plan.md": "3fb01388ecbe4c73467fd80916056c02f5968c9eaa0f47ae066a4c02be345649",
+      "tasks.md": "6d938b9fb60b411e6f7aa6882ee9db2e959cf3d84fd3ba8400f14de502317a20",
+      "implementation-summary.md": "54f48f1d8160b40fd45eff89124d0f423df3fefb120393b9f88dae0cb5615c9b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

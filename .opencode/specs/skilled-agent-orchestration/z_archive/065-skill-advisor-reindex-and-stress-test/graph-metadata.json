@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is now the container for the full skill-advisor routing quality program.",
+    "causal_summary": "Phase parent for completed skill-advisor reindex/stress-test baseline plus follow-on router calibration phases discovered by that campaign.",
     "created_at": "2026-05-18T07:49:27.122Z",
-    "last_save_at": "2026-06-05T12:47:32.751Z",
+    "last_save_at": "2026-06-23T03:49:49.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,14 @@
       "checklist.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:0312384036aa263a83ef10cf03ef4e67781d348c6084479e8273bf2c3dfcb1d6",
+    "source_doc_hashes": {
+      "spec.md": "425f18221f9b63bf1cd7c25257620a1fdada7ac1a2004bd39edf3183d65de04f",
+      "plan.md": "1aa5bb6446be647d7ad46eb4e5b33a700cb7914e4c750b3c85fe1b0613573b23",
+      "tasks.md": "f427550397a24c0a2114c7435de82e791e60aee6f361e251d2d6e885442255c6",
+      "checklist.md": "9dc2271ea500651e69f8f20289186376f500fe0b0a0017df8c0164e48e00891e",
+      "resource-map.md": "09a9003517704abecebbfb2add38c4c3a13fea3e1649734040bc21e87ea61e58"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

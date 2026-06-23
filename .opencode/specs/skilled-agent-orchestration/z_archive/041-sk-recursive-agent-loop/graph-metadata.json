@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases. Keeping any of those phases out of the root packet would leave the program history incomplete and make the completion state harder to trust.",
+    "causal_summary": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-06-05T12:47:32.623Z",
+    "last_save_at": "2026-06-23T03:49:49.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:61441340df93f438c251634fd99dc368210de7da451034e9fd4e78abb9e900ac",
+    "source_doc_hashes": {
+      "spec.md": "c1b487e7a92de1f167ec65244b4b2032163415294e47b7bcac8ebb3d5446decd",
+      "research/research.md": "75dc5075740071b6df579139d6e2b701e1d5f50f75c657445fa3bf6ec61c2617",
+      "resource-map.md": "e50ad180b5078fb06f8500f2e585027c2440283f5b215575c12b3cd32b1ab114"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

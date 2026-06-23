@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A cross-skill audit of the deep skill family (`deep-research`, `deep-review`, `deep-context`, `deep-ai-council`, `deep-improvement`) against the `deep-loop-runtime` feature catalogue revealed three exploitable gaps: `deep-improvement` used hand-rolled, non-atomic JSONL writes with a silent-drop pattern; `deep-review` had no loop-lock, enabling a concurrent-run race; and `deep-context`'s executor-audit env was prose-only. Three targeted fixes closed these gaps. Five deliberate non-fixes (judged over-engineering after a cli-opencode architect consult and two independent confidence-gate audits) are recorded in `decision-record.md` as accepted ADRs.",
+    "causal_summary": "The deep skill family wraps `deep-loop-runtime` but each skill adopted runtime features at different points in time, leaving three gaps:",
     "created_at": "2026-06-06T23:59:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.811Z",
+    "last_save_at": "2026-06-23T03:49:51.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5a259ea1aaeaf6c44fd81017b081419baa7f53cba7d85ab8d88130215bb664b9",
+    "source_doc_hashes": {
+      "spec.md": "d8d343fab95d0fc2029f8279cdf1af85c3c776fb16022d923a1de5f596c4e44a",
+      "plan.md": "ee1b14d4181780d1537d46d04973f5fac17cafd7fc70d49f2be64a6e925faf10",
+      "tasks.md": "3578291c5af1b4b258e45d55a6d91009b4640bff11bc1ba97040ab7a170a66c0",
+      "checklist.md": "06a77a52fc366fa3a8433c79cb8947449be2538872ce213a1ff4d0484241baf0",
+      "decision-record.md": "ae277e1690820114e58843795fa884ecc7aa2cb97c00c50901e023349dec8545",
+      "implementation-summary.md": "24f809706738e9e5c0f1b1215842679e57bcb2abb20fe1d5583c8f684c637a06"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

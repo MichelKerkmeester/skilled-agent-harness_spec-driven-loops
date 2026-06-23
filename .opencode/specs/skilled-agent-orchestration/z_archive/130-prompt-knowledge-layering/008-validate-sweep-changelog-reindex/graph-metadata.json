@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "causal_summary": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms the whole system is internally consistent",
     "created_at": "2026-06-05T12:47:32.518Z",
-    "last_save_at": "2026-06-17T19:57:23.750Z",
+    "last_save_at": "2026-06-23T03:49:51.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4ddb5367e5d737a85f9ad9d065b92e6c5ab4f9df63c4677b894a57b7c52611ce",
+    "source_doc_hashes": {
+      "spec.md": "ecfb4851207db85debeb73613f204c93c41ffb9d3fee244493d43f74593f0fbe",
+      "plan.md": "4c518bc9554dcc5fbf8c9b610eac6406808f1d37e27339bf55e6418b1c28b48e",
+      "tasks.md": "37f775d881056126308da715aca1de29eb2f71dee2f7683c4f74bdd44c0f9bb6",
+      "implementation-summary.md": "f92df4424ff604e2a2fb0d7ee405c33b569a2c012b964f837affb1d2f4a54447"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

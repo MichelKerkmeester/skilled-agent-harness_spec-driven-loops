@@ -1,16 +1,22 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill",
-  "description": "Feature Specification: Deep AI Council Skill Extraction",
+  "description": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifac",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
     "council",
-    "skill",
-    "extraction"
+    "workflow",
+    "currently",
+    "belongs",
+    "system-spec-kit",
+    "specialized",
+    "multi-agent",
+    "planning",
+    "own",
+    "agent",
+    "persona",
+    "artifac"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.023Z",
+  "lastUpdated": "2026-06-23T03:49:50.193Z",
   "specId": "101",
   "folderSlug": "deep-multi-ai-council-skill",
   "parentChain": [

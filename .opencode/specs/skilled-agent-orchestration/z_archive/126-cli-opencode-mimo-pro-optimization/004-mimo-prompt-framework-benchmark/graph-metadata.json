@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Mirrors `120/003` (the MiniMax prompt-framework benchmark, which found TIDD-EC + dense pre-planning beat RCAF). The user wants the same treatment for MiMo: \"what prompting techniques work best for MiMo if used by another AI through cli-opencode,\" like the SWE-1.6 and MiniMax-2.7 benchmarks. Phase 002 ensures MiMo dispatches cleanly through the deep-improvement model-benchmark lane (no `--agent general`), and a live probe confirmed `xiaomi-token-plan-ams/mimo-v2.5-pro` responds — so **real dispatches are feasible**, not scaffold-only.",
+    "causal_summary": "We have no empirical evidence for which prompt framework yields the best MiMo-V2.5-Pro output when another AI drives it through cli-opencode",
     "created_at": "2026-06-01T20:21:29.319Z",
-    "last_save_at": "2026-06-17T19:57:23.720Z",
+    "last_save_at": "2026-06-23T03:49:51.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9f8724c3b85936fbddd5e13a3475a3a907330abe973310a1ddb209e2dbb619f9",
+    "source_doc_hashes": {
+      "spec.md": "3c24d82e5790a15afc2827da9ac1a925daf3dfa15ffc7480000e94d514c7ffaf",
+      "plan.md": "d80f89d7e89a9da06bbffce646a9dcc0688b43e0f8e6f90484e0b2f4e5065fc3",
+      "tasks.md": "e1d322bc5966b7f3bac288bc7dada54718e7654f66328e7d3cec6bfa2e5789bf",
+      "checklist.md": "95d17145730a8a506ed0762c24bab27d49396410eae83badab82c93d608a3448",
+      "implementation-summary.md": "b5e76ec9023ea999c36d9ebf33368b2a31c52721762cf9070c07d683dbe5d97f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

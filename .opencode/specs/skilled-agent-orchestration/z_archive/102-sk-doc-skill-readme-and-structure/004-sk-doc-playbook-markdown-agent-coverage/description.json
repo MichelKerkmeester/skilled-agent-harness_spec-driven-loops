@@ -1,16 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage",
-  "description": "Feature Specification: sk-doc playbook markdown-agent coverage",
+  "description": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
+    "003",
+    "introduced",
+    "markdown",
+    "agent",
+    "dedicated",
     "sk-doc",
+    "documentation",
+    "executor",
+    "manual",
+    "testing",
     "playbook",
-    "markdown-agent",
-    "coverage"
+    "updated"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.089Z",
+  "lastUpdated": "2026-06-23T03:49:50.278Z",
   "specId": "004",
   "folderSlug": "sk-doc-playbook-markdown-agent-coverage",
   "parentChain": [

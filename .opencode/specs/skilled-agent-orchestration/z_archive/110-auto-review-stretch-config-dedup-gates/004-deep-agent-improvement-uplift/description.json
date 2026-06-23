@@ -1,17 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
-  "description": "Feature Specification: M-3 Mutation signature dedup for deep-agent-improvement",
+  "description": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
   "keywords": [
-    "feature",
-    "specification",
-    "m-3",
+    "deep-agent-improvement",
+    "evaluates",
+    "candidate",
+    "agent",
+    "mutations",
+    "across",
+    "dimensions",
+    "multiple",
     "mutation",
-    "signature",
-    "dedup",
-    "deep-agent-improvement"
+    "types",
+    "per",
+    "dimension"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.201Z",
+  "lastUpdated": "2026-06-23T03:49:50.392Z",
   "specId": "004",
   "folderSlug": "deep-agent-improvement-uplift",
   "parentChain": [

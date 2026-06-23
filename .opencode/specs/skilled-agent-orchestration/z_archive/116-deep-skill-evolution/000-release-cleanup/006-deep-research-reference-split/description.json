@@ -1,16 +1,16 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/006-deep-research-reference-split",
-  "description": "Feature Specification: deep-research reference split and router alignment",
+  "description": "`deep-research/references/convergence.md` and `deep-research/references/stateformat.md` have become long monoliths",
   "keywords": [
-    "feature",
-    "specification",
     "deep-research",
-    "reference",
-    "split",
-    "router",
-    "alignment"
+    "references",
+    "convergence",
+    "stateformat",
+    "become",
+    "long",
+    "monoliths"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.404Z",
+  "lastUpdated": "2026-06-23T03:49:50.615Z",
   "specId": "006",
   "folderSlug": "deep-research-reference-split",
   "parentChain": [

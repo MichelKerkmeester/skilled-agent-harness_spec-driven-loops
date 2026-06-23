@@ -26,7 +26,7 @@
       "three-tier",
       "deep",
       "start-review-loop",
-      "same"
+      "feature"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/deep/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.",
+    "causal_summary": "Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`",
     "created_at": "2026-05-11T11:01:36Z",
-    "last_save_at": "2026-06-15T09:09:33.595Z",
+    "last_save_at": "2026-06-23T03:49:50.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5d6cf5c63fd4ce096e46d6a19cea9cb5e8e13e41c5f7a6470290f0d79def4244",
+    "source_doc_hashes": {
+      "spec.md": "3ebec389dce5b429507b239af344788e40fc4dc6190b0398177f4c9317e099e5",
+      "plan.md": "65916b47d7ef23955074c164ce52190176bd507dda6413d36f5110a2af99429a",
+      "tasks.md": "95968c4f315d6263183a7028cb1762f6ebc387c4e008f0cca61e21d5b6703372",
+      "checklist.md": "9416a81a75d4e1b6faa284e1b07d917aad57c485ff933368000c9fabb057753e",
+      "implementation-summary.md": "499bede1f98e31cc3fce898798bcbacaca9c7e63f6f10f2929648103403b2731"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

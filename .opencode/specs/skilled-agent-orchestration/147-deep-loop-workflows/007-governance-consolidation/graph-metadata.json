@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "All five skills ship a feature_catalog and a manual_testing_playbook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council). Feature-ID prefixes collide (CP- reused across research, review, and improvement at different bands), some count self-checks are machine-enforced literals (deep-improvement == 48) and others are prose, the council catalog is UPPERCASE while the others are lowercase, and there is pre-existing intra-skill drift (false \"no catalog exists\" prose, duplicate headings). Every per-feature file embeds old skill-rooted SOURCE FILES paths.",
+    "causal_summary": "All five skills ship a featurecatalog and a manualtestingplaybook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council)",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-06-22T18:54:59.100Z",
+    "last_save_at": "2026-06-23T03:49:48.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f74079c268f9e82b102ba3b096c95b2b6ebae9f9adfdb3abb4c0f93d1825f7b8",
+    "source_doc_hashes": {
+      "spec.md": "1c83a6a220ebb6307d0666d6de673cee8efad7dd2c9297afdbd9139942783c65",
+      "plan.md": "8d68584eddc61f44e426dcacc5f0dd46abccbf5b19393e0406d282d315fcc68f",
+      "tasks.md": "c57e1ca1c7f366525fbc207b3f42eaebcdf50330a70d32309b433ccb00080179",
+      "checklist.md": "431596ede273b3ca746d0b4f689481601443a776086249e0dbd33d09908e34ce",
+      "decision-record.md": "6a5cb8a8a2a554b1d357708c7dd3dc676cd5a8ffdf692a14243b9ab76780ecbc",
+      "implementation-summary.md": "d61ad010c10ecaf4d7c5890c150a7ae81fdd801dd0b84875745be423d723d442"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

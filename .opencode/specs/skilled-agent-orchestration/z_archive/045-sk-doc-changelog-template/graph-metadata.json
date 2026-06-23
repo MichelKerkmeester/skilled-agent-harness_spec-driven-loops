@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelog_template`). Every other documentation template (README, install guide, llms.txt, frontmatter, feature catalog, manual playbook) lives under `.opencode/skills/sk-doc/assets/documentation/`. The mismatch hid the template from sk-doc Smart Routing and made the path inconsistent with the rest of the documentation template surface.",
+    "causal_summary": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelogtemplate`)",
     "created_at": "2026-04-18T09:14:07.277Z",
-    "last_save_at": "2026-06-05T12:47:32.678Z",
+    "last_save_at": "2026-06-23T03:49:49.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:44d1e60be51ab162e96bcacbcc22aa316fc8b5bbafa9ffe6a86785d81b7097b5",
+    "source_doc_hashes": {
+      "spec.md": "98bc8f144b3b533d2c3e2d7164a95f06749e4fd57e2e1f3d084e838efe39d2ce",
+      "plan.md": "2883572782c827daca47685f501c845c1b7c343ca813f6cf09809ec21dd95194",
+      "tasks.md": "afb1517b6140acf422537bf0c1d795b2a1dac81921af3dc12e097d1fb7e39aca",
+      "implementation-summary.md": "0de2bb767000a4e106129f2a050b3c2055b4e4e8e56baac659df5160adba5683"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

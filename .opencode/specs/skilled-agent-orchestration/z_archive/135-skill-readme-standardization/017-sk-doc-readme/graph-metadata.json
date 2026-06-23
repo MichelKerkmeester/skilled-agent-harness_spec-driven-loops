@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "third",
-      "skill",
-      "batch",
-      "doc-standards"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 17**, the third skill in Batch D (sk-*), and the doc-standards skill itself.",
+    "causal_summary": "The sk-doc README is a tabular reference card with no problem-first entry point, and it is heavily count-stale: the version (1.6.0.0) disagrees with SKILL.md (1.5.0.0) and the newest changelog (1.7.0.0), it says six scripts when there are eight, thirteen references when there are fourteen, seven flowchart patterns when there are six files, and three skill templates when there are five",
     "created_at": "2026-06-07T14:25:14Z",
-    "last_save_at": "2026-06-17T19:57:23.842Z",
+    "last_save_at": "2026-06-23T03:49:51.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3e30bd64bfd1b19c0029fede35099fdde83c8e93fa1146424e8258518332010",
+    "source_doc_hashes": {
+      "spec.md": "b4db94968ecc3d02c504d03ffbd06b1db201119ee4cb02f70aa7582a2798815d",
+      "plan.md": "d7cb3322228290743fecb53367a4c6b081c47fd808b4b184fbf90b5f66267ab8",
+      "tasks.md": "1120293dae4e6c0970604f99d4fca520ce9df9413a65e4179b057a002d51f22c",
+      "implementation-summary.md": "3fe072b29fa689df3c03adeff9a0f0ecf59ab2e8757bbd2e51b0e19d2f0aeb88"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

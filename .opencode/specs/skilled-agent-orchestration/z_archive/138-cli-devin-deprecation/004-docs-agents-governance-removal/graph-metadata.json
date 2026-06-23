@@ -29,10 +29,10 @@
       "tasks",
       "implementation",
       "summary",
-      "specification",
-      "verified",
-      "line-resolved",
-      "edit"
+      "devin",
+      "appeared",
+      "agent",
+      "rosters"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the cli-devin deprecation specification. The verified, line-resolved edit list lives in ../context/context-report.md §2.",
+    "causal_summary": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md, README.md, skills index), cli- sibling skill docs, deep-context skill refs, constitutional docs (cli-dispatch-skill-preload, post-implementation-deep-review), and shared cli references",
     "created_at": "2026-06-08T16:10:30Z",
-    "last_save_at": "2026-06-17T19:57:23.858Z",
+    "last_save_at": "2026-06-23T03:49:51.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c0cfc9ee75930641b49e0ea51fe17e99ae9d571945871d698a00c53f1f1ecf68",
+    "source_doc_hashes": {
+      "spec.md": "f1c996c2a16f607bdba5b5667795134d37f8468f161ee8a857d3991e96c2e00e",
+      "plan.md": "f5c25c4d42de30dcf4cbb8d8a4853074dce0e4f415fcebe2a08ca454618d6d0b",
+      "tasks.md": "c42da77a85287ea8f9d41e43e2b4d0bb2f3d7d976ccf4d2b2ece72da0d10f254",
+      "implementation-summary.md": "5084dfb0baab185fe2e5480bd0536751736a70346cc00ed8e5036cc498d3fb2a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

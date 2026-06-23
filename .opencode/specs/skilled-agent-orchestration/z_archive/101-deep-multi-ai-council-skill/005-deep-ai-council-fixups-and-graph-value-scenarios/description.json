@@ -1,20 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
-  "description": "Feature Specification: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios",
+  "description": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
   "keywords": [
-    "feature",
-    "specification",
     "101",
-    "005",
-    "deep",
-    "council",
-    "fix-ups",
-    "graph",
-    "value",
-    "scenarios"
+    "004",
+    "playbook",
+    "run",
+    "validated",
+    "scenarios",
+    "two",
+    "pre-existing",
+    "vitest",
+    "failures",
+    "surfaced"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.049Z",
+  "lastUpdated": "2026-06-23T03:49:50.230Z",
   "specId": "005",
   "folderSlug": "deep-ai-council-fixups-and-graph-value-scenarios",
   "parentChain": [

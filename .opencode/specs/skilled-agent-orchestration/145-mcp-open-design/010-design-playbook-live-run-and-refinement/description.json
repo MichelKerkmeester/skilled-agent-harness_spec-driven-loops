@@ -1,16 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/010-design-playbook-live-run-and-refinement",
-  "description": "Feature Specification: Live-run and refine the design playbooks",
+  "description": "The mcp-open-design (4 scenarios) and sk-design-interface (9 scenarios) manual testing playbooks had never been executed end to end against the real t",
   "keywords": [
-    "feature",
-    "specification",
-    "live-run",
-    "refine",
-    "design",
-    "playbooks"
+    "mcp-open-design",
+    "scenarios",
+    "sk-design-interface",
+    "manual",
+    "testing",
+    "playbooks",
+    "never",
+    "executed",
+    "end",
+    "against",
+    "real"
   ],
-  "lastUpdated": "2026-06-15T13:45:21.737Z",
+  "lastUpdated": "2026-06-23T03:49:48.622Z",
   "specId": "010",
   "folderSlug": "design-playbook-live-run-and-refinement",
   "parentChain": [

@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "second",
-      "skill",
-      "batch",
-      "feature"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 16**, the second skill in Batch D (sk-*).",
+    "causal_summary": "The sk-code README is a tabular reference card with no problem-first entry point, and it carries a material accuracy error: it presents MOTIONDEV as a third code surface and a valid surface-override value, when SKILL.md and the reference docs define only two surfaces (WEBFLOW, OPENCODE) plus an UNKNOWN fallback, with MOTIONDEV a cross-stack resource intent loaded after surface detection",
     "created_at": "2026-06-07T14:07:55Z",
-    "last_save_at": "2026-06-17T19:57:23.841Z",
+    "last_save_at": "2026-06-23T03:49:51.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f9634c452808bd569052850d94853d709bddcfe5d19f1e398bd039996dcd2fa7",
+    "source_doc_hashes": {
+      "spec.md": "51a443009e1ba52c91c68be1039831c3471142b03e4be6e2ab3724c9ac46e36d",
+      "plan.md": "ea88f6ff26429521f434f30da0c2a8ced1004a0daf7885f9002d82216c8d7326",
+      "tasks.md": "ade19e0837fe381f1f6600a6671b8679274c93a728705b342a2eca7d43b65fa2",
+      "implementation-summary.md": "440261152cfdc5d076037cb6f891e1dc16164de9007243f7c99f7ed470109830"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

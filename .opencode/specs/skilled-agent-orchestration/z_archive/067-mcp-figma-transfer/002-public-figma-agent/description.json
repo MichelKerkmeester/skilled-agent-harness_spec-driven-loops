@@ -1,17 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/002-public-figma-agent",
-  "description": "Feature Specification: Phase 2 — Dual-publish Figma agent to AI_Systems/Public",
+  "description": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "dual-publish",
+    "produced",
+    "internal-team-framed",
+    "barter",
     "figma",
     "agent",
-    "public"
+    "commit",
+    "690b498",
+    "files",
+    "234k",
+    "markdown"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.615Z",
+  "lastUpdated": "2026-06-23T03:49:49.606Z",
   "specId": "002",
   "folderSlug": "public-figma-agent",
   "parentChain": [

@@ -1,13 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/006-budget-pattern-propagation",
-  "description": "Feature Specification: cross-skill propagation",
+  "description": "Phase C lands the budget engine in cli-devin only",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-skill",
-    "propagation"
+    "phase",
+    "lands",
+    "budget",
+    "engine",
+    "cli-devin",
+    "only"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.335Z",
+  "lastUpdated": "2026-06-23T03:49:50.539Z",
   "specId": "006",
   "folderSlug": "budget-pattern-propagation",
   "parentChain": [

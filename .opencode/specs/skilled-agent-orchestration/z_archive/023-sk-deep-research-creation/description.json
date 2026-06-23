@@ -1,15 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/023-sk-deep-research-creation",
-  "description": "Feature Specification: Autonomous Deep Research Loop",
+  "description": "The current `/speckit:research` workflow is single-pass only",
   "keywords": [
-    "feature",
-    "specification",
-    "autonomous",
-    "deep",
+    "current",
+    "speckit",
     "research",
-    "loop"
+    "workflow",
+    "single-pass",
+    "only"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.169Z",
+  "lastUpdated": "2026-06-23T03:49:49.014Z",
   "specId": "023",
   "folderSlug": "sk-deep-research-creation",
   "parentChain": [

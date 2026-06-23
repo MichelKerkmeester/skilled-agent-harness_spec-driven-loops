@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create a repo-native `sk-improve-agent` system that borrows the good parts of `autoagent-main` without copying its trust boundary. The MVP is evaluator-first and proposal-only: it runs bounded experiments against one canonical source surface, scores candidates independently, records every attempt in an append-only ledger, and blocks canonical file mutation until the scorer and promotion contract are proven.",
+    "causal_summary": "This repo now has enough orchestration, state, and packaging infrastructure to attempt automatic agent iteration, but it does not yet have the one thing that makes such a loop trustworthy: a bounded evaluator contract tied to a single canonical mutation surface",
     "created_at": "2026-04-12T09:02:50.185Z",
-    "last_save_at": "2026-05-30T10:12:01.211Z",
+    "last_save_at": "2026-06-23T03:49:49.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b1b2485c6bcec8e1711b2362e40420abfca4a05e800a1d2539772cc65c18eb57",
+    "source_doc_hashes": {
+      "spec.md": "9a55de6368b1dad499b253cb1b0fec9ca5590281c5b31794dd20b269aa222693",
+      "plan.md": "608fca00bbf7ca9427214e560b687db46940d190661eeb3e64e7acd6968e1cf8",
+      "tasks.md": "a5c7f23c133f13f599940eac80bda9def0b62ddbd77e658ee75d4126a1e5bbdc",
+      "checklist.md": "a64fe1881599787b1d53cee3fd90a94b8e3626f700bd398dedfb83dd59c0c7ed",
+      "decision-record.md": "21d4bd04fbecfe12a5b4e59bf3928601c627ee7b1570ae5e63d80f05685401e1",
+      "implementation-summary.md": "775c7080ff0ab0e71afc12f11cee3e2ed5356f7038bfbc927dd00677246f43bc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

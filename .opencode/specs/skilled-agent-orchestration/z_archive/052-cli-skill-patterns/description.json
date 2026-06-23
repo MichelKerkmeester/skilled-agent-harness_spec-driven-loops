@@ -1,15 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/052-cli-skill-patterns",
-  "description": "Feature Specification: cli-* skill consistency patterns",
+  "description": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an",
   "keywords": [
-    "feature",
-    "specification",
     "cli",
-    "skill",
-    "consistency",
-    "patterns"
+    "skills",
+    "opencode",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-gemini",
+    "cli-opencode",
+    "expose",
+    "same",
+    "intent",
+    "orchestrate"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.463Z",
+  "lastUpdated": "2026-06-23T03:49:49.345Z",
   "specId": "052",
   "folderSlug": "cli-skill-patterns",
   "parentChain": [

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep skills reach external models through the `cli-opencode` executor kind, which already accepts any `provider/model` string (`EXECUTOR_KINDS` in `deep-loop-runtime/lib/deep-loop/executor-config.ts`; no per-model whitelist for cli-opencode). The one blocker is that the dispatch recipes hard-code `--agent general`:",
+    "causal_summary": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`, which the current opencode rejects/falls-back-from, producing noisy warnings and (for token-plan providers) failed dispatches",
     "created_at": "2026-06-01T20:21:29.318Z",
-    "last_save_at": "2026-06-17T19:57:23.717Z",
+    "last_save_at": "2026-06-23T03:49:51.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:3b47e16cfef7afa3a94a5811863dfb896b4ad5b278aa3066722d89ff0af0b330",
+    "source_doc_hashes": {
+      "spec.md": "13dca9601bfbb884dfda930da0b7e21350b0f5914f775f80111daa4034c365a4",
+      "plan.md": "3e78031110acf609b81b7078479c6c2f6cb9d21f670a9e4f0280b09580fb961d",
+      "tasks.md": "6239b42102eb4fe727d5a8c0f8a87df33c541e4360dcd452f47791a0515632a2",
+      "checklist.md": "9c662167b49be86778feb529d7b181e2ce30f631aaa9292f0cd1c9814c90877c",
+      "implementation-summary.md": "a1f2da28f9836a7e487555af745c618936c4002ae4cb1ab9fe147e09767ff743"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

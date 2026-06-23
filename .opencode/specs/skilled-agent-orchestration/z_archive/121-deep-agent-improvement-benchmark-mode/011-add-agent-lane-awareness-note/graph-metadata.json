@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 11** of the deep-agent-improvement benchmark-mode parent packet. Phase 009 restructured SKILL.md so model-benchmark became co-equal Lane B. This phase carries that two-lane framing into the @deep-agent-improvement agent file and its 3 runtime mirrors.",
+    "causal_summary": "The @deep-agent-improvement agent note called the skill \"two modes\" with model-benchmark as a separate mode bolt-on",
     "created_at": "2026-05-29T07:36:06Z",
-    "last_save_at": "2026-06-17T19:57:23.656Z",
+    "last_save_at": "2026-06-23T03:49:51.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e53009b9a7e9a9a04eb567d5d1cb4a17d01284401d2f64601dff8647c0fc9346",
+    "source_doc_hashes": {
+      "spec.md": "678d3b72aa7f05c08bbf9853a49b2b7b1aaf7a0c35bb61639a172f7cd5281b42",
+      "plan.md": "8d447492cd3251b9aa6e3bd2190c34a820c91aa2406ca20785317d2b5e5a065f",
+      "tasks.md": "d06f5a67a0353c159f58b75fb194b93c7a818567ecfb0fa34d417b61e913d429",
+      "implementation-summary.md": "a5fcfcbf44f0ad96fa2269f2fc2c76c67f723b560b796a0e96059d940df65be8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

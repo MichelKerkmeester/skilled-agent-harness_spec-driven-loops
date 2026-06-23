@@ -1,16 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/002-motion-dev",
-  "description": "Feature Specification: sk-code Motion.dev Assets and References",
+  "description": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
   "keywords": [
-    "feature",
-    "specification",
     "sk-code",
+    "skill",
+    "empty",
+    "peer",
+    "folders",
+    "cross-stack",
     "motion",
     "dev",
-    "assets",
-    "references"
+    "guidance"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.663Z",
+  "lastUpdated": "2026-06-23T03:49:49.666Z",
   "specId": "002",
   "folderSlug": "motion-dev",
   "parentChain": [

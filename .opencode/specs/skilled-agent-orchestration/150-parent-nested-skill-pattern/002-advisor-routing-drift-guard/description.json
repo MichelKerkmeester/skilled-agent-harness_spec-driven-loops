@@ -1,19 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/150-parent-nested-skill-pattern/002-advisor-routing-drift-guard",
-  "description": "Feature Specification: Registry advisorRouting block + CI drift-guard (Model A via C-plus)",
+  "description": "`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it — the mode p",
   "keywords": [
-    "feature",
-    "specification",
-    "registry",
-    "advisorrouting",
-    "block",
-    "drift-guard",
-    "model",
-    "via",
-    "c-plus"
+    "mode-registry",
+    "json",
+    "claimed",
+    "single",
+    "source",
+    "truth",
+    "deep-loop-workflows",
+    "mode",
+    "routes",
+    "advisor",
+    "never",
+    "read"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.151Z",
+  "lastUpdated": "2026-06-23T03:49:48.799Z",
   "specId": "002",
   "folderSlug": "advisor-routing-drift-guard",
   "parentChain": [

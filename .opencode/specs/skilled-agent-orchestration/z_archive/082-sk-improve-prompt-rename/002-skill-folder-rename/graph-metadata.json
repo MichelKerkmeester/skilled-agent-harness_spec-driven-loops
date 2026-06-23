@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`. Consumers cannot safely move to `sk-prompt` until the folder, local self-references, and advisor graph keys agree.",
+    "causal_summary": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-06-05T12:47:32.853Z",
+    "last_save_at": "2026-06-23T03:49:49.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1da8d85cdb42037618f841f2039d76c957266612642fd422ea0ed8b54f4e8515",
+    "source_doc_hashes": {
+      "spec.md": "7f5048413968748d327f69501399b254a62a0d45f53224ce3aaba4f91916c8a2",
+      "plan.md": "9dda9732fd8bad147b14b5fbcef1ebb32428393252833c03d9be69f4eb018c62",
+      "tasks.md": "0c1c57e0aa4f843b720ec6d0fb839ed9bd202e95dbd2cc04f36e4f8bd9d5b07d",
+      "checklist.md": "0b5d2e2c99b624fda879d08f3662612b45c1ea883733d2774fc1ef31aea57dc6",
+      "implementation-summary.md": "8b964f81908ed04bce55e9aa9ce8b83ba01ef6a966496083ae59c17742d5a0dc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

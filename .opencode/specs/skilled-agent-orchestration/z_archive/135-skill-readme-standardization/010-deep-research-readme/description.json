@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/010-deep-research-readme",
-  "description": "Feature Specification: deep-research README",
+  "description": "The deep-research README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
   "keywords": [
-    "feature",
-    "specification",
     "deep-research",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "buried",
+    "key",
+    "statistics",
+    "block",
+    "problem-first",
+    "entry",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.568Z",
+  "lastUpdated": "2026-06-23T03:49:51.876Z",
   "specId": "010",
   "folderSlug": "deep-research-readme",
   "parentChain": [

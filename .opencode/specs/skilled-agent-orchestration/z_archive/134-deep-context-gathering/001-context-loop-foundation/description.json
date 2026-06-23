@@ -17,14 +17,17 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/001-context-loop-foundation",
-  "description": "Feature Specification: deep-context loop",
+  "description": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-context",
-    "loop"
+    "convergence-gated",
+    "loop",
+    "assembles",
+    "implementation-ready",
+    "context",
+    "existing",
+    "codebase"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.476Z",
+  "lastUpdated": "2026-06-23T03:49:51.764Z",
   "specId": "001",
   "folderSlug": "context-loop-foundation",
   "parentChain": [

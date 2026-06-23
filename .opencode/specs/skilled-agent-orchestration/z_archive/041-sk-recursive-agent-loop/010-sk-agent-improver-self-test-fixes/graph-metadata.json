@@ -153,9 +153,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 009 (self-test) found 5 issues:",
+    "causal_summary": "Phase 009 (self-test) found 5 issues",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-06-15T09:09:33.312Z",
+    "last_save_at": "2026-06-23T03:49:49.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -164,6 +164,13 @@
       "tasks.md",
       "checklist.md"
     ],
+    "source_fingerprint": "sha256:08defb67d38d8f349fee0fd810e120aca32907e172eeb51a3ca7bb9be3494f5f",
+    "source_doc_hashes": {
+      "spec.md": "603d7e790cf9a34cddd8c5ec86755de3505ed2aed543c0a51a3883719bff0c23",
+      "plan.md": "4176e1f99fdc94ce5008af9226c19d6f73a70931c0896cd1eeb89b59a2a6610f",
+      "tasks.md": "128e2e999c9d59cb0bba5db783e558433231a55e9e521498948755d77d38dc9d",
+      "checklist.md": "6ff5560dd773c80449eec3f686878743e510656c0d9c98b76b803e31901459c4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,14 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/010-decouple-from-open-design",
-  "description": "Feature Specification: Phase 10: decouple-from-open-design",
+  "description": "`sk-design-interface` is vendored from Anthropic's Apache-2.0 `frontend-design` skill and is meant to be reusable standalone, but it accumulated ~101",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "decouple-from-open-design"
+    "sk-design-interface",
+    "vendored",
+    "anthropic",
+    "apache-2",
+    "frontend-design",
+    "skill",
+    "meant",
+    "reusable",
+    "standalone",
+    "accumulated",
+    "101"
   ],
-  "lastUpdated": "2026-06-22T18:54:58.997Z",
+  "lastUpdated": "2026-06-23T03:49:48.447Z",
   "specId": "010",
   "folderSlug": "decouple-from-open-design",
   "parentChain": [

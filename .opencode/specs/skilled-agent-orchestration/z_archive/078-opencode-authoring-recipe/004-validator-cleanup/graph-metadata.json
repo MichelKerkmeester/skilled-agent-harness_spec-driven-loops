@@ -33,7 +33,7 @@
       "validator",
       "shape",
       "rules",
-      "add"
+      "077"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add two new validator rules (graph-metadata + description shape checks) registered in validator-registry.json. Fix ROLLOUT_FLAGS to point at a markdown file (or remove the directory entry). Document mcp-coco-index MCP coverage gap explicitly in mcp-coco-index/SKILL.md. Audit + refresh search telemetry doc to match runtime emitted fields. Closes 6 P1 + 3 P2 findings; final phase of 078 remediation.",
+    "causal_summary": "077 surfaced 4+ findings in the validator + MCP tool docs cluster",
     "created_at": "2026-05-05T17:36:54Z",
-    "last_save_at": "2026-06-05T12:47:32.838Z",
+    "last_save_at": "2026-06-23T03:49:49.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6ed1c59f0aa5a9e1a87596de85929339321b567bae5cb0439b8767f115fc2556",
+    "source_doc_hashes": {
+      "spec.md": "f89d2b3d197776e4b25b8230b392bd01887433a0fe288babaf71eab96c1ac2cd",
+      "plan.md": "e8f1c7d4b8f40cc8840f0dcf5d9ad1f9603e77120662912f04d5f09848a0917d",
+      "tasks.md": "d3f975b1bb14c7be5672baf98ed0803a0afd6ce191277291ba4e3ad675912f81",
+      "implementation-summary.md": "c7b200abf97de0d8ac5e5b611b52e2d82ba0c39bafaaa7c34d466b46cc68f1d5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

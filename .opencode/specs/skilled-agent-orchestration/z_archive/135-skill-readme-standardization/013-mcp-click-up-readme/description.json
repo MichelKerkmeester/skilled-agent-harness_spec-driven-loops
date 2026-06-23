@@ -1,14 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/013-mcp-click-up-readme",
-  "description": "Feature Specification: mcp-click-up README",
+  "description": "The mcp-click-up README is a tabular reference card with a Version History section and no problem-first entry point",
   "keywords": [
-    "feature",
-    "specification",
     "mcp-click-up",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "version",
+    "history",
+    "section",
+    "problem-first",
+    "entry",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.583Z",
+  "lastUpdated": "2026-06-23T03:49:51.895Z",
   "specId": "013",
   "folderSlug": "mcp-click-up-readme",
   "parentChain": [

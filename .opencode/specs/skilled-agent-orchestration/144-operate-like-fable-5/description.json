@@ -1,14 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5",
-  "description": "Feature Specification: Operate Like Fable-5",
+  "description": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source materi",
   "keywords": [
-    "feature",
-    "specification",
-    "operate",
-    "like",
-    "fable-5"
+    "fable-5",
+    "operating",
+    "profile",
+    "claim",
+    "legibility",
+    "blast-radius",
+    "sizing",
+    "mechanism-over-narration",
+    "measured",
+    "efficiency",
+    "lives",
+    "external",
+    "source",
+    "materi"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.013Z",
+  "lastUpdated": "2026-06-23T03:49:48.466Z",
   "specId": "144",
   "folderSlug": "operate-like-fable-5",
   "parentChain": [

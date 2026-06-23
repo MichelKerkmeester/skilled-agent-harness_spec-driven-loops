@@ -14,18 +14,11 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "pilot",
-      "strongest",
-      "findings",
-      "packaging-specific",
-      "back-port",
-      "them",
-      "lanes",
-      "every",
-      "deep-improvement",
-      "run",
-      "gets",
-      "same"
+      "phase",
+      "003",
+      "anti-goodhart",
+      "cross-lane",
+      "adoption"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -76,14 +69,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The pilot's strongest findings are not packaging-specific. Back-port them to lanes A/B/C so every deep-improvement run gets the same protection against reward-hacking and noise — without breaking the byte-identical agent-improvement default path.",
+    "causal_summary": "Phase 003: Anti-Goodhart Cross-Lane Adoption",
     "created_at": "2026-06-18T12:37:48.875Z",
-    "last_save_at": "2026-06-18T12:37:48.875Z",
+    "last_save_at": "2026-06-23T03:49:52.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:c6f32527c5d83e1f16d73e8f08519988c4f17b407b89d88c0657f39e90c0b1a3",
+    "source_doc_hashes": {
+      "spec.md": "7f5ae8f2157b18ef85abaa9e04cdaa9a868418734a725fca8306b7ce47f8ee3f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The current benchmark cannot say which frontier model is better: the 2 fixtures saturate (both 100% correct), so only format/brevity separated MiniMax-M3 and MiMo-V2.5-Pro. A real-dispatch smoke also revealed (a) the OpenCode JSON parser works + captures **real token counts** (usable efficiency signal), but (b) models run **agentically** (write files), and the sweep passes the repo root as the dispatch cwd — so real runs would pollute the repo.",
+    "causal_summary": "The current benchmark cannot say which frontier model is better: the 2 fixtures saturate (both 100% correct), so only format/brevity separated MiniMax-M3 and MiMo-V2.5-Pro",
     "created_at": "2026-06-02T06:05:31.048Z",
-    "last_save_at": "2026-06-22T18:55:01.273Z",
+    "last_save_at": "2026-06-23T03:49:51.536Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:489d86726b534cf97574b49857b2c9d0c9e50cb88525952c7a44c426e2571f58",
+    "source_doc_hashes": {
+      "spec.md": "560fd4f58247322f412ec21f4607dfe3edd7f20b71630f02a94de6be24e512b0",
+      "plan.md": "60d4ea386113d6ef9b38d33ea50666e699bc4291936979202f262ba5d6c00334",
+      "tasks.md": "4320da6c9a94d24cbcbd645970b1dc901e9a50a30e79aa1b72f3d51e06002f71",
+      "checklist.md": "a1319e3958dcf25eaa8d5ac0794665e1e0c496f154bb6e2927b39f88c1b78a6a",
+      "implementation-summary.md": "764914e9d28249dbafc338e5a67fad787ffe761b69bf7a4a6a1f8ab40b70838f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 004 deep-ai-council release-cleanup deep-research loop converged at iter 4 and deferred five follow-ons as net-new work beyond cleanup scope. This packet closes all five: two new references documenting deep mode and the findings registry, a cross-link from `graph_support.md` to the replay script, a narrative reconciliation of the DAC-001/002 rename entries, and vitest coverage for the five currently-untested scripts.",
+    "causal_summary": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session → topic → round, exposed via `/deep:ask-ai-council`) is implemented in `scripts/orchestrate-session.cjs` + `orchestrate-topic.cjs` + `scripts/lib/findings-registry.cjs` with no reference documentation",
     "created_at": "2026-05-24T06:00:00.000Z",
-    "last_save_at": "2026-06-08T08:50:25.898Z",
+    "last_save_at": "2026-06-23T03:49:50.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e1bbc8e9caa4043f471af98f24a78f531a6f746ff37e60bc2e0c7ee891846b1e",
+    "source_doc_hashes": {
+      "spec.md": "5df3127fe34818664221105277b4f7cbd530f2f625e1aba4d5b0abc196469b3a",
+      "plan.md": "169d55f7b0cd2018cdc9f0b59d00cd4f08fae28b200a5ad68248070686e9d449",
+      "tasks.md": "d803cafc3afbeab521ef209049213ebb94cefa6faa8afa68ab85802fb563bce5",
+      "checklist.md": "5a3e19f577fc923e24a640c978e79e0bb806a96fc1fee34df3e3d0ac8e915db3",
+      "implementation-summary.md": "335f048c978a48ad2b973a8b011c5f494b2afa1833df4cc70dd9d4d2c330af63"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`. Phase B seeded graph fixtures proved that ledger-led search evidence could not be represented as structured graph nodes because `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events were rejected or filtered out.",
+    "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.755Z",
+    "last_save_at": "2026-06-23T03:49:50.826Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dd6a7f6878ca45cf0cc11cac32337861612f931c99a50f6823351ff40f3a329a",
+    "source_doc_hashes": {
+      "spec.md": "9cff8a69468bf7847fcef1abc04805a8e7781ba1fe1b7ae64547d80f8d5b9d10",
+      "plan.md": "5c99a81aa8724d0730b68365205a26c529ccd475c3338cb43622e9694094df13",
+      "tasks.md": "c954a754832432e68490529508d5772ae11634d08ba7f1e2673caedfe5f9d43d",
+      "checklist.md": "685f49634edb6abec35e61f27b67b75ae3e6fb7b1d1a90f2460dbe7f4a4836b7",
+      "implementation-summary.md": "95f34f13090f1620059c6edca1ed6bcb96f21004964ffb4b9b47ca2a33d533db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

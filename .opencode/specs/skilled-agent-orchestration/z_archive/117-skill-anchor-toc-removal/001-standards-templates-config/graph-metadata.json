@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-doc standards, doc templates, and `template_rules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended. If the bulk cleanup (phases 002/003) ran without first changing these, cleaned docs would be re-flagged by `validate_document.py` (`missing_toc` is a blocking error for readme/install_guide/playbook) and regenerated docs would reintroduce TOCs.",
+    "causal_summary": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-06-07T09:00:45.944Z",
+    "last_save_at": "2026-06-23T03:49:51.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:59db10b0842fdf6786256421b58a270da9274d29408fafb44586a37efc5ce038",
+    "source_doc_hashes": {
+      "spec.md": "32f9c6b5a0988dbaf017a1c3a7b3ec56fb4a139ccb6ca493423c0c139eed67aa",
+      "plan.md": "90d6963a9ce1ec51544d1c848b63c311787869b3519e526a2b1962c0614f111e",
+      "tasks.md": "0b6f1d558889f7b2c3594fc0ea212097dd134e74daf6c62cd4ff0c32647149e3",
+      "implementation-summary.md": "189daf21f7ff1b5bd77551c17064d081c3b94ba275004d4b0044c72238c564a2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

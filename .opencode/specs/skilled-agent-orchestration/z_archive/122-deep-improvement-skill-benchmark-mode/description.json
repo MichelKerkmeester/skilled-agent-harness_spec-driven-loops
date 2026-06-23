@@ -1,16 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode",
-  "description": "Spec 122 — deep-improvement: skill-benchmark mode + skill rename",
+  "description": "Phase parent: rename deep-agent-improvement to deep-improvement and add Lane C (skill-benchmark) measuring a skill's real-world routing, unprompted re",
   "keywords": [
-    "spec",
-    "122",
+    "phase",
+    "parent",
+    "rename",
+    "deep-agent-improvement",
     "deep-improvement",
+    "add",
+    "lane",
     "skill-benchmark",
-    "mode",
+    "measuring",
     "skill",
-    "rename"
+    "real-world",
+    "routing",
+    "unprompted"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.038Z",
+  "lastUpdated": "2026-06-23T03:49:51.291Z",
   "specId": "122",
   "folderSlug": "deep-improvement-skill-benchmark-mode",
   "parentChain": [

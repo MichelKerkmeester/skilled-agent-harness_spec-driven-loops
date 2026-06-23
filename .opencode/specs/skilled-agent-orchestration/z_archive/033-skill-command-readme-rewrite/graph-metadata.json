@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skills/sk-doc/references/specific/readme_creation.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.",
+    "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-06-15T09:09:33.258Z",
+    "last_save_at": "2026-06-23T03:49:49.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9e3152b4dd451ae735a60da0c2310c406be88821ed13e860a22356bd27ee620d",
+    "source_doc_hashes": {
+      "spec.md": "7f1998873ef70797016a050afd106c70de1d9c7a79a4679cf589d5e1e24fa74a",
+      "plan.md": "c1f1e16c24a901a60812b5f300f952d6976ac0e3e08dfc81f5aed9384414da8e",
+      "tasks.md": "0d4fa8e2cdfb6325999f6581534bb3149dc340a3fd36e53a02e596794e1f30b1",
+      "checklist.md": "2e9e94a5dc3010db45d4bc5c7c881fb18a3ee31144ba1c4fe5e1a5cc9189e259",
+      "implementation-summary.md": "53f3cf5f046dbcd56dea7fd9464a76d5ab9c02229538af6736b177dbe2413f29"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

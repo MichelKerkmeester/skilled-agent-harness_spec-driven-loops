@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep commands could begin work without two safeguards. Only 2 of 7 (`start-model-benchmark-loop`, `start-agent-improvement-loop`) carried a Phase 0 \"@general agent\" self-verification, and the strength of the setup-phase blocker varied across commands. An AI could skip the orchestrator-agent check or jump past the consolidated setup prompt and start executing a loop with unresolved inputs.",
+    "causal_summary": "The deep commands could begin work without two safeguards",
     "created_at": "2026-06-07T09:59:30Z",
-    "last_save_at": "2026-06-17T19:57:23.820Z",
+    "last_save_at": "2026-06-23T03:49:51.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:83ad9b991977e73cb1cfb592b425850c6128154b67b9a5c533042be586d77a88",
+    "source_doc_hashes": {
+      "spec.md": "1bacc1f32fd0e43d9a1cadf4dd5e82a53e4ca9437e375554603c528f1493bd3d",
+      "plan.md": "c70f5cdd20e2d77d76ccbedbac922323cf781779d336d78282d70ef27fa4db57",
+      "tasks.md": "5cd90fde2f228b2ec5ab59fade9316783aed89f28ea0609227c87f58c2ff47a4",
+      "checklist.md": "06cdfd7d7bbb06b054e96f17934030bf2bfa63d58966ef510170895ed898961d",
+      "implementation-summary.md": "1c11630430643f33170ac523f7d989f13b239f704f025d660fd0ed673345020f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -126,15 +126,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five internal mode packets, with the packets deliberately **non-discoverable** (one advisor identity). That made `deep-loop-workflows` the framework's **first parent skill with nested sub-skills**. The operator then **renamed four packet folders** to carry the `deep-` prefix that matches each packet's own `SKILL.md` `name:` (`context→deep-context`, `research→deep-research`, `review→deep-review`, `improvement→deep-improvement`; `ai-council` left as-is). This (a) **broke the path references the 152 build had wired to the bare names**, and (b) crystallized a one-off structure into something the operator wants to turn into a **deliberate, advisor-optimized, documented and tooled architectural standard**. A core finding sharpens the optimization target: `mode-registry.json` — the nominal \"single source of truth\" — is **not actually consumed by the advisor**; routing is hardcoded in Python (`skill_advisor.py` `DEEP_ROUTING_MODE_BY_KEY`) and TypeScript (`aliases.ts` `DEEP_MODE_BY_CANONICAL`) and can drift from the registry.",
+    "causal_summary": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five internal mode packets, with the packets deliberately non-discoverable (one advisor identity)",
     "created_at": "2026-06-15T09:09:33.215Z",
-    "last_save_at": "2026-06-16T14:27:20.582Z",
+    "last_save_at": "2026-06-23T03:49:48.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:9f760359b78495deeed395ca50e69cb476ab83016dab3d1d3eb2572c18edab9d",
+    "source_doc_hashes": {
+      "spec.md": "fc97887e7dc31655086cbb6939af036bfe7d38d770eaa0ef228cf8343d06dad6",
+      "research/research.md": "0c146d45f983b9f17edc837a5c782f07aeda6c120ef33aa7f5b9434b04c394c3"
+    },
     "last_active_child_id": "skilled-agent-orchestration/150-parent-nested-skill-pattern/004-improvement-implementation",
     "last_active_at": "2026-06-15T14:54:58.382Z"
   }

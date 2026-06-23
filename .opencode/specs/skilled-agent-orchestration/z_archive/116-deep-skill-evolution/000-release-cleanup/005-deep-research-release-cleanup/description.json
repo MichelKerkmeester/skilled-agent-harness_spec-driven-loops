@@ -1,15 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup",
-  "description": "Feature Specification: deep-research skill release cleanup",
+  "description": "The `deep-research` skill carries 412 lines of SKILL.md, 248 lines of README, 6 references (3,526 lines), 5 assets, 16 feature-catalog files, 43 manua",
   "keywords": [
-    "feature",
-    "specification",
     "deep-research",
     "skill",
-    "release",
-    "cleanup"
+    "carries",
+    "412",
+    "lines",
+    "248",
+    "readme",
+    "references",
+    "526",
+    "assets",
+    "feature-catalog",
+    "files",
+    "manua"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.399Z",
+  "lastUpdated": "2026-06-23T03:49:50.609Z",
   "specId": "005",
   "folderSlug": "deep-research-release-cleanup",
   "parentChain": [

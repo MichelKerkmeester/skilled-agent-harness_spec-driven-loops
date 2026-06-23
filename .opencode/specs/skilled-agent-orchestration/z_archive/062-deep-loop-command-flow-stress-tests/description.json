@@ -1,17 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
-  "description": "Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests",
+  "description": "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and @deep-revie",
   "keywords": [
-    "phase",
-    "parent",
+    "phase-parent",
+    "root",
     "spec",
-    "062",
-    "deep-loop",
+    "apply",
+    "060",
+    "004",
     "command-flow",
     "stress",
-    "tests"
+    "methodology",
+    "proven",
+    "pass",
+    "against",
+    "improve-agent",
+    "deep-research",
+    "deep-revie"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.312Z",
+  "lastUpdated": "2026-06-23T03:49:49.495Z",
   "specId": "062",
   "folderSlug": "deep-loop-command-flow-stress-tests",
   "parentChain": [

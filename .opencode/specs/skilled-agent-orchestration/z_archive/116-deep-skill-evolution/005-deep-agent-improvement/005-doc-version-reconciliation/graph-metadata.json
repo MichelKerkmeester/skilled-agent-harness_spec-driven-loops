@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical companion standard as the post-118 deep-loop-runtime, deep-review, and deep-research peer skills. Specifically, deep-agent-improvement is missing 3 key reference docs that exist in the peer skills: formal scoring dimension documentation, promotion gate contract, and candidate proposal format.",
+    "causal_summary": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical companion standard as the post-118 deep-loop-runtime, deep-review, and deep-research peer skills",
     "created_at": "2026-05-23T07:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.906Z",
+    "last_save_at": "2026-06-23T03:49:50.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0d455a30bfcfb9ba32f4d9bde847a8ebf7d81d35f39d57663a8efd2f521795a9",
+    "source_doc_hashes": {
+      "spec.md": "292de22146f9059dc1a353cd61ebcdd0a675be9d6367f8e46d200b61fe2ab20a",
+      "plan.md": "9a6a8c2851846041afa1a3d4ca81b6aa92a902e3bd26b7d73688e1fa24dd7d7f",
+      "tasks.md": "7c05e97b7cee231d849f52c95b3f3f0009f93251662fd63f16b01e61a4b8bdb7",
+      "checklist.md": "08f75a285b3b41de07b451fcf5d4008e80cb5cde1d3223a486131271efe3d861",
+      "implementation-summary.md": "5795568f13827715aef146299c632e27a3b060c0fb0151497e136c691d392ebf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

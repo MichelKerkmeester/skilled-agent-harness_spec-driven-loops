@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-code-review playbook (just shipped via packet 093, naturalized via packet 094) has 18 scenarios but no actual execution-against-deepseek baseline. We don't yet know how DeepSeek-class models perform on findings-first code review under the sk-code-review baseline doctrine.",
+    "causal_summary": "The sk-code-review playbook (just shipped via packet 093, naturalized via packet 094) has 18 scenarios but no actual execution-against-deepseek baseline",
     "created_at": "2026-05-18T07:49:27.229Z",
-    "last_save_at": "2026-06-05T12:47:32.884Z",
+    "last_save_at": "2026-06-23T03:49:50.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1768cc852b646ee0178bdb6e52bb1e3a704fe2b266fd1cb38819b4c7e793a0b0",
+    "source_doc_hashes": {
+      "spec.md": "dc4151c05179875ced658e231b7c08f3f978b192765141813e8b819bbd8f9629",
+      "plan.md": "ddabb9274d3a6cad459314163de1ffe9e9601e46fc649e35cd24ceb8408bbf74",
+      "tasks.md": "4da3e062eb2411af2fd2eb3a0311e3da0072e841d9b221827c91c553a9a1da1e",
+      "implementation-summary.md": "9134115109097cd342c46307c99874d68af5b669e7d007dc6a7b5dbaea21d04c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

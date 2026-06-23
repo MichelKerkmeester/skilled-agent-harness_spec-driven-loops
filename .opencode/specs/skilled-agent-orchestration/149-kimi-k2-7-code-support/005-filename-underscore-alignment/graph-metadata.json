@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the kimi-k2-7-code-support specification, a filename-convention cleanup on the `sk-prompt-small-model` skill (the hub that hosts the kimi-k2.7-code profile).",
+    "causal_summary": "The house convention for descriptive markdown and asset filenames is underscores (`documentname.md`), matching peer skills such as `mcp-open-design` (`odclireference.md`) and `sk-design-interface` (`designprinciples.md`)",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.060Z",
+    "last_save_at": "2026-06-23T03:49:48.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:965ee49aa66946a0dbe643363511b75e3cda73c3011b773b970610ffdc21625e",
+    "source_doc_hashes": {
+      "spec.md": "54e5839add2615c4da3171f2580db589de40870af96a6a9371da4e45e0450591",
+      "plan.md": "a09e03e390129a9d1c1756cc4cc26e546c0c00d61ad0bb5850e1b17e235ca863",
+      "tasks.md": "9fe05599eb93748fd311381bc757a2a957c66f400c7edaadd0621a16967bd714",
+      "implementation-summary.md": "14f18c9e90612b8142863d0eb5913cd5e20de4c717a5010947f801ab51d549e4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

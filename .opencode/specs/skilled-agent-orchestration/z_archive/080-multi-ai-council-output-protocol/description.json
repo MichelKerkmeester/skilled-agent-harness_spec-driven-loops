@@ -1,16 +1,23 @@
 {
   "level": 3,
   "specFolder": "skilled-agent-orchestration/z_archive/080-multi-ai-council-output-protocol",
-  "description": "Feature Specification: Multi-AI Council Output Protocol",
+  "description": "Council deliberation outputs are transient: they return inline to chat and any intermediate seat outputs land in unstructured `scratch/` files",
   "keywords": [
-    "feature",
-    "specification",
-    "multi-ai",
     "council",
-    "output",
-    "protocol"
+    "deliberation",
+    "outputs",
+    "transient",
+    "return",
+    "inline",
+    "chat",
+    "intermediate",
+    "seat",
+    "land",
+    "unstructured",
+    "scratch",
+    "files"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.478Z",
+  "lastUpdated": "2026-06-23T03:49:49.877Z",
   "specId": "080",
   "folderSlug": "multi-ai-council-output-protocol",
   "parentChain": [

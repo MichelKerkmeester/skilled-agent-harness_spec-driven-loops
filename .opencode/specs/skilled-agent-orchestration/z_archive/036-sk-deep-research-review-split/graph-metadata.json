@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "That coupling also made it harder to route users correctly. Review requests and research requests shared one command family even though the workflows, artifacts, and success criteria were different.",
+    "causal_summary": "`sk-deep-research` previously handled both investigation workflows and iterative review-mode auditing",
     "created_at": "2026-04-12T09:02:50.180Z",
-    "last_save_at": "2026-06-22T18:54:59.342Z",
+    "last_save_at": "2026-06-23T03:49:49.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ffaa5ce77fb927279ac8fb814081e2a8309091afe2ae3f2004b1da914a1d03a5",
+    "source_doc_hashes": {
+      "spec.md": "fc35c5cb4180d992e68319f1bba4e8a94291bbd2f020d6fd6181bd53265c7552",
+      "plan.md": "a6379002f2028bddc47bb79e1f51d003d34c8d6dfc560eb427eb80f4c31b6adf",
+      "tasks.md": "ae381da82a188e5ea02d2e57cc0a90c7dbd647e08159f5c21d57b2071b7a2a42",
+      "checklist.md": "646691f5714f5344e9e14c2e3b0c264dfa5efb14bf55805d3eeeb47e3dc65371",
+      "implementation-summary.md": "aaa68340dc28ba552bf704836c8c3edacacb396e6551d3918e1692d8fbc5b813"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/001-schema-config-plumbing",
-  "description": "Phase 001 — Fan-out schema + config plumbing",
+  "description": "Add the opt-in multi-executor config representation without changing any behavior",
   "keywords": [
-    "phase",
-    "001",
-    "fan-out",
-    "schema",
+    "add",
+    "opt-in",
+    "multi-executor",
     "config",
-    "plumbing"
+    "representation",
+    "without",
+    "changing",
+    "behavior"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.127Z",
+  "lastUpdated": "2026-06-23T03:49:51.378Z",
   "specId": "001",
   "folderSlug": "schema-config-plumbing",
   "parentChain": [

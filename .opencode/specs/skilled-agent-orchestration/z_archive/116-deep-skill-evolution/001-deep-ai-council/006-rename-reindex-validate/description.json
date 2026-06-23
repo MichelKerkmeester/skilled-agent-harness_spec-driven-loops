@@ -1,17 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/006-rename-reindex-validate",
-  "description": "Feature Specification: 115/006 — reindex + validate + reconcile",
+  "description": "After 002-005 land file edits, the compiled skill-graph.json + advisor cache need to be refreshed so the advisor surfaces the renamed identities",
   "keywords": [
-    "feature",
-    "specification",
-    "115",
-    "006",
-    "reindex",
-    "validate",
-    "reconcile"
+    "002-005",
+    "land",
+    "file",
+    "edits",
+    "compiled",
+    "skill-graph",
+    "json",
+    "advisor",
+    "cache",
+    "need",
+    "refreshed",
+    "surfaces",
+    "renamed",
+    "identities"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.490Z",
+  "lastUpdated": "2026-06-23T03:49:50.735Z",
   "specId": "006",
   "folderSlug": "rename-reindex-validate",
   "parentChain": [

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The upstream `dzianisv/opencode-plugins` repository ships an `auto-review` OpenCode plugin (branch `issue-136-package-auto-review`) that automatically dispatches a cross-model review session whenever an OpenCode session goes idle. The plugin demonstrates several design choices we have not adopted in our own ecosystem: event-driven activation via `session.idle` hooks, dynamic provider/model discovery via the OpenCode SDK, deterministic cross-AI family ranking, marker-based loop prevention, abort-race handling, and a structured PASS/FAIL/UNKNOWN checklist contract. We need to evaluate whether any of these patterns would improve our local skills (`sk-code-review`, `deep-research`, `deep-review`, `deep-agent-improvement`) and the OpenCode plugin ecosystem (`mk-skill-advisor`, `mk-code-graph`).",
+    "causal_summary": "The upstream `dzianisv/opencode-plugins` repository ships an `auto-review` OpenCode plugin (branch `issue-136-package-auto-review`) that automatically dispatches a cross-model review session whenever an OpenCode session goes idle",
     "created_at": "2026-05-16T06:30:00Z",
-    "last_save_at": "2026-06-22T18:55:00.135Z",
+    "last_save_at": "2026-06-23T03:49:50.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b413e317abcd8039e708b166dfbbc7e62922f20150ac576e9b94e4613f28b100",
+    "source_doc_hashes": {
+      "spec.md": "9a9de17c76df9f4716c1fd93ae815cf271c6967f3a00b94cae089ec29f9f667c",
+      "plan.md": "890e05682feeee8859af4869788bec797e75991953bb43695b02901aac9bef33",
+      "tasks.md": "d551e965b3f6aa8c91ccd7c96aa113abdb19aad39fda407697fde35f1cffcfff",
+      "implementation-summary.md": "be865ae03fdbc7d45153510030e106265c808c4ce457e0c9b37ba6e485bad781"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

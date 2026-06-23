@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DAC-030 and DAC-032 fixture helpers normalize operator-facing answers from grouped runtime responses without code-level provenance for future maintainers.",
+    "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DA",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.584Z",
+    "last_save_at": "2026-06-23T03:49:50.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c7fc47ce6516340f8d09ba6da9b637a8b955babefff1d2cca4400a5b7866c425",
+    "source_doc_hashes": {
+      "spec.md": "5dc8c5645ee7e893b8908b83552104863f29596482bb4793d5a309709522bfd3",
+      "plan.md": "389053b9c229e0208dbccd310ad89ecaa515165c9b13d07141fca1148d57ffd7",
+      "tasks.md": "5ca220f7a967ecb3741ebdd70ef71a2637d6d45e0e647cc21a7d152310637ac1",
+      "implementation-summary.md": "fed5c87b2e5a8fd7d504f7cc30b102bbe6057ea3a406cc33c2cc2824f7866d42"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

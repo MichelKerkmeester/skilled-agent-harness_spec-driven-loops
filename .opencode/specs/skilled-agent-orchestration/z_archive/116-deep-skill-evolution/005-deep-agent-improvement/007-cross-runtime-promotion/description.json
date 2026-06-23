@@ -1,16 +1,20 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
-  "description": "Packet 127: deep-agent-improvement cross-runtime promotion gate",
+  "description": "Level 3 specification for hard four-runtime agent mirror verification and partial mirror recovery semantics.",
   "keywords": [
-    "packet",
-    "127",
-    "deep-agent-improvement",
-    "cross-runtime",
-    "promotion",
-    "gate"
+    "level",
+    "specification",
+    "hard",
+    "four-runtime",
+    "agent",
+    "mirror",
+    "verification",
+    "partial",
+    "recovery",
+    "semantics"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.717Z",
+  "lastUpdated": "2026-06-23T03:49:50.972Z",
   "specId": "007",
   "folderSlug": "cross-runtime-promotion",
   "parentChain": [

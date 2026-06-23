@@ -1,17 +1,24 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/001-council-design",
-  "description": "Feature Specification: Council Design for cli-devin SWE 1.6 Optimization",
+  "description": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
   "keywords": [
-    "feature",
-    "specification",
-    "council",
-    "design",
-    "cli-devin",
-    "swe",
-    "optimization"
+    "bespoke",
+    "deep-loop",
+    "003",
+    "needs",
+    "binding",
+    "rubric",
+    "fixture",
+    "catalog",
+    "knob",
+    "set",
+    "convergence",
+    "rule",
+    "code",
+    "written"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.255Z",
+  "lastUpdated": "2026-06-23T03:49:50.456Z",
   "specId": "001",
   "folderSlug": "council-design",
   "parentChain": [

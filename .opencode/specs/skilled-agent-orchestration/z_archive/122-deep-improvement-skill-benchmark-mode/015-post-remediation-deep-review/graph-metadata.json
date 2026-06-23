@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the v1.11.1.0 remediation closed all 28 findings from the prior MiMo review (phase `014`), this phase runs a fresh, independent deep review of `skill:deep-improvement` with **two 5-iteration MiMo-v2.5-pro passes** via cli-opencode, to catch any regression or new issue introduced by the fixes and to gauge run-to-run finding stability (does a fresh pass surface the same things?). The review is diagnostic and read-only: neither pass mutates the skill; each writes its own ranked review packet, then the two are compared into a combined verdict. (A MiniMax-M3 pass was originally planned as the second reviewer but was aborted and replaced with a second MiMo pass.)",
+    "causal_summary": "The v1.11.1.0 remediation made substantial changes to the grader (dimension-awareness, `--append-system-prompt`), the live executor (truncation cap, brace-balanced scan), and refactored `scoreScenario`",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-22T18:55:01.115Z",
+    "last_save_at": "2026-06-23T03:49:51.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:be01dcf8a0250c4c71c271f89396c7c43f1ce663c8f59f686c8390c509126928",
+    "source_doc_hashes": {
+      "spec.md": "9234b2675e1e4ac87753fed35bc3fe96a6440627cb577d3adc6241a46fcb970d",
+      "plan.md": "a9c4aeac70098f8bcb4de08ff3caf073374724219c377b2a2fe684fe4c74a2fb",
+      "tasks.md": "1596e3faf1dfde9463ff758bd80590c7138a05741a4f47e7f6ab632bd0e5f4b5",
+      "checklist.md": "b37b91402340e79c2683bc67e9258d9e4524fc7a825e1a01b6f4baabd247047f",
+      "implementation-summary.md": "8d2bec4b7395ce32277f76fb5673e73324bebad6a0c3a2d431d5c7c33ff47c8f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

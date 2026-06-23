@@ -32,7 +32,7 @@
       "tasks",
       "implementation",
       "summary",
-      "phase"
+      "needs"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 2 of 6 in 115. Sibling-parallel with 003/004/005 after 001.",
+    "causal_summary": "The `deep-ai-council` skill needs to move to the `sk-ai-council` name per parent 115/spec.md naming convention rationale",
     "created_at": "2026-05-21T06:57:08Z",
-    "last_save_at": "2026-06-15T09:09:33.720Z",
+    "last_save_at": "2026-06-23T03:49:50.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ccc6aea0d48848125a9ee49330389b4bbc0184f28ed87dbcd1fcf353812b71f3",
+    "source_doc_hashes": {
+      "spec.md": "5032da42dfe7b27776b109191761b84e979d6ffd597ded4761ec64aea292e78f",
+      "plan.md": "c0ee3f9b51a9dfb2a797fa69478a414a7e7593ebda41abd8260dab0117e0e3bb",
+      "tasks.md": "8c458da1744869d9e2f0f530544d59da8ed6f6142ccbdd7a50ee0605ae7ee5a5",
+      "implementation-summary.md": "9ddfbd3b96efb794b9933fdb9c0442050bf0b3f30d91e82bfe2f3ccf43dd0bc3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

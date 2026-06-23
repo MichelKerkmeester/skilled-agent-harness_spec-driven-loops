@@ -42,17 +42,24 @@
     "024-skills-index-readme"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
-  "description": "Feature Specification: Skill README standardization (Phase Parent)",
+  "description": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At",
   "keywords": [
-    "feature",
-    "specification",
-    "skill",
+    "repo",
+    "root",
     "readme",
-    "standardization",
-    "phase",
-    "parent"
+    "recent",
+    "system-spec-kit",
+    "changelogs",
+    "read",
+    "one",
+    "warm",
+    "human-centered",
+    "narrative",
+    "voice",
+    "problem-first",
+    "opener"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.518Z",
+  "lastUpdated": "2026-06-23T03:49:51.816Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [

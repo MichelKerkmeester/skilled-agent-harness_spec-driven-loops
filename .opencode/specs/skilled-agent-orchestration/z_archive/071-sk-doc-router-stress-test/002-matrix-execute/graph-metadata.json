@@ -24,12 +24,12 @@
       "plan",
       "tasks",
       "summary",
-      "phase",
-      "packet",
-      "executes",
-      "45-cell",
-      "test",
-      "matrix"
+      "sk-doc",
+      "router",
+      "intents",
+      "comparative",
+      "data",
+      "cli-codex"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is Phase 2 of the 071 packet. Executes the 45-cell test matrix (15 scenarios from Phase 1 × 3 CLIs: cli-codex, cli-opencode) via run-matrix.sh dispatcher.",
+    "causal_summary": "sk-doc has 11 router intents but no comparative data on how cli-codex/cli-copilot/cli-opencode interpret the router across realistic input scenarios",
     "created_at": "2026-05-05T10:27:20Z",
-    "last_save_at": "2026-05-30T10:12:01.395Z",
+    "last_save_at": "2026-06-23T03:49:49.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ab14f369656fad5c9bc09bb438ebceed87f5eba5398e34e9f280d084f469e885",
+    "source_doc_hashes": {
+      "spec.md": "33fe8f71ba3e7a39dc7b458aff7f39c9590d8052d83af02eaeef1077f5e942cb",
+      "plan.md": "7f1f5ec706063c0dd5be00fe80c48eae88863a0da90118e5a8df0cfd93a27fc7",
+      "tasks.md": "bdc6aec25ca42ce451828c8eb6f54c2f9305cce867adfc7c3550dd899c7433f3",
+      "implementation-summary.md": "856bfd6b31f8a449ca9589c0d2e2a2de3b18a31e372dd60900e64aac3828d932"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

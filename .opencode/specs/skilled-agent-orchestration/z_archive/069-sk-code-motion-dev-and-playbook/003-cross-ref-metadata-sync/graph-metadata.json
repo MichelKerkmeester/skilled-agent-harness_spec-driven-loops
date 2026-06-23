@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motion_dev/` reference package, but existing Webflow docs still mention Motion mostly as Webflow-local guidance. The sk-code router and metadata also need to expose `motion_dev/` as a discoverable peer category without changing Webflow-specific content ownership.",
+    "causal_summary": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still mention Motion mostly as Webflow-local guidance",
     "created_at": "2026-05-05T08:30:57.522Z",
-    "last_save_at": "2026-06-05T12:47:32.789Z",
+    "last_save_at": "2026-06-23T03:49:49.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8b515d9b6cefe4c29ddd36345153690cdf32b7ff832172f557f65833584ee2d1",
+    "source_doc_hashes": {
+      "spec.md": "ab8cdc643760af8125e0e667a47da03d9705a7bc9ed12700279445e368ddf21b",
+      "plan.md": "105552b0691722b9089ba709b57e7d78cc8eba0662cadf1a3918a30a4504ddb7",
+      "tasks.md": "fda77d008a80eb0e4a8a48cef4d309f8a128d3fdad292566a6bd84febe21a8f7",
+      "checklist.md": "be43b4921dfb41fbeda6219937eddfe44ed90a10b237d0db56479bf3de2c331e",
+      "implementation-summary.md": "319497b58b3092344be04ce80af2e05e3b60ab2c948b1af62d6a9f87c093bd97"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

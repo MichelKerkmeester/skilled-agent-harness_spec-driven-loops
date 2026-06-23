@@ -1,16 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
-  "description": "Feature Specification: Deep-Loop Runtime Scenarios (Deep-Loop Playbook 001)",
+  "description": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL",
   "keywords": [
-    "feature",
-    "specification",
+    "deep-loop-runtime",
+    "shared",
+    "foundation",
+    "four",
     "deep-loop",
-    "runtime",
-    "scenarios",
-    "playbook",
-    "001"
+    "skills",
+    "executor",
+    "prompt-pack",
+    "post-dispatch",
+    "validation",
+    "atomic",
+    "state",
+    "jsonl"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.789Z",
+  "lastUpdated": "2026-06-23T03:49:51.033Z",
   "specId": "001",
   "folderSlug": "deep-loop-runtime-scenarios",
   "parentChain": [

@@ -1,16 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
-  "description": "Feature Specification: Deep-Review Scenarios (Deep-Loop Playbook 003)",
+  "description": "`deep-review` is the autonomous iterative code-review loop built on the shared `deep-loop-runtime`: it owns review entry points and modes, canonical s",
   "keywords": [
-    "feature",
-    "specification",
     "deep-review",
-    "scenarios",
-    "deep-loop",
-    "playbook",
-    "003"
+    "autonomous",
+    "iterative",
+    "code-review",
+    "loop",
+    "built",
+    "shared",
+    "deep-loop-runtime",
+    "owns",
+    "review",
+    "entry",
+    "points",
+    "modes",
+    "canonical"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.803Z",
+  "lastUpdated": "2026-06-23T03:49:51.045Z",
   "specId": "003",
   "folderSlug": "deep-review-scenarios",
   "parentChain": [

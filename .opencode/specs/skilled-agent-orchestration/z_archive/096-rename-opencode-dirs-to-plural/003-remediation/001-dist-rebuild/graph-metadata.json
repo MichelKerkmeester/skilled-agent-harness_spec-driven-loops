@@ -31,7 +31,7 @@
       "quality",
       "001-dist-rebuild",
       "checklist",
-      "stale"
+      "096"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rebuild stale system-spec-kit MCP dist output after the 096 plural-directory rename and document generated-output drift evidence.",
+    "causal_summary": "096 ran a 670k-occurrence bulk-sed across the repo but did not rebuild `mcpserver/dist/`",
     "created_at": "2026-05-18T07:49:27.238Z",
-    "last_save_at": "2026-05-30T10:12:01.477Z",
+    "last_save_at": "2026-06-23T03:49:50.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8d85af0377be3aa214fb0e65e595fc4b361b8f3b7e97f546ed12500423153b13",
+    "source_doc_hashes": {
+      "spec.md": "805c43060fd6d2d066cf7cc5110e9eadc7fb2e0f1f36e4e34bb6e79b4def8d1c",
+      "plan.md": "fc74ad69c58e24f0c669d1d5c52ac8fd86d3f765aba49ce41e1beb8d43f1d06e",
+      "tasks.md": "224b77d9195b263acb3285bddbd2b56408e034cbd6acb4b9a618b6eca2aff05d",
+      "checklist.md": "8d5c8b35ceb68d35be7c7c98765b4123a4b289f4abf1157eead67f4d9994bd54",
+      "implementation-summary.md": "4e23f7f7bb16a2625e96abc3dac4e2ac7dc0fefc40f614a901efdec93ade72a5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

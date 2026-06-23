@@ -1,14 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade",
-  "description": "Feature Specification: sk-deep-research First Upgrade",
+  "description": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-deep-research",
     "first",
-    "upgrade"
+    "sk-deep-research",
+    "upgrade",
+    "needed",
+    "grounded",
+    "input",
+    "comparable",
+    "autonomous",
+    "research",
+    "systems"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.317Z",
+  "lastUpdated": "2026-06-23T03:49:49.044Z",
   "specId": "029",
   "folderSlug": "sk-deep-research-first-upgrade",
   "parentChain": [

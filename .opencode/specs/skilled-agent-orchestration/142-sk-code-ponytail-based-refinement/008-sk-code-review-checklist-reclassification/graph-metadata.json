@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8** of the 146 packet — the sk-code-review counterpart to the sk-code alignment in phase 007. It corrects a misclassification surfaced while reviewing the ponytail work: several `sk-code-review/references/` files are really checklist artifacts a reviewer applies, not doctrine a reviewer reads.",
+    "causal_summary": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`, `fix-completeness-checklist`, `removalplan`) are checklist artifacts a reviewer applies, but they lived under `references/` (the home for explanatory doctrine the agent reads)",
     "created_at": "2026-06-15T09:09:33.161Z",
-    "last_save_at": "2026-06-15T09:09:33.161Z",
+    "last_save_at": "2026-06-23T03:49:48.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d56a34263a03632e4a7f963331850ac60bf32eb287da8c3cd203244d06fbc53b",
+    "source_doc_hashes": {
+      "spec.md": "e6a00bb5dcebc2ea054c19e89e66b67ee228ac3ffa98d0d90e57f8ac348062c9",
+      "plan.md": "dbbb45ea53597614d9b4d1999caae9197f477a09c30a11f552be7b2f9b0bf814",
+      "tasks.md": "16879aa1cceb19a90f535192e5eb6f8475f394cf8729bb18a2438c861eb2e53d",
+      "implementation-summary.md": "9fc93b9bde7d332c8013d04115e72dec802e04c2416aaff929e50789affcc159"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

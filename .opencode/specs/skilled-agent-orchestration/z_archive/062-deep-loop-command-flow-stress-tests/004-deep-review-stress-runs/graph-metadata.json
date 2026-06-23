@@ -17,17 +17,17 @@
     ],
     "key_topics": [
       "004-deep-review-stress-runs",
-      "stress",
-      "runs",
-      "against",
-      "003-authored",
-      "scenarios",
-      "target",
-      "final",
-      "pass",
+      "sub-phase",
+      "062-deep-loop-command-flow-stress-tests",
+      "apply",
+      "060",
+      "004",
+      "methodology",
       "spec",
       "deep-review",
-      "004"
+      "stress",
+      "runs",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "R1→R2→R3 stress runs against the 003-authored CP scenarios; target final PASS 6/0/0.",
+    "causal_summary": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
     "created_at": "2026-05-18T07:49:27.114Z",
-    "last_save_at": "2026-06-05T12:47:32.747Z",
+    "last_save_at": "2026-06-23T03:49:49.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4648e31a4732807b4764aea9544a5cf600737f5bfbbbfccfa84c6f74d83c3579",
+    "source_doc_hashes": {
+      "spec.md": "1ef379ac3939dd1788f26cdae6605eea735fe2ee3e0be6b13541d9cdf3c14264",
+      "plan.md": "464d2bf5fe25619dc15194b90dc2678911fe7ddcf2575a66bc87482ecd0e6249",
+      "tasks.md": "8a7117342eec446e910b47c6731e50085017252df7eb3c8e0339a486031e208e",
+      "implementation-summary.md": "2b121e85bbb97bc7b420dd40ace4017d27ea9445081785fd2efd650d51ca975e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

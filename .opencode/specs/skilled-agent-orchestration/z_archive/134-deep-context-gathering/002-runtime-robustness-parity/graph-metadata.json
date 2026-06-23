@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 shipped the deep-context loop as a host-driven consumer of `deep-loop-runtime`, but it skipped the runtime's durability and validation layer that `deep-research` and `deep-review` already rely on. This phase brings deep-context to robustness parity by wiring five runtime features into the host-driven loop, every one gated to `loop_type='context'` so research and review behavior is untouched: crash-safe atomic state writes, corrupt-tail JSONL recovery, seat-output validation before merge, single-writer loop locking, and a CLI-dispatch recursion guard. Two further runtime features were evaluated and excluded as non-gaps with recorded rationale.",
+    "causal_summary": "The phase-001 deep-context loop is host-driven: the host runs `reduce-state.cjs` to merge seat findings and write the findings registry and dashboard, and the workflow YAMLs run prose-only lock and dispatch steps",
     "created_at": "2026-06-06T21:32:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.809Z",
+    "last_save_at": "2026-06-23T03:49:51.769Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2bb00d0a2cec68c28cf16ad07a51075bf39d1b76fc52e12dd96a353df3d5585a",
+    "source_doc_hashes": {
+      "spec.md": "3b46af65ec9693041c438f8477825e25be903ab0a47763e2b92bedddc2c10f40",
+      "plan.md": "290bb843ed90787dd8d16ebdff85843e61751f8de416c0486fa5da80fbaf3e69",
+      "tasks.md": "db103ab87296ca139321e7b945a6d8920b98af9a523db9d58cd2bd326df0aefa",
+      "checklist.md": "66df5f7d1e4d99f5ecae19e624d884a2007fc81beb454a3c494ef9865710c29f",
+      "decision-record.md": "06f7128a08dd0b63c38abc8b4d57bf5c15793fd42f72d01b14ec30f4cded250d",
+      "implementation-summary.md": "89097ba2009c1f8dc02c22d8d9c9aafd19aa973affcb490a5e3c9f40630a73b9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

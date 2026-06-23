@@ -1,15 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/028-sk-deep-research-testing-playbook",
-  "description": "Feature Specification: sk-deep-research Manual Testing Playbook",
+  "description": "`sk-deep-research` documents a rich operator-visible surface: the consolidated setup prompt, spec-folder choice, `:auto` and `:confirm` modes, initial",
   "keywords": [
-    "feature",
-    "specification",
     "sk-deep-research",
-    "manual",
-    "testing",
-    "playbook"
+    "documents",
+    "rich",
+    "operator-visible",
+    "surface",
+    "consolidated",
+    "setup",
+    "prompt",
+    "spec-folder",
+    "choice",
+    "auto",
+    "confirm",
+    "modes",
+    "initial"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.181Z",
+  "lastUpdated": "2026-06-23T03:49:49.038Z",
   "specId": "028",
   "folderSlug": "sk-deep-research-testing-playbook",
   "parentChain": [

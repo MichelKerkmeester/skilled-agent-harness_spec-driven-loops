@@ -1,13 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/003-wave-executor",
-  "description": "Feature Specification: Wave Executor",
+  "description": "The deep-loop products are currently optimized for one iteration stream at a time",
   "keywords": [
-    "feature",
-    "specification",
-    "wave",
-    "executor"
+    "deep-loop",
+    "products",
+    "currently",
+    "optimized",
+    "one",
+    "iteration",
+    "stream",
+    "time"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.293Z",
+  "lastUpdated": "2026-06-23T03:49:49.235Z",
   "specId": "003",
   "folderSlug": "wave-executor",
   "parentChain": [

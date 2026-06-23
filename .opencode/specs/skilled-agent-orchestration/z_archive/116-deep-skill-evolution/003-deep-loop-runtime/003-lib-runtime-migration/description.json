@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
-  "description": "Feature Specification: Lib Runtime Migration",
+  "description": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .t",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
+    "001",
+    "creates",
+    "opencode",
+    "skills",
+    "deep-loop-runtime",
+    "scaffold",
+    "skill",
     "lib",
-    "runtime",
-    "migration"
+    "scripts",
+    "storage",
+    "tests",
+    "leaves"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.616Z",
+  "lastUpdated": "2026-06-23T03:49:50.862Z",
   "specId": "003",
   "folderSlug": "lib-runtime-migration",
   "parentChain": [

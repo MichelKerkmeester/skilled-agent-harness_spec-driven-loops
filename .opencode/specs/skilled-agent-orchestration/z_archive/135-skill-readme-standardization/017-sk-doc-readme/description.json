@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/017-sk-doc-readme",
-  "description": "Feature Specification: sk-doc README",
+  "description": "The sk-doc README is a tabular reference card with no problem-first entry point, and it is heavily count-stale: the version (1.6.0.0) disagrees with S",
   "keywords": [
-    "feature",
-    "specification",
     "sk-doc",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "heavily",
+    "count-stale",
+    "version",
+    "disagrees"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.604Z",
+  "lastUpdated": "2026-06-23T03:49:51.916Z",
   "specId": "017",
   "folderSlug": "sk-doc-readme",
   "parentChain": [

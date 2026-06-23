@@ -1,18 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
-  "description": "Feature Specification: D4-R Grader Fidelity + Doc Reconciliation Remediation",
+  "description": "The D4-R task-outcome instrument and the v1.11.0.0 doc reconciliation shipped functional and suite-green, but a deep review found 8 should-fix and 20",
   "keywords": [
-    "feature",
-    "specification",
     "d4-r",
-    "grader",
-    "fidelity",
+    "task-outcome",
+    "instrument",
     "doc",
     "reconciliation",
-    "remediation"
+    "shipped",
+    "functional",
+    "suite-green",
+    "deep",
+    "review",
+    "found",
+    "should-fix"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.111Z",
+  "lastUpdated": "2026-06-23T03:49:51.360Z",
   "specId": "014",
   "folderSlug": "d4r-grader-fidelity-remediation",
   "parentChain": [

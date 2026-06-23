@@ -1,19 +1,17 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research",
-  "description": "Feature Specification: Deep Research uplift + ordering + uncovered + hygiene arc",
+  "description": "This cluster groups 6 sub-phases that share a single thematic focus",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "research",
-    "uplift",
-    "ordering",
-    "uncovered",
-    "hygiene",
-    "arc"
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.668Z",
+  "lastUpdated": "2026-06-23T03:49:50.923Z",
   "specId": "004",
   "folderSlug": "deep-research",
   "parentChain": [

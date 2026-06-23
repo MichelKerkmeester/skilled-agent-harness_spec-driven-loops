@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
+    "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.587Z",
+    "last_save_at": "2026-06-23T03:49:50.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:af803ea8c5daba88ec7d421e94b913eb7c92b000cf00c9e73283ea6e50b8f4d6",
+    "source_doc_hashes": {
+      "spec.md": "dbe5dfd92bbf030745d59f67d9eb44b8252a94a97586cadbe939e0439d62b7fe",
+      "plan.md": "7ad492d0badfe1115f3ebe10460c63df86c09835e8829ad0b579e517aa45b361",
+      "tasks.md": "d483d99bd6612e4fb6dfefba10fbc493c6edda64c8123ca26017d85ab8c45710",
+      "checklist.md": "4d63d46236304ec040dac489b175554a8740907215587806c69314f65a86b505",
+      "implementation-summary.md": "459bdc10e7ec82a1a70d1fe82be34319c34f6167f52351ad1b4ed6101600e1d5",
+      "resource-map.md": "22473da5e1fb24d501acb5172ac896f0fb07a0af6c48d1ca87a5c5b65a16c857"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

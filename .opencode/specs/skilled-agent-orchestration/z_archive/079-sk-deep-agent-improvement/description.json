@@ -1,15 +1,20 @@
 {
   "level": 2,
   "specFolder": "skilled-agent-orchestration/z_archive/079-sk-deep-agent-improvement",
-  "description": "Feature Specification: Rename `sk-improve-agent` → `deep-agent-improvement`",
+  "description": "The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills",
   "keywords": [
-    "feature",
-    "specification",
-    "rename",
+    "skill",
+    "folder",
+    "opencode",
+    "skills",
     "sk-improve-agent",
-    "deep-agent-improvement"
+    "named",
+    "legacy",
+    "prefix",
+    "deprecated",
+    "autonomous-loop"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.328Z",
+  "lastUpdated": "2026-06-23T03:49:49.870Z",
   "specId": "079",
   "folderSlug": "sk-deep-agent-improvement",
   "parentChain": [

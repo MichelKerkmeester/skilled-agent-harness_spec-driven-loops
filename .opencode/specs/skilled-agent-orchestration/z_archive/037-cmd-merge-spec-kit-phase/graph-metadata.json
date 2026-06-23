@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation. Users must then separately invoke `/speckit:plan` per child phase. This three-command chain (phase -> plan per child -> implement per child) adds friction. The phase decomposition capability should be an integrated option within the existing plan and complete workflows, following the same pattern as the existing `:with-research` flag.",
+    "causal_summary": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation",
     "created_at": "2026-04-12T09:02:50.181Z",
-    "last_save_at": "2026-06-05T12:47:32.611Z",
+    "last_save_at": "2026-06-23T03:49:49.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:402bb7d70fff3e0d12d8949706a2a0bb8e8977b6b5ff906acc87a8a916378b98",
+    "source_doc_hashes": {
+      "spec.md": "f771720b7e0c27084a83e8408a044db7cf776b8c79fba3800f6cff5a8d37f9a0",
+      "plan.md": "040e4f957c76e09a71dc12778e8ca38d6795ee31d4de1c263d4eab5c19f032d7",
+      "tasks.md": "276f5db47a7ab844887726f430c5c7d86273cc8eeadbad7ba76b0aa219dee0a4",
+      "checklist.md": "f77a57f3f9df395130c6a2a042fa95a39f47fb63f52b440e0abb0173473a0f49",
+      "implementation-summary.md": "441cfc3bb199dc610dac2dcabb5c8e590e637612fab4f0f90d9c7c5978c6c26c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

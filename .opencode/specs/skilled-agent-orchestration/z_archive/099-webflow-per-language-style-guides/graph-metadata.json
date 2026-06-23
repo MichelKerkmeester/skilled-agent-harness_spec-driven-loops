@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-code skill currently bundles JavaScript, CSS, and HTML style rules into five monolithic files under `references/webflow/standards/` (3,831 lines total), while the equivalent opencode-side reference tree is split per-language (`references/opencode/{javascript,typescript,python,shell,config,shared}/`). This asymmetry forces models to load mixed-language rule docs and increases the risk of mis-attributing rules across languages — a hypothesized cause of GPT 5.5's observed failure to apply correct CSS/JS comment style on Webflow tasks. This packet refactors the Webflow reference tree to mirror opencode's per-language layout and updates all cross-references and routing logic to match.",
+    "causal_summary": "sk-code's `references/webflow/standards/` directory contains five monolithic markdown files mixing JS, CSS, and HTML rules (3,831 lines)",
     "created_at": "2026-05-09T19:30:52.197Z",
-    "last_save_at": "2026-06-05T12:47:32.922Z",
+    "last_save_at": "2026-06-23T03:49:50.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:223deb7c169cf34948a1cd633777fd58ada927d3e4ce74824595b64300988997",
+    "source_doc_hashes": {
+      "spec.md": "c1eba9ad71bb541fd6f45b8256c275668f66437dbda270d6dc0e72b6ec71a6ef",
+      "plan.md": "cf9603c56d51d712c621c3cd829b05e0636dc0ef77e6e56b6e3cb28130b0dba5",
+      "tasks.md": "191e84adea660ef91eb54b6286968ceaa71fdab6600c0784a00beec7be4ccbe9",
+      "checklist.md": "fd069e070e184bd8a1c68ebeab6d4f1a3c0034cc46750afcf2f08f0cd72913fc",
+      "decision-record.md": "0b6cf12a48ef9cc5553957f74a31ebde329187bfc0cb7e75b4db48c1381223ae",
+      "implementation-summary.md": "116a4cc5d00fce777dd2a6ceece7604ed245bc73a964049f73e6b55f791acb9a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

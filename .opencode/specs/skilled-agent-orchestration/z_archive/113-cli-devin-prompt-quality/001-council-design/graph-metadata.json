@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Convene a 3-seat deep-ai-council with distinct lenses (pragmatist via cli-codex, skeptic via cli-claude-code, optimizer via cli-gemini) to ratify the design framing for the downstream eval rig (002) and eval loop (003). Council deliberates over a pre-seeded rubric proposal, knob set, and fixture catalog; runs adversarial cross-seat critique; converges via two-of-three rule; persists artifacts to `ai-council/**`. Output is `council-report.md` — the binding design contract for 002 + 003.",
+    "causal_summary": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-07T09:00:45.748Z",
+    "last_save_at": "2026-06-23T03:49:50.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cdf32de5fd66d59bc85026d4bd70b04eba81ff9302ed7be122a4db17b16214cc",
+    "source_doc_hashes": {
+      "spec.md": "413537a814684289c3ba6ec6ff96300fbd5f56101440c0e5ed124fdb818944a5",
+      "plan.md": "6cb53ea7102abc2993225019eef339bce42cdab6f51cb07852ffc403f4cc8523",
+      "tasks.md": "cb0256f7b5b3e8ac6cccb0d4c380bdaec45321f21efdeed4677a0e6d18087278",
+      "checklist.md": "214124629997eebbb769949f4fef027bede58d750c3644bbb1ddc86da121a962",
+      "decision-record.md": "576a590b6943c27c86589eaf24bc68b8a22d13af4c96837fa8374868c6ee1531",
+      "implementation-summary.md": "df4d0bb12ad30ce3b60ed0f7716e766d43de87cd7ad0b1ff98180e0ba7570aa2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The SpecKit slash-command directory was named `spec_kit/` (snake_case with underscore), inconsistent with the recent rename convention shipping `speckit` (single token) across the repo — e.g., `/create:sk-skill → /create:skill` and `doctor/help.md → doctor/speckit.md`. The directory name drives the slash-command form, so every `/spec_kit:plan`, `/spec_kit:complete`, etc. invocation was misaligned with the canonical short form.",
+    "causal_summary": "The SpecKit slash-command directory was named `speckit/` (snakecase with underscore), inconsistent with the recent rename convention shipping `speckit` (single token) across the repo — e.g., `/create:sk-skill → /create:skill` and `doctor/help.md → doctor/speckit.md`",
     "created_at": "2026-05-23T14:01:41.753Z",
-    "last_save_at": "2026-06-07T09:00:45.783Z",
+    "last_save_at": "2026-06-23T03:49:50.557Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:74acdc2141c229bb94e217cd79e8896409ae6a89956485b6649ad0d4c031b535",
+    "source_doc_hashes": {
+      "spec.md": "427a5947525ef68ab6d73b0b80842e6b2c0fba59f553541d723d04eee39948ae",
+      "plan.md": "9c2d44bcbc7bcc33ff2b0998bef0e6f4e500fd71ecee098f69035fe7ce83c43f",
+      "tasks.md": "b7258857a802ebac35c59bf101f7c6cb190cd2174362130c6aa0d10081b298a3",
+      "implementation-summary.md": "96ad4a813e433fdec31151d8dcc765171c9c335585dd7e69e919596e8bc3edf4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

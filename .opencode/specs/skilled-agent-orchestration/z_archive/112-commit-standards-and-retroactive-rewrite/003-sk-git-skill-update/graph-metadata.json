@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the 112 packet. Phase 002 produces `commit-standards.md`, `derivation-heuristics.md`, and 7 Accepted ADRs. This phase is the mechanical step that takes those outputs and applies them to the `sk-git` skill content.",
+    "causal_summary": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the decisions locked in Phase 002",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-06-22T18:55:00.229Z",
+    "last_save_at": "2026-06-23T03:49:50.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:353a216c5bef4ef96c633dd025ac33084fbda65438e0524612f9042cb98884e3",
+    "source_doc_hashes": {
+      "spec.md": "bc5b8980c386061987a08066d5b698424518e5e9b97e49d23c5bdc5a3738a0e8",
+      "plan.md": "8c2c347855fda243eabc9251df4fb71f1e85c29634ea0f1d219b7ee46f23d3f6",
+      "tasks.md": "c86246d6bfd6cf0583241438c8ead2c041649434a77ced8ddfc4a48c03a56efc",
+      "implementation-summary.md": "b0ab7371b242501b3b5d66aa19fde99d767c778623bf7c7364ac821bd130f9c1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

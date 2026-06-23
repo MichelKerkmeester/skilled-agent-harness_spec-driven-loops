@@ -1,13 +1,18 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/007-cross-model-validation",
-  "description": "Feature Specification: cross-model-validation",
+  "description": "The 113/003 eval-loop produced bundle-gate-aversion and framework-dominates-anti-hallucination signals on SWE 1.6",
   "keywords": [
-    "feature",
-    "specification",
-    "cross-model-validation"
+    "113",
+    "003",
+    "eval-loop",
+    "produced",
+    "bundle-gate-aversion",
+    "framework-dominates-anti-hallucination",
+    "signals",
+    "swe"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.289Z",
+  "lastUpdated": "2026-06-23T03:49:50.493Z",
   "specId": "007",
   "folderSlug": "cross-model-validation",
   "parentChain": [

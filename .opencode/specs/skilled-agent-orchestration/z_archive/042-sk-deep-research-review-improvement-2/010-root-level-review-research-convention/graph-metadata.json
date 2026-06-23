@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) **inside the child phase folder**. In a spec tree with many nested phases (like `026-graph-and-context-optimization` with 14 phases, some 3-4 levels deep), this scatters review and research artifacts across dozens of nested directories. Finding a specific review requires knowing the exact nesting path. Manual consolidation after the fact (as we did for 026 -- moving 42 review + 18 research folders) is tedious and error-prone.",
+    "causal_summary": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) inside the child phase folder",
     "created_at": "2026-04-18T07:39:57.335Z",
-    "last_save_at": "2026-06-05T12:47:32.673Z",
+    "last_save_at": "2026-06-23T03:49:49.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d051ad6fa906f843b0ed15beb716d744e4a9334a241ecee469191c3f8ebe60d5",
+    "source_doc_hashes": {
+      "spec.md": "c847d9cf584f6c43e928b3c9a614a1ea26a6d15fd53d1e5fe5813f255c6b9733",
+      "plan.md": "19912ce5cab638df435c1f47ce6590fdf1e9acfece092a7cb065fb74f51df934",
+      "tasks.md": "4e67123f37db58e9263c24c2798e40bfaed98d523f1bd7d6dcb159c1dd0f8260",
+      "checklist.md": "65293fccde92a644bc33e4aee523f72ef44443b560178c9d0f283d9654538b2f",
+      "implementation-summary.md": "9fe07d17568dd571e2037dba38254335481de9c460080b801b7394b88825a0cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

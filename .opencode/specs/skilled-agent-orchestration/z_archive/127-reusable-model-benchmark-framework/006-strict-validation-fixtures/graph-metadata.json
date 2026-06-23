@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The existing hard/harder packs lean on transform and comparison tasks where partial credit spreads across structurally-varied outputs. They under-test one specific axis that separates near-equal frontier models: **strictness on input validation**. A lax-but-plausible solution that skips a single rule (a leading-zero check, a leap-year check, an empty-identifier check) still looks correct on happy-path inputs and only fails on subtle malformed inputs.",
+    "causal_summary": "The existing hard/harder packs lean on transform and comparison tasks where partial credit spreads across structurally-varied outputs",
     "created_at": "2026-06-02T12:00:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.733Z",
+    "last_save_at": "2026-06-23T03:49:51.548Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:41c14232fec00517f475e7367b831926ef719b55a7f458721cff151ae505b187",
+    "source_doc_hashes": {
+      "spec.md": "314b12e40b0cb5f2a1429bbe7aa7b72271586015026438daea0c665d7427c79b",
+      "plan.md": "e532c7ab6b82908f27bc69160dc2e204e6ce17794a968e9a38291e5f2e3dd641",
+      "tasks.md": "d5fc3de599bfc5caad136a18d28373aa2fa10f5324d98244d147668965574c34",
+      "checklist.md": "5ec17765d50b4da1b9fc6cfdfd45ef6a65ab622512cc5de9d78e19e4037f3049",
+      "implementation-summary.md": "0242a17a4b3694fa21e89f9f33d3662ef45da59f492312504020f40ef2f3ba10"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

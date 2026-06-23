@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the 112 packet — and the **current user focus**. The user invoked this packet specifically to \"first define the standards\" using deep thought, before any downstream work (sk-git update, cli-devin prompt authoring, retroactive rewrite execution).",
+    "causal_summary": "The repo has standards on paper but no decisions locked in for the cases that actually matter for a retroactive rewrite",
     "created_at": "2026-05-16T09:42:33Z",
-    "last_save_at": "2026-06-22T18:55:00.223Z",
+    "last_save_at": "2026-06-23T03:49:50.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:12d4e2d41bfe79d9108fa84637beffb18ed5ff39999aaff6d388411a9c024fd6",
+    "source_doc_hashes": {
+      "spec.md": "bf9751de436afcf5db3326ea04bf62edb4aa83e3887a970efaed01fe4955f7fc",
+      "plan.md": "214701ec5fad86f442484bae2fba4d468c0465a379e68d5046fb32811b05d0d3",
+      "tasks.md": "de34b78abb7e810c39e3e04d08453401352614e42437da4f59f1968ac9d872b2",
+      "decision-record.md": "a96efeb121269ae0ce7cba5d65e9cb1fe04340d844be5176c643adf2d8ff1cdc",
+      "implementation-summary.md": "1cd51f53d8fa6fe1f0659cff049b78e2ccedb37e575516681bd9e04a5418196f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,18 +1,20 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation",
-  "description": "Feature Specification: Deep Agent Improvement Command Surface Relocation",
+  "description": "The legacy agent-improvement command was moved to the deep command family and renamed, while the legacy prompt-improvement command was moved to root `",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "agent",
-    "improvement",
+    "legacy",
+    "agent-improvement",
     "command",
-    "surface",
-    "relocation"
+    "moved",
+    "deep",
+    "family",
+    "renamed",
+    "while",
+    "prompt-improvement",
+    "root"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.728Z",
+  "lastUpdated": "2026-06-23T03:49:50.985Z",
   "specId": "009",
   "folderSlug": "command-surface-relocation",
   "parentChain": [

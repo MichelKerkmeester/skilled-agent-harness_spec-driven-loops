@@ -1,16 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
-  "description": "Phase 004 — Skill-benchmark mode (Lane C): design + build",
+  "description": "Design and build Lane C (skill-benchmark) in the renamed deep-improvement skill: scenario fixtures, hint-free dispatcher capturing resource-load trace",
   "keywords": [
-    "phase",
-    "004",
-    "skill-benchmark",
-    "mode",
-    "lane",
     "design",
-    "build"
+    "build",
+    "lane",
+    "skill-benchmark",
+    "renamed",
+    "deep-improvement",
+    "skill",
+    "scenario",
+    "fixtures",
+    "hint-free",
+    "dispatcher",
+    "capturing",
+    "resource-load",
+    "trace"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.059Z",
+  "lastUpdated": "2026-06-23T03:49:51.315Z",
   "specId": "004",
   "folderSlug": "skill-benchmark-mode",
   "parentChain": [

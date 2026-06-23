@@ -1,15 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
-  "description": "Phase 003 — Per-lineage spawn + sub-packet isolation",
+  "description": "Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet",
   "keywords": [
-    "phase",
-    "003",
-    "per-lineage",
-    "spawn",
-    "sub-packet",
-    "isolation"
+    "run",
+    "lineage",
+    "existing",
+    "command",
+    "verbatim",
+    "loop",
+    "own",
+    "isolated",
+    "sub-packet"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.137Z",
+  "lastUpdated": "2026-06-23T03:49:51.389Z",
   "specId": "003",
   "folderSlug": "per-lineage-spawn-isolation",
   "parentChain": [

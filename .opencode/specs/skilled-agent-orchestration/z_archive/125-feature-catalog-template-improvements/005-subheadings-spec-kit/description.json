@@ -6,14 +6,23 @@
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
   "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
-  "description": "Phase 005: Sub-headings — system-spec-kit",
+  "description": "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target onl",
   "keywords": [
-    "phase",
-    "005",
+    "apply",
     "sub-headings",
-    "system-spec-kit"
+    "system-spec-kit",
+    "works",
+    "sections",
+    "exceed",
+    "paragraphs",
+    "uses",
+    "csv",
+    "phase",
+    "002",
+    "target",
+    "onl"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.198Z",
+  "lastUpdated": "2026-06-23T03:49:51.456Z",
   "specId": "005",
   "folderSlug": "subheadings-spec-kit",
   "parentChain": [

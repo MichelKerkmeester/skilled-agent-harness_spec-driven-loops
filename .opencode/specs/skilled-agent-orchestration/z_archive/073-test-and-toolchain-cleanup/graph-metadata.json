@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues. 3 are mechanical fixes (run-matrix.sh token-extraction regexes for codex+opencode; opencode 120s→180s timeout; post-save reviewer EISDIR guard). The 4th (test-alignment-validator.js ESM bug) turned out to need a deeper refactor — the validator source uses `import.meta.url` which can't be transpiled to CommonJS. Bundling fixed#2/3/4 into one cleanup keeps the diff coherent; deferring #1 to a focused follow-up packet preserves scope.",
+    "causal_summary": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues",
     "created_at": "2026-05-05T15:06:20Z",
-    "last_save_at": "2026-06-05T12:47:32.825Z",
+    "last_save_at": "2026-06-23T03:49:49.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:25:00Z",
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:da66634fc94c5adf99398da6cb3b458ce4fa289301b4494ec2c81c18c6eb03f5",
+    "source_doc_hashes": {
+      "spec.md": "628ac0e36212cdebba939df044d948c0f5872f6d68d0f3f9eacf13e677faac00",
+      "plan.md": "f58b88f6a7c2a8cb6ef8eaaa7871b75cd6e04093b586507a2569355b8cbdab21",
+      "tasks.md": "ff26c0a994ecceeec93b86905cda0791e1c8c9f8a54cdbf82d0cdea8eb29fbfa",
+      "implementation-summary.md": "e6acfeca7d47a2463a755748db44cc06ed36a06c2fdebaf8169b6f5a9b635ce6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

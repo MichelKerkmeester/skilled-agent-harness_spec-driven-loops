@@ -22,16 +22,17 @@
     "004-reference-architecture-alignment"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering",
-  "description": "Feature Specification: deep-context loop (Phase Parent)",
+  "description": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-context",
+    "convergence-gated",
     "loop",
-    "phase",
-    "parent"
+    "assembles",
+    "implementation-ready",
+    "context",
+    "existing",
+    "codebase"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.469Z",
+  "lastUpdated": "2026-06-23T03:49:51.757Z",
   "specId": "134",
   "folderSlug": "deep-context-gathering",
   "parentChain": [

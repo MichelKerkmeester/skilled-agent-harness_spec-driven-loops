@@ -38,16 +38,21 @@
     ]
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation",
-  "description": "Packet 125: Deep-Agent-Improvement Doc Version Reconciliation",
+  "description": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical",
   "keywords": [
     "packet",
-    "125",
+    "124",
+    "shipped",
+    "correctness",
+    "fixes",
     "deep-agent-improvement",
-    "doc",
-    "version",
-    "reconciliation"
+    "skill",
+    "documentation",
+    "brought",
+    "same",
+    "canonical"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.706Z",
+  "lastUpdated": "2026-06-23T03:49:50.960Z",
   "specId": "005",
   "folderSlug": "doc-version-reconciliation",
   "parentChain": [

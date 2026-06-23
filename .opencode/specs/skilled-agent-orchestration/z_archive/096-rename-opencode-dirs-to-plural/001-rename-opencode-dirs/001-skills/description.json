@@ -2,18 +2,20 @@
   "completionPct": 0,
   "lastOutcome": "Spec docs authored; awaiting cli-codex dispatch.",
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/001-skills",
-  "description": "Feature Specification: 096/001 - rename .opencode/skill/ to .opencode/skills/",
+  "description": "opencode's project-level skill discovery looks for `.opencode/skills/` (plural per `https://opencode.ai/docs/skills`)",
   "keywords": [
-    "feature",
-    "specification",
-    "096",
-    "001",
-    "rename",
     "opencode",
+    "project-level",
     "skill",
-    "skills"
+    "discovery",
+    "looks",
+    "skills",
+    "plural",
+    "per",
+    "https",
+    "docs"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.934Z",
+  "lastUpdated": "2026-06-23T03:49:50.039Z",
   "specId": "001",
   "folderSlug": "skills",
   "parentChain": [

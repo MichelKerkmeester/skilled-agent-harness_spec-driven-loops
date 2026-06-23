@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces. The `003-deep-review` phase-5 deep-research loop surfaced a 4-gap cluster (LG-0013, LG-0016, LG-0031, LG-0032) plus a deeper finding during this packet's investigation: the AUTHORITATIVE producer (both `deep_start-review-loop_{auto,confirm}.yaml` workflows) emits **9 gates** with the `Gate` suffix at the `step_emit_blocked_stop` append_jsonl step, but every documentation surface describes a different, incomplete model:",
+    "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces",
     "created_at": "2026-05-23T18:38:12.948Z",
-    "last_save_at": "2026-06-15T09:09:33.694Z",
+    "last_save_at": "2026-06-23T03:49:50.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:50b7063a11495ddd3653351425bae6d1bf47ef4e5e945f50060e390db93d3034",
+    "source_doc_hashes": {
+      "spec.md": "9d8977dc8be33d91b6896bcff189f07d08bffa23cefdb38de2881ffe739ff746",
+      "plan.md": "1c9a06856f8d1523359f2ba9f435abe91081ce5ade3a40b3379f0b640f44994b",
+      "tasks.md": "c03ae7634a8c8e5d78b3ad91f850b91fc784dfe32f6674554556717e5d529e83",
+      "checklist.md": "bacd639deadfcfdfa599a56a13b28f1be7f384192b40a92e4ab81f9b31520aed",
+      "implementation-summary.md": "2343ef21d10c92be488ad9c6301d70f7afc7206e32ef041ce316f399a03b4c1e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

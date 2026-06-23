@@ -1,14 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/004-budget-and-output-verification",
-  "description": "Feature Specification: cli-devin quality optimization",
+  "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction pr",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-devin",
-    "quality",
-    "optimization"
+    "swe-1",
+    "dispatches",
+    "today",
+    "context-budget",
+    "awareness",
+    "every",
+    "iter",
+    "sends",
+    "prompts",
+    "model",
+    "window",
+    "truncation",
+    "hints",
+    "eviction"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.321Z",
+  "lastUpdated": "2026-06-23T03:49:50.526Z",
   "specId": "004",
   "folderSlug": "budget-and-output-verification",
   "parentChain": [

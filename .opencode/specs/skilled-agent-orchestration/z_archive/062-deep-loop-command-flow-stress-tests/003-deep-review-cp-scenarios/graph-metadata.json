@@ -17,17 +17,17 @@
     ],
     "key_topics": [
       "003-deep-review-cp-scenarios",
-      "author",
-      "cp-xxx",
-      "scenarios",
-      "deep-review",
-      "command",
-      "flow",
+      "sub-phase",
+      "062-deep-loop-command-flow-stress-tests",
+      "apply",
+      "060",
+      "004",
+      "methodology",
       "spec",
+      "deep-review",
       "cp-scenario",
       "authoring",
-      "003",
-      "sub-phase"
+      "003"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Author 6 CP-XXX scenarios for the @deep-review command flow.",
+    "causal_summary": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
     "created_at": "2026-05-18T07:49:27.113Z",
-    "last_save_at": "2026-06-05T12:47:32.746Z",
+    "last_save_at": "2026-06-23T03:49:49.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ed7a4d5188e9eee3df6a89c085be3898bd5658ac91371a8799014bae89cd445a",
+    "source_doc_hashes": {
+      "spec.md": "a9db0ba3044534bad201df8dc559c6bc7b821bc7633783719d2ecd778424f0c4",
+      "plan.md": "32e9837e4083bad5b1c916b7be12224c8d6ff2ebc7478599ead9dccf07fa1c3d",
+      "tasks.md": "e93c7754348f1a8b84a8cdc215fa3432176f85c4aa2f0cae200bfc94308e9bf9",
+      "implementation-summary.md": "5cc03e20632290ff1e5db63599858e0beee8e06184a3236ff927e0cff55dca25"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

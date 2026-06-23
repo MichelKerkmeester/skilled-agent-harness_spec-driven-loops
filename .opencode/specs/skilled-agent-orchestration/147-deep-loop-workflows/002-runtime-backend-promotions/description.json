@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows/002-runtime-backend-promotions",
-  "description": "Feature Specification: Runtime backend promotions",
+  "description": "The five skills duplicate generic plumbing — a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter",
   "keywords": [
-    "feature",
-    "specification",
-    "runtime",
-    "backend",
-    "promotions"
+    "five",
+    "skills",
+    "duplicate",
+    "generic",
+    "plumbing",
+    "byte-identical",
+    "runtime-capabilities",
+    "resolver",
+    "deep-research",
+    "deep-review",
+    "loop-lock",
+    "cli",
+    "adapter"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.694Z",
+  "lastUpdated": "2026-06-23T03:49:48.679Z",
   "specId": "002",
   "folderSlug": "runtime-backend-promotions",
   "parentChain": [

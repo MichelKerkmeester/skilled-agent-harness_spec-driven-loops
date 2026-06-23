@@ -216,9 +216,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This specification covers the creation of the `mcp-click-up` skill under `.opencode/skills/mcp-click-up/`. The skill gives AI agents a structured, orchestrated interface to ClickUp using two complementary tools: the `cupt` Python CLI for daily task operations, and the official ClickUp MCP server for advanced features. The skill follows the `mcp-chrome-devtools` structural template and embeds its own installation logic.",
+    "causal_summary": "No `mcp-click-up` skill exists in `.opencode/skills/`",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.703Z",
+    "last_save_at": "2026-06-23T03:49:51.421Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-31T10:00:00Z",
     "source_docs": [
@@ -229,6 +229,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:19621ab4ddfeec24a845bb82e4894a49aa8cf56f3b1fbc3f7ecdc8c516df21f3",
+    "source_doc_hashes": {
+      "spec.md": "3426e79c392b6827fe0963311c5d5373c6c04f428fec72c99a60d5a6f7d7c4b9",
+      "plan.md": "ddf5b9d379c58a49daed417662213d2793d2435869a20698a04675f0f307607d",
+      "tasks.md": "03e7a0c7372d79460021510db6bb77c12b385d98100c2ad1fe84e18630edef82",
+      "checklist.md": "59427543ed05f7bfe7e55a780c6a4686be8e85f5665c531245ca120bb4fa5600",
+      "decision-record.md": "d4721aa1b7495f1cb5818bc51d409f5f7340953615529e99d233580bdde85566",
+      "implementation-summary.md": "72b530de15604b11470a0ecff0b4de539d0e65bd93fdc6bc5616ab4da0c98d83"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

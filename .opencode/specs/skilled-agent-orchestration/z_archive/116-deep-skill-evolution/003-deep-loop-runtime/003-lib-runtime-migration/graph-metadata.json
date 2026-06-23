@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .ts files untouched at their old `.opencode/skills/system-spec-kit/mcp_server/lib/{deep-loop,coverage-graph}/` locations. As long as the runtime libraries live in the MCP server tree, every other phase has to import across the very boundary the arc is trying to remove, and the new runtime skill has no actual code to host.",
+    "causal_summary": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .ts files untouched at their old `.opencode/skills/system-spec-kit/mcpserver/lib/{deep-loop,coverage-graph}/` locations",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-06-22T18:55:00.613Z",
+    "last_save_at": "2026-06-23T03:49:50.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:13630a24e7ffd62b3ef164acf3eebfde8744e0389323b0011d667949b737cdfa",
+    "source_doc_hashes": {
+      "spec.md": "f90d2952f77c958a6be77f46fc8b38e6493db0b75eb5202c82d813dbdd193339",
+      "plan.md": "02575c73fe58cb9b91b4a838f707a9b51f08225b17c65856b4cfe54b97b7d90d",
+      "tasks.md": "37bbabb2f90981c989932a5ed905de9e919aa501fd78f0d45a099d4c75ee444e",
+      "checklist.md": "afb7aaa6b8aa356c9ab1f47a5960dd7b2fd1d5393873bfb64c44e79b415afaf0",
+      "implementation-summary.md": "2b033630f78563c6e6df8c41ae98f3117c7585642d9c9a2cb059c43df7421012"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

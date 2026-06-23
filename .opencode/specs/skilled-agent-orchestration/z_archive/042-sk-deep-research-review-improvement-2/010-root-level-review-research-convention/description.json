@@ -1,16 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
-  "description": "Feature Specification: Root-Level Review/Research Folder Convention",
+  "description": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`",
   "keywords": [
-    "feature",
-    "specification",
-    "root-level",
-    "review",
-    "research",
-    "folder",
-    "convention"
+    "running",
+    "speckit",
+    "deep-review",
+    "deep-research",
+    "child",
+    "phase",
+    "inside",
+    "parent",
+    "spec",
+    "tree",
+    "skills",
+    "create",
+    "output",
+    "folders"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.417Z",
+  "lastUpdated": "2026-06-23T03:49:49.278Z",
   "specId": "010",
   "folderSlug": "root-level-review-research-convention",
   "parentChain": [

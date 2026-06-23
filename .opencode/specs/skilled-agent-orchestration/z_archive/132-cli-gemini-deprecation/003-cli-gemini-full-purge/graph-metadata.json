@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 deleted the `cli-gemini` SKILL and the project `.gemini` runtime surface; phase 002 cleaned the command-layer YAML and docs. But `cli-gemini` remained wired as a first-class **executor** across many skills' source, tests, manifests, feature catalogs, testing playbooks, and changelogs. This phase removes every `cli-gemini` executor reference outside `specs/**`, including release-history changelogs.",
+    "causal_summary": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-improvement model-benchmark dispatch, the system-spec-kit matrix runner adapter set, the multi-AI council fixture, plus a wide spread of feature catalogs, manual testing playbooks, references, a constitutional file, and release-history changelogs",
     "created_at": "2026-06-08T16:11:50.617Z",
-    "last_save_at": "2026-06-17T19:57:23.772Z",
+    "last_save_at": "2026-06-23T03:49:51.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:f41a421726d11ac59237f831c44684aa3e0edfd285a67a44f85f08ae40c8a948",
+    "source_doc_hashes": {
+      "spec.md": "4ddb4ce26195feb1a0d78a7ca40db40a06d4266e08f538f3694eeb0b0139d804",
+      "plan.md": "27a6f72e6cdb24decf9b8998b6aebbd6a745f53847b7d99a78e5d25a5d7fc580",
+      "tasks.md": "d5e28625286f4a5f86250cf63f2fcd81b10e99669d62589eae8e33e5d5e06f7a",
+      "checklist.md": "369f0cc4be522ee6b7a8f5440d2b9b661b9de6ac3a19ace61d13ebe65c9f730d",
+      "decision-record.md": "2e51b2a1b35505ec57318add30c03ea3bc1d79e926dd45347ae44039f3c4c617",
+      "implementation-summary.md": "d2ee5c5178ac0834b5be4df71b3dc2644e68cd03c69884b5c80c91b169a053ff",
+      "resource-map.md": "4b16e8ab9322ad202db4acac2d26e8112db4dfa1ce0300dd73955e1b44f4f36d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

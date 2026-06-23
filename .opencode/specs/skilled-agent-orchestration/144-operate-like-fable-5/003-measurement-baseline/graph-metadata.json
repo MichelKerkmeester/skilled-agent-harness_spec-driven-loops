@@ -36,7 +36,7 @@
       "tasks",
       "verification",
       "checklist",
-      "level"
+      "fable-5"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Level 3 (+Arch) is appropriate when:",
+    "causal_summary": "The fable-5 efficiency work proposes governor and doctrine changes whose effect on behavior (tool:text ratio, message length, self-referential openers, hedging density, evidence-backed completions) is currently unmeasured",
     "created_at": "2026-06-15T14:05:58Z",
-    "last_save_at": "2026-06-16T06:06:34.790Z",
+    "last_save_at": "2026-06-23T03:49:48.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:84b8d81fb0986adc3eed07d2ea8eae63e919ac99cce38ae207f7d86f13d5cdc1",
+    "source_doc_hashes": {
+      "spec.md": "20a1eeba68fd8a4ef2391dfc8a383b9dc23656fd01a41eda488ba59b93abf521",
+      "plan.md": "e1960034d87d0557ea66bced5fe61f4ae9d07bcedaf932a93926a001ff332e19",
+      "tasks.md": "c0804c393090b792b8f4f4e48216af63b084c3fdd0634bd09809efa6c4849608",
+      "checklist.md": "15905977639b93dc5ffdba97636cb9341270db996ac93a3e4839bbab38efa5a4",
+      "decision-record.md": "3d1c5b3944218bc2cdaf9ac2b4ab9b9f8523adbe3ebd761355b55095e5073af2",
+      "implementation-summary.md": "211d1b36e32d3ea67c6fe7c15a7576a4bdfe640eabe252de6877ebfe3b7b5fc9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

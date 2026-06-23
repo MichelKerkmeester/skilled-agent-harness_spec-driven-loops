@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet records a four-seat AI Council deliberation on whether `sk-ai-council` should become a shared runtime similar to `deep-loop-runtime`. The ruling is **HYBRID**: do not extract the whole council skill now; extract only reusable state, scoped-write, and convergence primitives if consumer growth or duplicate-runtime pressure appears.",
+    "causal_summary": "`sk-ai-council` already contains runtime-like helpers for artifact persistence, append-only JSONL state, graph replay, and convergence guidance",
     "created_at": "2026-05-23T05:04:55Z",
-    "last_save_at": "2026-06-07T09:00:45.839Z",
+    "last_save_at": "2026-06-23T03:49:50.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-23T05:04:55Z",
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cba7eb3b0ad4aec625b0ea041a6f20d2aee3b91f873b6e52803a3d6766214a8c",
+    "source_doc_hashes": {
+      "spec.md": "77783b293557034e48b0e2cd321f49b92582df086fb170133b886eb3bb0c470e",
+      "plan.md": "8b70fefb8d1e7e95f57b0c3aec1998ba0cd5876d4d8b7a5153aff353a4d07e67",
+      "tasks.md": "9ea01ed63ad7db7f162405f6868aead65205264c91c6ed3a2dee668691097c40",
+      "checklist.md": "199276ea600fec30be9cf58b4b1a070159474c1524e43a6fb59306b0f09a9c6d",
+      "decision-record.md": "2116d65a44be1e4378c03299437a51b4e2e68b3c77360848caa241f921938aca",
+      "implementation-summary.md": "e1477039cd95597dbdb67eb6fe6c1f998303e21131a3ccd2a8586844f32fe468"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

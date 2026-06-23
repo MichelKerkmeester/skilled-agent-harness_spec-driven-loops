@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 060/003 research synthesized 10 cli-copilot iterations and identified the executable producers + consumers that must be wired before sk-improve-agent's command-flow pipeline can produce honest GREEN evidence. 062 lands those wirings.",
+    "causal_summary": "After 060/002, sk-improve-agent has CRITIC PASS in the agent body (4 runtime mirrors), score-candidate baseline+delta wiring, scan-integration `.gemini/agents` fix, and YAML emissions for `legalstopevaluated`/`benchmarkcompleted`/`blockedstop`",
     "created_at": "2026-05-02T14:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.385Z",
+    "last_save_at": "2026-06-23T03:49:49.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,17 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:ec3e56af4d05e09d468d1ed14439c4e16553eea683edec3f312d2340690bb04b",
+    "source_doc_hashes": {
+      "spec.md": "bd30c26148ebeb2d00def604b4f0552bef33024cda7b7d55ec1c7ae5baee2612",
+      "plan.md": "05c86e9545517d29105347a34d8e17aac1706ac812788e7e4256377f4f6a1f49",
+      "tasks.md": "55edaea3b37fa11079142a8cce8eae50f60d4c3585fe5fa9df16a8104442d5cd",
+      "checklist.md": "1123974730cf15dd38b677ee43282fcc1de034e81e34f209e4617e6496da4c5e",
+      "decision-record.md": "8fa52e9ada6e8c18aa8c402e970a4ae8b339f5586e896e961dc5c423d7165a10",
+      "implementation-summary.md": "bd526d7763eb40e5712ecc08de2e4d755eccd03f6e9bd7607e78c4170a143526",
+      "handover.md": "7eb31c29f7633acbdb4dd232528566c864a9a80d76380391a6561251a09f7e83",
+      "resource-map.md": "f7f4353380c5e6be82d2762a15abe64611bc883f9cf3b5306d4fe1ac3837f05f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

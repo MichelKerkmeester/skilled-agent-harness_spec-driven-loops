@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase aligns the three deep skills to one sk-doc-compatible resource model without flattening their domain differences. `deep-ai-council` gains the missing council-specific reference and asset family, `deep-review` gains focused convergence/state references, and `deep-research` records that its prior split is the aligned research model.",
+    "causal_summary": "The three deep skills now share a runtime family but their references and assets were uneven",
     "created_at": "2026-05-25T06:37:29.559Z",
-    "last_save_at": "2026-06-22T18:55:00.390Z",
+    "last_save_at": "2026-06-23T03:49:50.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bc06cd54dbe20ef7b63b6f8c160871f2f3e945dfba37e5a035f0da0b42eb0a0d",
+    "source_doc_hashes": {
+      "spec.md": "8c50eb081289fe7d2e30c009b783a41ed1a25124b34f807cd0392ba411d66a0f",
+      "plan.md": "1fc8411f6bbe0b29e13b2b671a20c3eccd652c4cefe4c9392401fcfbadd00688",
+      "tasks.md": "d9d39cbc3207dc3c7878952e225531b71bd60ee0d1f045d3ab1f34bf9d4885ed",
+      "checklist.md": "8ba1371e45c1ae4e7009492fbd3e5cc3bf084db6ce8e8dd1dc79bd4420919f24",
+      "decision-record.md": "eae70dadb7d00264e3fa69739f8474a8ea08a4ef7b4c1e53391d187c3ec92cd6",
+      "implementation-summary.md": "858859a92593843b6b53118c1770ffb7231c3016ee8589de159a999241785cdd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

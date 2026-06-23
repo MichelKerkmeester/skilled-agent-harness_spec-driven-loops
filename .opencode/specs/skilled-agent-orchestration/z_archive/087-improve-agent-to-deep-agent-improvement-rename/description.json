@@ -1,15 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/087-improve-agent-to-deep-agent-improvement-rename",
-  "description": "Feature Specification: Rename `@improve-agent` agent to `@deep-agent-improvement`",
+  "description": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-dee",
   "keywords": [
-    "feature",
-    "specification",
-    "rename",
-    "improve-agent",
+    "packet",
+    "079",
+    "renamed",
+    "skill",
+    "sk-improve-agent",
+    "deep-agent-improvement",
+    "kept",
     "agent",
-    "deep-agent-improvement"
+    "name",
+    "improve-agent",
+    "stable",
+    "per",
+    "original",
+    "070-sk-dee"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.357Z",
+  "lastUpdated": "2026-06-23T03:49:49.968Z",
   "specId": "087",
   "folderSlug": "improve-agent-to-deep-agent-improvement-rename",
   "parentChain": [

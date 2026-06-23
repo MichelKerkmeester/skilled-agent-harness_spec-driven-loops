@@ -1,14 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/021-system-code-graph-readme",
-  "description": "Feature Specification: system-code-graph README",
+  "description": "The system-code-graph README is a tabular reference card with no problem-first entry point",
   "keywords": [
-    "feature",
-    "specification",
     "system-code-graph",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.624Z",
+  "lastUpdated": "2026-06-23T03:49:51.939Z",
   "specId": "021",
   "folderSlug": "system-code-graph-readme",
   "parentChain": [

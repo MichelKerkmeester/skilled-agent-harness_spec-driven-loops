@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
+      "add",
       "master",
-      "catalog",
-      "trigger",
-      "phrases",
-      "represent",
-      "skill",
-      "whole",
-      "individual",
-      "features",
+      "files",
+      "fix",
+      "remaining",
+      "stale",
+      "references",
+      "small",
+      "scope",
+      "edits",
       "phase",
-      "008",
-      "enrichment"
+      "008"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -107,15 +107,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Master catalog trigger phrases represent the skill as a whole, not individual features:",
+    "causal_summary": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
     "created_at": "2026-06-18T12:37:48.698Z",
-    "last_save_at": "2026-06-18T12:37:48.698Z",
+    "last_save_at": "2026-06-23T03:49:51.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:a7210a22aa132cc9cc7ba18808c7b306dd48218307f0ab43fb8b9e76f07ffcaf",
+    "source_doc_hashes": {
+      "spec.md": "c27d67eddfa70c2826702c1001d32b6156b448f7d6c695d49f65d33715136700",
+      "plan.md": "fae23394964baf43a7fc62697d1a0973124d8eca79d60fd36e06ae7ed3816526"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,19 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands",
-  "description": "Feature Specification: Update mcp-open-design od CLI verb surface table with missing commands",
+  "description": "The `odclireference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete",
   "keywords": [
-    "feature",
-    "specification",
-    "update",
-    "mcp-open-design",
-    "cli",
+    "odclireference",
     "verb",
     "surface",
     "table",
-    "missing",
-    "commands"
+    "section",
+    "used",
+    "mcp-open-design",
+    "skill",
+    "incomplete"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.059Z",
+  "lastUpdated": "2026-06-23T03:49:48.642Z",
   "specId": "013",
   "folderSlug": "update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands",
   "parentChain": [

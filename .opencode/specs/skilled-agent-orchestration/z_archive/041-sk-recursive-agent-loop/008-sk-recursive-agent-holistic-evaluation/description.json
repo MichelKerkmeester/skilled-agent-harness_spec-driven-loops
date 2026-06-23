@@ -1,15 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation",
-  "description": "Spec: Holistic Agent Evaluation & Integration-Aware Improvement",
+  "description": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs). The scor",
   "keywords": [
-    "spec",
-    "holistic",
+    "sk-improve-agent",
+    "skill",
+    "evaluates",
+    "agents",
+    "checking",
+    "keyword",
+    "presence",
+    "markdown",
+    "15-20",
+    "true",
     "agent",
-    "evaluation",
-    "integration-aware",
-    "improvement"
+    "improvement",
+    "system",
+    "needs",
+    "scor"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.204Z",
+  "lastUpdated": "2026-06-23T03:49:49.190Z",
   "specId": "008",
   "folderSlug": "sk-recursive-agent-holistic-evaluation",
   "parentChain": [

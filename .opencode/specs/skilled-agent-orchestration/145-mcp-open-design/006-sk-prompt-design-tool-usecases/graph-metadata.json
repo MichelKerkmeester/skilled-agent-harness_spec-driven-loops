@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Assess honestly whether `sk-prompt` already serves design-generation prompting, and improve it only if a real gap exists. The improvement, if warranted, must fit `sk-prompt`'s existing architecture (a reference doc plus router wiring) and must not duplicate the design judgment owned by `sk-design-interface` or the run transport owned by the two MCP skills.",
+    "causal_summary": "`sk-prompt` is the framework's prompt-engineering skill: seven text frameworks, a five-phase DEPTH pass, CLEAR scoring, and three format guides",
     "created_at": "2026-06-14T12:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.189Z",
+    "last_save_at": "2026-06-23T03:49:48.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c8330dd841bfdadd0e18d90884ebd9f0e8376074fd2ff6dc34b94f429966b860",
+    "source_doc_hashes": {
+      "spec.md": "e8dfb4e1ebd807d4e4ae31fe903d76f949f9665aec361401b7568e5d4776c01f",
+      "plan.md": "f1bce426ce8ecc1db60e9e6e60db7d0655ae5e496f3ce4636bf45f52d358bd41",
+      "tasks.md": "23a20b9b0dea941a8caacc18d13aba5465bdba661d607ca63e059e8545601c5d",
+      "checklist.md": "946167841da42d8727fe9334442701e118f4a45c67023678f4ac025c381344e7",
+      "implementation-summary.md": "37a6d2667f317a664a561528f298cadc26d92c0bc0e46e398c2d43982edc660f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

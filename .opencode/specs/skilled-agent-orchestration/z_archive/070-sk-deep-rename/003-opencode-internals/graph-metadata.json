@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`. Three graph metadata edges are already known broken, so advisor edge resolution can remain degraded until Phase 003 updates every other active `.opencode/` reference.",
+    "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.380Z",
+    "last_save_at": "2026-06-23T03:49:49.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:46f056c53790cb1f3b0a3cae1baea2afd3af9ea5f1f37a2708ba915c5d419427",
+    "source_doc_hashes": {
+      "spec.md": "17223cb00ed1e33de25f27721b98b20c6334453713393adf048398ff92c77343",
+      "plan.md": "5a767740cd40b78e1da8e1854a1a4268a8d254ee132b8722a10c979ad1361647",
+      "tasks.md": "c554de9ef60a3edaf93acaacfea0f24c125784bae1b79aca6c25bed19a4fff3e",
+      "checklist.md": "73fdf260bedbe4278016874bf1e4d1a1b6c3d086ce74f855dadf4ddfc3d879d9",
+      "implementation-summary.md": "a71accdde455654919482f7ebd2abfbd9caedf73dd166aeed71ccb4264c9a39e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

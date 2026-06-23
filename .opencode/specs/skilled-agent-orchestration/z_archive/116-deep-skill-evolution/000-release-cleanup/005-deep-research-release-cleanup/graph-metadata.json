@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `deep-research` skill (v1.12.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `116-deep-skill-evolution` arc begins, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
+    "causal_summary": "The `deep-research` skill carries 412 lines of SKILL.md, 248 lines of README, 6 references (3,526 lines), 5 assets, 16 feature-catalog files, 43 manual-testing-playbook entries, and 16 changelog versions",
     "created_at": "2026-05-23T14:11:44.282Z",
-    "last_save_at": "2026-06-15T09:09:33.679Z",
+    "last_save_at": "2026-06-23T03:49:50.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,6 +224,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:de68ff58263604caa39bba925b3206e337b527579bde526af168a93208546864",
+    "source_doc_hashes": {
+      "spec.md": "54073d067841872b58066db3b5206e7a9571508204e5ac2741263c65fdf8ecca",
+      "plan.md": "66faff0a25f9166be7f1588b2b287fcad866e46192ef2d936c46d055422a01f6",
+      "tasks.md": "636c80c27334c02a194960db99ce289e98ff5a6f20b1155fc1f202eae5e7a69a",
+      "checklist.md": "715a414dbe7980d787479e400bf6d9fef1cc97e2b6b16727f6580e9be6720763",
+      "decision-record.md": "4b5cde495f9c6ec810fc64f7e74e72db35758c0faac94c5b708c18554828421c",
+      "implementation-summary.md": "87fb856a9abd47c0ec1a3a742afc1ada005d691287bced988eb0a76e726bba6d",
+      "resource-map.md": "3b4ed5a347111925dea75451c150ab4e2f663c1655fb96f28592f1ddb3953f0b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

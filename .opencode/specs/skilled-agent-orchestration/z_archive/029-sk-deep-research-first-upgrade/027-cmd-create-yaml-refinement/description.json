@@ -1,15 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement",
-  "description": "Feature Specification: Create Command YAML Refinement",
+  "description": "The create-command YAML assets had drifted into uneven shapes",
   "keywords": [
-    "feature",
-    "specification",
-    "create",
-    "command",
+    "create-command",
     "yaml",
-    "refinement"
+    "assets",
+    "drifted",
+    "uneven",
+    "shapes"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.187Z",
+  "lastUpdated": "2026-06-23T03:49:49.050Z",
   "specId": "027",
   "folderSlug": "cmd-create-yaml-refinement",
   "parentChain": [

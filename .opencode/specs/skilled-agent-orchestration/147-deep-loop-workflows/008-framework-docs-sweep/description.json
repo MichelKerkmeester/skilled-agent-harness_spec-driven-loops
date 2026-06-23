@@ -1,14 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows/008-framework-docs-sweep",
-  "description": "Feature Specification: Framework documentation sweep",
+  "description": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration",
   "keywords": [
-    "feature",
-    "specification",
-    "framework",
+    "cross-repo",
     "documentation",
-    "sweep"
+    "written",
+    "around",
+    "five-skill",
+    "model",
+    "root",
+    "readme",
+    "enumerates",
+    "five",
+    "loop",
+    "skills",
+    "including",
+    "brittle",
+    "slash-enumeration"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.719Z",
+  "lastUpdated": "2026-06-23T03:49:48.717Z",
   "specId": "008",
   "folderSlug": "framework-docs-sweep",
   "parentChain": [

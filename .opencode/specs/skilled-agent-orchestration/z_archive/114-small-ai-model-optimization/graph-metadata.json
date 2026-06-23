@@ -89,14 +89,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Our cli-* dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc — RCAF default, medium pre-plan, standard bundle-gate, cross-model validation. But that arc optimized **prompt composition**. We have not yet addressed **runtime patterns** that small models need to produce reliable output: token-aware context budgets, output verification pipelines, per-model profile registries, escalation policies, and structured (non-prose) permission boundaries.",
+    "causal_summary": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc — RCAF default, medium pre-plan, standard bundle-gate, cross-model validation",
     "created_at": "2026-05-18T08:50:24.230Z",
-    "last_save_at": "2026-06-22T18:56:35.634Z",
+    "last_save_at": "2026-06-23T03:49:50.497Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:54a61d8313d40ecbaea3deedafd86d498c3206b951e9aabdb612490c3be2d9ec",
+    "source_doc_hashes": {
+      "spec.md": "cb32e917fc5806e313ee1dd067b0be2e2f8cea5ad1b2d1ec896774d9182701ae"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

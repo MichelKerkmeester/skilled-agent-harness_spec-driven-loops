@@ -1,19 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
-  "description": "Feature Specification: Phase 002 — Manual Testing Playbook for sk-prompt Skill",
+  "description": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "002",
-    "manual",
-    "testing",
-    "playbook",
     "sk-prompt",
-    "skill"
+    "skill",
+    "renamed",
+    "082",
+    "ships",
+    "distinct",
+    "testable",
+    "surfaces",
+    "manualtestingplaybook",
+    "directory"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.886Z",
+  "lastUpdated": "2026-06-23T03:49:49.955Z",
   "specId": "002",
   "folderSlug": "sk-prompt-testing-playbook",
   "parentChain": [

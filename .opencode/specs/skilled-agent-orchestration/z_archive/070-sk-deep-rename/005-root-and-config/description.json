@@ -1,16 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/005-root-and-config",
-  "description": "Feature Specification: Phase 005 Root Docs and Configs",
+  "description": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "005",
-    "root",
-    "docs",
-    "configs"
+    "packet",
+    "070",
+    "renames",
+    "old",
+    "deep-loop",
+    "skill",
+    "ids",
+    "deep-review",
+    "deep-research"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.707Z",
+  "lastUpdated": "2026-06-23T03:49:49.726Z",
   "specId": "005",
   "folderSlug": "root-and-config",
   "parentChain": [

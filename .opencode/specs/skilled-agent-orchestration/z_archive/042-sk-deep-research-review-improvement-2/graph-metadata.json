@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This parent packet coordinates **eight child implementation phases plus a post-phase-008 closing-audit remediation pass**. The bundle keeps the same core goal as the original packet: make `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent` easier to trust, resume, scale, and improve without collapsing them into a hidden generic workflow. What changed is the delivery model. The detailed design and task breakdown live in dedicated child folders (`001`–`008`) plus the live `review/` packet that drives closing audits, while this root spec tracks the cross-phase shape, sequencing, and handoff logic.",
+    "causal_summary": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
     "created_at": "2026-04-12T09:02:50.190Z",
-    "last_save_at": "2026-06-22T18:56:35.316Z",
+    "last_save_at": "2026-06-23T03:49:49.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:c4ed4b60a31891954f55cdf7302c3c7cdbe7cff95ebcc517e72d8efd36de8ae1",
+    "source_doc_hashes": {
+      "spec.md": "fa0fc9243bfe1c1a681f12e606cea83185b15df7b1a4fa1b91f9a394d12a25b4",
+      "research/research.md": "3cfc43c7702d979473d08add557100c78397aaeeea4d847e8ae9881b0cf1c81b",
+      "resource-map.md": "bda61cadf85cbe8be7a5a9e89dd1023503459305b10c99610c860edb0543d747"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

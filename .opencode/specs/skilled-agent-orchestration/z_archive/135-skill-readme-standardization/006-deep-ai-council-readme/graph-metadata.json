@@ -28,9 +28,9 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "first",
-      "batch"
+      "tabular",
+      "reference",
+      "card"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6**, the first skill of Batch B (the deep loops).",
+    "causal_summary": "The deep-ai-council README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T12:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.829Z",
+    "last_save_at": "2026-06-23T03:49:51.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:03e256493711086e941e36b515395b4c2311d8df1607d58acc1795008a1ac3db",
+    "source_doc_hashes": {
+      "spec.md": "b8238f193ebd8bb2804c05f8b3edc6b6ec5887408b45e3a1668b2d7338e1b943",
+      "plan.md": "dfc9e9620e2817f4f0a09651db085623b8d6a42eeb664a099b29293735385965",
+      "tasks.md": "d495d9e28492bf317f0f9bfe2b7bfd6968ce6c7b3608411ea6620effc93d0c78",
+      "implementation-summary.md": "23081ea454e2499b562bebad36988bc3801bb0aa77d2078c1b3cf68a634478bd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules. The skill entrypoint at `.opencode/skills/sk-improve-agent/SKILL.md`, the skill README, the bundled references, markdown assets, the canonical loop agent, and the slash command all had section-shape or packaging issues that prevented clean `sk-doc` validation and kept packet `041` short of a true 100 percent closeout.",
+    "causal_summary": "Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-05-30T10:12:01.215Z",
+    "last_save_at": "2026-06-23T03:49:49.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cca470ad826a92ba58d1be48688fa3c1036198c53d155a1ba8ec8287e4bf4c5e",
+    "source_doc_hashes": {
+      "spec.md": "3fe147c4f9312d3c450baa9470ad41019cc61af1a4ef3d7b831dd2c361f11c90",
+      "plan.md": "7f7752c6d7338bd9064cbd2cf944cf27477f885d8bbcb898c0cac2d1fe65adfa",
+      "tasks.md": "f53bfa3e1e71b1ab59a6aad11b4ed66c26ced83124d4b8bbc52fce0692a804d3",
+      "checklist.md": "e1dd83ab6f0e509345ed27b89455ec724316e94f267bea37e4560a4e40d55e8d",
+      "implementation-summary.md": "40ed5c46f23caa47cdc77737b25507e097599c7962098bc01a76e562edc92365"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

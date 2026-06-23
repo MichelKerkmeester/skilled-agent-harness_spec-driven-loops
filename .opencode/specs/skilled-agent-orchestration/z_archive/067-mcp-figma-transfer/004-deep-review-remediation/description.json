@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/004-deep-review-remediation",
-  "description": "Feature Specification: Phase 4 — Deep Review Remediation",
+  "description": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`, `",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "deep",
-    "review",
-    "remediation"
+    "067-mcp-figma-transfer",
+    "packet",
+    "shipped",
+    "commits",
+    "across",
+    "repos",
+    "functional",
+    "implementation",
+    "work",
+    "follow-up",
+    "66e1e87",
+    "766206b"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.628Z",
+  "lastUpdated": "2026-06-23T03:49:49.619Z",
   "specId": "004",
   "folderSlug": "deep-review-remediation",
   "parentChain": [

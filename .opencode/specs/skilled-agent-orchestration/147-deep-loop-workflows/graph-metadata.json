@@ -146,15 +146,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULL_ISOLATE_NO_MCP consolidation). The five skills duplicate generic plumbing (capability resolvers, locking adapters, atomic-write mirrors, artifact-root resolution), spread eight `/deep:*` commands and fifteen native agent mirrors across an unmanaged surface, and force every cross-repo reference, advisor edge, and governance tree to enumerate five skill IDs. The split is only half-realized: the backend boundary exists, but the five persona surfaces remain separate, which makes routing, documentation, and maintenance brittle.",
+    "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULLISOLATENOMCP consolidation)",
     "created_at": "2026-06-14T20:16:09.672Z",
-    "last_save_at": "2026-06-22T18:56:35.195Z",
+    "last_save_at": "2026-06-23T03:49:48.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:91ee84c71ae8d7ff3031c9052ceaee75708f22a74854ea84f0318037b3cde101",
+    "source_doc_hashes": {
+      "spec.md": "71a547f8bc370ad0de2b3066bf741f3bcf97d95a1ef552ec758f0b92abc587df",
+      "research/research.md": "8e0563ba7fe4ccaaf3f3148a7ed33caa2762876a6096b33fb58a0376455fef41"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "loop",
-      "closes",
-      "batch",
-      "deep"
+      "tabular",
+      "reference",
+      "card",
+      "buried",
+      "key"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 11**, the deep-review loop that closes Batch B (deep-*).",
+    "causal_summary": "The deep-review README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
     "created_at": "2026-06-07T12:18:52Z",
-    "last_save_at": "2026-06-17T19:57:23.835Z",
+    "last_save_at": "2026-06-23T03:49:51.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ebebbafcc9a38d2a492eda13cea14cb5e096d054d6c1d487caadf089ce0eaf98",
+    "source_doc_hashes": {
+      "spec.md": "ab4adf3fa16b1082b854dc2287f0becedc34a8b362078fca8e425ca03b418471",
+      "plan.md": "c3fd1db8c5f34291faa152b66b8724b63dd506156ba4bc8fb9d3ef90cbe47f08",
+      "tasks.md": "22a896b72aca22781cb60ea49cf7b3ae47515d4de42bc7cc9c52560579580e57",
+      "implementation-summary.md": "6548c5553bb74fbf6a41f83ec036b16fd96ccdc55421aaed4bb32a4a51576784"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

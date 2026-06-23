@@ -1,14 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/006-agent-multi-ai-council",
-  "description": "Spec: @ultra-think → @multi-ai-council Agent Optimization",
+  "description": "`@ultra-think` (526 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
-    "spec",
     "ultra-think",
-    "multi-ai-council",
-    "agent",
-    "optimization"
+    "526",
+    "loc",
+    "sk-improve-agent",
+    "lens"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.292Z",
+  "lastUpdated": "2026-06-23T03:49:49.472Z",
   "specId": "006",
   "folderSlug": "agent-multi-ai-council",
   "parentChain": [

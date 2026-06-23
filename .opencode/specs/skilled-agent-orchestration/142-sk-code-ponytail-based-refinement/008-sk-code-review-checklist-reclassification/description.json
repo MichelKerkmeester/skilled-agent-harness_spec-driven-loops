@@ -1,18 +1,19 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
-  "description": "Feature Specification: Phase 8: sk-code-review Checklist Reclassification (references to assets)",
+  "description": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`, `fix-completeness-check",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
+    "six",
     "sk-code-review",
-    "checklist",
-    "reclassification",
     "references",
-    "assets"
+    "files",
+    "codequalitychecklist",
+    "securitychecklist",
+    "solidchecklist",
+    "testqualitychecklist",
+    "fix-completeness-check"
   ],
-  "lastUpdated": "2026-06-22T18:54:58.970Z",
+  "lastUpdated": "2026-06-23T03:49:48.377Z",
   "specId": "008",
   "folderSlug": "sk-code-review-checklist-reclassification",
   "parentChain": [

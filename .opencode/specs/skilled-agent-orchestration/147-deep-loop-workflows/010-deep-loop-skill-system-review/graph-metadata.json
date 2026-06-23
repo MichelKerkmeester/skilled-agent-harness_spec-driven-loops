@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization` (new install/doctor scripts), and `150-parent-nested-skill-pattern` (the parent-nested-skill formalization). The risk surface is completion-honesty (did the destructive phase actually run its release gates?), dead-path fallout from the deletion, and post-rename doc staleness — none of which a single linear read reliably catches. The operator also flagged the `sk-doc` `skill_creation.md` file (1138 lines) as a dissection candidate and wanted it mapped as a concrete remediation item.",
+    "causal_summary": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization` (new install/doctor scripts), and `150-parent-nested-skill-pattern` (the parent-nested-skill formalization)",
     "created_at": "2026-06-15T18:14:25.486Z",
-    "last_save_at": "2026-06-15T18:14:25.486Z",
+    "last_save_at": "2026-06-23T03:49:48.729Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0bc632133fab67b853f70c84c0f9237b62f8a6c5e3926e164734a8260453f90f",
+    "source_doc_hashes": {
+      "spec.md": "190a52c2c26eeb12b006665806e517b90939a540a7dfb0109cf63562e6f3574f",
+      "plan.md": "e9c899d23f876b765e792dee1a33dcf79f3d5a6f438777ded3d9dd68d6e78724",
+      "tasks.md": "0a82f2cb0d1cb28f71063b681b6294f4dc5dce264629c2bc40eafae7e75aad8a",
+      "checklist.md": "6c866c56a20d6b6b7f1bbaca0c516b530cfa820a922cc8d5909d8402830a6d2f",
+      "implementation-summary.md": "d5839628bd5aa4b698eddd9479fa1283956392e035a542b33125bfdd4b6f2133"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

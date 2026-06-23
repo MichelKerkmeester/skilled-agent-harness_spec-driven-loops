@@ -1,15 +1,19 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence",
-  "description": "Feature Specification: Multi-AI Council Persistence",
+  "description": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
   "keywords": [
-    "feature",
-    "specification",
-    "multi-ai",
-    "council",
-    "persistence"
+    "packet",
+    "080",
+    "documents",
+    "ai-council",
+    "output",
+    "protocol",
+    "provides",
+    "persistence",
+    "machinery"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.505Z",
+  "lastUpdated": "2026-06-23T03:49:49.975Z",
   "specId": "089",
   "folderSlug": "multi-ai-council-persistence",
   "parentChain": [

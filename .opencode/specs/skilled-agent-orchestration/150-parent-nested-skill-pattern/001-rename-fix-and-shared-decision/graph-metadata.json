@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 152 merge wired `deep-loop-workflows`'s internal references to bare packet names (`context/`, `research/`, `review/`, `improvement/`, `ai-council/`). The operator then renamed four of those folders to carry the `deep-` prefix that matches each packet's own `SKILL.md` `name:` — `context→deep-context`, `research→deep-research`, `review→deep-review`, `improvement→deep-improvement` — leaving `ai-council` as-is. Every reference to the four renamed paths is now broken: the `mode-registry.json` packet keys, the `/deep:*` command YAML assets, `deep-loop-runtime/scripts/fanout-run.cjs`'s loop-prompt SKILL.md paths, the hub `graph-metadata.json` `key_files`, the hub `SKILL.md`/`README.md`, and the internal docs inside each packet. Separately, the epic raised whether the packet-shared `shared/` directory belongs in the frozen `deep-loop-runtime` backend instead of in `deep-loop-workflows`.",
+    "causal_summary": "The 152 merge wired `deep-loop-workflows`'s internal references to bare packet names (`context/`, `research/`, `review/`, `improvement/`, `ai-council/`)",
     "created_at": "2026-06-15T09:09:33.216Z",
-    "last_save_at": "2026-06-15T09:09:33.216Z",
+    "last_save_at": "2026-06-23T03:49:48.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:340e39054fdf6e3a37d79faa409d9194706c8d954bd483691cca26f4692cf1b0",
+    "source_doc_hashes": {
+      "spec.md": "d77b3a22fcfef9803f314254c332b3ee7664c068241f6398cfc2579c01119fdb",
+      "plan.md": "b4fcb4d92be4fd0b7511db0ce0756bce70c64ad0b6f20fbfbbec3e02fabb9f1b",
+      "tasks.md": "a4bfa5978432f55c940fd0ee51b38ca7923f58e704ada76461aa5a01e8cf81e7",
+      "checklist.md": "79fdc21d3daf856a2c61cdf382e33fe44d0cb16f2550825b77db88c3c32186a3",
+      "decision-record.md": "1850f44321697067c47693c6390b335e2fa3cebaccbe0d13293fc109137b5124",
+      "implementation-summary.md": "02060ecacbbdf5f23c823f1adafd029dce3af2ecdb0a0d43525a22d0e9218700"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/039-cmd-spec-kit-codex-skill-routing",
-  "description": "Feature Specification: Codex command discoverability routing update",
+  "description": "The research packet in `research/` already answered the core question: Codex does not mainly lack command docs",
   "keywords": [
-    "feature",
-    "specification",
+    "research",
+    "packet",
+    "already",
+    "answered",
+    "core",
+    "question",
     "codex",
+    "mainly",
+    "lack",
     "command",
-    "discoverability",
-    "routing",
-    "update"
+    "docs"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.228Z",
+  "lastUpdated": "2026-06-23T03:49:49.111Z",
   "specId": "039",
   "folderSlug": "cmd-spec-kit-codex-skill-routing",
   "parentChain": [

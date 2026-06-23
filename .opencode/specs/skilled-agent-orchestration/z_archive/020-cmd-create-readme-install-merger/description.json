@@ -1,17 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/020-cmd-create-readme-install-merger",
-  "description": "Feature Specification: Merge create README and install guide commands",
+  "description": "The current command assets for `create:folderreadme` and `create:installguide` repeat the same orchestration structure: Phase 0 write-agent verificati",
   "keywords": [
-    "feature",
-    "specification",
-    "merge",
+    "current",
+    "command",
+    "assets",
     "create",
-    "readme",
-    "install",
-    "guide",
-    "commands"
+    "folderreadme",
+    "installguide",
+    "repeat",
+    "same",
+    "orchestration",
+    "structure",
+    "phase",
+    "write-agent",
+    "verificati"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.280Z",
+  "lastUpdated": "2026-06-23T03:49:48.994Z",
   "specId": "020",
   "folderSlug": "cmd-create-readme-install-merger",
   "parentChain": [

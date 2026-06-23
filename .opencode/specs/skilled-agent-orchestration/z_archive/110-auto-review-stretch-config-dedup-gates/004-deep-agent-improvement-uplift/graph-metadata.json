@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + normalized_body_64chars)`. **Authoritative storage: `mutation-coverage.json`** (where the existing `mutations` + `exhausted` arrays live per council §6 evidence at `mutation-coverage.cjs:59-67` and `:80-92`). The reducer at `reduce-state.cjs` MUST be updated to handle the new signature field; `manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` MUST be updated to verify the replay consumer respects signatures.",
+    "causal_summary": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.199Z",
+    "last_save_at": "2026-06-23T03:49:50.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:956ce9c1d7b4f8d64060173c8c7a496eb4e0a0702fed4f1cba2b9f3df8378d08",
+    "source_doc_hashes": {
+      "spec.md": "4a75a04f447c1e4f83032244650dbbc9173cb8970ffbb71c327a798ce865149c",
+      "plan.md": "736c4b56dd2ab9f650304da025512fd431521b1a04bc7e382c9eb702cdbc9b62",
+      "tasks.md": "fbfe3561ca90312ec7d5d21a64d7b223ee693b878b18049adda2b6cdda026925",
+      "implementation-summary.md": "a0da29d7a77e34dc56c51b147aa25e03a96b26b47d390d0223b0fb265a7116b1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

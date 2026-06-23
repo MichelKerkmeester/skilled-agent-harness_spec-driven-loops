@@ -1,17 +1,24 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/004-skill-uplift",
-  "description": "Feature Specification: Skill Uplift — Apply winners to cli-devin",
+  "description": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
   "keywords": [
-    "feature",
-    "specification",
-    "skill",
-    "uplift",
-    "apply",
-    "winners",
-    "cli-devin"
+    "synthesis",
+    "003",
+    "lists",
+    "winning",
+    "prompt",
+    "patterns",
+    "live",
+    "eval-loop",
+    "packet",
+    "artifacts",
+    "invisible",
+    "future",
+    "cli-devin",
+    "dispatches"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.272Z",
+  "lastUpdated": "2026-06-23T03:49:50.475Z",
   "specId": "004",
   "folderSlug": "skill-uplift",
   "parentChain": [

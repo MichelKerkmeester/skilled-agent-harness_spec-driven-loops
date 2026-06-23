@@ -1,15 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/111-base-files-renumbering-name-cleanup",
-  "description": "111: 026 cleanup remediation (Wave 3)",
+  "description": "Remediate 4 cleanup gaps after 026 Wave 1+2 restructure: 11 sub-phase dirs missing 33 base files; 86 sub-phase children + 22 parent children need sequ",
   "keywords": [
-    "111",
-    "026",
+    "remediate",
     "cleanup",
-    "remediation",
-    "wave"
+    "gaps",
+    "026",
+    "wave",
+    "restructure",
+    "sub-phase",
+    "dirs",
+    "missing",
+    "base",
+    "files",
+    "children",
+    "parent",
+    "need",
+    "sequ"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.206Z",
+  "lastUpdated": "2026-06-23T03:49:50.398Z",
   "specId": "111",
   "folderSlug": "base-files-renumbering-name-cleanup",
   "parentChain": [

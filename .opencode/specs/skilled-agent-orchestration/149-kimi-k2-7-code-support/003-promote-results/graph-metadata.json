@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the kimi-k2-7-code-support specification.",
+    "causal_summary": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`",
     "created_at": "2026-06-15T09:21:02Z",
-    "last_save_at": "2026-06-22T18:54:59.123Z",
+    "last_save_at": "2026-06-23T03:49:48.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ff302759d5c8164cb7c41ef686e5c93798ffda448f5a3c96f39c0a67062e582d",
+    "source_doc_hashes": {
+      "spec.md": "1df6fbc38b22693ba0cf2b00d619530f9492d815e7b830a73b226e4cf30c45e1",
+      "plan.md": "2c7633f0275c6242de0a55542edd4980edf184f3039f997af1985dced1b7d088",
+      "tasks.md": "659d18d3c3338a281ae50b0c528a9e684d1455369d9a852e61e305e856c21d34",
+      "implementation-summary.md": "cf8a3419a9f3db228aa47772faf1c05417c1168370ad9caeaf52903c9cf4ec33"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

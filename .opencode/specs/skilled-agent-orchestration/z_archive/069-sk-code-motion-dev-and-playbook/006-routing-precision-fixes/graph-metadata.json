@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical routing classes failed. Doc-only edits to skill markdown still routed to `sk-code`, and explicit non-Webflow vanilla Motion.dev prompts were promoted to WEBFLOW by some runtimes.",
+    "causal_summary": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical routing classes failed",
     "created_at": "2026-05-05T13:30:00Z",
-    "last_save_at": "2026-05-31T14:05:02.868Z",
+    "last_save_at": "2026-06-23T03:49:49.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T13:30:00Z",
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:29c407f267ae8ce8ebfa945cac3b4aabb8e250e4c5a4ca636f5bd980c50ef019",
+    "source_doc_hashes": {
+      "spec.md": "2664a3095d9264fbefa9c66db63dca807e1eece3d943944ad688df5c2384d030",
+      "plan.md": "fb57d5bcfeaba8ddc0f01be08c86a85bc966685edde02ea5f60b9c11ced56bda",
+      "tasks.md": "2eae6710fc035bfaf232acce3ac552c6bb436da7fd93b49116f64f2e18d457a8",
+      "checklist.md": "3b5b1e496be126d8d7a4444182e5202bcfbbe4ce697428170e374bf974523b4a",
+      "implementation-summary.md": "cc146c060e8cbb4ce0c30a89e200b683ad1a37f780d99daac5c6b5bed55c36db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

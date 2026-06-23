@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 9** of the 143-sk-design-interface packet. The earlier phases built the skill, de-vendored it from `ui-ux-pro-max`, and added the Claude Design parity loop and variation-diversity. This phase adds a real-world shipped-UI reference path so the skill can name the real-world default for a category and deviate from it deliberately.",
+    "causal_summary": "sk-design-interface resists templated defaults, but its only concrete window onto a \"default\" was a design system read via `mcp-open-design` or its built-in calibration of the AI-default looks",
     "created_at": "2026-06-15T11:07:39Z",
-    "last_save_at": "2026-06-16T14:27:20.530Z",
+    "last_save_at": "2026-06-23T03:49:48.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6a55b328797002b8297bb75b36c30072f6a85e69db4dea23e44fb83bddd7f6bc",
+    "source_doc_hashes": {
+      "spec.md": "af0e85617a6ddf1018ae54b91b93c9336fdc4be66efee3bd262b9b4eb6f12f8c",
+      "plan.md": "c8728f8549e470e2c35295f587637d1165cc351e63c966f6fdaffcd3a6f0335f",
+      "tasks.md": "b084c277e4aab3989a95bfef9aa299c5cb7b41adcc77c0c8cff1b7a9dcb6978f",
+      "implementation-summary.md": "2a1ef2ab84fa32f287763fb47a0100ea18cef6d4a476c53c1ad969e07c636619"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

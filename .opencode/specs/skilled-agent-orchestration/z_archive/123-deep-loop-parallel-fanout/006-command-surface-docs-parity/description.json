@@ -1,16 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/006-command-surface-docs-parity",
-  "description": "Phase 006 — Command surface + docs + final parity",
+  "description": "Expose fan-out via the command entrypoints (opt-in), document it for both consumers, and prove single-executor parity",
   "keywords": [
-    "phase",
-    "006",
+    "expose",
+    "fan-out",
+    "via",
     "command",
-    "surface",
-    "docs",
-    "final",
+    "entrypoints",
+    "opt-in",
+    "document",
+    "consumers",
+    "prove",
+    "single-executor",
     "parity"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.151Z",
+  "lastUpdated": "2026-06-23T03:49:51.404Z",
   "specId": "006",
   "folderSlug": "command-surface-docs-parity",
   "parentChain": [

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead of local git or `gh`. That made remote GitHub workflows harder to execute correctly from the skill documentation.",
+    "causal_summary": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead of local git or `gh`",
     "created_at": "2026-04-12T09:02:50.200Z",
-    "last_save_at": "2026-05-30T10:12:01.131Z",
+    "last_save_at": "2026-06-23T03:49:48.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5fff00a8528a279f14474d5b710e42f0c0733ceaa32a96b9f1549bfbb8c55b35",
+    "source_doc_hashes": {
+      "spec.md": "1fdd563e62abb8cbbf7d7956257772e0e6cde58e40df048a9321fe4fc70be7e7",
+      "plan.md": "a2fac49e8d63f37023ba44c3b9e1d6a55b1b396caf2557dc1f62edf29df47a21",
+      "tasks.md": "a70ab1553ac93dc1834af3903aeb19eac67138eb77c9551860948df4b57046f4",
+      "checklist.md": "13aa806d283c5b290b58e09f76ad496cab1f0e301c698c4d97bfb3b42e1a8777",
+      "implementation-summary.md": "e5f75e59c077857b6f398a77ba94d8433e7cffac7392c9713d47a4d7bb762565"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

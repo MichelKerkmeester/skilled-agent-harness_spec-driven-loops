@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `create:changelog` command generates changelog markdown files but stops there. Publishing a GitHub release requires separate manual steps: create a git tag, push it, then run `gh release create` with properly formatted release notes. Users must do this every time after running the changelog command, which is error-prone and creates a gap where a changelog exists locally but no GitHub release has been published.",
+    "causal_summary": "The `create:changelog` command generates changelog markdown files but stops there",
     "created_at": "2026-04-12T09:02:50.181Z",
-    "last_save_at": "2026-06-05T12:47:32.613Z",
+    "last_save_at": "2026-06-23T03:49:49.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9753cb4ee7a4a3bc7783ad6e873a480a1a6ecbd4645ec8c88c6e64577f1272e6",
+    "source_doc_hashes": {
+      "spec.md": "fe579b7e6f651f42edcd692e1b3ba361332651c954e6c58bc5aac922c3980ac5",
+      "plan.md": "b8623708dc9cf5ab545951765577084cb0b24411ac18a5ca9dd8b15ca021af4e",
+      "tasks.md": "f6f1415832a30f3610e8bb1d0c89bef67dd507a05022494883e3ef85c3c0b2eb",
+      "checklist.md": "644390ee1c7a15d4a94005aa577d0315a7e6c02c7085af228c6ac2fe3da045da",
+      "implementation-summary.md": "b5eea609f377a3c28b91ac52a1177c430a39bbc113fe93cb18881e31df2ffd09"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

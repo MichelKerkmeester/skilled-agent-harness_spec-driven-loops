@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "vocabulary",
-      "grouping",
-      "rules",
-      "no-prose-rewrite",
-      "constraint",
-      "identical",
-      "phase",
-      "005",
-      "006",
+      "apply",
       "sub-headings",
-      "system-skill-advisor",
-      "system-code-graph"
+      "long",
+      "works",
+      "sections",
+      "skill-advisor",
+      "files",
+      "code-graph",
+      "smaller",
+      "scale",
+      "phase",
+      "005"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -113,15 +113,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "H3 vocabulary, grouping rules, and no-prose-rewrite constraint are identical to phase 005.",
+    "causal_summary": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done in a single AI pass per skill.",
     "created_at": "2026-06-18T12:37:48.696Z",
-    "last_save_at": "2026-06-18T12:37:48.696Z",
+    "last_save_at": "2026-06-23T03:49:51.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:0ac8e9f81038ff6861d1544cfa3a74d139c9fe65df930b91d473476df9674321",
+    "source_doc_hashes": {
+      "spec.md": "abda44a1cbe6b1914e2e3e5039cdfa1317fe938127021b77ef5f4cf3e36745bd",
+      "plan.md": "133e2a55ab7323f4096c2bd9c3fefbe8a5883d05a7df125fd940b128b9f3d779"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

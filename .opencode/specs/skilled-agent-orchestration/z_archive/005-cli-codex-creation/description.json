@@ -1,16 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/005-cli-codex-creation",
-  "description": "Feature Specification: cli-gemini Model Consolidation + cli-codex Skill",
+  "description": "The existing `cli-gemini` skill referenced multiple Gemini model variants, which created avoidable decision overhead",
   "keywords": [
-    "feature",
-    "specification",
+    "existing",
     "cli-gemini",
+    "skill",
+    "referenced",
+    "multiple",
+    "gemini",
     "model",
-    "consolidation",
-    "cli-codex",
-    "skill"
+    "variants",
+    "created",
+    "avoidable",
+    "decision",
+    "overhead"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.202Z",
+  "lastUpdated": "2026-06-23T03:49:48.899Z",
   "specId": "005",
   "folderSlug": "cli-codex-creation",
   "parentChain": [

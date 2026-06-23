@@ -17,14 +17,14 @@
       "sk-doc",
       "reference",
       "relocation",
-      "relocate",
+      "keeps",
       "creation",
       "guides",
-      "make",
-      "every",
-      "path",
-      "point",
-      "new",
+      "references",
+      "specific",
+      "requested",
+      "structure",
+      "moves",
       "root"
     ],
     "importance_tier": "important",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Relocate the creation guides and make every path reference point to the new root references location.",
+    "causal_summary": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-06-07T09:00:45.700Z",
+    "last_save_at": "2026-06-23T03:49:50.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:8315fb52624c20f0a27fb33ae4c9413f3101c3143dad1df66ff540440ba85f27",
+    "source_doc_hashes": {
+      "spec.md": "f7b3b32b8953d290ffd55a7c0e9d395db8e341d0cef390c747891e87de84e6f1",
+      "plan.md": "cfaf8fff927d2527be5d90c88fa5050b530cb96baee96cca8bd2d388bede0eee",
+      "tasks.md": "6aa4111ff502a8551d0f13db8b1a5824d2da06f53efc0588e669c7aeeda0ca73",
+      "checklist.md": "63e4d47711c1f19774be09e2ea089067b1f83088d4c1daf2290acf11d5fc02b5",
+      "implementation-summary.md": "19acf03454d2245e69e8c7f9021733e61b8883940fd59b6ee5ca205ca3945e48",
+      "resource-map.md": "c98143e42e2b3577c09df9c453fb8f579a47c433ccfb65f0f0f680624152d11e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

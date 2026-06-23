@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-  "description": "Feature Specification: Phase 1: minimax-prompt-framework-benchmark",
+  "description": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only — it never ran the model, so the recommendation is unvalidated",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "minimax-prompt-framework-benchmark"
+    "120",
+    "002",
+    "research",
+    "recommended",
+    "prompt",
+    "framework",
+    "minimax",
+    "desk",
+    "analysis",
+    "only",
+    "never",
+    "ran",
+    "model",
+    "recommendation",
+    "unvalidated"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.915Z",
+  "lastUpdated": "2026-06-23T03:49:51.162Z",
   "specId": "003",
   "folderSlug": "minimax-prompt-framework-benchmark",
   "parentChain": [

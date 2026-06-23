@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep-* skills' documentation substantially. The constitutional post-implementation deep-review obligation attaches to that ship and was the one outstanding closeout item.",
+    "causal_summary": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep- skills' documentation substantially",
     "created_at": "2026-05-25T19:30:00.000Z",
-    "last_save_at": "2026-06-07T09:00:45.925Z",
+    "last_save_at": "2026-06-23T03:49:51.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f844e3fd2f0f9fcec97abcca97d018ef3eef7753d7e7a8861361a55f1ef36127",
+    "source_doc_hashes": {
+      "spec.md": "3136466cbc027488b179761b43408826b0334e9541bd27750933a1d7750fa73f",
+      "plan.md": "f0f00e0b90245e162a23969e8cd3874ed8c9760114a115d7198df1bbc64b8780",
+      "tasks.md": "18b5815f71ffc415d5a68182626bb167bc8a4fbf0ac8b64f5be2b26dfde64f1f",
+      "implementation-summary.md": "621b1b7d4ea4c27a5cfebd188d9e68ad95c0da1c839c973f4042dba24b97fab7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

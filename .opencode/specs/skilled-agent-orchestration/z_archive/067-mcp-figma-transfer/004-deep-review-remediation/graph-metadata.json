@@ -22,13 +22,13 @@
       "remediation",
       "deep",
       "review",
-      "contract",
-      "section",
-      "spec",
-      "feature",
-      "specification",
-      "deep-review",
-      "docs"
+      "067-mcp-figma-transfer",
+      "packet",
+      "shipped",
+      "commits",
+      "across",
+      "repos",
+      "functional"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 4 remediation contract section for spec.md.",
+    "causal_summary": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`, `b03bf7563`, `bdb739d97`) introduced state changes that were not propagated into formal phase docs",
     "created_at": "2026-05-05T12:50:00Z",
-    "last_save_at": "2026-05-30T10:12:01.356Z",
+    "last_save_at": "2026-06-23T03:49:49.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a47b77699e6ff775dbd70f0e2ab72752723871e8ca8c18216a9cedaca4edaa6c",
+    "source_doc_hashes": {
+      "spec.md": "b3e18a9c471c906ec100c41eac40b45519e6af3ddb4c4730d49863f157bf56d9",
+      "plan.md": "32c8825524f2a7e46bf7f67738753b62328de6f4b978daa656ebc640dc97b8f5",
+      "tasks.md": "e44ce0c0e2c27e041eed69991d0e44cc839963894eb59280f4e4263704084051",
+      "checklist.md": "8aeb240fa390f25a4411c8b219ef1bb888df8dd583b108ca487dc404b4890348",
+      "implementation-summary.md": "a3951cba168cd237955bc922b564a678a603370781e2bdf746d4296412040346"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

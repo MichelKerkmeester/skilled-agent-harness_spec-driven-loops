@@ -36,7 +36,7 @@
       "plan",
       "mirror",
       "tasks",
-      "make"
+      "sk-deep-review"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make Phase 2 the durable review-mode contract by aligning docs, assets, workflow YAML, runtime mirrors, manual testing playbook surfaces, and packet closeout evidence around one canonical deep-review packet model.",
+    "causal_summary": "`sk-deep-review` still described review mode with mixed `deep-review-` and `deep-research-` artifact names, partial lifecycle semantics, and uneven runtime-mirror coverage even after Phase 1 established the lineage and reducer model",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-06-05T12:47:32.621Z",
+    "last_save_at": "2026-06-23T03:49:49.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5f4bab6bf1f9c604c527e9700d912376c8faccbe0361fcca3f4c504aecd4261a",
+    "source_doc_hashes": {
+      "spec.md": "9e4993ee93320ff0c1bd7f822a89f0a61b7d3e2f111ca82dec4ff46d5111d5be",
+      "plan.md": "cfe438bfe591f8aeb19e6341af01c9e7d6f7b519162a956d8d6f6d85dd217874",
+      "tasks.md": "4038daec7b42bf36a3062f15f1e3236df5ee68a1a00efabf41797cdac190f88c",
+      "implementation-summary.md": "1043b66ddd36e6f177fe135420da984412f66a4ad652ede42176360c7748e05e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

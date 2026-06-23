@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
-  "description": "Phase 001 — Skill-benchmark deep research",
+  "description": "20-iteration multi-model deep research (5x MiniMax-2.7, 5x DeepSeek-v4-pro, 5x GPT-5.5-xhigh-fast, 5x Opus-4.8-native) investigating Lane C skill-benc",
   "keywords": [
-    "phase",
-    "001",
-    "skill-benchmark",
+    "20-iteration",
+    "multi-model",
     "deep",
-    "research"
+    "research",
+    "minimax-2",
+    "deepseek-v4-pro",
+    "gpt-5",
+    "5-xhigh-fast",
+    "opus-4",
+    "8-native",
+    "investigating",
+    "lane",
+    "skill-benc"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.044Z",
+  "lastUpdated": "2026-06-23T03:49:51.297Z",
   "specId": "001",
   "folderSlug": "skill-benchmark-deep-research",
   "parentChain": [

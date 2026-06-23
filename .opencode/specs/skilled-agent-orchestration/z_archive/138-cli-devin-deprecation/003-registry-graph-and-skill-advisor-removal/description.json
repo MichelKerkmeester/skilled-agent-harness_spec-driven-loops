@@ -1,14 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
-  "description": "Feature Specification: Phase 3: registry-graph-and-skill-advisor-removal",
+  "description": "cli-devin had registry entries (sk-prompt-small-model model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "registry-graph-and-skill-advisor-removal"
+    "cli-devin",
+    "registry",
+    "entries",
+    "sk-prompt-small-model",
+    "model-profiles",
+    "skill",
+    "graph-metadata",
+    "skill-graph",
+    "edges",
+    "across",
+    "json"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.852Z",
+  "lastUpdated": "2026-06-23T03:49:51.993Z",
   "specId": "003",
   "folderSlug": "registry-graph-and-skill-advisor-removal",
   "parentChain": [

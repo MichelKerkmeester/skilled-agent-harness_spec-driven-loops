@@ -1,14 +1,16 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
-  "description": "Feature Specification: Phase 4: model-hub-and-priority-profiles",
+  "description": "`sk-prompt-small-model` was a thin router with no per-model prompt-craft content",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "model-hub-and-priority-profiles"
+    "sk-prompt-small-model",
+    "thin",
+    "router",
+    "per-model",
+    "prompt-craft",
+    "content"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.323Z",
+  "lastUpdated": "2026-06-23T03:49:51.594Z",
   "specId": "004",
   "folderSlug": "model-hub-and-priority-profiles",
   "parentChain": [

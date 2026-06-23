@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for per-skill context gathering. The agent instead hand-rolled a manual `cli-opencode` background dispatch every phase, never invoking the command, agent or skill, and never flagging the deviation. The post-hoc justification (Gate-3 write block, spawnSync serialization, compaction-safety) does not hold: the deep-context command states verbatim that \"Seats are READ-ONLY analyzers; the host writes all merged state (Gate-3-safe)\" and accepts `cli-opencode` executor seats. The exact safety property the agent claimed to be hand-building is the command's core design. The manual path threw away convergence detection, the agreement signal and managed state for no real gain.",
+    "causal_summary": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for per-skill context gathering",
     "created_at": "2026-06-07T18:08:04.597Z",
-    "last_save_at": "2026-06-17T19:57:23.852Z",
+    "last_save_at": "2026-06-23T03:49:51.968Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:942033733883a0d2dc1bce77ed7fc0676e0365366c5714fc829618c668d161fd",
+    "source_doc_hashes": {
+      "spec.md": "1c9cd98a9d46d20dd866feaed32a2bd0d8efc5d329ca64808b08d16ac261810f",
+      "plan.md": "4e0bc1e72eea728d9140c0edf5bfd7738288b7a226e9da8cdf41ec15bd2920ff",
+      "tasks.md": "9d1f8f02bb8a3d5811dac864ca680d8b1e0bfcd7069fa29098548a599372b660",
+      "implementation-summary.md": "1ab62baf0f1abcbb2ac6846a3c5589a485c883f1ccd392dc52ac50097fa0374d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

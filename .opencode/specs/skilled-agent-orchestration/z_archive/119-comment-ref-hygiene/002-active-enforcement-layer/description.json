@@ -36,17 +36,14 @@
     "CLAUDE.md"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer",
-  "description": "Feature Specification: Active Enforcement Layer for Comment Hygiene",
+  "description": "The `sk-code §4` text rule exists",
   "keywords": [
-    "feature",
-    "specification",
-    "active",
-    "enforcement",
-    "layer",
-    "comment",
-    "hygiene"
+    "sk-code",
+    "text",
+    "rule",
+    "exists"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.894Z",
+  "lastUpdated": "2026-06-23T03:49:51.139Z",
   "specId": "002",
   "folderSlug": "active-enforcement-layer",
   "parentChain": [

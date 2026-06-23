@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the 112 commit-standards-and-retroactive-rewrite packet.",
+    "causal_summary": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time — Phase 005 needs it for the message-callback rewrite), and (2) no point-in-time backup of HEAD history exists, so a botched rewrite would have no easy recovery path",
     "created_at": "2026-05-16T09:42:33Z",
-    "last_save_at": "2026-06-07T09:00:45.739Z",
+    "last_save_at": "2026-06-23T03:49:50.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:542dff95c4045ac81feb4260d8098f0222b25eb7f251eb27ea3f801482a3090a",
+    "source_doc_hashes": {
+      "spec.md": "d388ddfa47b5c341e0366533c7931adfcf30958e62d8c57ebafbc28cb5da66c6",
+      "plan.md": "34d3eafc963330f7c35666dab76dde9e8607aa1518198a5f6aea5ff937d48dba",
+      "tasks.md": "be3fa96117c6f97946e2f94ffa92a4be47062ab567099a8eea512494c35a9911",
+      "implementation-summary.md": "fa4bec84afe3be0512be62441e362d68212ba347af2e898f25f528676a1cab07"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/006-advisor-and-validate",
-  "description": "Feature Specification: Phase 006 Advisor Rebuild and Validation",
+  "description": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "006",
-    "advisor",
-    "rebuild",
-    "validation"
+    "phases",
+    "001-005",
+    "completed",
+    "broad",
+    "rename",
+    "sk-deep-review",
+    "sk-deep-research",
+    "deep-review",
+    "deep-research",
+    "packet",
+    "070",
+    "still",
+    "needs",
+    "final"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.713Z",
+  "lastUpdated": "2026-06-23T03:49:49.732Z",
   "specId": "006",
   "folderSlug": "advisor-and-validate",
   "parentChain": [

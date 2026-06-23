@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `deep-agent-improvement` skill (v1.6.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `116-deep-skill-evolution` arc consumes it, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
+    "causal_summary": "The `deep-agent-improvement` skill carries ~545 lines of SKILL.md, ~410 lines of README, 15 references, 9 assets (incl",
     "created_at": "2026-05-23T20:01:44.783Z",
-    "last_save_at": "2026-06-08T17:32:20.488Z",
+    "last_save_at": "2026-06-23T03:49:50.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fc5e672656f7e7e143bd6b56d5220bf8a6ede4841a8ec458f1d43fc5caa91b15",
+    "source_doc_hashes": {
+      "spec.md": "0112f9c2c5737b79880ae224843a1e95819e01ffccbbd59e4e435dcff0a8ea50",
+      "plan.md": "8b01a99f6cc35ecf937cf2cfa4b49e937ffd1fbbfc82029aaf0cb6cb226d5809",
+      "tasks.md": "c0f1a6ad2ac7973a67e63563e0aa6e1d1def7d5a02f43877c487da81059bdd6e",
+      "checklist.md": "4daa1c7fc17b26cf44d2fae66d97f9333f9b90c459c0dea9d2bbc8fc53df956b",
+      "decision-record.md": "97bd26e761879e903552ec0d5b88c5044c65350b104a32f2210c4101d43a3721",
+      "implementation-summary.md": "e6b0670bc1dfaf116036d979d6c01d8864ea9e9141839f322842b2f15d41408b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

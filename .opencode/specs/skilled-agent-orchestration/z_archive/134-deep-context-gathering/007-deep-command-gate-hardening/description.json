@@ -18,17 +18,17 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/007-deep-command-gate-hardening",
-  "description": "Feature Specification: Deep-command @general + setup hard-blocker gates",
+  "description": "The deep commands could begin work without two safeguards",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-command",
-    "general",
-    "setup",
-    "hard-blocker",
-    "gates"
+    "deep",
+    "commands",
+    "begin",
+    "work",
+    "without",
+    "two",
+    "safeguards"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.509Z",
+  "lastUpdated": "2026-06-23T03:49:51.805Z",
   "specId": "007",
   "folderSlug": "deep-command-gate-hardening",
   "parentChain": [

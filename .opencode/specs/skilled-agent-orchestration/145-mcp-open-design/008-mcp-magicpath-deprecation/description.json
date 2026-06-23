@@ -1,14 +1,18 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/008-mcp-magicpath-deprecation",
-  "description": "Feature Specification: mcp-magicpath deprecation",
+  "description": "The `mcp-magicpath` skill drives the hosted MagicPath canvas through the `magicpath-ai` CLI",
   "keywords": [
-    "feature",
-    "specification",
     "mcp-magicpath",
-    "deprecation"
+    "skill",
+    "drives",
+    "hosted",
+    "magicpath",
+    "canvas",
+    "magicpath-ai",
+    "cli"
   ],
-  "lastUpdated": "2026-06-15T13:45:21.726Z",
+  "lastUpdated": "2026-06-23T03:49:48.599Z",
   "specId": "008",
   "folderSlug": "mcp-magicpath-deprecation",
   "parentChain": [

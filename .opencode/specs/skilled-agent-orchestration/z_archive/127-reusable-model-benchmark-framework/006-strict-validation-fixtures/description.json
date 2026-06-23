@@ -1,14 +1,24 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
-  "description": "Feature Specification: Strict-validation fixtures",
+  "description": "The existing hard/harder packs lean on transform and comparison tasks where partial credit spreads across structurally-varied outputs",
   "keywords": [
-    "feature",
-    "specification",
-    "strict-validation",
-    "fixtures"
+    "existing",
+    "hard",
+    "harder",
+    "packs",
+    "lean",
+    "transform",
+    "comparison",
+    "tasks",
+    "partial",
+    "credit",
+    "spreads",
+    "across",
+    "structurally-varied",
+    "outputs"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.286Z",
+  "lastUpdated": "2026-06-23T03:49:51.550Z",
   "specId": "006",
   "folderSlug": "strict-validation-fixtures",
   "parentChain": [

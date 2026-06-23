@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-deep-rename precedent. The 079 implementation-summary §Known Limitations #5 explicitly noted: \"If full naming-family alignment is desired, a follow-on packet can rename the agent.\" This packet is that follow-on.",
+    "causal_summary": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-deep-rename precedent",
     "created_at": "2026-05-06T13:38:43.676Z",
-    "last_save_at": "2026-06-15T09:09:33.530Z",
+    "last_save_at": "2026-06-23T03:49:49.965Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:c1d49ab151e15c06308fe8b9910c15c6bf324b87fb891594dc573715c493fd6a",
+    "source_doc_hashes": {
+      "spec.md": "cfe347048500e1f5bf638dc0f02814f0c07bf9267148fddfd6c0f63620efa5d2",
+      "plan.md": "a73a2218be240b2bb09f0868d6e8123e6cf5951c982e18bfea1befe99b821cb5",
+      "tasks.md": "a65d497e40fba24e30225a664abc08f799b94d9bbe2b354241dafe26b4c5d46e",
+      "checklist.md": "454d4bd35363d8177bf27d39693ed97aac0a1e98d11e8a2f280170f8005c0c50",
+      "implementation-summary.md": "2996834e0ab54564d60173a9f5e39ee39e62aea0f63e9707976837e304887850",
+      "resource-map.md": "0eec48283137dec3937cf0a3f7524d931d65fc886171aba01e4c89fff91acbc0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

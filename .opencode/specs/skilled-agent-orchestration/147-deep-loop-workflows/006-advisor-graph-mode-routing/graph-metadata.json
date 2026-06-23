@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2). The skill_id is hard-bound to the folder name. Critically, deep-ai-council and deep-improvement carry the wrong family (sk-util, host-confirmed at graph-metadata.json:4) and must be corrected to deep-loop BEFORE any old skill ID is removed, or routing fails closed mid-migration (blocker B7). deep-context is absent from aliases.ts and routes metadata-only today (B3), and the aliases.ts restructuring schema (flat vs nested) is undefined (B6) — it determines how PHRASE_BOOSTS and CATEGORY_HINTS target the new structure.",
+    "causal_summary": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-06-22T18:54:59.098Z",
+    "last_save_at": "2026-06-23T03:49:48.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9cb82b2766a6e60c7e372f9095a6867d8c60ad87183251784f441220794252e6",
+    "source_doc_hashes": {
+      "spec.md": "8dc13faafdd48b5b3368bddcf24ba67bbcfcdbf37a3ce95217c7d8758cbb8614",
+      "plan.md": "5271f8bb2c1e6f3062a217ea92f4408effe4bf347f5fc8cdd7a133e90901457f",
+      "tasks.md": "9da190f4344590f6451e2b7c796dafb7735b5bae7c0d3106dcb81d77ef1f042d",
+      "checklist.md": "7c27239bc65b3ab4dc007922b852a9fa6c6d2b521bdc7516eebebbec56ff953a",
+      "implementation-summary.md": "b796de116e6fc6eca48db51d4c4eabf95c8fc09d54d56a8e6c83c3f9e47081b5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

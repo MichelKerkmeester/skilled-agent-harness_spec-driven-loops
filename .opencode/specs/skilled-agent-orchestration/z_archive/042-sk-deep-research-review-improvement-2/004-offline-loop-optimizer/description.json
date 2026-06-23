@@ -1,14 +1,26 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
-  "description": "Feature Specification: Offline Loop Optimizer",
+  "description": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escal",
   "keywords": [
-    "feature",
-    "specification",
-    "offline",
-    "loop",
-    "optimizer"
+    "deep-loop",
+    "products",
+    "now",
+    "richer",
+    "runtime",
+    "state",
+    "tuning",
+    "them",
+    "still",
+    "largely",
+    "manual",
+    "convergence",
+    "thresholds",
+    "stuck",
+    "detection",
+    "recovery",
+    "escal"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.298Z",
+  "lastUpdated": "2026-06-23T03:49:49.241Z",
   "specId": "004",
   "folderSlug": "offline-loop-optimizer",
   "parentChain": [

@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add parity tests, cost guard tests, documentation, changelog, and final validation.",
+    "causal_summary": "Add parity tests, cost guard tests, documentation, changelog, and final validation",
     "created_at": "2026-05-23T10:21:00Z",
-    "last_save_at": "2026-06-08T08:50:25.929Z",
+    "last_save_at": "2026-06-23T03:49:50.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3083bc8cb142dea6e823cbea4c67e67f4f4cf71e1dbd08128295385f23b3981",
+    "source_doc_hashes": {
+      "spec.md": "9daca1454ac9db35e6de3f3b8338290d3e5d9f0cefcdc89e354a6018ada8ded8",
+      "plan.md": "dcb052a635ba6f624d33540a01811d7e8cac9459789d2c39a0773dc80593e5da",
+      "tasks.md": "e6796660b509e3b2b660381954250e5ccf00a61c2033da0100ca2bd4e0df069e",
+      "checklist.md": "507b174ca6938708d09ec57845e086d57f37f0bb3866daff7b6cca87a764e327",
+      "implementation-summary.md": "38d18c288f8a9b8fba9c9204212652ec616ea79b15c7873bd592200ca23df6cf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

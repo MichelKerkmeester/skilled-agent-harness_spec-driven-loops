@@ -133,15 +133,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces. Without distribution into the surfaces an AI actually reads at dispatch, the doctrine has no behavioral effect here. This packet is the root coordination surface for moving that doctrine — and its supporting mechanisms and measurement — into the framework.",
+    "causal_summary": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces",
     "created_at": "2026-06-15T11:53:02.676Z",
-    "last_save_at": "2026-06-16T06:59:09.630Z",
+    "last_save_at": "2026-06-23T03:49:48.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:48aee58321a493acbff1a225511530e11b4210d6a2b838a85418b1cdde66838a",
+    "source_doc_hashes": {
+      "spec.md": "baec1e41ab9e7067ffe91292862338b82ded5eaba7458851d2678f18faad5db0",
+      "research/research.md": "68d1e7272f9a4e7d9d4cd20a7213a8b4979dc43697783b18a8b06b9afd1f196b"
+    },
     "last_active_child_id": null,
     "last_active_at": "2026-06-16T06:59:09.630Z"
   }

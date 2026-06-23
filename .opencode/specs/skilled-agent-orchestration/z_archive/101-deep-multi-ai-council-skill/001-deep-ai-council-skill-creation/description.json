@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
-  "description": "Feature Specification: 101/001 Deep AI Council Skill Creation",
+  "description": "Council planning is a specialized multi-agent workflow, but its references, persistence scripts, and routing language currently live under `system-spe",
   "keywords": [
-    "feature",
-    "specification",
-    "101",
-    "001",
-    "deep",
     "council",
-    "skill",
-    "creation"
+    "planning",
+    "specialized",
+    "multi-agent",
+    "workflow",
+    "references",
+    "persistence",
+    "scripts",
+    "routing",
+    "language",
+    "currently",
+    "live",
+    "system-spe"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.028Z",
+  "lastUpdated": "2026-06-23T03:49:50.205Z",
   "specId": "001",
   "folderSlug": "deep-ai-council-skill-creation",
   "parentChain": [

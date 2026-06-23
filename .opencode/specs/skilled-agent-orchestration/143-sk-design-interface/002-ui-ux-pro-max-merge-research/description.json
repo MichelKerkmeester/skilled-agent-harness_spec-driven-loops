@@ -1,15 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/002-ui-ux-pro-max-merge-research",
-  "description": "Research Specification: ui-ux-pro-max merge into sk-design-interface",
+  "description": "`sk-design-interface` (phase 001, vendored from Anthropic's frontend-design) gives the framework an advisor-routable point of view on distinctive UI d",
   "keywords": [
-    "research",
-    "specification",
-    "ui-ux-pro-max",
-    "merge",
-    "sk-design-interface"
+    "sk-design-interface",
+    "phase",
+    "001",
+    "vendored",
+    "anthropic",
+    "frontend-design",
+    "gives",
+    "framework",
+    "advisor-routable",
+    "point",
+    "view",
+    "distinctive"
   ],
-  "lastUpdated": "2026-06-22T18:54:58.983Z",
+  "lastUpdated": "2026-06-23T03:49:48.394Z",
   "specId": "002",
   "folderSlug": "ui-ux-pro-max-merge-research",
   "parentChain": [

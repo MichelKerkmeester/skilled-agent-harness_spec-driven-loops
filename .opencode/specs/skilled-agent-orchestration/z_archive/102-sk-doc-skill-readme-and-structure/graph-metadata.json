@@ -30,10 +30,10 @@
       "markdown",
       "agent",
       "rename",
-      "packet",
-      "coordinates",
-      "documentation",
-      "agent-structure"
+      "phase",
+      "parent",
+      "reference",
+      "asset"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -110,14 +110,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet coordinates the documentation and agent-structure work needed to make `sk-doc` easier to maintain and to rename the create documentation agent into the markdown agent identity. The parent stays lean; all implementation details live in the child phase folders.",
+    "causal_summary": "Phase parent for sk-doc reference relocation, sk-doc skill README asset creation, and markdown-agent rename planning.",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-06-07T09:00:45.699Z",
+    "last_save_at": "2026-06-23T03:49:50.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:6b25f0138b3baea2ca2f86e4ce71fc43ed6538a08adca8234f615eec3041bad0",
+    "source_doc_hashes": {
+      "spec.md": "0ca2ab0e80ef3f972ec64d63333589d71a263ddb0f8cddf565cdcdb2a7f2cf23"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

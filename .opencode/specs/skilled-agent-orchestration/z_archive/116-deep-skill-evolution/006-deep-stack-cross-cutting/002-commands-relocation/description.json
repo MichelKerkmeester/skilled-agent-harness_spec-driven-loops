@@ -1,17 +1,22 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/002-commands-relocation",
-  "description": "Feature Specification: 131/007 — Deep-* Commands Relocation",
+  "description": "The 3 deep- slash-command MD files moved to `.opencode/commands/deep/` and are registered as live skill names (`deep:review`, `deep:research`, `deep:a",
   "keywords": [
-    "feature",
-    "specification",
-    "131",
-    "007",
     "deep",
+    "slash-command",
+    "files",
+    "moved",
+    "opencode",
     "commands",
-    "relocation"
+    "registered",
+    "live",
+    "skill",
+    "names",
+    "review",
+    "research"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.746Z",
+  "lastUpdated": "2026-06-23T03:49:51.004Z",
   "specId": "002",
   "folderSlug": "commands-relocation",
   "parentChain": [

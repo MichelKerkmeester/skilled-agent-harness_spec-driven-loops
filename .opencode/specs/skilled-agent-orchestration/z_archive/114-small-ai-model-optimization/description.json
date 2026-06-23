@@ -1,13 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization",
-  "description": "Feature Specification: small-AI-model optimization",
+  "description": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework se",
   "keywords": [
-    "feature",
-    "specification",
-    "small-ai-model",
-    "optimization"
+    "cli",
+    "dispatch",
+    "surface",
+    "cli-devin",
+    "swe-1",
+    "cli-opencode",
+    "deepseek-v4-pro",
+    "kimi-k2",
+    "qwen3",
+    "glm-5",
+    "sk-prompt",
+    "framework"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.295Z",
+  "lastUpdated": "2026-06-23T03:49:50.499Z",
   "specId": "114",
   "folderSlug": "small-ai-model-optimization",
   "parentChain": [

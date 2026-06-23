@@ -29,10 +29,10 @@
       "tasks",
       "implementation",
       "summary",
-      "specification",
-      "verified",
-      "line-resolved",
-      "edit"
+      "wired",
+      "deep-loop",
+      "runtime",
+      "executor"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the cli-devin deprecation specification. The verified, line-resolved edit list lives in ../context/context-report.md §2.",
+    "causal_summary": "cli-devin was wired into the deep-loop runtime executor layer (executor-config.ts EXECUTORKINDS + DEVINSUPPORTEDMODELS + permission/validation, executor-audit.ts lookup maps, fanout-run.cjs dispatch branch), the deep-improvement model-benchmark dispatcher (two hand-synced KNOWNEXECUTORS sets), and the five deep-loop command YAMLs (ifclidevin blocks + executor enums)",
     "created_at": "2026-06-08T16:10:28Z",
-    "last_save_at": "2026-06-17T19:57:23.856Z",
+    "last_save_at": "2026-06-23T03:49:51.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:538dbc9fc677765b3c64feb55ca6b97a95af84187199ffd02fe4a020442b78f1",
+    "source_doc_hashes": {
+      "spec.md": "eac82fb506929179f931c4190b0e7d8383f8d41f7d057f156cbcc9cef9f05d95",
+      "plan.md": "5fa02d18dd56b42bc9adcf0504d5f9ae904bb7fbff143ad6a2b1e8b7790768af",
+      "tasks.md": "fc17b9793f036efa46a248cc740fb4172df90e1aaaa81db8907c257ea8b3b1c6",
+      "implementation-summary.md": "b25879a4ecc5cfae059efcb805d2a03a3be102b4c3b9cfc3ae4973f5f3de0039"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement",
-  "description": "Feature Specification: 116/004 — Validator v2 Enforcement",
+  "description": "Deep-review post-dispatch validation previously proved that an iteration produced a markdown file and a minimally shaped JSONL row",
   "keywords": [
-    "feature",
-    "specification",
-    "116",
-    "004",
-    "validator",
-    "enforcement"
+    "deep-review",
+    "post-dispatch",
+    "validation",
+    "previously",
+    "proved",
+    "iteration",
+    "produced",
+    "markdown",
+    "file",
+    "minimally",
+    "shaped",
+    "jsonl",
+    "row"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.568Z",
+  "lastUpdated": "2026-06-23T03:49:50.810Z",
   "specId": "004",
   "folderSlug": "complexity-validator-v2-enforcement",
   "parentChain": [

@@ -1,14 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
-  "description": "Phase 002 — Implementation deep research",
+  "description": "GPT-5.5-primary (xhigh-fast, cli-codex) implementation deep research with Opus 4.8 agent verification + synthesis, turning the converged 001 design in",
   "keywords": [
-    "phase",
-    "002",
+    "gpt-5",
+    "5-primary",
+    "xhigh-fast",
+    "cli-codex",
     "implementation",
     "deep",
-    "research"
+    "research",
+    "opus",
+    "agent",
+    "verification",
+    "synthesis",
+    "turning",
+    "converged",
+    "001",
+    "design"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.050Z",
+  "lastUpdated": "2026-06-23T03:49:51.303Z",
   "specId": "002",
   "folderSlug": "implementation-deep-research",
   "parentChain": [

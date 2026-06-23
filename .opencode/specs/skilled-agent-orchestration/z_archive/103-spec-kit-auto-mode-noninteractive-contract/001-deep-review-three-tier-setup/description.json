@@ -1,17 +1,18 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
-  "description": "Feature Specification: deep-review :auto non-interactive setup bypass",
+  "description": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-review",
+    "deep",
+    "start-review-loop",
     "auto",
-    "non-interactive",
-    "setup",
-    "bypass"
+    "advertises",
+    "itself",
+    "autonomous",
+    "suffix",
+    "executionmode"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.106Z",
+  "lastUpdated": "2026-06-23T03:49:50.295Z",
   "specId": "001",
   "folderSlug": "deep-review-three-tier-setup",
   "parentChain": [

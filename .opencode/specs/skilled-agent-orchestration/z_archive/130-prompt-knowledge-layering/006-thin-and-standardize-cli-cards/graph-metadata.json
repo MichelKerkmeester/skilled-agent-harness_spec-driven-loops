@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "causal_summary": "The 4 CLI prompt-quality cards (cli-opencode, cli-gemini, cli-codex, cli-claude-code) each inlined the complete framework table from the canonical card, producing 89-96 line files that diverged from sk-prompt whenever the table changed",
     "created_at": "2026-06-05T12:47:32.514Z",
-    "last_save_at": "2026-06-17T19:57:23.747Z",
+    "last_save_at": "2026-06-23T03:49:51.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e112339b2cdae93d76b3200848405fd457ca9d66d32240073300310b9c8ce1a2",
+    "source_doc_hashes": {
+      "spec.md": "467ab73c358470c8cdfc759df7bd6440ee9a5b4acff47d1bba8d740512d986a6",
+      "plan.md": "c808bbc4cca245b5ad5ec82332b7302af5af71f911d491382c0741a70df08552",
+      "tasks.md": "3dc79a5db0fb91f71f49704fe8f0e4fc26d9224d7fb8ea74644ce37e9085edbc",
+      "implementation-summary.md": "05738581942490db15d29518956a63aac90563218785c100b0a346b99a66227e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

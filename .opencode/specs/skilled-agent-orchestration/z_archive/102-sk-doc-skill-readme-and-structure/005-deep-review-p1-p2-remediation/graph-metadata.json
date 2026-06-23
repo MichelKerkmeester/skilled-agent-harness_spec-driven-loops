@@ -26,7 +26,7 @@
       "verdict",
       "conditional",
       "findings",
-      "none"
+      "feature"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 102 phase-parent deep-review (5 iterations, converged at iter 4) returned verdict CONDITIONAL with 0 P0, 7 P1, and 9 P2 findings. None are security or correctness blockers — they are documentation hygiene and structural-consistency gaps. The packet cannot be marked Complete until P1s are resolved.",
+    "causal_summary": "The 102 phase-parent deep-review (5 iterations, converged at iter 4) returned verdict CONDITIONAL with 0 P0, 7 P1, and 9 P2 findings",
     "created_at": "2026-05-11T08:28:00Z",
-    "last_save_at": "2026-06-07T09:00:45.707Z",
+    "last_save_at": "2026-06-23T03:49:50.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f3badb51abf8c7517d37e5c82ae2766ab77c215cb9c7ba5434dad10e67b5b458",
+    "source_doc_hashes": {
+      "spec.md": "a09176568ad980e4286469bebab2cb1aaa34a92cab0a6f241b4622095628e157",
+      "plan.md": "fa619fdacf4aaef953d27ab6cf257b41e55ddda4fccfe3f07127f287efbbb054",
+      "tasks.md": "145404bcc05111841e6c1d2c8b7f6b6b64600c29c95d69f6cd0c08ca00ef8582",
+      "checklist.md": "bca45fd3be77139d9b5d1913da58f9e7e1ffe8cb41f32429d97d0551a9584d31",
+      "implementation-summary.md": "9f28f1497a4f7ee5e39b43e91c6930bfa47c75dd8f3afdb4ece7fe886b6df053"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

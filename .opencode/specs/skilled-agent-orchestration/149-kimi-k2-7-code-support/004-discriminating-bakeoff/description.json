@@ -1,14 +1,27 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/004-discriminating-bakeoff",
-  "description": "Feature Specification: Phase 4: discriminating-bakeoff",
+  "description": "The phase 002 bakeoff (run 006) scored every prompt framework at correctness 1.0 because its T3 fixtures were too easy for a frontier coding model, so",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "discriminating-bakeoff"
+    "002",
+    "bakeoff",
+    "run",
+    "006",
+    "scored",
+    "every",
+    "prompt",
+    "framework",
+    "correctness",
+    "because",
+    "fixtures",
+    "too",
+    "easy",
+    "frontier",
+    "coding",
+    "model"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.780Z",
+  "lastUpdated": "2026-06-23T03:49:48.770Z",
   "specId": "004",
   "folderSlug": "discriminating-bakeoff",
   "parentChain": [

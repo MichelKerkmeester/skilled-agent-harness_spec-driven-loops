@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The interface-design judgment skill is named `sk-interface-design`, which predates the `sk-design-*` family now forming around the new `sk-design-md-generator` skill. The inconsistent name makes the design family harder to discover and reason about, and it is a load-bearing co-load dependency (`mcp-open-design`, `mcp-figma`) whose identity is duplicated across the binary advisor graph, cross-skill mandates, root indexes, the spec registry, and historical packet folders.",
+    "causal_summary": "The interface-design judgment skill is named `sk-interface-design`, which predates the `sk-design-` family now forming around the new `sk-design-md-generator` skill",
     "created_at": "2026-06-21T07:44:03Z",
-    "last_save_at": "2026-06-22T18:54:59.181Z",
+    "last_save_at": "2026-06-23T03:49:48.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ee2906c6b72f026bd527907bc557dcef842d0b9a1c295f961bc6613b6a0491f8",
+    "source_doc_hashes": {
+      "spec.md": "3a1e001af524d0001044059486d49cb41022fb9184e55abffc127ab54bc27c01",
+      "plan.md": "ea14f958ee16c9686ecb3c73c69ef9f9fb6b5bac80bada8cbb2a919b6b9e3f9a",
+      "tasks.md": "a99a2179f57ef351e412542d7cb782d52dda1c9e7486b7a945dd168e54af2d37",
+      "checklist.md": "7d147dfe633f140e584af057b165859a1a2d0efba9817f06e58db1e86e1a8182",
+      "implementation-summary.md": "b304f105d2a1dfb5a1838b508d31bc3b567a8ec91bc11301c7aa39e931a3ba23"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

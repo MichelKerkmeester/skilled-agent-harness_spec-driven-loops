@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package.",
+    "causal_summary": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package",
     "created_at": "2026-05-23T07:45:27Z",
-    "last_save_at": "2026-06-07T09:00:45.844Z",
+    "last_save_at": "2026-06-23T03:49:50.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7b7aa2d0ebe1ae7c5cfba6e2f9bde999250f4b09263add574171f73540dbf0f9",
+    "source_doc_hashes": {
+      "spec.md": "956669415a027407f42f79466471109a2707417f2b647fca84c4e0e95ad30c69",
+      "plan.md": "2a40ddf2346520f2c35f668566363b3c991187e1bb875b8c1fd02849d8caf3f1",
+      "tasks.md": "22bdbc17c9add80a1f95c0a08fccf74e2dec9b4a05e743ce631d8911bdc002d1",
+      "checklist.md": "23a650a48c118158aeec1763d84b56dd5c08cfdd74bd612157fee2692fcaaf0f",
+      "implementation-summary.md": "ce2e3af10fa5cbe7be6b2d08b19f2f1d726c186fc218332a65ac8114b932da51"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

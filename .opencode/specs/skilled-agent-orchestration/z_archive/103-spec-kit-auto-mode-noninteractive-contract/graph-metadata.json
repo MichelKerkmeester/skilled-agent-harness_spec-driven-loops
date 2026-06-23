@@ -29,11 +29,11 @@
       "noninteractive",
       "setup",
       "f-stage-e-001",
-      "packet",
-      "coordinates",
-      "autonomous",
+      "phase",
+      "parent",
       "setup-resolution",
-      "three-tier"
+      "001",
+      "introduced"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -93,14 +93,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet coordinates the spec-kit `:auto` (autonomous) setup-resolution contract: a three-tier flow (resolve confidently → ask one targeted clarification when genuinely ambiguous → fail fast as last resort) that ensures `/command:*:auto` dispatches never hang on stdin under non-interactive runtimes.",
+    "causal_summary": "Phase parent for the spec-kit `:auto` setup-resolution contract: 001 introduced the three-tier flow for /deep:start-review-loop; 002 generalizes it to all 12 user-invokable command surfaces.",
     "created_at": "2026-05-11T12:30:00Z",
-    "last_save_at": "2026-06-07T09:00:45.709Z",
+    "last_save_at": "2026-06-23T03:49:50.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:2de5609443b50b97194b1fc782efe20393c787e347b8762d0ea98f0753326370",
+    "source_doc_hashes": {
+      "spec.md": "669959ed4bd1f04b890957c77ead077c7d7944beacd04e3db296036a713b175d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

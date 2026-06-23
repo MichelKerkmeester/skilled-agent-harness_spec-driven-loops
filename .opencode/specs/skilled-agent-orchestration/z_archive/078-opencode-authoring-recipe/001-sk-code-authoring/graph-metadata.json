@@ -33,7 +33,7 @@
       "tasks",
       "summary",
       "sk-code",
-      "add"
+      "skill"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/speckit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.",
+    "causal_summary": "sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the on-disk `assets/opencode/checklists/` directory contains only language-level checklists (config, javascript, python, shell, typescript, universal)",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-06-05T12:47:32.833Z",
+    "last_save_at": "2026-06-23T03:49:49.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:363dc3bcc2b00b41ca6d795058becf59628eae09bb64ad7fe45ab203932cb3d6",
+    "source_doc_hashes": {
+      "spec.md": "a8796c2953613dfea2c691d57f4279275b163ba68431aa2f51a48c0fe4e29d05",
+      "plan.md": "dd10845eb47e7b53b33d85ff8fcde93a37fc6dfe12bee064dd0ff6e95cf5af3e",
+      "tasks.md": "b648497842ab5801cf0431459c320edb257963a190b24298b85e95bb96977d1f",
+      "implementation-summary.md": "31314b64e5397fb3fc7364e8a0091d866496413db70a4781710a717bdc4864f9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

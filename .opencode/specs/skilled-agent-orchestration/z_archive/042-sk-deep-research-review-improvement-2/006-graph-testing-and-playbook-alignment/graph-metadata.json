@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002 introduced the coverage-graph runtime, but the supporting verification surface was incomplete. The repo needed one phase that proved the CommonJS and TypeScript graph layers stayed aligned, that graph operations held up under larger loads, and that human-run playbooks across `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent` covered the new graph behaviors.",
+    "causal_summary": "Phase 002 introduced the coverage-graph runtime, but the supporting verification surface was incomplete",
     "created_at": "2026-04-12T09:02:50.196Z",
-    "last_save_at": "2026-05-30T10:12:01.246Z",
+    "last_save_at": "2026-06-23T03:49:49.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4a8a5e6a1af2352b6a3784c4cfdd01bd8e26c10722417aa531b520d607fb4852",
+    "source_doc_hashes": {
+      "spec.md": "dda7669a41b659bedeff31593e4a809c6d2b7b1f143c982f8395f229d410953f",
+      "plan.md": "f2b2b9851a17133b562ca06698b4c87b90675ce63043c95bef753b74ef71e15b",
+      "tasks.md": "6c99ddccc5da2e70d3fdb375a2343824af073d89db59d2934567555249aa07cd",
+      "checklist.md": "8455d083d170d5adbdbb3431b7f6d90e800df39428a334e70600ab4283553d6e",
+      "implementation-summary.md": "f6c3eb88bfc18714316eb869e7e4ea8cd37e7547f4731043fcbdbdb954827773"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

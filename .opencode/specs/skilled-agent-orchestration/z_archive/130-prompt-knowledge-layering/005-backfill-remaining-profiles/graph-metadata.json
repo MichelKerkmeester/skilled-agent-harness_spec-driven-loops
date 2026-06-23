@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 5** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "causal_summary": "After phase 4, the sk-prompt-small-model hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six models in the active dispatch rotation: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1",
     "created_at": "2026-06-05T12:47:32.512Z",
-    "last_save_at": "2026-06-17T19:57:23.746Z",
+    "last_save_at": "2026-06-23T03:49:51.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f05216c61a87c8bbd7db27562f612ce5aad0e7380888211c6adf5b499a604951",
+    "source_doc_hashes": {
+      "spec.md": "6394c405d186b205722c28a097a5bceca9ff5f873f808b36051f21256273d3d8",
+      "plan.md": "1332e7e8284afa8727b89b31e3f651728973258d1a8f9644d6748d2bcef37e37",
+      "tasks.md": "1c591b329043a1540da72b7e4e9b038ac982c6d243a0056fd74a83693504ae80",
+      "implementation-summary.md": "d23439ebbb30ea00ceac94662b79cd83e5136c2705e89923f1b31b3ea81b5b1c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

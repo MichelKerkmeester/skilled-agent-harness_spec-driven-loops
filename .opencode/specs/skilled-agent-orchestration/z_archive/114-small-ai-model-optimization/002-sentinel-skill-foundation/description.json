@@ -1,13 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/002-sentinel-skill-foundation",
-  "description": "Feature Specification: foundation routing",
+  "description": "Today the skill-advisor has no routing target for small-model concerns",
   "keywords": [
-    "feature",
-    "specification",
-    "foundation",
-    "routing"
+    "today",
+    "skill-advisor",
+    "routing",
+    "target",
+    "small-model",
+    "concerns"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.309Z",
+  "lastUpdated": "2026-06-23T03:49:50.514Z",
   "specId": "002",
   "folderSlug": "sentinel-skill-foundation",
   "parentChain": [

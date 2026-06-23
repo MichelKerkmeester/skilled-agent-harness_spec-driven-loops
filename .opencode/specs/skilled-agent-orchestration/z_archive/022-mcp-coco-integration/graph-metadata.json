@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "OpenCode had no semantic code search capability. All code exploration relied on Grep (exact/regex text patterns), Glob (file path patterns), and Read (full file retrieval). The @context agent had to re-discover code structure every session with no persistent index and no way to query code by intent or concept. Searching for \"find authentication middleware\" with Grep required knowing the exact identifiers; with no semantic layer, fuzzy or conceptual queries returned zero results.",
+    "causal_summary": "OpenCode had no semantic code search capability",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-06-22T18:54:59.290Z",
+    "last_save_at": "2026-06-23T03:49:49.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:46c9cd73c3ae2e034b38e207022250e854938c115936a45d518991c9aa545cf1",
+    "source_doc_hashes": {
+      "spec.md": "8c186bc33adf9c77eb615404f704e41d35c4efb01c1946c61b7eb11102f627c7",
+      "plan.md": "bd573561658d30bb4148b597bafef14aa99fff029d695766233bda61b8b4e996",
+      "tasks.md": "5e4980c6859f4c5171e82f0e33b8416f1dcc05000b07eaa40e658a3178dfb71e",
+      "checklist.md": "e369c1de5f078ee128e430a69e3b7a20524404b298fd0ca280e1e33ff4d38e90",
+      "implementation-summary.md": "3fab68303ab7f423e44d225e9dcfb510c3c7fb4fe3f14c2745009885d9e03bd1",
+      "research/research.md": "3474cb3062ab8383f8ebd8f8a2bd5200ba22ee2d673ea0fc56065f00e18b7081"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

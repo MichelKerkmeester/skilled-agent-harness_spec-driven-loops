@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The account holder switched from MiniMax pay-per-token (Direct API) to the **MiniMax Token Plan** (subscription, minimax.io). Phase 001 wired MiniMax in as a *direct-API* provider (`minimax` → `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`). This phase re-points the default MiniMax path at the Token Plan while keeping the Direct API selectable.",
+    "causal_summary": "Every MiniMax reference in the repo describes the provider as the pay-per-token Direct API (`minimax` → `MINIMAXAPIKEY`, `MiniMax-M2.7`)",
     "created_at": "2026-06-01T06:32:01.035Z",
-    "last_save_at": "2026-06-17T19:57:23.638Z",
+    "last_save_at": "2026-06-23T03:49:51.167Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2f9154771b4a6b51a795cefe94bf63410e59a65d9e679c42b251ea975653c44f",
+    "source_doc_hashes": {
+      "spec.md": "7cdba99699e6498d73df39f582f44a767ec4860ac36ffeb7e0e4277905938695",
+      "plan.md": "3ce008244478c516fce605dece6dcef30e875976ab3e09675f1497f690dccd28",
+      "tasks.md": "42f220e3583f7bdd63b8f03a4bcdfa5b1c804dfed1aeb4e2caceb674580b6089",
+      "checklist.md": "48c06c219469b6e7f977b433984113eed39962270d15c9ef2c9f1945dc905e1f",
+      "implementation-summary.md": "c5cfc88b46eeae92766c60010321224c20fc872bdd7d4322333ff6c64c6fe3bd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

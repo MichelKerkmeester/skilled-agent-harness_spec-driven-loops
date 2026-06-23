@@ -1,18 +1,24 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename",
-  "description": "Feature Specification: sk-improve-prompt → sk-prompt Skill Rename — Phase Parent",
+  "description": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-improve-prompt",
-    "sk-prompt",
     "skill",
-    "rename",
-    "phase",
-    "parent"
+    "currently",
+    "named",
+    "sk-improve-prompt",
+    "carries",
+    "redundant",
+    "improve",
+    "segment",
+    "duplicates",
+    "intent",
+    "already",
+    "encoded",
+    "dispatcher",
+    "command"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.333Z",
+  "lastUpdated": "2026-06-23T03:49:49.892Z",
   "specId": "082",
   "folderSlug": "sk-improve-prompt-rename",
   "parentChain": [

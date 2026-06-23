@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Four lower-urgency improvements remain after the core phases. They are real but each needs a decision or carries maintenance cost, so they are bundled as an optional, independently-shippable phase rather than blocking the high-value work.",
+    "causal_summary": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a SK_CODE_REVIEW_DEPTH env alias for the existing ON_DEMAND tier, an implementer anti-stall rule, and optional startup/typing hooks. Each needs a decision or carries upkeep cost; ship after the core phases.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-22T18:54:58.961Z",
+    "last_save_at": "2026-06-23T03:49:48.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:23fb86962da28c4e59d329398680d9def49b332959a37b1b20454a527c3b1ed6",
+    "source_doc_hashes": {
+      "spec.md": "d369670849cebc7db717a35857ca02b15329d385030ecb7d649d6b706dfce965",
+      "plan.md": "56047a8ef950b7a27967ca99ae693842bb03318a24f29f2bedb093e4087a6b9d",
+      "tasks.md": "433323c7148336a64203961c298fd9d0640e404e7f3aabc05e940277910968f3",
+      "implementation-summary.md": "0ed83b77f3b1d4c60d7eb176cad5297e970c65c34a61a7812a70f6a936f65b61"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

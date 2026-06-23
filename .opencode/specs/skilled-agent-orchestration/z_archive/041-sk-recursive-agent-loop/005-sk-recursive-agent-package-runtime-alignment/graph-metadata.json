@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates. The source package docs were valid but not template-faithful enough, the mutator agent still used the old `agent-improvement-loop` name across runtimes, the command body and wrappers still reflected an older command shape, and the `.agents/skills/sk-improve-agent` mirror had not been resynchronized to the corrected source package.",
+    "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-05-30T10:12:01.218Z",
+    "last_save_at": "2026-06-23T03:49:49.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7d6d134d74a2f10ec43ab39a56681689076956ada707d7a3bf0535f4eefc7bdf",
+    "source_doc_hashes": {
+      "spec.md": "586fcb74932cc1e254fb23cd9d17c9592bf24f10e815a761fd94f186c00c8a94",
+      "plan.md": "b4d062596408dccb1c401a56ae352435b4da84ca6b4a2344499a890aa42e5aa9",
+      "tasks.md": "1125fa35c662361f3d6b9725405406e55db9dc5189c42b84fd792813f0a0a4e3",
+      "checklist.md": "97bb00445603a91fe508f75a1191f29d38b6da38062bb952af6e4514f8cf59c8",
+      "implementation-summary.md": "516269657fc4574e944d6b0712f2a796b4b538fb69c7feeafa05f4717beb2399"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

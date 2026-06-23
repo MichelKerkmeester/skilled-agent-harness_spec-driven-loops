@@ -1,18 +1,20 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution",
-  "description": "Feature Specification: deep-skill evolution arc (nested phase parent)",
+  "description": "The deep- skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many i",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-skill",
-    "evolution",
-    "arc",
-    "nested",
-    "phase",
-    "parent"
+    "deep",
+    "skill",
+    "family",
+    "deep-ai-council",
+    "deep-review",
+    "deep-loop-runtime",
+    "deep-research",
+    "deep-agent-improvement",
+    "evolved",
+    "many"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.359Z",
+  "lastUpdated": "2026-06-23T03:49:50.565Z",
   "specId": "116",
   "folderSlug": "deep-skill-evolution",
   "parentChain": [

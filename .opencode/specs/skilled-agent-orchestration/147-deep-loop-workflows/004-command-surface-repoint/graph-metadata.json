@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Eight /deep:* commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each). The command surface is independent of the skill folder and should stay stable, but every literal skill-path needs repointing. The repoint depends on the Python↔TypeScript {skill,mode} routing contract being finalized first (blocker B2) so fixtures and command bindings can be planned concretely. The per-mode required-input setup schemas and the \"do not transfer sibling defaults\" guardrails must survive verbatim.",
+    "causal_summary": "Eight /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-06-22T18:54:59.095Z",
+    "last_save_at": "2026-06-23T03:49:48.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6fbf24c14320cc7ee60bdb0542e85fcce7ebb9293062c5a9448d42cde4366fda",
+    "source_doc_hashes": {
+      "spec.md": "b53a8bbd06c39eff30ec61712be931d67f3846398cfc69b09cd9e1326e7185ef",
+      "plan.md": "d36a35e367eaebf1103a131fcbedc9652e043cfb14c029afffd03b8e10c1a7a8",
+      "tasks.md": "28bf69a7d5286bd061a05cdd9ed0671f0d185475c8474f9cfacd7ab6ceec35d9",
+      "checklist.md": "531fa0e25d5c8d70cb5c24b7df6f6f0273c66d483819f71c0024da8a20c9823b",
+      "implementation-summary.md": "e7ba29094ef19e0a3c7efbcb6e7019bca7564d4bd492a23297d67b7f68238f1b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

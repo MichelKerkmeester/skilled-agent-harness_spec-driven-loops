@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 010 completes the council graph half of the deep-loop-runtime MCP-to-CLI migration. The existing direct scripts in `.opencode/skills/deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` already handle `loopType=research` and `loopType=review`; this packet specifies extending the same scripts to accept `loopType=council`, porting the dedicated council database/query/convergence code into `.opencode/skills/deep-loop-runtime/lib/council/`, rewiring `deep-ai-council` to spawn the scripts, and deleting the four `council_graph_*` MCP tools from `system-spec-kit`.",
+    "causal_summary": "The prior deep-loop-runtime arc removed the four `deeploopgraph` MCP tools and replaced them with direct CLI scripts, but the council graph family remains in `system-spec-kit/mcpserver/`",
     "created_at": "2026-05-24T05:40:34Z",
-    "last_save_at": "2026-06-15T09:09:33.788Z",
+    "last_save_at": "2026-06-23T03:49:50.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,16 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:0038649f3adc9dea84fc74aac8c5913e6bbf896952f9fe5104df052565a989e8",
+    "source_doc_hashes": {
+      "spec.md": "077777e6b2b710e5fbc7ec8febe972ba03d7bc1c5872b5ee5819c9c888252d35",
+      "plan.md": "a4c0467dd95987ff4c4da3ac5e35a1e1c2d187a16fc00d82120ca6fe2e052cb1",
+      "tasks.md": "3409ab8d169bd6ae15709c3a14b8322d9debc56f47d4634b3c8d353b54afde9a",
+      "checklist.md": "68be0cf58e500ea887a66560274cfa1eabb2b8d66fbb45333cf25f910402aea3",
+      "decision-record.md": "5ce286fc7fa55647402e1c6c737e828c3cbb19e40804aa018db3b5f68eb2fc2d",
+      "implementation-summary.md": "da0a514277ae881638ee6a611de5407a2665f0504318def78ecba03bf33e0311",
+      "handover.md": "062000ecfef3053f00aad2976aa7cb67a0365d17a919f51ac858d710a4270601"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

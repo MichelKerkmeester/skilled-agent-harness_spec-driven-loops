@@ -37,8 +37,8 @@
       "plan",
       "restructure",
       "tasks",
-      "native-only",
-      "seats"
+      "deep",
+      "start-context-loop"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The default pool is native-only (2 `@deep-context` seats); the pool question offers exactly **A) Native only (default)** and **B) Custom** (native / CLI / combined via flags), with no model names in the options.",
+    "causal_summary": "`/deep:start-context-loop` defaulted to a heterogeneous executor pool (`2 native + MiMo + gpt + deepseek`) wired in `deepcontextconfig.json`",
     "created_at": "2026-06-07T09:45:27Z",
-    "last_save_at": "2026-06-17T19:57:23.818Z",
+    "last_save_at": "2026-06-23T03:49:51.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fcf32291ee36c54d9a84e8856d36e56934fcd14ddc91a70a01c486cd5b5bef58",
+    "source_doc_hashes": {
+      "spec.md": "ae0e025e96f9a82bbff27bed8bd7c7b21d2bd67fc7ce53b0d2b13196cc1b4a2d",
+      "plan.md": "0ef8a69bce7901cfa09b837a651ca701af5f7e210511cd1a109b487c2db084a5",
+      "tasks.md": "78eec774cb6b5736e49dfcbb070f8561f0495a2801e96022893dd87893ade9d1",
+      "checklist.md": "c4220a7c43c0abb6b3bd5436aa4425ecbf3f81f841657a12276f8e37ed8f398d",
+      "implementation-summary.md": "dc122db0b865f5b8b80c1b4f3d9f71698eeb16adc85e35f05ef1d7b9491ddaa0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

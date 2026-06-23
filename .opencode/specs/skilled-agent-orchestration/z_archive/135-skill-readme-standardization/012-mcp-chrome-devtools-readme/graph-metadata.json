@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "first",
-      "skill",
-      "batch",
-      "mcp"
+      "tabular",
+      "reference",
+      "card",
+      "table",
+      "contents"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 12**, the first skill in Batch C (mcp-*).",
+    "causal_summary": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T12:35:00Z",
-    "last_save_at": "2026-06-17T19:57:23.836Z",
+    "last_save_at": "2026-06-23T03:49:51.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a7777910be144f9bbb709cd2882d9a6688ea29cb51b0811d6c2d3117fa69ad68",
+    "source_doc_hashes": {
+      "spec.md": "ea2dc4d4594d837b410a0e13560016ca24f77d072c8c34c4cad09c3152eec14e",
+      "plan.md": "37f87248727d068ac6d967e380db3d01f68c9e04f66beb0799a28dd5eb7da356",
+      "tasks.md": "1480e634404a54913cf9fcab2375d5b1a74ef30efb4840d68f2eba93dcd51cfb",
+      "implementation-summary.md": "d590624e4a54fca2bfd43f63994151e56a6e3a9c01149a24c4ec996280363c33"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

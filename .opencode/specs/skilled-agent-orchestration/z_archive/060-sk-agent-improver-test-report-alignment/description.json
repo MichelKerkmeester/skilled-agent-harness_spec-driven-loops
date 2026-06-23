@@ -1,16 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment",
-  "description": "Phase Parent Spec: 060 — sk-improve-agent Test-Report Alignment",
+  "description": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup r",
   "keywords": [
-    "phase",
-    "parent",
+    "phase-parent",
+    "root",
     "spec",
-    "060",
+    "five-phase",
+    "end-to-end",
+    "methodology",
+    "campaign",
     "sk-improve-agent",
-    "test-report",
-    "alignment"
+    "triad",
+    "research",
+    "initial",
+    "implementation",
+    "followup"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.241Z",
+  "lastUpdated": "2026-06-23T03:49:49.404Z",
   "specId": "060",
   "folderSlug": "sk-agent-improver-test-report-alignment",
   "parentChain": [

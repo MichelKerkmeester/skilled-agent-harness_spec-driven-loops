@@ -31,9 +31,9 @@
       "plan",
       "tasks",
       "summary",
-      "phase",
-      "reorganization",
-      "physically"
+      "skill",
+      "assets",
+      "directory"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the sk-doc asset reorganization. It physically moves 4 asset items out of single-purpose subfolders and deletes the empty `agents/` subfolder. After this phase, references across sk-doc internal docs, /create:* commands × 4 runtimes, and the @create agent × 4 runtimes still point to the OLD paths — Phase 2 closes that gap.",
+    "causal_summary": "The sk-doc skill's `assets/` directory has accreted a two-level hierarchy where heavy-traffic templates and package folders sit one level deeper than they need to be (`assets/agents/agenttemplate.md`, `assets/documentation/featurecatalog/`, etc.)",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-06-17T19:57:23.269Z",
+    "last_save_at": "2026-06-23T03:49:49.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f9963e8bf0164a8ac0bcd4154e4fde79595875016e62324c4fabb75f8fb688ae",
+    "source_doc_hashes": {
+      "spec.md": "a7062a2beb57af4d6a6764a6553c9ce112617f656eedf9750699388168c32d1e",
+      "plan.md": "8459f4451a5abb0fafdd5dca416e4fd639072703e53d19b007fcd8887746fca5",
+      "tasks.md": "9de1f97548c6cecc57af65bca6e053c9ff2db531371f3a646d2ad4f1f9ca0feb",
+      "implementation-summary.md": "a4f497388297953be5e015bcffbd283df4ab07ea6436a4836878125ca2fccdb1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

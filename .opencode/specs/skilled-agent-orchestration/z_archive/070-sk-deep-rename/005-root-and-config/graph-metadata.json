@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`. Phase 001 found Phase 005 references in root-level documentation/config areas, and the user constrained this execution to the listed repo-root files plus this phase folder.",
+    "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
     "created_at": "2026-05-05T19:30:00Z",
-    "last_save_at": "2026-05-30T10:12:01.384Z",
+    "last_save_at": "2026-06-23T03:49:49.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:45:00Z",
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:58ed1c430091d1e42c78e6cfc9b9d784544d1d29f596ba221006cc582068a4f7",
+    "source_doc_hashes": {
+      "spec.md": "06313405d9c8b5585f567feded06c7badba9046d63834fd7f8bb6063a0a8975c",
+      "plan.md": "ca46ecaf52290bb364fd3d154ba9f14e7d45b0d97f9edba38189d2e1380413db",
+      "tasks.md": "f6ebff04c94ef4c0c90cdefb3bac752645fc773163e9a15bb93e30823dcb211a",
+      "checklist.md": "4c89da263fbe3fcfb30c7d5e1f1d1978330f8e0b130b672f9d6346a2bc5fc891",
+      "implementation-summary.md": "0b675c3f3f249f953757179ec3e2a30b89e8e5166f04861fcb37eb2b484fcae1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

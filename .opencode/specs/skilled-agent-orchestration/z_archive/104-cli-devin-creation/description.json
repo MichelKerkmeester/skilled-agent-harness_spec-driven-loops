@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/104-cli-devin-creation",
-  "description": "Feature Specification: cli-devin skill — Devin CLI peer executor",
+  "description": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI a",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-devin",
+    "repo",
+    "cli-executor",
     "skill",
-    "devin",
+    "family",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-gemini",
+    "cli-opencode",
+    "lets",
+    "one",
     "cli",
-    "peer",
-    "executor"
+    "delegate",
+    "tasks"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.125Z",
+  "lastUpdated": "2026-06-23T03:49:50.314Z",
   "specId": "104",
   "folderSlug": "cli-devin-creation",
   "parentChain": [

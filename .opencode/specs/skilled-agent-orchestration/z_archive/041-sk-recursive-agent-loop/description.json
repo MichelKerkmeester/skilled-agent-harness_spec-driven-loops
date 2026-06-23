@@ -1,15 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
-  "description": "Feature Specification: 041 Recursive Agent Loop",
+  "description": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases",
   "keywords": [
-    "feature",
-    "specification",
-    "041",
-    "recursive",
-    "agent",
-    "loop"
+    "original",
+    "041-sk-improve-agent-loop",
+    "packet",
+    "grew",
+    "longer",
+    "agent-improver",
+    "program",
+    "seven",
+    "explicit",
+    "implementation",
+    "phases"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.189Z",
+  "lastUpdated": "2026-06-23T03:49:49.139Z",
   "specId": "041",
   "folderSlug": "sk-recursive-agent-loop",
   "parentChain": [

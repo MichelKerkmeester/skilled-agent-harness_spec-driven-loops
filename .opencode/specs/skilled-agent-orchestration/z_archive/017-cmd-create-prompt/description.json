@@ -1,14 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/017-cmd-create-prompt",
-  "description": "Feature Specification: create:prompt Command",
+  "description": "The sk-improve-prompt skill provides powerful prompt engineering capabilities (7 frameworks, DEPTH processing, CLEAR scoring), but users must manually",
   "keywords": [
-    "feature",
-    "specification",
-    "create",
+    "sk-improve-prompt",
+    "skill",
+    "provides",
+    "powerful",
     "prompt",
-    "command"
+    "engineering",
+    "capabilities",
+    "frameworks",
+    "depth",
+    "processing",
+    "clear",
+    "scoring",
+    "users",
+    "must",
+    "manually"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.262Z",
+  "lastUpdated": "2026-06-23T03:49:48.975Z",
   "specId": "017",
   "folderSlug": "cmd-create-prompt",
   "parentChain": [

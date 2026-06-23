@@ -1,14 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
-  "description": "Feature Specification: Phase 4: minimax-token-plan-provider",
+  "description": "Every MiniMax reference in the repo describes the provider as the pay-per-token Direct API (`minimax` → `MINIMAXAPIKEY`, `MiniMax-M2.7`)",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "minimax-token-plan-provider"
+    "every",
+    "minimax",
+    "reference",
+    "repo",
+    "describes",
+    "provider",
+    "pay-per-token",
+    "direct",
+    "api",
+    "minimaxapikey",
+    "minimax-m2"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.922Z",
+  "lastUpdated": "2026-06-23T03:49:51.169Z",
   "specId": "004",
   "folderSlug": "minimax-token-plan-provider",
   "parentChain": [

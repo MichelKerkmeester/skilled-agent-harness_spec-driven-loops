@@ -1,15 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/009-fanout-remediation",
-  "description": "Feature Specification: Deep-loop fan-out remediation (009)",
+  "description": "Packet 123 shipped a \"parallel multi-executor fan-out\" layer for `/deep:start-review-loop` and `/deep:start-research-loop`",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-loop",
+    "packet",
+    "123",
+    "shipped",
+    "parallel",
+    "multi-executor",
     "fan-out",
-    "remediation",
-    "009"
+    "layer",
+    "deep",
+    "start-review-loop",
+    "start-research-loop"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.162Z",
+  "lastUpdated": "2026-06-23T03:49:51.417Z",
   "specId": "009",
   "folderSlug": "fanout-remediation",
   "parentChain": [

@@ -98,14 +98,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired. It is wired into runtime executor routing, model-dispatch registries, the skill-advisor graph, agent rosters, governance docs, and CI scripts. Leaving these references after the skill is gone produces dangling dispatch targets, broken CI, and stale routing. A 10-iteration deep-context sweep (see `context/context-report.md`) mapped the full surface: ~45 active-wiring files plus a structural canonical-content dependency (`context-budget.md`) and a cli-devin-exclusive model (`swe-1.6`).",
+    "causal_summary": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
     "created_at": "2026-06-08T16:10:27Z",
-    "last_save_at": "2026-06-17T19:57:23.854Z",
+    "last_save_at": "2026-06-23T03:49:51.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:d9580952ec250192c088317e03b90577d639f734acb2440040e6806ee32048a0",
+    "source_doc_hashes": {
+      "spec.md": "c74d42f61fc5347e0046fd0d8a36c3131236bd49be3abfbe5db8c12ac87083f6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

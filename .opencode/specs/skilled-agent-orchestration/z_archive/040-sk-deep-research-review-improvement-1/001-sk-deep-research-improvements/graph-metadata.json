@@ -35,8 +35,8 @@
       "spec",
       "plan",
       "tasks",
-      "make",
-      "durable"
+      "sk-deep-research",
+      "already"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make Phase 1 the durable contract for research lineage, reducer-owned state, and runtime parity so later deep-review work inherits a stable packet model instead of ambiguous conventions.",
+    "causal_summary": "`sk-deep-research` already uses packet files as the continuity boundary, but the workflow still drifted across runtime mirrors, lifecycle naming, and reducer ownership",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-06-05T12:47:32.618Z",
+    "last_save_at": "2026-06-23T03:49:49.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e5d7163383e4a6bd97e1fbffc44415f5bb5bf7228f7e9d8e6a962095e56dd713",
+    "source_doc_hashes": {
+      "spec.md": "8d13913f2204edb349c4ccbaabba9d8ad5bd6b819e3f04227b59daa7f76a3872",
+      "plan.md": "4ef3dcebfa820d965ba2b0964750da30767a7aa26348120d41d61240d3aa27a5",
+      "tasks.md": "c1720f0f665294bc34bf416a0a8c582c2a754db343922e8252611dddd50de0bf",
+      "implementation-summary.md": "f88f1f2ee0ed941eca355a4d4940bf8cd4aadb341686b92cd909ab14d6df100e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still carried the older `agent-improvement-loop` name. That left the repo with one last naming mismatch across the command markdown file, command asset filenames, wrapper filenames, README examples, runtime agent tables, and packet-history references.",
+    "causal_summary": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still carried the older `agent-improvement-loop` name",
     "created_at": "2026-04-12T09:02:50.188Z",
-    "last_save_at": "2026-05-30T10:12:01.220Z",
+    "last_save_at": "2026-06-23T03:49:49.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b0ab501b00c2badf649b2f7dc2aa79dd9e27e431cce08cbd8ecf2b835980921c",
+    "source_doc_hashes": {
+      "spec.md": "3dee4ad0cf68297c5178ccd83743284688fdca3244460c4508e9c2326e26f0a2",
+      "plan.md": "4eb93190d12ed45c3aa85ae0cd4f4737938b146bd75fba71a2cf1ac9cf931d8a",
+      "tasks.md": "d99322dd3cb19ce2ef7a7e963f488a102cef8db59c2d37c8c109837a061c5a6c",
+      "checklist.md": "6da1e400226e5a69be106107a88eab2fd404a92c89d39456a94631c1533f318e",
+      "implementation-summary.md": "250812396a14bac7d565e928c42a5d51d87519494e7bc949a3e0b80b802ad87b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

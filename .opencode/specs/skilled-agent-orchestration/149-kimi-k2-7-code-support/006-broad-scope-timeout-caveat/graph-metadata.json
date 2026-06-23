@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` **over-explores** (many sequential file reads) and **exceeds a 600s timeout WITHOUT emitting** — and because opencode flushes only the final assistant message to stdout, the killed run yields **0 bytes** (looks like a hang though the model was working). The profile even recommends k2.7 for \"sprawling / multi-repo\" work — exactly the scope that triggers this. Adjacent cli-opencode references also still cite the retired `kimi-k2.6` / `opencode-go/kimi-k2.6`.",
+    "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` over-explores (many sequential file reads) and exceeds a 600s timeout WITHOUT emitting — and because opencode flushes only the final assistant message to stdout, the killed run yields 0 bytes (looks like a hang though the model was working)",
     "created_at": "2026-06-17T11:00:00Z",
-    "last_save_at": "2026-06-22T18:54:59.132Z",
+    "last_save_at": "2026-06-23T03:49:48.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d8b991f2173877be1b4f02b34f837804709469e28a3b364ddf4eacc7648e92f0",
+    "source_doc_hashes": {
+      "spec.md": "911cf57fb94200fcabbcef9641bf9513e6e9a78a02e2ef48b7969d7c2a83f662",
+      "plan.md": "1097ddfd5b50a9d5efab9ea7b530f3757eb5579d962fbc788dee21436ab1f41f",
+      "tasks.md": "09762731c8b7005ec69196d3018f4f07d53350318d02cb2cccab08195ef1ce00",
+      "implementation-summary.md": "91a2bc736b113a8b8f48b681462cbc4eb1e96b42bbbe8c17d07f9918bca36411"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

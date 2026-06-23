@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Downstream automation parses the review final line (`Review status: APPROVED|REQUESTED_CHANGES|COMMENTED`) by exact string match; a typo or stray bold silently breaks gating. Separately, the Iron Law is **already written three different ways** (`sk-code/SKILL.md:45` \"fresh verification evidence from the detected surface\" / `:137` \"surface-appropriate verification\" / `CLAUDE.md:11` \"stack-appropriate verification\"). Purpose: build a ponytail-style canary guard (locks load-bearing wording across files) and use it to fix + freeze both invariants.",
+    "causal_summary": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron Law wording, a minimal Iron Law invariant. Wired as a script + CI workflow (the proven comment-hygiene.yml pattern), not a vitest.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-15T09:09:33.155Z",
+    "last_save_at": "2026-06-23T03:49:48.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7cc26067927abf99afe90c6ebabfdc69866e5534c6fa8e73f44f68f42dcfdd82",
+    "source_doc_hashes": {
+      "spec.md": "825bead3e4198335a9fcb295276013f51fead225ef3a8558efc0b913516e4289",
+      "plan.md": "3a5048c58682e5a7e0d9936ec6f6a6c6ea4d1b9a952b186f1d7301f0d634e773",
+      "tasks.md": "5216be6332dbf440491092972e8ae41b5e74bbb3d50cb1ec7d7c5c7bfdf60b69",
+      "implementation-summary.md": "4fa4f21bd9235d9fafbf0a75ebcbc25474103567288cd4779fbce50dc4e442cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

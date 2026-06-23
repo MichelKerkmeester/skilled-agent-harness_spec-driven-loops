@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "No skill exists for AI assistants to delegate tasks to GitHub's Copilot CLI (`copilot`). The project has 3 CLI orchestration skills (cli-gemini, cli-codex, cli-claude-code) but no equivalent for Copilot CLI. This leaves Copilot's unique capabilities — multi-provider model selection (7+ models from Anthropic, OpenAI, Google), cloud delegation (`/delegate`), collaborative plan mode, autopilot execution, and repository memory — inaccessible to external orchestrators.",
+    "causal_summary": "No skill exists for AI assistants to delegate tasks to GitHub's Copilot CLI (`copilot`)",
     "created_at": "2026-04-12T09:02:50.204Z",
-    "last_save_at": "2026-06-05T12:47:32.551Z",
+    "last_save_at": "2026-06-23T03:49:48.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:03d5aacf9c80f4f3663f2cc4504294f8b20dfd1a356c69bcf62908980e07fd32",
+    "source_doc_hashes": {
+      "spec.md": "35be0d784c5451809c044a5a21eca570e678d0e43336c806218763442925f790",
+      "plan.md": "44795ab0ff2c5bbd76a2799637c0988d9caf2c41a38503d16124f8566c10cc86",
+      "tasks.md": "fa7ec7cf62e4b1c9ff67215a3dc928b43fc2386b9448a502d7af8ed8c7d85d25",
+      "checklist.md": "a431107bab806b69dbdf8a88460c51675051eb6e38578fa7fb3e344f21c11f21",
+      "implementation-summary.md": "dd2b42fe8542c67efd27dfe28b354f43e61a6ae2013b6f8f4833a0234eda8a16"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the sk-git skill does not currently guard against: gitignored leftover folders after `git mv`, a fresh worktree missing gitignored build deps (breaking the spec-kit toolchain), the memory DB being a single global instance (not per-worktree), accidental staging of unrelated in-flight WIP, and rename-heavy merge verification gaps.",
+    "causal_summary": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the sk-git skill does not currently guard against: gitignored leftover folders after `git mv`, a fresh worktree missing gitignored build deps (breaking the spec-kit toolchain), the memory DB being a single global instance (not per-worktree), accidental staging of unrelated in-flight WIP, and rename-heavy merge verification gaps",
     "created_at": "2026-05-26T17:36:41.943Z",
-    "last_save_at": "2026-06-07T09:00:45.951Z",
+    "last_save_at": "2026-06-23T03:49:51.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70fb67669ecf6629fdb11b6b206d08c84c323b481a77d7c3dc21b24534c32a69",
+    "source_doc_hashes": {
+      "spec.md": "00935363494c10d4aeb82c2d94923bb8eba226aabbf37a401378d6da358d9c10",
+      "plan.md": "f3bba16b0bb73bdb40958355d559a8ff5359b7678a1f8354d2f792b3558701a9",
+      "tasks.md": "5f80936ab838ea9756ad2bcd76e0cae12b93b06320ff7d47b281c511a2f5be20",
+      "checklist.md": "55aa59118af32e3b64275f16b715226322b7091f67c641ce6cd04381414f7de4",
+      "implementation-summary.md": "630092b1a2e4e5acecab11f807c87a01bf1e9b66cabdd7aa5ffe74e01077c556"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

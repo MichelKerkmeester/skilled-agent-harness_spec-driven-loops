@@ -1,14 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/011-mandatory-interface-design-coupling",
-  "description": "Feature Specification: Phase 11: mandatory-interface-design-coupling",
+  "description": "`mcp-open-design` already references `sk-design-interface`, but the coupling is conditional and best-effort: §4 ALWAYS #5 reads \"apply sk-design-inter",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "mandatory-interface-design-coupling"
+    "mcp-open-design",
+    "already",
+    "references",
+    "sk-design-interface",
+    "coupling",
+    "conditional",
+    "best-effort",
+    "always",
+    "reads",
+    "apply",
+    "sk-design-inter"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.051Z",
+  "lastUpdated": "2026-06-23T03:49:48.629Z",
   "specId": "011",
   "folderSlug": "mandatory-interface-design-coupling",
   "parentChain": [

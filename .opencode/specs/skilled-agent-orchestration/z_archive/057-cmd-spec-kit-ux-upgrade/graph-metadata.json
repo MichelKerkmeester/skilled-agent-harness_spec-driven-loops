@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify | v2.2\"",
+    "causal_summary": "Our internal `system-spec-kit` surface area has accumulated UX friction over 56 packets of evolution: mode/flag overlap (`:auto` vs `:confirm` vs `:with-phases` vs `:with-research`), 99 templates with core/level naming drift (e.g",
     "created_at": "2026-05-01T07:30:00Z",
-    "last_save_at": "2026-06-05T12:47:32.709Z",
+    "last_save_at": "2026-06-23T03:49:49.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:66d5b8f7a23cd5e3f92acc3a6b4a2faba7ecf807a78e4fe4cee47d2b72c5c8c3",
+    "source_doc_hashes": {
+      "spec.md": "1dc605898cd637a53ae4c07987b134a2ba545e7c5db88bcf4f2bbca1ad1a2c5c",
+      "plan.md": "3a6d5f87e24e7cd2c99798265b2f68925ba8a555e83c840541f004ed139c7ffb",
+      "tasks.md": "d8e72d10b42ce3e494f34777d20e1f70decd2149ff945edeb157db188d9bf19f",
+      "checklist.md": "4030cb90e5a37daea38c2da7823807f32b8464c082f50920f849af2ee6f17a8c",
+      "implementation-summary.md": "dd30b01b86a368a844fa5f6e8fba76c7a3daf80607182b2ab4346b067a869d92",
+      "research/research.md": "b7857e81b662ccd8fa44dcf208088ae30a3caa4ac3b6f95a0addf02491c35b5c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

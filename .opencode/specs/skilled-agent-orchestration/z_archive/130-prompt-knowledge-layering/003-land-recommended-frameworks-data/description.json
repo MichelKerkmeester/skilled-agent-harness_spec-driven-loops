@@ -1,14 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
-  "description": "Feature Specification: Phase 3: land-recommended-frameworks-data",
+  "description": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "land-recommended-frameworks-data"
+    "sk-prompt",
+    "assets",
+    "model-profiles",
+    "json",
+    "contained",
+    "per-model",
+    "framework",
+    "guidance"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.318Z",
+  "lastUpdated": "2026-06-23T03:49:51.588Z",
   "specId": "003",
   "folderSlug": "land-recommended-frameworks-data",
   "parentChain": [

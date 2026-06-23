@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Make both skills operate under explicit, testable packet contracts — canonical naming, lifecycle branches, reducer semantics, release-readiness states, and runtime parity — all backed by executable Vitest guards.",
+    "causal_summary": "`sk-deep-research` and `sk-deep-review` had sound packet-first loop architectures but implicit contracts: lineage and lifecycle branches were undocumented, reducer ownership was ambiguous, artifact naming drifted between research and review modes, and runtime mirrors across Codex/OpenCode/Claude/Gemini could diverge without detection",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-06-05T12:47:32.617Z",
+    "last_save_at": "2026-06-23T03:49:49.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,12 @@
       "research/research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:67b3aa9e9733a108a60cb7cbec2da8b66a5bf1fbe7222a1edd6e1a683bfbe769",
+    "source_doc_hashes": {
+      "spec.md": "627778c5f732d542cdd3b3341dc8930903f783e6cda55ad7265b84d83f2bcd18",
+      "research/research.md": "ea66bee22ba470066ee6dc351a6ec725b906c6f55d7f00dc334dbbf2fa5b92e6",
+      "resource-map.md": "b58857104d4fbef157486b74ce77b98d10e15fd8ff1f6fd99270d423ec9367db"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

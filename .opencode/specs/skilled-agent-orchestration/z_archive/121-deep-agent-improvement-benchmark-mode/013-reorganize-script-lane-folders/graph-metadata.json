@@ -34,9 +34,9 @@
       "plan",
       "tasks",
       "checklist",
-      "phase",
-      "moves",
-      "plus"
+      "skill",
+      "now",
+      "exposes"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase moves the 16 deep-agent-improvement scripts plus the scorer subtree into agent-improvement, model-benchmark, and shared lane subdirs, making the two-lane split visible on disk for the last flat surface. It is the highest-risk phase because two path traps lie in wait: loop-host spawns children across all three lanes (TST-1 must stay byte-identical) and dispatch-model resolves config by walking up from `__dirname` (a wrong depth fails silently).",
+    "causal_summary": "The skill now exposes two co-equal lanes (agent-improvement and model-benchmark) in prose, and phases 010-012 split references, assets, the agent note, the catalog, and the advisor by lane",
     "created_at": "2026-05-29T08:26:20Z",
-    "last_save_at": "2026-06-17T19:57:23.658Z",
+    "last_save_at": "2026-06-23T03:49:51.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c8ae0dd931ed7267c3e5153cfc8aadce30e8f5a6dfcf783657ec7c063c0cd7f0",
+    "source_doc_hashes": {
+      "spec.md": "e336629b312e734ee9f0ee7d1af842d8310c3b41da884b36a85a92bf07a8c5a0",
+      "plan.md": "3d6aebaf567546ef91b07460dd80381e1ec5c757c0fe058adcb55359c6646cde",
+      "tasks.md": "8355bb45a6145685d132def7981a7507dfd21041cc553527c7a690faf55a5543",
+      "checklist.md": "67c57e2c281c8402aff6031cc077c649dd486aa7f3a35f4d22c420fb0b25e58e",
+      "decision-record.md": "135cac683ad1961af43a7d5585103be62713a7d60b978252ee2643392f62d059",
+      "implementation-summary.md": "09ef6cf74f807e01b0ca737a82ea526abdd58ae15984401fe0f177240a7bd069"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Turn the reference implementation into a reusable, documented, tooled standard with four deliverables: (1) an `sk-doc` authoring section + templates; (2) a `/create:sk-skill-parent` scaffolder; (3) a read-only `/doctor:parent-skill` validator route; (4) a routing/discovery benchmark dogfooded through `deep-loop-workflows`'s own `skill-benchmark` mode. This phase adds no behavior to the advisor or the skill — it is documentation + tooling around the now-stable pattern.",
+    "causal_summary": "`deep-loop-workflows` is the framework's first parent-skill-with-nested-mode-packets, and Phases 1–2 proved the pattern and Phase 3 implemented its routing optimization",
     "created_at": "2026-06-15T11:05:31.179Z",
-    "last_save_at": "2026-06-16T14:27:20.587Z",
+    "last_save_at": "2026-06-23T03:49:48.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:67ad59eb3da9da07226ab6a33055bcc23fc9c9cd8a623d2151e8e35e1e76eb54",
+    "source_doc_hashes": {
+      "spec.md": "15104869d9a96073b6a3401f6325650f9e60e4c532e43e687690857b97f113e4",
+      "plan.md": "4368d8bb8c72c7d10c39261a73f9ab6641b3455a83043df80cf66459efc863a9",
+      "tasks.md": "2e0741d5f133545763ea726e4bbe3ac72029645949da4b101e79c2ace0e40ce0",
+      "checklist.md": "2fde4d0b94b680632d0ededce25b39fae8a2f40d2ac8eaa3514228151347a26b",
+      "implementation-summary.md": "0718d89cc1e8deed74f26dc93e521aee5565e2136eec6dd9bd4f59f270582043"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

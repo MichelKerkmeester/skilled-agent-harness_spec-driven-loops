@@ -1,13 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/003-ui-ux-pro-max-merge",
-  "description": "Feature Specification: ui-ux-pro-max-merge",
+  "description": "`sk-design-interface` is strong on design philosophy but ships no data: it compresses all of accessibility, UX, color, and typography practice into a",
   "keywords": [
-    "feature",
-    "specification",
-    "ui-ux-pro-max-merge"
+    "sk-design-interface",
+    "strong",
+    "design",
+    "philosophy",
+    "ships",
+    "data",
+    "compresses",
+    "accessibility",
+    "color",
+    "typography",
+    "practice"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.870Z",
+  "lastUpdated": "2026-06-23T03:49:48.402Z",
   "specId": "003",
   "folderSlug": "ui-ux-pro-max-merge",
   "parentChain": [

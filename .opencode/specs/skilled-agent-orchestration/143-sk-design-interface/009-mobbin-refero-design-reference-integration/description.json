@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/009-mobbin-refero-design-reference-integration",
-  "description": "Feature Specification: Mobbin and Refero design-reference integration",
+  "description": "sk-design-interface resists templated defaults, but its only concrete window onto a \"default\" was a design system read via `mcp-open-design` or its bu",
   "keywords": [
-    "feature",
-    "specification",
-    "mobbin",
-    "refero",
-    "design-reference",
-    "integration"
+    "sk-design-interface",
+    "resists",
+    "templated",
+    "defaults",
+    "only",
+    "concrete",
+    "window",
+    "onto",
+    "default",
+    "design",
+    "system",
+    "read",
+    "via",
+    "mcp-open-design"
   ],
-  "lastUpdated": "2026-06-15T18:16:13.722Z",
+  "lastUpdated": "2026-06-23T03:49:48.440Z",
   "specId": "009",
   "folderSlug": "mobbin-refero-design-reference-integration",
   "parentChain": [

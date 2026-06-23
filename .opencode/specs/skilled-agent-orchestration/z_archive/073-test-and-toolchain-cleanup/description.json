@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/073-test-and-toolchain-cleanup",
-  "description": "Feature Specification: 073 Test + Toolchain Cleanup",
+  "description": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues",
   "keywords": [
-    "feature",
-    "specification",
-    "073",
-    "test",
+    "packets",
+    "071",
+    "072",
+    "inline",
+    "telemetry-schema",
+    "fix",
+    "surfaced",
+    "bounded",
     "toolchain",
-    "cleanup"
+    "issues"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.789Z",
+  "lastUpdated": "2026-06-23T03:49:49.807Z",
   "specId": "073",
   "folderSlug": "test-and-toolchain-cleanup",
   "parentChain": [

@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`. The manual testing playbook was not updated to match: the entire shipped surface is exercised by zero operator-driven scenarios; the only mention of `council_graph_*` in the playbook tree is one textual line in DAC-011. The DAC-011 scenario file is also still named `001-graph-support-explicitly-out-of-scope.md` even though its content was rewritten in-place to \"Graph support stays derived and scoped\".",
+    "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-06-15T09:09:33.578Z",
+    "last_save_at": "2026-06-23T03:49:50.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1794e13c4326bb7ddc11b85db3daac7211fd53aa38d286d3f97c43c3e13472fc",
+    "source_doc_hashes": {
+      "spec.md": "92bd9a8cf84e930be77903de05640da87583a1b713bbeec5f9f57aca9db52372",
+      "plan.md": "d4f6b30b5e6f02ac6138c2e934794032511b2e407a0c66289fb051de78504edf",
+      "tasks.md": "6374a3a9a44ea074b2677a1f14cb6addd070548fbf2f14a2fc6b09ab142d8b23",
+      "implementation-summary.md": "0ef070dc009dab925defa09caba22e7b48a3f8974d03eca3bdc8afa942290ea1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

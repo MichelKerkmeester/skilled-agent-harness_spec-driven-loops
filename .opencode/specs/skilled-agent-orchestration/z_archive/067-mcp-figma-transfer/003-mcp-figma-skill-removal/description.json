@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/003-mcp-figma-skill-removal",
-  "description": "Feature Specification: Phase 3 — Remove mcp-figma skill from Code_Environment/Public",
+  "description": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AISystems/Ba",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "remove",
     "mcp-figma",
+    "developer",
     "skill",
-    "public"
+    "codeenvironment",
+    "public",
+    "opencode",
+    "skills",
+    "superseded",
+    "new",
+    "figma",
+    "mcp",
+    "agent",
+    "aisystems"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.622Z",
+  "lastUpdated": "2026-06-23T03:49:49.613Z",
   "specId": "003",
   "folderSlug": "mcp-figma-skill-removal",
   "parentChain": [

@@ -1,19 +1,18 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/004-validator-semantic-checks",
-  "description": "Feature Specification: Validator semantic checks (make the checker see prose)",
+  "description": "`validate.ts` runs 6 mechanical checks; none reads a prose sentence",
   "keywords": [
-    "feature",
-    "specification",
-    "validator",
-    "semantic",
+    "validate",
+    "runs",
+    "mechanical",
     "checks",
-    "make",
-    "checker",
-    "see",
-    "prose"
+    "none",
+    "reads",
+    "prose",
+    "sentence"
   ],
-  "lastUpdated": "2026-06-22T06:59:47.100Z",
+  "lastUpdated": "2026-06-23T03:49:48.844Z",
   "specId": "004",
   "folderSlug": "validator-semantic-checks",
   "parentChain": [

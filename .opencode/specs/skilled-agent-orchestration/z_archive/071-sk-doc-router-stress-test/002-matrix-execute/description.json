@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test/002-matrix-execute",
-  "description": "Feature Specification: Phase 2: matrix-execute",
+  "description": "sk-doc has 11 router intents but no comparative data on how cli-codex/cli-copilot/cli-opencode interpret the router across realistic input scenarios",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "matrix-execute"
+    "sk-doc",
+    "router",
+    "intents",
+    "comparative",
+    "data",
+    "cli-codex",
+    "cli-copilot",
+    "cli-opencode",
+    "interpret",
+    "across",
+    "realistic",
+    "input",
+    "scenarios"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.741Z",
+  "lastUpdated": "2026-06-23T03:49:49.767Z",
   "specId": "002",
   "folderSlug": "matrix-execute",
   "parentChain": [

@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/create` command currently enforces emoji usage in documentation titles and sections through validation logic. This policy has been deprecated. This spec documents the removal of all emoji enforcement logic from the command infrastructure while preserving the command's core functionality.",
+    "causal_summary": "The `/create` command currently enforces emoji usage in documentation through validation logic and templates",
     "created_at": "2026-04-12T09:02:50.211Z",
-    "last_save_at": "2026-06-05T12:47:32.558Z",
+    "last_save_at": "2026-06-23T03:49:48.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4eb677be2add404cd8fd0b358d2aa7c3ea3d76058148e535f1b1c763135851e3",
+    "source_doc_hashes": {
+      "spec.md": "fbb6be94e6e57eb8ab5f5fa158fa02b55958d0cd33c7ff758943d254008534e5",
+      "plan.md": "caaf90018036999bad0d14d0d80bd952af9d81fa3811d86943c4b0a5235e01a7",
+      "tasks.md": "2e36dabeee46796f0edea6bcdda6358790963554257aa722b0b79bc1c39b7bab",
+      "checklist.md": "cef2a120e100c4282b913a408e067fdac35b54e73e89e32317afe624d55f8c19",
+      "decision-record.md": "9c8080fd6d8e55cd6a2eb7bd1c848a0b55a1b7df9b82525c46b83f9b3674bbc0",
+      "implementation-summary.md": "88238305694ff7842c348b5dca901a2ee9d4891da925d4b418291cf168a60d91"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

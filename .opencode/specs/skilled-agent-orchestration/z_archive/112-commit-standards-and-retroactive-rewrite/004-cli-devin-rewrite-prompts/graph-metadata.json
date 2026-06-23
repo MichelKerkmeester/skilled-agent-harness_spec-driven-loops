@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the 112 packet. It authors the deep-skill-style scaffolding that Phase 005 will run. Modeled directly on:",
+    "causal_summary": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-06-22T18:55:00.235Z",
+    "last_save_at": "2026-06-23T03:49:50.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ac9fcee6228ba0c26424987fac8f6bc057ee2cbcf8acd660f9a71b02632beb37",
+    "source_doc_hashes": {
+      "spec.md": "4e0a5010310ccb682a4be72f6cbbef7753b498e5be6346b644a8055927c363ab",
+      "plan.md": "65d2128a054852a8791336a12edf32355907709abeecfd26bf69ae499d3cd1ed",
+      "tasks.md": "56bb25e92ee49fd3e371b0a9b32e3210ca0a115f8061169703f57efe7e70cca7",
+      "implementation-summary.md": "00a7022abd716e7253e94bed3b5844812c98bcbe7cd55fea20ab4c1558e33b50"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

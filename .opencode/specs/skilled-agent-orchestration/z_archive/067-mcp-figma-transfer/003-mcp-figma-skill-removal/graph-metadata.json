@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Template compliance scaffold for 003-mcp-figma-skill-removal/spec.md; original authored content is retained below.",
+    "causal_summary": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AISystems/Barter (Phase 1) and AISystems/Public (Phase 2)",
     "created_at": "2026-05-05T07:49:59Z",
-    "last_save_at": "2026-06-22T18:54:59.619Z",
+    "last_save_at": "2026-06-23T03:49:49.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bca64f7f9ce05d155a57916718b9cafd0516a84c56506b6bb85f3eba591c450d",
+    "source_doc_hashes": {
+      "spec.md": "16dac7a66ede3868a2af20410a15adcb0d8613e7ff381237927d32daa612a667",
+      "plan.md": "0b5c99520c6d6a95a30d95676672426764f23cea545336fdedaf91c235261f2d",
+      "tasks.md": "c4832c704afbd024f9e81baf27a4a218b8b61740f577960fd8b07be10d16e2ff",
+      "checklist.md": "5d45edce9025d7e6a68fa86b59107a9b57810bae78cac1e4021d128cd993961f",
+      "decision-record.md": "44c3dbc3ea0ab863059c7dcc4ffc3f4de9cf5ac45ac48ec7bd2184cd84a69640",
+      "implementation-summary.md": "6866e81d39ece70ae0e2a3b8e1ca6ff326a8957dd7009ffc6cee89ef29b8115c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

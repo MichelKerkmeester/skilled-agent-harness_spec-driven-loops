@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The four CLI orchestration skills currently build dispatch prompts ad hoc from their local prompt-template assets. That keeps dispatches lightweight, but it leaves framework choice, prompt-quality checks, and escalation behavior implicit. This packet adds a two-tier prompt-quality layer: a tiny guard-safe mirror card that every CLI skill can load by default, and a fresh-context `@improve-prompt` agent that handles only the hard cases.",
+    "causal_summary": "The CLI orchestrator skills currently rely on static prompt templates without a lightweight framework-selection or quality-check layer",
     "created_at": "2026-04-12T09:02:50.198Z",
-    "last_save_at": "2026-06-22T18:54:59.421Z",
+    "last_save_at": "2026-06-23T03:49:49.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:98b2a8404d8f60a1a2c9dc74596cef24e9d66b7c40ffd158312a8ec1db7159bc",
+    "source_doc_hashes": {
+      "spec.md": "194cb5b15857e77cfb12d290ab8cd69af66a1215d403de56cd9f4ca683ac5cd6",
+      "plan.md": "400ab3b9ee7ae5ac5a06b14f2adf25c50ea01fd2b25c1e4d63a98f78d2a173f6",
+      "tasks.md": "642e3d7457561116c3a3f381005738fbcb2867af1e45ab0cb5c1bf7954128820",
+      "checklist.md": "3c7bf3aca276d7b76271a981892e64e6c74dae61791464ae22a009265bcc8c56",
+      "decision-record.md": "1786e0574b3f3cfbeaf6e860e9ba4206a0867bbab10c92d9d68a007ea1226f21",
+      "implementation-summary.md": "b31f87114610b25d5a39d3bcc6fc86865a1b7e90038bb9058e62c0d59a2837ff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

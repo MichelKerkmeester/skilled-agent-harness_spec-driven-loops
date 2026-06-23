@@ -23,11 +23,11 @@
       "non-interactive",
       "bypass",
       "f-stage-e-001",
-      "concrete",
-      "incident",
-      "2026-05-11",
-      "102",
-      "004"
+      "deep",
+      "start-review-loop",
+      "advertises",
+      "itself",
+      "autonomous"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.",
+    "causal_summary": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
     "created_at": "2026-05-11T09:32:52Z",
-    "last_save_at": "2026-06-15T09:09:33.593Z",
+    "last_save_at": "2026-06-23T03:49:50.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d8338550ec4392dd657ab9945ca63e15e159b3d652dbed4f9ab1700544ea38eb",
+    "source_doc_hashes": {
+      "spec.md": "9ff9d1d3ebaa2b068f3834f2a4e22393c32c96c08c6fe7c59bd7957d2711f72a",
+      "plan.md": "0463d1d2b4eacd341166dc45690f0fc83e82a900fa3175cd9d4bf060314c3d2c",
+      "tasks.md": "460dee10545e69da00dc5a532b8a5a9ed624a08bf250e95ee5513e8ca56dd0f3",
+      "checklist.md": "4baba505f5f66b282e0e09726e6e609996b27f35c516a63b551be84a39a0690f",
+      "implementation-summary.md": "c53dd835f2f1d591ccfb4cc24479be4762a99e1e43c375a791c17487193fe89b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

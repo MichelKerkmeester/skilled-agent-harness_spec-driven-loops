@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `sk-design-interface` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, products, ui-reasoning, ux-guidelines, and the rest), the `design_search` scripts that queried them, and the MIT license notices that came with them. That vendored data carried license obligations and encoded the templated AI-default patterns the skill exists to resist. With phase 002 shipping `mcp-open-design`, the skill could instead read live design systems from the user's own installed Open Design app, making the vendored inventory both a liability and redundant.",
+    "causal_summary": "The `sk-design-interface` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, products, ui-reasoning, ux-guidelines, and the rest), the `designsearch` scripts that queried them, and the MIT license notices that came with them",
     "created_at": "2026-06-14T16:30:00Z",
-    "last_save_at": "2026-06-16T14:27:20.546Z",
+    "last_save_at": "2026-06-23T03:49:48.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fa58a9a25699fb46ca0e00aa95799e5b22f0b13d9da117971d3959dff6bcf3b8",
+    "source_doc_hashes": {
+      "spec.md": "faf3873ebbec9471d62512a3bb258c9b02bae8ca9ee68f13f0f000f67c6a12e0",
+      "plan.md": "92c3ad05fcdfd6e47f4036e46ddc3e51ce135b02deea07b336e2fd0d352cb4d8",
+      "tasks.md": "6dd9dff0463846509fed02f7ea770c0eac18c25a2948e43042c97d80515f8243",
+      "checklist.md": "7eb5ce2ff3b1d6ef223ff9666c467368b3da4ca3a8db2177c0382ae1e543ad3a",
+      "implementation-summary.md": "316235c6d715af2fc7d489769e08e130ecd46660bc83d0aa32b8b0a1f8e2ed50"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

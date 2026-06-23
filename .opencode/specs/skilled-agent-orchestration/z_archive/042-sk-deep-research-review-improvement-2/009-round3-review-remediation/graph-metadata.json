@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A 20-iteration Copilot GPT-5.4 deep review (iterations 31-50, session `rvw-2026-04-12T16-00-00Z`) found 54 unique findings (0 P0, 37 P1, 17 P2) across the 042 bundle after two prior fix rounds. The final iteration rendered a FAIL verdict due to 5 unresolved P1 maintainability issues and broader traceability drift.",
+    "causal_summary": "Remediate 54 findings (37 P1, 17 P2) from the 20-iteration Copilot GPT-5.4 Round 3 deep review covering workflow logic, security hardening, traceability alignment, and maintainability cleanup.",
     "created_at": "2026-04-13T04:55:07.915Z",
-    "last_save_at": "2026-05-30T10:12:01.251Z",
+    "last_save_at": "2026-06-23T03:49:49.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:69caf6eea0f8692b37a4a2da32663295ef64dac8d8708fe85dc1d261b1b24458",
+    "source_doc_hashes": {
+      "spec.md": "b854cab9381ced1ed8b498c57c28eef5477e239936795abf859e1435f6c6503d",
+      "plan.md": "9fc579717d569d9a4bf1d06275245fc6cd40c915e94d1408cc4fc9fbc4965e52",
+      "tasks.md": "4f99e9a165f6da680b650664c38c6d2446dce41c03310b6203872410f8911065",
+      "checklist.md": "157f77edb772b5abc8847e2a81a25f2d1716ac5089231e2b02b33449c6a488e7",
+      "implementation-summary.md": "ae4ada0693542e5be153e925e99c7d9b0176e351a286437454b05f53d10c35dc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

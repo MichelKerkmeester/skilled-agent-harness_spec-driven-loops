@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 realistic scenarios across 6 categories, with RCAF-pattern operator prompts mirroring how humans actually invoke code review with an AI assistant - executable both natively (Claude Code / OpenCode) and via external CLIs (cli-codex, cli-opencode, cli-gemini, cli-copilot).",
+    "causal_summary": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-06-06T09:52:35.278Z",
+    "last_save_at": "2026-06-23T03:49:50.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bfbaf7c529b67eea779d24dc17b7bbe4da0a528ea569f4c66c3d14145750bb67",
+    "source_doc_hashes": {
+      "spec.md": "d8cff736826f58018fe9d1dd03e7a3feec2f9e86fb9a4f98aeaf71b4819fcefc",
+      "plan.md": "1f489159047ec7e4ae79effeaf88f8c22f5c9f9162c25370173c95d4f9a3f30a",
+      "tasks.md": "bb3c8e6c190d7d4e73c09175b221e041f82d171460b135251d29ecd8348ce062",
+      "checklist.md": "0f2853c6936d3fb2de1000dcc4d734972403946bb81a0ad709d5ef0dd751a178",
+      "implementation-summary.md": "2c2737b9631ce0114bed505513b60693e8946bbee1e3e872bbe87514f482cd55"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

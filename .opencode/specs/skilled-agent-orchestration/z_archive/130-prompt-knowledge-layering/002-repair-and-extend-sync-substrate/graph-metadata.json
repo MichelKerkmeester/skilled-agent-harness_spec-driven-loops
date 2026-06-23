@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "causal_summary": "The existing `check-prompt-quality-card-sync.sh` script compared file hashes across only 3 mirrors, missing two cli- cards (`cli-devin`, `cli-opencode`) entirely",
     "created_at": "2026-06-05T12:47:32.507Z",
-    "last_save_at": "2026-06-17T19:57:23.741Z",
+    "last_save_at": "2026-06-23T03:49:51.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d96d4618e4530f76b22e4f4d4410e2ec1e9dc9ef8e6ab68ba6e5297481e7e207",
+    "source_doc_hashes": {
+      "spec.md": "e321780084f8f59bb7e4083525103ceea9a54eaec021ddbd5517ce83d439f336",
+      "plan.md": "49ebae02dc9ae5ee9afcf125c42f19998e93c159a60ec6ebcffe241418f73ec2",
+      "tasks.md": "5a52e7a24e1cd1804614f684575e1bcb4fc920d81bb567a5397efc14db263c79",
+      "implementation-summary.md": "3864b4042a9b38623ff613384aebf0eed96afb6ca2b6785b427af40fc20adacc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

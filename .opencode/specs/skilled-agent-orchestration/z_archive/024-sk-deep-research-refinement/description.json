@@ -1,15 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/024-sk-deep-research-refinement",
-  "description": "Feature Specification: sk-deep-research Refinement via Self-Research",
+  "description": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritizati",
   "keywords": [
-    "feature",
-    "specification",
     "sk-deep-research",
-    "refinement",
-    "via",
-    "self-research"
+    "system",
+    "functional",
+    "documented",
+    "improvement",
+    "proposals",
+    "spec",
+    "023",
+    "need",
+    "rigorous",
+    "validation",
+    "prioritizati"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.175Z",
+  "lastUpdated": "2026-06-23T03:49:49.020Z",
   "specId": "024",
   "folderSlug": "sk-deep-research-refinement",
   "parentChain": [

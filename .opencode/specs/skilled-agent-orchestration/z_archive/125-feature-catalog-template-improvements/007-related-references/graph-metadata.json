@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "snippet",
-      "files",
-      "lacking",
+      "script-driven",
+      "add",
       "related",
       "references",
-      "across",
-      "three",
-      "skills",
+      "prev",
+      "next",
+      "links",
+      "source",
+      "metadata",
       "315",
-      "phase",
-      "007",
-      "script-driven"
+      "snippets",
+      "currently"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -95,15 +95,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "All snippet files lacking `Related references:` across all three skills (~315 files).",
+    "causal_summary": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed.",
     "created_at": "2026-06-18T12:37:48.697Z",
-    "last_save_at": "2026-06-18T12:37:48.697Z",
+    "last_save_at": "2026-06-23T03:49:51.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:15f8ae9577a86586ad9b72b3ea4fccb56e0efba7b4ba9ae0edf5176e37175763",
+    "source_doc_hashes": {
+      "spec.md": "a3196c2a8d9eb753d829ced367c40767624894c19d4af495b5008d9afe2b2b19",
+      "plan.md": "6fd72bc8bd9547fd9b36b6abd9d3f6bc0fc777a2d48a762faeed82a6aec389de"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

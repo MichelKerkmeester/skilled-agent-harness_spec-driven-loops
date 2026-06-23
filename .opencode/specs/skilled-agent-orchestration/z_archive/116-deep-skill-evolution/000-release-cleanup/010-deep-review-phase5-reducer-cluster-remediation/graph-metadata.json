@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet). The `007` parent reopens that decision per operator directive. Each of the 9 deferred reducer gaps was re-verified against the current `scripts/reduce-state.cjs` (1657 LOC):",
+    "causal_summary": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet)",
     "created_at": "2026-05-23T19:05:00.000Z",
-    "last_save_at": "2026-06-15T09:09:33.705Z",
+    "last_save_at": "2026-06-23T03:49:50.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:47cc0fde0b35765e2964edc66b3a2066acf8e453dff12a41c651a10fd91f14dd",
+    "source_doc_hashes": {
+      "spec.md": "7e4dc2753968ee12854cde202613a410a746b9c12b594cd038ac80f361991b23",
+      "plan.md": "d4bb620e49064674a92b3af9fe0adf2bb18938250166409774b9422b84036749",
+      "tasks.md": "0e50875a58f878135f09ffc71f1c28764b1526d36f9ebbc3fff0159f7abcf4d6",
+      "checklist.md": "24fbcdfdb98d36360379537d8571af8b82080b0549579a7bf0ce55a73f175aaf",
+      "decision-record.md": "2a84a5aa6ab810eb9b0bc988d1783b9edc6a2701d6ffe8f91252c221f46cbdf5",
+      "implementation-summary.md": "f0102a0a59220ebe2a0e3cf0d386904aad0f760d4c34008ca8dba1ea93079229"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

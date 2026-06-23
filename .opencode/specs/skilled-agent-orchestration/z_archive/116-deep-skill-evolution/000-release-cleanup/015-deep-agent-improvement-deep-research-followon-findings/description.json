@@ -1,16 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/015-deep-agent-improvement-deep-research-followon-findings",
-  "description": "Feature Specification: resolve 005 deep-research follow-on findings",
+  "description": "Closes the remaining follow-ons from the 005-deep-agent-improvement deep-research loop: correct the SKILL.md trajectory description (a 005 reword was",
   "keywords": [
-    "feature",
-    "specification",
-    "resolve",
-    "005",
+    "closes",
+    "remaining",
+    "follow-ons",
+    "005-deep-agent-improvement",
     "deep-research",
-    "follow-on",
-    "findings"
+    "loop",
+    "correct",
+    "skill",
+    "trajectory",
+    "description",
+    "005",
+    "reword"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.453Z",
+  "lastUpdated": "2026-06-23T03:49:50.694Z",
   "specId": "015",
   "folderSlug": "deep-agent-improvement-deep-research-followon-findings",
   "parentChain": [

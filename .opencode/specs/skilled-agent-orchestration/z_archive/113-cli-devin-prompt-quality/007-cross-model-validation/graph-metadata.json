@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 113/007 plans a 70-dispatch cross-model confirmation run for the 113/003 eval-loop findings that were not propagated in packet 113/006. It reuses the existing SWE 1.6 fixtures, prompt variants, scoring pipeline, and extraction logic while routing both target models through cli-opencode.",
+    "causal_summary": "The 113/003 eval-loop produced bundle-gate-aversion and framework-dominates-anti-hallucination signals on SWE 1.6",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-06-07T09:00:45.760Z",
+    "last_save_at": "2026-06-23T03:49:50.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:44ec5f343fccd05524af77ff0fe1ab408135b11fd875597d734a1f5478bcebba",
+    "source_doc_hashes": {
+      "spec.md": "b935aea0bdd4e9608f36f3169aed5bf7c1bb95af1db8beb9b041bd24e121bbd5",
+      "plan.md": "44cd01bf429c341aa2d767c723d029104f210689b8572abe07f050ed92537279",
+      "tasks.md": "ad82b333911fbc7783932347577f688028cf71aa0d71a567847407edbc1578b0",
+      "checklist.md": "44971abb9edc71bf3497eaa3e698c414459870d98447a2e134866bb63b08e867",
+      "decision-record.md": "d8ab83b8d8b259f083f01f5b2bc0c8ea1d7e615258c16b10f12c09b21af4916f",
+      "implementation-summary.md": "228b7fe38f8504411f1f30468018944dd2b3c9ed7423b376fbd53e252acc4b49"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

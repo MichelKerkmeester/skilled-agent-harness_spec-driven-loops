@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`. The parent packet estimates hundreds of active references across skill folders, runtime mirrors, MCP server code, scripts, fixtures, specs, root docs, and config files, so the downstream phases need a measured inventory rather than an estimate.",
+    "causal_summary": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
     "created_at": "2026-05-05T18:30:00Z",
-    "last_save_at": "2026-05-30T10:12:01.377Z",
+    "last_save_at": "2026-06-23T03:49:49.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:10:00Z",
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e23950f643c7e37137790265bf51ff681d33fe649db1e5f0c5931abdc427babe",
+    "source_doc_hashes": {
+      "spec.md": "6ada95dcc5d6fae845cf0476c6893a20f53505164328f6a3f2ca5cdf7017b4b0",
+      "plan.md": "046fddbb5f4cb2c564d9e0048150d8355e21933b81a8d2ea14795796d3ac0559",
+      "tasks.md": "1f2bf0168067b82b1e57b2669c7e1786ca9411b13d2ebaf86bb6c01567660481",
+      "checklist.md": "afa9540abb54de4b5b31182479b836f1da07fac2732a21f77812c87040cfc751",
+      "implementation-summary.md": "2d0623b985b23d63b518f188665bcbeb0757180c1c8fa70d0fd3872a91c8d9d0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

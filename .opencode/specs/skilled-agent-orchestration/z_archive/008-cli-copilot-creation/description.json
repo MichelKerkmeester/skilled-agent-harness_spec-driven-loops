@@ -1,13 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/008-cli-copilot-creation",
-  "description": "Feature Specification: cli-copilot Skill",
+  "description": "No skill exists for AI assistants to delegate tasks to GitHub's Copilot CLI (`copilot`)",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-copilot",
-    "skill"
+    "skill",
+    "exists",
+    "assistants",
+    "delegate",
+    "tasks",
+    "github",
+    "copilot",
+    "cli"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.218Z",
+  "lastUpdated": "2026-06-23T03:49:48.919Z",
   "specId": "008",
   "folderSlug": "cli-copilot-creation",
   "parentChain": [

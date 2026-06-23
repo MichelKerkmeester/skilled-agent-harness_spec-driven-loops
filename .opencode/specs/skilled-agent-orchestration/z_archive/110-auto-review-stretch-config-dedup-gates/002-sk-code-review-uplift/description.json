@@ -1,18 +1,14 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift",
-  "description": "Feature Specification: M-1 PR dedup + M-2 min-evidence gate for sk-code-review",
+  "description": "Two waste vectors in sk-code-review:",
   "keywords": [
-    "feature",
-    "specification",
-    "m-1",
-    "dedup",
-    "m-2",
-    "min-evidence",
-    "gate",
+    "two",
+    "waste",
+    "vectors",
     "sk-code-review"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.189Z",
+  "lastUpdated": "2026-06-23T03:49:50.380Z",
   "specId": "002",
   "folderSlug": "sk-code-review-uplift",
   "parentChain": [

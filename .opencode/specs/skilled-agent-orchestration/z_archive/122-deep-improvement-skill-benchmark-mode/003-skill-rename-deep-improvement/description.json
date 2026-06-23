@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
-  "description": "Phase 003 — Rename deep-agent-improvement → deep-improvement",
+  "description": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions",
   "keywords": [
-    "phase",
-    "003",
     "rename",
     "deep-agent-improvement",
-    "deep-improvement"
+    "skill",
+    "deep-improvement",
+    "across",
+    "dir",
+    "commands",
+    "agent",
+    "runtime",
+    "mirrors",
+    "advisor",
+    "graph",
+    "descriptions"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.054Z",
+  "lastUpdated": "2026-06-23T03:49:51.308Z",
   "specId": "003",
   "folderSlug": "skill-rename-deep-improvement",
   "parentChain": [

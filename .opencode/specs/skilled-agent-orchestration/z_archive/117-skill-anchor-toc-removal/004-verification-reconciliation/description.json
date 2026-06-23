@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal/004-verification-reconciliation",
-  "description": "Feature Specification: Verification & Reconciliation",
+  "description": "A large mechanical change set (≈860 files) needs proof that it removed only TOC/anchor scaffolding,",
   "keywords": [
-    "feature",
-    "specification",
-    "verification",
-    "reconciliation"
+    "large",
+    "mechanical",
+    "change",
+    "set",
+    "860",
+    "files",
+    "needs",
+    "proof",
+    "removed",
+    "only",
+    "toc",
+    "anchor",
+    "scaffolding"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.871Z",
+  "lastUpdated": "2026-06-23T03:49:51.114Z",
   "specId": "004",
   "folderSlug": "verification-reconciliation",
   "parentChain": [

@@ -1,18 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
-  "description": "Feature Specification: Post-Remediation Dual-Pass Deep Review (skill:deep-improvement)",
+  "description": "The v1.11.1.0 remediation made substantial changes to the grader (dimension-awareness, `--append-system-prompt`), the live executor (truncation cap, b",
   "keywords": [
-    "feature",
-    "specification",
-    "post-remediation",
-    "dual-pass",
-    "deep",
-    "review",
-    "skill",
-    "deep-improvement"
+    "remediation",
+    "made",
+    "substantial",
+    "changes",
+    "grader",
+    "dimension-awareness",
+    "append-system-prompt",
+    "live",
+    "executor",
+    "truncation",
+    "cap"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.117Z",
+  "lastUpdated": "2026-06-23T03:49:51.366Z",
   "specId": "015",
   "folderSlug": "post-remediation-deep-review",
   "parentChain": [

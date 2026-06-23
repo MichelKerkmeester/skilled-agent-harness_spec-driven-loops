@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset",
-  "description": "Feature Specification: sk-doc skill README asset",
+  "description": "sk-doc has README templates and skill creation guidance, but lacks a dedicated skill README asset for skill packages",
   "keywords": [
-    "feature",
-    "specification",
     "sk-doc",
-    "skill",
     "readme",
-    "asset"
+    "templates",
+    "skill",
+    "creation",
+    "guidance",
+    "lacks",
+    "dedicated",
+    "asset",
+    "packages"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.079Z",
+  "lastUpdated": "2026-06-23T03:49:50.266Z",
   "specId": "002",
   "folderSlug": "sk-doc-skill-readme-asset",
   "parentChain": [

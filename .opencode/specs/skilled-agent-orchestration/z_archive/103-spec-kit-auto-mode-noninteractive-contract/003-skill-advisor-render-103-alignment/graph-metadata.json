@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 103/003 absorbs the render-layer wording change formerly proposed in `../../../system-spec-kit/027-xce-research-based-refinement/005-skill-advisor-first-action-mandate/`. The pt-04 audit found that 027/005 overlaps the 103 noninteractive contract and should not create a second vocabulary for \"MUST invoke FIRST\" behavior. This packet moves the small renderer change under 103, where `:auto` routing language is now the single source of truth.",
+    "causal_summary": "The skill advisor renderer still emits soft wording around the top recommendation: `render.ts:155-157` says to use a label rather than requiring the first action",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.117Z",
+    "last_save_at": "2026-06-23T03:49:50.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ef428d54395496686542714f1efd4d58e2adfb80b7ace3933333757bad332a7c",
+    "source_doc_hashes": {
+      "spec.md": "de72507455cde3a59c79ec3f417d1e7454d70257a0742c399dbdbebdd92faf39",
+      "plan.md": "20fc70955f971d119365afa8717d13d190c3e6a12515eff5275f3a82f25cfa54",
+      "tasks.md": "e9f3f222fe54ea3f14583b180011f57280acf84f20d8fd79d0a2494b9145734a",
+      "checklist.md": "70eea90a91f2742fd2dbc9cb2bd9d26c32fca5d297d20bf8fcdb6680e499a9c8",
+      "implementation-summary.md": "69776d8a097aef0844793296babec67b802cf88f9d2fc79f078cfcd5eb0e1d56"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

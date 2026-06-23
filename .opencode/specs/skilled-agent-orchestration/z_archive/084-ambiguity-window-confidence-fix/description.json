@@ -1,15 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/084-ambiguity-window-confidence-fix",
-  "description": "Feature Specification: Ambiguity Window Confidence Fix",
+  "description": "SAD-002 (manual playbook) verified the ambiguity contract but exposed a calibration gap: the scorer flagged the cross-domain prompt \"Review the OpenCo",
   "keywords": [
-    "feature",
-    "specification",
+    "sad-002",
+    "manual",
+    "playbook",
+    "verified",
     "ambiguity",
-    "window",
-    "confidence",
-    "fix"
+    "contract",
+    "exposed",
+    "calibration",
+    "gap",
+    "scorer",
+    "flagged",
+    "cross-domain",
+    "prompt",
+    "review",
+    "openco"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.878Z",
+  "lastUpdated": "2026-06-23T03:49:49.938Z",
   "specId": "084",
   "folderSlug": "ambiguity-window-confidence-fix",
   "parentChain": [

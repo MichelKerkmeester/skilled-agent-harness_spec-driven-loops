@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "causal_summary": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
     "created_at": "2026-06-05T12:47:32.509Z",
-    "last_save_at": "2026-06-17T19:57:23.743Z",
+    "last_save_at": "2026-06-23T03:49:51.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:223a96f6e37b9b4fb09afb6c9ba953ba3f5854fd323260c0dfed90713612e922",
+    "source_doc_hashes": {
+      "spec.md": "5e27824ff5fbc1e85380e23a095b1b745d6e0258e05f11336db8cb9baf85ddef",
+      "plan.md": "e9be4fae3530be1b5d0de541b5070c1acf038eac6e7b6a0f129db74aaec2b55e",
+      "tasks.md": "a33fd70d4edacff75383c14b81a3a2d5138b9fb138aab4b89f91ad291d8f41a3",
+      "implementation-summary.md": "4ba50725dd32fc7b5a87ca862475f8a26bb2bf73bc787552ae423b7189c7abe1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

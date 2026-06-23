@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
+    "causal_summary": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style narration that reduces signal quality for AI-assisted parsing",
     "created_at": "2026-04-12T09:02:50.219Z",
-    "last_save_at": "2026-06-15T09:09:33.237Z",
+    "last_save_at": "2026-06-23T03:49:48.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:d1eec0347039bd2d93867d8e70bff9df59f80a8815cd9b3088c72b4f892d6c50",
+    "source_doc_hashes": {
+      "spec.md": "d0768e2cf688d970b1d6ffb063bfb657e91f5d56790de3279a4ffbf8426a0f78",
+      "plan.md": "50a66da81c12c919e0ae598c4222e9d6a99bd7fcf8b4922189de61cc1978a843",
+      "tasks.md": "4d9c3c2bb339871e5f653c780a3f2b70232a1f734c01ff7ab4af18245edbc701",
+      "checklist.md": "11eb95c74e30bd724387f45396c303260f1b585be7a241a36cc410eeb8c5cb31",
+      "decision-record.md": "b23eb395ca82688312ff4ec959cc0b3fbcd697a096f066b090eb60a3e9a88844",
+      "implementation-summary.md": "eacee073742d675bc2e30e293c8d5c503e3a94a994f7b9c75c8c5a4935a1af9e",
+      "research/research.md": "3cd1803c999cbe3a6f132c9c3cca78cdcd7a424e8aaf27f8a4e10cc6142aa886"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

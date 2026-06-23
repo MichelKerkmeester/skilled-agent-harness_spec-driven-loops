@@ -1,15 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
-  "description": "Feature Specification: Graph Testing and Playbook Alignment",
+  "description": "Phase 002 introduced the coverage-graph runtime, but the supporting verification surface was incomplete",
   "keywords": [
-    "feature",
-    "specification",
-    "graph",
-    "testing",
-    "playbook",
-    "alignment"
+    "phase",
+    "002",
+    "introduced",
+    "coverage-graph",
+    "runtime",
+    "supporting",
+    "verification",
+    "surface",
+    "incomplete"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.308Z",
+  "lastUpdated": "2026-06-23T03:49:49.253Z",
   "specId": "006",
   "folderSlug": "graph-testing-and-playbook-alignment",
   "parentChain": [

@@ -1,14 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/019-cmd-create-skill-merger",
-  "description": "Feature Specification: Create Skill Merger",
+  "description": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`, `/cr",
   "keywords": [
-    "feature",
-    "specification",
     "create",
+    "command",
+    "surface",
+    "skills",
+    "fragmented",
+    "across",
+    "separate",
+    "files",
+    "yaml",
+    "workflows",
     "skill",
-    "merger"
+    "skillreference"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.275Z",
+  "lastUpdated": "2026-06-23T03:49:48.988Z",
   "specId": "019",
   "folderSlug": "cmd-create-skill-merger",
   "parentChain": [

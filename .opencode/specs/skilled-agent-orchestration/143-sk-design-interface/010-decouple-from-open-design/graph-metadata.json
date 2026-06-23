@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 10** of the sk-design-interface specification.",
+    "causal_summary": "`sk-design-interface` is vendored from Anthropic's Apache-2.0 `frontend-design` skill and is meant to be reusable standalone, but it accumulated ~101 references to the internal `mcp-open-design` skill and the Open Design app across 23 files",
     "created_at": "2026-06-17T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:22.993Z",
+    "last_save_at": "2026-06-23T03:49:48.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:35f40c2b4f0e1b289b4d15a23703e100dff921cdaeca3268e88122d9942a17f8",
+    "source_doc_hashes": {
+      "spec.md": "42f24b44d1f2fb77511130d3503b3908e70c792e6a16a23120aaffbebbbd5fdb",
+      "plan.md": "28dd713fdbd9bfa8be16b09f5474c805a63cee10aabd2e16f11dfc171721a0f0",
+      "tasks.md": "6929415c6c699bc69d2fd7a4a529049bdebf56b99c5ccf57442a6c2c90bd969e",
+      "implementation-summary.md": "fa151dae852382fcf6b619b809f52b132e37023e0bee44ff8da237fb269f70ee"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

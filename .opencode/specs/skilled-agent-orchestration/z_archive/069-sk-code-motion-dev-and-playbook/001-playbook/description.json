@@ -1,18 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/001-playbook",
-  "description": "Feature Specification: sk-code Manual Testing Playbook Motion.dev Refinement",
+  "description": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios",
   "keywords": [
-    "feature",
-    "specification",
     "sk-code",
     "manual",
     "testing",
     "playbook",
-    "motion",
-    "dev",
-    "refinement"
+    "already",
+    "follows",
+    "sk-doc",
+    "package",
+    "contract",
+    "stops",
+    "routing",
+    "advisor",
+    "scenarios"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.658Z",
+  "lastUpdated": "2026-06-23T03:49:49.660Z",
   "specId": "001",
   "folderSlug": "playbook",
   "parentChain": [

@@ -1,18 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/001-barter-figma-agent",
-  "description": "Feature Specification: Phase 1 — Author Barter Figma MCP Agent",
+  "description": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "author",
-    "barter",
     "figma",
     "mcp",
-    "agent"
+    "capability",
+    "lives",
+    "developer-grade",
+    "skill",
+    "mcp-figma",
+    "inside",
+    "public",
+    "repo"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.609Z",
+  "lastUpdated": "2026-06-23T03:49:49.599Z",
   "specId": "001",
   "folderSlug": "barter-figma-agent",
   "parentChain": [

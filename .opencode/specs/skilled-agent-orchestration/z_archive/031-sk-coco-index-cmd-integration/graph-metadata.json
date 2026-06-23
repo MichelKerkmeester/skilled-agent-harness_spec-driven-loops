@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This folder existed without the required planning docs, so the intended command integration work for sk-coco-index was not traceable through spec-kit validation. The repair needs to establish a truthful planning baseline without inventing implementation results.",
+    "causal_summary": "This folder existed without the required planning docs, so the intended command integration work for sk-coco-index was not traceable through spec-kit validation",
     "created_at": "2026-04-12T09:02:50.177Z",
-    "last_save_at": "2026-06-05T12:47:32.599Z",
+    "last_save_at": "2026-06-23T03:49:49.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:92cec48d8427e457edcd02bd08554029c21e9bbc5438b730b396258be049ef1a",
+    "source_doc_hashes": {
+      "spec.md": "35af50ec8c0ca5a2319084fa127cba332bba2a06d482510604ca4081bdeb35f6",
+      "plan.md": "97f39798953dcf4c9776ea13ace11c0583e7fab98e6b3a220d97183b17ba3709",
+      "tasks.md": "e8f0e1cb9cac49b80d7506a07af5c49458d56c5a5a3ead904648ce961b2863a2",
+      "implementation-summary.md": "8a5a79eb3c60c35acda017181143b328302375fc37e66ea908ec70b243a6f4e7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

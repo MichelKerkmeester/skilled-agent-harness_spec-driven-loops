@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations. CODE BUG: `generate-profile.cjs` `deriveRules()` extracted ALWAYS/NEVER rules ONLY from a dedicated `## RULES` / `## OPERATING RULES` section with `### ALWAYS`/`### NEVER` subheadings — it had no inline fallback, so it yielded 0 rules for agents (debug, orchestrate) that carry inline `- NEVER ...` bullets without a dedicated section. This failed PG-007 (inline NEVER fallback) and 5D-012 (debug ruleCoherence non-empty). STALE SCENARIOS (implementation correct, scenario expectation outdated): PG-005 (`≥3 ALWAYS` for debug, which has 0), BI-014/015 (`--profile=debug` — only generic `default.json` ships), 5D-013 (expects `profile-generation-failure`; correct label is `candidate-read-failure`), DR-031 (`SOURCE_DIVERSITY_THRESHOLD=0.4`; code intentionally `1.5`).",
+    "causal_summary": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations",
     "created_at": "2026-05-27T21:30:00.000Z",
-    "last_save_at": "2026-06-07T09:00:45.939Z",
+    "last_save_at": "2026-06-23T03:49:51.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b06b0494ebf737dfc7d100d578a5dc4c6e38e0b5d59e3d1da7d01dd211544fbc",
+    "source_doc_hashes": {
+      "spec.md": "76fe0d3f6e554fdb01fd0432504f4f9115079f3df64993cf460ab38bb28d0e9e",
+      "plan.md": "496bcd41382b1b9e5ee62ae4e444d64a6be419853bf61b6c7677521dc4382c51",
+      "tasks.md": "b9032c60fedbb7e4c1783777baaee0232a02a30d28e04c220d7ae7b299c9ffba",
+      "implementation-summary.md": "01d4a840ce6e3a405992e53120dd6ddab36cd87f249c9ea8b8032054fbb2793a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

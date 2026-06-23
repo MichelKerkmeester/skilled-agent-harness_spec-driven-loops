@@ -1,14 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/005-backfill-remaining-profiles",
-  "description": "Feature Specification: Phase 5: backfill-remaining-profiles",
+  "description": "After phase 4, the sk-prompt-small-model hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "backfill-remaining-profiles"
+    "sk-prompt-small-model",
+    "hub",
+    "scaffold",
+    "two",
+    "priority",
+    "profiles",
+    "missing",
+    "authoritative",
+    "prompt-craft",
+    "documentation",
+    "six"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.328Z",
+  "lastUpdated": "2026-06-23T03:49:51.600Z",
   "specId": "005",
   "folderSlug": "backfill-remaining-profiles",
   "parentChain": [

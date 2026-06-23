@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 014 two-lane deep review returned a CONDITIONAL verdict against the two-lane program (121/008-013). This packet remediates every active finding: 1 confirmed P0 (the Lane B command flags misparse to booleans because `loop-host.cjs` `parseArgs` does not accept space-form flags), a cluster of 16 P1 findings (security: write-capable grader dispatch, unquoted shell interpolation, fixture-id traversal, open-by-default criteria-exec, shared-tmp score cache; traceability: invalid outcomes, dropped executor fields, missing provenance, overwritten reports, non-packet-local pause state, a Lane A-referencing promotion gate, split config, stale agent-note paths), and 16 P2 advisories. Each finding gets exactly one disposition - FIXED with a test or adversarial check where applicable, or DOCUMENT-ACCEPT with rationale. The work preserves TST-1 byte-identity in `scripts/shared/loop-host.cjs` and keeps the vitest suite green.",
+    "causal_summary": "The 014 deep review returned a CONDITIONAL verdict",
     "created_at": "2026-05-29T10:49:24Z",
-    "last_save_at": "2026-06-17T19:57:23.662Z",
+    "last_save_at": "2026-06-23T03:49:51.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:21e147a951ba163ea0e60d074c9f2215df23bb13a45b8e31097cc95c32d774f8",
+    "source_doc_hashes": {
+      "spec.md": "6151a4408b624738394155a6b0988ae491db1e466b4ec6786327e3c5cd955d33",
+      "plan.md": "110d133e79ed862d99c8ad0951878772777bb3384c6c33d24fce8d3b5e9caa6c",
+      "tasks.md": "4fd786a7c79945be5ad0426f3a098ebedff814662227b55de70a41295becefcc",
+      "checklist.md": "55cb1f2ac5d7d2b6d8d01d503a892594c9e00c050817353e55033317d1bf9b76",
+      "decision-record.md": "7cc4e4e3780318d469546cb69ad7acd94b5ea5ab6e7662eb6be949b67e04df2b",
+      "implementation-summary.md": "e436667adc1df2ae506294110dd3257cb42a711c28851fef7ea08f38458dd3fb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

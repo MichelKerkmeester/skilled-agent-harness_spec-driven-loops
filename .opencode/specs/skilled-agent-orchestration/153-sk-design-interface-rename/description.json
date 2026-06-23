@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/153-sk-design-interface-rename",
-  "description": "Feature Specification: Rename sk-interface-design skill to sk-design-interface across the framework",
+  "description": "The interface-design judgment skill is named `sk-interface-design`, which predates the `sk-design-` family now forming around the new `sk-design-md-ge",
   "keywords": [
-    "feature",
-    "specification",
-    "rename",
-    "sk-interface-design",
+    "interface-design",
+    "judgment",
     "skill",
-    "sk-design-interface",
-    "across",
-    "framework"
+    "named",
+    "sk-interface-design",
+    "predates",
+    "sk-design",
+    "family",
+    "now",
+    "forming",
+    "around",
+    "new",
+    "sk-design-md-ge"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.073Z",
+  "lastUpdated": "2026-06-23T03:49:48.862Z",
   "specId": "153",
   "folderSlug": "sk-design-interface-rename",
   "parentChain": [

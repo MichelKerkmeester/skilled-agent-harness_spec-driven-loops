@@ -1,18 +1,16 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/148-mcp-skill-install-doctor-standardization",
-  "description": "Feature Specification: Standardize the mcp-* skills into the install-guide and doctor system",
+  "description": "The five mcp- skills had drifted out of a shared shape",
   "keywords": [
-    "feature",
-    "specification",
-    "standardize",
+    "five",
     "mcp",
     "skills",
-    "install-guide",
-    "doctor",
-    "system"
+    "drifted",
+    "shared",
+    "shape"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.109Z",
+  "lastUpdated": "2026-06-23T03:49:48.737Z",
   "specId": "148",
   "folderSlug": "mcp-skill-install-doctor-standardization",
   "parentChain": [

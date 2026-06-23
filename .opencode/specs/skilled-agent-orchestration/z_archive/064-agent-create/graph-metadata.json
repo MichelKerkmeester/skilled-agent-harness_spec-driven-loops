@@ -27,11 +27,11 @@
       "tasks",
       "implementation",
       "summary",
-      "commands",
-      "sk-skill",
-      "feature-catalog",
-      "testing-playbook",
-      "changelog"
+      "new",
+      "4-runtime",
+      "mirrors",
+      "dedicated",
+      "executor"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 6 `/create:*` commands (agent, sk-skill, feature-catalog, testing-playbook, folder_readme, changelog) need a dedicated executor agent that's tightly coupled to sk-doc templates + standards. Currently they gate on @general (post-062 cleanup) — too broad. Create `@create` agent: LEAF, caller-restricted to /create:* commands, loads sk-doc on every dispatch, produces deterministic output contracts.",
+    "causal_summary": "Create new @create agent (4-runtime mirrors) as dedicated executor for /create:* commands. Uses sk-doc skill + templates. Aligned with updated sk-doc agent template from 063b.",
     "created_at": "2026-05-18T07:49:27.117Z",
-    "last_save_at": "2026-05-30T10:12:01.327Z",
+    "last_save_at": "2026-06-23T03:49:49.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d802a5001d91a9fe7ffccd5dfb860dd18a1efde877a712f90dc58cada19c1ad5",
+    "source_doc_hashes": {
+      "spec.md": "86b789524e78f713c427b06d5abe29456aed8995292ffe92a9b0e6e6722e68f9",
+      "plan.md": "959dfe349bbcdb247a5c7cc7cec377df8aa50e1b97e68720bf81fcbddba8f4ae",
+      "tasks.md": "c3803df9b8e2c0fb44d6059c3bc8127f628d9a9812621c5c880f93af6e099630",
+      "implementation-summary.md": "2590feeefb88af064ac2c3d4d87c3b83adb75b9c1bb41f3c13280ec7113659e9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

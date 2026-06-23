@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed. The proposals were derived from a 14-iteration research cycle but need a second-pass deep investigation that:",
+    "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-06-05T12:47:32.584Z",
+    "last_save_at": "2026-06-23T03:49:49.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:a23ed1102b453e92f5c74a7701c7605cf4622171335806c049c9d9f5aed10036",
+    "source_doc_hashes": {
+      "spec.md": "46bf5918b78b2c729f4340bf2f6a80b605a7f5aeef56591815a4bff3753acac1",
+      "plan.md": "fbfc923a748f89e118ef2c0209befa9ea79edd6bb3a7cdb24651045166c648be",
+      "tasks.md": "7f27526e174cf1929d8afa31926e0cc3578462cd92cb12e54074359f61d18e09",
+      "checklist.md": "fa70471c8cc9abb60af047872dfafb655ba7b6c5baa2ab8414b4f0ec856e88ee",
+      "implementation-summary.md": "a3052d2f585dfb17c2cbedaaacecdde38a0dad525c894e3fe6b4a5a3aca4f4b9",
+      "research/research.md": "6c59280f242bcf3d82034945c3a934c5616f9b93787b17225672e33b8c4a49cb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

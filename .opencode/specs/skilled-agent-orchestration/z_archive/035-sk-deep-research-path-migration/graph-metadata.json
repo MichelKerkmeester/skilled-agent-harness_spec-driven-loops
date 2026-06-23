@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research contract is now split across a former root research document, `research/iterations/iteration-*`, and a newer review packet that still has to normalize legacy `review/iterations/iteration-*` layouts. The migration defined here makes `research/` the canonical research packet, keeps `review/` as the canonical review packet, and standardizes iteration artifacts into dedicated `iterations/` folders with no `output/` folder. [SOURCE: .opencode/commands/speckit/deep-research.md:211-242] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:187-201]",
+    "causal_summary": "Deep research has an inconsistent packet contract",
     "created_at": "2026-04-12T09:02:50.179Z",
-    "last_save_at": "2026-06-22T18:54:59.339Z",
+    "last_save_at": "2026-06-23T03:49:49.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fc15d34e18e2da20de007bca7105024f34640028fcf39c6f3b992b3cf811e696",
+    "source_doc_hashes": {
+      "spec.md": "a061d5330006a77578696b6e31a14ee4bc3356b9af75026a64644a342c84ebc1",
+      "plan.md": "586bf4b01c8b08d989ad6bcbc9ee946f77fe8baca8e8b2f00c4097a042186414",
+      "tasks.md": "3ea57d119556b109ef21d35ad20d96b1ac605f32a4487d754eec8192932d6396",
+      "checklist.md": "5dfd7432a99c50655772b8dd6a830254a7aecf3480dead72b91f47ed6d7ff7c7",
+      "decision-record.md": "a6f629e011dadd5a6c7f783f6731600af1960762ccfd91c12ea5a8b9a7af9783",
+      "implementation-summary.md": "6713ddf7a63082258954bd33a7fc951c32d25d0a52e76d3ebd0178ba67951e77"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

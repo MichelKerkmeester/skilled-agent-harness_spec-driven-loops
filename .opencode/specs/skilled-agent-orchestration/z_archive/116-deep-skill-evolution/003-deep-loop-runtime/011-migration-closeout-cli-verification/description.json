@@ -1,17 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification",
-  "description": "Feature Specification: deep-loop MCP→CLI migration closeout + CLI verification",
+  "description": "Closeout of the deep-loop runtime isolation arc: reconcile stale tool-count config/README references, delete deprecated-MCP remnants (orphan README di",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-loop",
-    "mcp",
-    "cli",
-    "migration",
     "closeout",
-    "verification"
+    "deep-loop",
+    "runtime",
+    "isolation",
+    "arc",
+    "reconcile",
+    "stale",
+    "tool-count",
+    "config",
+    "readme",
+    "references",
+    "delete",
+    "deprecated-mcp",
+    "remnants",
+    "orphan"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.663Z",
+  "lastUpdated": "2026-06-23T03:49:50.918Z",
   "specId": "011",
   "folderSlug": "migration-closeout-cli-verification",
   "parentChain": [

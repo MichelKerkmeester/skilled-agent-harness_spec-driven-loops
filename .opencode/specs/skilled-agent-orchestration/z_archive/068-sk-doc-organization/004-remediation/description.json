@@ -1,14 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/004-remediation",
-  "description": "Feature Specification: Phase 4: remediation",
+  "description": "Phase 2's substring sweep used 4 fixed-string patterns prefixed with `assets/`",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "remediation"
+    "substring",
+    "sweep",
+    "used",
+    "fixed-string",
+    "patterns",
+    "prefixed",
+    "assets"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.652Z",
+  "lastUpdated": "2026-06-23T03:49:49.648Z",
   "specId": "004",
   "folderSlug": "remediation",
   "parentChain": [

@@ -206,9 +206,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet defines the refinement pass for `.opencode/commands/create/assets/*.yaml` so the create-command suite more closely matches the richer `spec_kit` command YAML style. The work must strengthen the newer feature-catalog and testing-playbook assets, then add a shared structural contract across the broader create suite without rewriting command behavior or changing command names.",
+    "causal_summary": "The create-command YAML assets had drifted into uneven shapes",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-05-30T10:12:01.181Z",
+    "last_save_at": "2026-06-23T03:49:49.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:02d94a6383f3d66e6e4e8248300268902346f7c5dbfebe1eb3091bfe31f20716",
+    "source_doc_hashes": {
+      "spec.md": "de9d740a7c3e6031332faf7a80d16bab0ee25fc9724a9a26b1177c18d8e7c208",
+      "plan.md": "05e1bd05677eb7ccb20b21475f659b77f7106ab10393fcc8b658c88ad473871e",
+      "tasks.md": "1f84c90b7446358aa11d278efe166951d584a07321fbff2056003ed122708cf7",
+      "checklist.md": "2b8eceae665d9e44bc5aff85ec280dd113e2bb9f7433b80d6ccbd42bbd532f7a",
+      "decision-record.md": "e55fe8bc9002c8ae937cce351cc6cc35eeef02aeba8ba151b30947abf29e49bb",
+      "implementation-summary.md": "cf6e4226dbafa6910eb5664f49ef70837d5080fe7b2150a517a6a4d9468ecc84"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

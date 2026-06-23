@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 011's round-2 deep research (5 gpt-5.5 iterations, `011-.../research/research.md` §12-18) reached one load-bearing conclusion: **the post-012 D3/D4 numbers are partly measurement artifacts, not skill behavior.** D4 ≈ 49 is graded by a *hallucination* grader (whose own prompt forbids scoring correctness/paths/planning), is n=2, all pre-012, and post-012 D4 is hard-coded `null` in every aggregate — so routine-task usefulness is genuinely UNKNOWN. The asset-deferral slice of the D3 gain is an artifact (folding `expectedAssets` into gold moves D2 by −9.55 pts but D3 by exactly 0.0). A CS-001 prompt-source mismatch and SD-001 intent-signal gaps depress D2 below their true ceilings. This phase fixes the instrument so D3/D4 mean what they claim, then makes the one real recall fix.",
+    "causal_summary": "The benchmark reports D3 50 / D4 49 for sk-code, but round-2 research showed those numbers do not measure what their names claim",
     "created_at": "2026-06-02T04:30:36.784Z",
-    "last_save_at": "2026-06-22T18:55:01.103Z",
+    "last_save_at": "2026-06-23T03:49:51.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:df53e2616a1c7f1bf0bcff58f4b481797a6e8cb5650629a0aa4762d11b6a5356",
+    "source_doc_hashes": {
+      "spec.md": "f23005b6d2d0aca2acbdeb82b3b74209d2cd7b3b68b73e39f2e6427c0141286a",
+      "plan.md": "9b5fe19547edadae33f568e123199463fa85c4aa54c6ec864c8e302fe1e35fe0",
+      "tasks.md": "f8d9097a96620c856354aa6f44d24f2b6965676b8b3b3dc48ec76e48cd8159cc",
+      "checklist.md": "f1fbf454159607127729c30135bf4692e9a545b9e6b94fd73c93ac08dbc30c54",
+      "implementation-summary.md": "9c8724f7d648ff6ea43b8770cead3077425605f0844521e999860c66f9e89ca1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

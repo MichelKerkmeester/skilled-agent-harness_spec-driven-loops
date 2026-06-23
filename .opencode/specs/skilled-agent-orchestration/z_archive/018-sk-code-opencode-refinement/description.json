@@ -1,13 +1,26 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/018-sk-code-opencode-refinement",
-  "description": "Feature Specification: sk-code-opencode refinement",
+  "description": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style narra",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-code-opencode",
-    "refinement"
+    "current",
+    "opencode",
+    "standards",
+    "provide",
+    "strong",
+    "cross-language",
+    "structure",
+    "inline",
+    "comment",
+    "rules",
+    "still",
+    "broad",
+    "enough",
+    "allow",
+    "verbose",
+    "human-style",
+    "narra"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.268Z",
+  "lastUpdated": "2026-06-23T03:49:48.982Z",
   "specId": "018",
   "folderSlug": "sk-code-opencode-refinement",
   "parentChain": [

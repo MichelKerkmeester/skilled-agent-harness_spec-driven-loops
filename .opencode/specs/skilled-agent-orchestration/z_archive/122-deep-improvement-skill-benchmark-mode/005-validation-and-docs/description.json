@@ -1,14 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
-  "description": "Phase 005 — Validation & docs (three-lane)",
+  "description": "Bring SKILL.md, README, catalog, and advisor metadata up to the three-lane (agent-improvement / model-benchmark / skill-benchmark) reality of the rena",
   "keywords": [
-    "phase",
-    "005",
-    "validation",
-    "docs",
-    "three-lane"
+    "bring",
+    "skill",
+    "readme",
+    "catalog",
+    "advisor",
+    "metadata",
+    "three-lane",
+    "agent-improvement",
+    "model-benchmark",
+    "skill-benchmark",
+    "reality",
+    "rena"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.064Z",
+  "lastUpdated": "2026-06-23T03:49:51.320Z",
   "specId": "005",
   "folderSlug": "validation-and-docs",
   "parentChain": [

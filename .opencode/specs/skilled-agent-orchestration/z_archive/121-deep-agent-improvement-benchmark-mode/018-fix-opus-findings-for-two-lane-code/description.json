@@ -2,18 +2,18 @@
   "title": "Feature Specification: fix Opus review findings for two-lane code",
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
-  "description": "Feature Specification: fix Opus review findings for two-lane code",
+  "description": "The 017 deep review returned CONDITIONAL with four active P1 defects",
   "keywords": [
-    "feature",
-    "specification",
-    "fix",
-    "opus",
+    "017",
+    "deep",
     "review",
-    "findings",
-    "two-lane",
-    "code"
+    "returned",
+    "conditional",
+    "four",
+    "active",
+    "defects"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.027Z",
+  "lastUpdated": "2026-06-23T03:49:51.279Z",
   "specId": "018",
   "folderSlug": "fix-opus-findings-for-two-lane-code",
   "parentChain": [

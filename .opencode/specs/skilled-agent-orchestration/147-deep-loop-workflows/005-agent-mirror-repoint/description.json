@@ -1,14 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows/005-agent-mirror-repoint",
-  "description": "Feature Specification: Agent mirror repoint",
+  "description": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canon",
   "keywords": [
-    "feature",
-    "specification",
-    "agent",
-    "mirror",
-    "repoint"
+    "five",
+    "deep",
+    "agents",
+    "deep-context",
+    "deep-research",
+    "deep-review",
+    "deep-improvement",
+    "ai-council",
+    "exist",
+    "real",
+    "three-file",
+    "mirrors",
+    "opencode",
+    "canon"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.707Z",
+  "lastUpdated": "2026-06-23T03:49:48.698Z",
   "specId": "005",
   "folderSlug": "agent-mirror-repoint",
   "parentChain": [

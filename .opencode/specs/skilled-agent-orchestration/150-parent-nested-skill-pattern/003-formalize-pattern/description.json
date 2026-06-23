@@ -1,15 +1,19 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/150-parent-nested-skill-pattern/003-formalize-pattern",
-  "description": "Feature Specification: Formalize the parent-nested-skill pattern",
+  "description": "`deep-loop-workflows` is the framework's first parent-skill-with-nested-mode-packets, and Phases 1–2 proved the pattern and Phase 3 implemented its ro",
   "keywords": [
-    "feature",
-    "specification",
-    "formalize",
-    "parent-nested-skill",
-    "pattern"
+    "deep-loop-workflows",
+    "framework",
+    "first",
+    "parent-skill-with-nested-mode-packets",
+    "phases",
+    "proved",
+    "pattern",
+    "phase",
+    "implemented"
   ],
-  "lastUpdated": "2026-06-16T05:08:05.953Z",
+  "lastUpdated": "2026-06-23T03:49:48.805Z",
   "specId": "003",
   "folderSlug": "formalize-pattern",
   "parentChain": [

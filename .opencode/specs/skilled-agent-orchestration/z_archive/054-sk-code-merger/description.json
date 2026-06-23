@@ -1,15 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/054-sk-code-merger",
-  "description": "Feature Specification: Merge sk-code-web + sk-code-full-stack into sk-code",
+  "description": "Two parallel code skills (`sk-code-web` and `sk-code-full-stack`) overlap in phase model, intent vocabulary, and advisor scoring keys, causing routing",
   "keywords": [
-    "feature",
-    "specification",
-    "merge",
+    "two",
+    "parallel",
+    "code",
+    "skills",
     "sk-code-web",
     "sk-code-full-stack",
-    "sk-code"
+    "overlap",
+    "phase",
+    "model",
+    "intent",
+    "vocabulary",
+    "advisor",
+    "scoring",
+    "keys",
+    "causing",
+    "routing"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.476Z",
+  "lastUpdated": "2026-06-23T03:49:49.360Z",
   "specId": "054",
   "folderSlug": "sk-code-merger",
   "parentChain": [

@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 005-deep-agent-improvement release-cleanup ran a deep-research loop that surfaced six logic gaps. Three doc gaps were fixed in 005; two code/config gaps were escalated (spec §3 kept `.cjs`/config changes out of that doc-cleanup packet). This packet fixes those two.",
+    "causal_summary": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile benchmark threshold (75 -> 80) and fix the run-benchmark default profilesDir (target-profiles -> benchmark-profiles).",
     "created_at": "2026-05-24T04:32:12.188Z",
-    "last_save_at": "2026-06-07T09:00:45.825Z",
+    "last_save_at": "2026-06-23T03:49:50.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:8b82a643c5f8c0691665282f1f608e6c6128e511c7a7039a8448e122fa20a734",
+    "source_doc_hashes": {
+      "spec.md": "ec21e0b1f553ca1528ec742a824c7e96fcbb265f22bcafc930c8976e75f31831",
+      "plan.md": "b7b42f5dced35c60dc5fa69a6e66b6558176cef40c0af8f4ad010ca9b5d7ace9",
+      "tasks.md": "88da8ca2e37017512992ba6dcb62c5dcd417c25161f5c607ec96840ae6bd5942",
+      "implementation-summary.md": "9e5c5bf3998c38a1b1e93ff3df76d2a8968b4d55f0aed29d3c15bf64fce42a66"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

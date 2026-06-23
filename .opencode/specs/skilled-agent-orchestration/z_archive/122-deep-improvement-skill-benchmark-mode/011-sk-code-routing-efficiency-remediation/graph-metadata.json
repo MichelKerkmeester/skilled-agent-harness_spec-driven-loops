@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The live sk-code benchmark (phase 010) showed strong routing (D1-intra 92, D2 87, surfaces correct 3/3) but two weak dimensions with converging evidence: D3 efficiency 42 (the model loads ~16-20 resources where the gold is ~5-8) and D4 usefulness about 49 (skill-on beat skill-off on a domain-pattern task but lost on a routine language refactor). Both point at the same behavior: sk-code loads a broad resource slice, which pays off when a domain pattern matters and adds noise on simple tasks.",
+    "causal_summary": "sk-code routes to the correct surface and resources, but over-loads: the live run read 2-4x the resources the scenario needed (D3 42), and the D4 ablation showed the broad load is net-negative on routine tasks (LS-001 skill-on 0.82 vs skill-off 0.95) while helping domain-pattern tasks (CS-001 skill-on 0.88 vs skill-off 0.78)",
     "created_at": "2026-06-01T18:29:41.530Z",
-    "last_save_at": "2026-06-22T18:55:01.091Z",
+    "last_save_at": "2026-06-23T03:49:51.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:a44a218f245484eeb69941e5ef5943f02beaca13d50a6077b09ece1738c0f595",
+    "source_doc_hashes": {
+      "spec.md": "896099c00612707461d0b72d21bbba5c07059a7f84aa6f74c79c94fc2b670b78",
+      "plan.md": "5d59037d8adbb7db0d098e725c9dc5bc8eca59cb954ffd4fdf6b6735311318fd",
+      "tasks.md": "728243bc78c0441eabcba3a2ad85486b7888172385b3e5abaa390944112513cb",
+      "checklist.md": "c996d1c1fe06528352a2479f5612e00d18aebc3d4ac17d9152b934416ba908db",
+      "implementation-summary.md": "8ad334a4db7acc1d6496350e3b8e91239cabdf65d0d59c7f00338a52381c15f3",
+      "research/research.md": "3692da960bf073435a6cbd1796491931f4a050514bc96ac62dc9b0adc8e6699d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

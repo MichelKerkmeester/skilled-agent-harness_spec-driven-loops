@@ -18,15 +18,17 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/004-reference-architecture-alignment",
-  "description": "Feature Specification: deep-context reference-architecture alignment",
+  "description": "The deep-context skill is structurally behind its three mature siblings",
   "keywords": [
-    "feature",
-    "specification",
     "deep-context",
-    "reference-architecture",
-    "alignment"
+    "skill",
+    "structurally",
+    "behind",
+    "three",
+    "mature",
+    "siblings"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.493Z",
+  "lastUpdated": "2026-06-23T03:49:51.786Z",
   "specId": "004",
   "folderSlug": "reference-architecture-alignment",
   "parentChain": [

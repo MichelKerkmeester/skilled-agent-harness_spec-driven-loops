@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop runtime already records the actual model an executor ran in its provenance audit (`buildExecutorAuditRecord` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`, around line 485), but it never compares that actual model against the model the caller requested. When a dispatch crashes (the round-1 codex SIGKILL case) or a router silently swaps the model (the silent-gpt-5 case), the loop keeps running and an artifact ships carrying a provenance record that does not match what was approved. That violates the core fable rule that artifact claims must not lie, and `fallback-router.ts` reinforces the gap by only reasoning about quota-pool exhaustion, not unapproved model substitution.",
+    "causal_summary": "The deep-loop runtime already records the actual model an executor ran in its provenance audit (`buildExecutorAuditRecord` in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`, around line 485), but it never compares that actual model against the model the caller requested",
     "created_at": "2026-06-15T14:06:40Z",
-    "last_save_at": "2026-06-16T06:06:34.801Z",
+    "last_save_at": "2026-06-23T03:49:48.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1b08ed88a0d979574f47f4101825e44fe968366ec892eeab7b9d91c61ca865d2",
+    "source_doc_hashes": {
+      "spec.md": "fb5afa15bff65967e9b1fe39765a89c9fba34b09f71de71d827c860ce0dc03af",
+      "plan.md": "9f85328f1a89bead1dd0ecf624e26554216ba04a771084ad91f304cf5857c84e",
+      "tasks.md": "46ee8f394a934c1d6d8bbb47d13a21c6536aa8c94619273c94d1a08f74826c24",
+      "checklist.md": "88d29cc469574577aafe1f38cf48d7e3a35426b08ad329421a1330217b43bfca",
+      "implementation-summary.md": "11deb814746b4e0c2a2ca66a01a48821c2dc959ea89e7055b8dba7506670e171"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

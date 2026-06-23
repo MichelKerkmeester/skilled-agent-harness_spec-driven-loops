@@ -8,15 +8,21 @@
     "related_to": []
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/012-iterative-command-and-skill-wiring",
-  "description": "Feature Specification: Command and Skill Wiring",
+  "description": "Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync",
   "keywords": [
-    "feature",
-    "specification",
-    "command",
+    "add",
+    "deep",
+    "ask-ai-council",
+    "auto",
+    "confirm",
+    "workflow",
     "skill",
-    "wiring"
+    "docs",
+    "four-runtime",
+    "mirror",
+    "sync"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.526Z",
+  "lastUpdated": "2026-06-23T03:49:50.772Z",
   "specId": "012",
   "folderSlug": "iterative-command-and-skill-wiring",
   "parentChain": [

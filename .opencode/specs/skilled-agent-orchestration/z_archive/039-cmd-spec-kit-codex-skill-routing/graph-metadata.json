@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The research packet in `research/` already answered the core question: Codex does not mainly lack command docs. The higher-value fix is better placement in the first-touch surface that `system-spec-kit` already loads, especially when runtime UI command surfaces are weak or absent.",
+    "causal_summary": "The research packet in `research/` already answered the core question: Codex does not mainly lack command docs",
     "created_at": "2026-04-12T09:02:50.182Z",
-    "last_save_at": "2026-06-22T18:54:59.350Z",
+    "last_save_at": "2026-06-23T03:49:49.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:7cba137600574328b37b2a8d583b69078fc245a3806e8ad7e66d7e48e4f1b31d",
+    "source_doc_hashes": {
+      "spec.md": "2e6edeaa426e47cbafc08be3a82c718bb1a18d88f21c35116f1ba1af6f21d51b",
+      "plan.md": "92028c2bdca6b0c1fd26674a3d73f077e68e9c50f905a7267a8cd65593f7249a",
+      "tasks.md": "06489050c2cfe7b9fb12f9355fde3522300b5de49390796c5cb2b67fd25519f9",
+      "implementation-summary.md": "4ff91ad2d5c6d537aeddf8b4d5335195cdac9e8efeaf59daebb7018a9edb1a14",
+      "research/research.md": "9d215bb60aa657062c997d7bcce689e034ed1e13983b45d2fa3c94b136bd551a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

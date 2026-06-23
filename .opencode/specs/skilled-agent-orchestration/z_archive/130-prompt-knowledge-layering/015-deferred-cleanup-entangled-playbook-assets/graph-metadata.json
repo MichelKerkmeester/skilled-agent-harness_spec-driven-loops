@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 15 (final cleanup) of spec 130. It closes three loose ends that phase 014 deliberately",
+    "causal_summary": "Three deferred items remained after 014",
     "created_at": "2026-06-05T12:47:32.528Z",
-    "last_save_at": "2026-06-17T19:57:23.760Z",
+    "last_save_at": "2026-06-23T03:49:51.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:38b8c18bc7213d103dfbe083b0625141a4db22cbc2314c99141454ccfd5970f4",
+    "source_doc_hashes": {
+      "spec.md": "cd94742fcab1937301867f1b438993008fc854317341c00e24a38d5705e1021b",
+      "plan.md": "4b63a76b6b37a87e75d9d83e048aa27a5fe44bae3254559d2a71456b752e6879",
+      "tasks.md": "0705baee82bb8447cd7007faa17ba602cd911492d836f6f008f94f5e7b2ce80c",
+      "implementation-summary.md": "d53188e721de7599ce95e6081bf5e3c780bcc2d95bfd26c8b2b17877556cea7c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

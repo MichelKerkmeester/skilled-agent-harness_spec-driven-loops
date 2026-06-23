@@ -87,14 +87,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs** (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B, but the prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are **not yet a reusable framework** — every new model/technique/situation still needs new rig code. `126/004` also exposed **correctness-saturation** producing misleading \"winners.\"",
+    "causal_summary": "The repo's prompt-framework benchmarks are one-off, model-specific rigs (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each re-implement fixtures + a dispatch wrapper + scoring",
     "created_at": "2026-06-02T05:45:33.740Z",
-    "last_save_at": "2026-06-22T18:56:35.929Z",
+    "last_save_at": "2026-06-23T03:49:51.512Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:6d09a30d55b2c06af66efa7c66f354e0436d195ba6a5f93d15b65f473af37474",
+    "source_doc_hashes": {
+      "spec.md": "5dc458cbb7e1bed23f23b2f8dc4b7cfc9380cad48d565ead2d83bf44f1ecec05"
+    },
     "last_active_child_id": "006-strict-validation-fixtures",
     "last_active_at": "2026-06-02T12:57:48.136Z"
   }

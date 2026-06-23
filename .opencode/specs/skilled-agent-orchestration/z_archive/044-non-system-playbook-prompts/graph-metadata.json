@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repository now contains several non-system-spec-kit manual testing playbook packages that were authored at different maturity levels. Newer playbooks, especially the sk-deep-review and sk-deep-research packets, use richer orchestrator-led prompt framing, clearer expected process language, and stronger user-facing outcome statements, while older packages such as mcp-coco-index and sk-improve-agent still contain shorter prompt blocks, uneven terminology, or older scenario-contract phrasing.",
+    "causal_summary": "The repository now contains several non-system-spec-kit manual testing playbook packages that were authored at different maturity levels",
     "created_at": "2026-04-12T12:01:01Z",
-    "last_save_at": "2026-06-05T12:47:32.677Z",
+    "last_save_at": "2026-06-23T03:49:49.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7a3ea059d5fd424809d9d52eb358fefc617484ab8ea4b76b53adb7c32f561339",
+    "source_doc_hashes": {
+      "spec.md": "88b62a30ee1fd03526432e40625e0a4e73c19335d1bd20efc9d40828d285410c",
+      "plan.md": "d90214a519eb642137cc394c3d7a28825c0548ffe7c4f9dedfa7412bef1478fe",
+      "tasks.md": "88539de042712fbe4fde3a05d74e91578bd12272236cac08a31e016ba70664e3",
+      "checklist.md": "f1a7d6f85367a31b0ad52908cb8fd7e9100f919ef153ae2316a38f452072c192",
+      "implementation-summary.md": "ebe22fa5f96b38eeed082daa328100f4bdc0cd87b1bbcccd8d66829cdfbba521"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

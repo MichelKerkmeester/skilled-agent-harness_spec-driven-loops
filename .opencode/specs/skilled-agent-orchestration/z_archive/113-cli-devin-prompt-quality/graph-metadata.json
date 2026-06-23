@@ -106,14 +106,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Run a bespoke deep-loop that iteratively mutates cli-devin's prompt scaffolding against documented failure-mode fixtures with actual SWE-1.6 invocations, converges on winning patterns, applies them back to the skill, then closes a file-extraction gap, propagates the cross-CLI applicable findings to the sibling skill cards, and validates the held-back findings against two frontier models (deepseek-v4-pro + kimi-k2.6) before promoting them cross-CLI. The arc moves cli-devin's defaults from \"best guess from documentation\" to \"empirically validated on three measured models with cross-CLI propagation\".",
+    "causal_summary": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic evaluation of which combinations maximize output quality on real coding tasks",
     "created_at": "2026-05-18T07:49:26.948Z",
-    "last_save_at": "2026-06-08T17:32:20.441Z",
+    "last_save_at": "2026-06-23T03:49:50.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:5448dc8c9d6507f3147623653a517d70e0d4949f166fd5d104bc88101bca9923",
+    "source_doc_hashes": {
+      "spec.md": "22962d50d376e89b9f23c8a442ccc9cf815a5f0084cf0c166939f712c4541613"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

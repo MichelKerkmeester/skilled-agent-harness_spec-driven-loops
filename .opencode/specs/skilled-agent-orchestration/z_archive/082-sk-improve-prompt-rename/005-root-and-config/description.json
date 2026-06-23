@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/005-root-and-config",
-  "description": "Feature Specification: Phase 005 Root and Config",
+  "description": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "005",
-    "root",
-    "config"
+    "code",
+    "runtime",
+    "consumers",
+    "renamed",
+    "user-facing",
+    "docs",
+    "active",
+    "config",
+    "surfaces",
+    "still",
+    "advertise",
+    "sk-improve-prompt"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.861Z",
+  "lastUpdated": "2026-06-23T03:49:49.921Z",
   "specId": "005",
   "folderSlug": "root-and-config",
   "parentChain": [

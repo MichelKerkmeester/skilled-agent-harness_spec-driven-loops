@@ -1,16 +1,19 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
-  "description": "Feature Specification: Migrate High-Volume Skills (Wave B)",
+  "description": "After system-spec-kit, seven skills carry the bulk of the remaining snippets (~548 files)",
   "keywords": [
-    "feature",
-    "specification",
-    "migrate",
-    "high-volume",
+    "system-spec-kit",
+    "seven",
     "skills",
-    "wave"
+    "carry",
+    "bulk",
+    "remaining",
+    "snippets",
+    "548",
+    "files"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.449Z",
+  "lastUpdated": "2026-06-23T03:49:51.735Z",
   "specId": "004",
   "folderSlug": "migrate-high-volume-skills",
   "parentChain": [

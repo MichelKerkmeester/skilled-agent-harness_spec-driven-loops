@@ -1,16 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/004-runtime-mirrors",
-  "description": "Feature Specification: Phase 004 Runtime Mirrors",
+  "description": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "004",
     "runtime",
-    "mirrors"
+    "mirror",
+    "files",
+    "outside",
+    "opencode",
+    "still",
+    "contain",
+    "skill-loading",
+    "references",
+    "old",
+    "skill"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.343Z",
+  "lastUpdated": "2026-06-23T03:49:49.915Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [

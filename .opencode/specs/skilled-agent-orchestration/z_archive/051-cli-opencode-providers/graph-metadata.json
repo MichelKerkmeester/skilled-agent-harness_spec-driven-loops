@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.md, README.md, references, prompt templates, and the manual testing playbook. The skill's own README FAQ already recommends `opencode-go/deepseek-v4-pro` as the default, creating documentation drift. The user wants a clean removal of the github-copilot provider surface while keeping the direct DeepSeek API references intact.",
+    "causal_summary": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.md, README.md, references, prompt templates, and the manual testing playbook",
     "created_at": "2026-04-29T10:45:14Z",
-    "last_save_at": "2026-06-05T12:47:32.694Z",
+    "last_save_at": "2026-06-23T03:49:49.336Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1fb8e0cb1f59a00e5e6c18cd93a53451de16a7709feb2992d7e0aabda576fafe",
+    "source_doc_hashes": {
+      "spec.md": "6099af635075581760bac8e5d26a717cb68b074031dfed932af8ad63d87822e4",
+      "plan.md": "b0bdef2e029bad79ef61257bcbdfcb02603d4466cd5cd9e2314dc6bf8699026a",
+      "tasks.md": "0f1fb70a796304f584235ba90df1775bdb93f2fe999e83fd1dad23810238d166",
+      "implementation-summary.md": "eb2f20e513c2ff96ad1a1bebf6af645d9da173c72d1ce72ea9697742f1e56753"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

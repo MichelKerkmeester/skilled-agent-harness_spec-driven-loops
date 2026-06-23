@@ -1,15 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/005-sk-design-interface-variation-diversity",
-  "description": "Feature Specification: sk-design-interface variation diversity",
+  "description": "`sk-design-interface` grounds a single design in the subject and critiques it against AI-default looks, but it has no defense for the moment it is mos",
   "keywords": [
-    "feature",
-    "specification",
     "sk-design-interface",
-    "variation",
-    "diversity"
+    "grounds",
+    "single",
+    "design",
+    "subject",
+    "critiques",
+    "against",
+    "ai-default",
+    "looks",
+    "defense",
+    "moment",
+    "mos"
   ],
-  "lastUpdated": "2026-06-15T13:45:21.711Z",
+  "lastUpdated": "2026-06-23T03:49:48.569Z",
   "specId": "005",
   "folderSlug": "sk-design-interface-variation-diversity",
   "parentChain": [

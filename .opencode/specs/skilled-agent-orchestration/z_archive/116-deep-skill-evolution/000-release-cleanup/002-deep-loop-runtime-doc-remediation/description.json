@@ -1,13 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/002-deep-loop-runtime-doc-remediation",
-  "description": "Feature Specification: deep-loop-runtime doc-remediation",
+  "description": "After the parent packet's Phase 1-5 release cleanup, 36 P1/P2 documentation findings remain open in `findings/audit-findings.jsonl` extension (DR-001.",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-loop-runtime",
-    "doc-remediation"
+    "parent",
+    "packet",
+    "phase",
+    "1-5",
+    "release",
+    "cleanup",
+    "documentation",
+    "findings",
+    "remain",
+    "open",
+    "audit-findings",
+    "jsonl",
+    "extension",
+    "dr-001"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.381Z",
+  "lastUpdated": "2026-06-23T03:49:50.588Z",
   "specId": "002",
   "folderSlug": "deep-loop-runtime-doc-remediation",
   "parentChain": [

@@ -1,16 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/001-smallcode-deep-research",
-  "description": "Feature Specification: deep-research mining smallcode-master for small-model patterns",
+  "description": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-research",
-    "mining",
-    "smallcode-master",
-    "small-model",
-    "patterns"
+    "113",
+    "arc",
+    "shipped",
+    "cli-devin",
+    "cross-model-validated",
+    "prompt",
+    "composition",
+    "rules",
+    "rcaf",
+    "default",
+    "medium",
+    "pre-plan",
+    "standard",
+    "bundle-gate",
+    "anti"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.303Z",
+  "lastUpdated": "2026-06-23T03:49:50.508Z",
   "specId": "001",
   "folderSlug": "smallcode-deep-research",
   "parentChain": [

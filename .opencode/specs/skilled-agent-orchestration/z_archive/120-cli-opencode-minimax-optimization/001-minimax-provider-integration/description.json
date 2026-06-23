@@ -1,14 +1,21 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
-  "description": "Feature Specification: Phase 1: minimax-provider-integration",
+  "description": "cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "minimax-provider-integration"
+    "cli-opencode",
+    "supports",
+    "only",
+    "opencode-go",
+    "deepseek",
+    "providers",
+    "shared",
+    "small-model",
+    "registry",
+    "minimax",
+    "entry"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.904Z",
+  "lastUpdated": "2026-06-23T03:49:51.150Z",
   "specId": "001",
   "folderSlug": "minimax-provider-integration",
   "parentChain": [

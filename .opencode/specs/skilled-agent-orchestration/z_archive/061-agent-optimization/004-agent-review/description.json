@@ -1,13 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/004-agent-review",
-  "description": "Spec: @review Agent Optimization",
+  "description": "`@review` (477 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
-    "spec",
     "review",
-    "agent",
-    "optimization"
+    "477",
+    "loc",
+    "sk-improve-agent",
+    "lens"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.283Z",
+  "lastUpdated": "2026-06-23T03:49:49.460Z",
   "specId": "004",
   "folderSlug": "agent-review",
   "parentChain": [

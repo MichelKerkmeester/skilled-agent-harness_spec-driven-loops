@@ -1,14 +1,24 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
-  "description": "Phase 1: sk-code-review Checklist Rows",
+  "description": "sk-code-review's `codequalitychecklist.md` has generic KISS/DRY rows but no explicit check for code that hand-rolls something the standard library alr",
   "keywords": [
-    "phase",
     "sk-code-review",
-    "checklist",
-    "rows"
+    "codequalitychecklist",
+    "generic",
+    "kiss",
+    "dry",
+    "rows",
+    "explicit",
+    "check",
+    "code",
+    "hand-rolls",
+    "something",
+    "standard",
+    "library",
+    "alr"
   ],
-  "lastUpdated": "2026-06-13T13:42:38.214Z",
+  "lastUpdated": "2026-06-23T03:49:48.333Z",
   "specId": "001",
   "folderSlug": "skreview-checklist-rows",
   "parentChain": [

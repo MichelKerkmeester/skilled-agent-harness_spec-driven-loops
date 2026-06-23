@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Execute all 22 `deep-loop-runtime` scenarios via `cli-devin` SWE-1.6 (deterministic `rg`/`sed`/`node`/Vitest inspection), record a verdict + evidence per scenario, and gate the council-dependent categories (06/07/08) so a downstream false-green is not recorded in phase 002.",
+    "causal_summary": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, loop lock, permissions gate, Bayesian scorer, coverage-graph DB/query/signals, the four `.cjs` script entry points, and council durability)",
     "created_at": "2026-05-27T07:08:08.391Z",
-    "last_save_at": "2026-06-22T18:55:00.785Z",
+    "last_save_at": "2026-06-23T03:49:51.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:502eac82bad25a9ff854b622d79551610d705111c21450d0a989622f348cdd74",
+    "source_doc_hashes": {
+      "spec.md": "9266b7d2f826a37f8f982cc07df31535c03ce67f9d8061daf2e5a66a38003612",
+      "plan.md": "552cb51305cd4ff252a5ed0d1c06a7fadbbb7796b31aaafafc273cd6c58d0baa",
+      "tasks.md": "6abe7d6cbb7efbf2f72a3eda04db7151906bd86622f8659f512c35943051dde2",
+      "checklist.md": "12512cf21c5bc757a3ae0c41bc8d4ee9c1706f529b077d394621bfc62ea6f10a",
+      "implementation-summary.md": "9ac6bffed902be70934880a2bbcc237cb43b4bc8094f4451abcd2b8ef7fe308c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

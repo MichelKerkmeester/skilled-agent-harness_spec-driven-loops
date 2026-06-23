@@ -1,16 +1,16 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map",
-  "description": "Feature Specification: Phase 001 Discovery Impact Map",
+  "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "001",
-    "discovery",
-    "impact",
-    "map"
+    "packet",
+    "070",
+    "rename",
+    "sk-deep-review",
+    "deep-review",
+    "sk-deep-research",
+    "deep-research"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.694Z",
+  "lastUpdated": "2026-06-23T03:49:49.702Z",
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [

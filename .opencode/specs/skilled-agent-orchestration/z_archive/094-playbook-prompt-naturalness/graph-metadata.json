@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Every per-feature file across 16 `manual_testing_playbook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.` (RCAF). Real humans almost never phrase requests that way in normal conversation. The formulaic wrapper makes the playbook scenarios feel synthetic and reduces their value as regression coverage for how AIs actually handle real-world requests.",
+    "causal_summary": "Every per-feature file across 16 `manualtestingplaybook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}",
     "created_at": "2026-05-18T07:49:27.228Z",
-    "last_save_at": "2026-06-05T12:47:32.883Z",
+    "last_save_at": "2026-06-23T03:49:50.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:20f00204e8efa93b93b144ae28c306f9eec78902248cb55daf5330c13de694ab",
+    "source_doc_hashes": {
+      "spec.md": "f9e785d718296c8471ce4523d94da5de0f15ee06bdf648785d2967c6161e2774",
+      "plan.md": "09bfcfb1dcb722dd76b8c211b3f4a87cc94fe02abe6400aacc3dc40622704fd3",
+      "tasks.md": "a62408e8662ff366cbd569afbbaa50693ebf036f62c3ccf4d901409be0eb06cd",
+      "checklist.md": "6eef061a832081a260acd41bebceb7a9e02c7e8b697b84399ae9afd5c3c3a472",
+      "decision-record.md": "317970b0dc6dc8104caa5fa5c8104201a9a778944a2aeec34cd03ae7cf708289",
+      "implementation-summary.md": "0743aa2d878eeeba23d7cc99a26d4c78f99ef278dbf72f5ebee6a82e050cb2f9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

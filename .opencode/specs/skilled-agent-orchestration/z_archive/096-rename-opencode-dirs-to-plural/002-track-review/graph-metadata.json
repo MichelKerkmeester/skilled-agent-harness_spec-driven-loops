@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Four packets shipped in close succession on 2026-05-07: 093 (sk-code-review + sk-git playbooks),",
     "created_at": "2026-05-07T14:46:56Z",
-    "last_save_at": "2026-06-05T12:47:32.894Z",
+    "last_save_at": "2026-06-23T03:49:50.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07ec071b256fd15c0b002bad6ccf3b35a078d0938d10de92c38ee843bebe2807",
+    "source_doc_hashes": {
+      "spec.md": "d221ab45d8d325611bd385c1125df28b4a581dcaa1aa859907c50e02b18dd2b2",
+      "plan.md": "119a053a1697cde4c8f638e52a9c6e51db2812031ea1460c089ce204650e20a6",
+      "tasks.md": "2ea979ba1d5c9582d9afb433a09b72af6a635e64f1ac5a528447ada665af1f64",
+      "checklist.md": "7b389ccccba674c817e71d8cc98ec7d597ee5221bd02c2d808d3a08d3424b22a",
+      "implementation-summary.md": "f308fe1a02176de817745faa3c8f0d105243a39f8c6ef4a0c8ba0af554a9e034"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

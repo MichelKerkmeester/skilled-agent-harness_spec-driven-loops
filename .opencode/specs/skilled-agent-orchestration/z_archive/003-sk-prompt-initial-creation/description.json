@@ -1,12 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/003-sk-prompt-initial-creation",
-  "description": "Feature Specification: sk-improve-prompt",
+  "description": "The Prompt Improver is a comprehensive, standalone Claude Project that provides advanced prompt engineering capabilities (10 frameworks, DEPTH methodo",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-improve-prompt"
+    "prompt",
+    "improver",
+    "comprehensive",
+    "standalone",
+    "claude",
+    "project",
+    "provides",
+    "advanced",
+    "engineering",
+    "capabilities",
+    "frameworks",
+    "depth",
+    "methodo"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.195Z",
+  "lastUpdated": "2026-06-23T03:49:48.886Z",
   "specId": "003",
   "folderSlug": "sk-prompt-initial-creation",
   "parentChain": [

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The four `spec_kit_deep-{review,research}_{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcp_tool:` block targeting `mcp__mk_spec_memory__deep_loop_graph_convergence` and `mcp__mk_spec_memory__deep_loop_graph_upsert`. Phase 004 removes those MCP handlers and tool schema entries from the spec-kit MCP server, so any remaining YAML reference would dispatch to an unavailable tool name and fail every deep-loop run.",
+    "causal_summary": "The four `speckitdeep-{review,research}{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcptool:` block targeting `mcpmkspecmemorydeeploopgraphconvergence` and `mcpmkspecmemorydeeploopgraphupsert`",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-06-22T18:55:00.634Z",
+    "last_save_at": "2026-06-23T03:49:50.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:800a2f9170d6b3123a74b351cf8421cb6ec2f26bba5368b6e05daff4b1aed82d",
+    "source_doc_hashes": {
+      "spec.md": "15fdc0d66db89d47f45f08d2b6be5054d722dd26236d1be4dc6d982a9d608c52",
+      "plan.md": "69ead1749837f41db5f8c1e4f47f895d9be69d754d7e1bad41652afe4a4f95e5",
+      "tasks.md": "7a1940676a7a5b729b6e4af5df3167c5ccc95655045ae13979104bb5dc8f70da",
+      "checklist.md": "d0fc7dc0f060373bef82684395133987323a2a149bde7f615eac66dd19f40d0d",
+      "implementation-summary.md": "6e0de80a7321074bc58283bfe49c41f7b505566a9941ee96d07cc47932f133dc"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

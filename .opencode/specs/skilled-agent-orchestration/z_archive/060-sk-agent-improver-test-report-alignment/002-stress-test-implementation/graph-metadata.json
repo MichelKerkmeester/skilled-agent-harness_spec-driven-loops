@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 produced 854 lines of research synthesizing 10 cli-copilot iterations into prioritized improvement recommendations for the sk-improve-agent triad. Phase 002 turns those recommendations into shipped behavior:",
+    "causal_summary": "Packet 060 phase 001 found that sk-improve-agent has serious evaluator machinery (proposal-only candidates, 5-dimension deterministic scoring, journals, benchmarks, mirror-drift policy, legal-stop vocabulary) but lacks the part that made packet 059's @code campaign effective: same-task A/B stress scenarios that force one failure-path claim at a time, reset the sandbox between calls, and judge only grep-checkable signals",
     "created_at": "2026-05-02T09:47:05.342Z",
-    "last_save_at": "2026-06-15T09:09:33.380Z",
+    "last_save_at": "2026-06-23T03:49:49.417Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,17 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:884736fe763466a6a7bf6a1f1bfe37bda969dabbf3267ed42967c3e19724b274",
+    "source_doc_hashes": {
+      "spec.md": "455a7356ee25190de9c22ede3144c008b31615c6baffbeb6e3eba147925b5cc1",
+      "plan.md": "af3c0f376536e89537be70a420e0f401051df1992277d61b1e9150a281eeabc5",
+      "tasks.md": "cdaac6f6b939e3c25e21db3dee58bfcf1beb3a3279f5ac2237301b97776054be",
+      "checklist.md": "6c7c79b57fdca5f905d99800b4d7b9a3dcbe5e84abcc3351d7b78fc133cb9f30",
+      "decision-record.md": "854852142b5bebf5c354e305b58a148a152b3df93af5be2f3a3f9f1d4d4a9112",
+      "implementation-summary.md": "80bbadbedb953d3b5575fb50615887465fb8a28a253dc73d8c58343b91d27373",
+      "handover.md": "10dc801786927af67fa46d64641c9cc42d4a26572261858180056d5bfd07b6b7",
+      "resource-map.md": "c729a5e04eb7501e4bf8bd9afa5bd5cca56561f6a178cce40de7addbe67a01ab"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

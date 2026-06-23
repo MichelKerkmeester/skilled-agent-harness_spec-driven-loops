@@ -1,15 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
-  "description": "Feature Specification: markdown agent rename",
+  "description": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown",
   "keywords": [
-    "feature",
-    "specification",
-    "markdown",
+    "documentation",
+    "authoring",
     "agent",
-    "rename"
+    "currently",
+    "named",
+    "create",
+    "desired",
+    "long-term",
+    "identity",
+    "markdown"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.084Z",
+  "lastUpdated": "2026-06-23T03:49:50.272Z",
   "specId": "003",
   "folderSlug": "markdown-agent-rename",
   "parentChain": [

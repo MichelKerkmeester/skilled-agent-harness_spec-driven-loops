@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Today a 99/100 score can hide wholesale fabrication because the validator reads only colors and headings, never sentences. This phase teaches it to (a) flag sections with no backing data, (b) flag ungrounded prose, and (c) report a separate 'claims supported' score so values-fidelity can't mask invented prose.",
+    "causal_summary": "`validate.ts` runs 6 mechanical checks; none reads a prose sentence",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T10:45:11.469Z",
+    "last_save_at": "2026-06-23T03:49:48.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f8bde637f9027e9d786928f9b8a8f9a0ac443dc491ed8626d99ddf27c30825a7",
+    "source_doc_hashes": {
+      "spec.md": "cc1f5f6c15ef1f015db853c00dab853376961e67e12236c998fa3e95cba0aa28",
+      "plan.md": "8da64f47c25bbed253c76201c1dbbc8da2ffdc5009f6576e9e14d826d05f1eec",
+      "tasks.md": "6f68d1fae1ed5ccbbd08ebe4feb4b62a106c96d097b2b1cd7bc311d2fdc43239",
+      "checklist.md": "ca4325220649d8c62fc37be555b7ebb7cfa6cd6b96eb05ac193d4b6756c2db2d",
+      "implementation-summary.md": "b9b9cbf28d8cf00308fc8a5a28ed976193bb142b6228f8351f50c70b58617be4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

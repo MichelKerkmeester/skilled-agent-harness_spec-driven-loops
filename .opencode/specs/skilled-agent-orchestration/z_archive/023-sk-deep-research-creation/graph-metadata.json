@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create a 3-layer autonomous deep research system: `@deep-research` agent (single iteration executor), `/speckit:deep-research` command (loop lifecycle manager via YAML workflows), and `sk-deep-research` skill (protocol documentation and templates). The system uses externalized JSONL + strategy file state with fresh agent context per iteration, solving context degradation in long research sessions.",
+    "causal_summary": "The current `/speckit:research` workflow is single-pass only",
     "created_at": "2026-04-12T09:02:50.172Z",
-    "last_save_at": "2026-06-22T18:54:59.297Z",
+    "last_save_at": "2026-06-23T03:49:49.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:849ebb276b16b5befa85b53eb71d898bfb7e002165d27c6b51897817b7c4d74e",
+    "source_doc_hashes": {
+      "spec.md": "9fa7116d2e8d71d22c696d5d48436eedc81424600bfbac2a1fe3ed236669f6a0",
+      "plan.md": "a533e414c483f80a0b5972574fed61f8a173fc03bbf3e33754a2490cd4f823b1",
+      "tasks.md": "c2f8664688c73458643f5ced59e88d7301c71a76c6faf3281697ae81dc2caeb5",
+      "checklist.md": "a848234cff70c2108682ebbbcc2a39450111780742eb2c3a92fa7f2ba35c7d20",
+      "decision-record.md": "f87a7df897450e609dd3a2c35e656a2b999c22201924762ed64ce7672c98d709",
+      "implementation-summary.md": "65b0454d06ed62059b89f65c376636f08630bb3f867714a906756f0783d96434",
+      "research/research.md": "0a88d4e023fd1438941e46b2dc8d8088710d6c04c27a6ca1c7c9bd026af13233"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

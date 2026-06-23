@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 makes Phase D validator output survivable and visible. The reducer registry now carries `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`; the dashboard shows search debt before active risks; and review-report compiler instructions include an always-visible Search Ledger section before the audit appendix.",
+    "causal_summary": "Valid v2 ledger rows are not useful if the reducer drops them",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.751Z",
+    "last_save_at": "2026-06-23T03:49:50.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bf4a64c6ae5a67157815cacf109cd4222daf2337d91a50150f0cdb67a955832b",
+    "source_doc_hashes": {
+      "spec.md": "37fe31691b69d562dad65c769b9336177a7fdb2606b7dddc907b278b042f1899",
+      "plan.md": "d0d9c87337ecb838e91b2c4ab085f7b3f2a14e21a854f1fb943afaf9037f0573",
+      "tasks.md": "cc9c4f1395d6dcd570af26c3d8c6b8f7cb2479debe31f2c8f18cc4ec27a671b1",
+      "checklist.md": "1e9700884a8c4de21edd45c22b554b367f2aa86d24ece34ba9b9ab696984ee75",
+      "decision-record.md": "b088ad8da6891c35aeee416d1e88837a34be41c8f8eaf8b65da0e2540063b290",
+      "implementation-summary.md": "9e47e3d88e1907f6eca679dd51424d584ab79c522ed1220e97378b20a536f1b0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

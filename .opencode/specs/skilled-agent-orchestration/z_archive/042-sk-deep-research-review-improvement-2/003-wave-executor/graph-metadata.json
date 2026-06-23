@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 adds orchestrator-managed parallel wave execution so deep research and deep review can handle very large targets without abandoning the LEAF-worker model. It formalizes deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the coverage-graph foundation from Phase 002.",
+    "causal_summary": "The deep-loop products are currently optimized for one iteration stream at a time",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-06-22T18:54:59.401Z",
+    "last_save_at": "2026-06-23T03:49:49.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f970b2d314eb315de4f9b6cf87c0987f5e993a0406992021850483e64fd99f46",
+    "source_doc_hashes": {
+      "spec.md": "f9109f5eb44873c913565c8eaa0100b8e87c7e4d452ebb33ef3409ec5390ea09",
+      "plan.md": "2d5989df0362cc7ed83f233f9693b4d8293e703eede37911c7f037ab865f8854",
+      "tasks.md": "03243201f87441cb99f49b70df4c67bb454e23d33691a668153809fc3f0d3d24",
+      "checklist.md": "9ba3fe1fe78b2f04d7e07939691737875125b0cb2fe4419fa8f16834c1959d50",
+      "decision-record.md": "4a564ec4ac7c9bdbf3cfa56d2da41f65f6a7ef2e6b2769341694a6e9139e0cf8",
+      "implementation-summary.md": "17e61ff9fdf51a2cc763e246a2abf251c8fcbc423af9b6dac719a5d1077e8429"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

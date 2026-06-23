@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This spec defines a focused refinement of the skill advisor workflow to improve recommendation correctness, preserve uncertainty safety by default, and reduce runtime overhead in repeated calls. The work is limited to `.opencode/skills/scripts/skill_advisor.py` plus adjacent script-level support files that provide caching, benchmarking, and regression gates.",
+    "causal_summary": "The current advisor mixes command bridges and real skills in a single ranking path, applies confidence-only behavior when `--threshold` is explicitly passed, and performs repeated expensive discovery/parsing work per process",
     "created_at": "2026-04-12T09:02:50.201Z",
-    "last_save_at": "2026-06-22T18:54:59.199Z",
+    "last_save_at": "2026-06-23T03:49:48.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1671c6a9b498f1c976d4ffea5a1c611d45760883d7f7034192b232487eba850c",
+    "source_doc_hashes": {
+      "spec.md": "ff95a098b17062a9c2bd8eaa819160e1512c18e02e6f89d1c7131fd96fc4f1c8",
+      "plan.md": "7485aa50128275baf6eef5d5a2d31f73ebe1c0e9f2a4b68a86215192c0c7c153",
+      "tasks.md": "3a93597ccc1162ec57e7ca8ddd41edc79d331eb72b2000992be63ddf0e182775",
+      "checklist.md": "05bc68395c1499683940765e2889526db729af390bff80df62d710c26a85cd39",
+      "decision-record.md": "34a8f1653dfe93a34409bbdf48c0e362e9cfc811fe63eb027ee2b49c5f76c31b",
+      "implementation-summary.md": "dbb076523f784faa5fdc2f9ac124897a727d34a2d4e40dc6b9d9c83f0afe6828"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

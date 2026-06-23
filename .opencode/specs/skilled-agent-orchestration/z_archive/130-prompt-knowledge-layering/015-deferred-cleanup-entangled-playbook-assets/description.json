@@ -1,13 +1,15 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
-  "description": "Feature Specification: deferred-cleanup-entangled-playbook-assets",
+  "description": "Three deferred items remained after 014",
   "keywords": [
-    "feature",
-    "specification",
-    "deferred-cleanup-entangled-playbook-assets"
+    "three",
+    "deferred",
+    "items",
+    "remained",
+    "014"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.378Z",
+  "lastUpdated": "2026-06-23T03:49:51.658Z",
   "specId": "015",
   "folderSlug": "deferred-cleanup-entangled-playbook-assets",
   "parentChain": [

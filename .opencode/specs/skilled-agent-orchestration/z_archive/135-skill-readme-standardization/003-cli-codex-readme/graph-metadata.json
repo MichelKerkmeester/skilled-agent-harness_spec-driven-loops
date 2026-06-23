@@ -28,9 +28,9 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "standardization",
-      "second"
+      "tabular",
+      "reference",
+      "card"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the skill README standardization, the second cli-* skill rewritten.",
+    "causal_summary": "The cli-codex README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T10:30:00Z",
-    "last_save_at": "2026-06-17T19:57:23.826Z",
+    "last_save_at": "2026-06-23T03:49:51.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:af78bbc4a7a2a4c33b850eec96a80c5eaabd93ed3f8dccab41f5e1e7b52fde6b",
+    "source_doc_hashes": {
+      "spec.md": "2db9a941574f6b6bf067c36e2c8e043d06e4e3c00be458c2388c6d38ca11098c",
+      "plan.md": "c35d84979d8638b8661dd4d9dc2788790ed715540ce456cff3c33e457d78ff94",
+      "tasks.md": "d1ff1704a792076944349a986b057a7224175df0619dd4cad1ad22a0f613c613",
+      "implementation-summary.md": "68f3150465170a2e6bdf66682f3db8766a5321b637a1f551f9c9f2472d25eee1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

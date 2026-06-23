@@ -8,15 +8,20 @@
     "related_to": []
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/009-iterative-runtime-primitive-extraction",
-  "description": "Feature Specification: Runtime Primitive Extraction",
+  "description": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package",
   "keywords": [
-    "feature",
-    "specification",
-    "runtime",
-    "primitive",
-    "extraction"
+    "extract",
+    "council-compatible",
+    "shared",
+    "primitives",
+    "deep-loop-runtime",
+    "without",
+    "creating",
+    "peer",
+    "council-runtime",
+    "package"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.508Z",
+  "lastUpdated": "2026-06-23T03:49:50.755Z",
   "specId": "009",
   "folderSlug": "iterative-runtime-primitive-extraction",
   "parentChain": [

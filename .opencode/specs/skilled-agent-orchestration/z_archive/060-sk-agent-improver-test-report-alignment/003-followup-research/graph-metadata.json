@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 060/002 ran R1 stress tests (CP-040..CP-045) and scored 0 PASS / 2 PARTIAL / 4 FAIL. The failures surfaced a methodology-level meta-finding: the 059 same-task A/B prepend-agent-body pattern works when discipline lives in the agent body (like @code) but breaks when discipline lives at the command/orchestrator layer above the agent body (like @improve-agent — proposal-only mutator per ADR-001).",
+    "causal_summary": "R1 produced two distinct artifacts:",
     "created_at": "2026-05-02T11:15:18.846Z",
-    "last_save_at": "2026-06-05T12:47:32.725Z",
+    "last_save_at": "2026-06-23T03:49:49.423Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,18 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:3e55560952cc965e81a4d98f0acc8f506e733c35628576c84ac39a69c69478f7",
+    "source_doc_hashes": {
+      "spec.md": "5ec7984ad925b18b5a1edbe5c6eeb17759687dbff914f63dff57d84b9955b8ec",
+      "plan.md": "5d4af6a9b7868ad43e3289c636effb1d567ec2d1b0f403baa59bf0590a722dc7",
+      "tasks.md": "e8b12a2db43aa48f71a9847b7754211f7ed000f8651f21b18c3540a5c7f03f88",
+      "checklist.md": "5c48c061bd4f4dbe4ca71045b84378722cae5a3c2da682ba7687f9e02b2fdc48",
+      "decision-record.md": "d2166b5d6cd209ba7baad47b4fd056825cd23708edfc6b24d5f87ffcfc659067",
+      "implementation-summary.md": "6251b6ead8c84ab413afb267042e4c9d1cba884701bc105f7919057cfb6fcb25",
+      "research/research.md": "a0ece29b117a65068106e9a0dbe82151978e2b7a5e782b5f104b545b440cc124",
+      "handover.md": "5430548d1a2c1c00efddf32a211690424cf1831320affb71b332edf1c111be04",
+      "resource-map.md": "55d09a570a1f4636963644c1bfbc2b78f38fb54145bc357f78cde2afb22b54d8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 12** of the mcp-open-design specification — a doc-realignment phase closing the catalog/playbook gap left open by phase 011.",
+    "causal_summary": "Phase 011 made the `sk-design-interface` coupling a hard precondition for all design work (banner, hard gate, NEVER #6, success-criteria gate)",
     "created_at": "2026-06-17T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.030Z",
+    "last_save_at": "2026-06-23T03:49:48.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9eff27c0fa8f3de699f9cdd90d9fe0cf852880210332970bf4a4347832ecc79",
+    "source_doc_hashes": {
+      "spec.md": "2365c0029f16f44749b2df3906a0832690743dabc4ebceb8b1f360d2404df52b",
+      "plan.md": "9eb9d791760c7cfcea7c1c34d7badd6f09b492c4526f756ec0d856b16d4174eb",
+      "tasks.md": "b758baa910ea79ac624f32e0d4355bcdadb66c7c98cae6658326502a05795ce0",
+      "implementation-summary.md": "e36f71a031a9553e588410bdefba1836605abbd4e6e89e46f94f749724649d25"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -15,16 +15,19 @@
   "importance_tier": "important",
   "contextType": "implementation",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
-  "description": "Feature Specification: 003 — Script Shim + DB Relocation",
+  "description": "The 4 `deeploopgraph` MCP tools (`deeploopgraphconvergence`, `deeploopgraphupsert`, `deeploopgraphquery`, `deeploopgraphstatus`) are dispatched by dee",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "script",
-    "shim",
-    "relocation"
+    "deeploopgraph",
+    "mcp",
+    "tools",
+    "deeploopgraphconvergence",
+    "deeploopgraphupsert",
+    "deeploopgraphquery",
+    "deeploopgraphstatus",
+    "dispatched",
+    "dee"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.623Z",
+  "lastUpdated": "2026-06-23T03:49:50.869Z",
   "specId": "004",
   "folderSlug": "script-shim-db-relocation",
   "parentChain": [

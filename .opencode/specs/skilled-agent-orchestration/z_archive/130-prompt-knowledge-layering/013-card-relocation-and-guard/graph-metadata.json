@@ -31,8 +31,8 @@
       "plan",
       "tasks",
       "summary",
-      "phase",
-      "final"
+      "clipromptqualitycard",
+      "model"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 13 (final) of spec 130. The canonical CLI quality card lived in `sk-prompt`, which is meant",
+    "causal_summary": "`clipromptqualitycard.md` (model overrides, precedence, per-cli mirrors) lived inside `sk-prompt`,",
     "created_at": "2026-06-05T12:47:32.525Z",
-    "last_save_at": "2026-06-17T19:57:23.757Z",
+    "last_save_at": "2026-06-23T03:49:51.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d93d04484bc0352fa8fedcb7927424d33cf51831e974d815598d2e7c431846d8",
+    "source_doc_hashes": {
+      "spec.md": "65e1fb1fcaf55d1856782d803a53e475a193c2000a666a4b13b112f982058d42",
+      "plan.md": "cc4648a302bc014fd9ab434f1e2e968b6770bb419cd92b14874965482b4f8b7d",
+      "tasks.md": "c8c559fb1e25ce576f699c5b3047c9276650f6b9bf22235a25222fa39529927e",
+      "implementation-summary.md": "b88be54b9ed11343ef22cfd4c4fc0e2d74f4c8905ad39536ca26122058f881f2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,17 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
-  "description": "Feature Specification: H-3 Async-IIFE + H-6 Lazy mkdir",
+  "description": "The original phase scope conflated two different concerns:",
   "keywords": [
-    "feature",
-    "specification",
-    "h-3",
-    "async-iife",
-    "h-6",
-    "lazy",
-    "mkdir"
+    "original",
+    "phase",
+    "scope",
+    "conflated",
+    "two",
+    "different",
+    "concerns"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.160Z",
+  "lastUpdated": "2026-06-23T03:49:50.350Z",
   "specId": "003",
   "folderSlug": "h3-async-iife-h6-lazy-mkdir",
   "parentChain": [

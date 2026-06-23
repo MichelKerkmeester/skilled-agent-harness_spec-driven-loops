@@ -1,21 +1,17 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement",
-  "description": "Feature Specification: Deep Agent Improvement uplift + correctness + evaluator + cross-runtime + mixed-executor arc",
+  "description": "This cluster groups 9 sub-phases that share a single thematic focus",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "agent",
-    "improvement",
-    "uplift",
-    "correctness",
-    "evaluator",
-    "cross-runtime",
-    "mixed-executor",
-    "arc"
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.692Z",
+  "lastUpdated": "2026-06-23T03:49:50.946Z",
   "specId": "005",
   "folderSlug": "deep-agent-improvement",
   "parentChain": [

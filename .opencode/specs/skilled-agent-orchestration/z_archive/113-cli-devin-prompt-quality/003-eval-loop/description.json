@@ -1,17 +1,16 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/003-eval-loop",
-  "description": "Feature Specification: Eval Loop for cli-devin SWE 1.6 Optimization",
+  "description": "We have a rig (002) and a ratified design contract (001)",
   "keywords": [
-    "feature",
-    "specification",
-    "eval",
-    "loop",
-    "cli-devin",
-    "swe",
-    "optimization"
+    "rig",
+    "002",
+    "ratified",
+    "design",
+    "contract",
+    "001"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.267Z",
+  "lastUpdated": "2026-06-23T03:49:50.470Z",
   "specId": "003",
   "folderSlug": "eval-loop",
   "parentChain": [

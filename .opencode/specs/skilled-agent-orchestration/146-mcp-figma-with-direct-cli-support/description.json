@@ -1,16 +1,25 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support",
-  "description": "Feature Specification: mcp-figma with direct CLI support",
+  "description": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI",
   "keywords": [
-    "feature",
-    "specification",
-    "mcp-figma",
-    "direct",
-    "cli",
-    "support"
+    "figma",
+    "desktop",
+    "holds",
+    "project",
+    "real",
+    "design",
+    "systems",
+    "tokens",
+    "variables",
+    "components",
+    "coding",
+    "agent",
+    "only",
+    "reach",
+    "them"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.065Z",
+  "lastUpdated": "2026-06-23T03:49:48.648Z",
   "specId": "146",
   "folderSlug": "mcp-figma-with-direct-cli-support",
   "parentChain": [

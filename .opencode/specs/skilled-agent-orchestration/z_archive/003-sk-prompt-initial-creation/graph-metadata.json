@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Convert the standalone Prompt Improver AI system (v0.200) into an OpenCode-native skill (`sk-improve-prompt`) that provides integrated prompt engineering capabilities directly within the coding environment. The skill packages 10 proven prompt frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT, VIBE, FRAME, MOTION), the DEPTH thinking methodology, and triple scoring systems (CLEAR/EVOKE/VISUAL) into the OpenCode skill architecture for seamless on-demand invocation.",
+    "causal_summary": "The Prompt Improver is a comprehensive, standalone Claude Project that provides advanced prompt engineering capabilities (10 frameworks, DEPTH methodology, triple scoring)",
     "created_at": "2026-04-12T09:02:50.200Z",
-    "last_save_at": "2026-06-05T12:47:32.541Z",
+    "last_save_at": "2026-06-23T03:49:48.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c2b0a3ab9def4b55fa2f35b42b6589f9a3f3d720ad91cc06fdc2d45dd7f53825",
+    "source_doc_hashes": {
+      "spec.md": "617ab38b271ed10e024385e28da69e747cc6510b3f30ec44a38e7d60613cd744",
+      "plan.md": "e87b810968e7c1fa2bd7c46f70e08d828c361f8ab95ecc086618ef94e9556c02",
+      "tasks.md": "48982e0c7bd9abed6471accf13e3b312fca65819e96c276acf963473299f06c7",
+      "checklist.md": "62b9d0ac49967fa32a414fa543ea78d64815a4f0f3cd0a04c5ac671940d13b54",
+      "decision-record.md": "664a938c2ccad3039c4edd19b1803756e0b411ee25070fef4b8d2a24cc68fc22",
+      "implementation-summary.md": "648e62c2500b279ba5fc4e95e53ea108b09f57d86f392e52fc96d4df6f694d5b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

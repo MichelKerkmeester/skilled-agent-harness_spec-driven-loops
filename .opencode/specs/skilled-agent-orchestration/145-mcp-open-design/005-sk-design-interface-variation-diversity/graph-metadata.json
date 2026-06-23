@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Adapt the string seed-of-thought technique to the skill's grounded, anti-default philosophy and ship it as a reference plus a lean SKILL.md hook. A committed random seed sets a non-median starting point inside a subject-grounded option space, then the remaining directions are spread to be genuinely distinct. Grounding, the critique against AI-default looks, and the quality floor stay primary. The seed only breaks the tie the median would otherwise win.",
+    "causal_summary": "`sk-design-interface` grounds a single design in the subject and critiques it against AI-default looks, but it has no defense for the moment it is most likely to fall back to a default: when a brief asks for several directions at once",
     "created_at": "2026-06-14T14:30:00Z",
-    "last_save_at": "2026-06-16T14:27:20.549Z",
+    "last_save_at": "2026-06-23T03:49:48.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7c014b9dfd20de20bce10718974cfd900dc1751ca7aa6b9ec8ce566195ee51a3",
+    "source_doc_hashes": {
+      "spec.md": "68ac7f0bb3a221af7b7d6ab318ded957579708398581b0de8ba9e71b03731d9a",
+      "plan.md": "35ede86cf148732a0aa8245dcbcf838e7b779bcbc59ff9625d671eb3b13f7c80",
+      "tasks.md": "2d54663aff2d1bd13e8d6a4ded08e04a7901415dc559725f7d088a43336ae2fa",
+      "checklist.md": "aead997a27bf7b66cebc466207fa308150084b8dfcf167797d70298e46bdcd91",
+      "implementation-summary.md": "8a6982701492685770ee37bf86f4ae2389ab53e385353632b07e5bcf7a31e877"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

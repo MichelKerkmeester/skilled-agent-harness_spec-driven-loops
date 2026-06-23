@@ -1,16 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook",
-  "description": "Feature Specification: sk-doc Feature Catalog + Testing Playbook Alignment",
+  "description": "The original spec packet captured only the first part of the work: refactoring manual testing playbooks toward a feature-catalog-like package shape",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-doc",
-    "catalog",
+    "original",
+    "spec",
+    "packet",
+    "captured",
+    "only",
+    "first",
+    "part",
+    "work",
+    "refactoring",
+    "manual",
     "testing",
-    "playbook",
-    "alignment"
+    "playbooks",
+    "toward",
+    "feature-catalog-like",
+    "package",
+    "shape"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.286Z",
+  "lastUpdated": "2026-06-23T03:49:49.000Z",
   "specId": "021",
   "folderSlug": "sk-doc-feature-catalog-testing-playbook",
   "parentChain": [

@@ -1,14 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
-  "description": "Spec: Self-Test Fixes and Reducer Improvements",
+  "description": "Phase 009 (self-test) found 5 issues",
   "keywords": [
-    "spec",
+    "phase",
+    "009",
     "self-test",
-    "fixes",
-    "reducer",
-    "improvements"
+    "found",
+    "issues"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.214Z",
+  "lastUpdated": "2026-06-23T03:49:49.202Z",
   "specId": "010",
   "folderSlug": "sk-agent-improver-self-test-fixes",
   "parentChain": [

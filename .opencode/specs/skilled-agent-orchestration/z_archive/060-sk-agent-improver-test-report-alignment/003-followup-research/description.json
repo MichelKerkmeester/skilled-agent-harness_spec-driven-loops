@@ -1,16 +1,13 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/003-followup-research",
-  "description": "Feature Specification: Followup Research on 060/002 R1 Results",
+  "description": "R1 produced two distinct artifacts:",
   "keywords": [
-    "feature",
-    "specification",
-    "followup",
-    "research",
-    "060",
-    "002",
-    "results"
+    "produced",
+    "two",
+    "distinct",
+    "artifacts"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.256Z",
+  "lastUpdated": "2026-06-23T03:49:49.426Z",
   "specId": "003",
   "folderSlug": "followup-research",
   "parentChain": [

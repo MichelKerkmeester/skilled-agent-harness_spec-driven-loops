@@ -1,18 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/001-skill-build-and-deep-review",
-  "description": "Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline",
+  "description": "The framework can reason about distinctive design direction (`sk-design-interface`) and drive design transports (`mcp-open-design`, `mcp-figma`), but",
   "keywords": [
-    "feature",
-    "specification",
-    "create",
-    "sk-design-md-generator",
-    "skill",
-    "embedded",
-    "extraction",
-    "pipeline"
+    "framework",
+    "reason",
+    "about",
+    "distinctive",
+    "design",
+    "direction",
+    "sk-design-interface",
+    "drive",
+    "transports",
+    "mcp-open-design",
+    "mcp-figma"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.171Z",
+  "lastUpdated": "2026-06-23T03:49:48.826Z",
   "specId": "001",
   "folderSlug": "skill-build-and-deep-review",
   "parentChain": [

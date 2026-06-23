@@ -1,13 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
-  "description": "Feature Specification: cli-gemini Skill",
+  "description": "Claude Code and OpenCode lack a structured way to delegate tasks to Google's Gemini CLI",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-gemini",
-    "skill"
+    "claude",
+    "code",
+    "opencode",
+    "lack",
+    "structured",
+    "way",
+    "delegate",
+    "tasks",
+    "google",
+    "gemini",
+    "cli"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.183Z",
+  "lastUpdated": "2026-06-23T03:49:48.871Z",
   "specId": "001",
   "folderSlug": "cli-gemini-creation",
   "parentChain": [

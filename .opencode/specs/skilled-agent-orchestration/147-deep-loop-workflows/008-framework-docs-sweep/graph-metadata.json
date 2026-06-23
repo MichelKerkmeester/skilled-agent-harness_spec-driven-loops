@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep-* (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names. descriptions.json and changelog history must be EXCLUDED from the rename sweep.",
+    "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep- (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-06-22T18:54:59.102Z",
+    "last_save_at": "2026-06-23T03:49:48.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:793b6b4dc7769df69bcacae35729c9ac1e818158b00d541cc1d4f64a1ff83f3f",
+    "source_doc_hashes": {
+      "spec.md": "13c12ab3b2073ae3322b13da0cc0f4b54d0bfb7349002523c7e1c5c2881300c1",
+      "plan.md": "521ad2bedef6b1ea41509a668b7e272301a96dc8cee47d9aac5fd5abcada484c",
+      "tasks.md": "6337fe9554d30d2a8a7ecca1d3d073e217c8d31ae2963ef53e751facff0f56f4",
+      "checklist.md": "d49709b8e2186b231b7e6d942805115df7d51f42cd32944f7297547b6031a514",
+      "implementation-summary.md": "d2963f1f507876845dd4088c80461fb78b45375f6f8ed2b7e9f842f509b8d575"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

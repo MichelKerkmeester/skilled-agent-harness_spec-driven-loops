@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Round 1 distributed the distilled `Fable5.md` doctrine via a surgical set (now in `149/001-initial-refinement`). Round 2 is a deep-research round over two new, mechanism-rich sources (`external/fable-mode-main/` — a 62KB forensic behavioral profile + `/fable-mode` command; `external/opus-fable-mode-main/` — a CLAUDE.md governor + a `UserPromptSubmit` reinject hook + a `leak_test.py` measurement harness + Opus recursion-control) to find **every adjustable Public-repo surface** and the **optimizations** that move our AIs — any AI — toward fable-5 *efficiency*.",
+    "causal_summary": "The framework absorbed only the distilled `Fable5.md` doctrine (round 1)",
     "created_at": "2026-06-15T09:00:05Z",
-    "last_save_at": "2026-06-16T06:06:34.787Z",
+    "last_save_at": "2026-06-23T03:49:48.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:73c31c33538c0e9f426275e31e3fca586243a18a25d4f73f8612d5284bdbe340",
+    "source_doc_hashes": {
+      "spec.md": "fb8900fa72418cea92de22a1426dadb85fb88111f9c1a09b37aa3b1797c793e4",
+      "plan.md": "2a5a7dccabe87790f35202b38f6e8a535aae5f6cfc8c5b160ab66b3ffb5f6cf9",
+      "tasks.md": "06985e03ce81da9c739849a914ba9f1cc563c3959c21e8210350d66bf3bbc9aa",
+      "checklist.md": "35ea9f9eb674c77fce98512f85d9e024d2dd9685dd44368f3e74d29c644e0c74",
+      "decision-record.md": "5270126322b08663a1d2fa233228ac0b210499b6d102429ee49b61e0ff7e1b9a",
+      "implementation-summary.md": "61b6fef620ce2a93b81f975b79000dec31295122dfd00e8f3c863d5f4e8a6c43",
+      "research/research.md": "de3707034567c6c42f8ac79fc9b786455f636d430ecb0abe7311056c9ddc7037"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

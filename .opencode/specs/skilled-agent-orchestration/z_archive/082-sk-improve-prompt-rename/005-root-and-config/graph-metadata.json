@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`. Leaving those refs behind creates broken setup guidance and stale skill catalog entries.",
+    "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-06-22T18:54:59.859Z",
+    "last_save_at": "2026-06-23T03:49:49.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:969111c587c3bccf4d89d6b6d0a48c0259a0ac937db845d75afc9281e933eefc",
+    "source_doc_hashes": {
+      "spec.md": "bf4ece8c526aef165ebac30d06c5eb1af2322f96be2a7990fb025a8e75a42b76",
+      "plan.md": "7b97b57a952deff65a8eec843c88b51e3c0f7199cc3fee1f5f17c8665acfb97b",
+      "tasks.md": "c2c21f8dcb6d94b425cc53c9e31ecb0f543eda97beaf52ceaf36fa99a76e5748",
+      "implementation-summary.md": "59a8951cdd45a28faa2affcdd5f2a846f846d38fd9cdcfbf820d1b20bcea5d40"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

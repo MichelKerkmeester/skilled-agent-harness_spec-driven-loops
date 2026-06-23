@@ -99,12 +99,16 @@
     ],
     "causal_summary": "Skill documentation under `.opencode/skills/` has accumulated navigational scaffolding the user",
     "created_at": "2026-05-26T09:40:16.330Z",
-    "last_save_at": "2026-06-07T09:00:45.943Z",
+    "last_save_at": "2026-06-23T03:49:51.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:fbc0240f1453563d50e1f4e41849a5d70f9e8eaf6d59ed35574c49d97f03eaf4",
+    "source_doc_hashes": {
+      "spec.md": "904caa4b737a569eb475e62f56eb6d0fe72b5e93785e4f7effb95afc094cbb48"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

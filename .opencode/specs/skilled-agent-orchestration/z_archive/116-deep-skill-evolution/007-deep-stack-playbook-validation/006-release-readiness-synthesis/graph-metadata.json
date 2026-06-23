@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger. Without (a) a single documented dispatch methodology and (b) a cross-skill rollup, the run cannot be executed consistently or assert release readiness for the deep-loop family.",
+    "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-06-22T18:55:00.819Z",
+    "last_save_at": "2026-06-23T03:49:51.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:1b8b8e453a6b2eecf8c05153d140df724c957307485619b619b9a99f328b7bff",
+    "source_doc_hashes": {
+      "spec.md": "59f97d819afd793c988095b22db97d431dc062626c983a4f57dd3894ded55c1c",
+      "plan.md": "36324db5991081b9a2dcc60672794f966195f6231e6bfb9382b6950c8d4f8cf5",
+      "tasks.md": "1ad4ab2f3cb136046b5aea0b8488218053986fa0b2ab9818f6bb373a1f07d4a8",
+      "checklist.md": "92ecb5e9ea6d772fc31a7b8246eb96c2c2a4826194bc88e9f90f4c9d72413616",
+      "implementation-summary.md": "c328c94050cbf08e8f26a866fa8270836a239a4dedb764abcf75144b013f6b63"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

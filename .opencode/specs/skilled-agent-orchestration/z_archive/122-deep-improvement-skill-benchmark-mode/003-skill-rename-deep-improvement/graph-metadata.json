@@ -29,7 +29,7 @@
       "results",
       "skill",
       "across",
-      "every"
+      "dir"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -130,15 +130,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Rename the skill `deep-agent-improvement` to `deep-improvement` across every surface so the name reflects its real scope (agents + models + skills). The `-agent-` infix is now misleading.",
+    "causal_summary": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions.json, and cross-references; zero dangling refs; green advisor rebuild.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-06-17T19:57:23.674Z",
+    "last_save_at": "2026-06-23T03:49:51.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:426ad23f037f61c63331fa69f11a9fdef8d1e882ad16340869a30c7f026cfbb1",
+    "source_doc_hashes": {
+      "spec.md": "128c9325725295042651b3511bdc28d320d6655e37177de40a5eb8ce7252b0bf",
+      "implementation-summary.md": "872f8d7ef926c34b64e4e912a48c3b394145f0581dfb6c665610cc44fd572292"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

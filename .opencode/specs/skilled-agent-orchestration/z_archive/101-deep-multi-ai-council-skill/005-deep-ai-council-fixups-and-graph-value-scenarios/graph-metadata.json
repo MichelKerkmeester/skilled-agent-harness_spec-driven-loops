@@ -192,7 +192,7 @@
     ],
     "causal_summary": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
     "created_at": "2026-05-11T08:10:00Z",
-    "last_save_at": "2026-06-15T09:09:33.581Z",
+    "last_save_at": "2026-06-23T03:49:50.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e95ff3d65b80b5daf133042803b503b7b3438f3f1e7981e808698459060ed529",
+    "source_doc_hashes": {
+      "spec.md": "e6a6b2430d77054980a7a5b530a1dc7046378af3c8960fc827dfd8bc9183b99e",
+      "plan.md": "fcde9316d56c34d80154c806aeae7c39b523bb6762bca78ab93c339be6d4c393",
+      "tasks.md": "43ae58bd29dc9b19aa5e387dc7d5be4b2d2b646ee9093485f56ef5c62b6ea830",
+      "implementation-summary.md": "6fe469f470c4f68eaeee2ebfaf9ca850ff6fbd4728e7e264e05d9aea7bd346e1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

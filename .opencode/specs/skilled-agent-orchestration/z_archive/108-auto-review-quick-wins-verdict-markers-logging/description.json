@@ -1,15 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging",
-  "description": "Feature Specification: sk-code-review Auto-Review Uplift",
+  "description": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-code-review",
+    "packet",
+    "106",
+    "identified",
+    "high-impact",
+    "medium-impact",
+    "reusable",
+    "patterns",
+    "upstream",
+    "dzianisv",
+    "opencode-plugins",
     "auto-review",
-    "uplift"
+    "package"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.143Z",
+  "lastUpdated": "2026-06-23T03:49:50.332Z",
   "specId": "108",
   "folderSlug": "auto-review-quick-wins-verdict-markers-logging",
   "parentChain": [

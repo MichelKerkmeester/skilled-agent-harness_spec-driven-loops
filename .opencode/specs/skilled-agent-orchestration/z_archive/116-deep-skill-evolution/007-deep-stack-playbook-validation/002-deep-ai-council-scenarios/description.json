@@ -1,16 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
-  "description": "Feature Specification: Deep-AI-Council Scenarios (Deep-Loop Playbook 002)",
+  "description": "`deep-ai-council` is the multi-seat planning skill (seat diversity, cross-seat critique, convergence/rollback, artifact persistence, state JSONL, outp",
   "keywords": [
-    "feature",
-    "specification",
     "deep-ai-council",
-    "scenarios",
-    "deep-loop",
-    "playbook",
-    "002"
+    "multi-seat",
+    "planning",
+    "skill",
+    "seat",
+    "diversity",
+    "cross-seat",
+    "critique",
+    "convergence",
+    "rollback",
+    "artifact",
+    "persistence",
+    "state",
+    "jsonl",
+    "outp"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.796Z",
+  "lastUpdated": "2026-06-23T03:49:51.039Z",
   "specId": "002",
   "folderSlug": "deep-ai-council-scenarios",
   "parentChain": [

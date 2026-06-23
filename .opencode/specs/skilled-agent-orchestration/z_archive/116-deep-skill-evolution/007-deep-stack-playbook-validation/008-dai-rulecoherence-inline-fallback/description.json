@@ -1,16 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
-  "description": "Remediation: deep-agent-improvement ruleCoherence inline fallback (Playbook 008)",
+  "description": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations",
   "keywords": [
-    "remediation",
-    "deep-agent-improvement",
-    "rulecoherence",
-    "inline",
-    "fallback",
-    "playbook",
-    "008"
+    "phase",
+    "005",
+    "surfaced",
+    "one",
+    "confirmed",
+    "code",
+    "bug",
+    "four",
+    "stale-scenario",
+    "expectations"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.831Z",
+  "lastUpdated": "2026-06-23T03:49:51.073Z",
   "specId": "008",
   "folderSlug": "dai-rulecoherence-inline-fallback",
   "parentChain": [

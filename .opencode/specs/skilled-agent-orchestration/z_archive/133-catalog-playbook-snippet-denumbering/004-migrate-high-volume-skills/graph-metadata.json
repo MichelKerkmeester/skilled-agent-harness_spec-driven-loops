@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After system-spec-kit, seven skills carry the bulk of the remaining snippets (~548 files). Each is self-contained (its catalog/playbook references stay within the skill), making them ideal independent units for parallel migration.",
+    "causal_summary": "After system-spec-kit, seven skills carry the bulk of the remaining snippets (~548 files)",
     "created_at": "2026-06-06T06:46:12.387Z",
-    "last_save_at": "2026-06-17T19:57:23.800Z",
+    "last_save_at": "2026-06-23T03:49:51.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:be73b334ea94f180f50b40de5f308ec8cf7820d2cfe073c9b1c00a0dc2948028",
+    "source_doc_hashes": {
+      "spec.md": "61809dc5fcd9d6f71df853c566f30d2aa4335726a70f1b9a6bbffaac2896b1cf",
+      "plan.md": "8ddd558c1896be2b33f728adf3ad71c5f0e73e67baee2b9ca84bd0d5e56b8b2e",
+      "tasks.md": "c3dbd993b25b143feaaad301c2a86b0e3d8ad274310cc8a6aac0becbf2ff6776",
+      "checklist.md": "8268c17265df80929ad79a55892b5c59cf3794831ef312ec0cd556679b17d3d9",
+      "implementation-summary.md": "dcb4e9a80c9c99bfecd5edc8dae84f02fbc50ac1f8a4874ebbec8db13cfa2a38"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

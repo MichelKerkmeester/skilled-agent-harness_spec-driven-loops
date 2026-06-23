@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A structure-only merge can silently change behavior. Without a captured byte-level baseline of every mode’s artifacts, commands, and advisor outputs, \"no regression\" is unprovable (the acceptance bar is byte-identical per mode). Two open risks gate the whole epic: nested-SKILL.md advisor discovery (blocker B5 / risk R1 — if the advisor scanner globs **/SKILL.md, the verbatim mode packets become separate rankable skills and defeat consolidation) and the Lane-D baseline asymmetry (B8). The runtime also gains new ownership in phase 002, which the runtime’s own ESCALATE rule says requires an ownership ADR before extension.",
+    "causal_summary": "A structure-only merge can silently change behavior",
     "created_at": "2026-06-14T20:16:09.677Z",
-    "last_save_at": "2026-06-22T18:54:59.088Z",
+    "last_save_at": "2026-06-23T03:49:48.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:70d117b439d08105670cbc54b2ccb36fad274c078d957e56272f7242abedd5d7",
+    "source_doc_hashes": {
+      "spec.md": "058414772259803e6c11dbc71d2ce961c70eac70fe6c2148cac9419383dfc468",
+      "plan.md": "62c8961ebc237b747afbd0c2b34e7ec7e9fb1f523c946e915e52428846a2e905",
+      "tasks.md": "5d19c2a7e8a7ed6741c1717c794a9dc073f7fe34afc59b56d5223434b644c090",
+      "checklist.md": "a02087256b0c5a8db27e6e48cf6276852a75c98ad1f92fa8753157a3cb3d916e",
+      "decision-record.md": "9bf9bd23f7cc4af29512be894f5a89147033945616b3476674fb5db34d29ef07",
+      "implementation-summary.md": "bb3c8bdcaba31ac5a1150e9d8497349ffe71c0ffeabef061f1d1df84612e6faa"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

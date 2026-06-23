@@ -30,8 +30,8 @@
       "tasks",
       "checklist",
       "summary",
-      "phase",
-      "011"
+      "routes",
+      "correct"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 011's 3-iteration deep research recommended a concrete remediation for sk-code's over-routing (D3 42) and task-dependent usefulness (D4 ~49): the `RESOURCE_MAP` keys on intent only and unions resources across all surfaces, so a single-surface task pulls the cross-surface half too. This phase implements the fix — a surface-nested `RESOURCE_MAP` with a shared `UNIVERSAL` tier, a full unranked cross-surface overlay, intra-surface intent-score ranking, and asset deferral — and proves it holds D1/D2 via a baseline-floor regression guard.",
+    "causal_summary": "sk-code routes to the correct surface (`surfaceMatch` true 3/3 live) but over-loads: the `RESOURCEMAP[intent]` value unions Webflow + Motion.dev + OpenCode + universal resources, so the detected surface's slice arrives bundled with the other surfaces' resources",
     "created_at": "2026-06-01T19:25:23.863Z",
-    "last_save_at": "2026-06-22T18:55:01.097Z",
+    "last_save_at": "2026-06-23T03:49:51.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bc72d2f663e96b1a038c5ccc9f09363a3b9fe792e4f4186ed654d111f84c8d70",
+    "source_doc_hashes": {
+      "spec.md": "a2a3651583d27895de374232467c0dbc26f5dd427e85bbafca01edffad9c21e7",
+      "plan.md": "7295e1fccf29618057ff4b25f197a4f17b7af80d8b53ead0e4e112c3cfbf8ccd",
+      "tasks.md": "3737308bf0afdc9b462be7f3897b80c9a40f78e1847b9a00da7ca1f58ca73a68",
+      "checklist.md": "ea93a03ef515321a94eb24c3481a3416da2b05676ad82f6dd6fea0b5e11c6570",
+      "implementation-summary.md": "6c50a6f0fe87b932e012f2ecd3652073435038c03faeb374ea3b0e8baea9ea83"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

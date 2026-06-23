@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "first",
-      "skill",
-      "batch",
-      "system"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 21**, the first skill in Batch E (system-*).",
+    "causal_summary": "The system-code-graph README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T15:16:11Z",
-    "last_save_at": "2026-06-17T19:57:23.846Z",
+    "last_save_at": "2026-06-23T03:49:51.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c4666ba3beb516ce4deac00debf28ff6d1a1429cafd8f63f60acce9405ad463d",
+    "source_doc_hashes": {
+      "spec.md": "16498ad875b90ee7bec42df11c8338a5ed46d997285954092ea6654ddf04fbd6",
+      "plan.md": "e8aba34e2624913b37fba7a574be65d6aab630e9307646d44df99e06d15436f6",
+      "tasks.md": "9f1a1a2720c1d398692c91dde991c789d5a23e094417a26227916027f60a26a9",
+      "implementation-summary.md": "64e67ec6c7a3ce37baaf9f47083601ec1d022c45e4046aa0aec288bca3fb6005"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASH_COMMAND_TOOL_CHAR_BUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc. in descriptions; (4) advisor routing depends on keyword density. Packet 083 had to manually trim 36 frontmatter descriptions because authoring guidance was thin and contradictory: `frontmatter_templates.md:198` says \"10-200 characters\", `skill_md_template.md:75` says \"150-300 chars\", `skill_creation.md:397` says nothing about length. Zero create-time validation. Zero permanent drift audit. Without guardrails, the next dropped-from-discovery warning is a matter of when, not if.",
+    "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASHCOMMANDTOOLCHARBUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc",
     "created_at": "2026-05-06T13:33:18.960Z",
-    "last_save_at": "2026-06-17T19:57:23.349Z",
+    "last_save_at": "2026-06-23T03:49:49.959Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:5b5d6fd5470ac16003290606a98b92fa79206cac89b7ea234d3ef2ea38310610",
+    "source_doc_hashes": {
+      "spec.md": "01142b77b5944d5f496ce99dec116359a92e07780a38bf22681ea43d6cdbb355",
+      "plan.md": "d2dedffb4170d79e3607ad540266ed024b285977cc9c4e7c3699ca114c9818b5",
+      "tasks.md": "5ac34b4abc4100c7f3129e158f5ae1bfa3d3022ac5b4422eb5416533657ef5d4",
+      "implementation-summary.md": "a661a75f56dd8bb3f29e364e7a0a47369db38f134de7fe3d6ee254367be7596b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

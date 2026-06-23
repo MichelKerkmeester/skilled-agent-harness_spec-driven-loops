@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion. If a malformed iteration ever causes `deep-review` to dispatch another `deep-review` (e.g. via a shell command misconfiguration), or `sk-code-review` to be invoked on its own output, the result is wasted compute and potentially infinite loops. Current defense is contract-only (\"this skill is LEAF\") — no runtime check.",
+    "causal_summary": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-22T18:55:00.152Z",
+    "last_save_at": "2026-06-23T03:49:50.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:56aab77b8581cb82060a2f7429560bb2034867a1cd72d7600f27a992935abdad",
+    "source_doc_hashes": {
+      "spec.md": "c5abe1af541e8c43eb4ed7e2801449d30ecdae8e21bdfbd8080d6d3ca21c265e",
+      "plan.md": "61569a15240cb81e83c1cad1794d594d34261b4fa64fd09585e1878df45718d7",
+      "tasks.md": "9db0b1216ebceddd17ef777d7a809ee5af0fbb7d65404fd490676953ff007d94",
+      "implementation-summary.md": "6999def15b6e3db3738585ffc7d7b3098b2131c1505bfa2d8e0c2bca9d21e874"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

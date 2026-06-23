@@ -1,15 +1,19 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
-  "description": "Feature Specification: sk-code Router Benchmarkability",
+  "description": "The Lane C skill-benchmark harness parses a skill's router by literal-scanning `SKILL.md` for `INTENTSIGNALS = {` and `RESOURCEMAP = {`",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-code",
+    "lane",
+    "skill-benchmark",
+    "harness",
+    "parses",
+    "skill",
     "router",
-    "benchmarkability"
+    "literal-scanning",
+    "intentsignals",
+    "resourcemap"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.080Z",
+  "lastUpdated": "2026-06-23T03:49:51.328Z",
   "specId": "009",
   "folderSlug": "sk-code-router-benchmarkability",
   "parentChain": [

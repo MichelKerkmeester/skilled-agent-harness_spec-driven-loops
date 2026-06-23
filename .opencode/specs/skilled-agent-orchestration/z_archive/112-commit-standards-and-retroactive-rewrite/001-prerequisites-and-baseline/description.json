@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
-  "description": "Phase 001: Prerequisites & Baseline",
+  "description": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time — Phase 005 needs it for",
   "keywords": [
+    "two",
+    "unknowns",
+    "block",
+    "downstream",
+    "phases",
+    "git-filter-repo",
+    "currently",
+    "installed",
+    "mac",
+    "verified",
+    "planning",
+    "time",
     "phase",
-    "001",
-    "prerequisites",
-    "baseline"
+    "005",
+    "needs"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.218Z",
+  "lastUpdated": "2026-06-23T03:49:50.410Z",
   "specId": "001",
   "folderSlug": "prerequisites-and-baseline",
   "parentChain": [

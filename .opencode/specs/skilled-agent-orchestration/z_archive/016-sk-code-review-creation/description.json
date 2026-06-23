@@ -1,13 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/016-sk-code-review-creation",
-  "description": "Feature Specification: sk-code-review Promotion",
+  "description": "Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code-review`, aligning router behavior to `sk-doc` stand",
   "keywords": [
-    "feature",
+    "level",
     "specification",
+    "converting",
+    "draft",
+    "legacy-single-hyphen-review",
+    "package",
     "sk-code-review",
-    "promotion"
+    "aligning",
+    "router",
+    "behavior",
+    "sk-doc",
+    "stand"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.163Z",
+  "lastUpdated": "2026-06-23T03:49:48.969Z",
   "specId": "016",
   "folderSlug": "sk-code-review-creation",
   "parentChain": [

@@ -1,15 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync",
-  "description": "Spec: Skill Advisor Routing + README Sync",
+  "description": "After Phase 008-010, the skill advisor and skill README are outdated",
   "keywords": [
-    "spec",
+    "phase",
+    "008-010",
     "skill",
     "advisor",
-    "routing",
     "readme",
-    "sync"
+    "outdated"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.218Z",
+  "lastUpdated": "2026-06-23T03:49:49.207Z",
   "specId": "011",
   "folderSlug": "sk-agent-improver-advisor-readme-sync",
   "parentChain": [

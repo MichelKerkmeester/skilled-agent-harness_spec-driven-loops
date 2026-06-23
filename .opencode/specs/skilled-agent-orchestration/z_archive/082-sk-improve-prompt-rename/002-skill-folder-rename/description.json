@@ -1,17 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/002-skill-folder-rename",
-  "description": "Feature Specification: Phase 002 Skill Folder Rename",
+  "description": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "002",
+    "canonical",
     "skill",
-    "folder",
-    "rename"
+    "directory",
+    "skill-local",
+    "metadata",
+    "still",
+    "identify",
+    "sk-improve-prompt"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.851Z",
+  "lastUpdated": "2026-06-23T03:49:49.904Z",
   "specId": "002",
   "folderSlug": "skill-folder-rename",
   "parentChain": [

@@ -1,15 +1,21 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
-  "description": "Feature Specification: sk-doc reference relocation",
+  "description": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
   "keywords": [
-    "feature",
-    "specification",
     "sk-doc",
-    "reference",
-    "relocation"
+    "keeps",
+    "creation",
+    "guides",
+    "references",
+    "specific",
+    "requested",
+    "structure",
+    "moves",
+    "root",
+    "folder"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.074Z",
+  "lastUpdated": "2026-06-23T03:49:50.260Z",
   "specId": "001",
   "folderSlug": "sk-doc-reference-relocation",
   "parentChain": [

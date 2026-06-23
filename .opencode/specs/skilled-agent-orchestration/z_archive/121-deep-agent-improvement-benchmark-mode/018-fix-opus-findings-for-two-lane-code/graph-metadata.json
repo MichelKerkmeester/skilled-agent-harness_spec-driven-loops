@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 017 Opus deep review returned a CONDITIONAL verdict against the post-015 two-lane program. This packet remediates every active finding: 4 P1 (the materializer is a first-writer fixture-id traversal hole that the 015 run-benchmark sanitize never reached, the bundle-gate Layer-3 execSync path is a fail-open against a documented criteria-exec gate, three dead Mode-4 doc anchors misroute the orchestrating agent, and the Lane B promotion path is non-executable while its docs over-claim mode-aware promotion) and 13 P2 advisories spanning containment hardening, grader prompt-injection defense, cache read-integrity, source-attribution tags, and shared-helper extraction. Each finding gets exactly one disposition: FIXED with a test or adversarial check where applicable, or DOCUMENT-ACCEPT with rationale. The work keeps the in-scope vitest suite green and preserves the materializer-versus-run-benchmark byte-identity invariant.",
+    "causal_summary": "The 017 deep review returned CONDITIONAL with four active P1 defects",
     "created_at": "2026-05-29T15:10:42Z",
-    "last_save_at": "2026-06-17T19:57:23.666Z",
+    "last_save_at": "2026-06-23T03:49:51.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:129576558ce5963c3eaa340de9d8905ecbeb945c6f3e52d57577136393eab051",
+    "source_doc_hashes": {
+      "spec.md": "76e35d319c52edd0be97038b00aed67559198bb8edc97505b911a18466c7f677",
+      "plan.md": "46e3cee6f51c4c05f8ae8732db07411fdbf36c5eeb483e7eac7845b3e15cf7c4",
+      "tasks.md": "8bf613d91a428b2fe7058eeeff0f842f3cecc6442acc54ac54c3204de3ce9582",
+      "checklist.md": "f081c8d6a28ccb5cbdd9d7332cb94ecea0a738ea80aa08dec03dd38101943e01",
+      "decision-record.md": "6efc07d57972cf59dbbf0eb0565b77dda80b2cde0242116424b879b591bc2be5",
+      "implementation-summary.md": "e279051db777762efa909e0b8d2d510111e90dc51992713eec9d97ebe16a7fe3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

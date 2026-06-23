@@ -36,7 +36,7 @@
       "tasks",
       "summary",
       "implementation",
-      "phase"
+      "skill"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 10** of the deep-agent-improvement model-benchmark mode decomposition.",
+    "causal_summary": "The skill now has two co-equal lanes (agent-improvement and model-benchmark) in its prose, but `references/` and `assets/` are still function-organized (integration, promotion-gates, scoring, workflow)",
     "created_at": "2026-05-29T07:56:24Z",
-    "last_save_at": "2026-06-17T19:57:23.655Z",
+    "last_save_at": "2026-06-23T03:49:51.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b142f741ad18d073d0c347074729a15fa6379ee1f7f4e788b4e8b2d969085bc2",
+    "source_doc_hashes": {
+      "spec.md": "94687f847cf7bfdd4ca4345f9cbc1eb834d02a2a9030cc2138e4956b3a699117",
+      "plan.md": "9fc0e27deec73eeec90e9a40e28b15a7f0cebcb073f0d60669fde46bd395263e",
+      "tasks.md": "b057c2c7bec50e7dd41ac64a64499a345168d2a0eff1d71c4829e5d75ce5e1e6",
+      "implementation-summary.md": "55c5f1a05c9e4533af049ae6aa7b04fd4deb46b50824fa576e079c5436831615"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

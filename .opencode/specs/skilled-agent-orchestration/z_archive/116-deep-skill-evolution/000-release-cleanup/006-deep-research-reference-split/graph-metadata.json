@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Split the two long references into smaller focused files, keep the live deep-research contracts easy to find, replace deep-review bulk with sibling-skill pointers, and align `SKILL.md` routing with `sk-doc` standards.",
+    "causal_summary": "`deep-research/references/convergence.md` and `deep-research/references/stateformat.md` have become long monoliths",
     "created_at": "2026-05-24T00:00:00.000Z",
-    "last_save_at": "2026-06-15T09:09:33.683Z",
+    "last_save_at": "2026-06-23T03:49:50.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:83a93c9711335bdf7d95084a6b9164af2cd4105b31cc7b70ca6b232efc540f6d",
+    "source_doc_hashes": {
+      "spec.md": "fe869653361aa56022b364f849858c84fb298bcb2f750a085d1be952461e40d9",
+      "plan.md": "bb5d03d1056d987a79e44a8278a2f79094884ea7c06cacbecfa2cfa81c95aaf8",
+      "tasks.md": "f38ea38fbe8655462641be9903a0170643866fa4633c7afbef4596e3879ff190",
+      "checklist.md": "eca6121964280f94ebec9e3a084fac851c55464cf3d636f41440718255be8313",
+      "implementation-summary.md": "9f26351f03347599b1bf9dcc1bfc39e4617de973a856c5d5681f26fee4299773"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

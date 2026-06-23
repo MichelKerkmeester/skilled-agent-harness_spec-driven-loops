@@ -1,14 +1,26 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/004-capability-discrimination",
-  "description": "Feature Specification: Capability discrimination",
+  "description": "The current benchmark cannot say which frontier model is better: the 2 fixtures saturate (both 100% correct), so only format/brevity separated MiniMax",
   "keywords": [
-    "feature",
-    "specification",
-    "capability",
-    "discrimination"
+    "current",
+    "benchmark",
+    "cannot",
+    "say",
+    "frontier",
+    "model",
+    "better",
+    "fixtures",
+    "saturate",
+    "100",
+    "correct",
+    "only",
+    "format",
+    "brevity",
+    "separated",
+    "minimax"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.275Z",
+  "lastUpdated": "2026-06-23T03:49:51.538Z",
   "specId": "004",
   "folderSlug": "capability-discrimination",
   "parentChain": [

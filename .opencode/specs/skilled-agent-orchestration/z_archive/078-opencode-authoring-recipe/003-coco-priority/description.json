@@ -1,17 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/003-coco-priority",
-  "description": "Feature Specification: 078/003 mcp-coco-index Canonical-Priority + Portability",
+  "description": "077 finding F-001-002: `DEFAULTEXCLUDEDPATTERNS` includes `/.` (hidden directories) which excludes `.opencode/skills/sk-code/assets/opencode/` from de",
   "keywords": [
-    "feature",
-    "specification",
-    "078",
-    "003",
-    "mcp-coco-index",
-    "canonical-priority",
-    "portability"
+    "077",
+    "finding",
+    "f-001-002",
+    "defaultexcludedpatterns",
+    "includes",
+    "hidden",
+    "directories",
+    "excludes",
+    "opencode",
+    "skills",
+    "sk-code",
+    "assets"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.825Z",
+  "lastUpdated": "2026-06-23T03:49:49.855Z",
   "specId": "003",
   "folderSlug": "coco-priority",
   "parentChain": [

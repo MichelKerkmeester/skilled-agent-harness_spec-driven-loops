@@ -1,19 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/077-spec-kit-coco-sk-code-research",
-  "description": "Feature Specification: 077 Deep Research on system-spec-kit + mcp-coco-index + sk-code OpenCode",
+  "description": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accum",
   "keywords": [
-    "feature",
-    "specification",
-    "077",
-    "deep",
-    "research",
+    "three",
+    "opencode",
+    "skill",
+    "ecosystem",
+    "surfaces",
     "system-spec-kit",
     "mcp-coco-index",
     "sk-code",
-    "opencode"
+    "side",
+    "specifically",
+    "grown",
+    "organically",
+    "accum"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.811Z",
+  "lastUpdated": "2026-06-23T03:49:49.832Z",
   "specId": "077",
   "folderSlug": "spec-kit-coco-sk-code-research",
   "parentChain": [

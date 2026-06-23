@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs**: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B (`run-benchmark.cjs` + `dispatch-model.cjs` + a 5-dim scorer), but the **prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are not yet a reusable framework** — each new model or question still needs new rig code. The `126/004` run also exposed a **correctness-saturation** problem: tractable pure-function fixtures don't separate frontier models, so the benchmark only measured format/brevity.",
+    "causal_summary": "The repo's prompt-framework benchmarks are one-off, model-specific rigs: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring",
     "created_at": "2026-06-02T05:45:33.745Z",
-    "last_save_at": "2026-06-17T19:57:23.723Z",
+    "last_save_at": "2026-06-23T03:49:51.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:3c6185d3f280c0bac21e40b02486e0f8ce86da6133e8e7a9cb22e164485c6675",
+    "source_doc_hashes": {
+      "spec.md": "619bf03456f7c4f9e5989e5fad1a3051caf1a610911fca65a3aa62b3d50a252c",
+      "plan.md": "8ef9cb36aa50cf70a5af19003535ec5f5ff0f6aaa68b61a8a761b3496c31af28",
+      "tasks.md": "272debdab7ccc1e6560899a76deeab2d076d48d48d6b538edbd8705a05bdb6d4",
+      "implementation-summary.md": "002fb027ae09ec47ff7547517de49a9d932187f94b157445881f49991f2d9742",
+      "research/research.md": "1187cd23f85e5b2fa5bd4c07a198344cb58f58dc42c7ef00a19d4ca613237381"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

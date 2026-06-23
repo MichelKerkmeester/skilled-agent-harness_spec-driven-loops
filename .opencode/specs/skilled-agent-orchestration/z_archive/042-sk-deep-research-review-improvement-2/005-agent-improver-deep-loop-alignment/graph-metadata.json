@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 completed the runtime-truth alignment for the improve-agent skill family. The delivered work added an append-only audit journal, an improvement-scoped mutation coverage graph, dimension trade-off detection, candidate lineage tracking for optional parallel waves, and benchmark stability scoring so the improver loop could behave like the deeper research and review loops instead of remaining an isolated evaluator.",
+    "causal_summary": "Before this phase shipped, the improve-agent loop had strong evaluator logic but weak runtime truth",
     "created_at": "2026-04-12T09:02:50.195Z",
-    "last_save_at": "2026-06-15T09:09:33.335Z",
+    "last_save_at": "2026-06-23T03:49:49.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4eccd2ae996ed2365cd11aabdee0b6dda7a5d8d6deae2f27c959b1467674c28c",
+    "source_doc_hashes": {
+      "spec.md": "d39414dc69d29706dcdcb1603f434c93f35b25953d39f328911910bfca551489",
+      "plan.md": "40073187ee506a927a856b52d0683ab717ef904269dc57f610491b6713837473",
+      "tasks.md": "2417400674ca76e3603042cd0261409cc7cd5fda78ebc258a728d77e58aa2c5d",
+      "checklist.md": "ef50cd880aaed6c332913f68e4a7483468cead982d499c0700a19cd58180fcde",
+      "decision-record.md": "4331d0915423c159d5e34e1faa22bd421d451ea211ea1d3853153f5a4c85893b",
+      "implementation-summary.md": "aa9b2e4544257f7dc2c59bc516c450c3727e71ad65f8f08c38ea7b73e97ab1e5"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

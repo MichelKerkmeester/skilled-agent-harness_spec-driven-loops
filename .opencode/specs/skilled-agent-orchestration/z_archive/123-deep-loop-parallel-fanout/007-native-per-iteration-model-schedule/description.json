@@ -1,17 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule",
-  "description": "Phase 007 — Native per-iteration model schedule for deep-loop fan-out",
+  "description": "Design (spec only) a first-class, contract-compliant way for an operator to request a fixed-count heterogeneous per-iteration model schedule through t",
   "keywords": [
-    "phase",
-    "007",
-    "native",
+    "design",
+    "spec",
+    "only",
+    "first-class",
+    "contract-compliant",
+    "way",
+    "operator",
+    "request",
+    "fixed-count",
+    "heterogeneous",
     "per-iteration",
     "model",
-    "schedule",
-    "deep-loop",
-    "fan-out"
+    "schedule"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.156Z",
+  "lastUpdated": "2026-06-23T03:49:51.410Z",
   "specId": "007",
   "folderSlug": "native-per-iteration-model-schedule",
   "parentChain": [

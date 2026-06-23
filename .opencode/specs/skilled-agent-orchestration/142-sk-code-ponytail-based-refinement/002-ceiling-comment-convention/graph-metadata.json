@@ -31,8 +31,8 @@
       "plan",
       "tasks",
       "summary",
-      "deliberate",
-      "simplifications"
+      "define",
+      "neutral"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Deliberate simplifications (a global lock, an O(n²) scan chosen on purpose) read as ignorance, not intent — and reviewers flag them as \"too simple.\" Ponytail marks them with a comment naming the shortcut + its ceiling + the upgrade path; the content is durable WHY (allowed by comment-hygiene), but the literal `ponytail:` brand is a perishable label. Purpose: adopt a neutral `ceiling:` convention and let the reviewer trust it to suppress over-engineering false positives — without ever excusing a real defect.",
+    "causal_summary": "Define a neutral 'ceiling:' comment convention for deliberate shortcuts in sk-code, and let sk-code-review treat a present ceiling comment as P2-downgrade evidence against over-engineering false positives. Never the ponytail brand; never in the comment-hygiene allow-list.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-15T09:09:33.154Z",
+    "last_save_at": "2026-06-23T03:49:48.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f9a2dc221da08efc7cd6e2b356785bf7223640e2a61d49ecff7468077eb74894",
+    "source_doc_hashes": {
+      "spec.md": "6b05d27177922bf4c794494c8508827eaf8512df8e8e6886d486566bb8e1f05b",
+      "plan.md": "85ae92cf714a5757f417ac32d0f6d1c6054eb7cb28aa8c9a12dc61ddd4e58fde",
+      "tasks.md": "d51a2c559ca811430511e468507ad30a08a15b7310c952e093f087ac3321f1de",
+      "implementation-summary.md": "2d50d7ae3f503925fd481d71a9599b711743bcfeb32fd47fad5e0a5809c49258"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

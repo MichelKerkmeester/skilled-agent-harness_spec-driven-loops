@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the 114-small-ai-model-optimization arc. Phases 001-006 shipped on 2026-05-18 and **created** the sentinel skill `sk-small-model` along with every cross-skill `enhances` edge, dispatch-matrix doc, and runtime helper. This phase performs a pure rename of that skill and propagates the new identity across every live reference surface.",
+    "causal_summary": "The sentinel skill `sk-small-model` was shipped by Phase 002 (foundation-routing) on 2026-05-18 and has been live ever since with `enhances` edges to `cli-devin` + `cli-opencode`",
     "created_at": "2026-05-21T06:22:25Z",
-    "last_save_at": "2026-06-17T19:57:23.474Z",
+    "last_save_at": "2026-06-23T03:49:50.543Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:20a38f5a3459dcf85422869cffee7087a10caabd39ea98ea09e090de390f4caf",
+    "source_doc_hashes": {
+      "spec.md": "e9580b12591b6cd9c8879ff00b017d4d87b4326f9379f1483235037c47f522e9",
+      "plan.md": "089079bf2ccbc82ab3294d6d79b80b7b132e1bcab34bedf0bbbbb0b6f8947cba",
+      "tasks.md": "c2b41a405230f7f3ced83864078327827a954427d17c81ef66f9aeca39ff20ec",
+      "checklist.md": "90f5e73c9e7eebf84dae131662ddc72c17fc2d6b7e5323764b69127e9695ed54",
+      "implementation-summary.md": "2188ea39874cfc8a7b1760e79adcecaad61f329e029ddcf465adf7c9a0cbb0f9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`. The `.cjs` rename attempted in 073 fixed the wrapper-level `require is not defined` but exposed a deeper blocker: the validator source (`alignment-validator.ts:19`) uses `import.meta.url`, an ESM-only feature TypeScript can't transpile to CommonJS even with `module:CommonJS`. The transpiled CJS code throws `Cannot use 'import.meta' outside a module`.",
+    "causal_summary": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`",
     "created_at": "2026-05-05T15:20:01Z",
-    "last_save_at": "2026-06-05T12:47:32.826Z",
+    "last_save_at": "2026-06-23T03:49:49.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:dc13d9657b31479bd94a4e8f14367ee1d3b6fd453b5db4e4139443299692422d",
+    "source_doc_hashes": {
+      "spec.md": "0ce950179987238efbe2cd67da3643a83b95fa6b3c5ac459d98731663243eef3",
+      "plan.md": "fe6ecceaa748b33fcd60f8e873da39832769d779dee2481602f277e6c5eef9a4",
+      "tasks.md": "d6415452ac278b5f55bc0a67ab016610e7e21dd79d8042879bedf2046a13be6d",
+      "implementation-summary.md": "e667b8d569ea1607c59e696739416bf877cdeed8e447ce5f1300ec15ae1f17ba"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

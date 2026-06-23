@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`. The same review also found broken changelog symlinks and an advisor routing ambiguity where iterative review-loop prompts can prefer `sk-code-review` over `deep-review`.",
+    "causal_summary": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
     "created_at": "2026-05-05T17:10:00Z",
-    "last_save_at": "2026-05-30T10:12:01.387Z",
+    "last_save_at": "2026-06-23T03:49:49.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:10:00Z",
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6b36e689b965ede41882ff96948bc420084c2b1fa7e164216567ad777df5905b",
+    "source_doc_hashes": {
+      "spec.md": "0925ae69a4ba77a843f9be8d21bc639d234a497d624dd8717cc23f420488fc73",
+      "plan.md": "25f6f8bda1b668557bdd121d065d745119a11fbf4ac006b903589d01cbec1db2",
+      "tasks.md": "857e77d172ffcde04c9759906edd1c8bf12629da1595a9cb1a844992e0dbece3",
+      "checklist.md": "84c3261b7d171d2e98643bb9c1a8e87fdb84371332ddad731e8243635b13aaee",
+      "decision-record.md": "bf6c1d2f3df99becd9ba979a4e5b8e839a04450ff9696608aa83c5bd6e7baaec",
+      "implementation-summary.md": "5cd0de44fbf8869df1e6f844446c6cfcd4085bc1cfe7ba893157c5330db7f134"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

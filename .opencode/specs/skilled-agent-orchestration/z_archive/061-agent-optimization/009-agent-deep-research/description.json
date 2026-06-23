@@ -1,13 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/009-agent-deep-research",
-  "description": "Spec: @deep-research Agent Optimization",
+  "description": "`@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
-    "spec",
     "deep-research",
-    "agent",
-    "optimization"
+    "476",
+    "loc",
+    "sk-improve-agent",
+    "lens"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.307Z",
+  "lastUpdated": "2026-06-23T03:49:49.490Z",
   "specId": "009",
   "folderSlug": "agent-deep-research",
   "parentChain": [

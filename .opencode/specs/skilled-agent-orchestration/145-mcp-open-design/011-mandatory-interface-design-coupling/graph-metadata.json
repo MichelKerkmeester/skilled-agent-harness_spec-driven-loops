@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 11** of the mcp-open-design specification.",
+    "causal_summary": "`mcp-open-design` already references `sk-design-interface`, but the coupling is conditional and best-effort: §4 ALWAYS #5 reads \"apply sk-design-interface WHEN an Open Design read or run feeds a design decision,\" there is no NEVER counterpart, and nothing in the smart router BLOCKS a generation run that skipped the design judgment",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.029Z",
+    "last_save_at": "2026-06-23T03:49:48.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:64bbdadb3f291bed0bd2858301e87e92aea24f6185866652ecc5b5ef8e0f8ede",
+    "source_doc_hashes": {
+      "spec.md": "866edcbcd5ecc8216dd10bc4cc42668e96bd9cc8e5bea007ca5bbb55aa0770b8",
+      "plan.md": "3e74dfab874d3a30febaee16afb68a2eec05f547f311ec3e67be141fc49bfbf6",
+      "tasks.md": "9656a6b9b6b4a7e73a270d241498322cd62ad4578baab5e0a5031b6efda89ba5",
+      "implementation-summary.md": "29583adfd1f74c36d0276e8fa63fcc2a0612d5190086754c9533c420fbd93731"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

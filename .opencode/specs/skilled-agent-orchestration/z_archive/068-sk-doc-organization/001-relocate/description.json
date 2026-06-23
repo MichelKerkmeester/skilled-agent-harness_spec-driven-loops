@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/001-relocate",
-  "description": "Feature Specification: Phase 1: relocate",
+  "description": "The sk-doc skill's `assets/` directory has accreted a two-level hierarchy where heavy-traffic templates and package folders sit one level deeper than",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "relocate"
+    "sk-doc",
+    "skill",
+    "assets",
+    "directory",
+    "accreted",
+    "two-level",
+    "hierarchy",
+    "heavy-traffic",
+    "templates",
+    "package",
+    "folders",
+    "sit",
+    "one",
+    "level",
+    "deeper"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.634Z",
+  "lastUpdated": "2026-06-23T03:49:49.629Z",
   "specId": "001",
   "folderSlug": "relocate",
   "parentChain": [

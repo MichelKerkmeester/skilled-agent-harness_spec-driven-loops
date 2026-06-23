@@ -32,9 +32,9 @@
       "manual",
       "review",
       "git",
-      "produce",
-      "two",
-      "packages"
+      "findings-first",
+      "baseline",
+      "used"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -92,14 +92,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Produce two `manual_testing_playbook/` packages — one per skill — following the canonical sk-doc contract, with RCAF-pattern operator prompts that mirror real human-AI conversation, executable both natively and via external CLIs.",
+    "causal_summary": "`sk-code-review` (findings-first review baseline used by `@review`, `@deep-review`, `/speckit:deep-review`) and `sk-git` (three-phase git lifecycle orchestrator: worktree → commit → finish/PR) are foundational utility skills with no `manualtestingplaybook/` package today",
     "created_at": "2026-05-18T07:49:27.224Z",
-    "last_save_at": "2026-06-05T12:47:32.879Z",
+    "last_save_at": "2026-06-23T03:49:49.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:801505a95c193e1ed29bc506f1a19968242317fa59d42196ff37a7491177cd41",
+    "source_doc_hashes": {
+      "spec.md": "70b9bde67e59506140142988a1387d242d5daad766b3ed4d6025a371af98b89e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

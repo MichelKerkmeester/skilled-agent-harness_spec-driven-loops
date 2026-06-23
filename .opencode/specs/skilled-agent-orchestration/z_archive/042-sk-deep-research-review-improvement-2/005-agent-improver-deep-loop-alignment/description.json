@@ -1,14 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
-  "description": "Feature Specification: Agent-Improver Deep-Loop Alignment",
+  "description": "Before this phase shipped, the improve-agent loop had strong evaluator logic but weak runtime truth",
   "keywords": [
-    "feature",
-    "specification",
-    "agent-improver",
-    "deep-loop",
-    "alignment"
+    "phase",
+    "shipped",
+    "improve-agent",
+    "loop",
+    "strong",
+    "evaluator",
+    "logic",
+    "weak",
+    "runtime",
+    "truth"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.224Z",
+  "lastUpdated": "2026-06-23T03:49:49.247Z",
   "specId": "005",
   "folderSlug": "agent-improver-deep-loop-alignment",
   "parentChain": [

@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "long",
+      "apply",
+      "sub-headings",
+      "system-spec-kit",
       "works",
       "sections",
-      "without",
-      "navigation",
-      "anchors",
-      "hard",
-      "scan",
-      "3-paragraph",
-      "rule",
-      "section",
-      "paragraphs"
+      "exceed",
+      "paragraphs",
+      "uses",
+      "csv",
+      "phase",
+      "002",
+      "target"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -95,15 +95,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Long HOW IT WORKS sections without navigation anchors are hard to scan. The 3-paragraph rule: any HOW IT WORKS section with >3 paragraphs MUST have H3 sub-headings. The phase 002 audit identifies all such files. This phase applies the restructuring.",
+    "causal_summary": "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target only files that need restructuring.",
     "created_at": "2026-06-18T12:37:48.692Z",
-    "last_save_at": "2026-06-18T12:37:48.692Z",
+    "last_save_at": "2026-06-23T03:49:51.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:d25898c0da4976620ab7a73b914a2df1e46e84cb59246e065abc1b9a3e3d5d7d",
+    "source_doc_hashes": {
+      "spec.md": "cf0bb658a591afd2ec40a2ca57a34a734a3d408c4414f0136ac58c08b015b2db",
+      "plan.md": "73a0b388c69bfd85be37c0a54afc8d42f18c7c7e407120f8c0aa6b11ea67c000"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

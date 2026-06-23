@@ -1,17 +1,24 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
-  "description": "Feature Specification: 116/008 — Playbooks and Default Calibration",
+  "description": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary",
   "keywords": [
-    "feature",
-    "specification",
-    "116",
-    "008",
-    "playbooks",
-    "default",
-    "calibration"
+    "phases",
+    "002-007",
+    "shipped",
+    "review-depth",
+    "contract",
+    "across",
+    "fixtures",
+    "schema",
+    "validator",
+    "reducer",
+    "stop",
+    "gates",
+    "graph",
+    "vocabulary"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.590Z",
+  "lastUpdated": "2026-06-23T03:49:50.835Z",
   "specId": "008",
   "folderSlug": "complexity-playbooks-calibration",
   "parentChain": [

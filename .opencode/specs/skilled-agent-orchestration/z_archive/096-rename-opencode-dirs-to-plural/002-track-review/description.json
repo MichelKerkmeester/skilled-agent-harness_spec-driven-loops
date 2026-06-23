@@ -3,17 +3,20 @@
   "completionPct": 100,
   "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 1 P0 (live runtime stale dist), 12 P1, 9 P2. Planning Packet ready in review-report.md §2 for /speckit:plan.",
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/002-track-review",
-  "description": "Feature Specification: Track Review of skilled-agent-orchestration packets 093-096",
+  "description": "Four packets shipped in close succession on 2026-05-07: 093 (sk-code-review + sk-git playbooks),",
   "keywords": [
-    "feature",
-    "specification",
-    "track",
-    "review",
-    "skilled-agent-orchestration",
+    "four",
     "packets",
-    "093-096"
+    "shipped",
+    "close",
+    "succession",
+    "2026-05-07",
+    "093",
+    "sk-code-review",
+    "sk-git",
+    "playbooks"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.951Z",
+  "lastUpdated": "2026-06-23T03:49:50.063Z",
   "specId": "002",
   "folderSlug": "track-review",
   "parentChain": [

@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "skill",
-      "batch",
-      "feature",
-      "specification"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 8**, the deep-improvement skill in Batch B.",
+    "causal_summary": "The deep-improvement README is a tabular reference card with no problem-first entry point, and its stats carry stale facts (a feature-catalog count of 4 when the directory has 5, plus drifted playbook numbers)",
     "created_at": "2026-06-07T13:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.832Z",
+    "last_save_at": "2026-06-23T03:49:51.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:751997b25b99a5d52de2440da14ed3f39613c3eb2aee6065bfdcf0dca285b35c",
+    "source_doc_hashes": {
+      "spec.md": "82162adf2f20acc4c5fd67ea6df3f680d7dcf768f6357577aba454c886db1f40",
+      "plan.md": "aa063dc20027635253530bbbeb0729d35c2411f72287c08f564004ea38868573",
+      "tasks.md": "57e3264a8b2f3fad17b4df8bba9e699211a13bd2b64db063f7e0370653c34adb",
+      "implementation-summary.md": "e24bd7d9df57a41943a431d189ee2d8e42674f2f3d01919a2d1b00ef38576c8d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

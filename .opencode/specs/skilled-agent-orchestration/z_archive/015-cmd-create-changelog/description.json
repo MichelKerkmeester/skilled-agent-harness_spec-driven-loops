@@ -1,14 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/015-cmd-create-changelog",
-  "description": "Feature Specification: Create Changelog Command",
+  "description": "No automated way to create changelog entries",
   "keywords": [
-    "feature",
-    "specification",
+    "automated",
+    "way",
     "create",
     "changelog",
-    "command"
+    "entries"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.255Z",
+  "lastUpdated": "2026-06-23T03:49:48.963Z",
   "specId": "015",
   "folderSlug": "cmd-create-changelog",
   "parentChain": [

@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 080 introduced the `ai-council/` subfolder convention but the agent retains `write: deny` per its planning-only invariant — actual persistence requires an orchestrator. Packet 080's 10-iteration deep-research (research.md §7) produced a concrete P0 scope: ship a persistence helper, document a normative caller protocol (§17), promote §8 OUTPUT FORMAT to a shared schema artifact, add fixture-driven tests, harden the validator regression test, and add 4-runtime mirror parity testing. This packet delivers all six items while preserving ADR-001's lightweight bound (no dedicated skill folder).",
+    "causal_summary": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
     "created_at": "2026-05-06T17:06:24Z",
-    "last_save_at": "2026-05-30T10:12:01.454Z",
+    "last_save_at": "2026-06-23T03:49:49.972Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2ef969b8ba2fabadbcd79a1eed981b2ef74e23570ff48d47e94a4ef2416a83e3",
+    "source_doc_hashes": {
+      "spec.md": "9c9799a8932b53c710d3bf810221765eb973c5db70fa97a2938b9c2f10aee2b3",
+      "plan.md": "f2aa24bb0a828e4e4471d3b83e96adfcc96277d5afbe4b3094f00eaba07f74e6",
+      "tasks.md": "e1a9b85486ed7071a7e705d5a30b8e76dd549634fe35fb144c596acae0028066",
+      "checklist.md": "3b53695a5861ecfb4f8ce7406c12bea7ce6f0916908b216ce102f31350ce572d",
+      "decision-record.md": "028953cc6c7c9891c59f5a409625ef2745f66c1dc083bcba42634f1b4247c0c9",
+      "implementation-summary.md": "59679cc630beb83acbdeb08fb17a7c6e51e2367eb4c5451c6b63a34afdbfb215"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

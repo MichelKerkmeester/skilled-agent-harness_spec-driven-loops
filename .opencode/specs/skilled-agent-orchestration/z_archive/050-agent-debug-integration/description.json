@@ -1,16 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/050-agent-debug-integration",
-  "description": "Feature Specification: Debug Agent Integration — Truth-Up & Discoverability",
+  "description": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) conf",
   "keywords": [
-    "feature",
-    "specification",
+    "repo-wide",
+    "audit",
     "debug",
     "agent",
-    "integration",
-    "truth-up",
-    "discoverability"
+    "opencode",
+    "agents",
+    "plus",
+    "three",
+    "sibling",
+    "runtime",
+    "definitions",
+    "claude",
+    "codex",
+    "gemini",
+    "conf"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.338Z",
+  "lastUpdated": "2026-06-23T03:49:49.331Z",
   "specId": "050",
   "folderSlug": "agent-debug-integration",
   "parentChain": [

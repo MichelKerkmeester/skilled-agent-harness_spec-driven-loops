@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would route the same sk-code scenarios. Without a deterministic prompt and runner harness, cross-CLI routing audits depend on ad hoc transcripts and cannot reliably catch misroutes across Codex, Copilot, Gemini, and OpenCode.",
+    "causal_summary": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would route the same sk-code scenarios",
     "created_at": "2026-05-05T10:30:00Z",
-    "last_save_at": "2026-06-05T12:47:32.793Z",
+    "last_save_at": "2026-06-23T03:49:49.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T10:30:00Z",
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:54c0d1041830bd5917b936d1f7516c1942aa86426df160f9aa647e8efa6aaf1e",
+    "source_doc_hashes": {
+      "spec.md": "6d802f1becdcdfc4c19ab352a8f7e14719e385bcf373a184cb8d532c5a0704fe",
+      "plan.md": "06a129360c20eddb8286a873f8c30ebe6661cbb50f5d60b36bccba1fafa9227a",
+      "tasks.md": "b2898febeefb34759714029569a4c3143037d9de5bcfbc034613dd1e63e2bf38",
+      "checklist.md": "ddf82d2c8bcd7ad45ec4c245ddf1561d9376bc7be9ad21171cabaff777abd1c1",
+      "implementation-summary.md": "be0717b9b974962a9d486862c892e76acc34a146999bb55319ff016537e9cb48"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

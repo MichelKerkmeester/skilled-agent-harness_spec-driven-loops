@@ -14,18 +14,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "phases",
-      "scripted",
-      "ai-assisted",
-      "edits",
-      "phase",
-      "runs",
-      "comprehensive",
+      "final",
       "compliance",
       "check",
-      "confirm",
-      "retroactive",
-      "rework"
+      "across",
+      "370",
+      "catalog",
+      "files",
+      "run",
+      "validation",
+      "script",
+      "review",
+      "report"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -101,15 +101,20 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After 8 phases of scripted and AI-assisted edits, this phase runs a comprehensive compliance check to confirm the retroactive rework is complete. Any remaining gaps identified by the script get fixed in this phase.",
+    "causal_summary": "Final compliance check across all 370 catalog files. Run the validation script, review the report, apply targeted fixes, confirm 95%+ compliance on all 6 checks before closing the rework project.",
     "created_at": "2026-06-18T12:37:48.703Z",
-    "last_save_at": "2026-06-18T12:37:48.703Z",
+    "last_save_at": "2026-06-23T03:49:51.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
+    "source_fingerprint": "sha256:b0c0c88c917a5f02245bbc5f10c07b583a2ef0bcd0cec72449feab1bec9881e5",
+    "source_doc_hashes": {
+      "spec.md": "cab1955ab93fc3eda9458525f8e9b1750714f3dbf2c72e1ab385c206150d6722",
+      "plan.md": "2db965586f20075259f5e19ba87c9db2cbc9d335eef13f2df02312ad62d9fc5b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

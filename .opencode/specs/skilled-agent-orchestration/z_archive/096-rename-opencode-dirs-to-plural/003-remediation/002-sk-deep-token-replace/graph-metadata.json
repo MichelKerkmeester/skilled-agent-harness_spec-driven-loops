@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Command assets, agent bodies, orchestrator routing, Codex review doctrine, runtime mirrors, and install guides still cite legacy `sk-deep-review` / `sk-deep-research` even though packet 070 renamed folders to `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`.",
+    "causal_summary": "Command assets, agent bodies, orchestrator routing, Codex review doctrine, runtime mirrors, and install guides still cite legacy `sk-deep-review` / `sk-deep-research` even though packet 070 renamed folders to `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`",
     "created_at": "2026-05-18T07:49:27.239Z",
-    "last_save_at": "2026-06-05T12:47:32.898Z",
+    "last_save_at": "2026-06-23T03:49:50.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2264b619293b39213eb0ddd91070de9223c24748cfe7ed512106e1130295cb56",
+    "source_doc_hashes": {
+      "spec.md": "c55c764478744ac8e3b8e2799a7f9d6542bff9e514bdd4fc1ceeb252bf123129",
+      "plan.md": "8d2aa2469a37908d385b1b03f644a44b58e65ae3798dba2f6c24cac71320ddd8",
+      "tasks.md": "d11613b2927e20caee3f730dbe6265d717b7d0980894c48f7bc923b4674ae3bc",
+      "checklist.md": "e4e03b1a9a825e6a7cbceec15c3e6229a6614c8b4a4fa635ccf3f0874175dad4",
+      "implementation-summary.md": "ce21542925f6e2c4a9660f67afecfbb978485cc5ffaf0896a22d496c140750e9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

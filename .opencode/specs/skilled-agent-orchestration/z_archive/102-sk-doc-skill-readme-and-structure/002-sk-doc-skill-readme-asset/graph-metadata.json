@@ -18,14 +18,14 @@
       "skill",
       "readme",
       "asset",
-      "create",
-      "reusable",
-      "wire",
+      "templates",
       "creation",
-      "workflow",
-      "manual",
-      "testing",
-      "documentation"
+      "guidance",
+      "lacks",
+      "dedicated",
+      "packages",
+      "feature",
+      "specification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Create a reusable sk-doc skill README asset and wire it into the skill creation workflow and manual testing documentation.",
+    "causal_summary": "sk-doc has README templates and skill creation guidance, but lacks a dedicated skill README asset for skill packages",
     "created_at": "2026-05-10T10:33:23Z",
-    "last_save_at": "2026-06-07T09:00:45.701Z",
+    "last_save_at": "2026-06-23T03:49:50.264Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:98cc0da813049ee199aa8b70f30d021f925eb684db14eaabbb0d56f3adb98025",
+    "source_doc_hashes": {
+      "spec.md": "ad65009422a62c80d26d44c26ea8701efaee3ee132b61730fc5c1ee4fe9feedb",
+      "plan.md": "7c96e9254b8ad73c6bfd122a70c094b83cd179e9dfea961de4612df6c8141ea1",
+      "tasks.md": "283dc2c424c8b782aa942c3692b6d8a7b4ce213be0f226963e36c42746286180",
+      "checklist.md": "35f85742865e78252bc5a189113ebafb629aeef1ed511d350c3751c6eb29b222",
+      "implementation-summary.md": "5d67453e2a2ac3a7a57ea49a7a2bf5c8c6147053079d666e70e32f147099c8db",
+      "resource-map.md": "1afc399f5dfd2d48ac012b781d6155d9917a2ecf49835fbeeb1e625eae173ee9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

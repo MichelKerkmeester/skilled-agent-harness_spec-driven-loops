@@ -1,16 +1,26 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/006-advisor-and-validate",
-  "description": "Feature Specification: Phase 006 Advisor and Validate",
+  "description": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on `",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "006",
+    "rename",
+    "complete",
+    "only",
     "advisor",
-    "validate"
+    "state",
+    "skill",
+    "graph",
+    "indexes",
+    "prompt-routing",
+    "probes",
+    "strict",
+    "spec",
+    "validation",
+    "active-scope",
+    "grep",
+    "agree"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.866Z",
+  "lastUpdated": "2026-06-23T03:49:49.926Z",
   "specId": "006",
   "folderSlug": "advisor-and-validate",
   "parentChain": [

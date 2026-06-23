@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 007 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment (\"Third-party MCP servers disabled by org policy\"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `e917f76347`.",
+    "causal_summary": "The 007 validation run recorded 19 SKIP verdicts",
     "created_at": "2026-05-27T22:30:00.000Z",
-    "last_save_at": "2026-06-22T18:55:00.836Z",
+    "last_save_at": "2026-06-23T03:49:51.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4729dfd036071fb6f98440307fcef71c6a7f501df0c7b21348f88bfceefb1849",
+    "source_doc_hashes": {
+      "spec.md": "85b85d54f15e99440f2a8b938404ad4f757f7d1f3b86048b40d62712d76e7176",
+      "plan.md": "0e41563afbabb2680a3b81365c87e0deff421b2677c8d554326a52774a572b25",
+      "tasks.md": "bf4b42ac2d493244b3ef30d666b27cecd471d08accb070e0fded5f59f78a44fb",
+      "implementation-summary.md": "8582c1748232e282e4b5dcdad81f93cf27ba761d5956741d4f1b9eddb9b0b53c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

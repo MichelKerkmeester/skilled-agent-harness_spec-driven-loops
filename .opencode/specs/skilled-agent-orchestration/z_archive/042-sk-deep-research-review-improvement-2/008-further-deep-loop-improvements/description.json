@@ -1,13 +1,25 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
-  "description": "Feature Specification: Further Deep-Loop Improvements",
+  "description": "The Phase 008 work started from a simple but high-impact gap: the repo already shipped richer stop-state, graph, and replay helpers than the visible w",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-loop",
-    "improvements"
+    "phase",
+    "008",
+    "work",
+    "started",
+    "simple",
+    "high-impact",
+    "gap",
+    "repo",
+    "already",
+    "shipped",
+    "richer",
+    "stop-state",
+    "graph",
+    "replay",
+    "helpers",
+    "visible"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.229Z",
+  "lastUpdated": "2026-06-23T03:49:49.265Z",
   "specId": "008",
   "folderSlug": "further-deep-loop-improvements",
   "parentChain": [

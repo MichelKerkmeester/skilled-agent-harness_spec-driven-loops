@@ -1,17 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/003-rename-agent-4-runtime",
-  "description": "Feature Specification: 115/003 — agent runtime rename",
+  "description": "The `@deep-ai-council` agent slug uses the `deep-` prefix that conflates with the autonomous-loop family (deep-research, deep-review, deep-agent-impro",
   "keywords": [
-    "feature",
-    "specification",
-    "115",
-    "003",
+    "deep-ai-council",
     "agent",
-    "runtime",
-    "rename"
+    "slug",
+    "uses",
+    "deep",
+    "prefix",
+    "conflates",
+    "autonomous-loop",
+    "family",
+    "deep-research",
+    "deep-review",
+    "deep-agent-impro"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.475Z",
+  "lastUpdated": "2026-06-23T03:49:50.718Z",
   "specId": "003",
   "folderSlug": "rename-agent-4-runtime",
   "parentChain": [

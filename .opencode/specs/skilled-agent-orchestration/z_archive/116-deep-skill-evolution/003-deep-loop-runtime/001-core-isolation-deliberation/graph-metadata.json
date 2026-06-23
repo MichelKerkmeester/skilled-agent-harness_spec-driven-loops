@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-review and deep-research skills depend on **18 production files** that live inside `.opencode/skills/system-spec-kit/mcp_server/lib/{deep-loop,coverage-graph}/` and `mcp_server/handlers/coverage-graph/`. A dependency survey shows those files are **100% consumed by deep-* skills only** — zero callers in other MCP handler families, zero non-deep callers anywhere in spec-kit. No ADR justifies the current placement; it appears to be accumulated drift from early MCP server scaffolding.",
+    "causal_summary": "The deep-review and deep-research skills are consumers; system-spec-kit/mcpserver is the producer",
     "created_at": "2026-05-22T17:50:00Z",
-    "last_save_at": "2026-06-22T18:55:00.599Z",
+    "last_save_at": "2026-06-23T03:49:50.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f6c5b772cf3b6f37355507ca45628bad837fdb09a5c685946f7f040714ac841e",
+    "source_doc_hashes": {
+      "spec.md": "b9b743eddc8160af054dbd499c5f728c1c09d3bb7af73cdf8f071e6b79c0d22b",
+      "plan.md": "8e4a73a330f4e70823df089cca0f404490aa6adf51d38e945c8adea084f895c0",
+      "tasks.md": "cb275c4d1c4d61c778f083bcb3d73778e26a794a83c629ffe8948fb502ada160",
+      "checklist.md": "fb907a54cc37bda4e2e82f8618292bff47b02a4daef5cedad4257702fbcfe66f",
+      "decision-record.md": "36b4eedf59af7b9ebd7b131b6b42f159a4732d7cfd5639ea4867a951e2c5a6d3",
+      "implementation-summary.md": "790b231f2b40a505d77587ac09a714ce24f64a67bcb1a5451b2220f8073cd4bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

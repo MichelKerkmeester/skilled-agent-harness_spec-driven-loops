@@ -1,17 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/005-claude-design-parity-research",
-  "description": "Research Specification: Claude Design parity for sk-design-interface and mcp-magicpath",
+  "description": "The framework has two UI-design skills: `sk-design-interface` (design judgment plus the merged critique-against data) and `mcp-magicpath` (a MagicPath",
   "keywords": [
-    "research",
-    "specification",
-    "claude",
-    "design",
-    "parity",
+    "framework",
+    "two",
+    "ui-design",
+    "skills",
     "sk-design-interface",
-    "mcp-magicpath"
+    "design",
+    "judgment",
+    "plus",
+    "merged",
+    "critique-against",
+    "data",
+    "mcp-magicpath",
+    "magicpath"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.879Z",
+  "lastUpdated": "2026-06-23T03:49:48.414Z",
   "specId": "005",
   "folderSlug": "claude-design-parity-research",
   "parentChain": [

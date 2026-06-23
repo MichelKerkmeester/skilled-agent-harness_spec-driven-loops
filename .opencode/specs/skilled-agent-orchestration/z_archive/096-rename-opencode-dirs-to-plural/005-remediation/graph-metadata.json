@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 active P1 findings: 1 carryover (P1-007) plus 12 NEW findings surfaced by the remediation itself, including source/dist parity gaps (P1-015, P1-016), security spec_folder shell injection in YAML (P1-019), 098 sub-phase strict-validate failures (P1-024), advisor missing deep-review alias (P1-025), validator zero-inventory false-pass (P1-020), shared-CLI path resolver gap (P1-021), 095 internally contradictory results (P1-017), 096/004 anchor mismatch (P1-022), playbooks not linked from owning SKILL.md (P1-018), and continuity blockers field empty despite documented deferrals (P1-023).",
+    "causal_summary": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 active P1 findings: 1 carryover (P1-007) plus 12 NEW findings surfaced by the remediation itself, including source/dist parity gaps (P1-015, P1-016), security specfolder shell injection in YAML (P1-019), 098 sub-phase strict-validate failures (P1-024), advisor missing deep-review alias (P1-025), validator zero-inventory false-pass (P1-020), shared-CLI path resolver gap (P1-021), 095 internally contradictory results (P1-017), 096/004 anchor mismatch (",
     "created_at": "2026-05-18T07:49:27.247Z",
-    "last_save_at": "2026-05-30T10:12:01.489Z",
+    "last_save_at": "2026-06-23T03:49:50.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:119b3e587f1759a9dfac9b50017880ab09436bff28dbaf39aeee81925faa3d2c",
+    "source_doc_hashes": {
+      "spec.md": "b3fe1cb1a9ea4d27d646a16e6a2fb1173d2b5a16b71767749c08af27f2700c02",
+      "plan.md": "4bdb20158e8d0523a65ddda426529273fd43bddaa0795745ae48d0c46c95801e",
+      "tasks.md": "b78aad3c4b94426bb5035a6bc831b3b722c87d684c9b088b89e98a32a8bf92fa",
+      "checklist.md": "b20412c58d3b465dc119bd2f931218b3c0c3697ba185d7008700938cf1fc192c",
+      "implementation-summary.md": "bb7cc31dca7b7e79a1e2721b5e37e5f85fc2800fd0fcb062167eed3eed5840ff"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

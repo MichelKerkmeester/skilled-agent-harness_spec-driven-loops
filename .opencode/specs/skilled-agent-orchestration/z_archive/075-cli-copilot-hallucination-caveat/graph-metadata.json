@@ -181,9 +181,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like `dqi_rubric.md` that don't exist in sk-doc's filesystem. cli-copilot scored 11.1% resource-accuracy vs cli-codex 66.7% on the 071 stress matrix. Maintainers and downstream consumers had no documentation warning about this behavior; if a caller naively `Read()`s cited paths, they'll get ENOENT errors.",
+    "causal_summary": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like `dqirubric.md` that don't exist in sk-doc's filesystem",
     "created_at": "2026-05-05T15:24:06Z",
-    "last_save_at": "2026-06-05T12:47:32.827Z",
+    "last_save_at": "2026-06-23T03:49:49.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:c9614bc8fbbb8763b36b90e5bae2e696c85c08a663fa777d88c62158bb7cee7a",
+    "source_doc_hashes": {
+      "spec.md": "91671893791f0acf964de8d32fcb0181f82a417c7ff09bdd0d73efd48af7a661",
+      "plan.md": "c0ecd9e79b1706b9bdc527ebf5f7ed3d8a29bf4656756a25bc42ad0d7c97c752",
+      "tasks.md": "b359301df4876ff6b5fbff3e467aa32999f422dc08edad28918e5ed29fe24088",
+      "implementation-summary.md": "e01e5443b65446aa0fb4e9685d2ae999c2d0d89427e9b964ab1245bd1ea865be"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

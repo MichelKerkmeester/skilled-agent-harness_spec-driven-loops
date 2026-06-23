@@ -201,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The framework produced templated, generic UI when asked for design work (a MagicPath sector variation that did not read as on-brand). There was no reusable, advisor-routable guidance for distinctive visual design. Anthropic publishes a strong `frontend-design` skill, but it is shaped for its own plugin ecosystem, not this repository's curated `.opencode/skills` conventions (family prefixes, house SKILL/README/reference templates, schema-2 graph metadata, catalog index, advisor SQLite graph).",
+    "causal_summary": "The framework produced templated, generic UI when asked for design work (a MagicPath sector variation that did not read as on-brand)",
     "created_at": "2026-06-13T15:00:00Z",
-    "last_save_at": "2026-06-16T14:27:20.520Z",
+    "last_save_at": "2026-06-23T03:49:48.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:68a9741657e5568e09f8c04026f7cf6c1be11f69a85ac8b0d8cc41ee648e7b1a",
+    "source_doc_hashes": {
+      "spec.md": "0d6a28e917257fc2e2f22c9a5f4cc494c871739a2f985e2ea8a35758875958e8",
+      "plan.md": "c833d349edb2cc4bd3167ee45cd90b4e19c0c05c152d4cb55715b9c088fb18eb",
+      "tasks.md": "a6bc20a0f4180ddcd1b6f1679717eae1d331567fed353f5008336fedaf33f289",
+      "checklist.md": "cb810e21c5caef1eb5950db4a02a389ad89126bd523fd445320e4d53a1b62351",
+      "implementation-summary.md": "58bbb4710f1083a3d622a1ff8d3d1514adfc7716f7b11083714d918276f3df98"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

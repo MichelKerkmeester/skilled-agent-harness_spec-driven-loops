@@ -1,15 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/022-mcp-coco-integration",
-  "description": "Feature Specification: CocoIndex Code MCP Integration",
+  "description": "OpenCode had no semantic code search capability",
   "keywords": [
-    "feature",
-    "specification",
-    "cocoindex",
+    "opencode",
+    "semantic",
     "code",
-    "mcp",
-    "integration"
+    "search",
+    "capability"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.293Z",
+  "lastUpdated": "2026-06-23T03:49:49.007Z",
   "specId": "022",
   "folderSlug": "mcp-coco-integration",
   "parentChain": [

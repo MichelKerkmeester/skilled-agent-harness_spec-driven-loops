@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 11** of the sk-design-interface specification.",
+    "causal_summary": "The Mobbin/Refero integration (phase 009) was purely passive: ONDEMAND, user-driven, with no agent initiative and no explicit decision procedure for when a reference helps or which source to use",
     "created_at": "2026-06-17T00:00:00Z",
-    "last_save_at": "2026-06-17T19:57:22.995Z",
+    "last_save_at": "2026-06-23T03:49:48.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a66c9d994505c40f853f42a0fe66b0aa8cf5d165ceda5e9f0460256a095de17e",
+    "source_doc_hashes": {
+      "spec.md": "57b76277b4446cdf6670dfe60a823bdd0acdc5018f3cadae040b5d757a5dd3d9",
+      "plan.md": "ae1de5c3b8d50d96b450623d9b67fb43a49e043bfe1dca5728c1dd4483bda6d4",
+      "tasks.md": "773b32f01ac962a383f38c6ce29807dfdd34c7d3d66e87495213338f60496cc2",
+      "implementation-summary.md": "d3cac77fa65162bfc7dec6c5c9f347fb087886bcc159c490de2db17a42377369"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

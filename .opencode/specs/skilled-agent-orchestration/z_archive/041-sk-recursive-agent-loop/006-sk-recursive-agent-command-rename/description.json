@@ -1,15 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
-  "description": "Feature Specification: Recursive Agent Command Rename",
+  "description": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still ca",
   "keywords": [
-    "feature",
-    "specification",
-    "recursive",
-    "agent",
+    "phase",
+    "005",
+    "runtime",
+    "mutator",
+    "skill",
+    "package",
+    "wrapper",
+    "content",
+    "aligned",
+    "agent-improver",
     "command",
-    "rename"
+    "entrypoint",
+    "itself",
+    "still"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.199Z",
+  "lastUpdated": "2026-06-23T03:49:49.178Z",
   "specId": "006",
   "folderSlug": "sk-recursive-agent-command-rename",
   "parentChain": [

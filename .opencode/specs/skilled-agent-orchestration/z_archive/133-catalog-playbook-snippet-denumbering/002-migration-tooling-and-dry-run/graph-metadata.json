@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind. The migration needs a deterministic, dry-runnable tool that proves its edit set before touching disk.",
+    "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind",
     "created_at": "2026-06-06T06:46:12.386Z",
-    "last_save_at": "2026-06-17T19:57:23.796Z",
+    "last_save_at": "2026-06-23T03:49:51.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fa2a039131dc44240f8bb5c2d558bcf3e3b43ffcbc890435ac23151068f4787f",
+    "source_doc_hashes": {
+      "spec.md": "95f2631bb24a2309b39ccc4dac0ace6d810b38c6dec94aab08717ff3d3d919ab",
+      "plan.md": "5024395eefed17f29f1f9288beb869d40b629c67aea924fc0c26cd832b4a58e1",
+      "tasks.md": "302b49604ac898e7a55e0adac5ee281ce4b790fe6e70878ba465223374baa8ff",
+      "checklist.md": "ef03337f73da3fd09db2ff5a2e97fc7dc519b8ccb2d449095b1e4d22ed64b9cf",
+      "implementation-summary.md": "6f4559ba2765cbaf06db5e24fbd6a3a435a0a421079a469415963d86ac753e91"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

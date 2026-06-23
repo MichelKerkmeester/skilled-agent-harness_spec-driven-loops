@@ -1,15 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/037-cmd-merge-spec-kit-phase",
-  "description": "Feature Specification: Merge spec_kit:phase into plan and complete",
+  "description": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or im",
   "keywords": [
-    "feature",
-    "specification",
-    "merge",
+    "speckit",
     "phase",
-    "plan",
-    "complete"
+    "command",
+    "standalone",
+    "7-step",
+    "workflow",
+    "only",
+    "creates",
+    "folder",
+    "structure",
+    "parent",
+    "children",
+    "without",
+    "doing",
+    "planning"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.222Z",
+  "lastUpdated": "2026-06-23T03:49:49.099Z",
   "specId": "037",
   "folderSlug": "cmd-merge-spec-kit-phase",
   "parentChain": [

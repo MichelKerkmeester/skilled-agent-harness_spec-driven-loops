@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 146 bundles the external **ponytail** project (`external/ponytail-main/`) and asks how its *logic, hooks, etc.* can improve our `sk-code` and `sk-code-review` skills. Ponytail enforces a \"lazy senior developer\" discipline via a 6-rung decision ladder, SessionStart/UserPromptSubmit hooks with flag-file mode state, lite/full/ultra intensity sliders, `// ponytail:` ceiling comments, a `check-rule-copies.js` rule-invariant guard, a `ponytail-review` deletion skill, and a PromptFoo benchmark harness. None of these mechanisms has been evaluated for transplant into our code-standards (`sk-code`) and code-review (`sk-code-review`) skills, which already carry a surface-aware smart router, an Iron-Law verification loop, a Phase 1.5 comment-hygiene hook, and a findings-first P0/P1/P2 review baseline.",
+    "causal_summary": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
     "created_at": "2026-06-13T11:19:39.612Z",
-    "last_save_at": "2026-06-22T18:54:58.947Z",
+    "last_save_at": "2026-06-23T03:49:48.324Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:1466c31b642072aba6cc8bc9ef959153eaacb0dff6f9a58f117c663e0a0b5040",
+    "source_doc_hashes": {
+      "spec.md": "37762a2cd30154598211736b00451a6c20f6b5b627bc71969bc96e6f5fe34e0d",
+      "plan.md": "bd5dbb7cdc65702a57334d20c2aa67ff2e87d611cf18569c21a9bfec03995d6a",
+      "tasks.md": "a566f5a7a27b6c1ca5ade0fef716449cb540e94381c0951a3ec0f78a1c9bd1ca",
+      "checklist.md": "802dd488fe835bf538a63a6712d1b619fab633cef1c4668abb8da0e7e7841075",
+      "implementation-summary.md": "c4f29b76f4195b1ed71998a3fab2a71e3fb993417d0b3e1f346a47bed4f1e777",
+      "research/research.md": "5c3e3f0894b0d2739d252247b8a75953923d81321bf987d9315ef52331af1784"
+    },
     "last_active_child_id": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
     "last_active_at": "2026-06-13T11:40:00Z"
   }

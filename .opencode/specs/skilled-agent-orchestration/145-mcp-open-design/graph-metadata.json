@@ -94,14 +94,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-design-interface` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.",
+    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI",
     "created_at": "2026-06-14T12:30:00Z",
-    "last_save_at": "2026-06-22T18:54:59.035Z",
+    "last_save_at": "2026-06-23T03:49:48.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:e08db4edf230cb0d5f0daf66c5f67425cfddb30f6d169970f0a38c2b5ffd72b3",
+    "source_doc_hashes": {
+      "spec.md": "2bc93c273ed99ac17e9920a300c30d75403185b18d5b695b41c30e1a674bc464"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

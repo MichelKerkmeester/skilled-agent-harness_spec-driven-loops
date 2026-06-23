@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the Phase 0->1 transition and gated to implementation intent — run AFTER surface+intent routing. The only recommendation touching the actual workflow; its clean integration must be proven before merge.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-06-15T09:09:33.157Z",
+    "last_save_at": "2026-06-23T03:49:48.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:117ba7a6a44bc7e579e7a4d68ce4b0cc162d1394886c648756f94ecc2b6952d0",
+    "source_doc_hashes": {
+      "spec.md": "0245ba152cece18b257482db3ab270eda6b6a60831801cfbf29ca43fa1e82b05",
+      "plan.md": "e9978733fec5cb18de0072ddf43bc9a290cd46bb02974120e92b9079ee34f65e",
+      "tasks.md": "a4cccccdfc9c6a90b09e8e3c214482f1f1bd6b9b63ca606782129d9197e436b7",
+      "implementation-summary.md": "826ef3f60f03e077388e6053aba897e01855d679fb5a55eacb9c79987f61b36e"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

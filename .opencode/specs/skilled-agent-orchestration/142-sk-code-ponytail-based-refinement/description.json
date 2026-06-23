@@ -1,15 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
-  "description": "Research Specification: Ponytail-Based Refinement of sk-code / sk-code-review",
+  "description": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
   "keywords": [
-    "research",
-    "specification",
-    "ponytail-based",
-    "refinement",
-    "sk-code",
-    "sk-code-review"
+    "packet",
+    "146",
+    "bundles",
+    "external",
+    "ponytail",
+    "project",
+    "ponytail-main",
+    "asks",
+    "logic",
+    "hooks",
+    "etc"
   ],
-  "lastUpdated": "2026-06-22T18:54:58.950Z",
+  "lastUpdated": "2026-06-23T03:49:48.326Z",
   "specId": "142",
   "folderSlug": "sk-code-ponytail-based-refinement",
   "parentChain": [

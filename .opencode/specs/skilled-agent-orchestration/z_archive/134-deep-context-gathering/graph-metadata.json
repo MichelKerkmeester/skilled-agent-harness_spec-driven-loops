@@ -94,14 +94,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase. `/speckit:plan` discovers context ad-hoc and `/speckit:implement` relies on whatever the plan captured, so reusable code is missed, stale references and context-rot creep in, and there is no saturation signal for \"enough context gathered.\" A first build closed that gap, but it landed as a host-driven loop that does not yet use the shared runtime's durability and validation layer as fully as the mature deep loops do.",
+    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
     "created_at": "2026-06-06T14:09:09.974Z",
-    "last_save_at": "2026-06-22T18:56:35.996Z",
+    "last_save_at": "2026-06-23T03:49:51.756Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:79927eaad25b5a6632f1c2ea5da226ad3b062baeeca57299f448b91daeacd7e6",
+    "source_doc_hashes": {
+      "spec.md": "6d53832d322067d3b74cc75423178451c5586f0cabfeb56da527a025c76bdabc"
+    },
     "last_active_child_id": "skilled-agent-orchestration/134-deep-context-gathering/004-reference-architecture-alignment",
     "last_active_at": "2026-06-06T20:12:18.970Z"
   }

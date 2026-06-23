@@ -2,18 +2,20 @@
   "completionPct": 0,
   "lastOutcome": "Spec docs authored; awaiting Phase 002 completion + cli-codex dispatch.",
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
-  "description": "Feature Specification: 096/003 - rename .opencode/command/ to .opencode/commands/",
+  "description": "opencode docs (`https://opencode.ai/docs/commands`) say project-level command discovery looks for `.opencode/commands/` (plural)",
   "keywords": [
-    "feature",
-    "specification",
-    "096",
-    "003",
-    "rename",
     "opencode",
+    "docs",
+    "https",
+    "commands",
+    "say",
+    "project-level",
     "command",
-    "commands"
+    "discovery",
+    "looks",
+    "plural"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.529Z",
+  "lastUpdated": "2026-06-23T03:49:50.051Z",
   "specId": "003",
   "folderSlug": "commands",
   "parentChain": [

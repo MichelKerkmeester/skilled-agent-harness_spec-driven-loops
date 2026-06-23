@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 004 is now explicitly split into two sub-phases. Phase 4a is the realistic near-term deliverable: build an offline compile/evaluate loop that replays real packet traces, tunes deterministic numeric config thresholds, and emits advisory patch recommendations with a full audit trail. Phase 4b is deferred future work for prompt-pack and meta-optimization once replay fixtures, behavioral suites, and multi-family corpus coverage actually exist.",
+    "causal_summary": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escalation, and related numeric controls are adjusted by human judgment and one-off testing",
     "created_at": "2026-04-12T09:02:50.194Z",
-    "last_save_at": "2026-06-22T18:54:59.403Z",
+    "last_save_at": "2026-06-23T03:49:49.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:01ff272cd2b8066b1a416a463dd913f6deeb8c245b4539ec420fc53ca1c9fda1",
+    "source_doc_hashes": {
+      "spec.md": "3b1f781c17c373d613b33ba3ad143e8bd5899de40edc189a5ea89a98acaf0afb",
+      "plan.md": "5ac4250a51c7beddee8f7c62a05ac6f69ffce312dda90e2b104f44ec6e08e66a",
+      "tasks.md": "04100f16060c4dc90106d628aaa0d44bf89a81cde9d4fff9cc6468038ad154d8",
+      "checklist.md": "b883a9f286688645f56981a190be087ab222b8d83beea9c18ff7acb2ada32def",
+      "decision-record.md": "188ed43a121615669e8a64bc297e4836de3cc1f94371ecbc3518a970abb92402",
+      "implementation-summary.md": "331a63d2b8720116a16d1c18313b0e11bfb59977177afc94e45555788db66539"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

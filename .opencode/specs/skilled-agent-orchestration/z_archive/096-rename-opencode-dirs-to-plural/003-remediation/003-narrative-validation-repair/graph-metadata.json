@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Repair 096 validation sufficiency, restore source-to-target rename narratives, and make smart-router validation fail closed on zero coverage.",
+    "causal_summary": "`validate.sh --strict` on 096 exits 2 for specdocsufficiency, 096 narratives now say plural-to-plural rename after self-sed, and `check-smart-router.sh:68` points at `.opencode/skill`, scanning zero skills and passing vacuously",
     "created_at": "2026-05-18T07:49:27.240Z",
-    "last_save_at": "2026-06-05T12:47:32.900Z",
+    "last_save_at": "2026-06-23T03:49:50.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:94215f4f0fe41627d691f7b2d3c57377849956bfaff516930365d18c3fe7e442",
+    "source_doc_hashes": {
+      "spec.md": "aa2e36547ebe4c8da1c336fd1bae25257f3b63368abe40d07703e1ad9b1dc7ec",
+      "plan.md": "5225710908a0a2134be8f1d248e18e2a4acb73002adce660ee53f0913704d705",
+      "tasks.md": "6aecccbd753996ed5d74e1109bb7bd16e4aae4194677a593d603723b93818c7a",
+      "checklist.md": "a250729bb24a07e8c1e2df0dbcd548283aa56b3c49f5eda31bc231205b9a661e",
+      "implementation-summary.md": "4c75e1e415ebcbfab209a6a38cb1b725fe4704dabb84aa02aff99ea2064d632b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

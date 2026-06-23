@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is a **maintenance phase** under packet 121, fixing a cross-cutting deep-loop defect surfaced while working in this program: empty `research_archive/` and `review_archive/` directories accumulating in spec packets (e.g. `…/122-session-120-121-deep-review/review_archive`).",
+    "causal_summary": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `researcharchive/`",
     "created_at": "2026-05-29T05:57:34.890Z",
-    "last_save_at": "2026-06-17T19:57:23.649Z",
+    "last_save_at": "2026-06-23T03:49:51.208Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:081fbae25a34564cf74847a81d2674715a81dfd813170be1a8d4cb3da7dccfbb",
+    "source_doc_hashes": {
+      "spec.md": "75dd27bf9e012c0cb1281c9fc0c3c73e5ead4952e52ad03bdb1f4a4b19d1f694",
+      "plan.md": "37a901ff1025dcc7f0eab081d9125cd668ea324c24c5f8fd19acb3246b062123",
+      "tasks.md": "1ba6cc54a328a99af4925e2029f6bb30b46c84c8cf05e89ab3e45a1b96523ec6",
+      "implementation-summary.md": "a53197f4ef6a40f864708d69e50cb4f40c2497f53a6e0fe7b2990afaaef4dcf4"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

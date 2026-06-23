@@ -1,19 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
-  "description": "Remediation: Resolve all 007 PARTIALs + the DR-032 SKIP (Phase 010, READY push)",
+  "description": "After 009 the 007 matrix stands at 145 PASS / 31 PARTIAL / 0 FAIL / 1 SKIP",
   "keywords": [
-    "remediation",
-    "resolve",
+    "009",
     "007",
-    "partials",
-    "dr-032",
-    "skip",
-    "phase",
-    "010",
-    "ready",
-    "push"
+    "matrix",
+    "stands",
+    "145",
+    "pass",
+    "partial",
+    "fail",
+    "skip"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.844Z",
+  "lastUpdated": "2026-06-23T03:49:51.084Z",
   "specId": "010",
   "folderSlug": "resolve-all-partials-and-skip",
   "parentChain": [

@@ -1,15 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/044-non-system-playbook-prompts",
-  "description": "Feature Specification: Non-System Playbook Prompt Modernization",
+  "description": "The repository now contains several non-system-spec-kit manual testing playbook packages that were authored at different maturity levels",
   "keywords": [
-    "feature",
-    "specification",
-    "non-system",
+    "repository",
+    "now",
+    "contains",
+    "several",
+    "non-system-spec-kit",
+    "manual",
+    "testing",
     "playbook",
-    "prompt",
-    "modernization"
+    "packages",
+    "authored",
+    "different",
+    "maturity",
+    "levels"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.424Z",
+  "lastUpdated": "2026-06-23T03:49:49.291Z",
   "specId": "044",
   "folderSlug": "non-system-playbook-prompts",
   "parentChain": [

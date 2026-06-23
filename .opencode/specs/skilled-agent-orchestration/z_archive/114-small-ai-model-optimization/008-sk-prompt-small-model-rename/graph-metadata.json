@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 8 of 114. Phase 007 renamed `sk-small-model` → `sk-ai-small-model` (preserve-history). Phase 008 renames `sk-ai-small-model` → `sk-prompt-small-model` with REWRITE-ALL policy per user directive.",
+    "causal_summary": "`sk-ai-small-model` over-claims its scope",
     "created_at": "2026-05-23T13:10:01Z",
-    "last_save_at": "2026-06-07T09:00:45.780Z",
+    "last_save_at": "2026-06-23T03:49:50.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e6fc7650445a35211e169937f635c249d0d66f53a62ede25da328ae1eff710fc",
+    "source_doc_hashes": {
+      "spec.md": "3b0f2ef09d3278224627f637cc76c83105657f30528f2ac6a8ac3cb4544ce198",
+      "plan.md": "8c6a03955a6a2c63f2804cf97d6c3a4889ffc013f2e91243503c11756189ca83",
+      "tasks.md": "ede5934b6ea58a9c4bd218973efc99e096f5591dcb43472918b085a7ef4fb3c6",
+      "checklist.md": "ef1506023fc637dadf286af183eb266b67280ca0261fe1699939052f18791256",
+      "decision-record.md": "7b983ad19f3f45fa7d0e756e7694e676eb85b94862843420f6a1092fa99a1b56",
+      "implementation-summary.md": "0ca3a7424cbd6fb2185df7ed2933839dd21d47ab90a9a0b19982789216191bd2"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

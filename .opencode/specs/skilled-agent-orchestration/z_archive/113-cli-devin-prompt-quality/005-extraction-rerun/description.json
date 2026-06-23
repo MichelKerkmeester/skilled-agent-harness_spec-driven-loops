@@ -1,19 +1,23 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/005-extraction-rerun",
-  "description": "Feature Specification: cli-devin extraction rerun — close 003 file-extraction gap",
+  "description": "113/003 synthesis.md notes a known limitation: SWE 1.6 `--print` returns markdown text rather than files",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-devin",
-    "extraction",
-    "rerun",
-    "close",
+    "113",
     "003",
-    "file-extraction",
-    "gap"
+    "synthesis",
+    "notes",
+    "known",
+    "limitation",
+    "swe",
+    "print",
+    "returns",
+    "markdown",
+    "text",
+    "rather",
+    "files"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.278Z",
+  "lastUpdated": "2026-06-23T03:49:50.481Z",
   "specId": "005",
   "folderSlug": "extraction-rerun",
   "parentChain": [

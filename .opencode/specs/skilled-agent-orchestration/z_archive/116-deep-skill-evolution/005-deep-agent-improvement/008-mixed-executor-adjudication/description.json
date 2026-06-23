@@ -1,17 +1,23 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
-  "description": "Feature Specification: 128 — Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology",
+  "description": "Deep-agent-improvement currently lacks the methodology patterns proven in arc 119's deep-research uplift: (1) mixed-executor dispatch for multi-iter s",
   "keywords": [
-    "feature",
-    "specification",
-    "128",
     "deep-agent-improvement",
+    "currently",
+    "lacks",
+    "methodology",
+    "patterns",
+    "proven",
+    "arc",
+    "119",
+    "deep-research",
+    "uplift",
     "mixed-executor",
-    "adjudication",
-    "methodology"
+    "dispatch",
+    "multi-iter"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.723Z",
+  "lastUpdated": "2026-06-23T03:49:50.979Z",
   "specId": "008",
   "folderSlug": "mixed-executor-adjudication",
   "parentChain": [

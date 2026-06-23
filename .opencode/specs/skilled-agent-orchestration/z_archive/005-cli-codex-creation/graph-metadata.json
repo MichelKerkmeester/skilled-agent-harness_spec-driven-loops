@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The existing `cli-gemini` skill referenced multiple Gemini model variants, which created avoidable decision overhead. At the same time, there was no companion `cli-codex` skill even though Codex CLI support already existed elsewhere in the repository.",
+    "causal_summary": "The existing `cli-gemini` skill referenced multiple Gemini model variants, which created avoidable decision overhead",
     "created_at": "2026-04-12T09:02:50.202Z",
-    "last_save_at": "2026-05-30T10:12:01.136Z",
+    "last_save_at": "2026-06-23T03:49:48.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:55a2f517970fb1ad018fdd0c0ab6e8ea72f0d57beba86a63de4376cf523b56ee",
+    "source_doc_hashes": {
+      "spec.md": "a632634021c2927b0f7fd30c6319309383032ab9cece896516ed807ca2f389ae",
+      "plan.md": "b7da56b5bae7b6f76171a2492bf2cf09fd1813bd0816b839a50cb68d76b3e0b8",
+      "tasks.md": "da37d4bf551f0882369254e9991f69f6ff2ecafb338419bfa7da98a6494b11d8",
+      "checklist.md": "dcd98093bb11bac206982e1ac61ec9c67ffb94eb59c04b9f8d827971e23fa646",
+      "implementation-summary.md": "072b64f1ec86c7e29a641cc93820636673a052a6229d41b1abbcf38cb148f3b7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

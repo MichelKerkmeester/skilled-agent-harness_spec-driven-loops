@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "fifth",
-      "skill",
-      "batch",
-      "feature"
+      "tabular",
+      "reference",
+      "card",
+      "problem-first",
+      "entry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 19**, the fifth skill in Batch D (sk-*).",
+    "causal_summary": "The sk-prompt-small-model README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
     "created_at": "2026-06-07T14:42:36Z",
-    "last_save_at": "2026-06-17T19:57:23.844Z",
+    "last_save_at": "2026-06-23T03:49:51.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:33f6590237a7afa8806f6d0d43532f318749700c1cf7d256d718c043590f6a9c",
+    "source_doc_hashes": {
+      "spec.md": "ef8f8842cb7b8bdeb9e887d4877b200073d0606c03f1629167deff3a8e72186b",
+      "plan.md": "c50a77d158b39324397623a896c029ee34bdaf6ff9c93d367c41b93e2ab31365",
+      "tasks.md": "796a62f16fde2a118437db503c199344b421ea74778102c967474d2c5934560f",
+      "implementation-summary.md": "3ddc283cb1ac855cf13dbb51b09d58991565ad9fe2704cc8b400e1330f2fb75d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

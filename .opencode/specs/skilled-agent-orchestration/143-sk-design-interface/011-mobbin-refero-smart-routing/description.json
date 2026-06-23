@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/011-mobbin-refero-smart-routing",
-  "description": "Feature Specification: Phase 11: mobbin-refero-smart-routing",
+  "description": "The Mobbin/Refero integration (phase 009) was purely passive: ONDEMAND, user-driven, with no agent initiative and no explicit decision procedure for w",
   "keywords": [
-    "feature",
-    "specification",
+    "mobbin",
+    "refero",
+    "integration",
     "phase",
-    "mobbin-refero-smart-routing"
+    "009",
+    "purely",
+    "passive",
+    "ondemand",
+    "user-driven",
+    "agent",
+    "initiative",
+    "explicit",
+    "decision",
+    "procedure"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.003Z",
+  "lastUpdated": "2026-06-23T03:49:48.453Z",
   "specId": "011",
   "folderSlug": "mobbin-refero-smart-routing",
   "parentChain": [

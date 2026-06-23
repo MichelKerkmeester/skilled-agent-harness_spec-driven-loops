@@ -1,15 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/059-agent-implement-code",
-  "description": "Feature Specification: @code Sub-Agent for Stack-Agnostic Code Implementation",
+  "description": "The `.opencode/agents/` inventory has 10 agents (review, orchestrate, debug, write, context, deep-research, deep-review, improve-agent, improve-prompt",
   "keywords": [
-    "feature",
-    "specification",
-    "code",
-    "sub-agent",
-    "stack-agnostic",
-    "implementation"
+    "opencode",
+    "agents",
+    "inventory",
+    "review",
+    "orchestrate",
+    "debug",
+    "write",
+    "context",
+    "deep-research",
+    "deep-review",
+    "improve-agent",
+    "improve-prompt"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.356Z",
+  "lastUpdated": "2026-06-23T03:49:49.397Z",
   "specId": "059",
   "folderSlug": "agent-implement-code",
   "parentChain": [

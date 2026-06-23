@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/001-rename-preflight-and-plan",
-  "description": "Feature Specification: 115/001 — preflight scope-map",
+  "description": "Without a comprehensive surface map + rename-plan contract, phases 002-005 cannot run in parallel safely",
   "keywords": [
-    "feature",
-    "specification",
-    "115",
-    "001",
-    "preflight",
-    "scope-map"
+    "without",
+    "comprehensive",
+    "surface",
+    "map",
+    "rename-plan",
+    "contract",
+    "phases",
+    "002-005",
+    "cannot",
+    "run",
+    "parallel",
+    "safely"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.464Z",
+  "lastUpdated": "2026-06-23T03:49:50.706Z",
   "specId": "001",
   "folderSlug": "rename-preflight-and-plan",
   "parentChain": [

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skill_reference`, `/create:skill_asset`). That duplication increased maintenance cost and made routing behavior harder to keep consistent across operation and mode variants. After canonical merger, active runtime and onboarding documentation still needed explicit synchronization to canonical `/create:sk-skill` references.",
+    "causal_summary": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`, `/create:skillasset`)",
     "created_at": "2026-04-12T09:02:50.220Z",
-    "last_save_at": "2026-05-30T10:12:01.160Z",
+    "last_save_at": "2026-06-23T03:49:48.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:86136ee74dc70c407ffb2afd11c5d6f686055c2d312822a30b5d568579ce79bb",
+    "source_doc_hashes": {
+      "spec.md": "94832f5db14972d06936397a570bee149f2802e65b21ac9b67bced19aba6d982",
+      "plan.md": "620a00f651b17876f40919f20d96e05e754e7cf62147bb01bf91b962093665c7",
+      "tasks.md": "29bde77a0ad04b24c636270be21f6c504511df8a4fb1d79970de271e1d1b7c85",
+      "checklist.md": "1171b35c75563ff052540f212ce4801f09a251b3f27dfd8004a48e20f6a1ba8b",
+      "implementation-summary.md": "04e6a926a948c5550c6496607086d17cafc30f37fb136717490e94f286a47d4a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

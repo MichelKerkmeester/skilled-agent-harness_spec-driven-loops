@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Turn the external repo `the extraction tool` into a house skill, `sk-design-md-generator`, that extracts a live website's real CSS into a 17-section `DESIGN.md` an AI agent can build against without hallucinating values. The full working tool is embedded under `tool/`; a conformant skill layer wraps it and registers it in the advisor graph.",
+    "causal_summary": "The framework can reason about distinctive design direction (`sk-design-interface`) and drive design transports (`mcp-open-design`, `mcp-figma`), but it has no way to capture an EXISTING site's real design system into a structured, agent-consumable reference",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-22T10:45:11.464Z",
+    "last_save_at": "2026-06-23T03:49:48.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:06c175148029e6a4f6854cbaa902ff7c583f2099adcaf4cce4e20ed6d495548c",
+    "source_doc_hashes": {
+      "spec.md": "b5033c3c45d50a3ce0e46044b07d0bd5a1bc0ddaf261f9eb166cd3ea36ac58e0",
+      "plan.md": "1e659031b7727aa570a050d166614ec60ad2696b51f9d183fbd7ac9927e073fa",
+      "tasks.md": "cb22bd9428caf077dfc9039c6c91cdce8ddbac91bb7085aa57d159be2abd84d2",
+      "checklist.md": "b302b6fa39994e50974060816ed9999a33bb29127053f18e08098f111046ffa5",
+      "decision-record.md": "b846106f114b2f9f49cd808e79983a3a435f8a86f1e43a4055d507c1e8322f16",
+      "implementation-summary.md": "9d80d9a3e21863f6236d05949eea31bc948f3f9468fadad2f9d5375239cadb5c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

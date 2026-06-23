@@ -1,17 +1,19 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename/001-discovery-impact-map",
-  "description": "Feature Specification: Phase 001 Discovery Impact Map",
+  "description": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "001",
-    "discovery",
-    "impact",
-    "map"
+    "packet",
+    "082",
+    "renames",
+    "sk-improve-prompt",
+    "sk-prompt",
+    "across",
+    "active",
+    "repo",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.846Z",
+  "lastUpdated": "2026-06-23T03:49:49.897Z",
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [

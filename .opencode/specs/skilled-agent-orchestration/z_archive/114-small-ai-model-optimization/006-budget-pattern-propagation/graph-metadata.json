@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase E of 114 roadmap. Propagate the context-budget patterns from cli-devin Phase C to cli-opencode (eviction support for larger-context models like DeepSeek-v4-pro / Kimi-k2.6) and sk-prompt (budget-awareness composition guidance in cli_prompt_quality_card.md). 2-stage tool routing port from smallcode is deferred or dropped per research iter-011 verdict (overlaps mcp-code-mode). Effort: ~6-12 hours.",
+    "causal_summary": "Phase C lands the budget engine in cli-devin only",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-06-22T18:55:00.333Z",
+    "last_save_at": "2026-06-23T03:49:50.537Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6fb9ad838a3d62a0bf9128bb707fc14f28986649d8a9a1ca45e962a4638203f0",
+    "source_doc_hashes": {
+      "spec.md": "4c38c0e08c068954607f6d1f19bdbc92b8eabd169dd65a519ee193738aff3cf3",
+      "plan.md": "1e8c546de77ab6b57de157d5cd8116e7c5fedbed937b7f2e7370648d829a7e2b",
+      "tasks.md": "1b3ecf3d6de3d7df1aeb31e0f596f68ef3f8d37fd9568e80a4cb065cd0333520",
+      "checklist.md": "a58f0c6384e99ab4bf40b43fd7fa138bad8ad0fdcb4ce58ae47321c980a41fc5",
+      "implementation-summary.md": "c5473dcaa2fcfd1537a718ef83d0e7eac5e67ca6b66e3ee47404662520e85d41"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Claude Code's status line reports `15 skill descriptions dropped`. The harness caps total skill metadata at `SLASH_COMMAND_TOOL_CHAR_BUDGET` (default 8,000 chars). This repo's 16 SKILL.md frontmatters + 23 command frontmatters total ~7,646 chars — combined with bundled Claude Code built-ins (~2,400 chars: `claude-api`, `update-config`, `loop`, `schedule`, etc.) the harness sees ~10,050 chars and drops the longest 15 alphabetically. Dropped skills still work when invoked explicitly (`/skill-name`) but lose model auto-discovery.",
+    "causal_summary": "Claude Code's status line reports `15 skill descriptions dropped`",
     "created_at": "2026-05-06T12:38:24.302Z",
-    "last_save_at": "2026-06-15T09:09:33.521Z",
+    "last_save_at": "2026-06-23T03:49:49.930Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:15c0fe59aa5cff859a025a21daf5f4e62fe6b2f98c61b5ae28dfdadacbf738dd",
+    "source_doc_hashes": {
+      "spec.md": "1283b61a6089f86c9cc163a78b366bdb8eec1d8e2553f60afb5f77e1b9000626",
+      "plan.md": "88e10ac727420ad372fc08951f60893776d7c8cf1934ea491d1931456f4ced15",
+      "tasks.md": "7dbc57d683d9ab22430557907385b2cb4eeccf2cabb60894276e057efa3cb45a",
+      "implementation-summary.md": "af03c51276bc6f619b5b7a0ce4cad80fc18bc0d8fd2a9e7b4228671b9c72a346"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

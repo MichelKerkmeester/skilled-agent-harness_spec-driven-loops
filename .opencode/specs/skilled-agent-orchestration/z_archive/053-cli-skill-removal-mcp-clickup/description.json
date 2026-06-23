@@ -1,14 +1,12 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup",
-  "description": "Feature Specification: Remove mcp-clickup skill",
+  "description": "The `mcp-clickup` skill is being decommissioned",
   "keywords": [
-    "feature",
-    "specification",
-    "remove",
     "mcp-clickup",
-    "skill"
+    "skill",
+    "decommissioned"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.469Z",
+  "lastUpdated": "2026-06-23T03:49:49.352Z",
   "specId": "053",
   "folderSlug": "cli-skill-removal-mcp-clickup",
   "parentChain": [

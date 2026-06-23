@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/012-catalog-playbook-realignment",
-  "description": "Feature Specification: Phase 12: catalog-playbook-realignment",
+  "description": "Phase 011 made the `sk-design-interface` coupling a hard precondition for all design work (banner, hard gate, NEVER #6, success-criteria gate)",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "catalog-playbook-realignment"
+    "011",
+    "made",
+    "sk-design-interface",
+    "coupling",
+    "hard",
+    "precondition",
+    "design",
+    "work",
+    "banner",
+    "gate",
+    "never",
+    "success-criteria"
   ],
-  "lastUpdated": "2026-06-17T11:16:05.142Z",
+  "lastUpdated": "2026-06-23T03:49:48.635Z",
   "specId": "012",
   "folderSlug": "catalog-playbook-realignment",
   "parentChain": [

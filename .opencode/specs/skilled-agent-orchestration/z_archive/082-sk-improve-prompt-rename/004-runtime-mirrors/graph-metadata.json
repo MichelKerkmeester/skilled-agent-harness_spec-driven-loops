@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID. These body references must move to `sk-prompt`, while visible agent and command names stay stable.",
+    "causal_summary": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID",
     "created_at": "2026-05-06T10:22:41Z",
-    "last_save_at": "2026-06-22T18:54:59.858Z",
+    "last_save_at": "2026-06-23T03:49:49.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:d2d9b7abaff782a5384ccb3b60b6a6fb5cc9177cf016db0e08cf9b2b1de3515b",
+    "source_doc_hashes": {
+      "spec.md": "2391e266cfcb515b089ee076acfae5e3af795ff32fe4e7b72ee1e642624b8e1b",
+      "plan.md": "1adfd554c1be4dd74fd023a472815b97ff225714986f0c1275d73036d71f3de6",
+      "tasks.md": "b5609309aa8b23736b85355dcd20d2e5ee89033371eb9d5040db2fea0ee352a0",
+      "implementation-summary.md": "85d5bdf8a3211f47fcd1e09247875c335c573e2ae5cbec09bd6fe18a15d4ad38"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

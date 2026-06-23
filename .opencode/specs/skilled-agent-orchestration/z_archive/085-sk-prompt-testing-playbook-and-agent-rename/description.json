@@ -1,21 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename",
-  "description": "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt → @prompt-improver Agent Rename — Phase Parent",
+  "description": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-prompt",
-    "manual",
-    "testing",
-    "playbook",
-    "improve-prompt",
-    "prompt-improver",
-    "agent",
-    "rename",
-    "phase",
-    "parent"
+    "two",
+    "related",
+    "gaps",
+    "surfaced",
+    "packet",
+    "082",
+    "renamed",
+    "skill",
+    "sk-improve-prompt",
+    "sk-prompt"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.347Z",
+  "lastUpdated": "2026-06-23T03:49:49.943Z",
   "specId": "085",
   "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
   "parentChain": [

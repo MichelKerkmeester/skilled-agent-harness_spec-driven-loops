@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110). Each is mild over-soft (≤22 chars over) — not failure-class. Project total is currently 5,546 chars with +54 headroom under the 5,600 ceiling. Acceptable, but tight; one more reasonable additions and we cross over again.",
+    "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110)",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-06-15T09:09:33.535Z",
+    "last_save_at": "2026-06-23T03:49:49.985Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:03089de8746d2193a98eec27510a649cea78397c051f364e9bfc544339fd7d8e",
+    "source_doc_hashes": {
+      "spec.md": "3f620a4ad8019701b43832e83f1144d75617c9092b12512ef9b7a562c7cd9c04",
+      "plan.md": "593f9a23a59a116b12e55b642e1f4e35fea383ab5125146ff31083290d929d75",
+      "tasks.md": "85f9a3870fbb6eedd9f2fc987d6da1afff35bb6e2d9906a0f9bcfc9bfa05bfec",
+      "implementation-summary.md": "fd61e986d71b82c7d87704fb0769b395871858b6b59616ce5d1b70c66bd33ae7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

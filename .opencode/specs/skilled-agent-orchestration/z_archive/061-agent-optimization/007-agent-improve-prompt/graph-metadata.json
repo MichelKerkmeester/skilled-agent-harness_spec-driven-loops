@@ -20,15 +20,15 @@
       "007-agent-improve-prompt",
       "improve-prompt",
       "optimization",
-      "improvement",
-      "focus",
-      "prompt",
-      "engineering",
-      "framework",
-      "selection",
-      "clear",
-      "validation",
-      "companion"
+      "271",
+      "loc",
+      "sk-improve-agent",
+      "lens",
+      "spec",
+      "agent",
+      "sub-phase",
+      "061-agent-optimization",
+      "applying"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -184,9 +184,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Improvement focus: **Prompt engineering; framework selection; CLEAR validation**. Companion to /prompt command. Smallest agent in fleet.",
+    "causal_summary": "`@improve-prompt` (271 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.107Z",
-    "last_save_at": "2026-06-05T12:47:32.739Z",
+    "last_save_at": "2026-06-23T03:49:49.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f1c3c58e3de55fb2f9999d0fb5d15a96b678dfcc71d02d2e88d26a27209d09d7",
+    "source_doc_hashes": {
+      "spec.md": "dce22bc1c23b0a44a6563e44550d8af6d1b7eee357c21db0056b3aec4efd2d96",
+      "plan.md": "e11da08b3205c282474e8e60c0f7df7e68a8300215eebe4669ffce99198512ba",
+      "tasks.md": "3f31f9b44df2b67d84bb22f7a611a39baabb112c341ac94de854d4cf25d96902",
+      "implementation-summary.md": "63651634011960c852a19b8222f42ff211cead8363c21406135f813595fd222b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

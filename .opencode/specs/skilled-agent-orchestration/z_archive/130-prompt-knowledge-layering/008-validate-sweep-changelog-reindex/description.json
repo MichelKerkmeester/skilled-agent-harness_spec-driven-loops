@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
-  "description": "Feature Specification: Phase 8: validate-sweep-changelog-reindex",
+  "description": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms t",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "validate-sweep-changelog-reindex"
+    "seven",
+    "phases",
+    "structural",
+    "changes",
+    "across",
+    "five",
+    "cli",
+    "skills",
+    "two",
+    "sk-prompt",
+    "sync",
+    "substrate",
+    "single",
+    "pass",
+    "confirms"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.343Z",
+  "lastUpdated": "2026-06-23T03:49:51.617Z",
   "specId": "008",
   "folderSlug": "validate-sweep-changelog-reindex",
   "parentChain": [

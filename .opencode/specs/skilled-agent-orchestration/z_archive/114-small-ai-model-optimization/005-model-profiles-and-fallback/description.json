@@ -1,14 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/005-model-profiles-and-fallback",
-  "description": "Feature Specification: shared model intelligence",
+  "description": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
   "keywords": [
-    "feature",
-    "specification",
-    "shared",
-    "model",
-    "intelligence"
+    "today",
+    "cli",
+    "skills",
+    "repeat",
+    "model-selection",
+    "guidance",
+    "per",
+    "skill",
+    "cli-devin",
+    "cli-opencode",
+    "sk-prompt",
+    "clipromptqualitycard"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.328Z",
+  "lastUpdated": "2026-06-23T03:49:50.533Z",
   "specId": "005",
   "folderSlug": "model-profiles-and-fallback",
   "parentChain": [

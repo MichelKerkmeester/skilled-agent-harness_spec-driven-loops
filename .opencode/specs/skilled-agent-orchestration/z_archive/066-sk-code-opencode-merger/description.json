@@ -1,13 +1,22 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger",
-  "description": "Feature Specification: sk-code-opencode-merger",
+  "description": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-",
   "keywords": [
-    "feature",
-    "specification",
-    "sk-code-opencode-merger"
+    "implementation",
+    "sk-code",
+    "advertised",
+    "itself",
+    "umbrella",
+    "application-code",
+    "router",
+    "webflow",
+    "react",
+    "nextjs",
+    "branches",
+    "while"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.602Z",
+  "lastUpdated": "2026-06-23T03:49:49.587Z",
   "specId": "066",
   "folderSlug": "sk-code-opencode-merger",
   "parentChain": [

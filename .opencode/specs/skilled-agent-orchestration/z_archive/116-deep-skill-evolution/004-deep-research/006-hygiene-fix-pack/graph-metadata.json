@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existence check, and the deep-research skill allowed-tools list needed post-118 pruning verification.",
+    "causal_summary": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existence check, and the deep-research skill allowed-tools list needed post-118 pruning verification",
     "created_at": "2026-05-23T03:56:52.844Z",
-    "last_save_at": "2026-06-15T09:09:33.798Z",
+    "last_save_at": "2026-06-23T03:49:50.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:27e3402a8d71eea2ad3e1a6282cdacb06652df63b184426b8e001e57b1308c74",
+    "source_doc_hashes": {
+      "spec.md": "916d9fa715cdd704d3011aee7cbc44ec4cebd620fa20b03dd92d59710ca2e8b8",
+      "plan.md": "0fa2c74afe23c60e18f7236129cd254a4a4729afbf61936077428b87ae609f11",
+      "tasks.md": "1806309704092388cd65cc5a4ea07bf355057f78f0eec4993868d5da569489ae",
+      "checklist.md": "184f0402d83ac3233e8870dc3e083271d525d0afe6423741a9f2ee6af30750e3",
+      "implementation-summary.md": "4e12ec8f07b3706a88dc882be80afe95164c49eca51c45f0b83d728e1526c9c9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

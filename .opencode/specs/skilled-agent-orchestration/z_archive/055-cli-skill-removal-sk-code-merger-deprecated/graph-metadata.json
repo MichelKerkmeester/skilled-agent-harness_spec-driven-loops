@@ -219,9 +219,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella skill `sk-code` and gated the deprecated pair to advisor weight 0. The deprecated trees still occupy disk and are referenced from advisor scoring tables, skill graphs, READMEs, install guides, AGENTS siblings, eval / telemetry JSONL, the new sk-code's own placeholder pointers, four runtime agent-definition files, and several SQLite indexes — leaving the registry internally inconsistent.",
+    "causal_summary": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella skill `sk-code` and gated the deprecated pair to advisor weight 0",
     "created_at": "2026-04-30T10:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.704Z",
+    "last_save_at": "2026-06-23T03:49:49.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,6 +231,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7a29f1cd10d0376a0d78b665507659ea6cdc7e63ddcbb9e9f34444230e70301d",
+    "source_doc_hashes": {
+      "spec.md": "344e13814dd96ec6084bd07b148a5383694569514fecc366e03e9a2b9f67592c",
+      "plan.md": "0815fecdca86842034b0b77945ac161c88b011fddb2f2d3ba5fb0897c8bdcb6d",
+      "tasks.md": "950a16bbb9dde93094b68a19a00c06f92be759dc0fc795160e8de28e3655cf64",
+      "checklist.md": "499ccabf419aae67345674557755d81a23cf75abea7513141b727d3079ff7491",
+      "implementation-summary.md": "fa2a732859163d4afbbe218186261196c049e21ccb03aa657e8b8641da85a39c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

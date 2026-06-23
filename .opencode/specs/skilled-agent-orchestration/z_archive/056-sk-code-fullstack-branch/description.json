@@ -28,15 +28,19 @@
     ".opencode/skills/sk-code/changelog/v1.3.0.0.md"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/056-sk-code-fullstack-branch",
-  "description": "Feature Specification: sk-code multi-stack scaffolding",
+  "description": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
   "keywords": [
-    "feature",
-    "specification",
     "sk-code",
-    "multi-stack",
-    "scaffolding"
+    "umbrella",
+    "code-routing",
+    "skill",
+    "only",
+    "one",
+    "live",
+    "stack",
+    "webflow"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.489Z",
+  "lastUpdated": "2026-06-23T03:49:49.374Z",
   "specId": "056",
   "folderSlug": "sk-code-fullstack-branch",
   "parentChain": [

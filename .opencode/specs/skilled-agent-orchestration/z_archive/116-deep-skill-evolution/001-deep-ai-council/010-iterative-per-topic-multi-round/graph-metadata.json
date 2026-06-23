@@ -21,13 +21,13 @@
       "per-topic",
       "multi-round",
       "orchestration",
-      "phase",
-      "consumes",
-      "adr-002",
-      "adr-003",
-      "adr-004",
-      "001",
-      "adding"
+      "implement",
+      "topic-local",
+      "loop",
+      "verdict-delta",
+      "convergence",
+      "max-round",
+      "handling"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase consumes ADR-002, ADR-003, and ADR-004 from 129/001 by adding the topic-local multi-round loop plus session-level cost guard wrapper.",
+    "causal_summary": "Implement a topic-local multi-round loop with verdict-delta convergence and max-round handling",
     "created_at": "2026-05-23T07:53:20Z",
-    "last_save_at": "2026-06-15T09:09:33.739Z",
+    "last_save_at": "2026-06-23T03:49:50.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:87abed4c1066b7c35039830f53dc676dcb2d2a3f8ad7d8dc2896469b51cb0fb2",
+    "source_doc_hashes": {
+      "spec.md": "548c589cb7c32a0ccfe4a6a64693d1af2672ac650b0b78ad072df70810ba38b2",
+      "plan.md": "9fc5fadef664e2165666c6d7ad896d2d22a0a9c48d21eade12dc9276da047c43",
+      "tasks.md": "12e5924196a570363f17e569eeaa9fd0631a91b2f674a110d82018b3c551c778",
+      "checklist.md": "6b6e58e0a4d28349adda1cd7821cad69f1787f706d8e07aded67541de4204926",
+      "decision-record.md": "9797a1682891408f6aedd8d5ac9d9ed2e1cc290dc71c7f946adeb33c140768d8",
+      "implementation-summary.md": "61a67b4ddda0bb182b56699a8fadf1c1a08df9d46cc0aa68fa3e2a84f3a0141c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

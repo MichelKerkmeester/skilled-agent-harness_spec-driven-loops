@@ -1,14 +1,25 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
-  "description": "Feature Specification: Phase 6: broad-scope-timeout-caveat",
+  "description": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dis",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "broad-scope-timeout-caveat"
+    "kimi",
+    "code",
+    "docs",
+    "note",
+    "variant",
+    "high",
+    "accepted-unverified",
+    "capture",
+    "real",
+    "operational",
+    "failure",
+    "mode",
+    "broad",
+    "large-repo",
+    "dis"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.134Z",
+  "lastUpdated": "2026-06-23T03:49:48.782Z",
   "specId": "006",
   "folderSlug": "broad-scope-timeout-caveat",
   "parentChain": [

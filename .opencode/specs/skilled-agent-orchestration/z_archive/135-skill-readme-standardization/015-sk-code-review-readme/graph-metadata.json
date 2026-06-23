@@ -25,11 +25,11 @@
       "plan",
       "tasks",
       "shipped",
-      "phase",
-      "first",
-      "skill",
-      "batch",
-      "feature"
+      "tabular",
+      "reference",
+      "card",
+      "stray",
+      "non-numbered"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 15**, the first skill in Batch D (sk-*).",
+    "causal_summary": "The sk-code-review README is a tabular reference card with stray non-numbered headings (`## Findings`, `## Review Context`) breaking the section sequence, and it documents the output contract wrong: it shows `## Findings` before `## Code Review Summary`, invents a `## Review Context` heading that does not exist, and omits the mandatory `Review status:` final line that downstream automation parses",
     "created_at": "2026-06-07T13:52:39Z",
-    "last_save_at": "2026-06-17T19:57:23.840Z",
+    "last_save_at": "2026-06-23T03:49:51.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9021dc66e456d55f707c09211fee993fbf7d77468f55440b77e9cfb1e787f0c5",
+    "source_doc_hashes": {
+      "spec.md": "a9c31d3ae7900dc44206b8b2f74198cd94457027382340d814294dfc15ed5cf2",
+      "plan.md": "c68f12a5f3370259bfd25b02870501dc1e9fe924d186dab3106b5b02c84431ee",
+      "tasks.md": "5e86756c66e8265926b5dcce4b989a4af04424f1d854c4cd2bcda67d7ebf7977",
+      "implementation-summary.md": "48f5a1ff82cf48c7d99806541cc9ae033843a437073efcf19d08eff54714646f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

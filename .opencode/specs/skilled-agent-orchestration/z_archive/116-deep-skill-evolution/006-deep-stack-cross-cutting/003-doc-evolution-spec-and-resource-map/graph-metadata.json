@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 008 cluster improves documentation across five mature deep-* skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup. Without a single source of truth for what each skill still needs, phases 002-009 risk redoing finished work, missing a flat reference directory, or emitting findings in inconsistent shapes.",
+    "causal_summary": "The 008 cluster improves documentation across five mature deep- skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup",
     "created_at": "2026-05-25T14:26:45.200Z",
-    "last_save_at": "2026-06-07T09:00:45.922Z",
+    "last_save_at": "2026-06-23T03:49:51.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0b7400a8af4b29fd06b45679c1b9b36ac843034b575b05c2407363ee17feb216",
+    "source_doc_hashes": {
+      "spec.md": "19b7302b4f19cf4e04532d040c74dbb89d8965bfffd7975be5fc1dd14e29a21f",
+      "plan.md": "0258db3f80731249c80f9daeaca5d5bd20104b12fdac682c21a06abe3ef68b6f",
+      "tasks.md": "9ebd90cf8a8092845df51158571720f030c2271813a2e8c9beb89df4d134abec",
+      "checklist.md": "a1af0e38fc8c60f73e40049d6be583c41c4f22e4fe6a8ab54223929a1785eae0",
+      "implementation-summary.md": "21382a3970511f47dcb412b3bbf192bbb1243255f8e21e8891e3e60443b346ea"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

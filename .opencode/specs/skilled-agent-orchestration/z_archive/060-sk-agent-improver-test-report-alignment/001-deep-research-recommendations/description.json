@@ -1,17 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
-  "description": "Feature Specification: Apply 059 Stress-Test Methodology to sk-improve-agent Triad",
+  "description": "The `sk-improve-agent` triad is the system's self-improvement engine: it scaffolds candidates, scores them across 5 integration-aware dimensions, runs",
   "keywords": [
-    "feature",
-    "specification",
-    "apply",
-    "059",
-    "stress-test",
-    "methodology",
     "sk-improve-agent",
-    "triad"
+    "triad",
+    "system",
+    "self-improvement",
+    "engine",
+    "scaffolds",
+    "candidates",
+    "scores",
+    "them",
+    "across",
+    "integration-aware",
+    "dimensions",
+    "runs"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.246Z",
+  "lastUpdated": "2026-06-23T03:49:49.412Z",
   "specId": "001",
   "folderSlug": "deep-research-recommendations",
   "parentChain": [

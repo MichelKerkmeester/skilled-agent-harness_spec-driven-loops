@@ -96,14 +96,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling **177 scenarios**. Each playbook's Execution Policy requires scenarios to be \"executed for real, not mocked.\" There is no captured, dated operator run on record across these five skills, so release readiness for the deep-loop family cannot be asserted.",
+    "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling 177 scenarios",
     "created_at": "2026-05-27T07:08:08.383Z",
-    "last_save_at": "2026-06-22T18:56:35.763Z",
+    "last_save_at": "2026-06-23T03:49:51.026Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:da9e4095be090aceb60fd005b0d37f2cd978967d8477093a31dbf3b0c62d0a02",
+    "source_doc_hashes": {
+      "spec.md": "eb00f8ee60ae11e5ebceb7ca3cf5153c9ff24cd625cb8fbda7cf2c8e66efe837"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

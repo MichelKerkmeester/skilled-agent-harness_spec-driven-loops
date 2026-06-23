@@ -1,13 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation",
-  "description": "Feature Specification: Gemini Deprecation",
+  "description": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and s",
   "keywords": [
-    "feature",
-    "specification",
+    "project",
+    "longer",
+    "supports",
     "gemini",
-    "deprecation"
+    "surface",
+    "active",
+    "tooling",
+    "still",
+    "depends",
+    "one",
+    "two",
+    "places",
+    "checked-in",
+    "runtime",
+    "directory"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.394Z",
+  "lastUpdated": "2026-06-23T03:49:51.675Z",
   "specId": "132",
   "folderSlug": "cli-gemini-deprecation",
   "parentChain": [

@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI as a peer. Cognition AI's \"Devin for Terminal\" (the official `devin` Rust CLI) is now a viable peer — it brings a unique local-to-cloud handoff capability no other family member has — but there is no `cli-devin` skill to route to it. Today, cross-AI dispatches to Devin require ad-hoc Bash, with no self-invocation guard, no auth pre-flight, no agent-routing surface, and no documented prompt contract.",
+    "causal_summary": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI as a peer",
     "created_at": "2026-05-15T07:01:57.575Z",
-    "last_save_at": "2026-06-08T17:32:20.421Z",
+    "last_save_at": "2026-06-23T03:49:50.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:543fab15d3e8689e7be2706f5ee1261ada652c06c382de144907568fdc3ba82b",
+    "source_doc_hashes": {
+      "spec.md": "a87322dc2d92f42c1db7eec99144a413426368b6237cdab5edc3be5ba8cb7e3e",
+      "plan.md": "761040fa5b6e5c0c711be84687b725bde18c569aac2180de970d1fc118b055fe",
+      "tasks.md": "44df2435eaf8a94241def9689b587379843438a04c6a35f556413e030ac252f3",
+      "checklist.md": "e0ba7dcd0ddb0ab059fdc763b020ef9d1f65fc066f205e00d118c219bb59e9de",
+      "implementation-summary.md": "0cc59c242ddaf2542cadccb4c45c2d3e24a002b4ff68c8eecc558b5dc639f2cd"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

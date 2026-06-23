@@ -1,16 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows",
-  "description": "Feature Specification: deep-loop-workflows — consolidate the five deep-loop skills",
+  "description": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` —",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-loop-workflows",
-    "consolidate",
-    "five",
     "deep-loop",
-    "skills"
+    "capability",
+    "split",
+    "across",
+    "five",
+    "sibling",
+    "skills",
+    "deep-ai-council",
+    "deep-context",
+    "deep-improvement",
+    "deep-research",
+    "deep-review"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.084Z",
+  "lastUpdated": "2026-06-23T03:49:48.666Z",
   "specId": "147",
   "folderSlug": "deep-loop-workflows",
   "parentChain": [

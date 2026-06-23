@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the skill README standardization. It locks the voice and structure that the remaining phases follow.",
+    "causal_summary": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human entry point",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-06-17T19:57:23.824Z",
+    "last_save_at": "2026-06-23T03:49:51.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6e5d14faef389b5aedcc7b56ebfc55e6e7e498ede7cd3db762becdbfa0fed8c0",
+    "source_doc_hashes": {
+      "spec.md": "39b1800fffcd3096d8caed10d59e0af25272faae915e6cb8c2539535deff27ee",
+      "plan.md": "0168a5b21d5c6527f8093c51ce4cd1db405606b1e78246331d96202d7cfe451f",
+      "tasks.md": "56cc5f49cd0e313cabc525472930452afe051b92599c4bf0702219e316fefb2e",
+      "implementation-summary.md": "b1e258aab18f25e2659883a18c2ab850431769bb99d29dd006856a5d14688abb"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

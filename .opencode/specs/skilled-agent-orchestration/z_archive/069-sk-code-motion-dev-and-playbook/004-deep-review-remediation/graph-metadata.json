@@ -204,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict. Two P0 blockers remain around Webflow no-clobber evidence and an undocumented Motion+ runnable snippet path. Seven P1 findings keep router, citation, continuity, snippet, and playbook precondition state inconsistent. Four P2 findings leave useful playbook polish and metadata accuracy gaps.",
+    "causal_summary": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict",
     "created_at": "2026-05-05T12:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.370Z",
+    "last_save_at": "2026-06-23T03:49:49.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
@@ -216,6 +216,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:6fe1260f99963e11f6254ddd16e4b39c7645cb43792f2a65770e30f87793db49",
+    "source_doc_hashes": {
+      "spec.md": "b1807461ffb5ec1889b28c06ed0b89578b8d61b714eff5c13f8248aa644f260b",
+      "plan.md": "401c647110b27fe98b8733ab7e9784c1ba938948040c5eb60908f338f96e91d7",
+      "tasks.md": "875d3daef9723d78cefebc6a537ad2a38790e6bd42fe50318672536c7ca08b07",
+      "checklist.md": "57a33334bf1a3e9042a3371b3ff1d457e59c64f24e41bf348180a69683359cee",
+      "implementation-summary.md": "de92e1b6085d78e47d15c93ae6da78692ea2fe0425480edf76f0b403b23a4637"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,16 +1,18 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal",
-  "description": "Feature Specification: Skill Anchor + TOC Removal",
+  "description": "Skill documentation under `.opencode/skills/` has accumulated navigational scaffolding the user",
   "keywords": [
-    "feature",
-    "specification",
     "skill",
-    "anchor",
-    "toc",
-    "removal"
+    "documentation",
+    "opencode",
+    "skills",
+    "accumulated",
+    "navigational",
+    "scaffolding",
+    "user"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.850Z",
+  "lastUpdated": "2026-06-23T03:49:51.089Z",
   "specId": "117",
   "folderSlug": "skill-anchor-toc-removal",
   "parentChain": [

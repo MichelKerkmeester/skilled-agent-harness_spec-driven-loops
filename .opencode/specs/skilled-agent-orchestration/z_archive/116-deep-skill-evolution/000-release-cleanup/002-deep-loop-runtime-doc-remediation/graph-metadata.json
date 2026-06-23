@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The parent packet's Phase 5 deep-research loop surfaced 36 unique findings (0 P0 / 23 P1 / 13 P2) across 7 transverse patterns. Zero overlap with the 21 Phase-2 audit findings — these are factual content drift the audit-and-validate phases missed. Three of the highest-impact findings were introduced or propagated by the Phase 3 README rewrite itself (`code-surface` fabrication, `129/001 ADR-001` mis-citation echoed into the new changelog, 22-vs-27 vitest count drift).",
+    "causal_summary": "After the parent packet's Phase 1-5 release cleanup, 36 P1/P2 documentation findings remain open in `findings/audit-findings.jsonl` extension (DR-001..DR-037, with DR-037 superseding DR-029)",
     "created_at": "2026-05-23T22:00:00Z",
-    "last_save_at": "2026-06-08T17:32:20.470Z",
+    "last_save_at": "2026-06-23T03:49:50.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:377ad64280caaf1c6daa48d133d3f11a4e14845d761eefeffff0ebd3fb325d0c",
+    "source_doc_hashes": {
+      "spec.md": "d0ab5874d31e695995b9977e5ce746a90dbf4895001e84816bb98abfdb31b077",
+      "plan.md": "af9fe33cd11a55c246767b9b0bec6568556675f4740c2cb76d97c09a928e26da",
+      "tasks.md": "72814620e2fd3440f9f65bd48b1fd05b59d8c1e443f64035e7c8562b0e3e2f64",
+      "checklist.md": "71d16ffdfed0028729a375a3b353a5ab724d86999a65d4092bb8c98a8eb940ff",
+      "decision-record.md": "253e484544813a880aca930be776db567516bcd9c0ed2ce6d49bee12552917e5",
+      "implementation-summary.md": "d609310ab37ef29fa2b7e4fac5926aded3bc3d3257ef20e49349709760a6c982"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

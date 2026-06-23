@@ -1,15 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation",
-  "description": "Feature Specification: Deep-Loop Skills Playbook Validation",
+  "description": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (",
   "keywords": [
-    "feature",
-    "specification",
+    "five",
     "deep-loop",
     "skills",
-    "playbook",
-    "validation"
+    "deep-loop-runtime",
+    "deep-ai-council",
+    "deep-review",
+    "deep-research",
+    "deep-agent-improvement"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.779Z",
+  "lastUpdated": "2026-06-23T03:49:51.027Z",
   "specId": "007",
   "folderSlug": "deep-stack-playbook-validation",
   "parentChain": [

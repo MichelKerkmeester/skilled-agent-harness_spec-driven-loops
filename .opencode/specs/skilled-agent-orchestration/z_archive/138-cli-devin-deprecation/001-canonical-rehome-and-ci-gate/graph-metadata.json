@@ -29,10 +29,10 @@
       "tasks",
       "implementation",
       "summary",
-      "specification",
-      "verified",
-      "line-resolved",
-      "edit"
+      "skill",
+      "owned",
+      "five",
+      "canonical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the cli-devin deprecation specification. The verified, line-resolved edit list lives in ../context/context-report.md §2.",
+    "causal_summary": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fallback) that sk-prompt-small-model and cli-opencode reference as the source of truth, and two CI scripts referenced cli-devin paths",
     "created_at": "2026-06-08T16:10:27Z",
-    "last_save_at": "2026-06-17T19:57:23.854Z",
+    "last_save_at": "2026-06-23T03:49:51.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:07aafff9012a2c2f189343f3f5e1a59a050470ebafa3551952f05d90154fde88",
+    "source_doc_hashes": {
+      "spec.md": "444bc3570caffc1099e34ee795c1d08f4947e76eb289ed1407e36b8f87ad4dd0",
+      "plan.md": "17b180821c15fc73dce5e747cedba145e4be828ef36d9fb9a5a5e6b1da673153",
+      "tasks.md": "28f004942d014339b4bae8831e2b139036f8399572ef719f765100abf6bf93bb",
+      "implementation-summary.md": "f52df620af9361f62351e3353ad97b31342f3e872c36957aefd70f860a9a0464"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

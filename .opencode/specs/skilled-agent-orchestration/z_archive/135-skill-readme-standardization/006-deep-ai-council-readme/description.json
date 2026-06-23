@@ -1,14 +1,18 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/006-deep-ai-council-readme",
-  "description": "Feature Specification: deep-ai-council README",
+  "description": "The deep-ai-council README is a tabular reference card with no problem-first entry point",
   "keywords": [
-    "feature",
-    "specification",
     "deep-ai-council",
-    "readme"
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.548Z",
+  "lastUpdated": "2026-06-23T03:49:51.852Z",
   "specId": "006",
   "folderSlug": "deep-ai-council-readme",
   "parentChain": [

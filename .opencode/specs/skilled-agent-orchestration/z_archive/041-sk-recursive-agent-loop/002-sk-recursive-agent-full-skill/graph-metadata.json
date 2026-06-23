@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `041-sk-improve-agent-loop` shipped the evaluator-first MVP and proved that the loop can safely operate on one canonical target with explicit promotion and rollback boundaries. Phase `002-sk-improve-agent-full-skill` defines the next step: stronger benchmark-backed evaluation, reusable runtime structure, target-specific scoring profiles, controlled expansion to a second structured target, and packaging rules for mirror sync without weakening the trust boundary.",
+    "causal_summary": "The current loop is real and safe, but it is still narrow",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-05-30T10:12:01.213Z",
+    "last_save_at": "2026-06-23T03:49:49.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:162a4c57fb4845d10b7e594d8b3450a57531ebd3f55aac0f796dec8ab7265923",
+    "source_doc_hashes": {
+      "spec.md": "c0cc1cbee6291161f94feb8fec2c3b95dc410f61f734c3fd3908111f71c0328f",
+      "plan.md": "a5ac493f2268dcff54d43db827b56226e6002c3dd55fb3510f653918ae2ca0f8",
+      "tasks.md": "38f4111946025e91ddc3a98db8ef1b8af32013a6005163bf8df604505adcc96a",
+      "checklist.md": "8ca56402a98d70279f3a3fe10a618522ee2be46d2561189d9706cccc856191cc",
+      "decision-record.md": "1eb063cd583b460ede23ab4fada4c36d30bcda396ee381cde6544b0d2ba92325",
+      "implementation-summary.md": "5e5b35b22d26db16a1609bdf1d69082cd416a68f197b2b3bdfdc8da03ed12736"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

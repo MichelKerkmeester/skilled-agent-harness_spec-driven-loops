@@ -1,15 +1,19 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal/003-anchor-comment-removal",
-  "description": "Feature Specification: Bulk Comment-Anchor Removal",
+  "description": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
   "keywords": [
-    "feature",
-    "specification",
-    "bulk",
-    "comment-anchor",
-    "removal"
+    "688",
+    "in-scope",
+    "skill",
+    "markdown",
+    "files",
+    "carry",
+    "anchor",
+    "name",
+    "html"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.866Z",
+  "lastUpdated": "2026-06-23T03:49:51.107Z",
   "specId": "003",
   "folderSlug": "anchor-comment-removal",
   "parentChain": [

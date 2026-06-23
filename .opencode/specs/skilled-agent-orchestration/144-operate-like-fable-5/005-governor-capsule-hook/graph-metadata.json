@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` / `CLAUDE.md`, which decay out of context as a session grows; there is no behavioral setpoint that re-asserts itself every turn. The B2 recommendation is the highest-leverage behavioral lever in the whole map (6/6 lineage agreement, the only STRONG-6 in Tier B) precisely because a live per-turn channel already fires: the skill-advisor reminder injects `HYGIENE_DIRECTIVE` into every advisor brief at `render.ts:51-53`, but it carries no efficiency governor. Round-4 proved the sizing objection is moot: `reinject.sh:16-18` distills an entire 8-rule governor into a single ~90-word paragraph, so a compact 4-rule capsule fits one dense paragraph without bloating the near-budget AGENTS.md/CLAUDE.md twin.",
+    "causal_summary": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` / `CLAUDE.md`, which decay out of context as a session grows; there is no behavioral setpoint that re-asserts itself every turn",
     "created_at": "2026-06-15T14:06:37Z",
-    "last_save_at": "2026-06-16T06:06:34.795Z",
+    "last_save_at": "2026-06-23T03:49:48.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:017928d4850d0bf47a812c93bcba367c13f8c573f8c0419b9087d6552db72284",
+    "source_doc_hashes": {
+      "spec.md": "103a5c4f41b891e3ce967e00d7902e2d4d167dbe390ea8c05bf3539af7d8bbbe",
+      "plan.md": "acd7504806063659991870122a24a99efe8cd0f8108b0a1620a1e80c5db90b3c",
+      "tasks.md": "3ddce75a319247405c2cad36807395b3d9e088173deaf1d281eb774f1ae71bf4",
+      "checklist.md": "e63bbfb03bee217f410a68a24cd736acb66dfc8b0fdf8405e13b80331a7a920f",
+      "implementation-summary.md": "06b909c1c4ad950ab9ccde1ff78899324e1a3d60e5454a68f79b5a9085fc1c95"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

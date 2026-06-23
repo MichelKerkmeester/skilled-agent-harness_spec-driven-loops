@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "No automated way to create changelog entries. Developers must manually determine the correct component subfolder (out of 18), calculate the next version number, and format the entry according to the established template. This leads to inconsistent entries, forgotten changelogs, and version numbering errors.",
+    "causal_summary": "No automated way to create changelog entries",
     "created_at": "2026-04-12T09:02:50.217Z",
-    "last_save_at": "2026-05-30T10:12:01.152Z",
+    "last_save_at": "2026-06-23T03:49:48.961Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:33fa4e86ae622e1f9259b2a29dff538dc168cf13605b68a6bdbc51131f67075a",
+    "source_doc_hashes": {
+      "spec.md": "8b0d3acd203d54cd2fc0385aafb497debdefa8b3c9c09d25cb8aaa3fea65d761",
+      "plan.md": "863b48a909bac37daed2bd05574a9f54e0aff715f5d836661b4fafc049117e3d",
+      "tasks.md": "07733385dc5858fbfb3b3a799251a483d71b1c2c1b0652b0f52224371c48d580",
+      "checklist.md": "01cb9e2f124c73e2579f7780cf3d8d5bc72767cb9fcecb134d4c2b4a460bddcf",
+      "implementation-summary.md": "7ca8bf4a42b7713456dc780696e3790cd3c2c1fcafa2cd68c6201d68112d2703"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -32,10 +32,10 @@
       "test",
       "report",
       "alignment",
-      "apply",
-      "packet",
-      "059",
-      "code"
+      "phase-parent",
+      "spec",
+      "five-phase",
+      "end-to-end"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -97,14 +97,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Apply packet 059's @code stress-test methodology (same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative score progression) to the **sk-improve-agent triad** — the skill, agent, and command that exist to improve other agents.",
+    "causal_summary": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup research → command-flow stress tests → executable wiring. Final composite stress score PASS 6 / PARTIAL 0 / FAIL 0 against the substrate built across phases.",
     "created_at": "2026-05-02T11:47:00Z",
-    "last_save_at": "2026-05-30T10:12:01.297Z",
+    "last_save_at": "2026-06-23T03:49:49.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:d6f99a809b253eae095ac486a6e61a1a35658a0a2ce19713a84801a4b420c7c8",
+    "source_doc_hashes": {
+      "spec.md": "494a052162a2f7512173189a163ae89cc3957a91fdca0c3d12226e73fd2c1b28"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

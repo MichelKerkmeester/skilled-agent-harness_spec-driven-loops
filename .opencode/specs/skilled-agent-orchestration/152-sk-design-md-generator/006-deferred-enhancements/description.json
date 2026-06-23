@@ -1,18 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/006-deferred-enhancements",
-  "description": "Feature Specification: Deferred enhancements & external-tool borrows (TIER-3 / future)",
+  "description": "Several improvements are real but were deferred to avoid blocking the anti-fabrication fixes: DTCG migration is high-disruption and does NOT itself fi",
   "keywords": [
-    "feature",
-    "specification",
+    "several",
+    "improvements",
+    "real",
     "deferred",
-    "enhancements",
-    "external-tool",
-    "borrows",
-    "tier-3",
-    "future"
+    "avoid",
+    "blocking",
+    "anti-fabrication",
+    "fixes",
+    "dtcg",
+    "migration",
+    "high-disruption",
+    "itself"
   ],
-  "lastUpdated": "2026-06-22T06:59:47.108Z",
+  "lastUpdated": "2026-06-23T03:49:48.856Z",
   "specId": "006",
   "folderSlug": "deferred-enhancements",
   "parentChain": [

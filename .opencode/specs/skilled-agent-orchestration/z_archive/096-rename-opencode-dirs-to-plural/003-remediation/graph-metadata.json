@@ -38,8 +38,8 @@
       "token",
       "replace",
       "rename",
-      "packet",
-      "speckit"
+      "phase",
+      "parent"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -90,14 +90,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 097 (`/speckit:deep-review:auto`, 10 iterations, gpt-5.5 high fast) ran an architectural cross-phase review of recently-shipped packets 093-096 and converged with a FAIL verdict driven by **1 P0** plus **12 P1** plus **9 P2** active findings. The single P0 (P0-001) blocks release; the P1 cluster captures dead-reference drift (`sk-deep-*` legacy tokens), 096 self-validation failures, narrative tautologies introduced by bulk sed, hook precedence weaknesses, unchecked checklist evidence, advisor state path drift, and Python support-tool singular-default residue. The P2 cluster captures install guide drift, Barter root README drift, and a dead Copilot guard branch.",
+    "causal_summary": "Phase parent for 7 remediation sub-phases addressing 22 active findings (P0=1, P1=12, P2=9) from packet 097 deep-review of the 093-096 track.",
     "created_at": "2026-05-18T07:49:27.237Z",
-    "last_save_at": "2026-06-22T18:56:35.536Z",
+    "last_save_at": "2026-06-23T03:49:50.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:f675edd1c764306fadc0bff61bfd91f54b3164c0e1874b025ddd1fb7c1425216",
+    "source_doc_hashes": {
+      "spec.md": "363d7828ef584bd14488b78447f732908a6daf7e3ac987ddc41d54de04a66d93"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

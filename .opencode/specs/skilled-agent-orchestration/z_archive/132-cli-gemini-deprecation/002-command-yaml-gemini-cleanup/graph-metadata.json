@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-gemini` executor branches and stray \"Gemini\" surface references across the whole command layer: both the command-layer YAML assets and the command `.md` docs that drive them. The deep research/review loop assets still carried an `if_cli_gemini:` executor branch that imports `resolveGeminiSandboxMode` and dispatches the `gemini` binary as a `cli-gemini` executor, the cli-opencode/cli-devin self-invocation guard surface lists still named `Gemini`, and `doctor_mcp_install.yaml` still advertised `gemini` in its runtime `valid_values`. In parallel, four deep command docs still listed `cli-gemini` in their executor option lists, carried gemini example commands, and one had a stale ASCII box and Q-Exec option lettering that assumed `cli-gemini` was still present.",
+    "causal_summary": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-gemini` executor branches and stray \"Gemini\" surface references across the whole command layer: both the command-layer YAML assets and the command `.md` docs that drive them",
     "created_at": "2026-06-08T16:11:50.615Z",
-    "last_save_at": "2026-06-17T19:57:23.770Z",
+    "last_save_at": "2026-06-23T03:49:51.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:f887a5566b7aa6962c5e9dc55200ab2d41d9ebb10255338572002f8e6d0b8b4b",
+    "source_doc_hashes": {
+      "spec.md": "84be640e55f6fa669f5120beb6442ac140a55023b62d08c6e6bf037365adbc6c",
+      "plan.md": "45b9fedf71313fb66da388922fd5427b2bb939cb074fdf98a3a360cebc39e961",
+      "tasks.md": "60375377e293ef505b6c5f6b3b3803373d789b2b48e934d651abc12c87b783c6",
+      "checklist.md": "ea246bcd8c21b70a2b6e633456f48a78e6d4e26eea0f81d1228503be8d64c693",
+      "implementation-summary.md": "66c1e7d99404ac454457a4a2a3d748ebfd7b659686a3a73d7224760931d7b84b"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

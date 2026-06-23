@@ -1,16 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/143-sk-design-interface/008-doc-realignment",
-  "description": "Feature Specification: doc realignment to the parity keystone",
+  "description": "The 007 keystone added the Claude Design parity protocol (`claudedesignparity.md`), the `previewImageUrl` fidelity loop, reuse-before-generate, and th",
   "keywords": [
-    "feature",
-    "specification",
-    "doc",
-    "realignment",
+    "007",
+    "keystone",
+    "added",
+    "claude",
+    "design",
     "parity",
-    "keystone"
+    "protocol",
+    "claudedesignparity",
+    "previewimageurl",
+    "fidelity",
+    "loop",
+    "reuse-before-generate"
   ],
-  "lastUpdated": "2026-06-14T08:30:50.887Z",
+  "lastUpdated": "2026-06-23T03:49:48.434Z",
   "specId": "008",
   "folderSlug": "doc-realignment",
   "parentChain": [

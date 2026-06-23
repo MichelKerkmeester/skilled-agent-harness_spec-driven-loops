@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Move the five targeted script files to the correct asset-owned home, update all references to the new paths, and leave no stale references to the old root `sk-code/scripts/` path outside this packet's historical notes.",
+    "causal_summary": "`.opencode/skills/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill",
     "created_at": "2026-05-05T20:48:59Z",
-    "last_save_at": "2026-05-30T10:12:01.403Z",
+    "last_save_at": "2026-06-23T03:49:49.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:fc3393e2c5753a0b41992a874d6633b419fdc02bdeab4c03ed94190f55ba19d0",
+    "source_doc_hashes": {
+      "spec.md": "54dfd994a5e12081a0fe132489a05ca3b56fef0c81c3a7b584c4f64e014b07d8",
+      "plan.md": "c1213667655338ef963cbc443c4485f38819ceb2abe26286b8e44ac787b97b64",
+      "tasks.md": "fba1b2274de1fcb23df210adba08a489645a889b5c10e9686e5c27a37db486d7",
+      "checklist.md": "6b960b9dbb200b1971a77ab1ce6008dea878d443d987a61b1d0937eab354a198",
+      "decision-record.md": "dcdf961b1d289fcd72164655c6b5fdf32e44cea22f59e56beb6155d64782ab45",
+      "implementation-summary.md": "b75fe50c9dcdc1035068e95aa5b1852a381b108cc555bb42b494c929096f4ac1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

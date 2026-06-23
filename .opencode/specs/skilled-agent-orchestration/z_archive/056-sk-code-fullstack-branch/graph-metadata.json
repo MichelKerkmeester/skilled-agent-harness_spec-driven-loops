@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Restore a working three-stack `sk-code`:",
+    "causal_summary": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
     "created_at": "2026-04-30T13:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.707Z",
+    "last_save_at": "2026-06-23T03:49:49.371Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-30T18:30:00Z",
     "source_docs": [
@@ -212,6 +212,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7f7c66e7b3b84f0648512ee1fae3f550b27c3da4b94db1e486bc8220dce73ff8",
+    "source_doc_hashes": {
+      "spec.md": "096c7e5bd364bf915a7914b7a2b1d766d12920bbfeda08c03b62fa248e0ee271",
+      "plan.md": "03bac95adc875646fa89b31fbf38ab39a6c822deadb2825496a61bcca7b1039b",
+      "tasks.md": "448165dffe2d813410691f64b95ab6c570e4acf731a895bb5c5084ba8d23c882",
+      "checklist.md": "1200362e2a45c79d50f90008aca7d57b630e913c4bf8b99b95efeb29ec0d490b",
+      "implementation-summary.md": "28697a7953fb06699531c3aa3504b929f266888ae6db47c1d1dc12c7b5997cd3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

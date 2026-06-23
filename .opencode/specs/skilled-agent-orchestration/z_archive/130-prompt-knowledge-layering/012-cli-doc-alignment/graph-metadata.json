@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 12 of spec 130 aligns the executor-side docs the user listed to the sk-doc templates and",
+    "causal_summary": "The cli- cards opened with `## 1",
     "created_at": "2026-06-05T12:47:32.524Z",
-    "last_save_at": "2026-06-17T19:57:23.756Z",
+    "last_save_at": "2026-06-23T03:49:51.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:9bbde9320fe4a279b4c497a0ae66de18c2f0189417f4276189ca6cbb0c212b11",
+    "source_doc_hashes": {
+      "spec.md": "5d82a68b7f939ce0a2c219e3cbee6b8cefabf5979f5f866c20f57d156c7c1225",
+      "plan.md": "65811d0f58541aa8134c852087707e8ac1882abf6c5a944fcaccc8b8b2157d31",
+      "tasks.md": "a7afdd30aca3f2a5e70bc00b00d040cb35bf132bb2faeadd94d1f577bde7f0d6",
+      "implementation-summary.md": "e6b68abe17e35f44f4fd3d7ef99999236092e40fb371a58b10ccb6e0ce4cb304"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

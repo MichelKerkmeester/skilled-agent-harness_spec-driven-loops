@@ -30,10 +30,10 @@
       "tasks",
       "summary",
       "phase",
-      "terminal",
-      "sk-doc",
-      "reorg",
-      "packet"
+      "substring",
+      "sweep",
+      "used",
+      "fixed-string"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -191,9 +191,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** (terminal phase) of the sk-doc reorg packet — added after the 7-iteration deep-review (review-report.md) surfaced 1 P1 + 2 P2 doc-accuracy findings that escaped Phase 2's 4-pattern fixed-string substring sweep.",
+    "causal_summary": "Phase 2's substring sweep used 4 fixed-string patterns prefixed with `assets/`",
     "created_at": "2026-05-05T09:51:15Z",
-    "last_save_at": "2026-06-17T19:57:23.274Z",
+    "last_save_at": "2026-06-23T03:49:49.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
@@ -202,6 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:301403166a8e61b624f46cc04c656b01df3f93b7469557885da0cf123d49e418",
+    "source_doc_hashes": {
+      "spec.md": "a91d93a54306d0fddd6ce9125fa7f0f606dc99ff164a2aa8a3c11b0e7fcd0b27",
+      "plan.md": "7da0c89709ff6538acd5083f6c245a55b1723de6189048ff3fd8cd623d6d247a",
+      "tasks.md": "72d3ded833362b91529549672a6f70dfa9329a53d67ab87f88abb00509638763",
+      "implementation-summary.md": "cbc9d87f14d9dbc1c47c8ca185ae0bd58964b2eaaaae082f6ff5c1354632b6bf"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

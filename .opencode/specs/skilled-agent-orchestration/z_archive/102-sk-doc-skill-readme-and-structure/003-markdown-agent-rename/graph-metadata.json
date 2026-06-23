@@ -25,7 +25,7 @@
       "desired",
       "long-term",
       "identity",
-      "broad"
+      "feature"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown. That rename has broad reference impact across runtime agent mirrors, orchestration docs, commands, skills, and root documentation.",
+    "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown",
     "created_at": "2026-05-10T10:33:24Z",
-    "last_save_at": "2026-06-07T09:00:45.703Z",
+    "last_save_at": "2026-06-23T03:49:50.271Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:202b5c8fd740397b29e8f9b1c3d4cbba224e9125cc466a42f9eef835f044a311",
+    "source_doc_hashes": {
+      "spec.md": "b47d0701bb1f7ec9ca2671c05a4e979cb6cd6644f6d79c2204c587609ec8f930",
+      "plan.md": "4c270f98efaa9a9c03f6eecddcca0ad6f8b562d73ed8a4a5e69f5101330e9a2b",
+      "tasks.md": "832fad8d9ba24e8db39428dfb4ba114892f1a74f81c176bfb9813f95a9aa7a7a",
+      "checklist.md": "4ce0accec164696cca36b5eabe7609124b5dee85d5c3fc76fed443fe5778abf7",
+      "implementation-summary.md": "eacffb4b7b987c42ef7ef6ca37fda6ebece6880527a91d644f3374ea8393b787",
+      "resource-map.md": "f26a5037356edf083f863e3b03445423ddc7c538802f2c6a97d78c796495f5b0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skills`/`specs`, which are symlinks to `.opencode/`). The native `@deep-context` analyzer agent existed only as `.opencode/agents/deep-context.md`; it was the only one of 13 agents missing its `.claude/agents/*.md` and `.codex/agents/*.toml` mirrors. Because `/deep:start-context-loop` dispatches native seats **by name** from the host runtime's own `agents/` dir, running the loop from Claude Code or Codex silently lost the two native seats from the default pool, degrading the cross-executor agreement signal.",
+    "causal_summary": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skills`/`specs`, which are symlinks to `.opencode/`)",
     "created_at": "2026-06-07T09:07:23Z",
-    "last_save_at": "2026-06-17T19:57:23.817Z",
+    "last_save_at": "2026-06-23T03:49:51.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:4972088490953fda674cc1699b9b5b1e499125f6d789f97f611460d3ac9bcf7d",
+    "source_doc_hashes": {
+      "spec.md": "a2faa77d86274072d1ed5c360461df288539ed172ea2142daa8fa326e3b45805",
+      "plan.md": "b9785fc6c5c1d9cacb18a61b1b188c8ff90ae38c4adf22f28cfa5055bdcab77f",
+      "tasks.md": "cc8d935d5c28f499f6cf3e5631c3281c5c06bd7049ac7ff91c4f207dbc08d465",
+      "checklist.md": "e44e89068641f767ff4087c2f08a17cf4e2f79b48a49073447cb8eb95187d53d",
+      "implementation-summary.md": "ff9192b9c80ba081ea33fddab20d63084dfff9b629924b20fa715c89bc4e4515"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

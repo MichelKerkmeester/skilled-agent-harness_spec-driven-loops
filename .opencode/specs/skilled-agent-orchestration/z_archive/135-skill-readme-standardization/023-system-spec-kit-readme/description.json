@@ -1,14 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/023-system-spec-kit-readme",
-  "description": "Feature Specification: system-spec-kit README",
+  "description": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive house-v",
   "keywords": [
-    "feature",
-    "specification",
     "system-spec-kit",
-    "readme"
+    "readme",
+    "1084-line",
+    "reference",
+    "manual",
+    "functional",
+    "headers",
+    "glance",
+    "table",
+    "stale",
+    "version",
+    "footer",
+    "pervasive",
+    "house-v"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.636Z",
+  "lastUpdated": "2026-06-23T03:49:51.952Z",
   "specId": "023",
   "folderSlug": "system-spec-kit-readme",
   "parentChain": [

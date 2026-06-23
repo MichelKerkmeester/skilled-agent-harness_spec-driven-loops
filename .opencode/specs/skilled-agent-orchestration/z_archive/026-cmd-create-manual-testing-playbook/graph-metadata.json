@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet defines the implementation contract for `/create:testing-playbook`, a new create command that must scaffold the current integrated `manual_testing_playbook/` package. The command must honor the post-021 contract: root playbook plus numbered category folders, root-owned review/orchestration guidance, per-feature files that mimic feature-catalog entry structure, and no legacy review or sub-agent ledger sidecars or `snippets/` subtree.",
+    "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-06-05T12:47:32.589Z",
+    "last_save_at": "2026-06-23T03:49:49.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:09884f6887b11cd23e8df40dc6b84cc03f35b1b6fa388363d95843ea3b9831f8",
+    "source_doc_hashes": {
+      "spec.md": "5e25846a7eb66514af8ac96234f0e479b073945ac21f0efb3f82b0ee9502e057",
+      "plan.md": "dff04c1094f5d75efd504faf56749b4d7afb016da303b87e0780dbc95e301371",
+      "tasks.md": "202dbd9c9cee5e4c52dc695348d585fb95d201568ada6a6e979c475acfbd5c8b",
+      "checklist.md": "b3646181542d9934fcd13986cca5d90151457e59a45cb6c137e266ec29157a59",
+      "decision-record.md": "f2bea5e357c9a6f9ab145c7f5f5360f0ff9cdfcc1f9eb1617cef3dd1b9f9e866",
+      "implementation-summary.md": "e8c07e6ee05371348c199bd3c40d2c17da082c3cd95e8ea2076d92c5b679f436"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

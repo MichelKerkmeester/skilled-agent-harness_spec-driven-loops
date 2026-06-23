@@ -1,16 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/137-deep-context-workflow-adoption",
-  "description": "Feature Specification: deep-context workflow adoption (root-cause fix)",
+  "description": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for per",
   "keywords": [
-    "feature",
-    "specification",
-    "deep-context",
-    "workflow",
-    "adoption",
-    "root-cause",
-    "fix"
+    "across",
+    "packet",
+    "135",
+    "phases",
+    "skill-readme",
+    "rewrites",
+    "plan",
+    "specified",
+    "deep",
+    "start-context-loop",
+    "auto",
+    "cli-opencode",
+    "executor",
+    "pool",
+    "per"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.651Z",
+  "lastUpdated": "2026-06-23T03:49:51.969Z",
   "specId": "137",
   "folderSlug": "deep-context-workflow-adoption",
   "parentChain": [

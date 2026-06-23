@@ -1,15 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/083-skill-description-budget-trim",
-  "description": "Feature Specification: Skill Description Budget Trim",
+  "description": "Claude Code's status line reports `15 skill descriptions dropped`",
   "keywords": [
-    "feature",
-    "specification",
+    "claude",
+    "code",
+    "status",
+    "line",
+    "reports",
     "skill",
-    "description",
-    "budget",
-    "trim"
+    "descriptions",
+    "dropped"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.873Z",
+  "lastUpdated": "2026-06-23T03:49:49.932Z",
   "specId": "083",
   "folderSlug": "skill-description-budget-trim",
   "parentChain": [

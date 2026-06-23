@@ -1,15 +1,18 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
-  "description": "Feature Specification: deep-review gate-model reconciliation",
+  "description": "The deep-review legal-stop gate model has drifted across documentation surfaces",
   "keywords": [
-    "feature",
-    "specification",
     "deep-review",
-    "gate-model",
-    "reconciliation"
+    "legal-stop",
+    "gate",
+    "model",
+    "drifted",
+    "across",
+    "documentation",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-07T14:08:18.061Z",
+  "lastUpdated": "2026-06-23T03:49:50.649Z",
   "specId": "008",
   "folderSlug": "deep-review-gate-model-reconciliation",
   "parentChain": [

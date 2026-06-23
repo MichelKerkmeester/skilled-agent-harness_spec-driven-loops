@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/074-test-alignment-validator-esm-migration",
-  "description": "Feature Specification: 074 test-alignment-validator ESM Migration",
+  "description": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`",
   "keywords": [
-    "feature",
-    "specification",
-    "074",
+    "packet",
+    "073",
+    "deferred",
+    "fix",
     "test-alignment-validator",
-    "esm",
-    "migration"
+    "uses",
+    "commonjs",
+    "require",
+    "scripts",
+    "package",
+    "json",
+    "declares",
+    "type",
+    "module"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.794Z",
+  "lastUpdated": "2026-06-23T03:49:49.813Z",
   "specId": "074",
   "folderSlug": "test-alignment-validator-esm-migration",
   "parentChain": [

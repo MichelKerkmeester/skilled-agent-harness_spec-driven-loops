@@ -1,16 +1,22 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
-  "description": "Feature Specification: sk-doc Standards & Templates De-Numbering",
+  "description": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`)",
   "keywords": [
-    "feature",
-    "specification",
     "sk-doc",
+    "creation",
     "standards",
     "templates",
-    "de-numbering"
+    "mandate",
+    "globally-sequential",
+    "numeric",
+    "prefix",
+    "per-feature",
+    "snippet",
+    "filenames",
+    "nnn-feature-name"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.432Z",
+  "lastUpdated": "2026-06-23T03:49:51.717Z",
   "specId": "001",
   "folderSlug": "sk-doc-standards-and-templates",
   "parentChain": [

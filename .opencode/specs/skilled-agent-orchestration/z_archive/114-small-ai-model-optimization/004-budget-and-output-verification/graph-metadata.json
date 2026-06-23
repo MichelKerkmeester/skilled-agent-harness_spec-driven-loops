@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase C of 114 follow-on roadmap. Ship two related improvements to cli-devin SWE-1.6 dispatches: (1) per-model token-budget engine adapted from smallcode-master src/context/budget.ms — token allocation defaults, fit-to-budget truncation with `[... N tokens cut]` markers, priority eviction; (2) output-verification pipeline adapted from smallcode src/governor/verifier.ms + hard_fail.ms — compile→execute→smoke-test→lint with confidence scoring, refuse-to-ship gate on hard-fail. Effort: ~28 hours across 3 internal sub-packets. Daily quality lift on the most-used dispatch surface.",
+    "causal_summary": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction priority",
     "created_at": "2026-05-18T12:36:32.578Z",
-    "last_save_at": "2026-06-22T18:55:00.320Z",
+    "last_save_at": "2026-06-23T03:49:50.524Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:841a86a31d9efb2600ee27477112393b997b0534b238fcd9363999470e4b5674",
+    "source_doc_hashes": {
+      "spec.md": "356d8a846e99904903e9e7894a198f6dd6fec89d40838999bf97ba0bb71e8809",
+      "plan.md": "12b84c408548a4591fe3e27a853089ca9b4dcf401ec2f8ae63ba17ca5cbcc7e7",
+      "tasks.md": "bdf3c346ed92478408f15770854e09b85a50ecec8e01bc5a9d1367f92a013942",
+      "checklist.md": "321805220a1c08153000d622aad8cc7ac60d54adbae940672e36d6f5eb9517f1",
+      "decision-record.md": "12053b359448f0b9b0ffac14f5a543d5350421d35e20b136b69f23bd41f30066",
+      "implementation-summary.md": "e6e0aaaeb849f43ad07fb477bd0334e28524c3e7ffdea103e2ee5d380ceaff37"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

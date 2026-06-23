@@ -1,14 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/026-cmd-create-manual-testing-playbook",
-  "description": "Feature Specification: /create:testing-playbook Command",
+  "description": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
   "keywords": [
-    "feature",
-    "specification",
+    "repo",
+    "now",
+    "stable",
+    "manual",
+    "testing",
+    "playbook",
+    "contract",
+    "dedicated",
     "create",
-    "testing-playbook",
-    "command"
+    "command",
+    "generate",
+    "reliably"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.310Z",
+  "lastUpdated": "2026-06-23T03:49:49.032Z",
   "specId": "026",
   "folderSlug": "cmd-create-manual-testing-playbook",
   "parentChain": [

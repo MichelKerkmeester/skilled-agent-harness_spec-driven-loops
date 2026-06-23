@@ -1,15 +1,24 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/109-subphase-recatalog-and-archive",
-  "description": "109: 026 restructure execution Wave 2",
+  "description": "Execute 998 Wave 2 PROCEED operations: 000-release-cleanup 6-sub-phase recatalog, 006-skill-advisor 5-sub-phase internal structure, parent-doc derived",
   "keywords": [
-    "109",
-    "026",
-    "restructure",
-    "execution",
-    "wave"
+    "execute",
+    "998",
+    "wave",
+    "proceed",
+    "operations",
+    "000-release-cleanup",
+    "6-sub-phase",
+    "recatalog",
+    "006-skill-advisor",
+    "5-sub-phase",
+    "internal",
+    "structure",
+    "parent-doc",
+    "derived"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.171Z",
+  "lastUpdated": "2026-06-23T03:49:50.362Z",
   "specId": "109",
   "folderSlug": "subphase-recatalog-and-archive",
   "parentChain": [

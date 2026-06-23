@@ -8,15 +8,18 @@
     "related_to": []
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/010-iterative-per-topic-multi-round",
-  "description": "Feature Specification: Per-Topic Multi-Round Orchestration",
+  "description": "Implement a topic-local multi-round loop with verdict-delta convergence and max-round handling",
   "keywords": [
-    "feature",
-    "specification",
-    "per-topic",
+    "implement",
+    "topic-local",
     "multi-round",
-    "orchestration"
+    "loop",
+    "verdict-delta",
+    "convergence",
+    "max-round",
+    "handling"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.514Z",
+  "lastUpdated": "2026-06-23T03:49:50.761Z",
   "specId": "010",
   "folderSlug": "iterative-per-topic-multi-round",
   "parentChain": [

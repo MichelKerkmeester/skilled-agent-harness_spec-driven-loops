@@ -203,9 +203,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Xiaomi Token Plan (Europe) is configured on the install as provider `xiaomi-token-plan-ams` and exposes a MiMo model family. This phase wires the text/coding model `mimo-v2.5-pro` in as a first-class cli-opencode model — exactly mirroring how MiniMax's Token Plan (`minimax-coding-plan`) was wired in packet 120. Documentation, metadata, and the shared registry only; no runtime code.",
+    "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-small-model` sentinel never names it",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-06-17T19:57:23.715Z",
+    "last_save_at": "2026-06-23T03:49:51.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:7911e53ee8f773b336d989e3c3729cecc147c8627804f4d9a6e4bc192fe7ceff",
+    "source_doc_hashes": {
+      "spec.md": "b5d3b905b69244280d79fd72389837b5ccbb5896b36206da376746d437b89b0b",
+      "plan.md": "14a1c826d31d829bff9c354443820bbf785298257fa35bc7f6b0553cb36740f8",
+      "tasks.md": "f92c51efdcf7627fd2b168b9d72c2aa5ed998ffe2ff35f1c1c82d353b88fde62",
+      "checklist.md": "d9be3c1ba3a4f5423da854727b593c9e46b3ca86563b61488bc57cfe967d89b4",
+      "implementation-summary.md": "2dda462a0fb837c48ddce12a55c2494d856a4237ddf579c44eab0beb73068a04"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

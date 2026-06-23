@@ -1,15 +1,24 @@
 {
   "specFolder": "skilled-agent-orchestration/147-deep-loop-workflows/006-advisor-graph-mode-routing",
-  "description": "Feature Specification: Advisor graph mode-routing collapse",
+  "description": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2)",
   "keywords": [
-    "feature",
-    "specification",
+    "collapsing",
+    "five",
     "advisor",
-    "graph",
-    "mode-routing",
-    "collapse"
+    "skill",
+    "ids",
+    "one",
+    "risks",
+    "routing",
+    "precision",
+    "recall",
+    "regression",
+    "unioning",
+    "trigger",
+    "phrases",
+    "risk"
   ],
-  "lastUpdated": "2026-06-15T05:34:46.710Z",
+  "lastUpdated": "2026-06-23T03:49:48.704Z",
   "specId": "006",
   "folderSlug": "advisor-graph-mode-routing",
   "parentChain": [

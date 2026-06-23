@@ -216,9 +216,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The multi-ai-council agent currently operates planning-only: its YAML carries `write: deny / edit: deny / bash: deny / patch: deny` across all 4 runtime mirrors. Today, the helper script `persist-artifacts.cjs` (or the dispatching command) reads the council's chat output and writes the artifact tree (`ai-council-config.json`, `ai-council-state.jsonl`, `ai-council-strategy.md`, `council-report.md`, `seats/`, `deliberations/`, `critiques/`). Packet 089 explicitly listed \"LEAF council write files\" as a NO-GO blocker condition pending design. This packet ships the design and the implementation: the council flips to `write: allow / edit: allow` scoped to `ai-council/**`, with bash and patch staying denied. Audit-trail events (`artifact_written`) are appended to the existing `ai-council-state.jsonl` schema additively (v1.1 → v1.2). Rollback uses round-NNN folders as the unit of recovery: on any seat error or convergence failure, the council writes a `rollback` event and prunes the round artifacts.",
+    "causal_summary": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
     "created_at": "2026-05-08T21:45:00Z",
-    "last_save_at": "2026-05-30T10:12:01.501Z",
+    "last_save_at": "2026-06-23T03:49:50.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,6 +231,17 @@
       "research.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:89bbd2a750b3f7351f7ec50dfa6b60194473b44baed17eb45a1f01efef37d56f",
+    "source_doc_hashes": {
+      "spec.md": "fd1e01b503b85a07a585849170cf5086bc7966e5a1252ef39e373566589e156d",
+      "plan.md": "7d7136a71c308765c5dfe9d9e33a312c1ee242c4626d4cc54948ac674305574f",
+      "tasks.md": "458a1edfdb8651e88587cd4e7d26bd3efcb067205122c5c3ada39d6ecb12d197",
+      "checklist.md": "195a9b910bb7daa79ab393108f097982e065ad5006d2a9960a8ca8515d8d40c9",
+      "decision-record.md": "d82af54f6349be981a606c17bd70fa0ba6c813debf4ca27660df769ebc5015fa",
+      "implementation-summary.md": "a8f8d178a9f7cdaee09a1105f5805bf1b7d8222ce6d67dc6736dd4812e1ba6df",
+      "research.md": "0864ff1910f7cc3afff59ffd5e3fd5cec963c96987098ae2c9f42b1a7480adf0",
+      "resource-map.md": "967bfdac560e6b4ad1777ae050a486e599a24429bff1b87564b53a893a2071ef"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

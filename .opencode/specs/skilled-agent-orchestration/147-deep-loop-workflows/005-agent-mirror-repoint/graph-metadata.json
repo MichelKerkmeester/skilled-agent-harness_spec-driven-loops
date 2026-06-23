@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5). The decision is to keep the five agent names (the ai-council/deep-ai-council asymmetry is precedent that a skill rename does not force an agent rename). The ai-council agent is the highest-effort (~27 path edits, executing persist-artifacts.cjs from literal paths in lockstep with output_schema.md), and the .codex toml mirrors are hand-maintained derived files guarded by the mirror-sync verifier.",
+    "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-06-22T18:54:59.096Z",
+    "last_save_at": "2026-06-23T03:49:48.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:2936ed01d5961918a345b65fdcea44b0b164ddd41d2bdbf5a43b3466cbd17177",
+    "source_doc_hashes": {
+      "spec.md": "39708d68f7633252444bae9f5b35ed89feecbd0e86a4bb1b83dd453d0fe13475",
+      "plan.md": "8a7cd2e45736caaa34902eaa4f69c2be34b3f9af7c7524cee8be53017ddf7151",
+      "tasks.md": "232942f6c902ae5e01bc82a65ad42fc3825a8261a698561073a9eb6309ebdf69",
+      "checklist.md": "25057112d59ee0164a1fc3dd9b75fdcf91cb41d8631a49d3b348eae8ca394e6b",
+      "implementation-summary.md": "cab3407f419527cf31389b71e89ad752e0f451b48be474ed562a0f88624b391d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits). It passed unit tests and alignment checks during the build, but has not had an independent, adversarial, multi-model review for correctness, security, traceability, and maintainability.",
+    "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits)",
     "created_at": "2026-05-28T17:42:53Z",
-    "last_save_at": "2026-06-17T19:57:23.650Z",
+    "last_save_at": "2026-06-23T03:49:51.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:cdf493a39cad8b60ed8185ee1b245ada712fd5eb2ecca509d0991c7b4003e443",
+    "source_doc_hashes": {
+      "spec.md": "7ae5dd5d518edaa59a1965f33b3e654a698bb467f32f3b14b565628fbe35a912",
+      "plan.md": "4dd55ced62c1e07094cd4d3c1f5242a4d6dc6c96b75e0353d84b476ed0acfbef",
+      "tasks.md": "c73946f494e31e2d6a885f119f2ba2b0ffef68039848c567c164baac8a3aa6f9",
+      "implementation-summary.md": "230aa85515a9bb2f7951a02c3ec5822e81bdbf6b8bab2bb4989d69352e9b439c"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,17 +1,23 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/005-uncovered-questions",
-  "description": "Feature Specification: Deep Research Uncovered Questions Tracking",
+  "description": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained un",
   "keywords": [
-    "feature",
-    "specification",
-    "deep",
-    "research",
-    "uncovered",
+    "deep-research",
+    "convergence",
+    "references",
+    "use",
+    "question",
+    "coverage",
+    "saturation",
+    "signal",
+    "operator",
+    "dashboard",
+    "show",
     "questions",
-    "tracking"
+    "remained"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.682Z",
+  "lastUpdated": "2026-06-23T03:49:50.936Z",
   "specId": "005",
   "folderSlug": "uncovered-questions",
   "parentChain": [

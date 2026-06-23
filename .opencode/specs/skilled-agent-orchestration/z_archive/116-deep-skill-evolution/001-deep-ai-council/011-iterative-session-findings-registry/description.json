@@ -8,16 +8,18 @@
     "related_to": []
   },
   "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
-  "description": "Feature Specification: Multi-Topic Session and Findings Registry",
+  "description": "Implement session-level topic sequencing, council-findings-registry.json, and cross-topic priors",
   "keywords": [
-    "feature",
-    "specification",
-    "multi-topic",
-    "session",
-    "findings",
-    "registry"
+    "implement",
+    "session-level",
+    "topic",
+    "sequencing",
+    "council-findings-registry",
+    "json",
+    "cross-topic",
+    "priors"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.520Z",
+  "lastUpdated": "2026-06-23T03:49:50.767Z",
   "specId": "011",
   "folderSlug": "iterative-session-findings-registry",
   "parentChain": [

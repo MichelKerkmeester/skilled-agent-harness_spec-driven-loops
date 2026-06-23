@@ -21,16 +21,20 @@
   "created_at": "2026-05-07T21:00:00Z",
   "last_updated_at": "2026-05-07T21:00:00Z",
   "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
-  "description": "Feature Specification: 101 - cli-opencode executor support",
+  "description": "The deep-review/deep-research workflows support 4 executors (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`) but not `cli-opencode`",
   "keywords": [
-    "feature",
-    "specification",
-    "101",
-    "cli-opencode",
-    "executor",
-    "support"
+    "deep-review",
+    "deep-research",
+    "workflows",
+    "support",
+    "executors",
+    "native",
+    "cli-codex",
+    "cli-gemini",
+    "cli-claude-code",
+    "cli-opencode"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.553Z",
+  "lastUpdated": "2026-06-23T03:49:50.128Z",
   "specId": "006",
   "folderSlug": "cli-opencode-executor",
   "parentChain": [

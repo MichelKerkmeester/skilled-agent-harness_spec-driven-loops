@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-world council situations. The scenarios are operator-driven contracts only — they cannot regress automatically, and the \"12 file reads vs 1 MCP call\" claim is representative, not measured. A reviewer cannot today answer \"is the value claim still true after a graph code change?\" without re-running the scenarios by hand.",
+    "causal_summary": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-world council situations",
     "created_at": "2026-05-11T09:25:00Z",
-    "last_save_at": "2026-06-15T09:09:33.582Z",
+    "last_save_at": "2026-06-23T03:49:50.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a0ef4ae4a70aba200c30ede979ced8baef1ac9d24a96bf2cda86c711be9fb18b",
+    "source_doc_hashes": {
+      "spec.md": "5b0113656162f00baa644affd853999c7f0d5cc2ef3dcd7ca984726c8b66e17c",
+      "plan.md": "f4d29ac67adb067a461bcbfcb0c3b457b393f21a86b79fa312d4c0a54b75f993",
+      "tasks.md": "2f1d74bc8705462e63de3b39a764292280fd4f91cc165978e3e484c23f481da7",
+      "implementation-summary.md": "86f374cefc614aabea79767dc91e35dcf1c95f60ef4e6e59a94032e95a0e8c46"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 060/002 ran R1 stress tests with the prepend-agent-body dispatch and scored 0/2/4 PASS/PARTIAL/FAIL. 060/003 research diagnosed the failure as test-layer-selection: @improve-agent's discipline lives in the `/deep:start-agent-improvement-loop` command orchestrator, not in the agent body. Packet 005 (was 062) just shipped the executable wiring (static benchmark assets, materializer, nested `legal_stop_evaluated.details.gateResults`, stop-reason enum reconciliation, both YAMLs in lockstep).",
+    "causal_summary": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
     "created_at": "2026-05-02T15:00:00Z",
-    "last_save_at": "2026-06-05T12:47:32.727Z",
+    "last_save_at": "2026-06-23T03:49:49.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,17 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:66e88d83b66319a2112a0eb842ca8a3b8882a09ebf1d53db1a4aa55f8a15ebde",
+    "source_doc_hashes": {
+      "spec.md": "8c9326f0b2d28a73982398c420778066088c4e734416c1b737b3c507cfc3c055",
+      "plan.md": "fdaf6b8edbd1ab2dfb141c72ffa705e1c719bd075d9a0c0287360cbce13241c0",
+      "tasks.md": "27a64107cf62c0cb1723a44d82254e5331d343f96dc861443c8c5a7d7d0979b7",
+      "checklist.md": "fa1f5678bde048d8da0a72b59cbf268161b7c95f2ce1bfbd457e3f143ba1066a",
+      "decision-record.md": "3e92b5cbe9fb06dde0627e38e8632b970d647c62c95b7eb7cac4df96d23f18ce",
+      "implementation-summary.md": "f4d8bfd4583b2e6c4ebf851fdd17648f0cdb945dec2da8b14427766cd6537714",
+      "handover.md": "8ef2e96dbd0a4a686a7999bae7685aa0ff0fef72c5f725a75de050b49112a156",
+      "resource-map.md": "15039b5d64fcb34b4e90a50ac41640f57419a15bb5a5a546ee745016979f53e9"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

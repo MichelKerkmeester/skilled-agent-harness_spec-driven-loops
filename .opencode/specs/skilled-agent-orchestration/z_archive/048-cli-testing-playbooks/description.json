@@ -1,14 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/048-cli-testing-playbooks",
-  "description": "Feature Specification: CLI Testing Playbooks",
+  "description": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
   "keywords": [
-    "feature",
-    "specification",
+    "five",
     "cli",
+    "orchestrator",
+    "skills",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-copilot",
+    "cli-gemini",
+    "cli-opencode",
+    "lack",
+    "manual",
     "testing",
     "playbooks"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.444Z",
+  "lastUpdated": "2026-06-23T03:49:49.317Z",
   "specId": "048",
   "folderSlug": "cli-testing-playbooks",
   "parentChain": [

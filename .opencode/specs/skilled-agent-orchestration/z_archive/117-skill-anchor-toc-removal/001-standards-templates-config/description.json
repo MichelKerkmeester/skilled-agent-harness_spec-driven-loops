@@ -1,17 +1,26 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal/001-standards-templates-config",
-  "description": "Feature Specification: Standards, Templates & Config (Regression Prevention)",
+  "description": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` marke",
   "keywords": [
-    "feature",
-    "specification",
+    "sk-doc",
     "standards",
+    "doc",
     "templates",
+    "templaterules",
+    "json",
     "config",
-    "regression",
-    "prevention"
+    "currently",
+    "mandate",
+    "allow",
+    "table",
+    "contents",
+    "blocks",
+    "treat",
+    "anchor",
+    "marke"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.856Z",
+  "lastUpdated": "2026-06-23T03:49:51.096Z",
   "specId": "001",
   "folderSlug": "standards-templates-config",
   "parentChain": [

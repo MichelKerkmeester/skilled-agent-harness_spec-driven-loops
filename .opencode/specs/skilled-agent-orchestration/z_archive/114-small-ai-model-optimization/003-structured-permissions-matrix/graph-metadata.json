@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase B of the 114 follow-on roadmap. Replace the four-layer prose mitigation shipped to cli-opencode after the RM-8 2026-05-04 incident (44 files deleted by deepseek-v4-pro under `--dangerously-skip-permissions`) with a structured JSON permissions-matrix that a runtime pre-tool-call gate enforces deterministically. The schema encodes file-glob × operation-class × scope tuples; the enforcer rejects any tool call falling outside the allowlist BEFORE execution. Effort: ~12 hours. Highest blast-radius prevention in the 114 arc — proven against the RM-8 replay scenario in 001-research-smallcode/iter-009.",
+    "causal_summary": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS` strings, (L2) `--dir` points at fresh worktree, (L3) main git status clean, (L4) prefer cli-copilot + gpt-5.5 for multi-phase targets",
     "created_at": "2026-05-18T12:32:47.354Z",
-    "last_save_at": "2026-06-22T18:55:00.314Z",
+    "last_save_at": "2026-06-23T03:49:50.518Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:e5daa078eae9ed5ace08b3fac7451fc23c4126a43766d725d92c75423c6f53c9",
+    "source_doc_hashes": {
+      "spec.md": "e4a2b846bca49a7bcc01eeb25076cddd9880c3c1030f3a934b4105983b8a76f8",
+      "plan.md": "5a6fdb6976f8567f740a5b922f78cb3bcf2756e8f1b790312771643a064667bd",
+      "tasks.md": "ef4f70f0bddadbb3dcfb064f663cfebdefb0a788dc9e39c65f6a41b6fdeea06c",
+      "checklist.md": "9eafb6e26f9ca6806dd17ac685add752bb1ebdd7eccf382ac4b038b7a7165da6",
+      "decision-record.md": "f26488851fe2e3e4073e012ba9f0f2674e57b120a291a0e17b94faaf1580701c",
+      "implementation-summary.md": "958ff50cb2dc284b3d8218cee5adae9251358b234a4b59cd5182976a19d5e8f0"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

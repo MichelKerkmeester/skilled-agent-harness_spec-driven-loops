@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated. The playbook has zero scenarios that dispatch `@markdown` as an executor. Its preamble even claims \"Each of the 3 CLI runtimes (cli-codex, cli-opencode)\" — admitting an unfilled third-CLI slot. The dedicated documentation executor is therefore untested by the very playbook that owns sk-doc routing validation.",
+    "causal_summary": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated",
     "created_at": "2026-05-11T05:27:26Z",
-    "last_save_at": "2026-06-07T09:00:45.705Z",
+    "last_save_at": "2026-06-23T03:49:50.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:684e6329f3841186f904d07dae3278d3b0b594d31a7cfe3a5c5e3141c1de8ea7",
+    "source_doc_hashes": {
+      "spec.md": "afdc4ba224fce2d147040ba482bcb0f94f02438f92bb43f30a3899b16adea3c7",
+      "plan.md": "5aaa45fc0638c37d3af54b42f0c16388d908ce0ce75207f7ff6c9ed594ca6f41",
+      "tasks.md": "bbb0b239c8847dc17499d9a44649912ebbbd196843f41fed04c300e481895785",
+      "checklist.md": "ce5681c661f419427692481a1b512668fd134675121494282e65e0df93f57037",
+      "implementation-summary.md": "e40bd3e41422990b3a6f734158d4b00d96312895e78d8f41ca4f1f5d095ed19a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

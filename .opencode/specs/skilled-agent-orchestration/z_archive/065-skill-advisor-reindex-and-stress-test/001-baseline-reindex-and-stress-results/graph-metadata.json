@@ -207,9 +207,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase preserves the already-completed 065 baseline. It contains the original reindex phase, the original router stress-test phase, the handover, and the campaign roll-up summary.",
+    "causal_summary": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
     "created_at": "2026-05-18T07:49:27.126Z",
-    "last_save_at": "2026-05-30T10:12:01.330Z",
+    "last_save_at": "2026-06-23T03:49:49.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,16 @@
       "handover.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:79cdfcfc6c330aa7785cc1601cb8f78ec9caecedcf896d36cca707b4faf29110",
+    "source_doc_hashes": {
+      "spec.md": "624f53ee8cb5763f6f2d694805cad61a56d58994e1150f8f40dc6709e6e12770",
+      "plan.md": "4b89a734932748bce98939e33c38b0c010caa78ba0341635ff6089b455fa64b2",
+      "tasks.md": "a55711415d80b86af9976ab55ee66292ed5bd362ae838d76c62cd5f4a76fdb44",
+      "checklist.md": "e635367451c41333ce428ddc3020c5aaca48debcc7bb8a42019ac41f8e92787d",
+      "implementation-summary.md": "5857d328d4fabfc8dea3102a255444c20fc51c266024330bd21fa92b593b832f",
+      "handover.md": "763af4d6c317966ba905d66132cf96ed1b0381984e7b1485c3e54f29719d11fb",
+      "resource-map.md": "9ab6e5f650548e5668e43c7bb973ef3b8d90ba257210e07fdf6885baf1fc28f8"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

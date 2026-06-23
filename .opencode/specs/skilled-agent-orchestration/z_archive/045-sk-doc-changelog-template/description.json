@@ -1,13 +1,23 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/045-sk-doc-changelog-template",
-  "description": "Feature Specification: Move changelog_template.md into sk-doc",
+  "description": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelogtempl",
   "keywords": [
-    "feature",
-    "specification",
-    "move",
-    "sk-doc"
+    "canonical",
+    "changelog",
+    "release-notes",
+    "template",
+    "previously",
+    "lived",
+    "create-command",
+    "asset",
+    "path",
+    "opencode",
+    "commands",
+    "create",
+    "assets",
+    "changelogtempl"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.429Z",
+  "lastUpdated": "2026-06-23T03:49:49.296Z",
   "specId": "045",
   "folderSlug": "sk-doc-changelog-template",
   "parentChain": [

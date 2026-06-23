@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accumulated drift between docs and code, coverage gaps, and missing integration paths. Without a deep audit, remediation work risks chasing symptoms instead of root causes. Specifically: validators may pass on broken graph metadata, semantic search may miss canonical resources due to default exclusion patterns, and sk-code claims OPENCODE authoring scope but ships only language-level checklists. No prior packet has surveyed all three surfaces holistically.",
+    "causal_summary": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accumulated drift between docs and code, coverage gaps, and missing integration paths",
     "created_at": "2026-05-05T16:28:14Z",
-    "last_save_at": "2026-06-15T09:09:33.491Z",
+    "last_save_at": "2026-06-23T03:49:49.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:09c755dc909a2844a4dc9cce808de122c66e1e71b580454f6110c45faa450ba7",
+    "source_doc_hashes": {
+      "spec.md": "eebe4baf9ccd5cd3d8f59937ab501288353bbe538d5907f799ae35f211bd604c",
+      "plan.md": "406e687e6e99994312fb1a958ae9fd633740a71d03e270b8da7d6b785c838e2d",
+      "tasks.md": "c8d9853bba39be067bdf6ed9620fc42bcde587286b638f40c9351feda6c182e3",
+      "implementation-summary.md": "01bcedf137a0bb6dbed8c71341ed4e8214c58b7a8ffc6c3af916664d081b2e00",
+      "research/research.md": "db1ef1ee25e76956fdf0cd0ac32f709292a1e2106fa7301220447f0e5bd75233"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

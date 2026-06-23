@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Install guides and root docs still cite singular paths or stale inventory; `.opencode/skills/sk-code/` has a dead Copilot target-authority guard branch; two cli-opencode playbooks have nested-backtick prompts that render incorrectly.",
+    "causal_summary": "Install guides and root docs still cite singular paths or stale inventory; `.opencode/skills/sk-code/` has a dead Copilot target-authority guard branch; two cli-opencode playbooks have nested-backtick prompts that render incorrectly",
     "created_at": "2026-05-18T07:49:27.245Z",
-    "last_save_at": "2026-06-05T12:47:32.906Z",
+    "last_save_at": "2026-06-23T03:49:50.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b48d166576f51ef056d7e1d11c7c6935d7d0a4524d5bfd0b45121718449f101d",
+    "source_doc_hashes": {
+      "spec.md": "361a0dfa5742219b9b937ab7d0fa6d75e0c53f1ac034ae3ff183e6e11dc67441",
+      "plan.md": "571d26c627df1d706ae4cc72578a57d98b7e38d00e0842bb1ba398aed17f93db",
+      "tasks.md": "a7ce41fcb5949eadfb644b33c9d19d7598de17a775fb48979ca1f346e7a1fce0",
+      "checklist.md": "6e60feaaeb1920ace903346932bbef691af2a24f3625169173f31cc777fb6366",
+      "implementation-summary.md": "b3372cbd1a948502a71e64168458ab5d7d2dbc9374a8b37ae205e7009e4b5103"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

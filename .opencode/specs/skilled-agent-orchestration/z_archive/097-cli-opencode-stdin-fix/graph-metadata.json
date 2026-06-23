@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This fix adds **`</dev/null`** as a permanent rule across all automation surfaces that dispatch `opencode run` non-interactively. Touched files: 4 YAML workflow files (deep-research auto/confirm + deep-review auto/confirm), the `cli-opencode` skill (SKILL.md, README.md, references/cli_reference.md, references/integration_patterns.md, assets/prompt_templates.md), and 2 stress-test `dispatch-cli-opencode.sh` scripts. The Barter sibling repo's mirrored cli-opencode skill is included where present.",
+    "causal_summary": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
     "created_at": "2026-05-08T13:30:00Z",
-    "last_save_at": "2026-06-22T18:55:00.000Z",
+    "last_save_at": "2026-06-23T03:49:50.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
+    "source_fingerprint": "sha256:2700796e214bcbee989b8dcacdba02e8a6dbbc69ea4387952ff7337419007872",
+    "source_doc_hashes": {
+      "spec.md": "886d2255ceecbc1c4b4255d2f34177c91e59cfdea3f18cbb7ff74814bbe95106",
+      "plan.md": "ba3ad45d4b9761de40ef31615e6a9faa878d4ffcc507348d153a50a7b2448fce",
+      "tasks.md": "742ea2d6ce68f572b5a3404bbe5f25dd559068fdc69090c16d3632af7fcfc3f3",
+      "checklist.md": "5a3cb2f3dcc3d066b785df0cd1671aaaecd101aa097446ecaedbf07222377ef6",
+      "implementation-summary.md": "db8835ac5618fe51ed586ee067bc31c6a785fade367c53ce4866638a4ad938d3",
+      "resource-map.md": "74f9dcf5fe0ba1c9b37d7b2e2d463db28a726f19ef4abf903853a86edc951126"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -1,15 +1,23 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality",
-  "description": "Feature Specification: cli-devin prompt-quality arc",
+  "description": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic ev",
   "keywords": [
-    "feature",
-    "specification",
     "cli-devin",
-    "prompt-quality",
-    "arc"
+    "shipped",
+    "prompt",
+    "templates",
+    "model",
+    "presets",
+    "framework",
+    "choices",
+    "detail",
+    "levels",
+    "pre-planning",
+    "block",
+    "systematic"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.248Z",
+  "lastUpdated": "2026-06-23T03:49:50.449Z",
   "specId": "113",
   "folderSlug": "cli-devin-prompt-quality",
   "parentChain": [

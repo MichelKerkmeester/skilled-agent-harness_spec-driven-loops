@@ -1,23 +1,24 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer",
-  "description": "Feature Specification: mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from Code_Environment/Public, reframe as a Figma MCP Agent in",
+  "description": "This phased decomposition tracks mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from CodeEnvironment/Public, reframe as a Figma MCP",
   "keywords": [
-    "feature",
-    "specification",
+    "phased",
+    "decomposition",
+    "tracks",
     "mcp-figma",
     "transfer",
     "tri-repo",
     "withdraw",
     "developer",
     "skill",
+    "codeenvironment",
     "public",
     "reframe",
     "figma",
-    "mcp",
-    "agent"
+    "mcp"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.422Z",
+  "lastUpdated": "2026-06-23T03:49:49.592Z",
   "specId": "067",
   "folderSlug": "mcp-figma-transfer",
   "parentChain": [

@@ -30,16 +30,24 @@
     ".opencode/skills/system-spec-kit/SKILL.md"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
-  "description": "Feature Specification: spec-kit UX adoptions from SPAR-Kit research",
+  "description": "Packet 057's 10-iteration deep-research run produced 12 ranked findings comparing external SPAR-Kit against our internal `system-spec-kit`",
   "keywords": [
-    "feature",
-    "specification",
-    "spec-kit",
-    "adoptions",
+    "packet",
+    "057",
+    "10-iteration",
+    "deep-research",
+    "run",
+    "produced",
+    "ranked",
+    "findings",
+    "comparing",
+    "external",
     "spar-kit",
-    "research"
+    "against",
+    "internal",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.350Z",
+  "lastUpdated": "2026-06-23T03:49:49.388Z",
   "specId": "058",
   "folderSlug": "spec-kit-ux-adoptions",
   "parentChain": [

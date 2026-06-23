@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Focused deep-research passes sometimes find more concrete bugs than the dedicated deep-review workflow. This suggests deep-review may over-index on broad review ceremony, convergence, or summary-level checks instead of forcing adversarial, class-of-bug exploration.",
+    "causal_summary": "The deep-review workflow should be the strongest bug-finding path for iterative audits, but user experience indicates focused deep-research loops can surface more defects when prompted to look for bugs",
     "created_at": "2026-05-22T05:50:19Z",
-    "last_save_at": "2026-06-15T09:09:33.745Z",
+    "last_save_at": "2026-06-23T03:49:50.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,16 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:522f734d91410e36ac55c92c8728a6b73a088c0739d84b9a2c8885cb4a278c47",
+    "source_doc_hashes": {
+      "spec.md": "2cf8d9d75f9011b2f3126e91811209e45b76de4d9ee098a47f769237ae83075a",
+      "plan.md": "c614de4fb14de66fd3a01fb3369b93dd85f3e9a707668e2c40f145a77b2363af",
+      "tasks.md": "cab82bc05627d29e7b843eb07c17987132203f4255bb0715dd1431c79fba3724",
+      "checklist.md": "9ceb4006738bfebe00cbeb3442a98e4807bdcfa013d4f4dcb3aacc53d684c4b8",
+      "decision-record.md": "f4227259fa9f78612fabf207877328e26a593f1da918ac8ffa365647b0296d37",
+      "implementation-summary.md": "f018f696dc63e9004753c0c5c1cea26d90f1590c537cb9e80f606bd267518f51",
+      "research/research.md": "7c2d248a4d955cb35102f9c610eb86d79047f705c3160b4bb77be4ee708977a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

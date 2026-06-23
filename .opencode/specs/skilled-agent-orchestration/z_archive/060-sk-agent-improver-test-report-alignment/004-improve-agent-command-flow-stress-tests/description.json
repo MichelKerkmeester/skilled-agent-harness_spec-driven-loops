@@ -1,16 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
-  "description": "Feature Specification: 061 — sk-improve-agent Command-Flow Stress Tests",
+  "description": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
   "keywords": [
-    "feature",
-    "specification",
-    "061",
-    "sk-improve-agent",
-    "command-flow",
+    "062",
+    "executable",
+    "wiring",
+    "place",
+    "existing",
+    "cp-040",
+    "045",
     "stress",
-    "tests"
+    "scenarios",
+    "still",
+    "dispatch",
+    "via",
+    "prepend-agent-body"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.260Z",
+  "lastUpdated": "2026-06-23T03:49:49.432Z",
   "specId": "004",
   "folderSlug": "improve-agent-command-flow-stress-tests",
   "parentChain": [

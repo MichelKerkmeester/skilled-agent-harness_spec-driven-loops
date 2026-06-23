@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b). Sets the stage for 064 (new @create-doc agent built from the updated template).",
+    "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b)",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-06-05T12:47:32.748Z",
+    "last_save_at": "2026-06-23T03:49:49.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a5ae96e38081dd52c545767499b6757ea799ed5b34f9b8c6a488f09a19cb9d66",
+    "source_doc_hashes": {
+      "spec.md": "ad56889e706a2153f5a6d75dd627e2567704d5474433b93340ee84f39db2cf09",
+      "plan.md": "396089849c38ff9754e8a69c324620326870e30c3b3077bb69a44f7f80e00d06",
+      "tasks.md": "70f7f7accc3caf914217a87d5fc7ba79ffb0c7fd2cafeb303df98a56cd3b046c",
+      "implementation-summary.md": "1bb30b7d91dced7af8fc6dae61200c3d41a5ad69ca66a0f98f788499ddeebbf6"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

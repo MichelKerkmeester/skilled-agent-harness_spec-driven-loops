@@ -1,19 +1,17 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
-  "description": "Feature Specification: H-7 finding dedup + H-9 bounded evidence for deep-review",
+  "description": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
   "keywords": [
-    "feature",
-    "specification",
-    "h-7",
-    "finding",
-    "dedup",
-    "h-9",
-    "bounded",
-    "evidence",
-    "deep-review"
+    "two",
+    "efficiency",
+    "gaps",
+    "deep-review",
+    "multi-dimensional",
+    "iteration",
+    "model"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.195Z",
+  "lastUpdated": "2026-06-23T03:49:50.386Z",
   "specId": "003",
   "folderSlug": "deep-review-uplift",
   "parentChain": [

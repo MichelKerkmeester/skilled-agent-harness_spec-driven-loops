@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add the opt-in multi-executor config representation without changing any behavior. Foundation for all later phases.",
+    "causal_summary": "Add the opt-in multi-executor config representation without changing any behavior",
     "created_at": "2026-05-30T10:12:01.126Z",
-    "last_save_at": "2026-06-17T19:57:23.693Z",
+    "last_save_at": "2026-06-23T03:49:51.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:ffcf95f5f64dd69ff19ef752f9ab91770ea21a92f49697ee45805c0861b0ac69",
+    "source_doc_hashes": {
+      "spec.md": "5fb672a0e02e965ffe61d27cf8590c1e293480434f9be2e0db86bcdce2d646bc",
+      "plan.md": "9a374a0c20b9bcc878001c2313df3814de584fee564f9727a455091c0333c40e",
+      "tasks.md": "16302d2de37ab94906015731175d7045d809be73e5cd000148eeef5069468493",
+      "implementation-summary.md": "a4fa97f6c256c56577cc61550c08f20e948e9cdec5ebdd46aa164fe7d639e9a1"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

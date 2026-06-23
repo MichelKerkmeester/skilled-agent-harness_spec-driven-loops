@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`speckit_implement_auto.yaml:413` / `speckit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
+    "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware",
     "created_at": "2026-04-27T08:35:00Z",
-    "last_save_at": "2026-06-05T12:47:32.691Z",
+    "last_save_at": "2026-06-23T03:49:49.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
+    "source_fingerprint": "sha256:65feb2e3bbbf6d9a526ca8ce31b389ee84315f610c4208d68c45bfbd01e61737",
+    "source_doc_hashes": {
+      "spec.md": "28cb1e50a50f3e3f729be4de81f5521d7c0bd395dc993c626b0eb576ba41192f",
+      "plan.md": "efb051587661cb18516fac7c7c43eea89ec0e12fa5859f2810864712aef5efcb",
+      "tasks.md": "bb1cbf7ce46419afc9dbccae0ee4f7c0029147edcd31c036c8d6383513b800ff",
+      "checklist.md": "8ab97a5ffc69b1d9124aac2d1c097a15a913fde664c76b9ae4780a7f02230fd9",
+      "implementation-summary.md": "420b9d8a2b030c1a021ec6fe670539593e4b1dc3b946214a7acf6609188dee12",
+      "handover.md": "d4aa60bba8a6c081417fcd20f098a1b5640ce7d6cb94d9b009dadb230be8eba7"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

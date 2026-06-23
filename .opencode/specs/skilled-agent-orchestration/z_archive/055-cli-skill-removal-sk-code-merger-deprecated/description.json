@@ -1,14 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/055-cli-skill-removal-sk-code-merger-deprecated",
-  "description": "Feature Specification: Remove sk-code-full-stack and sk-code-web",
+  "description": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella sk",
   "keywords": [
-    "feature",
-    "specification",
-    "remove",
+    "skills",
     "sk-code-full-stack",
-    "sk-code-web"
+    "sk-code-web",
+    "soft-deprecated",
+    "2026-04-30",
+    "packet",
+    "054-sk-code-merger",
+    "created",
+    "new",
+    "umbrella"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.483Z",
+  "lastUpdated": "2026-06-23T03:49:49.367Z",
   "specId": "055",
   "folderSlug": "cli-skill-removal-sk-code-merger-deprecated",
   "parentChain": [

@@ -1,15 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
-  "description": "Phase 002: Commit Standards Definition",
+  "description": "The repo has standards on paper but no decisions locked in for the cases that actually matter for a retroactive rewrite",
   "keywords": [
-    "phase",
-    "002",
-    "commit",
+    "repo",
     "standards",
-    "definition"
+    "paper",
+    "decisions",
+    "locked",
+    "cases",
+    "actually",
+    "matter",
+    "retroactive",
+    "rewrite"
   ],
-  "lastUpdated": "2026-06-22T18:55:00.224Z",
+  "lastUpdated": "2026-06-23T03:49:50.416Z",
   "specId": "002",
   "folderSlug": "commit-standards-definition",
   "parentChain": [

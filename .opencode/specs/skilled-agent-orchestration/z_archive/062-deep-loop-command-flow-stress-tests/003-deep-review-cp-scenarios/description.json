@@ -1,14 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
-  "description": "Spec: deep-review CP-Scenario Authoring (003)",
+  "description": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
   "keywords": [
-    "spec",
-    "deep-review",
-    "cp-scenario",
-    "authoring",
-    "003"
+    "sub-phase",
+    "062-deep-loop-command-flow-stress-tests",
+    "apply",
+    "060",
+    "004",
+    "methodology"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.403Z",
+  "lastUpdated": "2026-06-23T03:49:49.511Z",
   "specId": "003",
   "folderSlug": "deep-review-cp-scenarios",
   "parentChain": [

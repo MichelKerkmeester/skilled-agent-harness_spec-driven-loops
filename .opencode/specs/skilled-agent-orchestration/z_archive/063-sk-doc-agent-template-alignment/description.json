@@ -1,15 +1,19 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/063-sk-doc-agent-template-alignment",
-  "description": "Spec: 063 — sk-doc Agent Template Alignment",
+  "description": "Clean up agent files (063a) AND align the template to current production reality (063b)",
   "keywords": [
-    "spec",
-    "063",
-    "sk-doc",
+    "clean",
     "agent",
+    "files",
+    "063a",
+    "align",
     "template",
-    "alignment"
+    "current",
+    "production",
+    "reality",
+    "063b"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.547Z",
+  "lastUpdated": "2026-06-23T03:49:49.523Z",
   "specId": "063",
   "folderSlug": "sk-doc-agent-template-alignment",
   "parentChain": [

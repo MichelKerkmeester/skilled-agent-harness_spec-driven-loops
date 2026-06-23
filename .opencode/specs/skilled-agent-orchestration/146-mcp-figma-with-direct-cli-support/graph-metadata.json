@@ -83,14 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI or a remote-API workflow. There was no terminal control path that drives the live Figma Desktop session directly. The framework needed a house-conformant skill that wires a coding agent into Figma from the terminal, names the safe and the gated commands, and avoids the common npm naming trap (the npm package literally named `figma-cli` is an unrelated tool and must never be installed).",
+    "causal_summary": "Figma Desktop holds a project's real design systems, tokens, variables, and components, but a coding agent could only reach them through the Figma UI or a remote-API workflow",
     "created_at": "2026-06-14T17:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.193Z",
+    "last_save_at": "2026-06-23T03:49:48.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:ea626435ba8a094ac81b2d9f6a5b7055bfd4bc5c05361952f871121e6d0bded1",
+    "source_doc_hashes": {
+      "spec.md": "8dd1c253b38e8cf3193a27be2e010822f85a57cfffd32ca54f70d0fa7f786b7a"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

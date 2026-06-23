@@ -1,16 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/049-mcp-testing-playbooks",
-  "description": "Feature Specification: MCP Testing Playbooks for Four Skills",
+  "description": "Three of the four MCP- skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) ship without a manual testing playbook",
   "keywords": [
-    "feature",
-    "specification",
-    "mcp",
-    "testing",
-    "playbooks",
+    "three",
     "four",
-    "skills"
+    "mcp",
+    "skills",
+    "mcp-chrome-devtools",
+    "mcp-clickup",
+    "mcp-code-mode",
+    "ship",
+    "without",
+    "manual",
+    "testing",
+    "playbook"
   ],
-  "lastUpdated": "2026-06-22T18:54:59.450Z",
+  "lastUpdated": "2026-06-23T03:49:49.324Z",
   "specId": "049",
   "folderSlug": "mcp-testing-playbooks",
   "parentChain": [

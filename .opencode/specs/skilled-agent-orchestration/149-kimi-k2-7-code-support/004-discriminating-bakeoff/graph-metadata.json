@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the kimi-k2-7-code-support specification, the discriminating re-run of the phase 002 framework bakeoff.",
+    "causal_summary": "The phase 002 bakeoff (run 006) scored every prompt framework at correctness 1.0 because its T3 fixtures were too easy for a frontier coding model, so it returned an uninformative TIE and left `rcaf` as a convention default with no empirical backing",
     "created_at": "2026-06-15T11:56:39Z",
-    "last_save_at": "2026-06-17T19:57:23.059Z",
+    "last_save_at": "2026-06-23T03:49:48.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:bbdc748f9bf4b607683bbb5fab2e107f77627a2766096098c05a82e4e534b9ed",
+    "source_doc_hashes": {
+      "spec.md": "a2da077d86edd3e5732b9e514d8d7d384605c43cf044e4f1e10a964de77a1026",
+      "plan.md": "fcd12ffb1bfcd536d644896b3a02e97930df00840a32875c0372f208aed77f36",
+      "tasks.md": "8328c10970c946f74311f9c2b6aa3b193c5b15e9ed9ca73175ce71944caededc",
+      "implementation-summary.md": "d4d94d3145d84d21aac62059f175f2f0ab4c30989950d26471a309486eda6f49"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

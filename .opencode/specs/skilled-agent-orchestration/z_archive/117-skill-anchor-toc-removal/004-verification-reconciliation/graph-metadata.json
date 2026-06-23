@@ -187,7 +187,7 @@
     ],
     "causal_summary": "A large mechanical change set (≈860 files) needs proof that it removed only TOC/anchor scaffolding,",
     "created_at": "2026-05-26T09:40:16.340Z",
-    "last_save_at": "2026-06-07T09:00:45.949Z",
+    "last_save_at": "2026-06-23T03:49:51.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:b6d377a99021da2c240d096bdf83b0b1a281f969a80fe0dafd3b1fe2c461ea52",
+    "source_doc_hashes": {
+      "spec.md": "afacd918954b5474c6a17e95e0917872f647caa6faf5b12584e0d9266b49fdfd",
+      "plan.md": "5de08aab918983394515c071932267d533250c6c85bb215e4672a9d6ce30244c",
+      "tasks.md": "460c34cccdf7ddc3deb72d3aa865eec0588c74411dfd6d2ebe34c661806edf51",
+      "implementation-summary.md": "daaf56d40aa9cbaa0d902e1137544ef2d65e77c3291030139d12683492694959"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

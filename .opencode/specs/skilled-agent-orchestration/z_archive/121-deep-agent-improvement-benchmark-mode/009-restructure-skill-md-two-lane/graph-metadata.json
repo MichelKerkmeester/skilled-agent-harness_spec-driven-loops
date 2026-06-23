@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 9** of the two-lane program. Phase 008 made the model-benchmark lane (Lane B) first-class at the command layer (a dedicated `/deep:start-model-benchmark-loop` command, Lane B workflow YAMLs, advisor routing, README). The skill documentation has not caught up: SKILL.md still frames model-benchmark as \"Mode 4\" bolted onto the end of the agent-improvement lane rather than as a co-equal lane. This phase aligns SKILL.md and the smart-router with the two co-equal lanes the command layer already ships.",
+    "causal_summary": "SKILL.md frames the model-benchmark lane as \"Mode 4: Model-Benchmark\" appended inside the agent-improvement lane section (§3), even though §1 already declares two co-equal lanes and points Lane B at a §4 that is actually Success Criteria",
     "created_at": "2026-05-29T07:21:46Z",
-    "last_save_at": "2026-06-17T19:57:23.653Z",
+    "last_save_at": "2026-06-23T03:49:51.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:69f6d02cb54e457cb78571967e2d7dd3c6fc8fd7d3a38808e879ba9c1b796883",
+    "source_doc_hashes": {
+      "spec.md": "0a25a714ef6bda30fbbf24a11db4e70d007da30ab90940a67a160f041ca5da4a",
+      "plan.md": "f0cc27cbeb7a6ce89eb0359efbc531306f1f1e11ee243974aca75a7463b06a05",
+      "tasks.md": "6576b23e9881233a953a2b5d7589780e2b64a4e4f24c3e0f84ed1be6bce4bcec",
+      "checklist.md": "d0db9e0fbb0bcaf3b0da67a29d53bcd139ec27996fba04e75958ea34bc4573f2",
+      "implementation-summary.md": "b1f9967c9385b27ea00c62862528e1e58ee00ade082a9905de4e754c551ecd09"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Five CLI orchestrator skills ship without operator-facing manual testing playbooks while sibling skills (`system-spec-kit`, `mcp-coco-index`) have full packages. This spec creates one `manual_testing_playbook/` per CLI skill — all five conforming to the shipped `sk-doc` contract (root + per-feature scaffold, 9-column scenario tables, integrated review/orchestration guidance) and dispatched through the canonical `/create:testing-playbook` command via the `@write` agent.",
+    "causal_summary": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
     "created_at": "2026-04-26T08:19:52.465Z",
-    "last_save_at": "2026-06-05T12:47:32.685Z",
+    "last_save_at": "2026-06-23T03:49:49.314Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,15 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:0bc612f48f903dfa0127fb8fdae20d91fb38b04e962733ad82e5c7d4d2c945a5",
+    "source_doc_hashes": {
+      "spec.md": "49914029947472b1264ce901a0a3a29d1d7ab7986a4b434eb755d9d9fc75cbec",
+      "plan.md": "676dd29f5d121f791e534d440b2035278a63db1677d46df55ad7f04480c3ba74",
+      "tasks.md": "21b72d1847338917beabd361a5cad060382cfc4ad64e5ab8b019e9a06f4ba4e5",
+      "checklist.md": "69f6d701f8d6bbfc72e2af7680b153dc2f610e47592382dafcdec86e31aee756",
+      "decision-record.md": "f3648e5ca9908e9f2f0cb63ed07f3549b8dea0b222ec9cc14e1501bb49c5071e",
+      "implementation-summary.md": "ffd8e2c61acc74b75f416373b7e21675ee417032c29d5d09558f6e1d79a5cf07"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

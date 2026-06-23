@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 071's 003-synthesize/review-report.md flagged P1-001: cli-copilot's resource accuracy was reported as 5.6%, but this number is inflated-low because the detect_resources() heuristic in extract_metrics.py captures ANY `references/*` or `assets/*` path mention — including ones in cli-copilot's verbose \"Not loaded:\" / \"would NOT load\" sections. The headline ranking (cli-codex > cli-opencode > cli-copilot) is directionally correct, but copilot's exact accuracy number isn't trustable.",
+    "causal_summary": "Packet 071's 003-synthesize/review-report.md flagged P1-001: cli-copilot's resource accuracy was reported as 5.6%, but this number is inflated-low because the detectresources() heuristic in extractmetrics.py captures ANY `references/` or `assets/` path mention — including ones in cli-copilot's verbose \"Not loaded:\" / \"would NOT load\" sections",
     "created_at": "2026-05-05T14:41:58Z",
-    "last_save_at": "2026-06-05T12:47:32.823Z",
+    "last_save_at": "2026-06-23T03:49:49.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:10:00Z",
     "source_docs": [
@@ -197,6 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a8173b1716606cb2468ca152357a09d1c34a2c70baddbb4ff4beb2ee6f54d4d3",
+    "source_doc_hashes": {
+      "spec.md": "e7e799364a1963e60d216fd02a8de4a580c246ddbdd625bb13bf0aaf40c5d071",
+      "plan.md": "4484dcbcf3902db931325004dbb9ae1c263fdae7d860a970e9ded5c1cc6607d8",
+      "tasks.md": "72bfa1adfc5f9ea1d7c9dfdd0eeeafe56bfd68eb24c3aa5753fe136f737d5e4e",
+      "implementation-summary.md": "b6017fb0339f9e6e10101ef77e0e35d3d3691ec96cbe07c0593108fbe2747e0d"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

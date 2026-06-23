@@ -1,17 +1,18 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
-  "description": "Feature Specification: P0 MVP — reusable config-driven benchmark framework",
+  "description": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt",
   "keywords": [
-    "feature",
-    "specification",
-    "mvp",
+    "127",
+    "research",
+    "designed",
     "reusable",
     "config-driven",
     "benchmark",
-    "framework"
+    "framework",
+    "unbuilt"
   ],
-  "lastUpdated": "2026-06-22T18:55:01.263Z",
+  "lastUpdated": "2026-06-23T03:49:51.526Z",
   "specId": "002",
   "folderSlug": "p0-mvp-implementation",
   "parentChain": [

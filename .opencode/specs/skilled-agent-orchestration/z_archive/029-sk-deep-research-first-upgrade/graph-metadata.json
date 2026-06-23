@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems. Without a documented comparison against ResearcherSkill and autoresearch, upgrade choices would lean on intuition instead of evidence.",
+    "causal_summary": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
     "created_at": "2026-04-12T09:02:50.176Z",
-    "last_save_at": "2026-05-30T10:12:01.179Z",
+    "last_save_at": "2026-06-23T03:49:49.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
+    "source_fingerprint": "sha256:d67352ee454bcdfdccf45ad921bb7d7caa4d942bad9a2a7b1d3327ac3c06ea09",
+    "source_doc_hashes": {
+      "spec.md": "4b12cad0ce1ab3548505a515ed72e80166d09ceeade13254b4c4ee60b7261e7e",
+      "plan.md": "ceb779ceacaac1b0559bdf627cb1351d13234d449455afaaca994b60433fcaf7",
+      "tasks.md": "9c09d4281084bd8384a584ea77e97f4b0dbcc88208f3de432fb48c5c11db771b",
+      "implementation-summary.md": "98b5bd765d1269ee5b3472c9d33e65c6d4d3d969f0e2a550b3c6d3471578b841",
+      "research/research.md": "4a22d6b4e3ea2852d8e2dfe0e62fd16232b0ba68748c30ca6f6e33c58071c0f3"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

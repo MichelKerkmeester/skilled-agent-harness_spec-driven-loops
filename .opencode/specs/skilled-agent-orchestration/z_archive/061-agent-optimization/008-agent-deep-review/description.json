@@ -1,13 +1,14 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/008-agent-deep-review",
-  "description": "Spec: @deep-review Agent Optimization",
+  "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
-    "spec",
     "deep-review",
-    "agent",
-    "optimization"
+    "579",
+    "loc",
+    "sk-improve-agent",
+    "lens"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.302Z",
+  "lastUpdated": "2026-06-23T03:49:49.483Z",
   "specId": "008",
   "folderSlug": "agent-deep-review",
   "parentChain": [
