@@ -1,0 +1,1508 @@
+{
+  "generatedFrom": "deterministic-ranking-benchmark.mjs",
+  "generatedAt": "2026-06-23T15:14:02.078Z",
+  "flag": "SPECKIT_DETERMINISTIC_RANKING",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-det-rank-eval-74hunM/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-det-rank-eval-74hunM/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "queryConfigSource": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark/scripts/benchmark-config.json",
+  "pipelinePath": "executePipeline (Stage 1 vector-decay + Stage 2 recency exercised)",
+  "notes": [
+    "Flag-ON drops the julianday(now) vector decay term and zeroes the Stage-2 recency contribution.",
+    "Each query embedded once, embedding reused across all OFF and ON runs.",
+    "determinism = count of distinct ordered-id digests across runs (1 = perfectly reproducible).",
+    "topK_overlap = Jaccard of top-10 id sets OFF vs ON (run 1 of each).",
+    "kendall_tau = rank correlation on ids present in both top-10s (null when fewer than 2 shared).",
+    "mean_score_delta = mean absolute composite-score difference on shared ids."
+  ],
+  "summary": {
+    "queryCount": 12,
+    "runsPerCell": 3,
+    "topK": 10,
+    "meanDeterminismOn": 1,
+    "meanDeterminismOff": 1,
+    "reproducibleOnCount": 12,
+    "meanTopKOverlap": 0.686338,
+    "meanKendallTau": 0.731481,
+    "meanScoreDelta": 0.00471605,
+    "materialDivergenceCount": 5,
+    "materialDivergenceQueries": [
+      "agent",
+      "deep-loop",
+      "routing",
+      "semantic-search",
+      "quality"
+    ]
+  },
+  "perQuery": [
+    {
+      "id": "graph",
+      "text": "graph",
+      "class": "aligned",
+      "offTopIds": [
+        3472,
+        3610,
+        23410,
+        22021,
+        2641,
+        5862,
+        3676,
+        10919,
+        3482,
+        3600
+      ],
+      "onTopIds": [
+        3472,
+        22021,
+        3610,
+        23410,
+        2641,
+        5862,
+        3676,
+        10919,
+        3473,
+        3482
+      ],
+      "offTop": [
+        {
+          "id": 3472,
+          "score": 0.7381513952468097
+        },
+        {
+          "id": 3610,
+          "score": 0.7373872915673252
+        },
+        {
+          "id": 23410,
+          "score": 0.715122408
+        },
+        {
+          "id": 22021,
+          "score": 0.7218283271873414
+        },
+        {
+          "id": 2641,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 5862,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 3676,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 10919,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 3482,
+          "score": 0.7332695050031519
+        },
+        {
+          "id": 3600,
+          "score": 0.7079270016
+        }
+      ],
+      "onTop": [
+        {
+          "id": 3472,
+          "score": 0.7373401753875869
+        },
+        {
+          "id": 22021,
+          "score": 0.7366822992000001
+        },
+        {
+          "id": 3610,
+          "score": 0.7365767845252859
+        },
+        {
+          "id": 23410,
+          "score": 0.715122408
+        },
+        {
+          "id": 2641,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 5862,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 3676,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 10919,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 3473,
+          "score": 0.7147437024
+        },
+        {
+          "id": 3482,
+          "score": 0.7324641540938304
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.818182,
+      "kendallTau": 0.888889,
+      "meanScoreDelta": 0.00192012,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "agent",
+      "text": "agent",
+      "class": "aligned",
+      "offTopIds": [
+        23242,
+        23338,
+        23351,
+        23245,
+        23336,
+        23339,
+        23246,
+        23348,
+        23241,
+        23350
+      ],
+      "onTopIds": [
+        23336,
+        2755,
+        23351,
+        23116,
+        2746,
+        23335,
+        2751,
+        23348,
+        23340,
+        2747
+      ],
+      "offTop": [
+        {
+          "id": 23242,
+          "score": 0.7339053600000001
+        },
+        {
+          "id": 23338,
+          "score": 0.7328415984739729
+        },
+        {
+          "id": 23351,
+          "score": 0.7277154342184495
+        },
+        {
+          "id": 23245,
+          "score": 0.7141070262091141
+        },
+        {
+          "id": 23336,
+          "score": 0.7275242034255875
+        },
+        {
+          "id": 23339,
+          "score": 0.7310886331859526
+        },
+        {
+          "id": 23246,
+          "score": 0.7143715800862465
+        },
+        {
+          "id": 23348,
+          "score": 0.6893863819193377
+        },
+        {
+          "id": 23241,
+          "score": 0.7136096647836583
+        },
+        {
+          "id": 23350,
+          "score": 0.6942626388556853
+        }
+      ],
+      "onTop": [
+        {
+          "id": 23336,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 2755,
+          "score": 0.6942936000000002
+        },
+        {
+          "id": 23351,
+          "score": 0.6771256128
+        },
+        {
+          "id": 23116,
+          "score": 0.6660144
+        },
+        {
+          "id": 2746,
+          "score": 0.6942936000000002
+        },
+        {
+          "id": 23335,
+          "score": 0.6815438448000002
+        },
+        {
+          "id": 2751,
+          "score": 0.6942936000000002
+        },
+        {
+          "id": 23348,
+          "score": 0.6742530288
+        },
+        {
+          "id": 23340,
+          "score": 0.6785142000000001
+        },
+        {
+          "id": 2747,
+          "score": 0.6942936000000002
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.176471,
+      "kendallTau": 0.333333,
+      "meanScoreDelta": 0.02667283,
+      "materialDivergence": true,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "memory",
+      "text": "memory",
+      "class": "aligned",
+      "offTopIds": [
+        4131,
+        2867,
+        2738,
+        3235,
+        2761,
+        23264,
+        23289,
+        23270,
+        4173,
+        5597
+      ],
+      "onTopIds": [
+        4131,
+        2867,
+        2738,
+        3235,
+        2761,
+        23264,
+        23289,
+        23270,
+        4173,
+        5597
+      ],
+      "offTop": [
+        {
+          "id": 4131,
+          "score": 0.7575351878675202
+        },
+        {
+          "id": 2867,
+          "score": 0.7388636542845821
+        },
+        {
+          "id": 2738,
+          "score": 0.7395516072370267
+        },
+        {
+          "id": 3235,
+          "score": 0.730654381935801
+        },
+        {
+          "id": 2761,
+          "score": 0.7249276883135394
+        },
+        {
+          "id": 23264,
+          "score": 0.7156273488
+        },
+        {
+          "id": 23289,
+          "score": 0.7172684064
+        },
+        {
+          "id": 23270,
+          "score": 0.7232014608
+        },
+        {
+          "id": 4173,
+          "score": 0.720236451980692
+        },
+        {
+          "id": 5597,
+          "score": 0.7161322896000001
+        }
+      ],
+      "onTop": [
+        {
+          "id": 4131,
+          "score": 0.7567031985734679
+        },
+        {
+          "id": 2867,
+          "score": 0.7380513025185509
+        },
+        {
+          "id": 2738,
+          "score": 0.7387392576250502
+        },
+        {
+          "id": 3235,
+          "score": 0.7298508988068444
+        },
+        {
+          "id": 2761,
+          "score": 0.7241305117574693
+        },
+        {
+          "id": 23264,
+          "score": 0.7156273488
+        },
+        {
+          "id": 23289,
+          "score": 0.7172684064
+        },
+        {
+          "id": 23270,
+          "score": 0.7232014608
+        },
+        {
+          "id": 4173,
+          "score": 0.7194444005188422
+        },
+        {
+          "id": 5597,
+          "score": 0.7161322896000001
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 1,
+      "kendallTau": 1,
+      "meanScoreDelta": 0.00048494,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "deep-loop",
+      "text": "deep loop",
+      "class": "aligned",
+      "offTopIds": [
+        23494,
+        18038,
+        23215,
+        3514,
+        23484,
+        23474,
+        5208,
+        23479,
+        23496,
+        23489
+      ],
+      "onTopIds": [
+        23101,
+        3514,
+        18038,
+        5208,
+        4318,
+        18041,
+        23091,
+        9376,
+        22932,
+        23037
+      ],
+      "offTop": [
+        {
+          "id": 23494,
+          "score": 0.19707384479999998
+        },
+        {
+          "id": 18038,
+          "score": 0.193470768
+        },
+        {
+          "id": 23215,
+          "score": 0.18415996978844615
+        },
+        {
+          "id": 3514,
+          "score": 0.18444507644828764
+        },
+        {
+          "id": 23484,
+          "score": 0.18363968629832852
+        },
+        {
+          "id": 23474,
+          "score": 0.18007056012228898
+        },
+        {
+          "id": 5208,
+          "score": 0.18279362530071777
+        },
+        {
+          "id": 23479,
+          "score": 0.1804106122781907
+        },
+        {
+          "id": 23496,
+          "score": 0.186611309571302
+        },
+        {
+          "id": 23489,
+          "score": 0.18119072860574836
+        }
+      ],
+      "onTop": [
+        {
+          "id": 23101,
+          "score": 0.1947456
+        },
+        {
+          "id": 3514,
+          "score": 0.18365590368429968
+        },
+        {
+          "id": 18038,
+          "score": 0.1667952
+        },
+        {
+          "id": 5208,
+          "score": 0.18201343164548323
+        },
+        {
+          "id": 4318,
+          "score": 0.08450798255010881
+        },
+        {
+          "id": 18041,
+          "score": 0.0834173027027027
+        },
+        {
+          "id": 23091,
+          "score": 0.07464960000000001
+        },
+        {
+          "id": 9376,
+          "score": 0.08329464
+        },
+        {
+          "id": 22932,
+          "score": 0.07464960000000001
+        },
+        {
+          "id": 23037,
+          "score": 0.0741888
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.176471,
+      "kendallTau": 0.333333,
+      "meanScoreDelta": 0.00941498,
+      "materialDivergence": true,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "routing",
+      "text": "routing",
+      "class": "aligned",
+      "offTopIds": [
+        23270,
+        23246,
+        23449,
+        4198,
+        22254,
+        22146,
+        23677,
+        3808,
+        23272,
+        3231
+      ],
+      "onTopIds": [
+        4198,
+        22254,
+        23270,
+        22146,
+        3808,
+        3231,
+        4018,
+        20393,
+        23271,
+        3984
+      ],
+      "offTop": [
+        {
+          "id": 23270,
+          "score": 0.7559570416441515
+        },
+        {
+          "id": 23246,
+          "score": 0.7316232684288109
+        },
+        {
+          "id": 23449,
+          "score": 0.7386259185330983
+        },
+        {
+          "id": 4198,
+          "score": 0.7326242268460065
+        },
+        {
+          "id": 22254,
+          "score": 0.7037612400000001
+        },
+        {
+          "id": 22146,
+          "score": 0.6994692432
+        },
+        {
+          "id": 23677,
+          "score": 0.6992733600000001
+        },
+        {
+          "id": 3808,
+          "score": 0.689875368
+        },
+        {
+          "id": 23272,
+          "score": 0.7488025896579661
+        },
+        {
+          "id": 3231,
+          "score": 0.70060536
+        }
+      ],
+      "onTop": [
+        {
+          "id": 4198,
+          "score": 0.7318168589490043
+        },
+        {
+          "id": 22254,
+          "score": 0.7037612400000001
+        },
+        {
+          "id": 23270,
+          "score": 0.7232014608
+        },
+        {
+          "id": 22146,
+          "score": 0.6994692432
+        },
+        {
+          "id": 3808,
+          "score": 0.689875368
+        },
+        {
+          "id": 3231,
+          "score": 0.70060536
+        },
+        {
+          "id": 4018,
+          "score": 0.6785142000000001
+        },
+        {
+          "id": 20393,
+          "score": 0.6848259600000001
+        },
+        {
+          "id": 23271,
+          "score": 0.7290082800000001
+        },
+        {
+          "id": 3984,
+          "score": 0.6785142000000001
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.428571,
+      "kendallTau": 0.733333,
+      "meanScoreDelta": 0.00559382,
+      "materialDivergence": true,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "semantic-search",
+      "text": "semantic search",
+      "class": "generic",
+      "offTopIds": [
+        2908,
+        18026,
+        16264,
+        4806,
+        23178,
+        23342,
+        2912,
+        16437,
+        2917,
+        23341
+      ],
+      "onTopIds": [
+        2908,
+        18026,
+        16264,
+        4806,
+        23178,
+        9292,
+        23346,
+        2912,
+        16437,
+        2917
+      ],
+      "offTop": [
+        {
+          "id": 2908,
+          "score": 0.6809727600000001
+        },
+        {
+          "id": 18026,
+          "score": 0.6516509999999999
+        },
+        {
+          "id": 16264,
+          "score": 0.6660144
+        },
+        {
+          "id": 4806,
+          "score": 0.6478626270877322
+        },
+        {
+          "id": 23178,
+          "score": 0.6568045282898911
+        },
+        {
+          "id": 23342,
+          "score": 0.6250701599999999
+        },
+        {
+          "id": 2912,
+          "score": 0.6599736000000002
+        },
+        {
+          "id": 16437,
+          "score": 0.6292
+        },
+        {
+          "id": 2917,
+          "score": 0.6599736000000002
+        },
+        {
+          "id": 23341,
+          "score": 0.6311448
+        }
+      ],
+      "onTop": [
+        {
+          "id": 2908,
+          "score": 0.6809727600000001
+        },
+        {
+          "id": 18026,
+          "score": 0.6516509999999999
+        },
+        {
+          "id": 16264,
+          "score": 0.6660144
+        },
+        {
+          "id": 4806,
+          "score": 0.6480765126076119
+        },
+        {
+          "id": 23178,
+          "score": 0.6547682696131527
+        },
+        {
+          "id": 9292,
+          "score": 0.627954414055217
+        },
+        {
+          "id": 23346,
+          "score": 0.6134700000000001
+        },
+        {
+          "id": 2912,
+          "score": 0.6599736000000002
+        },
+        {
+          "id": 16437,
+          "score": 0.6292
+        },
+        {
+          "id": 2917,
+          "score": 0.6599736000000002
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.666667,
+      "kendallTau": 1,
+      "meanScoreDelta": 0.00028127,
+      "materialDivergence": true,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "context",
+      "text": "context",
+      "class": "generic",
+      "offTopIds": [
+        3468,
+        16152,
+        3167,
+        23686,
+        3463,
+        23338,
+        4140,
+        6082,
+        23664,
+        3470
+      ],
+      "onTopIds": [
+        3468,
+        16152,
+        3167,
+        23686,
+        3463,
+        23338,
+        4140,
+        6082,
+        23664,
+        3470
+      ],
+      "offTop": [
+        {
+          "id": 3468,
+          "score": 0.7283629897457663
+        },
+        {
+          "id": 16152,
+          "score": 0.6785142000000001
+        },
+        {
+          "id": 3167,
+          "score": 0.6805339632000001
+        },
+        {
+          "id": 23686,
+          "score": 0.6638134464000001
+        },
+        {
+          "id": 3463,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 23338,
+          "score": 0.6496540128
+        },
+        {
+          "id": 4140,
+          "score": 0.6627348000000001
+        },
+        {
+          "id": 6082,
+          "score": 0.6627348000000001
+        },
+        {
+          "id": 23664,
+          "score": 0.6458141664000001
+        },
+        {
+          "id": 3470,
+          "score": 0.6833111376000001
+        }
+      ],
+      "onTop": [
+        {
+          "id": 3468,
+          "score": 0.7275633706540396
+        },
+        {
+          "id": 16152,
+          "score": 0.6785142000000001
+        },
+        {
+          "id": 3167,
+          "score": 0.6805339632000001
+        },
+        {
+          "id": 23686,
+          "score": 0.6638134464000001
+        },
+        {
+          "id": 3463,
+          "score": 0.7132288800000001
+        },
+        {
+          "id": 23338,
+          "score": 0.6496540128
+        },
+        {
+          "id": 4140,
+          "score": 0.6627348000000001
+        },
+        {
+          "id": 6082,
+          "score": 0.6627348000000001
+        },
+        {
+          "id": 23664,
+          "score": 0.6458141664000001
+        },
+        {
+          "id": 3470,
+          "score": 0.6833111376000001
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 1,
+      "kendallTau": 1,
+      "meanScoreDelta": 0.00007996,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "quality",
+      "text": "quality",
+      "class": "generic",
+      "offTopIds": [
+        23660,
+        23595,
+        23765,
+        23537,
+        23611,
+        22294,
+        23621,
+        22141,
+        23497,
+        23662
+      ],
+      "onTopIds": [
+        23662,
+        22141,
+        22294,
+        23540,
+        23609,
+        23660,
+        23568,
+        23497,
+        23541,
+        23593
+      ],
+      "offTop": [
+        {
+          "id": 23660,
+          "score": 0.744501132193784
+        },
+        {
+          "id": 23595,
+          "score": 0.7406493552
+        },
+        {
+          "id": 23765,
+          "score": 0.7327039524553309
+        },
+        {
+          "id": 23537,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 23611,
+          "score": 0.7259240546730021
+        },
+        {
+          "id": 22294,
+          "score": 0.7006053600000002
+        },
+        {
+          "id": 23621,
+          "score": 0.7282018473413269
+        },
+        {
+          "id": 22141,
+          "score": 0.7037612400000001
+        },
+        {
+          "id": 23497,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 23662,
+          "score": 0.7290082800000001
+        }
+      ],
+      "onTop": [
+        {
+          "id": 23662,
+          "score": 0.7290082800000001
+        },
+        {
+          "id": 22141,
+          "score": 0.7037612400000001
+        },
+        {
+          "id": 22294,
+          "score": 0.7006053600000002
+        },
+        {
+          "id": 23540,
+          "score": 0.6942936000000002
+        },
+        {
+          "id": 23609,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 23660,
+          "score": 0.7290082800000001
+        },
+        {
+          "id": 23568,
+          "score": 0.6942936000000002
+        },
+        {
+          "id": 23497,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 23541,
+          "score": 0.7163847600000001
+        },
+        {
+          "id": 23593,
+          "score": 0.7163847600000001
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.333333,
+      "kendallTau": -0.4,
+      "meanScoreDelta": 0.00309857,
+      "materialDivergence": true,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "scores",
+      "text": "scores",
+      "class": "generic",
+      "offTopIds": [
+        22511,
+        4514,
+        22413,
+        22509,
+        22668,
+        10911,
+        20634,
+        21610,
+        20250,
+        22538
+      ],
+      "onTopIds": [
+        22511,
+        4514,
+        22413,
+        22509,
+        20634,
+        22668,
+        19888,
+        10911,
+        20250,
+        22538
+      ],
+      "offTop": [
+        {
+          "id": 22511,
+          "score": 0.6791847778098626
+        },
+        {
+          "id": 4514,
+          "score": 0.6724904139878874
+        },
+        {
+          "id": 22413,
+          "score": 0.626497678959405
+        },
+        {
+          "id": 22509,
+          "score": 0.6267678325823807
+        },
+        {
+          "id": 22668,
+          "score": 0.5447088
+        },
+        {
+          "id": 10911,
+          "score": 0.5152836
+        },
+        {
+          "id": 20634,
+          "score": 0.5951960925741074
+        },
+        {
+          "id": 21610,
+          "score": 0.5963525002652222
+        },
+        {
+          "id": 20250,
+          "score": 0.5201695199999999
+        },
+        {
+          "id": 22538,
+          "score": 0.513474
+        }
+      ],
+      "onTop": [
+        {
+          "id": 22511,
+          "score": 0.6950558592
+        },
+        {
+          "id": 4514,
+          "score": 0.6919113791999999
+        },
+        {
+          "id": 22413,
+          "score": 0.641394612
+        },
+        {
+          "id": 22509,
+          "score": 0.641394612
+        },
+        {
+          "id": 20634,
+          "score": 0.611243172
+        },
+        {
+          "id": 22668,
+          "score": 0.5447088
+        },
+        {
+          "id": 19888,
+          "score": 0.611243172
+        },
+        {
+          "id": 10911,
+          "score": 0.5152836
+        },
+        {
+          "id": 20250,
+          "score": 0.5201695199999999
+        },
+        {
+          "id": 22538,
+          "score": 0.513474
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.818182,
+      "kendallTau": 0.888889,
+      "meanScoreDelta": 0.00898476,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "kubernetes",
+      "text": "kubernetes",
+      "class": "off-corpus",
+      "offTopIds": [
+        22278,
+        23371,
+        23374,
+        23373,
+        23372,
+        23616,
+        23381,
+        23609,
+        23377,
+        22279
+      ],
+      "onTopIds": [
+        22278,
+        23371,
+        23374,
+        23373,
+        23372,
+        23616,
+        23381,
+        23609,
+        23377,
+        22279
+      ],
+      "offTop": [
+        {
+          "id": 22278,
+          "score": 0.7207088997564716
+        },
+        {
+          "id": 23371,
+          "score": 0.7054471248
+        },
+        {
+          "id": 23374,
+          "score": 0.7150227600000001
+        },
+        {
+          "id": 23373,
+          "score": 0.701163288
+        },
+        {
+          "id": 23372,
+          "score": 0.7029272208
+        },
+        {
+          "id": 23616,
+          "score": 0.5119358399999999
+        },
+        {
+          "id": 23381,
+          "score": 0.50343072
+        },
+        {
+          "id": 23609,
+          "score": 0.513474
+        },
+        {
+          "id": 23377,
+          "score": 0.50406408
+        },
+        {
+          "id": 22279,
+          "score": 0.517998
+        }
+      ],
+      "onTop": [
+        {
+          "id": 22278,
+          "score": 0.7213225200000001
+        },
+        {
+          "id": 23371,
+          "score": 0.7054471248
+        },
+        {
+          "id": 23374,
+          "score": 0.7150227600000001
+        },
+        {
+          "id": 23373,
+          "score": 0.701163288
+        },
+        {
+          "id": 23372,
+          "score": 0.7029272208
+        },
+        {
+          "id": 23616,
+          "score": 0.5119358399999999
+        },
+        {
+          "id": 23381,
+          "score": 0.50343072
+        },
+        {
+          "id": 23609,
+          "score": 0.513474
+        },
+        {
+          "id": 23377,
+          "score": 0.50406408
+        },
+        {
+          "id": 22279,
+          "score": 0.517998
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 1,
+      "kendallTau": 1,
+      "meanScoreDelta": 0.00006136,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "authentication",
+      "text": "authentication",
+      "class": "off-corpus",
+      "offTopIds": [
+        14889,
+        23378,
+        2885,
+        2620,
+        3255,
+        6100,
+        6090,
+        18460,
+        1481,
+        18470
+      ],
+      "onTopIds": [
+        14889,
+        23378,
+        2885,
+        2620,
+        3255,
+        6100,
+        6090,
+        18460,
+        6642,
+        1481
+      ],
+      "offTop": [
+        {
+          "id": 14889,
+          "score": 0.551683872
+        },
+        {
+          "id": 23378,
+          "score": 0.5475239999999999
+        },
+        {
+          "id": 2885,
+          "score": 0.513474
+        },
+        {
+          "id": 2620,
+          "score": 0.517998
+        },
+        {
+          "id": 3255,
+          "score": 0.51003576
+        },
+        {
+          "id": 6100,
+          "score": 0.50424504
+        },
+        {
+          "id": 6090,
+          "score": 0.4977304799999999
+        },
+        {
+          "id": 18460,
+          "score": 0.3727432799999999
+        },
+        {
+          "id": 1481,
+          "score": 0.36592919999999995
+        },
+        {
+          "id": 18470,
+          "score": 0.37182599999999993
+        }
+      ],
+      "onTop": [
+        {
+          "id": 14889,
+          "score": 0.551683872
+        },
+        {
+          "id": 23378,
+          "score": 0.5475239999999999
+        },
+        {
+          "id": 2885,
+          "score": 0.513474
+        },
+        {
+          "id": 2620,
+          "score": 0.517998
+        },
+        {
+          "id": 3255,
+          "score": 0.51003576
+        },
+        {
+          "id": 6100,
+          "score": 0.50424504
+        },
+        {
+          "id": 6090,
+          "score": 0.4977304799999999
+        },
+        {
+          "id": 18460,
+          "score": 0.3727432799999999
+        },
+        {
+          "id": 6642,
+          "score": 0.3879244799999999
+        },
+        {
+          "id": 1481,
+          "score": 0.36592919999999995
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 0.818182,
+      "kendallTau": 1,
+      "meanScoreDelta": 0,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    },
+    {
+      "id": "the-thing-with-confidence",
+      "text": "the thing with confidence",
+      "class": "max-vague",
+      "offTopIds": [
+        4071,
+        9587,
+        21947,
+        16220,
+        21549,
+        21880,
+        9585,
+        4339,
+        4079,
+        4328
+      ],
+      "onTopIds": [
+        4071,
+        9587,
+        21947,
+        16220,
+        21549,
+        21880,
+        9585,
+        4339,
+        4079,
+        4328
+      ],
+      "offTop": [
+        {
+          "id": 4071,
+          "score": 0.5225219999999999
+        },
+        {
+          "id": 9587,
+          "score": 0.493116
+        },
+        {
+          "id": 21947,
+          "score": 0.48795863999999994
+        },
+        {
+          "id": 16220,
+          "score": 0.48687288
+        },
+        {
+          "id": 21549,
+          "score": 0.47854872
+        },
+        {
+          "id": 21880,
+          "score": 0.49764
+        },
+        {
+          "id": 9585,
+          "score": 0.513474
+        },
+        {
+          "id": 4339,
+          "score": 0.513474
+        },
+        {
+          "id": 4079,
+          "score": 0.5225219999999999
+        },
+        {
+          "id": 4328,
+          "score": 0.513474
+        }
+      ],
+      "onTop": [
+        {
+          "id": 4071,
+          "score": 0.5225219999999999
+        },
+        {
+          "id": 9587,
+          "score": 0.493116
+        },
+        {
+          "id": 21947,
+          "score": 0.48795863999999994
+        },
+        {
+          "id": 16220,
+          "score": 0.48687288
+        },
+        {
+          "id": 21549,
+          "score": 0.47854872
+        },
+        {
+          "id": 21880,
+          "score": 0.49764
+        },
+        {
+          "id": 9585,
+          "score": 0.513474
+        },
+        {
+          "id": 4339,
+          "score": 0.513474
+        },
+        {
+          "id": 4079,
+          "score": 0.5225219999999999
+        },
+        {
+          "id": 4328,
+          "score": 0.513474
+        }
+      ],
+      "determinismOn": 1,
+      "determinismOff": 1,
+      "reproducibleOn": true,
+      "topKOverlap": 1,
+      "kendallTau": 1,
+      "meanScoreDelta": 0,
+      "materialDivergence": false,
+      "resultCountOff": 10,
+      "resultCountOn": 10
+    }
+  ]
+}
