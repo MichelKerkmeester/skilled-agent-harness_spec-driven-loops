@@ -15,7 +15,14 @@
       "ENV_REFERENCE.md missing flags",
       "stale dist flag rename",
       "undocumented feature flags",
-      "flag coverage gap"
+      "flag coverage gap",
+      "env documentation audit plan",
+      "ENV_REFERENCE remediation plan",
+      "flag coverage audit method",
+      "stale dist rebuild plan",
+      "env documentation audit tasks",
+      "ENV_REFERENCE remediation tasks",
+      "flag coverage fix tasks"
     ],
     "key_topics": [
       "env",
@@ -32,10 +39,13 @@
       "coverage"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "review/review-report.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,53 +61,155 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Documentation Deep Review",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope The",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Reformatting",
+        "name": "Purpose Audit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. SCOPE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A ten-iteration opus deep review of the repository ENV-variable documentation, and the remediation that fixed what it found. The review treated the canonical ENV_REFERENCE.md, the sibling environment_variables.md, the four changelogs, the root README, and the four skills' flag source as one surface. It found the reference was actively misleading, not merely incomplete: a stale dist build left twelve graduated features' documented disable knobs inert at runtime, five documented defaults were wrong, several entries were stale or contradictory across the two docs, and fifteen genuinely user-facin",
+    "causal_summary": "The root README points readers to ENVREFERENCE.md as the complete flag reference, and a code-graph changelog claimed specific flags were documented there",
     "created_at": "2026-06-24T14:18:13.088Z",
-    "last_save_at": "2026-06-24T14:18:13.088Z",
+    "last_save_at": "2026-06-24T15:06:03.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d360ccd48eb7e31c6f60d09743a435d37635d4d10ceb9cdd28e6d9fda525244",
+    "source_fingerprint": "sha256:d0e933647fb1dd19e77f2f88003a626c97cb9ec01ee86d7be90f6dc7ab263b0c",
     "source_doc_hashes": {
-      "spec.md": "12a66c6ae21c531f2221d85b1f77e25ad9de4cb31c688cb32feb1a6dc2d8f69e"
+      "spec.md": "adfed4ef3aa53fbb79a480b497ced47e15ad130ae6852288ca6d0d325e5b69c7",
+      "plan.md": "320f3289e5f04474304cb3c9699521b38e778b32723ef0b2255773e582522d8b",
+      "tasks.md": "677a3ee17e0ffd0a15f39aefff57894ff96a89b039a56ce0e716d762680d23e7",
+      "implementation-summary.md": "5f27d276b17174984ef81d85f887d126528c295de572b12e8c7dce1495be72e6"
     },
     "last_active_child_id": null,
     "last_active_at": null

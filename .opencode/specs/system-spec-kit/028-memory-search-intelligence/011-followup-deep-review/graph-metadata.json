@@ -15,7 +15,14 @@
       "bitemporal wiring corrupts live reads",
       "graduation follow-up review findings",
       "deep review FAIL fixed",
-      "P0 bitemporal reindex fix"
+      "P0 bitemporal reindex fix",
+      "follow-up deep review plan",
+      "bitemporal fix plan",
+      "loop-until-dry review method",
+      "remediation approach",
+      "follow-up deep review tasks",
+      "bitemporal fix tasks",
+      "review lens tasks"
     ],
     "key_topics": [
       "opus",
@@ -32,10 +39,14 @@
       "findings"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "review/review-report.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "review/deep-review-strategy.md"
     ],
     "entities": [
       {
@@ -47,6 +58,36 @@
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -63,41 +104,113 @@
         "source": "derived"
       },
       {
-        "name": "In Scope The",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Flipping",
+        "name": "Purpose Record",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "three P0",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ups Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "An opus deep review of the 010 graduation follow-ups, run as ten iterative passes loop-until-dry, and the fixes that cleared its verdict. The review FAILED the follow-ups with three P0 in the bitemporal wiring, which corrupted live reads and was defeated on the real reindex path, plus eight P1 and four P2 the cli test pass had missed because the existing tests never exercised the real failure modes. The fixes resolved all three P0 (replaceNodes and pruneDanglingEdges close instead of delete under the flag, the live readers filter closed edges, the generation stamp is fixed, the integration tes",
+    "causal_summary": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
     "created_at": "2026-06-24T10:25:14.122Z",
-    "last_save_at": "2026-06-24T10:25:14.122Z",
+    "last_save_at": "2026-06-24T15:03:50.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed9e86d87a4285e4b189697e6190c6e355c1cb16bd3bca82f648af3ff014c3b2",
+    "source_fingerprint": "sha256:83e9099229de1cca01a01fe24f2b19c395ee7dcc4719578ad6d00f873095f6c0",
     "source_doc_hashes": {
-      "spec.md": "572e5bf0c59c1aa9d82c11137641749a74cf253661711b82911d30a0346b79e6"
+      "spec.md": "e47c5d8052180cda8a36476cc25de7f06491429653bd318b1d8a6ec960985004",
+      "plan.md": "9b6179a295e20d5b955f3c5df2010b21a80fccaa5109214b90184894ccbcff81",
+      "tasks.md": "be74edfced573b2a72bfd761da42f615e41d440f57ebd77ee90aa5b1fa5a729f",
+      "implementation-summary.md": "c85cf4fa9290abd33975a09a2574ea2bf3ecc728320e036d0c40952c8605fbcb"
     },
     "last_active_child_id": null,
     "last_active_at": null
