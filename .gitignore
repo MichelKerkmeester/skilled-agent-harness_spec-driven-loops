@@ -279,3 +279,4 @@ AGENTS_Barter.md
 
 # Daemon crash-probe receipts (ephemeral per-machine runtime state)
 **/database/.crash-probe-receipt
+**/database/.spec-memory-owner.json
