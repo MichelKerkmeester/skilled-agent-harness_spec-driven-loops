@@ -7,7 +7,7 @@ trigger_phrases:
   - "code graph inventory"
   - "code graph runtime catalog"
 importance_tier: "important"
-version: 1.2.0.21
+version: 1.2.0.22
 ---
 
 # Code Graph: Feature Catalog

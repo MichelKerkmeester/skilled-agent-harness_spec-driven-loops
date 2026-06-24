@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across native MCP tools, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.0.15
+version: 0.8.0.16
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `08--scorer-fusion` and `10--python-compat`. This mirrors the `feature_catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 47 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -148,7 +148,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ### Recommended Wave Plan
 
-- **Wave 1**: `NC-001..NC-009` native MCP behavior.
+- **Wave 1**: `NC-001..NC-010` native MCP behavior.
 - **Wave 2**: `CL-001`, `CL-004..CL-006` runtime hooks, plugin bridge and CLI fallback.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
@@ -162,7 +162,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ## 7. NATIVE MCP TOOLS
 
-This category validates native mcp tools scenarios `NC-001..NC-009`.
+This category validates native mcp tools scenarios `NC-001..NC-010`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -175,6 +175,7 @@ This category validates native mcp tools scenarios `NC-001..NC-009`.
 | NC-007 | Skill Graph Status | [skill-graph-status.md](01--native-mcp-tools/skill-graph-status.md) |
 | NC-008 | Skill Graph Query | [skill-graph-query.md](01--native-mcp-tools/skill-graph-query.md) |
 | NC-009 | Skill Graph Validate | [skill-graph-validate.md](01--native-mcp-tools/skill-graph-validate.md) |
+| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](01--native-mcp-tools/shadow-delta-sink.md) |
 
 ---
 
@@ -289,7 +290,7 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 46-scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 47-scenario package count.
 
 | Area | Automated test anchors |
 |---|---|

@@ -5,7 +5,7 @@ trigger_phrases:
   - "code_graph_status"
   - "system-code-graph feature catalog"
 importance_tier: "important"
-version: 1.2.0.14
+version: 1.2.0.15
 ---
 
 # code_graph_status
@@ -22,7 +22,7 @@ version: 1.2.0.14
 
 Manual diagnostic MCP call. Startup/resume surfaces may include status-like structural summaries, but this handler itself runs only when requested.
 
-When tombstone auditing is enabled with `SPECKIT_CODE_GRAPH_TOMBSTONES=true`, status includes retained deletion lineage from the graph stats summary: counts by kind and reason plus recent retained tombstones. With the flag unset, the audit remains default-off and live graph queries continue to read only active nodes and edges.
+When tombstone auditing is enabled with `SPECKIT_CODE_GRAPH_TOMBSTONES=true`, status includes retained deletion lineage from the graph stats summary: counts by kind and reason plus recent retained tombstones. With the flag unset, the audit remains default-off and live graph queries continue to read only active nodes and edges. The retained set is bounded by `SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT`, default 100: every tombstone-recording write prunes the table to the most recent rows by deletion time, so a flat retention of 100 entries survives unless the operator raises the cap. The limit is clamped to a maximum of 10000, and a non-positive or unparseable value falls back to the default of 100.
 
 The successful status payload includes `data.activeScope` with structured `includeGlobs` and `excludeGlobs` arrays alongside the scope label. When either list narrows the scan, the label appends `narrowed by includeGlobs: ...` and/or `excludeGlobs: ...` so callers can see restricted coverage without parsing the fingerprint.
 
@@ -44,7 +44,7 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 | `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:250-298` | Handler | returns a degraded envelope when stats are unavailable |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:340-366` | Handler | assembles the successful status payload, including structured active-scope globs |
 | `.opencode/skills/system-code-graph/mcp_server/lib/index-scope-policy.ts:175-196` | Library | builds scope labels that call out glob narrowing |
-| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Library | flag-gated tombstone schema, retention pruning and stats summary |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Library | flag-gated tombstone schema, retention pruning bounded by `SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT` (default 100, clamped to 10000) and stats summary |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` | Handler | includes explicit cleanup reasons and scan tombstone summary |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:66-70` | Schema | defines the public schema |
 

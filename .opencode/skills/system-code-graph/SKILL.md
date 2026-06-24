@@ -2,7 +2,7 @@
 name: system-code-graph
 description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and structural checks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: code-graph, code graph, structural code indexing, mk-code-index, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, code_graph_status, detect_changes -->

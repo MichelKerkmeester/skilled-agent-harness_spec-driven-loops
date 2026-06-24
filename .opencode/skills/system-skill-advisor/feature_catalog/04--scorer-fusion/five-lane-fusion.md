@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.0.15
+version: 0.8.0.16
 ---
 
 # Five-Lane Analytical Fusion
@@ -38,6 +38,8 @@ The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same five 
 ### Self-recommendation penalty
 
 On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the standing defense after the separate self-recommendation guard was cut as behaviorally redundant, so it carries a durable rationale and a regression contract test.
+
+The cut guard is still reachable through the opt-in `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` flag (default off), read by `isAdvisorSelfRecommendationGuardEnabled()`. With the flag off the standing penalty fires unconditionally for the canonical id set. With the flag on the scorer routes through the narrower guard predicate, which additionally requires a self-authored explicit signal before demoting, so enabling it relaxes rather than tightens the default demotion. The default-off path is the live behavior.
 
 ## 3. SOURCE FILES
 

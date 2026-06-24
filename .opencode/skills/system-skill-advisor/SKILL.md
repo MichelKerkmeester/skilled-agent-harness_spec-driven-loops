@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.8.0.0
+version: 0.9.0.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"

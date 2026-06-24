@@ -7,7 +7,7 @@ trigger_phrases:
   - "code graph validation"
   - "code graph runtime playbook"
 importance_tier: "important"
-version: 1.2.0.21
+version: 1.2.0.22
 ---
 # Code Graph: Manual Testing Playbook
 
@@ -17,7 +17,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 22 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
+The playbook contains 24 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -117,6 +117,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 016 | MCP tool manifest post-rename | [mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/mcp-tool-manifest-post-rename.md) |
 | 025 | code-index CLI fallback surface (028: list-tools parity, warm-only 75, usage 64, blocked-read) | [code-index-cli-fallback-surface.md](./06--mcp-tool-surface/code-index-cli-fallback-surface.md) |
 | 026 | code_graph_query asOf time-travel relationship reads (bitemporal-reads flag gated) | [code-graph-query-asof-time-travel.md](./06--mcp-tool-surface/code-graph-query-asof-time-travel.md) |
+| 027 | code_graph_query BM25 fallback-only symbol suggestions (resolver flag gated) | [code-graph-query-bm25-symbol-resolver.md](./06--mcp-tool-surface/code-graph-query-bm25-symbol-resolver.md) |
 
 ---
 
