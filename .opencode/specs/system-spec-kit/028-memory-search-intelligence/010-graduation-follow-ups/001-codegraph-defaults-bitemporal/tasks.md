@@ -51,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Change `DEFAULT_REVERSE_DEP_DEGREE_CAP` from 0 to 10 (`mcp_server/lib/structural-indexer.ts`) [5m]
-- [x] T002 Update the cap comment block so it no longer calls 0 the default (`mcp_server/lib/structural-indexer.ts`) [5m]
-- [x] T003 Update the `getReverseDepDegreeCap` comment so the byte-identity claim points at a cap of 0, not the default (`mcp_server/lib/structural-indexer.ts`) [5m]
+- [x] T001 Write the degree-sweep benchmark over importer counts five through twenty-five at caps five through twenty-five (`benchmark/degree-cap-sweep.mjs`) [25m]
+- [x] T002 Run the benchmark, record the results, and read the cost-versus-staleness trade (`benchmark/degree-cap-sweep-results.json`) [15m]
+- [x] T003 Set `DEFAULT_REVERSE_DEP_DEGREE_CAP` to 15 on the evidence and update the comment to cite the sweep and the hot-hub cost (`mcp_server/lib/structural-indexer.ts`) [10m]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,11 +62,12 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T004 Add `getNextCodeGraphGeneration` and stamp loop-time writes at the next generation (`mcp_server/lib/code-graph-db.ts`) [10m]
-- [x] T005 Close edges in `replaceNodes` under the flag instead of deleting (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T006 Close-and-insert in `replaceEdges` under the flag (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T007 Close danglers in `pruneDanglingEdges` under the flag at the current generation (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T008 Filter closed edges from `queryEdgesFrom` and `queryEdgesTo` under the flag (`mcp_server/lib/code-graph-db.ts`) [10m]
-- [x] T009 Keep every off-path statement verbatim so the off-path stays byte-identical (`mcp_server/lib/code-graph-db.ts`) [5m]
+- [x] T005 Close edges in `replaceNodes`, `replaceEdges`, and `pruneDanglingEdges` under the flag instead of deleting (`mcp_server/lib/code-graph-db.ts`) [25m]
+- [x] T006 Filter closed edges from `queryEdgesFrom` and `queryEdgesTo` under the flag (`mcp_server/lib/code-graph-db.ts`) [10m]
+- [x] T007 Bump the generation after the ensure-ready persist loop under the flag (`mcp_server/lib/ensure-ready.ts`) [15m]
+- [x] T008 Stamp SUPERSEDES lineage edges with a valid_at under the flag (`mcp_server/lib/code-graph-db.ts`) [15m]
+- [x] T009 Add `asOfEdgesTo` and the `code_graph_query asOf` parameter, skip the dangling exclusion for as-of, document the schema (`mcp_server/lib/code-graph-db.ts`, `mcp_server/handlers/query.ts`, `mcp_server/tool-schemas.ts`) [30m]
+- [x] T010 Keep every off-path statement verbatim so the off-path stays byte-identical (`mcp_server/lib/code-graph-db.ts`, `mcp_server/lib/ensure-ready.ts`, `mcp_server/handlers/query.ts`) [10m]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,13 +75,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Write the real-scan as-of round trip: drive the scan handler twice, assert old target at the pre-reindex generation and new target live (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [30m]
-- [x] T011 Add the live-read assertion that the post-reindex read returns only the open edge (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [10m]
-- [x] T012 Write the bitemporal off-path byte-identity tests: delete and re-insert, validity columns null, flag-unset matches flag-false (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [15m]
-- [x] T013 Write the live-reader filter and close-not-delete unit tests with off-path byte identity (`mcp_server/tests/code-edge-bitemporal-readers.vitest.ts`) [25m]
-- [x] T014 Write the degree-cap off-path byte-identity tests: stale edge stays, outcome invariant to the cap env value (`mcp_server/tests/reverse-dep-degree-cap-default.vitest.ts`) [20m]
-- [x] T015 Confirm `npx tsc --noEmit --composite false -p .opencode/skills/system-code-graph/tsconfig.json` exits 0 [5m]
-- [x] T016 Confirm the three new test files type-check and the focused vitest run passes (`mcp_server/tests`) [10m]
+- [x] T011 Write the real-scan as-of round trip and the live-read assertion (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [30m]
+- [x] T012 Write the live-reader filter and close-not-delete unit tests with off-path byte identity (`mcp_server/tests/code-edge-bitemporal-readers.vitest.ts`) [25m]
+- [x] T013 Write the ensure-ready bump, lineage validity, and `code_graph_query asOf` tests with off-path byte identity (`mcp_server/tests/code-edge-bitemporal-followups.vitest.ts`) [35m]
+- [x] T014 Write the degree-cap off-path byte-identity tests (`mcp_server/tests/reverse-dep-degree-cap-default.vitest.ts`) [20m]
+- [x] T015 Update the mocked ensure-ready test to export the new flag and bump mocks (`mcp_server/tests/ensure-ready.vitest.ts`) [10m]
+- [x] T016 Confirm `tsc` exits 0, the four new test files type-check, and the code-graph tests that exercise the changed code pass (`mcp_server/tests`) [15m]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,9 +90,10 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Real-scan integration test authored and passing
+- [x] Real-scan integration and as-of consumer tests authored and passing
 - [x] Byte-identity tests authored for every change
-- [x] `tsc` exits 0 and the focused vitest run passes
+- [x] Degree cap set from the recorded benchmark
+- [x] `tsc` exits 0 and the changed-code tests pass
 - [x] Checklist.md fully verified
 <!-- /ANCHOR:completion -->
 

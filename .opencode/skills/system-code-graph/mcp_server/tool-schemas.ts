@@ -58,6 +58,7 @@ const codeGraphQuery: ToolDefinition = {
       maxDepth: { type: 'number', minimum: 1, maximum: 20, default: 3, description: 'Max traversal depth when includeTransitive is true (handler clamps to 20)' },
       minConfidence: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence threshold (0-1) for blast_radius dependency edges; defaults to 0 (include all). Filters import-edge confidences before blast-radius assembly.' },
       includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
+      asOf: { type: 'number', minimum: 0, description: 'Optional graph generation for a time-travel read of calls_from, calls_to, imports_from, and imports_to. Omit for the current graph. Requires the bitemporal-reads flag to surface preserved history, falls back to the live read when the flag is off.' },
     },
     required: ['operation', 'subject'],
   },

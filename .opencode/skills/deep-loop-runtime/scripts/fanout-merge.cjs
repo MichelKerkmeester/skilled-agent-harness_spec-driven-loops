@@ -175,6 +175,54 @@ function nearDuplicateContentKey(record) {
   return durableText || contentIdentityKey(record);
 }
 
+// Stopwords stripped before comparing titles so the overlap signal keys on the content
+// nouns/verbs that distinguish one finding from another, not on filler.
+const TITLE_STOPWORDS = new Set([
+  'a', 'an', 'the', 'in', 'on', 'at', 'to', 'of', 'for', 'and', 'or', 'with', 'without',
+  'is', 'are', 'was', 'were', 'be', 'no', 'not', 'so', 'that', 'this', 'it', 'its', 'as',
+  'by', 'from', 'into', 'after', 'before', 'when', 'where', 'which', 'has', 'have',
+]);
+
+function titleContentTokens(record) {
+  const raw = typeof record.title === 'string' ? record.title : '';
+  return new Set(
+    normalizeSortText(raw)
+      .split(/[^a-z0-9]+/)
+      .filter((tok) => tok && !TITLE_STOPWORDS.has(tok)),
+  );
+}
+
+// Jaccard overlap of two title token sets. 1 when both are empty (no title signal to
+// distinguish on → fall back to body-only collapse, the original contract for title-less
+// findings).
+function titleOverlap(aTokens, bTokens) {
+  if (aTokens.size === 0 && bTokens.size === 0) return 1;
+  if (aTokens.size === 0 || bTokens.size === 0) return 0;
+  let shared = 0;
+  for (const tok of aTokens) if (bTokens.has(tok)) shared += 1;
+  const union = aTokens.size + bTokens.size - shared;
+  return union === 0 ? 1 : shared / union;
+}
+
+// Below this title overlap two same-body findings are treated as DISTINCT (their titles
+// name substantively different things — e.g. a generic "missing auth check" body whose
+// titles name two different endpoints with no shared subject). At or above it the titles
+// are paraphrases of one point that share their subject noun, and the same-body findings
+// collapse, preserving the designed-for restatement collapse. The threshold is low because
+// legitimate restatement titles often share only the one key subject noun ("cache",
+// "retry") while genuinely-distinct titles share no content token at all.
+const TITLE_DISTINCT_OVERLAP_THRESHOLD = 0.15;
+
+// Title-aware near-dup match (deep-review P2-15 fix): two findings are near-duplicates
+// only if their body-content key matches AND their titles are not substantively divergent.
+// This closes the title blind spot — genuinely-distinct findings that share an identical
+// body but carry different distinguishing titles no longer collapse — without breaking the
+// designed-for collapse of restatements that share a body and paraphrase the same title.
+function nearDuplicateMatches(a, b) {
+  if (nearDuplicateContentKey(a) !== nearDuplicateContentKey(b)) return false;
+  return titleOverlap(titleContentTokens(a), titleContentTokens(b)) >= TITLE_DISTINCT_OVERLAP_THRESHOLD;
+}
+
 function contentDigest(record) {
   return crypto.createHash('sha256').update(contentIdentityKey(record)).digest('hex').slice(0, 12);
 }
@@ -295,20 +343,34 @@ function getFindingBucket(index, id, finding, enableNearDuplicateDedup) {
   const contentKey = enableNearDuplicateDedup ? nearDuplicateContentKey(finding) : '';
   const exactBucket = index.byId.get(id);
   if (exactBucket) {
-    if (contentKey) index.byContent.set(contentKey, exactBucket);
     return exactBucket;
   }
 
-  const contentBucket = contentKey ? index.byContent.get(contentKey) : undefined;
-  if (contentBucket) {
-    index.byId.set(id, contentBucket);
-    return contentBucket;
+  // Title-aware bucketing (deep-review P2-15 fix): a content key can host MORE than one
+  // bucket when several genuinely-distinct findings share an identical body but carry
+  // divergent titles. byContent maps a content key to the LIST of buckets seen for it; a
+  // same-body finding joins the bucket whose records its title actually matches, and
+  // otherwise opens a new bucket. Without this a distinct finding would share a bucket with
+  // a different finding and be mis-tagged as a same-id conflict variant by
+  // flattenFindingBucketIndex.
+  const candidateBuckets = contentKey ? index.byContent.get(contentKey) : undefined;
+  if (candidateBuckets) {
+    const titleMatch = enableNearDuplicateDedup
+      ? candidateBuckets.find((b) => b.records.some((entry) => nearDuplicateMatches(entry, finding)))
+      : candidateBuckets[0];
+    if (titleMatch) {
+      index.byId.set(id, titleMatch);
+      return titleMatch;
+    }
   }
 
   const bucket = { baseId: id, records: [] };
   index.buckets.push(bucket);
   index.byId.set(id, bucket);
-  if (contentKey) index.byContent.set(contentKey, bucket);
+  if (contentKey) {
+    if (candidateBuckets) candidateBuckets.push(bucket);
+    else index.byContent.set(contentKey, [bucket]);
+  }
   return bucket;
 }
 
@@ -330,8 +392,10 @@ function flattenFindingBucketIndex(index, idKey, sortKeys) {
 }
 
 function addResearchFinding(bucket, finding, label, options = {}) {
-  const identityKey = options.enableNearDuplicateDedup ? nearDuplicateContentKey : contentIdentityKey;
-  const existing = bucket.find((entry) => identityKey(entry) === identityKey(finding));
+  const matches = options.enableNearDuplicateDedup
+    ? (entry) => nearDuplicateMatches(entry, finding)
+    : (entry) => contentIdentityKey(entry) === contentIdentityKey(finding);
+  const existing = bucket.find(matches);
   if (existing) {
     if (options.enableNearDuplicateDedup) {
       replaceRecord(existing, chooseCanonicalRecord(existing, finding, ['id', 'title']), mergeLineageLabels(existing, finding, label));
@@ -344,8 +408,10 @@ function addResearchFinding(bucket, finding, label, options = {}) {
 }
 
 function addReviewFinding(bucket, finding, label, options = {}) {
-  const identityKey = options.enableNearDuplicateDedup ? nearDuplicateContentKey : contentIdentityKey;
-  const existing = bucket.find((entry) => identityKey(entry) === identityKey(finding));
+  const matches = options.enableNearDuplicateDedup
+    ? (entry) => nearDuplicateMatches(entry, finding)
+    : (entry) => contentIdentityKey(entry) === contentIdentityKey(finding);
+  const existing = bucket.find(matches);
   if (!existing) {
     bucket.push({ ...finding, _lineages: [label] });
     return;

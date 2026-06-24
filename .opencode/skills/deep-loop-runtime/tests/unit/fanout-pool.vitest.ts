@@ -235,7 +235,11 @@ describe('runCappedPool', () => {
     expect(result.summary.gauges).toEqual({ lag: 0, pending: 0, failed: 1 });
   });
 
-  it('emits one warning when the oldest pending lineage reaches the lag ceiling', async () => {
+  it('emits one stall warning when no item settles while work is pending (time-since-last-completion)', async () => {
+    // The lag-ceiling is a STALL detector: its metric is time since the pool last made
+    // progress while work is still queued. Here the active item is gated forever (a hung
+    // worker holding the only slot) while 'queued' waits, so nothing settles past the
+    // ceiling — a genuine stall — and the one-shot warning fires.
     const events: Array<Record<string, unknown>> = [];
     const gated = makeGatedWorker();
     const run = runCappedPool({
@@ -251,10 +255,67 @@ describe('runCappedPool', () => {
     expect(events.filter((event) => event.event === 'lag_ceiling_exceeded')).toEqual([
       expect.objectContaining({
         severity: 'warning',
+        metric: 'time_since_last_completion',
         lag_ceiling_ms: 10,
         gauges: expect.objectContaining({ pending: 1 }),
       }),
     ]);
+
+    gated.releaseAll();
+    await flush();
+    gated.releaseAll();
+    const result = await run;
+    expect(result.summary).toMatchObject({ succeeded: 2, failed: 0 });
+  });
+
+  it('stays silent on normal width>concurrency backpressure (steady completions reset the stall clock)', async () => {
+    // A HEALTHY pool wider than its concurrency: the queue tail waits for a slot (normal
+    // backpressure) but the pool keeps settling items, so time-since-last-completion never
+    // crosses the ceiling and the stall detector must NOT fire — the false positive the old
+    // time-since-pool-start metric produced is gone. Driven deterministically with the gated
+    // worker: we release each in-flight item promptly (a completion lands within microtasks,
+    // far inside the generous 200ms ceiling), so the result does not depend on wall-clock
+    // race margins under parallel-test CPU contention.
+    const events: Array<Record<string, unknown>> = [];
+    const gated = makeGatedWorker();
+    const items = ['a', 'b', 'c', 'd', 'e', 'f'].map((label) => ({ label }));
+    const run = runCappedPool({
+      items,
+      concurrency: 2,
+      lagCeilingMs: 200,
+      worker: gated.worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    // Drain the pool by releasing whatever is in flight, repeatedly. Each release settles an
+    // item (resetting the stall clock) and admits the next from the queue, modelling a
+    // healthy pool that keeps making progress while the tail is back-pressured.
+    for (let i = 0; i < items.length + 1; i += 1) {
+      await flush();
+      gated.releaseAll();
+    }
+    const result = await run;
+
+    expect(events.filter((event) => event.event === 'lag_ceiling_exceeded')).toEqual([]);
+    expect(result.summary).toMatchObject({ total: 6, succeeded: 6, failed: 0 });
+  });
+
+  it('keeps the lag-ceiling silent when the ceiling is left at the default (0)', async () => {
+    // Byte-silent when off: the gauge default is 0 (disabled). Even a genuine stall emits
+    // no lag warning and no oldest_pending_lag_ms gauge field when the ceiling is unset.
+    const events: Array<Record<string, unknown>> = [];
+    const gated = makeGatedWorker();
+    const run = runCappedPool({
+      items: [{ label: 'active' }, { label: 'queued' }],
+      concurrency: 1,
+      worker: gated.worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    await flush();
+    await sleep(30);
+    expect(events.filter((event) => event.event === 'lag_ceiling_exceeded')).toEqual([]);
+    expect(events.every((event) => !('oldest_pending_lag_ms' in (event.gauges as object)))).toBe(true);
 
     gated.releaseAll();
     await flush();

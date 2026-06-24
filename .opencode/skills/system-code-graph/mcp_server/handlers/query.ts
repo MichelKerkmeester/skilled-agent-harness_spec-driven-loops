@@ -46,6 +46,37 @@ export interface QueryArgs {
   minConfidence?: number;
   includeTrace?: boolean;
   verificationGateBypass?: 'gold-query-verifier';
+  // Optional graph generation for a time-travel read of the relationship
+  // operations (calls_*, imports_*). When omitted the live readers run exactly
+  // as before. When set and the bitemporal-reads flag is on, the read routes
+  // through the as-of readers so superseded edges from a past generation are
+  // returned. When set but the flag is off, the as-of readers fall back to the
+  // live readers, so the result matches the default path.
+  asOf?: number;
+}
+
+// Route a relationship edge read through the as-of readers only when an asOf
+// generation is supplied. With asOf undefined this returns the live reader
+// result verbatim, so the default query path is byte-identical. The as-of
+// readers themselves fall back to the live readers when the flag is off.
+function readOutboundRelationshipEdges(
+  symbolId: string,
+  edgeType: EdgeType | undefined,
+  asOf: number | undefined,
+): ReturnType<typeof graphDb.queryEdgesFrom> {
+  return asOf === undefined
+    ? graphDb.queryEdgesFrom(symbolId, edgeType)
+    : graphDb.asOfEdgesFrom(symbolId, asOf, edgeType);
+}
+
+function readInboundRelationshipEdges(
+  symbolId: string,
+  edgeType: EdgeType | undefined,
+  asOf: number | undefined,
+): ReturnType<typeof graphDb.queryEdgesTo> {
+  return asOf === undefined
+    ? graphDb.queryEdgesTo(symbolId, edgeType)
+    : graphDb.asOfEdgesTo(symbolId, asOf, edgeType);
 }
 
 const SUPPORTED_EDGE_TYPES = [
@@ -547,7 +578,17 @@ function excludeDanglingEdges<TEntry>(
   missingEndpoint: DanglingEdgeWarning['missingEndpoint'],
   isResolved: (entry: TEntry) => boolean,
   getDanglingId: (entry: TEntry) => string,
+  asOf?: number,
 ): { resolvedEntries: TEntry[]; warnings?: DanglingEdgeWarning[] } {
+  // For a time-travel read a missing endpoint node is expected, not corruption:
+  // the historical edge can point at a symbol the current graph has since
+  // dropped. So an as-of read keeps every edge (capped to the limit) and emits
+  // no dangling warning. The live path below is unchanged, so a default query is
+  // byte-identical.
+  if (asOf !== undefined) {
+    return { resolvedEntries: entries.slice(0, limit) };
+  }
+
   const resolvedEntries: TEntry[] = [];
   const danglingSymbolIds: string[] = [];
 
@@ -793,6 +834,7 @@ function relationshipFilePayload(input: {
   symbols: CodeNode[];
   edgeType: EdgeType | undefined;
   limit: number;
+  asOf?: number;
 }): {
   result: {
     operation: QueryArgs['operation'];
@@ -808,7 +850,7 @@ function relationshipFilePayload(input: {
 } {
   const sourceIds = input.symbols.map((node) => node.symbolId);
   if (input.operation === 'calls_from' || input.operation === 'imports_from') {
-    const entries = sourceIds.flatMap((symbolId) => graphDb.queryEdgesFrom(symbolId, input.edgeType));
+    const entries = sourceIds.flatMap((symbolId) => readOutboundRelationshipEdges(symbolId, input.edgeType, input.asOf));
     const { resolvedEntries, warnings } = excludeDanglingEdges(
       entries,
       input.limit,
@@ -816,6 +858,7 @@ function relationshipFilePayload(input: {
       'target',
       (entry: OutboundEdgeEntry) => entry.targetNode != null,
       (entry: OutboundEdgeEntry) => entry.edge.targetId,
+      input.asOf,
     );
     const includeLine = input.operation === 'calls_from';
     const edges = resolvedEntries.map((entry) => mapOutboundRelationshipEdge(entry, { includeLine }));
@@ -834,7 +877,7 @@ function relationshipFilePayload(input: {
     };
   }
 
-  const entries = sourceIds.flatMap((symbolId) => graphDb.queryEdgesTo(symbolId, input.edgeType));
+  const entries = sourceIds.flatMap((symbolId) => readInboundRelationshipEdges(symbolId, input.edgeType, input.asOf));
   const { resolvedEntries, warnings } = excludeDanglingEdges(
     entries,
     input.limit,
@@ -842,6 +885,7 @@ function relationshipFilePayload(input: {
     'source',
     (entry: InboundEdgeEntry) => entry.sourceNode != null,
     (entry: InboundEdgeEntry) => entry.edge.sourceId,
+    input.asOf,
   );
   const includeLine = input.operation === 'calls_to';
   const edges = resolvedEntries.map((entry) => mapInboundRelationshipEdge(entry, { includeLine }));
@@ -1335,6 +1379,11 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
   const { edgeType: requestedEdgeType, error: edgeTypeError } = resolveRequestedEdgeType(args);
   const rawMaxDepth = args.maxDepth === undefined ? 3 : Number(args.maxDepth);
   const maxDepth = Math.max(0, Math.min(Number.isFinite(rawMaxDepth) ? rawMaxDepth : 3, 20));
+  // A non-negative integer asOf opts the relationship reads into a time-travel
+  // generation. Any other value (including a negative or non-finite input) is
+  // treated as absent so the live readers run.
+  const rawAsOf = args.asOf === undefined ? undefined : Number(args.asOf);
+  const asOf = rawAsOf !== undefined && Number.isInteger(rawAsOf) && rawAsOf >= 0 ? rawAsOf : undefined;
 
   if (edgeTypeError) {
     return {
@@ -1622,6 +1671,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       symbols,
       edgeType: requestedEdgeType,
       limit,
+      asOf,
     }))();
 
     return {
@@ -1696,11 +1746,12 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     case 'calls_from':
     case 'imports_from': {
       const includeLine = operation === 'calls_from';
-      // Snapshot-stable read transaction. queryEdgesFrom issues the edge
-      // lookup AND a per-edge node lookup; wrapping in a transaction
-      // ensures both observe a consistent snapshot under concurrent writers.
+      // Snapshot-stable read transaction. The reader issues the edge lookup AND
+      // a per-edge node lookup; wrapping in a transaction ensures both observe a
+      // consistent snapshot under concurrent writers. With no asOf this is the
+      // live reader exactly as before.
       const edges = graphDb.getDb().transaction(
-        () => graphDb.queryEdgesFrom(symbolId, requestedEdgeType),
+        () => readOutboundRelationshipEdges(symbolId, requestedEdgeType, asOf),
       )();
       const { resolvedEntries, warnings } = excludeDanglingEdges(
         edges,
@@ -1709,6 +1760,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
         'target',
         (entry: OutboundEdgeEntry) => entry.targetNode != null,
         (entry: OutboundEdgeEntry) => entry.edge.targetId,
+        asOf,
       );
       result = {
         operation,
@@ -1726,7 +1778,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       const includeLine = operation === 'calls_to';
       // Snapshot-stable read transaction (see calls_from above).
       const edges = graphDb.getDb().transaction(
-        () => graphDb.queryEdgesTo(symbolId, requestedEdgeType),
+        () => readInboundRelationshipEdges(symbolId, requestedEdgeType, asOf),
       )();
       const { resolvedEntries, warnings } = excludeDanglingEdges(
         edges,
@@ -1735,6 +1787,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
         'source',
         (entry: InboundEdgeEntry) => entry.sourceNode != null,
         (entry: InboundEdgeEntry) => entry.edge.sourceId,
+        asOf,
       );
       result = {
         operation,

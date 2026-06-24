@@ -65,10 +65,12 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T002 Write the concurrent-pool flood matrix over the spawned `fanout-run.cjs` reproducing the 009 0.05s flood and sweeping seconds-scale candidate cadences (`scripts/gauge-flood-test.mjs`)
-- [x] T003 Add the observed-cadence confirmation run at the recommended cadence with a 2.5x window, and the lag-ceiling backpressure experiment over `runCappedPool` proving the 1500ms false positive and the backpressure-aware silent-on-healthy + fires-on-stall behavior (deep-review P1-7) (`scripts/gauge-flood-test.mjs`)
-- [x] T004 Write the 50-plus-finding six-worker labeled set across identical, varied, distinct, near-miss, and title-distinct wording modes (deep-review P2-15) (`scripts/dedup-scale-test.mjs`)
-- [x] T005 Score the research path off versus on for the body-distinguished false-collapse rate, distinct recall, designed-for collapse, near-miss precision, and the title-only false-collapse rate, plus the review severity-preservation check (`scripts/dedup-scale-test.mjs`)
-- [x] T006 Run both harnesses and write the metric rollups (`results/gauge-flood-metrics.json`, `results/dedup-scale-metrics.json`)
+- [x] T003 Add the observed-cadence confirmation run at the recommended cadence with a 2.5x window (`scripts/gauge-flood-test.mjs`)
+- [x] T004 FIX P1-7: redefine the lag metric in `fanout-pool.cjs` from time-since-pool-start to time-since-last-completion (a true stall signal, reset in each settlement's `.finally()`), byte-identical when the gauge is off (`.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs`)
+- [x] T005 Migrate the committed pool test to stall semantics and add silent-on-backpressure and silent-when-off cases; update the flood-test to prove old-false-positive-now-silent, silent-on-healthy, fires-on-stall (`.opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts`, `scripts/gauge-flood-test.mjs`)
+- [x] T006 Write the 50-plus-finding six-worker labeled set across identical, varied, distinct, near-miss, and title-distinct wording modes and the off-versus-on scoring incl. the title-only false-collapse rate and review severity check (`scripts/dedup-scale-test.mjs`)
+- [x] T007 FIX P2-15: add the title-overlap gate to the near-dup match and bucketing in `fanout-merge.cjs` (Jaccard threshold 0.15) so disjoint-title same-body findings stay distinct, byte-identical when the dedup flag is off (`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs`)
+- [x] T008 Run both harnesses and write the metric rollups (`results/gauge-flood-metrics.json`, `results/dedup-scale-metrics.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -76,9 +78,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 Confirm both harnesses exit 0, the numbers reproduce across re-runs, and the dedup off path is byte-identical (`scripts/dedup-scale-test.mjs`)
-- [x] T008 Confirm the existing fanout unit suite still passes with the production modules unchanged (`.opencode/skills/deep-loop-runtime/tests/unit`)
-- [x] T009 Author the results tables, the recommended gauge values, and the enable-by-default decision grounded strictly in the metrics files (`implementation-summary.md`)
+- [x] T009 Confirm both harnesses exit 0 and the numbers reproduce; the title-only false-collapse rate is 0 and the lag old-false-positive is now silent (`scripts/dedup-scale-test.mjs`, `scripts/gauge-flood-test.mjs`)
+- [x] T010 Confirm the full deep-loop regression suite is green with both fixes (49 files, 428 tests) and each fix is byte-identical off (`.opencode/skills/deep-loop-runtime/tests`)
+- [x] T011 Author the results tables, the metric-redefinition and title-fix narrative, the recommended gauge values, and the enable-by-default decision (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

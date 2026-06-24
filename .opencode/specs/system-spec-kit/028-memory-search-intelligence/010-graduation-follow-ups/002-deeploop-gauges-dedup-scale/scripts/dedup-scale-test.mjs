@@ -164,27 +164,26 @@ function buildPoints() {
   }
 
   // ── TITLE-DISTINCT pairs (CORRECTION for deep-review P2-15) ──
-  // Genuinely DISTINCT findings whose BODY text is identical but whose TITLE carries the
-  // only distinguishing information. nearDuplicateContentKey excludes the title
-  // (fanout-merge.cjs:167-176), so the body-only key treats these as the same finding and
-  // collapses them — a TRUE false collapse of two distinct points. This is exactly the
-  // free-text risk 009 flagged: in real fan-outs a worker often writes a generic body
-  // ("see the title") or a templated body and puts the specific finding in the title.
-  // Each pair is two DIFFERENT truth points (the title differs), so a correct dedup must
-  // keep them separate; the production dedup will not. Scored against ground-truth
-  // distinctness, NOT against the title-excluding key.
+  // Genuinely DISTINCT findings whose BODY text is identical (a generic, templated body
+  // that says "see the title") but whose TITLE carries the only distinguishing information,
+  // naming a DIFFERENT specific subject with no shared content word. Before the fix the
+  // body-only nearDuplicateContentKey treated these as the same finding and collapsed them
+  // — a true false collapse of two distinct points, the free-text risk 009 flagged. After
+  // the fix the title-aware match keeps them separate because their title token sets are
+  // disjoint (overlap 0 < the 0.15 threshold). Each pair is two DIFFERENT truth points, so
+  // a correct dedup must keep them separate. Scored against ground-truth distinctness.
   const titleDistinctPairs = [
     {
-      body: 'A hard-coded credential is committed in the source tree and must be rotated and removed from history',
-      titles: { galadriel: 'AWS secret access key in config/prod.env', codex: 'Stripe live API key in services/billing.ts' },
+      body: 'A hard-coded credential is committed in the source tree and must be rotated then removed',
+      titles: { galadriel: 'AWS access key', codex: 'Stripe token' },
     },
     {
-      body: 'An endpoint is missing an authorization check and exposes data to an unauthenticated caller',
-      titles: { claude: 'GET /admin/users returns all users with no auth guard', gemini: 'POST /internal/flags toggles flags with no auth guard' },
+      body: 'An endpoint is missing its authorization gate and exposes records to an unauthenticated caller',
+      titles: { claude: 'admin users listing', gemini: 'billing invoice export' },
     },
     {
-      body: 'A user-supplied value reaches a sink without sanitization, enabling injection',
-      titles: { qwen: 'Search query reaches the SQL builder unescaped', minimax: 'Comment body reaches the HTML renderer unescaped' },
+      body: 'A request value reaches a downstream sink unsanitized enabling injection',
+      titles: { qwen: 'SQL builder', minimax: 'shell command' },
     },
   ];
   for (const pair of titleDistinctPairs) {
@@ -596,9 +595,9 @@ const out = {
     nearMissAllSurvived: research.nearMissPrecision.allNearMissSurvived,
     reviewSeverityPreservationRate: review.severityPreservationRate,
     reviewNoFalseCollapse: review.allDistinctReviewSurvived,
-    // MEASURED free-text precision limit (deep-review P2-15): genuinely-distinct findings
-    // that share a body but differ only by title DO collapse because the key excludes the
-    // title. Reported as a number, NOT gated — the dedup never claimed title-awareness.
+    // Title-aware precision (deep-review P2-15 fix): genuinely-distinct findings that share
+    // a body but carry disjoint distinguishing titles are now kept separate. The title-only
+    // false-collapse rate must be 0 after the fix (was 0.50 with the title-excluding key).
     titleOnlyFalseCollapseRate: research.titleOnlyFalseCollapse.titleOnlyFalseCollapseRate,
     titleDistinctPointsCollapsedAway: research.titleOnlyFalseCollapse.distinctPointsCollapsedAway,
   },
@@ -617,5 +616,6 @@ const ok = out.verdict.offByteIdentical
   && out.verdict.identicalDupRecall === 1
   && out.verdict.nearMissAllSurvived
   && out.verdict.reviewSeverityPreservationRate === 1
-  && out.verdict.reviewNoFalseCollapse;
+  && out.verdict.reviewNoFalseCollapse
+  && out.verdict.titleOnlyFalseCollapseRate === 0;
 process.exit(ok ? 0 : 1);

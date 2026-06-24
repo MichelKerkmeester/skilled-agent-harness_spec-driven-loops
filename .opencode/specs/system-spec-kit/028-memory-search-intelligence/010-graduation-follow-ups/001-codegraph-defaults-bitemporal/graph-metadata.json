@@ -41,6 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "mcp_server/tool-schemas.ts",
+      "benchmark/degree-cap-sweep.mjs",
+      "benchmark/degree-cap-sweep-results.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -48,6 +51,24 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep.mjs",
+        "kind": "file",
+        "path": "benchmark/degree-cap-sweep.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep-results.json",
+        "kind": "config",
+        "path": "benchmark/degree-cap-sweep-results.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -173,23 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Actual Effort",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
     "created_at": "2026-06-24T07:59:17.363Z",
-    "last_save_at": "2026-06-24T10:16:00.469Z",
+    "last_save_at": "2026-06-24T11:28:17.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0485d83febd06569b6cc5cc70d88ac06391b8433123977d0972ce513d996d215",
+    "source_fingerprint": "sha256:e1f10a62f6092b3c3bbfa8a0177cc8e2d934e9eb8971bc85d89868ca3ca5f737",
     "source_doc_hashes": {
-      "spec.md": "6727908f05293716da466b0a671ec197a40318a58f68b3742445fb964e20ef0f",
-      "plan.md": "03008339433a266f6f0b7309cdfe52ffad6cc76b0bd1135958139a8ff6cae2d7",
-      "tasks.md": "19586553f3326ccad0cfac2ff07872cbcd9bcc4b3b64480185fe5c4885b8fa10",
-      "checklist.md": "1ad46ec5b68e405a4d72b7ee2c2c2309d67a68bb7405988edaaa17ca083820c5",
-      "implementation-summary.md": "36934929807635a648161c647b590e57bdbbc0f1dbf504bfa351f2503c3d5f1e"
+      "spec.md": "ba2a5b51cddef5d5d39b826b38c49c4868e1e3207d404c170ecc29a954f764fb",
+      "plan.md": "14d72912adc7b1f231e7de5a95ecb9aa0a873f6ac017d41e993eb538db71314f",
+      "tasks.md": "21d064a9c523c29cb4f3e9448073fb437ad16ead784c8f6f1655d8990e38d09a",
+      "checklist.md": "3c3f7cdd520136166118519557120ea69d4110e8e09c97b83b1e762ca5c84938",
+      "implementation-summary.md": "b1c72f0f6f215576dc5cc921e9d50f593017549184c900778f3a801eb052648c"
     },
     "last_active_child_id": null,
     "last_active_at": null

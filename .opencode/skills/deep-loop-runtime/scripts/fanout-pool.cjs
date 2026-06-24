@@ -316,18 +316,28 @@ function runCappedPool(options) {
   const retryCounts = normalizeRetryCountMap(options.initialRetryCounts);
   const results = new Array(items.length);
   const queue = items.map((_item, index) => index);
-  const queuedAtMs = new Map(queue.map((index) => [index, Date.now()]));
   const lagCeilingMs = normalizeNonNegativeDuration(options.lagCeilingMs ?? options.lag_ceiling_ms ?? options.lag_ceiling);
   let lagCeilingTimer = null;
   let lagCeilingExceeded = false;
 
+  // STALL DETECTOR (not queue backpressure). The lag metric is the time since the pool
+  // last made progress — i.e. since the last item settled (or pool start if nothing has
+  // settled yet) — measured ONLY while work is still pending. On a healthy fan-out wider
+  // than its concurrency, items settle regularly, so each completion resets this clock and
+  // the gap stays small: normal second-wave backpressure does NOT trip the ceiling. The
+  // gap only grows past the ceiling when NOTHING settles while work waits — a genuinely
+  // stalled tail (a worker hung holding a slot). This deliberately replaces the prior
+  // time-since-queued-at-pool-start metric, which conflated normal backpressure with a
+  // stall and false-fired on every width>concurrency pool.
+  let lastProgressAtMs = Date.now();
+  const markProgress = () => {
+    lastProgressAtMs = Date.now();
+  };
+
   const oldestPendingLagMs = () => {
+    // A stall is only meaningful while there is still queued work waiting for a slot.
     if (lagCeilingMs <= 0 || queue.length === 0) return undefined;
-    let oldestQueuedAt = Infinity;
-    for (const index of queue) {
-      oldestQueuedAt = Math.min(oldestQueuedAt, queuedAtMs.get(index) ?? Date.now());
-    }
-    return Number.isFinite(oldestQueuedAt) ? Date.now() - oldestQueuedAt : undefined;
+    return Date.now() - lastProgressAtMs;
   };
 
   const buildCurrentGauges = () => {
@@ -366,6 +376,10 @@ function runCappedPool(options) {
         event: 'lag_ceiling_exceeded',
         at: normalizeTimestamp(now()),
         severity: 'warning',
+        // The lag metric is time-since-last-progress while work is pending: a genuine
+        // stall signal, not queue backpressure. oldest_pending_lag_ms keeps its name for
+        // ledger shape compatibility but now carries the stall duration.
+        metric: 'time_since_last_completion',
         lag_ceiling_ms: lagCeilingMs,
         oldest_pending_lag_ms: gauges.oldest_pending_lag_ms,
         gauges,
@@ -424,7 +438,6 @@ function runCappedPool(options) {
       }
       while (active < concurrency && queue.length > 0) {
         const index = queue.shift();
-        queuedAtMs.delete(index);
         const label = labelFor(items[index], index);
         const retryCount = retryCounts.get(label) || 0;
         const attempt = retryCount + 1;
@@ -444,7 +457,6 @@ function runCappedPool(options) {
               const nextRetryCount = retryCount + 1;
               retryCounts.set(label, nextRetryCount);
               emitSettledResult(result, false);
-              queuedAtMs.set(index, Date.now());
               queue.push(index);
               if (emitEvent) {
                 emitEvent({
@@ -480,6 +492,10 @@ function runCappedPool(options) {
           })
           .finally(() => {
             active -= 1;
+            // Every settlement (success, failure, or retry re-queue) is forward progress:
+            // reset the stall clock so a healthy pool's steady completions keep the lag
+            // metric small and only a true stall (no settlement) lets it grow.
+            markProgress();
             scheduleLagCeilingCheck();
             pump();
           });

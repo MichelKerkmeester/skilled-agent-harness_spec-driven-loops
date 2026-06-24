@@ -45,10 +45,11 @@
       "scripts/dedup-scale-test.mjs",
       "results/dedup-scale-metrics.json",
       "results/gauge-flood-metrics.json",
-      "implementation-summary.md",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -80,18 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "fanout-pool.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
@@ -101,6 +90,24 @@
         "name": "fanout-merge.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 009 dark-flag validation (research sections 3.5 and 3.6) qualified two graduated deep-loop capabilities",
     "created_at": "2026-06-24T08:09:54.181Z",
-    "last_save_at": "2026-06-24T10:17:08.560Z",
+    "last_save_at": "2026-06-24T11:26:53.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0ec5210640216f17651656812b599152087d936f15d4c4623e22871d68b3f25",
+    "source_fingerprint": "sha256:1eb948175c1c989249ec161e16d310b7bd6328af756927e2a3fd0d7e950b1faa",
     "source_doc_hashes": {
-      "spec.md": "12093176dc08cb3f69d4519b96d0cc6d73eac921249d02f2f4df65be766f2da7",
-      "plan.md": "80f26effa4658e831f2983f16cb8fb60d62a2638ecb90a798daa78dfb61ae197",
-      "tasks.md": "7732fdef233782d1da4a5c2b5f0e1db877ad841cb0f1e2d52ca12be48d104255",
-      "checklist.md": "da6a991c13a4bcdab4081d4e43e889aa1323b61038a4b05c81bab3b32c69a6bd",
-      "implementation-summary.md": "27909bdbdbfc1e3401d09e9cb348552a88fb13c4117edc0fa9fecf66d2e13731"
+      "spec.md": "1ddf895bc9fb0f1fa58863634a1f273babcceb6f5507fc95a254f1fe23eed6ab",
+      "plan.md": "a3235021d4dcd5f825422a10b96526f7e3386bed4e20d39724d1ba6093059f56",
+      "tasks.md": "6f885c9b4648dc505f5b47ae2688af674f2cc72fe03abd317dd3f4e1147dca70",
+      "checklist.md": "c72b353a7d4213ee56aba697d476f599819a12bc91b0181841ab482a4544a50d",
+      "implementation-summary.md": "cab4ecee2baca8a22dc02bbbfecc90f63f0dc0dfd49fe2f6703504f4d69e4e00"
     },
     "last_active_child_id": null,
     "last_active_at": null

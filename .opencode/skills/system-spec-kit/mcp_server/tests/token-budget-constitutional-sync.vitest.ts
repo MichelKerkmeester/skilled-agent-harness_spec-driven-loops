@@ -2,14 +2,18 @@
 // TEST: Token budget truncation keeps constitutionalCount and
 // envelope.summary consistent with the surviving results array.
 //
-// Replicates the dispatch-level pop loop from context-server.ts
-// using the same envelope helpers — no DB, no network.
+// Replicates the dispatch-level trim loop from context-server.ts using the same
+// envelope helpers — no DB, no network. The row-selection is NOT re-implemented
+// here: the loop calls the REAL selectBudgetTrimIndex the dispatch path uses, so
+// this test can never drift from the live selector's drop priority (ordinary →
+// additive backfill → constitutional, with at least one primary reserved).
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect } from 'vitest';
 import {
   syncEnvelopeTokenCount,
   serializeEnvelopeWithTokenCount,
 } from '../lib/response/envelope.js';
+import { selectBudgetTrimIndex } from '../context-server.js';
 
 // ── Helpers ────────────────────────────────────────────────────
 
@@ -32,8 +36,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 /**
- * Runs the same pop-loop that context-server.ts uses after token-budget
+ * Runs the same trim loop that context-server.ts uses after token-budget
  * enforcement, then returns the envelope parsed back from its serialized form.
+ * Row selection delegates to the real selectBudgetTrimIndex, so the surviving
+ * set always matches the live dispatch behavior.
  */
 function runTruncationLoop(
   envelope: EnvelopeRecord,
@@ -51,7 +57,7 @@ function runTruncationLoop(
     if (Array.isArray(innerResults) && innerResults.length > 1) {
       const originalCount = innerResults.length;
       while (innerResults.length > 1) {
-        innerResults.pop();
+        innerResults.splice(selectBudgetTrimIndex(innerResults), 1);
         syncEnvelopeTokenCount(envelope);
         if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
       }
@@ -129,16 +135,20 @@ function makeSearchEnvelope(results: ResultItem[]): EnvelopeRecord {
 
 describe('T206: Token budget truncation — constitutionalCount + summary sync', () => {
 
-  // ── Constitutional result removed from tail ──────────
+  // ── Tail constitutional result is PINNED, ordinary rows drop first ──
 
-  it('T206-A1: removes tail constitutional result → updates constitutionalCount and summary', () => {
-    // 3 results; the last one (tail) is constitutional and large enough to trigger pop.
+  it('T206-A1: spares the tail constitutional result, drops ordinary rows → constitutionalCount + summary stay in sync', () => {
+    // 3 results; the last (tail) is constitutional and large. Under the real
+    // selectBudgetTrimIndex an always-surface row is at least as protected as any
+    // other row, so the squeeze drops the ordinary rows first and the constitutional
+    // pin survives — the opposite of a blind pop()-from-tail. This test documents the
+    // CURRENT pinned-row behavior and that the counts still reconcile after the trim.
     const results: ResultItem[] = [
       { id: 1, content: 'short', isConstitutional: false },
       { id: 2, content: 'medium content for budget padding '.repeat(4), isConstitutional: false },
       {
         id: 3,
-        // large so that popping it brings total under budget
+        // large so the squeeze keeps firing after the small ordinary rows are gone
         content: 'X'.repeat(600),
         isConstitutional: true,
       },
@@ -150,11 +160,9 @@ describe('T206: Token budget truncation — constitutionalCount + summary sync',
     expect(preData.constitutionalCount).toBe(1);
     expect(envelope.summary).toBe('Found 3 memories (1 constitutional)');
 
-    // Set a budget small enough that the pop loop fires (envelope without the
-    // large tail should fit; with it it won't).
+    // Set a budget small enough that the trim loop fires.
     syncEnvelopeTokenCount(envelope);
     const fullTokenCount = (envelope.meta as Record<string, unknown>).tokenCount as number;
-    // Budget sits between the size with and without the large tail.
     const budget = Math.floor(fullTokenCount * 0.5);
 
     const out = runTruncationLoop(envelope, budget);
@@ -165,10 +173,13 @@ describe('T206: Token budget truncation — constitutionalCount + summary sync',
     expect(outData.constitutionalCount).toBe(
       outData.results.filter((r) => r.isConstitutional === true).length,
     );
-    // The removed constitutional result must no longer be counted.
-    expect(outData.constitutionalCount).toBe(0);
-    // Summary must reflect post-truncation values.
-    expect(out.summary).toBe(`Found ${outData.results.length} memories`);
+    // The constitutional pin SURVIVES the squeeze (ordinary rows were dropped first).
+    expect(outData.constitutionalCount).toBe(1);
+    expect(outData.results.some((r) => r.id === 3 && r.isConstitutional === true)).toBe(true);
+    // Summary must reflect post-truncation values, still showing the surviving pin.
+    expect(out.summary).toBe(
+      `Found ${outData.results.length} memories (${outData.constitutionalCount} constitutional)`,
+    );
   });
 
   // ── Non-constitutional tail, constitutional head stays ──

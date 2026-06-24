@@ -25,6 +25,8 @@ const mocks = vi.hoisted(() => ({
   isFileStaleMock: vi.fn(),
   getTrackedFilesMock: vi.fn(),
   removeFileMock: vi.fn(),
+  bumpCodeGraphGenerationMock: vi.fn(),
+  codeGraphEdgeBitemporalReadsEnabledMock: vi.fn(() => false),
   indexFilesMock: vi.fn(),
   existsSyncMock: vi.fn(),
   execSyncMock: vi.fn(),
@@ -52,6 +54,8 @@ vi.mock('../lib/code-graph-db.js', () => ({
   isFileStale: mocks.isFileStaleMock,
   getTrackedFiles: mocks.getTrackedFilesMock,
   removeFile: mocks.removeFileMock,
+  bumpCodeGraphGeneration: mocks.bumpCodeGraphGenerationMock,
+  codeGraphEdgeBitemporalReadsEnabled: mocks.codeGraphEdgeBitemporalReadsEnabledMock,
 }));
 
 vi.mock('node:fs', () => ({

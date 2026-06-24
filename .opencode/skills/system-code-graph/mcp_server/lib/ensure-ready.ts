@@ -550,10 +550,12 @@ async function indexWithTimeout(
     ]);
 
     let persistedDetectorProvenance: ReturnType<typeof graphDb.getLastDetectorProvenance> = null;
+    let persistedAny = false;
     for (const result of results) {
       try {
         persistIndexedFileResult(result);
         persistedDetectorProvenance ??= result.detectorProvenance;
+        persistedAny = true;
       } catch {
         // Best-effort: skip files that fail to persist.  File remains stale
         // (mtime=0 from Stage 1) so the next scan will retry structural rows.
@@ -562,6 +564,19 @@ async function indexWithTimeout(
 
     if (persistedDetectorProvenance) {
       graphDb.setLastDetectorProvenance(persistedDetectorProvenance);
+    }
+
+    // The explicit-scan handler bumps the graph generation after its persist
+    // loop, but this auto-index read path did not, so two consecutive
+    // ensure-ready reindexes wrote at the same generation. Under bitemporal
+    // reads that collapses a superseded edge into a zero-width window the as-of
+    // reader cannot see, because its close lands at the same generation as its
+    // own valid_at. Bumping here once writes have landed gives each reindex a
+    // distinct generation and a non-empty window. The bump is gated on the flag
+    // so the generation counter is byte-identical on this path when the flag is
+    // off.
+    if (persistedAny && graphDb.codeGraphEdgeBitemporalReadsEnabled()) {
+      graphDb.bumpCodeGraphGeneration();
     }
   } finally {
     clearTimeout(timer);

@@ -144,7 +144,7 @@ describe('reverse-dep degree cap default is inert while force-parse is off', () 
     originalDegreeCap = process.env[REVERSE_DEP_DEGREE_CAP_ENV];
     delete process.env[REVERSE_DEP_FORCE_PARSE_ENV];
 
-    // Default (env unset -> default cap of 10).
+    // Default (env unset -> the compiled default cap).
     delete process.env[REVERSE_DEP_DEGREE_CAP_ENV];
     const defaultRows = await runForceParseOffScenario('cap-default');
 

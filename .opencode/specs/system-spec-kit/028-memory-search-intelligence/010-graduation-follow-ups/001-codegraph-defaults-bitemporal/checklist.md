@@ -61,10 +61,10 @@ _memory:
 
 - [x] CHK-010 [P0] Type-check passes
   - **Evidence**: `npx tsc --noEmit --composite false -p .opencode/skills/system-code-graph/tsconfig.json` exits 0
-- [x] CHK-011 [P0] Degree-cap default set to a safe ceiling
-  - **Evidence**: `DEFAULT_REVERSE_DEP_DEGREE_CAP = 10` in structural-indexer.ts, recorded as an unbenchmarked midpoint the fixture cannot distinguish, with the hot-hub correctness cost noted in the comment
+- [x] CHK-011 [P0] Degree-cap default chosen on benchmark evidence
+  - **Evidence**: `DEFAULT_REVERSE_DEP_DEGREE_CAP = 15` in structural-indexer.ts, set from the degree-sweep benchmark whose results are recorded in `benchmark/degree-cap-sweep-results.json`, comment cites the sweep and the hot-hub cost
 - [x] CHK-012 [P1] Off-path statements kept verbatim
-  - **Evidence**: The else branches in `replaceNodes`, `replaceEdges`, `pruneDanglingEdges`, and the live readers hold the original DELETE and query strings unchanged
+  - **Evidence**: The else branches in `replaceNodes`, `replaceEdges`, `pruneDanglingEdges`, the live readers, the lineage writer, the ensure-ready bump, and the query asOf path hold the original statements unchanged
 - [x] CHK-013 [P1] No artifact ids or spec paths in code comments
   - **Evidence**: New comments carry durable WHY only, no packet or spec ids
 <!-- /ANCHOR:code-quality -->
@@ -74,16 +74,16 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Real-scan integration test authored and passing
-  - **Evidence**: `code-edge-bitemporal-reindex.vitest.ts` drives the scan handler twice under the production bump ordering, asserts `asOfEdgesFrom` at the pre-reindex generation returns the old target and the live read returns only the new target
-- [x] CHK-021 [P0] Live-reader filter and close-not-delete covered
-  - **Evidence**: `code-edge-bitemporal-readers.vitest.ts` asserts `queryEdgesFrom` and `queryEdgesTo` drop closed edges under the flag and that `replaceNodes` and `pruneDanglingEdges` close under the flag and delete with it off
+- [x] CHK-020 [P0] Real-scan integration and as-of consumer tests authored and passing
+  - **Evidence**: `code-edge-bitemporal-reindex.vitest.ts` drives the scan handler twice and `code-edge-bitemporal-followups.vitest.ts` drives the ensure-ready path and `code_graph_query asOf`, all asserting the old target at the pre-reindex generation and the new target live
+- [x] CHK-021 [P0] Live-reader filter, close-not-delete, and lineage validity covered
+  - **Evidence**: `code-edge-bitemporal-readers.vitest.ts` covers the readers and the close-not-delete in `replaceNodes` and `pruneDanglingEdges`, the followups file covers the lineage valid_at
 - [x] CHK-022 [P0] Byte-identity tests authored for every change
-  - **Evidence**: The reindex test proves the off-path keeps only the new edge with null validity columns and flag-unset matches flag-false, the readers test proves the off-path delete, the degree-cap test proves the cap env value never changes the outcome while force-parse is off
-- [x] CHK-023 [P1] New test files type-check and the focused run passes
-  - **Evidence**: Standalone `tsc` over the three `.vitest.ts` files exits 0, a focused vitest run of the three files passes 13 of 13
-- [x] CHK-024 [P1] Full vitest suite deferred to the CLI executor
-  - **Evidence**: Per the brief the CLI executor runs the full pass, this work confirms tsc and the focused run
+  - **Evidence**: Off-path tests confirm the delete-and-insert, the NULL lineage validity, the untouched generation on the ensure-ready path, and the asOf-with-flag-off matching the default query, plus flag-unset versus flag-false
+- [x] CHK-023 [P0] tsc and the changed-code tests pass
+  - **Evidence**: `tsc` exits 0, the four new test files type-check standalone, the four bitemporal and degree-cap files pass 19 of 19, and the nine code-graph files that exercise the changed code pass 90 of 90
+- [x] CHK-024 [P1] Full-suite failures shown to be environmental
+  - **Evidence**: A full run leaves only four `code-index-cli-*` daemon tests (failing under the live session daemon lease, passing on a clean checkout) and one `ipc-socket-drift` guard (failing on the clean checkout too), none of which import the changed code
 <!-- /ANCHOR:testing -->
 
 ---
@@ -91,16 +91,16 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-025 [P0] 011 deep-review P0 blockers closed
-  - **Evidence**: P0-1 live-reader filter added, P0-2 `pruneDanglingEdges` closes under the flag, P0-3 `replaceNodes` closes under the flag, all confirmed against the real code before fixing and proven by the real-scan test
-- [x] CHK-026 [P0] Off-by-one and zero-width lifetime fixed
-  - **Evidence**: Loop-time writes stamp at the next generation, the real-scan probe showed the old edge window [G+1, G+2) readable at the pre-reindex generation
-- [x] CHK-027 [P1] As-of read consumer scoped honestly
-  - **Evidence**: `asOfEdgesFrom` kept as the tested consumer, the public query-surface parameter deferred and recorded as not graduated rather than overclaimed
-- [x] CHK-028 [P1] Degree-cap claim softened and cost recorded
-  - **Evidence**: Spec and code comment call 10 an unbenchmarked midpoint and record the hot-hub staleness cost above the cap
+- [x] CHK-025 [P0] All four follow-up items closed
+  - **Evidence**: The ensure-ready path bumps under the flag, lineage edges carry a valid_at, `code_graph_query asOf` exposes the as-of read, and the degree cap is set from the benchmark
+- [x] CHK-026 [P0] Each finding confirmed against real code before fixing
+  - **Evidence**: The ensure-ready persist loop genuinely never bumped, `recordSupersedesLineage` genuinely wrote NULL validity, and `asOfEdgesFrom` genuinely had no caller, all verified before touching anything
+- [x] CHK-027 [P1] As-of read consumer wired and symmetric
+  - **Evidence**: `code_graph_query asOf` routes the relationship reads, `asOfEdgesTo` added as the inbound mirror, the dangling exclusion skipped for as-of so a deleted-target edge still surfaces
+- [x] CHK-028 [P1] Degree cap set on evidence with the cost recorded
+  - **Evidence**: The benchmark shows linear cheap cost with no knee, 15 chosen to maximize correctness in range while bounding the extreme tail, the trivial-fixture caveat recorded
 - [x] CHK-029 [P1] Default-off invariant preserved across all sites
-  - **Evidence**: Byte-identity tests confirm no live behavior change while either flag is off
+  - **Evidence**: Byte-identity tests confirm no live behavior change while either flag is off across all changed sites
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -109,9 +109,9 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No new secrets or external surfaces
-  - **Evidence**: Both changes are internal to the code-graph indexer
+  - **Evidence**: Every change is internal to the code-graph indexer and its query handler
 - [x] CHK-031 [P1] No default-on behavior change
-  - **Evidence**: Both flags stay off by default, proven by the byte-identity tests
+  - **Evidence**: Both flags stay off by default, proven by the byte-identity tests, and a query without asOf is unchanged
 - [x] CHK-032 [P1] Scope respected
   - **Evidence**: Only `.opencode/skills/system-code-graph/**` and the 010/001 phase folder were touched
 <!-- /ANCHOR:security -->
@@ -122,9 +122,9 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, plan, and tasks synchronized
-  - **Evidence**: All three reflect the two changes, the same file list, and the same test set
+  - **Evidence**: All reflect the four follow-up items, the benchmark, the same file list, and the same test set
 - [x] CHK-041 [P1] Code comments adequate
-  - **Evidence**: The generation helper, each close-not-delete branch, the live-reader filter, and the degree-cap default each carry a WHY comment
+  - **Evidence**: The generation helper, each close-not-delete branch, the live-reader filter, the lineage stamp, the ensure-ready bump, the as-of query routing, and the degree-cap default each carry a WHY comment
 - [x] CHK-042 [P2] Description and graph metadata generated
   - **Evidence**: description.json and graph-metadata.json generated by the spec-kit generators
 <!-- /ANCHOR:docs -->
@@ -147,8 +147,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 10 | 10/10 |
-| P1 Items | 13 | 13/13 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-06-24

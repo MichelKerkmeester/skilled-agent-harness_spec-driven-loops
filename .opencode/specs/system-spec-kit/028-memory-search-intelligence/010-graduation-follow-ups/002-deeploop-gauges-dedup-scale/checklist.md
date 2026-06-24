@@ -83,17 +83,18 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-This phase is a measurement and a decision, not a code fix, so the completeness bar is reproducible evidence and a documented gauge-default verdict rather than a shipped change.
+This phase carries measurement, a gauge-default decision, AND two production fixes (each behind its default-off flag, byte-identical off).
 
 - [x] CHK-FIX-001 [P0] The 009 0.05s flood is reproduced on the real runner (440 records / 2s, ~645K records/h projected)
 - [x] CHK-FIX-002 [P0] A seconds-scale cadence is chosen (30s) and OBSERVED to inform within budget across all ten in-flight lineages (20 records / 75s, ~955 records/h)
-- [x] CHK-FIX-003 [P0] The lag-ceiling is corrected to a queue-backpressure gauge (deep-review P1-7): the old 1500ms default false-fires on a healthy 10-wide pool (proven), and the backpressure-aware default (300000ms, scaled-proof 2500ms) stays silent on a healthy pool and fires once on a genuine stall
-- [x] CHK-FIX-004 [P0] The body-distinguished dedup false-collapse rate is 0 and distinct-finding recall is 1.0 on the 60-research-finding six-worker set
-- [x] CHK-FIX-005 [P1] The designed-for identical-body collapse recall is 1.0 (7/7 clusters) and all 8 near-miss distinct findings survive
-- [x] CHK-FIX-006 [P1] The review path keeps the strongest severity on every collapse (4/4) and never false-collapses a distinct review finding (4/4)
-- [x] CHK-FIX-007 [P1] The title-only false-collapse rate is measured (deep-review P2-15): 0.50, 3 of 6 distinct title-only findings wrongly merged because the key excludes the title, reported as the free-text precision limit
-- [x] CHK-FIX-008 [P1] The content-identity semantic under-merge limit is surfaced explicitly (2/2 varied-wording clusters stay separate, reported as a known limit)
-- [x] CHK-FIX-009 [P1] The harnesses are reproducible, `node scripts/gauge-flood-test.mjs` and `node scripts/dedup-scale-test.mjs` rebuild their metrics exit 0
+- [x] CHK-FIX-003 [P0] The lag metric is redefined to a true stall detector (deep-review P1-7): the same healthy 10-wide pool that false-fired at 1500ms under the old metric is now silent, the detector fires once on a genuine 5s stall, and it is byte-identical when the gauge is off
+- [x] CHK-FIX-004 [P0] The title-only false-collapse is fixed (deep-review P2-15): the title-aware match drops the title-only false-collapse rate from 0.50 to 0, byte-identical when the dedup flag is off
+- [x] CHK-FIX-005 [P0] The body-distinguished dedup false-collapse rate is 0 and distinct-finding recall is 1.0 on the 60-research-finding six-worker set; identical-dup still collapses (7/7)
+- [x] CHK-FIX-006 [P1] All 8 near-miss distinct findings survive and the review path keeps the strongest severity on every collapse (4/4)
+- [x] CHK-FIX-007 [P1] The committed pool test is migrated to stall semantics with two new silent-direction cases; the committed dedup off-path tests pass unchanged
+- [x] CHK-FIX-008 [P1] The full deep-loop regression suite is green (49 files, 428 tests)
+- [x] CHK-FIX-009 [P1] The content-identity semantic under-merge limit is surfaced explicitly (2/2 varied-wording clusters stay separate, the one remaining known limit)
+- [x] CHK-FIX-010 [P1] The harnesses are reproducible, `node scripts/gauge-flood-test.mjs` and `node scripts/dedup-scale-test.mjs` rebuild their metrics exit 0
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -102,7 +103,7 @@ This phase is a measurement and a decision, not a code fix, so the completeness 
 ## Security
 
 - [x] CHK-030 [P0] The harnesses read or spawn only the production modules and in-memory or OS-temp fixtures, so no cell opens the corpus, the graph, or the memory database
-- [x] CHK-031 [P0] No committed production default is flipped and no shared fan-out code is edited
+- [x] CHK-031 [P0] No committed production default is flipped; the two fan-out fixes are within `deep-loop-runtime/**` scope, each behind its default-off flag and byte-identical off
 <!-- /ANCHOR:security -->
 
 ---
@@ -130,7 +131,7 @@ This phase is a measurement and a decision, not a code fix, so the completeness 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
+| P0 Items | 13 | 13/13 |
 | P1 Items | 12 | 12/12 |
 | P2 Items | 0 | 0/0 |
 

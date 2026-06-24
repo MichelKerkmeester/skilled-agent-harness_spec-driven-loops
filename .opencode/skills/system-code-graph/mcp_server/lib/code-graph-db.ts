@@ -598,10 +598,23 @@ function recordSupersedesLineage(
     WHERE source_id = ? AND target_id = ? AND edge_type = 'SUPERSEDES'
     LIMIT 1
   `);
-  const insertEdge = database.prepare(`
-    INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata)
-    VALUES (?, ?, 'SUPERSEDES', ?, ?)
-  `);
+  // A SUPERSEDES lineage edge is an open fact about a content-stable rename, so
+  // under bitemporal reads it needs a valid_at to be visible to an as-of query,
+  // which requires valid_at IS NOT NULL. Without the stamp the lineage edges
+  // were silently excluded from every as-of read. invalid_at stays open because
+  // the lineage relation itself is not later superseded. The plain insert runs
+  // when the flag is off, byte-identical to the prior write with NULL validity.
+  const bitemporal = codeGraphEdgeBitemporalReadsEnabled();
+  const lineageValidAt = bitemporal ? getNextCodeGraphGeneration() : null;
+  const insertEdge = bitemporal
+    ? database.prepare(`
+        INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata, valid_at, invalid_at)
+        VALUES (?, ?, 'SUPERSEDES', ?, ?, ?, NULL)
+      `)
+    : database.prepare(`
+        INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata)
+        VALUES (?, ?, 'SUPERSEDES', ?, ?)
+      `);
   const insertAudit = database.prepare(`
     INSERT INTO code_graph_tombstones (
       entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
@@ -621,7 +634,11 @@ function recordSupersedesLineage(
     if (exists) {
       continue;
     }
-    insertEdge.run(oldNode.symbolId, newNode.symbolId, 1, metadata);
+    if (bitemporal) {
+      insertEdge.run(oldNode.symbolId, newNode.symbolId, 1, metadata, lineageValidAt);
+    } else {
+      insertEdge.run(oldNode.symbolId, newNode.symbolId, 1, metadata);
+    }
     insertAudit.run(
       `${oldNode.symbolId}->${newNode.symbolId}:SUPERSEDES`,
       oldNode.symbolId,
@@ -2064,6 +2081,37 @@ export function asOfEdgesFrom(symbolId: string, asOf: number, edgeType?: string)
     const edge = rowToEdge(e);
     const targetRow = d.prepare('SELECT * FROM code_nodes WHERE symbol_id = ?').get(edge.targetId) as Record<string, unknown> | undefined;
     return { edge, targetNode: targetRow ? rowToNode(targetRow) : null };
+  });
+}
+
+/**
+ * Inbound mirror of asOfEdgesFrom: read edges to a symbol as of a past
+ * generation. Same validity window, indexed by target_id. When the flag is off
+ * this falls back to the live-only queryEdgesTo, so the inbound as-of path stays
+ * a no-op until the flag is set.
+ */
+export function asOfEdgesTo(symbolId: string, asOf: number, edgeType?: string): CodeEdgeSourceResult[] {
+  if (!codeGraphEdgeBitemporalReadsEnabled()) {
+    return queryEdgesTo(symbolId, edgeType);
+  }
+  const d = getDb();
+  let sql = `
+    SELECT * FROM code_edges
+    WHERE target_id = ?
+      AND valid_at IS NOT NULL
+      AND valid_at <= ?
+      AND (invalid_at IS NULL OR invalid_at > ?)
+  `;
+  const params: unknown[] = [symbolId, asOf, asOf];
+  if (edgeType) {
+    sql += ' AND edge_type = ?';
+    params.push(edgeType);
+  }
+  const edges = d.prepare(sql).all(...params) as Record<string, unknown>[];
+  return edges.map((e) => {
+    const edge = rowToEdge(e);
+    const sourceRow = d.prepare('SELECT * FROM code_nodes WHERE symbol_id = ?').get(edge.sourceId) as Record<string, unknown> | undefined;
+    return { edge, sourceNode: sourceRow ? rowToNode(sourceRow) : null };
   });
 }
 

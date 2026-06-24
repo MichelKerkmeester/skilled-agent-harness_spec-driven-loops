@@ -20,9 +20,9 @@
       "byteIdenticalAcrossReruns": true
     },
     "on": {
-      "mergedCount": 38
+      "mergedCount": 41
     },
-    "noiseReducedRecords": 22,
+    "noiseReducedRecords": 19,
     "falseCollapse": {
       "hazardGroups": 0,
       "falselyCollapsedPoints": 0,
@@ -50,23 +50,23 @@
     },
     "titleOnlyFalseCollapse": {
       "titleDistinctPoints": 6,
-      "distinctPointsCollapsedAway": 3,
-      "titleOnlyFalseCollapseRate": 0.5,
+      "distinctPointsCollapsedAway": 0,
+      "titleOnlyFalseCollapseRate": 0,
       "groups": [
         {
           "distinctPoints": 2,
-          "survivingRecords": 1,
-          "collapsedAway": 1
+          "survivingRecords": 2,
+          "collapsedAway": 0
         },
         {
           "distinctPoints": 2,
-          "survivingRecords": 1,
-          "collapsedAway": 1
+          "survivingRecords": 2,
+          "collapsedAway": 0
         },
         {
           "distinctPoints": 2,
-          "survivingRecords": 1,
-          "collapsedAway": 1
+          "survivingRecords": 2,
+          "collapsedAway": 0
         }
       ],
       "note": "genuinely-distinct findings with identical bodies but different titles collapse because nearDuplicateContentKey excludes the title (fanout-merge.cjs:167-176); this is the free-text precision limit 009 flagged, measured against ground-truth distinctness"
@@ -99,7 +99,7 @@
     "nearMissAllSurvived": true,
     "reviewSeverityPreservationRate": 1,
     "reviewNoFalseCollapse": true,
-    "titleOnlyFalseCollapseRate": 0.5,
-    "titleDistinctPointsCollapsedAway": 3
+    "titleOnlyFalseCollapseRate": 0,
+    "titleDistinctPointsCollapsedAway": 0
   }
 }
