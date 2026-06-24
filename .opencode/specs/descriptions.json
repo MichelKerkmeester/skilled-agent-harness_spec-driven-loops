@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-24T05:39:04.556Z",
+  "generated": "2026-06-24T06:29:37.162Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -637,7 +637,7 @@
         "push",
         "only"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "barter/005-notifications-system/001-research",
@@ -654,7 +654,7 @@
         "channel",
         "freq"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "barter/005-notifications-system/002-grounded-research",
@@ -2384,7 +2384,7 @@
         "skill",
         "field"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/002-derivation-engine",
@@ -2399,7 +2399,7 @@
         "infeasible",
         "unsafe"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
@@ -2421,7 +2421,7 @@
         "changelog",
         "read"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
@@ -2442,7 +2442,7 @@
         "title",
         "description"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
@@ -2459,7 +2459,7 @@
         "back",
         "version"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
@@ -30549,7 +30549,7 @@
         "retrieval",
         "surfaces"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
@@ -32624,7 +32624,7 @@
         "default",
         "threshold"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
@@ -32761,7 +32761,7 @@
         "measured",
         "verdict"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
@@ -32811,7 +32811,7 @@
         "reconsolidate",
         "path"
       ],
-      "lastUpdated": "2026-06-24T05:39:04.556Z"
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
@@ -32890,6 +32890,43 @@
         "verdict"
       ],
       "lastUpdated": "2026-06-24T04:53:28.204Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/008-flag-name-cleanup",
+      "description": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
+      "keywords": [
+        "twelve",
+        "live",
+        "speckit",
+        "feature",
+        "flags",
+        "carry",
+        "version",
+        "suffix",
+        "environment-variable",
+        "name"
+      ],
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/009-dark-flag-validation",
+      "description": "The 007-dark-flag-graduation suite ran labeled benchmarks against each dark flag and returned graduate/refine/cut verdicts",
+      "keywords": [
+        "007-dark-flag-graduation",
+        "suite",
+        "ran",
+        "labeled",
+        "benchmarks",
+        "against",
+        "dark",
+        "flag",
+        "returned",
+        "graduate",
+        "refine",
+        "cut",
+        "verdicts"
+      ],
+      "lastUpdated": "2026-06-24T06:29:37.162Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
