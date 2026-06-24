@@ -274,3 +274,5 @@ _sandbox
 # Project-specific documentation
 # ───────────────────────────────────────────
 AGENTS_Barter.md
+# Daemon ownership/lease files (ephemeral runtime state, never tracked)
+.opencode/skills/*/mcp_server/database/.*-owner.json
