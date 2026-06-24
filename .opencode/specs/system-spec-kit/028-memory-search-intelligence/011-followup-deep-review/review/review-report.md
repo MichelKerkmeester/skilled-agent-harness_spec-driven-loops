@@ -43,3 +43,13 @@ Three P0 blockers, all in the code-graph bitemporal wiring, which corrupts live 
 - **bitemporal-wiring:** FAIL, needs the three P0 fixes plus the off-by-one and the real-reindex test before it can graduate.
 - **degree-cap, append-exempt, advisor-penalty, gauges:** each one concrete fix from CONDITIONAL to PASS.
 - **density-probe, dedup-scale:** advisory only, doc and test reconciliations.
+
+
+## Re-Review Outcome: PASS
+
+A second opus re-review (loop-until-dry) verified the fixes against the committed code (b8a7a07b17 + b542901459). New verdict: PASS, zero P0 and zero P1 remaining. All three prior bitemporal P0s are explicitly resolved, every cluster passes (bitemporal, search-budget, density, advisor-alias, deep-loop-gauges, dedup), and the live-read path is confirmed correct because queryEdgesFrom/queryEdgesTo filter on invalid_at IS NULL independent of the generation bump.
+
+Two residual P2s remain, both as-of-only window-integrity issues in the as-of surface that P1-10 deliberately de-scoped. They are invisible to live reads and only surface through as-of reads under the bitemporal flag, so they are tracked for when the public as-of reader graduates rather than fixed now:
+
+- The ensure-ready auto-index path stamps bitemporal windows but never bumps the generation, so an edge inserted by one ensure-ready reindex and closed by the next gets a zero-width window. ensure-ready.ts:555,704,737. Live reads are unaffected.
+- recordSupersedesLineage inserts SUPERSEDES edges with a NULL valid_at under the flag, so lineage edges have no as-of-readable window. code-graph-db.ts:601-604. Pre-existing, not introduced by the fixes.
