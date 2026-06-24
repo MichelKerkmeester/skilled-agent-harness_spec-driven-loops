@@ -1,0 +1,51 @@
+{
+  "benchmark": "fanout-gauges",
+  "gauges": [
+    "lag-ceiling",
+    "progress-heartbeat"
+  ],
+  "defaults": {
+    "lagCeilingMs": 0,
+    "progressHeartbeatSeconds": 0
+  },
+  "generatedAt": "2026-06-24",
+  "lagCeiling": {
+    "ceilingMsUnderTest": 60,
+    "workerMsPerItem": 40,
+    "lineageCount": 5,
+    "eventsWhenOn": 1,
+    "oneShotNoFlood": true,
+    "eventsWhenOff": 0,
+    "silentWhenDefaultOff": true,
+    "eventCarriesLagGauges": true,
+    "eventSeverityWarning": true,
+    "sampleEvent": {
+      "event": "lag_ceiling_exceeded",
+      "severity": "warning",
+      "lag_ceiling_ms": 60,
+      "oldest_pending_lag_ms": 62
+    }
+  },
+  "progressHeartbeat": {
+    "cadenceSeconds": 0.05,
+    "stubSleepSeconds": 2,
+    "defaultCadenceSeconds": 0,
+    "silentWhenDefaultOff": true,
+    "expectedApproxRecords": 40,
+    "recordsWhenOn": 43,
+    "steadyCadenceNoFlood": true,
+    "recordCarriesGauges": true,
+    "sampleRecord": {
+      "event": "progress",
+      "label": "slow",
+      "hasDurationMs": true,
+      "hasGauges": true
+    }
+  },
+  "verdict": {
+    "lagCeilingFiresUsefullyWhenOn": true,
+    "lagCeilingSilentWhenOff": true,
+    "heartbeatFiresUsefullyWhenOn": true,
+    "heartbeatSilentWhenOff": true
+  }
+}

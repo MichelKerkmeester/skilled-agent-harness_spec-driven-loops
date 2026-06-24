@@ -1,0 +1,1229 @@
+{
+  "generatedFrom": "multihop-tail-appends-benchmark.mjs",
+  "generatedAt": "2026-06-24T04:58:03.011Z",
+  "subject": "SPECKIT_DETERMINISTIC_MULTIHOP and SPECKIT_LANE_CHAMPION_BACKFILL tail-appends vs off, completeRecall@K on the production executePipeline path and the legacy enrichFusedResults path",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-ylozih/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-ylozih/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "prodLimit": 10,
+  "recallK": [
+    3,
+    5,
+    8
+  ],
+  "repeats": 3,
+  "metricDefinition": "completeRecall@K = fraction of a query labeled target spec.md ids present in the top-K results.",
+  "prodPathSource": "executePipeline, the function the live memory_search MCP handler calls. Stage 1 uses collectRawCandidates with stopAfterFusion=true, which skips enrichFusedResults where the append stages C3/C4 live, so the prod path never runs the appends.",
+  "legacyPathSource": "searchWithFallback, the older entry point that calls enrichFusedResults and therefore runs the append stages C3/C4 before downstream truncation.",
+  "floorBlockerFinding": {
+    "claim": "ENV_REFERENCE holds the appends off because the prod route truncates to a 3-result floor so a tail append never reaches the prod reader.",
+    "prodByteIdenticalOnVsOff": true,
+    "prodAppendStagesEverApplied": false,
+    "legacyAppendedRowsSurvivingTotal": 0,
+    "resolution": "The appends never run on the prod executePipeline path because stopAfterFusion skips enrichFusedResults, so flipping the flags is byte-identical on prod. The three-result floor is a never-cut-below-three minimum, not a cap; the prod-limiting stage is token-budget truncation, which trims the tail to the floor and strips appended rows even on the legacy path where they run."
+  },
+  "aggregate": {
+    "prodRecallOff": {
+      "k3": 0.4375,
+      "k5": 0.4375,
+      "k8": 0.4375
+    },
+    "prodRecallOn": {
+      "k3": 0.4375,
+      "k5": 0.4375,
+      "k8": 0.4375
+    },
+    "prodRecallDelta": {
+      "k3": {
+        "on": 0.4375,
+        "off": 0.4375,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k5": {
+        "on": 0.4375,
+        "off": 0.4375,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k8": {
+        "on": 0.4375,
+        "off": 0.4375,
+        "delta": 0,
+        "maxRunStdev": 0
+      }
+    },
+    "legacyRecallOff": {
+      "k3": 0.15625,
+      "k5": 0.15625,
+      "k8": 0.15625
+    },
+    "legacyRecallOn": {
+      "k3": 0.15625,
+      "k5": 0.15625,
+      "k8": 0.15625
+    },
+    "legacyRecallDelta": {
+      "k3": {
+        "on": 0.15625,
+        "off": 0.15625,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k5": {
+        "on": 0.15625,
+        "off": 0.15625,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k8": {
+        "on": 0.15625,
+        "off": 0.15625,
+        "delta": 0,
+        "maxRunStdev": 0
+      }
+    }
+  },
+  "perQuery": [
+    {
+      "id": "speckit-memory-foundation",
+      "text": "speckit memory corpus reindex determinism graceful degradation",
+      "hubFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 4,
+      "resolvedTargetIds": [
+        23261,
+        23267,
+        23276,
+        23281
+      ],
+      "unresolvedTargets": [],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          23259,
+          23261,
+          18868,
+          23685,
+          23260,
+          23392,
+          23692,
+          23258,
+          23262,
+          20507
+        ],
+        "prodOn": [
+          23259,
+          23261,
+          18868,
+          23685,
+          23260,
+          23392,
+          23692,
+          23258,
+          23262,
+          20507
+        ],
+        "legacyOff": [
+          18868,
+          19818,
+          18870
+        ],
+        "legacyOn": [
+          18868,
+          19818,
+          18870
+        ]
+      }
+    },
+    {
+      "id": "spec-data-quality-program",
+      "text": "spec data quality extend quality loop trigger propagation enum schema",
+      "hubFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 4,
+      "resolvedTargetIds": [
+        23499,
+        23503,
+        23507,
+        23511
+      ],
+      "unresolvedTargets": [],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          23664,
+          23507,
+          23641,
+          23660,
+          23663,
+          23659,
+          8007,
+          23665,
+          23662,
+          23508
+        ],
+        "prodOn": [
+          23664,
+          23507,
+          23641,
+          23660,
+          23663,
+          23659,
+          8007,
+          23665,
+          23662,
+          23508
+        ],
+        "legacyOff": [
+          7995,
+          18103,
+          7996
+        ],
+        "legacyOn": [
+          7995,
+          18103,
+          7996
+        ]
+      }
+    },
+    {
+      "id": "local-embeddings-foundation",
+      "text": "local embeddings prefix registry model installation mcp config rollout",
+      "hubFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 4,
+      "resolvedTargetIds": [
+        4209,
+        4214,
+        4219,
+        4224
+      ],
+      "unresolvedTargets": [],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.75,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.75,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          4214,
+          4209,
+          4219,
+          4211,
+          4206,
+          4216,
+          15025,
+          15027,
+          4203,
+          15026
+        ],
+        "prodOn": [
+          4214,
+          4209,
+          4219,
+          4211,
+          4206,
+          4216,
+          15025,
+          15027,
+          4203,
+          15026
+        ],
+        "legacyOff": [
+          15025,
+          4214,
+          4211
+        ],
+        "legacyOn": [
+          15025,
+          4214,
+          4211
+        ]
+      }
+    },
+    {
+      "id": "spec-memory-stack-adapter",
+      "text": "spec memory stack adapter interface ollama backend mcp tools reindex",
+      "hubFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+      "targetFolderCount": 3,
+      "resolvedTargetCount": 1,
+      "resolvedTargetIds": [
+        4543
+      ],
+      "unresolvedTargets": [
+        {
+          "folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
+          "matchCount": 2
+        },
+        {
+          "folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
+          "matchCount": 2
+        }
+      ],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 1,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 1,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          4563,
+          4543,
+          4733,
+          4569,
+          4549,
+          5450,
+          4555,
+          4631,
+          20666,
+          4550
+        ],
+        "prodOn": [
+          4563,
+          4543,
+          4733,
+          4569,
+          4549,
+          5450,
+          4555,
+          4631,
+          20666,
+          4550
+        ],
+        "legacyOff": [
+          4563,
+          20806,
+          20666
+        ],
+        "legacyOn": [
+          4563,
+          20806,
+          20666
+        ]
+      }
+    },
+    {
+      "id": "memory-store-and-search",
+      "text": "memory store write safety causal lifecycle semantic trigger fallback learning feedback",
+      "hubFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 1,
+      "resolvedTargetIds": [
+        17197
+      ],
+      "unresolvedTargets": [
+        {
+          "folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+          "matchCount": 2
+        },
+        {
+          "folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+          "matchCount": 2
+        },
+        {
+          "folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+          "matchCount": 2
+        }
+      ],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          23213,
+          22223,
+          22202,
+          16245,
+          16256,
+          15808,
+          19757,
+          22007,
+          22003,
+          17197
+        ],
+        "prodOn": [
+          23213,
+          22223,
+          22202,
+          16245,
+          16256,
+          15808,
+          19757,
+          22007,
+          22003,
+          17197
+        ],
+        "legacyOff": [
+          23213,
+          22223,
+          22003
+        ],
+        "legacyOn": [
+          23213,
+          22223,
+          22003
+        ]
+      }
+    },
+    {
+      "id": "memory-leak-remediation",
+      "text": "memory leak remediation telemetry process verification cli dispatch containment deep loop locks",
+      "hubFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 4,
+      "resolvedTargetIds": [
+        5190,
+        5198,
+        5203,
+        5208
+      ],
+      "unresolvedTargets": [],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.75,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.75,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          5203,
+          5198,
+          5208,
+          5204,
+          5192,
+          5197,
+          5194,
+          5196,
+          5202,
+          5199
+        ],
+        "prodOn": [
+          5203,
+          5198,
+          5208,
+          5204,
+          5192,
+          5197,
+          5194,
+          5196,
+          5202,
+          5199
+        ],
+        "legacyOff": [
+          5203,
+          5208,
+          23091
+        ],
+        "legacyOn": [
+          5203,
+          5208,
+          23091
+        ]
+      }
+    },
+    {
+      "id": "hybrid-rag-fusion-epic",
+      "text": "hybrid rag fusion indexing normalization constitutional learn refactor ux hooks automation",
+      "hubFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 2,
+      "resolvedTargetIds": [
+        7554,
+        7572
+      ],
+      "unresolvedTargets": [
+        {
+          "folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
+          "matchCount": 2
+        },
+        {
+          "folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/004-ux-hooks-automation",
+          "matchCount": 2
+        }
+      ],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          7572,
+          7579,
+          7602,
+          7569,
+          21360,
+          7571,
+          7576,
+          7565,
+          7559,
+          4035
+        ],
+        "prodOn": [
+          7572,
+          7579,
+          7602,
+          7569,
+          21360,
+          7571,
+          7576,
+          7565,
+          7559,
+          4035
+        ],
+        "legacyOff": [
+          7572,
+          7499,
+          21350
+        ],
+        "legacyOn": [
+          7572,
+          7499,
+          21350
+        ]
+      }
+    },
+    {
+      "id": "compact-code-graph-hooks",
+      "text": "compact code graph precompact hook session start stop hook tracking command agent alignment",
+      "hubFolder": "system-spec-kit/z_archive/024-compact-code-graph",
+      "targetFolderCount": 4,
+      "resolvedTargetCount": 4,
+      "resolvedTargetIds": [
+        8522,
+        8530,
+        8539,
+        8550
+      ],
+      "unresolvedTargets": [],
+      "prodByteIdentical": true,
+      "prodAppendMeta": {
+        "multihop": null,
+        "laneChampionBackfill": null
+      },
+      "legacyAppendMeta": {
+        "appendedRowsSurviving": 0,
+        "appendedSources": []
+      },
+      "resultCounts": {
+        "prodOff": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "prodOn": {
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "legacyOff": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "legacyOn": {
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "completeRecall": {
+        "prodOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "prodOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOff": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        },
+        "legacyOn": {
+          "k3": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k5": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k8": {
+            "mean": 0,
+            "stdev": 0
+          }
+        }
+      },
+      "sampleIds": {
+        "prodOff": [
+          21877,
+          21530,
+          4070,
+          5865,
+          4113,
+          4062,
+          4064,
+          11291,
+          4066,
+          4069
+        ],
+        "prodOn": [
+          21877,
+          21530,
+          4070,
+          5865,
+          4113,
+          4062,
+          4064,
+          11291,
+          4066,
+          4069
+        ],
+        "legacyOff": [
+          23212,
+          8565,
+          21492
+        ],
+        "legacyOn": [
+          23212,
+          8565,
+          21492
+        ]
+      }
+    }
+  ]
+}

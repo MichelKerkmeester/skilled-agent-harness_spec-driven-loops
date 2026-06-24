@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion",
+  "description": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have neve",
+  "keywords": [
+    "skill",
+    "advisor",
+    "ships",
+    "rrf-fusion",
+    "path",
+    "two",
+    "routing",
+    "guards",
+    "built",
+    "pass",
+    "unit",
+    "tests",
+    "byte-identical",
+    "neve"
+  ],
+  "lastUpdated": "2026-06-24T04:51:32.407Z",
+  "specId": "007",
+  "folderSlug": "advisor-rrf-fusion",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "007-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

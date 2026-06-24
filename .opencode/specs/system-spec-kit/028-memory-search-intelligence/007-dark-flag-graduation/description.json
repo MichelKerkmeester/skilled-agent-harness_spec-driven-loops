@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "description": "This cycle added 41 feature flags",
+  "keywords": [
+    "cycle",
+    "added",
+    "feature",
+    "flags"
+  ],
+  "lastUpdated": "2026-06-24T05:06:06.235Z",
+  "specId": "007",
+  "folderSlug": "dark-flag-graduation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

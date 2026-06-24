@@ -1,0 +1,75 @@
+{
+  "generatedFrom": "recon-gate-and-writes.mjs",
+  "generatedAt": "2026-06-24T04:57:39.428Z",
+  "subject": "Save-reconsolidation gate behavior and destructive merge/deprecate writes on an isolated in-memory database with the production schema.",
+  "flagUnderTest": "SPECKIT_RECONSOLIDATION_ENABLED (orchestrator core gate SPECKIT_RECONSOLIDATION exercised here)",
+  "bands": {
+    "MERGE_THRESHOLD": 0.88,
+    "CONFLICT_THRESHOLD": 0.75
+  },
+  "totalChecks": 12,
+  "passedChecks": 12,
+  "allPassed": true,
+  "checks": [
+    {
+      "name": "GATE-OFF reconsolidate returns null when SPECKIT_RECONSOLIDATION=false",
+      "pass": true,
+      "detail": "result=null"
+    },
+    {
+      "name": "CHECKPOINT absent → gate false",
+      "pass": true,
+      "detail": "absent=false"
+    },
+    {
+      "name": "CHECKPOINT present for folder → gate true",
+      "pass": true,
+      "detail": "present=true"
+    },
+    {
+      "name": "CHECKPOINT folder-scoped row does not satisfy a different folder",
+      "pass": true,
+      "detail": "otherFolder=false"
+    },
+    {
+      "name": "MERGE-WRITE routes to merge at sim >= MERGE_THRESHOLD",
+      "pass": true,
+      "detail": "action=merge"
+    },
+    {
+      "name": "MERGE-WRITE creates a supersedes edge (predecessor retired)",
+      "pass": true,
+      "detail": "supersedesEdges=1"
+    },
+    {
+      "name": "MERGE-WRITE merged row keeps the old line and gains the new line",
+      "pass": true,
+      "detail": "newLine=true oldLine=true"
+    },
+    {
+      "name": "DEPRECATE-WRITE routes to conflict in the [CONFLICT, MERGE) band",
+      "pass": true,
+      "detail": "action=conflict"
+    },
+    {
+      "name": "DEPRECATE-WRITE marks the existing distinct row deprecated",
+      "pass": true,
+      "detail": "tier=deprecated"
+    },
+    {
+      "name": "DEPRECATE-WRITE creates a supersedes edge",
+      "pass": true,
+      "detail": "supersedesEdges=1"
+    },
+    {
+      "name": "COMPLEMENT routes to complement below CONFLICT_THRESHOLD",
+      "pass": true,
+      "detail": "action=complement"
+    },
+    {
+      "name": "COMPLEMENT leaves the existing row active (no destructive write)",
+      "pass": true,
+      "detail": "tier=normal"
+    }
+  ]
+}

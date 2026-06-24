@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval class channel weights",
+      "SPECKIT_RETRIEVAL_CLASS_ROUTING benchmark",
+      "single-hop channel suppression precision",
+      "graph degree channel suppression single-hop",
+      "retrieval class routing graduation verdict",
+      "retrieval class channel weights benchmark plan",
+      "SPECKIT_RETRIEVAL_CLASS_ROUTING prod path harness",
+      "single-hop precision multi-hop recall harness",
+      "read-only corpus backup retrieval class",
+      "channel suppression grounded precision delta",
+      "retrieval class channel weights tasks",
+      "SPECKIT_RETRIEVAL_CLASS_ROUTING benchmark tasks"
+    ],
+    "key_topics": [
+      "retrieval",
+      "class",
+      "channel",
+      "weights",
+      "benchmark",
+      "single-hop",
+      "suppression",
+      "precision",
+      "graph",
+      "degree",
+      "routing",
+      "graduation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/retrieval-class-routing-benchmark.mjs",
+      "results/metrics.json",
+      "lib/search/query-router.ts",
+      "lib/search/retrieval-class-classifier.ts",
+      "lib/search/search-flags.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval-class-routing-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/retrieval-class-routing-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-class-classifier.ts",
+        "kind": "code",
+        "path": "lib/search/retrieval-class-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Channel Weights Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
+    "created_at": "2026-06-24T04:58:22.472Z",
+    "last_save_at": "2026-06-24T04:59:45.788Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d1fbd4ec88e0716d18970639c843c3b57a6df47aad7741d0d02cbb7ad831a0e9",
+    "source_doc_hashes": {
+      "spec.md": "e397dd63b602d788a64582175d145305fa4f1706a156e27d7445f13ed296bb73",
+      "plan.md": "59cf0b0d2df475d019ca26beee5a35191d9f9c488e05484a40a3c8da8e8ecd6b",
+      "tasks.md": "239ee28c84d2a78f39c6b46373d13787f08c955f56050add6994626545da3910",
+      "checklist.md": "b2226f9647e1be65fbb2692df2dec668b6d953208537d928af0821a0e06330bd",
+      "implementation-summary.md": "d304a835768f495e1e3b6adab126b7a24a8835fa0a761d6b2f7d8664b282b048"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

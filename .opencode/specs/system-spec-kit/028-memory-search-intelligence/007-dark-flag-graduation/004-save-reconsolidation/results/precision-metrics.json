@@ -1,0 +1,158 @@
+{
+  "generatedFrom": "recon-precision-benchmark.mjs",
+  "generatedAt": "2026-06-24T04:57:40.981Z",
+  "subject": "Save-time near-duplicate merge precision and recall preservation, measured against the production determineAction band and mergeContent line-union over a read-only corpus backup.",
+  "flagUnderTest": "SPECKIT_RECONSOLIDATION_ENABLED",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-recon-precision-0eaPJu/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-recon-precision-0eaPJu/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "bands": {
+    "MERGE_THRESHOLD": 0.88,
+    "CONFLICT_THRESHOLD": 0.75
+  },
+  "fixture": {
+    "duplicatePairs": 32,
+    "distinctPairs": 5888,
+    "duplicateRule": "two active rows sharing one content_hash (exact textual duplicates, should merge)",
+    "distinctRule": "two active rows in one spec folder with a different title and a different content_hash (distinct documents, should not merge)",
+    "foldersSampled": 60
+  },
+  "similarity": {
+    "duplicate": {
+      "min": 1,
+      "median": 1,
+      "max": 1
+    },
+    "distinct": {
+      "p50": 0.8421,
+      "p90": 0.9209,
+      "p95": 0.9323,
+      "p99": 0.9542,
+      "max": 0.9729
+    }
+  },
+  "bandRouting": {
+    "duplicate": {
+      "merge": 32,
+      "conflict": 0,
+      "complement": 0
+    },
+    "distinct": {
+      "merge": 1816,
+      "conflict": 2721,
+      "complement": 1351
+    }
+  },
+  "precision": {
+    "mergePrecision": 0.0173,
+    "mergeTruePositives": 32,
+    "mergeFalsePositives": 1816,
+    "conflictPrecision": 0,
+    "conflictTruePositives": 0,
+    "conflictFalsePositives": 2721,
+    "duplicateMergeRecall": 1
+  },
+  "recallPreservation": {
+    "duplicateLineLoss": 0,
+    "duplicateLineTotal": 2414,
+    "duplicateLinePreservation": 1,
+    "distinctLineLoss": 0,
+    "distinctLineTotal": 545278,
+    "distinctLinePreservation": 1,
+    "note": "mergeContent is a line-union, so every non-empty incoming line either already exists or is appended. The information loss from a merge is NOT line truncation, it is the deprecation of the predecessor row and the collapse of two distinct documents into one record. Line preservation = 1.0 does not make a wrong merge safe."
+  },
+  "separation": {
+    "safeThresholdForZeroDistinctFalsePositive": 0.9729,
+    "duplicateRecallAtSafeThreshold": 1,
+    "note": "The threshold that excludes every distinct pair sits above the distinct-pair max. The MERGE_THRESHOLD of 0.88 sits well inside the distinct-pair distribution."
+  },
+  "examples": {
+    "distinctMergeFalsePositives": [
+      {
+        "ida": 9935,
+        "idb": 9936,
+        "similarity": 0.9729,
+        "titleA": "Implementation Plan: 101/003 Deep AI Council Graph Support",
+        "titleB": "Feature Specification: 101/003 Deep AI Council Graph Support",
+        "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+      },
+      {
+        "ida": 9935,
+        "idb": 10538,
+        "similarity": 0.9729,
+        "titleA": "Implementation Plan: 101/003 Deep AI Council Graph Support",
+        "titleB": "Feature Specification: 101/003 Deep AI Council Graph Support",
+        "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+      },
+      {
+        "ida": 9936,
+        "idb": 10537,
+        "similarity": 0.9729,
+        "titleA": "Feature Specification: 101/003 Deep AI Council Graph Support",
+        "titleB": "Implementation Plan: 101/003 Deep AI Council Graph Support",
+        "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+      },
+      {
+        "ida": 10537,
+        "idb": 10538,
+        "similarity": 0.9729,
+        "titleA": "Implementation Plan: 101/003 Deep AI Council Graph Support",
+        "titleB": "Feature Specification: 101/003 Deep AI Council Graph Support",
+        "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+      },
+      {
+        "ida": 10210,
+        "idb": 10211,
+        "similarity": 0.9721,
+        "titleA": "Implementation Summary: 010 — Council Graph CLI Migration",
+        "titleB": "Implementation Plan: 010 — Council Graph CLI Migration",
+        "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration"
+      },
+      {
+        "ida": 18595,
+        "idb": 18596,
+        "similarity": 0.9683,
+        "titleA": "Implementation Summary: Purge the cli-gemini executor everywhere outsi",
+        "titleB": "Implementation Plan: Purge the cli-gemini executor everywhere outside ",
+        "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/003-cli-gemini-full-purge"
+      },
+      {
+        "ida": 18596,
+        "idb": 18932,
+        "similarity": 0.9683,
+        "titleA": "Implementation Plan: Purge the cli-gemini executor everywhere outside ",
+        "titleB": "Implementation Summary: Purge the cli-gemini executor everywhere outsi",
+        "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/003-cli-gemini-full-purge"
+      },
+      {
+        "ida": 18589,
+        "idb": 18590,
+        "similarity": 0.9678,
+        "titleA": "Implementation Summary: Deprecate project .gemini runtime surface",
+        "titleB": "Implementation Plan: Deprecate project .gemini runtime surface",
+        "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion"
+      },
+      {
+        "ida": 18590,
+        "idb": 18930,
+        "similarity": 0.9678,
+        "titleA": "Implementation Plan: Deprecate project .gemini runtime surface",
+        "titleB": "Implementation Summary: Deprecate project .gemini runtime surface",
+        "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion"
+      },
+      {
+        "ida": 10211,
+        "idb": 10212,
+        "similarity": 0.9678,
+        "titleA": "Implementation Plan: 010 — Council Graph CLI Migration",
+        "titleB": "Feature Specification: 010 — Council Graph CLI Migration",
+        "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration"
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "benchmark": "code-graph edge-staleness reverse-dependency force-parse rebind",
+  "flag": "SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE",
+  "generatedAt": "2026-06-24T04:52:24.513Z",
+  "safety": "fresh throwaway workspace and SQLite db per case under OS temp, live graph never opened",
+  "summary": {
+    "totalCases": 3,
+    "reboundCorrectWithFlagOn": 3,
+    "reboundCorrectnessRate": 1,
+    "discriminatingCases": 1,
+    "importerUnchangedCases": 1,
+    "importerUnchangedDiscriminating": 1
+  },
+  "cases": [
+    {
+      "id": "rename-function",
+      "label": "pure rename of an imported function",
+      "edgeType": "IMPORTS",
+      "importerUnchanged": false,
+      "on": {
+        "flag": "on",
+        "filesIndexed": 2,
+        "filesSkipped": 0,
+        "baselineEdge": {
+          "targetName": "getThing",
+          "targetKind": "function",
+          "targetId": "f281659a1e1afedf",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-YeMIBI/workspace/dep.ts"
+        },
+        "resultEdge": {
+          "targetName": "getThingV2",
+          "targetKind": "function",
+          "targetId": "6261c6c762560fc6",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-YeMIBI/workspace/dep.ts"
+        },
+        "reboundCorrect": true
+      },
+      "off": {
+        "flag": "off",
+        "filesIndexed": 2,
+        "filesSkipped": 0,
+        "baselineEdge": {
+          "targetName": "getThing",
+          "targetKind": "function",
+          "targetId": "fbe3e1a35edfa543",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-DCcrUD/workspace/dep.ts"
+        },
+        "resultEdge": {
+          "targetName": "getThingV2",
+          "targetKind": "function",
+          "targetId": "a9342d747ea42a27",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-DCcrUD/workspace/dep.ts"
+        },
+        "reboundCorrect": true
+      },
+      "discriminates": false
+    },
+    {
+      "id": "kind-flip",
+      "label": "imported symbol changes kind, importer unchanged",
+      "edgeType": "IMPORTS",
+      "importerUnchanged": true,
+      "on": {
+        "flag": "on",
+        "filesIndexed": 2,
+        "filesSkipped": 0,
+        "baselineEdge": {
+          "targetName": "foo",
+          "targetKind": "function",
+          "targetId": "a01497459779154f",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-oqEds6/workspace/dep.ts"
+        },
+        "resultEdge": {
+          "targetName": "foo",
+          "targetKind": "variable",
+          "targetId": "9b6fbc6a0965b241",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-oqEds6/workspace/dep.ts"
+        },
+        "reboundCorrect": true
+      },
+      "off": {
+        "flag": "off",
+        "filesIndexed": 1,
+        "filesSkipped": 1,
+        "baselineEdge": {
+          "targetName": "foo",
+          "targetKind": "function",
+          "targetId": "b313f624aef0c271",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-off-lg2yYH/workspace/dep.ts"
+        },
+        "resultEdge": null,
+        "reboundCorrect": false
+      },
+      "discriminates": true
+    },
+    {
+      "id": "move-file",
+      "label": "imported function moves to a new file, importer re-pointed",
+      "edgeType": "IMPORTS",
+      "importerUnchanged": false,
+      "on": {
+        "flag": "on",
+        "filesIndexed": 3,
+        "filesSkipped": 0,
+        "baselineEdge": {
+          "targetName": "moved",
+          "targetKind": "function",
+          "targetId": "e5056b28d55090f7",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-k26TJD/workspace/dep.ts"
+        },
+        "resultEdge": {
+          "targetName": "moved",
+          "targetKind": "function",
+          "targetId": "b498b8852000637c",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-k26TJD/workspace/relocated.ts"
+        },
+        "reboundCorrect": true
+      },
+      "off": {
+        "flag": "off",
+        "filesIndexed": 3,
+        "filesSkipped": 0,
+        "baselineEdge": {
+          "targetName": "moved",
+          "targetKind": "function",
+          "targetId": "f278c1bf23861612",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-oB3RXX/workspace/dep.ts"
+        },
+        "resultEdge": {
+          "targetName": "moved",
+          "targetKind": "function",
+          "targetId": "ae3c9057109aebca",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-oB3RXX/workspace/relocated.ts"
+        },
+        "reboundCorrect": true
+      },
+      "discriminates": false
+    }
+  ]
+}

@@ -1,0 +1,643 @@
+{
+  "generatedFrom": "retrieval-class-routing-benchmark.mjs",
+  "generatedAt": "2026-06-24T04:52:11.322Z",
+  "subject": "Retrieval-class channel suppression (SPECKIT_RETRIEVAL_CLASS_ROUTING) OFF vs ON on the production path",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-rcr-eval-TF9sjs/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-rcr-eval-TF9sjs/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "pipelineLimit": 200,
+  "precisionK": 1,
+  "recallK": 10,
+  "pathSource": "executePipeline under shipped default flags, with only SPECKIT_RETRIEVAL_CLASS_ROUTING toggled OFF then ON per query.",
+  "channelSource": "routeQuery channel set per query under each flag state, the production routing decision Stage 1 consumes.",
+  "precisionRule": "single-hop precision@1 = the rank-1 result spec folder is one of the labeled target folders (startsWith match).",
+  "recallRule": "multi-hop recall@K = the fraction of labeled relevant folders present in the top-K result set (startsWith match).",
+  "byteIdentityRule": "with the flag OFF the routing and the top-K equal the pre-flag baseline; multi-hop queries are never single-hop so their channel set and top-K must be identical OFF vs ON.",
+  "notes": [
+    "The five-class classifier runs always-on. The flag gates only the SingleHop graph and degree suppression.",
+    "A single-hop query that already routes without graph sees no flag effect; the effect is on single-hop queries where graph was otherwise preserved.",
+    "A multi-hop query is classified MultiHop or Neutral, never SingleHop, so the suppression short-circuit never fires for it."
+  ],
+  "summary": {
+    "singleHopCount": 10,
+    "multiHopCount": 8,
+    "singleHopPrecision1Off": 0.9,
+    "singleHopPrecision1On": 0.8,
+    "singleHopPrecision1Delta": -0.1,
+    "multiHopRecallKOff": 0.75,
+    "multiHopRecallKOn": 0.75,
+    "multiHopRecallKDelta": 0,
+    "singleHopChannelSuppressedIds": [
+      "sh-evidence-gap-detector",
+      "sh-hybrid-search-bm25",
+      "sh-skill-advisor-daemon",
+      "sh-gap-threshold-calibration",
+      "sh-relevance-aware-gap",
+      "sh-conflict-rerank-routing",
+      "sh-evidence-gap-checklist",
+      "sh-complexity-router-spec"
+    ],
+    "singleHopRank1ChangedIds": [
+      "sh-skill-advisor-daemon"
+    ],
+    "singleHopTopKChangedIds": [
+      "sh-evidence-gap-detector",
+      "sh-hybrid-search-bm25",
+      "sh-skill-advisor-daemon",
+      "sh-relevance-aware-gap",
+      "sh-conflict-rerank-routing",
+      "sh-evidence-gap-checklist",
+      "sh-complexity-router-spec"
+    ],
+    "multiHopAllChannelsIdentical": true,
+    "multiHopAllTopKIdentical": true
+  },
+  "singleHop": [
+    {
+      "id": "sh-evidence-gap-detector",
+      "text": "find the evidence gap detector spec",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 23770,
+      "rank1IdOn": 23770,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-retrieval-class-routing",
+      "text": "find the retrieval class routing spec",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "Entity",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "graphSuppressedByFlag": false,
+      "degreeSuppressedByFlag": false,
+      "rank1IdOff": 23271,
+      "rank1IdOn": 23271,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": false,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-hybrid-search-bm25",
+      "text": "open the hybrid search bm25 fusion spec",
+      "targetFolders": [
+        "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 4811,
+      "rank1IdOn": 4811,
+      "rank1FolderOff": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+      "rank1FolderOn": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-skill-advisor-daemon",
+      "text": "find the skill advisor daemon spec",
+      "targetFolders": [
+        "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 3843,
+      "rank1IdOn": 17850,
+      "rank1FolderOff": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command",
+      "rank1FolderOn": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+      "precision1Off": 1,
+      "precision1On": 0,
+      "rank1Changed": true,
+      "topKChanged": true,
+      "resultCountOff": 23,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-gap-threshold-calibration",
+      "text": "locate the gap threshold calibration benchmark",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 23769,
+      "rank1IdOn": 23769,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": false,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    },
+    {
+      "id": "sh-relevance-aware-gap",
+      "text": "find the relevance aware evidence gap spec",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 23770,
+      "rank1IdOn": 23770,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-conflict-rerank-routing",
+      "text": "show me the conflict rerank query routing spec",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 23450,
+      "rank1IdOn": 23450,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 21,
+      "resultCountOn": 21
+    },
+    {
+      "id": "sh-retrieval-class-tasks",
+      "text": "where is the retrieval class routing tasks doc",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "Entity",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "graphSuppressedByFlag": false,
+      "degreeSuppressedByFlag": false,
+      "rank1IdOff": 23273,
+      "rank1IdOn": 23273,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": false,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "sh-evidence-gap-checklist",
+      "text": "get the evidence gap detector checklist",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 23769,
+      "rank1IdOn": 23769,
+      "rank1FolderOff": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+      "rank1FolderOn": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+      "precision1Off": 1,
+      "precision1On": 1,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    },
+    {
+      "id": "sh-complexity-router-spec",
+      "text": "which spec defines the complexity router",
+      "targetFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "SingleHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25"
+      ],
+      "graphSuppressedByFlag": true,
+      "degreeSuppressedByFlag": true,
+      "rank1IdOff": 6128,
+      "rank1IdOn": 6128,
+      "rank1FolderOff": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+      "rank1FolderOn": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+      "precision1Off": 0,
+      "precision1On": 0,
+      "rank1Changed": false,
+      "topKChanged": true,
+      "resultCountOff": 23,
+      "resultCountOn": 20
+    }
+  ],
+  "multiHop": [
+    {
+      "id": "mh-gap-overcap-cause",
+      "text": "why did the gap detector over-cap strong queries",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "mh-class-router-suppress",
+      "text": "how does the retrieval class router suppress channels",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    },
+    {
+      "id": "mh-router-hybrid-dependency",
+      "text": "trace the dependency between query router and hybrid search",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+        "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "complex",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "mh-zscore-vs-relevance",
+      "text": "compare the z-score and relevance-aware gap detectors",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+        "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    },
+    {
+      "id": "mh-degree-channel-impact",
+      "text": "impact of the degree channel on single-hop precision",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 20,
+      "resultCountOn": 20
+    },
+    {
+      "id": "mh-entity-density-graph",
+      "text": "the relationship between entity density and graph preservation",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "moderate",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 0,
+      "recallKOn": 0,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    },
+    {
+      "id": "mh-complexity-skip-graph",
+      "text": "why does the complexity router skip the graph channel",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "complex",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 1,
+      "recallKOn": 1,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 21,
+      "resultCountOn": 21
+    },
+    {
+      "id": "mh-dark-flag-graduation",
+      "text": "how do the dark flags get graduated to default on",
+      "relevantFolders": [
+        "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation"
+      ],
+      "retrievalClass": "MultiHop",
+      "tier": "complex",
+      "channelsOff": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsOn": [
+        "vector",
+        "fts",
+        "bm25",
+        "graph",
+        "degree"
+      ],
+      "channelsIdentical": true,
+      "recallKOff": 0,
+      "recallKOn": 0,
+      "topKChanged": false,
+      "topKIdentical": true,
+      "resultCountOff": 23,
+      "resultCountOn": 23
+    }
+  ]
+}

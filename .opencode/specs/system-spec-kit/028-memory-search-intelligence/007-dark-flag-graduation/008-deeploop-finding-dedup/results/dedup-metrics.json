@@ -1,0 +1,68 @@
+{
+  "benchmark": "fanout-near-dup-dedup",
+  "flag": "SPECKIT_FANOUT_NEAR_DUP_DEDUP",
+  "mergeModule": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+  "generatedAt": "2026-06-24",
+  "research": {
+    "name": "research",
+    "totalSourceFindings": 9,
+    "groundTruthDistinctClusters": 5,
+    "nearDupClusters": 3,
+    "distinctSingletonClusters": 2,
+    "off": {
+      "mergedCount": 9,
+      "byteIdenticalAcrossReruns": true
+    },
+    "on": {
+      "mergedCount": 5,
+      "idealCount": 5
+    },
+    "noiseReducedRecords": 4,
+    "dedup": {
+      "collapsedGroups": 3,
+      "truePositiveCollapses": 3,
+      "falsePositiveCollapses": 0,
+      "dedupPrecision": 1
+    },
+    "distinctRecall": {
+      "distinctClustersExpected": 2,
+      "distinctClustersPreserved": 2,
+      "distinctFindingRecall": 1
+    },
+    "severityPreservedOnCollapse": null
+  },
+  "review": {
+    "name": "review",
+    "totalSourceFindings": 8,
+    "groundTruthDistinctClusters": 5,
+    "nearDupClusters": 2,
+    "distinctSingletonClusters": 3,
+    "off": {
+      "mergedCount": 8,
+      "byteIdenticalAcrossReruns": true
+    },
+    "on": {
+      "mergedCount": 5,
+      "idealCount": 5
+    },
+    "noiseReducedRecords": 3,
+    "dedup": {
+      "collapsedGroups": 2,
+      "truePositiveCollapses": 2,
+      "falsePositiveCollapses": 0,
+      "dedupPrecision": 1
+    },
+    "distinctRecall": {
+      "distinctClustersExpected": 3,
+      "distinctClustersPreserved": 3,
+      "distinctFindingRecall": 1
+    },
+    "severityPreservedOnCollapse": true
+  },
+  "aggregate": {
+    "pooledDedupPrecision": 1,
+    "pooledDistinctFindingRecall": 1,
+    "offByteIdentical": true,
+    "totalNoiseReducedRecords": 7
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-23T13:23:29.882Z",
+  "generated": "2026-06-24T04:57:08.208Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -637,7 +637,7 @@
         "push",
         "only"
       ],
-      "lastUpdated": "2026-06-23T12:39:11.491Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "barter/005-notifications-system/001-research",
@@ -654,7 +654,69 @@
         "channel",
         "freq"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
+    },
+    {
+      "specFolder": "barter/005-notifications-system/002-grounded-research",
+      "description": "The completed `001-research` blueprint is comprehensive but carries two self-declared weaknesses: it was written without reading the Barter app code (",
+      "keywords": [
+        "completed",
+        "001-research",
+        "blueprint",
+        "comprehensive",
+        "carries",
+        "two",
+        "self-declared",
+        "weaknesses",
+        "written",
+        "without",
+        "reading",
+        "barter",
+        "app",
+        "code"
+      ],
+      "lastUpdated": "2026-06-23T16:20:47.230Z"
+    },
+    {
+      "specFolder": "barter/005-notifications-system/003-notification-logic",
+      "description": "The 43-notification scaffold (`notification-scaffold.md`) enumerates the catalog — categories, events, channels, caps, ladders — but stops short of th",
+      "keywords": [
+        "43-notification",
+        "scaffold",
+        "notification-scaffold",
+        "enumerates",
+        "catalog",
+        "categories",
+        "events",
+        "channels",
+        "caps",
+        "ladders",
+        "stops",
+        "short"
+      ],
+      "lastUpdated": "2026-06-23T17:50:30.203Z"
+    },
+    {
+      "specFolder": "barter/005-notifications-system/004-design-deepening",
+      "description": "`003-notification-logic` produced build-ready decision logic — the global pipeline, gate pseudocode + data contracts, cap/dedupe algorithm, preference",
+      "keywords": [
+        "003-notification-logic",
+        "produced",
+        "build-ready",
+        "decision",
+        "logic",
+        "global",
+        "pipeline",
+        "gate",
+        "pseudocode",
+        "data",
+        "contracts",
+        "cap",
+        "dedupe",
+        "algorithm",
+        "preference"
+      ],
+      "lastUpdated": "2026-06-23T18:39:01.574Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
@@ -2301,7 +2363,7 @@
         "skill",
         "field"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/002-derivation-engine",
@@ -2316,7 +2378,7 @@
         "infeasible",
         "unsafe"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
@@ -2338,7 +2400,7 @@
         "changelog",
         "read"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
@@ -2359,7 +2421,7 @@
         "title",
         "description"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
@@ -2376,7 +2438,7 @@
         "back",
         "version"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
@@ -30466,7 +30528,7 @@
         "retrieval",
         "surfaces"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
@@ -32509,7 +32571,55 @@
         "memory-search",
         "pipeline"
       ],
-      "lastUpdated": "2026-06-23T13:23:29.882Z"
+      "lastUpdated": "2026-06-23T14:26:42.416Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark",
+      "description": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
+      "keywords": [
+        "fix",
+        "flag",
+        "speckitdeterministicranking",
+        "ships",
+        "default-off"
+      ],
+      "lastUpdated": "2026-06-23T15:21:27.760Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+      "description": "The Stage-4 evidence-gap detector flags a query as a gap when its Z-score `(topScore - mean) / stdDev` falls below a default threshold of 1.3",
+      "keywords": [
+        "stage-4",
+        "evidence-gap",
+        "detector",
+        "flags",
+        "query",
+        "gap",
+        "z-score",
+        "topscore",
+        "mean",
+        "stddev",
+        "falls",
+        "default",
+        "threshold"
+      ],
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
+      "description": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
+      "keywords": [
+        "043",
+        "benchmark",
+        "proved",
+        "z-score",
+        "evidence-gap",
+        "detector",
+        "measures",
+        "peakedness",
+        "relevance"
+      ],
+      "lastUpdated": "2026-06-23T17:28:14.196Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
@@ -32602,6 +32712,163 @@
         "findings"
       ],
       "lastUpdated": "2026-06-23T03:49:58.833Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+      "description": "This cycle added 41 feature flags",
+      "keywords": [
+        "cycle",
+        "added",
+        "feature",
+        "flags"
+      ],
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends",
+      "description": "Two finished search features ship dark behind default-off flags with no measured verdict",
+      "keywords": [
+        "two",
+        "finished",
+        "search",
+        "features",
+        "ship",
+        "dark",
+        "behind",
+        "default-off",
+        "flags",
+        "measured",
+        "verdict"
+      ],
+      "lastUpdated": "2026-06-24T04:55:30.998Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
+      "description": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
+      "keywords": [
+        "speckitretrievalclassrouting",
+        "built",
+        "default-off",
+        "never",
+        "measured",
+        "against",
+        "real",
+        "corpus",
+        "production",
+        "path"
+      ],
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger",
+      "description": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
+      "keywords": [
+        "028",
+        "packet",
+        "ships",
+        "true-citation",
+        "emitter",
+        "dark",
+        "behind",
+        "default-off",
+        "flag"
+      ],
+      "lastUpdated": "2026-06-24T04:52:15.610Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation",
+      "description": "`SPECKITRECONSOLIDATIONENABLED` is the opt-in gate that lets the save flow run the destructive `reconsolidate()` path",
+      "keywords": [
+        "speckitreconsolidationenabled",
+        "opt-in",
+        "gate",
+        "lets",
+        "save",
+        "flow",
+        "run",
+        "destructive",
+        "reconsolidate",
+        "path"
+      ],
+      "lastUpdated": "2026-06-24T04:57:08.208Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
+      "description": "The code-graph impact path shipped a bounded seeded personalized PageRank mechanism behind the default-off flag `SPECKITCODEGRAPHSEEDEDPPRRANKING` in",
+      "keywords": [
+        "code-graph",
+        "impact",
+        "path",
+        "shipped",
+        "bounded",
+        "seeded",
+        "personalized",
+        "pagerank",
+        "mechanism",
+        "behind",
+        "default-off",
+        "flag",
+        "speckitcodegraphseededpprranking"
+      ],
+      "lastUpdated": "2026-06-24T04:55:07.954Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/006-codegraph-edge-lifecycle",
+      "description": "Three code-graph edge-lifecycle capabilities ship finished but dark behind default-off flags with no measured verdict",
+      "keywords": [
+        "three",
+        "code-graph",
+        "edge-lifecycle",
+        "capabilities",
+        "ship",
+        "finished",
+        "dark",
+        "behind",
+        "default-off",
+        "flags",
+        "measured",
+        "verdict"
+      ],
+      "lastUpdated": "2026-06-24T04:51:47.652Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion",
+      "description": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have neve",
+      "keywords": [
+        "skill",
+        "advisor",
+        "ships",
+        "rrf-fusion",
+        "path",
+        "two",
+        "routing",
+        "guards",
+        "built",
+        "pass",
+        "unit",
+        "tests",
+        "byte-identical",
+        "neve"
+      ],
+      "lastUpdated": "2026-06-24T04:51:32.407Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",
+      "description": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
+      "keywords": [
+        "deep-loop",
+        "fan-out",
+        "merge",
+        "ships",
+        "three",
+        "finished",
+        "default-off",
+        "capabilities",
+        "behind",
+        "measured",
+        "verdict"
+      ],
+      "lastUpdated": "2026-06-24T04:53:28.204Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",

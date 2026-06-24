@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop finding dedup benchmark",
+      "fanout near dup dedup graduation",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP benchmark",
+      "lag ceiling progress heartbeat gauges",
+      "fanout finding noise dedup precision recall",
+      "fanout near dup dedup harness",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP plan",
+      "lag ceiling progress heartbeat harness",
+      "fanout merge exports benchmark plan",
+      "fanout near dup dedup tasks",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP tasks",
+      "lag ceiling progress heartbeat tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "finding",
+      "dedup",
+      "benchmark",
+      "fanout",
+      "near",
+      "dup",
+      "graduation",
+      "lag",
+      "ceiling",
+      "progress"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/dedup-benchmark.mjs",
+      "results/dedup-metrics.json",
+      "scripts/gauge-benchmark.mjs",
+      "results/gauge-metrics.json",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "dedup-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/dedup-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dedup-metrics.json",
+        "kind": "config",
+        "path": "results/dedup-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "gauge-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/gauge-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gauge-metrics.json",
+        "kind": "config",
+        "path": "results/gauge-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Finding Dedup Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
+    "created_at": "2026-06-24T04:53:47.796Z",
+    "last_save_at": "2026-06-24T04:53:47.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f370aff49f694c5bde25cb41f2dabb40809f6a90ce7ffd5b83278e545b597722",
+    "source_doc_hashes": {
+      "spec.md": "783c8a7ab39e49c766f2681d8a56f00d78354a44be860fa3279fe2f1d4c8d2a8",
+      "plan.md": "4ab13db6920d8134fba5fcd28701c3c4d016999e26a9cf4e64ba1aa6d3b30a58",
+      "tasks.md": "eb5cde81a69e2ec0375a9813ac5c5dc2cbe79c52a88320119279fc2472c7b5ee",
+      "checklist.md": "02172f25706f68ee095e8bc7e5b3d0b2837d2cf3f0d5c2725a5d26822e59b9ae",
+      "implementation-summary.md": "7b432f22f90c7acc9232acd57f232410dedd820015580d4145d077c48ab0b0cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
