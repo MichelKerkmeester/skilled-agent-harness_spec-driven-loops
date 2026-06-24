@@ -6,7 +6,8 @@
   "children_ids": [
     "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/001-codegraph-defaults-bitemporal",
     "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/002-deeploop-gauges-dedup-scale",
-    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract"
+    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract",
+    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/003-search-append-citation-probe"
   ],
   "manual": {
     "depends_on": [],
@@ -38,12 +39,22 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-codegraph-defaults-bitemporal/spec.md",
+      "002-deeploop-gauges-dedup-scale/spec.md",
+      "003-search-append-citation-probe/spec.md",
+      "004-advisor-penalty-contract/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -54,47 +65,41 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Parent Packet",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "passing",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Implements the production-readiness follow-ups the 009 pre-graduation validation identified, so each dark-flag winner can earn its flip on evidence rather than on a conditional verdict. The code-graph track sets a sensible degree-cap default and wires the bitemporal close-and-insert writer into the reindex path with a live integration test. The deep-loop track sets production defaults for the lag ceiling and progress heartbeat and proves they inform without flooding, plus a scale-test for the finding dedup beyond its 17 synthetic records. The search track adds an append-exempt path so tail-app",
+    "causal_summary": "The 009 validation confirmed the dark-flag winners are correct and byte-identical when off, but qualified the graduate-ready posture: the bitemporal writer is unwired, the staleness degree cap and the deep-loop gauges default to off, the dedup was only proven on synthetic records, and the cut self-recommendation guard left an undocumented implicit penalty as the sole defense",
     "created_at": "2026-06-24T07:59:20.565Z",
-    "last_save_at": "2026-06-24T07:59:20.565Z",
+    "last_save_at": "2026-06-24T19:06:12.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ce41177838a0cbf8461caca50e6c380403d5ecb79c8a951c0f6890a6124ed419",
+    "source_fingerprint": "sha256:c4190746fd4008462a1eb5cf649f86017011fedc5fcb736824343e205ac144ba",
     "source_doc_hashes": {
-      "spec.md": "336d819e76f672fc47d5b45e5d06d405b972f273ba6b68f777a068149824956e"
+      "spec.md": "58ca5491527299df15973cce1d193ed1de5098292ff94b2250ca0dd37237b116"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -57,6 +57,25 @@ function injectMemoryBlock(filePath: string, overrides: Partial<Record<string, s
   fs.writeFileSync(filePath, updated, 'utf8');
 }
 
+// Remove the _memory block (and everything it owns up to the next top-level key
+// or the closing delimiter) from a doc's frontmatter. Template-compliant fixtures
+// ship a valid block, so a test that exercises the missing-block path must strip it.
+function stripMemoryBlock(filePath: string): void {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const updated = content.replace(/^_memory:\n(?:[ \t].*\n?)*/m, '');
+  fs.writeFileSync(filePath, updated, 'utf8');
+}
+
+// Blank a single continuity field inside the doc's existing _memory block. The
+// frontmatter parser reads the first _memory block, so a missing-field test must
+// mutate that block rather than append a second one the parser would ignore.
+function setContinuityFieldEmpty(filePath: string, field: string): void {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const pattern = new RegExp(`^(\\s*${field}:\\s*).*$`, 'm');
+  const updated = content.replace(pattern, '$1""');
+  fs.writeFileSync(filePath, updated, 'utf8');
+}
+
 function replaceAnchorBody(filePath: string, anchorId: string, body: string): void {
   const content = fs.readFileSync(filePath, 'utf8');
   const pattern = new RegExp(
@@ -208,6 +227,7 @@ describe('spec-doc-structure contract', () => {
 
   it('warns when a Level 3 sample fixture is missing the _memory block', () => {
     const folder = copyFixture('063-template-compliant-level3');
+    stripMemoryBlock(path.join(folder, 'spec.md'));
     const result = runSpecDocStructureRule({
       folder,
       level: '3',
@@ -238,7 +258,7 @@ describe('spec-doc-structure contract', () => {
   it('fails empty continuity values as missing frontmatter fields', () => {
     const folder = copyFixture('063-template-compliant-level3');
     const specPath = path.join(folder, 'spec.md');
-    injectMemoryBlock(specPath, { recent_action: '' });
+    setContinuityFieldEmpty(specPath, 'recent_action');
 
     const result = runSpecDocStructureRule({
       folder,

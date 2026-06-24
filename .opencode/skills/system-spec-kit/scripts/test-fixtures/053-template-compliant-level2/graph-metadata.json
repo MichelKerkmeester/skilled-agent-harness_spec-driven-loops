@@ -27,7 +27,7 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "Fixture metadata keeps default validator regression warnings at zero.",
+    "causal_summary": "Validator regression fixtures must represent valid packets",
     "created_at": "2026-03-16T00:00:00Z",
     "last_save_at": "2026-04-19T00:00:00Z",
     "save_lineage": "same_pass",
@@ -38,6 +38,14 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:6f0e4dc5046a891ebef730510dd3c51e736e9dd804c8878b001f666904e38e8a",
+    "source_doc_hashes": {
+      "spec.md": "6a2f8e67322738e212765916b741462a11a7aad4c9baa04b2517264eb92f3557",
+      "plan.md": "b969a4512e040d93946de6f3bc9b08a9864f5412e658e9863ebc1207fd18fc75",
+      "tasks.md": "b6b3aecdc6958fffdfb9378688c3bd78d1beaa7f03365944bd5dc9338f1f0aa5",
+      "checklist.md": "291f5fef731f09d125b26196a418fa73ff3099ecc52968966c405f4f517a5d4a",
+      "implementation-summary.md": "2f83e3bbda2cf4c44a7facf1f9d03f0f9df9ec8d71b0a3ac2610de2add9faa00"
+    }
   }
 }

@@ -3159,7 +3159,7 @@ Prompt: `Validate result confidence scoring factors, thresholds, labels, drivers
 Verify the 3-layer template compliance system prevents non-compliant spec documents from being created.
 
 #### Scenario Contract
-Prompt: `Validate Template Compliance Contract Enforcement against bash .opencode/skills/system-spec-kit/scripts/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
+Prompt: `Validate Template Compliance Contract Enforcement against bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
 
 All 5 Level 2 files pass `validate.sh --strict` with exit code 0 and require no post-hoc fixes
 

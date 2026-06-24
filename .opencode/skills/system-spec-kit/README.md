@@ -363,9 +363,9 @@ Short decision-type memories can bypass the content-length gate when SPECKIT_SAV
 | `degraded_needs_repair` | Failed rows require `memory_embedding_reconcile` |
 | `unavailable` | Index state could not be read |
 
-#### Index Schema History (v34 -> v37) and the `.needs-rebuild` Sentinel
+#### Index Schema History (v34 -> v41) and the `.needs-rebuild` Sentinel
 
-The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 37`) advanced four migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
+The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 41`) advanced eight migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
 
 | Migration | Adds | Effect |
 | --- | --- | --- |
@@ -373,6 +373,10 @@ The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA
 | **v35** | `memory_index.source_kind` with provenance backfill | Normalizes saved row provenance into `human`, `agent`, `system`, `import` or `feedback` while preserving safe defaults for older rows. |
 | **v36** | `memory_idempotency_receipts`, `delete_after`, `near_duplicate_of`, `last_dedup_checked_at` | Adds server-derived replay receipts for save/update paths and advisory near-duplicate hints without making the feature active unless `SPECKIT_MEMORY_IDEMPOTENCY=true`. |
 | **v37** | `deleted_at`, active recall index, purgeable retention index | Adds tombstone-ready partitions so delete and retention paths can use soft-delete tombstones when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`. |
+| **v38** | Bi-temporal validity windows | Preserves `valid_at` and `invalid_at` legacy columns alongside the new validity-window columns so temporal queries can reason about both ingest time and validity time. |
+| **v39** | Causal-edge closure-provenance marker | Adds an edge presence and currentness marker so causal-edge closure can record its provenance. |
+| **v40** | Generated causal-edge derived identity | Adds derived-identity provenance to generated causal edges and backfills existing rows. |
+| **v41** | Retention-forgetting and semantic-edge schema support | Adds retention-forgetting partitions and the semantic-edge layer schema. |
 
 After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp_server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
 

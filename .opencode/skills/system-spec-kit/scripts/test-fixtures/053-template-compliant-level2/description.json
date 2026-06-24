@@ -1,0 +1,16 @@
+{
+  "specFolder": "system-spec-kit/scripts/test-fixtures/053-template-compliant-level2",
+  "description": "Validator regression fixtures must represent valid packets",
+  "keywords": [
+    "validator fixture",
+    "template compliance",
+    "level 2"
+  ],
+  "lastUpdated": "2026-04-19T00:00:00Z",
+  "title": "Template Compliant Level 2 Fixture",
+  "type": "general",
+  "trigger_phrases": [
+    "fixture"
+  ],
+  "level": "2"
+}
