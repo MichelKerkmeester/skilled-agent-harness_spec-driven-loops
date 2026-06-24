@@ -276,3 +276,6 @@ _sandbox
 AGENTS_Barter.md
 # Daemon ownership/lease files (ephemeral runtime state, never tracked)
 .opencode/skills/*/mcp_server/database/.*-owner.json
+
+# Daemon crash-probe receipts (ephemeral per-machine runtime state)
+**/database/.crash-probe-receipt
