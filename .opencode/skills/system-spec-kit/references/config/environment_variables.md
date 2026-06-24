@@ -330,7 +330,7 @@ These shipped safety flags are opt-in. They should be enabled deliberately, usua
 
 | Flag | Default | Sprint | Purpose |
 |------|---------|--------|---------|
-| `SPECKIT_GRAPH_WEIGHT_CAP` | `0.05` | R-011 | Maximum graph weight contribution cap |
+| `SPECKIT_GRAPH_WEIGHT_CAP` | `0.15` | R-011 | Maximum graph weight contribution cap |
 | `SPECKIT_GRAPH_LOCAL_THRESHOLD` | numeric | R-011 | Local graph density threshold for refresh decisions |
 | `SPECKIT_LOUVAIN_MIN_DENSITY` | numeric | R-011 | Minimum density for Louvain community detection |
 | `SPECKIT_LOUVAIN_MIN_SIZE` | numeric | R-011 | Minimum community size for Louvain |
@@ -355,7 +355,7 @@ These shipped safety flags are opt-in. They should be enabled deliberately, usua
 
 | Flag | Default | Sprint | Purpose |
 |------|---------|--------|---------|
-| `SPECKIT_RECENCY_DECAY_DAYS` | `30` | S7 | Recency decay window in days for access tracking |
+| `SPECKIT_RECENCY_DECAY_DAYS` | `90` | S7 | Recency decay window in days for access tracking |
 | `SPECKIT_TOKEN_BUDGET` | auto | S5 | Override token budget for hybrid search responses |
 | `SPECKIT_FOLDER_TOP_K` | `5` | S3 | Top-K folder candidates for folder-scoped retrieval |
 | `SPECKIT_EAGER_WARMUP` (deprecated — compatibility only) | OFF | S9 | Eager model warmup at server startup |

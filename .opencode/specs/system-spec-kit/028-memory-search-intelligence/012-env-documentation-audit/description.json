@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/012-env-documentation-audit",
+  "description": "A ten-iteration opus deep review of the repository ENV-variable documentation, and the remediation that fixed what it found. The review treated the ca",
+  "keywords": [
+    "ten-iteration",
+    "opus",
+    "deep",
+    "review",
+    "repository",
+    "env-variable",
+    "documentation",
+    "remediation",
+    "fixed",
+    "found",
+    "treated"
+  ],
+  "lastUpdated": "2026-06-24T14:18:12.922Z",
+  "specId": "012",
+  "folderSlug": "env-documentation-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
