@@ -463,6 +463,32 @@ function runCheckpointNeedsRebuildRepair(
   }
 }
 
+/**
+ * Pick which result row the token-budget truncation should drop next. Returns the
+ * index of the last row NOT marked `appendExempt`; only when every remaining row is
+ * exempt does it fall back to the last index so the trim loop still converges.
+ *
+ * The `appendExempt` rows are the additive tail appends (deterministic multi-hop /
+ * lane-champion backfill) the formatter stamped — they sit at the tail by design, so
+ * a blind drop-from-end would strip exactly the rows the append stage exists to add.
+ * When no row is exempt (both append flags off → no append rows), this returns the
+ * last index every pass, byte-identical to a plain pop() from the end.
+ *
+ * Pure and side-effect free so the selection invariant is unit-testable without the
+ * server envelope.
+ */
+export function selectBudgetTrimIndex(rows: readonly unknown[]): number {
+  if (rows.length === 0) return -1;
+  for (let i = rows.length - 1; i >= 0; i -= 1) {
+    const row = rows[i];
+    const exempt = row !== null && typeof row === 'object'
+      && (row as Record<string, unknown>).appendExempt === true;
+    if (!exempt) return i;
+  }
+  // Every remaining row is exempt: sacrifice the tail so the loop still terminates.
+  return rows.length - 1;
+}
+
 export function maybeStructuralNudge(
   task: string,
   options: {
@@ -1315,10 +1341,16 @@ function registerContextServerHandlers(targetServer: Server): void {
             const innerResults = data?.results;
             if (stillOverBudget && Array.isArray(innerResults) && innerResults.length > 1) {
               const originalCount = innerResults.length;
-              // Results are typically sorted by score (highest first)
-              // Remove from end (lowest-scored) until within budget
+              // Results are typically sorted by score (highest first), so the
+              // lowest-value rows sit at the end. Trim from the end, but skip rows
+              // the formatter marked `appendExempt` (the additive tail appends —
+              // deterministic multi-hop / lane-champion backfill). selectBudgetTrimIndex
+              // returns the last NON-exempt row, sacrificing an exempt row only once
+              // nothing else remains. When no row is exempt (both append flags off →
+              // no append rows) it returns the last index every pass, identical to the
+              // original pop().
               while (innerResults.length > 1) {
-                innerResults.pop();
+                innerResults.splice(selectBudgetTrimIndex(innerResults), 1);
                 // Recalculate token count from the full envelope
                 // (not just results) so trace metadata is included in the budget.
                 syncEnvelopeTokenCount(envelope);

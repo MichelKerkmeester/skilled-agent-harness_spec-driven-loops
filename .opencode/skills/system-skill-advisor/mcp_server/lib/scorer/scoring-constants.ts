@@ -137,6 +137,14 @@ export interface RoutingCalibration {
   readonly reviewLoopDeepReviewBonus: number;
   // "audit ... recommendations" is a review task, not an advisor-self task.
   readonly auditRecsCodeReviewBonus: number;
+  // Demotes the advisor from recommending itself on a read-only "audit the
+  // recommendation quality" prompt — auditing routing output is a review task,
+  // not an advisor invocation. This penalty is the SOLE remaining defense
+  // against advisor self-recommendation on those prompts: the explicit opt-in
+  // guard that used to back it up was removed as redundant precisely because
+  // this implicit penalty already fires. Do not remove or zero it without a
+  // documented, tested replacement, or the advisor can rank itself first on
+  // audit/explainer prompts again with nothing to stop it.
   readonly auditRecsAdvisorPenalty: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
@@ -211,6 +219,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     codeAuditDeepReviewPenalty: -0.2,
     reviewLoopDeepReviewBonus: 0.5,
     auditRecsCodeReviewBonus: 0.35,
+    // Sole defense against advisor self-recommendation on audit prompts; see the
+    // interface declaration above. Must not be zeroed without a tested replacement.
     auditRecsAdvisorPenalty: -0.25,
     phaseFolderSpecKitBonus: 0.35,
     saveContextMemorySaveBonus: 0.55,

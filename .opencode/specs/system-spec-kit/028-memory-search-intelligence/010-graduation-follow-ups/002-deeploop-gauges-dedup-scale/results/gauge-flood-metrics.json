@@ -1,0 +1,115 @@
+{
+  "test": "deep-loop-gauge-flood-test",
+  "gauges": [
+    "progress-heartbeat",
+    "lag-ceiling"
+  ],
+  "committedDefaults": {
+    "progressHeartbeatSeconds": 0,
+    "lagCeilingMs": 0
+  },
+  "generatedAt": "2026-06-24",
+  "heartbeat": {
+    "floodBaseline": {
+      "cadenceSeconds": 0.05,
+      "lineagesInFlight": 10,
+      "windowSeconds": 2,
+      "observedProgressRecords": 440,
+      "observedRecordsPerSecond": 175.859,
+      "projectedHourlyRecords": 633094,
+      "note": "reproduces the 009 worst case (0.05s x 10 in-flight) on the real runner"
+    },
+    "candidates": [
+      {
+        "cadenceSeconds": 10,
+        "lineagesInFlight": 10,
+        "stubSleepSeconds": 4,
+        "wallMs": 4419,
+        "observedProgressRecords": 0,
+        "observedRecordsPerSecond": 0,
+        "observedHourlyProjection": 0,
+        "analyticRecordsPerSecond": 1,
+        "analyticHourlyProjection": 3600,
+        "informingHourlyBudget": 1500,
+        "informsNotFloods": false
+      },
+      {
+        "cadenceSeconds": 15,
+        "lineagesInFlight": 10,
+        "stubSleepSeconds": 4,
+        "wallMs": 4296,
+        "observedProgressRecords": 0,
+        "observedRecordsPerSecond": 0,
+        "observedHourlyProjection": 0,
+        "analyticRecordsPerSecond": 0.667,
+        "analyticHourlyProjection": 2400,
+        "informingHourlyBudget": 1500,
+        "informsNotFloods": false
+      },
+      {
+        "cadenceSeconds": 30,
+        "lineagesInFlight": 10,
+        "stubSleepSeconds": 4,
+        "wallMs": 4336,
+        "observedProgressRecords": 0,
+        "observedRecordsPerSecond": 0,
+        "observedHourlyProjection": 0,
+        "analyticRecordsPerSecond": 0.333,
+        "analyticHourlyProjection": 1200,
+        "informingHourlyBudget": 1500,
+        "informsNotFloods": true
+      },
+      {
+        "cadenceSeconds": 60,
+        "lineagesInFlight": 10,
+        "stubSleepSeconds": 4,
+        "wallMs": 4329,
+        "observedProgressRecords": 0,
+        "observedRecordsPerSecond": 0,
+        "observedHourlyProjection": 0,
+        "analyticRecordsPerSecond": 0.167,
+        "analyticHourlyProjection": 600,
+        "informingHourlyBudget": 1500,
+        "informsNotFloods": true
+      }
+    ]
+  },
+  "observedAtRecommendedCadence": {
+    "cadenceSeconds": 30,
+    "lineagesInFlight": 10,
+    "observeWindowSeconds": 75,
+    "wallMs": 75418,
+    "observedProgressRecords": 20,
+    "observedRecordsPerSecond": 0.265,
+    "observedHourlyProjection": 955,
+    "informingHourlyBudget": 1500,
+    "everyLineageEmittedAtLeastOnce": true,
+    "observedInformsNotFloods": true
+  },
+  "lagCeiling": {
+    "lagCeilingMsUnderTest": 1500,
+    "lineageCount": 10,
+    "concurrency": 2,
+    "stubSleepSeconds": 3,
+    "eventsFired": 1,
+    "oneShotNoFlood": true,
+    "firedAtLeastOnce": true,
+    "sampleEvent": {
+      "event": "lag_ceiling_exceeded",
+      "severity": "warning",
+      "lag_ceiling_ms": 1500,
+      "oldest_pending_lag_ms": 1501
+    }
+  },
+  "recommendation": {
+    "progressHeartbeatSeconds": 30,
+    "lagCeilingMs": 1500,
+    "rationale": "at 30s cadence a 10-wide 1h fan-out projects 1200 progress records (<= 1500 budget), informing without flooding; the 009 0.05s baseline projected 633094 records/h"
+  },
+  "verdict": {
+    "heartbeatHasInformingDefault": true,
+    "floodBaselineConfirmedFlood": true,
+    "recommendedCadenceObservedInforms": true,
+    "lagCeilingOneShotUnderConcurrentPool": true
+  }
+}

@@ -128,6 +128,16 @@ export interface FormattedSearchResult {
   chunkLabel?: string | null;
   chunkCount?: number | null;
   contentSource?: 'reassembled_chunks' | 'file_read_fallback';
+  /**
+   * Marks a row that the additive tail-append stage added past the requested
+   * limit (deterministic multi-hop or lane-champion backfill). The downstream
+   * token-budget truncation drops non-exempt tail rows before any exempt row,
+   * so an appended row — the whole reason the append stage ran — survives the
+   * serializer trim instead of being the first thing popped off the end.
+   * Present (true) only on appended rows; absent on every baseline row, so the
+   * field is invisible whenever both append flags are off.
+   */
+  appendExempt?: boolean;
 }
 
 export interface MemoryResultScores {
@@ -327,6 +337,34 @@ export function parseTriggerPhrases(value: unknown): string[] {
     }
   }
   return [];
+}
+
+// The source markers the additive tail-append stage stamps on the rows it adds
+// past the result limit. `multihop` is the deterministic multi-hop append;
+// `lane-champion:<lane>` is the lane-champion backfill. A baseline row carries a
+// retrieval-channel source (vector / fts / bm25 / trigger / graph / ...) and never
+// one of these, so this is the exact discriminator for an appended tail row.
+const TAIL_APPEND_SOURCE_EXACT = 'multihop';
+const TAIL_APPEND_SOURCE_PREFIX = 'lane-champion:';
+
+function isTailAppendSource(value: unknown): boolean {
+  if (typeof value !== 'string') return false;
+  return value === TAIL_APPEND_SOURCE_EXACT || value.startsWith(TAIL_APPEND_SOURCE_PREFIX);
+}
+
+/**
+ * True when a raw row was produced by the additive tail-append stage (deterministic
+ * multi-hop or lane-champion backfill). Reads only the `source` / `sources` markers
+ * those modules set; a baseline row carries neither, so this returns false for every
+ * row when both append flags are off — which is what keeps the flag-off output
+ * byte-identical (no `appendExempt` field is ever added).
+ */
+function isTailAppendedRow(rawResult: RawSearchResult): boolean {
+  if (isTailAppendSource(rawResult.source)) return true;
+  if (Array.isArray(rawResult.sources)) {
+    return rawResult.sources.some((entry) => isTailAppendSource(entry));
+  }
+  return false;
 }
 
 function toNullableNumber(value: unknown): number | null {
@@ -943,6 +981,14 @@ export async function formatSearchResults(
         ? rawResult.contentSource
         : undefined,
     };
+
+    // Mark additive tail-append rows so the downstream token-budget truncation
+    // trims non-exempt tail rows first. The field is set ONLY on appended rows;
+    // a baseline row leaves it absent, so the flag-off output (no append rows
+    // exist) is byte-identical to before this change.
+    if (isTailAppendedRow(rawResult)) {
+      formattedResult.appendExempt = true;
+    }
 
     // Explicit `trustBadges` payloads are
     // sanitized per-field (allowlisted age strings, clamped

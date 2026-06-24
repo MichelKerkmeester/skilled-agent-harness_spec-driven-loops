@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+  "description": "Implements the production-readiness follow-ups the 009 pre-graduation validation identified, so each dark-flag winner can earn its flip on evidence ra",
+  "keywords": [
+    "implements",
+    "production-readiness",
+    "follow-ups",
+    "009",
+    "pre-graduation",
+    "validation",
+    "identified",
+    "dark-flag",
+    "winner",
+    "earn",
+    "flip",
+    "evidence"
+  ],
+  "lastUpdated": "2026-06-24T07:59:20.368Z",
+  "specId": "010",
+  "folderSlug": "graduation-follow-ups",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

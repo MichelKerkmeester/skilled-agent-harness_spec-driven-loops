@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor self-recommendation penalty",
+      "auditRecsAdvisorPenalty contract",
+      "advisor must not recommend itself on audit prompts"
+    ],
+    "key_topics": [
+      "advisor",
+      "self-recommendation",
+      "penalty",
+      "auditrecsadvisorpenalty",
+      "contract",
+      "must",
+      "recommend",
+      "itself",
+      "audit",
+      "prompts",
+      "007",
+      "graduation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "scoring-constants.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-self-recommendation-penalty-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-self-boost-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.build.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Self",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommendation Penalty Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Document",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 graduation suite cut the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`) as redundant",
+    "created_at": "2026-06-24T07:59:12.248Z",
+    "last_save_at": "2026-06-24T08:00:47.732Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:56142b261ce802eeb3bcc9cbeb5a9012b29ef40e3cae26de2aee3b2d1a809859",
+    "source_doc_hashes": {
+      "spec.md": "12b181dd0853d69d55ba77e2a7e486f1321292f4e19dcde5959b497505f9d2ac",
+      "plan.md": "48edbda38f04da302254f7912deccbdda435eb736b31f2ef71a12f1893a6dfe2",
+      "tasks.md": "6b6db7c3410618791108b52bccd372d37632d2157912c2506c0790b670fc18ab",
+      "checklist.md": "ca1b51250c9bcef34106c0ddd81dc438ddc276213a62441751151ca00c4c6cb9",
+      "implementation-summary.md": "4fb170d523a3a98878dac3d9c20cc12103ee22b7eabfd59d5c07854338696235"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

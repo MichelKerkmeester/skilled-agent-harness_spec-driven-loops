@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/003-search-append-citation-probe",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/003-search-append-citation-probe",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "append-exempt serializer",
+      "tail-append token budget truncation",
+      "true-citation density probe",
+      "reranker training threshold",
+      "search append citation probe",
+      "append-exempt serializer plan",
+      "density probe plan",
+      "token budget trim selection",
+      "append-exempt tasks",
+      "density probe tasks",
+      "append-exempt checklist",
+      "density probe checklist"
+    ],
+    "key_topics": [
+      "append-exempt",
+      "serializer",
+      "tail-append",
+      "token",
+      "budget",
+      "truncation",
+      "true-citation",
+      "density",
+      "probe",
+      "reranker",
+      "training",
+      "threshold"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/lib/feedback/true-citation-emitter.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/tests/append-exempt-serializer.vitest.ts",
+      "mcp_server/tests/true-citation-emitter.vitest.ts",
+      "lib/search/deterministic-multihop.ts",
+      "lib/search/lane-champion-backfill.ts",
+      "formatters/search-results.ts",
+      "lib/feedback/true-citation-emitter.ts",
+      "handlers/memory-crud-health.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/true-citation-emitter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "append-exempt-serializer.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/append-exempt-serializer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/true-citation-emitter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-multihop.ts",
+        "kind": "code",
+        "path": "lib/search/deterministic-multihop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-champion-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/lane-champion-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Append",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exempt Serializer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Citation Density Probe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
+    "created_at": "2026-06-24T08:04:02.092Z",
+    "last_save_at": "2026-06-24T08:04:43.028Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:754dde8f14041397a064120266ca13ac8dd53a000759e58a9292d290a581a2ad",
+    "source_doc_hashes": {
+      "spec.md": "405e91ed97946702ef788b9cabaa4b2ad2e0ff97eca4e15bf522691c08c00d9b",
+      "plan.md": "5afc55d133d2ed085f475e45a984d70ac035f9f648535dc129ff2c3805469c73",
+      "tasks.md": "cf9dd88a72328be3c2704dbeb5170111a133ec6330c7304ce90d7cdffcc25261",
+      "checklist.md": "35816a1a8f3c12a62ce52d5f34dcc214c857a499b979eddd3c42785da2707563",
+      "implementation-summary.md": "e848f45589b02a85679a23ce170a366a9fd9299e869d4c192350def274c46b15"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

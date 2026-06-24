@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/001-codegraph-defaults-bitemporal",
+    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/002-deeploop-gauges-dedup-scale",
+    "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag graduation follow-ups",
+      "production readiness for the graduated flags",
+      "wire the bitemporal writer",
+      "set the degree cap and gauge defaults",
+      "append-exempt serializer and citation density probe"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "graduation",
+      "follow-ups",
+      "production",
+      "readiness",
+      "graduated",
+      "flags",
+      "wire",
+      "bitemporal",
+      "writer",
+      "set"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "passing",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements the production-readiness follow-ups the 009 pre-graduation validation identified, so each dark-flag winner can earn its flip on evidence rather than on a conditional verdict. The code-graph track sets a sensible degree-cap default and wires the bitemporal close-and-insert writer into the reindex path with a live integration test. The deep-loop track sets production defaults for the lag ceiling and progress heartbeat and proves they inform without flooding, plus a scale-test for the finding dedup beyond its 17 synthetic records. The search track adds an append-exempt path so tail-app",
+    "created_at": "2026-06-24T07:59:20.565Z",
+    "last_save_at": "2026-06-24T07:59:20.565Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ce41177838a0cbf8461caca50e6c380403d5ecb79c8a951c0f6890a6124ed419",
+    "source_doc_hashes": {
+      "spec.md": "336d819e76f672fc47d5b45e5d06d405b972f273ba6b68f777a068149824956e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

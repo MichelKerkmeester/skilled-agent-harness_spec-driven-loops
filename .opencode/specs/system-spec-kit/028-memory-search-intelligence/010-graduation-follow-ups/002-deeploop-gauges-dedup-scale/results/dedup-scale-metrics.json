@@ -1,0 +1,80 @@
+{
+  "test": "fanout-near-dup-dedup-scale-test",
+  "flag": "SPECKIT_FANOUT_NEAR_DUP_DEDUP",
+  "mergeModule": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+  "generatedAt": "2026-06-24",
+  "scale": {
+    "workers": 6,
+    "researchSourceFindings": 54,
+    "reviewSourceFindings": 15,
+    "totalSourceFindings": 69,
+    "distinctTruthPoints": 32,
+    "note": "beyond the 008 17-record set: 50+ research findings across 6 workers plus a review-path severity check, in identical/varied/distinct/near-miss wording modes"
+  },
+  "research": {
+    "workers": 6,
+    "totalSourceFindings": 54,
+    "distinctTruthPoints": 32,
+    "off": {
+      "mergedCount": 54,
+      "byteIdenticalAcrossReruns": true
+    },
+    "on": {
+      "mergedCount": 35
+    },
+    "noiseReducedRecords": 19,
+    "falseCollapse": {
+      "hazardGroups": 0,
+      "falselyCollapsedPoints": 0,
+      "falseCollapseRate": 0
+    },
+    "distinctRecall": {
+      "distinctPointsExpected": 32,
+      "distinctPointsPreserved": 32,
+      "distinctFindingRecall": 1
+    },
+    "designedForDup": {
+      "identicalClusters": 7,
+      "identicalClustersCollapsed": 7,
+      "identicalDupRecall": 1
+    },
+    "semanticLimit": {
+      "variedClusters": 2,
+      "variedClustersStayedSeparate": 2,
+      "note": "varied-wording restatements share no content key, so the content-identity dedup cannot collapse them; this is a known limit, not a precision failure"
+    },
+    "nearMissPrecision": {
+      "nearMissPoints": 8,
+      "nearMissPointsSurvivedDistinct": 8,
+      "allNearMissSurvived": true
+    }
+  },
+  "review": {
+    "totalSourceFindings": 15,
+    "off": {
+      "mergedCount": 15,
+      "byteIdenticalAcrossReruns": true
+    },
+    "on": {
+      "mergedCount": 8
+    },
+    "noiseReducedRecords": 7,
+    "severityClusters": 4,
+    "severityClustersCollapsed": 4,
+    "strongestSeverityPreserved": 4,
+    "severityPreservationRate": 1,
+    "distinctReviewBodies": 4,
+    "distinctReviewBodiesSurvived": 4,
+    "allDistinctReviewSurvived": true
+  },
+  "verdict": {
+    "offByteIdentical": true,
+    "noFalseCollapse": true,
+    "falseCollapseRate": 0,
+    "distinctFindingRecall": 1,
+    "identicalDupRecall": 1,
+    "nearMissAllSurvived": true,
+    "reviewSeverityPreservationRate": 1,
+    "reviewNoFalseCollapse": true
+  }
+}

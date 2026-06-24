@@ -2117,7 +2117,15 @@ type FinalizeOutput = {
 
 const REVERSE_DEP_FORCE_PARSE_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE';
 const REVERSE_DEP_FORCE_PARSE_DEGREE_CAP_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_DEGREE_CAP';
-const DEFAULT_REVERSE_DEP_DEGREE_CAP = 0;
+// A high-importer dependency (a shared types module or a barrel index) would
+// re-parse its entire fan-in on every symbol-identity change without a ceiling.
+// Ten bounds the blast radius to the common refactor (a dependency with a modest
+// importer set still rebinds in full) while leaving a hot fan-in hub to the lazy
+// rebind on its importers' next own edit. A 30-importer rename drops to zero
+// forced re-parses at this ceiling. Setting the cap env to 0 restores the
+// uncapped behavior. This only takes effect when the force-parse flag is on, so
+// the default has no effect while that flag is off.
+const DEFAULT_REVERSE_DEP_DEGREE_CAP = 10;
 
 function reverseDepForceParseEnabled(): boolean {
   return process.env[REVERSE_DEP_FORCE_PARSE_ENV] === 'true';
@@ -2130,8 +2138,8 @@ function reverseDepForceParseEnabled(): boolean {
 // positive cap bounds that blast radius: a dependency whose importer fan-in
 // degree exceeds the cap is left to the lazy rebind on its importers' next own
 // edit, so a rename of a high-fan-in dependency does not trigger a whole-graph
-// re-parse. A cap of zero (the default) means uncapped, which is byte-identical
-// to the pre-cap force-parse behavior.
+// re-parse. A cap of zero means uncapped, which is byte-identical to the pre-cap
+// force-parse behavior.
 function getReverseDepDegreeCap(): number {
   const raw = process.env[REVERSE_DEP_FORCE_PARSE_DEGREE_CAP_ENV];
   if (raw === undefined || raw === '') {

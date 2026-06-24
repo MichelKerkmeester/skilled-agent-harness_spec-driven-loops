@@ -14,7 +14,9 @@ import {
   getTrueCitations,
   initTrueCitationLedger,
   mineTrueCitationPairs,
+  probeTrueCitationDensity,
   reconstructShownSets,
+  RERANKER_TRAINING_MIN_PAIRS,
   type AssistantTurnText,
   type ShownSet,
 } from '../lib/feedback/true-citation-emitter.js';
@@ -221,5 +223,114 @@ describe('True-Citation Emitter (Stage 1)', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
+  });
+});
+
+/* ───────────── density probe: the reranker graduation gate ───────────── */
+
+describe('True-Citation Density Probe', () => {
+  // Insert raw rows straight into the shadow ledger so the probe can be exercised
+  // at controlled densities without staging a full transcript per row. A null
+  // sessionId reproduces the pre-fix historical rows the probe must NOT count.
+  function seedPairs(
+    db: Database.Database,
+    spec: { used: number; notUsed: number; sessionId?: string | null },
+  ): void {
+    initTrueCitationLedger(db);
+    const insert = db.prepare(
+      'INSERT OR IGNORE INTO true_citation_events (query_id, memory_id, used, session_id, timestamp) VALUES (?, ?, ?, ?, ?)',
+    );
+    const session = spec.sessionId === undefined ? 'sess-1' : spec.sessionId;
+    let n = 0;
+    for (let i = 0; i < spec.used; i += 1) {
+      insert.run(`q-used-${session}-${i}`, `m-used-${session}-${i}`, 1, session, 1000 + n);
+      n += 1;
+    }
+    for (let i = 0; i < spec.notUsed; i += 1) {
+      insert.run(`q-nu-${session}-${i}`, `m-nu-${session}-${i}`, 0, session, 1000 + n);
+      n += 1;
+    }
+  }
+
+  it('reports zero density on an empty ledger and raises no advisory', () => {
+    const db = new Database(':memory:');
+    const density = probeTrueCitationDensity(db);
+
+    expect(density.total).toBe(0);
+    expect(density.usablePairs).toBe(0);
+    expect(density.usedPairs).toBe(0);
+    expect(density.notUsedPairs).toBe(0);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+    expect(density.threshold).toBe(RERANKER_TRAINING_MIN_PAIRS);
+  });
+
+  it('does NOT graduate below the threshold even with both classes present', () => {
+    const db = new Database(':memory:');
+    // A handful of real pairs, both classes, but far under the floor.
+    seedPairs(db, { used: 5, notUsed: 5 });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBe(10);
+    expect(density.usedPairs).toBe(5);
+    expect(density.notUsedPairs).toBe(5);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+  });
+
+  it('graduates with an advisory once usable pairs cross the threshold with both classes', () => {
+    const db = new Database(':memory:');
+    // Split the threshold across both classes so neither is empty.
+    const half = Math.ceil(RERANKER_TRAINING_MIN_PAIRS / 2);
+    seedPairs(db, { used: half, notUsed: half });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBe(half * 2);
+    expect(density.usablePairs).toBeGreaterThanOrEqual(RERANKER_TRAINING_MIN_PAIRS);
+    expect(density.usedPairs).toBe(half);
+    expect(density.notUsedPairs).toBe(half);
+    expect(density.meetsTrainingThreshold).toBe(true);
+    expect(density.advisory).toContain('reranker-training threshold');
+    expect(density.advisory).toContain(String(density.usablePairs));
+  });
+
+  it('never graduates on a single-class ledger no matter the count', () => {
+    const db = new Database(':memory:');
+    // Plenty of positives, zero negatives — a reranker has nothing to discriminate.
+    seedPairs(db, { used: RERANKER_TRAINING_MIN_PAIRS + 50, notUsed: 0 });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBeGreaterThanOrEqual(RERANKER_TRAINING_MIN_PAIRS);
+    expect(density.notUsedPairs).toBe(0);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+  });
+
+  it('excludes null-session rows from the usable count (legacy pre-fix data)', () => {
+    const db = new Database(':memory:');
+    // Enough null-session rows to cross the threshold by raw count...
+    seedPairs(db, { used: RERANKER_TRAINING_MIN_PAIRS, notUsed: RERANKER_TRAINING_MIN_PAIRS, sessionId: null });
+    // ...plus a thin slice of usable session-scoped pairs.
+    seedPairs(db, { used: 3, notUsed: 2, sessionId: 'sess-live' });
+
+    const density = probeTrueCitationDensity(db);
+    // total counts everything; usablePairs counts ONLY the session-scoped slice.
+    expect(density.total).toBe(RERANKER_TRAINING_MIN_PAIRS * 2 + 5);
+    expect(density.usablePairs).toBe(5);
+    expect(density.usedPairs).toBe(3);
+    expect(density.notUsedPairs).toBe(2);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+  });
+
+  it('honors a custom threshold argument', () => {
+    const db = new Database(':memory:');
+    seedPairs(db, { used: 4, notUsed: 4 });
+
+    const density = probeTrueCitationDensity(db, 8);
+    expect(density.threshold).toBe(8);
+    expect(density.usablePairs).toBe(8);
+    expect(density.meetsTrainingThreshold).toBe(true);
+    expect(density.advisory).toContain('8-pair');
   });
 });

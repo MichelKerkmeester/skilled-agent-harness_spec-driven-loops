@@ -1519,6 +1519,14 @@ export interface ReplaceEdgesOptions {
 export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: ReplaceEdgesOptions = {}): void {
   const d = getDb();
 
+  // When bitemporal reads are on, a reindex must preserve the superseded edges
+  // instead of deleting them, so an as-of query can still answer about a past
+  // generation. The supersede path closes live edges with invalid_at and writes
+  // the replacements with valid_at open, leaving the prior generation readable.
+  // When the flag is off, the default delete-and-insert path below runs as
+  // before with no validity columns touched.
+  const bitemporal = codeGraphEdgeBitemporalReadsEnabled();
+
   const insert = d.prepare(`
     INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata)
     VALUES (?, ?, ?, ?, ?)
@@ -1529,7 +1537,11 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
     if (sourceIds.length > 0) {
       const placeholders = sourceIds.map(() => '?').join(',');
       recordEdgeTombstonesForSources(d, sourceIds, 'replace_edges_reindex', deletedAt);
-      d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders})`).run(...sourceIds);
+      if (bitemporal) {
+        closeEdgesForSources(sourceIds);
+      } else {
+        d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders})`).run(...sourceIds);
+      }
     }
 
     const candidateSourceIds = [...new Set(edges.map((edge) => edge.sourceId))];
@@ -1550,19 +1562,39 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
       if (!retainedSourceIds.has(e.sourceId)) {
         continue;
       }
-      insert.run(e.sourceId, e.targetId, e.edgeType, e.weight, e.metadata ? JSON.stringify(e.metadata) : null);
+      if (bitemporal) {
+        insertEdgeWithValidity(e);
+      } else {
+        insert.run(e.sourceId, e.targetId, e.edgeType, e.weight, e.metadata ? JSON.stringify(e.metadata) : null);
+      }
     }
 
     if (!opts.deferDanglingTargetPrune) {
       recordDanglingEdgeTombstones(d, 'replace_edges_dangling_prune', deletedAt);
-      d.prepare(`
-        DELETE FROM code_edges WHERE
-          (edge_type != 'SUPERSEDES' AND (
-            source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-            target_id NOT IN (SELECT symbol_id FROM code_nodes)
-          ))
-          OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
-      `).run();
+      if (bitemporal) {
+        // Close dangling edges instead of deleting them so the prior generation
+        // stays readable. Only live edges (invalid_at IS NULL) are closed, so an
+        // already-closed edge keeps its original invalid_at stamp.
+        const asOfGeneration = getCodeGraphGeneration();
+        d.prepare(`
+          UPDATE code_edges SET invalid_at = ? WHERE invalid_at IS NULL AND (
+            (edge_type != 'SUPERSEDES' AND (
+              source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+              target_id NOT IN (SELECT symbol_id FROM code_nodes)
+            ))
+            OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
+          )
+        `).run(asOfGeneration);
+      } else {
+        d.prepare(`
+          DELETE FROM code_edges WHERE
+            (edge_type != 'SUPERSEDES' AND (
+              source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+              target_id NOT IN (SELECT symbol_id FROM code_nodes)
+            ))
+            OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
+        `).run();
+      }
     }
   });
   tx();

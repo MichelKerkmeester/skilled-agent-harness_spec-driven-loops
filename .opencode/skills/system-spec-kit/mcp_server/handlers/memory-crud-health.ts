@@ -54,6 +54,8 @@ import {
   buildVectorDegradationSignal,
   getMaintenanceObservabilitySnapshot,
 } from '../lib/observability/retrieval-observability.js';
+import { isTrueCitationEmitterEnabled } from '../lib/search/search-flags.js';
+import { probeTrueCitationDensity } from '../lib/feedback/true-citation-emitter.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -1403,6 +1405,25 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     const hint = `Graph channel metrics unavailable (${errClass}: ${errMsg})`.slice(0, 160);
     hints.push(hint);
   }
+  // True-citation ledger density probe. Gated behind the emitter's own default-off
+  // flag and a live DB, so when the flag is off (or no DB) the health payload is
+  // byte-identical to before this surface existed. When on, it reports how many
+  // usable session-scoped used/not-used pairs have accumulated and whether the
+  // deferred outcome reranker is now trainable; a crossed threshold also pushes an
+  // advisory hint so operators see the graduation signal without reading the data.
+  let trueCitationDensity: ReturnType<typeof probeTrueCitationDensity> | undefined;
+  if (isTrueCitationEmitterEnabled() && database) {
+    try {
+      trueCitationDensity = probeTrueCitationDensity(database);
+      if (trueCitationDensity.advisory) {
+        hints.push(trueCitationDensity.advisory);
+      }
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      hints.push(`True-citation density probe unavailable (${errMsg})`.slice(0, 160));
+    }
+  }
+
   return createMCPSuccessResponse({
     tool: 'memory_health',
     summary,
@@ -1457,6 +1478,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         windowSize: routingTelemetry.windowSize,
       },
       redaction: getRedactionStats(),
+      ...(trueCitationDensity !== undefined ? { trueCitationDensity } : {}),
       ...(fullMemoryReport ?? {}),
     },
     hints,

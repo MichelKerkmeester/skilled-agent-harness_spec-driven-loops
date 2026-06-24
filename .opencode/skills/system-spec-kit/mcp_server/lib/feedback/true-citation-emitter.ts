@@ -544,4 +544,118 @@ export function getTrueCitationCount(db: Database.Database, used?: boolean): num
   }
 }
 
+/* ───────────────────────────────────────────────────────────────
+   9. DENSITY PROBE (graduation gate for the reranker)
+──────────────────────────────────────────────────────────────── */
+
+// The minimum number of usable session-scoped pairs the ledger must hold before
+// the deferred outcome reranker is worth training. The reranker learns to separate
+// used from shown-but-not-used, so it needs enough labelled examples of BOTH classes
+// to fit a stable decision boundary rather than memorising noise. 200 is a deliberately
+// conservative floor for a binary pairwise ranker: below it the used/not-used split is
+// too thin to graduate on, so the ledger keeps accumulating in the shadow with no
+// ranking effect. The probe never changes ranking — it only reports whether the corpus
+// has crossed this line.
+export const RERANKER_TRAINING_MIN_PAIRS = 200;
+
+/**
+ * A density reading of the true-citation ledger: how many usable session-scoped
+ * used/not-used pairs have accumulated, and whether that crosses the reranker-
+ * training threshold.
+ */
+export interface TrueCitationDensity {
+  /** Total rows in the shadow ledger (both classes, including null-session rows). */
+  total: number;
+  /**
+   * Usable pairs: rows carrying a non-null session_id. The reranker trains
+   * session-scoped, and the pre-fix null-session rows (1711 historical) can never
+   * yield session-scoped training data — counting them would overstate readiness.
+   * This is the number the threshold is measured against.
+   */
+  usablePairs: number;
+  /** Usable positives (used=1, non-null session). */
+  usedPairs: number;
+  /** Usable negatives (used=0, non-null session) — the class the corpus lacked. */
+  notUsedPairs: number;
+  /** True once both classes are present AND usablePairs ≥ the training threshold. */
+  meetsTrainingThreshold: boolean;
+  /** The threshold this reading was measured against. */
+  threshold: number;
+  /**
+   * Set when the ledger has crossed the threshold: a human-readable note a caller
+   * (e.g. memory_health) can surface to signal the reranker is now trainable. Null
+   * while still accumulating, so a caller can spread it without emitting noise.
+   */
+  advisory: string | null;
+}
+
+/**
+ * Probe the true-citation ledger's density: count the usable session-scoped
+ * used/not-used pairs and decide whether the corpus has accumulated enough of BOTH
+ * classes to train the deferred outcome reranker.
+ *
+ * Read-only and side-effect free apart from the idempotent ledger-init. Returns a
+ * zero-density reading on any error so a diagnostics surface never breaks. The
+ * advisory is non-null ONLY once the threshold is crossed, so a health surface can
+ * stay quiet while the ledger is still filling.
+ *
+ * `meetsTrainingThreshold` requires both a positive and a negative class to be
+ * present — a reranker with examples of only one class has nothing to discriminate,
+ * so a lopsided ledger (all-used or all-not-used) never graduates regardless of count.
+ */
+export function probeTrueCitationDensity(
+  db: Database.Database,
+  threshold: number = RERANKER_TRAINING_MIN_PAIRS,
+): TrueCitationDensity {
+  const empty: TrueCitationDensity = {
+    total: 0,
+    usablePairs: 0,
+    usedPairs: 0,
+    notUsedPairs: 0,
+    meetsTrainingThreshold: false,
+    threshold,
+    advisory: null,
+  };
+
+  try {
+    initTrueCitationLedger(db);
+
+    const total = (db.prepare('SELECT COUNT(*) AS count FROM true_citation_events')
+      .get() as { count: number }).count;
+
+    // Usable = a real session to scope the reranker to. The null-session rows the
+    // pre-fix era left behind can never be session-scoped, so they are excluded.
+    const usedPairs = (db.prepare(
+      'SELECT COUNT(*) AS count FROM true_citation_events WHERE used = 1 AND session_id IS NOT NULL',
+    ).get() as { count: number }).count;
+    const notUsedPairs = (db.prepare(
+      'SELECT COUNT(*) AS count FROM true_citation_events WHERE used = 0 AND session_id IS NOT NULL',
+    ).get() as { count: number }).count;
+    const usablePairs = usedPairs + notUsedPairs;
+
+    const bothClassesPresent = usedPairs > 0 && notUsedPairs > 0;
+    const meetsTrainingThreshold = bothClassesPresent && usablePairs >= threshold;
+
+    const advisory = meetsTrainingThreshold
+      ? `True-citation ledger holds ${usablePairs} usable session-scoped pairs `
+        + `(${usedPairs} used / ${notUsedPairs} not-used), at or above the `
+        + `${threshold}-pair reranker-training threshold. The outcome reranker is now trainable.`
+      : null;
+
+    return {
+      total,
+      usablePairs,
+      usedPairs,
+      notUsedPairs,
+      meetsTrainingThreshold,
+      threshold,
+      advisory,
+    };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn('[true-citation-emitter] probeTrueCitationDensity error:', message);
+    return empty;
+  }
+}
+
 export { TRUE_CITATION_SCHEMA_SQL, TRUE_CITATION_INDEX_SQL };
