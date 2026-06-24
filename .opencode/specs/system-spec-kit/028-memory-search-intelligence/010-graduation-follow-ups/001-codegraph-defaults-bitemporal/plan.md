@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Vitest |
 
 ### Overview
-Two surgical changes, each behind an existing default-off flag. The degree-cap default moves from 0 to 10 in `structural-indexer.ts`. The bitemporal writer is wired into `replaceEdges` in `code-graph-db.ts` so a reindex closes the superseded edges and inserts replacements with an open validity window when the bitemporal flag is on, and runs the original delete-and-insert when off.
+Two surgical changes, each behind an existing default-off flag. The degree-cap default moves from 0 to 15 in `structural-indexer.ts`, the value located by a degree-sweep cost benchmark. The bitemporal writer is wired into `replaceEdges` in `code-graph-db.ts` so a reindex closes the superseded edges and inserts replacements with an open validity window when the bitemporal flag is on, and runs the original delete-and-insert when off.
 <!-- /ANCHOR:summary -->
 
 ---

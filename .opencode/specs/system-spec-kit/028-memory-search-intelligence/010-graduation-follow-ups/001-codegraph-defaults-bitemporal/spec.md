@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/001-codegraph-defaults-bitemporal"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Set degree-cap default to 10 and wired the bitemporal writer into replaceEdges, both flag-gated"
-    next_safe_action: "Run the full vitest suite on the CLI executor"
+    recent_action: "Raised degree-cap default to 15 from a degree-sweep benchmark, wired the public as-of query surface, and fixed the residual as-of window-integrity issues, all flag-gated"
+    next_safe_action: "Graduation decision for the bitemporal and degree-cap flags, separate and evidence-gated"
     blockers: []
     key_files:
       - ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts"
