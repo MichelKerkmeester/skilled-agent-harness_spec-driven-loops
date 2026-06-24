@@ -127,6 +127,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | 1     | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`  |
 | 2     | Level 1 + `checklist.md`                                       |
 | 3     | Level 2 + `decision-record.md`                                 |
+| **review** | `spec.md`, `review/review-report.md` (lean review record, entered only via the `<!-- SPECKIT_LEVEL: review -->` marker, waives plan/tasks/decision-record/implementation-summary) |
 | **Phase Parent** | `spec.md`, `description.json`, `graph-metadata.json` (lean trio only; heavy docs live in phase children) |
 
 > **Phase Parent Mode:** A spec folder is treated as a phase parent when at least one direct child matches `^[0-9]{3}-[a-z0-9-]+$` AND that child has `spec.md` OR `description.json`. Detection is implemented identically by `is_phase_parent()` (shell, in `scripts/lib/shell-common.sh`) and `isPhaseParent()` (ESM JS, at `scripts/dist/spec/is-phase-parent.js`). When detected, FILE_EXISTS skips Level-N file requirements at the parent and accepts only the lean trio. Phase children continue to follow their own Level 1/2/3/3+ contract. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.

@@ -23,7 +23,7 @@ Current state:
 
 - The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with fallback handling.
 - JSON, JSONC, YAML, YML and TOML config files are included by the default scan globs and register as `language='doc'` rows. Markdown is excluded from default scans, but `detectLanguage()` still maps `.md` to `doc` when a caller explicitly includes Markdown paths.
-- The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records.
+- The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records. Edge writes use a bitemporal close-and-insert path that stamps `invalid_at` on superseded edges instead of deleting them, so live readers filter on `invalid_at IS NULL` while as-of readers reconstruct a past edge snapshot.
 - Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.
 
@@ -59,8 +59,9 @@ lib/
 +-- index.ts                    # Public library barrel
 +-- structural-indexer.ts       # Workspace walk, parse and persist pipeline
 +-- tree-sitter-parser.ts       # AST extraction and parser selection
++-- doc-symbol-extractor.ts     # Heading and anchor symbol extraction for doc-language files
 +-- parser-skip-list.ts         # Parser-failure quarantine storage
-+-- code-graph-db.ts            # SQLite schema and graph queries
++-- code-graph-db.ts            # SQLite schema, bitemporal edge writer and graph queries
 +-- canonical-db-dir.ts         # Canonical DB directory resolution and containment
 +-- close-db-assertion.ts       # DB close assertion helper
 +-- code-graph-context.ts       # Compact context assembly
@@ -69,7 +70,10 @@ lib/
 +-- config-defaults.ts          # Shared config default constants and env overrides
 +-- cross-file-edge-resolver.ts # Cross-file call edge reconciliation
 +-- ensure-ready.ts             # Readiness guard and scan trigger logic
++-- auto-rescan-policy.ts       # Read-path guarded inline full-scan policy
 +-- readiness-contract.ts       # Readiness and trust vocabulary
++-- readiness-marker.ts         # File-based readiness snapshot for startup consumers
++-- exclude-rule-classifier.ts  # Tiered scan exclude-rule classification
 +-- owner-lease.ts              # Single-owner lifecycle lease
 +-- query-result-adapter.ts     # Stable handler result shapes
 +-- apply-orchestrator.ts       # Verification-gated recovery dispatcher
@@ -89,6 +93,7 @@ lib/
 +-- startup-brief.ts            # Startup graph summary payloads
 +-- symbol-bm25-resolver.ts     # BM25 fallback symbol candidate scoring
 +-- phase-runner.ts             # Ordered phase execution helper
++-- graph/                      # In-memory graph traversal helpers
 +-- shared/                     # Local contracts and runtime helper modules
 +-- ipc/                        # Launcher socket bridge
 +-- utils/                      # Workspace path helpers
@@ -130,6 +135,7 @@ lib/
 +-- config-defaults.ts
 +-- cross-file-edge-resolver.ts
 +-- diff-parser.ts
++-- doc-symbol-extractor.ts
 +-- edge-drift.ts
 +-- ensure-ready.ts
 +-- exclude-rule-classifier.ts
@@ -145,6 +151,7 @@ lib/
 +-- query-intent-classifier.ts
 +-- query-result-adapter.ts
 +-- readiness-contract.ts
++-- readiness-marker.ts
 +-- recovery-procedures.ts
 +-- runtime-detection.ts
 +-- seed-resolver.ts
@@ -153,6 +160,7 @@ lib/
 +-- structural-indexer.ts
 +-- tree-sitter-parser.ts
 +-- working-set-tracker.ts
++-- graph/
 +-- shared/
 +-- ipc/
 +-- utils/
@@ -168,7 +176,7 @@ lib/
 | `structural-indexer.ts` | Walks files, applies scan filters, parses symbols and persists graph rows. |
 | `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges, skips doc-language rows and reports parser health. |
 | `parser-skip-list.ts` | Stores per-file parser skip-list rows for repeated tree-sitter failures. |
-| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. |
+| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. Holds the bitemporal edge writer (close live edges with `invalid_at`, insert open edges) and the live and as-of edge readers. |
 | `config-defaults.ts` | Centralizes shared code-graph defaults and env-var overrides. |
 | `cross-file-edge-resolver.ts` | Reconciles cross-file call edges after scan persistence when a safe concrete target exists. |
 | `canonical-db-dir.ts` | Resolves canonical DB directories and enforces workspace-contained overrides. |
@@ -236,7 +244,8 @@ code_graph_apply handler
 | `indexFiles()` | Function | Scans and indexes workspace files. |
 | `initDb()` / `getDb()` / `closeDb()` | Functions | Manage the SQLite graph database lifecycle. |
 | `upsertFile()` / `replaceNodes()` / `replaceEdges()` / `removeFile()` / `pruneDanglingEdges()` | Functions | Persist file, node, edge, deletion and dangling-edge cleanup state. |
-| `getStats()` / `queryOutline()` / `queryEdgesFrom()` / `queryEdgesTo()` | Functions | Read graph statistics, file outlines and edge relationships. |
+| `getStats()` / `queryOutline()` / `queryEdgesFrom()` / `queryEdgesTo()` | Functions | Read graph statistics, file outlines and live edge relationships. |
+| `asOfEdgesFrom()` / `asOfEdgesTo()` | Functions | Read edge relationships as of a given generation, including edges later closed with `invalid_at`. |
 | `buildCodeGraphContext()` | Function | Produces compact graph neighborhoods. |
 | `resolveSeeds()` | Function | Maps context seeds to graph nodes. |
 | `ensureCodeGraphReady()` | Function | Checks readiness before graph reads. |

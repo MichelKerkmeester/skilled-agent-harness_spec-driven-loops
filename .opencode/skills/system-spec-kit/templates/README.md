@@ -121,6 +121,7 @@ templates/
 │   ├── spec-kit-docs.json
 │   ├── spec.md.tmpl
 │   ├── phase-parent.spec.md.tmpl
+│   ├── review.spec.md.tmpl
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
 │   ├── implementation-summary.md.tmpl
@@ -155,6 +156,7 @@ templates/
 | ----------------------------------------- | -------------------------------------------------------------------------------- |
 | `manifest/spec-kit-docs.json`             | Defines Level contracts, document registry, template versions and section gates. |
 | `manifest/spec.md.tmpl`                   | Renders feature specification documents.                                         |
+| `manifest/review.spec.md.tmpl`            | Renders review-record specifications for the `review` packet type.               |
 | `manifest/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
 | `manifest/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
 | `manifest/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |

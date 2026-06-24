@@ -116,6 +116,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [code-graph-query-blast-radius.md](./06--mcp-tool-surface/code-graph-query-blast-radius.md) |
 | 016 | MCP tool manifest post-rename | [mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/mcp-tool-manifest-post-rename.md) |
 | 025 | code-index CLI fallback surface (028: list-tools parity, warm-only 75, usage 64, blocked-read) | [code-index-cli-fallback-surface.md](./06--mcp-tool-surface/code-index-cli-fallback-surface.md) |
+| 026 | code_graph_query asOf time-travel relationship reads (bitemporal-reads flag gated) | [code-graph-query-asof-time-travel.md](./06--mcp-tool-surface/code-graph-query-asof-time-travel.md) |
 
 ---
 

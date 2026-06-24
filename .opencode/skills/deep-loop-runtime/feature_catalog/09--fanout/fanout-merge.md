@@ -26,6 +26,16 @@ lineages are added to a `_lineages` attribution array), aggregates total
 `iterationsCompleted`, averages `convergenceScore`, deduplicates `openQuestions` and
 `ruledOutDirections`.
 
+**Near-duplicate dedup (opt-in, title-aware)**: the default-off
+`SPECKIT_FANOUT_NEAR_DUP_DEDUP` flag collapses findings that different workers restate under
+different ids when their bodies match, keeping the strongest severity. The collapse is gated
+by `titleOverlap`, a Jaccard overlap of stopword-stripped title tokens, at
+`TITLE_DISTINCT_OVERLAP_THRESHOLD = 0.15`: two same-body findings collapse only when their
+title token sets overlap at or above that threshold, so disjoint titles that name different
+specific subjects stay separate while a paraphrased restatement that shares its subject noun
+still collapses. The bucketer `getFindingBucket` is title-aware to match. With the flag off
+the merge never calls the title-aware match or bucketer, so the off path is byte-identical.
+
 **Review merge (strongest-restriction)**: iterates active findings across all lineages,
 escalates to highest severity for duplicate `findingId` using `SEVERITY_RANK` (P0=3 > P1=2
 > P2=1), counts active P0/P1/P2, derives `mergedVerdict` (FAIL if `activeP0 > 0`,
@@ -58,7 +68,7 @@ codes: 0=ok, 3=input validation error.
 
 | File | Role |
 |---|---|
-| `scripts/fanout-merge.cjs` | `mergeResearchRegistries`, `mergeReviewRegistries`, `buildAttributionMd`, `main()` (guarded behind `require.main === module`) |
+| `scripts/fanout-merge.cjs` | `mergeResearchRegistries`, `mergeReviewRegistries`, `buildAttributionMd`, `main()` (guarded behind `require.main === module`); near-dup dedup via `nearDuplicateContentKey`, `titleOverlap` and the title-aware `getFindingBucket` behind `SPECKIT_FANOUT_NEAR_DUP_DEDUP` |
 
 ### Validation
 

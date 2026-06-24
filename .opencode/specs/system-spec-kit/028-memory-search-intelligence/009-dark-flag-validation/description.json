@@ -19,12 +19,10 @@
     "staleness",
     "repair"
   ],
-  "lastUpdated": "2026-06-24T15:37:55.479Z",
+  "lastUpdated": "2026-06-24T17:30:57.004Z",
   "specId": "009",
   "folderSlug": "dark-flag-validation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence"
   ],

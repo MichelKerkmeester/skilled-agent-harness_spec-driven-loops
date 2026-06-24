@@ -43,7 +43,8 @@ manifest/
 ├── README.md
 ├── spec-kit-docs.json        # Private source of truth for Level contracts
 ├── *.md.tmpl                 # Whole-document markdown templates with gates
-└── phase-parent.spec.md.tmpl # Lean phase-parent spec template
+├── phase-parent.spec.md.tmpl # Lean phase-parent spec template
+└── review.spec.md.tmpl       # Review-record spec template for the review packet type
 ```
 
 <!-- /ANCHOR:directory-tree -->
@@ -58,6 +59,7 @@ manifest/
 | `spec-kit-docs.json` | Maps public levels to internal contract definitions. |
 | `*.md.tmpl` | Provides gated markdown source for rendered packet docs. |
 | `phase-parent.spec.md.tmpl` | Provides the lean parent spec for phase workflows. |
+| `review.spec.md.tmpl` | Provides the review-record spec for the review packet type. |
 
 <!-- /ANCHOR:key-files -->
 

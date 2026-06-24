@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-24T06:29:37.162Z",
+  "generated": "2026-06-24T17:30:56.737Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -637,7 +637,7 @@
         "push",
         "only"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "barter/005-notifications-system/001-research",
@@ -654,7 +654,7 @@
         "channel",
         "freq"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "barter/005-notifications-system/002-grounded-research",
@@ -738,6 +738,27 @@
         "desi"
       ],
       "lastUpdated": "2026-06-24T05:28:55.384Z"
+    },
+    {
+      "specFolder": "barter/006-visual-multi-language",
+      "description": "Barter is launching multi-language support, but there is no onboarding moment that tells existing creators the app now works in their language or lets",
+      "keywords": [
+        "barter",
+        "launching",
+        "multi-language",
+        "support",
+        "onboarding",
+        "moment",
+        "tells",
+        "existing",
+        "creators",
+        "app",
+        "now",
+        "works",
+        "language",
+        "lets"
+      ],
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
@@ -2384,7 +2405,7 @@
         "skill",
         "field"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/002-derivation-engine",
@@ -2399,7 +2420,7 @@
         "infeasible",
         "unsafe"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
@@ -2421,7 +2442,7 @@
         "changelog",
         "read"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
@@ -2442,7 +2463,7 @@
         "title",
         "description"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
@@ -2459,7 +2480,7 @@
         "back",
         "version"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
@@ -30549,7 +30570,7 @@
         "retrieval",
         "surfaces"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
@@ -32624,7 +32645,7 @@
         "default",
         "threshold"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
@@ -32761,7 +32782,7 @@
         "measured",
         "verdict"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
@@ -32811,7 +32832,7 @@
         "reconsolidate",
         "path"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
@@ -32906,27 +32927,183 @@
         "environment-variable",
         "name"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T06:29:37.442Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/009-dark-flag-validation",
-      "description": "The 007-dark-flag-graduation suite ran labeled benchmarks against each dark flag and returned graduate/refine/cut verdicts",
+      "description": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and b",
       "keywords": [
-        "007-dark-flag-graduation",
-        "suite",
-        "ran",
-        "labeled",
-        "benchmarks",
-        "against",
+        "007",
         "dark",
         "flag",
+        "graduation",
+        "suite",
         "returned",
         "graduate",
-        "refine",
-        "cut",
-        "verdicts"
+        "verdicts",
+        "clusters",
+        "flags",
+        "across",
+        "multihop",
+        "tail-appends",
+        "code-graph",
+        "staleness",
+        "repair"
       ],
-      "lastUpdated": "2026-06-24T06:29:37.162Z"
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups",
+      "description": "Implements the production-readiness follow-ups the 009 pre-graduation validation identified, so each dark-flag winner can earn its flip on evidence ra",
+      "keywords": [
+        "implements",
+        "production-readiness",
+        "follow-ups",
+        "009",
+        "pre-graduation",
+        "validation",
+        "identified",
+        "dark-flag",
+        "winner",
+        "earn",
+        "flip",
+        "evidence"
+      ],
+      "lastUpdated": "2026-06-24T07:59:20.368Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/001-codegraph-defaults-bitemporal",
+      "description": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
+      "keywords": [
+        "009",
+        "dark-flag",
+        "validation",
+        "found",
+        "two",
+        "production-readiness",
+        "gaps",
+        "system-code-graph",
+        "subsystem",
+        "behind",
+        "existing",
+        "default-off",
+        "flags"
+      ],
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/002-deeploop-gauges-dedup-scale",
+      "description": "The 009 dark-flag validation (research sections 3.5 and 3.6) qualified two graduated deep-loop capabilities",
+      "keywords": [
+        "009",
+        "dark-flag",
+        "validation",
+        "research",
+        "sections",
+        "qualified",
+        "two",
+        "graduated",
+        "deep-loop",
+        "capabilities"
+      ],
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/003-search-append-citation-probe",
+      "description": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
+      "keywords": [
+        "009",
+        "dark-flag",
+        "validation",
+        "found",
+        "two",
+        "production-readiness",
+        "gaps",
+        "search",
+        "layer"
+      ],
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/010-graduation-follow-ups/004-advisor-penalty-contract",
+      "description": "The 007 graduation suite cut the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`) as redundant",
+      "keywords": [
+        "007",
+        "graduation",
+        "suite",
+        "cut",
+        "explicit",
+        "advisor",
+        "self-recommendation",
+        "guard",
+        "speckitadvisorselfrecommendationguard",
+        "redundant"
+      ],
+      "lastUpdated": "2026-06-24T17:30:56.737Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/011-followup-deep-review",
+      "description": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
+      "keywords": [
+        "010",
+        "graduation",
+        "follow-ups",
+        "passed",
+        "cli",
+        "test",
+        "run",
+        "reported",
+        "graduate-ready",
+        "tests",
+        "never",
+        "exercised",
+        "real",
+        "failure",
+        "modes"
+      ],
+      "lastUpdated": "2026-06-24T15:03:50.732Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/012-env-documentation-audit",
+      "description": "The root README points readers to ENVREFERENCE.md as the complete flag reference, and a code-graph changelog claimed specific flags were documented th",
+      "keywords": [
+        "root",
+        "readme",
+        "points",
+        "readers",
+        "envreference",
+        "complete",
+        "flag",
+        "reference",
+        "code-graph",
+        "changelog",
+        "claimed",
+        "specific",
+        "flags",
+        "documented"
+      ],
+      "lastUpdated": "2026-06-24T15:06:02.817Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/013-review-record-packet-type",
+      "description": "Lean review-record spec packets carry a spec.md plus a review report under `review/review-report.md` and nothing else: no plan, no tasks, no checklist",
+      "keywords": [
+        "lean",
+        "review-record",
+        "spec",
+        "packets",
+        "carry",
+        "plus",
+        "review",
+        "report",
+        "review-report",
+        "nothing",
+        "else",
+        "plan",
+        "tasks",
+        "checklist"
+      ],
+      "lastUpdated": "2026-06-24T15:54:32.664Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",

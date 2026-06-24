@@ -35,6 +35,7 @@ scorer/
 +-- aliases.ts               # Narrow command/skill alias canonicalization
 +-- ambiguity.ts             # Ambiguity detection and handling
 +-- attribution.ts           # Lane attribution assembly
++-- beta-reliability.ts      # Beta-posterior reliability primitive for the shadow learning loop
 +-- feedback-calibration.ts  # Advisor feedback calibration reducer
 +-- fusion.ts                # Score fusion logic
 +-- lane-registry.ts         # Lane registration
@@ -53,7 +54,7 @@ scorer/
 
 | File | Responsibility |
 |---|---|
-| `fusion.ts` | Combines lane scores into final advisor ranking signals. |
+| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. |
 | `lane-registry.ts` | Registers available scoring lanes. |
 | `aliases.ts` | Canonicalizes explicit command/skill alias groups for route comparisons. |
 | `attribution.ts` | Builds prompt-safe lane attribution details. |

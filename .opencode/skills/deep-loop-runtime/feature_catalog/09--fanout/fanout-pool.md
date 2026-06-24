@@ -40,6 +40,14 @@ only. Concurrency is clamped to ≥1. The results array is pre-sized to preserve
 `all_failed` is true only when every item fails — callers check this before writing a
 partial summary.
 
+An optional lag-ceiling stall detector watches for a hung worker rather than queue
+backpressure. The lag metric is time-since-last-completion-while-work-is-pending, tracked
+through `lastProgressAtMs` and reset on every settlement, so a healthy fan-out wider than its
+concurrency keeps the clock reset and the gauge stays silent. When `lagCeilingMs > 0` and the
+oldest-pending lag reaches the ceiling, the pool emits a single `lag_ceiling_exceeded` event
+carrying `metric: 'time_since_last_completion'`. The committed `lagCeilingMs` default is 0
+(disabled), so the gauge is opt-in. The recommended production value is 120000ms.
+
 ---
 
 ## 3. SOURCE FILES

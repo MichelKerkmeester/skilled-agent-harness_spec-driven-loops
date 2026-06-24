@@ -14,12 +14,10 @@
     "deep-loop",
     "capabilities"
   ],
-  "lastUpdated": "2026-06-24T08:12:18.115Z",
+  "lastUpdated": "2026-06-24T17:30:57.017Z",
   "specId": "002",
   "folderSlug": "deeploop-gauges-dedup-scale",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "010-graduation-follow-ups"

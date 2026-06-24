@@ -45,6 +45,12 @@ timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensu
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed.
 
+The driver also carries an optional per-lineage progress-heartbeat gauge.
+`startLineageProgressHeartbeat` emits periodic progress events at the configured cadence so a
+long-running lineage stays operator-readable. The cadence comes from the
+`progressHeartbeatSeconds` config field, whose committed default is 0 (disabled), so the
+gauge is opt-in. The recommended production cadence is 30 seconds.
+
 ---
 
 ## 3. SOURCE FILES
@@ -53,7 +59,7 @@ codes: 0=all ok, 2=some failed, 3=all failed.
 
 | File | Role |
 |---|---|
-| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture, salvage call |
+| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat` |
 | `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery |
 | `scripts/fanout-pool.cjs` | `runCappedPool` for concurrency cap + ledger |
 | `lib/deep-loop/executor-config.ts` | `parseFanoutConfig`, `expandLineages` imported via TSX |

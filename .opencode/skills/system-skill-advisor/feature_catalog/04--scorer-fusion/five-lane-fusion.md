@@ -31,13 +31,22 @@ Combine evidence from five independent lanes into a single routing score with do
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 
+### Reciprocal Rank Fusion
+
+The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same five lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled.
+
+### Self-recommendation penalty
+
+On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the standing defense after the separate self-recommendation guard was cut as behaviorally redundant, so it carries a durable rationale and a regression contract test.
+
 ## 3. SOURCE FILES
 
 ### Implementation
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Library | Weighted blend and the flag-gated RRF fusion path with its conflict-rerank seam, plus the self-recommendation penalty predicate over the canonical id set |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts` | Library | Holds `auditRecsAdvisorPenalty` (-0.25) and the read-only explainer floor |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/weights-config.ts` | Library | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` | Library | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts` | Library | Source reference |
