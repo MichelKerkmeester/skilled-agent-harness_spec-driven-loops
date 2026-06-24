@@ -150,8 +150,8 @@ function parseEnvelope(response: Awaited<ReturnType<typeof handleMemorySearch>>)
 
 describe('Gate D regression embedding semantic search', () => {
   beforeEach(() => {
-    delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
-    delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
+    delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
+    delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
   });
 
   afterEach(() => {

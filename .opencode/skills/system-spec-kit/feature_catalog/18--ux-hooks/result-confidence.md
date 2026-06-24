@@ -1,9 +1,9 @@
 ---
 title: "Result confidence scoring"
-description: "Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the SPECKIT_RESULT_CONFIDENCE_V1 flag."
+description: "Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the SPECKIT_RESULT_CONFIDENCE flag."
 trigger_phrases:
   - "result confidence scoring"
-  - "SPECKIT_RESULT_CONFIDENCE_V1"
+  - "SPECKIT_RESULT_CONFIDENCE"
   - "confidence score per result"
   - "multi-channel agreement scoring"
   - "anchor density confidence"
@@ -16,7 +16,7 @@ version: 3.6.0.8
 
 ## 1. OVERVIEW
 
-Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the `SPECKIT_RESULT_CONFIDENCE_V1` flag.
+Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the `SPECKIT_RESULT_CONFIDENCE` flag.
 
 When search results come back, you want to know how confident the system is in each result. This feature computes a per-result confidence score from three factors: how far ahead the result is from the next one (margin), how many retrieval channels agree on it (multi-channel agreement), and how rich its anchor metadata is. Each result gets a label (high, medium, low) and a numeric score, plus a list of the factors that drove the confidence assessment.
 
@@ -26,7 +26,7 @@ When search results come back, you want to know how confident the system is in e
 
 ### Core Behavior
 
-Enabled by default (graduated). Set `SPECKIT_RESULT_CONFIDENCE_V1=false` to disable.
+Enabled by default (graduated). Set `SPECKIT_RESULT_CONFIDENCE=false` to disable.
 
 The confidence scoring module (`confidence-scoring.ts`) computes a weighted composite score from three factors:
 

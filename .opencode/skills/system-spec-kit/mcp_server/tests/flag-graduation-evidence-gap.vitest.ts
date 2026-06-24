@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Flag Graduation: Evidence Gap Verdict
 // ───────────────────────────────────────────────────────────────
-// SPECKIT_EVIDENCE_GAP_VERDICT_V1 caps an otherwise-good verdict at weak when the
+// SPECKIT_EVIDENCE_GAP_VERDICT caps an otherwise-good verdict at weak when the
 // caller threads in a true Stage 4 evidenceGapDetected. The off-corpus class
 // never sets that signal, so the benchmark never exercised the cap. These cases
 // drive it off the shared gap-bearing fixture: the cap fires on the gap, the
@@ -20,9 +20,9 @@ import {
 } from '../lib/search/confidence-scoring';
 import { FLAG_FEATURE_FIXTURES } from '../lib/eval/fixtures/flag-feature-fixtures';
 
-const EVIDENCE_GAP_FLAG = 'SPECKIT_EVIDENCE_GAP_VERDICT_V1';
-const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
-const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
+const EVIDENCE_GAP_FLAG = 'SPECKIT_EVIDENCE_GAP_VERDICT';
+const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION';
+const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING';
 const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 const MANAGED_FLAGS = [
   EVIDENCE_GAP_FLAG,

@@ -10,7 +10,7 @@ import { LOW_THRESHOLD } from '../lib/search/confidence-scoring';
 import { NOISE_FLOOR_BY_EMBEDDER, DEFAULT_NOISE_FLOOR_EMBEDDER } from '../lib/search/noise-floor';
 
 const GAP_FLAG = 'SPECKIT_RELEVANCE_AWARE_GAP';
-const NOISE_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
+const NOISE_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION';
 
 const saved = new Map<string, string | undefined>();
 

@@ -8,7 +8,7 @@
 // 2. Goal-aware refinement — boost results aligned with session goal
 // 3. Stateful session tracking — questions, anchors, seen items
 //
-// FEATURE FLAG: SPECKIT_SESSION_RETRIEVAL_STATE_V1 (default ON, graduated; set false to disable)
+// FEATURE FLAG: SPECKIT_SESSION_RETRIEVAL_STATE (default ON, graduated; set false to disable)
 //
 // STORAGE: In-memory only (ephemeral by design, no SQLite persistence).
 // Sessions expire after 30 minutes of inactivity, LRU eviction at 100 capacity.
@@ -242,7 +242,7 @@ const manager = new SessionStateManager();
 // -- Feature Flag --
 
 // Session retrieval state gate — canonical implementation in search-flags.ts.
-// Default: TRUE (graduated). Set SPECKIT_SESSION_RETRIEVAL_STATE_V1=false to disable.
+// Default: TRUE (graduated). Set SPECKIT_SESSION_RETRIEVAL_STATE=false to disable.
 import { isSessionRetrievalStateEnabled } from './search-flags.js';
 
 // -- Cross-Turn Deduplication --

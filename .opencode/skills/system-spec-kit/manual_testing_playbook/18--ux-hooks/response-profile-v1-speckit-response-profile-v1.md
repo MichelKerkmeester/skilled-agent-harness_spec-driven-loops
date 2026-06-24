@@ -1,14 +1,14 @@
 ---
-title: "167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1)"
-description: "This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while keeping the live context-side profile routing in view."
+title: "167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE)"
+description: "This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while keeping the live context-side profile routing in view."
 version: 3.6.0.15
 ---
 
-# 167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1)
+# 167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE)
 
 ## 1. OVERVIEW
 
-This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while the context-side routing path remains live.
+This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while the context-side routing path remains live.
 
 ---
 
@@ -16,8 +16,8 @@ This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `1
 
 
 - Objective: Verify mode-aware response shape routing for the quick profile.
-- Real user request: `Please validate Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) against SPECKIT_RESPONSE_PROFILE_V1=true and tell me whether the expected signals are present: quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted.`
-- Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE_V1 enabled.`
+- Real user request: `Please validate Response profile v1 (SPECKIT_RESPONSE_PROFILE) against SPECKIT_RESPONSE_PROFILE=true and tell me whether the expected signals are present: quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted.`
+- Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE enabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,12 +30,12 @@ This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `1
 ### Prompt
 
 ```
-As a runtime-hook validation operator, verify quick profile reduced response shape against SPECKIT_RESPONSE_PROFILE_V1=true. Verify quick: topResult + oneLineWhy + omittedCount + tokenReduction; research: results + evidenceDigest + followUps; resume: state + nextSteps + blockers; full response when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a runtime-hook validation operator, verify quick profile reduced response shape against SPECKIT_RESPONSE_PROFILE=true. Verify quick: topResult + oneLineWhy + omittedCount + tokenReduction; research: results + evidenceDigest + followUps; resume: state + nextSteps + blockers; full response when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. `SPECKIT_RESPONSE_PROFILE_V1=true`
+1. `SPECKIT_RESPONSE_PROFILE=true`
 2. `memory_search({ query: "test profiles", profile: "quick" })`
 3. Verify QuickProfile shape
 4. Re-run with profile=research, verify ResearchProfile
@@ -56,7 +56,7 @@ Response JSON per profile + token savings calculation
 
 ### Failure Triage
 
-Verify SPECKIT_RESPONSE_PROFILE_V1 env → Inspect profile-formatters.ts profile routing → Check estimateTokens() → Verify QuickProfile.tokenReduction.savingsPercent → Check fallback for unknown profile names
+Verify SPECKIT_RESPONSE_PROFILE env → Inspect profile-formatters.ts profile routing → Check estimateTokens() → Verify QuickProfile.tokenReduction.savingsPercent → Check fallback for unknown profile names
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

@@ -52,35 +52,35 @@ function makeResults(count: number, opts?: { contentLength?: number }): Disclosu
 // -- Feature Flag --
 
 describe('isProgressiveDisclosureEnabled() — feature flag', () => {
-  const ORIGINAL = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
+  const ORIGINAL = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
 
   afterEach(() => {
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
-    else process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
+    else process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = ORIGINAL;
   });
 
   it('defaults to true when env var is not set (graduated)', () => {
-    delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
+    delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
     expect(isProgressiveDisclosureEnabled()).toBe(true);
   });
 
   it('returns true when set to "true"', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     expect(isProgressiveDisclosureEnabled()).toBe(true);
   });
 
   it('returns true when set to "TRUE" (case-insensitive)', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'TRUE';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'TRUE';
     expect(isProgressiveDisclosureEnabled()).toBe(true);
   });
 
   it('returns false when set to "false"', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'false';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'false';
     expect(isProgressiveDisclosureEnabled()).toBe(false);
   });
 
   it('returns true for "1" (graduated — any non-false value is ON)', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = '1';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = '1';
     expect(isProgressiveDisclosureEnabled()).toBe(true);
   });
 });
@@ -422,14 +422,14 @@ describe('hashQuery()', () => {
 // -- Progressive Response Builder --
 
 describe('buildProgressiveResponse()', () => {
-  const ORIGINAL = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
+  const ORIGINAL = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
 
   beforeEach(() => clearCursorStore());
 
   afterEach(() => {
     clearCursorStore();
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1;
-    else process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_PROGRESSIVE_DISCLOSURE;
+    else process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = ORIGINAL;
   });
 
   it('returns empty response for empty results', () => {
@@ -440,7 +440,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('when flag OFF: returns all results as snippets, no cursor', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'false';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'false';
     const results = makeResults(10);
     const response = buildProgressiveResponse(results, 5, 'test');
     // All 10 results returned as snippets (no pagination when flag OFF)
@@ -450,7 +450,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('when flag ON: paginates results and provides cursor', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     const results = makeResults(10);
     const response = buildProgressiveResponse(results, 5, 'test');
     // Only first page of 5 snippets
@@ -463,7 +463,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('when flag ON: no cursor if results fit in one page', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     const results = makeResults(3);
     const response = buildProgressiveResponse(results, 5, 'test');
     expect(response.results).toHaveLength(3);
@@ -471,7 +471,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('uses default page size of 5', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     const results = makeResults(8);
     const response = buildProgressiveResponse(results, undefined, 'test');
     expect(response.results).toHaveLength(DEFAULT_PAGE_SIZE);
@@ -480,7 +480,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('full pipeline: build response, then resolve cursor for remaining', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     const results = makeResults(12);
     const response = buildProgressiveResponse(results, 5, 'full pipeline test');
 
@@ -502,7 +502,7 @@ describe('buildProgressiveResponse()', () => {
   });
 
   it('passes cursor scope metadata through the progressive response builder', () => {
-    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1 = 'true';
+    process.env.SPECKIT_PROGRESSIVE_DISCLOSURE = 'true';
     const results = makeResults(10);
     const response = buildProgressiveResponse(results, 5, 'scoped progressive response', {
       scopeKey: 'tenant-a:user-a',

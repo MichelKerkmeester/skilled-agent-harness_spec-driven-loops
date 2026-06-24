@@ -5,7 +5,7 @@ import {
   type RawSearchResult,
 } from '../formatters/search-results';
 
-const CONFIDENCE_FLAG = 'SPECKIT_RESULT_CONFIDENCE_V1';
+const CONFIDENCE_FLAG = 'SPECKIT_RESULT_CONFIDENCE';
 // This suite asserts the rebalance-only contract: that score margin, channel
 // agreement, and anchor density drive a numeric confidence value whose BAND
 // matches the high/medium/low label. That value↔label coupling only holds on
@@ -406,7 +406,7 @@ describe('D5 Phase A: result confidence scoring', () => {
     expect(gapEnvelope.data.requestQuality?.label).toBe('gap');
   });
 
-  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
+  it('omits confidence when SPECKIT_RESULT_CONFIDENCE is false', async () => {
     process.env[CONFIDENCE_FLAG] = 'false';
 
     const envelope = await formatEnvelope([

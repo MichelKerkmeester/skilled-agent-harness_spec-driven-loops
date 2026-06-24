@@ -28,10 +28,10 @@ import {
 import { formatSearchResults } from '../formatters/search-results';
 import type { MCPEnvelope, MCPResponse } from '../lib/response/envelope';
 
-const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
-const CITE_CAVEAT_FLAG = 'SPECKIT_CITE_WITH_CAVEAT_V1';
-const EVIDENCE_GAP_FLAG = 'SPECKIT_EVIDENCE_GAP_VERDICT_V1';
-const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
+const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION';
+const CITE_CAVEAT_FLAG = 'SPECKIT_CITE_WITH_CAVEAT';
+const EVIDENCE_GAP_FLAG = 'SPECKIT_EVIDENCE_GAP_VERDICT';
+const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING';
 // The verdict reads the uncalibrated rebalance value, so the isotonic model never
 // moves the label. Pin it OFF anyway to keep the verdict subject visible and
 // mirror the sibling request-quality suites.

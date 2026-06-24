@@ -22,8 +22,8 @@ import {
 // calibration suites.
 const PINNED_OFF_FLAGS = [
   'SPECKIT_CONFIDENCE_CALIBRATION',
-  'SPECKIT_LEXICAL_GROUNDING_V1',
-  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+  'SPECKIT_LEXICAL_GROUNDING',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION',
 ] as const;
 const savedFlagValues = new Map<string, string | undefined>();
 
@@ -62,35 +62,35 @@ function makeResults(scores: number[]): ScoredResult[] {
 // -- Feature Flag --
 
 describe('isResultConfidenceEnabled() — feature flag', () => {
-  const ORIGINAL = process.env.SPECKIT_RESULT_CONFIDENCE_V1;
+  const ORIGINAL = process.env.SPECKIT_RESULT_CONFIDENCE;
 
   afterEach(() => {
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_RESULT_CONFIDENCE_V1;
-    else process.env.SPECKIT_RESULT_CONFIDENCE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_RESULT_CONFIDENCE;
+    else process.env.SPECKIT_RESULT_CONFIDENCE = ORIGINAL;
   });
 
   it('defaults to true when env var is not set (graduated)', () => {
-    delete process.env.SPECKIT_RESULT_CONFIDENCE_V1;
+    delete process.env.SPECKIT_RESULT_CONFIDENCE;
     expect(isResultConfidenceEnabled()).toBe(true);
   });
 
   it('returns true when set to "true"', () => {
-    process.env.SPECKIT_RESULT_CONFIDENCE_V1 = 'true';
+    process.env.SPECKIT_RESULT_CONFIDENCE = 'true';
     expect(isResultConfidenceEnabled()).toBe(true);
   });
 
   it('returns true when set to "TRUE" (case-insensitive)', () => {
-    process.env.SPECKIT_RESULT_CONFIDENCE_V1 = 'TRUE';
+    process.env.SPECKIT_RESULT_CONFIDENCE = 'TRUE';
     expect(isResultConfidenceEnabled()).toBe(true);
   });
 
   it('returns false when set to "false"', () => {
-    process.env.SPECKIT_RESULT_CONFIDENCE_V1 = 'false';
+    process.env.SPECKIT_RESULT_CONFIDENCE = 'false';
     expect(isResultConfidenceEnabled()).toBe(false);
   });
 
   it('returns true for "1" (graduated — any non-false value is ON)', () => {
-    process.env.SPECKIT_RESULT_CONFIDENCE_V1 = '1';
+    process.env.SPECKIT_RESULT_CONFIDENCE = '1';
     expect(isResultConfidenceEnabled()).toBe(true);
   });
 });

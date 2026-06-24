@@ -1,14 +1,14 @@
 ---
-title: "168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1)"
-description: "This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response."
+title: "168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)"
+description: "This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response."
 version: 3.6.0.15
 ---
 
-# 168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1)
+# 168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)
 
 ## 1. OVERVIEW
 
-This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response.
+This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response.
 
 ---
 
@@ -16,7 +16,7 @@ This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSUR
 
 
 - Objective: Verify full results are preserved while additive disclosure metadata and cursor pagination are exposed.
-- Real user request: `` Please validate Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1) against memory_search({ query: "broad query", limit: 20 }) and tell me whether the expected signals are present: `data.results` remains present; `data.progressiveDisclosure.summaryLayer` with count and digest; `data.progressiveDisclosure.results` as Snippet[] with snippet (max 100 chars), detailAvailable, resultId; continuation cursor with remainingCount; cursor expiry at DEFAULT_CURSOR_TTL_MS (5 min); page size DEFAULT_PAGE_SIZE (5). ``
+- Real user request: `` Please validate Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) against memory_search({ query: "broad query", limit: 20 }) and tell me whether the expected signals are present: `data.results` remains present; `data.progressiveDisclosure.summaryLayer` with count and digest; `data.progressiveDisclosure.results` as Snippet[] with snippet (max 100 chars), detailAvailable, resultId; continuation cursor with remainingCount; cursor expiry at DEFAULT_CURSOR_TTL_MS (5 min); page size DEFAULT_PAGE_SIZE (5). ``
 - Prompt: `Validate progressive disclosure v1 metadata and cursor pagination for broad memory_search results.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `data.results` remains present; `data.progressiveDisclosure.summaryLayer` with count and digest; `data.progressiveDisclosure.results` as Snippet[] with snippet (max 100 chars), detailAvailable, resultId; continuation cursor with remainingCount; cursor expiry at DEFAULT_CURSOR_TTL_MS (5 min); page size DEFAULT_PAGE_SIZE (5)
@@ -57,7 +57,7 @@ Response JSON + pagination test with cursor + test transcript
 
 ### Failure Triage
 
-Verify SPECKIT_PROGRESSIVE_DISCLOSURE_V1 env → Check DEFAULT_PAGE_SIZE (5) → Inspect SNIPPET_MAX_LENGTH (100) → Verify hashQuery() cursor key → Check DEFAULT_CURSOR_TTL_MS (300000) → Inspect cursorStore map
+Verify SPECKIT_PROGRESSIVE_DISCLOSURE env → Check DEFAULT_PAGE_SIZE (5) → Inspect SNIPPET_MAX_LENGTH (100) → Verify hashQuery() cursor key → Check DEFAULT_CURSOR_TTL_MS (300000) → Inspect cursorStore map
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

@@ -98,7 +98,7 @@ describe('memory retention sweep feedback learning', () => {
   it('leaves the disabled-flag sweep result and mutations on the existing path', () => {
     // Retention forgetting is now default-ON, so the existing-path assertion
     // must pin the flag OFF explicitly to exercise the unchanged sweep.
-    vi.stubEnv('SPECKIT_RETENTION_FORGETTING_V1', 'false');
+    vi.stubEnv('SPECKIT_RETENTION_FORGETTING', 'false');
     vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_MODE', 'active');
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
     insertMemory(db, 1, 'normal');
@@ -235,7 +235,7 @@ describe('memory retention sweep feedback learning', () => {
   it('does not apply a stale spare-only delete when a concurrent writer raises importance in-flight', () => {
     vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_LEARNING', 'true');
     vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_MODE', 'active');
-    vi.stubEnv('SPECKIT_RETENTION_FORGETTING_V1', 'true');
+    vi.stubEnv('SPECKIT_RETENTION_FORGETTING', 'true');
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
     // importance_weight defaults to 0.5 (below the 0.85 spare floor), so the
     // pre-transaction decision is a spare-only delete.

@@ -1,14 +1,14 @@
 ---
-title: "179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)"
-description: "This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results."
+title: "179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)"
+description: "This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results."
 version: 3.6.0.14
 ---
 
-# 179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)
+# 179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)
 
 ## 1. OVERVIEW
 
-This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results.
+This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results.
 
 ---
 
@@ -16,7 +16,7 @@ This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)
 
 
 - Objective: Verify structured recovery payloads for empty/weak search results.
-- Real user request: `Please validate Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) against SPECKIT_EMPTY_RESULT_RECOVERY_V1 and tell me whether the expected signals are present: 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; alternative queries generated; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3.`
+- Real user request: `Please validate Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) against SPECKIT_EMPTY_RESULT_RECOVERY and tell me whether the expected signals are present: 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; alternative queries generated; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3.`
 - Prompt: `Validate empty result recovery payloads for empty and weak memory_search results.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; alternative queries generated; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3
@@ -30,12 +30,12 @@ This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)
 ### Prompt
 
 ```
-As a runtime-hook validation operator, verify structured recovery payloads for empty/weak search results against SPECKIT_EMPTY_RESULT_RECOVERY_V1. Verify recovery payload contains status (no_results/low_confidence/partial); root cause reason (spec_filter_too_narrow/low_signal_query/knowledge_gap); suggested actions (retry_broader/switch_mode/save_memory/ask_user); alternative query suggestions; thresholds: LOW_CONFIDENCE=0.4, PARTIAL_MIN=3. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a runtime-hook validation operator, verify structured recovery payloads for empty/weak search results against SPECKIT_EMPTY_RESULT_RECOVERY. Verify recovery payload contains status (no_results/low_confidence/partial); root cause reason (spec_filter_too_narrow/low_signal_query/knowledge_gap); suggested actions (retry_broader/switch_mode/save_memory/ask_user); alternative query suggestions; thresholds: LOW_CONFIDENCE=0.4, PARTIAL_MIN=3. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. Confirm `SPECKIT_EMPTY_RESULT_RECOVERY_V1` is unset or `true`
+1. Confirm `SPECKIT_EMPTY_RESULT_RECOVERY` is unset or `true`
 2. `memory_search({ query: "completely nonexistent topic xyzzy" })` — triggers no_results
 3. Search for vague/low-signal query — triggers low_confidence
 4. Search with narrow specFolder filter — triggers partial

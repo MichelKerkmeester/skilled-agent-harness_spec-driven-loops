@@ -12,7 +12,7 @@ import {
 } from '../lib/feedback/feedback-retention-reducer.js';
 import type { RetentionCandidateRow } from '../lib/feedback/feedback-retention-reducer.js';
 
-const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
+const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING';
 
 afterEach(() => {
   vi.unstubAllEnvs();

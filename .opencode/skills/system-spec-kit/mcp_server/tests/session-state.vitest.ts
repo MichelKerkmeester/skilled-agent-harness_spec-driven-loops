@@ -41,35 +41,35 @@ function makeResults(count: number): SessionResult[] {
 // -- Feature Flag --
 
 describe('isSessionRetrievalStateEnabled() — feature flag', () => {
-  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
+  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
 
   afterEach(() => {
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
-    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
+    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE = ORIGINAL;
   });
 
   it('defaults to true when env var is not set (graduated)', () => {
-    delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
+    delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
     expect(isSessionRetrievalStateEnabled()).toBe(true);
   });
 
   it('returns true when set to "true"', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'true';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'true';
     expect(isSessionRetrievalStateEnabled()).toBe(true);
   });
 
   it('returns true when set to "TRUE" (case-insensitive)', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'TRUE';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'TRUE';
     expect(isSessionRetrievalStateEnabled()).toBe(true);
   });
 
   it('returns false when set to "false"', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'false';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'false';
     expect(isSessionRetrievalStateEnabled()).toBe(false);
   });
 
   it('returns true for "1" (graduated — any non-false value is ON)', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = '1';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = '1';
     expect(isSessionRetrievalStateEnabled()).toBe(true);
   });
 });
@@ -266,17 +266,17 @@ describe('SessionStateManager — LRU eviction', () => {
 // -- Cross-Turn Deduplication --
 
 describe('deduplicateResults()', () => {
-  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
+  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
 
   beforeEach(() => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'true';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'true';
     manager.clearAll();
   });
 
   afterEach(() => {
     manager.clearAll();
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
-    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
+    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE = ORIGINAL;
   });
 
   it('deprioritizes seen results by multiplying score by SEEN_DEDUP_FACTOR', () => {
@@ -332,7 +332,7 @@ describe('deduplicateResults()', () => {
   });
 
   it('returns unchanged when feature flag is OFF', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'false';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'false';
     manager.markSeen('sess-1', [1, 2]);
     const results = makeResults(3);
     const { results: deduped, metadata } = deduplicateResults(results, 'sess-1');
@@ -350,17 +350,17 @@ describe('deduplicateResults()', () => {
 // -- Goal-Aware Refinement --
 
 describe('refineForGoal()', () => {
-  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
+  const ORIGINAL = process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
 
   beforeEach(() => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'true';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'true';
     manager.clearAll();
   });
 
   afterEach(() => {
     manager.clearAll();
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1;
-    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_SESSION_RETRIEVAL_STATE;
+    else process.env.SPECKIT_SESSION_RETRIEVAL_STATE = ORIGINAL;
   });
 
   it('boosts results aligned with the active goal', () => {
@@ -399,7 +399,7 @@ describe('refineForGoal()', () => {
   });
 
   it('returns unchanged when feature flag is OFF', () => {
-    process.env.SPECKIT_SESSION_RETRIEVAL_STATE_V1 = 'false';
+    process.env.SPECKIT_SESSION_RETRIEVAL_STATE = 'false';
     manager.updateGoal('sess-1', 'some goal');
     const results = makeResults(3);
     const { results: refined, metadata } = refineForGoal(results, 'sess-1');

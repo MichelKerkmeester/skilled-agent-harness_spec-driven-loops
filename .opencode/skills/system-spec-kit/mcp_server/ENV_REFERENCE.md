@@ -79,14 +79,14 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Graph calibration profile | ON | `SPECKIT_GRAPH_CALIBRATION_PROFILE` | Community thresholds and graph score caps | D3 REQ-D3-005/006 |
 | Learned Stage 2 combiner | ON | `SPECKIT_LEARNED_STAGE2_COMBINER` | Shadow-only learned linear ranker | D1 REQ-D1-006 |
 | Shadow feedback | ON | `SPECKIT_SHADOW_FEEDBACK` | Holdout comparison of would-have-changed rankings | D4 REQ-D4-006 |
-| Progressive disclosure | ON | `SPECKIT_PROGRESSIVE_DISCLOSURE_V1` | Summary layer and cursor pagination for results | D5 REQ-D5-005 |
-| Session retrieval state | ON | `SPECKIT_SESSION_RETRIEVAL_STATE_V1` | Cross-turn dedup and goal-aware refinement | D5 REQ-D5-006 |
+| Progressive disclosure | ON | `SPECKIT_PROGRESSIVE_DISCLOSURE` | Summary layer and cursor pagination for results | D5 REQ-D5-005 |
+| Session retrieval state | ON | `SPECKIT_SESSION_RETRIEVAL_STATE` | Cross-turn dedup and goal-aware refinement | D5 REQ-D5-006 |
 | Calibrated overlap bonus | ON | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | Multi-channel overlap bonus | D1 REQ-D1-001 |
 | RRF K experimental | ON | `SPECKIT_RRF_K_EXPERIMENTAL` | Per-intent RRF K selection | D1 REQ-D1-003 |
 | Typed traversal | ON | `SPECKIT_TYPED_TRAVERSAL` | Sparse-first intent-aware graph traversal | D3 Phase A |
-| Empty result recovery | ON | `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | Empty and weak result recovery payloads | D5 REQ-D5-001 |
-| Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE_V1` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
-| Envelope fidelity | ON | `SPECKIT_ENVELOPE_FIDELITY_V1` | Emits the `data.envelopeRender` verdict fragment and promotes the verdict fields to conditionally-mandatory render slots; default-ON (graduated) until a clean grandfather report | current |
+| Empty result recovery | ON | `SPECKIT_EMPTY_RESULT_RECOVERY` | Empty and weak result recovery payloads | D5 REQ-D5-001 |
+| Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
+| Envelope fidelity | ON | `SPECKIT_ENVELOPE_FIDELITY` | Emits the `data.envelopeRender` verdict fragment and promotes the verdict fields to conditionally-mandatory render slots; default-ON (graduated) until a clean grandfather report | current |
 | Batch learned feedback | ON | `SPECKIT_BATCH_LEARNED_FEEDBACK` | Weekly batch feedback learning pipeline | D4 REQ-D4-004 |
 | Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer; shadow-first and audit-only unless active mode is gated | current |
 | Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`; default `shadow`; active still requires the master flag and internally supplied shadow-evaluation evidence, which the public sweep tool and scheduler do not expose. | current |
@@ -94,8 +94,8 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Soft-delete tombstones | OFF | `SPECKIT_SOFT_DELETE_TOMBSTONES` | Default-off tombstone delete path for memory deletes and purgeable retention partition; keep OFF until recall surfaces filter `deleted_at IS NULL` | current |
 | Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
 | Memory idempotency receipts | OFF | `SPECKIT_MEMORY_IDEMPOTENCY` | Default-off server-derived replay receipts for memory_save/memory_update plus advisory near_duplicate_of hints | memory hardening |
-| Result explainability | ON | `SPECKIT_RESULT_EXPLAIN_V1` | Two-tier result explainability | D5 REQ-D5-002 |
-| Response profile formatting | ON | `SPECKIT_RESPONSE_PROFILE_V1` | Mode-aware response profiles | D5 REQ-D5-003 |
+| Result explainability | ON | `SPECKIT_RESULT_EXPLAIN` | Two-tier result explainability | D5 REQ-D5-002 |
+| Response profile formatting | ON | `SPECKIT_RESPONSE_PROFILE` | Mode-aware response profiles | D5 REQ-D5-003 |
 | Query concept expansion | ON | `SPECKIT_QUERY_CONCEPT_EXPANSION` | Alias-based query expansion for hybrid search | Phase B T016 |
 | Graph fallback | ON | `SPECKIT_GRAPH_FALLBACK` | Graph-expanded fallback on zero or weak results | Phase B T017 |
 | Graph context injection | ON | `SPECKIT_GRAPH_CONTEXT_INJECTION` | Graph neighbor lookup even without seed results | Phase B T020 |
@@ -138,7 +138,7 @@ Default-OFF safety and grandfather flags for the spec-data-quality and generator
 | Identity and merge safety | ON | `SPECKIT_IDENTITY_MERGE_SAFETY` | Graduated default-on: both generators resolve a shared specs-root-relative spec-folder identity and the merge preserves a non-null parent plus unions children so a scoped re-derive cannot erase lineage. Set `false`/`0`/`off` to restore the legacy caller-base path and spread merge | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts` |
 | Idempotent description writes | ON | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | Graduated default-on: a per-folder description write whose only delta is the volatile stamp is skipped and the aggregate-cache write is gated on a real member delta, preserving the prior timestamp. Set `false`/`0`/`off` to restore the unconditional legacy write | `lib/config/capability-flags.ts` |
 | Generated-metadata z-exclusion | ON | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | Excludes `z_*` archive directories from the spec-folder discovery scanner; set `false` to restore the prior scanner that descended them | `lib/search/folder-discovery.ts` |
-| Lexical grounding v1 | ON | `SPECKIT_LEXICAL_GROUNDING_V1` | Graduated default-on: the grounding floor and single-hit corroboration guard run on the request-quality verdict. Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict | `lib/search/search-flags.ts` |
+| Lexical grounding v1 | ON | `SPECKIT_LEXICAL_GROUNDING` | Graduated default-on: the grounding floor and single-hit corroboration guard run on the request-quality verdict. Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict | `lib/search/search-flags.ts` |
 | False-confirm max rate | 0 (enforcing) | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | Graduated default: the off-corpus eval gate enforces a zero-tolerance ceiling when unset, so any false-confirm rate past 0 fails. Set a number in `[0,1]` to override the ceiling | `scripts/evals/run-false-confirm-eval.mjs` |
 | Entity config path override | (bundled rules) | `SPECKIT_ENTITY_CONFIG_PATH` | Overrides the path to the entity-extraction rules JSON; unset uses the bundled ruleset | `lib/extraction/entity-extractor.ts` |
 
@@ -264,9 +264,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_FOLDER_BOOST_FACTOR` | `1.3` | number | Multiplier applied to results matching the discovered spec folder. | `handlers/memory-context.ts` |
 | `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
 | `SPECKIT_FOLDER_DISCOVERY` | `true` | boolean | Automatic spec folder discovery via description cache (PI-B3). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | `true` | boolean | Subtracts a measured corpus noise-floor from absolute relevance before the request-quality band read (floored at zero), so the embedder background cosine no longer inflates an off-corpus hit to good. The floor is recorded per embedder. An embedder with no measured floor fails closed to the raw band. **Default ON** (graduated). Set `false`/`0`/`off` to restore the raw-relevance band. | `lib/search/search-flags.ts`, `lib/search/noise-floor.ts` |
-| `SPECKIT_CITE_WITH_CAVEAT_V1` | `true` | boolean | Adds a `cite_with_caveat` citation-policy tier between `cite_results` and `do_not_cite_results`, so a weak verdict whose top hit is still lexically grounded is hedged rather than dropped. A fully ungrounded hit is never promoted. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the citation policy is the shipped two-state output. | `lib/search/search-flags.ts` |
-| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | `true` | boolean | Bridges the Stage 4 `evidenceGapDetected` signal into the request-quality verdict: a true gap caps a good verdict at weak. The gap is read from the Stage 4 signal, never recomputed. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the verdict ignores the gap exactly as today. | `lib/search/search-flags.ts` |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION` | `true` | boolean | Subtracts a measured corpus noise-floor from absolute relevance before the request-quality band read (floored at zero), so the embedder background cosine no longer inflates an off-corpus hit to good. The floor is recorded per embedder. An embedder with no measured floor fails closed to the raw band. **Default ON** (graduated). Set `false`/`0`/`off` to restore the raw-relevance band. | `lib/search/search-flags.ts`, `lib/search/noise-floor.ts` |
+| `SPECKIT_CITE_WITH_CAVEAT` | `true` | boolean | Adds a `cite_with_caveat` citation-policy tier between `cite_results` and `do_not_cite_results`, so a weak verdict whose top hit is still lexically grounded is hedged rather than dropped. A fully ungrounded hit is never promoted. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the citation policy is the shipped two-state output. | `lib/search/search-flags.ts` |
+| `SPECKIT_EVIDENCE_GAP_VERDICT` | `true` | boolean | Bridges the Stage 4 `evidenceGapDetected` signal into the request-quality verdict: a true gap caps a good verdict at weak. The gap is read from the Stage 4 signal, never recomputed. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the verdict ignores the gap exactly as today. | `lib/search/search-flags.ts` |
 
 > **Calibration re-fit is a proven non-fix (documentation only).** The verdict band is taken off the PRE-calibration value: `confidence-scoring` bands on the rebalanced value while the isotonic model is applied separately to the displayed `confidence.value`. Re-fitting `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` against off-corpus negatives therefore cannot move good versus weak versus gap, so no curve re-fit ships for the off-corpus false-positive. The scoring-hardening flags above are the real levers; the calibration curve and its application point are intentionally untouched.
 
@@ -292,7 +292,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_ROUTER_TIER3_ENABLED` | `false` | boolean | Tier 3 prototype-routing opt-in gate (`true`/`1` to enable). Canonical routing remains the default save path; this is an additional router tier. | `lib/routing/content-router.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_PATH` | `<cwd>/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl` | string | Override the JSONL file path for the search-decision audit log. | `lib/search/decision-audit.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_MAX_FILES` | `5` | number (positive int) | Maximum rotated search-decision audit files retained. Non-positive/invalid values fall back to the default. | `lib/search/decision-audit.ts` |
-| `SPECKIT_LEXICAL_GROUNDING_V1` | `true` | boolean | Lexical grounding floor and single-hit corroboration for the request-quality verdict. **Default ON** (graduated). Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict. | `lib/search/search-flags.ts` |
+| `SPECKIT_LEXICAL_GROUNDING` | `true` | boolean | Lexical grounding floor and single-hit corroboration for the request-quality verdict. **Default ON** (graduated). Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict. | `lib/search/search-flags.ts` |
 
 ---
 
@@ -380,7 +380,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | `true` | boolean | Assistive reconsolidation for near-duplicate detection (REQ-D4-005). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_MEMORY_SUMMARIES` | `true` | boolean | TF-IDF extractive summary generation as search channel (R8). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RETENTION_FORGETTING_V1` | `true` | boolean | 028 keep-on as a no-harm safety guardrail, not a precision win. The conservative spare-only retention axes and live incoming-edge protection spare keep-set rows the OFF path would delete with dropRecall delta 0. The keep and drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a guardrail. Set `false` to disable. | `lib/search/search-flags.ts` |
+| `SPECKIT_RETENTION_FORGETTING` | `true` | boolean | 028 keep-on as a no-harm safety guardrail, not a precision win. The conservative spare-only retention axes and live incoming-edge protection spare keep-set rows the OFF path would delete with dropRecall delta 0. The keep and drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a guardrail. Set `false` to disable. | `lib/search/search-flags.ts` |
 | `SPECKIT_WORLD_SUMMARY_PRELUDE` | `true` | boolean | 028 keep-on as a no-displacement grounding aid, not a ranking win. The coarse-to-fine world-summary prelude for memory_context appends its grounding instead of prepending it, recovering recall targets with 0 regressions because it never displaces a baseline row. The gain is partly a self-recall plus an append-by-construction artifact. Set `false` to disable. | `lib/search/search-flags.ts` |
 | `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
@@ -448,14 +448,14 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_CONTEXT_HEADERS` | `true` | boolean | Contextual tree headers for Stage 4 result enrichment. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_PROGRESSIVE_DISCLOSURE_V1` | `true` | boolean | Progressive disclosure: summary layer + snippet + cursor pagination (REQ-D5-005). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_SESSION_RETRIEVAL_STATE_V1` | `true` | boolean | Cross-turn retrieval session state for dedup and goal-aware refinement (REQ-D5-006). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | `true` | boolean | Empty/weak result recovery UX with diagnostic payload (REQ-D5-001). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ENVELOPE_FIDELITY_V1` | `true` | boolean | Emits the `data.envelopeRender` pre-rendered verdict fragment and promotes `requestQuality` and `citationPolicy` to conditionally-mandatory render slots in the command contract. Graduated to default-ON; set `false`/`0`/`off` to opt out. Default-ON (graduated) keeps the response shape byte-for-byte the shipped behavior until a clean grandfather report. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_EXPLAIN_V1` | `true` | boolean | Two-tier result explainability (REQ-D5-002). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_PROGRESSIVE_DISCLOSURE` | `true` | boolean | Progressive disclosure: summary layer + snippet + cursor pagination (REQ-D5-005). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_SESSION_RETRIEVAL_STATE` | `true` | boolean | Cross-turn retrieval session state for dedup and goal-aware refinement (REQ-D5-006). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_EMPTY_RESULT_RECOVERY` | `true` | boolean | Empty/weak result recovery UX with diagnostic payload (REQ-D5-001). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_RESULT_CONFIDENCE` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_ENVELOPE_FIDELITY` | `true` | boolean | Emits the `data.envelopeRender` pre-rendered verdict fragment and promotes `requestQuality` and `citationPolicy` to conditionally-mandatory render slots in the command contract. Graduated to default-ON; set `false`/`0`/`off` to opt out. Default-ON (graduated) keeps the response shape byte-for-byte the shipped behavior until a clean grandfather report. | `lib/search/search-flags.ts` |
+| `SPECKIT_RESULT_EXPLAIN` | `true` | boolean | Two-tier result explainability (REQ-D5-002). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESULT_EXPLAIN_DEBUG` | `false` | boolean | Detailed debug-level result explainability. Opt-in: set `true` to enable. | `formatters/search-results.ts` |
-| `SPECKIT_RESPONSE_PROFILE_V1` | `true` | boolean | Mode-aware response profile formatting (REQ-D5-003). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_RESPONSE_PROFILE` | `true` | boolean | Mode-aware response profile formatting (REQ-D5-003). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESPONSE_TRACE` | `false` | boolean | Include full retrieval trace in search responses. Opt-in: set `true` to enable. | `handlers/memory-search.ts` |
 
 ---

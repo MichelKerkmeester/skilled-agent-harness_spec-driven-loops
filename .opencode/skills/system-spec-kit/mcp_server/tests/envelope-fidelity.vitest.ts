@@ -8,7 +8,7 @@ import {
 // @ts-expect-error -- plain ESM eval script, no type declarations
 import { checkEnvelopeFidelity, readRenderedField } from '../scripts/evals/check-envelope-fidelity.mjs';
 
-const ENVELOPE_FLAG = 'SPECKIT_ENVELOPE_FIDELITY_V1';
+const ENVELOPE_FLAG = 'SPECKIT_ENVELOPE_FIDELITY';
 // The verdict bands off the uncalibrated relevance signal; the isotonic model
 // caps "good" by default, so pin it OFF to keep the verdict subject visible.
 const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';

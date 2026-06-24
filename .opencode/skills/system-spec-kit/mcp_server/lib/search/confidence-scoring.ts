@@ -7,7 +7,7 @@
 // and anchor density into a single calibrated confidence score per
 // result. V1 uses heuristic scoring only, no LLM calls in the hot path.
 //
-// FEATURE FLAG: SPECKIT_RESULT_CONFIDENCE_V1 (default ON, graduated)
+// FEATURE FLAG: SPECKIT_RESULT_CONFIDENCE (default ON, graduated)
 //
 // OUTPUT SHAPE (per result):
 // {
@@ -683,6 +683,6 @@ export function assessRequestQuality(
 
 /**
  * Check whether the per-result confidence feature flag is enabled.
- * Default: ON (graduated). Set SPECKIT_RESULT_CONFIDENCE_V1=false to disable.
+ * Default: ON (graduated). Set SPECKIT_RESULT_CONFIDENCE=false to disable.
  */
 export { isResultConfidenceEnabled } from './search-flags.js';

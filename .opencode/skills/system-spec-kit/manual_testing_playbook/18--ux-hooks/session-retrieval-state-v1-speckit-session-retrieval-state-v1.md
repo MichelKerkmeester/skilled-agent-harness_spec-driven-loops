@@ -1,14 +1,14 @@
 ---
-title: "169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1)"
-description: "This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata."
+title: "169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)"
+description: "This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata."
 version: 3.6.0.15
 ---
 
-# 169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1)
+# 169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)
 
 ## 1. OVERVIEW
 
-This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata.
+This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata.
 
 ---
 
@@ -16,7 +16,7 @@ This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_ST
 
 
 - Objective: Verify additive session-state metadata and goal refinement are emitted on session-aware searches.
-- Real user request: `` Please validate Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1) against memory_search({ query: "first search", sessionId: "test-session", anchors: ["state", "next-steps"] }) and tell me whether the expected signals are present: `data.sessionState` includes activeGoal, seenResultIds, openQuestions, preferredAnchors; `data.goalRefinement` includes activeGoal and applied status; follow-up search in same session can deprioritize seen results (score * 0.3 fallback path); session expires after SESSION_TTL_MS (30 min); LRU eviction at MAX_SESSIONS (100). ``
+- Real user request: `` Please validate Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) against memory_search({ query: "first search", sessionId: "test-session", anchors: ["state", "next-steps"] }) and tell me whether the expected signals are present: `data.sessionState` includes activeGoal, seenResultIds, openQuestions, preferredAnchors; `data.goalRefinement` includes activeGoal and applied status; follow-up search in same session can deprioritize seen results (score * 0.3 fallback path); session expires after SESSION_TTL_MS (30 min); LRU eviction at MAX_SESSIONS (100). ``
 - Prompt: `Validate session retrieval state metadata and goal refinement for session-aware memory_search.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `data.sessionState` includes activeGoal, seenResultIds, openQuestions, preferredAnchors; `data.goalRefinement` includes activeGoal and applied status; follow-up search in same session can deprioritize seen results (score * 0.3 fallback path); session expires after SESSION_TTL_MS (30 min); LRU eviction at MAX_SESSIONS (100)

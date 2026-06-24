@@ -1,9 +1,9 @@
 ---
 title: "Mode-aware response profiles"
-description: "Mode-aware response profile formatters define four named presentation profiles (quick, research, resume, debug) behind the SPECKIT_RESPONSE_PROFILE_V1 flag. `memory_search` applies them today, and `memory_context` now auto-routes an inferred profile when no explicit profile is supplied."
+description: "Mode-aware response profile formatters define four named presentation profiles (quick, research, resume, debug) behind the SPECKIT_RESPONSE_PROFILE flag. `memory_search` applies them today, and `memory_context` now auto-routes an inferred profile when no explicit profile is supplied."
 trigger_phrases:
   - "mode-aware response profiles"
-  - "SPECKIT_RESPONSE_PROFILE_V1"
+  - "SPECKIT_RESPONSE_PROFILE"
   - "response profile formatters"
   - "quick research resume debug profiles"
   - "memory search response profiles"
@@ -16,7 +16,7 @@ version: 3.6.0.8
 
 ## 1. OVERVIEW
 
-Mode-aware response profile formatters define four named presentation profiles (quick, research, resume, debug) behind the `SPECKIT_RESPONSE_PROFILE_V1` flag. Live runtime wiring now spans both search and context: `memory_search` applies them, and `memory_context` auto-routes an inferred profile when no explicit profile is supplied. Quick mode still bypasses profile shaping because its trigger path does not consume formatted envelopes.
+Mode-aware response profile formatters define four named presentation profiles (quick, research, resume, debug) behind the `SPECKIT_RESPONSE_PROFILE` flag. Live runtime wiring now spans both search and context: `memory_search` applies them, and `memory_context` auto-routes an inferred profile when no explicit profile is supplied. Quick mode still bypasses profile shaping because its trigger path does not consume formatted envelopes.
 
 Different situations call for different response shapes. A quick question needs just the top result and a one-line explanation. A research session needs the full list with an evidence digest and follow-up suggestions. Resuming prior work needs state, next steps, and blockers. The formatter layer supports those shapes, and the live integration now reaches both handlers: `memory_search` can apply response profiles, while `memory_context` auto-routes an inferred profile when no explicit profile is supplied. When the flag is off, the original full response is returned unchanged.
 
@@ -40,7 +40,7 @@ Runtime wiring is now live on both handlers: `memory_search` applies the formatt
 
 ### Configuration
 
-Backward compatible: when the flag is OFF or profile is omitted, the original response is unchanged. Default ON (graduated), controlled by `SPECKIT_RESPONSE_PROFILE_V1`.
+Backward compatible: when the flag is OFF or profile is omitted, the original response is unchanged. Default ON (graduated), controlled by `SPECKIT_RESPONSE_PROFILE`.
 
 ---
 

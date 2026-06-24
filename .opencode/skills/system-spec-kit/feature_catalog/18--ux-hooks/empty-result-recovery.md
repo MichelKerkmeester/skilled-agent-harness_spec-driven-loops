@@ -1,9 +1,9 @@
 ---
 title: "Empty result recovery"
-description: "Empty result recovery generates structured recovery payloads when search returns no results, low-confidence results, or only partial matches, providing the calling agent with actionable next steps, gated by the SPECKIT_EMPTY_RESULT_RECOVERY_V1 flag."
+description: "Empty result recovery generates structured recovery payloads when search returns no results, low-confidence results, or only partial matches, providing the calling agent with actionable next steps, gated by the SPECKIT_EMPTY_RESULT_RECOVERY flag."
 trigger_phrases:
   - "empty result recovery"
-  - "SPECKIT_EMPTY_RESULT_RECOVERY_V1"
+  - "SPECKIT_EMPTY_RESULT_RECOVERY"
   - "no results recovery payload"
   - "low-confidence result handling"
   - "search failure recovery"
@@ -16,7 +16,7 @@ version: 3.6.0.6
 
 ## 1. OVERVIEW
 
-Empty result recovery generates structured recovery payloads when search returns no results, low-confidence results, or only partial matches, providing the calling agent with actionable next steps, gated by the `SPECKIT_EMPTY_RESULT_RECOVERY_V1` flag.
+Empty result recovery generates structured recovery payloads when search returns no results, low-confidence results, or only partial matches, providing the calling agent with actionable next steps, gated by the `SPECKIT_EMPTY_RESULT_RECOVERY` flag.
 
 When a search comes back empty or with poor results, the user gets no guidance on what to do next. This feature detects three failure states (no results, low confidence, partial matches) and generates a structured payload that tells the calling agent why the search failed and what action to take. Suggested alternatives might include broadening the query, switching search mode, saving a new spec-doc record to fill the knowledge gap, or asking the user for clarification.
 
@@ -26,7 +26,7 @@ When a search comes back empty or with poor results, the user gets no guidance o
 
 ### Core Behavior
 
-Enabled by default (graduated). Set `SPECKIT_EMPTY_RESULT_RECOVERY_V1=false` to disable.
+Enabled by default (graduated). Set `SPECKIT_EMPTY_RESULT_RECOVERY=false` to disable.
 
 The recovery payload module (`recovery-payload.ts`) classifies search outcomes into three statuses:
 - **no_results**: Zero results returned.

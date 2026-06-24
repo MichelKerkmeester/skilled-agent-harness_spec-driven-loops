@@ -1,14 +1,14 @@
 ---
-title: "166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1)"
-description: "This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results."
+title: "166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN)"
+description: "This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results."
 version: 3.6.0.14
 ---
 
-# 166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1)
+# 166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN)
 
 ## 1. OVERVIEW
 
-This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results.
+This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results.
 
 ---
 
@@ -16,8 +16,8 @@ This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`.
 
 
 - Objective: Verify two-tier explainability attachment to search results.
-- Real user request: `Please validate Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) against SPECKIT_RESULT_EXPLAIN_V1=true and tell me whether the expected signals are present: Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF.`
-- Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN_V1 enabled and disabled.`
+- Real user request: `Please validate Result explain v1 (SPECKIT_RESULT_EXPLAIN) against SPECKIT_RESULT_EXPLAIN=true and tell me whether the expected signals are present: Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF.`
+- Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN enabled and disabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,12 +30,12 @@ This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`.
 ### Prompt
 
 ```
-As a runtime-hook validation operator, verify why.summary + topSignals in results against SPECKIT_RESULT_EXPLAIN_V1=true. Verify why.summary non-empty; topSignals array with valid SignalLabel entries; channelContribution (vector/fts/graph) in debug only; no why when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a runtime-hook validation operator, verify why.summary + topSignals in results against SPECKIT_RESULT_EXPLAIN=true. Verify why.summary non-empty; topSignals array with valid SignalLabel entries; channelContribution (vector/fts/graph) in debug only; no why when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. `SPECKIT_RESULT_EXPLAIN_V1=true`
+1. `SPECKIT_RESULT_EXPLAIN=true`
 2. `memory_search({ query: "test explainability" })`
 3. Inspect each result for why.summary + why.topSignals
 4. Re-run with debug.enabled=true

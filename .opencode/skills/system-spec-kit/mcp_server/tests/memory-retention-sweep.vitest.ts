@@ -12,7 +12,7 @@ import { runMemoryRetentionSweep, __retentionSweepTestables } from '../lib/gover
 import { createMemoryIndexTestDatabase } from './fixtures/memory-index-db';
 
 const SOFT_DELETE_FLAG = 'SPECKIT_SOFT_DELETE_TOMBSTONES';
-const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
+const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING';
 
 function withSoftDeleteFlag<T>(value: string | undefined, fn: () => T): T {
   const previous = process.env[SOFT_DELETE_FLAG];

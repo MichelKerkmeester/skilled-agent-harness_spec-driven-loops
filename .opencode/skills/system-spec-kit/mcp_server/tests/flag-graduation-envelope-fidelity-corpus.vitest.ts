@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Flag Graduation: Envelope Fidelity Render Corpus
 // ───────────────────────────────────────────────────────────────
-// SPECKIT_ENVELOPE_FIDELITY_V1 graduates only on a clean grandfather report over
+// SPECKIT_ENVELOPE_FIDELITY graduates only on a clean grandfather report over
 // a captured render corpus, which the benchmark never had. This replays the small
 // corpus checked into the phase folder through the fidelity checker: the faithful
 // renders must pass fail-mode, the renders that dropped or altered the verdict

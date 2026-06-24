@@ -25,8 +25,8 @@ const FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
 // behavior is covered in the grounding and calibration suites.
 const PINNED_OFF_FLAGS = [
   'SPECKIT_CONFIDENCE_CALIBRATION',
-  'SPECKIT_LEXICAL_GROUNDING_V1',
-  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+  'SPECKIT_LEXICAL_GROUNDING',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION',
 ] as const;
 const savedFlagValues = new Map<string, string | undefined>();
 

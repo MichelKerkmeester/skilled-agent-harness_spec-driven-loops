@@ -5,7 +5,7 @@ import {
   type RawSearchResult,
 } from '../formatters/search-results';
 
-const RECOVERY_FLAG = 'SPECKIT_EMPTY_RESULT_RECOVERY_V1';
+const RECOVERY_FLAG = 'SPECKIT_EMPTY_RESULT_RECOVERY';
 // Subject here is the recovery/citation-policy envelope, which reads the
 // uncalibrated request-quality verdict. The isotonic confidence-calibration model
 // now applies by default and would cap the "good" verdict; pin it OFF so the
@@ -354,7 +354,7 @@ describe('D5 Phase A: empty result recovery', () => {
     expect(suggestions.length >= 2 || hasDisambiguationPolicy).toBe(true);
   });
 
-  it('omits the recovery payload when SPECKIT_EMPTY_RESULT_RECOVERY_V1 is false', async () => {
+  it('omits the recovery payload when SPECKIT_EMPTY_RESULT_RECOVERY is false', async () => {
     process.env[RECOVERY_FLAG] = 'false';
 
     const envelope = await formatEnvelope([], {

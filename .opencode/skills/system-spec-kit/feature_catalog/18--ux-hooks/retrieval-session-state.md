@@ -1,9 +1,9 @@
 ---
 title: "Retrieval session state"
-description: "Retrieval session state tracks per-session context enabling cross-turn deduplication, goal-aware refinement, and stateful question and anchor tracking, all in-memory with TTL-based cleanup, gated by the SPECKIT_SESSION_RETRIEVAL_STATE_V1 flag."
+description: "Retrieval session state tracks per-session context enabling cross-turn deduplication, goal-aware refinement, and stateful question and anchor tracking, all in-memory with TTL-based cleanup, gated by the SPECKIT_SESSION_RETRIEVAL_STATE flag."
 trigger_phrases:
   - "retrieval session state"
-  - "SPECKIT_SESSION_RETRIEVAL_STATE_V1"
+  - "SPECKIT_SESSION_RETRIEVAL_STATE"
   - "cross-turn deduplication"
   - "goal-aware refinement"
   - "per-session retrieval context"
@@ -16,7 +16,7 @@ version: 3.6.0.9
 
 ## 1. OVERVIEW
 
-Retrieval session state tracks per-session context enabling cross-turn deduplication, goal-aware refinement, and stateful question and anchor tracking, all in-memory with TTL-based cleanup, gated by the `SPECKIT_SESSION_RETRIEVAL_STATE_V1` flag.
+Retrieval session state tracks per-session context enabling cross-turn deduplication, goal-aware refinement, and stateful question and anchor tracking, all in-memory with TTL-based cleanup, gated by the `SPECKIT_SESSION_RETRIEVAL_STATE` flag.
 
 When you search multiple times in a session, you keep seeing the same results. This feature remembers what you have already seen and deprioritizes those results on subsequent queries. It also lets you set a retrieval goal so results aligned with that goal get a boost. Open questions and preferred anchors are tracked across turns so the system can refine its responses as the conversation progresses. Everything is ephemeral by design — session state lives only in process memory and vanishes when the session ends.
 
@@ -41,7 +41,7 @@ The manager exposes: `getOrCreate()`, `updateGoal()`, `markSeen()`, `addQuestion
 
 ### Configuration
 
-Canonical flag behavior is default ON (graduated). Set `SPECKIT_SESSION_RETRIEVAL_STATE_V1=false` to disable. Any older `session-state.ts` header text that says "default OFF" is stale and does not reflect the live runtime gate.
+Canonical flag behavior is default ON (graduated). Set `SPECKIT_SESSION_RETRIEVAL_STATE=false` to disable. Any older `session-state.ts` header text that says "default OFF" is stale and does not reflect the live runtime gate.
 
 ---
 

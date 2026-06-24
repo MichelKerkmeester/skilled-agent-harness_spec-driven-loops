@@ -1,9 +1,9 @@
 ---
 title: "Two-tier result explainability"
-description: "Two-tier result explainability attaches natural-language 'why' explanations to each search result composed from Stage 2 scoring signals, with a slim tier (summary + topSignals) and an optional debug tier (channelContribution map), gated by the SPECKIT_RESULT_EXPLAIN_V1 flag."
+description: "Two-tier result explainability attaches natural-language 'why' explanations to each search result composed from Stage 2 scoring signals, with a slim tier (summary + topSignals) and an optional debug tier (channelContribution map), gated by the SPECKIT_RESULT_EXPLAIN flag."
 trigger_phrases:
   - "two-tier result explainability"
-  - "SPECKIT_RESULT_EXPLAIN_V1"
+  - "SPECKIT_RESULT_EXPLAIN"
   - "why explanations search results"
   - "channelContribution"
   - "result scoring explainability"
@@ -16,7 +16,7 @@ version: 3.6.0.7
 
 ## 1. OVERVIEW
 
-Two-tier result explainability attaches natural-language "why" explanations to each search result composed from Stage 2 scoring signals, with a slim tier (summary + topSignals) and an optional debug tier (channelContribution map), gated by the `SPECKIT_RESULT_EXPLAIN_V1` flag.
+Two-tier result explainability attaches natural-language "why" explanations to each search result composed from Stage 2 scoring signals, with a slim tier (summary + topSignals) and an optional debug tier (channelContribution map), gated by the `SPECKIT_RESULT_EXPLAIN` flag.
 
 When you get search results, you often want to know why each result ranked where it did. This feature adds a "why" field to every result with a human-readable summary and the most influential scoring signals. The slim tier is lightweight and always present when the flag is on. If you need deeper inspection, the debug tier adds a per-channel score breakdown showing exactly how much each retrieval channel contributed. It is like getting a receipt that itemizes each scoring decision.
 
@@ -43,7 +43,7 @@ The `channelContribution` map (with `vector`, `fts`, `graph` breakdowns) is only
 
 ### Configuration
 
-No-op when `SPECKIT_RESULT_EXPLAIN_V1` is not set. Default ON (graduated), controlled by `SPECKIT_RESULT_EXPLAIN_V1`.
+No-op when `SPECKIT_RESULT_EXPLAIN` is not set. Default ON (graduated), controlled by `SPECKIT_RESULT_EXPLAIN`.
 
 ---
 

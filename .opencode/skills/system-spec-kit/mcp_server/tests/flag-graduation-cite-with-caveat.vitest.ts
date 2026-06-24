@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Flag Graduation: Cite With Caveat
 // ───────────────────────────────────────────────────────────────
-// SPECKIT_CITE_WITH_CAVEAT_V1 adds a cite_with_caveat tier between cite_results
+// SPECKIT_CITE_WITH_CAVEAT adds a cite_with_caveat tier between cite_results
 // and the do-not-cite drop for a weak verdict whose top hit is still lexically
 // grounded. The off-corpus class never produced a borderline-grounded weak
 // verdict, so the benchmark never fired the tier. These cases drive it off the
@@ -22,9 +22,9 @@ import {
 import { deriveCitationPolicy } from '../formatters/search-results';
 import { FLAG_FEATURE_FIXTURES } from '../lib/eval/fixtures/flag-feature-fixtures';
 
-const CITE_CAVEAT_FLAG = 'SPECKIT_CITE_WITH_CAVEAT_V1';
-const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
-const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
+const CITE_CAVEAT_FLAG = 'SPECKIT_CITE_WITH_CAVEAT';
+const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION';
+const LEXICAL_GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING';
 const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 const MANAGED_FLAGS = [
   CITE_CAVEAT_FLAG,

@@ -28,35 +28,35 @@ function makeCtx(overrides: Partial<RecoveryContext> = {}): RecoveryContext {
 // -- Feature Flag --
 
 describe('isEmptyResultRecoveryEnabled() — feature flag', () => {
-  const ORIGINAL = process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1;
+  const ORIGINAL = process.env.SPECKIT_EMPTY_RESULT_RECOVERY;
 
   afterEach(() => {
-    if (ORIGINAL === undefined) delete process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1;
-    else process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1 = ORIGINAL;
+    if (ORIGINAL === undefined) delete process.env.SPECKIT_EMPTY_RESULT_RECOVERY;
+    else process.env.SPECKIT_EMPTY_RESULT_RECOVERY = ORIGINAL;
   });
 
   it('defaults to true when env var is not set (graduated)', () => {
-    delete process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1;
+    delete process.env.SPECKIT_EMPTY_RESULT_RECOVERY;
     expect(isEmptyResultRecoveryEnabled()).toBe(true);
   });
 
   it('returns true when set to "true"', () => {
-    process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1 = 'true';
+    process.env.SPECKIT_EMPTY_RESULT_RECOVERY = 'true';
     expect(isEmptyResultRecoveryEnabled()).toBe(true);
   });
 
   it('returns true when set to "TRUE" (case-insensitive)', () => {
-    process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1 = 'TRUE';
+    process.env.SPECKIT_EMPTY_RESULT_RECOVERY = 'TRUE';
     expect(isEmptyResultRecoveryEnabled()).toBe(true);
   });
 
   it('returns false when set to "false"', () => {
-    process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1 = 'false';
+    process.env.SPECKIT_EMPTY_RESULT_RECOVERY = 'false';
     expect(isEmptyResultRecoveryEnabled()).toBe(false);
   });
 
   it('returns true for "1" (graduated — any non-false value is ON)', () => {
-    process.env.SPECKIT_EMPTY_RESULT_RECOVERY_V1 = '1';
+    process.env.SPECKIT_EMPTY_RESULT_RECOVERY = '1';
     expect(isEmptyResultRecoveryEnabled()).toBe(true);
   });
 });

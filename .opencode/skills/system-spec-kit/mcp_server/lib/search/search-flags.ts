@@ -592,19 +592,19 @@ export function isShadowFeedbackEnabled(): boolean {
 /**
  * Progressive disclosure for search results.
  * Replaces hard tail-truncation with summary layer + snippet + cursor pagination.
- * Default: TRUE (graduated). Set SPECKIT_PROGRESSIVE_DISCLOSURE_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_PROGRESSIVE_DISCLOSURE=false to disable.
  */
 export function isProgressiveDisclosureEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_PROGRESSIVE_DISCLOSURE_V1');
+  return isFeatureEnabled('SPECKIT_PROGRESSIVE_DISCLOSURE');
 }
 
 /**
  * Retrieval session state for cross-turn context.
  * Enables cross-turn dedup and goal-aware refinement of search results.
- * Default: TRUE (graduated). Set SPECKIT_SESSION_RETRIEVAL_STATE_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_SESSION_RETRIEVAL_STATE=false to disable.
  */
 export function isSessionRetrievalStateEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_SESSION_RETRIEVAL_STATE_V1');
+  return isFeatureEnabled('SPECKIT_SESSION_RETRIEVAL_STATE');
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -637,10 +637,10 @@ export function isTypedTraversalEnabled(): boolean {
 
 /**
  * Empty/weak result recovery UX.
- * Default: TRUE (graduated). Set SPECKIT_EMPTY_RESULT_RECOVERY_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_EMPTY_RESULT_RECOVERY=false to disable.
  */
 export function isEmptyResultRecoveryEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_EMPTY_RESULT_RECOVERY_V1');
+  return isFeatureEnabled('SPECKIT_EMPTY_RESULT_RECOVERY');
 }
 
 /**
@@ -648,19 +648,19 @@ export function isEmptyResultRecoveryEnabled(): boolean {
  * Default: TRUE (graduated). A safety layer that only ever over-protects: OFF
  * drops the wrong rows while ON spares them, so DROP precision and keep-set
  * protection both reach 1.0 with recall held. Set
- * SPECKIT_RETENTION_FORGETTING_V1=false to disable the conservative spare-only
+ * SPECKIT_RETENTION_FORGETTING=false to disable the conservative spare-only
  * retention axes and live incoming-edge protection.
  */
 export function isRetentionForgettingEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_RETENTION_FORGETTING_V1');
+  return isFeatureEnabled('SPECKIT_RETENTION_FORGETTING');
 }
 
 /**
  * Per-result calibrated confidence scoring.
- * Default: TRUE (graduated). Set SPECKIT_RESULT_CONFIDENCE_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_RESULT_CONFIDENCE=false to disable.
  */
 export function isResultConfidenceEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_RESULT_CONFIDENCE_V1');
+  return isFeatureEnabled('SPECKIT_RESULT_CONFIDENCE');
 }
 
 /**
@@ -676,10 +676,10 @@ export function isResultConfidenceEnabled(): boolean {
  * corroboration guard run by default so a fluent but ungrounded hit can no longer
  * reach good. An explicit opt-out restores the prior verdict that bands on absolute
  * cosine and the top margin alone. An unparseable value resolves to ON. Set
- * SPECKIT_LEXICAL_GROUNDING_V1=false to disable.
+ * SPECKIT_LEXICAL_GROUNDING=false to disable.
  */
 export function isLexicalGroundingEnabled(): boolean {
-  const value = process.env.SPECKIT_LEXICAL_GROUNDING_V1?.toLowerCase().trim();
+  const value = process.env.SPECKIT_LEXICAL_GROUNDING?.toLowerCase().trim();
   return !(value === 'false' || value === '0' || value === 'off');
 }
 
@@ -697,10 +697,10 @@ export function isLexicalGroundingEnabled(): boolean {
  * flags every dropped or altered verdict render a no-checker baseline passes silently
  * while passing every faithful render. An explicit false, 0, or off restores the
  * byte-for-byte shipped response shape with no envelopeRender field. Set
- * SPECKIT_ENVELOPE_FIDELITY_V1=false to opt out.
+ * SPECKIT_ENVELOPE_FIDELITY=false to opt out.
  */
 export function isEnvelopeFidelityEnabled(): boolean {
-  const value = process.env.SPECKIT_ENVELOPE_FIDELITY_V1?.toLowerCase().trim();
+  const value = process.env.SPECKIT_ENVELOPE_FIDELITY?.toLowerCase().trim();
   return !(value === 'false' || value === '0' || value === 'off');
 }
 
@@ -719,11 +719,11 @@ export function isEnvelopeFidelityEnabled(): boolean {
  * floor by default so a background cosine no longer reaches good. An explicit
  * opt-out restores the raw-relevance band. An embedder with no measured floor still
  * fails closed to the raw band rather than subtracting an unknown floor. An
- * unparseable value resolves to ON. Set SPECKIT_NOISE_FLOOR_SUBTRACTION_V1=false to
+ * unparseable value resolves to ON. Set SPECKIT_NOISE_FLOOR_SUBTRACTION=false to
  * disable.
  */
 export function isNoiseFloorSubtractionEnabled(): boolean {
-  const value = process.env.SPECKIT_NOISE_FLOOR_SUBTRACTION_V1?.toLowerCase().trim();
+  const value = process.env.SPECKIT_NOISE_FLOOR_SUBTRACTION?.toLowerCase().trim();
   return !(value === 'false' || value === '0' || value === 'off');
 }
 
@@ -739,10 +739,10 @@ export function isNoiseFloorSubtractionEnabled(): boolean {
  * Default: TRUE, graduated after a borderline-grounded fixture showed it recovers a
  * hedged-but-usable result the binary policy drops to do_not_cite, and fires only on
  * the borderline tier. An explicit false, 0, or off opts back to the shipped two-state
- * output. Set SPECKIT_CITE_WITH_CAVEAT_V1=false to opt out.
+ * output. Set SPECKIT_CITE_WITH_CAVEAT=false to opt out.
  */
 export function isCiteWithCaveatEnabled(): boolean {
-  const value = process.env.SPECKIT_CITE_WITH_CAVEAT_V1?.toLowerCase().trim();
+  const value = process.env.SPECKIT_CITE_WITH_CAVEAT?.toLowerCase().trim();
   return !(value === 'false' || value === '0' || value === 'off');
 }
 
@@ -757,10 +757,10 @@ export function isCiteWithCaveatEnabled(): boolean {
  * Default: TRUE, graduated after a Stage-4 gap fixture showed it caps an otherwise-good
  * verdict to weak on a detected evidence gap, a safety improvement, and leaves the verdict
  * unchanged without a gap. An explicit false, 0, or off makes the verdict ignore
- * evidenceGapDetected as before. Set SPECKIT_EVIDENCE_GAP_VERDICT_V1=false to opt out.
+ * evidenceGapDetected as before. Set SPECKIT_EVIDENCE_GAP_VERDICT=false to opt out.
  */
 export function isEvidenceGapVerdictEnabled(): boolean {
-  const value = process.env.SPECKIT_EVIDENCE_GAP_VERDICT_V1?.toLowerCase().trim();
+  const value = process.env.SPECKIT_EVIDENCE_GAP_VERDICT?.toLowerCase().trim();
   return !(value === 'false' || value === '0' || value === 'off');
 }
 
@@ -867,18 +867,18 @@ export function isAssistiveReconsolidationEnabled(): boolean {
 
 /**
  * Two-tier result explainability.
- * Default: TRUE (graduated). Set SPECKIT_RESULT_EXPLAIN_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_RESULT_EXPLAIN=false to disable.
  */
 export function isResultExplainEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_RESULT_EXPLAIN_V1');
+  return isFeatureEnabled('SPECKIT_RESULT_EXPLAIN');
 }
 
 /**
  * Mode-aware response profile formatting.
- * Default: TRUE (graduated). Set SPECKIT_RESPONSE_PROFILE_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_RESPONSE_PROFILE=false to disable.
  */
 export function isResponseProfileEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_RESPONSE_PROFILE_V1');
+  return isFeatureEnabled('SPECKIT_RESPONSE_PROFILE');
 }
 
 /* ───────────────────────────────────────────────────────────────

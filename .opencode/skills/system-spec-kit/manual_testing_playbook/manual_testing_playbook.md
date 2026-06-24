@@ -2970,13 +2970,13 @@ similarity >= 0.96 returns 'auto_merge'; 0.88 <= similarity < 0.96 returns 'revi
 > **Feature File:** [165](13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md)
 > **Catalog:** [13--memory-quality-and-indexing/assistive-reconsolidation.md](../feature_catalog/13--memory-quality-and-indexing/assistive-reconsolidation.md)
 
-### 166 | Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1)
+### 166 | Result explain v1 (SPECKIT_RESULT_EXPLAIN)
 
 #### Description
 Verify two-tier explainability attachment to search results with slim tier (summary + topSignals) and debug tier (channelContribution).
 
 #### Scenario Contract
-Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN_V1 enabled and disabled.`
+Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN enabled and disabled.`
 
 Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF
 
@@ -2984,13 +2984,13 @@ Each result has why.summary string (non-empty); why.topSignals array with Signal
 > **Feature File:** [166](18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md)
 > **Catalog:** [18--ux-hooks/result-explainability.md](../feature_catalog/18--ux-hooks/result-explainability.md)
 
-### 167 | Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1)
+### 167 | Response profile v1 (SPECKIT_RESPONSE_PROFILE)
 
 #### Description
 Verify mode-aware response shape routing for quick, research, and resume profiles with token savings calculation.
 
 #### Scenario Contract
-Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE_V1 enabled.`
+Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE enabled.`
 
 quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted
 
@@ -2998,7 +2998,7 @@ quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and
 > **Feature File:** [167](18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md)
 > **Catalog:** [18--ux-hooks/mode-aware-response-profiles.md](../feature_catalog/18--ux-hooks/mode-aware-response-profiles.md)
 
-### 168 | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1)
+### 168 | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)
 
 #### Description
 Verify additive disclosure payload and cursor pagination in response while preserving full results.
@@ -3012,7 +3012,7 @@ data.results remains present; data.progressiveDisclosure.summaryLayer with count
 > **Feature File:** [168](18--ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md)
 > **Catalog:** [18--ux-hooks/progressive-disclosure.md](../feature_catalog/18--ux-hooks/progressive-disclosure.md)
 
-### 169 | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1)
+### 169 | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)
 
 #### Description
 Verify additive session-state metadata and goal refinement are emitted on session-aware searches.
@@ -3125,7 +3125,7 @@ context_type=decision required; SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 threshol
 > **Feature File:** [178](13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md)
 > **Catalog:** [13--memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature_catalog/13--memory-quality-and-indexing/save-quality-gate-exceptions.md)
 
-### 179 | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)
+### 179 | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)
 
 #### Description
 Verify structured recovery payloads for empty/weak search results across all 3 statuses: no_results, low_confidence, partial.
@@ -3139,7 +3139,7 @@ Prompt: `Validate empty result recovery payloads for empty and weak memory_searc
 > **Feature File:** [179](18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md)
 > **Catalog:** [18--ux-hooks/empty-result-recovery.md](../feature_catalog/18--ux-hooks/empty-result-recovery.md)
 
-### 180 | Result confidence (SPECKIT_RESULT_CONFIDENCE_V1)
+### 180 | Result confidence (SPECKIT_RESULT_CONFIDENCE)
 
 #### Description
 Verify per-result calibrated confidence scoring with 3-factor weighting: margin (0.35), channel agreement (0.30), anchor density (0.15).
@@ -3735,10 +3735,10 @@ This split playbook keeps automated coverage references in three places:
 | 162 | Features | HyDE (SPECKIT_HYDE) | [162](12--query-intelligence/hyde-speckit-hyde.md) | [12--query-intelligence/hyde-hypothetical-document-embeddings.md](../feature_catalog/12--query-intelligence/hyde-hypothetical-document-embeddings.md) |
 | 163 | Features | Query surrogates (SPECKIT_QUERY_SURROGATES) | [163](12--query-intelligence/query-surrogates-speckit-query-surrogates.md) | [12--query-intelligence/index-time-query-surrogates.md](../feature_catalog/12--query-intelligence/index-time-query-surrogates.md) |
 | 165 | Features | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) | [165](13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md) | [13--memory-quality-and-indexing/assistive-reconsolidation.md](../feature_catalog/13--memory-quality-and-indexing/assistive-reconsolidation.md) |
-| 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) | [166](18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md) | [18--ux-hooks/result-explainability.md](../feature_catalog/18--ux-hooks/result-explainability.md) |
-| 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) | [167](18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md) | [18--ux-hooks/mode-aware-response-profiles.md](../feature_catalog/18--ux-hooks/mode-aware-response-profiles.md) |
-| 168 | Features | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE_V1) | [168](18--ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md) | [18--ux-hooks/progressive-disclosure.md](../feature_catalog/18--ux-hooks/progressive-disclosure.md) |
-| 169 | Features | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE_V1) | [169](18--ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md) | [18--ux-hooks/retrieval-session-state.md](../feature_catalog/18--ux-hooks/retrieval-session-state.md) |
+| 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN) | [166](18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md) | [18--ux-hooks/result-explainability.md](../feature_catalog/18--ux-hooks/result-explainability.md) |
+| 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE) | [167](18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md) | [18--ux-hooks/mode-aware-response-profiles.md](../feature_catalog/18--ux-hooks/mode-aware-response-profiles.md) |
+| 168 | Features | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) | [168](18--ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md) | [18--ux-hooks/progressive-disclosure.md](../feature_catalog/18--ux-hooks/progressive-disclosure.md) |
+| 169 | Features | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) | [169](18--ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md) | [18--ux-hooks/retrieval-session-state.md](../feature_catalog/18--ux-hooks/retrieval-session-state.md) |
 | 171 | Features | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | [171](11--scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md) | [11--scoring-and-calibration/calibrated-overlap-bonus.md](../feature_catalog/11--scoring-and-calibration/calibrated-overlap-bonus.md) |
 | 172 | Features | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) | [172](11--scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md) | [11--scoring-and-calibration/rrf-k-experimental.md](../feature_catalog/11--scoring-and-calibration/rrf-k-experimental.md) |
 | 173 | Features | Query decomposition (SPECKIT_QUERY_DECOMPOSITION) | [173](12--query-intelligence/query-decomposition-speckit-query-decomposition.md) | [12--query-intelligence/query-decomposition.md](../feature_catalog/12--query-intelligence/query-decomposition.md) |
@@ -3746,8 +3746,8 @@ This split playbook keeps automated coverage references in three places:
 | 175 | Features | Typed traversal (SPECKIT_TYPED_TRAVERSAL) | [175](10--graph-signal-activation/typed-traversal-speckit-typed-traversal.md) | [10--graph-signal-activation/typed-traversal.md](../feature_catalog/10--graph-signal-activation/typed-traversal.md) |
 | 177 | Features | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) | [177](13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md) | [13--memory-quality-and-indexing/hybrid-decay-policy.md](../feature_catalog/13--memory-quality-and-indexing/hybrid-decay-policy.md) |
 | 178 | Features | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) | [178](13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md) | [13--memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature_catalog/13--memory-quality-and-indexing/save-quality-gate-exceptions.md) |
-| 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) | [179](18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md) | [18--ux-hooks/empty-result-recovery.md](../feature_catalog/18--ux-hooks/empty-result-recovery.md) |
-| 180 | Features | Result confidence (SPECKIT_RESULT_CONFIDENCE_V1) | [180](18--ux-hooks/result-confidence-speckit-result-confidence-v1.md) | [18--ux-hooks/result-confidence.md](../feature_catalog/18--ux-hooks/result-confidence.md) |
+| 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) | [179](18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md) | [18--ux-hooks/empty-result-recovery.md](../feature_catalog/18--ux-hooks/empty-result-recovery.md) |
+| 180 | Features | Result confidence (SPECKIT_RESULT_CONFIDENCE) | [180](18--ux-hooks/result-confidence-speckit-result-confidence-v1.md) | [18--ux-hooks/result-confidence.md](../feature_catalog/18--ux-hooks/result-confidence.md) |
 | PHASE-001 | Phase System Features | Phase detection scoring | [PHASE-001](16--tooling-and-scripts/phase-detection-scoring.md) | *(test-only, no catalog entry)* |
 | PHASE-002 | Phase System Features | Phase folder creation | [PHASE-002](16--tooling-and-scripts/phase-folder-creation.md) | *(test-only, no catalog entry)* |
 | PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](16--tooling-and-scripts/recursive-phase-validation.md) | *(test-only, no catalog entry)* |

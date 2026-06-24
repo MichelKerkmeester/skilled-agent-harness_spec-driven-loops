@@ -9,7 +9,7 @@
 // 3. Continuation cursors — opaque tokens for paginated retrieval
 // 4. Progressive response builder — orchestrates all layers
 //
-// FEATURE FLAG: SPECKIT_PROGRESSIVE_DISCLOSURE_V1 (default ON, graduated)
+// FEATURE FLAG: SPECKIT_PROGRESSIVE_DISCLOSURE (default ON, graduated)
 import { randomUUID } from 'node:crypto';
 
 // -- Constants --
@@ -216,7 +216,7 @@ function buildDigest(classification: { high: number; medium: number; low: number
 
 /**
  * Check whether progressive disclosure is enabled.
- * Default: TRUE (graduated). Set SPECKIT_PROGRESSIVE_DISCLOSURE_V1=false to disable.
+ * Default: TRUE (graduated). Set SPECKIT_PROGRESSIVE_DISCLOSURE=false to disable.
  *
  * @returns `true` when progressive disclosure should be used for responses.
  * @example
@@ -227,7 +227,7 @@ function buildDigest(classification: { high: number; medium: number; low: number
  * ```
  */
 function isProgressiveDisclosureEnabled(): boolean {
-  const val = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE_V1?.toLowerCase().trim();
+  const val = process.env.SPECKIT_PROGRESSIVE_DISCLOSURE?.toLowerCase().trim();
   return val !== 'false' && val !== '0';
 }
 

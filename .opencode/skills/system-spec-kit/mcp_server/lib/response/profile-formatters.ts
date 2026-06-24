@@ -15,7 +15,7 @@
 //   debug    — full trace, no omission
 //              Complete raw response for debugging (flag-gated).
 //
-// FEATURE FLAG: SPECKIT_RESPONSE_PROFILE_V1 (default ON, graduated)
+// FEATURE FLAG: SPECKIT_RESPONSE_PROFILE (default ON, graduated)
 //
 // Backward compatibility: when flag is OFF (or profile omitted), the
 // original full response is returned unchanged.
@@ -124,8 +124,8 @@ export type FormattedProfile =
 import { isResponseProfileEnabled } from '../search/search-flags.js';
 
 /**
- * Returns true when SPECKIT_RESPONSE_PROFILE_V1 is enabled.
- * Default: ON (graduated). Set SPECKIT_RESPONSE_PROFILE_V1=false to disable.
+ * Returns true when SPECKIT_RESPONSE_PROFILE is enabled.
+ * Default: ON (graduated). Set SPECKIT_RESPONSE_PROFILE=false to disable.
  */
 export { isResponseProfileEnabled };
 

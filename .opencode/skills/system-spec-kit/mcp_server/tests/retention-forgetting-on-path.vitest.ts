@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Retention Forgetting Safety Layer — ON-path contract
 // ───────────────────────────────────────────────────────────────────
-// Asserts that enabling SPECKIT_RETENTION_FORGETTING_V1 CHANGES the drop
+// Asserts that enabling SPECKIT_RETENTION_FORGETTING CHANGES the drop
 // decision: rows that are expired but spare on a safety axis (importance,
 // trust, age) flip from "delete" to "protect". This is the safety contract —
 // the flag must drop the right rows and keep the protected keep-set — not a
@@ -15,7 +15,7 @@ import {
   type RetentionCandidateRow,
 } from '../lib/feedback/feedback-retention-reducer';
 
-const FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
+const FLAG = 'SPECKIT_RETENTION_FORGETTING';
 
 function candidate(overrides: Partial<RetentionCandidateRow>): RetentionCandidateRow {
   return {
@@ -58,7 +58,7 @@ function withFlag<T>(enabled: boolean, fn: () => T): T {
   return fn();
 }
 
-describe('SPECKIT_RETENTION_FORGETTING_V1 — drop decision contract', () => {
+describe('SPECKIT_RETENTION_FORGETTING — drop decision contract', () => {
   it('protects a high-importance expired row only when the flag is ON', () => {
     // A spare expired row: importance 0.90 is at/above the 0.85 floor.
     const rows = [candidate({ id: 11, importanceWeight: 0.9 })];

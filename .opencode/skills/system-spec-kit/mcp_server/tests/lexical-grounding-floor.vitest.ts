@@ -21,7 +21,7 @@ import {
   type ScoredResult,
 } from '../lib/search/confidence-scoring';
 
-const GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
+const GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING';
 
 // The aggregation verdict reads the uncalibrated rebalance confidence labels. The
 // isotonic confidence-calibration model now applies by default and would cap those
@@ -31,7 +31,7 @@ const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 
 // The noise-floor subtraction now defaults ON and also bands the verdict, so pin it
 // OFF to isolate the grounding floor as the verdict subject under test.
-const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
+const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION';
 
 let savedGrounding: string | undefined;
 let savedConfidenceCalibration: string | undefined;
@@ -160,7 +160,7 @@ describe('single-hit corroboration (flag ON)', () => {
 
 describe('graduated default, flag ON is now the shipped verdict (env unset)', () => {
   it('denies the off-corpus lone hit by default with the env unset', () => {
-    // SPECKIT_LEXICAL_GROUNDING_V1 unset (default ON): the grounding floor runs and
+    // SPECKIT_LEXICAL_GROUNDING unset (default ON): the grounding floor runs and
     // the fluent ungrounded hit is denied good. This is the behavior the benchmark
     // earned, the inverse of the prior dark default.
     const results = [offCorpusHit(1, 78)];

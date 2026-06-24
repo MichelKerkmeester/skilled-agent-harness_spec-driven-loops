@@ -25,7 +25,7 @@ import Database from 'better-sqlite3';
 const SOURCE_DB_PATH = path.resolve(process.env.MEMORY_DB_PATH ?? 'database/context-index.sqlite');
 const OUTPUT_PATH = path.resolve(process.env.SPECKIT_RETENTION_EVAL_OUTPUT ?? '/tmp/speckit-retention-eval.json');
 const SAMPLE_SIZE = Number.parseInt(process.env.SPECKIT_RETENTION_EVAL_SAMPLE ?? '600', 10);
-const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
+const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING';
 
 // Spare-only safety floors, mirrored from feedback-retention-reducer defaults so
 // the labeled expectation matches the contract the reducer actually enforces.

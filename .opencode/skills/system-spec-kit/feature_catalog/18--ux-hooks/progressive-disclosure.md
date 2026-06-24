@@ -1,9 +1,9 @@
 ---
 title: "Progressive disclosure with cursor pagination"
-description: "Progressive disclosure adds a companion payload for search results consisting of a summary layer, snippet extraction, and continuation cursors for paginated retrieval, gated by the SPECKIT_PROGRESSIVE_DISCLOSURE_V1 flag."
+description: "Progressive disclosure adds a companion payload for search results consisting of a summary layer, snippet extraction, and continuation cursors for paginated retrieval, gated by the SPECKIT_PROGRESSIVE_DISCLOSURE flag."
 trigger_phrases:
   - "progressive disclosure with cursor pagination"
-  - "SPECKIT_PROGRESSIVE_DISCLOSURE_V1"
+  - "SPECKIT_PROGRESSIVE_DISCLOSURE"
   - "cursor pagination"
   - "snippet extraction search results"
   - "progressive disclosure search"
@@ -16,7 +16,7 @@ version: 3.6.0.6
 
 ## 1. OVERVIEW
 
-Progressive disclosure adds a companion payload to search results consisting of a summary layer, snippet extraction, and continuation cursors for paginated retrieval, gated by the `SPECKIT_PROGRESSIVE_DISCLOSURE_V1` flag.
+Progressive disclosure adds a companion payload to search results consisting of a summary layer, snippet extraction, and continuation cursors for paginated retrieval, gated by the `SPECKIT_PROGRESSIVE_DISCLOSURE` flag.
 
 The live handler preserves full `data.results`, adds `data.progressiveDisclosure`, and serves follow-up pages through `memory_search({ cursor })`. The summary tells you the quality distribution (e.g., "3 strong, 2 moderate, 1 weak") so you can decide whether to dig deeper, while pagination uses opaque cursor tokens with a time-to-live so the system can serve additional pages from a cached result set.
 
@@ -32,7 +32,7 @@ The progressive disclosure module provides four layers:
 
 Default page size is `DEFAULT_PAGE_SIZE = 5`. Cursor encoding/decoding uses JSON-in-base64 with strict field validation. The `cursorStore` is process-local (Map-based, no disk persistence).
 
-Default ON (graduated). Set `SPECKIT_PROGRESSIVE_DISCLOSURE_V1=false` to disable.
+Default ON (graduated). Set `SPECKIT_PROGRESSIVE_DISCLOSURE=false` to disable.
 
 ---
 

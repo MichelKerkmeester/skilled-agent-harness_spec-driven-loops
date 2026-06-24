@@ -84,7 +84,7 @@ const FLAG_SPECS = [
   },
   {
     label: 'retention_forgetting',
-    env: 'SPECKIT_RETENTION_FORGETTING_V1',
+    env: 'SPECKIT_RETENTION_FORGETTING',
     currentDefault: 'off',
     runSearch: false,
     note: 'Retention safety layer; not a query-time ranking consumer.',

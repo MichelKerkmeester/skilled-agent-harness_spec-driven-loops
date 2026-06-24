@@ -9,7 +9,7 @@
 //   - slim (default): why.summary + topSignals — always present when flag ON
 //   - debug (opt-in): adds channelContribution map
 //
-// FEATURE FLAG: SPECKIT_RESULT_EXPLAIN_V1 (default ON, graduated)
+// FEATURE FLAG: SPECKIT_RESULT_EXPLAIN (default ON, graduated)
 //
 // OUTPUT SHAPE (per result):
 // {
@@ -74,8 +74,8 @@ export interface ExplainabilityOptions {
 import { isResultExplainEnabled } from './search-flags.js';
 
 /**
- * Returns true when SPECKIT_RESULT_EXPLAIN_V1 is enabled.
- * Default: ON (graduated). Set SPECKIT_RESULT_EXPLAIN_V1=false to disable.
+ * Returns true when SPECKIT_RESULT_EXPLAIN is enabled.
+ * Default: ON (graduated). Set SPECKIT_RESULT_EXPLAIN=false to disable.
  */
 export { isResultExplainEnabled };
 
@@ -325,7 +325,7 @@ export function attachResultExplainability(
  * Attach explainability to all results in a list.
  * Rank is automatically assigned by array position.
  *
- * No-op when SPECKIT_RESULT_EXPLAIN_V1 is not set and no explicit override.
+ * No-op when SPECKIT_RESULT_EXPLAIN is not set and no explicit override.
  *
  * @param results       - Ordered list of pipeline rows
  * @param options       - Explainability options
