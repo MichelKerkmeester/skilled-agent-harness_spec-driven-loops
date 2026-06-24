@@ -53,3 +53,17 @@ Two residual P2s remain, both as-of-only window-integrity issues in the as-of su
 
 - The ensure-ready auto-index path stamps bitemporal windows but never bumps the generation, so an edge inserted by one ensure-ready reindex and closed by the next gets a zero-width window. ensure-ready.ts:555,704,737. Live reads are unaffected.
 - recordSupersedesLineage inserts SUPERSEDES edges with a NULL valid_at under the flag, so lineage edges have no as-of-readable window. code-graph-db.ts:601-604. Pre-existing, not introduced by the fixes.
+
+
+## Second Follow-Up Batch: Re-Review PASS
+
+After the PASS above, the user asked to fix every remaining finding, rec, and follow-up. Seven items shipped (commit 6f12d0641c) and a third opus re-review confirmed them: PASS, zero P0/P1/P2, all six code fixes verified sound against source and tests.
+
+- ensure-ready-bump: the auto-index path bumps the generation under the flag, so as-of windows are non-zero-width. Sound, byte-identical off.
+- lineage-validity: recordSupersedesLineage stamps valid_at, so SUPERSEDES lineage edges are as-of readable. Sound, byte-identical off.
+- as-of-query-surface: code_graph_query takes an optional asOf parameter routing through asOfEdgesFrom and a new asOfEdgesTo; absent or flag-off uses the live readers unchanged. The de-scoped reader is now consumable. Sound.
+- degree-cap-15: a degree sweep found a per-dependency cliff with linear no-knee cost; the cap is 15 on evidence (was an unbenchmarked 10), read only under the force-parse flag. Sound.
+- stall-detector: the lag metric is now time-since-last-completion-while-pending, silent on healthy backpressure and firing once on a real stall, recommended default 2 minutes. Sound, byte-identical off.
+- title-aware-dedup: a Jaccard title-overlap gate drops the title-only false-collapse rate from 0.50 to 0 while identical-dup collapse holds 7/7. Sound, byte-identical off.
+
+Every fix is byte-identical when its flag is off. No production default was flipped. The two residual P2s from the first re-review are resolved; the as-of surface is no longer de-scoped.
