@@ -1,10 +1,10 @@
 {
   "generatedFrom": "multihop-tail-appends-benchmark.mjs",
-  "generatedAt": "2026-06-24T04:58:03.011Z",
+  "generatedAt": "2026-06-24T05:39:58.385Z",
   "subject": "SPECKIT_DETERMINISTIC_MULTIHOP and SPECKIT_LANE_CHAMPION_BACKFILL tail-appends vs off, completeRecall@K on the production executePipeline path and the legacy enrichFusedResults path",
   "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
-  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-ylozih/context-index.sqlite",
-  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-ylozih/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "evalDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-7JXOHA/context-index.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-multihop-eval-7JXOHA/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
   "activeEmbedder": {
     "name": "nomic-embed-text-v1.5",
     "provider": "ollama",
@@ -14,29 +14,38 @@
   "recallK": [
     3,
     5,
-    8
+    8,
+    12,
+    20
   ],
   "repeats": 3,
   "metricDefinition": "completeRecall@K = fraction of a query labeled target spec.md ids present in the top-K results.",
-  "prodPathSource": "executePipeline, the function the live memory_search MCP handler calls. Stage 1 uses collectRawCandidates with stopAfterFusion=true, which skips enrichFusedResults where the append stages C3/C4 live, so the prod path never runs the appends.",
-  "legacyPathSource": "searchWithFallback, the older entry point that calls enrichFusedResults and therefore runs the append stages C3/C4 before downstream truncation.",
+  "prodPathSource": "executePipeline, the function the live memory_search MCP handler calls. The refined pipeline runs a tail-append stage after Stage 4 and after the final-limit cap, gated behind the two append flags, so the appends now reach the prod reader. Flag-off keeps the Stage-4 output byte-for-byte.",
+  "legacyPathSource": "searchWithFallback, the older entry point that calls enrichFusedResults and runs the append stages before its own token-budget truncation, retained here as a comparison path.",
+  "rewireNote": "The refinement wires deterministic-multihop and lane-champion backfill into executePipeline as a post-Stage-4 tail-append stage that extends the capped baseline past the requested limit, so an appended row is exempt from the final-limit cap and reaches the reader. The pipeline has no token-budget truncation; that stage exists only on the legacy path.",
   "floorBlockerFinding": {
-    "claim": "ENV_REFERENCE holds the appends off because the prod route truncates to a 3-result floor so a tail append never reaches the prod reader.",
-    "prodByteIdenticalOnVsOff": true,
-    "prodAppendStagesEverApplied": false,
+    "claim": "ENV_REFERENCE held the appends off because the prod route truncates to a 3-result floor so a tail append never reaches the prod reader.",
+    "prodByteIdenticalOnVsOff": false,
+    "prodFlagOffStrictNoOp": true,
+    "prodAppendStagesEverApplied": true,
+    "prodAppendedRowsTotal": 84,
     "legacyAppendedRowsSurvivingTotal": 0,
-    "resolution": "The appends never run on the prod executePipeline path because stopAfterFusion skips enrichFusedResults, so flipping the flags is byte-identical on prod. The three-result floor is a never-cut-below-three minimum, not a cap; the prod-limiting stage is token-budget truncation, which trims the tail to the floor and strips appended rows even on the legacy path where they run."
+    "resolution": "The three-result floor was never a cap; the prod path returns the full requested limit of ten. Before the refinement the appends never ran on executePipeline because stopAfterFusion skipped enrichFusedResults. The refinement adds a post-Stage-4 tail-append stage, so the appends now run on the prod path and extend recall past the limit, exempt from the final-limit cap."
   },
   "aggregate": {
     "prodRecallOff": {
       "k3": 0.4375,
       "k5": 0.4375,
-      "k8": 0.4375
+      "k8": 0.4375,
+      "k12": 0.5625,
+      "k20": 0.5625
     },
     "prodRecallOn": {
       "k3": 0.4375,
       "k5": 0.4375,
-      "k8": 0.4375
+      "k8": 0.4375,
+      "k12": 0.625,
+      "k20": 0.9375
     },
     "prodRecallDelta": {
       "k3": {
@@ -56,17 +65,33 @@
         "off": 0.4375,
         "delta": 0,
         "maxRunStdev": 0
+      },
+      "k12": {
+        "on": 0.625,
+        "off": 0.5625,
+        "delta": 0.0625,
+        "maxRunStdev": 0
+      },
+      "k20": {
+        "on": 0.9375,
+        "off": 0.5625,
+        "delta": 0.375,
+        "maxRunStdev": 0
       }
     },
     "legacyRecallOff": {
       "k3": 0.15625,
       "k5": 0.15625,
-      "k8": 0.15625
+      "k8": 0.15625,
+      "k12": 0.15625,
+      "k20": 0.15625
     },
     "legacyRecallOn": {
       "k3": 0.15625,
       "k5": 0.15625,
-      "k8": 0.15625
+      "k8": 0.15625,
+      "k12": 0.15625,
+      "k20": 0.15625
     },
     "legacyRecallDelta": {
       "k3": {
@@ -82,6 +107,18 @@
         "maxRunStdev": 0
       },
       "k8": {
+        "on": 0.15625,
+        "off": 0.15625,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k12": {
+        "on": 0.15625,
+        "off": 0.15625,
+        "delta": 0,
+        "maxRunStdev": 0
+      },
+      "k20": {
         "on": 0.15625,
         "off": 0.15625,
         "delta": 0,
@@ -103,10 +140,15 @@
         23281
       ],
       "unresolvedTargets": [],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 4,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 4
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -119,9 +161,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 18,
+          "min": 18,
+          "max": 18
         },
         "legacyOff": {
           "mean": 3,
@@ -147,6 +189,14 @@
           "k8": {
             "mean": 0.25,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.25,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -160,6 +210,14 @@
           },
           "k8": {
             "mean": 0.25,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.5,
             "stdev": 0
           }
         },
@@ -175,6 +233,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -187,6 +253,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0,
             "stdev": 0
           }
@@ -215,7 +289,15 @@
           23692,
           23258,
           23262,
-          20507
+          20507,
+          18862,
+          18846,
+          6596,
+          23267,
+          21474,
+          19818,
+          18870,
+          18850
         ],
         "legacyOff": [
           18868,
@@ -242,10 +324,15 @@
         23511
       ],
       "unresolvedTargets": [],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 10,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 3
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -258,9 +345,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 23,
+          "min": 23,
+          "max": 23
         },
         "legacyOff": {
           "mean": 3,
@@ -286,6 +373,14 @@
           "k8": {
             "mean": 0.25,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.25,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -299,6 +394,14 @@
           },
           "k8": {
             "mean": 0.25,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -314,6 +417,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -326,6 +437,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0,
             "stdev": 0
           }
@@ -354,7 +473,20 @@
           8007,
           23665,
           23662,
-          23508
+          23508,
+          18862,
+          23499,
+          23503,
+          23511,
+          23515,
+          23519,
+          23523,
+          23527,
+          23531,
+          23535,
+          23639,
+          23504,
+          7995
         ],
         "legacyOff": [
           7995,
@@ -381,10 +513,15 @@
         4224
       ],
       "unresolvedTargets": [],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 2,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 3
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -397,9 +534,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 15,
+          "min": 15,
+          "max": 15
         },
         "legacyOff": {
           "mean": 3,
@@ -425,6 +562,14 @@
           "k8": {
             "mean": 0.75,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.75,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -438,6 +583,14 @@
           },
           "k8": {
             "mean": 0.75,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -453,6 +606,14 @@
           "k8": {
             "mean": 0.25,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.25,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -465,6 +626,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.25,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0.25,
             "stdev": 0
           }
@@ -493,7 +662,12 @@
           15025,
           15027,
           4203,
-          15026
+          15026,
+          6319,
+          4224,
+          21302,
+          4539,
+          14873
         ],
         "legacyOff": [
           15025,
@@ -526,10 +700,15 @@
           "matchCount": 2
         }
       ],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 10,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 3
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -542,9 +721,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 23,
+          "min": 23,
+          "max": 23
         },
         "legacyOff": {
           "mean": 3,
@@ -570,6 +749,14 @@
           "k8": {
             "mean": 1,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -582,6 +769,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 1,
             "stdev": 0
           }
@@ -598,6 +793,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -610,6 +813,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0,
             "stdev": 0
           }
@@ -638,7 +849,20 @@
           4555,
           4631,
           20666,
-          4550
+          4550,
+          6319,
+          4931,
+          4561,
+          4573,
+          4579,
+          4584,
+          4589,
+          4594,
+          4600,
+          4605,
+          20641,
+          4548,
+          4542
         ],
         "legacyOff": [
           4563,
@@ -675,10 +899,15 @@
           "matchCount": 2
         }
       ],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 10,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 4
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -691,9 +920,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 24,
+          "min": 24,
+          "max": 24
         },
         "legacyOff": {
           "mean": 3,
@@ -719,6 +948,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -732,6 +969,14 @@
           },
           "k8": {
             "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 1,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -747,6 +992,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -759,6 +1012,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0,
             "stdev": 0
           }
@@ -787,7 +1048,21 @@
           19757,
           22007,
           22003,
-          17197
+          17197,
+          6596,
+          15472,
+          15488,
+          15497,
+          15519,
+          17247,
+          15525,
+          15527,
+          15528,
+          15531,
+          21080,
+          21115,
+          22206,
+          16437
         ],
         "legacyOff": [
           23213,
@@ -814,10 +1089,15 @@
         5208
       ],
       "unresolvedTargets": [],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 4,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 4
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -830,9 +1110,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 18,
+          "min": 18,
+          "max": 18
         },
         "legacyOff": {
           "mean": 3,
@@ -858,6 +1138,14 @@
           "k8": {
             "mean": 0.75,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.75,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -871,6 +1159,14 @@
           },
           "k8": {
             "mean": 0.75,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.75,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -886,6 +1182,14 @@
           "k8": {
             "mean": 0.5,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.5,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -898,6 +1202,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0.5,
             "stdev": 0
           }
@@ -926,7 +1238,15 @@
           5194,
           5196,
           5202,
-          5199
+          5199,
+          6319,
+          5446,
+          5190,
+          5210,
+          5185,
+          20805,
+          5239,
+          21863
         ],
         "legacyOff": [
           5203,
@@ -960,10 +1280,15 @@
           "matchCount": 2
         }
       ],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 5,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 4
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -976,9 +1301,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 19,
+          "min": 19,
+          "max": 19
         },
         "legacyOff": {
           "mean": 3,
@@ -1004,6 +1329,14 @@
           "k8": {
             "mean": 0.5,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.5,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -1017,6 +1350,14 @@
           },
           "k8": {
             "mean": 0.5,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -1032,6 +1373,14 @@
           "k8": {
             "mean": 0.5,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0.5,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -1044,6 +1393,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0.5,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0.5,
             "stdev": 0
           }
@@ -1072,7 +1429,16 @@
           7576,
           7565,
           7559,
-          4035
+          4035,
+          8345,
+          7582,
+          7554,
+          7590,
+          8265,
+          21359,
+          21465,
+          7570,
+          21350
         ],
         "legacyOff": [
           7572,
@@ -1099,10 +1465,15 @@
         8550
       ],
       "unresolvedTargets": [],
-      "prodByteIdentical": true,
+      "prodByteIdentical": false,
+      "prodFlagOffStrictNoOp": true,
       "prodAppendMeta": {
-        "multihop": null,
-        "laneChampionBackfill": null
+        "tailAppends": {
+          "multihopApplied": true,
+          "multihopAppendedCount": 10,
+          "laneChampionApplied": true,
+          "laneChampionAppendedCount": 4
+        }
       },
       "legacyAppendMeta": {
         "appendedRowsSurviving": 0,
@@ -1115,9 +1486,9 @@
           "max": 10
         },
         "prodOn": {
-          "mean": 10,
-          "min": 10,
-          "max": 10
+          "mean": 24,
+          "min": 24,
+          "max": 24
         },
         "legacyOff": {
           "mean": 3,
@@ -1143,6 +1514,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "prodOn": {
@@ -1156,6 +1535,14 @@
           },
           "k8": {
             "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 1,
             "stdev": 0
           }
         },
@@ -1171,6 +1558,14 @@
           "k8": {
             "mean": 0,
             "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
+            "mean": 0,
+            "stdev": 0
           }
         },
         "legacyOn": {
@@ -1183,6 +1578,14 @@
             "stdev": 0
           },
           "k8": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k12": {
+            "mean": 0,
+            "stdev": 0
+          },
+          "k20": {
             "mean": 0,
             "stdev": 0
           }
@@ -1211,7 +1614,21 @@
           4064,
           11291,
           4066,
-          4069
+          4069,
+          11293,
+          6596,
+          8824,
+          8522,
+          8530,
+          8539,
+          8550,
+          8557,
+          8632,
+          8668,
+          21492,
+          8565,
+          8582,
+          23212
         ],
         "legacyOff": [
           23212,

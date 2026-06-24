@@ -55,9 +55,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm the production scorer entry point and the dist bundle carry the RRF tiebreak, the conflict adjustment and the self-guard (`dist/mcp_server/lib/scorer/fusion.js`)
+- [x] T001 Confirm the production scorer entry point and the dist bundle carry the RRF tiebreak, the conflict adjustment and the self-guard, and read the conflict path multiplier and the guard branches (`dist/mcp_server/lib/scorer/fusion.js`)
 - [x] T002 Confirm the read-only projection backup mechanism through `MK_SKILL_ADVISOR_DB_DIR` (`dist/mcp_server/lib/scorer/projection.js`)
-- [x] T003 Build the 33-prompt labeled routing set grounded in the corpus trigger phrases across three bands (`scripts/labeled-routing-set.mjs`)
+- [x] T003 Build the 42-prompt labeled routing set grounded in the corpus trigger phrases across five bands, including the self_guard and conflict bands (`scripts/labeled-routing-set.mjs`)
+- [x] T003b Build the conflict-edge overlay that gives the conflict-rerank seam real `conflicts_with` mass in-memory (`scripts/conflict-overlay.mjs`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,10 +66,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Write the matrix harness that copies the live database read-only and points the loader at a scratch copy (`scripts/advisor-rrf-benchmark.mjs`)
-- [x] T005 Run the three arms by toggling the flag readers, capturing per-prompt top-1 (`scripts/advisor-rrf-benchmark.mjs`)
-- [x] T006 Compute aggregate top-1 correctness, the per-band breakdown and the agreement spread versus baseline (`scripts/advisor-rrf-benchmark.mjs`)
-- [x] T007 Add the determinism pass and the default-off byte-identity pass and write the rollup (`results/metrics.json`)
+- [x] T004 Write the matrix harness that copies the live database read-only, points the loader at a scratch copy and scores the conflict band against the overlay (`scripts/advisor-rrf-benchmark.mjs`)
+- [x] T005 Run the three arms by toggling the flag readers, capturing per-prompt top-1, plus the self-guard and conflict differentials (`scripts/advisor-rrf-benchmark.mjs`)
+- [x] T006 Compute aggregate top-1 correctness, the per-band breakdown, the agreement spread versus baseline and the two seam differentials (`scripts/advisor-rrf-benchmark.mjs`)
+- [x] T007 Add the determinism pass, the default-off byte-identity pass and the overlay-inert-when-off check and write the rollup (`results/metrics.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -77,8 +78,8 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T008 Confirm the run reproduces exit 0 and the source database hash is unchanged (`scripts/advisor-rrf-benchmark.mjs`)
-- [x] T009 Author the per-prompt and aggregate data tables grounded strictly in metrics.json (`benchmark-results.md`)
-- [x] T010 Author the graduate, refine or cut verdict and the recommendation (`implementation-summary.md`)
+- [x] T009 Author the per-prompt, aggregate and per-seam data tables grounded strictly in metrics.json (`benchmark-results.md`)
+- [x] T010 Author the per-seam graduate and cut verdicts and the recommendation (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

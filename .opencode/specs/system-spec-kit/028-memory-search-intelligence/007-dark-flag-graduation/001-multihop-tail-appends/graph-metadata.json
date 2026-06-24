@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:55:43.757Z",
-    "last_save_at": "2026-06-24T04:55:43.757Z",
+    "last_save_at": "2026-06-24T05:40:22.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:147fccce29c1f2400df05082a60c24905aba175c3c3a2db7e765edc91a50ae84",
+    "source_fingerprint": "sha256:9d1136e8966d5513ebf0d7e6b3f5e0d24e9f6153ae21007a86a363d07cf47fc9",
     "source_doc_hashes": {
-      "spec.md": "062c8ab28757dc93e6741b2a8e7330f452fef9ad6f313ee058c5832a2ff13726",
+      "spec.md": "0c9d0125dc4961255f5200f55c34383f15059ba3d3a6287c39bd7b3c995425d8",
       "plan.md": "8ec895d64198ee19a990a68fb9a6331a36b3468dbb30e7f4858bab99e2dd0a10",
       "tasks.md": "b38fa1604524c24643f5be8cfaa1628144fc0807e6793ab5f9421f8499888c3e",
       "checklist.md": "ce6224c8b70ca705e10866cfd6f2e28ff384a2fa1153e4308f698767608e0f64",
-      "implementation-summary.md": "f0ddb9168d9feea36f1d77f4cbb535d328e6ba874fc69b1b02e758ba70738ccf"
+      "implementation-summary.md": "f305a1b2a0e1c758677ea3db8c703a9c17d46fb4c3b06acb49c976fedde933bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

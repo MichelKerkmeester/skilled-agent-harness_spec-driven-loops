@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "handlers/memory-search.ts",
+      "lib/feedback/true-citation-emitter.ts",
       "scripts/citation-ledger-feasibility.mjs",
       "results/metrics.json",
-      "lib/feedback/true-citation-emitter.ts",
       "lib/feedback/feedback-ledger.ts",
       "hooks/claude/claude-transcript.ts",
-      "handlers/memory-search.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -54,6 +54,18 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.ts",
+        "kind": "code",
+        "path": "lib/feedback/true-citation-emitter.ts",
+        "source": "derived"
+      },
       {
         "name": "citation-ledger-feasibility.mjs",
         "kind": "file",
@@ -67,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "true-citation-emitter.ts",
-        "kind": "code",
-        "path": "lib/feedback/true-citation-emitter.ts",
-        "source": "derived"
-      },
-      {
         "name": "feedback-ledger.ts",
         "kind": "code",
         "path": "lib/feedback/feedback-ledger.ts",
@@ -82,12 +88,6 @@
         "name": "claude-transcript.ts",
         "kind": "code",
         "path": "hooks/claude/claude-transcript.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
     "created_at": "2026-06-24T04:52:32.182Z",
-    "last_save_at": "2026-06-24T04:52:32.182Z",
+    "last_save_at": "2026-06-24T05:27:56.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98c5833faf0d1fa141c3dc72621c07cae89afa1d8238bfd8a2ff1dbc359aa450",
+    "source_fingerprint": "sha256:5154daccf6240f94f4eab6aa519979bd053aa5f4c377510b3324adc56b4c9be5",
     "source_doc_hashes": {
       "spec.md": "48f73e20d30a0afb5a818a150507ee9d028adcaad52727aaefd1c6ac750beb00",
       "plan.md": "abe3dbf4e32dc137e7fcf02c5924b6d8e44fe0c7164e4664fb1bd6ffacf1d491",
       "tasks.md": "3d78cf8df46cb6c44736e8f46894e575263b04360fd9a93e28b882a08d7129a3",
       "checklist.md": "3cf6b3a45c111c6268be7532bb4f23ccffd442ce145dbaf3271266382cc3d25f",
-      "implementation-summary.md": "579f932edab2e968b5dd68553a923059a220f41062002f99f60c306fc3e6d143"
+      "implementation-summary.md": "2490f886551246549a90f0f5789412715beec505b1ae4394775099802452e681"
     },
     "last_active_child_id": null,
     "last_active_at": null

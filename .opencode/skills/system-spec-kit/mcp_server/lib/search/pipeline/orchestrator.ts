@@ -20,12 +20,21 @@
 //     - Delegates to each stage; see individual stage modules for their side effects
 
 import { MemoryError, withTimeout } from '../../errors/core.js';
+import { requireDb } from '../../../utils/db-helpers.js';
+import {
+  isDeterministicMultihopEnabled,
+  isLaneChampionBackfillEnabled,
+} from '../search-flags.js';
+import { applyDeterministicMultihop } from '../deterministic-multihop.js';
+import { applyLaneChampionBackfill } from '../lane-champion-backfill.js';
 import { executeStage1 } from './stage1-candidate-gen.js';
 import { executeStage2 } from './stage2-fusion.js';
 import { executeStage3 } from './stage3-rerank.js';
 import { executeStage4 } from './stage4-filter.js';
+import { readLaneLists } from './types.js';
 
 import type {
+  LaneCandidateList,
   PipelineConfig,
   PipelineResult,
   SignalStatus,
@@ -76,6 +85,12 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       { cause: err instanceof Error ? err.message : String(err) },
     );
   }
+
+  // Capture the per-lane candidate lists Stage 1 may have attached, before Stages
+  // 2 through 4 reallocate the array and drop the non-enumerable shadow. The
+  // tail-append stage after Stage 4 reads them to backfill a lane champion. Undefined
+  // on the flags-off path, so the append stage finds nothing to add.
+  const laneListsForBackfill: LaneCandidateList[] | undefined = readLaneLists(stage1Result.candidates);
 
   // -- Stage 2: Fusion + Signal Integration (falls back to unsorted candidates) --
   let stage2Result: Stage2Output;
@@ -177,10 +192,87 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
     timing.stage4 = 0;
   }
 
+  // -- Tail-Append Stage: deterministic multi-hop and lane-champion backfill --
+  // Extend the capped baseline with additive tail recall the live route otherwise
+  // never reaches. The deterministic multi-hop append follows the explicit folder
+  // slugs the top recalled docs wrote in their own content and appends those specs.
+  // The lane-champion backfill appends each base lane's top candidate that missed
+  // the fused window. Both are tail-only and deduped against the baseline, so they
+  // can only fill empty tail slots past the requested limit and never evict a
+  // baseline hit. They run AFTER the Stage-4 final-limit cap, so the appended rows
+  // are exempt from that cap and actually reach the reader. When both flags are off
+  // this whole stage is skipped and the Stage-4 output is returned byte-for-byte.
+  let finalResults: Stage4ReadonlyRow[] = stage4Result.final;
+  let tailAppendsMeta: PipelineResult['metadata']['tailAppends'];
+  const multihopOn = isDeterministicMultihopEnabled();
+  const laneChampionOn = isLaneChampionBackfillEnabled();
+  if (multihopOn || laneChampionOn) {
+    try {
+      const t0 = Date.now();
+      // The append modules read and emit a mutable {id, score, ...} view. The
+      // baseline rows pass through untouched (the appends only add new tail rows and
+      // never rescore an existing row), so viewing the readonly Stage-4 rows through
+      // this mutable shape is sound, and the result is cast back to the readonly type.
+      let working = (finalResults as readonly Stage4ReadonlyRow[]).slice() as unknown as Array<
+        { id: number | string; score: number; source?: string; sources?: string[]; [key: string]: unknown }
+      >;
+      let multihopApplied = false;
+      let multihopAppendedCount = 0;
+      let laneChampionApplied = false;
+      let laneChampionAppendedCount = 0;
+
+      if (multihopOn) {
+        let multihopDb: ReturnType<typeof requireDb> | null = null;
+        try {
+          multihopDb = requireDb();
+        } catch {
+          multihopDb = null;
+        }
+        const multihopResult = applyDeterministicMultihop(
+          working,
+          multihopOn,
+          multihopDb,
+          { specFolder: config.specFolder },
+        );
+        working = multihopResult.results;
+        multihopApplied = multihopResult.multihop.applied;
+        multihopAppendedCount = multihopResult.multihop.appendedCount;
+      }
+
+      if (laneChampionOn) {
+        const lanes = (laneListsForBackfill ?? []).map((list) => ({
+          lane: list.lane ?? list.source,
+          results: list.results,
+        }));
+        const backfillResult = applyLaneChampionBackfill(working, lanes, laneChampionOn);
+        working = backfillResult.results;
+        laneChampionApplied = backfillResult.backfill.applied;
+        laneChampionAppendedCount = backfillResult.backfill.appendedCount;
+      }
+
+      finalResults = working as unknown as Stage4ReadonlyRow[];
+      tailAppendsMeta = {
+        multihopApplied,
+        multihopAppendedCount,
+        laneChampionApplied,
+        laneChampionAppendedCount,
+      };
+      timing.tailAppends = Date.now() - t0;
+    } catch (err: unknown) {
+      // Non-critical — a tail-append failure must not block the pipeline. Leave the
+      // Stage-4 output untouched so the baseline still returns.
+      console.warn(
+        '[pipeline] tail-append stage failed:',
+        err instanceof Error ? err.message : String(err),
+      );
+      finalResults = stage4Result.final;
+    }
+  }
+
   timing.total = Date.now() - pipelineStart;
 
   return {
-    results: stage4Result.final,
+    results: finalResults,
     metadata: {
       stage1: stage1Result.metadata,
       stage2: stage2Result.metadata,
@@ -188,6 +280,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       stage4: stage4Result.metadata,
       timing,
       degraded: degraded || undefined,
+      tailAppends: tailAppendsMeta,
     },
     annotations: stage4Result.annotations,
     trace: config.trace,

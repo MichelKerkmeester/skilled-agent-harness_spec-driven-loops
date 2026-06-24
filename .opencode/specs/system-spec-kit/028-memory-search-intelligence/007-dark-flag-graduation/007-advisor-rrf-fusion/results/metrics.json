@@ -1,29 +1,32 @@
 {
-  "generatedAt": "2026-06-24T04:52:47.626Z",
-  "question": "Does advisor RRF fusion plus the guards beat the weighted-sum baseline on routing top-1 correctness and agreement spread, on the production path against a read-only projection copy?",
+  "generatedAt": "2026-06-24T05:32:26.454Z",
+  "question": "Does advisor RRF fusion plus the guards beat the weighted-sum baseline on routing top-1 correctness, and do the self-recommendation guard and the conflict-rerank seam show signal on a set built to trigger them, on the production path against a read-only projection copy?",
   "method": {
     "scorer": "production scoreAdvisorPrompt from advisor dist bundle",
     "projectionLoader": "production loadAdvisorProjection",
     "projectionSource": "sqlite",
     "corpusSkills": 27,
-    "readOnlyBackup": "results/skill-graph.sqlite copied from the live database, opened read-only",
+    "readOnlyBackup": "results/skill-graph.backup.sqlite copied from the live database, loader opens a tmp read-only copy",
+    "conflictOverlay": "conflicts_with edges merged into the in-memory projection for the conflict band only, the live corpus is never written",
     "embedder": "none, semantic_shadow lane left neutral so both arms share an identical live lane set",
     "flagsToggled": [
       "SPECKIT_ADVISOR_RRF_FUSION",
       "SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD"
     ],
-    "labeledSetSize": 33,
+    "labeledSetSize": 42,
     "bands": [
       "exact",
       "paraphrase",
-      "hard"
+      "hard",
+      "self_guard",
+      "conflict"
     ]
   },
   "arms": {
     "baseline": {
-      "top1Correct": 28,
-      "total": 33,
-      "top1Accuracy": 0.8485,
+      "top1Correct": 37,
+      "total": 42,
+      "top1Accuracy": 0.881,
       "byBand": {
         "exact": {
           "total": 15,
@@ -39,13 +42,23 @@
           "total": 6,
           "correct": 6,
           "accuracy": 1
+        },
+        "self_guard": {
+          "total": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "conflict": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 1
         }
       }
     },
     "rrf": {
-      "top1Correct": 29,
-      "total": 33,
-      "top1Accuracy": 0.8788,
+      "top1Correct": 38,
+      "total": 42,
+      "top1Accuracy": 0.9048,
       "byBand": {
         "exact": {
           "total": 15,
@@ -61,22 +74,32 @@
           "total": 6,
           "correct": 6,
           "accuracy": 1
+        },
+        "self_guard": {
+          "total": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "conflict": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 1
         }
       },
       "agreementVsBaseline": {
         "changedTop1": 1,
-        "total": 33,
-        "changedFraction": 0.0303,
-        "agreementFraction": 0.9697,
+        "total": 42,
+        "changedFraction": 0.0238,
+        "agreementFraction": 0.9762,
         "movedIds": [
           "q02"
         ]
       }
     },
     "rrf_guard": {
-      "top1Correct": 29,
-      "total": 33,
-      "top1Accuracy": 0.8788,
+      "top1Correct": 38,
+      "total": 42,
+      "top1Accuracy": 0.9048,
       "byBand": {
         "exact": {
           "total": 15,
@@ -92,18 +115,121 @@
           "total": 6,
           "correct": 6,
           "accuracy": 1
+        },
+        "self_guard": {
+          "total": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "conflict": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 1
         }
       },
       "agreementVsBaseline": {
         "changedTop1": 1,
-        "total": 33,
-        "changedFraction": 0.0303,
-        "agreementFraction": 0.9697,
+        "total": 42,
+        "changedFraction": 0.0238,
+        "agreementFraction": 0.9762,
         "movedIds": [
           "q02"
         ]
       }
     }
+  },
+  "selfGuardDifferential": {
+    "band": "self_guard",
+    "total": 4,
+    "top1Moved": 0,
+    "correctGuardOff": 4,
+    "correctGuardOn": 4,
+    "showsSignal": false,
+    "rows": [
+      {
+        "id": "q34",
+        "prompt": "audit the skill advisor recommendations for routing quality",
+        "gold": "sk-code-review",
+        "guardOff": "sk-code-review",
+        "guardOn": "sk-code-review",
+        "moved": false
+      },
+      {
+        "id": "q35",
+        "prompt": "review the recommendation quality the router produces",
+        "gold": "sk-code-review",
+        "guardOff": "sk-code-review",
+        "guardOn": "sk-code-review",
+        "moved": false
+      },
+      {
+        "id": "q36",
+        "prompt": "audit the routing quality and the recommendations it makes",
+        "gold": "sk-code-review",
+        "guardOff": "sk-code-review",
+        "guardOn": "sk-code-review",
+        "moved": false
+      },
+      {
+        "id": "q37",
+        "prompt": "audit the recommendation quality of the skill router and rate it",
+        "gold": "sk-code-review",
+        "guardOff": "sk-code-review",
+        "guardOn": "sk-code-review",
+        "moved": false
+      }
+    ]
+  },
+  "conflictDifferential": {
+    "band": "conflict",
+    "total": 5,
+    "overlayEdges": 5,
+    "top1Moved": 1,
+    "correctNoOverlay": 4,
+    "correctOverlay": 5,
+    "showsSignal": true,
+    "rows": [
+      {
+        "id": "q38",
+        "prompt": "find the structural impact of this code change across callers",
+        "gold": "system-code-graph",
+        "noOverlay": "sk-code",
+        "overlay": "system-code-graph",
+        "moved": true
+      },
+      {
+        "id": "q39",
+        "prompt": "review this code change for quality and correctness",
+        "gold": "sk-code-review",
+        "noOverlay": "sk-code-review",
+        "overlay": "sk-code-review",
+        "moved": false
+      },
+      {
+        "id": "q40",
+        "prompt": "do a code review pass over the implementation",
+        "gold": "sk-code-review",
+        "noOverlay": "sk-code-review",
+        "overlay": "sk-code-review",
+        "moved": false
+      },
+      {
+        "id": "q41",
+        "prompt": "set up a git worktree for this code change",
+        "gold": "sk-git",
+        "noOverlay": "sk-git",
+        "overlay": "sk-git",
+        "moved": false
+      },
+      {
+        "id": "q42",
+        "prompt": "save the session context into the spec folder",
+        "gold": "system-spec-kit",
+        "noOverlay": "system-spec-kit",
+        "overlay": "system-spec-kit",
+        "moved": false
+      }
+    ]
   },
   "determinism": {
     "baseline": {
@@ -118,7 +244,10 @@
   },
   "byteIdentity": {
     "byteIdentical": true,
-    "checkedPrompts": 33
+    "checkedPrompts": 42,
+    "overlayChangesOffTop1": false,
+    "overlayChangesOffHash": true,
+    "overlayOffNote": "the conflict overlay does not change the default-off top-1, the lower-rank hash difference is the native weighted-sum graph-causal conflict handling, not a flag leak"
   },
   "perPrompt": [
     {
@@ -482,6 +611,105 @@
         "baseline": "mcp-figma",
         "rrf": "mcp-figma",
         "rrf_guard": "mcp-figma"
+      }
+    },
+    {
+      "id": "q34",
+      "band": "self_guard",
+      "prompt": "audit the skill advisor recommendations for routing quality",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q35",
+      "band": "self_guard",
+      "prompt": "review the recommendation quality the router produces",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q36",
+      "band": "self_guard",
+      "prompt": "audit the routing quality and the recommendations it makes",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q37",
+      "band": "self_guard",
+      "prompt": "audit the recommendation quality of the skill router and rate it",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q38",
+      "band": "conflict",
+      "prompt": "find the structural impact of this code change across callers",
+      "gold": "system-code-graph",
+      "top": {
+        "baseline": "system-code-graph",
+        "rrf": "system-code-graph",
+        "rrf_guard": "system-code-graph"
+      }
+    },
+    {
+      "id": "q39",
+      "band": "conflict",
+      "prompt": "review this code change for quality and correctness",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q40",
+      "band": "conflict",
+      "prompt": "do a code review pass over the implementation",
+      "gold": "sk-code-review",
+      "top": {
+        "baseline": "sk-code-review",
+        "rrf": "sk-code-review",
+        "rrf_guard": "sk-code-review"
+      }
+    },
+    {
+      "id": "q41",
+      "band": "conflict",
+      "prompt": "set up a git worktree for this code change",
+      "gold": "sk-git",
+      "top": {
+        "baseline": "sk-git",
+        "rrf": "sk-git",
+        "rrf_guard": "sk-git"
+      }
+    },
+    {
+      "id": "q42",
+      "band": "conflict",
+      "prompt": "save the session context into the spec folder",
+      "gold": "system-spec-kit",
+      "top": {
+        "baseline": "system-spec-kit",
+        "rrf": "system-spec-kit",
+        "rrf_guard": "system-spec-kit"
       }
     }
   ]

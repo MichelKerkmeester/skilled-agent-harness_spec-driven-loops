@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: True-Citation Ledger Density Benchmark"
-description: "Built a read-only feasibility harness for the default-off SPECKIT_TRUE_CITATION_EMITTER and ran it on the live corpus against the 024 ledger-density prerequisite. The emit pipe is proven separable on a scratch copy (3 used, 2 not-used), but the live search_shown corpus carries 0 session-scoped shown rows of 1711 and the bare integer detector matches mostly prose-count noise (7.24 percent coverage, short ids like 8 and 16). The live true_citation_events table is absent. The verdict is REFINE: plumb a stable session id into the search_shown write so the emitter can fire, then re-anchor the reference key on content the assistant actually echoes. No production code edited, no live ledger written, flag stays default-off byte-identical."
+description: "Benchmarked the default-off SPECKIT_TRUE_CITATION_EMITTER against the 024 ledger-density prerequisite, then implemented the two refinements behind the flag and re-benchmarked. The firing trigger now threads the validated session id into the search_shown write, and the reference key now anchors on the memory title the assistant echoes rather than the bare integer id. The refined detector lifts real-transcript reference coverage from 7.24 percent to 15.79 percent and suppresses 9 prose-count false positives, and the refined emit pipe is proven separable end-to-end on a scratch copy. The verdict stays REFINE: the signal separation is materially better and the design is now sound, but the live ledger density a reranker could consume is still gated on the session backlog, the existing search_shown rows are all null-session and predate the firing-trigger fix. Flag-off byte-identity holds. Changed handlers/memory-search.ts and lib/feedback/true-citation-emitter.ts only, no live ledger written."
 trigger_phrases:
   - "true citation ledger benchmark"
   - "SPECKIT_TRUE_CITATION_EMITTER density"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Ran the read-only harness, authored the REFINE verdict"
+    recent_action: "Implemented both refinements behind the flag, re-benchmarked, verdict stays REFINE"
     next_safe_action: "Phase complete, verdict lives in benchmark-results.md"
     blockers: []
     key_files:
@@ -28,9 +28,9 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The emit pipe is provably separable: a scratch replay with a session-scoped shown set and an id-echoing turn wrote 3 used and 2 not-used pairs."
-      - "The live firing-trigger ceiling is zero: all 1711 search_shown rows carry a null session id, so the emitter's session-scoped reconstruction reaches nothing."
-      - "The bare integer detector matches mostly prose-count noise: 7.24 percent shown-id coverage dominated by short ids colliding with counts in text."
+      - "The refined anchor-aware detector lifts real-transcript reference coverage from 7.24 percent to 15.79 percent and suppresses 9 prose-count false positives."
+      - "The refined emit pipe is proven separable end-to-end: the anchor segment writes 1 used and 1 not-used with the bare-id prose-count collision correctly suppressed."
+      - "The live ledger density a reranker could consume is still zero today: the existing 1711 search_shown rows are all null-session and predate the firing-trigger fix."
 ---
 # Implementation Summary
 
@@ -48,7 +48,8 @@ _memory:
 | **Status** | Complete |
 | **Completed** | 2026-06-24 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Verdict** | REFINE |
+| **Verdict** | REFINE (refinements implemented behind the flag) |
+| **Files changed** | `handlers/memory-search.ts`, `lib/feedback/true-citation-emitter.ts`, this phase folder |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,19 +57,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A read-only feasibility benchmark for the default-off `SPECKIT_TRUE_CITATION_EMITTER`, measured against the 024 demote-only reranker's PREREQ-A ledger-density prerequisite on the live corpus. The harness `scripts/citation-ledger-feasibility.mjs` backs the live database up read-only and runs four measurements, all traced into `results/metrics.json`. No production code was edited, no live ledger row was written, and `SPECKIT_TRUE_CITATION_EMITTER` remains default-off and byte-identical when off.
+A read-only feasibility benchmark for the default-off `SPECKIT_TRUE_CITATION_EMITTER`, measured against the 024 demote-only reranker's PREREQ-A ledger-density prerequisite, plus the two refinements the first pass diagnosed, implemented behind the flag and re-benchmarked. The harness `scripts/citation-ledger-feasibility.mjs` backs the live database up read-only and traces every number into `results/metrics.json`. The production changes are confined to `handlers/memory-search.ts` and `lib/feedback/true-citation-emitter.ts`, no live ledger row was written, and `SPECKIT_TRUE_CITATION_EMITTER` remains default-off and byte-identical when off.
 
-The findings:
+The first pass found two named gaps. The live `search_shown` corpus held 1711 rows all carrying a null session id, so a session-scoped emit reached nothing, and the bare integer detector matched mostly prose counts (`8 packets`, `16/18 complete`), 7.24 percent coverage that overstated the real citation signal. Both gaps are now fixed.
 
-**The emit pipe is provably separable.** A scratch replay seeded a session-scoped shown set with three ids echoed in a synthetic post-search turn and two not echoed, ran the emit against a scratch copy of the live database, and read back 5 pairs, 3 used and 2 not-used, separation proven. The mechanism is sound, so any zero below is an input gap, not a code defect.
+**Refinement 1, the firing trigger.** The `search_shown` write in `handlers/memory-search.ts` now threads the validated `effectiveSessionId`, the same value the dedup and consumption-log paths use, so a closing session can be reconstructed. The write is shadow-only and the change is byte-identical when the emitter flag is off.
 
-**The live shown universe is populated but session-blind.** The live `search_shown` corpus holds 1711 rows across 380 distinct queries and 304 distinct memory ids, mean shown-set size 4.50. But every row carries a null or empty session id, so the session-scoped shown count is 0 of 1711. The production search handler records the row with `queryId = String(_evalQueryId ?? _searchStartTime)` and `sessionId ?? null`, and the live rows are all bare millisecond timestamps with a null session, the non-eval prod branch that supplies no session id. The emitter scopes its reconstruction by session id and the session-stop hook mines the closing session, so a real session-scoped emit reaches nothing. The firing-trigger ceiling is zero.
+**Refinement 2, the reference key.** The detector in `lib/feedback/true-citation-emitter.ts` now keys on the memory title anchor when present and demotes the bare integer id to a fallback used only for memories with no usable anchor. An anchored memory is referenced only when its title's distinctive words are all echoed, so a prose-count collision can no longer fabricate a positive. The anchors are looked up read-only from the `memory_index` titles during shown-set reconstruction.
 
-**The bare integer detector matches mostly number noise.** The reference-realism scan over 13376 real assistant turns found a 7.24 percent shown-id reference coverage, 22 of 304 distinct shown ids ever matched. The matched ids skew short and the sampled context shows the matches are ordinary prose counts (`8 packets`, `16/18 complete`, `all 16 edits`), not citations. The assistant cites a memory by its content, its title, or its spec path, not by its database integer id, so even the 7.24 percent overstates the real citation signal.
+**The refined detector materially lifts the signal separation.** On the same 13417 real assistant turns the anchor-aware detector matches 48 distinct shown ids where the bare-id detector matched 22, lifting real reference coverage from 7.24 percent to 15.79 percent, and it suppresses 9 prose-count false positives (`16`, `26`, `20924`, `21800`, `6100`, `4811`, `4807`, `3467`, `3342`). The assistant echoes a memory's title, not its database id, so the title is the truer reference key.
 
-**The live ledger density a reranker could consume is zero.** A real used or not-used pair needs both a session-scoped shown set AND an assistant turn that echoes a shown id. On the live corpus the first gate is hard zero and the second is near-zero collision noise, and the live `true_citation_events` table is absent, so the density is zero. This is consistent with 024: the gold-and-ledger intersection was 0.4 percent with the emitter off, and enabling the emitter as built would not lift it because the emitter cannot fire on the session-blind corpus.
+**The refined emit pipe is proven separable end-to-end.** A scratch replay ran two segments: an id-only fallback (3 used, 2 not-used) and an anchor segment where a memory whose title is echoed is used and a memory mentioned only as a bare-id prose count is not-used (1 used, 1 not-used, the collision suppressed). Both segments proven, so the refined pipe writes a trustworthy split.
 
-**Verdict: REFINE.** GRADUATE is ruled out because the live ledger density is zero, so a demote-only reranker would still earn 0.000 by construction, the exact block 024 recorded. CUT is ruled out because the emit pipe is provably correct and produces precisely the shown-but-unused negative the corpus lacks. The block is two named input gaps, both fixable behind the existing default-off flag.
+**Verdict: REFINE.** GRADUATE is ruled out because the live ledger density a reranker could consume is still zero today: the existing 1711 `search_shown` rows are all null-session and predate the firing-trigger fix, so the backlog stays unreachable until session-carrying, anchor-resolvable traffic accumulates. CUT is ruled out because the refinements turned a noisy, never-firing emitter into a sound one that earns a real used-versus-unused separation when it fires. The residual block is a data backlog, not a code gap.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,7 +77,7 @@ The findings:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The harness resolves the live database path from the server config, backs it up read-only, and measures the live `search_shown` ledger structure including the session-scoped count that is the firing-trigger ceiling. It then backs the live database up to a scratch copy, forces the flag on inside its own process, seeds a session-scoped shown set with echoed and not-echoed ids, runs `emitTrueCitationsForSession` against the scratch copy, and reads back the used and not-used split. Separately it scans the 60 most recent transcripts for standalone matches of the live shown ids through the production `parseAssistantTextTurns`, and buckets the matches by digit length so short-id collisions are visible. Every number lands in `results/metrics.json`, the single source for the data tables in `benchmark-results.md` and this verdict. The flag-off byte-identity was confirmed in-process: the emit returns zeros and does not create the shadow table.
+The firing-trigger change names a `shownSessionId` from the already-validated `sessionId` and passes it into the `search_shown` feedback rows, replacing the prior inline `sessionId ?? null`. The reference-key change adds an optional `contentAnchors` map to the `ShownSet`, a `distinctiveAnchorWords` reducer that drops generic doc-type stopwords, an `anchorReferenced` check that requires all of an anchor's distinctive words to appear as standalone tokens, and an anchor-first branch in `detectReferencedMemoryIds` that replaces the bare-id key for anchored memories. `reconstructShownSets` enriches each shown set with the per-id titles via a read-only `lookupContentAnchors` query against `memory_index`. The harness backs the live database up read-only, measures the session-scoped firing-trigger ceiling, runs a two-segment scratch replay proving both the id-only fallback and the anchor path, and runs the production detector twice over the same real transcript turns so the bare-id and anchor-aware coverages are directly comparable. Every number lands in `results/metrics.json`. tsc is clean, the build is clean, and the existing 8 emitter tests plus the broader feedback and handler suites pass unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,10 +85,10 @@ The harness resolves the live database path from the server config, backs it up 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **A read-only measurement plus a scratch replay, not a live emitter run.** Enabling the live emitter to grow a real ledger would write the live database, take many sessions to accumulate, and still not isolate a code defect from an input gap. A read-only measurement plus a scratch replay answers the density question safely and immediately.
-- **The session-scoped shown count is the firing-trigger ceiling.** The emitter reconstructs by session id and the hook mines the closing session, so a null-session row is unreachable by a real emit, which makes the session-scoped count the honest upper bound on what the emitter could ever ledger.
-- **Bucket the reference matches by digit length.** The bare integer detector collides with prose counts, so reporting the matched ids by digit length and sampling their context exposes the 7.24 percent coverage as mostly noise rather than letting it read as real density.
-- **REFINE, not CUT, because the pipe is proven.** The scratch replay shows the emit writes a correct used-versus-unused split, so the design is the right shape and the block is two fixable input gaps, which is a REFINE not a CUT.
+- **The anchor replaces the bare id rather than supplementing it.** For an anchored memory the bare-id fallback is dropped entirely, because the bare id is the prose-count noise source. Keeping it as a parallel signal would have re-admitted the false positives the refinement exists to remove, so an anchored memory keys only on its title.
+- **A distinctive-words threshold guards anchor precision.** A title is reduced to its distinctive words after generic doc-type stopwords are removed, and all of them must appear before the anchor fires, so a generic title like a bare doc type never matches on a single common word.
+- **The firing-trigger fix threads the existing validated session, it does not invent one.** Plumbing the already-resolved `effectiveSessionId` keeps the row consistent with dedup and the consumption log, so a closing session reconstructs the same set the rest of the handler scoped. A synthetic per-search id was rejected because it would not match the session-stop hook's transcript session.
+- **REFINE, not GRADUATE, because the density is a data backlog.** The refinements are sound and the signal is now trustworthy, but the live ledger is empty and the existing shown rows predate the session fix, so the density a reranker needs cannot be measured until real session-carrying traffic accumulates.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -95,11 +96,12 @@ The harness resolves the live database path from the server config, backs it up 
 <!-- ANCHOR:verification -->
 ## Verification
 
-- The emitter is measured on the production path, the live `search_shown` rows the production search handler writes, 1711 rows reported in `results/metrics.json`.
-- The harness reads the live database read-only, proven by the absent live `true_citation_events` table after the run. The single emit write landed on a scratch copy that was removed.
-- The scratch replay wrote a correct 3-used 2-not-used split, separation proven.
-- The flag-off emit returns `{ emitted: 0, used: 0, notUsed: 0 }` and does not create the shadow table, verified in-process.
-- Every number in `benchmark-results.md` is present in `results/metrics.json`, and `node scripts/citation-ledger-feasibility.mjs` rebuilds it from the live corpus.
+- tsc is clean, the build is clean, and the 8 existing emitter tests plus the broader feedback suites (64 tests) and the memory-search handler tests pass unchanged.
+- The flag-off emit returns `{ emitted: 0, used: 0, notUsed: 0 }` and does not create the shadow table, verified in-process against the freshly built dist. The firing-trigger row is shadow-only, so both refinements are byte-identical when off.
+- The refined scratch replay proves both segments: id-only fallback 3 used 2 not-used, anchor path 1 used 1 not-used with the bare-id prose-count collision suppressed, all separation proven.
+- The anchor-aware detector lifts real-transcript reference coverage from 0.0724 to 0.1579 over 13417 turns and suppresses 9 prose-count false positives, every number present in `results/metrics.json`.
+- The harness reads the live database read-only, proven by the absent live `true_citation_events` table and the unchanged `feedback_events` row count after the run. The emit write landed on a scratch copy that was removed.
+- `node scripts/citation-ledger-feasibility.mjs` rebuilds `results/metrics.json` from the live corpus.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -107,7 +109,8 @@ The harness resolves the live database path from the server config, backs it up 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The reference-realism scan samples the 60 most recent transcripts rather than the full history, so the 7.24 percent coverage is a recent-window estimate, not a lifetime figure. The conclusion holds because the matches in the sample are visibly prose-count collisions rather than citations, which a larger sample would not reverse.
+- The live ledger density a reranker could consume is still zero today. The firing-trigger fix helps only searches that run after it, and the existing 1711 `search_shown` rows are all null-session, so the backlog stays unreachable. A real density measurement against the 024 PREREQ-A bar waits on session-carrying, anchor-resolvable traffic accumulating in the ledger.
+- The reference-realism scan samples the 60 most recent transcripts rather than the full history, so the coverage numbers are a recent-window estimate. The conclusion holds because the lift from 0.0724 to 0.1579 and the 9 suppressed collisions are directional and visible in the sample.
 - This phase measures the density side the emitter owns, the 024 PREREQ-A prerequisite. It does not measure the 024 PREREQ-B corpus-geometry prerequisite, the reliable-negative-above-gold configuration a demote-only mechanism needs, which is a separate question carried by the 024 research.
-- The two refinements, plumbing a session id into the `search_shown` write and re-anchoring the reference key on content the assistant echoes, are designed here but not implemented, deferred to a successor phase behind the existing flag with a follow-up density re-benchmark against the 024 bar.
+- The handler firing-trigger change still records a null session when the caller runs session-less, which the emitter correctly skips. Lifting that residual gap would require the MCP client to supply a session on every search, which is outside this phase's two-file scope.
 <!-- /ANCHOR:limitations -->

@@ -41,7 +41,8 @@ import {
 } from './folder-relevance.js';
 import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
-import { resolveAbsoluteRelevance } from './pipeline/types.js';
+import { resolveAbsoluteRelevance, attachLaneLists } from './pipeline/types.js';
+import type { LaneCandidateList } from './pipeline/types.js';
 import {
   DEFAULT_PAGE_SIZE,
   buildProgressiveResponse,
@@ -327,6 +328,8 @@ const DEGRADATION_MIN_RESULTS = 3;
 
 /** Default result limit when none is specified by the caller. */
 const DEFAULT_LIMIT = 20;
+/** Base retrieval lanes whose champions the lane-champion backfill draws from. */
+const BASE_LANE_SOURCES = new Set(['vector', 'fts', 'bm25', 'trigger']);
 /** Primary vector similarity floor for hybrid fallback passes (percentage units). */
 const PRIMARY_FALLBACK_MIN_SIMILARITY = 30;
 /** Secondary vector similarity floor for adaptive retry passes (percentage units). */
@@ -1879,9 +1882,8 @@ async function enrichFusedResults(
   // trigger) — no new query or re-scoring. The append is tail-only and deduped,
   // so a champion can never evict a baseline hit. Flag-off is byte-identical.
   try {
-    const BASE_LANES = new Set(['vector', 'fts', 'bm25', 'trigger']);
     const laneCandidates = lists
-      .filter((list) => BASE_LANES.has(list.source))
+      .filter((list) => BASE_LANE_SOURCES.has(list.source))
       .map((list) => ({ lane: list.source, results: list.results }));
     const backfillResult = applyLaneChampionBackfill(
       fusedHybridResults,
@@ -2226,14 +2228,30 @@ async function collectRawCandidates(
   const primaryResults = stages[0]?.results ?? [];
   const retryResults = stages[1]?.results ?? [];
 
+  // The lane-champion backfill needs each base lane's ranked candidates, which the
+  // fused candidate list has already blended away. Carry them forward only when an
+  // append flag is on, as a non-enumerable shadow on the returned array, so the
+  // flags-off path returns a byte-identical array with nothing attached. The fused
+  // result list is the protected window the appends extend, never reorder.
+  const carryLaneLists = isDeterministicMultihopEnabled() || isLaneChampionBackfillEnabled();
+  const baseLaneLists: LaneCandidateList[] | undefined = carryLaneLists
+    ? (stages[0]?.execution?.lists ?? [])
+        .filter((list): list is LaneCandidateList => BASE_LANE_SOURCES.has(list.source))
+        .map((list) => ({ lane: list.source, source: list.source, results: list.results }))
+    : undefined;
+
   if (isSearchFallbackEnabled()) {
     const mergedResults = retryResults.length > 0
       ? mergeRawCandidateSets(primaryResults, retryResults, options.limit)
       : primaryResults;
-    if (mergedResults.length > 0) return applyResultLimit(mergedResults, options.limit);
+    if (mergedResults.length > 0) {
+      return attachLaneLists(applyResultLimit(mergedResults, options.limit), baseLaneLists);
+    }
   } else {
     const stagedResults = retryResults.length > 0 ? retryResults : primaryResults;
-    if (stagedResults.length > 0) return applyResultLimit(stagedResults, options.limit);
+    if (stagedResults.length > 0) {
+      return attachLaneLists(applyResultLimit(stagedResults, options.limit), baseLaneLists);
+    }
   }
 
   if (allowedChannels.has('fts')) {

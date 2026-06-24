@@ -1773,13 +1773,21 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
         if (shownMemoryIds.length > 0) {
           const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+          // Firing trigger for the true-citation emitter: the emitter reconstructs the
+          // shown universe by session_id, so a search_shown row with no session is
+          // invisible to a session-scoped emit. Thread the validated session
+          // (effectiveSessionId, the same value dedup and the consumption log use)
+          // through as the row's session so a closing session can be reconstructed.
+          // Null stays null when the caller ran session-less, which the emitter
+          // correctly skips rather than guessing a session.
+          const shownSessionId = sessionId ?? null;
           const feedbackEvents: FeedbackEvent[] = shownMemoryIds.map(memId => ({
             type: 'search_shown',
             memoryId: String(memId),
             queryId,
             confidence: 'weak',
             timestamp: _searchStartTime,
-            sessionId: sessionId ?? null,
+            sessionId: shownSessionId,
           }));
           logFeedbackEvents(db, feedbackEvents);
         }

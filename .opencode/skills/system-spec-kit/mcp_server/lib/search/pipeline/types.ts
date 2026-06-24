@@ -56,6 +56,51 @@ export interface PipelineRow extends Record<string, unknown> {
 }
 
 /**
+ * One base lane's ranked candidate list, carried from candidate generation to the
+ * tail-append stage so a lane's strongest belief can backfill an empty tail slot
+ * without a second query.
+ */
+export interface LaneCandidateList {
+  source: string;
+  /** Lane name in the shape the backfill module reads; mirrors source. */
+  lane?: string;
+  results: Array<{ id: number | string; [key: string]: unknown }>;
+}
+
+/** Non-enumerable property key the per-lane candidate lists travel under. */
+const LANE_LISTS_KEY = '_laneLists';
+
+/**
+ * Attach the per-lane candidate lists to a result array as a non-enumerable shadow
+ * property. Non-enumerable so the lists ride along for the tail-append stage without
+ * widening PipelineRow or leaking into JSON, mirroring the shadow-metadata pattern
+ * the fusion stage already uses for its eval traces. A no-op when there is nothing
+ * to attach, so the flags-off path leaves the array byte-identical.
+ */
+export function attachLaneLists<T>(results: T[], lists: LaneCandidateList[] | undefined): T[] {
+  if (!lists || lists.length === 0) return results;
+  Object.defineProperty(results, LANE_LISTS_KEY, {
+    value: lists,
+    enumerable: false,
+    configurable: true,
+    writable: true,
+  });
+  return results;
+}
+
+/**
+ * Read the per-lane candidate lists previously attached by attachLaneLists. Returns
+ * undefined when none were attached, which is the flags-off and the no-lane case, so
+ * the tail-append backfill simply finds nothing to add.
+ */
+export function readLaneLists(results: unknown): LaneCandidateList[] | undefined {
+  if (!Array.isArray(results) && (typeof results !== 'object' || results === null)) return undefined;
+  const carrier = results as Record<string, unknown>;
+  const lists = carrier[LANE_LISTS_KEY];
+  return Array.isArray(lists) ? (lists as LaneCandidateList[]) : undefined;
+}
+
+/**
  * Shared score resolution function — canonical fallback chain for deriving the
  * "best available score" from a PipelineRow. Used by Stage 2, Stage 3, and any
  * code needing a consistent effective score.
@@ -372,6 +417,17 @@ export interface PipelineResult {
     timing?: Record<string, number>;
     /** True when one or more stages fell back to degraded output. */
     degraded?: boolean;
+    /**
+     * Tail-append stage outcome, present only when an append flag was on and the
+     * stage ran. Records how many deterministic multi-hop docs and lane champions
+     * were appended past the capped baseline.
+     */
+    tailAppends?: {
+      multihopApplied: boolean;
+      multihopAppendedCount: number;
+      laneChampionApplied: boolean;
+      laneChampionAppendedCount: number;
+    };
   };
   annotations: Stage4Output['annotations'];
   trace?: RetrievalTrace;

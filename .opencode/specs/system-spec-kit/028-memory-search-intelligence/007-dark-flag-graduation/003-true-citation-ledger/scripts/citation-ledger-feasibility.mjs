@@ -225,20 +225,90 @@ async function replayEmitOnScratch(liveDbPath, emitter, feedbackLedger) {
     const usedRows = emitter.getTrueCitations(db, { used: true, sessionId });
     const notUsedRows = emitter.getTrueCitations(db, { used: false, sessionId });
 
+    // A second segment proving the refined ANCHOR path end-to-end. Two ids carry real
+    // memory_index titles. The turn echoes the first title by content and never echoes
+    // the second, but mentions the second id as a bare prose-count. With the refinement
+    // the first is used (anchor echoed) and the second is not-used (the bare-id
+    // collision is suppressed), the exact prose-count false positive the refinement removes.
+    const anchorSession = 'replay-session-anchor';
+    const anchorQuery = 'replay-query-anchor';
+    const anchorUsedTitle = 'Canonical Vector Shard Split adoption test';
+    const anchorUnusedTitle = 'Live two-session daemon re-election adoption';
+    // Override the title on two EXISTING memory_index rows in the scratch copy rather
+    // than inserting new rows, which sidesteps the table's many NOT NULL columns. The
+    // two ids are real shown ids, and the title override lives only on the scratch copy.
+    const twoShownIds = db.prepare(
+      "SELECT DISTINCT memory_id FROM feedback_events WHERE type='search_shown' LIMIT 2",
+    ).all().map((r) => String(r.memory_id));
+    const anchorUsedId = twoShownIds[0];
+    const anchorUnusedId = twoShownIds[1];
+    const updateTitle = db.prepare('UPDATE memory_index SET title = ? WHERE id = ?');
+    updateTitle.run(anchorUsedTitle, Number(anchorUsedId));
+    updateTitle.run(anchorUnusedTitle, Number(anchorUnusedId));
+    feedbackLedger.logFeedbackEvents(
+      db,
+      [anchorUsedId, anchorUnusedId].map((memoryId) => ({
+        type: 'search_shown',
+        memoryId,
+        queryId: anchorQuery,
+        confidence: 'weak',
+        timestamp: shownAt,
+        sessionId: anchorSession,
+      })),
+    );
+    const anchorTurns = [
+      {
+        // Echoes the first title by content; mentions 990102 only as a prose count.
+        text: `The Canonical Vector Shard Split adoption test settled it. We built ${anchorUnusedId} packets in all.`,
+        timestamp: shownAt + 1000,
+      },
+    ];
+    const anchorResult = emitter.emitTrueCitationsForSession(db, anchorTurns, {
+      sessionId: anchorSession,
+      now: shownAt + 2000,
+    });
+    const anchorUsedRows = emitter.getTrueCitations(db, { used: true, sessionId: anchorSession });
+    const anchorNotUsedRows = emitter.getTrueCitations(db, { used: false, sessionId: anchorSession });
+    const anchorSeparationProven =
+      anchorResult.used === 1 &&
+      anchorResult.notUsed === 1 &&
+      anchorUsedRows.length === 1 &&
+      anchorUsedRows[0].memory_id === anchorUsedId &&
+      anchorNotUsedRows.length === 1 &&
+      anchorNotUsedRows[0].memory_id === anchorUnusedId;
+
     return {
       scratchDbPath,
       flagForcedOn: true,
-      shownIds,
-      expectedUsed: usedIds.length,
-      expectedNotUsed: unusedIds.length,
-      emitResult: result,
-      observedUsedIds: usedRows.map((r) => r.memory_id).sort(),
-      observedNotUsedIds: notUsedRows.map((r) => r.memory_id).sort(),
+      idOnlyFallback: {
+        shownIds,
+        expectedUsed: usedIds.length,
+        expectedNotUsed: unusedIds.length,
+        emitResult: result,
+        observedUsedIds: usedRows.map((r) => r.memory_id).sort(),
+        observedNotUsedIds: notUsedRows.map((r) => r.memory_id).sort(),
+        separationProven:
+          result.used === usedIds.length &&
+          result.notUsed === unusedIds.length &&
+          usedRows.length === usedIds.length &&
+          notUsedRows.length === unusedIds.length,
+      },
+      anchorPath: {
+        anchoredUsedId: anchorUsedId,
+        anchoredUnusedId: anchorUnusedId,
+        usedTitleEchoed: anchorUsedTitle,
+        unusedBareIdAsProseCount: anchorUnusedId,
+        emitResult: anchorResult,
+        observedUsedIds: anchorUsedRows.map((r) => r.memory_id).sort(),
+        observedNotUsedIds: anchorNotUsedRows.map((r) => r.memory_id).sort(),
+        separationProven: anchorSeparationProven,
+      },
       separationProven:
         result.used === usedIds.length &&
         result.notUsed === unusedIds.length &&
         usedRows.length === usedIds.length &&
-        notUsedRows.length === unusedIds.length,
+        notUsedRows.length === unusedIds.length &&
+        anchorSeparationProven,
       cleanup: () => {
         try {
           db.close();
@@ -260,16 +330,31 @@ async function replayEmitOnScratch(liveDbPath, emitter, feedbackLedger) {
 }
 
 // ── 4. Reference-detection realism on real transcripts ──
-// Counts how often a live shown memory id appears as a standalone token in real
-// assistant turns, the real-world hit rate the density depends on.
+// Compares the bare integer detector against the refined anchor-aware detector on
+// the same real assistant turns. The bare-id key matches mostly prose-count noise,
+// the anchor key (the memory title) is what the assistant actually echoes, so the
+// gap between the two coverages is the signal-separation lift the refinement buys.
 async function measureReferenceRealism(liveDbPath, transcriptParser, emitter, sampleLimit) {
-  // The distinct shown memory ids the emitter would try to match.
+  // The distinct shown memory ids the emitter would try to match, plus their titles,
+  // the content anchors the refined detector keys on.
   const db = new Database(liveDbPath, { readonly: true, fileMustExist: true });
   let shownIds;
+  const contentAnchors = {};
   try {
     shownIds = db.prepare(
       "SELECT DISTINCT memory_id FROM feedback_events WHERE type='search_shown'",
     ).all().map((r) => r.memory_id);
+    if (shownIds.length > 0) {
+      const placeholders = shownIds.map(() => '?').join(', ');
+      const rows = db.prepare(
+        `SELECT id, title FROM memory_index WHERE id IN (${placeholders})`,
+      ).all(...shownIds);
+      for (const row of rows) {
+        if (row.title && String(row.title).trim()) {
+          contentAnchors[String(row.id)] = String(row.title).trim();
+        }
+      }
+    }
   } finally {
     db.close();
   }
@@ -306,15 +391,20 @@ async function measureReferenceRealism(liveDbPath, transcriptParser, emitter, sa
     .slice(0, sampleLimit);
 
   let turnsScanned = 0;
-  let turnsWithAnyShownId = 0;
-  const matchedIds = new Set();
-  const idMatchers = new Map(shownIds.map((id) => [id, new RegExp(`(?<![\\w-])${id}(?![\\w-])`, 'u')]));
+  // Per-turn, run the production detector twice over the same shown ids: once with no
+  // anchors (the bare-id baseline) and once with the title anchors (the refinement).
+  // Accumulate which ids each path ever matched so the coverage gap is auditable.
+  const bareMatched = new Set();
+  const anchorMatched = new Set();
+  const idsWithAnchor = new Set(Object.keys(contentAnchors));
 
   // The bare integer detector is most error-prone on short ids that collide with
-  // ordinary counts in prose. Bucket the matched ids by digit length so the reader
-  // can see how much of the apparent coverage is short-id noise.
-  const matchedByDigitLength = {};
-  const collisionSamples = [];
+  // ordinary counts in prose. Bucket the bare matches by digit length so the reader
+  // can see how much of the bare coverage is short-id noise.
+  const bareMatchedByDigitLength = {};
+  const bareCollisionSamples = [];
+  const idMatchers = new Map(shownIds.map((id) => [id, new RegExp(`(?<![\\w-])${id}(?![\\w-])`, 'u')]));
+  const anchorSamples = [];
 
   for (const { f } of withMtime) {
     let turns;
@@ -325,45 +415,72 @@ async function measureReferenceRealism(liveDbPath, transcriptParser, emitter, sa
     }
     for (const turn of turns) {
       turnsScanned += 1;
-      let hit = false;
+      // Bare-id baseline: the original behavior, an id matched as a standalone token.
       for (const [id, matcher] of idMatchers) {
         const m = matcher.exec(turn.text);
         if (m) {
-          hit = true;
-          if (!matchedIds.has(id)) {
+          if (!bareMatched.has(id)) {
             const len = id.length;
-            matchedByDigitLength[len] = (matchedByDigitLength[len] ?? 0) + 1;
+            bareMatchedByDigitLength[len] = (bareMatchedByDigitLength[len] ?? 0) + 1;
           }
-          matchedIds.add(id);
-          if (id.length <= 2 && collisionSamples.length < 12) {
+          bareMatched.add(id);
+          if (id.length <= 2 && bareCollisionSamples.length < 12) {
             const i = m.index;
-            collisionSamples.push({
+            bareCollisionSamples.push({
               id,
               context: turn.text.slice(Math.max(0, i - 30), i + id.length + 22).replace(/\s+/g, ' ').trim(),
             });
           }
         }
       }
-      if (hit) turnsWithAnyShownId += 1;
+      // Refinement: the production anchor-aware detector over the same shown ids and
+      // their title anchors. An anchored id matches only when its title is echoed, so
+      // a prose-count collision can no longer fabricate a positive.
+      const refined = emitter.detectReferencedMemoryIds([...idsWithAnchor], [turn], contentAnchors);
+      for (const id of refined) {
+        if (!anchorMatched.has(id) && anchorSamples.length < 12) {
+          anchorSamples.push({ id, anchor: contentAnchors[id] });
+        }
+        anchorMatched.add(id);
+      }
     }
   }
+
+  // The ids the bare detector matched that the anchor detector did NOT, restricted to
+  // ids that HAVE an anchor: these are the prose-count false positives the refinement
+  // suppresses, the core of the signal-separation lift.
+  const suppressedFalsePositives = [...bareMatched]
+    .filter((id) => idsWithAnchor.has(id) && !anchorMatched.has(id));
 
   return {
     transcriptsAvailable: transcriptFiles.length,
     transcriptsSampled: withMtime.length,
     distinctShownIds: shownIds.length,
+    distinctShownIdsWithAnchor: idsWithAnchor.size,
     assistantTurnsScanned: turnsScanned,
-    turnsReferencingAnyShownId: turnsWithAnyShownId,
-    turnReferenceRate: fmt(turnsScanned > 0 ? turnsWithAnyShownId / turnsScanned : 0, 6),
-    distinctShownIdsEverReferenced: matchedIds.size,
-    shownIdReferenceCoverage: fmt(shownIds.length > 0 ? matchedIds.size / shownIds.length : 0, 4),
-    sampleMatchedIds: [...matchedIds].slice(0, 10),
-    matchedByDigitLength,
-    collisionSamples,
-    collisionNote:
-      'The bare integer detector matches a shown id as a standalone token. Short ids ' +
-      'collide with ordinary counts in prose, so the collisionSamples show the matched ' +
-      'coverage is mostly number noise, not a real citation of a shown memory.',
+    bareIdDetector: {
+      distinctIdsMatched: bareMatched.size,
+      shownIdCoverage: fmt(shownIds.length > 0 ? bareMatched.size / shownIds.length : 0, 4),
+      matchedByDigitLength: bareMatchedByDigitLength,
+      collisionSamples: bareCollisionSamples,
+      note:
+        'The bare integer detector matches a shown id as a standalone token. Short ids ' +
+        'collide with ordinary counts in prose, so the coverage is mostly number noise.',
+    },
+    anchorAwareDetector: {
+      distinctIdsMatched: anchorMatched.size,
+      shownIdCoverage: fmt(shownIds.length > 0 ? anchorMatched.size / shownIds.length : 0, 4),
+      coverageOverAnchoredIds: fmt(idsWithAnchor.size > 0 ? anchorMatched.size / idsWithAnchor.size : 0, 4),
+      samples: anchorSamples,
+      note:
+        'The anchor-aware detector matches a shown id only when its title is echoed in ' +
+        'the assistant text, so a prose-count collision cannot fabricate a positive.',
+    },
+    suppressedFalsePositives,
+    suppressedFalsePositiveCount: suppressedFalsePositives.length,
+    separationNote:
+      'suppressedFalsePositives are ids the bare detector matched but the anchor detector ' +
+      'rejected, the prose-count false positives the refinement removes from the used class.',
   };
 }
 
@@ -414,7 +531,9 @@ async function main() {
   // accumulate used and not-used pairs at all, which requires both a session-scoped
   // shown universe AND a real reference hit in the transcript.
   const sessionScoped = ledgerStructure.sessionScopedShownRows ?? 0;
-  const realReferenceCoverage = referenceRealism?.shownIdReferenceCoverage ?? 0;
+  const bareCoverage = referenceRealism?.bareIdDetector?.shownIdCoverage ?? 0;
+  const anchorCoverage = referenceRealism?.anchorAwareDetector?.shownIdCoverage ?? 0;
+  const suppressedFalsePositives = referenceRealism?.suppressedFalsePositiveCount ?? 0;
 
   const output = {
     generatedFrom: 'citation-ledger-feasibility.mjs',
@@ -431,12 +550,20 @@ async function main() {
       'mines the closing session transcript. A shown row with a null or empty session_id is ' +
       'unreachable by a real session-scoped emit, so the session-scoped shown count is the ' +
       'firing-trigger ceiling.',
+    refinements: [
+      'Firing trigger: handlers/memory-search.ts threads the validated effectiveSessionId ' +
+        'into the search_shown write so a closing session can be reconstructed. The live ' +
+        'corpus predates the change, so it still shows the null-session backlog.',
+      'Reference key: lib/feedback/true-citation-emitter.ts keys on the memory title anchor ' +
+        'when present and demotes the bare integer id to a fallback, so a prose-count ' +
+        'collision can no longer fabricate a positive.',
+    ],
     notes: [
       'ledgerStructure is read-only over the live search_shown corpus.',
       'replay forces the flag ON only inside this harness process against a scratch DB copy; ' +
         'the live ledger is never written.',
-      'referenceRealism scans real assistant transcript turns for standalone matches of the ' +
-        'live shown memory ids, the bare integer tokens the emitter detects on.',
+      'referenceRealism runs the production detector twice over the same real transcript turns, ' +
+        'once bare-id and once anchor-aware, so the coverage gap is the signal-separation lift.',
     ],
     ledgerStructure,
     replay: replay ?? { error: replayError },
@@ -445,13 +572,16 @@ async function main() {
       pipeProvenSeparable: replay ? replay.separationProven : false,
       sessionScopedShownRows: sessionScoped,
       sessionScopedFraction: ledgerStructure.sessionScopedFraction ?? null,
-      realTranscriptReferenceCoverage: realReferenceCoverage,
-      // The emitter can produce a real pair only where BOTH a session-scoped shown set
-      // exists AND the assistant text echoes a shown id. On this corpus both gates read
-      // near zero, so the live ledger density a reranker could consume is effectively
-      // zero despite a provably correct emit pipe.
-      liveLedgerDensityReachable:
-        sessionScoped > 0 && realReferenceCoverage > 0,
+      bareIdReferenceCoverage: bareCoverage,
+      anchorAwareReferenceCoverage: anchorCoverage,
+      suppressedProseCountFalsePositives: suppressedFalsePositives,
+      // The refinement makes the signal trustworthy by suppressing the prose-count false
+      // positives, but the live ledger density a reranker could consume stays gated on the
+      // session backlog: the existing search_shown rows are all null-session and predate
+      // the firing-trigger fix, so they remain unreachable until session-carrying rows
+      // accumulate. The two gates: a session-scoped shown set AND a content-anchored echo.
+      signalSeparationImproved: suppressedFalsePositives > 0 || anchorCoverage !== bareCoverage,
+      liveLedgerDensityReachableToday: sessionScoped > 0 && anchorCoverage > 0,
     },
   };
 
@@ -471,15 +601,19 @@ async function main() {
     replay: replay
       ? {
           separationProven: replay.separationProven,
-          emitResult: replay.emitResult,
+          idOnlyFallback: replay.idOnlyFallback?.emitResult,
+          anchorPath: replay.anchorPath?.emitResult,
+          anchorSeparationProven: replay.anchorPath?.separationProven,
         }
       : { error: replayError },
     referenceRealism: referenceRealism
       ? {
           transcriptsSampled: referenceRealism.transcriptsSampled,
           assistantTurnsScanned: referenceRealism.assistantTurnsScanned,
-          turnReferenceRate: referenceRealism.turnReferenceRate,
-          shownIdReferenceCoverage: referenceRealism.shownIdReferenceCoverage,
+          distinctShownIdsWithAnchor: referenceRealism.distinctShownIdsWithAnchor,
+          bareIdCoverage: referenceRealism.bareIdDetector?.shownIdCoverage,
+          anchorAwareCoverage: referenceRealism.anchorAwareDetector?.shownIdCoverage,
+          suppressedProseCountFalsePositives: referenceRealism.suppressedFalsePositiveCount,
         }
       : { error: referenceError },
     feasibilitySummary: output.feasibilitySummary,

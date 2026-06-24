@@ -15,7 +15,7 @@ import {
   generateContentHash,
   detectLanguage,
 } from './indexer-types.js';
-import { isFileStale, queryImportersOf, querySymbolIdsForFiles } from './code-graph-db.js';
+import { isFileStale, queryImportersOf, querySymbolIdsForFiles, queryFileDegrees } from './code-graph-db.js';
 import { shouldIndexForCodeGraph } from './shared/index-scope.js';
 import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
@@ -2116,9 +2116,32 @@ type FinalizeOutput = {
 };
 
 const REVERSE_DEP_FORCE_PARSE_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE';
+const REVERSE_DEP_FORCE_PARSE_DEGREE_CAP_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_DEGREE_CAP';
+const DEFAULT_REVERSE_DEP_DEGREE_CAP = 0;
 
 function reverseDepForceParseEnabled(): boolean {
   return process.env[REVERSE_DEP_FORCE_PARSE_ENV] === 'true';
+}
+
+// The force-parse repair pulls every importer of a refactored dependency back
+// into the parse batch so cross-file edges rebind to the new symbol ids. A hot
+// high-importer dependency (a shared types module or a barrel index) would
+// otherwise re-parse its entire fan-in on every symbol-identity change. A
+// positive cap bounds that blast radius: a dependency whose importer fan-in
+// degree exceeds the cap is left to the lazy rebind on its importers' next own
+// edit, so a rename of a high-fan-in dependency does not trigger a whole-graph
+// re-parse. A cap of zero (the default) means uncapped, which is byte-identical
+// to the pre-cap force-parse behavior.
+function getReverseDepDegreeCap(): number {
+  const raw = process.env[REVERSE_DEP_FORCE_PARSE_DEGREE_CAP_ENV];
+  if (raw === undefined || raw === '') {
+    return DEFAULT_REVERSE_DEP_DEGREE_CAP;
+  }
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return DEFAULT_REVERSE_DEP_DEGREE_CAP;
+  }
+  return parsed;
 }
 
 function getSupportedCandidateLanguage(
@@ -2269,8 +2292,23 @@ function buildIndexPhases(
         const refactorChangedFiles = [...parsedByFile.values()]
           .filter((result) => symbolIdentityChanged(storedSymbolIdsByFile.get(result.filePath), result.nodes))
           .map((result) => result.filePath);
+
+        // Bound the force-parse blast radius. A positive degree cap drops a
+        // refactored dependency from the force-parse expansion when its own
+        // importer fan-in degree exceeds the cap, so a rename of a hot
+        // high-importer dependency does not re-parse its whole fan-in. The
+        // dropped dependency's importers rebind lazily on their next own edit.
+        // A cap of zero leaves every refactored dependency in, byte-identical
+        // to the uncapped behavior.
+        const degreeCap = getReverseDepDegreeCap();
+        const forceParseSourceFiles = degreeCap > 0
+          ? queryFileDegrees(refactorChangedFiles)
+              .filter((entry) => entry.degree <= degreeCap)
+              .map((entry) => entry.filePath)
+          : refactorChangedFiles;
+
         const knownCandidateFiles = new Set(supportedCandidateFiles);
-        for (const dependent of queryImportersOf(refactorChangedFiles)) {
+        for (const dependent of queryImportersOf(forceParseSourceFiles)) {
           if (knownCandidateFiles.has(dependent.importerFilePath)) {
             forceParse.add(dependent.importerFilePath);
             continue;

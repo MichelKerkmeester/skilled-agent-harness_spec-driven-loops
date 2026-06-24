@@ -5,17 +5,27 @@
 // A labeled prompt-to-skill set for the advisor routing benchmark. Each label
 // is the correct skill for the prompt, grounded in the advisor's own corpus
 // trigger phrases (skill_nodes.derived.trigger_phrases) so the gold answer is
-// the routing target the advisor itself declares. Three difficulty bands let
+// the routing target the advisor itself declares. Five difficulty bands let
 // the benchmark separate trivially-routed prompts from the harder paraphrase
-// and near-ambiguous prompts where rank fusion and weighted sum can diverge.
+// and near-ambiguous prompts where rank fusion and weighted sum can diverge,
+// and add two bands that target the two guard seams directly.
 //
 //   exact      a verbatim or near-verbatim corpus trigger phrase
 //   paraphrase a natural-language restatement of the same intent
 //   hard       a realistic multi-concept or near-tie prompt where two skills
 //              compete and the gold answer is the dominant intent
+//   self_guard an advisor-self-leaning audit or read-only prompt where a real
+//              task skill should win, built to make the self-recommendation
+//              guard demote system-skill-advisor if the guard has any distinct
+//              effect on the production logic
+//   conflict   a near-tie prompt whose runner-up is a conflicts_with target of
+//              the gold skill, so the conflict-rerank seam has real mass to
+//              demote the competitor when the overlay is applied
 //
-// The set never opens the live corpus for writes and never embeds. It pairs a
-// prompt with the skill id the advisor projection carries for that intent.
+// The conflict band is scored by the harness against the conflict overlay (the
+// live corpus carries no conflicts_with edges), every other band is scored
+// against the read-only live projection. The set never opens the live corpus
+// for writes and never embeds.
 
 export const LABELED_ROUTING_SET = [
   // ---- exact band: verbatim or near-verbatim corpus triggers ----
@@ -56,6 +66,30 @@ export const LABELED_ROUTING_SET = [
   { id: 'q31', band: 'hard', prompt: 'find every caller of this function and the structural impact of renaming it', skill: 'system-code-graph' },
   { id: 'q32', band: 'hard', prompt: 'commit these staged changes with a conventional commit and open a pull request', skill: 'sk-git' },
   { id: 'q33', band: 'hard', prompt: 'run a figma design export of the component tokens from the desktop app', skill: 'mcp-figma' },
+
+  // ---- self_guard band: advisor-self-leaning, a real task skill is gold ----
+  // These audit-recommendation-quality prompts make system-skill-advisor a
+  // strong candidate. The correct route is the review skill, so the guard would
+  // earn its keep by demoting the advisor self-recommendation. They are scored
+  // against the live projection under RRF with the guard off and on.
+  { id: 'q34', band: 'self_guard', prompt: 'audit the skill advisor recommendations for routing quality', skill: 'sk-code-review' },
+  { id: 'q35', band: 'self_guard', prompt: 'review the recommendation quality the router produces', skill: 'sk-code-review' },
+  { id: 'q36', band: 'self_guard', prompt: 'audit the routing quality and the recommendations it makes', skill: 'sk-code-review' },
+  { id: 'q37', band: 'self_guard', prompt: 'audit the recommendation quality of the skill router and rate it', skill: 'sk-code-review' },
+
+  // ---- conflict band: near-tie, runner-up is a conflicts_with target ----
+  // Scored against the conflict overlay. The runner-up under plain RRF is a
+  // conflicts_with target of the gold skill, so the conflict-rerank seam has
+  // real mass to demote it. The structural-impact prompt is the case where the
+  // wrong skill wins under plain RRF and the conflict mass corrects the top-1.
+  { id: 'q38', band: 'conflict', prompt: 'find the structural impact of this code change across callers', skill: 'system-code-graph' },
+  { id: 'q39', band: 'conflict', prompt: 'review this code change for quality and correctness', skill: 'sk-code-review' },
+  { id: 'q40', band: 'conflict', prompt: 'do a code review pass over the implementation', skill: 'sk-code-review' },
+  { id: 'q41', band: 'conflict', prompt: 'set up a git worktree for this code change', skill: 'sk-git' },
+  { id: 'q42', band: 'conflict', prompt: 'save the session context into the spec folder', skill: 'system-spec-kit' },
 ];
+
+export const CONFLICT_BAND = 'conflict';
+export const SELF_GUARD_BAND = 'self_guard';
 
 export const LABELED_SET_SIZE = LABELED_ROUTING_SET.length;

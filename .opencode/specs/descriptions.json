@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-24T04:57:08.208Z",
+  "generated": "2026-06-24T05:39:04.556Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -637,7 +637,7 @@
         "push",
         "only"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "barter/005-notifications-system/001-research",
@@ -654,7 +654,7 @@
         "channel",
         "freq"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "barter/005-notifications-system/002-grounded-research",
@@ -717,6 +717,27 @@
         "preference"
       ],
       "lastUpdated": "2026-06-23T18:39:01.574Z"
+    },
+    {
+      "specFolder": "barter/005-notifications-system/005-output-improvement",
+      "description": "Phases 002–004 produced a build-ready notifications output: a 43-notification catalog, the product logic, the backend engine-map, and build-ready desi",
+      "keywords": [
+        "phases",
+        "002",
+        "004",
+        "produced",
+        "build-ready",
+        "notifications",
+        "output",
+        "43-notification",
+        "catalog",
+        "product",
+        "logic",
+        "backend",
+        "engine-map",
+        "desi"
+      ],
+      "lastUpdated": "2026-06-24T05:28:55.384Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
@@ -2363,7 +2384,7 @@
         "skill",
         "field"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/002-derivation-engine",
@@ -2378,7 +2399,7 @@
         "infeasible",
         "unsafe"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/003-apply-core-skill-docs",
@@ -2400,7 +2421,7 @@
         "changelog",
         "read"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/004-apply-catalogs-and-playbooks",
@@ -2421,7 +2442,7 @@
         "title",
         "description"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/005-verify-and-enforce",
@@ -2438,7 +2459,7 @@
         "back",
         "version"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/154-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
@@ -30528,7 +30549,7 @@
         "retrieval",
         "surfaces"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
@@ -32603,7 +32624,7 @@
         "default",
         "threshold"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
@@ -32722,7 +32743,7 @@
         "feature",
         "flags"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:06:06.235Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends",
@@ -32740,7 +32761,7 @@
         "measured",
         "verdict"
       ],
-      "lastUpdated": "2026-06-24T04:55:30.998Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
@@ -32757,7 +32778,7 @@
         "production",
         "path"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T04:58:01.989Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger",
@@ -32790,7 +32811,7 @@
         "reconsolidate",
         "path"
       ],
-      "lastUpdated": "2026-06-24T04:57:08.208Z"
+      "lastUpdated": "2026-06-24T05:39:04.556Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
@@ -32850,7 +32871,7 @@
         "byte-identical",
         "neve"
       ],
-      "lastUpdated": "2026-06-24T04:51:32.407Z"
+      "lastUpdated": "2026-06-24T05:32:12.132Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",

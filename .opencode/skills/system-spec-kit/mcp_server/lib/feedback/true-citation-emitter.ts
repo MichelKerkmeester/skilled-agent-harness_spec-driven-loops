@@ -42,6 +42,16 @@ export interface ShownSet {
   /** When the search ran (Unix ms). References are only mined from later turns. */
   shownAt: number;
   sessionId?: string | null;
+  /**
+   * Per memory_id, the content anchor the assistant is likely to echo when it
+   * uses the memory: a memory title or a distinctive phrase, NOT the raw database
+   * integer id. The assistant cites a memory by what it says, so a bare id match
+   * against free text reads mostly prose-count noise (an id like "8" hits inside
+   * "8 packets"). When an anchor is present the detector keys on it and the bare
+   * id becomes a weak fallback, which is what makes the used class trustworthy.
+   * Keyed by the same memory_id string used in shownMemoryIds.
+   */
+  contentAnchors?: Record<string, string>;
 }
 
 /** A single assistant turn's text, with the time it was emitted. */
@@ -150,9 +160,66 @@ function buildMemoryIdMatcher(memoryId: string): RegExp | null {
   return new RegExp(`(?<![\\w-])${escaped}(?![\\w-])`, 'u');
 }
 
+// The minimum number of distinctive words an anchor phrase must contribute before
+// it counts as a reliable reference. A one-word or two-word anchor like "Tasks" or
+// "the plan" is too generic to prove the assistant echoed THIS memory, so the
+// anchor path requires a phrase with enough specific content to be unambiguous.
+const ANCHOR_MIN_DISTINCTIVE_WORDS = 3;
+
+// Words too common to carry citation signal. An anchor's distinctiveness is measured
+// after these are removed, so a title like "Tasks: Canonical Vector Shard Split"
+// counts on "canonical vector shard split", not on "tasks".
+const ANCHOR_STOPWORDS = new Set<string>([
+  'the', 'a', 'an', 'and', 'or', 'of', 'to', 'in', 'on', 'for', 'with', 'is', 'are',
+  'spec', 'specification', 'plan', 'tasks', 'task', 'feature', 'description', 'summary',
+  'implementation', 'checklist', 'record', 'report', 'memory', 'note', 'notes',
+]);
+
+/**
+ * Reduce a content anchor (a memory title or distinctive phrase) to its lowercase
+ * distinctive word run. Returns the words that carry citation signal, dropping the
+ * generic doc-type stopwords. An anchor with fewer than ANCHOR_MIN_DISTINCTIVE_WORDS
+ * distinctive words is too weak to prove a citation and yields an empty run.
+ */
+function distinctiveAnchorWords(anchor: string): string[] {
+  const words = anchor
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, ' ')
+    .split(/\s+/)
+    .map((w) => w.trim())
+    .filter((w) => w.length >= 3 && !ANCHOR_STOPWORDS.has(w));
+  return words.length >= ANCHOR_MIN_DISTINCTIVE_WORDS ? words : [];
+}
+
+/**
+ * True when the assistant text echoes a memory's content anchor strongly enough to
+ * count as a citation. The anchor's distinctive words must ALL appear as standalone
+ * tokens in the text, so a partial overlap on one generic word never fires. This is
+ * the precision lever: the assistant cites a memory by what it says, so a title or
+ * a distinctive phrase is a far truer signal than the raw database id.
+ */
+function anchorReferenced(anchor: string, lowerText: string): boolean {
+  const words = distinctiveAnchorWords(anchor);
+  if (words.length === 0) return false;
+  for (const word of words) {
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const matcher = new RegExp(`(?<![\\w-])${escaped}(?![\\w-])`, 'u');
+    if (!matcher.test(lowerText)) return false;
+  }
+  return true;
+}
+
 /**
  * Return the subset of shown memory_ids that the assistant actually referenced
  * in any of the supplied (post-search) turns.
+ *
+ * When a memory carries a usable content anchor (its title or a distinctive phrase)
+ * the detector keys ONLY on that anchor, because the bare integer id is the
+ * prose-count noise source: an id like "8" matches inside "8 packets" and fabricates
+ * a positive. The anchor IS the trustworthy reference key, so an anchored memory is
+ * referenced only when the anchor is echoed, never on a bare-id collision. Memories
+ * with no usable anchor fall back to the id-only match, so callers that supply no
+ * anchors get the original behavior unchanged.
  *
  * Pure and side-effect free so the used/not-used split can be unit-tested
  * without a database or a transcript file.
@@ -160,6 +227,7 @@ function buildMemoryIdMatcher(memoryId: string): RegExp | null {
 export function detectReferencedMemoryIds(
   shownMemoryIds: string[],
   assistantTurns: AssistantTurnText[],
+  contentAnchors?: Record<string, string>,
 ): Set<string> {
   const referenced = new Set<string>();
   if (shownMemoryIds.length === 0 || assistantTurns.length === 0) {
@@ -167,10 +235,23 @@ export function detectReferencedMemoryIds(
   }
 
   const combinedText = assistantTurns.map((turn) => turn.text).join('\n');
+  const lowerText = combinedText.toLowerCase();
   for (const memoryId of shownMemoryIds) {
-    const matcher = buildMemoryIdMatcher(memoryId);
+    const trimmedId = memoryId.trim();
+    const anchor = contentAnchors?.[trimmedId];
+    // A usable anchor REPLACES the bare-id key rather than supplementing it, so an
+    // anchored memory never picks up a prose-count false positive. An anchor too
+    // generic to be usable (distinctiveAnchorWords empty) leaves the memory on the
+    // id-only fallback, the original behavior.
+    if (anchor && distinctiveAnchorWords(anchor).length > 0) {
+      if (anchorReferenced(anchor, lowerText)) {
+        referenced.add(trimmedId);
+      }
+      continue;
+    }
+    const matcher = buildMemoryIdMatcher(trimmedId);
     if (matcher && matcher.test(combinedText)) {
-      referenced.add(memoryId.trim());
+      referenced.add(trimmedId);
     }
   }
   return referenced;
@@ -201,7 +282,7 @@ export function mineTrueCitationPairs(
   }
 
   const postSearchTurns = assistantTurns.filter((turn) => turn.timestamp >= shownSet.shownAt);
-  const referenced = detectReferencedMemoryIds(uniqueShown, postSearchTurns);
+  const referenced = detectReferencedMemoryIds(uniqueShown, postSearchTurns, shownSet.contentAnchors);
 
   return uniqueShown.map((memoryId) => ({
     queryId: shownSet.queryId,
@@ -285,10 +366,45 @@ export function emitTrueCitations(
 ──────────────────────────────────────────────────────────────── */
 
 /**
+ * Look up the content anchor (the memory title) for each shown memory_id from the
+ * memory_index table. The title is the phrase the assistant echoes when it uses a
+ * memory, so it is the trustworthy reference key the bare integer id is not. Read
+ * only and best-effort: a missing table or an absent row yields no anchor for that
+ * id, which leaves the detector on its id-only fallback rather than erroring.
+ */
+function lookupContentAnchors(
+  db: Database.Database,
+  memoryIds: string[],
+): Record<string, string> {
+  const anchors: Record<string, string> = {};
+  const ids = [...new Set(memoryIds.map((id) => id.trim()).filter(Boolean))];
+  if (ids.length === 0) return anchors;
+  try {
+    const placeholders = ids.map(() => '?').join(', ');
+    const rows = db.prepare(
+      `SELECT id, title FROM memory_index WHERE id IN (${placeholders})`,
+    ).all(...ids) as Array<{ id: number | string; title: string | null }>;
+    for (const row of rows) {
+      if (row.title && row.title.trim()) {
+        anchors[String(row.id)] = row.title.trim();
+      }
+    }
+  } catch {
+    // No memory_index table or an unreadable row: leave anchors empty so the
+    // detector falls back to the id-only match. The signal degrades, it never breaks.
+  }
+  return anchors;
+}
+
+/**
  * Rebuild the per-query shown universe from the existing search_shown feedback
  * rows. The hollow result_cited rows are deliberately ignored — only what was
  * SHOWN matters, because the used/not-used split is recomputed from the
  * transcript, not trusted from the old citation flag.
+ *
+ * Each shown set is enriched with the per-id content anchors (memory titles) so the
+ * detector keys on what the assistant actually echoes rather than the raw database
+ * id. The enrichment is best-effort and read-only.
  *
  * Optionally scoped to a session (the session-stop hook only mines the session
  * it is closing) and to a time floor (so a re-run skips already-mined windows).
@@ -325,7 +441,11 @@ export function reconstructShownSets(
     }
   }
 
-  return [...byQuery.values()];
+  const shownSets = [...byQuery.values()];
+  for (const shownSet of shownSets) {
+    shownSet.contentAnchors = lookupContentAnchors(db, shownSet.shownMemoryIds);
+  }
+  return shownSets;
 }
 
 /**

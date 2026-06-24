@@ -71,13 +71,14 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 - A self-contained benchmark harness under this phase's `scripts/` that imports the production search code and measures completeRecall@K with the two append flags off and on
 - A labeled multi-target query set whose targets are the indexed spec.md ids of the sibling folders a hub doc cross-references, re-resolved against the corpus each run so a stale label is reported not silently scored
 - Measurement on the production `executePipeline` path that the live `memory_search` MCP handler calls, and on the legacy `searchWithFallback` path that actually runs the append stages, so the verdict distinguishes "would help if reachable" from "is unreachable"
-- A default-off byte-identity check on the prod path, flipping both flags and confirming the result ids are identical
-- A direct read of the floor and truncation behavior, recording the prod result count, the append-stage application metadata and the token-budget truncation that trims the tail
-- A GRADUATE, REFINE or CUT verdict and, for REFINE, the named code change that would make the appends reach the prod reader
+- A structural rewire, gated behind the same default-off flags, that wires the two append stages into the production pipeline as a post-Stage-4 tail-append step so the appends reach the prod reader, and a re-benchmark of it
+- A default-off strict-no-op check on the prod path, confirming the tail-append stage does not run with both flags off and the output is byte-unchanged from before the rewire
+- A direct read of the floor and truncation behavior, recording the prod result count, the append-stage application metadata and the token-budget truncation that trims the legacy tail
+- A GRADUATE, REFINE or CUT verdict grounded in the measured prod-path recall and the default-off byte-identity
 
 ### Out of Scope
-- Flipping either flag to default-on. No production default is changed. A verdict is a recommendation with evidence, and any flip is a separate decision
-- Editing the shared production search code. The harness imports and reads it read-only and flips only the two flags under test. The refinement that would wire the appends into the prod path is designed here and left for a follow-up because it touches shared pipeline code outside this phase's write scope
+- Flipping either flag to default-on. No production default is changed. The rewire ships behind the existing default-off flags, and the flip is a separate evidence-gated decision
+- Editing the `memory_search` handler or any file outside the `lib/search` pipeline and the two append modules. The handler is owned by a sibling phase
 - A reindex of the corpus. The harness reads a read-only backup as-is
 - The other six dark-flag clusters in the 007 suite. Each is its own phase
 
@@ -85,9 +86,13 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
+| lib/search/pipeline/types.ts | Modify | Add the lane-list shadow helpers, the LaneCandidateList type and the optional tailAppends result metadata |
+| lib/search/hybrid-search.ts | Modify | Attach the base-lane lists to the collectRawCandidates result as a flag-gated non-enumerable shadow, and factor the base-lane set into a module constant |
+| lib/search/pipeline/stage1-candidate-gen.ts | Modify | Capture the per-lane shadow before the merge and filter steps drop it, and re-attach it to the Stage-1 output |
+| lib/search/pipeline/orchestrator.ts | Modify | Run the flag-gated tail-append stage after Stage 4, extending the capped baseline past the limit |
 | scripts/multihop-tail-appends-benchmark.mjs | Create | The recall harness over the labeled multi-target query set on the prod and legacy paths |
-| results/metrics.json | Create | The per-query and aggregate completeRecall@K rollup with the floor-blocker finding |
-| benchmark-results.md | Create | The full data tables and the REFINE verdict |
+| results/metrics.json | Create | The per-query and aggregate completeRecall@K rollup with the floor-blocker finding and the rewire numbers |
+| benchmark-results.md | Create | The full data tables and the GRADUATE-for-deep-K verdict |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -99,8 +104,8 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The benchmark measures completeRecall@K on the production `executePipeline` path with appends off and on | metrics.json reports prodRecallOff and prodRecallOn for K of 3, 5 and 8 over the labeled set |
-| REQ-002 | Default-off byte-identity is verified on the prod path | metrics.json reports prodByteIdenticalOnVsOff true, the prod result ids identical with both flags off and both on across repeats |
+| REQ-001 | The benchmark measures completeRecall@K on the production `executePipeline` path with appends off and on | metrics.json reports prodRecallOff and prodRecallOn for K of 3, 5, 8, 12 and 20 over the labeled set |
+| REQ-002 | Default-off byte-identity is verified on the prod path after the rewire | metrics.json reports prodFlagOffStrictNoOp true, the tail-append stage not running with both flags off, no appended-source row, and deterministic off output |
 | REQ-003 | The floor-blocker hypothesis is resolved with data | metrics.json records the prod result count, the prod append-stage application metadata, the legacy surviving-append count, and a resolution stating whether the three-result floor blocks the appends |
 | REQ-004 | The phase returns one of GRADUATE, REFINE or CUT with evidence | benchmark-results.md states the verdict and the one-line reason, every claim traced to a measured number |
 
@@ -118,9 +123,10 @@ Measure whether these two tail-appends lift multi-target recall on the productio
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A runnable recall benchmark that measures completeRecall@K for K of 3, 5 and 8 with the two append flags off and on, on the production path against a read-only corpus backup
-- **SC-002**: A data-resolved answer to the floor-blocker question, showing whether the documented three-result floor blocks the appends and naming the stage that actually limits them
-- **SC-003**: A GRADUATE, REFINE or CUT verdict for the two features grounded strictly in the measured recall and byte-identity numbers
+- **SC-001**: A runnable recall benchmark that measures completeRecall@K for K of 3, 5, 8, 12 and 20 with the two append flags off and on, on the production path against a read-only corpus backup
+- **SC-002**: A data-resolved answer to the floor-blocker question, showing the three-result floor is a minimum not a cap and naming the structural reason the appends were unreachable
+- **SC-003**: A structural rewire behind the default-off flags that makes the appends reach the prod reader, with default-off proven a strict no-op and the prod-path recall lift measured
+- **SC-004**: A GRADUATE, REFINE or CUT verdict for the two features grounded strictly in the measured recall and the default-off byte-identity numbers
 <!-- /ANCHOR:success-criteria -->
 
 ---

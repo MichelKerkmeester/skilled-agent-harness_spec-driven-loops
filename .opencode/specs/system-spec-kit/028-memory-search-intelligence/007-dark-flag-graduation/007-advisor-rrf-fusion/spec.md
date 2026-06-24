@@ -1,6 +1,6 @@
 ---
 title: "Spec: Advisor RRF Fusion Benchmark"
-description: "Benchmarks the advisor RRF-fusion cluster (SPECKIT_ADVISOR_RRF_FUSION with ADVISOR_RRF_K=8, the conflict-rerank seam, and SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD) against the weighted-sum baseline on routing top-1 correctness and agreement spread. A 33-prompt labeled routing set grounded in the advisor's own corpus trigger phrases scores RRF-on vs the weighted-sum baseline through the production scoreAdvisorPrompt path, against a read-only copy of the live advisor projection, with default-off byte-identity verified. RRF lifts top-1 from 28 of 33 to 29 of 33 with zero regressions, the self-guard is inert and the conflict seam is dormant on the live corpus. Verdict REFINE: the RRF core is the closest to graduate-ready but the margin is one prompt and the two guard seams are unproven because their triggering conditions never occur on the live corpus."
+description: "Benchmarks the advisor RRF-fusion cluster (SPECKIT_ADVISOR_RRF_FUSION with ADVISOR_RRF_K=8, the conflict-rerank seam, and SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD) against the weighted-sum baseline on routing top-1 correctness and agreement spread. A 42-prompt labeled routing set grounded in the advisor's own corpus trigger phrases, with self_guard and conflict bands that target the two guard seams, scores RRF-on vs the weighted-sum baseline through the production scoreAdvisorPrompt path, against a read-only copy of the live advisor projection with a benchmark conflict-edge overlay merged in-memory, default-off byte-identity verified. RRF lifts top-1 from 37 of 42 to 38 of 42 with zero regressions. The self-guard moves zero top-1 and is behaviorally redundant. The conflict seam, fed real conflicts_with mass, corrects one top-1 and repairs a regression plain RRF introduces. Verdict GRADUATE for the RRF core paired with the conflict-rerank seam, CUT for the self-recommendation guard."
 trigger_phrases:
   - "advisor rrf fusion benchmark"
   - "SPECKIT_ADVISOR_RRF_FUSION graduation"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Ran the RRF-vs-weighted-sum benchmark and authored the verdict"
-    next_safe_action: "Phase complete, verdict REFINE lives in benchmark-results.md"
+    recent_action: "Re-benchmarked the widened set and authored the per-seam verdicts"
+    next_safe_action: "Phase complete, verdicts live in benchmark-results.md"
     blockers: []
     key_files:
       - "scripts/advisor-rrf-benchmark.mjs"
@@ -67,28 +67,31 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 ## 3. SCOPE
 
 ### In Scope
-- A labeled routing set of 33 prompts paired with the correct skill, derived from the advisor corpus trigger phrases across three difficulty bands (exact, paraphrase, hard)
+- A labeled routing set of 42 prompts paired with the correct skill, derived from the advisor corpus trigger phrases across five bands (exact, paraphrase, hard, self_guard, conflict)
 - A reproducible benchmark over the production `scoreAdvisorPrompt` path against a read-only copy of the live `skill-graph.sqlite` projection
+- A benchmark conflict-edge overlay of five `conflicts_with` edges merged into the in-memory projection for the conflict band, so the conflict-rerank seam has real mass to demote without writing the live corpus
 - Three arms: the weighted-sum baseline (all flags off), RRF fusion on, and RRF plus the self-recommendation guard
-- Routing top-1 correctness per arm with a per-band breakdown, plus the agreement spread versus the baseline
-- A default-off byte-identity check across the full labeled set
-- A graduate, refine or cut verdict grounded strictly in `results/metrics.json`
+- Routing top-1 correctness per arm with a per-band breakdown, the agreement spread versus the baseline, and two differentials that isolate the self-guard and the conflict seam
+- A default-off byte-identity check across the full labeled set, plus a check that the overlay does not change the default-off top-1
+- A graduate, refine or cut verdict per seam grounded strictly in `results/metrics.json`
 
 ### Out of Scope
 - Flipping any advisor flag to default-on. A graduate or refine verdict is a recommendation with evidence, and the flip is a separate decision driven after the suite lands
 - Editing the advisor production scorer, the flag readers or any shared production code. The benchmark reads the production path and toggles only the existing flag environment variables
 - The query-class routing flag and the exact-semantic-rerank flag, which are sibling seams with their own gates and are not part of this cluster
-- A re-index or any write to the live corpus. The benchmark reads a read-only backup copy
+- A re-index or any write to the live corpus. The benchmark reads a read-only backup copy and merges the conflict overlay only into the in-memory projection
+- Editing the advisor production code or seeding the live corpus with `conflicts_with` edges. The conflict mass is a benchmark fixture, the live-corpus seeding is a separate corpus-authoring decision
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| scripts/labeled-routing-set.mjs | Create | The 33-prompt labeled routing set grounded in the corpus trigger phrases |
-| scripts/advisor-rrf-benchmark.mjs | Create | The matrix harness over the production scorer against a read-only projection copy |
-| results/metrics.json | Create | The per-prompt and aggregate metric rollup |
+| scripts/labeled-routing-set.mjs | Create | The 42-prompt labeled routing set grounded in the corpus trigger phrases across five bands |
+| scripts/conflict-overlay.mjs | Create | The benchmark conflict-edge overlay merged into the in-memory projection for the conflict band |
+| scripts/advisor-rrf-benchmark.mjs | Create | The matrix harness over the production scorer against a read-only projection copy, with the two seam differentials |
+| results/metrics.json | Create | The per-prompt and aggregate metric rollup with the self-guard and conflict differentials |
 | results/skill-graph.backup.sqlite | Create | The read-only backup copy of the live projection, the committed evidence record |
-| benchmark-results.md | Create | The data tables and the graduation verdict |
+| benchmark-results.md | Create | The data tables and the per-seam graduate, cut and refine verdicts |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -147,7 +150,7 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The benchmark scores 33 prompts under three arms plus a determinism and byte-identity pass in well under a second, so the harness is cheap to re-run
+- **NFR-P01**: The benchmark scores 42 prompts under three arms plus two differentials, a determinism pass and a byte-identity pass in well under a second, so the harness is cheap to re-run
 - **NFR-P02**: The projection is loaded once and reused across all arms and prompts, so the run does not re-open the read-only database per prompt
 
 ### Security
@@ -165,17 +168,19 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- The conflict-rerank seam: the live corpus carries only `enhances`, `siblings`, `prerequisite_for` and `depends_on` edges and no `conflicts_with` edges, so the seam has no conflict mass to demote and is structurally dormant rather than measured as a win
-- The self-recommendation guard: the labeled set carries no read-only-explainer prompt that the advisor would self-recommend, so the guard never fires and the RRF-plus-guard arm equals the RRF arm
-- A near-tie prompt: a prompt where two skills compete on overlapping tokens is where RRF rank fusion and weighted-sum magnitude can diverge, which is the band that produces the one moved top-1
+- The conflict-rerank seam: the live corpus carries no `conflicts_with` edges, so the benchmark merges five into the in-memory projection through the overlay, which gives the production conflict path real mass to demote without writing the live corpus
+- The self-recommendation guard: the self_guard band carries four advisor-self-leaning audit prompts built to trigger the guard, and the guard still moves zero top-1, because the generic explainer floor and the un-flagged audit penalty already cover the advisor corpus id
+- A near-tie prompt: a prompt where two skills compete on overlapping tokens is where RRF rank fusion and weighted-sum magnitude can diverge, which is the band that produces the moved top-1 and the conflict-seam correction
 
 ### Error Scenarios
 - The projection loads from the filesystem fallback instead of the backup copy: the harness asserts the projection source is `sqlite` and fails loud rather than silently benchmarking a different corpus
 - A flag bleeds across arms: the harness clears both flag variables before setting each arm, so no arm inherits a previous arm's flag state
+- The overlay leaks into the default path: the harness checks that the conflict overlay changes no default-off top-1, since the conflict comparator demotion is RRF-gated
 
 ### State Transitions
 - Baseline to RRF on: the same prompt returns the byte-identical weighted-sum ranking with the flag off and the RRF-fused ranking with it on, so the transition is the only behavior change
-- RRF on to RRF plus guard: the guard adds a demotion only for an advisor self-recommendation on a read-only-explainer prompt, which never occurs on this set, so the two arms are identical here
+- RRF on, no overlay to RRF on, overlay: on a conflict-bearing prompt the conflict mass demotes the runner-up, which is where plain RRF regresses the structural-impact prompt and the conflict seam repairs it
+- RRF on to RRF plus guard: the guard adds a demotion only for an advisor self-recommendation, which is already covered by the un-flagged path, so the two arms are identical on every band
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -185,17 +190,17 @@ Measure the advisor RRF-fusion cluster on the production routing path against a 
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | A read-only benchmark of three arms over a 33-prompt set, no production edit |
-| Risk | 4/25 | Read-only projection copy, flags toggled through the environment, byte-identity proven |
-| Research | 18/20 | A labeled routing set grounded in the corpus, a three-arm matrix with per-band and agreement analysis, and a structural read of why two seams are dormant |
-| **Total** | **30/70** | **Level 2** |
+| Scope | 9/25 | A read-only benchmark of three arms plus two seam differentials over a 42-prompt set with a conflict overlay, no production edit |
+| Risk | 4/25 | Read-only projection copy, flags toggled through the environment, byte-identity proven, overlay merged in-memory only |
+| Research | 19/20 | A labeled routing set grounded in the corpus, a three-arm matrix with per-band and agreement analysis, two seam differentials, and a structural read of why the guard is redundant and why the conflict seam repairs an RRF regression |
+| **Total** | **32/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- Whether the conflict-rerank seam can be benchmarked at all before the live corpus carries `conflicts_with` edges, since the seam is structurally dormant without them
-- Whether a larger labeled set with deliberate advisor-self read-only-explainer prompts would let the self-recommendation guard earn or fail a verdict of its own
+- Whether the live corpus should be seeded with `conflicts_with` edges so the conflict-rerank seam adds routing value rather than only preventing an RRF regression, which is a separate corpus-authoring decision outside this read-only benchmark
+- Whether the self-recommendation guard CUT should be paired with deleting the guard code now, since its redundancy depends on the current generic explainer floor and un-flagged audit penalty
 - Whether the one-prompt RRF lift holds or widens on a larger and harder labeled set, since a single corrected prompt is a thin margin even with zero run-to-run variance
 <!-- /ANCHOR:questions -->

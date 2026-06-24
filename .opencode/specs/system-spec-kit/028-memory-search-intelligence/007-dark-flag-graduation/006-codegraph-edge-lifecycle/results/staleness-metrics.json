@@ -1,7 +1,7 @@
 {
   "benchmark": "code-graph edge-staleness reverse-dependency force-parse rebind",
   "flag": "SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE",
-  "generatedAt": "2026-06-24T04:52:24.513Z",
+  "generatedAt": "2026-06-24T05:24:47.992Z",
   "safety": "fresh throwaway workspace and SQLite db per case under OS temp, live graph never opened",
   "summary": {
     "totalCases": 3,
@@ -24,14 +24,14 @@
         "baselineEdge": {
           "targetName": "getThing",
           "targetKind": "function",
-          "targetId": "f281659a1e1afedf",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-YeMIBI/workspace/dep.ts"
+          "targetId": "ff05bdff5ea30f49",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-G0AaqI/workspace/dep.ts"
         },
         "resultEdge": {
           "targetName": "getThingV2",
           "targetKind": "function",
-          "targetId": "6261c6c762560fc6",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-YeMIBI/workspace/dep.ts"
+          "targetId": "99acb1c39e7ae9e2",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-on-G0AaqI/workspace/dep.ts"
         },
         "reboundCorrect": true
       },
@@ -42,14 +42,14 @@
         "baselineEdge": {
           "targetName": "getThing",
           "targetKind": "function",
-          "targetId": "fbe3e1a35edfa543",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-DCcrUD/workspace/dep.ts"
+          "targetId": "c10eaf91c9871190",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-63ykAO/workspace/dep.ts"
         },
         "resultEdge": {
           "targetName": "getThingV2",
           "targetKind": "function",
-          "targetId": "a9342d747ea42a27",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-DCcrUD/workspace/dep.ts"
+          "targetId": "f4f09d170fcc8cb9",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-rename-function-off-63ykAO/workspace/dep.ts"
         },
         "reboundCorrect": true
       },
@@ -67,14 +67,14 @@
         "baselineEdge": {
           "targetName": "foo",
           "targetKind": "function",
-          "targetId": "a01497459779154f",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-oqEds6/workspace/dep.ts"
+          "targetId": "ea9a534d9c626ce7",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-I9lUyQ/workspace/dep.ts"
         },
         "resultEdge": {
           "targetName": "foo",
           "targetKind": "variable",
-          "targetId": "9b6fbc6a0965b241",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-oqEds6/workspace/dep.ts"
+          "targetId": "0417a908af55b42d",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-on-I9lUyQ/workspace/dep.ts"
         },
         "reboundCorrect": true
       },
@@ -85,8 +85,8 @@
         "baselineEdge": {
           "targetName": "foo",
           "targetKind": "function",
-          "targetId": "b313f624aef0c271",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-off-lg2yYH/workspace/dep.ts"
+          "targetId": "dc95c05cb79dc227",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-kind-flip-off-4CmSdo/workspace/dep.ts"
         },
         "resultEdge": null,
         "reboundCorrect": false
@@ -105,14 +105,14 @@
         "baselineEdge": {
           "targetName": "moved",
           "targetKind": "function",
-          "targetId": "e5056b28d55090f7",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-k26TJD/workspace/dep.ts"
+          "targetId": "037464f37a1e24f7",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-ftKfl2/workspace/dep.ts"
         },
         "resultEdge": {
           "targetName": "moved",
           "targetKind": "function",
-          "targetId": "b498b8852000637c",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-k26TJD/workspace/relocated.ts"
+          "targetId": "be1c7b0d3a056d9d",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-on-ftKfl2/workspace/relocated.ts"
         },
         "reboundCorrect": true
       },
@@ -123,14 +123,14 @@
         "baselineEdge": {
           "targetName": "moved",
           "targetKind": "function",
-          "targetId": "f278c1bf23861612",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-oB3RXX/workspace/dep.ts"
+          "targetId": "a698d6a3391ee8ce",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-Y5RjE8/workspace/dep.ts"
         },
         "resultEdge": {
           "targetName": "moved",
           "targetKind": "function",
-          "targetId": "ae3c9057109aebca",
-          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-oB3RXX/workspace/relocated.ts"
+          "targetId": "19e499be9cae2d6d",
+          "targetFile": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/edge-staleness-move-file-off-Y5RjE8/workspace/relocated.ts"
         },
         "reboundCorrect": true
       },

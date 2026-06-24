@@ -1,0 +1,41 @@
+{
+  "benchmark": "code-graph bitemporal close-and-insert writer plus as-of reader",
+  "flag": "SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS",
+  "generatedAt": "2026-06-24T05:24:48.342Z",
+  "safety": "fresh throwaway SQLite db per variant under OS temp, live graph never opened",
+  "summary": {
+    "asOfPastSeesOldTarget": true,
+    "asOfNowSeesNewTarget": true,
+    "closedEdgesOnRebind": 1,
+    "flagOffCloseIsNoOp": true,
+    "flagOffInsertHasNullValidity": true,
+    "flagOffAsOfMatchesLive": true
+  },
+  "flagOn": {
+    "g1": 0,
+    "g2": 1,
+    "closedEdges": 1,
+    "asOfPastTargets": [
+      "old-target"
+    ],
+    "asOfNowTargets": [
+      "new-target"
+    ],
+    "asOfPastSeesOldTarget": true,
+    "asOfNowSeesNewTarget": true
+  },
+  "flagOff": {
+    "closedEdges": 0,
+    "insertedValidAt": null,
+    "insertedInvalidAt": null,
+    "asOfFallbackTargets": [
+      "old-target"
+    ],
+    "liveTargets": [
+      "old-target"
+    ],
+    "closeIsNoOp": true,
+    "insertHasNullValidity": true,
+    "asOfMatchesLive": true
+  }
+}

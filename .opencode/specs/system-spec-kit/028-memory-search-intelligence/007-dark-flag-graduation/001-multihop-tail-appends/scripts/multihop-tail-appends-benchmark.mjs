@@ -76,9 +76,10 @@ const mcpRequire = createRequire(path.join(MCP_DIR, 'package.json'));
 const Database = mcpRequire('better-sqlite3');
 
 // The K windows the benchmark reports completeRecall at. K=3 is the prod floor
-// minimum, K=5 and K=8 widen toward the default limit so a tail contribution past
-// rank 3 has room to land if truncation lets it.
-const RECALL_K = [3, 5, 8];
+// minimum and K=5 and K=8 widen toward the requested limit. K=12 and K=20 reach
+// PAST the requested limit of ten, where the tail-append rows land, so the benchmark
+// can see whether the appends extend recall into the tail a deep reader consumes.
+const RECALL_K = [3, 5, 8, 12, 20];
 // The caller limit the prod path requests. The live memory_search handler defaults
 // rawLimit to 10, so the benchmark requests 10 to mirror prod, not a widened eval
 // window. The legacy path requests the same.
@@ -380,20 +381,32 @@ async function main() {
     let prodAppendMeta = null;
     let legacyAppendMeta = null;
 
+    // Flag-off strict no-op proof: with both append flags off the tail-append stage
+    // must not run, so no tailAppends metadata is emitted and no appended-source row
+    // appears. Tracked across every off run so the default-path byte-safety is a
+    // measured fact, not an assumption.
+    let prodFlagOffStrictNoOp = true;
+
     for (let r = 0; r < REPEATS; r += 1) {
       // -- prod path, appends OFF --
       setAppendFlags(false);
       const prodOff = await pipeline.executePipeline(buildPipelineConfig(q.text, embedding, PROD_LIMIT));
       runs.prodOff.push(prodOff.results.map((row) => Number(row.id)));
+      if (prodOff.metadata?.tailAppends !== undefined) prodFlagOffStrictNoOp = false;
+      if (prodOff.results.some((row) => /multihop|lane-champion/.test(String(row.source ?? '')))) {
+        prodFlagOffStrictNoOp = false;
+      }
 
       // -- prod path, appends ON --
       setAppendFlags(true);
       const prodOn = await pipeline.executePipeline(buildPipelineConfig(q.text, embedding, PROD_LIMIT));
       runs.prodOn.push(prodOn.results.map((row) => Number(row.id)));
       if (prodAppendMeta === null) {
+        // The tail-append stage runs after Stage 4 and records its outcome under
+        // metadata.tailAppends, present only when an append flag was on and the stage
+        // ran. Absent here means the appends never reached the prod path.
         prodAppendMeta = {
-          multihop: prodOn.metadata?.stage3?.multihop ?? null,
-          laneChampionBackfill: prodOn.metadata?.stage3?.laneChampionBackfill ?? null,
+          tailAppends: prodOn.metadata?.tailAppends ?? null,
         };
       }
 
@@ -448,6 +461,7 @@ async function main() {
       resolvedTargetIds: targetIds,
       unresolvedTargets: q.unresolvedTargets,
       prodByteIdentical,
+      prodFlagOffStrictNoOp,
       prodAppendMeta,
       legacyAppendMeta,
       resultCounts: {
@@ -505,8 +519,16 @@ async function main() {
   }
 
   const prodByteIdenticalAll = perQuery.every((p) => p.prodByteIdentical);
+  const prodFlagOffStrictNoOpAll = perQuery.every((p) => p.prodFlagOffStrictNoOp);
   const prodAppendsEverApplied = perQuery.some(
-    (p) => (p.prodAppendMeta?.multihop?.applied === true) || (p.prodAppendMeta?.laneChampionBackfill?.applied === true),
+    (p) => (p.prodAppendMeta?.tailAppends?.multihopApplied === true)
+      || (p.prodAppendMeta?.tailAppends?.laneChampionApplied === true),
+  );
+  const prodAppendedRowsTotal = perQuery.reduce(
+    (sum, p) => sum
+      + (p.prodAppendMeta?.tailAppends?.multihopAppendedCount ?? 0)
+      + (p.prodAppendMeta?.tailAppends?.laneChampionAppendedCount ?? 0),
+    0,
   );
   const legacyAppendsSurvivingTotal = perQuery.reduce(
     (sum, p) => sum + (p.legacyAppendMeta?.appendedRowsSurviving ?? 0),
@@ -529,24 +551,31 @@ async function main() {
     metricDefinition:
       'completeRecall@K = fraction of a query labeled target spec.md ids present in the top-K results.',
     prodPathSource:
-      'executePipeline, the function the live memory_search MCP handler calls. Stage 1 uses ' +
-      'collectRawCandidates with stopAfterFusion=true, which skips enrichFusedResults where the append ' +
-      'stages C3/C4 live, so the prod path never runs the appends.',
+      'executePipeline, the function the live memory_search MCP handler calls. The refined pipeline runs a ' +
+      'tail-append stage after Stage 4 and after the final-limit cap, gated behind the two append flags, so ' +
+      'the appends now reach the prod reader. Flag-off keeps the Stage-4 output byte-for-byte.',
     legacyPathSource:
-      'searchWithFallback, the older entry point that calls enrichFusedResults and therefore runs the ' +
-      'append stages C3/C4 before downstream truncation.',
+      'searchWithFallback, the older entry point that calls enrichFusedResults and runs the append stages ' +
+      'before its own token-budget truncation, retained here as a comparison path.',
+    rewireNote:
+      'The refinement wires deterministic-multihop and lane-champion backfill into executePipeline as a ' +
+      'post-Stage-4 tail-append stage that extends the capped baseline past the requested limit, so an ' +
+      'appended row is exempt from the final-limit cap and reaches the reader. The pipeline has no ' +
+      'token-budget truncation; that stage exists only on the legacy path.',
     floorBlockerFinding: {
       claim:
-        'ENV_REFERENCE holds the appends off because the prod route truncates to a 3-result floor so a ' +
+        'ENV_REFERENCE held the appends off because the prod route truncates to a 3-result floor so a ' +
         'tail append never reaches the prod reader.',
       prodByteIdenticalOnVsOff: prodByteIdenticalAll,
+      prodFlagOffStrictNoOp: prodFlagOffStrictNoOpAll,
       prodAppendStagesEverApplied: prodAppendsEverApplied,
+      prodAppendedRowsTotal,
       legacyAppendedRowsSurvivingTotal: legacyAppendsSurvivingTotal,
       resolution:
-        'The appends never run on the prod executePipeline path because stopAfterFusion skips ' +
-        'enrichFusedResults, so flipping the flags is byte-identical on prod. The three-result floor is a ' +
-        'never-cut-below-three minimum, not a cap; the prod-limiting stage is token-budget truncation, ' +
-        'which trims the tail to the floor and strips appended rows even on the legacy path where they run.',
+        'The three-result floor was never a cap; the prod path returns the full requested limit of ten. ' +
+        'Before the refinement the appends never ran on executePipeline because stopAfterFusion skipped ' +
+        'enrichFusedResults. The refinement adds a post-Stage-4 tail-append stage, so the appends now run on ' +
+        'the prod path and extend recall past the limit, exempt from the final-limit cap.',
     },
     aggregate: {
       prodRecallOff: aggregateRecall('prodOff'),
@@ -574,7 +603,9 @@ async function main() {
     prodLimit: PROD_LIMIT,
     repeats: REPEATS,
     prodByteIdenticalOnVsOff: prodByteIdenticalAll,
+    prodFlagOffStrictNoOp: prodFlagOffStrictNoOpAll,
     prodAppendStagesEverApplied: prodAppendsEverApplied,
+    prodAppendedRowsTotal,
     legacyAppendedRowsSurvivingTotal: legacyAppendsSurvivingTotal,
     prodRecallDelta: output.aggregate.prodRecallDelta,
     legacyRecallDelta: output.aggregate.legacyRecallDelta,

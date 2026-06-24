@@ -34,6 +34,7 @@
 //     - Reads from the vector index and FTS5 / BM25 index (DB reads only)
 //
 import type { Stage1Input, Stage1Output, PipelineRow } from './types.js';
+import { attachLaneLists, readLaneLists } from './types.js';
 import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
 import * as hybridSearch from '../hybrid-search.js';
@@ -642,6 +643,18 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   let channelCount = 0;
   let embedderAvailable = true;
   let vectorSearchSkipped = false;
+
+  // Per-lane candidate lists the hybrid collector attaches when an append flag is on,
+  // captured here because the merge and filter steps below drop the non-enumerable
+  // shadow they ride on. The first lists seen win, which is the baseline query's
+  // lanes in the expansion paths. Undefined on the flags-off path, so the downstream
+  // tail-append backfill simply finds nothing.
+  let capturedLaneLists = readLaneLists(candidates);
+  const captureLaneListsFrom = (rows: unknown): void => {
+    if (capturedLaneLists) return;
+    const lists = readLaneLists(rows);
+    if (lists) capturedLaneLists = lists;
+  };
   const hybridSearchOptions = {
     limit,
     specFolder,
@@ -911,6 +924,10 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
           channelCount = queryVariants.length;
 
+          // The baseline variant carries the per-lane shadow; capture it before the
+          // merge below blends it away.
+          captureLaneListsFrom(variantResultSets[0]);
+
           // Merge variant results, deduplicate by id, preserve first-occurrence order
           candidates = mergeCandidateBatches(
             variantResultSets.map((rows, index) => ({
@@ -1008,6 +1025,9 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
             channelCount = 2;
             r12ExpansionApplied = true;
+
+            // The baseline carries the per-lane shadow; capture it before the merge.
+            captureLaneListsFrom(baselineResults);
 
             // Merge both result sets, deduplicate by id, baseline-first ordering
             // So baseline scores dominate when the same memory appears in both.
@@ -1124,6 +1144,12 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       `[stage1-candidate-gen] Unknown searchType: "${searchType}". Expected 'multi-concept', 'hybrid', or 'vector'.`
     );
   }
+
+  // Capture the per-lane candidate lists the hybrid collector may have attached, in
+  // case a direct-assignment path left the shadow on the candidate array, before the
+  // filters below replace the array and drop it. A no-op when already captured from a
+  // pre-merge result or when no lists were attached, so the array is unchanged.
+  captureLaneListsFrom(candidates);
 
   // -- Tier and contextType filtering -----------------------------------------
   //
@@ -1609,6 +1635,10 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // activeChannels counts retrieval lane families; degraded lexical fallback has
   // no semantic lane even when the requested search type was hybrid.
   const activeChannels = vectorSearchSkipped ? 1 : (searchType === 'hybrid' ? 2 : 1);
+
+  // Re-attach the per-lane lists so the downstream tail-append stage can backfill a
+  // lane champion. A no-op when none were captured, leaving the array unchanged.
+  attachLaneLists(candidates, capturedLaneLists);
 
   return {
     candidates,

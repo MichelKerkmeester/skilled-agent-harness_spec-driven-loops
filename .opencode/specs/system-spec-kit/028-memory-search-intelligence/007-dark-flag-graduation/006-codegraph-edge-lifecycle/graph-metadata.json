@@ -43,6 +43,10 @@
     "key_files": [
       "scripts/edge-staleness-rebind-benchmark.mjs",
       "results/staleness-metrics.json",
+      "scripts/edge-staleness-cost-benchmark.mjs",
+      "scripts/bitemporal-asof-benchmark.mjs",
+      "results/cost-metrics.json",
+      "results/bitemporal-metrics.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -60,6 +64,30 @@
         "name": "staleness-metrics.json",
         "kind": "config",
         "path": "results/staleness-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "edge-staleness-cost-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/edge-staleness-cost-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "bitemporal-asof-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/bitemporal-asof-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cost-metrics.json",
+        "kind": "config",
+        "path": "results/cost-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "bitemporal-metrics.json",
+        "kind": "config",
+        "path": "results/bitemporal-metrics.json",
         "source": "derived"
       },
       {
@@ -169,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three code-graph edge-lifecycle capabilities ship finished but dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:51:53.815Z",
-    "last_save_at": "2026-06-24T04:51:53.815Z",
+    "last_save_at": "2026-06-24T05:24:07.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b7eb7159a3d91a63527a34fd7e8bd285c5dcaf5097b5339ac7c8af0a3ecca09",
+    "source_fingerprint": "sha256:3d9c036f3b57df18c13a9648396c84e724e507f52e8951e674ad0ef04803de48",
     "source_doc_hashes": {
       "spec.md": "f07707cc277bd04a7b263ec299340b66514607aef981638c2b4275fa749195df",
       "plan.md": "e5455e5e3c28700fce1be99ce8d2422b414d64f21a1cc74c50fd53243307c8dd",
       "tasks.md": "69501b7820c03a63d6e88fbcddd4fd8bcef611534d50c441467eb19c3ff66f1f",
       "checklist.md": "3f52c96b5081192e5f4e8bfab5865ac66888f0b6e817cf43c39a22fb35bd662e",
-      "implementation-summary.md": "4cd1f15663d439230dcd1f80a6511a4db87e3b576c56865465374ea77f9c01ab"
+      "implementation-summary.md": "b60cf60633df730cf09d4dabef33e600c94091cf8ec1a8e8fdc8ebda563fb7fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

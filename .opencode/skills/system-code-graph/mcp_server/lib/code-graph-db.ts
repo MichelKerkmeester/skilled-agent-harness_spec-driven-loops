@@ -1861,6 +1861,104 @@ export function queryEdgesTo(symbolId: string, edgeType?: string): CodeEdgeSourc
   });
 }
 
+// ───────────────────────────────────────────────────────────────
+// Bi-temporal edge lifecycle, gated behind the bitemporal-reads flag.
+//
+// Default writes replace edges with a hard delete, so a superseded edge leaves
+// no record of when it stopped being valid and the validity columns can only
+// ever carry an open valid_at. These two functions are the smallest consumer
+// that makes the columns load-bearing: a close-and-insert writer that stamps
+// invalid_at on a superseded edge instead of deleting it, and an as-of reader
+// that answers about an edge at a past generation. Both no-op or fall back to
+// the live-only path when the flag is off, so default behavior is unchanged.
+// ───────────────────────────────────────────────────────────────
+
+export interface CloseEdgesForSourcesResult {
+  readonly closedEdges: number;
+  readonly asOfGeneration: number;
+}
+
+/**
+ * Close every live edge from the given source symbols by stamping invalid_at
+ * with the current graph generation, rather than deleting it. A live edge is
+ * one whose invalid_at is still NULL. Returns the count closed and the
+ * generation stamped. When the bitemporal-reads flag is off this is a no-op,
+ * so the default replace path keeps deleting edges and nothing here runs.
+ */
+export function closeEdgesForSources(sourceIds: string[]): CloseEdgesForSourcesResult {
+  const asOfGeneration = getCodeGraphGeneration();
+  if (!codeGraphEdgeBitemporalReadsEnabled()) {
+    return { closedEdges: 0, asOfGeneration };
+  }
+  const uniqueSourceIds = [...new Set(sourceIds.filter((id) => typeof id === 'string' && id.length > 0))];
+  if (uniqueSourceIds.length === 0) {
+    return { closedEdges: 0, asOfGeneration };
+  }
+  const d = getDb();
+  const placeholders = uniqueSourceIds.map(() => '?').join(',');
+  const result = d.prepare(`
+    UPDATE code_edges
+    SET invalid_at = ?
+    WHERE source_id IN (${placeholders})
+      AND invalid_at IS NULL
+  `).run(asOfGeneration, ...uniqueSourceIds);
+  return { closedEdges: result.changes, asOfGeneration };
+}
+
+/**
+ * Insert an edge with valid_at stamped to the current graph generation and
+ * invalid_at left open, so a later close-and-insert can record its lifetime.
+ * When the flag is off this falls back to a plain insert with NULL validity
+ * columns, byte-identical to the default edge write.
+ */
+export function insertEdgeWithValidity(edge: CodeEdge): void {
+  const d = getDb();
+  if (!codeGraphEdgeBitemporalReadsEnabled()) {
+    d.prepare(`
+      INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(edge.sourceId, edge.targetId, edge.edgeType, edge.weight, edge.metadata ? JSON.stringify(edge.metadata) : null);
+    return;
+  }
+  const validAt = getCodeGraphGeneration();
+  d.prepare(`
+    INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata, valid_at, invalid_at)
+    VALUES (?, ?, ?, ?, ?, ?, NULL)
+  `).run(edge.sourceId, edge.targetId, edge.edgeType, edge.weight, edge.metadata ? JSON.stringify(edge.metadata) : null, validAt);
+}
+
+/**
+ * Read edges from a symbol as of a past generation. An edge counts as live at
+ * asOf when it was valid by then and had not yet been closed, that is
+ * valid_at <= asOf AND (invalid_at IS NULL OR invalid_at > asOf). When the
+ * flag is off this falls back to the live-only queryEdgesFrom, so no consumer
+ * sees a temporal read until the flag is set.
+ */
+export function asOfEdgesFrom(symbolId: string, asOf: number, edgeType?: string): CodeEdgeTargetResult[] {
+  if (!codeGraphEdgeBitemporalReadsEnabled()) {
+    return queryEdgesFrom(symbolId, edgeType);
+  }
+  const d = getDb();
+  let sql = `
+    SELECT * FROM code_edges
+    WHERE source_id = ?
+      AND valid_at IS NOT NULL
+      AND valid_at <= ?
+      AND (invalid_at IS NULL OR invalid_at > ?)
+  `;
+  const params: unknown[] = [symbolId, asOf, asOf];
+  if (edgeType) {
+    sql += ' AND edge_type = ?';
+    params.push(edgeType);
+  }
+  const edges = d.prepare(sql).all(...params) as Record<string, unknown>[];
+  return edges.map((e) => {
+    const edge = rowToEdge(e);
+    const targetRow = d.prepare('SELECT * FROM code_nodes WHERE symbol_id = ?').get(edge.targetId) as Record<string, unknown> | undefined;
+    return { edge, targetNode: targetRow ? rowToNode(targetRow) : null };
+  });
+}
+
 export function resolveSubjectFilePath(subject: string): string | null {
   const d = getDb();
 

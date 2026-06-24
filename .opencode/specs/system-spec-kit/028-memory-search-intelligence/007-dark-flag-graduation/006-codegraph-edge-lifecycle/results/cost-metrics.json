@@ -1,0 +1,65 @@
+{
+  "benchmark": "code-graph edge-staleness fan-in force-parse cost, uncapped vs degree-capped",
+  "flag": "SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE",
+  "degreeCapEnv": "SPECKIT_CODE_GRAPH_REVERSE_DEP_DEGREE_CAP",
+  "generatedAt": "2026-06-24T05:24:48.269Z",
+  "safety": "fresh throwaway workspace and SQLite db per variant under OS temp, live graph never opened",
+  "summary": {
+    "hotFanOut": 30,
+    "lowFanOut": 2,
+    "capCeiling": 10,
+    "hotUncappedForcedImporters": 30,
+    "hotCappedForcedImporters": 0,
+    "hotUncappedScanMs": 34.53,
+    "hotCappedScanMs": 19.45,
+    "forcedImporterReductionOnHot": 30,
+    "lowCappedStillRebinds": true,
+    "hotCappedAvoidsForceParse": true
+  },
+  "variants": [
+    {
+      "label": "hot-uncapped",
+      "fanOut": 30,
+      "degreeCap": 0,
+      "filesIndexed": 31,
+      "filesSkipped": 0,
+      "forcedImporters": 30,
+      "scanMs": 34.53,
+      "sampleEdgeKind": "variable",
+      "sampleRebound": true
+    },
+    {
+      "label": "hot-capped",
+      "fanOut": 30,
+      "degreeCap": 10,
+      "filesIndexed": 1,
+      "filesSkipped": 30,
+      "forcedImporters": 0,
+      "scanMs": 19.45,
+      "sampleEdgeKind": null,
+      "sampleRebound": false
+    },
+    {
+      "label": "low-uncapped",
+      "fanOut": 2,
+      "degreeCap": 0,
+      "filesIndexed": 3,
+      "filesSkipped": 0,
+      "forcedImporters": 2,
+      "scanMs": 14.63,
+      "sampleEdgeKind": "variable",
+      "sampleRebound": true
+    },
+    {
+      "label": "low-capped",
+      "fanOut": 2,
+      "degreeCap": 10,
+      "filesIndexed": 3,
+      "filesSkipped": 0,
+      "forcedImporters": 2,
+      "scanMs": 13.97,
+      "sampleEdgeKind": "variable",
+      "sampleRebound": true
+    }
+  ]
+}

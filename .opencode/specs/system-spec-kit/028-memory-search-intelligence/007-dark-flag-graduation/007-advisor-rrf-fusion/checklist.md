@@ -84,12 +84,12 @@ _memory:
 This phase is a benchmark, not a code fix, so the completeness bar is a reproducible measurement on the production path and an evidence-grounded verdict.
 
 - [x] CHK-FIX-001 [P0] The cluster is measured on the production routing path, the harness imports the production scorer and projection loader the recommend handler uses
-- [x] CHK-FIX-002 [P0] The benchmark reads the corpus read-only, the live database is copied and opened read-only and never written
-- [x] CHK-FIX-003 [P0] The phase returns one of GRADUATE, REFINE or CUT with evidence, the verdict is REFINE grounded in the measured numbers
-- [x] CHK-FIX-004 [P1] RRF lifts top-1 from 28 of 33 (0.8485) to 29 of 33 (0.8788) with zero regressions, the exact band rising from 0.8667 to 0.9333
-- [x] CHK-FIX-005 [P1] The agreement spread versus baseline is 0.9697, one prompt (q02) moved its top-1 and it moved from wrong to right
-- [x] CHK-FIX-006 [P1] The self-recommendation guard is inert on this set, the RRF-plus-guard arm equals the RRF arm, recorded as a dormant seam not a measured win
-- [x] CHK-FIX-007 [P1] The conflict-rerank seam is structurally dormant, the live corpus carries no `conflicts_with` edges, recorded as untestable on the current corpus
+- [x] CHK-FIX-002 [P0] The benchmark reads the corpus read-only, the live database is copied and opened read-only and never written, and the conflict overlay is merged only into the in-memory projection
+- [x] CHK-FIX-003 [P0] The phase returns a verdict per seam with evidence, GRADUATE for the RRF core with the conflict-rerank seam and CUT for the self-recommendation guard, grounded in the measured numbers
+- [x] CHK-FIX-004 [P1] RRF lifts top-1 from 37 of 42 (0.8810) to 38 of 42 (0.9048) with zero regressions, the exact band rising from 0.8667 to 0.9333
+- [x] CHK-FIX-005 [P1] The agreement spread versus baseline is 0.9762, one prompt (q02) moved its top-1 and it moved from wrong to right
+- [x] CHK-FIX-006 [P1] The self-recommendation guard moves zero top-1 on four audit prompts built to trigger it, behaviorally redundant with the generic explainer floor and the un-flagged audit penalty, CUT verdict
+- [x] CHK-FIX-007 [P1] The conflict-rerank seam, fed real `conflicts_with` mass through the overlay, corrects one top-1 (4 of 5 to 5 of 5) and repairs a regression plain RRF introduces, GRADUATE with the RRF core
 - [x] CHK-FIX-008 [P1] The benchmark is reproducible from the committed harness, `node scripts/advisor-rrf-benchmark.mjs` rebuilds metrics.json exit 0
 <!-- /ANCHOR:fix-completeness -->
 
@@ -98,7 +98,7 @@ This phase is a benchmark, not a code fix, so the completeness bar is a reproduc
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] The harness opens the projection copy read-only and issues no write, so no benchmark cell mutates the live skill-graph database
+- [x] CHK-030 [P0] The harness opens the projection copy read-only and issues no write, and the conflict overlay is merged only into the in-memory projection, so no benchmark cell mutates the live skill-graph database
 - [x] CHK-031 [P1] The harness toggles only existing flag environment variables and edits no production scorer, so the measured behavior is the shipped behavior and no flag default is flipped
 <!-- /ANCHOR:security -->
 
@@ -108,7 +108,7 @@ This phase is a benchmark, not a code fix, so the completeness bar is a reproduc
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, plan and tasks synchronized, and every verdict claim traces to metrics.json or the benchmark run
-- [x] CHK-041 [P1] The suite tracking row for phase 007 reflects the REFINE verdict
+- [x] CHK-041 [P1] The suite tracking row for phase 007 reflects the graduate-and-cut verdicts
 <!-- /ANCHOR:docs -->
 
 ---
@@ -116,7 +116,7 @@ This phase is a benchmark, not a code fix, so the completeness bar is a reproduc
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] The harness, the labeled set and the results live in the phase folder, no production code is edited
+- [x] CHK-050 [P1] The harness, the labeled set, the conflict overlay and the results live in the phase folder, no production code is edited
 - [x] CHK-051 [P1] No temp files left outside the results tree, the loader scratch copy lands in a tmp dir and the results tree carries only metrics.json and the backup copy
 <!-- /ANCHOR:file-org -->
 

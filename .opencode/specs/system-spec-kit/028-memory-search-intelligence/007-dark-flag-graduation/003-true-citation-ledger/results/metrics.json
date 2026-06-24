@@ -1,14 +1,18 @@
 {
   "generatedFrom": "citation-ledger-feasibility.mjs",
-  "generatedAt": "2026-06-24T04:45:59.084Z",
+  "generatedAt": "2026-06-24T05:23:08.054Z",
   "subject": "SPECKIT_TRUE_CITATION_EMITTER ledger density and used-vs-unused signal separation against the 024 demote-only reranker prerequisite",
   "liveDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
   "prerequisiteFrom024": "PREREQ-A ledger density: real used and not-used pairs lifting the gold-and-ledger intersection materially above the 0.4 percent it sat at when the emitter was off.",
   "firingTriggerModel": "The emitter reconstructs the shown universe by session_id and the session-stop hook mines the closing session transcript. A shown row with a null or empty session_id is unreachable by a real session-scoped emit, so the session-scoped shown count is the firing-trigger ceiling.",
+  "refinements": [
+    "Firing trigger: handlers/memory-search.ts threads the validated effectiveSessionId into the search_shown write so a closing session can be reconstructed. The live corpus predates the change, so it still shows the null-session backlog.",
+    "Reference key: lib/feedback/true-citation-emitter.ts keys on the memory title anchor when present and demotes the bare integer id to a fallback, so a prose-count collision can no longer fabricate a positive."
+  ],
   "notes": [
     "ledgerStructure is read-only over the live search_shown corpus.",
     "replay forces the flag ON only inside this harness process against a scratch DB copy; the live ledger is never written.",
-    "referenceRealism scans real assistant transcript turns for standalone matches of the live shown memory ids, the bare integer tokens the emitter detects on."
+    "referenceRealism runs the production detector twice over the same real transcript turns, once bare-id and once anchor-aware, so the coverage gap is the signal-separation lift."
   ],
   "ledgerStructure": {
     "hasFeedbackEvents": true,
@@ -30,118 +34,200 @@
     "meanShownSetSize": 4.5
   },
   "replay": {
-    "scratchDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-citation-ledger-PplF7y/context-index.sqlite",
+    "scratchDbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-citation-ledger-WCKmtj/context-index.sqlite",
     "flagForcedOn": true,
-    "shownIds": [
-      "990001",
-      "990002",
-      "990003",
-      "990004",
-      "990005"
-    ],
-    "expectedUsed": 3,
-    "expectedNotUsed": 2,
-    "emitResult": {
-      "emitted": 5,
-      "used": 3,
-      "notUsed": 2
+    "idOnlyFallback": {
+      "shownIds": [
+        "990001",
+        "990002",
+        "990003",
+        "990004",
+        "990005"
+      ],
+      "expectedUsed": 3,
+      "expectedNotUsed": 2,
+      "emitResult": {
+        "emitted": 5,
+        "used": 3,
+        "notUsed": 2
+      },
+      "observedUsedIds": [
+        "990001",
+        "990002",
+        "990003"
+      ],
+      "observedNotUsedIds": [
+        "990004",
+        "990005"
+      ],
+      "separationProven": true
     },
-    "observedUsedIds": [
-      "990001",
-      "990002",
-      "990003"
-    ],
-    "observedNotUsedIds": [
-      "990004",
-      "990005"
-    ],
+    "anchorPath": {
+      "anchoredUsedId": "5474",
+      "anchoredUnusedId": "5473",
+      "usedTitleEchoed": "Canonical Vector Shard Split adoption test",
+      "unusedBareIdAsProseCount": "5473",
+      "emitResult": {
+        "emitted": 2,
+        "used": 1,
+        "notUsed": 1
+      },
+      "observedUsedIds": [
+        "5474"
+      ],
+      "observedNotUsedIds": [
+        "5473"
+      ],
+      "separationProven": true
+    },
     "separationProven": true
   },
   "referenceRealism": {
     "transcriptsAvailable": 160,
     "transcriptsSampled": 60,
     "distinctShownIds": 304,
-    "assistantTurnsScanned": 13376,
-    "turnsReferencingAnyShownId": 1157,
-    "turnReferenceRate": 0.086498,
-    "distinctShownIdsEverReferenced": 22,
-    "shownIdReferenceCoverage": 0.0724,
-    "sampleMatchedIds": [
-      "8",
+    "distinctShownIdsWithAnchor": 254,
+    "assistantTurnsScanned": 13417,
+    "bareIdDetector": {
+      "distinctIdsMatched": 22,
+      "shownIdCoverage": 0.0724,
+      "matchedByDigitLength": {
+        "1": 1,
+        "2": 2,
+        "3": 6,
+        "4": 10,
+        "5": 3
+      },
+      "collisionSamples": [
+        {
+          "id": "8",
+          "context": "GPT-5.5 ×5 converged + Opus 4.8 ×10), all verificatio"
+        },
+        {
+          "id": "8",
+          "context": "high + cli-claude-code Opus 4.8 xhigh, ≤6 iterations"
+        },
+        {
+          "id": "8",
+          "context": "-from-zero. - ✅ **Resolve the 8 questions** — *delive"
+        },
+        {
+          "id": "8",
+          "context": "correction. - ✅ **Resolve the 8 questions** — *delive"
+        },
+        {
+          "id": "8",
+          "context": "code-grounded blueprint + all 8 questions resolved +"
+        },
+        {
+          "id": "16",
+          "context": "nding-applications runs 09:00/16:00 with lookback wind"
+        },
+        {
+          "id": "8",
+          "context": "should adopt it, tradeoff. > 8. **Edge cases & confl"
+        },
+        {
+          "id": "8",
+          "context": "ntext/seed-pointers.md` — the 8 logic targets, the de"
+        },
+        {
+          "id": "16",
+          "context": "ence matrix, timezone ladder, 16 edge cases + global t"
+        },
+        {
+          "id": "16",
+          "context": "ision blocks, arm/cancel map, 16 edge cases + tiebreak"
+        },
+        {
+          "id": "16",
+          "context": "**, the **arm/cancel map**, **16 edge cases + a global"
+        },
+        {
+          "id": "16",
+          "context": "s for all 43, arm/cancel map, 16 edge cases + global t"
+        }
+      ],
+      "note": "The bare integer detector matches a shown id as a standalone token. Short ids collide with ordinary counts in prose, so the coverage is mostly number noise."
+    },
+    "anchorAwareDetector": {
+      "distinctIdsMatched": 48,
+      "shownIdCoverage": 0.1579,
+      "coverageOverAnchoredIds": 0.189,
+      "samples": [
+        {
+          "id": "2964",
+          "anchor": "Implementation Summary [template:level_1/implementation-summary.md]"
+        },
+        {
+          "id": "4071",
+          "anchor": "Implementation Summary [template:level_3/implementation-summary.md]"
+        },
+        {
+          "id": "19708",
+          "anchor": "Implementation Summary [template:level_3/implementation-summary.md]"
+        },
+        {
+          "id": "20254",
+          "anchor": "Implementation Summary [template:level_3/implementation-summary.md]"
+        },
+        {
+          "id": "20342",
+          "anchor": "Implementation Summary [template:level_1/implementation-summary.md]"
+        },
+        {
+          "id": "23371",
+          "anchor": "Implementation Summary [template:level_2/implementation-summary.md]"
+        },
+        {
+          "id": "23537",
+          "anchor": "Implementation Summary [template:level_2/implementation-summary.md]"
+        },
+        {
+          "id": "23565",
+          "anchor": "Implementation Summary [template:level_2/implementation-summary.md]"
+        },
+        {
+          "id": "5867",
+          "anchor": "Description: Feature Specification: Code-Graph Docs and READMEs"
+        },
+        {
+          "id": "18871",
+          "anchor": "Feature Specification: Memory Search Intelligence (Phase Parent)"
+        },
+        {
+          "id": "19819",
+          "anchor": "Feature Specification: Memory Search Intelligence (Phase Parent)"
+        },
+        {
+          "id": "21599",
+          "anchor": "Feature Specification: Memory Search Intelligence (Phase Parent)"
+        }
+      ],
+      "note": "The anchor-aware detector matches a shown id only when its title is echoed in the assistant text, so a prose-count collision cannot fabricate a positive."
+    },
+    "suppressedFalsePositives": [
       "16",
       "26",
-      "971",
       "20924",
       "21800",
       "6100",
-      "988",
-      "9016",
-      "922"
+      "4811",
+      "4807",
+      "3467",
+      "3342"
     ],
-    "matchedByDigitLength": {
-      "1": 1,
-      "2": 2,
-      "3": 6,
-      "4": 10,
-      "5": 3
-    },
-    "collisionSamples": [
-      {
-        "id": "8",
-        "context": "of them). - **Targets**: 142(8 phases), 143(12), 144"
-      },
-      {
-        "id": "8",
-        "context": "tor to scale to the remaining 8 packets."
-      },
-      {
-        "id": "8",
-        "context": "ts built (counts correct: 142=8, 143=12, 144=9, 145=1"
-      },
-      {
-        "id": "8",
-        "context": "All 8 prompts built. Now I'"
-      },
-      {
-        "id": "8",
-        "context": "r → write → validate. - **All 8 remaining prompts bui"
-      },
-      {
-        "id": "8",
-        "context": "|---|---|---| | 142 | 9 (root+8) | ✓ | exit 0 | 0 | 0"
-      },
-      {
-        "id": "8",
-        "context": "--| | 142 / 143 / 144 / 145 | 8 / 12 / 9 / 12 | 9 / 1"
-      },
-      {
-        "id": "16",
-        "context": "Round 1 is 16/18 complete — only S1"
-      },
-      {
-        "id": "16",
-        "context": "**Status: Round 1 is 16/18 complete**, with S"
-      },
-      {
-        "id": "8",
-        "context": "EADME's `deep | 5` (should be 8) with stale filenames"
-      },
-      {
-        "id": "8",
-        "context": "e doc**: `deep | 5` should be 8 (missing `/deep:conte"
-      },
-      {
-        "id": "8",
-        "context": "stale** (`deep | 5` should be 8, with old `ask-*`/`st"
-      }
-    ],
-    "collisionNote": "The bare integer detector matches a shown id as a standalone token. Short ids collide with ordinary counts in prose, so the collisionSamples show the matched coverage is mostly number noise, not a real citation of a shown memory."
+    "suppressedFalsePositiveCount": 9,
+    "separationNote": "suppressedFalsePositives are ids the bare detector matched but the anchor detector rejected, the prose-count false positives the refinement removes from the used class."
   },
   "feasibilitySummary": {
     "pipeProvenSeparable": true,
     "sessionScopedShownRows": 0,
     "sessionScopedFraction": 0,
-    "realTranscriptReferenceCoverage": 0.0724,
-    "liveLedgerDensityReachable": false
+    "bareIdReferenceCoverage": 0.0724,
+    "anchorAwareReferenceCoverage": 0.1579,
+    "suppressedProseCountFalsePositives": 9,
+    "signalSeparationImproved": true,
+    "liveLedgerDensityReachableToday": false
   }
 }
