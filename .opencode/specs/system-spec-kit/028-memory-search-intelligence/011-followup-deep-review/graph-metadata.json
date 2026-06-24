@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/011-followup-deep-review",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/011-followup-deep-review",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opus deep review of the follow-ups",
+      "bitemporal wiring corrupts live reads",
+      "graduation follow-up review findings",
+      "deep review FAIL fixed",
+      "P0 bitemporal reindex fix"
+    ],
+    "key_topics": [
+      "opus",
+      "deep",
+      "review",
+      "follow-ups",
+      "bitemporal",
+      "wiring",
+      "corrupts",
+      "live",
+      "reads",
+      "graduation",
+      "follow-up",
+      "findings"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "review/review-report.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graduation Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Flipping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "three P0",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An opus deep review of the 010 graduation follow-ups, run as ten iterative passes loop-until-dry, and the fixes that cleared its verdict. The review FAILED the follow-ups with three P0 in the bitemporal wiring, which corrupted live reads and was defeated on the real reindex path, plus eight P1 and four P2 the cli test pass had missed because the existing tests never exercised the real failure modes. The fixes resolved all three P0 (replaceNodes and pruneDanglingEdges close instead of delete under the flag, the live readers filter closed edges, the generation stamp is fixed, the integration tes",
+    "created_at": "2026-06-24T10:25:14.122Z",
+    "last_save_at": "2026-06-24T10:25:14.122Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ed9e86d87a4285e4b189697e6190c6e355c1cb16bd3bca82f648af3ff014c3b2",
+    "source_doc_hashes": {
+      "spec.md": "572e5bf0c59c1aa9d82c11137641749a74cf253661711b82911d30a0346b79e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
