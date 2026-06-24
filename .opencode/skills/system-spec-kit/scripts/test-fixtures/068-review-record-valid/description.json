@@ -1,0 +1,28 @@
+{
+  "specFolder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/068-review-record-valid",
+  "description": "A sample surface was audited to confirm the review packet type validates clean",
+  "keywords": [
+    "sample",
+    "surface",
+    "audited",
+    "confirm",
+    "review",
+    "packet",
+    "type",
+    "validates",
+    "clean"
+  ],
+  "lastUpdated": "2026-06-24T15:59:48.430Z",
+  "specId": "068",
+  "folderSlug": "review-record-valid",
+  "parentChain": [
+    ".opencode",
+    "skills",
+    "system-spec-kit",
+    "scripts",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "review"
+}

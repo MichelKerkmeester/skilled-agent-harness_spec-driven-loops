@@ -63,7 +63,7 @@ function findSkillRoot(startDir: string): string {
 
 const SKILL_ROOT = findSkillRoot(MODULE_DIR);
 const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates', 'manifest');
-const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase']);
+const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces']);
@@ -71,6 +71,7 @@ const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces']);
 function normalizeLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
+  if (raw === 'review') return 'review';
   if (raw === '1' || raw === '2' || raw === '3') return raw;
   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
 }
@@ -80,7 +81,7 @@ function detectLevel(folder: string): SpecKitLevel {
   const specPath = path.join(folder, 'spec.md');
   if (fs.existsSync(specPath)) {
     const head = fs.readFileSync(specPath, 'utf8').slice(0, 4096);
-    const marker = head.match(/SPECKIT_LEVEL:\s*(1|2|3\+?|phase)/u)?.[1];
+    const marker = head.match(/SPECKIT_LEVEL:\s*(1|2|3\+?|phase|review)/u)?.[1];
     if (marker) return normalizeLevel(marker);
     const yamlLevel = head.match(/^level:\s*(1|2|3\+?)\s*$/mu)?.[1];
     if (yamlLevel) return normalizeLevel(yamlLevel);
@@ -151,6 +152,7 @@ function renderInlineGates(template: string, level: SpecKitLevel): string {
 
 function templateNameForDoc(level: SpecKitLevel, docName: string): string {
   if (level === 'phase' && docName === 'spec.md') return 'phase-parent.spec.md.tmpl';
+  if (level === 'review' && docName === 'spec.md') return 'review.spec.md.tmpl';
   return `${docName}.tmpl`;
 }
 
@@ -158,6 +160,16 @@ function renderedTemplate(level: SpecKitLevel, docName: string): string | null {
   const templatePath = path.join(TEMPLATE_ROOT, templateNameForDoc(level, docName));
   if (!fs.existsSync(templatePath)) return null;
   return renderInlineGates(fs.readFileSync(templatePath, 'utf8'), level);
+}
+
+// A required doc with no backing template is a freeform artifact (e.g. a review
+// report). Template-source and frontmatter-continuity gates apply only to
+// authored, template-backed spec docs; for every numbered level and phase
+// parents this set is identical to docsForLevel, so the filter is a no-op there.
+function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
+  return docsForLevel(level).filter((docName) =>
+    fs.existsSync(path.join(TEMPLATE_ROOT, templateNameForDoc(level, docName))),
+  );
 }
 
 function normalizeHeader(raw: string): string {
@@ -225,7 +237,7 @@ function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEn
 }
 
 function validateTemplateSource(folder: string, level: SpecKitLevel): ValidationEntry {
-  const missing = docsForLevel(level).filter((docName) => {
+  const missing = authoredDocsForLevel(level, folder).filter((docName) => {
     const content = readIfExists(path.join(folder, docName));
     return content && !content.split(/\r?\n/u).slice(0, 70).some((line) => line.includes('SPECKIT_TEMPLATE_SOURCE:'));
   });
@@ -390,7 +402,7 @@ function validateGeneratedMetadataDrift(folder: string): ValidationEntry {
 
 function validateFrontmatterBasics(folder: string, level: SpecKitLevel): ValidationEntry {
   const missing: string[] = [];
-  for (const docName of docsForLevel(level)) {
+  for (const docName of authoredDocsForLevel(level, folder)) {
     const content = readIfExists(path.join(folder, docName));
     if (!content) continue;
     const frontmatter = content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? '';

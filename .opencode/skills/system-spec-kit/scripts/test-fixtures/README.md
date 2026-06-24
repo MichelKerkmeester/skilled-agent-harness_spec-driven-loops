@@ -44,8 +44,8 @@ Not owned here:
 
 ## 3. PACKAGE TOPOLOGY
 
-As of this revision, the tree contains 66 numbered fixture directories and
-the highest-numbered fixture is `067-checklist-uppercase-x`.
+As of this revision, the tree contains 68 numbered fixture directories and
+the highest-numbered fixture is `069-review-record-missing-report`.
 
 ```text
 scripts/test-fixtures/
@@ -60,6 +60,7 @@ scripts/test-fixtures/
 +-- 029-045-*                      # Section, placeholder and priority edge cases
 +-- 046-051-*                      # Config, extra file and template cases
 +-- 053-067-*                      # Template, link and strict evidence cases
++-- 068-069-*                      # Review-record packet type (valid and missing-report)
 `-- README.md
 ```
 

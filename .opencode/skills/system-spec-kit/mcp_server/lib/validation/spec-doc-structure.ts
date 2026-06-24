@@ -172,11 +172,18 @@ function normalizeRuleName(raw: string | undefined): SpecDocRuleName {
 function normalizeSpecKitLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
+  if (raw === 'review') return 'review';
   if (raw === '1') return '1';
   if (raw === '2') return '2';
   if (raw === '3') return '3';
   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
 }
+
+// Freeform workflow artifacts carry their own (non-continuity) frontmatter
+// schema and no spec-doc anchors, so they are exempt from the _memory-block and
+// anchor-sufficiency gates. No numbered level references these, so the exclusion
+// is inert for Levels 1-3+ and phase parents.
+const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md']);
 
 function collectDocuments(folder: string, level: string): DocumentRecord[] {
   const documents: DocumentRecord[] = [];
@@ -190,6 +197,9 @@ function collectDocuments(folder: string, level: string): DocumentRecord[] {
   ]);
 
   for (const basename of contractDocs) {
+    if (FREEFORM_WORKFLOW_DOCS.has(basename)) {
+      continue;
+    }
     const docPath = path.join(folder, basename);
     if (fs.existsSync(docPath)) {
       documents.push({

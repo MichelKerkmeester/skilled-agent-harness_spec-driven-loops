@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 // 2. TYPES
 // -------------------------------------------------------------------
 
-export type SpecKitLevel = '1' | '2' | '3' | '3+' | 'phase';
+export type SpecKitLevel = '1' | '2' | '3' | '3+' | 'phase' | 'review';
 
 export interface LevelContract {
   requiredCoreDocs: string[];
@@ -57,7 +57,7 @@ export interface SerializedLevelContract {
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../templates/manifest/spec-kit-docs.json');
 const DIST_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../../templates/manifest/spec-kit-docs.json');
-const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase']);
+const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
 let cachedManifest: SpecKitDocsManifest | null = null;
 

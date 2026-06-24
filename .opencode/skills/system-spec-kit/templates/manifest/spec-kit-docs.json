@@ -9,6 +9,7 @@
     "checklist.md.tmpl": "v2.2",
     "decision-record.md.tmpl": "v2.2",
     "phase-parent.spec.md.tmpl": "v2.2",
+    "review.spec.md.tmpl": "v2.2",
     "resource-map.md.tmpl": "v2.2",
     "context-index.md.tmpl": "v2.2",
     "handover.md.tmpl": "v2.2",
@@ -18,7 +19,8 @@
   "privateTaxonomy": {
     "kinds": [
       "implementation",
-      "phase-parent"
+      "phase-parent",
+      "review-record"
     ],
     "capabilities": [
       "qa-verification",
@@ -46,6 +48,9 @@
       ],
       "phase": [
         "phase-parent"
+      ],
+      "review": [
+        "review-record"
       ]
     }
   },
@@ -121,6 +126,12 @@
       "owner": "workflow",
       "creationTrigger": "deep-research",
       "absenceBehavior": "silent-skip"
+    },
+    "review/review-report.md": {
+      "template": null,
+      "owner": "workflow",
+      "creationTrigger": "deep-review",
+      "absenceBehavior": "hard-error"
     }
   },
   "levels": {
@@ -702,6 +713,43 @@
         ],
         "phase-governance": [
           "phase"
+        ]
+      }
+    },
+    "review": {
+      "publicLabel": "Review Record",
+      "privatePreset": "review-record",
+      "frontmatterMarkerLevel": 0,
+      "requiredCoreDocs": [
+        "spec.md",
+        "review/review-report.md"
+      ],
+      "requiredAddonDocs": [],
+      "lazyAddonDocs": [
+        "handover.md"
+      ],
+      "sectionGates": {
+        "spec.md": {
+          "metadata": ["review"],
+          "problem": ["review"],
+          "scope": ["review"],
+          "review-summary": ["review"],
+          "questions": ["review"]
+        },
+        "metadata": [
+          "review"
+        ],
+        "problem": [
+          "review"
+        ],
+        "scope": [
+          "review"
+        ],
+        "review-summary": [
+          "review"
+        ],
+        "questions": [
+          "review"
         ]
       }
     }

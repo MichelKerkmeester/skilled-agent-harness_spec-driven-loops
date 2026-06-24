@@ -111,6 +111,7 @@ EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
 $registry_rules
 
 LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
+        review=spec+review/review-report (lean review record, marker-gated)
         *impl-summary required after tasks completed
 EOF
 exit 0; }
@@ -268,6 +269,14 @@ detect_level() {
         # Pattern 0: SPECKIT_LEVEL marker (most authoritative)
         # <!-- SPECKIT_LEVEL: 2 --> or <!-- SPECKIT_LEVEL: 3+ -->
         level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+
+        # Pattern 0b: SPECKIT_LEVEL review marker. The explicit marker is the
+        # only entry into the review-record path, so no inferred folder reaches it.
+        if [[ -z "$level" ]]; then
+            if grep -qE '<!-- SPECKIT_LEVEL: *review *-->' "$spec_file" 2>/dev/null; then
+                DETECTED_LEVEL="review"; LEVEL_METHOD="explicit"; return
+            fi
+        fi
 
         # Pattern 1: Table format with bold (common)
         # | **Level** | 2 | or | **Level** | 3+ |

@@ -8,14 +8,14 @@ trigger_phrases:
   - "conditional graduation"
   - "production readiness of graduated flags"
 importance_tier: "important"
-contextType: "research"
+contextType: "review"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/009-dark-flag-validation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "deepseek-v4-pro"
-    recent_action: "Completed 4-iteration deep research validating 007 graduation winners against real-world scenarios"
-    next_safe_action: "Research complete. Findings reference in research/research.md. Per-cluster recommendations for follow-up."
+    recent_action: "Validated 007 graduation winners against real-world scenarios"
+    next_safe_action: "Review complete; see review/review-report.md"
     blockers: []
     key_files:
       - "spec.md"
@@ -39,8 +39,8 @@ _memory:
       - "Retrieval/graph/routing theory triangulated: Cormack RRF, incremental index consistency, structured dedup, citation mining."
 ---
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: review-record | v2.2 -->
+<!-- SPECKIT_LEVEL: review -->
 
 # Feature Specification: Dark Flag Graduation Production Coverage Validation
 
@@ -140,6 +140,20 @@ All five clusters' benchmarks ran against synthetic data, read-only corpus copie
 | 008 Deep-loop gauges | Medium | Principles sound, production defaults undefined |
 | 003 True-citation ledger | Low | Zero live density, gated on traffic |
 <!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:review-summary -->
+## REVIEW SUMMARY
+
+The full deep-review findings live in `review/review-report.md`.
+
+| Field | Value |
+|-------|-------|
+| **Verdict** | PASS (4 GRADUATE clusters, 1 REFINE) |
+| **Findings** | Per-cluster confidence in section 4; recommendations in section 5 |
+| **Report** | `review/review-report.md` |
+<!-- /ANCHOR:review-summary -->
 
 ---
 

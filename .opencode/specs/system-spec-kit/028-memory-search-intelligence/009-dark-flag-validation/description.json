@@ -1,26 +1,33 @@
 {
-  "title": "Dark Flag Validation — Pre-Graduation Audit",
-  "description": "A deep-review validation of the five graduate-ready dark-flag clusters from 007-dark-flag-graduation before any production default is flipped. Audits correctness, edge cases, byte-identity when the flag is off, and real-world scenarios the labeled benchmarks did not cover.",
-  "trigger_phrases": [
-    "dark flag validation",
-    "pre-graduation audit",
-    "validate dark flag graduation winners",
-    "graduation gate review",
-    "dark flag byte-identity audit"
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/009-dark-flag-validation",
+  "description": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and b",
+  "keywords": [
+    "007",
+    "dark",
+    "flag",
+    "graduation",
+    "suite",
+    "returned",
+    "graduate",
+    "verdicts",
+    "clusters",
+    "flags",
+    "across",
+    "multihop",
+    "tail-appends",
+    "code-graph",
+    "staleness",
+    "repair"
   ],
-  "importance_tier": "critical",
-  "contextType": "review",
-  "packet_pointer": "system-spec-kit/028-memory-search-intelligence/009-dark-flag-validation",
-  "created_at": "2026-06-24T08:30:00.000Z",
-  "updated_at": "2026-06-24T08:30:00.000Z",
-  "created_by": "opencode",
-  "review_dimensions": ["correctness", "security", "spec-alignment", "completeness"],
-  "review_verdict": "PASS",
-  "clusters_reviewed": 5,
-  "clusters_graduate_ready": 4,
-  "clusters_data_gated": 1,
-  "severity_counts": {"P0": 0, "P1": 1, "P2": 3},
-  "tests_run": 69,
-  "tests_passed": 69,
-  "tests_failed": 0
+  "lastUpdated": "2026-06-24T15:37:55.479Z",
+  "specId": "009",
+  "folderSlug": "dark-flag-validation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

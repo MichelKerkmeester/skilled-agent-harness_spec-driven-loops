@@ -31,6 +31,16 @@ const CUSTOM_ALLOWED_ANCHORS = {
       'changelog',
     ],
   },
+  'review': {
+    'spec.md': [
+      'requirements',
+      'recommendations',
+      'research-context',
+      'references',
+      'success-criteria',
+      'risks',
+    ],
+  },
   '*': {
     'decision-record.md': ['decision'],
   },
@@ -52,7 +62,7 @@ const DOC_TEMPLATE_NAMES = {
   'checklist.md': 'checklist.md.tmpl',
   'decision-record.md': 'decision-record.md.tmpl',
 };
-const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase']);
+const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
 
 const STATIC_PHASE_PARENT_ADDENDUM = {
@@ -90,6 +100,7 @@ function normalizeLevel(level) {
   if (raw === '4') return '3+';
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
+  if (raw === 'review') return 'review';
   throw new Error(`Internal template contract could not be resolved for Level ${raw}`);
 }
 
@@ -320,9 +331,14 @@ function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()
   if (!getContractDocs(normalizedLevel, templatesRoot).includes(basename)) {
     return null;
   }
-  const manifestTemplateName = normalizedLevel === 'phase' && basename === 'spec.md'
-    ? 'phase-parent.spec.md.tmpl'
-    : DOC_TEMPLATE_NAMES[basename];
+  let manifestTemplateName;
+  if (normalizedLevel === 'phase' && basename === 'spec.md') {
+    manifestTemplateName = 'phase-parent.spec.md.tmpl';
+  } else if (normalizedLevel === 'review' && basename === 'spec.md') {
+    manifestTemplateName = 'review.spec.md.tmpl';
+  } else {
+    manifestTemplateName = DOC_TEMPLATE_NAMES[basename];
+  }
 
   if (!manifestTemplateName) {
     return null;

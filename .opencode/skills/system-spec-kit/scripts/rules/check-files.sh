@@ -74,8 +74,10 @@ run_check() {
         [[ ! -f "$folder/implementation-summary.md" ]] && missing+=("implementation-summary.md (required after implementation)")
     fi
     
-    # Level 1: check tasks.md for completion if no checklist
-    if [[ "$numeric_level" -eq 1 ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
+    # Level 1: check tasks.md for completion if no checklist.
+    # Non-numeric levels (e.g. review) have an empty numeric_level and skip this
+    # implementation-completion heuristic, which only applies to numbered levels.
+    if [[ "$numeric_level" == "1" ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
         if [[ -f "$folder/tasks.md" ]]; then
             if grep -qE '\[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
                 missing+=("implementation-summary.md (required: tasks show completion)")
