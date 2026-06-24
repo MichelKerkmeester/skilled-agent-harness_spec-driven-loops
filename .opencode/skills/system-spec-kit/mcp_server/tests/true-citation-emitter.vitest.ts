@@ -323,14 +323,60 @@ describe('True-Citation Density Probe', () => {
     expect(density.advisory).toBeNull();
   });
 
-  it('honors a custom threshold argument', () => {
+  it('honors a custom threshold and custom balance floors', () => {
     const db = new Database(':memory:');
     seedPairs(db, { used: 4, notUsed: 4 });
 
-    const density = probeTrueCitationDensity(db, 8);
+    // Relax the per-class floor for this small fixture so the count threshold is the
+    // gate under test; the balanced 4/4 split clears the default ratio floor.
+    const density = probeTrueCitationDensity(db, 8, { minPerClass: 4 });
     expect(density.threshold).toBe(8);
     expect(density.usablePairs).toBe(8);
+    expect(density.minorityClassRatio).toBeCloseTo(0.5, 5);
     expect(density.meetsTrainingThreshold).toBe(true);
     expect(density.advisory).toContain('8-pair');
+  });
+
+  /* ───────────── P2-12 regression: lopsided ledgers must NOT graduate ───────────── */
+
+  it('does NOT graduate a 199:1 lopsided ledger despite clearing the count', () => {
+    const db = new Database(':memory:');
+    // 199 used + 1 not-used = 200 usable, which clears the count threshold — but the
+    // minority class is a single example, so a binary ranker cannot learn from it.
+    seedPairs(db, { used: 199, notUsed: 1 });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBe(200);
+    expect(density.usablePairs).toBeGreaterThanOrEqual(RERANKER_TRAINING_MIN_PAIRS);
+    expect(density.notUsedPairs).toBe(1);
+    // minority ratio is 1/200 = 0.005, far below the 0.2 floor.
+    expect(density.minorityClassRatio).toBeCloseTo(0.005, 5);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+  });
+
+  it('does NOT graduate when one class clears the count but the minority is under its absolute floor', () => {
+    const db = new Database(':memory:');
+    // 190 used + 10 not-used: count met (200), ratio 0.05 also under floor, and the
+    // minority class (10) is under the 20-per-class absolute floor.
+    seedPairs(db, { used: 190, notUsed: 10 });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBe(200);
+    expect(density.notUsedPairs).toBe(10);
+    expect(density.meetsTrainingThreshold).toBe(false);
+    expect(density.advisory).toBeNull();
+  });
+
+  it('graduates a count-met ledger once the split is balanced enough (per-class + ratio floors met)', () => {
+    const db = new Database(':memory:');
+    // 140 used + 60 not-used = 200: count met, minority ratio 0.3 ≥ 0.2, minority 60 ≥ 20.
+    seedPairs(db, { used: 140, notUsed: 60 });
+
+    const density = probeTrueCitationDensity(db);
+    expect(density.usablePairs).toBe(200);
+    expect(density.minorityClassRatio).toBeCloseTo(0.3, 5);
+    expect(density.meetsTrainingThreshold).toBe(true);
+    expect(density.advisory).toContain('minority 30%');
   });
 });

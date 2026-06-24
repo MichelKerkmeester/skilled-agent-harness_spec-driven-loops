@@ -100,12 +100,13 @@ Appended rows survive the serialization token-budget trim, and the true-citation
 |----|-------------|---------------------|
 | REQ-001 | Tail-appended rows survive the serialization token-budget trim | A budget squeeze that drops baseline rows keeps the appended rows; test C1 passes |
 | REQ-002 | Both follow-ups are byte-identical when their flags are off | No `appendExempt` field on any row when no append rows exist; probe surfaces nothing in `memory_health` when the emitter flag is off |
+| REQ-005 | The trim reserves at least one primary row and pins constitutional rows above backfills | A maximal squeeze never returns a backfill-only answer (P1-6); a constitutional row outlives an additive backfill (P2-14); tests B6-B10, C1b, C1c pass |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The density probe reports usable session-scoped pairs and advises at the threshold | Probe returns zero on an empty ledger with no advisory; graduates with an advisory once usable pairs cross the threshold with both classes present |
+| REQ-003 | The density probe reports usable session-scoped pairs and advises only on a learnable split | Probe returns zero on an empty ledger with no advisory; graduates only when the count, the per-class floor, AND the minority-ratio floor are all met; a 199:1 lopsided split is rejected (P2-12) |
 | REQ-004 | The probe excludes legacy null-session rows from the usable count | Null-session rows count toward `total` but never `usablePairs` |
 <!-- /ANCHOR:requirements -->
 
@@ -125,8 +126,9 @@ Appended rows survive the serialization token-budget trim, and the true-citation
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Trim selection diverges from the original pop() on the flag-off path | Low | `selectBudgetTrimIndex` returns the last index when no row is exempt, byte-identical to pop(); proven by test C2/B1 |
-| Risk | Density probe over-reports readiness via legacy null-session rows | Med | Usable count filters `session_id IS NOT NULL`; both-classes-present gate blocks lopsided ledgers |
+| Risk | Trim selection diverges from the original pop() on the flag-off path | Low | `selectBudgetTrimIndex` returns the last index when no row is exempt and none is constitutional, byte-identical to pop(); proven by test C2/B1 |
+| Risk | Density probe over-reports readiness via legacy null-session rows | Med | Usable count filters `session_id IS NOT NULL` |
+| Risk | Density gate graduates a lopsided ledger that a binary ranker cannot learn from | Med | Count threshold is joined by a per-class absolute floor and a minority-ratio floor; the 199:1 case is rejected (P2-12 regression) |
 <!-- /ANCHOR:risks -->
 
 ---

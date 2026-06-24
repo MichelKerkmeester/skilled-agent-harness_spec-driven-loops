@@ -558,6 +558,17 @@ export function getTrueCitationCount(db: Database.Database, used?: boolean): num
 // has crossed this line.
 export const RERANKER_TRAINING_MIN_PAIRS = 200;
 
+// Count threshold is not enough on its own: a ledger that crosses the total while being
+// almost all one class (e.g. 199 used / 1 not-used) graduates a corpus a binary ranker
+// cannot learn from — the minority class drowns. Both gates below must also hold so the
+// minority class carries real signal, not a token presence.
+//   - Per-class absolute floor: each class needs enough raw examples to be learnable.
+//   - Minority ratio floor: the smaller class must be at least this fraction of the
+//     usable pairs, so a lopsided split (199:1 = 0.5% minority) is rejected even when
+//     the total is met.
+export const RERANKER_TRAINING_MIN_PER_CLASS = 20;
+export const RERANKER_TRAINING_MIN_MINORITY_RATIO = 0.2;
+
 /**
  * A density reading of the true-citation ledger: how many usable session-scoped
  * used/not-used pairs have accumulated, and whether that crosses the reranker-
@@ -577,9 +588,19 @@ export interface TrueCitationDensity {
   usedPairs: number;
   /** Usable negatives (used=0, non-null session) — the class the corpus lacked. */
   notUsedPairs: number;
-  /** True once both classes are present AND usablePairs ≥ the training threshold. */
+  /**
+   * Fraction of usable pairs held by the SMALLER class (0 when either class is empty,
+   * up to 0.5 at a perfect split). The class-balance signal a single count cannot show:
+   * a 199:1 ledger meets a 200 count but its minority ratio is 0.005.
+   */
+  minorityClassRatio: number;
+  /**
+   * True once the ledger is genuinely trainable: usablePairs ≥ the count threshold AND
+   * each class clears its absolute floor AND the minority class clears its ratio floor.
+   * A count-only pass on a lopsided split does NOT graduate.
+   */
   meetsTrainingThreshold: boolean;
-  /** The threshold this reading was measured against. */
+  /** The count threshold this reading was measured against. */
   threshold: number;
   /**
    * Set when the ledger has crossed the threshold: a human-readable note a caller
@@ -599,19 +620,25 @@ export interface TrueCitationDensity {
  * advisory is non-null ONLY once the threshold is crossed, so a health surface can
  * stay quiet while the ledger is still filling.
  *
- * `meetsTrainingThreshold` requires both a positive and a negative class to be
- * present — a reranker with examples of only one class has nothing to discriminate,
- * so a lopsided ledger (all-used or all-not-used) never graduates regardless of count.
+ * `meetsTrainingThreshold` requires the usable count to clear the threshold AND the
+ * class split to be learnable: each class must clear an absolute floor and the minority
+ * class must clear a ratio floor. A lopsided ledger (e.g. 199 used / 1 not-used) clears
+ * the count but is rejected — a binary ranker cannot learn from a single-example class.
  */
 export function probeTrueCitationDensity(
   db: Database.Database,
   threshold: number = RERANKER_TRAINING_MIN_PAIRS,
+  opts: { minPerClass?: number; minMinorityRatio?: number } = {},
 ): TrueCitationDensity {
+  const minPerClass = opts.minPerClass ?? RERANKER_TRAINING_MIN_PER_CLASS;
+  const minMinorityRatio = opts.minMinorityRatio ?? RERANKER_TRAINING_MIN_MINORITY_RATIO;
+
   const empty: TrueCitationDensity = {
     total: 0,
     usablePairs: 0,
     usedPairs: 0,
     notUsedPairs: 0,
+    minorityClassRatio: 0,
     meetsTrainingThreshold: false,
     threshold,
     advisory: null,
@@ -633,13 +660,22 @@ export function probeTrueCitationDensity(
     ).get() as { count: number }).count;
     const usablePairs = usedPairs + notUsedPairs;
 
-    const bothClassesPresent = usedPairs > 0 && notUsedPairs > 0;
-    const meetsTrainingThreshold = bothClassesPresent && usablePairs >= threshold;
+    const minorityClassCount = Math.min(usedPairs, notUsedPairs);
+    const minorityClassRatio = usablePairs > 0 ? minorityClassCount / usablePairs : 0;
+
+    // Three gates, all required. Count is necessary but not sufficient: a lopsided
+    // split (199:1) clears the count yet starves the minority class, so the per-class
+    // floor and the minority-ratio floor reject it.
+    const countMet = usablePairs >= threshold;
+    const perClassMet = usedPairs >= minPerClass && notUsedPairs >= minPerClass;
+    const balanceMet = minorityClassRatio >= minMinorityRatio;
+    const meetsTrainingThreshold = countMet && perClassMet && balanceMet;
 
     const advisory = meetsTrainingThreshold
       ? `True-citation ledger holds ${usablePairs} usable session-scoped pairs `
-        + `(${usedPairs} used / ${notUsedPairs} not-used), at or above the `
-        + `${threshold}-pair reranker-training threshold. The outcome reranker is now trainable.`
+        + `(${usedPairs} used / ${notUsedPairs} not-used, minority ${(minorityClassRatio * 100).toFixed(0)}%), `
+        + `at or above the ${threshold}-pair reranker-training threshold with a learnable `
+        + `class balance. The outcome reranker is now trainable.`
       : null;
 
     return {
@@ -647,6 +683,7 @@ export function probeTrueCitationDensity(
       usablePairs,
       usedPairs,
       notUsedPairs,
+      minorityClassRatio,
       meetsTrainingThreshold,
       threshold,
       advisory,

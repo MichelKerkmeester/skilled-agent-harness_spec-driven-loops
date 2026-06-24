@@ -1101,6 +1101,19 @@ export function getCodeGraphGeneration(): number {
   return parseCodeGraphGeneration(getMetadata(CODE_GRAPH_GENERATION_METADATA_KEY));
 }
 
+// The generation bump trails the persistence loop: a scan writes its edges while
+// the counter still holds the prior scan's value, then bumps once at the end. So
+// the edges written during scan K logically belong to the generation that scan K
+// will produce, which is one past the current counter. Loop-time bitemporal
+// writers stamp at this next generation so a closed edge carries a window that is
+// readable at the generation a consumer would name for that scan, and so a close
+// lands strictly after the valid_at of an edge inserted in an earlier scan. The
+// post-bump dangling sweep uses the plain current generation instead, because the
+// bump has already landed by the time it runs.
+function getNextCodeGraphGeneration(): number {
+  return getCodeGraphGeneration() + 1;
+}
+
 export function bumpCodeGraphGeneration(): number {
   const d = getDb();
   const bumpGeneration = d.transaction(() => {
@@ -1454,6 +1467,7 @@ export function countStaleButValidParseDiagnostics(): number {
 /** Batch insert nodes for a file (deletes existing first) */
 export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
   const d = getDb();
+  const bitemporal = codeGraphEdgeBitemporalReadsEnabled();
   const insert = d.prepare(`
     INSERT OR IGNORE INTO code_nodes (symbol_id, file_id, file_path, fq_name, kind, name,
       start_line, end_line, start_column, end_column, language, signature, docstring, content_hash)
@@ -1474,7 +1488,31 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
 
     if (oldSymbolIds.length > 0) {
       const sourcePlaceholders = oldSymbolIds.map(() => '?').join(',');
-      if (removedSymbolIds.length > 0) {
+      if (bitemporal) {
+        // Node replacement runs before edge replacement on the per-file persist
+        // path, so it owns the old symbol ids and is where a stale edge actually
+        // gets superseded on a real reindex. Under bitemporal reads it must close
+        // these edges, not delete them, or the prior generation is destroyed
+        // before the close path downstream can record it. Only live edges
+        // (invalid_at IS NULL) are closed, stamped at the generation this scan
+        // will produce.
+        const closeGeneration = getNextCodeGraphGeneration();
+        if (removedSymbolIds.length > 0) {
+          const removedTargetPlaceholders = removedSymbolIds.map(() => '?').join(',');
+          d.prepare(`
+            UPDATE code_edges SET invalid_at = ?
+            WHERE invalid_at IS NULL AND (
+              source_id IN (${sourcePlaceholders})
+              OR target_id IN (${removedTargetPlaceholders})
+            )
+          `).run(closeGeneration, ...oldSymbolIds, ...removedSymbolIds);
+        } else {
+          d.prepare(`
+            UPDATE code_edges SET invalid_at = ?
+            WHERE invalid_at IS NULL AND source_id IN (${sourcePlaceholders})
+          `).run(closeGeneration, ...oldSymbolIds);
+        }
+      } else if (removedSymbolIds.length > 0) {
         const removedTargetPlaceholders = removedSymbolIds.map(() => '?').join(',');
         d.prepare(`
           DELETE FROM code_edges
@@ -1573,9 +1611,11 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
       recordDanglingEdgeTombstones(d, 'replace_edges_dangling_prune', deletedAt);
       if (bitemporal) {
         // Close dangling edges instead of deleting them so the prior generation
-        // stays readable. Only live edges (invalid_at IS NULL) are closed, so an
-        // already-closed edge keeps its original invalid_at stamp.
-        const asOfGeneration = getCodeGraphGeneration();
+        // stays readable. This inline prune runs during the persist loop, before
+        // the generation bump, so it stamps at the generation this scan will
+        // produce, matching the close path above. Only live edges (invalid_at IS
+        // NULL) are closed, so an already-closed edge keeps its original stamp.
+        const asOfGeneration = getNextCodeGraphGeneration();
         d.prepare(`
           UPDATE code_edges SET invalid_at = ? WHERE invalid_at IS NULL AND (
             (edge_type != 'SUPERSEDES' AND (
@@ -1604,11 +1644,29 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
  * Remove edges whose source or target symbol no longer exists in
  * `code_nodes`. Run ONCE after a multi-file scan (all nodes persisted +
  * cross-file resolution complete) when per-file `replaceEdges` deferred its
- * inline prune. Returns the number of edges removed.
+ * inline prune. Returns the number of edges removed (or closed under the flag).
+ *
+ * This is the production dangling sweep for a full scan: the per-file persist
+ * defers its inline prune, so an unconditional delete here would erase the
+ * superseded edges the bitemporal path just closed. Under the flag it closes the
+ * danglers instead. It runs after the generation bump has already landed for the
+ * scan, so it stamps at the current generation rather than the next one.
  */
 export function pruneDanglingEdges(): number {
   const d = getDb();
   recordDanglingEdgeTombstones(d, 'dangling_edge_prune', new Date().toISOString());
+  if (codeGraphEdgeBitemporalReadsEnabled()) {
+    const result = d.prepare(`
+      UPDATE code_edges SET invalid_at = ? WHERE invalid_at IS NULL AND (
+        (edge_type != 'SUPERSEDES' AND (
+          source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+          target_id NOT IN (SELECT symbol_id FROM code_nodes)
+        ))
+        OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
+      )
+    `).run(getCodeGraphGeneration());
+    return result.changes;
+  }
   const result = d.prepare(`
     DELETE FROM code_edges WHERE
       (edge_type != 'SUPERSEDES' AND (
@@ -1857,6 +1915,13 @@ export function queryEdgesFrom(symbolId: string, edgeType?: string): CodeEdgeTar
   const d = getDb();
   let sql = 'SELECT * FROM code_edges WHERE source_id = ?';
   const params: unknown[] = [symbolId];
+  // Under bitemporal reads a reindex closes superseded edges instead of deleting
+  // them, so a live read must exclude the closed rows or it returns both the old
+  // and the new target. The filter is added only when the flag is on, so the
+  // default query string is unchanged.
+  if (codeGraphEdgeBitemporalReadsEnabled()) {
+    sql += ' AND invalid_at IS NULL';
+  }
   if (edgeType) {
     sql += ' AND edge_type = ?';
     params.push(edgeType);
@@ -1880,6 +1945,12 @@ export function queryEdgesTo(symbolId: string, edgeType?: string): CodeEdgeSourc
   const d = getDb();
   let sql = 'SELECT * FROM code_edges WHERE target_id = ?';
   const params: unknown[] = [symbolId];
+  // Same live-read filter as queryEdgesFrom: a closed edge stays in the table
+  // under bitemporal reads, so the inbound read must drop it. Added only when the
+  // flag is on, leaving the default query string unchanged.
+  if (codeGraphEdgeBitemporalReadsEnabled()) {
+    sql += ' AND invalid_at IS NULL';
+  }
   if (edgeType) {
     sql += ' AND edge_type = ?';
     params.push(edgeType);
@@ -1912,16 +1983,19 @@ export interface CloseEdgesForSourcesResult {
 
 /**
  * Close every live edge from the given source symbols by stamping invalid_at
- * with the current graph generation, rather than deleting it. A live edge is
- * one whose invalid_at is still NULL. Returns the count closed and the
- * generation stamped. When the bitemporal-reads flag is off this is a no-op,
- * so the default replace path keeps deleting edges and nothing here runs.
+ * with the generation this scan will produce, rather than deleting it. A live
+ * edge is one whose invalid_at is still NULL. Stamping at the next generation
+ * keeps the close strictly after the valid_at of an edge inserted in an earlier
+ * scan, so the prior target stays readable at the generation a consumer names
+ * for the pre-reindex state. Returns the count closed and the generation
+ * stamped. When the bitemporal-reads flag is off this is a no-op, so the default
+ * replace path keeps deleting edges and nothing here runs.
  */
 export function closeEdgesForSources(sourceIds: string[]): CloseEdgesForSourcesResult {
-  const asOfGeneration = getCodeGraphGeneration();
   if (!codeGraphEdgeBitemporalReadsEnabled()) {
-    return { closedEdges: 0, asOfGeneration };
+    return { closedEdges: 0, asOfGeneration: getCodeGraphGeneration() };
   }
+  const asOfGeneration = getNextCodeGraphGeneration();
   const uniqueSourceIds = [...new Set(sourceIds.filter((id) => typeof id === 'string' && id.length > 0))];
   if (uniqueSourceIds.length === 0) {
     return { closedEdges: 0, asOfGeneration };
@@ -1938,10 +2012,12 @@ export function closeEdgesForSources(sourceIds: string[]): CloseEdgesForSourcesR
 }
 
 /**
- * Insert an edge with valid_at stamped to the current graph generation and
- * invalid_at left open, so a later close-and-insert can record its lifetime.
- * When the flag is off this falls back to a plain insert with NULL validity
- * columns, byte-identical to the default edge write.
+ * Insert an edge with valid_at stamped to the generation this scan will produce
+ * and invalid_at left open, so a later close-and-insert can record its lifetime.
+ * Stamping at the next generation matches the close path, so an edge inserted in
+ * one scan and superseded in the next carries a non-empty lifetime window. When
+ * the flag is off this falls back to a plain insert with NULL validity columns,
+ * byte-identical to the default edge write.
  */
 export function insertEdgeWithValidity(edge: CodeEdge): void {
   const d = getDb();
@@ -1952,7 +2028,7 @@ export function insertEdgeWithValidity(edge: CodeEdge): void {
     `).run(edge.sourceId, edge.targetId, edge.edgeType, edge.weight, edge.metadata ? JSON.stringify(edge.metadata) : null);
     return;
   }
-  const validAt = getCodeGraphGeneration();
+  const validAt = getNextCodeGraphGeneration();
   d.prepare(`
     INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata, valid_at, invalid_at)
     VALUES (?, ?, ?, ?, ?, ?, NULL)

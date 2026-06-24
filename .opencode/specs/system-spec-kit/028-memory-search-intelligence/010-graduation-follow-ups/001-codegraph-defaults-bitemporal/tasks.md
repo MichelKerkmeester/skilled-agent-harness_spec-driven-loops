@@ -61,11 +61,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Read the bitemporal flag once at the top of `replaceEdges` (`mcp_server/lib/code-graph-db.ts`) [10m]
-- [x] T005 Branch the source delete to `closeEdgesForSources` when the flag is on (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T006 Branch the per-edge insert to `insertEdgeWithValidity` when the flag is on (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T007 Branch the dangling prune to a close-only UPDATE when the flag is on (`mcp_server/lib/code-graph-db.ts`) [15m]
-- [x] T008 Keep every off-path statement verbatim so the off-path stays byte-identical (`mcp_server/lib/code-graph-db.ts`) [5m]
+- [x] T004 Add `getNextCodeGraphGeneration` and stamp loop-time writes at the next generation (`mcp_server/lib/code-graph-db.ts`) [10m]
+- [x] T005 Close edges in `replaceNodes` under the flag instead of deleting (`mcp_server/lib/code-graph-db.ts`) [15m]
+- [x] T006 Close-and-insert in `replaceEdges` under the flag (`mcp_server/lib/code-graph-db.ts`) [15m]
+- [x] T007 Close danglers in `pruneDanglingEdges` under the flag at the current generation (`mcp_server/lib/code-graph-db.ts`) [15m]
+- [x] T008 Filter closed edges from `queryEdgesFrom` and `queryEdgesTo` under the flag (`mcp_server/lib/code-graph-db.ts`) [10m]
+- [x] T009 Keep every off-path statement verbatim so the off-path stays byte-identical (`mcp_server/lib/code-graph-db.ts`) [5m]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,13 +74,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Write the as-of round-trip integration test: close at N, reindex at N+1, assert old target at N and new target current (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [30m]
-- [x] T010 Add a live-read assertion that the post-reindex read returns only the open edge (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [10m]
-- [x] T011 Write the bitemporal off-path byte-identity test: delete and re-insert, validity columns null (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [15m]
-- [x] T012 Write the flag-unset-versus-false byte-identity test for `replaceEdges` (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [10m]
-- [x] T013 Write the degree-cap off-path byte-identity tests: stale edge stays, outcome invariant to the cap env value (`mcp_server/tests/reverse-dep-degree-cap-default.vitest.ts`) [20m]
-- [x] T014 Confirm `npx tsc --noEmit --composite false -p .opencode/skills/system-code-graph/tsconfig.json` exits 0 [5m]
-- [x] T015 Confirm the two new test files type-check against the vitest and node types [5m]
+- [x] T010 Write the real-scan as-of round trip: drive the scan handler twice, assert old target at the pre-reindex generation and new target live (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [30m]
+- [x] T011 Add the live-read assertion that the post-reindex read returns only the open edge (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [10m]
+- [x] T012 Write the bitemporal off-path byte-identity tests: delete and re-insert, validity columns null, flag-unset matches flag-false (`mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts`) [15m]
+- [x] T013 Write the live-reader filter and close-not-delete unit tests with off-path byte identity (`mcp_server/tests/code-edge-bitemporal-readers.vitest.ts`) [25m]
+- [x] T014 Write the degree-cap off-path byte-identity tests: stale edge stays, outcome invariant to the cap env value (`mcp_server/tests/reverse-dep-degree-cap-default.vitest.ts`) [20m]
+- [x] T015 Confirm `npx tsc --noEmit --composite false -p .opencode/skills/system-code-graph/tsconfig.json` exits 0 [5m]
+- [x] T016 Confirm the three new test files type-check and the focused vitest run passes (`mcp_server/tests`) [10m]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -89,9 +90,9 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Integration test authored
-- [x] Byte-identity tests authored for both changes
-- [x] `tsc` exits 0
+- [x] Real-scan integration test authored and passing
+- [x] Byte-identity tests authored for every change
+- [x] `tsc` exits 0 and the focused vitest run passes
 - [x] Checklist.md fully verified
 <!-- /ANCHOR:completion -->
 

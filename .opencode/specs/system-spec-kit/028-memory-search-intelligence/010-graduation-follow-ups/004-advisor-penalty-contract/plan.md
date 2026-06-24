@@ -42,7 +42,7 @@ FAILURE MODES:
 | **Testing** | The advisor build typecheck plus a new scorer vitest, validated by a break-on-removal check |
 
 ### Overview
-The implicit `auditRecsAdvisorPenalty` already demotes the advisor from recommending itself on a read-only audit-recommendation prompt, and the 009 validation cleared the advisor RRF fusion and asked only that this penalty replacing the cut explicit guard be documented and tested. So this is a document-and-lock change with no behavior change. A durable WHY comment is added at the penalty's definition, plus a short cross-reference at its value, and a regression test fires the penalty in the production-default state and asserts the advisor is not the top recommendation on an audit prompt. The penalty value and the fusion logic are untouched.
+The implicit `auditRecsAdvisorPenalty` already demotes the advisor from recommending itself on a read-only audit-recommendation prompt, and the 009 validation asked that this penalty replacing the cut explicit guard be documented and tested. A follow-up deep review then found the guard-off application matched the advisor by the exact string `system-skill-advisor` and missed the `skill-advisor` alias. So this is a document-lock-and-correct change: a durable WHY comment at the penalty's definition plus a short cross-reference at its value; a one-line predicate fix to apply the penalty through the canonical `isAdvisorSelfRecommendationSkill` helper so the alias is demoted too in the production-default state; and a regression test that fires the penalty for both the canonical id and the alias. The penalty value is unchanged; the only routing change is the deliberate alias coverage.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -67,15 +67,16 @@ The implicit `auditRecsAdvisorPenalty` already demotes the advisor from recommen
 ## 3. ARCHITECTURE
 
 ### Pattern
-Document-and-lock around an existing constant. The penalty is a single calibration value applied in one routing branch, so the change is a comment at the definition plus a behavioral test that exercises the branch. No new code path is introduced.
+Document-lock-and-correct around an existing constant. The penalty is a single calibration value applied in one routing branch, so the change is a comment at the definition, a one-line predicate fix in the branch to cover the alias, plus a behavioral test that exercises the branch for both the canonical id and the alias. No new code path is introduced.
 
 ### Key Components
 - **`auditRecsAdvisorPenalty` constant** in `scoring-constants.ts`: gains a durable WHY comment at its interface declaration and a short cross-reference at its value.
-- **`primaryIntentBonus` in `fusion.ts`**: the application site, read to confirm the production-default branch that returns the penalty for the advisor on an audit-recommendation prompt when the explicit guard flag is OFF. Unchanged.
-- **New scorer vitest**: feeds an audit prompt to `scoreAdvisorPrompt` against a fixture projection and asserts the advisor is demoted, reusing the existing self-boost-guard harness.
+- **`primaryIntentBonus` in `fusion.ts`**: the application site. Its guard-off branch matched the advisor by exact string and missed the alias; the fix matches through the canonical `isAdvisorSelfRecommendationSkill` helper so both ids are demoted, aligning it with the guard-on path that already uses the helper.
+- **New scorer vitest**: feeds an audit prompt to `scoreAdvisorPrompt` against a fixture projection and asserts both the canonical id and the alias are demoted, reusing the existing self-boost-guard harness.
+- **Existing `provenance-self-boost-guard.vitest.ts`**: its alias test encoded the old guard-off behavior (alias top when off) and is reconciled to the corrected behavior (alias demoted off).
 
 ### Data Flow
-On an audit-recommendation prompt with the explicit guard OFF, `primaryIntentBonus` returns the penalty for the advisor skill, the demotion comparator subtracts it from the advisor's adjusted score, and the advisor falls below a score-tied competitor in the ranked output. The test reads that ranked output and asserts the advisor is not first.
+On an audit-recommendation prompt with the explicit guard OFF, `primaryIntentBonus` now returns the penalty for any skill the canonical helper recognizes as the advisor or its alias, the demotion comparator subtracts it from that skill's adjusted score, and it falls below a score-tied competitor in the ranked output. The test reads that ranked output and asserts neither the canonical id nor the alias is first.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -89,13 +90,15 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | `auditRecsAdvisorPenalty` declaration | The sole defense demoting the advisor on audit prompts, undocumented | add a durable WHY comment stating the reason and the do-not-remove constraint | the comment is present at the declaration with no artifact-id |
 | `auditRecsAdvisorPenalty` value | The frozen calibration number an editor would touch | add a short cross-reference comment to the contract | the value is unchanged at `-0.25` and points back to the declaration |
-| `primaryIntentBonus` in `fusion.ts` | Applies the penalty in the production-default branch | no change, read to confirm the branch | the routing logic is byte-identical |
-| New scorer vitest | Did not exist | create a regression test firing the penalty in the production-default state | the test passes with the penalty and fails when it is zeroed |
+| `primaryIntentBonus` guard-off branch in `fusion.ts` | Matched the advisor by exact string, missing the alias | replace the exact `=== 'system-skill-advisor'` check with `isAdvisorSelfRecommendationSkill(recommendation.skill)` | the alias is demoted off the top spot on an audit prompt with the guard OFF |
+| New scorer vitest | Did not exist | create a regression test firing the penalty for both the canonical id and the alias | the test passes with the fix and fails when the penalty is zeroed or reverted to exact-id-only |
+| `provenance-self-boost-guard.vitest.ts` alias test | Asserted the alias is top off, demoted only on | reconcile to assert the alias is demoted off too | the full scorer suite is green |
 
 Required inventories:
 - Penalty definition: `auditRecsAdvisorPenalty` in `lib/scorer/scoring-constants.ts`.
-- Application site: the audit-recommendation branch in `primaryIntentBonus` in `lib/scorer/fusion.ts`.
-- Algorithm invariant: the penalty value and the fusion routing are unchanged; only a comment and a test are added.
+- Application site: the audit-recommendation branch in `primaryIntentBonus` in `lib/scorer/fusion.ts`, guard-off check at the exact-id line.
+- Canonical helper: `isAdvisorSelfRecommendationSkill` over the `ADVISOR_SELF_RECOMMENDATION_SKILL_IDS` set in `fusion.ts`, already used by the guard-on path.
+- Algorithm invariant: the penalty value is unchanged; only the guard-off matching predicate changes, to cover the alias.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -109,11 +112,13 @@ Required inventories:
 
 ### Phase 2: Core Implementation
 - [x] Add the durable WHY comment at the `auditRecsAdvisorPenalty` declaration and a short cross-reference at its value, no artifact-id
-- [x] Author the regression test: an audit prompt, a score-tied competitor sorting after the advisor, assertions the advisor is not top and is demoted, a negative-control, and a direct negative-constant assertion
+- [x] Fix the guard-off branch to match through `isAdvisorSelfRecommendationSkill` so the alias is demoted too
+- [x] Author the regression test: an audit prompt, a score-tied competitor sorting after the advisor, assertions neither the canonical id nor the alias is top, a negative-control, and a direct negative-constant assertion
+- [x] Reconcile the existing alias test in `provenance-self-boost-guard.vitest.ts` to the corrected guard-off behavior
 
 ### Phase 3: Verification
-- [x] Confirm the test breaks when the penalty is zeroed, then revert the penalty to `-0.25`
-- [x] Typecheck the advisor build target clean and run the new and existing self-recommendation tests green
+- [x] Confirm the test breaks when the penalty is zeroed and when the check is reverted to exact-id-only, then restore the fix
+- [x] Typecheck the advisor build target clean and run the full scorer suite green
 <!-- /ANCHOR:phases -->
 
 ---
@@ -124,8 +129,8 @@ Required inventories:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Static | The advisor build target typechecks clean after the change | `tsc --noEmit --composite false -p tsconfig.build.json` |
-| Unit | The new regression test plus the existing self-boost-guard test | the scorer `*.vitest.ts` files |
-| Mutation | The lock is validated by zeroing the penalty and observing the test break | a temporary edit, then revert |
+| Unit | The new regression test, the reconciled self-boost-guard test, and the full scorer suite for regressions | the scorer `*.vitest.ts` files |
+| Mutation | The lock is validated by zeroing the penalty AND by reverting the check to exact-id-only, observing the test break each way | a temporary edit, then restore |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,8 +150,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: The comment or the test is found to be wrong or the test is flaky.
-- **Procedure**: Revert the working-tree changes, the change is uncommitted, so a single `git restore` on the two affected files removes the comment and the test with no data involved and no behavior change to undo.
+- **Trigger**: The predicate fix is found to over-demote a legitimate advisor route, or the comment or test is wrong or flaky.
+- **Procedure**: Revert the working-tree changes, the change is uncommitted, so a single `git restore` on the affected files removes the comment, the predicate fix and the tests with no data involved. The alias fix only widens an existing demotion to a known alias, so reverting returns to the prior exact-id behavior.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -189,16 +194,17 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ### Pre-deployment Checklist
 - [x] The penalty value is unchanged at `-0.25`
 - [x] The advisor build typecheck exits 0
-- [x] The regression test is green and was confirmed to fail on removal
+- [x] The regression test is green and was confirmed to fail on removal and on an exact-id revert
+- [x] The full scorer suite is green after the predicate fix and the test reconciliation
 
 ### Rollback Procedure
-1. `git restore` the two affected files to drop the comment and the test, the change is uncommitted
+1. `git restore` the affected files to drop the comment, the predicate fix and the tests, the change is uncommitted
 2. Re-run the advisor build typecheck to confirm it stays clean
-3. Confirm the penalty value and the fusion logic are unchanged either way
+3. Confirm the penalty value is unchanged either way
 
 ### Data Reversal
 - **Has data migrations?** No
-- **Reversal procedure**: N/A, the change is a comment and a test, no data is written
+- **Reversal procedure**: N/A, the change is a comment, a one-line predicate fix and tests, no data is written
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

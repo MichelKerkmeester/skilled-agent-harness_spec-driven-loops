@@ -58,22 +58,22 @@ The 009 validation cleared the dark-flag winners but left two search-layer gaps 
 
 The tail-append stage (deterministic multi-hop and lane-champion backfill) adds rows past the requested limit, and those rows correctly bypass the Stage-4 cap. But a second truncation at the response-serialization layer pops rows off the END of the result array to fit a token budget, which is exactly where the appended rows live. So the appends survived one cap only to be dropped by the next.
 
-The formatter now marks every tail-appended row with `appendExempt: true`, derived from the `source` / `sources` markers the append modules already stamp (`multihop`, `lane-champion:<lane>`). The serializer's trim loop calls a new pure helper, `selectBudgetTrimIndex`, which returns the last NON-exempt row to drop, sacrificing an exempt append only once nothing else remains. When no row is exempt — which is the case whenever both append flags are off — the helper returns the last index every pass, so the trim is byte-for-byte the original `pop()`-from-end.
+The formatter now marks every tail-appended row with `appendExempt: true`, derived from the `source` / `sources` markers the append modules already stamp (`multihop`, `lane-champion:<lane>`). The serializer's trim loop calls a new pure helper, `selectBudgetTrimIndex`, which drops by a fixed priority: ordinary rows first from the tail, then additive backfill (`appendExempt`) rows, then constitutional pins last. Two protections follow from a deep review of this work. It always reserves at least one non-backfill (primary) row, so the hardest budget squeeze can never collapse the answer to backfill-only and evict the top-scored requested result (P1-6). And it treats constitutional / always-surface rows as at least as protected as a backfill, so a squeeze never drops a pinned rule before an additive backfill (P2-14). When no row is `appendExempt` and no row is constitutional — the case whenever both append flags are off on an ordinary result set — the helper returns the last index every pass, so the trim is byte-for-byte the original `pop()`-from-end.
 
 ### The true-citation ledger now reports its training readiness
 
-The `SPECKIT_TRUE_CITATION_EMITTER` ledger only becomes worth training a reranker on once it holds enough used/not-used pairs, but nothing measured that. `probeTrueCitationDensity` now reports the count of usable session-scoped pairs (`usedPairs` + `notUsedPairs`, both with a non-null session) and decides whether the corpus has crossed a reranker-training threshold. Legacy null-session rows count toward the raw `total` but never toward the usable count, because they can never yield session-scoped training data. A lopsided ledger (all-used or all-not-used) never graduates regardless of count, because a reranker with one class has nothing to discriminate. When the threshold is crossed, the probe returns an advisory string a caller can surface. `memory_health` now surfaces this reading, gated behind the emitter flag and a live DB, so its payload is unchanged when the flag is off.
+The `SPECKIT_TRUE_CITATION_EMITTER` ledger only becomes worth training a reranker on once it holds enough used/not-used pairs, but nothing measured that. `probeTrueCitationDensity` now reports the count of usable session-scoped pairs (`usedPairs` + `notUsedPairs`, both with a non-null session) and decides whether the corpus has crossed a reranker-training threshold. Legacy null-session rows count toward the raw `total` but never toward the usable count, because they can never yield session-scoped training data. Graduation is not a count alone: a deep review found the original both-classes gate passed a 199:1 split, so the gate now also requires each class to clear an absolute floor (`RERANKER_TRAINING_MIN_PER_CLASS`) AND the minority class to clear a ratio floor (`RERANKER_TRAINING_MIN_MINORITY_RATIO`). A lopsided ledger clears the count yet starves the minority class, so it is rejected (P2-12); a single-class ledger never graduates at all. When all gates pass, the probe returns an advisory string a caller can surface. `memory_health` now surfaces this reading, gated behind the emitter flag and a live DB, so its payload is unchanged when the flag is off.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `mcp_server/formatters/search-results.ts` | Modified | `appendExempt` field + `isTailAppendedRow` detection from `source`/`sources` |
-| `mcp_server/context-server.ts` | Modified | `selectBudgetTrimIndex` pure helper; trim loop drops non-exempt rows first |
-| `mcp_server/lib/feedback/true-citation-emitter.ts` | Modified | `RERANKER_TRAINING_MIN_PAIRS` + `probeTrueCitationDensity` |
+| `mcp_server/context-server.ts` | Modified | `selectBudgetTrimIndex` pure helper; tiered trim that reserves a primary row and pins constitutional rows above backfills |
+| `mcp_server/lib/feedback/true-citation-emitter.ts` | Modified | `probeTrueCitationDensity` + count, per-class, and minority-ratio thresholds |
 | `mcp_server/handlers/memory-crud-health.ts` | Modified | Surfaces the probe in `memory_health`, flag-gated |
-| `mcp_server/tests/append-exempt-serializer.vitest.ts` | Created | Marking + trim-selection + survival tests |
-| `mcp_server/tests/true-citation-emitter.vitest.ts` | Modified | Density-probe tests (zero, below, above, single-class, null-session, custom threshold) |
+| `mcp_server/tests/append-exempt-serializer.vitest.ts` | Created | Marking + tiered trim-selection (P1-6, P2-14) + survival tests |
+| `mcp_server/tests/true-citation-emitter.vitest.ts` | Modified | Density-probe tests incl. the 199:1 lopsided regression (P2-12) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,7 +81,7 @@ The `SPECKIT_TRUE_CITATION_EMITTER` ledger only becomes worth training a reranke
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Everything lands behind the existing default-off flags. The marker is set only on appended rows, so the flag-off response carries no `appendExempt` key at all (proven by test A2). The trim selection collapses to the original `pop()` when no row is exempt (test B1, C2). The density probe surfaces in `memory_health` only when `SPECKIT_TRUE_CITATION_EMITTER` is on and a DB is present, so the health payload is unchanged when off. Type safety was verified with `tsc`; the two vitest suites are authored and handed to the cli executor for the test pass.
+Everything lands behind the existing default-off flags. The marker is set only on appended rows, so the flag-off response carries no `appendExempt` key at all (proven by test A2). The trim selection collapses to the original `pop()` when no row is exempt and no row is constitutional (test B1, C2) — the constitutional-sparing of P2-14 changes behavior only when a pinned row is present and a squeeze actually fires, which is independent of the append flags. The density probe surfaces in `memory_health` only when `SPECKIT_TRUE_CITATION_EMITTER` is on and a DB is present, so the health payload is unchanged when off. Type safety was verified with `tsc`, and the trim and density logic were cross-checked by a standalone simulation; the two vitest suites are authored and handed to the cli executor for the test pass.
 <!-- /ANCHOR:how-delivered -->
 
 ---

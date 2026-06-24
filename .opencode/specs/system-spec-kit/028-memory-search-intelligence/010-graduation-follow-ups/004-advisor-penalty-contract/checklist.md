@@ -54,10 +54,11 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] The penalty value is unchanged at `-0.25` and no fusion routing logic was modified
-- [x] CHK-011 [P0] The durable WHY comment states the advisor-must-not-self-recommend reason and the do-not-remove-without-replacement constraint
+- [x] CHK-010 [P0] The penalty value is unchanged at `-0.25`; only the guard-off matching predicate was changed, to cover the alias
+- [x] CHK-011 [P0] The durable WHY comment states the advisor-must-not-self-recommend reason, the do-not-remove-without-replacement constraint, and that the penalty must be applied through the canonical self-rec id set so the alias is covered
 - [x] CHK-012 [P1] A short cross-reference comment at the constant value points back to the contract
-- [x] CHK-013 [P1] The regression test reuses the existing scorer fixture-projection harness pattern
+- [x] CHK-013 [P1] The guard-off branch matches through `isAdvisorSelfRecommendationSkill`, aligned with the guard-on path that already uses the helper
+- [x] CHK-014 [P1] The regression test reuses the existing scorer fixture-projection harness pattern
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -65,10 +66,11 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-005)
-- [x] CHK-021 [P0] The regression test runs green with the penalty present, 4 tests passing
-- [x] CHK-022 [P0] The test was confirmed to fail when the penalty is zeroed, 3 of 4 tests break, proving a real lock
-- [x] CHK-023 [P1] The advisor build typecheck exits 0 after the change
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
+- [x] CHK-021 [P0] The regression test runs green with the fix present, 5 tests passing
+- [x] CHK-022 [P0] The test was confirmed to fail when the penalty is zeroed (3 of 5 break) and when the check is reverted to exact-id-only (the alias test breaks), proving a real lock for both the value and the alias coverage
+- [x] CHK-023 [P0] The full scorer suite is green after the predicate fix and the test reconciliation, 119 tests across 16 files
+- [x] CHK-024 [P1] The advisor build typecheck exits 0 after the change
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,13 +78,14 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] The finding class is `safety-mechanism-undocumented`, the sole-defense penalty now has a comment and a test.
+- [x] CHK-FIX-001 [P0] The finding class is `safety-mechanism-undocumented-and-alias-gap`, the sole-defense penalty now has a comment, an alias-covering predicate fix, and a test.
 - [x] CHK-FIX-002 [P0] The penalty definition site located and annotated in `scoring-constants.ts`.
-- [x] CHK-FIX-003 [P0] The application site in `fusion.ts` `primaryIntentBonus` confirmed to fire in the production-default guard-OFF state.
-- [x] CHK-FIX-004 [P0] The regression test exercises the production-default state, not a flag-on path.
+- [x] CHK-FIX-003 [P0] The guard-off branch in `fusion.ts` `primaryIntentBonus` confirmed to have matched by exact string, and fixed to match through the canonical self-rec id helper.
+- [x] CHK-FIX-004 [P0] The regression test exercises the production-default state for both the canonical id and the alias, not a flag-on path.
 - [x] CHK-FIX-005 [P1] A negative-control test proves the penalty is conditional, not a blanket advisor suppression.
-- [x] CHK-FIX-006 [P1] The lock was validated by zeroing the penalty and observing the test break, then reverting.
-- [x] CHK-FIX-007 [P1] Evidence is the post-change working tree, uncommitted for user review.
+- [x] CHK-FIX-006 [P1] The lock was validated by zeroing the penalty and by reverting to exact-id-only, observing the test break each way, then restoring the fix.
+- [x] CHK-FIX-007 [P1] The existing alias test that encoded the old guard-off behavior was reconciled, and no other scorer test regressed.
+- [x] CHK-FIX-008 [P1] Evidence is the post-change working tree, uncommitted for user review.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -121,8 +124,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 13/13 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 15 | 15/15 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-06-24

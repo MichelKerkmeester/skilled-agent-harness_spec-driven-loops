@@ -608,7 +608,7 @@ function primaryIntentBonus(
   // Auditing recommendation quality is a review task, not an advisor-self task.
   if (/\baudit\b/.test(promptLower) && /\b(recommendation|recommendations|recommendation quality|routing quality)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code-review') return R.auditRecsCodeReviewBonus;
-    if (!selfRecommendationGuardEnabled && recommendation.skill === 'system-skill-advisor') return R.auditRecsAdvisorPenalty;
+    if (!selfRecommendationGuardEnabled && isAdvisorSelfRecommendationSkill(recommendation.skill)) return R.auditRecsAdvisorPenalty;
     if (shouldApplyAdvisorSelfRecommendationGuard({
       skillId: recommendation.skill,
       guardEnabled: selfRecommendationGuardEnabled,

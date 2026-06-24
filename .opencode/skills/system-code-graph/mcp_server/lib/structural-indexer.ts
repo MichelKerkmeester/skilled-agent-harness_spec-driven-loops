@@ -2121,10 +2121,14 @@ const REVERSE_DEP_FORCE_PARSE_DEGREE_CAP_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_D
 // re-parse its entire fan-in on every symbol-identity change without a ceiling.
 // Ten bounds the blast radius to the common refactor (a dependency with a modest
 // importer set still rebinds in full) while leaving a hot fan-in hub to the lazy
-// rebind on its importers' next own edit. A 30-importer rename drops to zero
-// forced re-parses at this ceiling. Setting the cap env to 0 restores the
-// uncapped behavior. This only takes effect when the force-parse flag is on, so
-// the default has no effect while that flag is off.
+// rebind on its importers' next own edit. Ten is an unbenchmarked midpoint chosen
+// as a safe ceiling, not a tuned value. The correctness cost of any positive cap:
+// when a renamed dependency's importer degree exceeds the cap, ALL of its
+// importer edges stay durably stale until each importer is edited for its own
+// reasons, because the repair drops that dependency from the force-parse
+// expansion. Setting the cap env to 0 restores the uncapped behavior and repairs
+// every importer regardless of fan-in. The cap only takes effect when the
+// force-parse flag is on, so the default has no effect while that flag is off.
 const DEFAULT_REVERSE_DEP_DEGREE_CAP = 10;
 
 function reverseDepForceParseEnabled(): boolean {

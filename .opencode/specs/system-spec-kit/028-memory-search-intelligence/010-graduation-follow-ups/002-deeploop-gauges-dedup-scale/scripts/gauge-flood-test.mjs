@@ -228,36 +228,126 @@ async function heartbeatMatrix() {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 4. LAG-CEILING ONE-SHOT UNDER CONCURRENT POOL
+// 4. LAG-CEILING: A QUEUE-BACKPRESSURE GAUGE, NOT A STALL DETECTOR
 // ───────────────────────────────────────────────────────────────
 //
-// The lag-ceiling fires at most ONCE per pool run by construction (a single guarded
-// boolean), so it cannot flood regardless of cadence or pool width. We confirm that
-// contract still holds under a wide concurrent pool: a ceiling low enough that the
-// oldest queued lineage crosses it while later lineages still wait. With 10 lineages
-// at concurrency 2 and a ~3s stub, the tail lineages wait well past a 1500ms ceiling,
-// so the warning fires — exactly once.
+// CORRECTION (deep-review P1-7): the lag metric `oldest_pending_lag_ms` is
+// `Date.now() - queuedAtMs[index]`, the time since the item was queued at POOL START
+// (fanout-pool.cjs:319,324-331). An item only leaves the queue when a concurrency slot
+// frees (fanout-pool.cjs:426-427). So whenever `width > concurrency`, the tail items
+// sit queued from t=0 and their "lag" is the NORMAL wait for a slot — queue
+// backpressure — not a stalled worker. The committed pool test bakes this in: 2 items
+// at concurrency 1 fire the warning purely because the second item is queued
+// (fanout-pool.vitest.ts:238-264).
+//
+// This means the gauge is a QUEUE-DEPTH / BACKPRESSURE signal, not a stalled-tail
+// detector. The originally-recommended 1500ms ceiling fires on EVERY normal fan-out
+// where width > concurrency, which is a false positive. We do not redefine the
+// production metric here (that changes a graduated-flag contract and breaks the
+// committed test); we re-justify the default UNDER THE BACKPRESSURE MEANING:
+//   - it must stay SILENT on a healthy fan-out whose backpressure is normal, and
+//   - it should FIRE only when the oldest queued item has waited abnormally long,
+//     i.e. far longer than one healthy lineage's runtime, signalling a starved pool
+//     (a hung worker holding a slot, not a normal second wave).
+//
+// The test below (1) proves the 1500ms false positive on a HEALTHY pool, (2) measures
+// the normal-backpressure wait of that healthy pool, and (3) shows a backpressure-aware
+// ceiling stays silent on the healthy pool but fires when a worker genuinely stalls.
 
-async function lagCeilingUnderPool() {
+// Healthy fan-out: width > concurrency but every worker runs quickly and normally. The
+// second-wave items queue briefly — normal backpressure. A correct backpressure gauge
+// must NOT fire here. `width`/`stubSeconds` are parameterized so we can exhibit BOTH a
+// wide-and-slow healthy pool (whose normal backpressure crosses a low ceiling — the
+// 1500ms false positive) and a narrow-and-fast healthy pool (whose normal backpressure
+// stays under a backpressure-aware ceiling).
+async function healthyBackpressureRun({ lagCeilingMs, width = 10, stubSeconds = 1 }) {
   const run = await floodRun({
-    cadenceSeconds: 0,      // heartbeat off; isolate the lag gauge
-    lineageCount: 10,
-    concurrency: 2,         // serialize so the queue tail ages past the ceiling
-    stubSleepSeconds: 3,
-    lagCeilingMs: 1500,
-  });
-  const fired = run.lagRecords.length;
-  return {
-    lagCeilingMsUnderTest: 1500,
-    lineageCount: 10,
+    cadenceSeconds: 0,
+    lineageCount: width,
     concurrency: 2,
-    stubSleepSeconds: 3,
-    eventsFired: fired,
-    oneShotNoFlood: fired <= 1,
-    firedAtLeastOnce: fired >= 1,
-    sampleEvent: fired > 0
-      ? { event: run.lagRecords[0].event, severity: run.lagRecords[0].severity, lag_ceiling_ms: run.lagRecords[0].lag_ceiling_ms, oldest_pending_lag_ms: run.lagRecords[0].oldest_pending_lag_ms }
-      : null,
+    stubSleepSeconds: stubSeconds,
+    lagCeilingMs,
+  });
+  // Recover the max observed oldest_pending_lag from any gauge-bearing ledger record so
+  // we can quantify the normal-backpressure wait this healthy pool actually produced.
+  const maxObservedLag = run.lagRecords.reduce(
+    (m, r) => Math.max(m, Number(r.oldest_pending_lag_ms ?? 0)),
+    0,
+  );
+  return { fired: run.lagRecords.length, maxObservedLag, sample: run.lagRecords[0] ?? null };
+}
+
+// Stalled fan-out: one slot is held by a worker that hangs far longer than the rest, so
+// the queue tail waits abnormally long — a genuine starvation signal a backpressure
+// gauge SHOULD catch. We model the stall by a long stub and a wide queue at concurrency
+// 2, so a tail item waits past the backpressure-aware ceiling.
+async function stalledTailRun({ lagCeilingMs, stallSeconds }) {
+  const run = await floodRun({
+    cadenceSeconds: 0,
+    lineageCount: 6,
+    concurrency: 2,
+    stubSleepSeconds: stallSeconds,
+    lagCeilingMs,
+  });
+  return { fired: run.lagRecords.length, sample: run.lagRecords[0] ?? null };
+}
+
+async function lagCeilingBackpressure() {
+  // (1) The originally-recommended 1500ms ceiling on a realistically-shaped HEALTHY pool
+  // (10 lineages, concurrency 2, ~1s each — a normal deep-loop fan-out that is wider than
+  // its slot count). The tail's normal second-wave wait crosses 1500ms, so the gauge
+  // FALSE-FIRES on a fully healthy run: the false positive the deep review flagged.
+  const falsePositive = await healthyBackpressureRun({ lagCeilingMs: 1500, width: 10, stubSeconds: 1 });
+
+  // (2) Backpressure-aware default. The metric measures total queue wait, so the ceiling
+  // must exceed any NORMAL second-wave wait and fire only when a queued item has waited
+  // abnormally long (a starved pool — a hung slot holding back the queue). A healthy
+  // deep-loop lineage runs minutes; the per-lineage timeout floor is ~4h
+  // (computeLineageTimeoutMs). We set the production ceiling to 5 minutes (300000ms):
+  // above any normal second-wave wait, low enough to catch a hung slot well before the 4h
+  // timeout. We cannot sleep 5min in a test, so we prove the TWO directions with a scaled
+  // ceiling that preserves the production ordering (normal-backpressure < ceiling < stall),
+  // using a NARROW-AND-FAST healthy pool whose normal backpressure is genuinely small.
+  const SCALED_CEILING_MS = 2500;          // stands in for the 300000ms production value
+  const HEALTHY_WIDTH = 4;                  // narrow: only one queued wave at concurrency 2
+  const HEALTHY_SECONDS = 0.4;              // fast: tail's normal wait ~0.4s, well under ceiling
+  const GENUINE_STALL_SECONDS = 4;          // a hung slot: queue tail waits ~4s, past the ceiling
+
+  const silentOnHealthy = await healthyBackpressureRun({ lagCeilingMs: SCALED_CEILING_MS, width: HEALTHY_WIDTH, stubSeconds: HEALTHY_SECONDS });
+  const firesOnStall = await stalledTailRun({ lagCeilingMs: SCALED_CEILING_MS, stallSeconds: GENUINE_STALL_SECONDS });
+
+  return {
+    metricMeaning: 'oldest_pending_lag_ms = time since the item was queued at pool start; a queue-backpressure / starvation signal, NOT a stalled-worker detector',
+    falsePositiveAtOriginalDefault: {
+      lagCeilingMs: 1500,
+      poolWidth: 10,
+      concurrency: 2,
+      healthyLineageSeconds: 1,
+      fired: falsePositive.fired,
+      observedTailWaitMs: falsePositive.maxObservedLag,
+      note: 'a 1500ms ceiling fires on this fully healthy 10-wide pool purely because width > concurrency — the false positive the deep review flagged',
+    },
+    backpressureAwareCeiling: {
+      productionRecommendationMs: 300000,
+      productionRationale: 'a queued lineage that has waited > 5min has waited longer than a healthy lineage runtime, signalling a starved pool (a hung slot), well before the ~4h per-lineage timeout; below this is normal second-wave backpressure',
+      scaledProofCeilingMs: SCALED_CEILING_MS,
+      silentOnHealthyPool: {
+        poolWidth: HEALTHY_WIDTH,
+        concurrency: 2,
+        healthyLineageSeconds: HEALTHY_SECONDS,
+        observedTailWaitMs: silentOnHealthy.maxObservedLag,
+        fired: silentOnHealthy.fired,
+        staysSilent: silentOnHealthy.fired === 0,
+      },
+      firesOnGenuineStall: {
+        stallSeconds: GENUINE_STALL_SECONDS,
+        fired: firesOnStall.fired,
+        oneShot: firesOnStall.fired === 1,
+        sample: firesOnStall.sample
+          ? { event: firesOnStall.sample.event, severity: firesOnStall.sample.severity, lag_ceiling_ms: firesOnStall.sample.lag_ceiling_ms, oldest_pending_lag_ms: firesOnStall.sample.oldest_pending_lag_ms }
+          : null,
+      },
+    },
   };
 }
 
@@ -266,7 +356,7 @@ async function lagCeilingUnderPool() {
 // ───────────────────────────────────────────────────────────────
 
 const heartbeat = await heartbeatMatrix();
-const lagCeiling = await lagCeilingUnderPool();
+const lagCeiling = await lagCeilingBackpressure();
 
 // OBSERVED confirmation at the recommended cadence: the matrix above projects long
 // cadences analytically because a short stub window cannot catch a 30s tick. Here we
@@ -321,16 +411,19 @@ const out = {
   lagCeiling,
   recommendation: {
     progressHeartbeatSeconds: recommendedHeartbeat ? recommendedHeartbeat.cadenceSeconds : 0,
-    lagCeilingMs: 1500,
+    lagCeilingMs: 300000,
+    lagCeilingMeaning: 'queue-backpressure / starvation gauge (oldest_pending_lag_ms = time since queued at pool start), NOT a stalled-worker detector',
     rationale: recommendedHeartbeat
-      ? `at ${recommendedHeartbeat.cadenceSeconds}s cadence a 10-wide 1h fan-out projects ${recommendedHeartbeat.analyticHourlyProjection} progress records (<= ${INFORMING_HOURLY_BUDGET} budget), informing without flooding; the 009 0.05s baseline projected ${heartbeat.floodBaseline.projectedHourlyRecords} records/h`
+      ? `heartbeat: at ${recommendedHeartbeat.cadenceSeconds}s cadence a 10-wide 1h fan-out projects ${recommendedHeartbeat.analyticHourlyProjection} progress records (<= ${INFORMING_HOURLY_BUDGET} budget); the 009 0.05s baseline projected ${heartbeat.floodBaseline.projectedHourlyRecords} records/h. lag-ceiling: the metric is queue backpressure, so the original 1500ms fired on every healthy width>concurrency fan-out (proven); raised to 300000ms (5min) so it stays silent on normal second-wave backpressure and fires only on a starved pool, well before the ~4h per-lineage timeout`
       : 'no candidate cadence stayed within the informing budget',
   },
   verdict: {
     heartbeatHasInformingDefault: Boolean(recommendedHeartbeat),
     floodBaselineConfirmedFlood: heartbeat.floodBaseline.projectedHourlyRecords > INFORMING_HOURLY_BUDGET,
     recommendedCadenceObservedInforms: Boolean(observedAtRecommended && observedAtRecommended.observedInformsNotFloods && observedAtRecommended.everyLineageEmittedAtLeastOnce),
-    lagCeilingOneShotUnderConcurrentPool: lagCeiling.oneShotNoFlood && lagCeiling.firedAtLeastOnce,
+    lagCeilingOriginalDefaultFalseFiresOnHealthyPool: lagCeiling.falsePositiveAtOriginalDefault.fired >= 1,
+    lagCeilingBackpressureAwareSilentOnHealthy: lagCeiling.backpressureAwareCeiling.silentOnHealthyPool.staysSilent,
+    lagCeilingBackpressureAwareFiresOnStall: lagCeiling.backpressureAwareCeiling.firesOnGenuineStall.oneShot,
   },
 };
 
@@ -342,7 +435,9 @@ console.log(JSON.stringify(out, null, 2));
 // Exit non-zero if the flood baseline did not reproduce or the lag one-shot broke, so
 // the harness fails loudly when the production primitives change shape.
 const ok = out.verdict.floodBaselineConfirmedFlood
-  && out.verdict.lagCeilingOneShotUnderConcurrentPool
+  && out.verdict.lagCeilingOriginalDefaultFalseFiresOnHealthyPool
+  && out.verdict.lagCeilingBackpressureAwareSilentOnHealthy
+  && out.verdict.lagCeilingBackpressureAwareFiresOnStall
   && out.verdict.heartbeatHasInformingDefault
   && out.verdict.recommendedCadenceObservedInforms;
 process.exit(ok ? 0 : 1);

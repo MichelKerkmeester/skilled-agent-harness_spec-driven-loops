@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 009 dark-flag validation (research sections 3.5 and 3.6) qualified two graduated deep-loop capabilities",
     "created_at": "2026-06-24T08:09:54.181Z",
-    "last_save_at": "2026-06-24T08:12:18.319Z",
+    "last_save_at": "2026-06-24T10:17:08.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bf0e92f452ebe38a8f30eb16c4c1377336dd25a75fcb2ae2a529942814e85da",
+    "source_fingerprint": "sha256:e0ec5210640216f17651656812b599152087d936f15d4c4623e22871d68b3f25",
     "source_doc_hashes": {
-      "spec.md": "6847551025a06ed9e7affe1b5fbae72758cc8dd1afbdd8bd6a9140ac450734fc",
-      "plan.md": "9d5d9eea319503f1e982bf131077ec7d50ca595a2d534f726fc74da291438075",
-      "tasks.md": "c45f54c5836b5cd6849910cadb3382ef082019ccd410e041ad8e4839d41211fb",
-      "checklist.md": "1207c001ac8e9562735f6880b73cafcbe5b80f880296e84603366fa9ba552dd7",
-      "implementation-summary.md": "6f97281a97000c30fc7b91a73543eadb8e43597f22b496ad61a9d9daf6ec41bc"
+      "spec.md": "12093176dc08cb3f69d4519b96d0cc6d73eac921249d02f2f4df65be766f2da7",
+      "plan.md": "80f26effa4658e831f2983f16cb8fb60d62a2638ecb90a798daa78dfb61ae197",
+      "tasks.md": "7732fdef233782d1da4a5c2b5f0e1db877ad841cb0f1e2d52ca12be48d104255",
+      "checklist.md": "da6a991c13a4bcdab4081d4e43e889aa1323b61038a4b05c81bab3b32c69a6bd",
+      "implementation-summary.md": "27909bdbdbfc1e3401d09e9cb348552a88fb13c4117edc0fa9fecf66d2e13731"
     },
     "last_active_child_id": null,
     "last_active_at": null

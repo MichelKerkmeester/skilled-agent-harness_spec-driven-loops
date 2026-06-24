@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
     "created_at": "2026-06-24T07:59:17.363Z",
-    "last_save_at": "2026-06-24T08:03:25.866Z",
+    "last_save_at": "2026-06-24T10:16:00.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd3e14189a58b4c4a5bd323c8c25222f7e9fe703aea9e988b3f0d2c8706c2c5a",
+    "source_fingerprint": "sha256:0485d83febd06569b6cc5cc70d88ac06391b8433123977d0972ce513d996d215",
     "source_doc_hashes": {
-      "spec.md": "e9942ca752a9f274fcd57caa7ff51299c082fcf56c7bb0205a246418fa4fa444",
-      "plan.md": "47b22aa06f3d964b799ec937b75eff051e5d2fe299b1a98788df118b671a23f1",
-      "tasks.md": "c294ff4d16182c86f4af0797ae251b1243f0f5ec5ff533b547b8c79da12173a3",
-      "checklist.md": "1ddac89aaefa939c3d17d865affcf6af458de4bcca000f1e898c193287468553",
-      "implementation-summary.md": "c076d17324e9dccb01b3e32f9fe12ccd908076a1b615dbdb4d685502afb42b89"
+      "spec.md": "6727908f05293716da466b0a671ec197a40318a58f68b3742445fb964e20ef0f",
+      "plan.md": "03008339433a266f6f0b7309cdfe52ffad6cc76b0bd1135958139a8ff6cae2d7",
+      "tasks.md": "19586553f3326ccad0cfac2ff07872cbcd9bcc4b3b64480185fe5c4885b8fa10",
+      "checklist.md": "1ad46ec5b68e405a4d72b7ee2c2c2309d67a68bb7405988edaaa17ca083820c5",
+      "implementation-summary.md": "36934929807635a648161c647b590e57bdbbc0f1dbf504bfa351f2503c3d5f1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

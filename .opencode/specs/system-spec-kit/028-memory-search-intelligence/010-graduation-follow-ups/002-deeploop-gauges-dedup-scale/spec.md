@@ -1,6 +1,6 @@
 ---
 title: "Spec: Deep-Loop Gauge Defaults Flood-Test and Dedup Scale-Test"
-description: "Closes the two deep-loop production-readiness gaps the 009 dark-flag validation flagged. The progress-heartbeat and lag-ceiling gauges default to 0 = disabled, so the runtime never informs in production; a flood-test under concurrent pools reproduces the 009 0.05s flood, sets a seconds-scale candidate cadence, and proves it informs without flooding over a projected hour-long fan-out. The finding-dedup was only proven on 17 synthetic records; a scale-test synthesizes 50-plus findings across six workers with identical, varied, distinct, and near-miss wording and runs the production merge to measure the false-collapse rate and distinct-finding recall. The committed gauge defaults stay at 0 because flipping them cascades into committed silent-when-off tests; the recommended production values ship documented with flood-test evidence instead. Both tests drive the real production modules read-only and flip no default."
+description: "Closes the two deep-loop production-readiness gaps the 009 dark-flag validation flagged, with two deep-review corrections applied. The progress-heartbeat and lag-ceiling gauges default to 0 = disabled, so the runtime never informs in production; a flood-test reproduces the 009 0.05s flood, sets a seconds-scale heartbeat cadence proven to inform without flooding, and corrects the lag-ceiling to a queue-backpressure gauge (the old 1500ms default false-fires on every healthy width>concurrency pool) with a re-justified, raised default. The finding-dedup was only proven on 17 synthetic records; a scale-test synthesizes 50-plus findings across six workers with identical, varied, distinct, near-miss, and title-distinct wording and runs the production merge to measure the body-distinguished false-collapse rate, distinct-finding recall, and the title-only false-collapse rate (the title-excluded-key free-text limit). The committed gauge defaults stay at 0 because flipping them cascades into committed silent-when-off tests; the recommended production values (heartbeat 30s, lag-ceiling 300000ms) ship documented with flood-test evidence instead. Both tests drive the real production modules read-only and flip no default."
 trigger_phrases:
   - "deep loop gauge defaults flood test"
   - "progress heartbeat cadence production default"
@@ -62,9 +62,9 @@ Measure both against the real production modules: a flood-test that picks and pr
 
 ### In Scope
 
-- A flood-test (`scripts/gauge-flood-test.mjs`) that drives the real `fanout-run.cjs` CLI and `runCappedPool` under concurrent pools, reproduces the 009 0.05s flood, and proves a seconds-scale candidate cadence informs without flooding over a projected hour-long run, plus a lag-ceiling one-shot confirmation under a concurrent pool.
-- A scale-test (`scripts/dedup-scale-test.mjs`) that drives the real `mergeResearchRegistries` and `mergeReviewRegistries` exports over a 50-plus-finding, six-worker, wording-varied labeled set and measures the false-collapse rate, distinct-finding recall, designed-for collapse recall, near-miss precision, and review severity preservation.
-- The recommended production gauge values, documented with their flood-test evidence, and the enable-by-default decision with its justification.
+- A flood-test (`scripts/gauge-flood-test.mjs`) that drives the real `fanout-run.cjs` CLI and `runCappedPool` under concurrent pools, reproduces the 009 0.05s flood, proves a seconds-scale candidate cadence informs without flooding over a projected hour-long run, and corrects the lag-ceiling to a queue-backpressure gauge (proving the old 1500ms default false-fires on a healthy width>concurrency pool, and a backpressure-aware default is silent on a healthy pool and fires once on a genuine stall).
+- A scale-test (`scripts/dedup-scale-test.mjs`) that drives the real `mergeResearchRegistries` and `mergeReviewRegistries` exports over a 50-plus-finding, six-worker, wording-varied labeled set (identical, varied, distinct, near-miss, and title-distinct modes) and measures the body-distinguished false-collapse rate, distinct-finding recall, designed-for collapse recall, near-miss precision, the title-only false-collapse rate, and review severity preservation.
+- The recommended production gauge values (heartbeat 30s, lag-ceiling 300000ms with its backpressure meaning), documented with their flood-test evidence, and the enable-by-default decision with its justification.
 
 ### Out of Scope
 
@@ -88,12 +88,12 @@ Measure both against the real production modules: a flood-test that picks and pr
 
 - The flood-test reproduces the 009 0.05s-cadence flood on the real runner and confirms it exceeds an operator-readable hourly budget.
 - A seconds-scale candidate cadence is chosen and proven to inform without flooding, resting on OBSERVED records at that cadence across all in-flight lineages, not projection alone.
-- The scale-test runs 50-plus findings across 5-plus workers with mixed structured and free-text-varied wording and known true-duplicates and known-distinct findings, and reports the false-collapse rate and distinct-finding recall.
+- The scale-test runs 50-plus findings across 5-plus workers with mixed structured and free-text-varied wording and known true-duplicates and known-distinct findings, and reports the body-distinguished false-collapse rate, the distinct-finding recall, AND the title-only false-collapse rate (the title-excluded-key free-text limit per deep-review P2-15).
 
 ### P1 - Required (complete OR user-approved deferral)
 
-- The lag-ceiling one-shot contract holds under a concurrent multi-lineage pool (fires at most once, fires at least once when the tail ages past the ceiling).
-- The scale-test surfaces the content-identity semantic limit explicitly and verifies the review path keeps the strongest severity on every collapse.
+- The lag-ceiling is documented as a queue-backpressure gauge (not a stall detector, per deep-review P1-7): the flood-test proves the old 1500ms default false-fires on a healthy width>concurrency pool, and the backpressure-aware default stays silent on a healthy pool while firing once on a genuine stall.
+- The scale-test surfaces the content-identity semantic limit and the title-only false-collapse limit explicitly, and verifies the review path keeps the strongest severity on every collapse.
 - Both harnesses drive the production modules read-only, flip no default, and the off path is byte-identical to the production default across re-runs.
 <!-- /ANCHOR:requirements -->
 
@@ -102,9 +102,9 @@ Measure both against the real production modules: a flood-test that picks and pr
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- `scripts/gauge-flood-test.mjs` exits 0: the 009 flood is reproduced, a seconds-scale cadence is observed to inform within budget, and the lag-ceiling one-shot holds under a concurrent pool.
-- `scripts/dedup-scale-test.mjs` exits 0: the false-collapse rate and distinct-finding recall are measured at scale with no false collapse and full distinct recall, the review severity is preserved on every collapse, and the off path is byte-identical.
-- The recommended gauge values and the enable-by-default decision are documented with the flood-test numbers.
+- `scripts/gauge-flood-test.mjs` exits 0: the 009 flood is reproduced, a seconds-scale cadence is observed to inform within budget, the old lag default is shown to false-fire on a healthy pool, and the backpressure-aware default is silent on a healthy pool and fires on a genuine stall.
+- `scripts/dedup-scale-test.mjs` exits 0: the body-distinguished false-collapse rate and distinct-finding recall hold at scale (0 and 1.0), the title-only false-collapse rate is measured, the review severity is preserved on every collapse, and the off path is byte-identical.
+- The recommended gauge values (heartbeat 30s, lag-ceiling 300000ms with its backpressure meaning) and the enable-by-default decision are documented with the flood-test numbers.
 - `validate.sh <phase> --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
@@ -126,7 +126,7 @@ Measure both against the real production modules: a flood-test that picks and pr
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None. The gauge-default decision is resolved in `implementation-summary.md`; the only un-closed dedup gap (the content-identity semantic limit) is documented as a known limit, not an open question.
+None. The gauge-default decision is resolved in `implementation-summary.md`. The two un-closed dedup limits — the title-only false-collapse (over-merge when distinguishing content is in the title) and the varied-wording miss (under-merge when the same point is reworded) — are documented as measured known limits, not open questions. Redefining the lag metric to a true stall-detector is recorded as a deferred follow-up, not a gap in this phase.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -154,7 +154,7 @@ Both harnesses exit non-zero if the production primitives change shape (the floo
 
 ### Data Boundaries
 
-The scale-test spans four wording modes at the dedup's content-identity boundary: identical-body restatements (collapse), varied-wording restatements (no collapse, the semantic limit), distinct singletons (survive), and near-miss pairs differing by one token (must not collapse).
+The scale-test spans five wording modes at the dedup's content-identity boundary: identical-body restatements (collapse), varied-wording restatements (no collapse, the semantic under-merge limit), distinct singletons (survive), near-miss pairs differing by one token (must not collapse, body-distinguished precision), and title-distinct pairs with identical bodies but distinguishing titles (DO collapse, the title-excluded-key over-merge limit measured as the title-only false-collapse rate).
 
 ### Error Scenarios
 
@@ -162,7 +162,7 @@ If the runner or merge module is missing, each harness prints a fatal message an
 
 ### State Transitions
 
-The lag-ceiling transitions from silent to a single warning when the oldest queued lineage ages past the ceiling, then stays silent (one-shot); the test confirms that transition fires exactly once under concurrency.
+The lag-ceiling is a queue-backpressure gauge: its metric is total time queued since pool start, so on any `width > concurrency` fan-out the tail's normal second-wave wait crosses a low ceiling (the 1500ms false positive proven in the flood-test). At the backpressure-aware default (300000ms) it stays silent on a healthy pool and transitions from silent to a single warning only when a queued lineage waits abnormally long (a starved pool); the test confirms both directions with a scaled ceiling preserving the production ordering.
 <!-- /ANCHOR:edge-cases -->
 
 ---

@@ -14,9 +14,9 @@
       "cadenceSeconds": 0.05,
       "lineagesInFlight": 10,
       "windowSeconds": 2,
-      "observedProgressRecords": 440,
-      "observedRecordsPerSecond": 175.859,
-      "projectedHourlyRecords": 633094,
+      "observedProgressRecords": 410,
+      "observedRecordsPerSecond": 175.514,
+      "projectedHourlyRecords": 631849,
       "note": "reproduces the 009 worst case (0.05s x 10 in-flight) on the real runner"
     },
     "candidates": [
@@ -24,7 +24,7 @@
         "cadenceSeconds": 10,
         "lineagesInFlight": 10,
         "stubSleepSeconds": 4,
-        "wallMs": 4419,
+        "wallMs": 4336,
         "observedProgressRecords": 0,
         "observedRecordsPerSecond": 0,
         "observedHourlyProjection": 0,
@@ -37,7 +37,7 @@
         "cadenceSeconds": 15,
         "lineagesInFlight": 10,
         "stubSleepSeconds": 4,
-        "wallMs": 4296,
+        "wallMs": 4329,
         "observedProgressRecords": 0,
         "observedRecordsPerSecond": 0,
         "observedHourlyProjection": 0,
@@ -50,7 +50,7 @@
         "cadenceSeconds": 30,
         "lineagesInFlight": 10,
         "stubSleepSeconds": 4,
-        "wallMs": 4336,
+        "wallMs": 4338,
         "observedProgressRecords": 0,
         "observedRecordsPerSecond": 0,
         "observedHourlyProjection": 0,
@@ -63,7 +63,7 @@
         "cadenceSeconds": 60,
         "lineagesInFlight": 10,
         "stubSleepSeconds": 4,
-        "wallMs": 4329,
+        "wallMs": 4338,
         "observedProgressRecords": 0,
         "observedRecordsPerSecond": 0,
         "observedHourlyProjection": 0,
@@ -78,38 +78,62 @@
     "cadenceSeconds": 30,
     "lineagesInFlight": 10,
     "observeWindowSeconds": 75,
-    "wallMs": 75418,
+    "wallMs": 75329,
     "observedProgressRecords": 20,
-    "observedRecordsPerSecond": 0.265,
-    "observedHourlyProjection": 955,
+    "observedRecordsPerSecond": 0.266,
+    "observedHourlyProjection": 956,
     "informingHourlyBudget": 1500,
     "everyLineageEmittedAtLeastOnce": true,
     "observedInformsNotFloods": true
   },
   "lagCeiling": {
-    "lagCeilingMsUnderTest": 1500,
-    "lineageCount": 10,
-    "concurrency": 2,
-    "stubSleepSeconds": 3,
-    "eventsFired": 1,
-    "oneShotNoFlood": true,
-    "firedAtLeastOnce": true,
-    "sampleEvent": {
-      "event": "lag_ceiling_exceeded",
-      "severity": "warning",
-      "lag_ceiling_ms": 1500,
-      "oldest_pending_lag_ms": 1501
+    "metricMeaning": "oldest_pending_lag_ms = time since the item was queued at pool start; a queue-backpressure / starvation signal, NOT a stalled-worker detector",
+    "falsePositiveAtOriginalDefault": {
+      "lagCeilingMs": 1500,
+      "poolWidth": 10,
+      "concurrency": 2,
+      "healthyLineageSeconds": 1,
+      "fired": 1,
+      "observedTailWaitMs": 1502,
+      "note": "a 1500ms ceiling fires on this fully healthy 10-wide pool purely because width > concurrency — the false positive the deep review flagged"
+    },
+    "backpressureAwareCeiling": {
+      "productionRecommendationMs": 300000,
+      "productionRationale": "a queued lineage that has waited > 5min has waited longer than a healthy lineage runtime, signalling a starved pool (a hung slot), well before the ~4h per-lineage timeout; below this is normal second-wave backpressure",
+      "scaledProofCeilingMs": 2500,
+      "silentOnHealthyPool": {
+        "poolWidth": 4,
+        "concurrency": 2,
+        "healthyLineageSeconds": 0.4,
+        "observedTailWaitMs": 0,
+        "fired": 0,
+        "staysSilent": true
+      },
+      "firesOnGenuineStall": {
+        "stallSeconds": 4,
+        "fired": 1,
+        "oneShot": true,
+        "sample": {
+          "event": "lag_ceiling_exceeded",
+          "severity": "warning",
+          "lag_ceiling_ms": 2500,
+          "oldest_pending_lag_ms": 2502
+        }
+      }
     }
   },
   "recommendation": {
     "progressHeartbeatSeconds": 30,
-    "lagCeilingMs": 1500,
-    "rationale": "at 30s cadence a 10-wide 1h fan-out projects 1200 progress records (<= 1500 budget), informing without flooding; the 009 0.05s baseline projected 633094 records/h"
+    "lagCeilingMs": 300000,
+    "lagCeilingMeaning": "queue-backpressure / starvation gauge (oldest_pending_lag_ms = time since queued at pool start), NOT a stalled-worker detector",
+    "rationale": "heartbeat: at 30s cadence a 10-wide 1h fan-out projects 1200 progress records (<= 1500 budget); the 009 0.05s baseline projected 631849 records/h. lag-ceiling: the metric is queue backpressure, so the original 1500ms fired on every healthy width>concurrency fan-out (proven); raised to 300000ms (5min) so it stays silent on normal second-wave backpressure and fires only on a starved pool, well before the ~4h per-lineage timeout"
   },
   "verdict": {
     "heartbeatHasInformingDefault": true,
     "floodBaselineConfirmedFlood": true,
     "recommendedCadenceObservedInforms": true,
-    "lagCeilingOneShotUnderConcurrentPool": true
+    "lagCeilingOriginalDefaultFalseFiresOnHealthyPool": true,
+    "lagCeilingBackpressureAwareSilentOnHealthy": true,
+    "lagCeilingBackpressureAwareFiresOnStall": true
   }
 }

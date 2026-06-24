@@ -72,16 +72,19 @@ Two surgical changes, each behind an existing default-off flag. The degree-cap d
 ## 3. ARCHITECTURE
 
 ### Pattern
-Flag-gated branch inside the existing reindex transaction. The bitemporal path reuses the already-built `closeEdgesForSources` and `insertEdgeWithValidity`, which call the same `getDb()` singleton and therefore join the same per-file transaction.
+Flag-gated branches across every edge remover and live reader on the real reindex path. Each site reads the bitemporal flag once and keeps its original statement on the off branch, so the off path is byte-identical. The close stamps at the next generation because the bump trails the persist loop.
 
 ### Key Components
 - **structural-indexer.ts `DEFAULT_REVERSE_DEP_DEGREE_CAP`**: the production ceiling, read by `getReverseDepDegreeCap`
-- **code-graph-db.ts `replaceEdges`**: the reindex edge-replacement path, now branching on the bitemporal flag
-- **code-graph-db.ts `closeEdgesForSources` and `insertEdgeWithValidity`**: the close-and-insert writer reused for the on-path
-- **code-graph-db.ts `asOfEdgesFrom`**: the as-of reader used by the integration test
+- **code-graph-db.ts `replaceNodes`**: runs first on the per-file persist path and owns the old symbol ids, closes instead of deletes under the flag
+- **code-graph-db.ts `replaceEdges`**: closes the source edges and inserts replacements with an open window
+- **code-graph-db.ts `pruneDanglingEdges`**: the deferred full-scan prune, closes instead of deletes under the flag
+- **code-graph-db.ts `queryEdgesFrom` and `queryEdgesTo`**: live readers, filter closed edges under the flag
+- **code-graph-db.ts `getNextCodeGraphGeneration`**: the loop-time stamping helper that fixes the off-by-one
+- **code-graph-db.ts `asOfEdgesFrom`**: the as-of reader, the tested consumer, public query-surface exposure deferred
 
 ### Data Flow
-A rescan parses a changed file and calls `persistIndexedFileResult`, which wraps `replaceNodes` and `replaceEdges` in one per-file transaction. `replaceEdges` reads the bitemporal flag once. Off: delete edges from the source ids, re-insert retained edges, prune dangling edges by delete. On: close live edges from the source ids with `invalid_at`, insert retained edges with `valid_at` open, prune dangling edges by closing them. An as-of query later filters by the validity window for a past or current generation.
+A rescan parses a changed file and calls `persistIndexedFileResult`, which wraps `replaceNodes` then `replaceEdges` in one per-file transaction, then the full scan bumps the generation and calls `pruneDanglingEdges`. Off: every step deletes. On: `replaceNodes` closes the old source and removed-target edges, `replaceEdges` closes the source edges and inserts replacements with an open window, the post-bump `pruneDanglingEdges` closes danglers. Loop-time closes and inserts stamp at the next generation, the post-bump prune stamps at the current generation, both equal the scan's produced generation. The live readers drop closed edges, and `asOfEdgesFrom` filters by the validity window for a past or current generation.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -91,11 +94,14 @@ A rescan parses a changed file and calls `persistIndexedFileResult`, which wraps
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `replaceEdges` | Reindex edge-replacement producer | update, flag-gated branch added | byte-identity and integration tests |
-| `closeEdgesForSources` and `insertEdgeWithValidity` | Bitemporal writer, previously unwired | now called from `replaceEdges` on the on-path | integration test |
-| `persistIndexedFileResult` | Per-file persist boundary calling `replaceEdges` | unchanged | `rg -n 'replaceEdges' ensure-ready.ts` |
+| `replaceNodes` | Deletes a file's edges before edge replacement | close instead of delete under the flag | unit test plus real-scan integration |
+| `replaceEdges` | Reindex edge-replacement producer | close-and-insert under the flag | byte-identity and integration tests |
+| `pruneDanglingEdges` | Deferred full-scan dangling prune | close instead of delete under the flag | unit test |
+| `queryEdgesFrom` and `queryEdgesTo` | Live readers used across context and query handlers | add `invalid_at IS NULL` filter under the flag | live-reader unit test, off-path byte identity |
+| `getNextCodeGraphGeneration` | New loop-time stamping helper | added | as-of round-trip assertion |
+| `persistIndexedFileResult` | Per-file persist boundary | unchanged | `rg -n 'replaceNodes|replaceEdges' ensure-ready.ts` |
 | `getReverseDepDegreeCap` | Reads the degree-cap default | unchanged, default value changed | degree-cap byte-identity test |
-| `asOfEdgesFrom` | As-of reader | unchanged, now exercised by a live consumer | integration test |
+| `asOfEdgesFrom` | As-of reader | unchanged, public query-surface exposure deferred | integration test |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -109,15 +115,18 @@ A rescan parses a changed file and calls `persistIndexedFileResult`, which wraps
 - [x] Confirm the value is read only inside the force-parse branch
 
 ### Phase 2: Bitemporal reindex wiring
-- [x] Read the bitemporal flag once at the top of `replaceEdges`
-- [x] Branch the source delete to `closeEdgesForSources` when on
-- [x] Branch the edge insert to `insertEdgeWithValidity` when on
-- [x] Branch the dangling prune to a close-only UPDATE when on
+- [x] Add `getNextCodeGraphGeneration` and stamp loop-time writes at the next generation
+- [x] Close edges in `replaceNodes` under the flag instead of deleting
+- [x] Close-and-insert in `replaceEdges` under the flag
+- [x] Close danglers in `pruneDanglingEdges` under the flag at the current generation
+- [x] Filter closed edges from `queryEdgesFrom` and `queryEdgesTo` under the flag
+- [x] Keep every off-path statement verbatim
 
 ### Phase 3: Verification
-- [x] Author the bitemporal live integration test and byte-identity tests
+- [x] Author the real-scan integration round trip and the off-path byte-identity tests
+- [x] Author the live-reader filter and close-not-delete unit tests
 - [x] Author the degree-cap byte-identity tests
-- [x] Confirm `tsc` exits 0 and the new test files type-check
+- [x] Confirm `tsc` exits 0, the new test files type-check, and the focused run passes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -127,9 +136,9 @@ A rescan parses a changed file and calls `persistIndexedFileResult`, which wraps
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Degree-cap inertness while force-parse is off | Vitest |
-| Integration | Bitemporal reindex round trip against a real SQLite database | Vitest |
-| Manual | Type-check of the subsystem and the two new test files | tsc |
+| Unit | Degree-cap inertness, live-reader filter, close-not-delete, all with off-path byte identity | Vitest |
+| Integration | Bitemporal reindex round trip driving the real scan handler twice | Vitest |
+| Manual | Type-check of the subsystem and the three new test files | tsc |
 <!-- /ANCHOR:testing -->
 
 ---

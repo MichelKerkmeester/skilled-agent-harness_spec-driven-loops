@@ -8,11 +8,16 @@
 // These tests fire it in the production-default state (guard flag OFF) and break
 // loudly if a refactor removes, zeroes, or makes the penalty non-negative.
 //
-// The competitor skill id sorts AFTER 'system-skill-advisor' alphabetically and
-// carries an identical explicit-author signal, so the two tie on base score.
-// Absent the penalty the alphabetical tie-break would put the advisor FIRST, so
-// the only thing that demotes the advisor below the competitor is the penalty —
-// remove it and the ranking assertions flip and fail.
+// The competitor skill id sorts AFTER both 'system-skill-advisor' and its
+// 'skill-advisor' alias alphabetically and carries an identical explicit-author
+// signal, so the candidates tie on base score. Absent the penalty the
+// alphabetical tie-break would put the advisor (or its alias) FIRST, so the only
+// thing that demotes the advisor below the competitor is the penalty — remove it
+// and the ranking assertions flip and fail.
+//
+// The penalty is applied through the canonical self-rec id set, which covers
+// BOTH the exact id and the alias, so the alias must be demoted too. A separate
+// test pins the alias to catch a regression to an exact-id-only check.
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -44,13 +49,15 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
 }
 
 const AUDIT_PROMPT = 'audit recommendation quality';
-// Sorts after 'system-skill-advisor', so a score tie would otherwise resolve in
-// the advisor's favor — the penalty is what flips the order.
+// Sorts after both the canonical advisor id and its alias, so a score tie would
+// otherwise resolve in the advisor's favor — the penalty is what flips the order.
 const COMPETITOR_ID = 'zzz-review';
+const ADVISOR_CANONICAL_ID = 'system-skill-advisor';
+const ADVISOR_ALIAS_ID = 'skill-advisor';
 
-function auditProjection() {
+function auditProjection(advisorId: string = ADVISOR_CANONICAL_ID) {
   return createFixtureProjection([
-    skill({ id: 'system-skill-advisor', intentSignals: ['recommendation quality'] }),
+    skill({ id: advisorId, intentSignals: ['recommendation quality'] }),
     skill({ id: COMPETITOR_ID, intentSignals: ['recommendation quality'] }),
   ]);
 }
@@ -111,6 +118,24 @@ describe('advisor self-recommendation penalty contract', () => {
     expect(advisorRank).toBeGreaterThanOrEqual(0);
     expect(competitorRank).toBeGreaterThanOrEqual(0);
     expect(competitorRank).toBeLessThan(advisorRank);
+  });
+
+  it('also demotes the skill-advisor ALIAS off the top spot on an audit prompt with the guard OFF', () => {
+    // The penalty must defend the alias id too, not only the exact canonical id.
+    // The alias carries the same audit signal and the competitor sorts after it,
+    // so absent an alias-covering penalty the alias would win the tie-break and
+    // rank first. If the application reverts to an exact 'system-skill-advisor'
+    // check this assertion fails, because the alias would no longer be demoted.
+    const result = scoreAudit(AUDIT_PROMPT, auditProjection(ADVISOR_ALIAS_ID));
+
+    const aliasRank = result.recommendations.findIndex((rec) => rec.skill === ADVISOR_ALIAS_ID);
+    const competitorRank = result.recommendations.findIndex((rec) => rec.skill === COMPETITOR_ID);
+
+    expect(aliasRank).toBeGreaterThanOrEqual(0);
+    expect(competitorRank).toBeGreaterThanOrEqual(0);
+    expect(result.recommendations[0].skill).not.toBe(ADVISOR_ALIAS_ID);
+    expect(result.topSkill).not.toBe(ADVISOR_ALIAS_ID);
+    expect(competitorRank).toBeLessThan(aliasRank);
   });
 
   it('does not penalize the advisor when the prompt is not a recommendation audit', () => {

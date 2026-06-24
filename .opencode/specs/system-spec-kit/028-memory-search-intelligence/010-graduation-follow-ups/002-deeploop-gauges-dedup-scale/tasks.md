@@ -65,9 +65,9 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T002 Write the concurrent-pool flood matrix over the spawned `fanout-run.cjs` reproducing the 009 0.05s flood and sweeping seconds-scale candidate cadences (`scripts/gauge-flood-test.mjs`)
-- [x] T003 Add the observed-cadence confirmation run at the recommended cadence with a 2.5x window and the lag-ceiling one-shot over `runCappedPool` (`scripts/gauge-flood-test.mjs`)
-- [x] T004 Write the 50-plus-finding six-worker labeled set across identical, varied, distinct, and near-miss wording modes (`scripts/dedup-scale-test.mjs`)
-- [x] T005 Score the research path off versus on for false-collapse rate, distinct recall, designed-for collapse, and near-miss precision, plus the review severity-preservation check (`scripts/dedup-scale-test.mjs`)
+- [x] T003 Add the observed-cadence confirmation run at the recommended cadence with a 2.5x window, and the lag-ceiling backpressure experiment over `runCappedPool` proving the 1500ms false positive and the backpressure-aware silent-on-healthy + fires-on-stall behavior (deep-review P1-7) (`scripts/gauge-flood-test.mjs`)
+- [x] T004 Write the 50-plus-finding six-worker labeled set across identical, varied, distinct, near-miss, and title-distinct wording modes (deep-review P2-15) (`scripts/dedup-scale-test.mjs`)
+- [x] T005 Score the research path off versus on for the body-distinguished false-collapse rate, distinct recall, designed-for collapse, near-miss precision, and the title-only false-collapse rate, plus the review severity-preservation check (`scripts/dedup-scale-test.mjs`)
 - [x] T006 Run both harnesses and write the metric rollups (`results/gauge-flood-metrics.json`, `results/dedup-scale-metrics.json`)
 <!-- /ANCHOR:phase-2 -->
 

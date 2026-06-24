@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the penalty definition and its application site, confirming the production-default branch that fires it (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts`)
-- [x] T002 [P] Read the existing self-boost-guard test to reuse its fixture-projection harness (`.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts`)
+- [x] T001 Read the penalty definition and its application site, confirming the production-default branch that fires it and that its guard-off check matched the advisor by exact string (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts`)
+- [x] T002 [P] Read the existing self-boost-guard test to reuse its fixture-projection harness and find the alias assertion to reconcile (`.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -50,7 +50,9 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T003 Add the durable WHY comment at the `auditRecsAdvisorPenalty` declaration and a short cross-reference at its value, no artifact-id (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts`)
-- [x] T004 Author the regression test: audit prompt, score-tied competitor sorting after the advisor, assertions the advisor is not top and is demoted, a negative-control, and a direct negative-constant assertion (`.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts`)
+- [x] T004 Fix the guard-off branch to match through `isAdvisorSelfRecommendationSkill` so the alias is demoted too (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts`)
+- [x] T005 Author the regression test: audit prompt, score-tied competitor sorting after the advisor, assertions neither the canonical id nor the alias is top, a negative-control, and a direct negative-constant assertion (`.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts`)
+- [x] T006 Reconcile the existing alias test to the corrected guard-off behavior (`.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,8 +60,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T005 Confirm the test breaks when the penalty is zeroed, then revert the penalty to `-0.25` (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts`)
-- [x] T006 Typecheck the advisor build target clean and run the new and existing self-recommendation tests green (`.opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json`)
+- [x] T007 Confirm the test breaks when the penalty is zeroed and when the check is reverted to exact-id-only, then restore the fix (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts`)
+- [x] T008 Typecheck the advisor build target clean and run the full scorer suite green (`.opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

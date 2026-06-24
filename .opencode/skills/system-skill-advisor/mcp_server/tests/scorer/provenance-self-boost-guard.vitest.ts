@@ -97,7 +97,11 @@ describe('advisor provenance self-boost guard', () => {
     expect(on).toEqual(off);
   });
 
-  it('generalizes the recommendation-audit penalty to advisor aliases when enabled', () => {
+  it('applies the recommendation-audit penalty to the advisor alias in both the guard-off default and guard-on', () => {
+    // The audit penalty is applied through the canonical self-rec id set, which
+    // covers the 'skill-advisor' alias as well as the exact id, so the alias is
+    // demoted in the production-default guard-off state — not only when the
+    // explicit guard is enabled. The alias must behave like the canonical id.
     const projection = createFixtureProjection([
       skill({ id: 'skill-advisor', intentSignals: ['recommendation quality'] }),
       skill({ id: 'zzz-review', intentSignals: ['recommendation quality'] }),
@@ -117,7 +121,7 @@ describe('advisor provenance self-boost guard', () => {
       includeAllCandidates: true,
     });
 
-    expect(off.recommendations[0].skill).toBe('skill-advisor');
+    expect(off.recommendations[0].skill).toBe('zzz-review');
     expect(on.recommendations[0].skill).toBe('zzz-review');
   });
 

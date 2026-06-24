@@ -51,19 +51,28 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Two production-readiness follow-ups in the system-code-graph subsystem, each behind its existing default-off flag.
+Two production-readiness follow-ups in the system-code-graph subsystem, each behind its existing default-off flag, plus the deep-review fixes that made the bitemporal path correct on the real reindex.
 
-Follow-up A set the staleness-repair force-parse degree cap to a sensible production ceiling. `DEFAULT_REVERSE_DEP_DEGREE_CAP` moved from 0, which meant uncapped, to 10, the value the 006 benchmark validated where a 30-importer rename dropped to zero forced re-parses. The cap is read only inside the force-parse branch, gated on `SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE`, so the new default has no effect while that flag is off.
+Follow-up A set the staleness-repair force-parse degree cap to a production ceiling. `DEFAULT_REVERSE_DEP_DEGREE_CAP` moved from 0, which meant uncapped, to 10, an unbenchmarked midpoint chosen as a safe ceiling. The cap is read only inside the force-parse branch, gated on `SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE`, so the new default has no effect while that flag is off. The correctness cost is recorded: above the cap a high-fan-in rename leaves all importer edges durably stale until each importer's next edit.
 
-Follow-up B wired the bitemporal writer into the reindex edge-replacement path. `replaceEdges` is the path where a file's edges are deleted and re-inserted on rescan. When `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` is on, the source delete now closes the old edges with `invalid_at` via `closeEdgesForSources`, the per-edge insert now stamps `valid_at` via `insertEdgeWithValidity`, and the dangling prune closes rather than deletes so the prior generation stays readable. When the flag is off, the original delete-and-insert path runs unchanged.
+Follow-up B wired the bitemporal writer through the WHOLE real reindex path. The first attempt wired only `replaceEdges`, which the 011 deep review found was defeated, because `replaceNodes` runs first and hard-deleted the edges, `pruneDanglingEdges` is the production prune for a full scan and hard-deleted them too, and the live readers had no validity filter so they returned closed and open edges together. The corrected wiring, all gated on `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`:
+
+- `replaceNodes` closes its edges instead of deleting them, since it owns the old symbol ids and runs before `replaceEdges`.
+- `replaceEdges` closes the source edges and inserts the replacements with an open window.
+- `pruneDanglingEdges` closes danglers instead of deleting them on the deferred full-scan prune.
+- `queryEdgesFrom` and `queryEdgesTo` add `AND invalid_at IS NULL` so live reads return only the open edge.
+- Loop-time writers stamp at the next generation, because the bump trails the persist loop, so a superseded edge lands in a window that is readable at the genuine pre-reindex generation. The post-bump dangling sweep stamps at the current generation. Both resolve to the same value for one scan.
+
+When the flag is off, every one of these runs the original delete-and-insert with no validity columns touched.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/lib/structural-indexer.ts` | Modified | Degree-cap default 0 to 10 plus updated comments |
-| `mcp_server/lib/code-graph-db.ts` | Modified | Wire bitemporal close-and-insert into `replaceEdges` behind the flag |
-| `mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts` | Created | Live integration round trip plus bitemporal byte-identity tests |
+| `mcp_server/lib/structural-indexer.ts` | Modified | Degree-cap default 0 to 10, comment records the hot-hub correctness cost and the unbenchmarked-midpoint rationale |
+| `mcp_server/lib/code-graph-db.ts` | Modified | Close-not-delete in `replaceNodes`, `replaceEdges`, and `pruneDanglingEdges`, live-reader validity filter, next-generation stamping helper, all flag-gated |
+| `mcp_server/tests/code-edge-bitemporal-reindex.vitest.ts` | Created | Real-scan integration round trip and off-path byte-identity tests |
+| `mcp_server/tests/code-edge-bitemporal-readers.vitest.ts` | Created | Live-reader filter and close-not-delete unit tests with off-path byte identity |
 | `mcp_server/tests/reverse-dep-degree-cap-default.vitest.ts` | Created | Degree-cap byte-identity tests while force-parse is off |
 <!-- /ANCHOR:what-built -->
 
@@ -72,7 +81,7 @@ Follow-up B wired the bitemporal writer into the reindex edge-replacement path. 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Both changes shipped behind their existing default-off flags, so live behavior is unchanged until an operator opts in. I proved byte identity for each off-path with a dedicated test and proved the on-path bitemporal round trip with a live integration test against a real SQLite database. The subsystem type-check stayed at exit 0 across both edits, and both new test files type-check standalone against the vitest and node types. The full vitest pass runs on the CLI executor per the brief.
+Both changes shipped behind their existing default-off flags, so live behavior is unchanged until an operator opts in. The 011 deep review failed the first bitemporal attempt, so before re-touching anything I confirmed each finding against the real code: `replaceNodes` deleting edges before the close, `pruneDanglingEdges` being the unconditional production prune, and the unfiltered live readers were all real. I then drove the corrected design with a probe that dumped the raw edge table across two real scans, which showed the original edges flipping from open to closed with a non-empty window and the new edges opening. I proved byte identity for each off-path with a dedicated test, the live-read filter and close-not-delete with unit tests, and the full round trip with a test that drives the real scan handler twice under the production bump ordering. The subsystem type-check stays at exit 0, all three new test files type-check standalone, and a focused run of the three new files passes 13 of 13. The full vitest pass runs on the CLI executor per the brief.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -82,11 +91,13 @@ Both changes shipped behind their existing default-off flags, so live behavior i
 
 | Decision | Why |
 |----------|-----|
-| Set the degree-cap default to 10 | Chose the value the 006 benchmark validated, where a 30-importer rename dropped to zero forced re-parses |
-| Reused `closeEdgesForSources` and `insertEdgeWithValidity` | They were already built but unwired and share the `getDb()` singleton, so they join the same per-file transaction |
-| Closed dangling edges instead of deleting them under the flag | A delete would erase history, the bitemporal intent is to preserve it for as-of reads |
+| Set the degree-cap default to 10 | An unbenchmarked midpoint chosen as a safe ceiling, the fixture only contrasts 30 and 2 importers so it cannot distinguish any value between them |
+| Closed edges in `replaceNodes`, not only `replaceEdges` | `replaceNodes` runs first and owns the old symbol ids, so it is where a stale edge actually gets superseded on a real reindex. Closing only in `replaceEdges` was defeated because the edges were already deleted |
+| Made `pruneDanglingEdges` close under the flag | It is the production prune for a full scan, an unconditional delete there erased the edges the close had just preserved |
+| Added a validity filter to the live readers | A closed edge stays in the table under the flag, so an unfiltered live read returned both the old and the new target |
+| Stamped loop-time writes at the next generation | The bump trails the persist loop, so stamping at the current generation gave a zero-width window unreadable at any as-of. The next generation places the close strictly after the valid_at |
+| De-scoped the public as-of query surface | The smaller correct option, `asOfEdgesFrom` is the tested as-of consumer, exposing an as-of parameter on the public tools is a larger change deferred rather than overclaimed as graduated |
 | Kept off-path statements verbatim | Byte identity is the strongest proof the default-off behavior did not move |
-| Wired at `replaceEdges` | It is the single edge-replacement path reused by the per-file persist boundary |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -97,14 +108,17 @@ Both changes shipped behind their existing default-off flags, so live behavior i
 | Check | Result |
 |-------|--------|
 | `tsc --noEmit -p .../system-code-graph/tsconfig.json` | PASS, exit 0 |
-| Standalone `tsc` over the two new test files | PASS, exit 0 |
-| Bitemporal as-of round trip (authored) | Asserts target-old at N and target-new at N+1, full run deferred to the CLI executor |
-| Bitemporal off-path byte identity (authored) | Asserts only the new edge survives with null validity columns and flag-unset matches flag-false |
-| Degree-cap off-path byte identity (authored) | Asserts the cap env value never changes the outcome while force-parse is off |
+| Standalone `tsc` over the three new test files | PASS, exit 0 |
+| Focused vitest run of the three new files | PASS, 13 of 13 |
+| Real-scan as-of round trip | PASS, `asOfEdgesFrom` at the pre-reindex generation returns the old target, the live read returns only the new target, the old edge is closed strictly after its valid_at |
+| Live-reader filter | PASS, `queryEdgesFrom` and `queryEdgesTo` return only the open edge with the flag on, both edges with the flag off |
+| Close-not-delete unit tests | PASS, `replaceNodes` and `pruneDanglingEdges` close under the flag and delete with the flag off |
+| Bitemporal off-path byte identity | PASS, only the new edge survives with null validity columns and flag-unset matches flag-false |
+| Degree-cap off-path byte identity | PASS, the cap env value never changes the outcome while force-parse is off |
 
-Byte-identity proof, Follow-up A: `getReverseDepDegreeCap` is called only inside the `if (skipFreshFiles && reverseDepForceParseEnabled())` branch of parse-candidates. With the force-parse flag off that branch is never entered, so the default value is never read and the change is byte-identical.
+Byte-identity proof, degree cap: `getReverseDepDegreeCap` is called only inside the `if (skipFreshFiles && reverseDepForceParseEnabled())` branch of parse-candidates. With the force-parse flag off that branch is never entered, so the default value is never read and the change is byte-identical.
 
-Byte-identity proof, Follow-up B: `replaceEdges` reads the bitemporal flag once. With the flag off, the source DELETE, the per-edge insert, and the dangling-prune DELETE run exactly as before with the validity columns untouched.
+Byte-identity proof, bitemporal: every changed site reads the bitemporal flag once and keeps its original statement on the off branch. `replaceNodes` deletes, `replaceEdges` deletes-and-inserts, `pruneDanglingEdges` deletes, and the live readers run their original query strings, all with the validity columns untouched. The off-path tests confirm a flag-off reindex leaves exactly the live edge with null `valid_at` and `invalid_at`, and that flag-unset and flag-false match.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -112,8 +126,10 @@ Byte-identity proof, Follow-up B: `replaceEdges` reads the bitemporal flag once.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No covering indexes on the validity columns.** A large-scale as-of read could degrade without them. Deferred and gated off by default.
-2. **Unbounded history growth under the flag.** Many generations accumulate closed edges. Out of scope here, the flag stays off by default.
-3. **Full vitest run not executed in this session.** Tests are authored and type-check clean. The full pass runs on the CLI executor per the brief.
-4. **Multi-generation lifecycle beyond N to N+1 untested.** The integration test covers a single supersede. Deeper lifecycles are future work.
+1. **No public as-of query surface.** `asOfEdgesFrom` is wired and tested but no public tool exposes an as-of parameter. The graduation claim is narrowed to a correct, tested writer plus live-read filter, not a consumable time-travel query API. Wiring the parameter onto `code_graph_query` or `code_graph_context` is deferred.
+2. **Degree-cap 10 is not benchmark-distinguished.** The fixture only contrasts 30 and 2 importers, so any cap between them behaves the same on it. Ten is a safe unbenchmarked midpoint, a degree sweep is future work.
+3. **Hot-hub staleness cost.** Above the cap a renamed high-fan-in dependency leaves all importer edges durably stale until each importer's next edit. This is the deliberate trade for bounded re-parse cost, recorded in the code comment.
+4. **No covering indexes on the validity columns.** A large-scale as-of read could degrade without them. Deferred and gated off by default.
+5. **Unbounded history growth under the flag.** Many generations accumulate closed edges. Out of scope here, the flag stays off by default.
+6. **Full vitest suite not executed in this session.** The three new files pass a focused run and all type-check clean. The full pass runs on the CLI executor per the brief.
 <!-- /ANCHOR:limitations -->

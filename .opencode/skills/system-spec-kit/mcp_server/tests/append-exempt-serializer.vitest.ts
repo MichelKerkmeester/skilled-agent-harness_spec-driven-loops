@@ -102,21 +102,23 @@ describe('selectBudgetTrimIndex (token-budget trim row selection)', () => {
     expect(selectBudgetTrimIndex(rows)).toBe(1);
   });
 
-  it('B3: drains all non-exempt rows before ever touching an exempt one', () => {
+  it('B3: drops ordinary rows first, but reserves the last primary and trims a backfill instead', () => {
     const rows: Array<Record<string, unknown>> = [
       { id: 1 },
       { id: 2, appendExempt: true },
       { id: 3 },
       { id: 4, appendExempt: true },
     ];
-    // First pass removes id 3 (last non-exempt), then id 1 — appends untouched.
+    // Pass 1: two ordinary rows present (ids 1, 3) → drop the last ordinary, id 3.
     rows.splice(selectBudgetTrimIndex(rows), 1);
     expect(rows.map((r) => r.id)).toEqual([1, 2, 4]);
+    // Pass 2: only ONE ordinary primary (id 1) left → it is reserved, so a backfill
+    // (id 4) is trimmed instead of evicting the last primary (P1-6).
     rows.splice(selectBudgetTrimIndex(rows), 1);
-    expect(rows.map((r) => r.id)).toEqual([2, 4]);
-    // Only now, with nothing but exempt rows left, does it sacrifice the tail.
+    expect(rows.map((r) => r.id)).toEqual([1, 2]);
+    // Pass 3: the reserved primary id 1 + one backfill id 2 → backfill trimmed first.
     rows.splice(selectBudgetTrimIndex(rows), 1);
-    expect(rows.map((r) => r.id)).toEqual([2]);
+    expect(rows.map((r) => r.id)).toEqual([1]);
   });
 
   it('B4: all-exempt array falls back to the tail so the trim loop still converges', () => {
@@ -126,6 +128,64 @@ describe('selectBudgetTrimIndex (token-budget trim row selection)', () => {
 
   it('B5: empty array returns -1', () => {
     expect(selectBudgetTrimIndex([])).toBe(-1);
+  });
+
+  // ── P1-6: reserve at least one primary, never evict it for a backfill ──
+
+  it('B6 [P1-6]: a single baseline row vs a surviving exempt row — the baseline wins', () => {
+    const rows = [
+      { id: 1, title: 'top primary' },
+      { id: 2, title: 'backfill', appendExempt: true },
+    ];
+    // The lone primary is reserved; the backfill is the one dropped.
+    expect(selectBudgetTrimIndex(rows)).toBe(1);
+  });
+
+  it('B7 [P1-6]: a squeeze to one row keeps the primary, not the backfill', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, title: 'top primary' },
+      { id: 2, appendExempt: true },
+      { id: 3, appendExempt: true },
+    ];
+    // Drop both backfills before the reserved primary.
+    rows.splice(selectBudgetTrimIndex(rows), 1);
+    rows.splice(selectBudgetTrimIndex(rows), 1);
+    expect(rows.map((r) => r.id)).toEqual([1]);
+  });
+
+  // ── P2-14: constitutional pins are at least as exempt as a backfill ──
+
+  it('B8 [P2-14]: a constitutional row outlives an additive backfill under a squeeze', () => {
+    const rows = [
+      { id: 1, isConstitutional: true },
+      { id: 2, title: 'backfill', appendExempt: true },
+    ];
+    // The backfill is dropped, the constitutional pin survives.
+    expect(selectBudgetTrimIndex(rows)).toBe(1);
+  });
+
+  it('B9 [P2-14]: ordinary < backfill < constitutional drop order', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, isConstitutional: true },
+      { id: 2, title: 'ordinary' },
+      { id: 3, appendExempt: true },
+    ];
+    // primaryCount = 2 (constitutional id1 + ordinary id2). Ordinary id 2 goes first.
+    rows.splice(selectBudgetTrimIndex(rows), 1);
+    expect(rows.map((r) => r.id)).toEqual([1, 3]);
+    // Now constitutional + backfill: the backfill goes before the pin.
+    rows.splice(selectBudgetTrimIndex(rows), 1);
+    expect(rows.map((r) => r.id)).toEqual([1]);
+  });
+
+  it('B10 [P2-14]: constitutional rows are NOT dropped before an ordinary row remains', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, isConstitutional: true },
+      { id: 2, isConstitutional: true },
+      { id: 3, title: 'ordinary' },
+    ];
+    // The ordinary row is the lowest-priority droppable; both pins survive it.
+    expect(selectBudgetTrimIndex(rows)).toBe(2);
   });
 });
 
@@ -143,21 +203,48 @@ describe('append-exempt survives the budget-trim loop', () => {
     }
   }
 
-  it('C1: a hard squeeze to 2 rows keeps both appended rows, not the baseline tail', () => {
+  it('C1: a squeeze to 2 rows keeps the top primary and a surviving append, not a backfill-only set', () => {
     const rows: Array<Record<string, unknown>> = [
-      { id: 1, title: 'base 1' },
+      { id: 1, title: 'base 1 (top primary)' },
       { id: 2, title: 'base 2' },
       { id: 3, title: 'base 3' },
       { id: 4, title: 'multihop', appendExempt: true },
       { id: 5, title: 'lane-champion', appendExempt: true },
     ];
     trimToCount(rows, 2);
-    // The two appends survive; the baseline rows were trimmed first.
-    expect(rows.map((r) => r.id).sort()).toEqual([4, 5]);
-    expect(rows.every((r) => r.appendExempt === true)).toBe(true);
+    // Baseline tail rows (2, 3) trimmed first; then the reservation kicks in and the
+    // top primary (id 1) is held back, so a backfill (id 5) is dropped before it.
+    expect(rows.map((r) => r.id)).toEqual([1, 4]);
+    // The append survives AND the top requested result was NOT evicted (P1-6).
+    expect(rows.some((r) => r.appendExempt === true)).toBe(true);
+    expect(rows.some((r) => r.id === 1)).toBe(true);
   });
 
-  it('C2: flag-off control — with no exempt rows the squeeze drops the tail exactly like pop()', () => {
+  it('C1b [P1-6]: even a maximal squeeze to a single row never returns a backfill-only answer', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, title: 'top primary' },
+      { id: 2, appendExempt: true },
+      { id: 3, appendExempt: true },
+      { id: 4, appendExempt: true },
+    ];
+    trimToCount(rows, 1);
+    // The reserved primary survives; all backfills were trimmed before it.
+    expect(rows.map((r) => r.id)).toEqual([1]);
+  });
+
+  it('C1c [P2-14]: a constitutional pin survives a squeeze that drops every backfill', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, isConstitutional: true },
+      { id: 2, title: 'ordinary' },
+      { id: 3, appendExempt: true },
+      { id: 4, appendExempt: true },
+    ];
+    trimToCount(rows, 1);
+    // Ordinary id 2 first, then the two backfills — the constitutional pin is last.
+    expect(rows.map((r) => r.id)).toEqual([1]);
+  });
+
+  it('C2: flag-off control — with no exempt and no constitutional rows the squeeze drops the tail exactly like pop()', () => {
     const rows: Array<Record<string, unknown>> = [
       { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
     ];

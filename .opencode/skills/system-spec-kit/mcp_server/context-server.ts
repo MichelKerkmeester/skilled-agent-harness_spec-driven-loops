@@ -463,29 +463,70 @@ function runCheckpointNeedsRebuildRepair(
   }
 }
 
+function isObjectRow(row: unknown): row is Record<string, unknown> {
+  return row !== null && typeof row === 'object';
+}
+
+/** A formatter-stamped additive tail-append row (deterministic multi-hop / lane-champion). */
+function isAppendExemptRow(row: unknown): boolean {
+  return isObjectRow(row) && row.appendExempt === true;
+}
+
+/** An always-surface / constitutional pinned row. */
+function isConstitutionalRow(row: unknown): boolean {
+  return isObjectRow(row) && row.isConstitutional === true;
+}
+
 /**
- * Pick which result row the token-budget truncation should drop next. Returns the
- * index of the last row NOT marked `appendExempt`; only when every remaining row is
- * exempt does it fall back to the last index so the trim loop still converges.
+ * Pick which result row the token-budget truncation should drop next, by a fixed
+ * drop-priority that protects the rows worth keeping:
  *
- * The `appendExempt` rows are the additive tail appends (deterministic multi-hop /
- * lane-champion backfill) the formatter stamped — they sit at the tail by design, so
- * a blind drop-from-end would strip exactly the rows the append stage exists to add.
- * When no row is exempt (both append flags off → no append rows), this returns the
- * last index every pass, byte-identical to a plain pop() from the end.
+ *   1. Ordinary rows go first, dropped from the tail, BUT at least one non-backfill
+ *      row is always reserved — a budget squeeze must never collapse the answer to
+ *      only additive backfill rows and evict the top-scored requested result.
+ *   2. `appendExempt` additive backfill rows (deterministic multi-hop / lane-champion)
+ *      go only once they are the only thing left to give besides the reserved primary.
+ *   3. Constitutional / always-surface pinned rows are at least as protected as a
+ *      backfill row — a squeeze never drops a pinned rule before an additive backfill.
+ *   4. Only when every remaining row is pinned/exempt does it sacrifice the tail so
+ *      the trim loop still converges.
+ *
+ * When no row is `appendExempt` and no row is constitutional (both append flags off →
+ * no backfill rows, and a result set with no pinned rules), this returns the last
+ * index every pass, byte-identical to a plain pop() from the end.
  *
  * Pure and side-effect free so the selection invariant is unit-testable without the
  * server envelope.
  */
 export function selectBudgetTrimIndex(rows: readonly unknown[]): number {
   if (rows.length === 0) return -1;
+
+  // A "primary" row is any non-backfill row — an ordinary requested result OR a
+  // constitutional pin. Reserve at least one so the squeeze can never return a
+  // backfill-only answer and evict the top-scored requested result.
+  let primaryCount = 0;
+  for (const row of rows) {
+    if (!isAppendExemptRow(row)) primaryCount += 1;
+  }
+
+  // Tier 1: drop the last ORDINARY row (neither backfill nor constitutional). Hold
+  // back the final primary: when only one non-backfill row remains, an ordinary
+  // primary is reserved here and the loop falls through to trim a backfill instead.
   for (let i = rows.length - 1; i >= 0; i -= 1) {
     const row = rows[i];
-    const exempt = row !== null && typeof row === 'object'
-      && (row as Record<string, unknown>).appendExempt === true;
-    if (!exempt) return i;
+    if (isAppendExemptRow(row) || isConstitutionalRow(row)) continue;
+    if (primaryCount <= 1) break; // this ordinary row is the sole reserved primary
+    return i;
   }
-  // Every remaining row is exempt: sacrifice the tail so the loop still terminates.
+
+  // Tier 2: drop the last additive backfill row. Sacrificed before any constitutional
+  // pin so a pinned always-surface rule always outlives an additive backfill.
+  for (let i = rows.length - 1; i >= 0; i -= 1) {
+    if (isAppendExemptRow(rows[i])) return i;
+  }
+
+  // Tier 3: everything left is constitutional (or the single reserved primary).
+  // Sacrifice the tail so the trim loop still terminates rather than spinning.
   return rows.length - 1;
 }
 

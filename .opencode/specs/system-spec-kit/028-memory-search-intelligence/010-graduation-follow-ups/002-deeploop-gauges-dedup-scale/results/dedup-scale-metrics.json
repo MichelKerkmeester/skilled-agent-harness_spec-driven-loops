@@ -5,24 +5,24 @@
   "generatedAt": "2026-06-24",
   "scale": {
     "workers": 6,
-    "researchSourceFindings": 54,
+    "researchSourceFindings": 60,
     "reviewSourceFindings": 15,
-    "totalSourceFindings": 69,
-    "distinctTruthPoints": 32,
-    "note": "beyond the 008 17-record set: 50+ research findings across 6 workers plus a review-path severity check, in identical/varied/distinct/near-miss wording modes"
+    "totalSourceFindings": 75,
+    "bodyDistinguishedTruthPoints": 32,
+    "note": "beyond the 008 17-record set: 50+ research findings across 6 workers plus a review-path severity check, in identical/varied/distinct/near-miss/title-distinct wording modes"
   },
   "research": {
     "workers": 6,
-    "totalSourceFindings": 54,
+    "totalSourceFindings": 60,
     "distinctTruthPoints": 32,
     "off": {
-      "mergedCount": 54,
+      "mergedCount": 60,
       "byteIdenticalAcrossReruns": true
     },
     "on": {
-      "mergedCount": 35
+      "mergedCount": 38
     },
-    "noiseReducedRecords": 19,
+    "noiseReducedRecords": 22,
     "falseCollapse": {
       "hazardGroups": 0,
       "falselyCollapsedPoints": 0,
@@ -47,6 +47,29 @@
       "nearMissPoints": 8,
       "nearMissPointsSurvivedDistinct": 8,
       "allNearMissSurvived": true
+    },
+    "titleOnlyFalseCollapse": {
+      "titleDistinctPoints": 6,
+      "distinctPointsCollapsedAway": 3,
+      "titleOnlyFalseCollapseRate": 0.5,
+      "groups": [
+        {
+          "distinctPoints": 2,
+          "survivingRecords": 1,
+          "collapsedAway": 1
+        },
+        {
+          "distinctPoints": 2,
+          "survivingRecords": 1,
+          "collapsedAway": 1
+        },
+        {
+          "distinctPoints": 2,
+          "survivingRecords": 1,
+          "collapsedAway": 1
+        }
+      ],
+      "note": "genuinely-distinct findings with identical bodies but different titles collapse because nearDuplicateContentKey excludes the title (fanout-merge.cjs:167-176); this is the free-text precision limit 009 flagged, measured against ground-truth distinctness"
     }
   },
   "review": {
@@ -75,6 +98,8 @@
     "identicalDupRecall": 1,
     "nearMissAllSurvived": true,
     "reviewSeverityPreservationRate": 1,
-    "reviewNoFalseCollapse": true
+    "reviewNoFalseCollapse": true,
+    "titleOnlyFalseCollapseRate": 0.5,
+    "titleDistinctPointsCollapsedAway": 3
   }
 }

@@ -61,10 +61,10 @@ _memory:
 
 - [x] CHK-010 [P0] Type-check passes
   - **Evidence**: `npx tsc --noEmit --composite false -p .opencode/skills/system-code-graph/tsconfig.json` exits 0
-- [x] CHK-011 [P0] Degree-cap default set to the benchmark-validated value
-  - **Evidence**: `DEFAULT_REVERSE_DEP_DEGREE_CAP = 10` in structural-indexer.ts, the value the 006 benchmark validated
+- [x] CHK-011 [P0] Degree-cap default set to a safe ceiling
+  - **Evidence**: `DEFAULT_REVERSE_DEP_DEGREE_CAP = 10` in structural-indexer.ts, recorded as an unbenchmarked midpoint the fixture cannot distinguish, with the hot-hub correctness cost noted in the comment
 - [x] CHK-012 [P1] Off-path statements kept verbatim
-  - **Evidence**: The else branches in `replaceEdges` hold the original DELETE, the original per-edge insert, and the original dangling-prune DELETE unchanged
+  - **Evidence**: The else branches in `replaceNodes`, `replaceEdges`, `pruneDanglingEdges`, and the live readers hold the original DELETE and query strings unchanged
 - [x] CHK-013 [P1] No artifact ids or spec paths in code comments
   - **Evidence**: New comments carry durable WHY only, no packet or spec ids
 <!-- /ANCHOR:code-quality -->
@@ -74,14 +74,16 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Live integration test authored
-  - **Evidence**: `code-edge-bitemporal-reindex.vitest.ts` closes an edge at generation N, reindexes at N+1, asserts `asOfEdgesFrom` returns target-old at N and target-new current
-- [x] CHK-021 [P0] Byte-identity tests authored for both changes
-  - **Evidence**: The reindex test proves the off-path keeps only the new edge with null validity columns and that flag-unset matches flag-false, the degree-cap test proves the cap env value never changes the outcome while force-parse is off
-- [x] CHK-022 [P1] New test files type-check
-  - **Evidence**: Standalone `tsc` over both `.vitest.ts` files exits 0
-- [x] CHK-023 [P1] Full vitest run deferred to the CLI executor
-  - **Evidence**: Per the task brief a CLI executor runs the full vitest pass after authoring
+- [x] CHK-020 [P0] Real-scan integration test authored and passing
+  - **Evidence**: `code-edge-bitemporal-reindex.vitest.ts` drives the scan handler twice under the production bump ordering, asserts `asOfEdgesFrom` at the pre-reindex generation returns the old target and the live read returns only the new target
+- [x] CHK-021 [P0] Live-reader filter and close-not-delete covered
+  - **Evidence**: `code-edge-bitemporal-readers.vitest.ts` asserts `queryEdgesFrom` and `queryEdgesTo` drop closed edges under the flag and that `replaceNodes` and `pruneDanglingEdges` close under the flag and delete with it off
+- [x] CHK-022 [P0] Byte-identity tests authored for every change
+  - **Evidence**: The reindex test proves the off-path keeps only the new edge with null validity columns and flag-unset matches flag-false, the readers test proves the off-path delete, the degree-cap test proves the cap env value never changes the outcome while force-parse is off
+- [x] CHK-023 [P1] New test files type-check and the focused run passes
+  - **Evidence**: Standalone `tsc` over the three `.vitest.ts` files exits 0, a focused vitest run of the three files passes 13 of 13
+- [x] CHK-024 [P1] Full vitest suite deferred to the CLI executor
+  - **Evidence**: Per the brief the CLI executor runs the full pass, this work confirms tsc and the focused run
 <!-- /ANCHOR:testing -->
 
 ---
@@ -89,11 +91,15 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-024 [P0] Both 009 gaps closed
-  - **Evidence**: Degree-cap default no longer 0, bitemporal writer wired into the reindex path
-- [x] CHK-025 [P1] Producer and consumer surfaces accounted for
-  - **Evidence**: `replaceEdges` updated, `asOfEdgesFrom` now has a live consumer, `persistIndexedFileResult` unchanged
-- [x] CHK-026 [P1] Default-off invariant preserved
+- [x] CHK-025 [P0] 011 deep-review P0 blockers closed
+  - **Evidence**: P0-1 live-reader filter added, P0-2 `pruneDanglingEdges` closes under the flag, P0-3 `replaceNodes` closes under the flag, all confirmed against the real code before fixing and proven by the real-scan test
+- [x] CHK-026 [P0] Off-by-one and zero-width lifetime fixed
+  - **Evidence**: Loop-time writes stamp at the next generation, the real-scan probe showed the old edge window [G+1, G+2) readable at the pre-reindex generation
+- [x] CHK-027 [P1] As-of read consumer scoped honestly
+  - **Evidence**: `asOfEdgesFrom` kept as the tested consumer, the public query-surface parameter deferred and recorded as not graduated rather than overclaimed
+- [x] CHK-028 [P1] Degree-cap claim softened and cost recorded
+  - **Evidence**: Spec and code comment call 10 an unbenchmarked midpoint and record the hot-hub staleness cost above the cap
+- [x] CHK-029 [P1] Default-off invariant preserved across all sites
   - **Evidence**: Byte-identity tests confirm no live behavior change while either flag is off
 <!-- /ANCHOR:fix-completeness -->
 
@@ -118,7 +124,7 @@ _memory:
 - [x] CHK-040 [P1] Spec, plan, and tasks synchronized
   - **Evidence**: All three reflect the two changes, the same file list, and the same test set
 - [x] CHK-041 [P1] Code comments adequate
-  - **Evidence**: The reindex branch and the degree-cap default each carry a WHY comment
+  - **Evidence**: The generation helper, each close-not-delete branch, the live-reader filter, and the degree-cap default each carry a WHY comment
 - [x] CHK-042 [P2] Description and graph metadata generated
   - **Evidence**: description.json and graph-metadata.json generated by the spec-kit generators
 <!-- /ANCHOR:docs -->
@@ -141,8 +147,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 7/7 |
-| P1 Items | 11 | 11/11 |
+| P0 Items | 10 | 10/10 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-06-24

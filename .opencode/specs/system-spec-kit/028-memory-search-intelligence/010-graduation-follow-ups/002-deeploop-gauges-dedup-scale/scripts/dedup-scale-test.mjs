@@ -163,6 +163,36 @@ function buildPoints() {
     }
   }
 
+  // ── TITLE-DISTINCT pairs (CORRECTION for deep-review P2-15) ──
+  // Genuinely DISTINCT findings whose BODY text is identical but whose TITLE carries the
+  // only distinguishing information. nearDuplicateContentKey excludes the title
+  // (fanout-merge.cjs:167-176), so the body-only key treats these as the same finding and
+  // collapses them — a TRUE false collapse of two distinct points. This is exactly the
+  // free-text risk 009 flagged: in real fan-outs a worker often writes a generic body
+  // ("see the title") or a templated body and puts the specific finding in the title.
+  // Each pair is two DIFFERENT truth points (the title differs), so a correct dedup must
+  // keep them separate; the production dedup will not. Scored against ground-truth
+  // distinctness, NOT against the title-excluding key.
+  const titleDistinctPairs = [
+    {
+      body: 'A hard-coded credential is committed in the source tree and must be rotated and removed from history',
+      titles: { galadriel: 'AWS secret access key in config/prod.env', codex: 'Stripe live API key in services/billing.ts' },
+    },
+    {
+      body: 'An endpoint is missing an authorization check and exposes data to an unauthenticated caller',
+      titles: { claude: 'GET /admin/users returns all users with no auth guard', gemini: 'POST /internal/flags toggles flags with no auth guard' },
+    },
+    {
+      body: 'A user-supplied value reaches a sink without sanitization, enabling injection',
+      titles: { qwen: 'Search query reaches the SQL builder unescaped', minimax: 'Comment body reaches the HTML renderer unescaped' },
+    },
+  ];
+  for (const pair of titleDistinctPairs) {
+    for (const [reporter, title] of Object.entries(pair.titles)) {
+      add({ mode: 'title-distinct', reporters: [reporter], body: pair.body, title, kind: 'research' });
+    }
+  }
+
   return points;
 }
 
@@ -177,8 +207,12 @@ function buildLineages(points) {
       const id = `F-${reporter.slice(0, 3)}-${String(++fid).padStart(3, '0')}`;
       const body = point.mode === 'varied' ? point.variants[reporter] : point.body;
       // Titles always vary per reporter so the test proves collapse keys on body, not
-      // title — exactly as nearDuplicateContentKey excludes title.
-      const title = `${reporter} on ${point.pointId} (${point.mode})`;
+      // title — exactly as nearDuplicateContentKey excludes title. For the title-distinct
+      // class the title carries the only distinguishing information, so it is the per-point
+      // title, NOT the generic one (this is the case the body-only key is blind to).
+      const title = point.mode === 'title-distinct'
+        ? point.title
+        : `${reporter} on ${point.pointId} (${point.mode})`;
       byWorker.get(reporter).push({
         id,
         title,
@@ -257,14 +291,25 @@ function score(points, lineages) {
     }
   }
 
+  // The set of truth points that are TITLE-DISTINCT: genuinely distinct findings that
+  // share a body and differ only by title. The body-only key cannot tell them apart, so
+  // they collapse BY DESIGN of the (title-excluding) key. This is the known free-text
+  // limit measured separately below; the body-distinguished precision metrics here EXCLUDE
+  // them so they reflect the contract the dedup actually claims (collapse content-identical
+  // restatements, keep content-different findings).
+  const titleDistinctPointIds = new Set(points.filter((p) => p.mode === 'title-distinct').map((p) => p.pointId));
+
   // A content-key group that spans more than one distinct TRUTH point is a
   // FALSE-COLLAPSE hazard: the on-path would merge two genuinely different points
-  // because their bodies normalized to the same key. Count groups whose member
-  // findings map to >1 distinct _truthPoint.
+  // because their bodies normalized to the same key. Count groups whose member findings
+  // map to >1 distinct _truthPoint, EXCLUDING title-distinct points (those are the known
+  // limit, scored separately as the title-only false-collapse rate).
   let falseCollapseHazardGroups = 0;
   let falseCollapsedPoints = 0;
   for (const group of sourceByKey.values()) {
-    const truthPoints = new Set(group.map((f) => f._truthPoint));
+    const truthPoints = new Set(
+      group.filter((f) => !titleDistinctPointIds.has(f._truthPoint)).map((f) => f._truthPoint),
+    );
     if (truthPoints.size > 1) {
       falseCollapseHazardGroups += 1;
       falseCollapsedPoints += truthPoints.size;
@@ -282,12 +327,16 @@ function score(points, lineages) {
     if (!onKeys.has(key)) continue;
     for (const f of group) survivingPoints.add(f._truthPoint);
   }
-  const allPoints = new Set(points.map((p) => p.pointId));
-  const distinctPointsExpected = allPoints.size;
-  const distinctPointsPreserved = survivingPoints.size;
+  // Body-distinguished distinct points (excludes title-distinct, the known limit scored
+  // separately): these the dedup MUST keep separate, so their recall must be 1.0.
+  const bodyDistinctPoints = new Set(
+    points.map((p) => p.pointId).filter((id) => !titleDistinctPointIds.has(id)),
+  );
+  const distinctPointsExpected = bodyDistinctPoints.size;
+  const distinctPointsPreserved = [...survivingPoints].filter((id) => bodyDistinctPoints.has(id)).length;
   const distinctRecall = distinctPointsExpected === 0 ? 1 : distinctPointsPreserved / distinctPointsExpected;
 
-  // False-collapse RATE = falsely-merged distinct points / total distinct points.
+  // False-collapse RATE = falsely-merged body-distinguished points / total such points.
   const falseCollapseRate = distinctPointsExpected === 0 ? 0 : falseCollapsedPoints / distinctPointsExpected;
 
   // Designed-for (identical-body) true-dup recall: of the IDENTICAL clusters, how many
@@ -336,6 +385,41 @@ function score(points, lineages) {
     }
   }
 
+  // ── TITLE-ONLY FALSE-COLLAPSE (deep-review P2-15) ──
+  // The title-distinct points are genuinely DISTINCT (different titles carry the only
+  // distinguishing information) but share an IDENTICAL body. Because nearDuplicateContentKey
+  // excludes the title, the production dedup collapses each such pair to ONE record,
+  // wrongly merging two distinct findings. We measure this on the PRODUCTION `on` output,
+  // scored against ground-truth distinctness: how many title-distinct points were lost to
+  // a collapse. The title-only false-collapse rate is the share of title-distinct points
+  // that did NOT survive as their own record. This is the precision blind spot the prior
+  // metric (which only built same-body groups it then ignored if titles differed) could
+  // not see, because the body-only key is the very thing being measured.
+  const titleDistinctPoints = points.filter((p) => p.mode === 'title-distinct');
+  // Group title-distinct points by their shared body; each body-group is a pair (or more)
+  // of distinct points the production dedup will collapse into one survivor.
+  const titleDistinctByBody = new Map();
+  for (const p of titleDistinctPoints) {
+    const bodyKey = normalizeBody(p.body);
+    if (!titleDistinctByBody.has(bodyKey)) titleDistinctByBody.set(bodyKey, []);
+    titleDistinctByBody.get(bodyKey).push(p);
+  }
+  // For each shared-body group, count how many production `on` records carry that body.
+  // If the group has N distinct points but the on-path kept fewer than N records for that
+  // body, the difference is the count of distinct points wrongly collapsed away.
+  let titleDistinctTotal = 0;
+  let titleDistinctCollapsedAway = 0;
+  const titleDistinctGroups = [];
+  for (const [bodyKey, groupPoints] of titleDistinctByBody.entries()) {
+    const distinctCount = groupPoints.length;
+    const survivingRecords = onFindings.filter((r) => normalizeBody(r.summary) === bodyKey).length;
+    const collapsedAway = Math.max(0, distinctCount - survivingRecords);
+    titleDistinctTotal += distinctCount;
+    titleDistinctCollapsedAway += collapsedAway;
+    titleDistinctGroups.push({ distinctPoints: distinctCount, survivingRecords, collapsedAway });
+  }
+  const titleOnlyFalseCollapseRate = titleDistinctTotal === 0 ? 0 : titleDistinctCollapsedAway / titleDistinctTotal;
+
   return {
     workers: WORKERS.length,
     totalSourceFindings: totalSource,
@@ -367,6 +451,13 @@ function score(points, lineages) {
       nearMissPoints: nearMissPoints.length,
       nearMissPointsSurvivedDistinct: nearMissSurvived,
       allNearMissSurvived: nearMissSurvived === nearMissPoints.length,
+    },
+    titleOnlyFalseCollapse: {
+      titleDistinctPoints: titleDistinctTotal,
+      distinctPointsCollapsedAway: titleDistinctCollapsedAway,
+      titleOnlyFalseCollapseRate: Number(titleOnlyFalseCollapseRate.toFixed(4)),
+      groups: titleDistinctGroups,
+      note: 'genuinely-distinct findings with identical bodies but different titles collapse because nearDuplicateContentKey excludes the title (fanout-merge.cjs:167-176); this is the free-text precision limit 009 flagged, measured against ground-truth distinctness',
     },
   };
 }
@@ -489,25 +580,27 @@ const out = {
     researchSourceFindings: research.totalSourceFindings,
     reviewSourceFindings: review.totalSourceFindings,
     totalSourceFindings: research.totalSourceFindings + review.totalSourceFindings,
-    distinctTruthPoints: research.distinctTruthPoints,
-    note: 'beyond the 008 17-record set: 50+ research findings across 6 workers plus a review-path severity check, in identical/varied/distinct/near-miss wording modes',
+    bodyDistinguishedTruthPoints: research.distinctTruthPoints,
+    note: 'beyond the 008 17-record set: 50+ research findings across 6 workers plus a review-path severity check, in identical/varied/distinct/near-miss/title-distinct wording modes',
   },
   research,
   review,
   verdict: {
     offByteIdentical: research.off.byteIdenticalAcrossReruns && review.off.byteIdenticalAcrossReruns,
-    // Precision holds at scale when NO distinct point was false-collapsed.
+    // BODY-DISTINGUISHED precision: the dedup keeps content-different findings separate.
+    // Excludes title-distinct points (the known free-text limit, reported separately).
     noFalseCollapse: research.falseCollapse.falselyCollapsedPoints === 0,
     falseCollapseRate: research.falseCollapse.falseCollapseRate,
-    // Recall of DISTINCT points (nothing genuinely-distinct silently lost).
     distinctFindingRecall: research.distinctRecall.distinctFindingRecall,
-    // Designed-for collapse still works at scale.
     identicalDupRecall: research.designedForDup.identicalDupRecall,
     nearMissAllSurvived: research.nearMissPrecision.allNearMissSurvived,
-    // Review path: strongest severity survives every collapse, distinct review
-    // findings never false-collapse.
     reviewSeverityPreservationRate: review.severityPreservationRate,
     reviewNoFalseCollapse: review.allDistinctReviewSurvived,
+    // MEASURED free-text precision limit (deep-review P2-15): genuinely-distinct findings
+    // that share a body but differ only by title DO collapse because the key excludes the
+    // title. Reported as a number, NOT gated — the dedup never claimed title-awareness.
+    titleOnlyFalseCollapseRate: research.titleOnlyFalseCollapse.titleOnlyFalseCollapseRate,
+    titleDistinctPointsCollapsedAway: research.titleOnlyFalseCollapse.distinctPointsCollapsedAway,
   },
 };
 

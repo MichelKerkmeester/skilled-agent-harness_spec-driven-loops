@@ -68,8 +68,9 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria covered by tests (REQ-001..004).
 - [ ] CHK-021 [P0] cli executor test pass green (deferred to the cli executor per task instruction).
-- [x] CHK-022 [P1] Edge cases tested: all-exempt array, single-class ledger, null-session exclusion, empty ledger.
-- [x] CHK-023 [P1] Error/byte-identity scenarios: flag-off shape has no `appendExempt` key; no-exempt trim is identical to pop().
+- [x] CHK-022 [P1] Edge cases tested: all-exempt array, single-class ledger, null-session exclusion, empty ledger, P1-6 reserve-a-primary, P2-14 constitutional-over-backfill, P2-12 199:1 lopsided regression.
+- [x] CHK-023 [P1] Error/byte-identity scenarios: flag-off shape has no `appendExempt` key; trim is identical to pop() when no row is exempt and none is constitutional. P2-14 constitutional-sparing is the one deliberate behavior change, independent of the append flags, fires only on a real squeeze with a pinned row.
+- [x] CHK-024 [P1] Deep-review findings P1-6, P2-14, P2-12 addressed and regression-tested; trim and density logic cross-checked via a standalone simulation (all 25 cases pass).
 <!-- /ANCHOR:testing -->
 
 ---
@@ -80,8 +81,8 @@ _memory:
 - [x] CHK-FIX-001 [P0] Findings classed: P1-001 is `cross-consumer` (formatter producer + serializer consumer); P2-003 is `instance-only` (one new probe).
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: both append modules stamp `source`/`sources`; only those two markers exist (`rg -n "source: 'multihop'|lane-champion:"`).
 - [x] CHK-FIX-003 [P0] Consumer inventory: the context-server after-tool callback is the only token-budget trim site that pops `data.results`; the formatter is the only producer of the response rows.
-- [x] CHK-FIX-004 [P0] Selection invariant tested adversarially: no-exempt (identical to pop), tail-exempt, interleaved, all-exempt, empty.
-- [x] CHK-FIX-005 [P1] Matrix axes listed: {exempt present/absent} x {tail/interleaved/all} for trim; {empty / below / above / single-class / null-session / custom-threshold} for probe.
+- [x] CHK-FIX-004 [P0] Selection invariant tested adversarially: no-exempt (identical to pop), tail-exempt, interleaved, all-exempt, empty, single-primary-reserve (P1-6), constitutional-over-backfill (P2-14).
+- [x] CHK-FIX-005 [P1] Matrix axes listed: {ordinary / backfill / constitutional} x {tail / interleaved / all-pinned / single-primary} for trim; {empty / below / above / single-class / lopsided-199:1 / minority-under-floor / null-session / custom-threshold} for probe.
 - [x] CHK-FIX-006 [P1] Hostile-state variant: the flag-off path (no append rows, emitter off) is the global-state variant and is covered by A2 and the health gating.
 - [x] CHK-FIX-007 [P1] Evidence pinned to this working-tree diff.
 <!-- /ANCHOR:fix-completeness -->

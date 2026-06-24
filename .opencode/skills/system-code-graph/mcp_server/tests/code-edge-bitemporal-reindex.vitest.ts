@@ -2,208 +2,257 @@
 // MODULE: Code Edge Bitemporal Reindex Tests
 // ───────────────────────────────────────────────────────────────
 //
-// These tests cover the reindex edge-replacement path (replaceEdges) under the
-// bitemporal-reads flag. With the flag on, a reindex closes the superseded edge
-// (stamps invalid_at) and inserts its replacement with valid_at open, so an
-// as-of query can answer about a past generation. With the flag off, the path
-// keeps deleting and re-inserting with the validity columns untouched.
+// These tests cover the reindex edge-replacement path under the bitemporal-reads
+// flag, driving the real scan handler twice so the production write ordering
+// (replaceNodes, replaceEdges, generation bump, dangling prune) is exercised
+// exactly as it runs in a live reindex. With the flag on, a reindex closes the
+// superseded edge (stamps invalid_at) and inserts its replacement with valid_at
+// open, so an as-of query at the genuine pre-reindex generation returns the old
+// target while the live read returns only the open edge. With the flag off the
+// path keeps deleting and re-inserting with the validity columns untouched.
 
-import Database from 'better-sqlite3';
-import { mkdtempSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 import {
   CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV,
   asOfEdgesFrom,
-  bumpCodeGraphGeneration,
   closeDb,
   getCodeGraphGeneration,
   getDb,
   initDb,
   queryEdgesFrom,
-  replaceEdges,
-  replaceNodes,
-  upsertFile,
 } from '../lib/code-graph-db.js';
-import type { CodeEdge, CodeNode } from '../lib/indexer-types.js';
+import { handleCodeGraphScan } from '../handlers/scan.js';
 
-let tempDirs: string[] = [];
-let originalFlag: string | undefined;
+const REVERSE_DEP_FORCE_PARSE_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE';
 
-function createTempDir(label: string): string {
-  const tempDir = mkdtempSync(join(tmpdir(), `code-edge-bitemporal-reindex-${label}-`));
-  tempDirs.push(tempDir);
-  return tempDir;
+interface Fixture {
+  rootDir: string;
+  workspaceDir: string;
+  dbDir: string;
 }
 
-function createNode(symbolId: string, filePath: string, name: string): CodeNode {
-  return {
-    symbolId,
-    filePath,
-    fqName: name,
-    kind: 'function',
-    name,
-    startLine: 1,
-    endLine: 1,
-    startColumn: 0,
-    endColumn: 10,
-    language: 'typescript',
-    signature: `function ${name}()`,
-    contentHash: `${symbolId}-hash`,
-  };
+interface ScanPayload {
+  status: 'ok' | 'blocked' | 'error';
+  data: { filesIndexed: number; filesSkipped: number; errors: string[] };
 }
 
-function callsEdge(sourceId: string, targetId: string): CodeEdge {
-  return { sourceId, targetId, edgeType: 'CALLS', weight: 1 };
+interface ImportEdgeRow {
+  sourceId: string;
+  targetId: string;
+  validAt: number | null;
+  invalidAt: number | null;
 }
 
-function edgeRows(): Array<{ source_id: string; target_id: string; valid_at: number | null; invalid_at: number | null }> {
+let originalCwd = process.cwd();
+let originalBitemporalFlag: string | undefined;
+let originalForceParseFlag: string | undefined;
+
+function createFixture(label: string): Fixture {
+  const rootDir = mkdtempSync(join(tmpdir(), `code-edge-bitemporal-reindex-${label}-`));
+  const workspaceDir = join(rootDir, 'workspace');
+  const dbDir = join(rootDir, 'db');
+  mkdirSync(workspaceDir, { recursive: true });
+  mkdirSync(dbDir, { recursive: true });
+  const canonicalWorkspaceDir = realpathSync(workspaceDir);
+  const canonicalDbDir = realpathSync(dbDir);
+  initDb(canonicalDbDir);
+  process.chdir(canonicalWorkspaceDir);
+  return { rootDir, workspaceDir: canonicalWorkspaceDir, dbDir: canonicalDbDir };
+}
+
+function writeWorkspaceFile(rootDir: string, relativePath: string, content: string): string {
+  const filePath = join(rootDir, relativePath);
+  mkdirSync(dirname(filePath), { recursive: true });
+  writeFileSync(filePath, content);
+  return filePath;
+}
+
+async function runScan(workspaceDir: string, incremental: boolean): Promise<ScanPayload['data']> {
+  const response = await handleCodeGraphScan({ rootDir: workspaceDir, incremental });
+  const payload = JSON.parse(response.content[0].text) as ScanPayload;
+  expect(payload.status).toBe('ok');
+  expect(payload.data.errors).toEqual([]);
+  return payload.data;
+}
+
+// Read every IMPORTS edge whose source symbol lives in the importer file,
+// including the validity columns and regardless of whether the edge is open or
+// closed. The source symbol survives a reindex of the dependency, but a closed
+// edge can point at a target node that was already removed, so this must not join
+// on the target node or it would drop the very rows the close preserves.
+function allImportEdgesFrom(filePath: string): ImportEdgeRow[] {
   return getDb()
-    .prepare('SELECT source_id, target_id, valid_at, invalid_at FROM code_edges ORDER BY source_id, target_id, id')
-    .all() as Array<{ source_id: string; target_id: string; valid_at: number | null; invalid_at: number | null }>;
+    .prepare(`
+      SELECT
+        edge.source_id AS sourceId,
+        edge.target_id AS targetId,
+        edge.valid_at AS validAt,
+        edge.invalid_at AS invalidAt
+      FROM code_edges edge
+      INNER JOIN code_nodes source ON source.symbol_id = edge.source_id
+      WHERE edge.edge_type = 'IMPORTS'
+        AND source.file_path = ?
+      ORDER BY edge.valid_at, edge.target_id
+    `)
+    .all(filePath) as ImportEdgeRow[];
 }
 
-function setGeneration(value: number): void {
-  getDb()
-    .prepare(`
-      INSERT INTO code_graph_metadata (key, value, updated_at)
-      VALUES ('graph_generation', ?, ?)
-      ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at
-    `)
-    .run(String(value), new Date().toISOString());
+function liveImportEdgesFrom(filePath: string): ImportEdgeRow[] {
+  return allImportEdgesFrom(filePath).filter((row) => row.invalidAt === null);
 }
 
 afterEach(() => {
+  process.chdir(originalCwd);
   closeDb();
-  for (const tempDir of tempDirs) {
-    rmSync(tempDir, { recursive: true, force: true });
-  }
-  tempDirs = [];
-  if (originalFlag === undefined) {
+  if (originalBitemporalFlag === undefined) {
     delete process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
   } else {
-    process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] = originalFlag;
+    process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] = originalBitemporalFlag;
+  }
+  if (originalForceParseFlag === undefined) {
+    delete process.env[REVERSE_DEP_FORCE_PARSE_ENV];
+  } else {
+    process.env[REVERSE_DEP_FORCE_PARSE_ENV] = originalForceParseFlag;
   }
 });
 
-describe('replaceEdges bitemporal reindex', () => {
-  it('answers an as-of query at the past generation with the old target and current with the new', () => {
-    originalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+const DEP_BEFORE = 'export function foo() { return 1; }\n';
+const DEP_AFTER = 'export const foo = 1;\n';
+const IMPORTER = "import { foo } from './b';\nexport const value = foo;\n";
+
+describe('bitemporal reindex over the real scan path', () => {
+  it('answers an as-of query at the genuine pre-reindex generation with the old target', async () => {
+    originalBitemporalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+    originalForceParseFlag = process.env[REVERSE_DEP_FORCE_PARSE_ENV];
     process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] = 'true';
-    const dbDir = createTempDir('as-of');
-    initDb(dbDir);
+    process.env[REVERSE_DEP_FORCE_PARSE_ENV] = 'true';
+    const fixture = createFixture('as-of');
+    try {
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_BEFORE);
+      const importerPath = writeWorkspaceFile(fixture.workspaceDir, 'a.ts', IMPORTER);
 
-    const filePath = join(dbDir, 'a.ts');
-    const fileId = upsertFile(filePath, 'typescript', 'file-hash', 3, 0, 'clean', 1, { fileMtimeMs: 0 });
-    replaceNodes(fileId, [
-      createNode('caller', filePath, 'caller'),
-      createNode('target-old', filePath, 'targetOld'),
-      createNode('target-new', filePath, 'targetNew'),
-    ]);
+      await runScan(fixture.workspaceDir, false);
+      const before = allImportEdgesFrom(importerPath);
+      expect(before).toHaveLength(1);
+      const oldTargetId = before[0].targetId;
+      const importerId = before[0].sourceId;
+      // The genuine generation a consumer would name for the pre-reindex state is
+      // the generation current after scan one, read from the live counter.
+      const preReindexGeneration = getCodeGraphGeneration();
 
-    // Generation N: caller calls the old target.
-    setGeneration(1);
-    const generationN = getCodeGraphGeneration();
-    expect(generationN).toBe(1);
-    replaceEdges(['caller'], [callsEdge('caller', 'target-old')]);
+      // Refactor the dependency so foo flips function to const, changing its
+      // symbol identity and forcing the importer edge to rebind on rescan.
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_AFTER);
+      await runScan(fixture.workspaceDir, true);
 
-    // Reindex at generation N+1: caller now calls the new target. The old edge
-    // must be closed, not deleted, so the past generation stays readable.
-    bumpCodeGraphGeneration();
-    const generationNext = getCodeGraphGeneration();
-    expect(generationNext).toBe(generationN + 1);
-    replaceEdges(['caller'], [callsEdge('caller', 'target-new')]);
+      // The live read at the current generation points at the new target.
+      const liveNow = liveImportEdgesFrom(importerPath);
+      expect(liveNow).toHaveLength(1);
+      const newTargetId = liveNow[0].targetId;
+      expect(newTargetId).not.toBe(oldTargetId);
 
-    const pastEdges = asOfEdgesFrom('caller', generationN);
-    expect(pastEdges).toHaveLength(1);
-    expect(pastEdges[0].edge.targetId).toBe('target-old');
+      // The as-of read at the pre-reindex generation returns the old target. This
+      // is the assertion the earlier hand-bumped test could never satisfy: the
+      // pre-reindex generation is the real post-scan-one counter value.
+      const pastEdges = asOfEdgesFrom(importerId, preReindexGeneration, 'IMPORTS');
+      expect(pastEdges).toHaveLength(1);
+      expect(pastEdges[0].edge.targetId).toBe(oldTargetId);
 
-    const currentEdges = asOfEdgesFrom('caller', generationNext);
-    expect(currentEdges).toHaveLength(1);
-    expect(currentEdges[0].edge.targetId).toBe('target-new');
-
-    // Both generations of the edge are preserved on disk: the old one closed at
-    // the reindex generation, the new one open.
-    const rows = edgeRows();
-    expect(rows).toEqual([
-      { source_id: 'caller', target_id: 'target-new', valid_at: generationNext, invalid_at: null },
-      { source_id: 'caller', target_id: 'target-old', valid_at: generationN, invalid_at: generationNext },
-    ]);
+      // The old edge is preserved on disk, closed strictly after its valid_at.
+      const rows = allImportEdgesFrom(importerPath);
+      const oldRow = rows.find((row) => row.targetId === oldTargetId);
+      expect(oldRow).toBeDefined();
+      expect(oldRow?.invalidAt).not.toBeNull();
+      expect(oldRow!.invalidAt as number).toBeGreaterThan(oldRow!.validAt as number);
+    } finally {
+      rmSync(fixture.rootDir, { recursive: true, force: true });
+    }
   });
 
-  it('keeps the live read pointed at the new target after the reindex', () => {
-    originalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+  it('live reads return only the open edge after the real reindex', async () => {
+    originalBitemporalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+    originalForceParseFlag = process.env[REVERSE_DEP_FORCE_PARSE_ENV];
     process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] = 'true';
-    const dbDir = createTempDir('live-read');
-    initDb(dbDir);
+    process.env[REVERSE_DEP_FORCE_PARSE_ENV] = 'true';
+    const fixture = createFixture('live-read');
+    try {
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_BEFORE);
+      const importerPath = writeWorkspaceFile(fixture.workspaceDir, 'a.ts', IMPORTER);
 
-    const filePath = join(dbDir, 'a.ts');
-    const fileId = upsertFile(filePath, 'typescript', 'file-hash', 3, 0, 'clean', 1, { fileMtimeMs: 0 });
-    replaceNodes(fileId, [
-      createNode('caller', filePath, 'caller'),
-      createNode('target-old', filePath, 'targetOld'),
-      createNode('target-new', filePath, 'targetNew'),
-    ]);
+      await runScan(fixture.workspaceDir, false);
+      const before = allImportEdgesFrom(importerPath);
+      const oldTargetId = before[0].targetId;
+      const importerId = before[0].sourceId;
 
-    setGeneration(5);
-    replaceEdges(['caller'], [callsEdge('caller', 'target-old')]);
-    bumpCodeGraphGeneration();
-    replaceEdges(['caller'], [callsEdge('caller', 'target-new')]);
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_AFTER);
+      await runScan(fixture.workspaceDir, true);
 
-    // The live (flag-on) read filters to the current generation and returns only
-    // the open edge.
-    const live = asOfEdgesFrom('caller', getCodeGraphGeneration());
-    expect(live).toHaveLength(1);
-    expect(live[0].edge.targetId).toBe('target-new');
+      // The closed edge still sits in the table after the reindex, so the import
+      // source now has both a closed and an open IMPORTS edge.
+      const allRows = allImportEdgesFrom(importerPath);
+      expect(allRows.length).toBeGreaterThanOrEqual(2);
+
+      // But the live reader returns exactly one edge, the open one, and never the
+      // superseded target. This is the regression the earlier suite missed: the
+      // live reader filtering closed edges out under the flag.
+      const live = queryEdgesFrom(importerId, 'IMPORTS');
+      expect(live).toHaveLength(1);
+      expect(live[0].edge.targetId).not.toBe(oldTargetId);
+    } finally {
+      rmSync(fixture.rootDir, { recursive: true, force: true });
+    }
   });
 });
 
-describe('replaceEdges byte-identity when the bitemporal flag is off', () => {
-  function runReindexScenario(dbDir: string): Array<{ source_id: string; target_id: string; valid_at: number | null; invalid_at: number | null }> {
-    initDb(dbDir);
-    const filePath = join(dbDir, 'a.ts');
-    const fileId = upsertFile(filePath, 'typescript', 'file-hash', 3, 0, 'clean', 1, { fileMtimeMs: 0 });
-    replaceNodes(fileId, [
-      createNode('caller', filePath, 'caller'),
-      createNode('target-old', filePath, 'targetOld'),
-      createNode('target-new', filePath, 'targetNew'),
-    ]);
-    setGeneration(7);
-    replaceEdges(['caller'], [callsEdge('caller', 'target-old')]);
-    bumpCodeGraphGeneration();
-    replaceEdges(['caller'], [callsEdge('caller', 'target-new')]);
-    return edgeRows();
+describe('byte-identity when the bitemporal flag is off', () => {
+  async function runReindexScenario(label: string): Promise<ImportEdgeRow[]> {
+    const fixture = createFixture(label);
+    try {
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_BEFORE);
+      const importerPath = writeWorkspaceFile(fixture.workspaceDir, 'a.ts', IMPORTER);
+      await runScan(fixture.workspaceDir, false);
+      writeWorkspaceFile(fixture.workspaceDir, 'b.ts', DEP_AFTER);
+      await runScan(fixture.workspaceDir, true);
+      return allImportEdgesFrom(importerPath);
+    } finally {
+      rmSync(fixture.rootDir, { recursive: true, force: true });
+      closeDb();
+    }
   }
 
-  it('deletes and re-inserts so only the new edge survives with null validity columns', () => {
-    originalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+  it('keeps only the live edge with null validity columns when the flag is off', async () => {
+    originalBitemporalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+    originalForceParseFlag = process.env[REVERSE_DEP_FORCE_PARSE_ENV];
     delete process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
-    const dbDir = createTempDir('off-path');
+    process.env[REVERSE_DEP_FORCE_PARSE_ENV] = 'true';
 
-    const rows = runReindexScenario(dbDir);
-    expect(rows).toEqual([
-      { source_id: 'caller', target_id: 'target-new', valid_at: null, invalid_at: null },
-    ]);
-
-    // The off-path read ignores the validity columns and returns the live edge.
-    const live = queryEdgesFrom('caller');
-    expect(live).toHaveLength(1);
-    expect(live[0].edge.targetId).toBe('target-new');
+    const rows = await runReindexScenario('off-path');
+    // No closed history accumulates: a delete-and-insert reindex leaves exactly
+    // the live edge with untouched validity columns.
+    expect(rows).toHaveLength(1);
+    expect(rows[0].validAt).toBeNull();
+    expect(rows[0].invalidAt).toBeNull();
   });
 
-  it('matches the explicit-false flag value byte-for-byte', () => {
-    originalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+  it('matches the explicit-false flag value byte-for-byte', async () => {
+    originalBitemporalFlag = process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
+    originalForceParseFlag = process.env[REVERSE_DEP_FORCE_PARSE_ENV];
+    process.env[REVERSE_DEP_FORCE_PARSE_ENV] = 'true';
 
     delete process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV];
-    const undefinedDbDir = createTempDir('off-undefined');
-    const undefinedRows = runReindexScenario(undefinedDbDir);
-    closeDb();
+    const undefinedRows = await runReindexScenario('off-undefined');
 
     process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] = 'false';
-    const falseDbDir = createTempDir('off-false');
-    const falseRows = runReindexScenario(falseDbDir);
+    const falseRows = await runReindexScenario('off-false');
 
-    expect(falseRows).toEqual(undefinedRows);
+    // Symbol ids embed a per-run temp path, so compare the stable shape: one row
+    // with untouched validity columns on both off-path variants.
+    const project = (rows: ImportEdgeRow[]) =>
+      rows.map((row) => ({ validAt: row.validAt, invalidAt: row.invalidAt }));
+    expect(project(falseRows)).toEqual(project(undefinedRows));
+    expect(project(falseRows)).toEqual([{ validAt: null, invalidAt: null }]);
   });
 });
