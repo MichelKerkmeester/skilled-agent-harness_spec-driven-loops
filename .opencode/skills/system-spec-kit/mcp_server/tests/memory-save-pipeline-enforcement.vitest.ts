@@ -370,6 +370,17 @@ describe('Cat 0: Golden Path', () => {
       path.join(process.cwd(), '../scripts/test-fixtures/053-template-compliant-level2'),
     ].find((candidate) => fs.existsSync(path.join(candidate, 'spec.md')));
     expect(compliantFixtureRoot).toBeTruthy();
+    // The shared fixture is named for spec 053, but the test relocates it into
+    // the 998 host folder. Without rewriting, the body's many 053 references read
+    // as foreign-spec contamination relative to the 998 host and trip the V8
+    // cross-spec hard block before the template-contract / sufficiency path the
+    // assertions below exercise. Rewrite the spec id to the host folder so the
+    // copied docs are self-consistent with where they now live.
+    const hostSpecId = path.basename(FIXTURE_ROOT);
+    const rewriteSpecId = (raw: string): string =>
+      raw
+        .replace(/053-template-compliant-level2/g, hostSpecId)
+        .replace(/\bfixture 053\b/g, `fixture ${hostSpecId}`);
     for (const fileName of [
       'spec.md',
       'plan.md',
@@ -378,10 +389,8 @@ describe('Cat 0: Golden Path', () => {
       'implementation-summary.md',
       'graph-metadata.json',
     ]) {
-      fs.copyFileSync(
-        path.join(compliantFixtureRoot!, fileName),
-        path.join(FIXTURE_ROOT, fileName),
-      );
+      const source = fs.readFileSync(path.join(compliantFixtureRoot!, fileName), 'utf8');
+      fs.writeFileSync(path.join(FIXTURE_ROOT, fileName), rewriteSpecId(source), 'utf8');
     }
 
     const filePath = path.join(FIXTURE_ROOT, 'implementation-summary.md');
