@@ -493,7 +493,7 @@ function buildTelemetrySummary(args: AdvisorValidateInput, workspaceRoot: string
   };
 }
 
-export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun: true }): AdvisorValidateOutput {
+export async function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun: true }): Promise<AdvisorValidateOutput> {
   const args = AdvisorValidateInputSchema.parse(input);
   // Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = args.workspaceRoot
@@ -510,7 +510,9 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
       timestamp: outcomeEvent.timestamp,
     });
     recordedOutcomeRecords.push(record);
-    persistAdvisorHookOutcomeRecord(workspaceRoot, record);
+  }
+  for (const record of recordedOutcomeRecords) {
+    await persistAdvisorHookOutcomeRecord(workspaceRoot, record);
   }
   const corpus = loadCorpus(workspaceRoot)
     .filter((row) => selectedSkillSlug ? row.skill_top_1 === selectedSkillSlug : true);
@@ -610,7 +612,7 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
 }
 
 export async function handleAdvisorValidate(args: unknown): Promise<HandlerResponse> {
-  const data = validateAdvisor(AdvisorValidateInputSchema.parse(args));
+  const data = await validateAdvisor(AdvisorValidateInputSchema.parse(args));
   return {
     content: [{
       type: 'text',

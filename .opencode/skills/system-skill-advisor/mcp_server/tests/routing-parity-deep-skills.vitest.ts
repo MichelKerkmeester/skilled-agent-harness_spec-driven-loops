@@ -27,7 +27,7 @@ const advisorScript = resolve(
 type DeepMode = 'research' | 'review' | 'ai-council';
 
 interface RoutingResult {
-  readonly skill: 'deep-loop-workflows';
+  readonly skill: 'deep-loop-workflows' | 'deep-research' | 'deep-review';
   readonly mode: DeepMode;
   readonly scores: Record<DeepMode, number>;
   readonly winner: DeepMode;
@@ -59,7 +59,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-research');
     expect(result.mode).toBe('research');
     expect(result.winner).toBe('research');
     expect(result.scores.research).toBeGreaterThanOrEqual(0.75);
@@ -75,7 +75,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-research');
     expect(result.mode).toBe('research');
     expect(result.winner).toBe('research');
     expect(result.scores.research).toBeGreaterThanOrEqual(0.70);
@@ -91,7 +91,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-research');
     expect(result.mode).toBe('research');
     expect(result.winner).toBe('research');
     expect(result.scores.research).toBeGreaterThanOrEqual(0.75);
@@ -156,7 +156,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-review');
     expect(result.mode).toBe('review');
     expect(result.winner).toBe('review');
     expect(result.scores.review).toBeGreaterThanOrEqual(0.70);
@@ -172,7 +172,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-review');
     expect(result.mode).toBe('review');
     expect(result.winner).toBe('review');
     expect(result.scores.review).toBeGreaterThanOrEqual(0.75);
@@ -188,7 +188,7 @@ describe('routing-parity-deep-skills', () => {
       },
     );
 
-    expect(result.skill).toBe('deep-loop-workflows');
+    expect(result.skill).toBe('deep-review');
     expect(result.mode).toBe('review');
     expect(result.winner).toBe('review');
     expect(result.scores.review).toBeGreaterThanOrEqual(0.70);

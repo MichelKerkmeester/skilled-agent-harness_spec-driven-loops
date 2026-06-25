@@ -342,6 +342,10 @@ describe('027/002 derived metadata acceptance', () => {
       skill_id: 'alpha',
       intent_signals: ['author signal'],
       domains: ['lifecycle'],
+      lifecycle_status: 'deprecated',
+      redirect_to: 'beta',
+      lifecycleStatus: 'deprecated',
+      redirectTo: 'beta',
       derived: { trigger_phrases: ['generated'] },
     };
 
@@ -350,6 +354,10 @@ describe('027/002 derived metadata acceptance', () => {
     expect(result.metadata.schema_version).toBe(1);
     expect(result.metadata.intent_signals).toEqual(['author signal']);
     expect(result.metadata.derived).toBeUndefined();
+    expect(result.metadata.lifecycle_status).toBeUndefined();
+    expect(result.metadata.redirect_to).toBeUndefined();
+    expect(result.metadata.lifecycleStatus).toBeUndefined();
+    expect(result.metadata.redirectTo).toBeUndefined();
     expect(result.reindexRequired).toBe(true);
   });
 
@@ -361,6 +369,10 @@ describe('027/002 derived metadata acceptance', () => {
     write(graphPath, JSON.stringify({
       ...before,
       schema_version: 2,
+      lifecycle_status: 'deprecated',
+      redirect_to: 'beta',
+      lifecycleStatus: 'deprecated',
+      redirectTo: 'beta',
       derived: { trigger_phrases: ['generated'] },
     }, null, 2));
 
@@ -370,6 +382,10 @@ describe('027/002 derived metadata acceptance', () => {
     expect(result.removedDerived).toBe(true);
     expect(after.schema_version).toBe(1);
     expect(after.derived).toBeUndefined();
+    expect(after.lifecycle_status).toBeUndefined();
+    expect(after.redirect_to).toBeUndefined();
+    expect(after.lifecycleStatus).toBeUndefined();
+    expect(after.redirectTo).toBeUndefined();
   });
 
   it('AC-6 routes successors by default and explicit old-name prompts with redirect metadata', () => {

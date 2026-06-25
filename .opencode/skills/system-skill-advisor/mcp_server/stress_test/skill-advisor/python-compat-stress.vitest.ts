@@ -86,7 +86,7 @@ describe('sa-035 / sa-036 — Python compat', () => {
     expect(result.stdout).not.toContain('private-address@example.com');
   });
 
-  it('honors the shared disabled flag unless --force-native explicitly opts out', () => {
+  it('honors the shared disabled flag and fails closed when --force-native is set', () => {
     const disabled = spawnSync('python3', [SHIM_SCRIPT, 'save this context'], {
       cwd: REPO_ROOT,
       encoding: 'utf8',
@@ -108,7 +108,11 @@ describe('sa-035 / sa-036 — Python compat', () => {
 
     expect(disabled.status).toBe(0);
     expect(parseJson(disabled.stdout)).toEqual([]);
-    expect(forcedNative.status === 0 || forcedNative.status === 2).toBe(true);
+    expect(forcedNative.status).toBe(2);
+    expect(parseJson(forcedNative.stdout)).toEqual(expect.objectContaining({
+      reason: 'ADVISOR_DISABLED',
+      freshness: 'native-unavailable',
+    }));
     expect(forcedNative.stdout).not.toContain('save this context');
   });
 

@@ -123,6 +123,55 @@ describe('advisor_validate handler', () => {
     }
   });
 
+  it('includes newly recorded outcome events in telemetry totals', async () => {
+    const workspaceRoot = REPO_ROOT;
+    const outcomesPath = advisorHookOutcomesPath(workspaceRoot);
+    const previousExists = existsSync(outcomesPath);
+    const previousContent = previousExists ? readFileSync(outcomesPath, 'utf8') : null;
+
+    mkdirSync(dirname(outcomesPath), { recursive: true });
+    writeFileSync(outcomesPath, '', 'utf8');
+
+    try {
+      const response = await handleAdvisorValidate({
+        confirmHeavyRun: true,
+        workspaceRoot,
+        skillSlug: 'system-spec-kit',
+        outcomeEvents: [
+          {
+            runtime: 'codex',
+            outcome: 'accepted',
+            skillId: 'system-spec-kit',
+            timestamp: '2026-06-10T00:00:00.000Z',
+          },
+          {
+            runtime: 'codex',
+            outcome: 'corrected',
+            skillId: 'sk-code',
+            correctedSkillId: 'system-spec-kit',
+            timestamp: '2026-06-10T00:00:01.000Z',
+          },
+        ],
+      });
+      const parsed = JSON.parse(response.content[0].text) as { status: string; data: unknown };
+      const data = AdvisorValidateOutputSchema.parse(parsed.data);
+
+      expect(parsed.status).toBe('ok');
+      expect(data.telemetry.outcomes.recordedThisRun).toBe(2);
+      expect(data.telemetry.outcomes.totals).toEqual({
+        accepted: 1,
+        corrected: 1,
+        ignored: 0,
+      });
+    } finally {
+      if (previousExists && previousContent !== null) {
+        writeFileSync(outcomesPath, previousContent, 'utf8');
+      } else {
+        rmSync(outcomesPath, { force: true });
+      }
+    }
+  });
+
   it('rejects invalid strict input clearly', () => {
     expect(() => AdvisorValidateInputSchema.parse({
       skillSlug: 'system-spec-kit',

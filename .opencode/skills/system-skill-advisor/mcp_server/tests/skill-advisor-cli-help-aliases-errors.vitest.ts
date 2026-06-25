@@ -136,4 +136,27 @@ describe('skill-advisor CLI aliases and unknown command recovery', () => {
     expect(payload.hint).toBe('Try `list-tools` to see available commands.');
     expect(payload.suggestion).toBe('advisor_recommend');
   });
+
+  it('accepts advisor_validate outcomeEvents through CLI schema validation', () => {
+    expect(() => __testing.validateCommand({
+      command: 'advisor_validate',
+      format: 'json',
+      timeoutMs: 1000,
+      warmOnly: false,
+      toolListMode: 'full',
+      args: {
+        confirmHeavyRun: true,
+        outcomeEvents: [{
+          runtime: 'codex',
+          outcome: 'accepted',
+          skillId: 'system-spec-kit',
+          timestamp: '2026-06-10T00:00:00.000Z',
+        }],
+      },
+      help: false,
+      version: false,
+      trusted: false,
+      promptTime: false,
+    })).not.toThrow();
+  });
 });

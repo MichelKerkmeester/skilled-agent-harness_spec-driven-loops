@@ -27,13 +27,14 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - D2 channel min-representation now reserves a top-k slot for each active channel's best candidate even below the quality floor, without breaking the floor for the rest (`lib/search/channel-enforcement.ts`, `channel-representation.ts`). Test `reserves top-k slots for active channels even when their best result is below the floor`. Status: fixed.
 - Verification: folder-relevance + channel-enforcement + channel-representation + query-router-channel-interaction + feature-eval-query-intelligence = 5 files, 98 passed. Mutation checks confirm both new assertions fail when the fix is reverted. typecheck exit 0. Comment hygiene clean.
 
-## Cluster E. Advisor persistence (P0/P1)
-- E1 F1 routing accuracy 0.889 < 0.92 gate. Re-map deep-research/deep-review/:review:auto trigger phrases. Status: todo.
-- E2 F2 input-sanitization gap on the skill-metadata write path (security). Reuse the edge sanitizer. Status: todo.
-- E3 F3 validate-scorer regression (await persist, un-gate totals, accept outcomeEvents). Status: todo.
-- E4 F4 rollback non-atomic (include lifecycleStatus/redirectTo in the transaction). Status: todo.
-- E5 F5 warm p95 63 > 50ms; make the bench exit non-zero on overall_pass false. Status: todo.
-- E6 F6 disabled force-native returns exit 0; should error native-unavailable. Status: todo.
+## Cluster E. Advisor persistence (P0/P1) — FIXED
+- E1 F1 routing re-mapped (deep-research/deep-review to leaf skills, :review:auto to the review leaf, null phrases handled) across `lib/scorer/lanes/*`, `fusion.ts`, `projection.ts`, `skill-graph-db.ts`. Measured top-1 accuracy now 0.92-0.95 (gate 0.92). Status: fixed.
+- E2 F2 skill-metadata write path now sanitized by a new `lib/skill-graph/metadata-sanitizer.ts` (rejects traversal, strips instruction-shaped values, bounds paths), wired into `skill-graph-db.ts`. Sanitizer-boundary test added. Status: fixed.
+- E3 F3 validate-scorer awaits outcome persistence, un-gates totals from the debug flag, and accepts outcomeEvents in the CLI manifest (`handlers/advisor-validate.ts`, `tools/advisor-validate.ts`, `skill-advisor-cli-manifest.ts`). Status: fixed.
+- E4 F4 rollback transaction now also clears lifecycleStatus and redirectTo (`lib/lifecycle/rollback.ts`); test asserts lifecycle-field cleanup. Status: fixed.
+- E5 F5 bench now exits non-zero when overall_pass is false (`lib/metrics.ts`); latency itself unchanged (not faked). Status: fixed.
+- E6 F6 disabled-hook `--force-native` now errors native-unavailable with a non-zero exit (`scripts/skill_advisor.py`). Status: fixed.
+- Verification: routing-parity-deep-skills, skill-graph-db, advisor-validate, lifecycle-derived-metadata, compat/shim, cli-help-aliases-errors = 7 files, 61 passed. tsc exit 0 (direct, tsconfig.build.json). Comment hygiene clean. Security + rollback mutation-checked.
 
 ## Cluster F. DB lifecycle (P2)
 - F1c cross-process-db-hot-rebinding only reads `.db-updated`; add marker detection/reinit/stats/health. Status: todo.

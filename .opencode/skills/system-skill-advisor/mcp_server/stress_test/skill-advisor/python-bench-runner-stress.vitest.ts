@@ -66,7 +66,7 @@ describe('sa-037 — Python bench runner', () => {
 
       const result = spawnSync(
         'python3',
-        [BENCH_SCRIPT, '--dataset', datasetPath, '--runs', '1', '--out', reportPath],
+        [BENCH_SCRIPT, '--dataset', datasetPath, '--runs', '1', '--out', reportPath, '--max-warm-p95-ms', '1000000', '--min-throughput-multiplier', '0'],
         {
           encoding: 'utf-8',
           timeout: 30000,
@@ -74,11 +74,8 @@ describe('sa-037 — Python bench runner', () => {
         },
       );
 
-      // Non-zero exits sometimes happen when the bench has nothing useful to do
-      // (e.g. advisor module unavailable in test env). The contract for this
-      // stress wrapper is: the subprocess invocation surface is reachable, the
-      // CLI accepts the documented flags, and stdout/stderr are non-empty.
       const combinedOutput = (result.stdout ?? '') + (result.stderr ?? '');
+      expect(result.status).toBe(0);
       expect(combinedOutput.length).toBeGreaterThan(0);
 
       // If the script wrote a report, validate the JSON envelope shape.
@@ -95,6 +92,38 @@ describe('sa-037 — Python bench runner', () => {
       // not enforceable CI gates. The catalog (08--python-compat/03-bench-runner.md)
       // documents this; the wrapper test here verifies the subprocess surface
       // is reachable and the JSON envelope is well-formed.
+    } finally {
+      rmSync(tmpDir, { recursive: true, force: true });
+    }
+  });
+
+  it('returns non-zero when blocking gates make overall_pass false', () => {
+    const tmpDir = mkdtempSync(join(tmpdir(), 'sa-037-bench-fail-'));
+    try {
+      const datasetPath = join(tmpDir, 'mini-cases.jsonl');
+      const reportPath = join(tmpDir, 'report.json');
+
+      writeFileSync(
+        datasetPath,
+        JSON.stringify({ prompt: 'help me read a file', expected_skill: 'sk-doc' }) + '\n',
+        'utf-8',
+      );
+
+      const result = spawnSync(
+        'python3',
+        [BENCH_SCRIPT, '--dataset', datasetPath, '--runs', '1', '--out', reportPath, '--max-warm-p95-ms', '0'],
+        {
+          encoding: 'utf-8',
+          timeout: 30000,
+          env: { ...process.env, SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1' },
+        },
+      );
+
+      expect(result.status).toBe(1);
+      expect(existsSync(reportPath)).toBe(true);
+      const parsed = JSON.parse(readFileSync(reportPath, 'utf-8'));
+      expect(parsed.overall_pass).toBe(false);
+      expect(parsed.gates.warm_p95).toBe(false);
     } finally {
       rmSync(tmpDir, { recursive: true, force: true });
     }

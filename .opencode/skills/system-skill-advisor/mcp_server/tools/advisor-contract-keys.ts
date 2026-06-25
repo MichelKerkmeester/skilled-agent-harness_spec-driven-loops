@@ -26,7 +26,9 @@ export type AdvisorRecommendParameterKey =
 
 export const ADVISOR_VALIDATE_PARAMETER_KEYS = [
   'confirmHeavyRun',
+  'workspaceRoot',
   'skillSlug',
+  'outcomeEvents',
 ] as const;
 
 export type AdvisorValidateParameterKey =

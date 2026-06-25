@@ -103,21 +103,16 @@ describe('skill_advisor.py compat shim', () => {
     expect(parseJson(result.stdout)).toEqual([]);
   });
 
-  it('lets --force-native override the shared disabled flag', () => {
-    if (!nativeAdvisorReachable) {
-      console.warn('[shim.vitest] native advisor probe returned unavailable in this env; skipping --force-native disabled-override case');
-      return;
-    }
+  it('returns native-unavailable when --force-native is used with the shared disabled flag', () => {
     const result = runShim(['--force-native', 'save this conversation context to memory'], '', {
       SPECKIT_SKILL_ADVISOR_HOOK_DISABLED: '1',
     });
-    expect(result.status).toBe(0);
-    expect(parseJson(result.stdout)).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        source: 'native',
-        skill: 'system-spec-kit',
-      }),
-    ]));
+    expect(result.status).toBe(2);
+    expect(parseJson(result.stdout)).toEqual(expect.objectContaining({
+      error: 'Native advisor unavailable',
+      reason: 'ADVISOR_DISABLED',
+      freshness: 'native-unavailable',
+    }));
   });
 
   it('tries native mode when --force-native is set', () => {
