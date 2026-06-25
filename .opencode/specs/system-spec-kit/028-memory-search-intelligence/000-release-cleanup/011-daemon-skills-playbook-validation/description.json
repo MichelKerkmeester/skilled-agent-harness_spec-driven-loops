@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
+  "description": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
+  "keywords": [
+    "packet",
+    "028",
+    "shipped",
+    "large",
+    "body",
+    "work",
+    "three",
+    "daemon-backed",
+    "system",
+    "skills",
+    "system-spec-kit",
+    "system-skill-advisor",
+    "system-code-graph"
+  ],
+  "lastUpdated": "2026-06-25T08:50:55.101Z",
+  "specId": "011",
+  "folderSlug": "daemon-skills-playbook-validation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

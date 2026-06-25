@@ -13,7 +13,8 @@
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit"
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -102,7 +103,7 @@
     ],
     "causal_summary": "Packet 028 is approaching release and its documentation surfaces need a focused release-readiness sweep",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.053Z",
+    "last_save_at": "2026-06-25T08:53:37.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
