@@ -314,11 +314,13 @@ describe('ensure-ready', () => {
       expect(mocks.indexFilesMock).not.toHaveBeenCalled();
     });
 
-    it('refuses inline full scan for read paths even when inline selective refresh is enabled', async () => {
+    it('refreshes detected stale files when the full scan guard blocks a broad refresh', async () => {
       const staleFiles = Array.from({ length: 51 }, (_, index) => `/tmp/test-root/stale-${index}.ts`);
       mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
       mocks.getTrackedFilesMock.mockReturnValue(staleFiles);
-      mocks.ensureFreshFilesMock.mockReturnValue({ fresh: [], stale: staleFiles });
+      mocks.ensureFreshFilesMock
+        .mockReturnValueOnce({ fresh: [], stale: staleFiles })
+        .mockReturnValueOnce({ fresh: staleFiles, stale: [] });
 
       const { ensureCodeGraphReady } = await import('../lib/ensure-ready.js');
       const result = await ensureCodeGraphReady('/tmp/test-root', {
@@ -326,11 +328,13 @@ describe('ensure-ready', () => {
         allowInlineFullScan: false,
       });
 
-      expect(result.action).toBe('full_scan');
-      expect(result.freshness).toBe('stale');
-      expect(result.inlineIndexPerformed).toBe(false);
-      expect(result.reason).toContain('inline full scan skipped for read path');
-      expect(mocks.indexFilesMock).not.toHaveBeenCalled();
+      expect(result.action).toBe('none');
+      expect(result.freshness).toBe('fresh');
+      expect(result.inlineIndexPerformed).toBe(true);
+      expect(mocks.indexFilesMock).toHaveBeenCalledWith(
+        expect.objectContaining({ rootDir: '/tmp/test-root' }),
+        expect.objectContaining({ specificFiles: staleFiles }),
+      );
     });
 
     it('allows guarded inline full scan when stored scope matches active scope and parse backlog is clean', async () => {
@@ -356,11 +360,13 @@ describe('ensure-ready', () => {
       expect(mocks.indexFilesMock).toHaveBeenCalledTimes(1);
     });
 
-    it('blocks guarded inline full scan when parse diagnostics are backlogged', async () => {
+    it('refreshes detected stale files when parse diagnostics block a broad refresh', async () => {
       const staleFiles = Array.from({ length: 51 }, (_, index) => `/tmp/test-root/stale-${index}.ts`);
       mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
       mocks.getTrackedFilesMock.mockReturnValue(staleFiles);
-      mocks.ensureFreshFilesMock.mockReturnValue({ fresh: [], stale: staleFiles });
+      mocks.ensureFreshFilesMock
+        .mockReturnValueOnce({ fresh: [], stale: staleFiles })
+        .mockReturnValueOnce({ fresh: staleFiles, stale: [] });
       mocks.getParseDiagnosticsSummaryMock.mockReturnValue({ affectedFiles: 1, recentErrors: [] });
 
       const { ensureCodeGraphReady } = await import('../lib/ensure-ready.js');
@@ -370,11 +376,15 @@ describe('ensure-ready', () => {
         allowGuardedInlineFullScan: true,
       });
 
-      expect(result.action).toBe('full_scan');
-      expect(result.inlineIndexPerformed).toBe(false);
+      expect(result.action).toBe('none');
+      expect(result.freshness).toBe('fresh');
+      expect(result.inlineIndexPerformed).toBe(true);
       expect(result.autoRescanSafety).toBe('blocked');
       expect(result.autoRescanBlockReason).toBe('parse_error_backlog');
-      expect(mocks.indexFilesMock).not.toHaveBeenCalled();
+      expect(mocks.indexFilesMock).toHaveBeenCalledWith(
+        expect.objectContaining({ rootDir: '/tmp/test-root' }),
+        expect.objectContaining({ specificFiles: staleFiles }),
+      );
     });
 
     it('auto-establishes an empty graph on the default end-user scope (guarded read path, no explicit scan)', async () => {

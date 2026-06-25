@@ -42,12 +42,16 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - F3c embedding-retry orchestrator e2e now passes end to end: pending rows stay lexical-only until processed, failures record retry/backoff metadata, success uses the embedding cache and refreshes both vector and lexical surfaces (`lib/providers/retry-manager.ts`, `lib/search/vector-index-store.ts`). Cause was implementation, not a stale test. retry-manager 60/60. Status: fixed.
 - Verification: db-lifecycle-paths + retry-manager = 3 files, 63 passed. typecheck exit 0. Comment hygiene clean. F1/F2 mutation-checked True-RED.
 
-## Cluster G/H. Code-graph + quality (P2)
-- G1 graph-refresh-mode write-local refresh blocker. Status: todo.
-- H1 F7 duplicate `normalizeScopeValue`; extract to one shared util. Status: todo.
-- H2 F9 stale tests (causal-edges skippedManual, mutation-hooks semantic-trigger-cache). Status: todo.
-- H3 F14 entity-extractor dedup uses `toLowerCase().trim()` not `normalizeEntityName()`. Status: todo.
-- H4 7-layer-tool-architecture-metadata fails its documented validation surface. Status: todo.
+## Cluster G/H. Code-graph + quality (P2) — FIXED
+- G1 code-graph write-local refresh now recomputes the detected stale files (`system-code-graph/mcp_server/lib/ensure-ready.ts`). ensure-ready 17 passed. Status: fixed.
+- H1 F7 `normalizeScopeValue` extracted to a single shared util (`lib/utils/scope-normalization.ts`), imported by near-duplicate.ts and scope-governance.ts, copies removed. Status: fixed.
+- H2 F9 the two stale tests updated to the current impl shapes (causal-edges `skippedManual`, mutation-hooks `semantic-trigger-cache`). 94 passed. Status: fixed.
+- H3 F14 entity-extractor dedup now uses canonical `normalizeEntityName()` so extractor and linker agree (`lib/extraction/entity-extractor.ts`). 50 passed. Status: fixed.
+- H4 7-layer metadata passes its documented validation surface; two stale test expectations corrected (memory_health budget 1500, dispatch truncation assertion). 136 passed. Status: fixed.
+- Verification: spec-kit H1-H4 suites = 11 files, 421 passed; code-graph G1 ensure-ready = 17 passed; spec-kit typecheck exit 0; comment hygiene clean both surfaces; alignment drift clean both surfaces.
+
+## Summary
+All eight clusters fixed and verified on branch wt/0008-findings-remediation. Six isolation/harness artifacts excluded. Open follow-ups: dedicated invocation tests for B4 (surrogate index-time) and B5 (contextual-tree header by mode), a strict-schema-accepts-retrievalLevel assertion for C, and completing this packet's Level-2/3 doc set (spec/plan/tasks).
 
 ## Excluded as isolation/harness artifacts (not bugs)
 causal-stats-empty (clone DB seeded), causal-coverage-under-bulk-save (spec-folder gate), paraphrase-recall (clone embedding), code-intent / adversarial-near-miss (clone index state), trigger-phrase cognitive-null (documented identity-gating, working as intended).

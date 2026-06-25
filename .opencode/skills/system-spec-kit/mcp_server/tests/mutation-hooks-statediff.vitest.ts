@@ -82,6 +82,7 @@ describe('mutation hooks statediff subscribers', () => {
     expect(harness.clearRelated).toHaveBeenCalledTimes(1);
     expect(result.subscribers?.map((subscriber) => subscriber.name)).toEqual([
       'trigger-cache',
+      'semantic-trigger-cache',
       'tool-cache',
       'constitutional-cache',
       'graph-cache',

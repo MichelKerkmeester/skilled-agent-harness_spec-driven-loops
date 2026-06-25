@@ -767,4 +767,17 @@ describe('__testables.deduplicateEntities', () => {
     // First occurrence wins, so text stays as "React Framework"
     expect(result[0].text).toBe('React Framework');
   });
+
+  it('uses the linker normalizer for punctuation-aware deduplication', () => {
+    const raw: Array<{ text: string; type: ExtractedEntity['type'] }> = [
+      { text: 'TF-IDF', type: 'technology' },
+      { text: 'tf idf', type: 'key_phrase' },
+    ];
+    const result = __testables.deduplicateEntities(raw);
+    expect(normalizeEntityName(raw[0].text)).toBe(normalizeEntityName(raw[1].text));
+    expect(result).toHaveLength(1);
+    expect(result[0].frequency).toBe(2);
+    expect(result[0].text).toBe('TF-IDF');
+    expect(result[0].type).toBe('technology');
+  });
 });

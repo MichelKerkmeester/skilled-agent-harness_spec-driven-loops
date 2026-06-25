@@ -7,6 +7,7 @@ import * as vectorIndex from '../search/vector-index.js';
 import type { MemoryScopeMatch } from '../../handlers/save/types.js';
 import { NEAR_DUPLICATE_SIMILARITY_THRESHOLD } from '../../handlers/save/dedup.js';
 import { isMemoryIdempotencyEnabled } from './idempotency-receipts.js';
+import { normalizeStringScopeId as normalizeScopeValue } from '../utils/scope-normalization.js';
 
 export interface NearDuplicateHint {
   id: number;
@@ -24,10 +25,6 @@ interface CandidateRow {
   updated_at: string | null;
   last_dedup_checked_at: string | null;
   near_duplicate_of: string | null;
-}
-
-function normalizeScopeValue(value: unknown): string | null {
-  return typeof value === 'string' && value.length > 0 ? value : null;
 }
 
 function scopeMatches(row: CandidateRow, scope: MemoryScopeMatch): boolean {

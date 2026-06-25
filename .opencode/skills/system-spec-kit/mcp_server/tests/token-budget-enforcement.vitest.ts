@@ -22,7 +22,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
         memory_match_triggers: 3500,
         memory_list: 1000,
         memory_stats: 1000,
-        memory_health: 1000,
+        memory_health: 1500,
         memory_update: 1000,
         memory_delete: 1000,
         memory_validate: 1000,
@@ -260,7 +260,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
         path.join(PROJECT_ROOT, 'context-server.ts'),
         'utf8'
       );
-      expect(serverSrc).toContain('innerResults.pop()');
+      expect(serverSrc).toContain('innerResults.splice(selectBudgetTrimIndex(innerResults), 1)');
     });
 
     it('T205-C2: Dispatch reports truncation metadata', () => {
