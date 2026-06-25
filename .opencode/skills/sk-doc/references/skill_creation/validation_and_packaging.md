@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.8.0.2
 ---
 
 # Skill Validation and Packaging
@@ -38,6 +38,22 @@ This reference covers the two validation tiers a skill passes before release and
 
 ## 2. VALIDATION REQUIREMENTS
 
+### Completion Gate (package_skill.py --check)
+
+**Purpose**: Authoritative pre-completion gate. Run before claiming a skill is done.
+
+```bash
+scripts/package_skill.py <path/to/skill> --check
+```
+
+`--check` validates without packaging. It hard-fails on:
+- A missing required SKILL.md field (`name`, `description`, `allowed-tools`, `version` — all four).
+- A `version` that is not 4-part `X.Y.Z.W`.
+- A `name` that does not match the skill folder name.
+- A missing required SKILL.md section (e.g., `REFERENCES` with no approved combined-heading variant).
+
+It warns on non-snake_case filenames in `references/` and `assets/`. A skill is not complete until `--check` exits clean.
+
 ### Minimal Validation (quick_validate.py)
 
 **Purpose**: Pre-packaging sanity check for essential frontmatter requirements.
@@ -45,8 +61,8 @@ This reference covers the two validation tiers a skill passes before release and
 **Checks**:
 1. SKILL.md file exists
 2. YAML frontmatter present
-3. Required fields: name, description
-4. Name format: hyphen-case
+3. Required fields: name, description, allowed-tools, version
+4. Name format: hyphen-case (and matches folder)
 5. No angle brackets in description
 6. **Platform compatibility** - Features work across different AI agent environments
 

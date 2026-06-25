@@ -8,7 +8,7 @@ trigger_phrases:
   - "tokens.json output path"
   - "design extraction handoff"
 importance_tier: "high"
-contextType: "implementation"
+contextType: implementation
 version: 1.0.0.7
 ---
 

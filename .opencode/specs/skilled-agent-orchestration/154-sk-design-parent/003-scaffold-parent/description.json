@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/003-scaffold-parent",
+  "description": "The architecture decision locks `sk-design` as an umbrella-router over a sibling family, but no parent skill exists on disk yet",
+  "keywords": [
+    "architecture",
+    "decision",
+    "locks",
+    "sk-design",
+    "umbrella-router",
+    "sibling",
+    "family",
+    "parent",
+    "skill",
+    "exists",
+    "disk"
+  ],
+  "lastUpdated": "2026-06-25T12:59:17.433Z",
+  "specId": "003",
+  "folderSlug": "scaffold-parent",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

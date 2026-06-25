@@ -1,0 +1,42 @@
+{
+  "executors": [
+    {
+      "label": "gpt55fast",
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.5-fast",
+      "reasoningEffort": "high",
+      "iterations": 20,
+      "count": 1,
+      "timeoutSeconds": 900
+    },
+    {
+      "label": "opus48-claude2",
+      "kind": "cli-claude-code",
+      "model": "claude-opus-4-8",
+      "configDir": "~/.claude-account2",
+      "reasoningEffort": "xhigh",
+      "iterations": 15,
+      "count": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "label": "mimo25pro",
+      "kind": "cli-opencode",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "reasoningEffort": "high",
+      "iterations": 8,
+      "count": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "label": "kimi27",
+      "kind": "cli-opencode",
+      "model": "kimi-for-coding/k2p7",
+      "reasoningEffort": "high",
+      "iterations": 7,
+      "count": 1,
+      "timeoutSeconds": 1800
+    }
+  ],
+  "concurrency": 4
+}

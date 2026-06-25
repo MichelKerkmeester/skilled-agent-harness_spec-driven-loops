@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/001-corpus-research",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/001-corpus-research",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "corpus research",
+      "sk-design taxonomy research",
+      "design skills deep research",
+      "corpus research plan",
+      "fan-out research plan",
+      "deep research lineages",
+      "corpus research tasks",
+      "fan-out research tasks",
+      "corpus research summary",
+      "sk-design research outcome"
+    ],
+    "key_topics": [
+      "corpus",
+      "research",
+      "sk-design",
+      "taxonomy",
+      "design",
+      "skills",
+      "deep",
+      "plan",
+      "fan-out",
+      "lineages",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "research/fanout-attribution.md",
+      "research/deep-research-fanout-config.json",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-design-interface/SKILL.md",
+      ".opencode/skills/sk-design-md-generator/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/SKILL.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.json",
+        "kind": "config",
+        "path": "research/deep-research-fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Second Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-design` family's composition is undecided",
+    "created_at": "2026-06-25T10:04:31Z",
+    "last_save_at": "2026-06-25T15:01:53.434Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:fe4b5d261def1046b338fade4c0fba58e11c7c81c8651ba90faf94bdb71e3527",
+    "source_doc_hashes": {
+      "spec.md": "07373c3780e009ce435f80493e38faa52ce2fa8628418038f1511e9d18216e69",
+      "plan.md": "547122430c40d197b2a38926bb57e82075d78ecbb28fc0115cebcf759576946a",
+      "tasks.md": "7605c02404481cbe320722fcd891f2f7791878bcf4ce0ab27a1626b39a8d0f0a",
+      "implementation-summary.md": "7ed444e098994c99d452a318eb428868be0b8b7e0a72a87066a5d5ced581fb05",
+      "research/research.md": "60bb5ba5cda306789ea3a5b2bad323e59677856bf39dbfe4e952320b2bfb3272"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

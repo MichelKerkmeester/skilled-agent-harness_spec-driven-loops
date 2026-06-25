@@ -186,6 +186,25 @@ template_sources:
   skill_md: .opencode/skills/sk-doc/assets/skill/skill_md_template.md
   skill_reference: .opencode/skills/sk-doc/assets/skill/skill_reference_template.md
   skill_asset: .opencode/skills/sk-doc/assets/skill/skill_asset_template.md
+  skill_smart_router: .opencode/skills/sk-doc/assets/skill/skill_smart_router.md
+  skill_readme: .opencode/skills/sk-doc/assets/skill/skill_readme_template.md
+
+frontmatter_contract:
+  rule: "Every authored .md ships frontmatter from its template before completion."
+  skill_md:
+    required_fields: [name, description, allowed-tools, version]
+    version_format: "4-part X.Y.Z.W"
+    name_rule: "hyphen-case, matches folder name"
+  references_and_assets:
+    seed_from: [skill_reference, skill_asset]
+    required_fields: [title, description, trigger_phrases, importance_tier, contextType, version]
+    trigger_phrases: "3-8 lowercase multi-word phrases"
+    version_format: "4-part X.Y.Z.W"
+    filename_rule: "snake_case (package_skill.py --check warns otherwise)"
+  readme:
+    seed_from: skill_readme
+    required_fields: [title, description, version]
+  enforcement: "package_skill.py --check hard-fails missing version / non-4-part version / name!=folder; warns on non-snake_case in references/ and assets/"
 
 validation_scripts:
   quick_validate: .opencode/skills/sk-doc/scripts/quick_validate.py
@@ -315,11 +334,14 @@ workflow:
           - Run init script: "python3 .opencode/skills/sk-doc/scripts/init_skill.py [skill_name] --path [skill_path]"
           - Load SKILL.md template and populate required sections
           - Apply section boundary rules
-          - Create baseline references/assets/scripts from requested scope
+          - "Seed SKILL.md SMART ROUTING (Section 2) Smart Router Pseudocode from skill_smart_router.md: copy the four resilience patterns (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) and adapt the routing key + resource map to this skill. A SMART ROUTING section with an empty/missing pseudocode block fails this branch."
+          - "Set SKILL.md frontmatter per frontmatter_contract.skill_md: name (==folder), description, allowed-tools, version (4-part X.Y.Z.W)"
+          - "Create baseline references/assets/scripts from requested scope. Seed every references/*.md from skill_reference and every assets/*.md from skill_asset so each ships the full 5-field + version frontmatter; name files snake_case. Seed README.md (when created) from skill_readme with title/description/version."
           - Remove placeholders and sample-only content
         outputs:
           - skill_scaffolded
           - skill_content_written
+          - smart_router_pseudocode_seeded
           - resources_written
 
       full-update:
@@ -335,8 +357,8 @@ workflow:
       reference-only:
         activities:
           - Ensure references/ exists
-          - Determine reference filename from type and topic
-          - Create or update reference doc using reference template
+          - "Determine reference filename from type and topic; filename MUST be snake_case"
+          - "Create or update reference doc seeded from skill_reference template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure content depth matches type profile
         type_templates:
           workflow: { filename_pattern: "[topic]_workflow.md" }
@@ -350,8 +372,8 @@ workflow:
       asset-only:
         activities:
           - Ensure assets/ exists
-          - Determine asset filename from type and topic
-          - Create or update asset doc using asset template
+          - "Determine asset filename from type and topic; filename MUST be snake_case"
+          - "Create or update asset doc seeded from skill_asset template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure examples are practical and immediately reusable
         type_templates:
           template: { filename_pattern: "[topic]_templates.md" }
@@ -373,11 +395,15 @@ workflow:
     purpose: Enforce operation-specific validation and DQI targets
     activities:
       - Run operation-appropriate validation scripts
+      - "Run the completion gate: python3 .opencode/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, missing required section; warns on non-snake_case references/assets). It MUST pass before completion."
       - Capture DQI score and quality band
       - Enforce hard minimum threshold (75)
       - Compare against operation target score
       - Run fix-and-revalidate loop if needed
       - "Description budget check: quick_validate.py warns when description > 130 chars (skill) and hard-fails > 1536 chars. Soft-warning is non-blocking; hard-fail blocks the fix_loop."
+    gate:
+      command: "python3 .opencode/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check"
+      blocking: true
     thresholds:
       hard_minimum: 75
       operation_targets:
@@ -537,6 +563,9 @@ rules:
     - "Use canonical operation router"
     - "Pause for explicit checkpoint decisions"
     - "Load templates before writing"
+    - "Seed every authored .md from its template so frontmatter is present by construction (frontmatter_contract)"
+    - "Seed SKILL.md SMART ROUTING pseudocode from skill_smart_router.md on full-create"
+    - "Pass package_skill.py --check before completion"
     - "Run validation before completion"
     - "Preserve WHEN TO USE vs SMART ROUTING boundaries"
     - "Save memory context only through system-spec-kit workflow"
@@ -544,5 +573,8 @@ rules:
     - "Split setup prompts across turns"
     - "Infer missing operation/type values"
     - "Bypass hard gates"
+    - "Write a references/ or assets/ .md without the full 5-field + version frontmatter"
+    - "Ship a SMART ROUTING section without the resilience pseudocode"
+    - "Use non-snake_case filenames in references/ or assets/"
     - "Create memory files manually"
     - "Leave stale routing links in SKILL.md"

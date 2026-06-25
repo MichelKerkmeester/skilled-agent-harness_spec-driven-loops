@@ -40,7 +40,11 @@
       "sk-code-review",
       "mcp-chrome-devtools",
       "mcp-figma",
-      "sk-design-md-generator"
+      "sk-design-md-generator",
+      "sk-design",
+      "sk-design-foundations",
+      "sk-design-motion",
+      "sk-design-audit"
     ]
   },
   "domains": [

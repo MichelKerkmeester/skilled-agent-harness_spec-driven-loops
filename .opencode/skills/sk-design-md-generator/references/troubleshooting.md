@@ -8,7 +8,7 @@ trigger_phrases:
   - "crawl blocked 403"
   - "extract.ts not running"
 importance_tier: "normal"
-contextType: "implementation"
+contextType: implementation
 version: 1.0.0.5
 ---
 

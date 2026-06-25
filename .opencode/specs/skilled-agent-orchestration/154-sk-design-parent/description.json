@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent",
+  "description": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`",
+  "keywords": [
+    "design",
+    "capability",
+    "today",
+    "lives",
+    "one",
+    "strong",
+    "interface",
+    "skill",
+    "sk-design-interface",
+    "plus",
+    "sibling",
+    "style-reference",
+    "extractor",
+    "sk-design-md-generator"
+  ],
+  "lastUpdated": "2026-06-25T13:10:23.761Z",
+  "specId": "154",
+  "folderSlug": "sk-design-parent",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

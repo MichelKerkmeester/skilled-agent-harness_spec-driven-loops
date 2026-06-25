@@ -1,0 +1,30 @@
+---
+title: AnimatePresence Exit Rules Scenario
+description: Manual scenario verifying exit wrapper, exit prop, stable key, mode, and nested-exit guidance.
+trigger_phrases:
+  - "test AnimatePresence"
+  - "test exit animations"
+  - "presence rules scenario"
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
+# MOTION-PRESENCE-001 | AnimatePresence Exit Rules
+
+## Prompt
+
+`Review this modal/list transition plan for AnimatePresence correctness before implementation.`
+
+## Expected Process
+
+1. Load `references/animate_presence_patterns.md`.
+2. Check wrapper, exit prop, stable key, mode, nested exits, and presence hook placement.
+3. Produce concrete guidance or file:line findings when code is provided.
+
+## Pass Criteria
+
+- Flags missing wrappers and exit props.
+- Rejects index keys for animated lists.
+- Explains `wait` duration and `popLayout` list use.
+- Mentions `propagate` for nested coordinated exits when relevant.

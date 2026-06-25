@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-design-foundations",
+  "packet_id": "sk-design-foundations",
+  "family": "sk-code",
+  "category": "design",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "sk-design",
+        "weight": 0.7,
+        "context": "Uses the parent design-family router and shared base vocabulary for anti-slop, token, and cognitive-law language"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "sk-code",
+        "weight": 0.45,
+        "context": "Provides static token and responsive-system decisions that sk-code implements"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-design-interface",
+        "weight": 0.6,
+        "context": "Interface defines direction; foundations turns static axes into a reusable visual system"
+      },
+      {
+        "target": "sk-design-motion",
+        "weight": 0.55,
+        "context": "Motion consumes static tokens and adds temporal behavior"
+      },
+      {
+        "target": "sk-design-audit",
+        "weight": 0.55,
+        "context": "Audit scores and hardens the visual system after creation"
+      },
+      {
+        "target": "sk-design-md-generator",
+        "weight": 0.45,
+        "context": "Measured DESIGN.md tokens can seed foundations decisions"
+      },
+      {
+        "target": "sk-design",
+        "weight": 0.7,
+        "context": "Parent family router for design-domain prompts"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": ["sk-design"],
+    "related_to": ["sk-design-interface", "sk-design-motion", "sk-design-audit", "sk-design-md-generator", "sk-code"]
+  },
+  "domains": ["color", "typography", "layout", "responsive-design", "design-tokens", "theming"],
+  "intent_signals": ["oklch", "palette", "contrast", "dark mode", "typography", "font pairing", "spacing", "grid", "layout", "responsive", "design tokens"],
+  "derived": {
+    "trigger_phrases": ["oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens"],
+    "key_topics": ["OKLCH workflow", "semantic color roles", "dark mode", "typography roles", "spacing rhythm", "responsive adaptation"],
+    "key_files": [
+      ".opencode/skills/sk-design-foundations/SKILL.md",
+      ".opencode/skills/sk-design-foundations/references/color/oklch_workflow.md",
+      ".opencode/skills/sk-design-foundations/references/color/palette_theming.md",
+      ".opencode/skills/sk-design-foundations/references/type/typography_system.md",
+      ".opencode/skills/sk-design-foundations/references/layout/layout_responsive.md",
+      ".opencode/skills/sk-design-foundations/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design-foundations/manual_testing_playbook/manual_testing_playbook.md"
+    ],
+    "source_docs": ["SKILL.md", "references/corpus_map.md", "references/color/oklch_workflow.md", "references/color/palette_theming.md", "references/type/typography_system.md", "references/layout/layout_responsive.md"],
+    "created_at": "2026-06-25T00:00:00Z",
+    "last_updated_at": "2026-06-25T00:00:00Z"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/001-corpus-research",
+  "description": "The `sk-design` family's composition is undecided",
+  "keywords": [
+    "sk-design",
+    "family",
+    "composition",
+    "undecided"
+  ],
+  "lastUpdated": "2026-06-25T15:01:53.250Z",
+  "specId": "001",
+  "folderSlug": "corpus-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

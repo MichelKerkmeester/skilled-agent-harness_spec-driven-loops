@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/154-sk-design-parent/001-corpus-research",
+    "skilled-agent-orchestration/154-sk-design-parent/002-architecture-decision",
+    "skilled-agent-orchestration/154-sk-design-parent/003-scaffold-parent",
+    "skilled-agent-orchestration/154-sk-design-parent/004-onboard-existing",
+    "skilled-agent-orchestration/154-sk-design-parent/005-build-subskills",
+    "skilled-agent-orchestration/154-sk-design-parent/006-integration-validation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design parent skill",
+      "design skill family",
+      "sk-design sub-skills"
+    ],
+    "key_topics": [
+      "sk-design",
+      "parent",
+      "skill",
+      "design",
+      "family",
+      "sub-skills",
+      "capability",
+      "today",
+      "lives",
+      "one",
+      "strong",
+      "interface"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
+    "created_at": "2026-06-25T10:04:30Z",
+    "last_save_at": "2026-06-25T15:01:52.997Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:fe2095d3ff2584f60cae8a4b974fad7022e37af69907a35a7c873fbdd6002293",
+    "source_doc_hashes": {
+      "spec.md": "d7356aafcab102579928829412a7849a76e8382b0ef9e4e1031ec51dc0c3038f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

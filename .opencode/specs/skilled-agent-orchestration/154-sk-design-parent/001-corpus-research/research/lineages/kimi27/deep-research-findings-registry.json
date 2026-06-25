@@ -1,0 +1,69 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Which 4-7 child skills best cover the corpus while keeping each child sharply bounded?",
+    "Which corpus sources feed each child, and where do boundaries prevent overlap?",
+    "Does the parent use a hub-with-nested-packets model or an umbrella-router-over-siblings model, and what evidence supports the choice?",
+    "How do the existing sk-design-interface and sk-design-md-generator skills map into children without losing their current trigger coverage?",
+    "What is the minimal onboarding/back-compat path for each child?"
+  ],
+  "keyFindings": [
+    {
+      "id": "f1",
+      "statement": "The external designer-skills-main corpus organizes into 9 plugins / 97 skills across design-research, design-systems, ux-strategy, ui-design, interaction-design, prototyping-testing, design-ops, designer-toolkit, and visual-critique.",
+      "sources": ["file:external/designer-skills-main/CHANGELOG.md:12"]
+    },
+    {
+      "id": "f2",
+      "statement": "The optimal sk-design taxonomy is 6 children: direction, foundations, motion, critique, system, presentation.",
+      "sources": ["iterations/iteration-007.md"]
+    },
+    {
+      "id": "f3",
+      "statement": "sk-design-interface maps to sk-design-direction; sk-design-md-generator maps to sk-design-system.",
+      "sources": ["file:.opencode/skills/sk-design-interface/SKILL.md:1", "file:.opencode/skills/sk-design-md-generator/SKILL.md:1"]
+    },
+    {
+      "id": "f4",
+      "statement": "The parent should use a hub-with-nested-packets model, mirroring deep-loop-workflows, to preserve a single advisor identity and the existing sk-design-* family metadata.",
+      "sources": ["file:.opencode/skills/deep-loop-workflows/SKILL.md:57-68", "file:.opencode/skills/sk-design-md-generator/graph-metadata.json:144"]
+    },
+    {
+      "id": "f5",
+      "statement": "Legacy triggers from sk-design-interface and sk-design-md-generator must be preserved as registry aliases to maintain backward compatibility.",
+      "sources": ["file:.opencode/skills/sk-design-interface/graph-metadata.json:71-85", "file:.opencode/skills/sk-design-md-generator/graph-metadata.json:63-71"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Include output-skill.md as a sk-design child",
+      "reason": "output-skill is a generic full-output enforcement utility, not a design discipline.",
+      "evidence": "file:external/output-skill.md:1"
+    },
+    {
+      "approach": "Split motion into multiple top-level children",
+      "reason": "Motion sources are interleaved; a single sk-design-motion child with references is cleaner.",
+      "evidence": "file:external/animate.md:1-120; file:external/fixing-motion-performance.md:1-120"
+    },
+    {
+      "approach": "Create a separate sk-design-writing child",
+      "reason": "clarify and ux-writing are evaluation/polish tasks and fit under sk-design-critique.",
+      "evidence": "file:external/clarify.md:1-120; file:external/designer-skills-main/designer-toolkit/skills/ux-writing/SKILL.md:1"
+    },
+    {
+      "approach": "Umbrella-router-over-siblings model",
+      "reason": "The sk-design-* family identity already exists in metadata, and deep-loop-workflows provides a close hub precedent; umbrella would fragment advisor identity.",
+      "evidence": "file:.opencode/skills/sk-design-md-generator/graph-metadata.json:144; file:.opencode/skills/deep-loop-workflows/graph-metadata.json:152"
+    },
+    {
+      "approach": "Fold sk-design-md-generator into sk-design-foundations",
+      "reason": "Extraction is a distinct pipeline and user intent; it deserves its own child.",
+      "evidence": "file:.opencode/skills/sk-design-md-generator/SKILL.md:204-247"
+    },
+    {
+      "approach": "5-child taxonomy without a presentation child",
+      "reason": "Presentation output formats are distinct enough to warrant their own packet.",
+      "evidence": "file:external/apple-bento-grid-main/SKILL.md:1-203; file:external/frontend-slides.md:1-120; file:external/slidev.md:1-120"
+    }
+  ]
+}

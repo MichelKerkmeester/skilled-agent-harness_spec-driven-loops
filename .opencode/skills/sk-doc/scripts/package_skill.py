@@ -78,6 +78,54 @@ MAX_SKILL_MD_WORDS = 5000
 RECOMMENDED_MAX_WORDS = 3000
 MAX_SKILL_MD_LINES = 3000
 
+# ───────────────────────────────────────────────────────────────
+# Resource-doc contract (skill_reference_template.md / skill_asset_template.md /
+# frontmatter_versioning.md). These checks are emitted as WARNINGS, not hard
+# errors: a repo-wide blast-radius sweep found a majority of legitimate skills
+# would newly fail on at least one (kebab-case model files, version-less
+# changelog entries, router skills without the canonical pseudocode), so the
+# new contract is advisory to stay backward-compatible. See validate_skill().
+
+# 5-field doc-frontmatter block required on every reference/asset markdown file.
+# Enum VALUES intentionally NOT enforced: real skills use contextType values
+# beyond the template's `general` (implementation/planning/research/reference/
+# decision) and importance_tier `high` alongside normal/important. Presence only.
+REQUIRED_RESOURCE_FRONTMATTER_FIELDS = [
+    'title',
+    'description',
+    'trigger_phrases',
+    'importance_tier',
+    'contextType',
+]
+
+# Doc-class subtrees whose .md files must carry a 4-part `version` in frontmatter.
+# Mirrors frontmatter-version.mjs SCOPE_SUBTREES; `changelog` is added per the
+# hardening contract (frontmatter-version.mjs excludes it for its own reasons,
+# but version drift in changelog entries is still worth surfacing).
+VERSIONED_DOC_SUBTREES = [
+    'references',
+    'assets',
+    'feature_catalog',
+    'manual_testing_playbook',
+    'changelog',
+]
+
+# Subtrees whose .md files are reference/asset docs requiring the 5-field block
+# and snake_case names (README.md is a distinct doc class and is exempt).
+RESOURCE_DOC_SUBTREES = ['references', 'assets']
+
+# Smart-router resilience markers expected in SKILL.md Section 2 (SMART ROUTING)
+# per skill_smart_router.md. A skill carrying the canonical pseudocode block
+# names all three; missing markers flag a stale/absent router pattern.
+SMART_ROUTER_MARKERS = [
+    'discover_markdown_resources',
+    '_guard_in_skill',
+    'UNKNOWN_FALLBACK',
+]
+
+# 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
+VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
+
 
 # ───────────────────────────────────────────────────────────────
 # 2. VALIDATION FUNCTIONS
@@ -278,24 +326,28 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
             if file.is_file() and file.name != 'README.md' and file.suffix not in VALID_SCRIPT_EXTENSIONS:
                 warnings.append(f"Unexpected file type in scripts/: {file.name} (expected: {', '.join(VALID_SCRIPT_EXTENSIONS)}, README.md)")
 
+    # References: recurse into domain subfolders (legacy code scanned top level
+    # only). README.md is a distinct doc class and is exempt from snake_case.
     if refs_dir.exists():
-        for file in refs_dir.iterdir():
-            if file.is_file():
+        for file in refs_dir.rglob('*'):
+            if file.is_file() and file.name != 'README.md':
+                rel = file.relative_to(skill_path)
                 if file.suffix not in VALID_REFERENCE_EXTENSIONS:
-                    warnings.append(f"Unexpected file type in references/: {file.name} (expected: .md)")
+                    warnings.append(f"Unexpected file type in references/: {rel} (expected: .md)")
                 # snake_case naming per skill_reference_template.md
-                if not re.match(r'^[a-z0-9_]+\.md$', file.name):
-                    warnings.append(f"Reference file '{file.name}' should use snake_case naming")
+                elif not re.match(r'^[a-z0-9_]+\.md$', file.name):
+                    warnings.append(f"Reference file '{rel}' should use snake_case naming (no hyphens/camelCase/PascalCase)")
 
+    # Assets: recurse into category subfolders. README.md exempt.
     if assets_dir.exists():
-        for file in assets_dir.iterdir():
-            if file.is_file():
+        for file in assets_dir.rglob('*'):
+            if file.is_file() and file.name != 'README.md':
                 # snake_case naming per skill_asset_template.md; strip ALL extensions so
                 # multi-extension templates like prompt_pack_round.md.tmpl are judged on
                 # their base name, not the intermediate ".md".
                 name_without_ext = file.name.split('.')[0]
                 if not re.match(r'^[a-z0-9_]+$', name_without_ext):
-                    warnings.append(f"Asset file '{file.name}' should use snake_case naming")
+                    warnings.append(f"Asset file '{file.relative_to(skill_path)}' should use snake_case naming (no hyphens/camelCase/PascalCase)")
 
     placeholder_patterns = ['example_*', 'placeholder_*', 'sample_*']
     for pattern in placeholder_patterns:
@@ -305,6 +357,139 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
                     warnings.append(f"Placeholder file should be removed or renamed: {file}")
 
     return True, "Resources valid", warnings
+
+
+def _extract_frontmatter_block(content: str) -> Optional[str]:
+    """Return the raw YAML frontmatter block of a markdown file, or None.
+
+    Args:
+        content: Raw markdown file content.
+
+    Returns:
+        The text between the opening and closing ``---`` fences, or None when the
+        file has no frontmatter (frontmatter-less docs are skipped, not failed).
+    """
+    if not content.startswith('---'):
+        return None
+    match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+    if not match:
+        return None
+    return match.group(1)
+
+
+def _iter_subtree_markdown(skill_path: Path, subtrees: List[str]):
+    """Yield (path, subtree_name) for every .md file under the given subtrees.
+
+    Recurses into nested folders (the legacy validator only scanned the top
+    level of each resource folder, so docs in domain subfolders went unchecked).
+    """
+    for subtree in subtrees:
+        base = skill_path / subtree
+        if not base.exists():
+            continue
+        for file in sorted(base.rglob('*.md')):
+            if file.is_file():
+                yield file, subtree
+
+
+def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str]]:
+    """Validate reference/asset doc frontmatter per the sk-doc templates.
+
+    Enforces (as WARNINGS) the 5-field doc block on every reference/asset
+    markdown file and a 4-part ``version`` on every versioned doc-class file.
+    README.md is exempt from the 5-field block (distinct doc class). Files
+    without frontmatter are skipped.
+
+    Args:
+        skill_path: Path to the skill directory.
+
+    Returns:
+        Tuple of (is_valid, message, warnings). Always valid=True; findings are
+        advisory warnings so the new contract stays backward-compatible.
+    """
+    warnings = []
+
+    # 5-field block on reference/asset docs (README.md exempt).
+    for file, _subtree in _iter_subtree_markdown(skill_path, RESOURCE_DOC_SUBTREES):
+        if file.name == 'README.md':
+            continue
+        frontmatter = _extract_frontmatter_block(file.read_text(encoding='utf-8'))
+        if frontmatter is None:
+            warnings.append(
+                f"Resource doc '{file.relative_to(skill_path)}' has no frontmatter "
+                f"(expected 5-field block: {', '.join(REQUIRED_RESOURCE_FRONTMATTER_FIELDS)})"
+            )
+            continue
+        missing = [
+            field for field in REQUIRED_RESOURCE_FRONTMATTER_FIELDS
+            if not re.search(rf'^{field}:', frontmatter, re.MULTILINE)
+        ]
+        if missing:
+            warnings.append(
+                f"Resource doc '{file.relative_to(skill_path)}' missing frontmatter "
+                f"field(s): {', '.join(missing)}"
+            )
+
+    # 4-part version on every versioned doc-class file that has frontmatter.
+    for file, _subtree in _iter_subtree_markdown(skill_path, VERSIONED_DOC_SUBTREES):
+        frontmatter = _extract_frontmatter_block(file.read_text(encoding='utf-8'))
+        if frontmatter is None:
+            continue  # frontmatter-less docs are skipped, not failed
+        version_match = re.search(r'^version:\s*(.+)$', frontmatter, re.MULTILINE)
+        if not version_match:
+            warnings.append(
+                f"Doc '{file.relative_to(skill_path)}' missing 'version' in frontmatter "
+                f"(4-part X.Y.Z.W per frontmatter_versioning.md)"
+            )
+            continue
+        version_value = version_match.group(1).strip().strip('"\'')
+        if not VERSION_4PART_RE.match(version_value):
+            warnings.append(
+                f"Doc '{file.relative_to(skill_path)}' has version '{version_value}' "
+                f"that is not 4-part X.Y.Z.W"
+            )
+
+    return True, "Resource frontmatter checked", warnings
+
+
+def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
+    """Validate SKILL.md Section 2 (SMART ROUTING) names the router markers.
+
+    Checks for the canonical smart-router resilience markers
+    (discover_markdown_resources, _guard_in_skill, UNKNOWN_FALLBACK) per
+    skill_smart_router.md. Findings are WARNINGS so router skills using a
+    different documented pattern are not hard-failed.
+
+    Args:
+        content: Raw SKILL.md file content.
+
+    Returns:
+        Tuple of (is_valid, message, warnings). Always valid=True.
+    """
+    warnings = []
+
+    # Isolate the SMART ROUTING section body (handles numbered + emoji headers
+    # and the combined "SMART ROUTING & REFERENCES" form).
+    section_match = re.search(
+        r'^##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?SMART ROUTING'
+        r'.*?\n(.*?)(?=\n##\s|\Z)',
+        content,
+        re.DOTALL | re.IGNORECASE | re.MULTILINE,
+    )
+    if not section_match:
+        # validate_sections() already errors on a missing SMART ROUTING section;
+        # nothing extra to warn about here.
+        return True, "No SMART ROUTING section to validate", warnings
+
+    section_body = section_match.group(1)
+    missing = [marker for marker in SMART_ROUTER_MARKERS if marker not in section_body]
+    if missing:
+        warnings.append(
+            f"SMART ROUTING section missing smart-router marker(s): "
+            f"{', '.join(missing)} (see skill_smart_router.md pseudocode)"
+        )
+
+    return True, "Smart router checked", warnings
 
 
 def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict[str, str]) -> Tuple[bool, str, List[str]]:
@@ -375,6 +560,19 @@ def validate_skill(skill_path: Path) -> Tuple[bool, str, List[str]]:
         return False, message, all_warnings
 
     valid, message, warnings = validate_resources(skill_path)
+    all_warnings.extend(warnings)
+    if not valid:
+        return False, message, all_warnings
+
+    # Resource-doc frontmatter contract (5-field block + 4-part version) and
+    # smart-router markers. Emitted as warnings (see VERSIONED_DOC_SUBTREES
+    # comment) so the hardened contract does not break validation repo-wide.
+    valid, message, warnings = validate_resource_frontmatter(skill_path)
+    all_warnings.extend(warnings)
+    if not valid:
+        return False, message, all_warnings
+
+    valid, message, warnings = validate_smart_router(content)
     all_warnings.extend(warnings)
     if not valid:
         return False, message, all_warnings

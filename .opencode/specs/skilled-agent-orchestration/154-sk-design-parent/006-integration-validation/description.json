@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/006-integration-validation",
+  "description": "The sk-design family has been built up phase by phase, but each piece was validated alone",
+  "keywords": [
+    "sk-design",
+    "family",
+    "built",
+    "phase",
+    "piece",
+    "validated",
+    "alone"
+  ],
+  "lastUpdated": "2026-06-25T12:59:18.766Z",
+  "specId": "006",
+  "folderSlug": "integration-validation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

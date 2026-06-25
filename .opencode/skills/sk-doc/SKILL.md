@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Markdown and OpenCode component specialist: doc quality, content optimization, component scaffolds, install guides, playbooks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.8.0.0
+version: 1.8.1.0
 ---
 
 <!-- Keywords: sk-doc, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->

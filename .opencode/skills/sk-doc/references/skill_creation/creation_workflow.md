@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.8.0.2
 ---
 
 # Skill Creation Process
@@ -156,8 +156,8 @@ Begin with resources identified in Step 2: `scripts/`, `references/`, and `asset
 
 **Process**:
 1. Create scripts identified in planning phase
-2. Add reference documentation
-3. Include asset files
+2. Add reference documentation — start each `references/*.md` from [skill_reference_template.md](../../assets/skill/skill_reference_template.md) so it ships the full 5-field + `version` frontmatter block; name files **snake_case**
+3. Include asset files — start each `assets/*.md` from [skill_asset_template.md](../../assets/skill/skill_asset_template.md) so it ships the full 5-field + `version` frontmatter block; name files **snake_case**
 4. Delete example files generated during initialization
 
 **Note**: May require user input (e.g., brand assets, documentation templates).
@@ -216,7 +216,8 @@ Answer these questions in SKILL.md:
 3. **How should the agent route to the right resources?**
    - Section 2: SMART ROUTING
    - Follow the SMART ROUTING template generated in Step 3. Populate the five subsections: Primary Detection Signal, Phase Detection, Resource Domains, Resource Loading Levels, and Smart Router Pseudocode.
-   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables
+   - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill_smart_router.md](../../assets/skill/skill_smart_router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the Smart Router Pseudocode subsection, then adapt the routing key and resource map to this skill's domain. A SKILL.md with an empty or missing Smart Router Pseudocode subsection is incomplete.
+   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables; do NOT ship a SMART ROUTING section without the resilience pseudocode
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)
@@ -246,21 +247,27 @@ Answer these questions in SKILL.md:
 
 **Frontmatter Completion**:
 
+SKILL.md requires all four fields. `package_skill.py --check` hard-fails when any is missing — `version` is **not** optional.
+
 | Field           | Required | Quick Note                                     |
 | --------------- | -------- | ---------------------------------------------- |
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
 | `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common_pitfalls.md](./common_pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
-| `version`       | ⚪        | Semantic versioning (e.g., `1.0.0`)            |
+| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../frontmatter_versioning.md) |
 
 ```yaml
 ---
 name: markdown-optimizer
 description: Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0
+version: 1.0.0.0
 ---
 ```
+
+**Every authored `.md` carries `version`** — not just SKILL.md:
+- **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill_reference_template.md](../../assets/skill/skill_reference_template.md) / [skill_asset_template.md](../../assets/skill/skill_asset_template.md) so the block is present by construction. Use **snake_case** filenames (`package_skill.py --check` warns on non-snake_case in `references/` and `assets/`).
+- **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description`, and `version` per [skill_readme_template.md](../../assets/skill/skill_readme_template.md).
 
 > **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../../assets/frontmatter_templates.md)
 
@@ -268,7 +275,13 @@ version: 1.0.0
 
 **Objective**: Validate skill and package into distributable zip file.
 
-**Command**:
+**Completion gate (run before claiming the skill is done)**:
+```bash
+scripts/package_skill.py <path/to/skill-folder> --check
+```
+`--check` runs validation only (no zip). It is the authoritative gate: it hard-fails on a missing `version` (or non-4-part `X.Y.Z.W`), a `name` that does not match the folder, and a missing required SKILL.md section, and warns on non-snake_case filenames in `references/` and `assets/`. Do not claim the skill is complete until `--check` passes.
+
+**Command** (validate + package into a zip):
 ```bash
 scripts/package_skill.py <path/to/skill-folder>
 ```
@@ -291,12 +304,12 @@ scripts/package_skill.py <path/to/skill-folder> ./dist
 1. SKILL.md exists
 2. Frontmatter starts with `---`
 3. Frontmatter has closing `---`
-4. Required fields present: `name`, `description`
-5. Name is hyphen-case (lowercase, hyphens, no underscores)
-6. Name doesn't start/end with hyphen
-7. No consecutive hyphens
-8. No angle brackets in description (e.g., `<skill-name>`)
-9. Description is complete (not just TODO placeholder)
+4. Required SKILL.md fields present: `name`, `description`, `allowed-tools`, `version` (all four — `version` is required)
+5. `version` is 4-part `X.Y.Z.W`
+6. Name is hyphen-case (lowercase, hyphens, no underscores) and matches the folder name
+7. Name doesn't start/end with hyphen; no consecutive hyphens
+8. No angle brackets in description (e.g., `<skill-name>`); description is complete (not just a TODO placeholder)
+9. `references/` and `assets/` filenames are snake_case (warning otherwise)
 
 **Phase 2: Packaging** (if validation passes):
 - Creates zip file named after skill (e.g., `markdown-optimizer.zip`)
