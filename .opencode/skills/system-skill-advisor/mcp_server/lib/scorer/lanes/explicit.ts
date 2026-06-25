@@ -103,18 +103,18 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:testing-playbook': [['create:testing-playbook', 1.8], ['command-create-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/deep:start-research-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-review-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-research-loop': [['deep-research', 1.6], ['command-spec-kit', 0.45], ['deep-loop-workflows', -0.4]],
+  '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45], ['deep-loop-workflows', -0.4]],
   '/deep:start-model-benchmark-loop': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-agent-improvement-loop': [['deep-loop-workflows', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
-  'auto review release readiness': [['deep-loop-workflows', 1]],
+  'auto review release readiness': [['deep-review', 1], ['deep-loop-workflows', -0.4]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
   // distinct from natural-language "auto review this PR" (which stays
   // sk-code-review). Strong direct-evidence anchor + a bounded code-review
   // penalty so the loop skill wins the rank.
-  ':review:auto': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
-  ':review:confirm': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
+  ':review:auto': [['deep-review', 1.6], ['sk-code-review', -0.6], ['deep-loop-workflows', -0.4]],
+  ':review:confirm': [['deep-review', 1.6], ['sk-code-review', -0.6], ['deep-loop-workflows', -0.4]],
   // Domain phrase anchors (multi-token, so they lift confidence via the direct
   // lane without firing on single tokens like "scan"/"profile"/"search"/"cms").
   'webflow cms': [['mcp-code-mode', 1.5], ['sk-code', -0.5]],
@@ -169,12 +169,12 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'classifier vocabulary': [['sk-code-review', 0.9]],
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-prompt', 0.95]],
-  'deep research': [['deep-loop-workflows', 1]],
-  'deep review': [['deep-loop-workflows', 1]],
+  'deep research': [['deep-research', 1], ['deep-loop-workflows', -0.4]],
+  'deep review': [['deep-review', 1], ['deep-loop-workflows', -0.4]],
   'deep ai council': [['deep-loop-workflows', 1.6]],
   'deep-ai-council': [['deep-loop-workflows', 1.6]],
-  'deep-research': [['deep-loop-workflows', 1.3]],
-  'deep-review': [['deep-loop-workflows', 1.3]],
+  'deep-research': [['deep-research', 1.3], ['deep-loop-workflows', -0.4]],
+  'deep-review': [['deep-review', 1.3], ['deep-loop-workflows', -0.4]],
   'ai council': [['deep-loop-workflows', 1.4]],
   'planning council': [['deep-loop-workflows', 1.2]],
   'council deliberation': [['deep-loop-workflows', 1.4]],
@@ -192,8 +192,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'negative-trigger whitelist': [['sk-code', 0.9]],
   'list any mismatches': [['sk-code-review', 0.8]],
   'pull request': [['sk-code-review', 0.45], ['sk-git', 0.45]],
-  'resume deep research': [['deep-loop-workflows', 1]],
-  'resume deep review': [['deep-loop-workflows', 1]],
+  'resume deep research': [['deep-research', 1], ['deep-loop-workflows', -0.4]],
+  'resume deep review': [['deep-review', 1], ['deep-loop-workflows', -0.4]],
   'resume the phase folder': [['system-spec-kit', 1]],
   'phase folder': [['system-spec-kit', 0.75]],
   'routing dashboard': [['sk-code', 0.35]],
@@ -310,7 +310,8 @@ export function scoreExplicitLane(
     push(scores, 'sk-code-review', -2.0, 'review-plus-write-disambiguation');
   }
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
-    push(scores, 'deep-loop-workflows', 0.85, 'research-loop');
+    push(scores, 'deep-research', 0.85, 'research-loop');
+    push(scores, 'deep-loop-workflows', -0.35, 'research-loop');
   }
   // Disambiguation: "cli-opencode" / "cli opencode" / "opencode CLI" routes to the
   // cli-opencode orchestrator skill. Bare "opencode" continues to route to sk-code
@@ -321,7 +322,8 @@ export function scoreExplicitLane(
     push(scores, 'sk-code', -0.5, 'cli-opencode-disambiguation');
   }
   if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
-    push(scores, 'deep-loop-workflows', 0.85, 'review-loop');
+    push(scores, 'deep-review', 0.85, 'review-loop');
+    push(scores, 'deep-loop-workflows', -0.35, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
       push(scores, 'sk-code-review', -0.6, 'iterative-review-vs-pr-disambiguation');
     }

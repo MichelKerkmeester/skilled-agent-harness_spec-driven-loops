@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/001-codegraph-defaults-bitemporal",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/002-deeploop-gauges-dedup-scale",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/004-advisor-penalty-contract",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/003-search-append-citation-probe"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag graduation follow-ups",
+      "production readiness for the graduated flags",
+      "wire the bitemporal writer",
+      "set the degree cap and gauge defaults",
+      "append-exempt serializer and citation density probe"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "graduation",
+      "follow-ups",
+      "production",
+      "readiness",
+      "graduated",
+      "flags",
+      "wire",
+      "bitemporal",
+      "writer",
+      "set"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-codegraph-defaults-bitemporal/spec.md",
+      "002-deeploop-gauges-dedup-scale/spec.md",
+      "003-search-append-citation-probe/spec.md",
+      "004-advisor-penalty-contract/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 validation confirmed the dark-flag winners are correct and byte-identical when off, but qualified the graduate-ready posture: the bitemporal writer is unwired, the staleness degree cap and the deep-loop gauges default to off, the dedup was only proven on synthetic records, and the cut self-recommendation guard left an undocumented implicit penalty as the sole defense",
+    "created_at": "2026-06-24T07:59:20.565Z",
+    "last_save_at": "2026-06-25T18:01:45.174Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:26a5743878158f5b0a1f58a83ea9f82a2b9239f9daab905f80db4e8dda8cba2b",
+    "source_doc_hashes": {
+      "spec.md": "a94d89f3abe6b07c20d1f77e4d818339ce4b99505fbc6f6f08f402bbb157011b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

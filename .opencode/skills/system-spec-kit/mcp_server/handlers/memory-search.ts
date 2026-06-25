@@ -84,6 +84,7 @@ import {
   attachSessionTransitionTrace,
   type SessionTransitionTrace,
 } from '../lib/search/session-transition.js';
+import { applyPostProcessingAndObserve } from '../lib/scoring/composite-scoring.js';
 
 // Mode-Aware Response Shape
 import {
@@ -687,6 +688,27 @@ function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
   });
 }
 
+function applySearchScoringObservability(results: SessionAwareResult[]): SessionAwareResult[] {
+  return results.map((result) => {
+    const row = result as Record<string, unknown>;
+    const currentScore = finiteNumber(row.score)
+      ?? finiteNumber(row.intentAdjustedScore)
+      ?? finiteNumber(row.rrfScore)
+      ?? resolveSearchScore(row);
+    if (currentScore === null) {
+      return result;
+    }
+
+    const observedScore = applyPostProcessingAndObserve(currentScore, row, 'ms');
+    return {
+      ...result,
+      score: observedScore,
+      rrfScore: typeof row.rrfScore === 'number' ? observedScore : row.rrfScore,
+      intentAdjustedScore: typeof row.intentAdjustedScore === 'number' ? observedScore : row.intentAdjustedScore,
+    };
+  });
+}
+
 function calculateFinalRankScore(total: number, index: number): number | null {
   return total > 0 ? (total - index) / total : null;
 }
@@ -1166,6 +1188,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableSessionBoost,
     enableCausalBoost,
     includeTrace,
+    retrievalLevel,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
@@ -1220,6 +1243,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       intentWeights: toIntentWeightsConfig(intentWeights),
       artifactRouting: artifactRouting as unknown as PipelineConfig['artifactRouting'],
       queryPlan,
+      retrievalLevel,
       trace,
     };
 
@@ -1355,6 +1379,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       stampFinalRankScores(resultsForFormatting);
     }
 
+    resultsForFormatting = applySearchScoringObservability(resultsForFormatting);
+
     // Build extra data from pipeline metadata for response formatting
     const lexicalCapability = getLastLexicalCapabilitySnapshot();
     if (lexicalCapability) {
@@ -1370,6 +1396,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       },
       pipelineMetadata: pipelineResult.metadata,
       qualityGapFallback: qualityFallback,
+      retrievalLevel,
+      retrievalScope: retrievalLevel === 'global' ? 'community' : 'entity',
     };
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;

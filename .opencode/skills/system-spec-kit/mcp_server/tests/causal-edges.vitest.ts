@@ -630,7 +630,7 @@ describe('Causal Edges (T043-T047, T128-T141)', () => {
         { sourceId: '3', targetId: '4', relation: causalEdges.RELATION_TYPES.SUPPORTS, evidence: 'batch' },
       ]);
 
-      expect(result).toEqual({ inserted: 3, failed: 0 });
+      expect(result).toEqual({ inserted: 3, failed: 0, skippedManual: 0 });
       expect(causalEdges.getAllEdges()).toHaveLength(3);
     });
 

@@ -60,6 +60,7 @@ import { cheapSeedRetrieve, llm, fanout } from '../llm-reformulation.js';
 import { runHyDE } from '../hyde.js';
 import { matchSurrogates } from '../query-surrogates.js';
 import { loadSurrogatesBatch } from '../surrogate-storage.js';
+import { queryCommunityMembersAsRankedList } from '../community-search.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: Hybrid search pipeline
@@ -632,6 +633,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     includeArchived,
     includeConstitutional,
     qualityThreshold,
+    retrievalLevel = 'auto',
     trace,
   } = config;
 
@@ -730,6 +732,64 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     } catch (routingErr: unknown) {
       const routingMsg = routingErr instanceof Error ? routingErr.message : String(routingErr);
       console.warn(`[stage1-candidate-gen] D2 concept routing failed: ${routingMsg}`);
+    }
+  }
+
+  if (retrievalLevel === 'global') {
+    try {
+      const db = requireDb();
+      let globalCandidates = queryCommunityMembersAsRankedList(
+        effectiveQuery,
+        db,
+        limit,
+        { specFolder, tenantId, userId, agentId },
+      ) as PipelineRow[];
+
+      if (tier) {
+        globalCandidates = applyTierFilter(globalCandidates, tier);
+      }
+      if (contextType) {
+        globalCandidates = globalCandidates.filter(
+          (row) => resolveRowContextType(row) === contextType,
+        );
+      }
+      globalCandidates = backfillMissingQualityScores(globalCandidates);
+      globalCandidates = filterByMinQualityScore(globalCandidates, qualityThreshold);
+
+      const durationMs = Date.now() - startTime;
+      if (trace) {
+        addTraceEntry(trace, 'candidate', 1, globalCandidates.length, durationMs, {
+          channel: 'community',
+          retrievalLevel: 'global',
+        });
+      }
+
+      return {
+        candidates: globalCandidates,
+        metadata: {
+          searchType,
+          channelCount: 1,
+          activeChannels: 1,
+          candidateCount: globalCandidates.length,
+          constitutionalInjected: 0,
+          durationMs,
+        },
+      };
+    } catch (globalErr: unknown) {
+      const globalMsg = globalErr instanceof Error ? globalErr.message : String(globalErr);
+      console.warn(`[stage1-candidate-gen] Global community retrieval failed, returning empty candidates: ${globalMsg}`);
+      const durationMs = Date.now() - startTime;
+      return {
+        candidates: [],
+        metadata: {
+          searchType,
+          channelCount: 1,
+          activeChannels: 1,
+          candidateCount: 0,
+          constitutionalInjected: 0,
+          durationMs,
+        },
+      };
     }
   }
 
@@ -1319,6 +1379,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       const seeds = cheapSeedRetrieve(query, { limit: 3 });
       const reform = await llm.rewrite({ q: query, seeds, mode: 'step_back+corpus' });
       const allQueries = fanout([query, reform.abstract, ...reform.variants]);
+      let reformMergedCount = 0;
 
       if (allQueries.length > 1) {
         const reformEmbedding: Float32Array | number[] | null =
@@ -1366,23 +1427,23 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
                 rows,
               };
             });
-            const reformMergedCount = filteredReformSets.reduce((sum, batch) => sum + batch.rows.length, 0);
+            reformMergedCount = filteredReformSets.reduce((sum, batch) => sum + batch.rows.length, 0);
             candidates = mergeCandidateBatches(filteredReformSets, {
               seedCandidates: candidates,
               seedLabel: query,
             });
             channelCount += allQueries.length - 1; // discount original (already counted)
-
-            if (trace) {
-              addTraceEntry(trace, 'candidate', allQueries.length - 1, reformMergedCount, 0, {
-                channel: 'd2-llm-reformulation',
-                abstract: reform.abstract,
-                variantCount: reform.variants.length,
-                fanoutCount: allQueries.length,
-              });
-            }
           }
         }
+      }
+
+      if (trace) {
+        addTraceEntry(trace, 'candidate', Math.max(0, allQueries.length - 1), reformMergedCount, 0, {
+          channel: 'd2-llm-reformulation',
+          abstract: reform.abstract,
+          variantCount: reform.variants.length,
+          fanoutCount: allQueries.length,
+        });
       }
     } catch (reformErr: unknown) {
       const reformMsg = reformErr instanceof Error ? reformErr.message : String(reformErr);

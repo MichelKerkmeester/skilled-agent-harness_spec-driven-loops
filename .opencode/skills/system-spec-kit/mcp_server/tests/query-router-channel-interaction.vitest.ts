@@ -281,7 +281,7 @@ describe('T033: R15 + R2 Interaction Tests', () => {
       }
     });
 
-    it('T033-12: R2 does not promote below QUALITY_FLOOR', () => {
+    it('T033-12: R2 promotes active channels below QUALITY_FLOOR', () => {
       process.env.SPECKIT_CHANNEL_MIN_REP = 'true';
 
       const topK = [
@@ -299,11 +299,10 @@ describe('T033: R15 + R2 Interaction Tests', () => {
 
       const result = analyzeChannelRepresentation(topK, channelResults);
 
-      // Fts is under-represented but nothing qualifies for promotion
       expect(result.underRepresentedChannels).toContain('fts');
-      // No items should be promoted because all are below QUALITY_FLOOR
       const promotedFts = result.promoted.filter(p => p.promotedFrom === 'fts');
-      expect(promotedFts.length).toBe(0);
+      expect(promotedFts.length).toBe(1);
+      expect(promotedFts[0].id).toBe(10);
     });
 
     it('T033-13: R2 handles channel with no results gracefully', () => {

@@ -11,8 +11,11 @@
 import { canonicalFold } from '@spec-kit/shared/unicode-normalization';
 
 import { ensureGovernanceTables } from '../search/vector-index-schema.js';
+import { normalizeStringScopeId as normalizeScopeValue } from '../utils/scope-normalization.js';
 
 import type Database from 'better-sqlite3';
+
+export { normalizeScopeValue };
 
 // Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
 
@@ -267,25 +270,6 @@ function sanitizeGovernanceAuditReason(entry: GovernanceAuditEntry): string | nu
 /* ───────────────────────────────────────────────────────────────
    5. CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
-
-/**
- * Canonical single-string scope normalizer.
- *
- * Returns `string | null` to preserve the historical semantics of four local
- * copies collapsed here (reconsolidation-bridge, lineage-state, save/types,
- * preflight). Callers that perform null-specific narrowing (e.g. `=== null`,
- * `!== null`) continue to work unchanged. `normalizeScopeContext` above uses
- * `string | undefined` for structural scope objects; this helper is the
- * single-field companion used when callers need a null-valued placeholder.
- *
- * @param value - Arbitrary input (string, null, undefined, other).
- * @returns Trimmed non-empty string, or `null` for blank/non-string input.
- */
-export function normalizeScopeValue(value: unknown): string | null {
-  if (typeof value !== 'string') return null;
-  const trimmed = value.trim();
-  return trimmed.length > 0 ? trimmed : null;
-}
 
 export function buildGovernanceLogicalKey(
   specFolder: string | null | undefined,

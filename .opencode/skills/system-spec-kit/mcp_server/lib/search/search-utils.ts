@@ -54,6 +54,7 @@ interface CacheArgsInput {
   enableSessionBoost: boolean;
   enableCausalBoost: boolean;
   includeTrace?: boolean;
+  retrievalLevel?: 'local' | 'global' | 'auto';
   cacheVersion?: string;
   /**
    * Causal-edges generation counter snapshot. When `enableCausalBoost`
@@ -175,6 +176,7 @@ function buildCacheArgs({
   enableSessionBoost,
   enableCausalBoost,
   includeTrace = false,
+  retrievalLevel = 'auto',
   cacheVersion,
   causalEdgesGeneration,
   folderBoost,
@@ -218,6 +220,7 @@ function buildCacheArgs({
     enableSessionBoost,
     enableCausalBoost,
     includeTrace,
+    retrievalLevel,
     cacheVersion,
     causalEdgesGeneration: includeCausalGeneration ? causalEdgesGeneration : undefined,
     folderBoost: folderBoost && folderBoost.folder

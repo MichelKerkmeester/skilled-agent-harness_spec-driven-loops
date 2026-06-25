@@ -605,7 +605,7 @@ function deduplicateEntities(
   const map = new Map<string, ExtractedEntity>();
 
   for (const item of raw) {
-    const key = item.text.toLowerCase().trim();
+    const key = normalizeEntityName(item.text);
     const existing = map.get(key);
     if (existing) {
       existing.frequency += 1;

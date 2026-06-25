@@ -4,6 +4,7 @@
 // End-to-end coverage for adaptive signal persistence, bounded
 // proposal generation, shadow evaluation, threshold tuning, and
 // rollback/reset behavior using a real in-memory SQLite database.
+import { createHash } from 'node:crypto';
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -83,15 +84,17 @@ function toShadowRanks(
 }
 
 function insertSearchEvent(db: Database.Database, id: number, queryText: string, timestamp: string): void {
+  const queryHash = createHash('sha256').update(queryText).digest('hex').slice(0, 16);
   db.prepare(`
     INSERT INTO consumption_log (
       id,
       event_type,
-      query_text,
+      query_hash,
+      intent,
       result_count,
       timestamp
-    ) VALUES (?, 'search', ?, 3, ?)
-  `).run(id, queryText, timestamp);
+    ) VALUES (?, 'search', ?, 'fix_bug', 3, ?)
+  `).run(id, queryHash, timestamp);
 }
 
 describe('Adaptive Ranking E2E Lifecycle', () => {
@@ -269,6 +272,28 @@ describe('Adaptive Ranking E2E Lifecycle', () => {
       correction_weight: -0.03,
       access_weight: 0.005,
       min_signals_for_promotion: 2,
+    });
+  });
+
+  it('consumption replay fixtures write only columns present in the clean schema', () => {
+    const targetColumns = new Set(
+      (db.prepare('PRAGMA table_info(consumption_log)').all() as Array<{ name: string }>)
+        .map((column) => column.name),
+    );
+    expect(targetColumns.has('query_text')).toBe(false);
+    expect(targetColumns.has('query_hash')).toBe(true);
+
+    insertSearchEvent(db, 42, 'schema contract query', new Date().toISOString());
+
+    const row = db.prepare(`
+      SELECT query_hash, intent, result_count
+      FROM consumption_log
+      WHERE id = 42
+    `).get() as { query_hash: string; intent: string; result_count: number };
+    expect(row).toEqual({
+      query_hash: createHash('sha256').update('schema contract query').digest('hex').slice(0, 16),
+      intent: 'fix_bug',
+      result_count: 3,
     });
   });
 

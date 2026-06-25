@@ -690,7 +690,11 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       ? evaluateGuardedFullScan(diagnostics, parseErrorBacklogThreshold)
       : { autoRescanSafety: 'blocked' as const, autoRescanBlockReason: 'guard_disabled' };
   const canRunFullScan = allowInlineFullScan || guardedFullScan.autoRescanSafety === 'allowed';
-  if (state.action === 'full_scan' && !canRunFullScan) {
+  const canRunSelectiveRefresh = state.action === 'full_scan'
+    && !canRunFullScan
+    && allowInlineIndex
+    && state.staleFiles.length > 0;
+  if (state.action === 'full_scan' && !canRunFullScan && !canRunSelectiveRefresh) {
     return {
       freshness: state.freshness,
       action: state.action,
@@ -714,6 +718,39 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
   });
 
   try {
+    if (canRunSelectiveRefresh) {
+      const lastSelfHealAt = new Date().toISOString();
+      const config = getDefaultConfig(rootDir, storedPolicy ?? undefined);
+      await indexWithTimeout(config, AUTO_INDEX_TIMEOUT_MS, { specificFiles: state.staleFiles });
+      graphDb.setCodeGraphScope(config.scopePolicy);
+
+      const head = getCurrentGitHead(rootDir);
+      if (head) setLastGitHead(head);
+      try {
+        recordCandidateManifest(graphDb.getTrackedFiles());
+      } catch {
+        // Best-effort: manifest recording must never block a successful scan
+      }
+
+      const refreshedState = detectState(rootDir);
+      const selfHealResult = refreshedState.freshness === 'fresh' && refreshedState.action === 'none'
+        ? 'ok'
+        : 'failed';
+      return {
+        freshness: refreshedState.freshness,
+        action: refreshedState.action,
+        ...(refreshedState.action === 'selective_reindex' ? { files: refreshedState.staleFiles } : {}),
+        inlineIndexPerformed: true,
+        reason: appendCleanupReason(refreshedState.reason, removedDeletedCount),
+        ...buildReadinessDiagnostics(),
+        ...guardedFullScan,
+        selfHealAttempted: true,
+        selfHealResult,
+        verificationGate,
+        lastSelfHealAt,
+      };
+    }
+
     if (state.action === 'full_scan') {
       const config = getDefaultConfig(rootDir, storedPolicy ?? undefined);
       await indexWithTimeout(config, AUTO_INDEX_TIMEOUT_MS);

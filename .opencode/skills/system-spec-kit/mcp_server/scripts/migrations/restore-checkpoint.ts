@@ -8,8 +8,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { pathToFileURL } from 'url';
 import Database from 'better-sqlite3';
-import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
-import { DATABASE_DIR } from '../../core/config.js';
+import { resolveDatabasePaths } from '../../core/config.js';
 import { acquire_db_instance_lock, release_db_instance_lock } from '../../lib/search/db-instance-lock.js';
 
 interface CliArgs {
@@ -29,25 +28,12 @@ interface RestoreCheckpointResult {
 }
 
 /**
- * Resolve the default database path from environment or known project locations.
+ * Resolve the default database path through the runtime database resolver.
  *
  * @returns Absolute path to the SQLite database file.
  */
 function resolveDefaultDbPath(): string {
-  const candidates = [
-    process.env.MEMORY_DB_PATH,
-    resolveActiveProfileDbPath(undefined, DATABASE_DIR),
-    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'mcp_server/database')),
-    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'database')),
-  ].filter((candidate): candidate is string => typeof candidate === 'string' && candidate.trim().length > 0);
-
-  for (const candidate of candidates) {
-    if (fs.existsSync(candidate)) {
-      return path.resolve(candidate);
-    }
-  }
-
-  return path.resolve(candidates[0] ?? resolveActiveProfileDbPath());
+  return resolveDatabasePaths().databasePath;
 }
 
 /**

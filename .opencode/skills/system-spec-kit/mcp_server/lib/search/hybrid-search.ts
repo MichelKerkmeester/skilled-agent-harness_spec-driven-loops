@@ -40,6 +40,7 @@ import {
   twoPhaseRetrieval,
 } from './folder-relevance.js';
 import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import { registerLlmBackfillFn } from './graph-lifecycle.js';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
 import { resolveAbsoluteRelevance, attachLaneLists } from './pipeline/types.js';
 import type { LaneCandidateList } from './pipeline/types.js';
@@ -359,6 +360,7 @@ let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
 let enrichFusedResultsObserver: (() => void) | null = null;
+let llmBackfillRegistered = false;
 
 // 6. GRAPH CHANNEL METRICS
 
@@ -431,6 +433,18 @@ function init(
   db = database;
   vectorSearchFn = vectorFn;
   graphSearchFn = graphFn;
+  ensureLlmBackfillRegistered();
+}
+
+function ensureLlmBackfillRegistered(): void {
+  if (llmBackfillRegistered) {
+    return;
+  }
+
+  registerLlmBackfillFn((memoryId) => {
+    console.error(`[hybrid-search] LLM graph backfill requested for memory #${memoryId}`);
+  });
+  llmBackfillRegistered = true;
 }
 
 // 8. BM25 SEARCH
@@ -2538,6 +2552,7 @@ function injectContextualTree(row: HybridSearchResult, descCache: Map<string, st
 
   return {
     ...row,
+    contextualTreeHeader: header,
     content: `${header}\n${content}`,
   };
 }
@@ -3060,6 +3075,7 @@ export const __testables = {
   truncateChars,
   extractSpecSegments,
   injectContextualTree,
+  ensureLlmBackfillRegistered,
   applyResultLimit,
   reorderTopNByCosine,
   COSINE_TOPN_REORDER_DEPTH,

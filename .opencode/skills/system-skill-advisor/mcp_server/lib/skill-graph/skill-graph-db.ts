@@ -32,6 +32,11 @@ import {
   listSkillDocFiles,
   parseDocFrontmatter,
 } from './doc-frontmatter.js';
+import {
+  SKILL_METADATA_SANITIZER_VERSION,
+  sanitizeDerivedMetadata,
+  sanitizeMetadataStringArray,
+} from './metadata-sanitizer.js';
 
 import type { EmbedderAdapter } from '../embedders/adapter.js';
 
@@ -861,7 +866,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
       continue;
     }
 
-    const contentHash = computeContentHash(content);
+    const contentHash = computeContentHash(`${SKILL_METADATA_SANITIZER_VERSION}\n${content}`);
     parsedMetadata.push(parseSkillMetadata(sourcePath, parsedJson, contentHash));
   }
 
@@ -965,9 +970,9 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
         entry.node.family,
         entry.node.category,
         entry.node.schemaVersion,
-        JSON.stringify(entry.node.domains),
-        JSON.stringify(entry.node.intentSignals),
-        entry.node.derived ? JSON.stringify(entry.node.derived) : null,
+        JSON.stringify(sanitizeMetadataStringArray(entry.node.domains, entry.node.sourcePath)),
+        JSON.stringify(sanitizeMetadataStringArray(entry.node.intentSignals, entry.node.sourcePath)),
+        entry.node.derived ? JSON.stringify(sanitizeDerivedMetadata(entry.node.derived, entry.node.sourcePath)) : null,
         entry.node.sourcePath,
         entry.node.contentHash,
         now,

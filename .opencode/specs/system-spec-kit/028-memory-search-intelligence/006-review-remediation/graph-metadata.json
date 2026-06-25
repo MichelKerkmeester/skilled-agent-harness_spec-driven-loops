@@ -7,7 +7,9 @@
     "system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
     "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
     "system-spec-kit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage"
+    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
+    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/005-env-documentation-audit",
+    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/006-review-record-packet-type"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -98,7 +100,7 @@
     ],
     "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.809Z",
+    "last_save_at": "2026-06-25T18:01:44.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

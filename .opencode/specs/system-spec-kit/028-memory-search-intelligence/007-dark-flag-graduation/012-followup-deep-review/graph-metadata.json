@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opus deep review of the follow-ups",
+      "bitemporal wiring corrupts live reads",
+      "graduation follow-up review findings",
+      "deep review FAIL fixed",
+      "P0 bitemporal reindex fix",
+      "follow-up deep review plan",
+      "bitemporal fix plan",
+      "loop-until-dry review method",
+      "remediation approach",
+      "follow-up deep review tasks",
+      "bitemporal fix tasks",
+      "review lens tasks"
+    ],
+    "key_topics": [
+      "opus",
+      "deep",
+      "review",
+      "follow-ups",
+      "bitemporal",
+      "wiring",
+      "corrupts",
+      "live",
+      "reads",
+      "graduation",
+      "follow-up",
+      "findings"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "review/deep-review-strategy.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graduation Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ups Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
+    "created_at": "2026-06-24T10:25:14.122Z",
+    "last_save_at": "2026-06-25T18:01:45.339Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d62f77f6183d185eb13c0fa6a4375e5546b43c78343f71da1868dea14d05437",
+    "source_doc_hashes": {
+      "spec.md": "394a2b05b61d6f8e27a5584f06078598f2d3cf9dc407349af4e827a401fd450d",
+      "plan.md": "f9c3ec24e1355ebcad683887c2c0c44e68b1cb47e6308034314bfe286e7c887c",
+      "tasks.md": "cccf5107a23a524570ea38cf867310ea9e522c3f241cc73462a99354eb058f41",
+      "implementation-summary.md": "53f06acd9929fdb8ab6938f548707daf9e313f4ea56dcd7ecb368fe26e0a858b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

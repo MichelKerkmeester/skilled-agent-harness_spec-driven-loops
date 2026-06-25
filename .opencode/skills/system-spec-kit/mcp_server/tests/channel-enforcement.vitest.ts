@@ -246,8 +246,8 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(topNIds(result, 3)).toEqual(['a1', 'b1', 'g1']);
   });
 
-  // ---- One channel missing → top-3 still contains high-scoring items ----
-  it('T7: one channel missing — top-3 still contains the original high-scoring items', () => {
+  // ---- One channel missing → top-3 includes its representative ----
+  it('T7: one channel missing — top-3 includes its representative', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.95, 'vector'),
       makeFused('b1', 0.88, 'bm25'),
@@ -262,19 +262,14 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
     const result = enforceChannelRepresentation(fused, channels);
 
-    // Original top-3 items (a1, b1, a2) must still be present in positions 0-2.
     const topThree = result.results.slice(0, 3).map(r => r.id);
     expect(topThree).toContain('a1');
     expect(topThree).toContain('b1');
-    expect(topThree).toContain('a2');
-
-    // Promoted g1 (0.40) must appear AFTER the original top-3 because it scored lower.
-    const g1Index = result.results.findIndex(r => r.id === 'g1');
-    expect(g1Index).toBeGreaterThanOrEqual(3);
+    expect(topThree).toContain('g1');
   });
 
-  // ---- Promotions never displace items already in top-3 (appended, not inserted) ----
-  it('T8: promotions with lower scores are appended after the top-3, not inserted', () => {
+  // ---- Promotions reserve a top-k slot when a channel is missing ----
+  it('T8: promotions with lower scores reserve a top-k slot', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.93, 'vector'),
       makeFused('b1', 0.87, 'bm25'),
@@ -291,13 +286,11 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
     expect(result.results[0].id).toBe('a1');
     expect(result.results[1].id).toBe('b1');
-    expect(result.results[2].id).toBe('a2');
-    // Promoted g1 must be position 3 (appended).
-    expect(result.results[3].id).toBe('g1');
+    expect(result.results[2].id).toBe('g1');
   });
 
-  // ---- Quality floor prevents low-quality promotions ----
-  it('T9: quality floor blocks promotions below 0.005, preventing low-quality pollution', () => {
+  // ---- Active channels get a representative even below the floor ----
+  it('T9: active channels below 0.005 still receive representatives', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
     ];
@@ -309,12 +302,29 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
     const result = enforceChannelRepresentation(fused, channels);
 
-    // No promotions — both channels below quality floor.
-    expect(result.enforcement.promotedCount).toBe(0);
-    expect(result.results).toHaveLength(1);
-    // Channels are still listed as under-represented (they tried but failed the floor).
+    expect(result.enforcement.promotedCount).toBe(2);
+    expect(result.results).toHaveLength(3);
     expect(result.enforcement.underRepresentedChannels).toContain('bm25');
     expect(result.enforcement.underRepresentedChannels).toContain('graph');
+  });
+
+  it('reserves top-k slots for active channels even when their best result is below the floor', () => {
+    const fused: FusedResult[] = [
+      makeFused('a1', 0.95, 'vector'),
+      makeFused('a2', 0.9, 'vector'),
+      makeFused('a3', 0.85, 'vector'),
+    ];
+    const channels = new Map<string, ChannelResult[]>([
+      ['vector', [makeChannel('a1', 0.95), makeChannel('a2', 0.9), makeChannel('a3', 0.85)]],
+      ['bm25',   [makeChannel('b1', 0.004)]],
+      ['graph',  [makeChannel('g1', 0.001)]],
+    ]);
+
+    const result = enforceChannelRepresentation(fused, channels, 3);
+    const topSources = new Set(result.results.slice(0, 3).map(r => r.source));
+
+    expect(topSources).toEqual(new Set(['vector', 'bm25', 'graph']));
+    expect(result.enforcement.promotedCount).toBe(2);
   });
 
   // ---- Multiple missing channels — each gets at most 1 promotion ----

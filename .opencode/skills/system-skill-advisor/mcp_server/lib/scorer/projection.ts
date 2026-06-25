@@ -10,6 +10,7 @@ import Database from 'better-sqlite3';
 import { getManifest } from '../embedders/registry.js';
 import type { BackendKind } from '../embedders/types.js';
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
+import { sanitizeDerivedMetadata, sanitizeMetadataStringArray } from '../skill-graph/metadata-sanitizer.js';
 import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
 import { providerModelId } from '../skill-graph/skill-graph-db.js';
 import { parseJsonObject, parseJsonStringArray, readJsonObject } from '../utils/json-guard.js';
@@ -147,6 +148,54 @@ const COMMAND_BRIDGES: readonly SkillProjection[] = [
   },
 ];
 
+const INLINE_WORKFLOW_SKILLS: readonly SkillProjection[] = [
+  {
+    id: 'deep-research',
+    kind: 'skill',
+    family: 'deep-loop',
+    category: 'workflow',
+    name: 'deep-research',
+    description: 'Autonomous deep-research loop for iterative investigation and persisted research state.',
+    keywords: ['deep research', 'research loop', 'autoresearch', '/deep:start-research-loop'],
+    domains: ['deep-loop', 'research'],
+    intentSignals: ['deep research', 'research loop', 'autoresearch', 'resume deep research'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+  {
+    id: 'deep-review',
+    kind: 'skill',
+    family: 'deep-loop',
+    category: 'workflow',
+    name: 'deep-review',
+    description: 'Autonomous deep-review loop for iterative code review and convergence-tracked findings.',
+    keywords: ['deep review', 'review loop', ':review:auto', '/deep:start-review-loop'],
+    domains: ['deep-loop', 'review'],
+    intentSignals: ['deep review', 'review loop', 'resume deep review', ':review:auto'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+  {
+    id: 'deep-improvement',
+    kind: 'skill',
+    family: 'deep-loop',
+    category: 'workflow',
+    name: 'deep-improvement',
+    description: 'Evaluator-first agent improvement workflow with scoring, profiling, and guarded promotion.',
+    keywords: ['agent improvement', '5d scoring', 'integration scan', 'dynamic profile'],
+    domains: ['deep-loop', 'improvement'],
+    intentSignals: ['agent improvement', '5d scoring', 'integration scan', 'dynamic profile'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+];
+
 function jsonArray(value: string | null | undefined): string[] {
   return value ? parseJsonStringArray(value) : [];
 }
@@ -188,7 +237,7 @@ function lifecycleStatus(raw: unknown, sourcePath: string): SkillLifecycleStatus
 }
 
 function projectionFromRow(row: SkillNodeRow): SkillProjection {
-  const derived = jsonObject(row.derived);
+  const derived = sanitizeDerivedMetadata(jsonObject(row.derived), row.source_path) ?? {};
   const graphMetadata = readJson(row.source_path);
   const skillDir = dirname(row.source_path);
   const skillMd = parseSkillMarkdown(join(skillDir, 'SKILL.md'), row.id);
@@ -227,8 +276,8 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
     name: skillMd.name,
     description: skillMd.description,
     keywords: unique(skillMd.keywords.flatMap((entry) => phraseVariants(entry))),
-    domains: unique(jsonArray(row.domains).flatMap((entry) => phraseVariants(entry))),
-    intentSignals: unique(jsonArray(row.intent_signals).flatMap((entry) => phraseVariants(entry))),
+    domains: unique(sanitizeMetadataStringArray(jsonArray(row.domains), row.source_path).flatMap((entry) => phraseVariants(entry))),
+    intentSignals: unique(sanitizeMetadataStringArray(jsonArray(row.intent_signals), row.source_path).flatMap((entry) => phraseVariants(entry))),
     derivedTriggers,
     derivedKeywords,
     derivedDemotion: boundedDemotion(derived.demotion),
@@ -616,6 +665,7 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
           const docTriggers = docTriggersBySkill.get(row.id);
           return docTriggers && docTriggers.length > 0 ? { ...projection, docTriggers } : projection;
         }),
+        ...INLINE_WORKFLOW_SKILLS,
         ...COMMAND_BRIDGES,
       ],
       edges: edgeRows.map((row) => ({
@@ -640,7 +690,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
   const skills: SkillProjection[] = [];
   const edges: SkillEdgeProjection[] = [];
   if (!existsSync(skillRoot)) {
-    return { skills: [...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
+    return { skills: [...INLINE_WORKFLOW_SKILLS, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
   }
   for (const entry of readdirSync(skillRoot, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
@@ -650,9 +700,10 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
     const metadata = readJson(metadataPath);
     const skillMd = parseSkillMarkdown(join(skillDir, 'SKILL.md'), entry.name);
     const skillId = typeof metadata.skill_id === 'string' ? metadata.skill_id : entry.name;
-    const derived = typeof metadata.derived === 'object' && metadata.derived !== null && !Array.isArray(metadata.derived)
+    const rawDerived = typeof metadata.derived === 'object' && metadata.derived !== null && !Array.isArray(metadata.derived)
       ? metadata.derived as Record<string, unknown>
       : {};
+    const derived = sanitizeDerivedMetadata(rawDerived, metadataPath) ?? {};
     // Same split applied here as in projectionFromRow above —
     // derivedTriggers (from trigger_phrases) and derivedKeywords (from
     // key_topics + entities + key_files + source_docs) are now distinct.
@@ -673,8 +724,8 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       name: skillMd.name,
       description: skillMd.description,
       keywords: unique(skillMd.keywords.flatMap((item) => phraseVariants(item))),
-      domains: unique(stringArray(metadata.domains).flatMap((item) => phraseVariants(item))),
-      intentSignals: unique(stringArray(metadata.intent_signals).flatMap((item) => phraseVariants(item))),
+      domains: unique(sanitizeMetadataStringArray(stringArray(metadata.domains), metadataPath).flatMap((item) => phraseVariants(item))),
+      intentSignals: unique(sanitizeMetadataStringArray(stringArray(metadata.intent_signals), metadataPath).flatMap((item) => phraseVariants(item))),
       derivedTriggers,
       derivedKeywords,
       derivedDemotion: boundedDemotion(derived.demotion),
@@ -687,7 +738,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       redirectFrom: stringArray(metadata.redirect_from),
     });
   }
-  return { skills: [...skills, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
+  return { skills: [...skills, ...INLINE_WORKFLOW_SKILLS, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
 }
 
 // Previously a bare `catch {}` swallowed every SQLite read error

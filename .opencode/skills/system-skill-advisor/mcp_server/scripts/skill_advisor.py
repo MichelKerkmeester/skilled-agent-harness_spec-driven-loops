@@ -223,7 +223,14 @@ SKILL_GRAPH_SQLITE_PATH = os.path.normpath(os.path.join(
 ))
 GRAPH_ADJACENCY_EDGE_TYPES = ("depends_on", "enhances", "siblings", "prerequisite_for")
 GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
-GRAPHLESS_INLINE_SKILL_IDS = {"create:agent", "create:testing-playbook", "memory:save"}
+GRAPHLESS_INLINE_SKILL_IDS = {
+    "create:agent",
+    "create:testing-playbook",
+    "deep-improvement",
+    "deep-research",
+    "deep-review",
+    "memory:save",
+}
 
 SKILL_ALIAS_GROUPS = {
     "create:agent": {"command-create-agent", "/create:agent", "create:agent"},
@@ -2069,6 +2076,30 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         path=None,
         extra_variants={"/create:testing-playbook", "create testing playbook", "create test playbook"},
     )
+    skills["deep-research"] = _build_inline_record(
+        name="deep-research",
+        description="Autonomous deep-research loop for iterative investigation and persisted research state.",
+        kind="skill",
+        source="bridge",
+        path=None,
+        extra_variants={"/deep:start-research-loop", "deep research", "research loop", "autoresearch"},
+    )
+    skills["deep-review"] = _build_inline_record(
+        name="deep-review",
+        description="Autonomous deep-review loop for iterative code review and convergence-tracked findings.",
+        kind="skill",
+        source="bridge",
+        path=None,
+        extra_variants={"/deep:start-review-loop", ":review:auto", "deep review", "review loop"},
+    )
+    skills["deep-improvement"] = _build_inline_record(
+        name="deep-improvement",
+        description="Evaluator-first agent improvement workflow with scoring, profiling, and guarded promotion.",
+        kind="skill",
+        source="bridge",
+        path=None,
+        extra_variants={"/deep:start-agent-improvement-loop", "5d scoring", "integration scan", "dynamic profile"},
+    )
 
     for command_name, command_config in COMMAND_BRIDGES.items():
         markers = set(command_config.get("slash_markers", []))
@@ -2525,8 +2556,9 @@ def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, A
     winner_mode = DEEP_ROUTING_MODE_BY_KEY[winner_key]
     runner_up_mode = DEEP_ROUTING_MODE_BY_KEY.get(runner_up_key, runner_up_key)
     mode_scores = {DEEP_ROUTING_MODE_BY_KEY[key]: value for key, value in scores.items()}
+    payload_skill = winner_key if winner_key in {"deep-research", "deep-review"} else MERGED_DEEP_SKILL_ID
     payload: Dict[str, Any] = {
-        "skill": MERGED_DEEP_SKILL_ID,
+        "skill": payload_skill,
         "mode": winner_mode,
         "scores": mode_scores,
         "winner": winner_mode,
@@ -2571,6 +2603,10 @@ def _apply_deep_skill_routing_layer(
         elif skill in DEEP_ROUTING_MODE_BY_KEY:
             mode = DEEP_ROUTING_MODE_BY_KEY[skill]
         else:
+            continue
+        if skill == MERGED_DEEP_SKILL_ID and winner_mode in {"research", "review"}:
+            recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.74)
+            recommendation["uncertainty"] = max(float(recommendation.get("uncertainty", 0.0)), 0.42)
             continue
         routed_confidence = mode_scores.get(mode, 0.0)
         recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
@@ -2890,6 +2926,7 @@ LOW_INFO_AMBIGUITY_MULTI_RATIO = 0.5
 # "use cli-opencode" / "delegate to opencode" delegation prompts.
 CODE_EDIT_VERB_RE = re.compile(r"\b(update|edit|modify|fix|refactor|implement|write|patch|rewrite)\b")
 CODE_SURFACE_NOUN_RE = re.compile(r"\b(script|file|module|function|class|handler|component|code|\.py|\.ts|\.js|\.tsx|\.mjs|\.cjs)\b")
+REVIEW_PLUS_WRITE_RE = re.compile(r"\breview\b.{0,40}\b(update|edit|modify|fix|patch|rewrite)\b")
 CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to opencode|use opencode)\b")
 
 # Git vocabulary is intentionally broad, but ownership boundaries still matter:
@@ -2982,6 +3019,26 @@ def _apply_code_edit_cli_disambiguation(
     sk_code = next((rec for rec in recommendations if rec.get("skill") == "sk-code"), None)
     if sk_code is not None:
         sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.30)
+
+
+def _apply_review_plus_write_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Route review-plus-edit wording to code work instead of findings review."""
+    if not REVIEW_PLUS_WRITE_RE.search(prompt_lower):
+        return
+    sk_code = _find_recommendation(recommendations, "sk-code")
+    sk_code_review = _find_recommendation(recommendations, "sk-code-review")
+    if sk_code is not None:
+        sk_code["confidence"] = max(float(sk_code.get("confidence", 0.0)), 0.92)
+        sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.25)
+        sk_code["_score"] = max(float(sk_code.get("_score", 0.0)), 3.0)
+        _append_reason_note(sk_code, "[disambiguation: edit requested]")
+    if sk_code_review is not None:
+        sk_code_review["confidence"] = min(float(sk_code_review.get("confidence", 0.0)), 0.78)
+        sk_code_review["uncertainty"] = max(float(sk_code_review.get("uncertainty", 0.0)), 0.38)
+        _append_reason_note(sk_code_review, "[disambiguation: edit requested]")
 
 
 def _apply_code_mode_disambiguation(
@@ -3158,11 +3215,8 @@ def _apply_deep_research_disambiguation(
         if note not in existing_reason:
             loser["reason"] = f"{existing_reason}{note}"
 
-    # The five legacy deep-loop skills are folded into MERGED_DEEP_SKILL_ID, so
-    # the deep candidate surfaces under the merged id. Prefer it and keep the
-    # legacy mode-level ids as a mid-migration fallback.
     def _deep_winner(legacy_id: str) -> Optional[Dict[str, Any]]:
-        return _find(MERGED_DEEP_SKILL_ID) or _find(legacy_id)
+        return _find(legacy_id) or _find(MERGED_DEEP_SKILL_ID)
 
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
         winner = _deep_winner("deep-research")
@@ -3431,6 +3485,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
     _apply_code_mode_disambiguation(recommendations, prompt_lower)
     _apply_code_edit_cli_disambiguation(recommendations, prompt_lower)
+    _apply_review_plus_write_disambiguation(recommendations, prompt_lower)
     _apply_deep_skill_routing_layer(recommendations, prompt)
 
     # Iteration-loop tiebreaker: when the query mentions iterative investigation/review
@@ -3835,7 +3890,14 @@ Examples:
         print(json.dumps([]))
         return 0
 
-    if os.environ.get(DISABLE_ADVISOR_ENV) == "1" and not args.force_native:
+    if os.environ.get(DISABLE_ADVISOR_ENV) == "1":
+        if args.force_native:
+            print(json.dumps({
+                "error": "Native advisor unavailable",
+                "reason": "ADVISOR_DISABLED",
+                "freshness": "native-unavailable",
+            }, indent=2))
+            return 2
         print(json.dumps([]))
         return 0
 

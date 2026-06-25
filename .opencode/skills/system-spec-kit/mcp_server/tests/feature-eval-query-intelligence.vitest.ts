@@ -168,7 +168,7 @@ describe('T003: Channel Min-Representation R2', () => {
     expect(result.topK).toHaveLength(3);
   });
 
-  it('T003-04: below QUALITY_FLOOR items are NOT promoted', () => {
+  it('T003-04: below QUALITY_FLOOR active channels are represented', () => {
     const topK = [
       { id: 1, score: 0.9, source: 'vector' },
     ];
@@ -180,9 +180,9 @@ describe('T003: Channel Min-Representation R2', () => {
 
     const result = analyzeChannelRepresentation(topK, allChannelResults);
 
-    // Bm25 is under-represented but its best result is below QUALITY_FLOOR
     expect(result.underRepresentedChannels).toContain('bm25');
-    expect(result.promoted).toHaveLength(0); // nothing promoted — below floor
+    expect(result.promoted).toHaveLength(1);
+    expect(result.promoted[0].id).toBe(10);
   });
 
   it('T003-05: feature flag disabled returns topK unchanged', () => {

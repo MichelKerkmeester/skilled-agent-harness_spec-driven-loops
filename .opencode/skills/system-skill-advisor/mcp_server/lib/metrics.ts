@@ -293,8 +293,8 @@ function readJsonlLines(path: string): string[] {
     .filter((line) => line.length > 0);
 }
 
-async function writeBoundedJsonl(path: string, line: string, maxRecords: number): Promise<void> {
-  if (!process.env.SKILL_ADVISOR_DEBUG) return;
+async function writeBoundedJsonl(path: string, line: string, maxRecords: number, options: { requireDebug?: boolean } = {}): Promise<void> {
+  if (options.requireDebug !== false && !process.env.SKILL_ADVISOR_DEBUG) return;
   await ensureParentDir(path);
   const lines = readJsonlLines(path);
   lines.push(line);
@@ -472,7 +472,7 @@ export async function persistAdvisorHookOutcomeRecord(
   record: AdvisorHookOutcomeRecord,
 ): Promise<string> {
   const path = durableMetricsPath(workspaceRoot, 'outcomes');
-  await writeBoundedJsonl(path, JSON.stringify(record), MAX_DURABLE_OUTCOME_RECORDS);
+  await writeBoundedJsonl(path, JSON.stringify(record), MAX_DURABLE_OUTCOME_RECORDS, { requireDebug: false });
   return path;
 }
 

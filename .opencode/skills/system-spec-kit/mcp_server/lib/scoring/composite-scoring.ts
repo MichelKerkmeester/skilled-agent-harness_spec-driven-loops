@@ -535,7 +535,7 @@ export function getTierBoost(tier: string): number {
  * @param queryIdPrefix  Short label identifying the scoring model ('5f' | 'cs')
  * @returns Final clamped score in [0, 1]
  */
-function applyPostProcessingAndObserve(
+export function applyPostProcessingAndObserve(
   composite: number,
   row: ScoringInput,
   queryIdPrefix: string,

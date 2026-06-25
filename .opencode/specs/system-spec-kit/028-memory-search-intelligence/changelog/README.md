@@ -17,7 +17,7 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 
 | Track | Leaf changelogs | Top rollup |
 |-------|-----------------|------------|
-| 000 release cleanup | 9 | [changelog-000-root.md](./000-release-cleanup/changelog-000-root.md) |
+| 000 release cleanup | 10 | [changelog-000-root.md](./000-release-cleanup/changelog-000-root.md) |
 | 001 speckit memory | 28 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
 | 002 code graph | 8 | [changelog-002-root.md](./002-code-graph/changelog-002-root.md) |
 | 003 skill advisor | 7 | [changelog-003-root.md](./003-skill-advisor/changelog-003-root.md) |

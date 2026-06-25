@@ -10,7 +10,24 @@ import { ADVISOR_VALIDATE_PARAMETER_KEYS } from './advisor-contract-keys.js';
 
 const properties: Record<(typeof ADVISOR_VALIDATE_PARAMETER_KEYS)[number], Record<string, unknown>> = {
   confirmHeavyRun: { type: 'boolean', const: true, description: 'Required acknowledgement that this call runs the heavier advisor validation bundle.' },
+  workspaceRoot: { type: 'string', minLength: 1, description: 'Optional workspace root used to locate advisor corpus and telemetry artifacts.' },
   skillSlug: { type: ['string', 'null'], minLength: 1, description: 'Optional skill slug to validate; null or omitted validates all skills.' },
+  outcomeEvents: {
+    type: 'array',
+    description: 'Prompt-free outcome telemetry to persist before validation totals are computed.',
+    items: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        runtime: { type: 'string', enum: ['claude', 'copilot', 'codex'] },
+        outcome: { type: 'string', enum: ['accepted', 'corrected', 'ignored'] },
+        skillId: { type: 'string', minLength: 1 },
+        correctedSkillId: { type: 'string', minLength: 1 },
+        timestamp: { type: 'string', format: 'date-time' },
+      },
+      required: ['runtime', 'outcome', 'skillId'],
+    },
+  },
 };
 
 export const advisorValidateTool: ToolDefinition = {

@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review",
+  "description": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
+  "keywords": [
+    "010",
+    "graduation",
+    "follow-ups",
+    "passed",
+    "cli",
+    "test",
+    "run",
+    "reported",
+    "graduate-ready",
+    "tests",
+    "never",
+    "exercised",
+    "real",
+    "failure",
+    "modes"
+  ],
+  "lastUpdated": "2026-06-25T18:01:57.375Z",
+  "specId": "012",
+  "folderSlug": "followup-deep-review",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "007-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

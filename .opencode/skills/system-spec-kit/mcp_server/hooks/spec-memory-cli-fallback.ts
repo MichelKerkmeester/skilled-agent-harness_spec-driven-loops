@@ -9,6 +9,7 @@ import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { resolveDatabasePaths } from '../core/config.js';
 import { warmCliFallbackEnvelope, type WarmCliFallbackEnvelope } from './warm-cli-fallback-envelope.js';
 
 const SERVICE_NAME = 'mk-spec-memory';
@@ -63,7 +64,7 @@ function findRepoPaths(startFile = currentFilePath()): RepoPaths | null {
         repoRoot: current,
         cliShim,
         bridgePath,
-        dbDir: join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'),
+        dbDir: resolveDatabasePaths().databaseDir,
       };
     }
 

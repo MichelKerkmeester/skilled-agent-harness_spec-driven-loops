@@ -428,6 +428,56 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('Merge Path (>= 0.88)', () => {
+    it('MP0: merge insert columns match the target memory_index schema', async () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
+        VALUES (99, 'test-spec', '/test/schema-contract.md', 'Schema Contract', 'Existing contract content', 0.5, datetime('now'), datetime('now'))
+      `).run();
+
+      const initialColumns = new Set(
+        (testDb.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+          .map((column) => column.name),
+      );
+      expect(initialColumns.has('source_kind')).toBe(false);
+
+      const capturedInsertColumns: string[][] = [];
+      const originalPrepare = testDb.prepare.bind(testDb);
+      const prepareSpy = vi.spyOn(testDb, 'prepare').mockImplementation(((sql: string) => {
+        const insertMatch = sql.match(/INSERT\s+INTO\s+memory_index\s*\(([^)]+)\)/i);
+        if (insertMatch?.[1]) {
+          capturedInsertColumns.push(insertMatch[1].split(',').map((column) => column.trim()));
+        }
+        return originalPrepare(sql);
+      }) as Database.Database['prepare']);
+
+      try {
+        const result = expectMergeResult(await executeMerge(
+          makeSimilarMemory({
+            id: 99,
+            file_path: '/test/schema-contract.md',
+            title: 'Schema Contract',
+            content_text: 'Existing contract content',
+            importance_weight: 0.5,
+            similarity: 0.91,
+          }),
+          makeNewMemory({ content: 'New contract content' }),
+          testDb,
+        ));
+        expect(result.newMemoryId).toBeGreaterThan(99);
+      } finally {
+        prepareSpy.mockRestore();
+      }
+
+      expect(capturedInsertColumns.length).toBeGreaterThan(0);
+      const targetColumns = new Set(
+        (testDb.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+          .map((column) => column.name),
+      );
+      for (const insertColumns of capturedInsertColumns) {
+        expect(insertColumns.every((column) => targetColumns.has(column))).toBe(true);
+      }
+    });
+
     it('MP1: Merges content and boosts importance_weight', async () => {
       // Seed existing memory in DB
       testDb.prepare(`
