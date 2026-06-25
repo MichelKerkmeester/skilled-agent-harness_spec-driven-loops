@@ -22,9 +22,10 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - C1 `retrievalLevel: local|global|auto` is now honored end to end. Handler/pipeline branch on it (`handlers/memory-search.ts`, `lib/search/pipeline/stage1-candidate-gen.ts`, `types.ts`, `search-utils.ts`); cache keys include retrievalLevel so levels cannot cross-contaminate; omitted defaults to auto. The strict public input schema (`schemas/tool-input-schemas.ts`) was missing the param so strict validation rejected it pre-handler — added the zod field + allow-list entry (closed directly rather than re-dispatching for a two-line mirror gpt-5.5 had correctly flagged as out of its granted scope). Covers dual-level-retrieval and search-pipeline-safety. Status: fixed.
 - Verification: retrieval-level + handler + tool-input-schema + memory-search suites = 6 files, 155 passed. Mutation check confirmed the distinguishing test fails when the global branch is disabled. typecheck exit 0. Comment hygiene clean. Follow-up: add an explicit strict-schema-accepts-retrievalLevel assertion.
 
-## Cluster D. Ordering (P1)
-- D1 F13 `twoPhaseRetrieval()` sorts by individual score, not folder rank. Make folder rank the primary sort key. Status: todo.
-- D2 channel-min-representation strict top-k per-channel representation not guaranteed (only `score >= QUALITY_FLOOR` promoted). Guarantee >=1 per active channel. Status: todo.
+## Cluster D. Ordering (P1) — FIXED
+- D1 F13 folder rank is now the primary sort key, individual score secondary within a folder (`lib/search/folder-relevance.ts`). Test `orders by folder rank before individual score`. Status: fixed.
+- D2 channel min-representation now reserves a top-k slot for each active channel's best candidate even below the quality floor, without breaking the floor for the rest (`lib/search/channel-enforcement.ts`, `channel-representation.ts`). Test `reserves top-k slots for active channels even when their best result is below the floor`. Status: fixed.
+- Verification: folder-relevance + channel-enforcement + channel-representation + query-router-channel-interaction + feature-eval-query-intelligence = 5 files, 98 passed. Mutation checks confirm both new assertions fail when the fix is reverted. typecheck exit 0. Comment hygiene clean.
 
 ## Cluster E. Advisor persistence (P0/P1)
 - E1 F1 routing accuracy 0.889 < 0.92 gate. Re-map deep-research/deep-review/:review:auto trigger phrases. Status: todo.

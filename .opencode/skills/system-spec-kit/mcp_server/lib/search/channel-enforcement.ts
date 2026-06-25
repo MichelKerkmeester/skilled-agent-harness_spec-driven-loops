@@ -68,14 +68,12 @@ export interface EnforcementResult {
  *  - When the feature flag (SPECKIT_CHANNEL_MIN_REP) is disabled, passes
  *    results through unchanged with `enforcement.applied = false`.
  *  - When enabled, inspects the top `topK` results (defaulting to all
- *    results when topK is omitted) and promotes the best-qualifying result
+ *    results when topK is omitted) and promotes the best available result
  *    from any channel that returned results but is absent from that window.
- *  - Promoted items are appended, their raw per-channel scores are normalized
- *    into the existing fused score range, and the full result list is then
- *    re-sorted by score (descending) so callers always receive a score-ordered list.
- *  - Only results with score >= QUALITY_FLOOR (0.005) are eligible for
- *    promotion; channels whose best result is below the floor are noted
- *    in `underRepresentedChannels` but no item is injected.
+ *  - Promoted items are normalized into the existing fused score range, then
+ *    reserved inside the inspected top-k window when capacity allows.
+ *  - Missing channels promote their best result even below QUALITY_FLOOR;
+ *    the floor still governs non-representation quality filtering elsewhere.
  *
  * @param fusedResults      - Post-fusion results, ordered by score descending.
  * @param channelResultSets - Map of channel name → raw results from that channel.
@@ -118,10 +116,12 @@ export function enforceChannelRepresentation(
     fusedResults,
   );
 
-  // Reassemble and globally re-sort by score to preserve strict ordering
-  // Even when topK < fusedResults.length and promotions are inserted.
-  const finalResults: Array<FusedResult> = [...window, ...tail, ...normalizedPromotions]
-    .sort((a, b) => b.score - a.score) as Array<FusedResult>;
+  const finalResults = reservePromotionsInWindow(
+    window,
+    tail,
+    normalizedPromotions,
+    windowSize,
+  );
 
   return {
     results: finalResults,
@@ -174,6 +174,95 @@ function normalizePromotedItems(
       score,
     };
   });
+}
+
+function reservePromotionsInWindow(
+  window: Array<FusedResult>,
+  tail: Array<FusedResult>,
+  promotions: Array<FusedResult>,
+  windowSize: number,
+): Array<FusedResult> {
+  if (promotions.length === 0) {
+    return sortByScoreDescending([...window, ...tail]);
+  }
+
+  if (windowSize <= 0) {
+    return sortByScoreDescending([...window, ...tail, ...promotions]);
+  }
+
+  const reservedWindow = [...window];
+  const overflow: Array<FusedResult> = [];
+
+  for (const promotion of promotions) {
+    if (isChannelRepresented(reservedWindow, promotion.source)) {
+      overflow.push(promotion);
+      continue;
+    }
+
+    if (reservedWindow.length < windowSize) {
+      reservedWindow.push(promotion);
+      continue;
+    }
+
+    const replacementIndex = findReplacementIndex(reservedWindow);
+    if (replacementIndex === -1) {
+      overflow.push(promotion);
+      continue;
+    }
+
+    overflow.push(reservedWindow[replacementIndex]);
+    reservedWindow[replacementIndex] = promotion;
+  }
+
+  return [
+    ...sortByScoreDescending(reservedWindow),
+    ...sortByScoreDescending([...overflow, ...tail]),
+  ];
+}
+
+function findReplacementIndex(window: Array<FusedResult>): number {
+  const counts = computeRepresentedChannelCounts(window);
+  let replacementIndex = -1;
+  let replacementScore = Number.POSITIVE_INFINITY;
+
+  for (let i = 0; i < window.length; i++) {
+    const itemChannels = getItemChannels(window[i]);
+    const canReplace = itemChannels.every(channel => (counts.get(channel) ?? 0) > 1);
+    if (canReplace && window[i].score < replacementScore) {
+      replacementIndex = i;
+      replacementScore = window[i].score;
+    }
+  }
+
+  return replacementIndex;
+}
+
+function isChannelRepresented(items: Array<FusedResult>, channel: string): boolean {
+  return items.some(item => getItemChannels(item).includes(channel));
+}
+
+function computeRepresentedChannelCounts(items: Array<FusedResult>): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const item of items) {
+    for (const channel of getItemChannels(item)) {
+      counts.set(channel, (counts.get(channel) ?? 0) + 1);
+    }
+  }
+  return counts;
+}
+
+function getItemChannels(item: FusedResult): string[] {
+  const channels = new Set<string>([item.source]);
+  if (Array.isArray(item.sources)) {
+    for (const source of item.sources) {
+      channels.add(source);
+    }
+  }
+  return Array.from(channels);
+}
+
+function sortByScoreDescending<T extends { score: number }>(items: Array<T>): Array<T> {
+  return [...items].sort((a, b) => b.score - a.score);
 }
 
 function computeScoreRange(

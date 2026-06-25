@@ -191,7 +191,7 @@ export function enrichResultsWithFolderScores<
 // ───────────────────────────────────────────────────────────────
 /**
  * Two-phase retrieval: first select top-K folders by FolderScore,
- * then return only results belonging to those folders (ordered by score).
+ * then return only results belonging to those folders.
  *
  * This narrows the result set to the most relevant spec folders,
  * filtering out noise from low-relevance folders.
@@ -200,7 +200,7 @@ export function enrichResultsWithFolderScores<
  * @param folderScores - Map of folder -> FolderScore
  * @param folderMap    - Map of memoryId -> spec_folder
  * @param topK         - Number of top folders to keep (default: 5)
- * @returns Filtered results from top-K folders, sorted by score descending
+ * @returns Filtered results from top-K folders, sorted by folder rank then score
  */
 export function twoPhaseRetrieval<
   T extends { id: number | string; score: number },
@@ -225,6 +225,10 @@ export function twoPhaseRetrieval<
     .map(([folder]) => folder);
 
   const topFolderSet = new Set(rankedFolders);
+  const folderRankMap = new Map<string, number>();
+  for (let i = 0; i < rankedFolders.length; i++) {
+    folderRankMap.set(rankedFolders[i], i + 1);
+  }
 
   // Step 2: Filter results to top-K folders
   const filtered = results.filter((result) => {
@@ -233,6 +237,12 @@ export function twoPhaseRetrieval<
     return folder !== undefined && topFolderSet.has(folder);
   });
 
-  // Sort by score descending
-  return filtered.sort((a, b) => b.score - a.score);
+  return filtered.sort((a, b) => {
+    const aId = typeof a.id === 'string' ? Number(a.id) : a.id;
+    const bId = typeof b.id === 'string' ? Number(b.id) : b.id;
+    const aRank = folderRankMap.get(folderMap.get(aId) ?? '') ?? Number.POSITIVE_INFINITY;
+    const bRank = folderRankMap.get(folderMap.get(bId) ?? '') ?? Number.POSITIVE_INFINITY;
+
+    return (aRank - bRank) || (b.score - a.score);
+  });
 }

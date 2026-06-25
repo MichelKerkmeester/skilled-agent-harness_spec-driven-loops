@@ -338,6 +338,25 @@ describe('Folder Relevance Scoring (t020)', () => {
         expect(filtered[i - 1].score).toBeGreaterThanOrEqual(filtered[i].score);
       }
     });
+
+    it('orders by folder rank before individual score', () => {
+      const results = [
+        makeResult(1, 0.61),
+        makeResult(2, 0.59),
+        makeResult(3, 0.9),
+      ];
+      const folderMap = buildFolderMap([
+        [1, 'higher-ranked'],
+        [2, 'higher-ranked'],
+        [3, 'lower-ranked'],
+      ]);
+
+      const folderScores = computeFolderRelevanceScores(results, folderMap);
+      const filtered = twoPhaseRetrieval(results, folderScores, folderMap, 2);
+
+      expect(folderScores.get('higher-ranked')!).toBeGreaterThan(folderScores.get('lower-ranked')!);
+      expect(filtered.map(r => r.id)).toEqual([1, 2, 3]);
+    });
   });
 
   /* ───────────────────────────────────────────────────────────────

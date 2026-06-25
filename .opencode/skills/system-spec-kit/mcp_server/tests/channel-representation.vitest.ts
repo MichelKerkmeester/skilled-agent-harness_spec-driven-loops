@@ -110,8 +110,8 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toContain('graph');
   });
 
-  // ---- Channel missing but its best result is below quality floor — no promotion ----
-  it('T3: channel missing and best result below quality floor — no promotion', () => {
+  // ---- Channel missing but its best result is below quality floor ----
+  it('T3: channel missing and best result below quality floor — promotes representative', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
     ];
@@ -122,9 +122,9 @@ describe('T024 Channel Representation Check', () => {
 
     const result = analyzeChannelRepresentation(topK, allChannelResults);
 
-    expect(result.promoted).toHaveLength(0);
-    expect(result.topK).toHaveLength(1); // unchanged
-    // Channel is still listed as under-represented even if not promoted
+    expect(result.promoted).toHaveLength(1);
+    expect(result.promoted[0].id).toBe('g1');
+    expect(result.topK).toHaveLength(2);
     expect(result.underRepresentedChannels).toContain('graph');
   });
 
@@ -265,7 +265,8 @@ describe('T024 Channel Representation Check', () => {
       ['graph',  [makeChannelResult('g1', 0.004)]],            // just below 0.005
     ]);
     const resultBelowFloor = analyzeChannelRepresentation(topK, belowFloor);
-    expect(resultBelowFloor.promoted).toHaveLength(0);
+    expect(resultBelowFloor.promoted).toHaveLength(1);
+    expect(resultBelowFloor.promoted[0].id).toBe('g1');
   });
 
   // ---- Promotes the BEST result (highest score) from each channel ----
@@ -388,23 +389,22 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).not.toContain('vector');
   });
 
-  // ---- Mixed quality floor — some channels qualify, some don't ----
-  it('T18: only channels with results above QUALITY_FLOOR are promoted', () => {
+  // ---- Mixed quality floor — each active missing channel contributes one representative ----
+  it('T18: every active missing channel contributes its best representative', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
     ];
     const allChannelResults = new Map<string, ChannelResult[]>([
       ['vector', [makeChannelResult('a1', 0.9)]],
-      ['bm25',   [makeChannelResult('b1', 0.6)]],       // above floor → promoted
-      ['graph',  [makeChannelResult('g1', 0.003)]],      // below floor → NOT promoted
+      ['bm25',   [makeChannelResult('b1', 0.6)]],
+      ['graph',  [makeChannelResult('g1', 0.003)]],
     ]);
 
     const result = analyzeChannelRepresentation(topK, allChannelResults);
 
-    expect(result.promoted).toHaveLength(1);
-    expect(result.promoted[0].promotedFrom).toBe('bm25');
-    expect(result.topK).toHaveLength(2); // original + 1 promoted
-    // Graph is under-represented but could not promote due to quality floor
+    expect(result.promoted).toHaveLength(2);
+    expect(result.promoted.map(p => p.promotedFrom)).toEqual(['bm25', 'graph']);
+    expect(result.topK).toHaveLength(3);
     expect(result.underRepresentedChannels).toContain('graph');
   });
 });

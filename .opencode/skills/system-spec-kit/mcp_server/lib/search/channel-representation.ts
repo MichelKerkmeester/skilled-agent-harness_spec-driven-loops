@@ -68,7 +68,7 @@ export interface ChannelRepresentationResult {
  * Rules:
  *  - Only checks channels that actually returned results (no phantom penalties).
  *  - A channel is under-represented when it has 0 results in topK.
- *  - Promotion only occurs for results with score >= QUALITY_FLOOR (0.005).
+ *  - Missing channels promote their best result, even below QUALITY_FLOOR.
  *  - When the flag is disabled the function returns topK unchanged (no-op).
  *  - The `source` field of each topK item is the authoritative channel label.
  *    Items that carry a `sources` array (multi-channel convergence) are counted
@@ -134,24 +134,21 @@ export function analyzeChannelRepresentation(
     };
   }
 
-  // Padding appends the best item from each missing channel to guarantee
-  // Every contributing channel has at least one representative in the result set.
+  // Padding appends one item per missing channel; the caller reserves top-k slots.
   const promoted: PromotedItem[] = [];
   const enhancedTopK: Array<TopKItem> = [...topK];
 
   for (const channelName of underRepresentedChannels) {
     const results = allChannelResults.get(channelName) ?? [];
 
-    // Find the highest-scoring result that meets the quality floor.
     let best: ChannelResult | null = null;
     for (const r of results) {
-      if (r.score < QUALITY_FLOOR) continue;
       if (best === null || r.score > best.score) {
         best = r;
       }
     }
 
-    if (best === null) continue; // no qualifying result — skip channel
+    if (best === null) continue;
 
     const promotedItem: PromotedItem = {
       ...best,
