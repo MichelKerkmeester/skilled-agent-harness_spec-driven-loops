@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/001-codegraph-defaults-bitemporal",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/001-codegraph-defaults-bitemporal",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "degree cap",
+      "bitemporal",
+      "code graph",
+      "reindex",
+      "reverse dep force parse",
+      "edge replacement",
+      "degree cap plan",
+      "bitemporal plan",
+      "reindex wiring",
+      "code graph plan",
+      "degree cap tasks",
+      "bitemporal tasks"
+    ],
+    "key_topics": [
+      "degree",
+      "cap",
+      "bitemporal",
+      "code",
+      "graph",
+      "reindex",
+      "reverse",
+      "dep",
+      "force",
+      "parse",
+      "edge",
+      "replacement"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/tool-schemas.ts",
+      "benchmark/degree-cap-sweep.mjs",
+      "benchmark/degree-cap-sweep-results.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep.mjs",
+        "kind": "file",
+        "path": "benchmark/degree-cap-sweep.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep-results.json",
+        "kind": "config",
+        "path": "benchmark/degree-cap-sweep-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Degree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cap Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bitemporal Reindex Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
+    "created_at": "2026-06-24T07:59:17.363Z",
+    "last_save_at": "2026-06-25T18:07:49.935Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:deed587fe86cd554a62b75c3fd3b28da967c18a553c39c44aae2ac15bf41742c",
+    "source_doc_hashes": {
+      "spec.md": "c87d4deed0bdc47edc5673757b7e7a103275df971325867cd50a052d0c0819c2",
+      "plan.md": "04c5a3f386c7634ba7a2f315fe523389db521cc9314a81c1b3408d63b2862da3",
+      "tasks.md": "155c97e2b59d59ff86c78ace39481a18fd53979335f204e857a3a23caf3fc3be",
+      "checklist.md": "cae0dc25c6b30d2c42833d6055dfa1eb5815be0f4d6c6612847c42e3ec4e1487",
+      "implementation-summary.md": "9cf7deabfe070d4e8c0c07cc24f192a6b9cce1105a1f36134df86f2cf6374931"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

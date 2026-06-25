@@ -11,7 +11,11 @@
     "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
     "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/006-codegraph-edge-lifecycle",
     "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup"
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/009-flag-name-cleanup",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -91,7 +95,7 @@
     ],
     "causal_summary": "This cycle added 41 feature flags",
     "created_at": "2026-06-24T05:05:10.913Z",
-    "last_save_at": "2026-06-24T05:05:10.913Z",
+    "last_save_at": "2026-06-25T18:01:44.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

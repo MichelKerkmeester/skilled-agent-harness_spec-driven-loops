@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/005-env-documentation-audit",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/005-env-documentation-audit",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "env documentation audit",
+      "ENV_REFERENCE.md missing flags",
+      "stale dist flag rename",
+      "undocumented feature flags",
+      "flag coverage gap",
+      "env documentation audit plan",
+      "ENV_REFERENCE remediation plan",
+      "flag coverage audit method",
+      "stale dist rebuild plan",
+      "env documentation audit tasks",
+      "ENV_REFERENCE remediation tasks",
+      "flag coverage fix tasks"
+    ],
+    "key_topics": [
+      "env",
+      "documentation",
+      "audit",
+      "missing",
+      "flags",
+      "stale",
+      "dist",
+      "flag",
+      "rename",
+      "undocumented",
+      "feature",
+      "coverage"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root README points readers to ENVREFERENCE.md as the complete flag reference, and a code-graph changelog claimed specific flags were documented there",
+    "created_at": "2026-06-24T14:18:13.088Z",
+    "last_save_at": "2026-06-25T18:01:45.504Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f616b997cdb0701f03bf985006839093c114a3360d1a177abef6d9841e5f467",
+    "source_doc_hashes": {
+      "spec.md": "4ae3b8b45c596b06bf144201d88ad5815225e175fc93d57519c3bee867e1505a",
+      "plan.md": "50719ab736ccdb36d6eb4f789cafe5ac6e9c2d06d24b3c1004deb4ee060e2f95",
+      "tasks.md": "24b6fd1bb4447be43052b3fb837ffa49e9a1688094fb50b060cd8f18f614ae1a",
+      "implementation-summary.md": "4003cd250d78888dfe5d956d413881f37d7182790243bdd5fec1cedb61153dcc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
