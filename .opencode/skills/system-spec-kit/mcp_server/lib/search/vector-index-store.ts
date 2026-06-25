@@ -370,16 +370,15 @@ export function validate_embedding_dimension(): { valid: boolean; stored: number
 ----------------------------------------------------------------*/
 
 function get_default_db_path(): string {
-  return process.env.MEMORY_DB_PATH || resolveDatabasePaths().databasePath;
+  return resolveDatabasePaths().databasePath;
 }
 
 /** Default path for the vector-index database file. */
-export const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH
-  || get_default_db_path();
+export const DEFAULT_DB_PATH = get_default_db_path();
 const DB_PERMISSIONS = 0o600;
 
 function resolve_database_path() {
-  return process.env.MEMORY_DB_PATH || get_default_db_path();
+  return get_default_db_path();
 }
 
 export const ACTIVE_VECTOR_SCHEMA = 'active_vec';
@@ -1001,7 +1000,7 @@ let db: Database.Database | null = null;
 let db_path = resolve_database_path();
 let sqlite_vec_available_flag = true;
 let active_vector_source: ActiveVectorSourceTelemetry | null = null;
-// C1 FIX: Key connections by resolved DB path to prevent cross-store data corruption
+// Key connections by resolved DB path to prevent cross-store data corruption.
 const db_connections = new Map<string, Database.Database>();
 const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 const CRASH_PROBE_RECEIPT_FILE = '.crash-probe-receipt';
@@ -2073,7 +2072,7 @@ export function initialize_db(custom_path: string | null = null, options: Initia
     migrate_active_legacy_profile_database(target_path, startupProfile);
   }
 
-  // C1 FIX: Check connection map for existing connection to this path
+  // Reuse an existing connection only after the resolved path matches.
   const resolved_target = path.resolve(target_path);
   const cached_conn = db_connections.get(resolved_target);
   if (cached_conn) {
@@ -2218,7 +2217,7 @@ export function initialize_db(custom_path: string | null = null, options: Initia
 
   set_active_database_connection(new_db, target_path, vec_available);
 
-  // C1 FIX: Only cache in connection map after all validation passes
+  // Cache only after all validation passes.
   db_connections.set(resolved_target, new_db);
 
   return new_db;
@@ -2243,7 +2242,7 @@ type CloseDbOptions = {
  */
 export function close_db(options: CloseDbOptions = {}): void {
   clear_prepared_statements();
-  // C1 FIX: Close all tracked connections
+  // Close all tracked connections.
   for (const [, conn] of db_connections) {
     try {
       if (conn !== db) {

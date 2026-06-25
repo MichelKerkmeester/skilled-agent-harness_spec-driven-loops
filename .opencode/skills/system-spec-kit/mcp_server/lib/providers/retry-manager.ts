@@ -7,6 +7,7 @@ import * as fsPromises from 'fs/promises';
 
 // Internal modules
 import * as vectorIndex from '../search/vector-index.js';
+import { getIndex as getBm25Index } from '../search/bm25-index.js';
 import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
 import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
 import { generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
@@ -344,9 +345,9 @@ const MAX_RETRIES = 3;
 const MAX_RETRY_QUEUE_PENDING = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_PENDING', 1_000);
 const MAX_RETRY_QUEUE_AGE_MS = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_AGE_MS', 24 * 60 * 60 * 1000);
 
-// 005-003: Read retry-retention limits at call-time so tuned env (SPECKIT_RETRY_QUEUE_MAX_*)
-// applies to a long-lived daemon without depending on the exact restart sequence. The
-// module-load constants above remain the boot-time snapshot exported for diagnostics/tests.
+// Read retry-retention limits at call-time so tuned env (SPECKIT_RETRY_QUEUE_MAX_*)
+// applies to a long-lived daemon without depending on the exact restart sequence.
+// The module-load constants above remain the boot-time snapshot exported for diagnostics/tests.
 function getMaxRetryQueuePending(): number {
   return parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_PENDING', 1_000);
 }
@@ -761,6 +762,7 @@ async function retryEmbedding(
 
       const embeddingBuffer = Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
       db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer);
+      getBm25Index().syncChangedRows(db, [id]);
     });
 
     try {
@@ -882,6 +884,11 @@ function resetForRetry(id: number): boolean {
 ──────────────────────────────────────────────────────────────── */
 
 async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null = null): Promise<BatchResult> {
+  if (shutdownRequested && !backgroundJobInterval && (!retryAbortController || retryAbortController.signal.aborted)) {
+    shutdownRequested = false;
+    retryAbortController = new AbortController();
+  }
+
   if (shutdownRequested || retryAbortController?.signal.aborted) {
     return { processed: 0, succeeded: 0, failed: 0, details: [] };
   }
@@ -1017,6 +1024,7 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
   backgroundJobRunning = true;
   if (!retryAbortController || retryAbortController.signal.aborted) {
     retryAbortController = new AbortController();
+    shutdownRequested = false;
   }
 
   // Held only while a tick has real work; the empty-queue path below never creates

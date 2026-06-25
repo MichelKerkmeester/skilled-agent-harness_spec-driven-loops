@@ -36,10 +36,11 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - E6 F6 disabled-hook `--force-native` now errors native-unavailable with a non-zero exit (`scripts/skill_advisor.py`). Status: fixed.
 - Verification: routing-parity-deep-skills, skill-graph-db, advisor-validate, lifecycle-derived-metadata, compat/shim, cli-help-aliases-errors = 7 files, 61 passed. tsc exit 0 (direct, tsconfig.build.json). Comment hygiene clean. Security + rollback mutation-checked.
 
-## Cluster F. DB lifecycle (P2)
-- F1c cross-process-db-hot-rebinding only reads `.db-updated`; add marker detection/reinit/stats/health. Status: todo.
-- F2c db-path-extraction entry points diverge; unify DB-path resolution. Status: todo.
-- F3c embedding-retry-orchestrator e2e suite not passing end-to-end. Status: todo.
+## Cluster F. DB lifecycle (P2) — FIXED
+- F1c cross-process DB hot-rebinding now completes the contract: after an external `.db-updated` marker the DB reinits and a follow-up stats/health reflects the new DB (non-stale, healthy) (`spec-memory-cli.ts`, `hooks/spec-memory-cli-fallback.ts`). Test `rebounds stats and health after an external marker update`. Status: fixed.
+- F2c DB-path resolution standardized through one helper respecting env precedence; divergent runtime and migration entry points routed through it, hardcoded fallbacks removed (`core/config.ts`, `scripts/migrations/*-checkpoint.ts`). Test `resolves the same database path across runtime and migration entry points`. Status: fixed.
+- F3c embedding-retry orchestrator e2e now passes end to end: pending rows stay lexical-only until processed, failures record retry/backoff metadata, success uses the embedding cache and refreshes both vector and lexical surfaces (`lib/providers/retry-manager.ts`, `lib/search/vector-index-store.ts`). Cause was implementation, not a stale test. retry-manager 60/60. Status: fixed.
+- Verification: db-lifecycle-paths + retry-manager = 3 files, 63 passed. typecheck exit 0. Comment hygiene clean. F1/F2 mutation-checked True-RED.
 
 ## Cluster G/H. Code-graph + quality (P2)
 - G1 graph-refresh-mode write-local refresh blocker. Status: todo.

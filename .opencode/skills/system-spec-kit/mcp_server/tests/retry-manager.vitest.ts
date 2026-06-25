@@ -7,6 +7,9 @@ import type Database from 'better-sqlite3';
 import * as mod from '../lib/providers/retry-manager';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
+import { computeContentHash, lookupEmbedding } from '../lib/cache/embedding-cache';
+import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
+import { getIndex as getBm25Index } from '../lib/search/bm25-index';
 
 type RetryFunctionExportName =
   | 'getRetryQueue'
@@ -621,6 +624,98 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         expect(row).toBeDefined();
         expect(row?.embedding_status).toBe('failed');
         expect(row?.failure_reason).toBe('Maximum retry attempts exceeded');
+      });
+
+      it('T45e: pending lexical fallback drains through retry metadata, cache, and index refresh', async () => {
+        const activeDb = getDbOrThrow();
+        const content = `pending lexical fallback retry cache refresh ${Date.now()}`;
+        const embedding = new Float32Array(vectorIndex.getEmbeddingDim());
+        embedding[0] = 1;
+        embedding[1] = 0.25;
+
+        const firstId = vectorIndex.indexMemoryDeferred({
+          specFolder: 'test/spec',
+          filePath: '/tmp/retry-orchestrator-first.md',
+          title: 'Retry orchestrator first',
+          triggerPhrases: ['pending lexical fallback'],
+          contentText: content,
+          appendOnly: true,
+        });
+
+        const lexicalIds = vectorIndex.keywordSearch('pending lexical fallback retry cache', { limit: 10 }, activeDb)
+          .map((row) => row.id);
+        expect(lexicalIds).toContain(firstId);
+
+        const embeddingSpy = vi
+          .spyOn(embeddings, 'generateDocumentEmbedding')
+          .mockResolvedValueOnce(null)
+          .mockResolvedValue(embedding);
+
+        const failedAttempt = await mod.processRetryQueue(1);
+        expect(failedAttempt.processed).toBe(1);
+        expect(failedAttempt.failed).toBe(1);
+
+        const retryRow = activeDb.prepare(
+          'SELECT embedding_status, retry_count, last_retry_at, failure_reason FROM memory_index WHERE id = ?'
+        ).get(firstId) as {
+          embedding_status: string;
+          retry_count: number;
+          last_retry_at: string | null;
+          failure_reason: string | null;
+        };
+        expect(retryRow.embedding_status).toBe('retry');
+        expect(retryRow.retry_count).toBe(1);
+        expect(retryRow.last_retry_at).toBeTruthy();
+        expect(retryRow.failure_reason).toContain('Embedding generation returned null');
+
+        activeDb.prepare('UPDATE memory_index SET last_retry_at = ? WHERE id = ?')
+          .run(new Date(Date.now() - mod.BACKOFF_DELAYS[0] - 1_000).toISOString(), firstId);
+
+        const bm25Index = getBm25Index();
+        const bm25SyncSpy = vi.spyOn(bm25Index, 'syncChangedRows');
+        const successAttempt = await mod.processRetryQueue(1);
+        expect(successAttempt.processed).toBe(1);
+        expect(successAttempt.succeeded).toBe(1);
+
+        const successRow = activeDb.prepare(
+          'SELECT embedding_status, retry_count, failure_reason, embedding_generated_at FROM memory_index WHERE id = ?'
+        ).get(firstId) as {
+          embedding_status: string;
+          retry_count: number;
+          failure_reason: string | null;
+          embedding_generated_at: string | null;
+        };
+        expect(successRow.embedding_status).toBe('success');
+        expect(successRow.retry_count).toBe(1);
+        expect(successRow.failure_reason).toBeNull();
+        expect(successRow.embedding_generated_at).toBeTruthy();
+        expect(activeDb.prepare('SELECT COUNT(*) as count FROM vec_memories WHERE rowid = ?').get(BigInt(firstId))).toMatchObject({ count: 1 });
+        expect(bm25SyncSpy).toHaveBeenCalledWith(activeDb, [firstId]);
+
+        const contentHash = computeContentHash(normalizeContentForEmbedding(content));
+        expect(lookupEmbedding(
+          activeDb,
+          contentHash,
+          embeddings.getModelName(),
+          embeddings.getEmbeddingDimension(),
+        )).toBeTruthy();
+
+        const secondId = vectorIndex.indexMemoryDeferred({
+          specFolder: 'test/spec',
+          filePath: '/tmp/retry-orchestrator-second.md',
+          title: 'Retry orchestrator second',
+          triggerPhrases: ['pending lexical fallback'],
+          contentText: content,
+          appendOnly: true,
+        });
+
+        embeddingSpy.mockClear();
+        const cachedAttempt = await mod.processRetryQueue(1);
+        expect(cachedAttempt.processed).toBe(1);
+        expect(cachedAttempt.succeeded).toBe(1);
+        expect(embeddingSpy).not.toHaveBeenCalled();
+        expect(activeDb.prepare('SELECT COUNT(*) as count FROM vec_memories WHERE rowid = ?').get(BigInt(secondId))).toMatchObject({ count: 1 });
+        expect(bm25SyncSpy).toHaveBeenCalledWith(activeDb, [secondId]);
       });
     });
 

@@ -14,6 +14,7 @@ import path from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 import { fileURLToPath } from 'node:url';
 
+import { resolveDatabasePaths } from './core/config.js';
 import {
   TOOL_DEFINITIONS,
   type ToolDefinition,
@@ -168,7 +169,7 @@ function findRepoPaths(startFile = currentModulePath()): RepoPaths {
         repoRoot,
         launcherPath,
         bridgePath,
-        dbDir: path.join(directOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'),
+        dbDir: resolveDatabasePaths().databaseDir,
         packageJsonPath: path.join(directOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'package.json'),
       };
     }

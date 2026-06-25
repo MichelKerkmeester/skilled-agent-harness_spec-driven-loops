@@ -62,12 +62,18 @@ function isPathInside(candidate: string, prefix: string): boolean {
 
 function computeDatabasePaths(): DatabasePaths {
   // Re-check SPEC_KIT_DB_DIR at call time to support runtime overrides
-  // (e.g. tests that set the env var after module import). Fall back to the
-  // import-time DB_PATH when no runtime override is present.
+  // (e.g. tests that set the env var after module import). Directory overrides
+  // intentionally win over MEMORY_DB_PATH's parent directory so all entry points
+  // share the same lease, marker, and socket namespace.
   const runtimeDbDir = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
   const runtimeDbPath = process.env.MEMORY_DB_PATH?.trim();
+  const resolvedRuntimeDbPath = runtimeDbPath
+    ? path.resolve(process.cwd(), runtimeDbPath)
+    : null;
   const databaseDir = runtimeDbDir
     ? path.resolve(process.cwd(), runtimeDbDir)
+    : resolvedRuntimeDbPath
+      ? path.dirname(resolvedRuntimeDbPath)
     : path.dirname(DB_PATH);
 
   // Resolve symlinks before the boundary check so repo-local links cannot
@@ -87,8 +93,8 @@ function computeDatabasePaths(): DatabasePaths {
 
   return {
     databaseDir: resolved,
-    databasePath: runtimeDbPath
-      ? path.join(resolved, path.basename(path.resolve(process.cwd(), runtimeDbPath)))
+    databasePath: resolvedRuntimeDbPath
+      ? path.join(resolved, path.basename(resolvedRuntimeDbPath))
       : path.join(resolved, path.basename(DB_PATH)),
     dbUpdatedFile: path.join(resolved, '.db-updated')
   };
