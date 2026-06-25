@@ -1,11 +1,11 @@
 ---
 name: sk-design-audit
 description: Design QA and critique mode for accessibility, performance, responsive, theming, anti-slop detection, scoring, and production hardening.
-allowed-tools: [Read, Grep, Glob, Bash, Task]
-version: 1.0.0.0
+allowed-tools: [Read, Grep, Glob, Task]
+version: 1.0.0.1
 metadata:
   author: OpenCode
-  family: sk-design
+  family: sk-code
 ---
 
 <!-- Keywords: sk-design-audit, design-audit, accessibility, performance, responsive, theming, critique, polish, hardening, anti-slop, P0-P3, design-quality-score -->
@@ -175,9 +175,6 @@ def classify_intents(user_request, task=None):
 
     ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
     primary, primary_score = ranked[0]
-    if primary_score == 0:
-        return ("AUDIT_CONTRACT", None, scores)
-
     secondary, secondary_score = ranked[1]
     if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
         return (primary, secondary, scores)
@@ -350,4 +347,4 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Feature inventory lives in `feature_catalog/feature_catalog.md`. Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. The initial release notes are in `changelog/v1.0.0.0.md`.
+Feature inventory lives in `feature_catalog/feature_catalog.md`. Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.1.md`.

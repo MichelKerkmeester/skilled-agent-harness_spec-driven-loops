@@ -1,20 +1,20 @@
 ---
-title: Minimalist Preset
-description: Visual-direction preset for refined document-style interfaces with warm monochrome surfaces, exact spacing, and quiet structure.
+title: Minimalist Grounding Cue
+description: Illustrative grounding cue for the realized minimalist look (warm monochrome surfaces, exact spacing, quiet structure) to name and deviate from, never a preset.
 trigger_phrases:
-  - "minimalist preset"
+  - "minimalist realized look"
   - "document style interface"
   - "warm monochrome surfaces"
   - "editorial restraint layout"
   - "quiet structure design"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
-# Minimalist Preset
+# Minimalist Grounding Cue
 
-A compact visual-direction cue for refined document-style interfaces with editorial restraint, warm monochrome surfaces, and almost invisible interaction polish.
+An illustrative cue for the realized minimalist look, refined document-style interfaces with editorial restraint, warm monochrome surfaces, and almost invisible interaction polish, used to name the default and deviate from it.
 
 ---
 
@@ -22,11 +22,11 @@ A compact visual-direction cue for refined document-style interfaces with editor
 
 ### Purpose
 
-Use for refined document-style interfaces with editorial restraint, warm monochrome surfaces, and almost invisible interaction polish.
+Names the realized look for refined document-style interfaces with editorial restraint, warm monochrome surfaces, and almost invisible interaction polish, so a deliberate move off it reads as a choice.
 
 ### Usage
 
-Apply this preset as a citeable starting cue, then adapt it to the product context instead of treating it as a fixed template. Use one preset as the dominant aesthetic per direction; if combining cues, name this as the primary preset and keep borrowed cues sparse.
+Cite this as the realized default to critique against at the critique step, then take the one justified aesthetic risk away from it. It is a constraint to deviate from, never a fixed template, never a preset to drop onto a brief, and never an option surfaced to the user.
 
 ---
 

@@ -127,14 +127,14 @@ Each child is authored, validated, and routed independently before the phase clo
 <!-- Voice guide: Be honest. Show failures alongside passes.
      "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
 
-<!-- FORWARD-LOOKING: results are the planned gate, not yet observed. Replace with real PASS/FAIL output on completion. -->
+<!-- Observed during the family deep-review remediation pass. Skill packages validate via package_skill.py --check; the spec-folder validate.sh applies to spec folders, not skill packages. -->
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-design-foundations --strict` | Planned PASS (exit 0) |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-design-motion --strict` | Planned PASS (exit 0) |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-design-audit --strict` | Planned PASS (exit 0) |
-| Routing query per child resolves to the right child at >=0.8 (advisor) | Planned PASS |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design-foundations` | PASS (exit 0) — "Skill is valid!" |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design-motion` | PASS (exit 0) — "Skill is valid!" |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design-audit` | PASS (exit 0) — "Skill is valid!" |
+| Routing query per child resolves to the right child at >=0.8 (advisor) | PASS — foundations 0.95, motion 0.93, audit 0.95 (advisor live) |
 <!-- /ANCHOR:verification -->
 
 ---

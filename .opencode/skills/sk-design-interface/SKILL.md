@@ -1,8 +1,8 @@
 ---
 name: sk-design-interface
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.5.0.0
+allowed-tools: [Read, Grep, Glob, Task]
+version: 1.5.1.0
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -46,8 +46,10 @@ Detect design intent and how much of the visual direction the brief fixes:
 
 ```bash
 # Direction freedom (pseudo)
-echo "$BRIEF" | grep -qiE 'palette|font|typography|layout|brand|look|style' && AXIS_PINNED=high
-# If the brief pins the direction -> follow it exactly. If axes are free -> apply the principles.
+# Test for a PINNED value, not a mention of the axis. "pick a palette" mentions
+# the axis but leaves it free; "palette: #0a0a0a + amber" pins it.
+echo "$BRIEF" | grep -qiE '(palette|font|typeface|color|layout|brand)\s*[:=]|use (the )?[#a-z0-9-]+ (palette|font|color)|in (our|the) brand' && AXIS_PINNED=high
+# If a value is pinned -> follow it exactly on that axis. If axes are only named or left free -> apply the principles.
 ```
 
 ### Phase Detection
@@ -72,7 +74,8 @@ DESIGN TASK
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
 | CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real_ui_loop.md` (ground in a system, reuse before generating, fidelity check, handoff) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design_inventory.md` |
-| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles) through Code Mode (`mobbin.*` / `refero.*`). Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
+| ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against reference only, subordinate to grounding, never a chooser, preset, or pick-a-vibe axis. See `references/aesthetics/README.md` |
+| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
 ### Smart Router Pseudocode
@@ -132,7 +135,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 4. **ALWAYS treat copy as design material**, with active voice, end-user vocabulary, and consistent action names across a flow.
 5. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
 6. **ALWAYS debias multiple directions with the seed of thought** from `references/design-process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
-7. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. See `references/design-grounding/design_references_mcp.md`.
+7. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it; if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design_references_mcp.md`.
 
 ### NEVER
 
@@ -160,6 +163,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 - [`references/mcp-tooling/refero_tools.md`](references/mcp-tooling/refero_tools.md) - Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, call convention, result shape, troubleshooting.
 - [`references/design-process/variation_diversity.md`](references/design-process/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
 - [`references/design-process/real_ui_loop.md`](references/design-process/real_ui_loop.md) - The real-UI loop: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
+- [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues (brutalist, minimalist, soft, apple-bento) for naming a realized default to critique against. Subordinate to grounding and the anti-default critique, never a chooser, preset, or pick-a-vibe axis.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Feature Catalog
@@ -176,6 +180,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 - `references/design-process/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
 - A real design system you own is an OPTIONAL source to ground in or to name the default to deviate from, never a required step and never a style chooser. `design_principles.md` stays the authority.
+- The `references/aesthetics/` cues are illustrative critique-against reference only: cite at most one to name a realized default at the critique step, subordinate to grounding, never surfaced as a chooser, preset, or pick-a-vibe axis. `real_ui_loop.md` Section 8 owns this guardrail.
 - When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design-grounding/design_references_mcp.md` owns the rules and `design_principles.md` stays the authority.
 
 ---

@@ -7,7 +7,7 @@ trigger_phrases:
   - "make it look good"
   - "looks templated"
   - "redesign"
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # sk-design-interface
@@ -110,6 +110,7 @@ Reach for it whenever a task has a visual surface and the look should feel inten
 | `sk-code` | Owns implementation. This skill sets the look, and sk-code builds it to the detected web surface's standards and verifies it. |
 | `sk-code-review` | Audits the built UI against the standards sk-code enforces. |
 | `mcp-chrome-devtools` | Drives a real browser to screenshot the build for the self-critique step. |
+| `mcp-code-mode` | Transport for the optional Mobbin/Refero real-world reference lookups (`mobbin.*` / `refero.*`). Co-load it before any lookup; this skill does not call Code Mode directly. |
 
 ---
 
@@ -148,7 +149,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 
 | Check | How to run it |
 |---|---|
-| Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design-interface/` reports the skill valid |
+| Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design-interface/ --check` reports the skill valid (validation only; omit `--check` to also build a zip) |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-interface/README.md --type readme` reports zero issues |
 | Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-interface/references/design-process/design_principles.md --type reference` reports zero issues |
 | Advisor discovery | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"make this landing page look distinctive"}' --warm-only --format json` lists `sk-design-interface` |
@@ -161,9 +162,11 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
 | [`references/design-process/design_principles.md`](./references/design-process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
+| [`references/design-process/ux_quality_reference.md`](./references/design-process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
 | [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
-| [`references/design-grounding/design_references_mcp.md`](./references/design-grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp-tooling/` |
+| [`references/design-grounding/design_inventory.md`](./references/design-grounding/design_inventory.md) | A real design system you own, read live, as either reuse-ground or the named default to critique against. One system, never a chooser |
+| [`references/design-grounding/design_references_mcp.md`](./references/design-grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp-tooling/` |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [`mcp-figma`](../mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |

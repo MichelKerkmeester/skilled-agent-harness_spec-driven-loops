@@ -103,6 +103,7 @@ Per-phase detail lives in each child's `plan.md`. Summary for audit trail only:
 | 004 | `004-onboard-existing/` | Register + augment `sk-design-interface` + `sk-design-md-generator` into the family (flat names kept) | complete |
 | 005 | `005-build-subskills/` | Build the 3 net-new children: `sk-design-foundations`, `sk-design-motion`, `sk-design-audit` | complete |
 | 006 | `006-integration-validation/` | Advisor + skill-graph rebuild, routing/regression tests, family validation, changelog | complete |
+| 007 | 007-family-deep-review/ | 2-model deep review (~58 iters) + comprehensive remediation of all 6 family skills | complete |
 
 ### Phase Transition Rules
 

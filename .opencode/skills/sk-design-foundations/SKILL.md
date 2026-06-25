@@ -2,10 +2,10 @@
 name: sk-design-foundations
 description: Static visual-system design for color, typography, layout, spacing, hierarchy, responsive adaptation, themes, and design tokens.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+version: 1.0.0.1
 metadata:
   author: OpenCode
-  family: sk-design
+  family: sk-code
 ---
 
 <!-- Keywords: sk-design-foundations, color-system, oklch, typography, layout, spacing, hierarchy, grid, responsive, dark-mode, design-tokens -->
@@ -35,11 +35,13 @@ Skip this skill when:
 - The task is animation, transition choreography, micro-interactions, or reduced-motion behavior. Use `sk-design-motion`.
 - The task is a review, score, accessibility audit, or production-hardening report. Use `sk-design-audit`.
 - The task is extracting measured tokens from a live site into `DESIGN.md`. Use `sk-design-md-generator` or the future `sk-design-spec` child.
-- The static direction is already fully specified and only code implementation remains. Hand off to `sk-code`.
+- The static visual system (including layout, spacing, and grid decisions) is already fully specified and only code implementation remains. Hand off to `sk-code`. Designing or fixing the layout/spacing/grid system itself stays here first; only the implementation handoff goes to `sk-code`.
 
 ### Family Boundary
 
 This is an independently invokable member of the `sk-design` family. It may cite the parent shared base for anti-slop vocabulary, token names, and cognitive laws, but detailed static-system decisions live here.
+
+This skill owns the static visual system. Layout, spacing, grid, and rhythm prompts resolve here first, ahead of `sk-code`; `sk-code` receives the system only for implementation after the static decisions are made.
 
 Pairs well with:
 - `sk-design-interface` when a distinctive direction needs a disciplined token system.
@@ -103,12 +105,6 @@ RESOURCE_MAP = {
     "COLOR": ["references/color/oklch_workflow.md", "references/color/palette_theming.md"],
     "TYPE": ["references/type/typography_system.md"],
     "LAYOUT": ["references/layout/layout_responsive.md"],
-}
-
-LOAD_LEVELS = {
-    "COLOR": "STANDARD",
-    "TYPE": "STANDARD",
-    "LAYOUT": "STANDARD",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -178,7 +174,7 @@ def route_foundations_resources(user_request, task=None):
     load_if_available(DEFAULT_RESOURCE)
     baseline_count = len(loaded)
     if max(scores.values() or [0]) < 0.5:
-        # Cross-axis or unscoped token-system work: load one reference from each axis.
+        # No-signal / unscoped request: load one reference from each axis as a safe fallback.
         for relative_path in RESOURCE_MAP["COLOR"] + RESOURCE_MAP["TYPE"] + RESOURCE_MAP["LAYOUT"]:
             load_if_available(relative_path)
         return {
@@ -239,7 +235,7 @@ def route_foundations_resources(user_request, task=None):
 ### ALWAYS
 
 1. Name the system role before choosing tokens: brand, product, data, marketing, or platform adaptation.
-2. Use semantic token names for roles (`canvas`, `surface`, `text-primary`, `accent`, `signal`) before implementation values.
+2. Use semantic token names for the canonical color roles (`primary/accent`, `neutral`, `semantic`, `surface`, `border`, `text`) before implementation values; `focus` is an accent state, not a separate role.
 3. For color work, check contrast and gamut; high-chroma OKLCH values must be clamped or wrapped with a fallback.
 4. For dark mode, rebuild surface elevation with lightness and contrast, not shadows or inverted values.
 5. For typography, set display, heading, body, caption, and utility roles before selecting decorative type moves.

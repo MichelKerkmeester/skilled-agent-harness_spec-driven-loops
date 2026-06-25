@@ -12,9 +12,13 @@ version: 1.0.0.0
 
 # AUDIT-SLOP-001 | Anti-Slop And Production Hardening
 
+## Target
+
+Supply one concrete landing-page or marketing UI artifact in the `<TARGET>` slot: a source file path, a rendered URL, a screenshot, or a design plan. If no target is available, record SKIP with the blocker "no target artifact supplied"; do not invent tells or copy evidence.
+
 ## Prompt
 
-`Critique this landing page for AI-generated design tells, unclear copy, brittle edge cases, and production hardening gaps.`
+`Critique <TARGET> for AI-generated design tells, unclear copy, brittle edge cases, and production hardening gaps.`
 
 ## Expected Process
 

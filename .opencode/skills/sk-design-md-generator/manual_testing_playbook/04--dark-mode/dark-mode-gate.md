@@ -46,7 +46,7 @@ Operators run the exact command sequence for `DARKMODE-001` and confirm the expe
 
 PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. For the positive branch (dark palette detected), choose a site known to have a dark mode with a `prefers-color-scheme` media query. For the negative branch (no dark palette), choose a site without a dark mode, or re-run extraction with `--no-dark-mode`.
 
-1. `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('darkMode present:', !!t.darkMode); if(t.darkMode) { console.log('detectionMethod:', t.darkMode.detectionMethod); console.log('has variableDiff:', !!t.darkMode.variableDiff?.length); console.log('has darkTokens:', !!t.darkMode.darkTokens?.length) }"` (run from `backend/`)  # -> darkMode metadata printed
+1. `bash: node -e "const t = require('./<--output>/tokens.json'); console.log('darkMode present:', !!t.darkMode); if(t.darkMode) { console.log('detectionMethod:', t.darkMode.detectionMethod); console.log('has variableDiff:', !!t.darkMode.variableDiff?.length); console.log('has darkTokens:', !!t.darkMode.darkTokens?.length) }"` (run from the repo root)  # -> darkMode metadata printed
 2. `bash: rg -ci 'dark' <style-reference.md>`  # -> non-zero if dark values present, 0 if absent
 3. if darkMode is non-empty: read the Style Reference's dark tokens / dark surfaces and spot-check 3 dark hex values against tokens.json.darkMode  # -> verbatim match
 4. if darkMode is absent/empty: confirm no dark-mode hex values appear anywhere in the Style Reference  # -> clean absence

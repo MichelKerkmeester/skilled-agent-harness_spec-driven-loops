@@ -75,7 +75,7 @@
       "three-phase pipeline: extract (Playwright) -> write -> validate",
       "verbatim-value cardinal rule (no estimated/invented tokens)",
       "6-digit lowercase hex and L1-L4 stability classification",
-      "tokens.json output at output/<domain>/ and validate.ts fidelity check",
+      "tokens.json output written to the required --output spec folder and validate.ts fidelity check",
       "gold-standard examples (stripe/vercel/linear/supabase)",
       "self-contained TypeScript pipeline embedded under backend/"
     ],
@@ -142,7 +142,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-design-md-generator captures a live website's real, measured CSS into a publication-quality v3 Style Reference DESIGN.md so AI agents build against ground truth instead of hallucinating colours, fonts, spacing, and shadows. It ships an embedded TypeScript pipeline under backend/ that runs a three-phase pipeline: EXTRACT (a Playwright crawler samples five viewports and emits output/<domain>/tokens.json with every token tagged a 4-layer stability class), WRITE (the agent composes the v3 Style Reference DESIGN.md copying every numeric value verbatim from tokens.json, 6-digit lowercase hex, L1+L2 in main sections, L3 marked subject-to-change, L4 excluded; the value-bearing sections are pre-rendered deterministically, so the agent writes prose only), and VALIDATE (validate.ts checks hex accuracy and section completeness). The cardinal rule is verbatim fidelity: a value that is estimated, rounded, or invented breaks the document's whole reason to exist. It is the extraction-and-format-fidelity engine of the sk-design-* family - sibling to sk-design-interface (which invents new distinctive direction) and the mcp-figma / mcp-open-design transports (which source from Figma and Open Design rather than live URLs) - and its DESIGN.md is the implementation contract sk-code builds against. Setup is a one-time cd backend && npm install && npx playwright install chromium.",
+    "causal_summary": "sk-design-md-generator captures a live website's real, measured CSS into a publication-quality v3 Style Reference DESIGN.md so AI agents build against ground truth instead of hallucinating colours, fonts, spacing, and shadows. It ships an embedded TypeScript pipeline under backend/ that runs a three-phase pipeline: EXTRACT (a Playwright crawler samples five viewports and emits tokens.json into the required --output spec folder, with every token tagged a 4-layer stability class), WRITE (the agent composes the v3 Style Reference DESIGN.md copying every numeric value verbatim from tokens.json, 6-digit lowercase hex, L1+L2 in main sections, L3 marked subject-to-change, L4 excluded; the value-bearing sections are pre-rendered deterministically, so the agent writes prose only), and VALIDATE (validate.ts checks hex accuracy and section completeness). The cardinal rule is verbatim fidelity: a value that is estimated, rounded, or invented breaks the document's whole reason to exist. It is the extraction-and-format-fidelity engine of the sk-design-* family - sibling to sk-design-interface (which invents new distinctive direction) and the mcp-figma / mcp-open-design transports (which source from Figma and Open Design rather than live URLs) - and its DESIGN.md is the implementation contract sk-code builds against. Setup is a one-time cd backend && npm install && npx playwright install chromium.",
     "source_docs": [
       "SKILL.md",
       "README.md",

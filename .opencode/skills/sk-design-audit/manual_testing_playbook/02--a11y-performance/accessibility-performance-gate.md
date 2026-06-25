@@ -12,9 +12,13 @@ version: 1.0.0.0
 
 # AUDIT-A11Y-001 | Accessibility And Performance Gate
 
+## Target
+
+Supply one concrete interactive component artifact in the `<TARGET>` slot (for example a modal and animated drawer): a source file path, a rendered URL, or a screenshot. If no component target is available, record SKIP with the blocker "no target artifact supplied"; do not invent rendered or measured evidence.
+
 ## Prompt
 
-`Review this modal and animated drawer for accessibility and performance issues before release.`
+`Review <TARGET> for accessibility and performance issues before release.`
 
 ## Expected Process
 
@@ -28,3 +32,4 @@ version: 1.0.0.0
 - Identifies motion jank risks with concrete property/mechanism alternatives.
 - Distinguishes measured evidence from static risk.
 - Maps motion repair to `sk-design-motion` and implementation to `sk-code`.
+- Uses the current Core Web Vital Interaction to Next Paint (INP), not the deprecated First Input Delay (FID), matching the `references/corpus_map.md` modernization guard.

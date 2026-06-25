@@ -1,6 +1,6 @@
 ---
 title: "Interaction Capture"
-description: "Capture hover, focus, active, and disabled component states from a live page; detect loading, empty, and error states; produce interaction data for DESIGN.md section 11 (State Matrix)."
+description: "Capture hover, focus, active, and disabled component states from a live page; detect loading, empty, and error states; produce interaction diffs that are folded into the tokens.json component variants the v3 writer turns into Components interaction states."
 trigger_phrases:
   - "capture interaction states"
   - "--fast-no-interaction flag"
@@ -17,7 +17,7 @@ version: 1.0.0.6
 
 ## 1. OVERVIEW
 
-Records per-element interaction states that the extractor would otherwise miss in a static crawl. The module discovers interactive elements on the page, reads their default computed styles, then simulates hover, focus (click), focus-visible (Tab), active (mouse-down), and disabled states. It computes a style diff for every state and also detects loading, empty, and error states through class-name patterns, ARIA attributes, and text-content heuristics. The resulting `InteractionData` payload feeds into `tokens.json` and ultimately into DESIGN.md `## 11. State Matrix`. Interaction capture runs by default: `extract.ts` sets `noInteraction = false`, so the capture runs unless you opt out with `--fast-no-interaction` or `--no-interaction`.
+Records per-element interaction states that the extractor would otherwise miss in a static crawl. The module discovers interactive elements on the page, reads their default computed styles, then simulates hover, focus (click), focus-visible (Tab), active (mouse-down), and disabled states. It computes a style diff for every state and also detects loading, empty, and error states through class-name patterns, ARIA attributes, and text-content heuristics. The resulting `InteractionData` is matched to components during clustering and folded into the `tokens.json` component variants (as the per-variant `hoverChanges`, `focusVisibleChanges`, `focusChanges`, `activeChanges`, and `disabledStyle` fields) — it is not written as a standalone interaction block — and the v3 writer turns those variant fields into the hover/focus/active states described inside the named Components. Interaction capture runs by default: `extract.ts` sets `noInteraction = false`, so the capture runs unless you opt out with `--fast-no-interaction` or `--no-interaction`.
 
 ---
 
@@ -57,11 +57,11 @@ The module is defensive. Per-element capture has a 2-second timeout; the full pa
 
 ### Token output
 
-The `InteractionData` payload contains an array of `InteractionCapture` objects plus optional `loadingStates`, `emptyStates`, and `errorStates` arrays. This data lands in `tokens.json` under the interaction keys and feeds the DESIGN.md write phase for section 11.
+In-memory, the `InteractionData` payload contains an array of `InteractionCapture` objects plus optional `loadingStates`, `emptyStates`, and `errorStates` arrays. The cluster phase keys these captures on `tag|classes`, matches them to component variants, and persists only the matched per-variant diffs into `tokens.json` (`hoverChanges` / `focusVisibleChanges` / `focusChanges` / `activeChanges` / `disabledStyle` on each `components[].variants[]`). There is no top-level interaction block in `tokens.json`; an unmatched capture is dropped. The v3 writer reads those variant fields when authoring the Components section.
 
 ### Validation enforcement
 
-Section 11 (State Matrix) is data-driven: the v2 format specification (`design_md_format.md`) marks it conditional on interaction data being captured. Because capture runs by default, most extractions populate section 11 from real data. When capture is skipped (via `--fast-no-interaction` or `--no-interaction`), section 11 is stamped ABSENT with an explicit absence note (e.g., `_No interaction data was extracted._`) rather than fabricated. The validator (`validate.ts`) flags a section-coverage violation only when section 11 is present and non-empty while its backing interaction tokens are empty and it was not stamped ABSENT.
+In the v3 Style Reference there is no numbered §11 State Matrix — interaction states are characterized inside the named `## Components` section, which `validate.ts` requires via `checkSectionCompleteness`. Because capture runs by default, most extractions populate component variants with real interaction diffs. When capture is skipped (via `--fast-no-interaction` or `--no-interaction`), the variant interaction fields are null and the Components section simply omits interaction states rather than fabricating them. The validator's `checkSectionCoverage` flags a section-coverage violation when the prose asserts interaction states the backing variant data does not support.
 
 ---
 
@@ -77,7 +77,7 @@ Section 11 (State Matrix) is data-driven: the v2 format specification (`design_m
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/08--interaction/interaction-state-matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms default-on capture produces interaction data that feeds DESIGN.md §11 State Matrix |
+| `../../manual_testing_playbook/08--interaction/interaction-state-matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms default-on capture folds interaction diffs into the tokens.json component variants the v3 writer turns into the Components interaction states |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---

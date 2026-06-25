@@ -2,10 +2,10 @@
 name: sk-design-motion
 description: Temporal interaction design for purposeful animation, micro-interactions, transitions, motion materials, AnimatePresence, and reduced motion.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+version: 1.0.1.0
 metadata:
   author: OpenCode
-  family: sk-design
+  family: sk-code
 ---
 
 <!-- Keywords: sk-design-motion, motion-design, animation, transitions, micro-interactions, framer-motion, AnimatePresence, reduced-motion, motion-performance -->
@@ -88,7 +88,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Any motion task | `references/corpus_map.md`, `references/motion_strategy.md` |
+| ALWAYS | Any motion task | `references/corpus_map.md` plus the matching temporal-concern reference (`references/motion_strategy.md` for strategy/timing) |
 | CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
 | CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
 | CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
@@ -103,7 +103,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/motion_strategy.md"
+DEFAULT_RESOURCE = "references/corpus_map.md"
 
 INTENT_MODEL = {
     "STRATEGY": {"keywords": [("motion strategy", 4), ("timing", 3), ("easing", 3), ("choreography", 3), ("stagger", 3), ("material", 2)]},
@@ -192,7 +192,6 @@ def route_motion_resources(user_request, task=None):
             loaded.append(guarded)
             seen.add(guarded)
 
-    load_if_available("references/corpus_map.md")
     load_if_available(DEFAULT_RESOURCE)
     baseline_count = len(loaded)
     if max(scores.values() or [0]) < 0.5:

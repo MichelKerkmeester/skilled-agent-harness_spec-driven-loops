@@ -26,6 +26,7 @@ version: 1.0.0.0
 ## Pass Criteria
 
 - Uses OKLCH or explains a compatibility exception.
-- Includes primary, neutral, semantic, surface, text, border, and focus roles.
+- Includes the canonical color roles: primary/accent, neutral, semantic, surface, border, and text.
+- Covers the accent states (action, selection, focus) under the primary/accent role rather than inventing a separate focus role.
 - Repairs contrast through lightness changes.
 - Dark mode uses surface lightness and semantic token remapping, not inversion.

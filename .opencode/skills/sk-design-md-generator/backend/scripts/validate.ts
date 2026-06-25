@@ -300,7 +300,11 @@ function checkSectionCompleteness(md: string): { passed: boolean; failures: Vali
   const failures: ValidationIssue[] = [];
 
   for (const section of requiredSections) {
-    if (!mdLower.includes(section.toLowerCase())) {
+    // Anchor the heading to line-start (and require a word boundary after it) so a deeper
+    // heading like "### Layout" cannot satisfy a "## Layout" requirement via substring match.
+    const escaped = section.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const headingRe = new RegExp(`(?:^|\\n)${escaped}(?=\\s|$)`);
+    if (!headingRe.test(mdLower)) {
       failures.push({ type: 'missing-section', value: section, message: `Required section "${section}" not found` });
     }
   }

@@ -52,7 +52,7 @@ If motion does not improve clarity or feeling at one of these layers, remove it.
 | `300-500ms` | modal, drawer, accordion, layout transition |
 | `500-800ms` | one earned entrance or brand choreography |
 
-This is the 100/300/500 rule: roughly 100ms for instant feedback, 300ms for state changes, 500ms for layout changes, and timing matters more than easing for whether motion feels right. Exit animations should usually run at about 75 percent of the entrance duration. User-initiated feedback over `300ms` feels laggy. Anything under about `80ms` feels instant, because perception buffers input for roughly that long; target sub-`80ms` for micro-interactions.
+This is the 100/300/500 rule: roughly 100ms for instant feedback, 300ms for state changes, 500ms for layout changes, and timing matters more than easing for whether motion feels right. Exit animations should usually run at about 75 percent of the entrance duration. User-initiated feedback over `300ms` feels laggy. Anything under about `80ms` reads as effectively instant, because perception buffers input for roughly that long; keep the fastest feedback tier near its `100-150ms` floor so micro-interactions land at the edge of that instant window.
 
 ## 4. Easing
 

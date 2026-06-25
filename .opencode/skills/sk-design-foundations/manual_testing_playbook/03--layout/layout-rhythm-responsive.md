@@ -18,9 +18,10 @@ version: 1.0.0.0
 
 ## Expected Process
 
-1. Load `references/layout/layout_responsive.md`.
-2. Define spacing scale, grouping, hierarchy, and grid behavior.
-3. Adapt the experience for touch and mobile context instead of only scaling widths.
+1. Route to `sk-design-foundations` first; layout, spacing, and grid system decisions resolve here before any `sk-code` implementation handoff.
+2. Load `references/layout/layout_responsive.md`.
+3. Define spacing scale, grouping, hierarchy, and grid behavior.
+4. Adapt the experience for touch and mobile context instead of only scaling widths.
 
 ## Pass Criteria
 

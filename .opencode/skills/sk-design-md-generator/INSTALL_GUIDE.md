@@ -8,7 +8,7 @@ Setup for the embedded extraction tool: Node.js, Playwright, Chromium, and a fir
 
 | Requirement | Version | Check |
 |---|---|---|
-| Node.js | >= 18 | `node --version` |
+| Node.js | 20 or newer | `node --version` |
 | npm | Any recent version | `npm --version` |
 | Disk space | ~500 MB for Chromium | `df -h .` |
 
@@ -47,10 +47,13 @@ Expected: all tests pass with exit code 0. If any test fails, check the troubles
 
 ## 3. FIRST EXTRACTION
 
-Run a fast extraction against a public site to confirm everything works end-to-end:
+Run a fast extraction against a public site to confirm everything works end-to-end. Run it
+from the **repo root** (not from `backend/`) with the full script path: `extract.ts` refuses
+any `--output` that resolves inside the skill, so a relative spec-folder path only resolves
+correctly from the repo root.
 
 ```bash
-npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 ```
 
 Expected output:
@@ -59,10 +62,10 @@ Expected output:
 - `tokens.json` is written to `<--output>/`.
 - The file contains non-empty token arrays for colors, typography, shadows, radii, and spacing.
 
-Validate a `DESIGN.md` against the extracted tokens:
+Validate a `DESIGN.md` against the extracted tokens (also from the repo root):
 
 ```bash
-npx ts-node scripts/validate.ts DESIGN.md <--output>/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, zero missing sections.
@@ -87,10 +90,10 @@ If the install fails, check your network connection and proxy settings. Playwrig
 
 **Symptom:** Extraction returns empty `tokens.json` or the crawler times out.
 
-**Fix:** Try adjusting the wait strategy:
+**Fix:** Try adjusting the wait strategy (run from the repo root):
 
 ```bash
-npx ts-node scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
 ```
 
 If the site requires authentication, it is out of scope. The tool only works on publicly accessible URLs that render JavaScript.

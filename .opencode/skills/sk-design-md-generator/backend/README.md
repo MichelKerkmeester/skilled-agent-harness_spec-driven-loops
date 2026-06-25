@@ -35,21 +35,27 @@ The pipeline is driven by the parent skill in [`../SKILL.md`](../SKILL.md), not 
 
 ## 2. QUICK START
 
+One-time setup runs from this `backend/` directory (npm needs the manifest here):
+
 ```bash
-cd backend
+cd .opencode/skills/sk-design-md-generator/backend
 npm install
 npx playwright install chromium
 ```
 
+Run the pipeline from the **repo root** with the full script path. `extract.ts` refuses any
+`--output` that resolves inside the skill, so a relative spec-folder path only resolves
+correctly from the repo root:
+
 ```bash
 # Phase 1: extract a live URL into tokens.json
-npx ts-node scripts/extract.ts https://example.com --fast --output ./out
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --output .opencode/specs/<track>/<packet>/output
 
 # Phase 2: build the WRITE prompt with pre-rendered value sections and a FACTS block
-npx ts-node scripts/build-write-prompt.ts ./out/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
 
 # Phase 3: validate a DESIGN.md against its tokens.json
-npx ts-node scripts/validate.ts ./DESIGN.md ./out/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts .opencode/specs/<track>/<packet>/output/DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected result: `extract.ts` writes `tokens.json` into the `--output` directory, `build-write-prompt.ts` prints the pre-rendered v3 sections and FACTS block, and `validate.ts` prints a pass or fail report with per-finding messages.
@@ -105,21 +111,20 @@ backend/
 
 ## 6. USAGE EXAMPLES
 
-A full run from a live URL to a validated `DESIGN.md`:
+A full run from a live URL to a validated `DESIGN.md`, run from the **repo root** (a relative
+`--output` must resolve outside the skill for the output guard to accept it):
 
 ```bash
-cd backend
-
 # Extract into a spec output folder
-npx ts-node scripts/extract.ts https://example.com \
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com \
   --output .opencode/specs/<track>/<packet>/output
 
 # Build the WRITE prompt, then author DESIGN.md prose around the pre-rendered sections
-npx ts-node scripts/build-write-prompt.ts \
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts \
   .opencode/specs/<track>/<packet>/output/tokens.json
 
 # Validate the written DESIGN.md against its tokens.json
-npx ts-node scripts/validate.ts \
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts \
   .opencode/specs/<track>/<packet>/output/DESIGN.md \
   .opencode/specs/<track>/<packet>/output/tokens.json
 ```

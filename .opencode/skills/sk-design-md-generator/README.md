@@ -10,7 +10,7 @@
 |---|---|
 | **Use it for** | Extracting verified design tokens from any live URL into a machine-readable `DESIGN.md` that replaces guesswork with ground truth |
 | **Invoke with** | "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", or auto-routing on extraction keywords |
-| **Works on** | Any publicly accessible URL that renders JavaScript. Needs Node >= 18, Playwright, and Chromium (~500 MB one-time install) |
+| **Works on** | Any publicly accessible URL that renders JavaScript. Needs Node 20 or newer, Playwright, and Chromium (~500 MB one-time install) |
 | **Produces** | A `tokens.json` with every measured CSS value and a v3 **Style Reference** `DESIGN.md` — a named, role-driven design-system handoff with copy-paste CSS + Tailwind — plus optional HTML reports and fidelity proofs |
 
 ---
@@ -23,9 +23,9 @@ AI agents invent colors, guess font sizes, and approximate shadows. When you tel
 
 ### What It Does
 
-The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a v3 **Style Reference** `DESIGN.md`: the value-bearing sections (colors, typography, spacing, the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`, so the AI writes prose only and never emits a value. **Validate** checks hex accuracy, the v3 section set, and a Quick-Start fidelity check. A fourth optional phase renders HTML previews and visual-diff reports.
+The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a v3 **Style Reference** `DESIGN.md`: the value-bearing token sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`. The AI authors the prose sections (intro, the Tokens — Typography section, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands), and every value it writes comes from a pre-rendered section or the FACTS block of locked values — it never invents or concretizes a number. **Validate** checks hex accuracy, the v3 section set, and a Quick-Start fidelity check. A fourth optional phase renders HTML previews and visual-diff reports.
 
-The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the numbers and the AI only writes prose, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
+The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the value tables and the typography/component numbers come verbatim from the FACTS block, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
 
 ---
 
@@ -39,19 +39,19 @@ npm install
 npx playwright install chromium   # ~500 MB, one-time
 ```
 
-**Step 2: Extract tokens from a live site.**
+**Step 2: Extract tokens from a live site.** Run this from the **repo root** (not from `backend/`): `extract.ts` refuses any `--output` that resolves inside the skill, so a relative spec-folder path only resolves correctly from the repo root.
 
 ```bash
-npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format.md` and `references/writing_style_guide.md`. The value-bearing sections are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you write prose only and never type a value by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
+**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format.md` and `references/writing_style_guide.md`. The value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you author the prose sections — including Tokens — Typography — taking every value from those pre-rendered sections or the FACTS block, never typing a number by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
 
-**Step 4: Validate before claiming completion.**
+**Step 4: Validate before claiming completion.** Run from the repo root with the full script path:
 
 ```bash
-npx ts-node scripts/validate.ts DESIGN.md <--output>/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
 # Expected: zero hex mismatches, all required v3 sections present,
 # and the Quick-Start fidelity check passing (every Quick Start hex
 # traces to tokens; --page-max-width matches tokens).
@@ -73,10 +73,11 @@ EXTRACT (Phase 1)
 
 WRITE (Phase 2)
   build-write-prompt.ts runs formatters-v3.ts to PRE-RENDER the value-bearing
-  sections deterministically (a hue+lightness color-namer + token emitters):
-  Tokens — Colors / Typography / Spacing & Shapes and the Quick Start CSS + Tailwind.
-  The AI then writes prose ONLY (intro, roles, Components, Do's/Don'ts, Layout,
-  Agent Prompt Guide, Similar Brands) and never emits a value by hand.
+  token sections deterministically (a hue+lightness color-namer + token emitters):
+  Tokens — Colors / Spacing & Shapes / Surfaces and the Quick Start CSS + Tailwind.
+  The AI authors the prose sections (intro, Tokens — Typography, Components,
+  Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands),
+  taking every value from a pre-rendered section or the FACTS block — never by hand.
   Result: a v3 Style Reference DESIGN.md.
   L1 + L2 tokens go in main sections. L3 tokens get a "Subject to change" note.
   L4 tokens excluded entirely.
@@ -105,29 +106,35 @@ The classifier in `backend/scripts/cluster.ts` is deterministic. Boundary tokens
 
 ### Extract Flags
 
-```
-npx ts-node scripts/extract.ts <url> [options] --output .opencode/specs/<track>/<packet>/output
+Run from the repo root with the full script path so a relative `--output` resolves outside the skill:
 
-  --fast                 5 pages, 8 concurrency, no interaction (recommended)
+```
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output .opencode/specs/<track>/<packet>/output
+
+  --fast                 5 pages, 8 concurrency (still captures interaction; recommended)
   --max-pages <n>        Max pages to crawl (default: 8)
   --concurrency <n>      Playwright concurrency (default: 5)
-  --with-interaction     Capture hover/focus/active states (slower)
-  --no-interaction       Skip interaction capture
+  --with-interaction     Capture hover/focus/active states (this is the default)
+  --no-interaction       Opt out of interaction capture
+  --fast-no-interaction  Fast crawl AND skip interaction (the old --fast behavior)
   --no-dark-mode         Skip dark mode detection
   --wait-for <strategy>  Wait strategy: networkidle | css | selector:<css>
   --extra-urls           Additional URLs to crawl
   --merge-with <path>    Merge into existing tokens.json
-  --output <dir>         Output directory (default: <--output>/)
+  --output <dir>         Output directory (REQUIRED; must resolve to a spec folder outside the skill)
+  --insecure             Ignore HTTPS certificate errors (self-signed / staging hosts)
   --verbose              Detailed logging
 ```
 
 ### Post-Extraction Scripts
 
+Run these from the repo root as well (or pass absolute paths):
+
 ```bash
-npx ts-node scripts/validate.ts <DESIGN.md> <tokens.json>      # Phase 3: validate
-npx ts-node scripts/proof.ts <url> <tokens.json>                # Fidelity proof
-npx ts-node scripts/report-gen.ts <tokens.json> <dir> <DESIGN.md>  # HTML report
-npx ts-node scripts/preview-gen.ts <tokens.json> <dir>          # Visual preview
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> <tokens.json>      # Phase 3: validate
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/proof.ts <url> <tokens.json>                # Fidelity proof
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/report-gen.ts <tokens.json> <dir> <DESIGN.md>  # HTML report
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/preview-gen.ts <tokens.json> <dir>          # Visual preview
 ```
 
 ---
@@ -178,7 +185,7 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format.md`. `build-write-prompt.ts` pre-renders the value-bearing sections (colors, typography, spacing, Quick Start) via `formatters-v3.ts`; the agent writes the surrounding prose only, so no value is ever hand-copied. The skill validates the result.
+A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format.md`. `build-write-prompt.ts` pre-renders the value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts` and hands the agent a FACTS block of locked values (including the type scale). The agent writes the prose sections — including Tokens — Typography — but takes every number from a pre-rendered section or the FACTS block, so no value is ever hand-copied. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 

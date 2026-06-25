@@ -19,6 +19,8 @@ This document combines the current feature inventory for the `sk-design-interfac
 
 Use this catalog as the canonical inventory for the live `sk-design-interface` feature surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing the design intent behind each step. This skill owns the look of an interface: it drives deliberate palette, typography, layout, motion, and copy choices, holds those choices to an objective quality floor, and hands implementation to `sk-code`.
 
+> Category directory `06--` is intentionally reserved and unused here: the `<NN>--<topic>` directory prefixes stay aligned with the manual testing playbook's topic numbering, where `06` is licensing-and-provenance (a provenance scenario rather than a feature). The real-UI loop therefore stays `07--real-ui-loop` in both surfaces.
+
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | Design process | 4 features | `SKILL.md`, `references/design-process/design_principles.md` |

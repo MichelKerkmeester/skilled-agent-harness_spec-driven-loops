@@ -131,7 +131,7 @@ Use this checklist to validate every generated design system document before del
 ## 4. Completeness
 
 - [ ] **[CP-01]** Sections present per the data-driven gate
-  - Check: Core value sections (Color, Typography, Spacing, Components, Shadows/Depth, Layout) are present when their tokens exist. Conditional sections (§0, §6, §6.5, §7, §9, §11, §12) are present-and-filled when backing tokens exist, or ABSENT-stamped (`_No <X> data was extracted._`) when the backing field is empty. Dark Mode is omitted entirely when no dark palette was detected.
+  - Check: The required v3 Style Reference sections (Tokens — Colors, Tokens — Typography, Tokens — Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are present. Conditional sections (Imagery, Dark Mode, the accessibility data in the Agent Prompt Guide, and the interaction states inside Components) are present-and-filled when their backing tokens exist, or honestly noted as absent when the backing field is empty. Dark Mode is omitted entirely when no dark palette was detected.
   - Fail reason: LLM either omitted a section with backing data, or invented content for a section with no backing data
   - Fix: Drive section presence from token presence. When data exists, write the section; when it is empty, stamp ABSENT rather than fabricating filler. Do not require a fixed section count.
 
@@ -158,7 +158,7 @@ Use this checklist to validate every generated design system document before del
 - [ ] **[CP-06]** Every extracted shadow is documented; flat systems say so
   - Check: Compare the depth/shadow section against the shadow tokens in tokens.json
   - Fail reason: LLM documented fewer shadows than were extracted, OR invented a multi-level scale for a system with zero or one shadow
-  - Fix: Document each unique extracted shadow. When zero shadows were extracted, the §6 Depth section is rendered FLAT by construction (no box-shadow elevation) — do not fabricate an elevation scale, and never label a gradient as depth.
+  - Fix: Document each unique extracted shadow. When zero shadows were extracted, the Elevation section states the system is FLAT (no box-shadow elevation) and how depth is achieved instead — do not fabricate an elevation scale, and never label a gradient as depth.
 
 - [ ] **[CP-07]** Border-radius scale documented
   - Check: A radius scale or set of radius tokens is present

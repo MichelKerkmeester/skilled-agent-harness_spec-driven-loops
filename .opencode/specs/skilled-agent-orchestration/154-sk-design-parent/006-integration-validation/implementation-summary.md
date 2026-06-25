@@ -126,15 +126,15 @@ Delivery is validation itself: rebuild discovery, run the routing fixtures, run 
 <!-- Voice guide: Be honest. Show failures alongside passes.
      "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
 
-<!-- FORWARD-LOOKING: results are the planned terminal gate, not yet observed. Replace with real PASS/FAIL output on completion. -->
+<!-- Observed during the family deep-review remediation pass (real results, replacing the planned terminal gate). -->
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/154-sk-design-parent --recursive` | Planned PASS (exit 0) |
-| `advisor_rebuild` + `skill_graph_scan` list all five sk-design children | Planned PASS |
-| Per-domain routing fixtures resolve to the right child at >=0.8 | Planned PASS |
-| `sk-design-interface` resolves directly; mcp-open-design mandatory pairing fires | Planned PASS |
-| `rg -n 'sk-design-interface' . --glob '*.md' --glob '*.json'` references all still resolve | Planned PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/154-sk-design-parent --strict --recursive` | PASS (exit 0) — parent + all 7 children, 0 errors / 0 warnings |
+| `advisor_rebuild` + skill graph list all five sk-design children | PASS — advisor live, 31 skills indexed, all five children active |
+| Per-domain routing fixtures resolve to the right child at >=0.8 | PASS — md-generator 0.92, interface 0.93, foundations 0.95, motion 0.93, audit 0.95 |
+| `sk-design-interface` resolves directly; mcp-open-design mandatory pairing intact | PASS — interface 0.93; mcp-open-design depends_on sk-design-interface edge present |
+| `sk-design-interface` references unbroken (flat name kept) | PASS — skill present; 505 referencing files; no rename in remediation |
 <!-- /ANCHOR:verification -->
 
 ---

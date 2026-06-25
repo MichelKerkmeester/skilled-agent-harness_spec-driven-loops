@@ -199,11 +199,13 @@ function parseArgs(argv: string[]): ExtractOptions {
 
 function printUsage(): void {
   console.log(`
-Usage: npx ts-node scripts/extract.ts <url1> [url2] [url3] ...
+Usage (run from the repo root):
+  npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url1> [url2] ...
 
 Options:
-  --output <dir>         Output directory (REQUIRED; must be a spec folder, not the
-                         skill, e.g. .opencode/specs/<track>/<packet>/output)
+  --output <dir>         Output directory (REQUIRED; must resolve to a spec folder
+                         outside the skill. Run from the repo root so a relative path
+                         like .opencode/specs/<track>/<packet>/output resolves correctly)
   --concurrency <n>      Playwright concurrency (default: 5)
   --max-pages <n>        Max pages to crawl (default: 8)
   --extra-urls <file>    File with additional URLs (one per line)
@@ -258,13 +260,14 @@ async function extract(options: ExtractOptions): Promise<void> {
   const skillRoot = path.resolve(__dirname, '..', '..');
   if (!options.output) {
     console.error('Error: --output is required. Extraction output must live in a spec folder, not the skill.');
-    console.error('  e.g. --output .opencode/specs/<track>/<packet>/output');
+    console.error('  Run from the repo root, e.g. --output .opencode/specs/<track>/<packet>/output');
     process.exit(1);
   }
   const resolvedOut = path.resolve(options.output);
   if (resolvedOut === skillRoot || resolvedOut.startsWith(skillRoot + path.sep)) {
     console.error(`Error: refusing to write output inside the skill directory (${resolvedOut}).`);
-    console.error('  Pass --output pointing at a spec folder, e.g. --output .opencode/specs/<track>/<packet>/output');
+    console.error('  Run extract.ts from the repo root so a relative --output resolves outside the skill,');
+    console.error('  e.g. (from repo root) --output .opencode/specs/<track>/<packet>/output');
     process.exit(1);
   }
 

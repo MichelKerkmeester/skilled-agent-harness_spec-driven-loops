@@ -2,7 +2,7 @@
 name: sk-design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
@@ -252,46 +252,53 @@ REPORT (Phase 4, optional)
 - **Hex codes** must use **6-digit lowercase** format (e.g., `#1a1a2e`, never `#1A1A2E` or `#1a1a2`).
 - **Stability gates**: only L1 (permanent/brand-level) and L2 (system/component-level) tokens belong in the main DESIGN.md sections. L3 (campaign-level, e.g., a seasonal accent color) may appear with an explicit "Subject to change" annotation. L4 (content-level, e.g., a hero image's dominant color) is excluded.
 - **Dark mode**: include a dark-mode section ONLY when the extractor detected a dark-mode palette. Do not fabricate a dark palette from the light one.
+- **What `validate.ts` traces**: validation hard-checks hex codes (against `tokens.colorTokens`) and the Quick Start values (every Quick Start hex traces to a token; `--page-max-width` matches `tokens.spacingSystem.maxContentWidth`). Non-hex values (pixel sizes, font weights, shadows, radii) are NOT re-traced by the validator — their fidelity is guaranteed upstream because the WRITE phase pre-renders the value tables from `formatters-v3.ts` and supplies the typography/component numbers verbatim in the FACTS block, so the AI never types them. Treat the cardinal rule as the binding contract for those values even though validation does not re-check each one.
 
 ### Invocation
 
-```bash
-# One-time setup (from the skill root)
-cd backend && npm install && npx playwright install chromium
+> **Working directory.** Run the one-time setup from `backend/` (npm needs the package
+> manifest there). Run every `extract.ts` invocation from the **repo root** with the full
+> script path: `extract.ts` refuses any `--output` that resolves inside the skill, so a
+> relative `--output .opencode/specs/...` only resolves correctly from the repo root.
 
-# Phase 1 — extract. --fast crawls 5 pages at 8 concurrency (default is 8 pages).
-# Interaction capture (hover/focus/active) runs by DEFAULT, including under --fast.
-# tokens.json is written to <--output>/.
-npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
+```bash
+# One-time setup (from the skill's backend/ directory)
+cd .opencode/skills/sk-design-md-generator/backend && npm install && npx playwright install chromium
+
+# Phase 1 — extract (run from the repo root). --fast crawls 5 pages at 8 concurrency
+# (default is 8 pages). Interaction capture (hover/focus/active) runs by DEFAULT, including
+# under --fast. tokens.json is written to <--output>/. The relative --output resolves under
+# the repo root (outside the skill), which is what the output guard requires.
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
 # Phase 2 — write DESIGN.md per references/design_md_format.md, every value from tokens.json.
 # Run build-write-prompt.ts first: it pre-renders Tokens—Colors/Spacing&Shapes/Surfaces/Quick Start
 # (via formatters-v3.ts) plus a FACTS block, then you paste those unchanged and write prose only:
-npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
 
 # Phase 3 — validate (DESIGN.md first, tokens.json second):
-npx ts-node scripts/validate.ts <DESIGN.md> <--output>/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> .opencode/specs/<track>/<packet>/output/tokens.json
 
 # Optional — fidelity proof + visual report/preview (these take tokens.json FIRST):
-npx ts-node scripts/proof.ts <url> <--output>/tokens.json
-npx ts-node scripts/report-gen.ts <--output>/tokens.json <dir> <DESIGN.md>
-npx ts-node scripts/preview-gen.ts <--output>/tokens.json <dir>
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/proof.ts <url> .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/report-gen.ts .opencode/specs/<track>/<packet>/output/tokens.json <dir> <DESIGN.md>
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/preview-gen.ts .opencode/specs/<track>/<packet>/output/tokens.json <dir>
 ```
 
-Real extract flags (see `backend/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
+Real extract flags (see `backend/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>` (REQUIRED — a spec folder outside the skill), `--insecure` (ignore HTTPS certificate errors for self-signed / staging hosts), `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
 
 ### Token Stability Classes (L1–L4)
 
 Each extracted token receives a stability classification that governs whether it appears in `DESIGN.md`:
 
-| Class | Name       | Description                                              | DESIGN.md treatment                      |
-| ----- | ---------- | -------------------------------------------------------- | ---------------------------------------- |
-| L1    | Permanent  | Brand identity — logo colors, brand typeface, core radii | Included in main sections                |
-| L2    | System     | Design-system tokens — semantic colors, spacing scale    | Included in main sections                |
-| L3    | Campaign   | Temporary — hero gradients, seasonal accents             | Included with "Subject to change" annotation |
-| L4    | Content    | Image-derived, one-off, article-specific                 | Excluded entirely                        |
+| Class | Name (emitted `layer`)     | Description                                              | DESIGN.md treatment                      |
+| ----- | -------------------------- | -------------------------------------------------------- | ---------------------------------------- |
+| L1    | Permanent (`infrastructure`) | Brand identity — logo colors, brand typeface, core radii | Included in main sections                |
+| L2    | System (`system`)          | Design-system tokens — semantic colors, spacing scale    | Included in main sections                |
+| L3    | Campaign (`campaign`)      | Temporary — hero gradients, seasonal accents             | Included with "Subject to change" annotation |
+| L4    | Content (`content`)        | Image-derived, one-off, article-specific                 | Excluded entirely                        |
 
-The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Tokens that sit at a boundary are assigned the higher (more restrictive) class.
+The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Tokens that sit at a boundary are assigned the higher (more restrictive) class. In `tokens.json` each token's `stability.layer` carries the emitted string (`infrastructure` for L1, then `system`, `campaign`, `content`) — "Permanent" is the human-facing label for the `infrastructure` layer.
 
 ---
 
@@ -389,7 +396,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### Tool Usage Guidelines
 
-- **Bash** owns all embedded-tool invocations: `npx ts-node scripts/extract.ts`, `npx ts-node scripts/validate.ts`, `npx ts-node scripts/report-gen.ts`, `npx ts-node scripts/preview-gen.ts`, `npm install`, `npx playwright install chromium`. All commands run from `backend/` as the working directory.
+- **Bash** owns all embedded-tool invocations: `npx ts-node …/backend/scripts/extract.ts`, `…/validate.ts`, `…/report-gen.ts`, `…/preview-gen.ts`, `npm install`, `npx playwright install chromium`. Run the one-time setup (`npm install`, `npx playwright install chromium`) from `backend/`; run the pipeline scripts from the **repo root** with the full script path, so a relative `--output` resolves outside the skill (the output guard refuses skill-internal paths).
 - **Read** loads `tokens.json`, the existing DESIGN.md for re-extraction context, and all resource/reference docs.
 - **Write** produces the DESIGN.md output. Only Write when the token data is fully loaded and the v3 Style Reference format specification has been read.
 - **Edit** is used for targeted fixes to DESIGN.md after validation reveals specific errors.
@@ -405,7 +412,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 ### External Tools
 
 - **Playwright** (Microsoft, Apache 2.0): installed via `npx playwright install chromium`. Required for the extraction phase. The embedded tool uses Playwright to crawl live URLs and read computed CSS.
-- **Node.js**: required by the embedded tool. The `backend/package.json` declares the version range.
+- **Node.js**: required by the embedded tool — Node 20 or newer (the floor the backend targets). `backend/package.json` does not pin an `engines` range; treat Node 20+ as the supported baseline.
 - **`ts-node`**: used to execute the embedded TypeScript modules directly. Included in `backend/package.json` devDependencies.
 
 ### Knowledge Base Dependencies

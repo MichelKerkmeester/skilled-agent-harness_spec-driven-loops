@@ -1,7 +1,7 @@
 ---
 title: "sk-design-audit: Manual Testing Playbook"
 description: "Lean manual scenarios for verifying design audit scoring, accessibility/performance review, and anti-slop hardening behavior."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-design-audit: Manual Testing Playbook
@@ -20,7 +20,11 @@ version: 1.0.0.0
 
 1. The repository root is the working directory.
 2. `SKILL.md` and all `references/` files under `sk-design-audit` resolve.
-3. A concrete target artifact exists: file, URL, screenshot, or design plan.
+3. Each scenario names its own `<TARGET>` slot. Supply one concrete artifact per scenario: a source file path, a rendered URL, a screenshot, or a design plan.
+
+## 2a. SKIP RULE
+
+A scenario is SKIP only when no concrete `<TARGET>` artifact can be supplied for it. Record SKIP with the blocker "no target artifact supplied" rather than inventing UI, rendered, or measured evidence. A scenario with a supplied target may not be skipped.
 
 ## 3. EVIDENCE REQUIREMENTS
 
@@ -31,4 +35,4 @@ version: 1.0.0.0
 
 ## 4. RELEASE READINESS
 
-Release is ready when all scenarios PASS or are SKIP only for environment reasons, and no scenario omits severity, score, evidence, or owner mapping.
+Release is ready when all scenarios PASS or are SKIP only under the SKIP RULE (no target artifact supplied), and no scenario omits severity, score, evidence, or owner mapping.

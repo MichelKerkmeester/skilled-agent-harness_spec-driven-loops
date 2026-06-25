@@ -23,4 +23,4 @@ The skill prioritizes role clarity, readable measure, scale contrast, localizati
 ## Source Files
 
 - `references/type/typography_system.md`
-- `../feature_catalog.md`
+- `references/corpus_map.md`

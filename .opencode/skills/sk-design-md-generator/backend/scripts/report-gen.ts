@@ -613,7 +613,7 @@ ${designMdContent ? `
 </div>` : `
 <div class="card" style="text-align:center;padding:2rem;color:var(--text-muted);">
   <h2>📄 DESIGN.md</h2>
-  <p>Not yet generated. Use Claude Code skill <code>/design-md</code> to create from tokens.json.</p>
+  <p>Not yet generated. Run the <code>sk-design-md-generator</code> WRITE phase to create it from tokens.json.</p>
 </div>`}
 
 </div>

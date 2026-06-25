@@ -59,10 +59,13 @@ Dark mode should redefine semantic tokens, not primitive names. This keeps imple
 
 ## 4. PALETTE ROLES
 
+The canonical color roles are primary/accent, neutral, semantic, surface, border, and text. Action, selection, and focus are states of the primary/accent role, not separate roles.
+
 | Role | Purpose | Checks |
 | --- | --- | --- |
-| Primary/accent | brand and key action | Rare enough to remain meaningful; contrast against canvas and surface. |
-| Neutral | text, background, borders | Tint slightly toward brand when useful; avoid default warm cream unless grounded. |
+| Primary/accent | brand and key action, including action, selection, and focus states | Rare enough to remain meaningful; contrast against background and surface. |
+| Neutral | backgrounds and borders | Tint slightly toward brand when useful; avoid default warm cream unless grounded. |
+| Text | body, heading, and helper text | Meets target contrast on every surface it sits on; never rely on color alone. |
 | Semantic | success, error, warning, info | Color plus icon/text/pattern; never color alone. |
 | Surface | cards, modals, overlays | Supports depth and grouping without nested-card clutter. |
 | Border/stroke | separation | Prefer hairline full borders over decorative side stripes. |

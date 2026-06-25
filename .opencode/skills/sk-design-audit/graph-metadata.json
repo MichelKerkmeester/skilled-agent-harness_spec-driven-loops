@@ -47,7 +47,7 @@
       },
       {
         "target": "sk-design",
-        "weight": 0.7,
+        "weight": 0.6,
         "context": "Parent family router for design-domain prompts"
       }
     ],
@@ -65,15 +65,22 @@
     "key_topics": ["P0-P3 severity", "five-dimension score", "accessibility", "performance", "responsive QA", "theming", "anti-pattern detection", "production hardening"],
     "key_files": [
       ".opencode/skills/sk-design-audit/SKILL.md",
+      ".opencode/skills/sk-design-audit/references/corpus_map.md",
       ".opencode/skills/sk-design-audit/references/audit_contract.md",
       ".opencode/skills/sk-design-audit/references/accessibility_performance.md",
       ".opencode/skills/sk-design-audit/references/critique_hardening.md",
       ".opencode/skills/sk-design-audit/references/anti_patterns_production.md",
       ".opencode/skills/sk-design-audit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design-audit/manual_testing_playbook/manual_testing_playbook.md"
+      ".opencode/skills/sk-design-audit/feature_catalog/01--audit-contract/audit-contract.md",
+      ".opencode/skills/sk-design-audit/feature_catalog/02--accessibility-performance/accessibility-performance.md",
+      ".opencode/skills/sk-design-audit/feature_catalog/03--critique-hardening/critique-hardening.md",
+      ".opencode/skills/sk-design-audit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design-audit/manual_testing_playbook/01--score/findings-first-score.md",
+      ".opencode/skills/sk-design-audit/manual_testing_playbook/02--a11y-performance/accessibility-performance-gate.md",
+      ".opencode/skills/sk-design-audit/manual_testing_playbook/03--slop-hardening/anti-slop-production-hardening.md"
     ],
     "source_docs": ["SKILL.md", "references/corpus_map.md", "references/audit_contract.md", "references/accessibility_performance.md", "references/critique_hardening.md", "references/anti_patterns_production.md"],
     "created_at": "2026-06-25T00:00:00Z",
-    "last_updated_at": "2026-06-25T00:00:00Z"
+    "last_updated_at": "2026-06-25T20:00:00Z"
   }
 }

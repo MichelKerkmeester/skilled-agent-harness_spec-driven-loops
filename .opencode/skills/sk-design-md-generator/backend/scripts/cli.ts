@@ -8,12 +8,13 @@
  * Design System Extractor CLI
  *
  * Quick extraction mode — runs Phase 1 (crawl + extract + cluster) and outputs tokens.json.
- * For full DESIGN.md generation, use the Claude Code skill `/design-md`.
+ * For full DESIGN.md generation, use the `sk-design-md-generator` skill WRITE phase.
  *
- * Usage (--output is REQUIRED and must point at a spec folder, not the skill):
- *   npx ts-node scripts/extract.ts <url> --output <spec-folder>/output [options]
- *   npx ts-node scripts/extract.ts https://stripe.com --max-pages 10 --output .opencode/specs/<track>/<packet>/output
- *   npx ts-node scripts/extract.ts https://example.com --output .opencode/specs/<track>/<packet>/output --wait-for css
+ * Usage (run from the repo root; --output is REQUIRED and must resolve to a spec
+ * folder outside the skill):
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --output <spec-folder>/output [options]
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --max-pages 10 --output .opencode/specs/<track>/<packet>/output
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --output .opencode/specs/<track>/<packet>/output --wait-for css
  */
 
 // ────────────────────────────────────────────────────────────────
@@ -44,8 +45,8 @@ async function main(): Promise<void> {
 
 Next steps:
   1. Review tokens.json in ${options.output}/
-  2. Use Claude Code with /design-md to generate your DESIGN.md
-     Or: provide tokens.json to any LLM with the SKILL.md prompt
+  2. Run the sk-design-md-generator WRITE phase to generate your DESIGN.md
+     (build-write-prompt.ts pre-renders the value sections; you author the prose)
 
   Preview: npx ts-node scripts/preview-gen.ts ${options.output}/tokens.json
   Validate: npx ts-node scripts/validate.ts <design-md-path> ${options.output}/tokens.json

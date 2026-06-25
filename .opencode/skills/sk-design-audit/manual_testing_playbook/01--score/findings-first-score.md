@@ -12,9 +12,13 @@ version: 1.0.0.0
 
 # AUDIT-SCORE-001 | Findings-First Score
 
+## Target
+
+Supply one concrete dashboard or app UI artifact in the `<TARGET>` slot: a source file path, a rendered URL, a screenshot, or a design plan. If no UI target is available, record SKIP with the blocker "no target artifact supplied"; do not invent UI evidence.
+
 ## Prompt
 
-`Audit this dashboard UI for release readiness and give me a design quality score.`
+`Audit <TARGET> for release readiness and give me a design quality score.`
 
 ## Expected Process
 

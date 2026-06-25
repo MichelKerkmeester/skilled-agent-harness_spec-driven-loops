@@ -1,20 +1,20 @@
 ---
-title: Soft Preset
-description: Visual-direction preset for premium agency-style interfaces with haptic depth, oversized whitespace, and cinematic but disciplined motion.
+title: Soft Grounding Cue
+description: Illustrative grounding cue for the realized soft look (haptic depth, oversized whitespace, cinematic but disciplined motion) to name and deviate from, never a preset.
 trigger_phrases:
-  - "soft preset"
+  - "soft realized look"
   - "premium agency interface"
   - "haptic depth surfaces"
   - "cinematic motion design"
   - "nested enclosure layout"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
-# Soft Preset
+# Soft Grounding Cue
 
-A compact visual-direction cue for premium agency-style interfaces that need haptic depth, generous rhythm, and fluid but disciplined motion.
+An illustrative cue for the realized soft look, premium agency-style interfaces that need haptic depth, generous rhythm, and fluid but disciplined motion, used to name the default and deviate from it.
 
 ---
 
@@ -22,11 +22,11 @@ A compact visual-direction cue for premium agency-style interfaces that need hap
 
 ### Purpose
 
-Use for premium agency-style interfaces that need haptic depth, generous rhythm, and fluid but disciplined motion.
+Names the realized look for premium agency-style interfaces that need haptic depth, generous rhythm, and fluid but disciplined motion, so a deliberate move off it reads as a choice.
 
 ### Usage
 
-Apply this preset as a citeable starting cue, then adapt it to the product context instead of treating it as a fixed template. Use one preset as the dominant aesthetic per direction; if combining cues, name this as the primary preset and keep borrowed cues sparse.
+Cite this as the realized default to critique against at the critique step, then take the one justified aesthetic risk away from it. It is a constraint to deviate from, never a fixed template, never a preset to drop onto a brief, and never an option surfaced to the user.
 
 ---
 

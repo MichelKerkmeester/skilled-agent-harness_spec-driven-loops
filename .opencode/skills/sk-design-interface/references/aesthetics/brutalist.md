@@ -1,20 +1,20 @@
 ---
-title: Brutalist Preset
-description: Visual-direction preset for raw, mechanical interfaces with rigid grids, oversized mechanical type, and utilitarian color.
+title: Brutalist Grounding Cue
+description: Illustrative grounding cue for the realized brutalist look (rigid grids, oversized mechanical type, utilitarian color) to name and deviate from, never a preset.
 trigger_phrases:
-  - "brutalist preset"
+  - "brutalist realized look"
   - "raw mechanical interface"
   - "industrial print aesthetic"
   - "telemetry console design"
   - "rigid grid typography"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
-# Brutalist Preset
+# Brutalist Grounding Cue
 
-A compact visual-direction cue for raw, mechanical interfaces that feel like industrial print, telemetry, or a declassified operating console.
+An illustrative cue for the realized brutalist look, raw and mechanical interfaces that feel like industrial print, telemetry, or a declassified operating console, used to name the default and deviate from it.
 
 ---
 
@@ -22,11 +22,11 @@ A compact visual-direction cue for raw, mechanical interfaces that feel like ind
 
 ### Purpose
 
-Use for raw, mechanical interfaces that should feel like industrial print, telemetry, or a declassified operating console.
+Names the realized look for raw, mechanical interfaces that read as industrial print, telemetry, or a declassified operating console, so a deliberate move off it reads as a choice.
 
 ### Usage
 
-Apply this preset as a citeable starting cue, then adapt it to the product context instead of treating it as a fixed template. Use one preset as the dominant aesthetic per direction; if combining cues, name this as the primary preset and keep borrowed cues sparse.
+Cite this as the realized default to critique against at the critique step, then take the one justified aesthetic risk away from it. It is a constraint to deviate from, never a fixed template, never a preset to drop onto a brief, and never an option surfaced to the user.
 
 ---
 

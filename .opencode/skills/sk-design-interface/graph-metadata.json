@@ -119,6 +119,7 @@
       ".opencode/skills/sk-design-interface/references/design-process/real_ui_loop.md",
       ".opencode/skills/sk-design-interface/references/design-process/variation_diversity.md",
       ".opencode/skills/sk-design-interface/references/design-grounding/design_references_mcp.md",
+      ".opencode/skills/sk-design-interface/references/aesthetics/README.md",
       ".opencode/skills/sk-design-interface/references/mcp-tooling/mobbin_tools.md",
       ".opencode/skills/sk-design-interface/references/mcp-tooling/refero_tools.md",
       ".opencode/skills/sk-design-interface/feature_catalog/feature_catalog.md",
@@ -145,7 +146,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-design-interface vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design-process/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory can be sourced live from a real design system you own, used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/design-process/ux_quality_reference.md as paraphrased non-copyrightable facts. When a brief asks for two or more directions, references/design-process/variation_diversity.md applies a seed-of-thought debias so the set is not N safe copies of the median: a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
+    "causal_summary": "sk-design-interface vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design-process/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory can be sourced live from a real design system you own, used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/design-process/ux_quality_reference.md as paraphrased non-copyrightable facts. When a brief asks for two or more directions, references/design-process/variation_diversity.md applies a seed-of-thought debias so the set is not N safe copies of the median: a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. The references/aesthetics/ files (brutalist, minimalist, soft, apple-bento) are illustrative grounding cues for naming a realized default to critique against, strictly subordinate to grounding and the anti-default critique and never a chooser, preset, or pick-a-vibe axis, with real_ui_loop.md Section 8 owning that guardrail. The skill owns design judgment only: its allowed-tools are read-oriented (Read, Grep, Glob, Task), implementation is delegated to sk-code, screenshots to mcp-chrome-devtools, and the optional Mobbin/Refero real-world reference lookups route through mcp-code-mode rather than any in-skill Code Mode tool. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -153,6 +154,6 @@
       "LICENSE.txt"
     ],
     "created_at": "2026-06-13T00:00:00Z",
-    "last_updated_at": "2026-06-14T14:00:00Z"
+    "last_updated_at": "2026-06-25T00:00:00Z"
   }
 }

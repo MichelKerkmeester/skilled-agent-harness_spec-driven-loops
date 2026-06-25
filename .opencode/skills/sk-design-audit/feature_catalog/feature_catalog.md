@@ -6,7 +6,7 @@ trigger_phrases:
   - "design audit capabilities"
   - "design QA inventory"
 last_updated: "2026-06-25"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-design-audit: Feature Catalog
@@ -17,7 +17,10 @@ version: 1.0.0.0
 | --- | --- | --- |
 | Audit contract | Provides P0-P3 severity, `/20` score, findings schema, and evidence rules | [`01--audit-contract/audit-contract.md`](01--audit-contract/audit-contract.md) |
 | Accessibility and performance | Reviews WCAG, keyboard, focus, forms, motion jank, loading, and rendering performance | [`02--accessibility-performance/accessibility-performance.md`](02--accessibility-performance/accessibility-performance.md) |
-| Critique and hardening | Reviews cognitive load, heuristics, personas, edge cases, copy, anti-slop, and production resilience | [`03--critique-hardening/critique-hardening.md`](03--critique-hardening/critique-hardening.md) |
+| Critique and hardening | Reviews cognitive load, heuristics, personas, edge cases, copy, and production resilience | [`03--critique-hardening/critique-hardening.md`](03--critique-hardening/critique-hardening.md) |
+| Anti-patterns and production | Detects AI slop, theming drift, token misuse, pseudo-element issues, View Transitions, copy clarity, and production hardening gaps | [`03--critique-hardening/critique-hardening.md`](03--critique-hardening/critique-hardening.md) |
+
+All five scored dimensions map to a discoverable detail file: Accessibility and Performance to card 02; Responsive Design and Theming to the audit contract (card 01) plus the anti-patterns and production capability; Anti-Patterns to the anti-patterns and production capability.
 
 ## 2. CURRENT REALITY
 

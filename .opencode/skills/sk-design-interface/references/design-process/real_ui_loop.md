@@ -102,7 +102,7 @@ For open-ended visual work, it can help to sketch two or three brief-specific di
 
 ## 8. WHAT THIS LOOP DOES NOT ADD (GUARDRAILS)
 
-- No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist.
+- No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist. The illustrative cues in `../aesthetics/` are reference material for naming a realized default to critique against, subordinate to grounding, and are never surfaced as a chooser or a pick-a-vibe axis.
 - No converting a matched design system into a generator. It stays reuse-ground or critique-against, never a preset.
 - No multi-format export (PDF, PPTX, Canva), no live comment threads.
 - No unsanctioned write-back to a source system. Reuse stays read-only, and any mutating transport verb is a STOP-and-confirm point.

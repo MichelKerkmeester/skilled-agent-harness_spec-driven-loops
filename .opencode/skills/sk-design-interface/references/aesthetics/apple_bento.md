@@ -1,20 +1,20 @@
 ---
-title: Apple Bento Preset
-description: Visual-direction preset for Apple-style bento layouts with zero-gap cards, a restrained palette, and dense screenshot-ready metrics.
+title: Apple Bento Grounding Cue
+description: Illustrative grounding cue for the realized Apple-bento look (zero-gap cards, restrained palette, dense screenshot-ready metrics) to name and deviate from, never a preset.
 trigger_phrases:
-  - "apple bento preset"
+  - "apple bento realized look"
   - "bento grid layout"
   - "kpi card presentation"
   - "launch report layout"
   - "screenshot ready dashboard"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
-# Apple Bento Preset
+# Apple Bento Grounding Cue
 
-A compact visual-direction cue for screenshot-ready presentation layouts with Apple-like density and restraint.
+An illustrative cue for the realized Apple-bento look, screenshot-ready presentation layouts with Apple-like density and restraint, used to name the default and deviate from it.
 
 ---
 
@@ -22,11 +22,11 @@ A compact visual-direction cue for screenshot-ready presentation layouts with Ap
 
 ### Purpose
 
-Use for visual summaries, launch reports, KPI cards, and screenshot-ready presentation layouts with Apple-like density and restraint.
+Names the realized look for visual summaries, launch reports, KPI cards, and screenshot-ready presentation layouts with Apple-like density and restraint, so a deliberate move off it reads as a choice.
 
 ### Usage
 
-Apply this preset as a citeable starting cue, then adapt it to the product context instead of treating it as a fixed template. Use one preset as the dominant aesthetic per direction; if combining cues, name this as the primary preset and keep borrowed cues sparse.
+Cite this as the realized default to critique against at the critique step, then take the one justified aesthetic risk away from it. It is a constraint to deviate from, never a fixed template, never a preset to drop onto a brief, and never an option surfaced to the user.
 
 ---
 
@@ -56,6 +56,6 @@ Apply this preset as a citeable starting cue, then adapt it to the product conte
 
 ## 5. MOTION AND TEXTURE
 
-- This preset is mostly static and screenshot-oriented; prioritize clean composition over interaction.
+- This look is mostly static and screenshot-oriented; prioritize clean composition over interaction.
 - Optional crosshatch or subtle texture may sit behind light cards at very low opacity.
 - Verification cue: no empty-feeling cards, no orphan pill rows, no broken grid gaps, and no clipped screenshot edges.

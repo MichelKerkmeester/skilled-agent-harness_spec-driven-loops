@@ -2,7 +2,10 @@
 name: sk-design
 description: Design-family umbrella router that selects the smallest useful sk-design child and exposes shared design-base references.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+version: 1.0.1.0
+metadata:
+  author: OpenCode
+  family: sk-code
 ---
 
 <!-- Keywords: sk-design, design-family, umbrella-router, interface-design, design-tokens, motion-design, design-audit, design-spec -->
@@ -74,11 +77,11 @@ references/design_token_vocabulary.md
 
 ### Resource Loading Levels
 
-| Level       | When to Load             | Resources                              |
-| ----------- | ------------------------ | -------------------------------------- |
-| ALWAYS      | Every routing decision   | None; choose a child first             |
-| CONDITIONAL | If a child cites it      | Shared base reference for that intent  |
-| ON_DEMAND   | Only on explicit request | Full shared base vocabulary set        |
+| Level       | When to Load             | Resources                                     |
+| ----------- | ------------------------ | --------------------------------------------- |
+| ALWAYS      | Every routing decision   | `anti_slop_principles.md` shared baseline     |
+| CONDITIONAL | If a child cites it      | Shared base reference for that intent         |
+| ON_DEMAND   | Only on explicit request | Full shared base vocabulary set               |
 
 ### Domain-Based Routing
 
@@ -90,7 +93,7 @@ Route to one child first. Add another child only when the prompt has clearly sep
 | Color, type, layout, spacing, hierarchy, grids, themes, design tokens | `sk-design-foundations` | Owns static visual-system decisions and token vocabulary |
 | Animation, transitions, micro-interactions, motion timing, reduced motion | `sk-design-motion` | Owns temporal behavior and interaction feel |
 | Accessibility, performance, critique, slop detection, QA, hardening | `sk-design-audit` | Owns review, scoring, risk surfacing, and production hardening |
-| `DESIGN.md`, style reference, design-system extraction or authoring | `sk-design-spec` | Owns design artifacts that other skills consume |
+| `DESIGN.md`, style reference, design-system extraction or authoring | `sk-design-md-generator` | Owns design artifacts that other skills consume (a dedicated `sk-design-spec` child may split out later) |
 
 ### Routing Rules
 
@@ -143,7 +146,8 @@ ROUTE_TO_CHILD = {
     "FOUNDATIONS": "sk-design-foundations",
     "MOTION": "sk-design-motion",
     "AUDIT": "sk-design-audit",
-    "SPEC": "sk-design-spec",
+    # SPEC artifacts route to the current child; a dedicated sk-design-spec may split out later
+    "SPEC": "sk-design-md-generator",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -186,7 +190,8 @@ def classify_intents(user_request, task=None):
     ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
     primary, primary_score = ranked[0]
     if primary_score == 0:
-        return ("INTERFACE", None, scores)
+        # No design keyword matched: signal no intent so the router can disambiguate.
+        return (None, None, scores)
 
     secondary, secondary_score = ranked[1]
     if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
@@ -196,7 +201,7 @@ def classify_intents(user_request, task=None):
 def route_design_resources(user_request, task=None):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(user_request, task)
-    intents = [primary] + ([secondary] if secondary else [])
+    intents = [i for i in (primary, secondary) if i]
     routing_key = get_routing_key(task, intents)
     children = [ROUTE_TO_CHILD[i] for i in intents if i in ROUTE_TO_CHILD]
     loaded = []
@@ -211,7 +216,8 @@ def route_design_resources(user_request, task=None):
 
     load_if_available(DEFAULT_RESOURCE)
     baseline_count = len(loaded)
-    if max(scores.values() or [0]) < 0.5:
+    # No design keyword scored: ask for the dominant intent instead of guessing a child.
+    if not intents:
         return {
             "routing_key": routing_key,
             "intents": intents,
@@ -237,7 +243,14 @@ def route_design_resources(user_request, task=None):
             "resources": loaded,
         }
 
-    return {"routing_key": routing_key, "intents": intents, "intent_scores": scores, "route_to": children, "resources": loaded}
+    return {
+        "routing_key": routing_key,
+        "intents": intents,
+        "intent_scores": scores,
+        "route_to": children,
+        "load_level": LOAD_LEVELS.get(primary, "STANDARD"),
+        "resources": loaded,
+    }
 ```
 
 ---
@@ -330,7 +343,7 @@ Shared design-base references:
 ### Child Skills
 
 - `sk-design-interface`: direction, distinctive UI build judgment, interface writing.
-- `sk-design-spec`: `DESIGN.md` extraction and authoring; currently represented by `sk-design-md-generator` until the spec child is fully onboarded.
+- `sk-design-md-generator`: `DESIGN.md` extraction and authoring; owns design artifacts other skills consume. A dedicated `sk-design-spec` child may split this responsibility out later.
 - `sk-design-foundations`: color, typography, layout, responsive systems, tokens.
 - `sk-design-motion`: animation, transitions, micro-interactions, temporal feel.
 - `sk-design-audit`: accessibility, performance, critique, hardening, production readiness.
