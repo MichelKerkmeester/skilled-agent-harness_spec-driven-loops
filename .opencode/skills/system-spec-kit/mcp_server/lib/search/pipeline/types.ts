@@ -228,6 +228,7 @@ export interface PipelineConfig {
   // Routing
   artifactRouting?: ArtifactRoutingConfig;
   queryPlan?: QueryPlan;
+  retrievalLevel?: 'local' | 'global' | 'auto';
 
   // Trace
   trace?: RetrievalTrace;

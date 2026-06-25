@@ -1188,6 +1188,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableSessionBoost,
     enableCausalBoost,
     includeTrace,
+    retrievalLevel,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
@@ -1242,6 +1243,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       intentWeights: toIntentWeightsConfig(intentWeights),
       artifactRouting: artifactRouting as unknown as PipelineConfig['artifactRouting'],
       queryPlan,
+      retrievalLevel,
       trace,
     };
 
@@ -1394,6 +1396,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       },
       pipelineMetadata: pipelineResult.metadata,
       qualityGapFallback: qualityFallback,
+      retrievalLevel,
+      retrievalScope: retrievalLevel === 'global' ? 'community' : 'entity',
     };
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;

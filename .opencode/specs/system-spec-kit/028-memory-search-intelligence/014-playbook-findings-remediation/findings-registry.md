@@ -18,8 +18,9 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - B5 contextual-tree header wired via `applyContextualTreeHeader` + call site in `formatters/search-results.ts`. Dedicated header-by-mode test still to add. Status: fixed (test follow-up).
 - Verification: full blast-radius sweep (memory-search, search-results, hybrid-search, stage1, graph-lifecycle, scoring, composite, surrogates, reconsolidation, adaptive) = 47 files, 1165 passed, 0 failed. Comment hygiene clean. Alignment drift 0 errors. gpt-5.5 dispatch was cut at the cap mid-B5 but all five call sites landed; worktree node_modules workspace resolution had to be repaired to run the integration suites.
 
-## Cluster C. retrievalLevel not honored (P1)
-- C1 `retrievalLevel: local|global|auto` documented in `tool-schemas.ts` but the runtime handler ignores it. Wire the handler to the enum. Covers dual-level-retrieval and search-pipeline-safety. Status: todo.
+## Cluster C. retrievalLevel not honored (P1) — FIXED
+- C1 `retrievalLevel: local|global|auto` is now honored end to end. Handler/pipeline branch on it (`handlers/memory-search.ts`, `lib/search/pipeline/stage1-candidate-gen.ts`, `types.ts`, `search-utils.ts`); cache keys include retrievalLevel so levels cannot cross-contaminate; omitted defaults to auto. The strict public input schema (`schemas/tool-input-schemas.ts`) was missing the param so strict validation rejected it pre-handler — added the zod field + allow-list entry (closed directly rather than re-dispatching for a two-line mirror gpt-5.5 had correctly flagged as out of its granted scope). Covers dual-level-retrieval and search-pipeline-safety. Status: fixed.
+- Verification: retrieval-level + handler + tool-input-schema + memory-search suites = 6 files, 155 passed. Mutation check confirmed the distinguishing test fails when the global branch is disabled. typecheck exit 0. Comment hygiene clean. Follow-up: add an explicit strict-schema-accepts-retrievalLevel assertion.
 
 ## Cluster D. Ordering (P1)
 - D1 F13 `twoPhaseRetrieval()` sorts by individual score, not folder rank. Make folder rank the primary sort key. Status: todo.
