@@ -96,6 +96,14 @@ interface RecordLineageTransitionOptions {
 
 const MAX_LINEAGE_VERSION_RETRIES = 3;
 
+function getTableColumns(database: Database.Database, tableName: string): Set<string> {
+  return new Set(
+    (database.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name?: string }>)
+      .map((column) => column.name)
+      .filter((name): name is string => typeof name === 'string' && name.length > 0),
+  );
+}
+
 interface RecordedLineageTransition {
   logicalKey: string;
   versionNumber: number;
@@ -1453,8 +1461,10 @@ export function retirePredecessorForActiveReindex(
   database: Database.Database,
   predecessorMemoryId: number,
 ): RetiredPredecessorCarry | null {
+  const memoryColumns = getTableColumns(database, 'memory_index');
+  const sourceKindExpression = memoryColumns.has('source_kind') ? 'source_kind' : 'NULL AS source_kind';
   const predecessor = database
-    .prepare('SELECT importance_tier, source_kind FROM memory_index WHERE id = ?')
+    .prepare(`SELECT importance_tier, ${sourceKindExpression} FROM memory_index WHERE id = ?`)
     .get(predecessorMemoryId) as { importance_tier: string | null; source_kind: string | null } | undefined;
   if (!predecessor) {
     return null;
