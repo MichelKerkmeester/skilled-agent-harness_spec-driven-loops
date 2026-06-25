@@ -21,6 +21,7 @@ import { extractHeadings, extractAliases, extractRelationPhrases, extractCodeFen
   createTypedEdges as _createTypedEdgesWithCallback, EXPLICIT_ONLY_EVIDENCE } from './deterministic-extractor.js';
 import type { DeterministicEdge, WriteEdgePayload } from './deterministic-extractor.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
+import { generateSurrogates, storeSurrogates } from './query-surrogates.js';
 import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
@@ -536,6 +537,16 @@ export function onIndex(
   try {
     const memoryIdStr = String(memoryId);
     const edges: DeterministicEdge[] = [];
+
+    try {
+      const surrogates = generateSurrogates(content, `Memory ${memoryId}`);
+      if (surrogates) {
+        storeSurrogates(db, memoryId, surrogates);
+      }
+    } catch (surrogateError: unknown) {
+      const message = surrogateError instanceof Error ? surrogateError.message : String(surrogateError);
+      logger.warn('query surrogate storage failed', { memoryId, message });
+    }
 
     // Extract headings → create heading_link edges to the memory node
     const headings = extractHeadings(content);

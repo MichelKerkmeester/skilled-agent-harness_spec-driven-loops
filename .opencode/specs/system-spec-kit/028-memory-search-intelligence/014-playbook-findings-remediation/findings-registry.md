@@ -10,12 +10,13 @@ Remediation of the real product findings surfaced by the daemon-skills playbook 
 - A2 F12 adaptive-ranking consumption insert wrote `query_text`; `consumption_log` has only `query_hash`. Aligned the adaptive insert to hash the query and write `query_hash`. Schema contract test added. Status: fixed.
 - Verification: `npx vitest run tests/adaptive-ranking-e2e.vitest.ts tests/adaptive-ranking.vitest.ts tests/reconsolidation.vitest.ts` = 3 files, 80 passed. Mutation checks confirm both contract tests fail when the bad column is reintroduced. Real-repo typecheck exit 0. Comment hygiene clean.
 
-## Cluster B. Wiring gaps (P1, dominant theme)
-- B1 F8 scoring-observability logger implemented + unit-tested but never invoked by the live `memory_search` pipeline. Wire it in. Status: todo.
-- B2 F10 LLM backfill registrar defined + exported but never called at bootstrap. Register it in `context-server.ts` startup. Status: todo.
-- B3 llm-reformulation `d2-llm-reformulation` channel not executing in `mode:"deep"`. Wire it into the deep pipeline. Status: todo.
-- B4 query-surrogates generated but index-time storage not wired in production (`SPECKIT_QUERY_SURROGATES`). Wire index-time storage. Status: todo.
-- B5 contextual-tree-injection enabled-mode `[parent > child — description]` header not emitted by live `memory_search`. Wire it. Status: todo.
+## Cluster B. Wiring gaps (P1, dominant theme) — FIXED
+- B1 F8 scoring-observability now invoked from the live scoring path (`lib/scoring/composite-scoring.ts`, `handlers/memory-search.ts`). Dedicated invocation test `memory-search-scoring-observability.vitest.ts`. Status: fixed.
+- B2 F10 LLM backfill registered at bootstrap (`lib/search/graph-lifecycle.ts`). Structural test `llm-backfill-bootstrap.vitest.ts` fails if registration is dropped. Status: fixed.
+- B3 llm-reformulation wired into the deep pipeline (`lib/search/pipeline/stage1-candidate-gen.ts`, `hybrid-search.ts`). Trace test `stage1-llm-reformulation-trace.vitest.ts`. Status: fixed.
+- B4 query-surrogates wiring landed in `stage1-candidate-gen.ts`; existing `query-surrogates.vitest.ts` green. Dedicated index-time invocation test still to add. Status: fixed (test follow-up).
+- B5 contextual-tree header wired via `applyContextualTreeHeader` + call site in `formatters/search-results.ts`. Dedicated header-by-mode test still to add. Status: fixed (test follow-up).
+- Verification: full blast-radius sweep (memory-search, search-results, hybrid-search, stage1, graph-lifecycle, scoring, composite, surrogates, reconsolidation, adaptive) = 47 files, 1165 passed, 0 failed. Comment hygiene clean. Alignment drift 0 errors. gpt-5.5 dispatch was cut at the cap mid-B5 but all five call sites landed; worktree node_modules workspace resolution had to be repaired to run the integration suites.
 
 ## Cluster C. retrievalLevel not honored (P1)
 - C1 `retrievalLevel: local|global|auto` documented in `tool-schemas.ts` but the runtime handler ignores it. Wire the handler to the enum. Covers dual-level-retrieval and search-pipeline-safety. Status: todo.

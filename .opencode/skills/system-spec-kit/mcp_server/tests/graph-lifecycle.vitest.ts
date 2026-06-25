@@ -25,6 +25,7 @@ import {
   EXPLICIT_ONLY_EVIDENCE,
   __testables,
 } from '../lib/search/graph-lifecycle';
+import { loadSurrogates } from '../lib/search/surrogate-storage';
 
 import type {
   GraphRefreshMode,
@@ -647,6 +648,7 @@ describe('onIndex — Integration', () => {
     delete process.env.SPECKIT_ENTITY_LINKING;
     delete process.env.SPECKIT_LLM_GRAPH_BACKFILL;
     delete process.env.SPECKIT_GRAPH_REFRESH_MODE;
+    delete process.env.SPECKIT_QUERY_SURROGATES;
   });
 
   it('returns skipped=true when SPECKIT_ENTITY_LINKING is false', () => {
@@ -676,6 +678,20 @@ describe('onIndex — Integration', () => {
       `SELECT relation FROM causal_edges WHERE source_id = '1' AND relation = 'heading_link'`
     ).get() as { relation: string } | undefined;
     expect(edge?.relation).toBe('heading_link');
+  });
+
+  it('stores query surrogates at index time when enabled', () => {
+    process.env.SPECKIT_QUERY_SURROGATES = 'true';
+    const content = '## Recall Strategy\n\nThe search pipeline uses Reciprocal Rank Fusion (RRF) for ranking.';
+    insertMemory(db, 20, 'specs/020-surrogates', content);
+
+    const result = onIndex(db, 20, content);
+    const stored = loadSurrogates(db, 20);
+
+    expect(result.skipped).toBe(false);
+    expect(stored).not.toBeNull();
+    expect(stored?.aliases).toContain('RRF');
+    expect(stored?.headings).toContain('Recall Strategy');
   });
 
   it('creates technology_link edges for code fences', () => {

@@ -1319,6 +1319,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       const seeds = cheapSeedRetrieve(query, { limit: 3 });
       const reform = await llm.rewrite({ q: query, seeds, mode: 'step_back+corpus' });
       const allQueries = fanout([query, reform.abstract, ...reform.variants]);
+      let reformMergedCount = 0;
 
       if (allQueries.length > 1) {
         const reformEmbedding: Float32Array | number[] | null =
@@ -1366,23 +1367,23 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
                 rows,
               };
             });
-            const reformMergedCount = filteredReformSets.reduce((sum, batch) => sum + batch.rows.length, 0);
+            reformMergedCount = filteredReformSets.reduce((sum, batch) => sum + batch.rows.length, 0);
             candidates = mergeCandidateBatches(filteredReformSets, {
               seedCandidates: candidates,
               seedLabel: query,
             });
             channelCount += allQueries.length - 1; // discount original (already counted)
-
-            if (trace) {
-              addTraceEntry(trace, 'candidate', allQueries.length - 1, reformMergedCount, 0, {
-                channel: 'd2-llm-reformulation',
-                abstract: reform.abstract,
-                variantCount: reform.variants.length,
-                fanoutCount: allQueries.length,
-              });
-            }
           }
         }
+      }
+
+      if (trace) {
+        addTraceEntry(trace, 'candidate', Math.max(0, allQueries.length - 1), reformMergedCount, 0, {
+          channel: 'd2-llm-reformulation',
+          abstract: reform.abstract,
+          variantCount: reform.variants.length,
+          fanoutCount: allQueries.length,
+        });
       }
     } catch (reformErr: unknown) {
       const reformMsg = reformErr instanceof Error ? reformErr.message : String(reformErr);

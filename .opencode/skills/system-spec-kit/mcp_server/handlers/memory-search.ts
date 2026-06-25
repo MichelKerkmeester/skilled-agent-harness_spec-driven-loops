@@ -84,6 +84,7 @@ import {
   attachSessionTransitionTrace,
   type SessionTransitionTrace,
 } from '../lib/search/session-transition.js';
+import { applyPostProcessingAndObserve } from '../lib/scoring/composite-scoring.js';
 
 // Mode-Aware Response Shape
 import {
@@ -684,6 +685,27 @@ function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
   const total = results.length;
   results.forEach((result, index) => {
     result.finalRankScore = calculateFinalRankScore(total, index);
+  });
+}
+
+function applySearchScoringObservability(results: SessionAwareResult[]): SessionAwareResult[] {
+  return results.map((result) => {
+    const row = result as Record<string, unknown>;
+    const currentScore = finiteNumber(row.score)
+      ?? finiteNumber(row.intentAdjustedScore)
+      ?? finiteNumber(row.rrfScore)
+      ?? resolveSearchScore(row);
+    if (currentScore === null) {
+      return result;
+    }
+
+    const observedScore = applyPostProcessingAndObserve(currentScore, row, 'ms');
+    return {
+      ...result,
+      score: observedScore,
+      rrfScore: typeof row.rrfScore === 'number' ? observedScore : row.rrfScore,
+      intentAdjustedScore: typeof row.intentAdjustedScore === 'number' ? observedScore : row.intentAdjustedScore,
+    };
   });
 }
 
@@ -1354,6 +1376,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (folderBoostRankingApplied) {
       stampFinalRankScores(resultsForFormatting);
     }
+
+    resultsForFormatting = applySearchScoringObservability(resultsForFormatting);
 
     // Build extra data from pipeline metadata for response formatting
     const lexicalCapability = getLastLexicalCapabilitySnapshot();

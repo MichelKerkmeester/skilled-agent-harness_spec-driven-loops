@@ -64,6 +64,7 @@ import {
 import {
   isEnvelopeFidelityEnabled,
   isCiteWithCaveatEnabled,
+  isContextHeadersEnabled,
 } from '../lib/search/search-flags.js';
 
 // Consolidated path validation from core/config.js (single source of truth)
@@ -101,6 +102,7 @@ export interface RawSearchResult {
   importance_tier?: string;
   triggerPhrases?: string | string[];
   created_at?: string;
+  contextualTreeHeader?: string;
   [key: string]: unknown;
 }
 
@@ -312,6 +314,21 @@ export function renderRecalledMemoryContent(content: string, sourceKind: unknown
     escapeRecalledMemoryText(content),
     `</${RECALLED_MEMORY_CONTEXT_TAG}>`,
   ].join('\n');
+}
+
+function applyContextualTreeHeader(content: string, rawResult: RawSearchResult): string {
+  if (!isContextHeadersEnabled()) {
+    return content;
+  }
+
+  const header = typeof rawResult.contextualTreeHeader === 'string'
+    ? rawResult.contextualTreeHeader.trim()
+    : '';
+  if (header.length === 0 || content.startsWith(`${header}\n`)) {
+    return content;
+  }
+
+  return `${header}\n${content}`;
 }
 
 // Typed parser for the `triggerPhrases` column on raw search
@@ -1151,8 +1168,9 @@ export async function formatSearchResults(
           }
         }
 
+        const contentWithContext = applyContextualTreeHeader(content, rawResult);
         formattedResult.content = renderRecalledMemoryContent(
-          content,
+          contentWithContext,
           rawResult.source_kind ?? rawResult.sourceKind,
         );
       } catch (err: unknown) {
