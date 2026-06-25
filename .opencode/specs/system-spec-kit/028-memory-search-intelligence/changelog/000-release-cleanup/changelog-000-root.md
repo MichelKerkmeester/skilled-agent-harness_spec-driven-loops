@@ -33,6 +33,7 @@ This rollup reflects the executed state of the release-cleanup children. All nin
 | [`007-agents`](./changelog-005-007-agents.md) | Complete | Rewrote three agent mirror READMEs and localized two Claude path-convention lines after verifying all agent bodies (commit 03f93fef81). |
 | [`008-agents-md`](./changelog-005-008-agents-md.md) | Complete | Corrected the root AGENTS.md mk-spec-memory tool count from 37 to 39 and verified both runtime mirrors (commit 04f45c8f7a). |
 | [`009-changelogs-constitutional-and-templates`](./changelog-005-009-changelogs-constitutional-and-templates.md) | Complete | Fixed four factual drifts across constitutional docs and templates, changelog entries left historical (commit df7f733651). |
+| [`012-playbook-findings-remediation`](./changelog-000-012-playbook-findings-remediation.md) | Complete, not yet merged | Remediated the about twenty-two real findings from the daemon-skills playbook validation in eight clusters A through H, verified per cluster, on branch wt/0008-findings-remediation (commits adbcc65e83 through 64d064d868). |
 
 ### Added
 
