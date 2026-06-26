@@ -86,6 +86,7 @@ export function isGraphRefreshEnabled(): boolean {
 import {
   isGraphRefreshDisabled,
   isLlmGraphBackfillEnabled,
+  isQuerySurrogatesEnabled,
 } from './search-flags.js';
 export { isLlmGraphBackfillEnabled };
 
@@ -520,6 +521,24 @@ export function onIndex(
     skipReason,
   });
 
+  // Query-surrogate STORAGE shares the SPECKIT_QUERY_SURROGATES gate with query-time
+  // matching (stage1-candidate-gen), so it runs independently of the graph-refresh and
+  // entity-linking guards below — those govern only deterministic edge construction.
+  // Subordinating surrogate writes to those flags meant a supported config
+  // (SPECKIT_ENTITY_LINKING=false + SPECKIT_QUERY_SURROGATES=true) stored zero surrogates
+  // while the query path always queried them.
+  if (isQuerySurrogatesEnabled() && content && content.trim().length > 0) {
+    try {
+      const surrogates = generateSurrogates(content, `Memory ${memoryId}`);
+      if (surrogates) {
+        storeSurrogates(db, memoryId, surrogates);
+      }
+    } catch (surrogateError: unknown) {
+      const message = surrogateError instanceof Error ? surrogateError.message : String(surrogateError);
+      logger.warn('query surrogate storage failed', { memoryId, message });
+    }
+  }
+
   if (isGraphRefreshDisabled()) {
     return buildSkipped('graph_refresh_disabled');
   }
@@ -537,16 +556,6 @@ export function onIndex(
   try {
     const memoryIdStr = String(memoryId);
     const edges: DeterministicEdge[] = [];
-
-    try {
-      const surrogates = generateSurrogates(content, `Memory ${memoryId}`);
-      if (surrogates) {
-        storeSurrogates(db, memoryId, surrogates);
-      }
-    } catch (surrogateError: unknown) {
-      const message = surrogateError instanceof Error ? surrogateError.message : String(surrogateError);
-      logger.warn('query surrogate storage failed', { memoryId, message });
-    }
 
     // Extract headings → create heading_link edges to the memory node
     const headings = extractHeadings(content);

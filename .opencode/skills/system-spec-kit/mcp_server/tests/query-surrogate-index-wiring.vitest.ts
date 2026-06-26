@@ -101,4 +101,27 @@ describe('query surrogate index-time wiring', () => {
     expect(result.skipped).toBe(false);
     expect(storeSurrogatesRawMock).not.toHaveBeenCalled();
   });
+
+  it('stores surrogates even when entity-linking is disabled — storage shares only the surrogate gate', () => {
+    // The supported config SPECKIT_QUERY_SURROGATES=true + SPECKIT_ENTITY_LINKING=false:
+    // edge construction is skipped, but surrogate storage must still run, or the query
+    // path (gated only by SPECKIT_QUERY_SURROGATES) would match surrogates never written.
+    process.env.SPECKIT_QUERY_SURROGATES = 'true';
+    process.env.SPECKIT_ENTITY_LINKING = 'false';
+
+    const result = onIndex(
+      db,
+      44,
+      '## Recall Strategy\n\nReciprocal Rank Fusion (RRF) improves hybrid retrieval.',
+    );
+
+    expect(result.skipped).toBe(true);
+    expect(result.skipReason).toBe('entity_linking_disabled');
+    expect(storeSurrogatesRawMock).toHaveBeenCalledOnce();
+    expect(storeSurrogatesRawMock).toHaveBeenCalledWith(
+      db,
+      44,
+      expect.objectContaining({ aliases: expect.arrayContaining(['RRF']) }),
+    );
+  });
 });
