@@ -15,6 +15,7 @@ _memory:
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: Dark Flag Graduation Suite
 
 ## 1. METADATA

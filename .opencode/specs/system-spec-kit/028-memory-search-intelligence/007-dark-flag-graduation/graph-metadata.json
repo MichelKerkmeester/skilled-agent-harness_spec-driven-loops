@@ -95,15 +95,15 @@
     ],
     "causal_summary": "This cycle added 41 feature flags",
     "created_at": "2026-06-24T05:05:10.913Z",
-    "last_save_at": "2026-06-25T18:01:44.321Z",
+    "last_save_at": "2026-06-26T12:32:17.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6d09c68d972d9d99e440e1f1ef11636600545cd27fe314189d80f5bc900e69d9",
+    "source_fingerprint": "sha256:6238dc06fe278ca8e74d565fc921264dd51b535a926e614b0a7a7163ff0f6bb4",
     "source_doc_hashes": {
-      "spec.md": "65344db1ea97e00b92fade54eecda161e0330c63f0bef27b4d1dafc3aba9b9fc"
+      "spec.md": "32d0ced8a081ea8dd4562aba39492d0c66da6558574a88115f19f6116db53318"
     },
     "last_active_child_id": null,
     "last_active_at": null
