@@ -4,7 +4,7 @@
 
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
@@ -177,6 +177,7 @@ const MAX_DURABLE_DIAGNOSTIC_RECORDS = 200;
 const MAX_DURABLE_OUTCOME_RECORDS = 200;
 const DURABLE_METRICS_ROOT = join(tmpdir(), 'speckit-skill-advisor-metrics');
 let dirReady = false;
+const writeQueues = new Map<string, Promise<void>>();
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -218,7 +219,8 @@ function sanitizeSkillLabel(value: unknown): string | undefined {
     return undefined;
   }
   const compact = value.replace(/[\n\r]/g, ' ').replace(/\s+/g, ' ').trim();
-  return compact ? compact.slice(0, 160) : undefined;
+  const bounded = compact.slice(0, 160);
+  return /^[a-z0-9:_-]+$/.test(bounded) ? bounded : undefined;
 }
 
 const MAX_CONTEXT_TAGS = 16;
@@ -295,10 +297,23 @@ function readJsonlLines(path: string): string[] {
 
 async function writeBoundedJsonl(path: string, line: string, maxRecords: number, options: { requireDebug?: boolean } = {}): Promise<void> {
   if (options.requireDebug !== false && !process.env.SKILL_ADVISOR_DEBUG) return;
-  await ensureParentDir(path);
-  const lines = readJsonlLines(path);
-  lines.push(line);
-  await writeFile(path, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+  const previous = writeQueues.get(path) ?? Promise.resolve();
+  const next = previous.then(async () => {
+    await ensureParentDir(path);
+    // O_APPEND of one sub-PIPE_BUF line is atomic, so the add never loses a record
+    // under concurrency. Bounding stays correct under the same per-path queue: trim
+    // only once the file drifts past 1.5x the cap, so the common path is a cheap
+    // append and the read-trim-rewrite amortizes to once per ~0.5*maxRecords writes.
+    await appendFile(path, `${line}\n`, 'utf8');
+    if (maxRecords > 0) {
+      const lines = readJsonlLines(path);
+      if (lines.length > Math.floor(maxRecords * 1.5)) {
+        await writeFile(path, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+      }
+    }
+  });
+  writeQueues.set(path, next.catch(() => undefined));
+  await next;
 }
 
 function tryParseJsonLine(line: string): unknown | null {

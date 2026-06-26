@@ -159,9 +159,10 @@ function skillLabelFor(result: AdvisorHookResult): string | null {
   return result.recommendations[0]?.skill ?? null;
 }
 
-function emitDiagnostic(
+export function emitDiagnostic(
   record: HookDiagnosticInput,
   writeDiagnostic: (line: string) => void = (line) => process.stderr.write(`${line}\n`),
+  persistDiagnostic: typeof persistAdvisorHookDiagnosticRecord = persistAdvisorHookDiagnosticRecord,
 ): void {
   try {
     const diagnosticRecord = createAdvisorHookDiagnosticRecord({
@@ -170,7 +171,7 @@ function emitDiagnostic(
     });
     const line = serializeAdvisorHookDiagnosticRecord(diagnosticRecord);
     writeDiagnostic(line);
-    persistAdvisorHookDiagnosticRecord(record.workspaceRoot, diagnosticRecord);
+    persistDiagnostic(record.workspaceRoot, diagnosticRecord).catch(() => undefined);
   } catch {
     // Diagnostics must never affect hook behavior.
   }

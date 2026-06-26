@@ -45,14 +45,7 @@ function writeJsonAtomic(filePath: string, payload: Record<string, unknown>): vo
 }
 
 export function rollbackDerivedBlock(metadata: Record<string, unknown>): RollbackResult {
-  const {
-    derived: _derived,
-    lifecycle_status: _lifecycleStatus,
-    redirect_to: _redirectTo,
-    lifecycleStatus: _camelLifecycleStatus,
-    redirectTo: _camelRedirectTo,
-    ...rest
-  } = metadata;
+  const { derived: _derived, ...rest } = metadata;
   return {
     metadata: {
       ...rest,

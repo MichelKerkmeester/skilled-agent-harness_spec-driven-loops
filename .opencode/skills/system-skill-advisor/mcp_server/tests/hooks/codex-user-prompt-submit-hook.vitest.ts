@@ -4,6 +4,7 @@ import { performance } from 'node:perf_hooks';
 import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  emitDiagnostic,
   handleCodexUserPromptSubmit,
   parseCodexUserPromptSubmitInput,
   parseCodexUserPromptSubmitInputSources,
@@ -269,5 +270,26 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect((parsed.hookSpecificOutput as { additionalContext?: string }).additionalContext).toMatch(/^Advisor: (live|stale);/);
     expect(diagnostic.status).toBe('ok');
     expect(diagnostic.freshness).toMatch(/^(live|stale)$/);
+  });
+
+  it('swallows async diagnostic persistence failures', async () => {
+    const unhandled: unknown[] = [];
+    const listener = (reason: unknown) => unhandled.push(reason);
+    process.on('unhandledRejection', listener);
+    try {
+      emitDiagnostic({
+        workspaceRoot: '/workspace/project',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 1,
+        cacheHit: false,
+      }, () => undefined, async () => {
+        throw new Error('durable write failed');
+      });
+      await new Promise((resolve) => setImmediate(resolve));
+      expect(unhandled).toEqual([]);
+    } finally {
+      process.off('unhandledRejection', listener);
+    }
   });
 });

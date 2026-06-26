@@ -57,6 +57,15 @@ export function sanitizeMetadataStringArray(value: readonly string[], sourcePath
 export function sanitizeDerivedMetadata(value: JsonRecord | null, sourcePath: string): JsonRecord | null {
   if (value === null) return null;
   const sanitized: JsonRecord = { ...value };
+  for (const key of ['trigger_phrases', 'key_topics', 'entities']) {
+    const raw = value[key];
+    if (Array.isArray(raw)) {
+      sanitized[key] = sanitizeMetadataStringArray(
+        raw.filter((entry): entry is string => typeof entry === 'string'),
+        sourcePath,
+      );
+    }
+  }
   if (Array.isArray(value.source_docs)) {
     sanitized.source_docs = sanitizeMetadataStringArray(
       value.source_docs.filter((entry): entry is string => typeof entry === 'string'),

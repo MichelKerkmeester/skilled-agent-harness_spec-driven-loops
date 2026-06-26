@@ -354,10 +354,10 @@ describe('027/002 derived metadata acceptance', () => {
     expect(result.metadata.schema_version).toBe(1);
     expect(result.metadata.intent_signals).toEqual(['author signal']);
     expect(result.metadata.derived).toBeUndefined();
-    expect(result.metadata.lifecycle_status).toBeUndefined();
-    expect(result.metadata.redirect_to).toBeUndefined();
-    expect(result.metadata.lifecycleStatus).toBeUndefined();
-    expect(result.metadata.redirectTo).toBeUndefined();
+    expect(result.metadata.lifecycle_status).toBe('deprecated');
+    expect(result.metadata.redirect_to).toBe('beta');
+    expect(result.metadata.lifecycleStatus).toBe('deprecated');
+    expect(result.metadata.redirectTo).toBe('beta');
     expect(result.reindexRequired).toBe(true);
   });
 
@@ -382,10 +382,10 @@ describe('027/002 derived metadata acceptance', () => {
     expect(result.removedDerived).toBe(true);
     expect(after.schema_version).toBe(1);
     expect(after.derived).toBeUndefined();
-    expect(after.lifecycle_status).toBeUndefined();
-    expect(after.redirect_to).toBeUndefined();
-    expect(after.lifecycleStatus).toBeUndefined();
-    expect(after.redirectTo).toBeUndefined();
+    expect(after.lifecycle_status).toBe('deprecated');
+    expect(after.redirect_to).toBe('beta');
+    expect(after.lifecycleStatus).toBe('deprecated');
+    expect(after.redirectTo).toBe('beta');
   });
 
   it('AC-6 routes successors by default and explicit old-name prompts with redirect metadata', () => {

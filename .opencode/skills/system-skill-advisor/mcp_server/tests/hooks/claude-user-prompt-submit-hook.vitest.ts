@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
+  emitDiagnostic,
   handleClaudeUserPromptSubmit,
   parseClaudeUserPromptSubmitInput,
   type ClaudeUserPromptSubmitInput,
@@ -223,5 +224,26 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       additionalContext: EXPECTED_ADVISOR_CONTEXT,
       stderrVisible: false,
     });
+  });
+
+  it('swallows async diagnostic persistence failures', async () => {
+    const unhandled: unknown[] = [];
+    const listener = (reason: unknown) => unhandled.push(reason);
+    process.on('unhandledRejection', listener);
+    try {
+      emitDiagnostic({
+        workspaceRoot: '/workspace/project',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 1,
+        cacheHit: false,
+      }, () => undefined, async () => {
+        throw new Error('durable write failed');
+      });
+      await new Promise((resolve) => setImmediate(resolve));
+      expect(unhandled).toEqual([]);
+    } finally {
+      process.off('unhandledRejection', listener);
+    }
   });
 });

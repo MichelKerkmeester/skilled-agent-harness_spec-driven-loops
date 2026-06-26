@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import {
   createCodexWrappedPrompt,
+  emitDiagnostic,
   handleCodexPromptWrapper,
 } from '../../../hooks/codex/prompt-wrapper.js';
 import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
@@ -103,5 +104,26 @@ describe('Codex prompt-wrapper fallback', () => {
   it('uses the markdown-comment preamble format', () => {
     expect(createCodexWrappedPrompt('hello', 'Advisor: live; use sk-code 0.91/0.23 pass.'))
       .toBe('<!-- advisor brief: Advisor: live; use sk-code 0.91/0.23 pass. -->\nhello');
+  });
+
+  it('swallows async diagnostic persistence failures', async () => {
+    const unhandled: unknown[] = [];
+    const listener = (reason: unknown) => unhandled.push(reason);
+    process.on('unhandledRejection', listener);
+    try {
+      emitDiagnostic({
+        workspaceRoot: '/workspace/project',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 1,
+        cacheHit: false,
+      }, () => undefined, async () => {
+        throw new Error('durable write failed');
+      });
+      await new Promise((resolve) => setImmediate(resolve));
+      expect(unhandled).toEqual([]);
+    } finally {
+      process.off('unhandledRejection', listener);
+    }
   });
 });
