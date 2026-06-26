@@ -84,7 +84,7 @@ import {
   attachSessionTransitionTrace,
   type SessionTransitionTrace,
 } from '../lib/search/session-transition.js';
-import { applyPostProcessingAndObserve } from '../lib/scoring/composite-scoring.js';
+import { shouldSample, logScoringObservation } from '../lib/telemetry/scoring-observability.js';
 
 // Mode-Aware Response Shape
 import {
@@ -688,25 +688,41 @@ function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
   });
 }
 
-function applySearchScoringObservability(results: SessionAwareResult[]): SessionAwareResult[] {
-  return results.map((result) => {
-    const row = result as Record<string, unknown>;
-    const currentScore = finiteNumber(row.score)
-      ?? finiteNumber(row.intentAdjustedScore)
-      ?? finiteNumber(row.rrfScore)
-      ?? resolveSearchScore(row);
-    if (currentScore === null) {
-      return result;
+export function applySearchScoringObservability(results: SessionAwareResult[]): SessionAwareResult[] {
+  // Record a sampled search-time scoring observation. This must NOT change the surfaced
+  // score. An earlier version re-ran the composite post-processing here, which re-applied
+  // the document-type multiplier and interference penalty to an already-final score and
+  // wrote the double-processed value back into every result, corrupting returned scores.
+  try {
+    if (!shouldSample()) {
+      return results;
     }
-
-    const observedScore = applyPostProcessingAndObserve(currentScore, row, 'ms');
-    return {
-      ...result,
-      score: observedScore,
-      rrfScore: typeof row.rrfScore === 'number' ? observedScore : row.rrfScore,
-      intentAdjustedScore: typeof row.intentAdjustedScore === 'number' ? observedScore : row.intentAdjustedScore,
-    };
-  });
+    for (const result of results) {
+      const row = result as Record<string, unknown>;
+      const currentScore = finiteNumber(row.score)
+        ?? finiteNumber(row.intentAdjustedScore)
+        ?? finiteNumber(row.rrfScore)
+        ?? resolveSearchScore(row);
+      if (currentScore === null) {
+        continue;
+      }
+      const createdAt = row.created_at as string | number | undefined;
+      const createdMs = createdAt ? new Date(createdAt).getTime() : Date.now();
+      logScoringObservation({
+        memoryId: (row.id as number) || 0,
+        queryId: `ms-${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        memoryAgeDays: Number.isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
+        interferenceApplied: false,
+        interferenceScore: (row.interference_score as number) || 0,
+        interferencePenalty: 0,
+        scoreBeforeBoosts: currentScore,
+        scoreAfterBoosts: currentScore,
+        scoreDelta: 0,
+      });
+    }
+  } catch { /* Telemetry must never affect results: fail-safe swallow */ }
+  return results;
 }
 
 function calculateFinalRankScore(total: number, index: number): number | null {

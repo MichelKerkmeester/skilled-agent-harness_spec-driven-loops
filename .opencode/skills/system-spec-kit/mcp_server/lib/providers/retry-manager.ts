@@ -884,11 +884,9 @@ function resetForRetry(id: number): boolean {
 ──────────────────────────────────────────────────────────────── */
 
 async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null = null): Promise<BatchResult> {
-  if (shutdownRequested && !backgroundJobInterval && (!retryAbortController || retryAbortController.signal.aborted)) {
-    shutdownRequested = false;
-    retryAbortController = new AbortController();
-  }
-
+  // Re-arming the retry pipeline is the job of startBackgroundJob/runBackgroundJob, which
+  // reset shutdownRequested on an intentional restart. Clearing it here would resurrect a
+  // requested shutdown and race retry writes against the database drain and WAL checkpoint.
   if (shutdownRequested || retryAbortController?.signal.aborted) {
     return { processed: 0, succeeded: 0, failed: 0, details: [] };
   }
@@ -1010,6 +1008,16 @@ function stopBackgroundJob(): boolean {
   backgroundJobRunning = false;
   console.error('[retry-manager] Background retry job stopped');
   return true;
+}
+
+// Test-only seam: re-arm the retry runtime after a prior test left a shutdown latch, so a
+// direct processRetryQueue call exercises the queue. Production re-arming flows through
+// runBackgroundJob, which performs the same reset on an intentional restart.
+export function __resetRetryRuntimeForTesting(): void {
+  shutdownRequested = false;
+  if (!retryAbortController || retryAbortController.signal.aborted) {
+    retryAbortController = new AbortController();
+  }
 }
 
 function isBackgroundJobRunning(): boolean {

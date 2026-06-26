@@ -43,8 +43,21 @@ vi.mock('../lib/code-graph-boundary.js', () => ({
   })),
 }));
 
-import { handleMemorySearch } from '../handlers/memory-search.js';
+import { handleMemorySearch, applySearchScoringObservability } from '../handlers/memory-search.js';
 import { getScoringStats, initScoringObservability, resetDb } from '../lib/telemetry/scoring-observability.js';
+
+describe('applySearchScoringObservability is observe-only', () => {
+  it('does not mutate surfaced scores via the doc-type multiplier or interference penalty', () => {
+    const input = [
+      { id: 1, score: 0.7, rrfScore: 0.7, document_type: 'spec' },
+      { id: 2, score: 0.3, document_type: 'scratch' },
+    ];
+    const out = applySearchScoringObservability(input as never);
+    expect(out[0].score).toBe(0.7);
+    expect(out[0].rrfScore).toBe(0.7);
+    expect(out[1].score).toBe(0.3);
+  });
+});
 
 function makePipelineResult() {
   return {

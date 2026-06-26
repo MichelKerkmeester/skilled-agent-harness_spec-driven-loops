@@ -628,6 +628,7 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
 
       it('T45e: pending lexical fallback drains through retry metadata, cache, and index refresh', async () => {
         const activeDb = getDbOrThrow();
+        mod.__resetRetryRuntimeForTesting();
         const content = `pending lexical fallback retry cache refresh ${Date.now()}`;
         const embedding = new Float32Array(vectorIndex.getEmbeddingDim());
         embedding[0] = 1;
