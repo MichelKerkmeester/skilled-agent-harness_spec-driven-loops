@@ -23,8 +23,6 @@
   "specId": "012",
   "folderSlug": "playbook-findings-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "000-release-cleanup"

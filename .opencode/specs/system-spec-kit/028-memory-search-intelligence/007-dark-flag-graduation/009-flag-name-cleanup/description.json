@@ -18,8 +18,6 @@
   "specId": "009",
   "folderSlug": "flag-name-cleanup",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "007-dark-flag-graduation"

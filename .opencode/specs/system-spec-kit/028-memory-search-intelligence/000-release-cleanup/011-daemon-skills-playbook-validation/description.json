@@ -21,8 +21,6 @@
   "specId": "011",
   "folderSlug": "daemon-skills-playbook-validation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "000-release-cleanup"

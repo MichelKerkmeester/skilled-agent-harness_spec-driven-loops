@@ -22,8 +22,6 @@
   "specId": "006",
   "folderSlug": "review-record-packet-type",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "006-review-remediation"

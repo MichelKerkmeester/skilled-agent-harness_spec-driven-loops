@@ -23,8 +23,6 @@
   "specId": "012",
   "folderSlug": "followup-deep-review",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "007-dark-flag-graduation"

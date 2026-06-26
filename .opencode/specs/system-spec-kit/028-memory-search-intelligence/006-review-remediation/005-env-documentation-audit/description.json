@@ -22,8 +22,6 @@
   "specId": "005",
   "folderSlug": "env-documentation-audit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
     "006-review-remediation"

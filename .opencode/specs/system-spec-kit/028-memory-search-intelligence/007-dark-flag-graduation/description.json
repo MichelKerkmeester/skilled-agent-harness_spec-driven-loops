@@ -11,8 +11,6 @@
   "specId": "007",
   "folderSlug": "dark-flag-graduation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence"
   ],
