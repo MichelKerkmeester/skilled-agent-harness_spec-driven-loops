@@ -1,0 +1,37 @@
+---
+title: Audit Corpus Map
+description: Source-to-guidance map for QA, critique, hardening, and production-readiness material distilled into audit.
+trigger_phrases:
+  - "audit corpus"
+  - "critique source map"
+  - "design QA sources"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
+# Audit Corpus Map
+
+This skill distills QA and critique sources into one cross-cutting mode child.
+
+## Source Files
+
+| Corpus file | Distilled into | Practical guidance kept |
+| --- | --- | --- |
+| `external/audit.md` | `audit_contract.md` | 5-dimension `/20` score, P0-P3 severities, findings schema |
+| `external/critique.md` | `critique_hardening.md` | independent assessment, anti-pattern verdict, heuristics, cognitive load, personas |
+| `external/polish.md` | `critique_hardening.md`, `anti_patterns_production.md` | design-system discovery, drift root cause, polish checklist, real evidence |
+| `external/harden.md` | `critique_hardening.md` | edge cases, errors, i18n, empty/loading states, resilience |
+| `external/optimize.md` | `accessibility_performance.md` | Core Web Vitals, loading, rendering, runtime and network performance (CWV modernized FID->INP on distillation) |
+| `external/fixing-accessibility.md` | `accessibility_performance.md` | accessible names, keyboard, focus, semantics, forms, announcements, contrast |
+| `external/fixing-motion-performance.md` | `accessibility_performance.md` | animation performance, scroll, paint, layers, blur, tool boundaries |
+| `external/clarify.md` | `anti_patterns_production.md` | UX writing, error copy, CTAs, empty states, terminology, localization |
+| `external/pseudo-elements.md` | `anti_patterns_production.md` | pseudo-element and View Transitions review rules |
+
+## Distillation Notes
+
+- Core Web Vitals were modernized during distillation: `external/optimize.md` still lists the deprecated First Input Delay (FID < 100ms), but `accessibility_performance.md` intentionally uses Interaction to Next Paint (INP < 200ms). Do not revert to FID from the stale corpus source.
+
+## Distillation Boundary
+
+This child reports and scores issues. Sibling skills own creation and repair guidance; implementation belongs to `sk-code` after the user accepts fixes.
