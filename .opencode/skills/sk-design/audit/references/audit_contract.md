@@ -55,7 +55,7 @@ Use this shape for actionable findings:
 - Category: Accessibility / Theming
 - Impact: Low-vision users may not read the primary action.
 - Recommended fix: Use semantic `text-on-accent` token with AA contrast, or darken foreground via OKLCH lightness.
-- Owner: `sk-design-foundations` for token choice; `sk-code` for implementation.
+- Owner: `foundations` for token choice; `sk-code` for implementation.
 ```
 
 ## 4. Evidence Rules

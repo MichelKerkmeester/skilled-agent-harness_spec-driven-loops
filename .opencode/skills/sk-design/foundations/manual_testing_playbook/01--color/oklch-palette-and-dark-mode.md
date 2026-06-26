@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 ## Expected Process
 
-1. Route to `foundations` rather than `sk-design-interface`.
+1. Route to `foundations` rather than `interface`.
 2. Load `references/color/oklch_workflow.md` and `references/color/palette_theming.md`.
 3. Produce semantic roles before values.
 4. State contrast and dark-mode rules.

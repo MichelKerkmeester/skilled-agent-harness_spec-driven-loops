@@ -11,7 +11,7 @@ version: 1.0.0.1
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
-> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `sk-design-interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `mcp-open-design` and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `sk-design-interface` consume.
+> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `mcp-open-design` and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `interface` consume.
 
 ---
 
@@ -42,7 +42,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 ### When NOT to Use
 
 **Skip this skill when:**
-- The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `sk-design-interface`. This skill captures; that skill creates.
+- The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
 - The target is an **Open Design project**. Use `mcp-open-design`.
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
@@ -319,7 +319,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 1. **NEVER estimate, round, or invent a hex, pixel, font-weight, shadow, or radius value in DESIGN.md.** Every value must trace back to a token in `tokens.json`. Even trivial-looking values like `1px` borders or `0.25rem` spacing must be confirmed.
 2. **NEVER include L4 (content) tokens in DESIGN.md.** These are image-derived or one-off values that do not represent the design system.
-3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `sk-design-interface`, `sk-code`, and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
+3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `interface`, `sk-code`, and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
 4. **NEVER skip validation before claiming a DESIGN.md is complete.** An unvalidated DESIGN.md is a draft. Validation errors must be resolved before completion.
 5. **NEVER write DESIGN.md without reading `tokens.json` first.** The markdown exists only as a faithful rendering of the token data; writing without the source data guarantees hallucination.
 
@@ -404,7 +404,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ### Cross-Workflow Contracts
 
-- **`sk-design-interface`** is the design-judgment skill. When a DESIGN.md extraction feeds into inventing new UI direction, load that skill. This skill provides the ground truth; `sk-design-interface` applies the taste.
+- **`interface`** is the design-judgment skill. When a DESIGN.md extraction feeds into inventing new UI direction, load that skill. This skill provides the ground truth; `interface` applies the taste.
 - **`sk-code`** consumes DESIGN.md as an implementation reference. The DESIGN.md produced by this skill is the contract that `sk-code` builds against — the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
 - **`mcp-figma`** and **`mcp-open-design`** are alternative extraction sources. When the user needs a DESIGN.md from a Figma file or Open Design project instead of a live URL, route to those transports. When the user needs a DESIGN.md from a live URL, this is the skill.
 - **`system-spec-kit`** applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
@@ -429,7 +429,7 @@ Examples: `references/examples/{stripe,vercel,linear,supabase}/` provide gold-st
 
 Scripts: the embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
 
-Related skills: `sk-design-interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
+Related skills: `interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
 
 Install guide: tool setup is `cd backend && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
 

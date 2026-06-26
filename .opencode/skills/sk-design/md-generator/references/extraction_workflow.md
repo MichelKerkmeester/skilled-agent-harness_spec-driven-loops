@@ -32,7 +32,7 @@ A `DESIGN.md` is only useful because it is hallucination-proof. That property ho
 
 - Running a full extraction (URL to validated `DESIGN.md`).
 - Deciding crawl depth, interaction capture, or output paths.
-- Handing a finished `DESIGN.md` to `sk-code` or `sk-design-interface`.
+- Handing a finished `DESIGN.md` to `sk-code` or `interface`.
 
 ---
 
@@ -94,5 +94,5 @@ Boundary tokens take the higher (more restrictive) class.
 | To | Contract |
 |----|----------|
 | `sk-code` | The `DESIGN.md` is the implementation contract - source of truth for colours, type, spacing, shadows, radii |
-| `sk-design-interface` | When the captured system feeds *new* distinctive direction, that skill owns the taste and anti-default judgment; this skill supplies ground truth |
+| `interface` | When the captured system feeds *new* distinctive direction, that skill owns the taste and anti-default judgment; this skill supplies ground truth |
 | `mcp-figma` / `mcp-open-design` | Those transports cover Figma files and Open Design projects; this skill covers live URLs |

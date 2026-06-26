@@ -16,7 +16,7 @@ version: 1.0.0.8
 
 This document is the canonical capability inventory for the `md-generator` skill. The root catalog acts as the system-level directory: it summarizes each capability area, names the canonical scripts for each phase, and keeps the extraction-to-publication contract visible at a glance. The skill captures a live website's real, measured CSS into a v3 **Style Reference** `DESIGN.md` — a named, role-driven, ship-ready design-system handoff that AI agents build against without hallucinating. A three-phase pipeline runs through an embedded Playwright crawler (EXTRACT), a fidelity-checked markdown writer (WRITE), and a hex-and-section validator (VALIDATE), with an optional REPORT phase for visual artifacts.
 
-The skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `sk-design-interface` invents new distinctive direction; this skill produces the authoritative ground-truth reference those transports and skills consume.
+The skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents new distinctive direction; this skill produces the authoritative ground-truth reference those transports and skills consume.
 
 ---
 

@@ -65,7 +65,7 @@ Items inside the same bounded area are perceived as related. Use cards, panels, 
 
 ## 10. Application Notes
 
-- `sk-design-interface` cites these laws when justifying hierarchy and direction.
-- `sk-design-foundations` cites them when shaping density, grouping, and token systems.
-- `sk-design-motion` cites them when choosing feedback timing and reduced-motion alternatives.
-- `sk-design-audit` cites them when explaining design-quality findings.
+- `interface` cites these laws when justifying hierarchy and direction.
+- `foundations` cites them when shaping density, grouping, and token systems.
+- `motion` cites them when choosing feedback timing and reduced-motion alternatives.
+- `audit` cites them when explaining design-quality findings.

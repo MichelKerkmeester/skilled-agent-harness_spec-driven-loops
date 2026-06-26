@@ -14,7 +14,7 @@ version: 1.4.0.10
 
 > Read, reuse, and commission Open Design's local projects and design-systems from your agent or terminal, through the `od` CLI and its stdio MCP server, without ever typing into the in-app chat.
 
-> **⛔ MANDATORY: design work requires `sk-design-interface`.** This skill is the transport, never the taste. Any UI/design work through Open Design — every generation run, and every read that feeds a design decision (grounding, reusing tokens/components) — must load `sk-design-interface` and run its ground → token-system → critique first, then shape the brief and answers with it. You can never produce or shape an interface from Open Design without it. Pure transport (wiring the MCP server, bare project listing) is exempt.
+> **⛔ MANDATORY: design work requires `sk-design`.** This skill is the transport, never the taste. Any UI/design work through Open Design — every generation run, and every read that feeds a design decision (grounding, reusing tokens/components) — must load `sk-design` and run its ground → token-system → critique first, then shape the brief and answers with it. You can never produce or shape an interface from Open Design without it. Pure transport (wiring the MCP server, bare project listing) is exempt.
 
 ---
 
@@ -103,7 +103,7 @@ Generation is multi-turn. `start_run(prompt, ...)` (MCP) or `od run start` (CLI)
 
 ### Design Grounding And Reuse
 
-When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-design-interface` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-design-interface`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in the real-UI loop (`sk-design-interface`'s `real_ui_loop.md`; this skill's Open Design transport for it is in `references/design_parity_transport.md`). Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
+When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in the real-UI loop (`sk-design`'s `real_ui_loop.md`; this skill's Open Design transport for it is in `references/design_parity_transport.md`). Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
 
 ---
 
@@ -111,13 +111,13 @@ When a read or run feeds a design decision, the work becomes design work, and th
 
 ### When To Use This Skill
 
-Reach for this skill whenever a user mentions Open Design, wants to wire it into an agent, or wants to read, reuse, or generate from its local projects and design-systems. Use the **wire direction** to register the MCP server. Use the **read direction** to pull projects, files, and design-systems read-only, which is also how you ground a design. Use the **run direction** to commission a headless generation run behind its gates. Skip the skill when the user wants the in-app chat UI itself, when the work is the design judgment (that is `sk-design-interface`), or when Open Design is not installed or not running.
+Reach for this skill whenever a user mentions Open Design, wants to wire it into an agent, or wants to read, reuse, or generate from its local projects and design-systems. Use the **wire direction** to register the MCP server. Use the **read direction** to pull projects, files, and design-systems read-only, which is also how you ground a design. Use the **run direction** to commission a headless generation run behind its gates. Skip the skill when the user wants the in-app chat UI itself, when the work is the design judgment (that is `sk-design`), or when Open Design is not installed or not running.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design-interface` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop (`real_ui_loop.md`). |
+| `sk-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop (`real_ui_loop.md`). |
 | `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
 | `mcp-figma` | The sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon and gating shape. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
@@ -161,9 +161,9 @@ A: The desktop daemon is a child of the app and dies with it, so normally the ap
 
 A: Generation is multi-turn, not one-shot. A single `start_run` or `od run start` fires turn 1 only, which returns a GenUI discovery question-form and zero files, ending `awaiting_input`. You answer that form with `od ui respond` (or a follow-up message like "use the recommended defaults"), and that is what fires the build run that writes the design files and gives the project a `previewUrl`. Do not use `od artifacts create` to "make a design": it only adds a single file and never renders one.
 
-**Q: How does this relate to `sk-design-interface`?**
+**Q: How does this relate to `sk-design`?**
 
-A: This skill is the transport that reads and writes Open Design content. `sk-design-interface` is the judgment that decides what good design looks like, and it is **mandatory for any design work** — every generation run and every read that feeds a design decision must load it and run ground → token-system → critique first, and you can never produce or shape an interface from Open Design without it. It reads Open Design only through this skill. Pure transport (wiring, bare inventory) is exempt. The two never surface the roughly 150 systems as a pick-a-vibe menu.
+A: This skill is the transport that reads and writes Open Design content. `sk-design` is the judgment that decides what good design looks like, and it is **mandatory for any design work** — every generation run and every read that feeds a design decision must load it and run ground → token-system → critique first, and you can never produce or shape an interface from Open Design without it. It reads Open Design only through this skill. Pure transport (wiring, bare inventory) is exempt. The two never surface the roughly 150 systems as a pick-a-vibe menu.
 
 ---
 
@@ -189,5 +189,5 @@ A: This skill is the transport that reads and writes Open Design content. `sk-de
 | [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into supported terminal agents, the written config shape, and the manual fallback |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
-| [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-design-interface`) |
+| [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-design`) |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

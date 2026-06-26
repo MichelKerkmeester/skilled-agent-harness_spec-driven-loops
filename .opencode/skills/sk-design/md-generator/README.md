@@ -145,7 +145,7 @@ npx ts-node .opencode/skills/sk-design/md-generator/backend/scripts/preview-gen.
 
 Reach for this skill when you need to extract a live website's real CSS into a `DESIGN.md`. Use it when building a hallucination-proof design reference for AI agents, when re-extracting after a redesign, or when validating an existing `DESIGN.md` against its source tokens.
 
-Skip it when you are **inventing** a new design direction (palette, type scale, anti-default critique). That is `sk-design-interface`. This skill captures what exists; that skill creates what does not.
+Skip it when you are **inventing** a new design direction (palette, type scale, anti-default critique). That is `interface`. This skill captures what exists; that skill creates what does not.
 
 Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project (`mcp-open-design`). Skip it for a screenshot or visual preview (`mcp-chrome-devtools`). Skip it when the URL is not publicly accessible or cannot render JavaScript.
 
@@ -153,7 +153,7 @@ Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project 
 
 | Skill | Relationship |
 |---|---|
-| `sk-design-interface` | The design-judgment sibling. It invents new direction; this skill provides the measured ground truth it consumes. |
+| `interface` | The design-judgment sibling. It invents new direction; this skill provides the measured ground truth it consumes. |
 | `sk-code` | Consumes `DESIGN.md` as the implementation contract. The hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii. |
 | `mcp-figma` | Extracts from Figma Desktop, not live URLs. Use when the source is a Figma file. |
 | `mcp-open-design` | Extracts from Open Design projects. Use when the source is an Open Design project. |
@@ -191,9 +191,9 @@ A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent'
 
 A: Run `validate.ts` standalone. It checks hex accuracy against `tokens.json`, the v3 Style Reference section set, and the Quick-Start fidelity check (every Quick Start hex traces to tokens; `--page-max-width` matches tokens). No re-extraction needed.
 
-**Q: How does this relate to `sk-design-interface`?**
+**Q: How does this relate to `interface`?**
 
-A: This skill captures what exists on a live site. `sk-design-interface` invents new direction. When an extraction feeds into designing new UI, load `sk-design-interface` for the judgment and this skill for the ground truth.
+A: This skill captures what exists on a live site. `interface` invents new direction. When an extraction feeds into designing new UI, load `interface` for the judgment and this skill for the ground truth.
 
 ---
 

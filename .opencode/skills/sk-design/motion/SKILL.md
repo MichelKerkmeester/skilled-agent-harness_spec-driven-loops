@@ -31,19 +31,19 @@ Keyword triggers: `animation`, `motion`, `micro-interaction`, `transition`, `hov
 ### When NOT to Use
 
 Skip this skill when:
-- The task is static color, type, layout, responsive, or theme-token work. Use `sk-design-foundations`.
-- The task is to invent the full visual direction or interface concept. Use `sk-design-interface` first.
-- The task is a findings-first quality audit or motion performance review. Use `sk-design-audit`, which may cite this skill.
+- The task is static color, type, layout, responsive, or theme-token work. Use `foundations`.
+- The task is to invent the full visual direction or interface concept. Use `interface` first.
+- The task is a findings-first quality audit or motion performance review. Use `audit`, which may cite this skill.
 - The task is pure code implementation after choreography is specified. Hand off to `sk-code`.
 
 ### Family Boundary
 
-This is an independently invokable member of the `sk-design` family. It owns motion build guidance. `sk-design-audit` owns motion-performance findings and release scoring; this child supplies the standards audit can cite.
+This is an independently invokable member of the `sk-design` family. It owns motion build guidance. `audit` owns motion-performance findings and release scoring; this child supplies the standards audit can cite.
 
 Pairs well with:
-- `sk-design-interface` for one memorable motion moment tied to the design direction.
-- `sk-design-foundations` for motion tokens that match static visual-system tokens.
-- `sk-design-audit` for post-build motion-performance and accessibility checks.
+- `interface` for one memorable motion moment tied to the design direction.
+- `foundations` for motion tokens that match static visual-system tokens.
+- `audit` for post-build motion-performance and accessibility checks.
 
 ---
 
@@ -92,7 +92,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
 | CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
 | CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
-| ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `sk-design-foundations` |
+| ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
 
 ### Smart Router Pseudocode
 
@@ -314,9 +314,9 @@ Use, do not duplicate, the parent references for shared vocabulary:
 ## 7. INTEGRATION POINTS
 
 - `sk-design` routes motion-family prompts here.
-- `sk-design-interface` defines the visual story this child choreographs.
-- `sk-design-foundations` supplies static tokens and layout constraints.
-- `sk-design-audit` uses this skill's rules when scoring motion performance and accessibility.
+- `interface` defines the visual story this child choreographs.
+- `foundations` supplies static tokens and layout constraints.
+- `audit` uses this skill's rules when scoring motion performance and accessibility.
 - `sk-code` implements motion in the target stack.
 
 ---

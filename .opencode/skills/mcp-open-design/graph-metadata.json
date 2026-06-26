@@ -6,9 +6,9 @@
   "edges": {
     "depends_on": [
       {
-        "target": "sk-design-interface",
+        "target": "sk-design",
         "weight": 0.7,
-        "context": "When an Open Design read or run feeds a design decision, apply sk-design-interface's anti-default judgment before deciding"
+        "context": "When an Open Design read or run feeds a design decision, apply sk-design's anti-default judgment before deciding"
       }
     ],
     "enhances": [
@@ -22,12 +22,12 @@
       {
         "target": "mcp-figma",
         "weight": 0.55,
-        "context": "Sibling terminal-driven design tool with a daemon model, gated mutating verbs, and an sk-design-interface handoff"
+        "context": "Sibling terminal-driven design tool with a daemon model, gated mutating verbs, and an sk-design handoff"
       },
       {
-        "target": "sk-design-md-generator",
+        "target": "sk-design",
         "weight": 0.45,
-        "context": "Sibling design tool: sk-design-md-generator is the live-URL extraction path"
+        "context": "Sibling design tool: sk-design is the live-URL extraction path"
       }
     ],
     "conflicts_with": [],
@@ -36,11 +36,10 @@
   "manual": {
     "depends_on": [],
     "related_to": [
-      "sk-design-interface",
+      "sk-design",
       "sk-code",
       "mcp-chrome-devtools",
-      "mcp-figma",
-      "sk-design-md-generator"
+      "mcp-figma"
     ]
   },
   "domains": [
@@ -79,7 +78,7 @@
       "od run verbs and od ui respond",
       "HTTP API surface and ephemeral port rotation",
       "live tools/list verification",
-      "sk-design-interface integration"
+      "sk-design integration"
     ],
     "intent_signals": [
       "open design",
@@ -135,7 +134,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "mcp-open-design teaches a terminal agent (opencode or Claude Code) to drive the installed Open Design desktop app through its od CLI and stdio MCP server instead of the in-app chat. Wire with od mcp install, then read local projects and design-systems, reuse them, or commission gated headless runs. Generation is multi-turn: start_run (or od run start) fires turn 1, which returns a discovery question-form with zero files, and the design is built only after od ui respond answers the form. od artifacts create only adds a file, never a rendered design. The od CLI is daemon-cli.mjs run under Node (not the bundled vela auth client) and the daemon is socket-discovered on an ephemeral port (not a fixed 7456), hosted by the desktop app, which also exposes an HTTP API whose port rotates on restart (rediscover via /api/mcp/install-info). Pairs with sk-design-interface (the design judgment) over the shared real-UI loop, and never vendors Open Design content.",
+    "causal_summary": "mcp-open-design teaches a terminal agent (opencode or Claude Code) to drive the installed Open Design desktop app through its od CLI and stdio MCP server instead of the in-app chat. Wire with od mcp install, then read local projects and design-systems, reuse them, or commission gated headless runs. Generation is multi-turn: start_run (or od run start) fires turn 1, which returns a discovery question-form with zero files, and the design is built only after od ui respond answers the form. od artifacts create only adds a file, never a rendered design. The od CLI is daemon-cli.mjs run under Node (not the bundled vela auth client) and the daemon is socket-discovered on an ephemeral port (not a fixed 7456), hosted by the desktop app, which also exposes an HTTP API whose port rotates on restart (rediscover via /api/mcp/install-info). Pairs with sk-design (the design judgment) over the shared real-UI loop, and never vendors Open Design content.",
     "source_docs": [
       "SKILL.md",
       "README.md",

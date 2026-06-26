@@ -38,7 +38,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
 
 #### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-design-interface`) or the run transport.
+Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
 
 ### When NOT to Use
 

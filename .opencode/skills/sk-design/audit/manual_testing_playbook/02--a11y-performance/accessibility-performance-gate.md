@@ -31,5 +31,5 @@ Supply one concrete interactive component artifact in the `<TARGET>` slot (for e
 - Flags missing names, focus traps, keyboard traps, or contrast failures as P0/P1 as appropriate.
 - Identifies motion jank risks with concrete property/mechanism alternatives.
 - Distinguishes measured evidence from static risk.
-- Maps motion repair to `sk-design-motion` and implementation to `sk-code`.
+- Maps motion repair to `motion` and implementation to `sk-code`.
 - Uses the current Core Web Vital Interaction to Next Paint (INP), not the deprecated First Input Delay (FID), matching the `references/corpus_map.md` modernization guard.

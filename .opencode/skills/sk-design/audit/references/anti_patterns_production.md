@@ -35,7 +35,7 @@ Report:
 - One-off spacing, radius, shadow, or z-index values.
 - Theme switching that leaves stale colors or surfaces.
 
-Map token fixes to `sk-design-foundations` and implementation to `sk-code`.
+Map token fixes to `foundations` and implementation to `sk-code`.
 
 ## 3. UX Copy Clarity
 
@@ -84,8 +84,8 @@ Production-readiness findings include:
 
 | Finding type | Owner |
 | --- | --- |
-| Palette, type, spacing, responsive, theme tokens | `sk-design-foundations` |
-| Choreography, micro-interactions, reduced motion | `sk-design-motion` |
-| Overall direction or signature visual concept | `sk-design-interface` |
+| Palette, type, spacing, responsive, theme tokens | `foundations` |
+| Choreography, micro-interactions, reduced motion | `motion` |
+| Overall direction or signature visual concept | `interface` |
 | Implementation changes | `sk-code` |
 | Broader correctness/security/test review | `sk-code-review` |

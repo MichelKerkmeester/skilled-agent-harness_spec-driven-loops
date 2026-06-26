@@ -174,7 +174,7 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 
 ## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
 
-**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + deepseek-v4-pro; same brief, same shell, all three read the design skill).
+**Task type:** bento-card visual illustration applying `sk-design` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + deepseek-v4-pro; same brief, same shell, all three read the design skill).
 
 **Observed — over-accents:** clean and fast (~2.5 min), more brand-blue than deepseek — but **orange/gold appeared on all 5 cards**, ignoring the reserved-accent brief, and a couple of metaphors were tenuous (a compass for "budget"). It respected the other hard constraints (no off-brand hexes, flat). Consistent with its general framing preference (COSTAR / lean / format-focused, §3): it optimizes output shape and format over color-budget restraint.
 

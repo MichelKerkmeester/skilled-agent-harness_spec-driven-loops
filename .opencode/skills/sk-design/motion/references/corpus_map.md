@@ -45,4 +45,4 @@ Trace each piece of motion guidance back to its source corpus file and record wh
 
 ## 3. Distillation Boundary
 
-This child owns motion build guidance. Motion-performance review and severity findings live in `sk-design-audit`; static systems live in `sk-design-foundations`.
+This child owns motion build guidance. Motion-performance review and severity findings live in `audit`; static systems live in `foundations`.

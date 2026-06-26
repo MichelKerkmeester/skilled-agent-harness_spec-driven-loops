@@ -32,9 +32,9 @@ Keyword triggers: `audit design`, `critique UI`, `design review`, `accessibility
 ### When NOT to Use
 
 Skip this skill when:
-- The user wants to invent a new visual direction. Use `sk-design-interface`.
-- The user wants a static token system, palette, typography, or layout plan. Use `sk-design-foundations`.
-- The user wants to create motion choreography. Use `sk-design-motion`.
+- The user wants to invent a new visual direction. Use `interface`.
+- The user wants a static token system, palette, typography, or layout plan. Use `foundations`.
+- The user wants to create motion choreography. Use `motion`.
 - The user wants implementation after findings are accepted. Hand off to `sk-code`.
 - The user asks for a code review outside design/UI concerns. Use `sk-code-review`.
 
@@ -43,9 +43,9 @@ Skip this skill when:
 This is an independently invokable member of the `sk-design` family. It owns review, scoring, severity, risk surfacing, and hardening. It may cite sibling standards but does not replace them.
 
 Pairs well with:
-- `sk-design-interface` after a direction or build needs critique.
-- `sk-design-foundations` when token/theming/layout findings need a system fix.
-- `sk-design-motion` when motion-performance findings need choreography repair.
+- `interface` after a direction or build needs critique.
+- `foundations` when token/theming/layout findings need a system fix.
+- `motion` when motion-performance findings need choreography repair.
 - `sk-code-review` when the UI change also needs code correctness/security review.
 
 ---
@@ -337,9 +337,9 @@ Use, do not duplicate, the parent references for shared vocabulary:
 ## 7. INTEGRATION POINTS
 
 - `sk-design` routes audit, critique, and hardening prompts here.
-- `sk-design-interface` owns direction changes recommended by critique.
-- `sk-design-foundations` owns color, type, layout, responsive, and theming fixes.
-- `sk-design-motion` owns motion choreography fixes.
+- `interface` owns direction changes recommended by critique.
+- `foundations` owns color, type, layout, responsive, and theming fixes.
+- `motion` owns motion choreography fixes.
 - `sk-code` implements accepted fixes.
 - `sk-code-review` handles broader code correctness, security, and test-quality review.
 

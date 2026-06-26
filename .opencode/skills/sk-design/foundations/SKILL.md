@@ -31,10 +31,10 @@ Keyword triggers: `OKLCH`, `palette`, `contrast`, `dark mode`, `theme tokens`, `
 ### When NOT to Use
 
 Skip this skill when:
-- The task is to invent the overall interface direction, voice, or signature visual concept. Use `sk-design-interface` first.
-- The task is animation, transition choreography, micro-interactions, or reduced-motion behavior. Use `sk-design-motion`.
-- The task is a review, score, accessibility audit, or production-hardening report. Use `sk-design-audit`.
-- The task is extracting measured tokens from a live site into `DESIGN.md`. Use `sk-design-md-generator` or the future `sk-design-spec` child.
+- The task is to invent the overall interface direction, voice, or signature visual concept. Use `interface` first.
+- The task is animation, transition choreography, micro-interactions, or reduced-motion behavior. Use `motion`.
+- The task is a review, score, accessibility audit, or production-hardening report. Use `audit`.
+- The task is extracting measured tokens from a live site into `DESIGN.md`. Use `md-generator` or the future `sk-design-spec` child.
 - The static visual system (including layout, spacing, and grid decisions) is already fully specified and only code implementation remains. Hand off to `sk-code`. Designing or fixing the layout/spacing/grid system itself stays here first; only the implementation handoff goes to `sk-code`.
 
 ### Family Boundary
@@ -44,9 +44,9 @@ This is an independently invokable member of the `sk-design` family. It may cite
 This skill owns the static visual system. Layout, spacing, grid, and rhythm prompts resolve here first, ahead of `sk-code`; `sk-code` receives the system only for implementation after the static decisions are made.
 
 Pairs well with:
-- `sk-design-interface` when a distinctive direction needs a disciplined token system.
-- `sk-design-motion` when static tokens must be matched by motion tokens.
-- `sk-design-audit` when the finished visual system needs scoring and release hardening.
+- `interface` when a distinctive direction needs a disciplined token system.
+- `motion` when static tokens must be matched by motion tokens.
+- `audit` when the finished visual system needs scoring and release hardening.
 
 ---
 
@@ -258,7 +258,7 @@ def route_foundations_resources(user_request, task=None):
 1. Brand colors, required contrast level, target platforms, or design-system source are unknown and materially change the token system.
 2. The requested palette or typography fails accessibility constraints.
 3. A responsive adaptation would require changing information architecture, not just layout.
-4. The system needs measured existing tokens from a live site; route to `sk-design-md-generator`.
+4. The system needs measured existing tokens from a live site; route to `md-generator`.
 
 ---
 
@@ -293,9 +293,9 @@ Use, do not duplicate, the parent vocabulary:
 ## 7. INTEGRATION POINTS
 
 - `sk-design` routes static visual-system prompts here.
-- `sk-design-interface` supplies the distinctive direction this skill systematizes.
-- `sk-design-motion` consumes static tokens when defining motion materials and interaction states.
-- `sk-design-audit` scores the result for accessibility, performance, responsiveness, theming, and anti-slop risk.
+- `interface` supplies the distinctive direction this skill systematizes.
+- `motion` consumes static tokens when defining motion materials and interaction states.
+- `audit` scores the result for accessibility, performance, responsiveness, theming, and anti-slop risk.
 - `sk-code` implements the token system in the detected stack.
 
 ---

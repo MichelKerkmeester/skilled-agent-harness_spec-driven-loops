@@ -135,7 +135,7 @@ Edit **line-wise**. Never run a YAML re-serializer — it reflows and corrupts m
 | `system-spec-kit/README.md` | `3.6.x` | 41 | `3.6.0.41` |
 | `sk-code/SKILL.md` | `3.5.0.0` | — | `3.5.0.0` |
 | `sk-code/references/smart_routing.md` | `3.5.x` | 5 | `3.5.0.5` |
-| `sk-design-interface/.../design_principles.md` | `1.5.x` | 4 | `1.5.0.4` |
+| `sk-design/.../design_principles.md` | `1.5.x` | 4 | `1.5.0.4` |
 
 Every major equals the owning skill's major — always low.
 

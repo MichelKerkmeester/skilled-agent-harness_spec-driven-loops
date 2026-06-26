@@ -155,7 +155,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 ## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
 
-**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs deepseek-v4-pro + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
+**Task type:** bento-card visual illustration applying `sk-design` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs deepseek-v4-pro + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
 
 **Observed — best of the three:** blue-led composition; **orange reserved for the one functional alert**; gold rare/intentional; a cohesive set whose cards map to the feature's facets (per schip / per locatie / overschrijdingsalert / balans). Cleaner brand discipline than deepseek (gold-heavy) or mimo (over-accents). More icon-like/simpler in places, but the most intentional and on-brand. Respected the hard constraints (brand palette only, flat, no gradients).
 

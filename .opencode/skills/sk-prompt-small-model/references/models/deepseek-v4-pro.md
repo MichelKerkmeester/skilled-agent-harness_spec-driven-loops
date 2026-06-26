@@ -166,7 +166,7 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 
 ## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
 
-**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
+**Task type:** bento-card visual illustration applying `sk-design` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
 
 **Observed — gold-heavy / blue-starved:** the **richest, most-detailed individual drawings** of the three — but gold filled 4/5 cards and the brand's lead blue was under-used (output skewed dark/gold), with two overlapping concepts (two chests). It respected the hard constraints (brand palette only, flat).
 

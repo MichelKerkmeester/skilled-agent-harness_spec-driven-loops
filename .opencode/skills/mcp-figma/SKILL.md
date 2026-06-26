@@ -49,7 +49,7 @@ Drive **Figma Desktop from the terminal** through the silships **figma-cli** (pu
 
 **Skip this skill when:**
 - The work is generic app coding with no Figma input: use `sk-code`.
-- The work is the design judgment itself (palette, type, the anti-default critique). That is `sk-design-interface`, and this skill is the transport.
+- The work is the design judgment itself (palette, type, the anti-default critique). That is `sk-design`, and this skill is the transport.
 - The task is browser debugging or visual preview of a built page. That is `mcp-chrome-devtools`.
 - The task targets Open Design specifically: use `mcp-open-design`.
 - Figma Desktop is not installed or not open. The CLI drives the live Desktop session and cannot work without it.
@@ -108,7 +108,7 @@ assets/env_template.md              # the prefixed figma_FIGMA_API_KEY .env line
 | CONDITIONAL | Author/modify/tokens intent | `references/tool_surface.md` (gating taxonomy) |
 | CONDITIONAL | MCP_CONTEXT intent | `references/mcp_wiring.md` (Code Mode Framelink path) |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
-| ALWAYS (design work) | A read/export feeds a design decision | `sk-design-interface` principles, applied before deciding |
+| ALWAYS (design work) | A read/export feeds a design decision | `sk-design` principles, applied before deciding |
 
 ### Smart Router Pseudocode
 
@@ -247,7 +247,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 5. **ALWAYS gate every DESTRUCTIVE verb** behind explicit user confirmation, an explicit target node/file, a command preview, and a one-line rollback (prefer duplicating the file/page/selection first).
 6. **ALWAYS treat `eval`, `raw`, and `run` as arbitrary mutation**, reviewing the code/command before running, even when the prompt sounds exploratory.
 7. **ALWAYS require an explicit output path for local exports** (`extract`/`export`/`export-jsx`) and never silently overwrite existing files.
-8. **ALWAYS apply `sk-design-interface`** when a Figma read/export feeds a design decision. This skill owns the transport, and that skill owns the taste.
+8. **ALWAYS apply `sk-design`** when a Figma read/export feeds a design decision. This skill owns the transport, and that skill owns the taste.
 
 ### NEVER
 
@@ -319,7 +319,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Cross-Workflow Contracts
 
-- **`sk-design-interface`** owns the design judgment and is applied whenever a Figma read/export feeds a design decision (grounding, token/type/layout choices). This skill is the transport, and that skill is the taste.
+- **`sk-design`** owns the design judgment and is applied whenever a Figma read/export feeds a design decision (grounding, token/type/layout choices). This skill is the transport, and that skill is the taste.
 - **`sk-code`** owns adapting extracted tokens / DESIGN.md / exported code into a real application, and verifying it.
 - **`mcp-chrome-devtools`** is used only for a last-mile browser preview of an implemented page, never to operate Figma.
 
@@ -342,7 +342,7 @@ Assets: `assets/utcp_figma_manual.md` (paste-ready Framelink `figma` `.utcp_conf
 
 Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-only diagnostics), `scripts/connect-safe.sh`, `scripts/connect-yolo.sh`, `scripts/daemon.sh`, `scripts/unpatch.sh`, `scripts/print-utcp-snippets.sh`.
 
-Related skills: `sk-design-interface` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-open-design` (sibling terminal-driven design tool), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-open-design` (sibling terminal-driven design tool), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
 

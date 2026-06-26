@@ -19,15 +19,15 @@ This document combines the current capability inventory for the `mcp-open-design
 
 Use this catalog as the canonical inventory for the live `mcp-open-design` surface. The five numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing behavior or verification context.
 
-The capability surface splits into three directions plus the foundations that make them work. The **wire** direction registers Open Design's MCP server into a terminal agent. The **read** direction pulls local projects, files, and design-systems read-only. The **run** direction commissions headless generation behind explicit gates. Underneath both sits the design-system grounding loop shared with `sk-design-interface`, and the daemon transport model that every tool call depends on.
+The capability surface splits into three directions plus the foundations that make them work. The **wire** direction registers Open Design's MCP server into a terminal agent. The **read** direction pulls local projects, files, and design-systems read-only. The **run** direction commissions headless generation behind explicit gates. Underneath both sits the design-system grounding loop shared with `sk-design`, and the daemon transport model that every tool call depends on.
 
-A note on what stays out of scope. This skill is the terminal transport, not the design judgment and not an automator of the in-app chat. The look-and-feel decisions belong to `sk-design-interface`. The in-app chat UI is the thing this skill replaces, so it is never driven or browser-automated.
+A note on what stays out of scope. This skill is the terminal transport, not the design judgment and not an automator of the in-app chat. The look-and-feel decisions belong to `sk-design`. The in-app chat UI is the thing this skill replaces, so it is never driven or browser-automated.
 
 | Capability area | Direction | Default safety |
 |---|---|---|
 | MCP server wiring | WIRE | Dry-run preview first, then a config write the user reviews |
 | Local content reads | READ | Always safe, nothing is written |
-| Design-system grounding | READ feeding judgment | Read-only input to `sk-design-interface` |
+| Design-system grounding | READ feeding judgment | Read-only input to `sk-design` |
 | Headless runs and mutating verbs | RUN | Gated: confirmation, explicit target, rollback note |
 | Daemon transport and live verification | Foundation | Read-only checks before any promise about the tool set |
 
@@ -59,11 +59,11 @@ See [`02--reading/read-only-content.md`](02--reading/read-only-content.md) for t
 
 ## 4. DESIGN-SYSTEM GROUNDING AND REUSE
 
-When an Open Design read feeds a design decision, the work becomes design work and `sk-design-interface` owns the judgment. This skill supplies the transport: it reads one resolved system live, and the design skill grounds, builds a token system, and critiques before deciding.
+When an Open Design read feeds a design decision, the work becomes design work and `sk-design` owns the judgment. This skill supplies the transport: it reads one resolved system live, and the design skill grounds, builds a token system, and critiques before deciding.
 
 ### Grounding and reuse loop
 
-`sk-design-interface` is a hard precondition: any read or run that feeds a design decision MUST load it first (only pure transport — wiring, a bare inventory that feeds no design decision — is exempt). The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses the resolved system's `tokens.css` and `components.html` at build time in the target app. Reuse happens live: Open Design content is never copied or cached into a repo, because its per-source licenses would attach. At most one system is resolved from the subject and brief, never surfaced as a pick-a-vibe menu across the roughly 150 available systems.
+`sk-design` is a hard precondition: any read or run that feeds a design decision MUST load it first (only pure transport — wiring, a bare inventory that feeds no design decision — is exempt). The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses the resolved system's `tokens.css` and `components.html` at build time in the target app. Reuse happens live: Open Design content is never copied or cached into a repo, because its per-source licenses would attach. At most one system is resolved from the subject and brief, never surfaced as a pick-a-vibe menu across the roughly 150 available systems.
 
 See [`03--grounding/design-system-grounding.md`](03--grounding/design-system-grounding.md) for the integration contract and the guardrails that must survive.
 

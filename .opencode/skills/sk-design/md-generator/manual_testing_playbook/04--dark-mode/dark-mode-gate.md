@@ -16,7 +16,7 @@ This scenario validates the dark-mode gate for `DARKMODE-001`. It focuses on con
 
 ### Why This Matters
 
-A fabricated dark palette is a hallucination — it produces colors that do not exist on the live site. Downstream consumers (`sk-code`, `sk-design-interface`) would build against invented dark-mode values, producing incorrect dark themes. The failure mode this guards against is a Style Reference that presents dark-mode values the skill guessed from inverting light-mode colors.
+A fabricated dark palette is a hallucination — it produces colors that do not exist on the live site. Downstream consumers (`sk-code`, `interface`) would build against invented dark-mode values, producing incorrect dark themes. The failure mode this guards against is a Style Reference that presents dark-mode values the skill guessed from inverting light-mode colors.
 
 ---
 

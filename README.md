@@ -957,21 +957,21 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **mcp-open-design**
 - **Drive the installed Open Design desktop app from the terminal.** Reads and reuses local design systems (tokens, components) and commissions gated, multi-turn generation runs through the `od` CLI and a stdio MCP server, instead of the in-app chat
-- **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-design-interface` for the design judgment
+- **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-design` for the design judgment
 
 **mcp-figma**
 - **Drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context
-- **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-design-interface` for the design judgment
+- **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-design` for the design judgment
 
 &nbsp;
 #### OTHER
 
-**sk-design-md-generator**
+**sk-design (md-generator mode)**
 - **Capture a live site's real CSS into a `DESIGN.md`.** An embedded Playwright pipeline (extract → write → validate) crawls a URL across five viewports and emits a v3 **Style Reference** — named colour tokens, a semantic Type Scale, named components, Surfaces, and a copy-paste Quick Start (CSS + Tailwind) — with every hex, font, radius, and shadow copied verbatim from the running page
 - **Anti-hallucination by construction:** a script validator checks every value against the extracted `tokens.json` and hard-fails on phantom or content-layer (L4) colors. Captures dark mode, motion, icons, framework markers, and interaction states across the viewports
-- **The capture half of the `sk-design-*` family:** it documents what already exists; sibling `sk-design-interface` invents new direction. Produces the authoritative reference that the transports (`mcp-open-design`, `mcp-figma`) and `sk-code` build against
+- **The capture half of the `sk-design-*` family:** it documents what already exists; sibling `sk-design` invents new direction. Produces the authoritative reference that the transports (`mcp-open-design`, `mcp-figma`) and `sk-code` build against
 
-**sk-design-interface**
+**sk-design**
 - **Design UI that does not look templated.** Aesthetic direction (palette, typography, layout, motion) grounded in the brief, with a critique pass that kills the default AI looks before any code is written
 - **Grounds against real references:** reads a real design system live (via `mcp-open-design`, as reuse-ground or critique-against) and real-world shipped UI (Mobbin and Refero via Code Mode, critique-against) to ground the work or name the category's real-world default and deviate from it. Never a style chooser or a copy source
 - **Pairs with `sk-code`:** this skill owns the look, sk-code builds and verifies it. Vendored from Anthropic's `frontend-design` skill (Apache-2.0)
@@ -1312,8 +1312,8 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
-| `sk-design-md-generator`                            | ✅ Codebase-agnostic                        | Extracts a live website's real CSS into a v3 Style Reference `DESIGN.md` (named tokens, Type Scale, Components, Surfaces, Quick Start CSS/Tailwind) via an embedded extract→write→validate pipeline (every value verbatim, script-validated against `tokens.json`). The capture engine of the `sk-design-*` family; pairs with `sk-design-interface`. Works for any project. |
-| `sk-design-interface`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
+| `sk-design (md-generator mode)`                            | ✅ Codebase-agnostic                        | Extracts a live website's real CSS into a v3 Style Reference `DESIGN.md` (named tokens, Type Scale, Components, Surfaces, Quick Start CSS/Tailwind) via an embedded extract→write→validate pipeline (every value verbatim, script-validated against `tokens.json`). The capture engine of the `sk-design-*` family; pairs with `sk-design`. Works for any project. |
+| `sk-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |

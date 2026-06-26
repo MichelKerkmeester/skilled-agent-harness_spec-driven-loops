@@ -16,7 +16,7 @@ version: 2.3.0.5
 
 Prompt-craft for the design-generation tool the framework drives from the terminal: `mcp-open-design` (headless `start_run` against the installed Open Design app). The visible design it emits is driven by the generation prompt, so the prompt is where quality is won or lost.
 
-This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-design-interface` (`design_principles.md`) and its `real_ui_loop.md`. The run mechanics and gating belong to `mcp-open-design`. Read this when a request is to write or improve a prompt that will be fed to that tool.
+This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-design` (`design_principles.md`) and its `real_ui_loop.md`. The run mechanics and gating belong to `mcp-open-design`. Read this when a request is to write or improve a prompt that will be fed to that tool.
 
 ---
 
@@ -24,7 +24,7 @@ This reference owns the PROMPT only. The look and the anti-default mandate belon
 
 ### Core Principle
 
-A generic content brief asked of a design tool produces the median AI look: the centered hero with three feature cards, the default component-library surface, the generic gradient. That is exactly the templated default `sk-design-interface` exists to resist. A design-generation prompt has to do three things a normal prompt does not: ground itself in the subject and any real design system, force genuinely distinct directions when variations are wanted, and front-load the answers a multi-turn tool will otherwise fill with its own defaults.
+A generic content brief asked of a design tool produces the median AI look: the centered hero with three feature cards, the default component-library surface, the generic gradient. That is exactly the templated default `sk-design` exists to resist. A design-generation prompt has to do three things a normal prompt does not: ground itself in the subject and any real design system, force genuinely distinct directions when variations are wanted, and front-load the answers a multi-turn tool will otherwise fill with its own defaults.
 
 ### When to Use
 
@@ -106,7 +106,7 @@ When a generated design heads into application code, the handoff is already owne
 ## 6. GUARDRAILS
 
 - No style presets, no pick-a-vibe menu, no named aesthetic dials. The Seed of Thought selects a grounded angle, not a canned style.
-- This reference owns the prompt. It does not restate the design judgment (`sk-design-interface`) or the run transport and gating (`mcp-open-design`).
+- This reference owns the prompt. It does not restate the design judgment (`sk-design`) or the run transport and gating (`mcp-open-design`).
 - Respect the tools' gates. `start_run` and a canvas submit are mutating actions that the MCP skills hold as STOP-and-confirm points.
 - Keep the anti-default mandate intact. A grounded brief plus a forced-distinct angle is the point. A reusable style chooser is the failure mode.
 
@@ -116,6 +116,6 @@ When a generated design heads into application code, the handoff is already owne
 
 - [patterns_evaluation.md](./patterns_evaluation.md) is the source of truth for COSTAR, CRISPE, CRAFT, and CLEAR scoring.
 - [depth_framework.md](./depth_framework.md) owns the DEPTH pass and the context-aware CLEAR weighting this pattern leans on.
-- `.opencode/skills/sk-design-interface/references/design-process/real_ui_loop.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
-- `.opencode/skills/sk-design-interface/references/design-process/design_principles.md` owns the look and the anti-default mandate.
+- `.opencode/skills/sk-design/references/design-process/real_ui_loop.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
+- `.opencode/skills/sk-design/references/design-process/design_principles.md` owns the look and the anti-default mandate.
 - `.opencode/skills/mcp-open-design/SKILL.md` owns the run transport this brief feeds.

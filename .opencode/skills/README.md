@@ -75,7 +75,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`sk-code-review`](sk-code-review/README.md) | Stack-agnostic findings-first code review that classifies each finding by severity |
 | [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
-| [`sk-design-interface`](sk-design-interface/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
+| [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
 | [`sk-prompt`](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
 | [`sk-prompt-small-model`](sk-prompt-small-model/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
 

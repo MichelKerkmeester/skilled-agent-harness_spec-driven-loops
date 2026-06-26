@@ -54,7 +54,7 @@ Cite these principles during direction critique, token review, motion planning, 
 
 ## 4. Child Usage
 
-- `sk-design-interface` uses this reference during direction critique.
-- `sk-design-foundations` uses it to test whether tokens are purposeful.
-- `sk-design-motion` uses it to avoid scattered animation.
-- `sk-design-audit` uses it as slop-detection vocabulary.
+- `interface` uses this reference during direction critique.
+- `foundations` uses it to test whether tokens are purposeful.
+- `motion` uses it to avoid scattered animation.
+- `audit` uses it as slop-detection vocabulary.
