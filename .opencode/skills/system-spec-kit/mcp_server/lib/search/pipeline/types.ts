@@ -429,6 +429,12 @@ export interface PipelineResult {
       laneChampionApplied: boolean;
       laneChampionAppendedCount: number;
     };
+    triggerPromotion?: {
+      applied: boolean;
+      appendedCount: number;
+      triggerCandidateCount: number;
+      targetCount: number;
+    };
   };
   annotations: Stage4Output['annotations'];
   trace?: RetrievalTrace;

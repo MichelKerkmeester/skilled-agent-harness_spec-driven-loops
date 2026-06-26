@@ -241,6 +241,30 @@ describe('T009 findRelevantFolders', () => {
     }
   });
 
+  it('filters future folders from relevant-folder listings while keeping archives', () => {
+    const cache: DescriptionCache = {
+      version: 1,
+      generated: '',
+      folders: [
+        {
+          specFolder: 'system-spec-kit/z_future/001-draft',
+          description: 'memory search draft folder',
+          keywords: ['memory', 'search', 'draft'],
+          lastUpdated: '',
+        },
+        {
+          specFolder: 'system-spec-kit/z_archive/001-old',
+          description: 'memory search archived folder',
+          keywords: ['memory', 'search', 'archived'],
+          lastUpdated: '',
+        },
+      ],
+    };
+
+    const results = findRelevantFolders('memory search', cache, 10);
+    expect(results.map((result) => result.specFolder)).toEqual(['system-spec-kit/z_archive/001-old']);
+  });
+
   it('handles empty query gracefully', () => {
     expect(findRelevantFolders('', mockCache)).toEqual([]);
   });

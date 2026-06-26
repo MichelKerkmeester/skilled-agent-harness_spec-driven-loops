@@ -622,9 +622,11 @@ describe('Cross-Sprint Integration', () => {
         }),
       })).sort((a, b) => b.score - a.score);
 
-      // Step 7: Truncate by confidence
+      // Step 7: Truncate by confidence. The display floor keeps at least
+      // min(DEFAULT_MIN_RESULTS, available) results — with fewer candidates than
+      // the floor, all of them survive rather than being truncated away.
       const truncated = truncateByConfidence(scored);
-      expect(truncated.results.length).toBeGreaterThanOrEqual(DEFAULT_MIN_RESULTS);
+      expect(truncated.results.length).toBeGreaterThanOrEqual(Math.min(DEFAULT_MIN_RESULTS, fused.length));
       expect(truncated.results.length).toBeLessThanOrEqual(fused.length);
     });
 

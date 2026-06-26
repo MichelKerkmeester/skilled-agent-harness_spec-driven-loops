@@ -52,6 +52,34 @@ function expectPublicAndRuntimeReject(toolName: string, args: ToolArgs): void {
   }).toThrow();
 }
 
+function getToolProperties(toolName: string): Record<string, Record<string, unknown>> {
+  const tool = TOOL_DEFINITIONS.find((definition) => definition.name === toolName);
+  const schema = tool?.inputSchema as { properties?: Record<string, Record<string, unknown>> } | undefined;
+  return schema?.properties ?? {};
+}
+
+function sampleValueForProperty(toolName: string, propertyName: string, propertySchema: Record<string, unknown>): unknown {
+  if (propertyName === 'concepts') return ['alpha', 'beta'];
+  if (propertyName === 'anchors') return ['state'];
+  if (propertyName === 'specFolder') return 'specs/active';
+  if (propertyName === 'tenantId') return 'tenant-1';
+  if (propertyName === 'userId') return 'user-1';
+  if (propertyName === 'agentId') return 'agent-1';
+  if (propertyName === 'sessionId') return 'session-1';
+  if (propertyName === 'tier') return 'normal';
+  if (propertyName === 'contextType') return 'decision';
+  if (propertyName === 'min_quality_score' || propertyName === 'minQualityScore' || propertyName === 'tokenUsage') return 0.5;
+  if (propertyName === 'limit') return 10;
+  if (toolName === 'memory_search' && propertyName === 'mode') return 'auto';
+
+  const enumValues = propertySchema.enum;
+  if (Array.isArray(enumValues) && enumValues.length > 0) return enumValues[0];
+  if (propertySchema.type === 'boolean') return true;
+  if (propertySchema.type === 'number') return 1;
+  if (propertySchema.type === 'array') return ['value'];
+  return 'value';
+}
+
 /* ───────────────────────────────────────────────────────────────
    1. SCHEMA STRUCTURAL INTEGRITY
 ──────────────────────────────────────────────────────────────── */
@@ -219,6 +247,51 @@ describe('Tool Input Schema Validation', () => {
       expect(message).toContain('routeAs');
       expect(message).toContain('mergeModeHint');
     }
+  });
+
+  it('runtime strict schemas accept every advertised optional memory retrieval property', () => {
+    process.env.SPECKIT_STRICT_SCHEMAS = 'true';
+    const baseArgs: Record<string, ToolArgs> = {
+      memory_context: { input: 'resume context' },
+      memory_search: { query: 'memory search' },
+    };
+
+    for (const toolName of ['memory_context', 'memory_search']) {
+      const properties = getToolProperties(toolName);
+      for (const [propertyName, propertySchema] of Object.entries(properties)) {
+        if (propertyName in baseArgs[toolName]) continue;
+        const args = {
+          ...baseArgs[toolName],
+          [propertyName]: sampleValueForProperty(toolName, propertyName, propertySchema),
+        };
+        expect(() => validateToolArgs(toolName, args)).not.toThrow();
+      }
+    }
+  });
+
+  it('coerces empty optional retrieval filters before runtime strict validation', () => {
+    process.env.SPECKIT_STRICT_SCHEMAS = 'true';
+
+    const parsed = validateToolArgs('memory_search', {
+      query: 'memory search',
+      specFolder: '',
+      tenantId: '',
+      userId: '',
+      agentId: '',
+      sessionId: '',
+      tier: '',
+      contextType: '',
+      minState: '',
+    });
+
+    expect(parsed.specFolder).toBeUndefined();
+    expect(parsed.tenantId).toBeUndefined();
+    expect(parsed.userId).toBeUndefined();
+    expect(parsed.agentId).toBeUndefined();
+    expect(parsed.sessionId).toBeUndefined();
+    expect(parsed.tier).toBeUndefined();
+    expect(parsed.contextType).toBeUndefined();
+    expect(parsed.minState).toBeUndefined();
   });
 });
 

@@ -51,6 +51,16 @@ const positiveInt = safeNumericPreprocess.pipe(z.number().int().positive());
 const positiveIntMax = (max: number) => intRange(1, max);
 const boundedNumber = (min: number, max: number) => safeNumericPreprocess.pipe(z.number().min(min).max(max));
 const optionalStringArray = z.array(z.string()).optional();
+const EMPTY_STRING_OPTIONAL_FILTERS = new Set([
+  'specFolder',
+  'tenantId',
+  'userId',
+  'agentId',
+  'sessionId',
+  'tier',
+  'contextType',
+  'minState',
+]);
 
 const PATH_TRAVERSAL_MESSAGE = 'Path must not contain traversal sequences';
 const isSafePath = (value: string): boolean => !value.includes('..') && !value.includes('\0');
@@ -741,6 +751,16 @@ function rejectReservedFeedbackWrites(toolName: string, rawInput: Record<string,
   throw new ReservedFeedbackTypeValidationError(toolName, reserved.field, reserved.value);
 }
 
+function normalizeEmptyOptionalFilters(rawInput: Record<string, unknown>): Record<string, unknown> {
+  const normalized: Record<string, unknown> = { ...rawInput };
+  for (const key of EMPTY_STRING_OPTIONAL_FILTERS) {
+    if (normalized[key] === '') {
+      normalized[key] = undefined;
+    }
+  }
+  return normalized;
+}
+
 export function formatZodError(toolName: string, error: ZodError): ToolSchemaValidationError {
   const allowed = ALLOWED_PARAMETERS[toolName] ?? [];
   const lines: string[] = [];
@@ -802,8 +822,9 @@ export function validateToolArgs(toolName: string, rawInput: Record<string, unkn
   }
 
   try {
-    rejectReservedFeedbackWrites(toolName, rawInput);
-    return schema.parse(rawInput);
+    const normalizedInput = normalizeEmptyOptionalFilters(rawInput);
+    rejectReservedFeedbackWrites(toolName, normalizedInput);
+    return schema.parse(normalizedInput);
   } catch (error: unknown) {
     if (error instanceof ReservedFeedbackTypeValidationError) {
       console.error(`[schema-validation] ${toolName}: ${error.message}`);

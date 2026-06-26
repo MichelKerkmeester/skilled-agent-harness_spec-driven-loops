@@ -1683,7 +1683,7 @@ describe('P1 post-ranking truncation and token budget regressions', () => {
     expect(truncated.results.map((result) => result.id)).toEqual([2]);
   });
 
-  it('T025: truncateToBudget keeps a summarized top result when every candidate exceeds the budget', () => {
+  it('T025: truncateToBudget keeps a compact top result when every candidate exceeds the budget', () => {
     const oversizedTop = {
       id: 1,
       score: 0.95,
@@ -1713,8 +1713,12 @@ describe('P1 post-ranking truncation and token budget regressions', () => {
     expect(truncated.truncated).toBe(true);
     expect(truncated.results).toHaveLength(1);
     expect(truncated.results[0]?.id).toBe(1);
-    expect(truncated.results[0]?.content).toContain('[Summary] Oversized top match:');
-    expect(truncated.results[0]?._summarized).toBe(true);
+    // Floor-promoted overflow rows are token-cheap metadata-only rows: the body is
+    // dropped so more relevant folders surface within the same budget. The title is
+    // preserved so the reader can still identify the match.
+    expect(truncated.results[0]?.compact).toBe(true);
+    expect(truncated.results[0]?.title).toBe('Oversized top match');
+    expect(truncated.results[0]?.content).toBeUndefined();
     expect(truncated.overflow?.truncatedToCount).toBe(1);
   });
 

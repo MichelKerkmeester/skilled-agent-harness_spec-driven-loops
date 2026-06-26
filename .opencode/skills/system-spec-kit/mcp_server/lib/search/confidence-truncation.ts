@@ -32,7 +32,7 @@ interface TruncationOptions {
 }
 
 /** Default minimum result count. */
-const DEFAULT_MIN_RESULTS = 3;
+const DEFAULT_MIN_RESULTS = 10;
 
 /** Gap multiplier: gap must exceed this multiple of the median gap to trigger truncation.
  * 2x median is the elbow heuristic — a gap twice the typical spread signals a relevance cliff. */

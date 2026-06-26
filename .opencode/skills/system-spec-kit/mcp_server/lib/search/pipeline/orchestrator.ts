@@ -37,6 +37,7 @@ import type {
   LaneCandidateList,
   PipelineConfig,
   PipelineResult,
+  PipelineRow,
   SignalStatus,
   Stage1Output,
   Stage2Output,
@@ -51,6 +52,60 @@ import type {
 
 /** Per-stage timeout in milliseconds. */
 const STAGE_TIMEOUT_MS = 10_000;
+const TRIGGER_PROMOTION_FLOOR = 10;
+
+interface TriggerPromotionResult {
+  results: Stage4ReadonlyRow[];
+  metadata?: NonNullable<PipelineResult['metadata']['triggerPromotion']>;
+}
+
+function findTriggerLaneRows(laneLists: LaneCandidateList[] | undefined): PipelineRow[] {
+  if (!laneLists || laneLists.length === 0) return [];
+  return laneLists
+    .filter((list) => (list.lane ?? list.source) === 'trigger')
+    .flatMap((list) => list.results)
+    .filter((row): row is PipelineRow => typeof row.id === 'number' && Number.isFinite(row.id));
+}
+
+function promoteTriggerLaneRows(
+  results: Stage4ReadonlyRow[],
+  laneLists: LaneCandidateList[] | undefined,
+  limit: number,
+): TriggerPromotionResult {
+  if (!Number.isFinite(limit) || limit <= 0 || results.length >= Math.min(limit, TRIGGER_PROMOTION_FLOOR)) {
+    return { results };
+  }
+
+  const existingIds = new Set(results.map((row) => row.id));
+  const triggerRows = findTriggerLaneRows(laneLists);
+  const missingTriggerRows: Stage4ReadonlyRow[] = [];
+  const seenTriggerIds = new Set<number>();
+  for (const row of triggerRows) {
+    if (existingIds.has(row.id) || seenTriggerIds.has(row.id)) continue;
+    seenTriggerIds.add(row.id);
+    missingTriggerRows.push(row as unknown as Stage4ReadonlyRow);
+  }
+
+  if (missingTriggerRows.length === 0) {
+    return { results };
+  }
+
+  const targetCount = Math.min(limit, results.length + missingTriggerRows.length);
+  const appended = missingTriggerRows.slice(0, Math.max(0, targetCount - results.length));
+  if (appended.length === 0) {
+    return { results };
+  }
+
+  return {
+    results: [...results, ...appended],
+    metadata: {
+      applied: true,
+      appendedCount: appended.length,
+      triggerCandidateCount: triggerRows.length,
+      targetCount,
+    },
+  };
+}
 
 /**
  * Execute the 4-stage retrieval pipeline with per-stage error handling.
@@ -202,7 +257,12 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
   // baseline hit. They run AFTER the Stage-4 final-limit cap, so the appended rows
   // are exempt from that cap and actually reach the reader. When both flags are off
   // this whole stage is skipped and the Stage-4 output is returned byte-for-byte.
-  let finalResults: Stage4ReadonlyRow[] = stage4Result.final;
+  const triggerPromotion = promoteTriggerLaneRows(
+    stage4Result.final,
+    laneListsForBackfill,
+    config.limit,
+  );
+  let finalResults: Stage4ReadonlyRow[] = triggerPromotion.results;
   let tailAppendsMeta: PipelineResult['metadata']['tailAppends'];
   const multihopOn = isDeterministicMultihopEnabled();
   const laneChampionOn = isLaneChampionBackfillEnabled();
@@ -265,7 +325,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
         '[pipeline] tail-append stage failed:',
         err instanceof Error ? err.message : String(err),
       );
-      finalResults = stage4Result.final;
+      finalResults = triggerPromotion.results;
     }
   }
 
@@ -281,6 +341,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       timing,
       degraded: degraded || undefined,
       tailAppends: tailAppendsMeta,
+      triggerPromotion: triggerPromotion.metadata,
     },
     annotations: stage4Result.annotations,
     trace: config.trace,

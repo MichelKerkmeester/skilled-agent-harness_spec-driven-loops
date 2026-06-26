@@ -20,7 +20,7 @@ import {
   isIdempotentDescriptionWritesEnabled,
 } from '../config/capability-flags.js';
 import { derivePacketSynopsis } from '../description/packet-synopsis.js';
-import { isExcludedFromGeneratedMetadata } from '../utils/index-scope.js';
+import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -678,6 +678,9 @@ export function findRelevantFolders(
   const results: Array<{ specFolder: string; relevanceScore: number }> = [];
 
   for (const folder of cache.folders) {
+    if (!shouldIndexForMemory(folder.specFolder)) {
+      continue;
+    }
     let matchCount = 0;
     const descLower = folder.description.toLowerCase();
     const keywordSet = new Set(folder.keywords);

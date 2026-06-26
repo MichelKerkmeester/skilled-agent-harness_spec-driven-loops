@@ -140,6 +140,7 @@ export interface FormattedSearchResult {
    * field is invisible whenever both append flags are off.
    */
   appendExempt?: boolean;
+  compact?: boolean;
 }
 
 export interface MemoryResultScores {
@@ -998,6 +999,9 @@ export async function formatSearchResults(
         ? rawResult.contentSource
         : undefined,
     };
+    if (rawResult.compact === true) {
+      formattedResult.compact = true;
+    }
 
     // Mark additive tail-append rows so the downstream token-budget truncation
     // trims non-exempt tail rows first. The field is set ONLY on appended rows;

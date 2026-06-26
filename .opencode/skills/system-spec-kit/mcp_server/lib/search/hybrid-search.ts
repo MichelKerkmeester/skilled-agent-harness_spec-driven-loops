@@ -2249,17 +2249,9 @@ async function collectRawCandidates(
   const primaryResults = stages[0]?.results ?? [];
   const retryResults = stages[1]?.results ?? [];
 
-  // The lane-champion backfill needs each base lane's ranked candidates, which the
-  // fused candidate list has already blended away. Carry them forward only when an
-  // append flag is on, as a non-enumerable shadow on the returned array, so the
-  // flags-off path returns a byte-identical array with nothing attached. The fused
-  // result list is the protected window the appends extend, never reorder.
-  const carryLaneLists = isDeterministicMultihopEnabled() || isLaneChampionBackfillEnabled();
-  const baseLaneLists: LaneCandidateList[] | undefined = carryLaneLists
-    ? (stages[0]?.execution?.lists ?? [])
-        .filter((list): list is LaneCandidateList => BASE_LANE_SOURCES.has(list.source))
-        .map((list) => ({ lane: list.source, source: list.source, results: list.results }))
-    : undefined;
+  const baseLaneLists: LaneCandidateList[] | undefined = (stages[0]?.execution?.lists ?? [])
+    .filter((list): list is LaneCandidateList => BASE_LANE_SOURCES.has(list.source))
+    .map((list) => ({ lane: list.source, source: list.source, results: list.results }));
 
   if (isSearchFallbackEnabled()) {
     const mergedResults = retryResults.length > 0
@@ -2915,6 +2907,8 @@ function getTokenBudget(): number {
 
 /**
  * Create a summary fallback for a single result whose content exceeds the token budget.
+ * Used for the lone-result overflow path, where the reader has nothing else to look at —
+ * a trimmed `[Summary]` excerpt is more useful than bare metadata.
  */
 function createSummaryFallback(result: HybridSearchResult, budget: number): HybridSearchResult {
   const content = typeof result['content'] === 'string' ? result['content'] as string : '';
@@ -2930,6 +2924,32 @@ function createSummaryFallback(result: HybridSearchResult, budget: number): Hybr
     content: `[Summary] ${title}: ${truncatedContent}`,
     _summarized: true,
   };
+}
+
+/**
+ * Create a compact, content-free overflow row for the detailed-count floor.
+ * When many candidates overflow the budget, the floor promotes the highest-scoring
+ * skipped rows as metadata-only entries so the reader still sees the full set of
+ * relevant spec folders (id, title, path, score) instead of a near-empty payload.
+ * Dropping the body is deliberate — it keeps each promoted row token-cheap so more
+ * of them surface within the same budget.
+ */
+function createCompactOverflowRow(result: HybridSearchResult): HybridSearchResult {
+  const score = typeof result.score === 'number' && Number.isFinite(result.score)
+    ? result.score
+    : 0;
+  return {
+    id: result.id,
+    spec_folder: typeof result.spec_folder === 'string' ? result.spec_folder : undefined,
+    file_path: typeof result.file_path === 'string' ? result.file_path : undefined,
+    title: typeof result.title === 'string' ? result.title : null,
+    score,
+    similarity: typeof result.similarity === 'number' ? result.similarity : undefined,
+    importance_tier: typeof result.importance_tier === 'string' ? result.importance_tier : undefined,
+    source: typeof result.source === 'string' ? result.source : undefined,
+    sources: Array.isArray(result.sources) ? result.sources : undefined,
+    compact: true,
+  } as HybridSearchResult;
 }
 
 /**
@@ -3024,9 +3044,9 @@ function truncateToBudget(
   }
 
   // Floor the detailed count at min(limit, DEFAULT_MIN_RESULTS): promote the
-  // highest-scoring skipped results as token-cheap summaries so an overflowing
-  // search still surfaces a usable set instead of collapsing to one result.
-  // Summary-first applies regardless of includeContent — the common
+  // highest-scoring skipped results as token-cheap compact rows so an overflowing
+  // search still surfaces the full set of relevant folders instead of collapsing
+  // to one result. Compact-first applies regardless of includeContent — the common
   // metadata-only call would otherwise discard the remainder entirely.
   // The floor is defined against the caller's limit; with no limit there is
   // nothing to floor against, so fall back to the historical ≥1 guarantee.
@@ -3034,7 +3054,7 @@ function truncateToBudget(
     ? Math.max(1, Math.min(options.limit, DEFAULT_MIN_RESULTS))
     : 1;
   while (accepted.length < floorTarget && overflowRemainder.length > 0) {
-    accepted.push(createSummaryFallback(overflowRemainder.shift()!, effectiveBudget));
+    accepted.push(createCompactOverflowRow(overflowRemainder.shift()!));
   }
 
   // Re-establish highest-score-first ordering: a promoted summary may outrank

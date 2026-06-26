@@ -111,7 +111,7 @@ describe('T029-02: Flag Disabled — Pass-Through', () => {
 
   it('T6: returns all results unchanged when flag disabled', () => {
     const results = makeResults([[1, 0.9], [2, 0.5], [3, 0.4], [4, 0.05]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.results).toHaveLength(4);
     expect(out.truncatedCount).toBe(4);
@@ -120,7 +120,7 @@ describe('T029-02: Flag Disabled — Pass-Through', () => {
 
   it('T7: applied flag is false when flag disabled', () => {
     const results = makeResults([[1, 0.9], [2, 0.1]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.medianGap).toBe(0);
     expect(out.cutoffGap).toBe(0);
@@ -144,7 +144,7 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
     const results = makeResults([
       [1, 0.9], [2, 0.85], [3, 0.82], [4, 0.10], [5, 0.08],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(true);
     expect(out.truncatedCount).toBe(3);
     expect(out.cutoffIndex).toBe(2);
@@ -159,7 +159,7 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
       { id: 'd', score: 0.10, meta: 'bar' },
       { id: 'e', score: 0.05, meta: 'baz' },
     ];
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(true);
     expect(out.results[0].meta).toBe('hello');
     expect(out.results[2].meta).toBe('foo');
@@ -167,7 +167,7 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
 
   it('T10: originalCount reflects pre-truncation count', () => {
     const results = makeResults([[1, 0.9], [2, 0.85], [3, 0.82], [4, 0.10], [5, 0.08]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.originalCount).toBe(5);
     expect(out.truncatedCount).toBe(3);
   });
@@ -175,14 +175,14 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
   it('T11: cutoffGap reflects the gap that triggered truncation', () => {
     // Gap[2] = 0.82 - 0.10 = 0.72
     const results = makeResults([[1, 0.9], [2, 0.85], [3, 0.82], [4, 0.10], [5, 0.08]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.cutoffGap).toBeCloseTo(0.72, 5);
   });
 
   it('T12: medianGap is reported correctly', () => {
     // Gaps: 0.05, 0.03, 0.72, 0.02 → sorted: 0.02, 0.03, 0.05, 0.72 → median = (0.03+0.05)/2 = 0.04
     const results = makeResults([[1, 0.9], [2, 0.85], [3, 0.82], [4, 0.10], [5, 0.08]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.medianGap).toBeCloseTo(0.04, 5);
   });
 });
@@ -191,27 +191,23 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
    MINIMUM RESULT COUNT ENFORCEMENT
    ──────────────────────────────────────────────────────────────── */
 
-describe('T029-04: Minimum Result Count (3)', () => {
+describe('T029-04: Minimum Result Count', () => {
   beforeEach(enableFlag);
   afterEach(disableFlag);
 
-  it('T13: does not truncate below minResults (default 3)', () => {
-    // Even if there is a gap at index 0, we must respect minResults=3
+  it('T13: does not truncate below the default display floor', () => {
+    // Even if there is a gap at index 0, the default floor keeps this set intact.
     // Gap[0] between index 0 and 1 = 0.9-0.1 = 0.8; median gap with 4 items = large
-    // Since minResults=3 and we start search at index 2, gap[0] is skipped
+    // Since the default display floor is higher than this set, no truncation runs.
     const results = makeResults([
       [1, 0.9], [2, 0.1], [3, 0.05], [4, 0.04], [5, 0.03],
     ]);
     // Gaps: 0.80, 0.05, 0.01, 0.01
     // Sorted: 0.01, 0.01, 0.05, 0.80 → median = (0.01 + 0.05)/2 = 0.03
     // Threshold = 2 * 0.03 = 0.06
-    // Start search at i=2 (minResults-1 = 2):
-    // Gap[2] = 0.01, not > 0.06
-    // Gap[3] = 0.01, not > 0.06
-    // No truncation
-    const out = truncateByConfidence(results);
-    // With the actual numbers the large gap at 0 is not searched; no truncation
-    expect(out.results.length).toBeGreaterThanOrEqual(DEFAULT_MIN_RESULTS);
+    const out = truncateByConfidence(results, { minResults: 3 });
+    expect(out.truncated).toBe(false);
+    expect(out.results.length).toBe(5);
   });
 
   it('T14: custom minResults=2 allows earlier truncation', () => {
@@ -229,14 +225,17 @@ describe('T029-04: Minimum Result Count (3)', () => {
   });
 
   it('T15: returns all results when count equals minResults exactly', () => {
-    const results = makeResults([[1, 0.9], [2, 0.5], [3, 0.1]]);
-    const out = truncateByConfidence(results);
+    const results = makeResults([
+      [1, 0.9], [2, 0.8], [3, 0.7], [4, 0.6], [5, 0.5],
+      [6, 0.4], [7, 0.3], [8, 0.2], [9, 0.1], [10, 0.05],
+    ]);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
-    expect(out.truncatedCount).toBe(3);
+    expect(out.truncatedCount).toBe(DEFAULT_MIN_RESULTS);
   });
 
-  it('T16: DEFAULT_MIN_RESULTS constant is 3', () => {
-    expect(DEFAULT_MIN_RESULTS).toBe(3);
+  it('T16: DEFAULT_MIN_RESULTS constant is 10', () => {
+    expect(DEFAULT_MIN_RESULTS).toBe(10);
   });
 
   it('T17: GAP_THRESHOLD_MULTIPLIER constant is 2', () => {
@@ -257,21 +256,21 @@ describe('T029-05: No Truncation When All Gaps Are Similar', () => {
     // Gaps: 0.2, 0.2, 0.2, 0.2 → median = 0.2, threshold = 0.4
     // No gap exceeds threshold
     const results = makeResults([[1, 1.0], [2, 0.8], [3, 0.6], [4, 0.4], [5, 0.2]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.truncatedCount).toBe(5);
   });
 
   it('T19: no truncation when all results have same score', () => {
     const results = makeResults([[1, 0.5], [2, 0.5], [3, 0.5], [4, 0.5]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.truncatedCount).toBe(4);
   });
 
   it('T20: no truncation returned with correct metadata when no gap found', () => {
     const results = makeResults([[1, 1.0], [2, 0.8], [3, 0.6], [4, 0.4], [5, 0.2]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.cutoffGap).toBe(0);
     expect(out.cutoffIndex).toBe(4); // last index
@@ -297,7 +296,7 @@ describe('T029-06: Edge Cases', () => {
 
   it('T22: single result returns unchanged', () => {
     const results = makeResults([[1, 0.9]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.truncatedCount).toBe(1);
     expect(out.cutoffIndex).toBe(0);
@@ -305,7 +304,7 @@ describe('T029-06: Edge Cases', () => {
 
   it('T23: two results with small count returns unchanged (≤ minResults)', () => {
     const results = makeResults([[1, 0.9], [2, 0.1]]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(false);
     expect(out.truncatedCount).toBe(2);
   });
@@ -314,7 +313,7 @@ describe('T029-06: Edge Cases', () => {
     const results = makeResults([
       ['abc', 0.9], ['def', 0.85], ['ghi', 0.82], ['jkl', 0.10], ['mno', 0.08],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.truncated).toBe(true);
     expect(out.results[0].id).toBe('abc');
     expect(out.results[2].id).toBe('ghi');
@@ -339,7 +338,7 @@ describe('T029-07: >30% Tail Reduction on Realistic Distribution', () => {
       [5, 0.22], [6, 0.20], [7, 0.18], [8, 0.16],
       [9, 0.14], [10, 0.12], [11, 0.10], [12, 0.08],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
 
     // Verify truncation happened
     expect(out.truncated).toBe(true);
@@ -355,7 +354,7 @@ describe('T029-07: >30% Tail Reduction on Realistic Distribution', () => {
       [1, 0.95], [2, 0.91], [3, 0.89], [4, 0.87],
       [5, 0.15], [6, 0.12], [7, 0.10], [8, 0.09], [9, 0.08], [10, 0.07],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
 
     expect(out.truncated).toBe(true);
     // 6 of 10 removed = 60% reduction, well above 30%
@@ -415,7 +414,7 @@ describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {
     const results = makeResults([
       [1, 0.9], [2, NaN], [3, 0.85], [4, 0.82], [5, 0.10], [6, 0.08],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     // NaN result removed, remaining 5 valid results processed
     expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
     expect(out.originalCount).toBe(5); // NaN filtered out
@@ -425,7 +424,7 @@ describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {
     const results = makeResults([
       [1, Infinity], [2, 0.9], [3, 0.85], [4, 0.82], [5, 0.10],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
     expect(out.originalCount).toBe(4); // Infinity filtered out
   });
@@ -434,7 +433,7 @@ describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {
     const results = makeResults([
       [1, 0.9], [2, 0.85], [3, 0.82], [4, -Infinity],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
     expect(out.originalCount).toBe(3);
   });
@@ -444,7 +443,7 @@ describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {
     const results = makeResults([
       [1, 0.10], [2, 0.85], [3, 0.08], [4, 0.82], [5, 0.9],
     ]);
-    const out = truncateByConfidence(results);
+    const out = truncateByConfidence(results, { minResults: 3 });
     // Should produce same result as sorted input
     expect(out.truncated).toBe(true);
     expect(out.truncatedCount).toBe(3);

@@ -4,7 +4,7 @@
 // Proves the budget truncator no longer collapses a populated search to a
 // single result: a too-large top result is skipped (not hard-stopped) so
 // smaller lower-ranked results still fit, and the detailed count is floored
-// at min(limit, 3) by promoting overflow as token-cheap summaries — even when
+// at min(limit, 10) by promoting overflow as token-cheap compact rows — even when
 // includeContent is false (the common metadata-only call).
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -67,19 +67,20 @@ describe('truncateToBudget — skip-and-continue + floor', () => {
     }
   });
 
-  it('floors the detailed count at min(limit, 3) by promoting summaries, even when includeContent=false', () => {
-    // Five results that each individually fit, but only one fits the budget at
-    // full detail. Without the floor this collapses toward one result.
+  it('floors the detailed count at min(limit, 10) by promoting compact rows, even when includeContent=false', () => {
+    // Many results that each individually fit, but only one fits the budget at
+    // full detail. Without the floor this collapses toward one result. With more
+    // candidates than the floor, the remainder must route to progressive disclosure.
     const big = makeResult({
       id: 1,
       score: 0.95,
       title: 'Big A',
       content: 'a'.repeat(2400),
     });
-    const rest = [2, 3, 4, 5].map((id) =>
+    const rest = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((id) =>
       makeResult({
         id,
-        score: 1 - id * 0.1,
+        score: 1 - id * 0.01,
         title: `Doc ${id}`,
         content: 'b'.repeat(2400),
       }),
@@ -94,19 +95,18 @@ describe('truncateToBudget — skip-and-continue + floor', () => {
     );
 
     expect(truncated).toBe(true);
-    // Floor honored: at least 3 results returned despite the tight budget.
-    expect(results.length).toBeGreaterThanOrEqual(3);
-    // The promoted results are token-cheap summaries (summary-first applies
+    // Floor honored: at least 10 results surfaced despite the tight budget.
+    expect(results.length).toBeGreaterThanOrEqual(10);
+    // The promoted results are token-cheap compact rows (compact-first applies
     // regardless of includeContent).
-    const summarized = results.filter((r) => r['_summarized'] === true);
-    expect(summarized.length).toBeGreaterThanOrEqual(2);
-    // Whatever did not fit the floor is routed to progressive disclosure, not
-    // discarded.
+    const compact = results.filter((r) => r['compact'] === true);
+    expect(compact.length).toBeGreaterThanOrEqual(9);
+    // Whatever exceeded the floor is routed to progressive disclosure, not discarded.
     expect(progressive).toBeDefined();
     expect(progressive!.summaryLayer.count).toBeGreaterThan(0);
   });
 
-  it('honors a small explicit limit as the floor (min(limit, 3))', () => {
+  it('honors a small explicit limit as the floor (min(limit, 10))', () => {
     const a = makeResult({ id: 1, score: 0.9, title: 'A', content: 'x'.repeat(8000) });
     const b = makeResult({ id: 2, score: 0.8, title: 'B', content: 'x'.repeat(8000) });
     const c = makeResult({ id: 3, score: 0.7, title: 'C', content: 'x'.repeat(8000) });
@@ -116,7 +116,7 @@ describe('truncateToBudget — skip-and-continue + floor', () => {
       limit: 2,
     });
 
-    // limit=2 → floor is min(2, 3) = 2, not 3.
+    // limit=2 → floor is min(2, 10) = 2, capped by the explicit limit.
     expect(results).toHaveLength(2);
     expect(results.map((r) => r.id)).toEqual([1, 2]);
   });
