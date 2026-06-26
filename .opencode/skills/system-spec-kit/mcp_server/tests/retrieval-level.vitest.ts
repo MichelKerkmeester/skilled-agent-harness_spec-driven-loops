@@ -49,10 +49,13 @@ vi.mock('../lib/search/hybrid-search', () => ({
   searchWithFallback: collectRawCandidatesMock,
 }));
 
+const getConstitutionalMemoriesMock = vi.hoisted(() => vi.fn(() => [] as unknown[]));
+
 vi.mock('../lib/search/vector-index', () => ({
   generateQueryEmbedding: vi.fn(async () => new Float32Array([0.1, 0.2, 0.3])),
   vectorSearch: vi.fn(() => []),
   multiConceptSearch: vi.fn(() => []),
+  get_constitutional_memories: getConstitutionalMemoriesMock,
 }));
 
 vi.mock('../lib/search/community-search', () => ({
@@ -134,6 +137,46 @@ describe('memory_search retrievalLevel', () => {
     expect(auto.candidates.map((row) => row.id)).toEqual([1]);
     expect(collectRawCandidatesMock).toHaveBeenCalledTimes(1);
     expect(queryCommunityMembersAsRankedListMock).not.toHaveBeenCalled();
+  });
+
+  it('coerces global to local when SPECKIT_DUAL_RETRIEVAL is off (kill switch)', async () => {
+    const prev = process.env.SPECKIT_DUAL_RETRIEVAL;
+    process.env.SPECKIT_DUAL_RETRIEVAL = 'false';
+    try {
+      const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'global' }) });
+      // The documented kill switch fully disables community retrieval: the global level
+      // falls through to the local lane and the community query never runs.
+      expect(result.candidates.map((row) => row.id)).toEqual([1]);
+      expect(queryCommunityMembersAsRankedListMock).not.toHaveBeenCalled();
+      expect(collectRawCandidatesMock).toHaveBeenCalledTimes(1);
+    } finally {
+      if (prev === undefined) delete process.env.SPECKIT_DUAL_RETRIEVAL;
+      else process.env.SPECKIT_DUAL_RETRIEVAL = prev;
+    }
+  });
+
+  it('excludes deprecated-tier rows from the global branch by default (includeArchived=false)', async () => {
+    queryCommunityMembersAsRankedListMock.mockReturnValueOnce([
+      { id: 2, title: 'live', spec_folder: 'scope/global', file_path: 'scope/global/spec.md', source: 'community', score: 0.7, similarity: 0.7, quality_score: 0.7, importance_tier: 'normal' },
+      { id: 3, title: 'deprecated', spec_folder: 'scope/global', file_path: 'scope/global/dep.md', source: 'community', score: 0.6, similarity: 0.6, quality_score: 0.6, importance_tier: 'deprecated' },
+    ]);
+
+    const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'global', includeArchived: false }) });
+    // The deprecated row (id 3) is excluded, matching the local/vector path default-deny.
+    expect(result.candidates.map((row) => row.id)).toEqual([2]);
+  });
+
+  it('injects constitutional rows in the global branch when includeConstitutional is set', async () => {
+    getConstitutionalMemoriesMock.mockReturnValueOnce([
+      { id: 99, title: 'pinned rule', spec_folder: 'system', file_path: 'system/rule.md', source: 'constitutional', score: 1, similarity: 1, quality_score: 1, importance_tier: 'constitutional' },
+    ]);
+
+    const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'global', includeConstitutional: true }) });
+    const ids = result.candidates.map((row) => row.id);
+    // The community result survives AND the always-surface constitutional row is injected.
+    expect(ids).toContain(2);
+    expect(ids).toContain(99);
+    expect(result.metadata.constitutionalInjected).toBe(1);
   });
 
   it('defaults omitted handler retrievalLevel to auto in pipeline and cache args', async () => {

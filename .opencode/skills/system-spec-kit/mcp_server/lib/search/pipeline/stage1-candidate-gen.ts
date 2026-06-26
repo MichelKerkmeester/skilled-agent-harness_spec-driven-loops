@@ -39,7 +39,7 @@ import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
 import * as hybridSearch from '../hybrid-search.js';
 import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
-import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled } from '../search-flags.js';
+import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled, isDualRetrievalEnabled } from '../search-flags.js';
 import { expandQuery } from '../query-expander.js';
 import { expandQueryWithEmbeddings, isExpansionActive } from '../embedding-expansion.js';
 import { querySummaryEmbeddings, checkScaleGate } from '../memory-summaries.js';
@@ -735,7 +735,10 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     }
   }
 
-  if (retrievalLevel === 'global') {
+  // SPECKIT_DUAL_RETRIEVAL is the documented kill switch for local/global retrieval-level
+  // control; when it is off, ignore a 'global' level and fall through to normal (local)
+  // retrieval so the switch fully disables community retrieval at the pipeline level.
+  if (retrievalLevel === 'global' && isDualRetrievalEnabled()) {
     try {
       const db = requireDb();
       let globalCandidates = queryCommunityMembersAsRankedList(
@@ -747,6 +750,13 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       if (tier) {
         globalCandidates = applyTierFilter(globalCandidates, tier);
+      } else if (!includeArchived) {
+        // The community SQL has no importance_tier predicate, so the default-deny on
+        // deprecated rows the vector path applies must be enforced here too — otherwise
+        // 'global' surfaces deprecated rows that 'local' would have excluded.
+        globalCandidates = globalCandidates.filter(
+          (row) => row.importance_tier == null || row.importance_tier !== 'deprecated',
+        );
       }
       if (contextType) {
         globalCandidates = globalCandidates.filter(
@@ -755,6 +765,38 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       }
       globalCandidates = backfillMissingQualityScores(globalCandidates);
       globalCandidates = filterByMinQualityScore(globalCandidates, qualityThreshold);
+
+      // Constitutional always-surface guarantee is independent of the retrieval level:
+      // the global branch returns before the main injection block, so it must inject the
+      // pinned rows itself (fetched by tier — no embedding needed), scope/context-filtered
+      // and deduped, or 'global' would silently drop constitutional memories that 'local'
+      // always surfaces.
+      let globalConstitutionalInjected = 0;
+      if (includeConstitutional && !tier) {
+        try {
+          const constitutionalResults = vectorIndex.get_constitutional_memories(
+            db,
+            specFolder ?? null,
+            includeArchived ?? false,
+          ) as PipelineRow[];
+          const existingIds = new Set(globalCandidates.map((r) => r.id));
+          let uniqueConstitutional = constitutionalResults.filter((r) => !existingIds.has(r.id));
+          if (contextType) {
+            uniqueConstitutional = uniqueConstitutional.filter(
+              (r) => resolveRowContextType(r) === contextType,
+            );
+          }
+          if (tenantId || userId || agentId) {
+            uniqueConstitutional = filterRowsByScope(uniqueConstitutional, { tenantId, userId, agentId });
+          }
+          globalCandidates = [...globalCandidates, ...uniqueConstitutional];
+          globalConstitutionalInjected = uniqueConstitutional.length;
+        } catch (constitutionalErr: unknown) {
+          const constitutionalMsg =
+            constitutionalErr instanceof Error ? constitutionalErr.message : String(constitutionalErr);
+          console.warn(`[stage1-candidate-gen] global constitutional injection failed (fail-open): ${constitutionalMsg}`);
+        }
+      }
 
       const durationMs = Date.now() - startTime;
       if (trace) {
@@ -771,7 +813,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           channelCount: 1,
           activeChannels: 1,
           candidateCount: globalCandidates.length,
-          constitutionalInjected: 0,
+          constitutionalInjected: globalConstitutionalInjected,
           durationMs,
         },
       };
