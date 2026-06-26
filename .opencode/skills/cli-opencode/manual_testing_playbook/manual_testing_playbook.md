@@ -34,7 +34,7 @@ Canonical package artifacts:
 
 This playbook provides 34 deterministic scenarios across 9 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-go/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go default with full variant range, deepseek direct API), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 13-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 13-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
@@ -58,7 +58,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. OpenCode CLI version is at or near the v1.3.17 baseline pinned in `references/cli_reference.md`. Drift handled per `references/cli_reference.md` §9.
-4. The GitHub Copilot subscription is active and registered in `opencode auth list` (the canonical default `opencode-go/deepseek-v4-pro` resolves through it). The `opencode-go/deepseek-v4-pro` Anthropic alternative also resolves through the same OAuth (no separate Anthropic credentials required). Multi-provider scenarios additionally need: opencode-go subscription registered when exercising `opencode-go/deepseek-v4-pro` and direct DeepSeek API credentials (`DEEPSEEK_API_KEY` / `auth login deepseek`) when exercising `deepseek/...`.
+4. Direct DeepSeek API credentials are active: `DEEPSEEK_API_KEY` is set and `opencode providers login deepseek` has been run (the canonical default `deepseek/deepseek-v4-pro` resolves through it). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Spec Kit Memory, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, Code Graph search and `memory_search`.
@@ -164,7 +164,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Recommended Wave Plan
 
-- **Wave 1** (parallel-safe, read-only, fast): CO-001..CO-005 (CLI invocation), CO-009 (opencode-go default), CO-013..CO-017 (agent routing), CO-018..CO-020 (session continuity), CO-023..CO-025 (prompt templates), CO-029, CO-030, CO-031 (cross-repo plus nested guard).
+- **Wave 1** (parallel-safe, read-only, fast): CO-001..CO-005 (CLI invocation), CO-009 (deepseek default), CO-013..CO-017 (agent routing), CO-018..CO-020 (session continuity), CO-023..CO-025 (prompt templates), CO-029, CO-030, CO-031 (cross-repo plus nested guard).
 - **Wave 2** (multi-provider, requires extra provider auth): CO-007 (Codex calling), CO-010 (OpenAI), CO-011 (Google), CO-012 (variant comparison).
 - **Wave 3** (use-case-specific): CO-006 (Claude Code calling MCP), CO-008 (self-invocation refusal), CO-021 (cross-AI handback), CO-022 (memory epilogue).
 - **Wave 4** (parallel detached, port-isolated): CO-026 (parallel detached session), CO-027 (worker farm with `</dev/null`), CO-028 (ablation suite).
@@ -187,7 +187,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the canonical `opencode run --model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
+Verify the canonical `opencode run --model deepseek/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
 
 #### Scenario Contract
 
@@ -321,13 +321,13 @@ Expected signals: Layer 1 (env var) detection trips. Refusal message in referenc
 
 ## 9. MULTI-PROVIDER (`CO-011..CO-012`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (opencode-go default routing, deepseek direct API) plus the variant-level reasoning effort range.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (deepseek direct API as default, kimi-for-coding direct plan) plus the variant-level reasoning effort range.
 
 ### CO-011 | deepseek direct API (deepseek-v4-pro)
 
 #### Description
 
-Verify `--model deepseek/deepseek-v4-pro --variant high` validates the deepseek direct API surface (bypasses opencode-go), resolves correctly, and produces a coherent response.
+Verify `--model deepseek/deepseek-v4-pro --variant high` validates the deepseek direct API surface (the default provider), resolves correctly, and produces a coherent response.
 
 #### Scenario Contract
 
@@ -620,41 +620,41 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 
 > **Feature File:** [CO-025](07--prompt-templates/template-applied-to-real-dispatch.md)
 
-### CO-035 | DeepSeek-v4-pro via opencode-go through sk-prompt-small-model + sk-prompt (triple-skill flow)
+### CO-035 | DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-small-model + sk-prompt (triple-skill flow)
 
 #### Description
 
-Verify the small-model dispatch matrix surfaces both `sk-prompt-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the opencode-go provider path. This is the production happy-path for opencode-go-pool DeepSeek work.
+Verify the small-model dispatch matrix surfaces both `sk-prompt-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the direct DeepSeek API (`deepseek/deepseek-v4-pro`). This is the production happy-path for DeepSeek work.
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
+Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode direct DeepSeek API path. Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model deepseek/deepseek-v4-pro --variant high and capture the output.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
+Expected signals: Advisor returns `sk-prompt-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model deepseek/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
 
-Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the opencode-go path was picked over the other two DeepSeek-v4-pro paths.
+Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the direct DeepSeek API path was consciously picked.
 
 #### Test Execution
 
-> **Feature File:** [CO-035](07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md)
+> **Feature File:** [CO-035](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-small-model.md)
 
-### CO-036 | Kimi-k2.6 via opencode-go through sk-prompt-small-model + sk-prompt
+### CO-036 | Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-small-model + sk-prompt
 
 #### Description
 
-Verify the dispatch matrix for Kimi-k2.6 via the opencode-go path, that the operator consciously picks opencode-go for long-context work, that `sk-prompt` composes with a large-context framework (Kimi's strength), and that `cli-opencode --model opencode-go/kimi-k2.6` runs.
+Verify the dispatch matrix for Kimi K2.7 Code via the direct Kimi For Coding plan (`kimi-for-coding/k2p7`), that the operator consciously picks the direct Kimi provider for long-context work, that `sk-prompt` composes with a large-context framework (Kimi's strength), and that `cli-opencode --model kimi-for-coding/k2p7` runs.
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
+Prompt: `Consult sk-prompt-small-model for the Kimi K2.7 dispatch matrix and pick the cli-opencode direct Kimi For Coding path (kimi-for-coding/k2p7). Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model kimi-for-coding/k2p7 --variant high.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model_profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model_profiles.json kimi-k2p7 entry shows the direct Kimi For Coding path. `opencode run --model kimi-for-coding/k2p7 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
-Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
+Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi K2.7's large-context advantage, dispatched via the direct Kimi For Coding plan with the matrix-consultation evidence trail.
 
 #### Test Execution
 
-> **Feature File:** [CO-036](07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md)
+> **Feature File:** [CO-036](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
 
 ---
 
@@ -827,6 +827,8 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-023: [Prompt templates inventory (13 templates)](07--prompt-templates/templates-inventory.md)
 - CO-024: [CLEAR quality card 5-check](07--prompt-templates/clear-quality-card.md)
 - CO-025: [Template applied to a real dispatch](07--prompt-templates/template-applied-to-real-dispatch.md)
+- CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-small-model + sk-prompt](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-small-model.md)
+- CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-small-model + sk-prompt](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
 
 ### PARALLEL DETACHED
 
