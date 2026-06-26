@@ -1,6 +1,6 @@
 ---
 title: "Tasks: 028 Playbook Findings Remediation [template:level_2/tasks.md]"
-description: "The task list for the playbook findings remediation. Eight clusters A through H fixed and verified per cluster across seven fix commits, plus a follow-up test commit and a phase re-parenting commit. The full-suite run and merge of branch wt/0008-findings-remediation remain open."
+description: "The task list for the playbook findings remediation. Eight clusters A through H fixed and verified per cluster across seven fix commits, plus a follow-up test commit and a phase re-parenting commit, all landed on the 028 review-branch mainline (authored in worktree wt/0008-findings-remediation). A whole-suite run across all clusters together, before the 028 branch merges to main, remains open."
 trigger_phrases:
   - "playbook findings remediation tasks"
   - "028 remediation task list"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-25T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Marked all eight cluster tasks plus the follow-up tests and re-parenting done"
-    next_safe_action: "Run the full suite on branch wt/0008-findings-remediation then merge"
+    next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -65,7 +65,7 @@ _memory:
 - [x] T012 Cluster C retrievalLevel: honor local, global and auto end to end, add the strict input schema field, key the cache by level (commit `f0e063eed4`)
 - [x] T013 Cluster D ordering: folder rank primary sort plus guaranteed top-k channel representation (commit `cbf4f4d111`)
 - [x] T014 [P] Cluster E advisor persistence: routing, sanitizer, scorer, rollback, bench and force-native, the F1 through F6 fixes (commit `917ad633a3`)
-- [x] T015 [P] Cluster F DB lifecycle: cross-process rebind, db-path standardization, embedding-retry e2e (commit `f27945593e`)
+- [x] T015 [P] Cluster F DB lifecycle: db-path standardization plus a new end-to-end test over the pre-existing cross-process rebind, embedding-retry e2e (commit `f27945593e`)
 - [x] T016 [P] Clusters G and H code-graph and quality: write-local refresh, duplicate helper, stale tests, entity dedup, 7-layer metadata (commit `3291c05389`)
 <!-- /ANCHOR:phase-2 -->
 
@@ -78,7 +78,7 @@ _memory:
 - [x] T021 Mutation-check the risky fixes: schema, security, rollback, ordering and DB lifecycle, confirm the distinguishing test goes red when reverted
 - [x] T022 Add the follow-up tests for B4 surrogate index-time, B5 contextual-tree header and the C strict-schema assertion (commit `374ca93caa`)
 - [x] T023 Re-parent the post-phase-6 phases under their relevant parents (commit `64d064d868`)
-- [ ] T024 Run the full suite on branch wt/0008-findings-remediation and merge (NOT RUN, held open as the next safe action)
+- [ ] T024 Run the whole suite across all clusters together before the 028 review branch merges to main (NOT RUN, held open as the next safe action)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -92,7 +92,7 @@ _memory:
 | Per-cluster vitest, typecheck, hygiene, drift | Done |
 | Risky fixes mutation-checked True-RED | Done |
 | Follow-up tests landed | Done |
-| Full-suite run and merge | Not met, open as next safe action |
+| Whole-suite run across all clusters together before the 028 branch merges to main | Not met, open as next safe action |
 | Strict validation | Target exit 0 |
 <!-- /ANCHOR:completion -->
 

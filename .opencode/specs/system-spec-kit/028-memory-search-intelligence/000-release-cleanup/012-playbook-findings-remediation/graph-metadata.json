@@ -50,7 +50,7 @@
       "schemas/tool-input-schemas.ts",
       "lib/search/folder-relevance.ts",
       "lib/search/channel-enforcement.ts",
-      "hooks/spec-memory-cli-fallback.ts",
+      "core/db-state.ts",
       "core/config.ts",
       "lib/providers/retry-manager.ts",
       "lib/search/vector-index-store.ts",
@@ -118,9 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "spec-memory-cli-fallback.ts",
+        "name": "db-state.ts",
         "kind": "code",
-        "path": "hooks/spec-memory-cli-fallback.ts",
+        "path": "core/db-state.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
     "created_at": "2026-06-25T18:18:49.997Z",
-    "last_save_at": "2026-06-25T18:22:28.011Z",
+    "last_save_at": "2026-06-26T10:07:17.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f86c07bc07d66b113edf732bc0df48255ffe57186177634b9eb6fa46deb2f097",
+    "source_fingerprint": "sha256:5f8853d27e0a1d4005526f4f0039788d07f155dc67e08eb963cbfcbcd7b471b2",
     "source_doc_hashes": {
-      "spec.md": "917ee1e41229cb04f9418269b4d053d59791f0751d9a7d77c457decdb971b23f",
-      "plan.md": "5cede0e084c911179960351644e8430296c755c1344017e1dfea4f8e33f84b3d",
-      "tasks.md": "4f775bcc9fb654a13e763a387bed1866a90b21fb6e74fdd7067c018a504f336b",
-      "checklist.md": "c29543352061ae0d29b9e3bd6e3bcfe57121e00ddd1dce39b62088a341277725",
-      "implementation-summary.md": "3efcf79dca854635e7facc3186db6469f89e04fcae247a707608eb5470dac6e2"
+      "spec.md": "b737a5d9097619dcc5d721ded86efbb5dfc4d9b49117e54bc04804cba3447963",
+      "plan.md": "5215a22d4a3ca93c53a094aee05d6693701cea0c344d5bbd3542f71252c298f0",
+      "tasks.md": "05965755b96074e1c8e37027691255e7ea6db7ff00bd75b22b7e50fccf382e62",
+      "checklist.md": "1033fc02c3c5b3e8ad5a8dea19f651a60782e13153dd2c4d9b382b43b2d3476c",
+      "implementation-summary.md": "3d10aa6e56491e9962947ab71bec8f86f7990b6b25c2a34d2a25c658ba295c1c"
     },
     "last_active_child_id": null,
     "last_active_at": null

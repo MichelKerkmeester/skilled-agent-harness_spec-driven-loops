@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: 028 Playbook Findings Remediation [template:level_2/checklist.md]"
-description: "QA verification for the playbook findings remediation. Confirms each cluster's vitest pass counts, the mutation checks on the risky fixes, the typecheck, comment hygiene and alignment-drift results, the excluded artifacts and the open merge state. Each item carries evidence from the findings registry."
+description: "QA verification for the playbook findings remediation. Confirms each cluster's vitest pass counts, the mutation checks on the risky fixes, the typecheck, comment hygiene and alignment-drift results, the excluded artifacts and the open whole-suite-run state. Each item carries evidence from the findings registry."
 trigger_phrases:
   - "playbook findings remediation checklist"
   - "028 remediation verification"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-25T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified QA items with evidence from the per-cluster vitest counts and mutation checks"
-    next_safe_action: "Run the full suite on branch wt/0008-findings-remediation then merge"
+    next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -92,7 +92,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-040 [P0] Advisor skill-metadata write path sanitized [EVIDENCE: cluster E E2 F2 new metadata-sanitizer rejects traversal, strips instruction-shaped values, bounds paths, sanitizer-boundary test added, security mutation-checked]
+- [x] CHK-040 [P0] Advisor skill_nodes index path sanitized [EVIDENCE: cluster E E2 F2 new metadata-sanitizer rejects traversal, strips instruction-shaped values, bounds paths, covering domains, intentSignals and the derived source_docs/key_files/trigger_phrases/key_topics/entities, sanitizer-boundary test added, security mutation-checked. NOTE: the separate skill_docs upsert path (title/description/trigger_phrases written and read raw) is not covered and remains a known gap]
 <!-- /ANCHOR:security -->
 
 ---
@@ -102,7 +102,7 @@ _memory:
 
 - [x] CHK-050 [P1] Each fix traces to its finding and commit [EVIDENCE: findings-registry.md and implementation-summary.md map each cluster to its commit]
 - [x] CHK-051 [P1] The excluded artifacts named so the scope reads correctly [EVIDENCE: six isolation and harness artifacts listed in implementation-summary.md]
-- [x] CHK-052 [P1] The open merge state stated honestly [EVIDENCE: code verified per cluster, full-suite run and merge of wt/0008-findings-remediation recorded as open]
+- [x] CHK-052 [P1] The open whole-suite state stated honestly [EVIDENCE: code verified per cluster and landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence); a whole-suite run across all clusters together, before the 028 branch merges to main, recorded as open]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -128,5 +128,5 @@ _memory:
 | Documentation | 0 | 3 | 0 | Done |
 | File Organization | 0 | 0 | 1 | Done |
 
-All P0 and P1 items complete with evidence. The one open item is operational: the full-suite run on branch wt/0008-findings-remediation and the merge, held as the next safe action.
+All P0 and P1 items complete with evidence. The one open item is operational: a whole-suite run across all clusters together before the 028 review branch merges to main, held as the next safe action.
 <!-- /ANCHOR:summary -->

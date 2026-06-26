@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 028 Playbook Findings Remediation"
-description: "Results report for the playbook findings remediation. Eight clusters A through H fixed by gpt-5.5-fast high and verified per cluster: cluster A 80 passed, cluster B 1165 passed, cluster C 155 passed, cluster D 98 passed, cluster E 61 passed, cluster F 63 passed, clusters G and H 421 plus 17 passed. Risky fixes mutation-checked True-RED. Six isolation artifacts excluded. The code lives on branch wt/0008-findings-remediation and the full-suite run plus merge are open."
+description: "Results report for the playbook findings remediation. Eight clusters A through H fixed by gpt-5.5-fast high and verified per cluster: cluster A 80 passed, cluster B 1165 passed, cluster C 155 passed, cluster D 98 passed, cluster E 61 passed, cluster F 63 passed, clusters G and H 421 plus 17 passed. Risky fixes mutation-checked True-RED. Six isolation artifacts excluded. The fixes are landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence); the work was authored in worktree wt/0008-findings-remediation. A whole-suite run across all clusters together, before the 028 branch merges to main, remains open."
 trigger_phrases:
   - "playbook findings remediation results"
   - "028 remediation cluster results"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-25T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the results report with the eight clusters, the excluded artifacts and the commit list"
-    next_safe_action: "Run the full suite on branch wt/0008-findings-remediation then merge"
+    next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Full-suite run and merge of wt/0008-findings-remediation held open as the next safe action. The code is verified per cluster."
+      - "Fixes landed on the 028 review-branch mainline, verified per cluster. A whole-suite run across all clusters together, before the 028 branch merges to main, remains the open gate."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -40,7 +40,7 @@ _memory:
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation |
 | **Completed** | 2026-06-25 |
 | **Level** | 2 |
-| **Status** | Complete, code verified per cluster, not yet merged |
+| **Status** | Complete, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The remediation of the real product findings the daemon-skills playbook validation surfaced. gpt-5.5-fast high fixed the findings in eight clusters A through H in an isolated worktree, each cluster verified by vitest plus typecheck plus mutation checks on the risky fixes plus the comment-hygiene and alignment-drift gates, then committed. The deliverable is the remediated code on branch wt/0008-findings-remediation plus this report. The six isolation and harness artifacts were excluded as not bugs.
+The remediation of the real product findings the daemon-skills playbook validation surfaced. gpt-5.5-fast high authored the fixes in eight clusters A through H in worktree wt/0008-findings-remediation, each cluster verified by vitest plus typecheck plus mutation checks on the risky fixes plus the comment-hygiene and alignment-drift gates, then committed. The fix commits are landed linearly on the 028 review branch's first-parent mainline (system-speckit/028-memory-search-intelligence); the worktree was only where the work was authored. The deliverable is the remediated code on the 028 mainline plus this report. The six isolation and harness artifacts were excluded as not bugs.
 
 ### Cluster A. Schema drift (P0)
 
@@ -86,10 +86,10 @@ Two ordering contracts were violated.
 Six advisor lifecycle, persistence and routing regressions.
 
 - E1 F1 routing is re-mapped, deep-research and deep-review to leaf skills, `:review:auto` to the review leaf, null phrases handled, across `lib/scorer/lanes/*`, `fusion.ts`, `projection.ts` and `skill-graph-db.ts`. Measured top-1 accuracy is now 0.92 to 0.95 against the 0.92 gate.
-- E2 F2 the skill-metadata write path is now sanitized by a new `lib/skill-graph/metadata-sanitizer.ts` that rejects traversal, strips instruction-shaped values and bounds paths, wired into `skill-graph-db.ts`, with a sanitizer-boundary test.
+- E2 F2 the skill_nodes index path is now sanitized by a new `lib/skill-graph/metadata-sanitizer.ts` that rejects traversal, strips instruction-shaped values and bounds paths, wired into `skill-graph-db.ts` (covering domains, intentSignals and the derived fields source_docs/key_files/trigger_phrases/key_topics/entities), with a sanitizer-boundary test. The separate skill_docs upsert path (parsed title/description/trigger_phrases written and read raw) is not covered and remains a known gap.
 - E3 F3 validate-scorer now awaits outcome persistence, un-gates totals from the debug flag and accepts outcomeEvents in the CLI manifest (`handlers/advisor-validate.ts`, `tools/advisor-validate.ts`, `skill-advisor-cli-manifest.ts`).
 - E4 F4 the rollback transaction now also clears lifecycleStatus and redirectTo (`lib/lifecycle/rollback.ts`), with a test that asserts lifecycle-field cleanup.
-- E5 F5 the bench now exits non-zero when overall_pass is false (`lib/metrics.ts`), with latency itself unchanged and not faked.
+- E5 F5 required no source fix. `scripts/skill_advisor_bench.py` already returned non-zero on failure at base (`return 0 if overall_pass else 1`) and was unchanged in this range, so nothing was changed there. F5's real defect, the warm p95 latency over the 50ms gate, was surfaced but not fixed; it is deferred. (The earlier note that a `lib/metrics.ts` change carried this was a misattribution: that change is E3's outcome-persistence un-gating, not E5.)
 - E6 F6 the disabled-hook `--force-native` now errors native-unavailable with a non-zero exit (`scripts/skill_advisor.py`).
 - Verification: routing-parity-deep-skills, skill-graph-db, advisor-validate, lifecycle-derived-metadata, compat/shim and cli-help-aliases-errors = 7 files, 61 passed. tsc exit 0 direct against tsconfig.build.json. Comment hygiene clean. Security and rollback mutation-checked. Commit `917ad633a3`.
 
@@ -97,7 +97,7 @@ Six advisor lifecycle, persistence and routing regressions.
 
 Three cross-process and retry gaps.
 
-- F1c cross-process DB hot-rebinding now completes the contract: after an external `.db-updated` marker the DB reinits and a follow-up stats or health reflects the new DB, non-stale and healthy (`spec-memory-cli.ts`, `hooks/spec-memory-cli-fallback.ts`), with a test that rebounds stats and health after an external marker update.
+- F1c the cross-process DB hot-rebind machinery (`registerDatabaseRebindListener`, `core/db-state.ts`, `context-server.ts`) pre-existed unchanged. This packet did not add new rebind code; it standardized the db-path in `core/config.ts` and added a new end-to-end test (`db-lifecycle-paths.vitest.ts`) that exercises the pre-existing rebind, proving that after an external `.db-updated` marker the DB reinits and a follow-up stats or health reflects the new DB, non-stale and healthy.
 - F2c DB-path resolution is standardized through one helper respecting env precedence, with divergent runtime and migration entry points routed through it and hardcoded fallbacks removed (`core/config.ts`, `scripts/migrations/*-checkpoint.ts`), with a test that resolves the same path across runtime and migration.
 - F3c the embedding-retry orchestrator e2e now passes end to end: pending rows stay lexical-only until processed, failures record retry and backoff metadata, and success uses the embedding cache and refreshes both vector and lexical surfaces (`lib/providers/retry-manager.ts`, `lib/search/vector-index-store.ts`). The cause was implementation, not a stale test. retry-manager 60/60.
 - Verification: db-lifecycle-paths plus retry-manager = 3 files, 63 passed. Typecheck exit 0. Comment hygiene clean. F1 and F2 mutation-checked True-RED. Commit `f27945593e`.
@@ -126,7 +126,7 @@ The dedicated tests that B4, B5 and the C strict schema were carrying as test ho
 | `f0e063eed4` | C | honor retrievalLevel local, global and auto end to end |
 | `cbf4f4d111` | D | folder rank primary sort plus guaranteed top-k channel representation |
 | `917ad633a3` | E | advisor persistence hardening, F1 through F6 |
-| `f27945593e` | F | DB lifecycle, cross-process rebind, db-path standardization, embedding-retry e2e |
+| `f27945593e` | F | DB lifecycle, db-path standardization plus a new end-to-end test of the pre-existing cross-process rebind, embedding-retry e2e |
 | `3291c05389` | G and H | code-graph write-local refresh plus quality cleanup |
 | `374ca93caa` | follow-up | B4, B5 and C strict-schema tests |
 | `64d064d868` | migration | re-parent the post-phase-6 phases under their relevant parents |
@@ -156,7 +156,7 @@ The findings were triaged into eight clusters by failure mode, then gpt-5.5-fast
 | One commit per cluster | The remediation reads finding by finding and any single cluster can be reverted in isolation |
 | Close the C two-line schema mirror directly | gpt-5.5 correctly flagged it as out of its granted scope, so re-dispatching for two lines added cost with no benefit |
 | Exclude the six isolation artifacts | They were clone-DB, clone-embedding, clone-index or documented identity-gating, not product failures |
-| Hold the full suite and merge open | Per-cluster green is not merge-ready, so the full-suite run on the branch is the next safe action before merge |
+| Hold the whole-suite run open | Per-cluster green is not the same as a whole-suite run across all clusters together, which is the gate before the 028 review branch merges to main |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -182,13 +182,13 @@ The findings were triaged into eight clusters by failure mode, then gpt-5.5-fast
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The fixes are not merged.** All eight clusters live on branch wt/0008-findings-remediation across seven fix commits plus a follow-up test commit and a re-parenting commit. The code is verified per cluster, but the full suite has not been run across all clusters at once and the branch is not merged. The full-suite run is the next safe action before merge.
+1. **The whole-suite run across all clusters together has not run yet.** All eight clusters are landed linearly on the 028 review branch's first-parent mainline (system-speckit/028-memory-search-intelligence) across seven fix commits plus a follow-up test commit and a re-parenting commit; the work was authored in worktree wt/0008-findings-remediation. The code is verified per cluster, but a whole-suite run exercising every touched surface together has not yet run. That whole-suite run is the open gate before the 028 review branch itself merges to main.
 
-2. **Verification is per cluster, not whole-suite.** Each cluster was swept over its own blast radius. A whole-repo run that exercises every touched surface together has not yet run, so a cross-cluster interaction would only surface in that full-suite pass.
+2. **Verification is per cluster, not whole-suite.** Each cluster was swept over its own blast radius. A whole-repo run that exercises every touched surface together has not yet run, so a cross-cluster interaction would only surface in that whole-suite pass.
 
 3. **Two B fixes carried test holes that the follow-up commit closed.** B4 surrogate index-time and B5 contextual-tree header landed as fixed with their dedicated invocation tests added later in commit `374ca93caa`. The C strict-schema-accepts-retrievalLevel assertion was added in the same commit.
 
 4. **The excluded artifacts are excluded by judgment.** The six isolation and harness artifacts were read as environment or documented-intent rather than product bugs. That call rests on the clone-environment caveats recorded in the packet 011 validation.
 
-5. **Some advisor latency was not re-baselined here.** E5 F5 made the bench exit non-zero on failure but left the latency itself unchanged and unfaked, so the warm-latency gate question raised in the validation is surfaced honestly rather than closed by a re-baseline.
+5. **E5 F5's warm-latency defect is surfaced, not fixed.** F5 required no source fix: `scripts/skill_advisor_bench.py` already exited non-zero on failure at base and was unchanged in this range. The real defect, the warm p95 latency over the 50ms gate, was surfaced honestly but deferred, not closed by a re-baseline.
 <!-- /ANCHOR:limitations -->

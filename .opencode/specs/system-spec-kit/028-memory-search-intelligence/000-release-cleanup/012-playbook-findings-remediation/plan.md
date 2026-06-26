@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: 028 Playbook Findings Remediation [template:level_2/plan.md]"
-description: "The cluster-by-cluster remediation approach for the playbook validation findings. gpt-5.5-fast high fixed the findings in eight clusters across an isolated worktree, each cluster verified by vitest plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed. Status complete and code verified per cluster, full suite and merge pending."
+description: "The cluster-by-cluster remediation approach for the playbook validation findings. gpt-5.5-fast high authored the fixes in eight clusters in worktree wt/0008-findings-remediation, each cluster verified by vitest plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed; the commits are landed on the 028 review-branch mainline. Status complete and code verified per cluster; a whole-suite run across all clusters together, before the 028 branch merges to main, is pending."
 trigger_phrases:
   - "playbook findings remediation plan"
   - "028 remediation cluster approach"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-25T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented the cluster-by-cluster approach and the per-cluster verification gate"
-    next_safe_action: "Run the full suite on branch wt/0008-findings-remediation then merge"
+    next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -62,7 +62,7 @@ The findings cluster by failure mode, so the remediation was sequenced as eight 
 - [x] All eight clusters fixed and committed
 - [x] Each cluster passes vitest, typecheck, hygiene and drift
 - [x] Risky fixes mutation-checked True-RED
-- [ ] Full-suite run and merge of wt/0008-findings-remediation (not met, held open as the next safe action)
+- [ ] Whole-suite run across all clusters together before the 028 review branch merges to main (not met, held open as the next safe action)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -103,10 +103,10 @@ Honor retrievalLevel local, global and auto end to end, add the missing strict p
 Make folder rank the primary sort key and reserve a top-k slot per active channel below the floor. Commit `cbf4f4d111`.
 
 ### Phase 5: Cluster E advisor persistence (P0/P1)
-Re-map routing to leaf skills, sanitize the skill-metadata write path, fix the validate-scorer, clear lifecycle fields on rollback, make the bench exit non-zero on failure, error force-native when the hook is disabled. Commit `917ad633a3`.
+Re-map routing to leaf skills, sanitize the skill_nodes index path, fix the validate-scorer, clear lifecycle fields on rollback, surface the F5 warm-latency gate (the bench already exits non-zero on failure, so no source fix was needed there), error force-native when the hook is disabled. Commit `917ad633a3`.
 
 ### Phase 6: Cluster F DB lifecycle (P2)
-Complete the cross-process rebind, standardize db-path resolution and fix the embedding-retry e2e. Commit `f27945593e`.
+Standardize db-path resolution in `core/config.ts`, add a new end-to-end test that exercises the pre-existing cross-process rebind machinery, and fix the embedding-retry e2e. Commit `f27945593e`.
 
 ### Phase 7: Clusters G and H code-graph and quality (P2)
 Recompute stale files on write-local refresh, extract the duplicate scope helper, update the two stale tests, fix entity dedup normalization and confirm the 7-layer metadata surface. Commit `3291c05389`.
@@ -141,7 +141,7 @@ Vitest is the gate and runs per cluster over the full blast radius, not just the
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Each cluster is one commit on branch wt/0008-findings-remediation, so any single cluster can be reverted without touching the others. The branch is not merged, so the whole remediation can be held or dropped at the merge boundary. The next safe action is a full-suite run on the branch before merge.
+Each cluster is one commit landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence), so any single cluster can be reverted without touching the others. The 028 review branch is not yet merged to main, so the whole remediation can still be held or dropped at the 028-to-main boundary. The next safe action is a whole-suite run across all clusters together before the 028 branch merges to main.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -173,7 +173,7 @@ Each cluster is one commit on branch wt/0008-findings-remediation, so any single
 | Follow-up tests | One authoring pass |
 | Re-parenting | One migration pass |
 
-Actual: all eight clusters landed and verified per cluster across seven fix commits plus a follow-up test commit and a re-parenting commit. The full suite and the merge are open.
+Actual: all eight clusters landed on the 028 review-branch mainline and verified per cluster across seven fix commits plus a follow-up test commit and a re-parenting commit. The whole-suite run across all clusters together, before the 028 branch merges to main, is open.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -181,5 +181,5 @@ Actual: all eight clusters landed and verified per cluster across seven fix comm
 <!-- ANCHOR:enhanced-rollback -->
 ## 10. ENHANCED ROLLBACK AND RECOVERY
 
-The work lives entirely on branch wt/0008-findings-remediation. No fix was merged to the integration branch, so there is no production state to recover. The per-cluster commit boundaries mean a regression traced to one cluster can be reverted in isolation. During cluster B the gpt-5.5 dispatch was cut at the cap mid-B5, but all five call sites had already landed, and the worktree node_modules workspace resolution was repaired so the integration suites could run. The one C schema field that gpt-5.5 had correctly flagged as out of its granted scope was closed directly rather than re-dispatched for a two-line mirror.
+The work was authored in worktree wt/0008-findings-remediation and the fix commits are landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence). The 028 review branch is not yet merged to main, so no fix has reached main and there is no production state to recover. The per-cluster commit boundaries mean a regression traced to one cluster can be reverted in isolation. During cluster B the gpt-5.5 dispatch was cut at the cap mid-B5, but all five call sites had already landed, and the worktree node_modules workspace resolution was repaired so the integration suites could run. The one C schema field that gpt-5.5 had correctly flagged as out of its granted scope was closed directly rather than re-dispatched for a two-line mirror.
 <!-- /ANCHOR:enhanced-rollback -->

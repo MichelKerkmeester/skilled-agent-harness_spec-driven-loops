@@ -1,6 +1,6 @@
 ---
 title: "Spec: 028 Playbook Findings Remediation [template:level_2/spec.md]"
-description: "Remediation spec for the real product findings surfaced by the daemon-skills playbook validation (packet 011) and the core memory-search-intelligence re-run. The fixes were implemented by gpt-5.5-fast high in eight clusters across an isolated worktree, each verified by vitest, typecheck, mutation checks on the risky fixes, comment hygiene and alignment drift. Isolation and harness artifacts are excluded. The code is verified per cluster and lives on branch wt/0008-findings-remediation pending a full-suite run and merge."
+description: "Remediation spec for the real product findings surfaced by the daemon-skills playbook validation (packet 011) and the core memory-search-intelligence re-run. The fixes were authored by gpt-5.5-fast high in eight clusters in worktree wt/0008-findings-remediation, each verified by vitest, typecheck, mutation checks on the risky fixes, comment hygiene and alignment drift, then landed on the 028 review-branch mainline. Isolation and harness artifacts are excluded. The code is verified per cluster and landed on the 028 review-branch mainline (system-speckit/028-memory-search-intelligence), pending a whole-suite run across all clusters together before the 028 branch merges to main."
 trigger_phrases:
   - "playbook findings remediation"
   - "028 remediation cluster fixes"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-25T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented the remediation objective and scope across the eight clusters"
-    next_safe_action: "Run the full suite on branch wt/0008-findings-remediation then merge"
+    next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -39,9 +39,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete, code verified per cluster, not yet merged |
+| **Status** | Complete, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |
 | **Created** | 2026-06-25 |
-| **Branch** | `wt/0008-findings-remediation` |
+| **Branch** | Authored in worktree `wt/0008-findings-remediation`; landed on the 028 review-branch mainline `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -67,14 +67,14 @@ Fix every real product finding from the validation, exclude the isolation and ha
 - Cluster C retrievalLevel honored end to end, including the strict public input schema field that was rejecting the param pre-handler.
 - Cluster D ordering, the F13 folder-rank primary sort and the channel minimum-representation reservation.
 - Cluster E advisor persistence and routing, the F1 through F6 fixes.
-- Cluster F DB lifecycle, the cross-process rebind, the db-path standardization and the embedding-retry e2e.
+- Cluster F DB lifecycle, the db-path standardization plus a new end-to-end test over the pre-existing cross-process rebind, and the embedding-retry e2e.
 - Cluster G and H code-graph write-local refresh plus quality cleanup (duplicate helper, stale tests, entity dedup, 7-layer metadata).
 - The follow-up tests for B4, B5 and the C strict-schema assertion.
 
 ### Out of Scope
 - The six isolation and harness artifacts that were not product bugs (see implementation-summary.md).
 - Any production default flip beyond what a finding's fix requires.
-- The full-suite run and the merge of branch wt/0008-findings-remediation, which remain open and are the next safe action.
+- The whole-suite run across all clusters together and the eventual merge of the 028 review branch to main, which remain open and are the next safe action.
 
 | Surface | File Path | Change Type |
 |---------|-----------|-------------|
@@ -98,7 +98,7 @@ Fix every real product finding from the validation, exclude the isolation and ha
 ### Non-Functional
 - NFR1 No fix flips a production default beyond what its finding requires.
 - NFR2 Each cluster passes typecheck, comment hygiene and alignment drift before it is committed.
-- NFR3 The work stays on branch wt/0008-findings-remediation until a full-suite run clears it for merge.
+- NFR3 The fixes stay on the 028 review-branch mainline until a whole-suite run across all clusters together clears the 028 branch for merge to main.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -110,7 +110,7 @@ Fix every real product finding from the validation, exclude the isolation and ha
 - SC2 Each risky fix mutation-checked, so the distinguishing test is confirmed to fail when the fix is reverted.
 - SC3 Typecheck, comment hygiene and alignment drift clean on every touched surface.
 - SC4 The excluded artifacts named so the remediation scope reads correctly.
-- SC5 The open merge state stated honestly: code verified per cluster, full suite and merge pending.
+- SC5 The open state stated honestly: code verified per cluster and landed on the 028 review-branch mainline, with a whole-suite run across all clusters together (before the 028 branch merges to main) pending.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -123,7 +123,7 @@ Fix every real product finding from the validation, exclude the isolation and ha
 | A fix passes its own test but breaks a neighbor | Regression | Full blast-radius vitest sweep per cluster, not just the changed file |
 | A schema or wiring fix reads green without proving the bug was real | False fix | Mutation check that reintroduces the bad column or drops the registration and confirms the test goes red |
 | The isolated worktree node_modules diverge from the real repo | Suite cannot run | Repaired the worktree workspace resolution to run the integration suites |
-| Per-cluster green is mistaken for merge-ready | Premature merge | The full suite and the merge are held open as the next safe action |
+| Per-cluster green is mistaken for merge-ready | Premature merge | The whole-suite run across all clusters together is held open as the gate before the 028 review branch merges to main |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -131,7 +131,7 @@ Fix every real product finding from the validation, exclude the isolation and ha
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking. The one open item is operational, not a decision: run the full suite on branch wt/0008-findings-remediation and merge. The code is verified per cluster.
+None blocking. The one open item is operational, not a decision: run the whole suite across all clusters together before the 028 review branch merges to main. The code is verified per cluster and landed on the 028 review-branch mainline.
 
 <!-- ANCHOR:nfr -->
 ### Non-Functional Requirements Detail
