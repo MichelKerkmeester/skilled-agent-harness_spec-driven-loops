@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-The Review Remediation phase parent turns the 028 deep-review findings into independently executable remediation phases across four families. It covers eval-benchmark fidelity, memory schema and concurrency, doc accuracy and the 91-strong P2 triage. The deep review closed NOT CONVERGED with 0 P0, 6 confirmed P1 and 91 P2. Phases 001 and 003 executed their scope while phases 002 and 004 stand as PENDING remediation contracts. The parent stays a rollup and implementation detail lives in the child phase folders.
+The Review Remediation phase parent turns the 028 deep-review findings into independently executable remediation phases. The first four families cover eval-benchmark fidelity, memory schema and concurrency, doc accuracy and the 91-strong P2 triage, where the deep review closed NOT CONVERGED with 0 P0, 6 confirmed P1 and 91 P2. Phases 001 and 003 executed their scope while phases 002 and 004 stand as PENDING remediation contracts. Two later phases then shipped their own scoped work, the 005 ENV-documentation deep review and remediation and the 006 marker-gated review packet type for the validator. The parent stays a rollup and implementation detail lives in the child phase folders.
 
 ### Included Phases
 
@@ -28,6 +28,8 @@ The Review Remediation phase parent turns the 028 deep-review findings into inde
 | `002-memory-schema-and-concurrency` | PENDING (scaffold only) | The derived-id split, in-lock embedding and retention spare-axis fixes are scoped with cited source lines but no code has shipped. |
 | `003-doc-accuracy` | Shipped (parent-dispatched scope, three items deferred, staged uncommitted) | The P1-6 rollup mislabel was reclassified to shipped-default-off and the timeline, before-vs-after and benchmark-status staleness cluster was reconciled to landed work. |
 | `004-p2-triage` | PENDING (scaffold only) | The 91 P2 are grouped into 15 lens families with draft verdicts, but the per-item mapping and fix-now routing remain open. |
+| [`005-env-documentation-audit`](./changelog-006-005-env-documentation-audit.md) | Complete | A ten-iteration opus deep review of the whole ENV-documentation surface entered a POOR verdict, then the remediation rebuilt the stale dist, added fifteen flags, corrected five defaults and made the structure gapless, no production default flipped. |
+| [`006-review-record-packet-type`](./changelog-006-006-review-record-packet-type.md) | Complete | Added a marker-gated review packet type to the validator that waives the full Level 1 doc set for a lean review record, proven strictly additive two ways, the 009 packet now validates clean at exit 0. |
 
 ### Added
 
@@ -35,7 +37,7 @@ The Review Remediation phase parent turns the 028 deep-review findings into inde
 
 ### Changed
 
-- The root changelog summarizes the four remediation families and their real status. 001 and 003 executed their scope, 002 and 004 remain PENDING scaffolds.
+- The root changelog summarizes the six remediation phases and their real status. 001, 003, 005 and 006 executed their scope, 002 and 004 remain PENDING scaffolds.
 
 ### Fixed
 

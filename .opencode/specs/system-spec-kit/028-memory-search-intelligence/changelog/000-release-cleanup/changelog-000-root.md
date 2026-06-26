@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This rollup reflects the executed state of the release-cleanup children. All nine phases ran against their documentation surfaces and committed factual-drift fixes. Seven phases are fully complete. Two phases, 003 and 006, are complete for their owned scope with a documented subset deferred to a concurrent session that holds those files. The root table links every child changelog and records each executed phase.
+This rollup reflects the executed state of the release-cleanup children. The first nine phases ran against their documentation surfaces and committed factual-drift fixes, seven of them fully complete and two, 003 and 006, complete for their owned scope with a documented subset deferred to a concurrent session that holds those files. Three later phases then closed the validation arc, the research-only coverage audit 010, the daemon-skills playbook validation 011 and the playbook-findings remediation 012 that landed on the 028 review-branch mainline. The root table links every child changelog and records each executed phase.
 
 ### Included Phases
 
@@ -33,11 +33,13 @@ This rollup reflects the executed state of the release-cleanup children. All nin
 | [`007-agents`](./changelog-005-007-agents.md) | Complete | Rewrote three agent mirror READMEs and localized two Claude path-convention lines after verifying all agent bodies (commit 03f93fef81). |
 | [`008-agents-md`](./changelog-005-008-agents-md.md) | Complete | Corrected the root AGENTS.md mk-spec-memory tool count from 37 to 39 and verified both runtime mirrors (commit 04f45c8f7a). |
 | [`009-changelogs-constitutional-and-templates`](./changelog-005-009-changelogs-constitutional-and-templates.md) | Complete | Fixed four factual drifts across constitutional docs and templates, changelog entries left historical (commit df7f733651). |
-| [`012-playbook-findings-remediation`](./changelog-000-012-playbook-findings-remediation.md) | Complete, not yet merged | Remediated the about twenty-two real findings from the daemon-skills playbook validation in eight clusters A through H, verified per cluster, on branch wt/0008-findings-remediation (commits adbcc65e83 through 64d064d868). |
+| [`010-catalog-playbook-coverage-audit`](./changelog-000-010-catalog-playbook-coverage-audit.md) | Complete | Research-only 20-iteration audit confirmed roughly fifty catalog and playbook coverage gaps across the three system skills and cleared a twelve-flag false positive, no catalog or playbook modified. |
+| [`011-daemon-skills-playbook-validation`](./changelog-000-011-daemon-skills-playbook-validation.md) | Complete | Ran every stress suite plus 222 of 471 playbook scenarios across three cli models, documented fourteen real product findings with remediation, report salvaged after the workspace wipe. |
+| [`012-playbook-findings-remediation`](./changelog-000-012-playbook-findings-remediation.md) | Complete | Remediated the about twenty-two real findings from the daemon-skills playbook validation in eight clusters A through H, verified per cluster, landed on the 028 review-branch mainline (commits adbcc65e83 through 64d064d868). |
 
 ### Added
 
-- Added linked rollup rows for all nine child changelogs.
+- Added linked rollup rows for all twelve child changelogs.
 - Added an executed-state summary that records every phase against its proving commit.
 
 ### Changed
@@ -47,15 +49,16 @@ This rollup reflects the executed state of the release-cleanup children. All nin
 
 ### Fixed
 
-- Corrected the root rollup so all nine executed phases read as complete.
+- Corrected the root rollup so all twelve executed phases read as complete.
 - Corrected the 005 anchor count from 13 across 9 files to 14 across 10 files.
 - Recorded the 003 and 006 deferred subsets owned by the concurrent session.
+- Corrected the 012 row from a not-yet-merged worktree claim to landed on the 028 review-branch mainline.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Child changelog inventory | PASS, 9 child changelogs plus root |
+| Child changelog inventory | PASS, 12 child changelogs plus root |
 | Source grounding | PASS, each child status traced to its execute commit in git |
 | Link check | PASS, every child row links to its local changelog |
 
