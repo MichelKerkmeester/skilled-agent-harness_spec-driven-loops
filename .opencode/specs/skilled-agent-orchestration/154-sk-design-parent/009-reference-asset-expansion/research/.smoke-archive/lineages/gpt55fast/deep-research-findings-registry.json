@@ -1,0 +1,85 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "question": "Which expansion should happen first across modes?",
+      "answer": "Shared Brand-vs-Product operating register before per-mode additions.",
+      "evidence": ["gap-analysis.md:16", "gap-analysis.md:41", "gap-analysis.md:49", "impeccable.md:20-21"]
+    },
+    {
+      "id": "Q2",
+      "question": "Which modes receive the highest-leverage assets?",
+      "answer": "Audit and interface receive the densest asset additions; md-generator receives authoring template additions; foundations and motion receive targeted reference/top-up cards.",
+      "evidence": ["gap-analysis.md:18-27", "gap-analysis.md:51"]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-shared-register",
+      "mode": "shared",
+      "summary": "Brand-vs-Product operating register is the only must-add prerequisite.",
+      "confidence": "high",
+      "sources": ["gap-analysis.md:16", "gap-analysis.md:41", "impeccable.md:20-21"]
+    },
+    {
+      "id": "F2-interface-preflight",
+      "mode": "design-interface",
+      "summary": "Interface should gain transform/pre-flight/content realism assets rather than broad new prose.",
+      "confidence": "high",
+      "sources": ["design-interface/SKILL.md:97-120", "taste-skill.md:236-260", "taste-skill.md:910-979"]
+    },
+    {
+      "id": "F3-foundations-data-viz",
+      "mode": "design-foundations",
+      "summary": "Foundations needs data-visualization and token handoff top-ups; color/type/layout bases are already present.",
+      "confidence": "high",
+      "sources": ["design-foundations/SKILL.md:269-273", "data-visualization/SKILL.md:9-45"]
+    },
+    {
+      "id": "F4-motion-advanced-bridge",
+      "mode": "design-motion",
+      "summary": "Motion should add an advanced effect decision gate and interaction-handoff bridge, not make GSAP/overdrive defaults.",
+      "confidence": "high",
+      "sources": ["design-motion/SKILL.md:81-95", "animate.md:108-158", "overdrive.md:19-31"]
+    },
+    {
+      "id": "F5-audit-detectors",
+      "mode": "design-audit",
+      "summary": "Audit receives the most should-add work: model tells, remediation, mock-content, mechanical pre-flight checks.",
+      "confidence": "high",
+      "sources": ["gap-analysis.md:18", "gap-analysis.md:22", "gap-analysis.md:26-27", "design-audit/SKILL.md:240-263"]
+    },
+    {
+      "id": "F6-md-generator-authoring",
+      "mode": "design-md-generator",
+      "summary": "md-generator should add an author-from-brief DESIGN.md path while preserving extraction fidelity.",
+      "confidence": "medium-high",
+      "sources": ["design-md-generator/SKILL.md:12-28", "stitch-skill.md:17-25", "stitch-skill.md:115-162"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Create net-new child skills during this lineage",
+      "reason": "Explicitly out of scope; gap-analysis says findings are not commitments.",
+      "evidence": "gap-analysis.md:57-59"
+    },
+    {
+      "approach": "Bulk-import all corpus docs",
+      "reason": "Would reduce router precision and duplicate existing references.",
+      "evidence": "current mode resource maps and references"
+    }
+  ],
+  "coverageBySources": {
+    "priorResearch": 2,
+    "gapAnalysis": 1,
+    "externalCorpus": 14,
+    "currentSkills": 7
+  },
+  "convergenceScore": 1,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "lastUpdated": "2026-06-26T15:25:50Z"
+}

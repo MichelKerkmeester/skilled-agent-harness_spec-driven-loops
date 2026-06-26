@@ -1,0 +1,19 @@
+The lineage is complete and self-contained. All seven state artifacts are written entirely within the lineage dir; nothing outside it was touched.
+
+**Lineage `opus48-claude2` — run summary**
+
+Executed the deep-research loop (phase_init → phase_main_loop → phase_synthesis) with `artifact_dir` bound directly to the `config.fanout_lineage_artifact_dir` override. Single iteration (`maxIterations: 1`), stop reason `maxIterations`, newInfoRatio 1.0.
+
+**Method:** corpus-utilization `grep` scan of the live `sk-design` tree diffed against the 43-entry corpus, `corpus_map.md`-first reading of each mode, deep reads of the highest-signal un-distilled sources (impeccable, gpt-tasteskill, redesign-skill, palette_theming cross-check), and header surveys of emil/taste/design-lab/bolder — all grounded in the 001 research + gap-analysis.
+
+**Key findings in `research.md` (per-mode expansion matrix):**
+- **Cross-cutting must-add:** `shared/register.md` (brand-vs-product operating register) — gates the transform-verb, model-tells, remediation, mock-content, and pre-flight adds.
+- **interface:** preflight checklist asset, three-dials intake ref, per-model tells ref (no `assets/`, no `corpus_map.md` today).
+- **foundations:** data-viz encoding ref, greenfield brand-seed ref (color-strategy already covered → do-not-add).
+- **motion:** advanced interaction-craft ref from emil (biggest single depth gap), easing/duration card asset.
+- **audit:** content-realism + model-tells detection ref, findings-report template asset, detection-side remediation playbook.
+- **md-generator:** minimal — only a low-priority consumer-handoff ref; forward-authoring is a strong do-not-add (identity inversion, net-new, contradicts cardinal fidelity).
+
+Each add carries type, why, exact corpus sources (with line refs), and an S/M/L effort; each mode has an explicit do-NOT-add list honoring the if-effective bar.
+
+FANOUT_LINEAGE_COMPLETE:opus48-claude2

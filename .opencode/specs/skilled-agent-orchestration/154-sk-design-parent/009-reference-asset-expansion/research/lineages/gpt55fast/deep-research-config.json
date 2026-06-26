@@ -1,0 +1,51 @@
+{
+  "topic": "sk-design reference and asset expansion matrix for the five existing modes",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/009-reference-asset-expansion",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-06-26T15:50:00Z",
+  "completedAt": "2026-06-26T16:20:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanout_lineage_artifact_dir": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/009-reference-asset-expansion/research/lineages/gpt55fast",
+  "lineage": {
+    "sessionId": "fanout-gpt55fast-20260626",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "dispatchNote": "Executed locally by the active OpenCode agent because self-invoking cli-opencode from inside OpenCode was disallowed by the executor skill contract. Executor identity retained for lineage attribution."
+  },
+  "artifactPaths": {
+    "config": "deep-research-config.json",
+    "stateLog": "deep-research-state.jsonl",
+    "strategy": "deep-research-strategy.md",
+    "registry": "deep-research-findings-registry.json",
+    "dashboard": "deep-research-dashboard.md",
+    "research": "research.md",
+    "resourceMap": "resource-map.md",
+    "iterations": "iterations/iteration-{NNN}.md",
+    "deltas": "deltas/iter-{NNN}.jsonl"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable-after-init",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "workflow-managed",
+    "deep-research-findings-registry.json": "workflow-managed",
+    "deep-research-dashboard.md": "workflow-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "research.md": "workflow-owned",
+    "resource-map.md": "workflow-owned"
+  }
+}

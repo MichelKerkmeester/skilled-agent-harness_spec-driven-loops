@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/012-foundations-motion-audit",
+  "description": "The deep-research deliverable in `../009-reference-asset-expansion/research/research.md` ranked the highest-leverage expansions for each sk-design mod",
+  "keywords": [
+    "deep-research",
+    "deliverable",
+    "009-reference-asset-expansion",
+    "research",
+    "ranked",
+    "highest-leverage",
+    "expansions",
+    "sk-design",
+    "mod"
+  ],
+  "lastUpdated": "2026-06-26T19:08:39.485Z",
+  "specId": "012",
+  "folderSlug": "foundations-motion-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

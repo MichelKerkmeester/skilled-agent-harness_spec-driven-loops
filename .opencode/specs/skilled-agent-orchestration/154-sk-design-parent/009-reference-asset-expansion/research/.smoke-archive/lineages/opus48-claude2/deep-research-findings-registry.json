@@ -1,0 +1,193 @@
+{
+  "lineage": "opus48-claude2",
+  "model": "claude-opus-4-8",
+  "sessionId": "fanout-opus48-claude2-1782485686835-ykwdkd",
+  "loopType": "research",
+  "iterationsCompleted": 1,
+  "convergence": "maxIterations",
+  "metrics": {
+    "iterationsCompleted": 1,
+    "keyFindings": 17,
+    "openQuestions": 2,
+    "resolvedQuestions": 4,
+    "newInfoRatioAvg": 1.0
+  },
+  "findings": [
+    {
+      "id": "X1",
+      "scope": "cross-cutting",
+      "title": "shared/register.md (brand-vs-product operating register)",
+      "type": "reference",
+      "priority": "must-add",
+      "effort": "M",
+      "why": "Highest-leverage missing reference; gates motion budget, density, accent dosage, and the anti-slop bar; dependency of the transform-verb, model-tells, remediation, mock-content, and pre-flight adds (gap 05).",
+      "sources": ["external/impeccable.md:20", "external/bolder.md:12", "001-corpus-research/research/gap-analysis.md:16-49"],
+      "consumedBy": ["interface", "audit", "foundations(dosage)", "motion(budget)"]
+    },
+    {
+      "id": "IF1",
+      "scope": "interface",
+      "title": "assets/preflight_checklist.md (mechanical pre-flight gate)",
+      "type": "asset",
+      "priority": "should-add",
+      "effort": "S",
+      "why": "N2 layout pre-flight; converts scattered anti-default prose into a runnable gate (hero 2-3 line/wide container, gapless grid-flow-dense bento, no meta-labels/eyebrow-on-every-section, button contrast, breakpoint overflow). Interface has no assets/ dir today.",
+      "sources": ["external/gpt-tasteskill.md:67", "external/taste-skill.md:910", "external/impeccable.md:88-98"]
+    },
+    {
+      "id": "IF2",
+      "scope": "interface",
+      "title": "references/design-process/intake_dials.md (three-dials brief read)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "M",
+      "why": "gap 08t/09; maps a free 'make it look good' brief to explicit DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY values + a one-line Design Read, complementing grounding instead of a fixed median.",
+      "sources": ["external/taste-skill.md:43", "external/taste-skill.md:13", "external/gpt-tasteskill.md:13"]
+    },
+    {
+      "id": "IF3",
+      "scope": "interface",
+      "title": "references/anti-defaults/model_tells.md (per-model defect catalog, refuse-and-rewrite)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "S",
+      "why": "gap 07; the generic slop list misses the per-model tells that dominate real output (Codex ghost-card/over-round/sketchy-SVG/stripes; Gemini image-hover). Cheap, high-signal. Shareable with audit (detection-side).",
+      "sources": ["external/impeccable.md:100-108", "external/impeccable.md:69-71", "external/taste-skill.md:595"]
+    },
+    {
+      "id": "FO1",
+      "scope": "foundations",
+      "title": "references/data-viz/data_visualization.md (encoding + chart palettes)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "M",
+      "why": "gap 14d; data-viz is a genuine static-system surface foundations does not own. Interface only checks it at the quality floor (ux_quality_reference.md §7), never how to build the encoding (chart-type by relationship, encoding hierarchy, categorical/sequential/diverging palettes, accessible chart color).",
+      "sources": ["001-corpus-research/research/gap-analysis.md:24", "external/designer-skills-main/README.md", "design-interface/references/design-process/ux_quality_reference.md:81-88"]
+    },
+    {
+      "id": "FO2",
+      "scope": "foundations",
+      "title": "references/color/greenfield_seed.md (cold-start brand-seed workflow)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "S",
+      "why": "N3; foundations covers register/roles/dark-mode but assumes a palette exists. The no-existing-tokens seed path (derive a primary hue, compose bg/surface/ink/accent/muted in OKLCH, physical-scene theme decision) is missing. Could fold into oklch_workflow.md.",
+      "sources": ["external/impeccable.md:21", "external/impeccable.md:73-86", "001-corpus-research/research/gap-analysis.md:35"]
+    },
+    {
+      "id": "MO1",
+      "scope": "motion",
+      "title": "references/advanced_interaction_craft.md (springs, gesture/drag, clip-path, @starting-style, WAAPI)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "M-L",
+      "why": "gap 08e; the single biggest motion depth gap. emil-design-eng is the corpus's deepest interaction-engineering doc and motion cites none of it; current gesture coverage is one shallow section.",
+      "sources": ["external/emil-design-eng.md:147", "external/emil-design-eng.md:444", "external/emil-design-eng.md:398", "external/emil-design-eng.md:324", "external/emil-design-eng.md:592"]
+    },
+    {
+      "id": "MO2",
+      "scope": "motion",
+      "title": "assets/easing_duration_card.md (one-page motion decision card)",
+      "type": "asset",
+      "priority": "should-add",
+      "effort": "S",
+      "why": "Motion has no assets/. A duration-by-interaction + ease-out-expo curves + never-patterns (no layout-prop animation, no transition:all, no scale(0)) + reduced-motion card is the most-reached-for artifact during a build.",
+      "sources": ["external/emil-design-eng.md:62", "external/emil-design-eng.md:482", "external/impeccable.md:56"]
+    },
+    {
+      "id": "AU1",
+      "scope": "audit",
+      "title": "references/mock_content_and_tells.md (content-realism + per-model tells, detection)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "S-M",
+      "why": "N1+07; audit scores anti-slop generically and never checks content realism (placeholder names, fake round numbers, AI-copy cliches, em-dash, Lorem), the most common 'obviously AI' tell. Pairs the per-model tells as detection (not rewrite).",
+      "sources": ["external/redesign-skill.md:78-89", "external/taste-skill.md:615", "external/taste-skill.md:685", "external/impeccable.md:100-108"]
+    },
+    {
+      "id": "AU2",
+      "scope": "audit",
+      "title": "assets/findings_report_template.md (fill-in audit report skeleton)",
+      "type": "asset",
+      "priority": "should-add",
+      "effort": "S",
+      "why": "Audit output is prose-only; a template (evidence table, P0-P3 findings, 5-dimension /20 scorecard, owner-mapping column) makes every report consistent and is the artifact users copy. Audit has no assets/ dir.",
+      "sources": ["design-audit/references/audit_contract.md", "external/audit.md:8-10"]
+    },
+    {
+      "id": "AU3",
+      "scope": "audit",
+      "title": "references/remediation_playbook.md (detection-side anti-pattern catalog + fix-priority)",
+      "type": "reference",
+      "priority": "should-add",
+      "effort": "M",
+      "why": "gap 11; turns audit findings into a sequenced remediation backlog keyed to owning sibling. Stays inside audit's report/score boundary by pointing fixes at siblings (typography/color/layout/state/component/iconography), never implementing.",
+      "sources": ["external/redesign-skill.md:17-131", "external/redesign-skill.md:159-169"]
+    },
+    {
+      "id": "MD1",
+      "scope": "md-generator",
+      "title": "references/consumer_handoff.md (downstream read-contract) [LOW PRIORITY]",
+      "type": "reference",
+      "priority": "nice-to-have",
+      "effort": "S",
+      "why": "The only genuine leverage for a mature, fidelity-bound extraction mode: tighten how interface/sk-code READ a v3 DESIGN.md (authoritative sections, stability-class semantics, fixed-vs-free). Everything else is already covered.",
+      "sources": ["design-md-generator/SKILL.md:338-352", "external/stitch-skill.md:9-26"]
+    },
+    {
+      "id": "DNA-IF",
+      "scope": "interface",
+      "title": "do-not-add: aesthetic-preset expansion; standalone writing ref; real-UI-loop/variation expansion; design-lab harness",
+      "type": "do-not-add",
+      "priority": "none",
+      "effort": "0",
+      "why": "4 presets already serve the critique-against need and are 'never a chooser'; writing covered in design_principles §6; real_ui_loop (119 lines) + variation_diversity (124 lines) are substantial; design-lab server/route/feedback machinery overlaps deep-loop and is process-heavy (nice-to-have).",
+      "sources": ["design-interface/references/aesthetics/README.md", "design-interface/references/design-process/design_principles.md:78-89", "design-interface/references/design-process/real_ui_loop.md"]
+    },
+    {
+      "id": "DNA-FO",
+      "scope": "foundations",
+      "title": "do-not-add: color-strategy commitment axis; OKLCH channel depth; typography expansion; Gestalt/grid top-up",
+      "type": "do-not-add",
+      "priority": "none",
+      "effort": "0",
+      "why": "Commitment axis already in palette_theming §2; oklch_workflow already covers channels/APCA/gamut/Tailwind; typography_system covers roles/scale/pairing/measure/hierarchy; Gestalt covered by cognitive_laws + layout_responsive (nice-to-have).",
+      "sources": ["design-foundations/references/color/palette_theming.md:35-47", "design-foundations/references/color/oklch_workflow.md", "design-foundations/references/type/typography_system.md"]
+    },
+    {
+      "id": "DNA-MO",
+      "scope": "motion",
+      "title": "do-not-add: AnimatePresence depth; reduced-motion/perf; standalone overdrive ref; 12-principles re-distill",
+      "type": "do-not-add",
+      "priority": "none",
+      "effort": "0",
+      "why": "animate_presence_patterns + performance_reduced_motion already distill those thoroughly; overdrive is nice-to-have with high slop-risk; 12-principles already in motion_strategy + micro_interactions.",
+      "sources": ["design-motion/references/animate_presence_patterns.md", "design-motion/references/performance_reduced_motion.md", "001-corpus-research/research/gap-analysis.md:30"]
+    },
+    {
+      "id": "DNA-AU",
+      "scope": "audit",
+      "title": "do-not-add: a11y/perf expansion; repair/implementation guide; Nielsen/persona/cognitive-load expansion",
+      "type": "do-not-add",
+      "priority": "none",
+      "effort": "0",
+      "why": "accessibility_performance already covers names/keyboard/focus/contrast/CWV(INP)/motion-perf; repair is sk-code's boundary (keep remediation detection-only); critique_hardening already covers Nielsen/persona/cognitive load.",
+      "sources": ["design-audit/references/accessibility_performance.md", "design-audit/references/critique_hardening.md"]
+    },
+    {
+      "id": "DNA-MD",
+      "scope": "md-generator",
+      "title": "do-not-add: forward-authoring/DESIGN.md-from-directives; more gold examples; color/type/motion guidance; taste content",
+      "type": "do-not-add",
+      "priority": "none",
+      "effort": "0",
+      "why": "Forward-authoring inverts the measured-extraction identity and was routed to an unbuilt design-spec child (net-new, out of scope, contradicts cardinal fidelity); 4 examples already span the format space; build/taste guidance belongs to foundations/motion/interface.",
+      "sources": ["design-md-generator/SKILL.md:14", "design-md-generator/SKILL.md:250", "001-corpus-research/research/gap-analysis.md:21"]
+    }
+  ],
+  "ruledOut": [
+    {"approach": "md-generator forward-authoring (stitch gap 10)", "reason": "identity inversion, net-new capability out of scope", "evidence": "design-md-generator/SKILL.md:14,250"},
+    {"approach": "foundations color-strategy commitment axis", "reason": "already distilled in palette_theming.md §2", "evidence": "palette_theming.md:35-47"},
+    {"approach": "standalone overdrive maximalist motion reference", "reason": "nice-to-have, high slop-risk, low everyday leverage", "evidence": "gap-analysis.md:30"}
+  ]
+}

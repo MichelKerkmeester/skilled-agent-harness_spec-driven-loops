@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design md-generator authoring boundary",
+      "design source of truth router card",
+      "sk-design family validation closeout",
+      "design-audit changelog pointer fix",
+      "sk-design md-generator boundary plan",
+      "design family validation closeout plan",
+      "sk-design md-generator boundary tasks",
+      "design family validation closeout tasks",
+      "sk-design md-generator boundary status",
+      "design family cleanup phase outcome"
+    ],
+    "key_topics": [
+      "sk-design",
+      "md-generator",
+      "authoring",
+      "boundary",
+      "design",
+      "source",
+      "truth",
+      "router",
+      "card",
+      "family",
+      "validation",
+      "closeout"
+    ],
+    "importance_tier": "supporting",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+      ".opencode/skills/sk-design/design-md-generator/assets/source_of_truth_router_card.md",
+      ".opencode/skills/sk-design/design-audit/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "authoring_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "source_of_truth_router_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/assets/source_of_truth_router_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose As",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "forward-authoring",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "concurrent",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research deliverable in `../009-reference-asset-expansion/research/research.md` (section 3.6) found `design-md-generator` to be the leanest expansion target: essentially complete, with one genuine in-scope gap",
+    "created_at": "2026-06-26T17:41:10.895Z",
+    "last_save_at": "2026-06-26T19:08:56.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d8fedd31031faec32b46383ca5f0c4731abb3644662b8854414784019c0ac7d",
+    "source_doc_hashes": {
+      "spec.md": "b5662ca2125172ea03c9fca1289714b1a7398ac1c0cd91a82f6f292ca98db3ad",
+      "plan.md": "71ebb20aba24b3915c23c151603a1cbc70ea5394227420cd4abd862e1041215b",
+      "tasks.md": "fa0bb78db413dbe64ea4c44f2aa78c2c518e4fb658d31bdcef6cd80cb26e8877",
+      "implementation-summary.md": "d2b8088689c0df29d57d5e2484e8ed21acdfd083d84407268324598d684800a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
