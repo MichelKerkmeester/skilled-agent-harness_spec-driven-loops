@@ -119,6 +119,7 @@ staleness_signals:
   embedding_drift:
     detection: "memory_health reports `embedding_health: degraded` OR records with `last_indexed_at` older than source file mtime"
     severity: medium
+    transient_rebuild_guard: "Before classifying degraded embedding_health as drift, rule out an in-flight async re-embed. If memory_health.recallDegradation.degraded is false, OR embedder_jobs shows a running rebuild with a climbing processed/total, the degraded reading is transient rebuild lag, not drift — classify as transient (wait + re-probe), not a rebuild-worthy signal. Never judge vector health from the canonical context-index.sqlite sqlite_master: vec_memories*/vec_<dim> live in the attached shard under vectors/, so a main-DB scan shows only vec_metadata and falsely looks dropped (see references/memory/embedding_resilience.md §4)."
   fts_miss:
     detection: "memory_health reports `fts_health: degraded` OR new spec-doc files not in FTS index"
     severity: medium
@@ -190,6 +191,7 @@ workflow:
     rules:
       - "If severity_max == high (provider change OR divergent aliases) → recommend a full rebuild via /doctor:update"
       - "If severity_max == medium (embedding OR fts drift) → recommend an incremental rebuild via /doctor:update"
+      - "Transient-rebuild exception: if the only medium signal is embedding_drift AND its transient_rebuild_guard matches (memory_health.recallDegradation.degraded is false OR embedder_jobs shows a running rebuild) → keep status=DEGRADED but recommend WAITing for the embedder job to finish and re-probing, NOT a rebuild. A rebuild would needlessly restart an already-healthy async re-embed."
       - "If severity_max == low (boundary OR trigger drift) → recommend monitoring; rerun in 1-2 weeks"
       - "If no drift → status=OK, no action needed"
     outputs:
