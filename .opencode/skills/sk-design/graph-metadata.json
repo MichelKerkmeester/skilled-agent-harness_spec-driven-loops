@@ -3,60 +3,26 @@
   "skill_id": "sk-design",
   "family": "sk-code",
   "category": "design",
+  "importance_tier": "important",
   "edges": {
     "depends_on": [],
     "enhances": [
       {
-        "target": "sk-design-interface",
-        "weight": 0.7,
-        "context": "Routes interface direction, visual identity, UI build judgment, and generic design-entry prompts to the flagship design child"
-      },
-      {
-        "target": "sk-design-md-generator",
-        "weight": 0.7,
-        "context": "Routes style-reference and DESIGN.md extraction or authoring work to the current spec-artifact child"
-      },
-      {
-        "target": "sk-design-foundations",
-        "weight": 0.65,
-        "context": "Routes static visual-system work covering color, typography, layout, hierarchy, themes, and tokens"
-      },
-      {
-        "target": "sk-design-motion",
-        "weight": 0.65,
-        "context": "Routes animation, transitions, micro-interactions, reduced motion, and temporal interaction feel"
-      },
-      {
-        "target": "sk-design-audit",
-        "weight": 0.65,
-        "context": "Routes accessibility, performance, critique, slop detection, and production hardening work"
+        "target": "sk-code",
+        "weight": 0.6,
+        "context": "Design output (direction, foundations, motion, audit findings, DESIGN.md) feeds sk-code implementation in the detected code surface"
       }
     ],
     "siblings": [
       {
-        "target": "sk-design-interface",
-        "weight": 0.6,
-        "context": "Design-family child for direction and interface build judgment"
+        "target": "sk-code",
+        "weight": 0.5,
+        "context": "Design-and-build peer in the sk-code family; sk-design owns taste, sk-code owns implementation"
       },
       {
-        "target": "sk-design-md-generator",
-        "weight": 0.6,
-        "context": "Design-family child for current DESIGN.md and style-reference extraction work"
-      },
-      {
-        "target": "sk-design-foundations",
-        "weight": 0.6,
-        "context": "Design-family child for foundations and token systems"
-      },
-      {
-        "target": "sk-design-motion",
-        "weight": 0.6,
-        "context": "Design-family child for motion and interaction timing"
-      },
-      {
-        "target": "sk-design-audit",
-        "weight": 0.6,
-        "context": "Design-family child for audit, critique, and hardening"
+        "target": "sk-code-review",
+        "weight": 0.4,
+        "context": "Reviews implementation quality after design and build work converge"
       }
     ],
     "conflicts_with": [],
@@ -65,11 +31,10 @@
   "manual": {
     "depends_on": [],
     "related_to": [
-      "sk-design-interface",
-      "sk-design-md-generator",
-      "sk-design-foundations",
-      "sk-design-motion",
-      "sk-design-audit"
+      "sk-code",
+      "sk-code-review",
+      "mcp-figma",
+      "mcp-open-design"
     ]
   },
   "domains": [
@@ -77,7 +42,9 @@
     "ui-design",
     "visual-design",
     "design-systems",
-    "motion-design"
+    "motion-design",
+    "design-audit",
+    "design-tokens"
   ],
   "intent_signals": [
     "design family",
@@ -106,31 +73,66 @@
       "design tokens",
       "motion design",
       "design audit",
-      "DESIGN.md extraction"
+      "DESIGN.md extraction",
+      "interface design",
+      "frontend design",
+      "visual design",
+      "make it look good",
+      "looks templated",
+      "redesign the ui",
+      "hero section",
+      "typography and palette",
+      "color palette",
+      "font pairing",
+      "ux quality checklist",
+      "give me N design variations",
+      "oklch palette",
+      "color token system",
+      "dark mode palette",
+      "typography scale",
+      "spacing system",
+      "responsive layout",
+      "animate this",
+      "micro-interactions",
+      "AnimatePresence",
+      "exit animation",
+      "reduced motion",
+      "morphing icons",
+      "motion performance",
+      "ui critique",
+      "accessibility audit",
+      "performance audit",
+      "anti-slop detection",
+      "production hardening",
+      "design quality score",
+      "P0 P1 design findings",
+      "extract design system",
+      "generate design.md",
+      "capture website css",
+      "design tokens from url",
+      "create design reference",
+      "design-to-markdown",
+      "extract design tokens"
     ],
     "key_topics": [
-      "umbrella-router over sibling design skills",
-      "smallest useful child routing",
-      "shared anti-slop vocabulary",
-      "shared design-token vocabulary",
-      "shared cognitive laws",
-      "design transport boundaries",
-      "sk-code implementation handoff"
-    ],
-    "intent_signals": [
-      "design family",
-      "design router",
-      "interface design",
-      "design tokens",
-      "motion design",
-      "design audit",
-      "style reference"
+      "sk-design",
+      "mode-registry",
+      "workflowMode",
+      "backendKind",
+      "reference-base",
+      "interface-mode",
+      "foundations-mode",
+      "motion-mode",
+      "audit-mode",
+      "md-generator-mode",
+      "shared-design-reference-base",
+      "anti-slop",
+      "design-token-vocabulary",
+      "cognitive-laws"
     ],
     "key_files": [
       ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/references/anti_slop_principles.md",
-      ".opencode/skills/sk-design/references/design_token_vocabulary.md",
-      ".opencode/skills/sk-design/references/cognitive_laws.md"
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
       {
@@ -140,32 +142,18 @@
         "source": "derived"
       },
       {
-        "name": "anti_slop_principles",
-        "kind": "reference",
-        "path": ".opencode/skills/sk-design/references/anti_slop_principles.md",
-        "source": "derived"
-      },
-      {
-        "name": "design_token_vocabulary",
-        "kind": "reference",
-        "path": ".opencode/skills/sk-design/references/design_token_vocabulary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cognitive_laws",
-        "kind": "reference",
-        "path": ".opencode/skills/sk-design/references/cognitive_laws.md",
+        "name": "mode-registry",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-design is a thin design-family umbrella router. It keeps the sibling design skills independently invokable, routes generic design entry prompts to the smallest useful child, and owns only shared base vocabulary for anti-slop critique, design tokens, and cognitive laws. Detailed design judgment, extraction mechanics, motion guidance, foundations guidance, and audit contracts remain child-owned.",
+    "causal_summary": "sk-design is the single public design skill that routes a request to one of five design modes (interface, foundations, motion, audit, md-generator) by workflowMode through mode-registry.json over a shared design reference base. The four doc-guidance modes cite the shared reference base (anti-slop principles, cognitive laws, design-token vocabulary) for consistent vocabulary, while md-generator runs its own Playwright CSS-extraction backend (backendKind discriminates the two). The hub holds no per-mode design logic; every mode keeps its own judgment, examples, and verification in its packet, and all five route by hub membership so the advisor sees exactly one design identity.",
     "source_docs": [
       "SKILL.md",
-      "references/anti_slop_principles.md",
-      "references/design_token_vocabulary.md",
-      "references/cognitive_laws.md"
+      "mode-registry.json"
     ],
     "created_at": "2026-06-25T00:00:00Z",
-    "last_updated_at": "2026-06-25T17:00:00Z"
+    "last_updated_at": "2026-06-26T00:00:00Z"
   }
 }

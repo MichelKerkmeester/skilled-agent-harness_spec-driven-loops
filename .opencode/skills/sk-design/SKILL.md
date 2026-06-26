@@ -1,365 +1,141 @@
 ---
 name: sk-design
-description: Design-family umbrella router that selects the smallest useful sk-design child and exposes shared design-base references.
-allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.1.0
+description: "Unified design skill: routes a request to one of five modes (interface, foundations, motion, audit, md-generator) over a shared design reference base. Holds no per-mode design logic — it dispatches by workflowMode through mode-registry.json. Use for distinctive UI direction and build, visual foundations and tokens, motion and micro-interactions, design QA and anti-slop audit, and live-site DESIGN.md extraction."
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
 ---
 
-<!-- Keywords: sk-design, design-family, umbrella-router, interface-design, design-tokens, motion-design, design-audit, design-spec -->
+<!-- Keywords: sk-design, design-family, mode-registry, workflowmode, backendkind, reference-base, anti-slop, design-tokens, cognitive-laws, interface-design, frontend-design, visual-design, visual-identity, make-it-look-good, looks-templated, redesign-the-ui, hero-section, ui-build, typography, palette, color-palette, font-pairing, ux-quality-checklist, design-variations, foundations, color-system, oklch, color-token-system, dark-mode, typography-scale, spacing-system, responsive-layout, layout, hierarchy, grid, themes, motion-design, animation, animate-this, transitions, micro-interactions, framer-motion, animatepresence, exit-animation, reduced-motion, morphing-icons, motion-performance, design-audit, ui-critique, accessibility-audit, performance-audit, anti-slop-detection, production-hardening, design-quality-score, P0-P1-design-findings, polish, theming, design.md, design-md, css-extraction, website-design-extraction, design-reference, tokens.json, playwright, design-to-markdown, design-system-generator, css-tokens, color-extraction, typography-extraction, hex-extraction, shadow-extraction, spacing-extraction, design-fidelity, anti-hallucination, extract-design-system, generate-design-md, capture-website-css, design-tokens-from-url -->
 
-# Design Family Router (sk-design)
+# Design Family Hub (sk-design)
 
-`sk-design` is the thin entry point for the design skill family. It routes design intent to the smallest useful sibling skill and provides shared base vocabulary that children may cite.
+One skill, five design modes, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 ---
 
 ## 1. WHEN TO USE
 
-### Activation Triggers
+Use this skill (through the hub) for any design-family workflow. Invoke it as `sk-design` (optionally with a mode hint such as `motion: <request>`); the hub classifies the request, resolves a mode key, and loads the matching nested packet.
 
-Use this skill when the request is design-family work and the best child is not already obvious:
-- Interface direction, visual identity, UI build guidance, redesign, or "make it look good" prompts.
-- Color, typography, spacing, layout, hierarchy, theme, or design-token prompts.
-- Animation, transition, motion, micro-interaction, or reduced-motion prompts.
-- Accessibility, performance, critique, production hardening, or design-quality audit prompts.
-- `DESIGN.md`, style-reference extraction, design-system capture, or design-spec authoring prompts.
+| Mode | Use it for | Packet |
+|------|-----------|--------|
+| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing | `sk-design/interface/` |
+| **foundations** | Static visual-system decisions: color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens | `sk-design/foundations/` |
+| **motion** | Temporal interaction design: animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion | `sk-design/motion/` |
+| **audit** | Design QA and critique: accessibility, performance, responsive, theming, anti-slop detection, scoring, production hardening | `sk-design/audit/` |
+| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/md-generator/` |
 
 ### When NOT to Use
-
-Skip this skill when:
-- The user names a specific child skill; invoke that child directly.
-- The work is pure implementation after design direction is settled; hand off to `sk-code`.
-- The work only needs a transport such as Figma or Open Design; load the correct design judgment skill first, then use the transport.
+- A single quick read/edit with no design judgment — use the relevant skill directly.
+- Pure implementation after design direction is settled — hand off to `sk-code`.
+- A design transport only (Figma, Open Design) — load the design judgment via this hub first, then use the transport. The transport is never the taste authority.
+- The shared reference base itself — it is the vocabulary the modes cite, not a user workflow.
 
 ---
 
 ## 2. SMART ROUTING
 
-### Primary Detection Signal
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode.
 
-The routing key is the dominant design intent in the prompt, not a project or stack marker. Score the request against the five design intents and route to the matching child; the smallest useful child wins.
+### The discriminator
+- **`workflowMode`** — the public mode key (every mode): `interface`, `foundations`, `motion`, `audit`, `md-generator`.
+- **`backendKind`** — which backend runs the mode: `reference-base` (the four doc-guidance modes cite the shared design reference base) or `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline).
 
-```bash
-# Example intent detection (illustrative, not exhaustive)
-echo "$REQUEST" | grep -Eqi "motion|transition|animation|micro-interaction" && INTENT="MOTION"
-echo "$REQUEST" | grep -Eqi "token|color|typography|spacing|layout|hierarchy" && INTENT="FOUNDATIONS"
-echo "$REQUEST" | grep -Eqi "audit|critique|accessibility|performance|slop" && INTENT="AUDIT"
-echo "$REQUEST" | grep -Eqi "design\.md|style reference|extract" && INTENT="SPEC"
+### Routing rule
+```
+classify the request to a workflowMode (dominant design intent; mode hint like "motion: ..." overrides)
+read mode-registry.json
+  → resolve workflowMode from the hint / classified intent
+  → load the mode packet at registry[mode].packet (e.g. sk-design/interface/SKILL.md)
+  → the mode cites the shared reference base, or runs its own backend per registry[mode].backendKind
 ```
 
-### Phase Detection
+Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** unless the prompt is explicitly foundations (tokens/color/type/layout), motion (animation/transition), audit (critique/accessibility/slop), or md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + motion for a landing page with substantial choreography).
 
-```text
-TASK CONTEXT
-    |
-    +- STEP 0: Detect dominant design intent (interface/foundations/motion/audit/spec)
-    +- STEP 1: Score intents (top-2 only when axes are clearly separate)
-    +- Phase 1: Route to the smallest useful child
-    +- Phase 2: Expose shared base references the child may cite
-    +- Phase 3: Hand built design output to sk-code
-```
-
-### Resource Domains
-
-The router discovers shared base markdown recursively from `references/` and applies intent scoring from `INTENT_MODEL`. Children own their own resources; this parent exposes only shared base vocabulary.
-
-```text
-references/anti_slop_principles.md
-references/cognitive_laws.md
-references/design_token_vocabulary.md
-```
-
-- `references/` for shared design-base vocabulary (anti-slop principles, cognitive laws, token vocabulary).
-- Child skills own their own `references/`, `assets/`, and workflow guidance.
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                                     |
-| ----------- | ------------------------ | --------------------------------------------- |
-| ALWAYS      | Every routing decision   | `anti_slop_principles.md` shared baseline     |
-| CONDITIONAL | If a child cites it      | Shared base reference for that intent         |
-| ON_DEMAND   | Only on explicit request | Full shared base vocabulary set               |
-
-### Domain-Based Routing
-
-Route to one child first. Add another child only when the prompt has clearly separate design axes.
-
-| Intent | Route To | Boundary |
-| --- | --- | --- |
-| Interface direction, UI build, visual identity, redesign, interface copy | `sk-design-interface` | Owns direction and build judgment for distinctive interfaces |
-| Color, type, layout, spacing, hierarchy, grids, themes, design tokens | `sk-design-foundations` | Owns static visual-system decisions and token vocabulary |
-| Animation, transitions, micro-interactions, motion timing, reduced motion | `sk-design-motion` | Owns temporal behavior and interaction feel |
-| Accessibility, performance, critique, slop detection, QA, hardening | `sk-design-audit` | Owns review, scoring, risk surfacing, and production hardening |
-| `DESIGN.md`, style reference, design-system extraction or authoring | `sk-design-md-generator` | Owns design artifacts that other skills consume (a dedicated `sk-design-spec` child may split out later) |
-
-### Routing Rules
-
-1. Prefer the smallest useful child.
-2. Default generic "make this look good" prompts to `sk-design-interface` unless the prompt is explicitly audit, token, motion, or spec work.
-3. Pair children only for distinct axes, such as `sk-design-interface` plus `sk-design-motion` for a landing page with substantial interaction choreography.
-4. Keep this parent loaded only long enough to choose the child and expose shared base references.
-
-### Smart Router Pseudocode
-
-#### Smart Router (Resilience Pattern)
-
-> Pattern: see [sk-doc smart-router resilience template](../sk-doc/assets/skill/skill_smart_router.md). The mechanics below stay unchanged; only the design-intent `INTENT_MODEL`, `RESOURCE_MAP`, and routing key are skill-specific.
-
-The router discovers shared base references at runtime, guards every path before loading, derives a routing key from the dominant design intent, and returns an `UNKNOWN_FALLBACK` checklist when intent confidence is too low to pick a child.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/anti_slop_principles.md"
-
-INTENT_MODEL = {
-    "INTERFACE": {"keywords": [("interface", 4), ("visual identity", 4), ("redesign", 3), ("make it look good", 3), ("ui build", 3)]},
-    "FOUNDATIONS": {"keywords": [("token", 4), ("color", 3), ("typography", 3), ("spacing", 3), ("layout", 3), ("hierarchy", 3)]},
-    "MOTION": {"keywords": [("motion", 4), ("animation", 4), ("transition", 3), ("micro-interaction", 3), ("reduced motion", 3)]},
-    "AUDIT": {"keywords": [("audit", 4), ("critique", 4), ("accessibility", 3), ("performance", 3), ("slop", 3), ("hardening", 3)]},
-    "SPEC": {"keywords": [("design.md", 4), ("style reference", 4), ("extract", 3), ("design system", 3)]},
-}
-
-RESOURCE_MAP = {
-    "INTERFACE": ["references/anti_slop_principles.md", "references/cognitive_laws.md"],
-    "FOUNDATIONS": ["references/design_token_vocabulary.md", "references/anti_slop_principles.md"],
-    "MOTION": ["references/cognitive_laws.md", "references/anti_slop_principles.md"],
-    "AUDIT": ["references/anti_slop_principles.md", "references/cognitive_laws.md"],
-    "SPEC": ["references/design_token_vocabulary.md"],
-}
-
-LOAD_LEVELS = {
-    "INTERFACE": "STANDARD",
-    "FOUNDATIONS": "STANDARD",
-    "MOTION": "STANDARD",
-    "AUDIT": "STANDARD",
-    "SPEC": "MINIMAL",
-}
-
-ROUTE_TO_CHILD = {
-    "INTERFACE": "sk-design-interface",
-    "FOUNDATIONS": "sk-design-foundations",
-    "MOTION": "sk-design-motion",
-    "AUDIT": "sk-design-audit",
-    # SPEC artifacts route to the current child; a dedicated sk-design-spec may split out later
-    "SPEC": "sk-design-md-generator",
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the dominant design intent (interface, foundations, motion, audit, or spec)",
-    "Confirm whether this is direction, build, critique, or extraction work",
-    "Provide one concrete artifact, screen, or design goal",
-    "Confirm verification expectations before handing off to sk-code",
-]
-
-AMBIGUITY_DELTA = 1
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def get_routing_key(task, intents: list[str]) -> str:
-    override = str(getattr(task, "routing_key", "")).strip().lower()
-    if override:
-        return override
-    return (intents[0] if intents else "unknown").lower()
-
-def classify_intents(user_request, task=None):
-    text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for keyword, weight in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += weight
-
-    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-    primary, primary_score = ranked[0]
-    if primary_score == 0:
-        # No design keyword matched: signal no intent so the router can disambiguate.
-        return (None, None, scores)
-
-    secondary, secondary_score = ranked[1]
-    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
-        return (primary, secondary, scores)
-    return (primary, None, scores)
-
-def route_design_resources(user_request, task=None):
-    inventory = discover_markdown_resources()
-    primary, secondary, scores = classify_intents(user_request, task)
-    intents = [i for i in (primary, secondary) if i]
-    routing_key = get_routing_key(task, intents)
-    children = [ROUTE_TO_CHILD[i] for i in intents if i in ROUTE_TO_CHILD]
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str):
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    load_if_available(DEFAULT_RESOURCE)
-    baseline_count = len(loaded)
-    # No design keyword scored: ask for the dominant intent instead of guessing a child.
-    if not intents:
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "route_to": children,
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    for intent in intents:
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-
-    if not children or (len(loaded) == baseline_count and not RESOURCE_MAP.get(primary)):
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "notice": f"No design child resolved for routing key '{routing_key}'",
-            "route_to": children,
-            "resources": loaded,
-        }
-
-    return {
-        "routing_key": routing_key,
-        "intents": intents,
-        "intent_scores": scores,
-        "route_to": children,
-        "load_level": LOAD_LEVELS.get(primary, "STANDARD"),
-        "resources": loaded,
-    }
-```
+Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The four doc-guidance modes are read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
 
 ---
 
 ## 3. HOW IT WORKS
 
-`sk-design` is an umbrella-router over independent sibling skills. It is not a monolithic hub and does not co-load children by default.
-
-The parent owns:
-- Family entry triggers.
-- Routing boundaries between the five children.
-- Shared design-base references under `references/`.
-
-The children own:
-- Their workflow, examples, standards, and verification guidance.
-- Their detailed design judgment or extraction mechanics.
-- Their own resource loading and task-specific rules.
-
-The shared base exists so children can use consistent language for anti-slop critique, design-token vocabulary, and cognitive laws without duplicating that material.
-
-**Routing Flow**:
+### Layout
 ```
-STEP 1: Detect dominant design intent
-       ├─ Score request against the five intents
-       ├─ Keep top-2 only when axes are clearly separate
-       └─ Resolve routing key
-       ↓
-STEP 2: Route to the smallest useful child
-       ├─ Default generic prompts to sk-design-interface
-       └─ Pair children only for distinct axes
-       ↓
-STEP 3: Expose shared base references
-       └─ Child cites anti-slop, cognitive laws, or token vocabulary as needed
+sk-design/
+  SKILL.md               # this routing hub (no per-mode design logic)
+  mode-registry.json     # the discriminator + advisorRouting (single source of truth)
+  graph-metadata.json    # the ONE advisor identity for the whole skill
+  references/            # shared design reference base the hub + modes cite
+  interface/  foundations/  motion/  audit/  md-generator/   # five mode packets
 ```
+
+Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The mode packet folders are created when the flat skills move under the hub; the hub references those packet paths now.
+
+### Backend
+The four doc-guidance modes (interface, foundations, motion, audit) consume the shared **design reference base** under `references/` — `anti_slop_principles.md`, `cognitive_laws.md`, `design_token_vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across modes without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
 
 ---
 
 ## 4. RULES
 
 ### ALWAYS
-
-1. Route to the smallest useful design child.
-2. Preserve child independence; each `sk-design-*` skill remains directly invokable.
-3. Use the shared base as vocabulary, not as a substitute for child-owned workflow guidance.
-4. Keep design transports separate from design judgment.
-5. Hand implementation to `sk-code` after the design output is clear.
+- **ALWAYS** resolve a mode through `mode-registry.json`; never hardcode a router mapping in the hub.
+- **ALWAYS** keep each mode's design judgment, examples, and verification in its packet — the hub stays logic-free.
+- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
+- **ALWAYS** give every mode an `advisorRouting` block with a valid `routingClass` and `packetSkillName`.
+- **ALWAYS** route a generic design prompt to the smallest useful mode; default to `interface` when no other axis dominates.
 
 ### NEVER
-
-1. Never embed per-child design instructions in this parent.
-2. Never co-load the whole design family for a single-axis prompt.
-3. Never treat `mcp-figma` or `mcp-open-design` as taste or critique authority; they are transports.
-4. Never route pure code, backend, or data work through the design family.
+- **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or the shared reference base.
+- **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
+- **NEVER** treat `mcp-figma` or `mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
+- **NEVER** route pure code, backend, or data work through the design family.
 
 ### ESCALATE IF
-
-1. The prompt spans more than three design axes and needs an explicit workflow order.
-2. A named child skill conflicts with the request's actual intent.
-3. Brand, accessibility, or production constraints make the requested visual direction unsafe or contradictory.
+- A new design mode is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
+- A named mode conflicts with the request's actual intent, or the prompt spans more than three design axes needing an explicit workflow order.
+- Brand, accessibility, or production constraints make the requested visual direction unsafe or contradictory.
 
 ---
 
 ## 5. REFERENCES
 
-### Core References
-
-Shared design-base references:
-- [anti_slop_principles.md](references/anti_slop_principles.md) - Shared anti-slop critique vocabulary
-- [design_token_vocabulary.md](references/design_token_vocabulary.md) - Shared color, type, layout, and motion token terms
-- [cognitive_laws.md](references/cognitive_laws.md) - Shared cognitive-law rationale for hierarchy and interaction
-
-### Reference Loading Notes
-
-- Load a shared base reference only when a child cites it.
-- Keep Section 2 (SMART ROUTING) as the single routing authority.
+- Shared reference base: `references/anti_slop_principles.md`, `references/cognitive_laws.md`, `references/design_token_vocabulary.md` (cited by every doc-guidance mode).
+- Mode packets: `interface/SKILL.md`, `foundations/SKILL.md`, `motion/SKILL.md`, `audit/SKILL.md`, `md-generator/SKILL.md` (per-mode detail).
+- Registry: `mode-registry.json` (the routing contract).
+- Implementation handoff: `sk-code` consumes the design output; `sk-code-review` can audit it after build.
 
 ---
 
 ## 6. SUCCESS CRITERIA
 
-- The parent selects one primary child for the request.
-- The selected child owns the detailed design workflow.
-- Shared references are used only for common vocabulary and cross-child consistency.
-- No design task requires loading all five children by default.
+- The hub resolves one primary mode for the request (or a small set only for clearly separate axes).
+- The selected mode packet owns the detailed design workflow; the hub stayed routing-only.
+- The shared reference base is used only for common vocabulary and cross-mode consistency.
+- Exactly one `graph-metadata.json` exists for the whole skill; no packet carries its own.
 
 ---
 
 ## 7. INTEGRATION POINTS
 
-### Child Skills
-
-- `sk-design-interface`: direction, distinctive UI build judgment, interface writing.
-- `sk-design-md-generator`: `DESIGN.md` extraction and authoring; owns design artifacts other skills consume. A dedicated `sk-design-spec` child may split this responsibility out later.
-- `sk-design-foundations`: color, typography, layout, responsive systems, tokens.
-- `sk-design-motion`: animation, transitions, micro-interactions, temporal feel.
-- `sk-design-audit`: accessibility, performance, critique, hardening, production readiness.
+### Modes
+- `interface` — direction, distinctive UI build judgment, interface writing.
+- `foundations` — color, typography, layout, responsive systems, tokens.
+- `motion` — animation, transitions, micro-interactions, temporal feel.
+- `audit` — accessibility, performance, critique, hardening, production readiness.
+- `md-generator` — `DESIGN.md` / style-reference extraction other skills consume.
 
 ### Transports and Consumers
-
-- `mcp-figma` and `mcp-open-design` are transports. Use them after selecting the design judgment skill.
+- `mcp-figma` and `mcp-open-design` are transports. Use them after the design mode is chosen.
 - `sk-code` consumes design output and implements it in the detected code surface.
 - `sk-code-review` can audit implementation quality after design and build work converge.
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 8. RELATED RESOURCES
 
-The router exposes shared base references under `references/`. Start with `references/anti_slop_principles.md`, `references/design_token_vocabulary.md`, and `references/cognitive_laws.md`, then route to the child that owns the detailed workflow per Section 2.
-
-Related current children: `sk-design-interface` for direction and build judgment, and `sk-design-md-generator` for current `DESIGN.md` and style-reference extraction work.
-
-Related skills: `sk-code` for implementation handoff, and `system-spec-kit` when packet documentation or memory continuity applies.
+- Pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Canonical example: `.opencode/skills/deep-loop-workflows/` (hub + `mode-registry.json` + mode packets).
+- Registry: `mode-registry.json` (this hub's routing contract).
