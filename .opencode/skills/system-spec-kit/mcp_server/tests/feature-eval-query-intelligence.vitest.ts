@@ -213,7 +213,7 @@ describe('T006: Confidence Truncation', () => {
     process.env.SPECKIT_CONFIDENCE_TRUNCATION = 'true';
   });
 
-  it('T006-01: scores [0.9, 0.85, 0.8, 0.3, 0.1] truncates after 0.8 (large gap)', () => {
+  it('T006-01: scores [0.9, 0.85, 0.8, 0.3, 0.1] — default display floor keeps all, low floor cuts at the gap', () => {
     const results = [
       { id: 1, score: 0.9 },
       { id: 2, score: 0.85 },
@@ -222,15 +222,20 @@ describe('T006: Confidence Truncation', () => {
       { id: 5, score: 0.1 },
     ];
 
-    const output = truncateByConfidence(results);
+    // Under the default display floor (DEFAULT_MIN_RESULTS = 10), a 5-element set is
+    // below the floor, so the gap-based cut is superseded and every result surfaces —
+    // the under-surfacing fix favors showing the full set over an aggressive cliff cut.
+    const floored = truncateByConfidence(results);
+    expect(floored.truncated).toBe(false);
+    expect(floored.results).toHaveLength(5);
 
-    // Gaps: 0.05, 0.05, 0.50, 0.20
-    // Median gap: median of [0.05, 0.05, 0.50, 0.20] = (0.05+0.20)/2 = 0.125
-    // Threshold: 2 * 0.125 = 0.25
-    // Gap at index 2 (between 0.8 and 0.3) = 0.50 > 0.25 → truncate after index 2
-    expect(output.truncated).toBe(true);
-    expect(output.results).toHaveLength(3);
-    expect(output.results.map(r => r.id)).toEqual([1, 2, 3]);
+    // The gap-truncation logic still fires when the floor permits it (minResults: 3):
+    // Gaps: 0.05, 0.05, 0.50, 0.20 → median 0.125 → threshold 0.25; the 0.50 gap at
+    // index 2 (between 0.8 and 0.3) exceeds it, so the set is cut after index 2.
+    const cut = truncateByConfidence(results, { minResults: 3 });
+    expect(cut.truncated).toBe(true);
+    expect(cut.results).toHaveLength(3);
+    expect(cut.results.map(r => r.id)).toEqual([1, 2, 3]);
   });
 
   it('T006-02: minimum 3 results kept even with large early gaps', () => {
