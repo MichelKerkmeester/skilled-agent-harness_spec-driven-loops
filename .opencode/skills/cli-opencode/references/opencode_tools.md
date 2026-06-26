@@ -56,7 +56,7 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -89,7 +89,7 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 opencode run \
   --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent deep-research \
   --variant high \
   --format json \
@@ -116,7 +116,7 @@ External runtimes (Claude Code, Codex, Copilot) parse the event stream increment
 ```bash
 opencode run \
   --format json \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --dir /repo \
@@ -147,7 +147,7 @@ Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` fl
 ```bash
 opencode run \
   --agent deep-review \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --variant high \
   --format json \
   --dir /repo \
@@ -174,7 +174,7 @@ A calling AI in one repo (e.g. a sibling project) can dispatch into a different 
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
   --dir /path/to/other-repo \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \

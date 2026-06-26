@@ -75,7 +75,7 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end of the response s
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -135,7 +135,7 @@ Success criteria:
 opencode run \
   --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent deep-research \
   --variant high \
   --format json \
@@ -197,7 +197,7 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end so the calling ru
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \

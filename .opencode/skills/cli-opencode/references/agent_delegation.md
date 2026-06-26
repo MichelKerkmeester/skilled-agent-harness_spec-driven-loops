@@ -81,7 +81,7 @@ cli-opencode dispatches use the `--agent <slug>` flag. The flag loads the agent 
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent <slug> \
   --variant high \
   --format json \
@@ -236,7 +236,7 @@ Mirroring the sibling cli-* skills, cli-opencode supports an inline routing patt
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --variant high \
   --format json \
   --dir /repo \
@@ -266,7 +266,7 @@ Example:
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent orchestrate \
   --variant high \
   --format json \
@@ -310,7 +310,7 @@ The calling AI wants a security-focused review of a single file.
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent review \
   --variant high \
   --format json \
@@ -331,7 +331,7 @@ The calling AI's first 3 debug attempts failed. Escalate to a fresh-context disp
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent debug \
   --variant high \
   --format json \

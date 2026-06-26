@@ -106,7 +106,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `-s`, `--session` | string | Continue a specific session id |
 | `--fork` | boolean | Fork before continuing — requires `--continue` or `--session` |
 | `--share` | boolean | Publish a shareable URL for this session |
-| `-m`, `--model` | string | Provider/model selector — e.g. `opencode-go/deepseek-v4-pro` |
+| `-m`, `--model` | string | Provider/model selector — e.g. `deepseek/deepseek-v4-pro` |
 | `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`) |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) |
 | `-f`, `--file` | array | Attach files to the message |
@@ -126,7 +126,7 @@ The skill builds every dispatch from a base shape and overlays use-case-specific
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent <agent-slug> \
   --variant high \
   --format json \
@@ -136,7 +136,7 @@ opencode run \
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-pro` | OpenCode Go is the default provider — routes DeepSeek and other open models through one API gateway with elevated reasoning at low cost; operator may override (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) |
+| `--model` | `deepseek/deepseek-v4-pro` | Direct DeepSeek is the default provider — elevated reasoning at low cost; operator may override (e.g. `deepseek/deepseek-v4-flash`, `kimi-for-coding/k2p7`, `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) |
 | `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
 | `--variant high` | high | Routine cli-opencode dispatches benefit from elevated reasoning effort |
 | `--format json` | json | Structured event stream is what external runtimes parse |
@@ -171,20 +171,18 @@ Before the first dispatch in a session, run a one-shot auth pre-flight against `
 ```bash
 # Pre-flight — one call per session
 PROVIDERS=$(opencode providers list 2>&1)
-echo "$PROVIDERS" | grep -q "opencode-go"         && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0
 echo "$PROVIDERS" | grep -q "deepseek"            && DEEPSEEK_OK=1       || DEEPSEEK_OK=0
 echo "$PROVIDERS" | grep -q "minimax-coding-plan" && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
 echo "$PROVIDERS" | grep -qE "minimax([^-]|$)"    && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token); regex skips the coding-plan provider
 echo "$PROVIDERS" | grep -q "xiaomi-token-plan-ams" && XIAOMI_OK=1       || XIAOMI_OK=0          # Xiaomi Token Plan (Europe)
 echo "$PROVIDERS" | grep -qE "xiaomi([^-]|$)"     && XIAOMI_DIRECT_OK=1 || XIAOMI_DIRECT_OK=0   # Xiaomi Direct API (pay-per-token); regex skips the token-plan-ams provider
-echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK xiaomi=$XIAOMI_OK xiaomi_direct=$XIAOMI_DIRECT_OK"
+echo "default=$DEEPSEEK_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK xiaomi=$XIAOMI_OK xiaomi_direct=$XIAOMI_DIRECT_OK"
 ```
 
-| State | OPENCODE_GO_OK | DEEPSEEK_OK | Action |
-|-------|----------------|-------------|--------|
-| Default available | 1 | * | Proceed with `--model opencode-go/deepseek-v4-pro --variant high` |
-| Default missing, fallback available | 0 | 1 | **ASK user** before substituting (offer A: deepseek/deepseek-v4-pro, B: login opencode-go and retry, C: name a different model) |
-| All missing | 0 | 0 | **ASK user** to run `opencode providers login <provider>` — do not dispatch until configured |
+| State | DEEPSEEK_OK | Action |
+|-------|-------------|--------|
+| Default available | 1 | Proceed with `--model deepseek/deepseek-v4-pro --variant high` |
+| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-5.5-pro, B: login deepseek and retry, C: name a different model) — do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan; Direct API is the pay-per-token alternative):
 
@@ -209,10 +207,7 @@ echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK minimax_token=$MINIMAX_TOKEN
 **Login / setup command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
 
 ```bash
-# Recommended default
-opencode providers login opencode-go
-
-# Direct DeepSeek API (alternative)
+# Recommended default — direct DeepSeek API
 opencode providers login deepseek
 
 # MiniMax Token Plan — DEFAULT MiniMax path (subscription). Interactive: pick "MiniMax Token Plan (minimax.io)".
@@ -236,22 +231,17 @@ opencode providers login xiaomi
 
 ## 5. MODEL SELECTION
 
-OpenCode resolves models through configured providers. The cli-opencode skill supports `opencode-go` (default), `deepseek`, `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable; NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead), and `xiaomi` (Xiaomi Direct API — MiMo: `xiaomi/mimo-v2.5-pro` + low-latency `xiaomi/mimo-v2.5-pro-ultraspeed`, pay-per-token) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
+OpenCode resolves models through configured providers. The cli-opencode skill supports `deepseek` (default), `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable; NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead), and `xiaomi` (Xiaomi Direct API — MiMo: `xiaomi/mimo-v2.5-pro` + low-latency `xiaomi/mimo-v2.5-pro-ultraspeed`, pay-per-token) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
 
 | Provider | Example model id | Use case |
 |----------|------------------|----------|
-| `opencode-go` (DEFAULT) | `opencode-go/deepseek-v4-pro` | Default — deep reasoning at low cost via OpenCode Go gateway |
-| `opencode-go` | `opencode-go/deepseek-v4-flash` | Latency-optimized DeepSeek sibling |
-| `opencode-go` | `opencode-go/glm-5.1` | Open-weight alternative |
-| `kimi-for-coding` | `kimi-for-coding/k2p7` | Long-context Kimi K2.7 Code (256k; subscription plan) |
-| `opencode-go` | `opencode-go/qwen3.6-plus` | Qwen 3.6 routed through opencode-go |
-| `deepseek` | `deepseek/deepseek-v4-pro` | Direct DeepSeek API — bypasses opencode-go |
+| `deepseek` (DEFAULT) | `deepseek/deepseek-v4-pro` | Default — deep reasoning at low cost via direct DeepSeek API |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
+| `kimi-for-coding` | `kimi-for-coding/k2p7` | Long-context Kimi K2.7 Code (256k; subscription plan) |
 | `minimax-coding-plan` (DEFAULT MiniMax) | `minimax-coding-plan/MiniMax-M3` | MiniMax Token Plan (subscription) — default MiniMax dispatch; omit `--agent`; verify with `opencode models minimax-coding-plan` |
 | `minimax` | `minimax/MiniMax-M3` | MiniMax Direct API — pay-per-token alternative; needs `MINIMAX_API_KEY`; confirm the live id via `opencode models minimax` |
 | `xiaomi-token-plan-ams` | `xiaomi-token-plan-ams/mimo-v2.5-pro` | Xiaomi Token Plan (Europe) — MiMo-V2.5-Pro: 1M-token context, strongly agentic (1000+ tool calls), token-efficient; omit `--agent`; verify with `opencode models xiaomi-token-plan-ams` |
 | `xiaomi` | `xiaomi/mimo-v2.5-pro` | Xiaomi Direct API — pay-per-token; MiMo-V2.5-Pro; confirm the live id via `opencode models xiaomi` |
-| `opencode-go` (free) | `opencode/mimo-v2.5-free` | Free MiMo gateway path (v2.5, not -pro) via the opencode-go gateway — cheap-iteration / probe path; shares the opencode-go credit pool |
 
 `opencode models <provider>` lists every model id the provider exposes. The model string passed to `--model` is always `provider/model-id`.
 
@@ -261,7 +251,6 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 
 | Provider | Variant values |
 |----------|----------------|
-| `opencode-go` | `--variant` accepted; effect depends on opencode-go routing per underlying model |
 | `deepseek` (`deepseek-v4-pro`) | reasoning effort accepted |
 | `deepseek` (`deepseek-v4-flash`) | non-reasoning — `--variant` ignored |
 | `minimax-coding-plan` / `minimax` (MiniMax-M3) | `--variant` behavior unverified — omitted by default; confirm against the MiniMax API before relying on it |

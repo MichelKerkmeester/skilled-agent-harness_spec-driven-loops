@@ -38,7 +38,7 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 
 ## 3. OPENCODE MODEL OVERRIDES
 
-OpenCode dispatches the MiniMax, MiMo, and opencode-go (DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) small models, which override or default against the cross-model defaults from the canonical card:
+OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-pro, and Kimi-K2.7 small models, which override or default against the cross-model defaults from the canonical card:
 
 | Model (dispatchable here) | Override | Profile |
 |---|---|---|

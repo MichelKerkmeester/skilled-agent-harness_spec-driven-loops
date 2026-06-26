@@ -74,7 +74,7 @@ At the end of your response, include a structured handback inside delimiters:
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -113,7 +113,7 @@ Success criteria:
 opencode run \
   --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent deep-research \
   --variant high \
   --format json \
@@ -155,7 +155,7 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -174,7 +174,7 @@ Dispatch a task to a specific agent slug. See `../references/agent_delegation.md
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent <slug> \
   --variant high \
   --format json \
@@ -217,7 +217,7 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent review \
   --variant high \
   --format json \
@@ -250,7 +250,7 @@ Experiment: <list of files to read and queries to run>
 opencode run \
   --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent deep-research \
   --variant high \
   --format json \
@@ -287,7 +287,7 @@ Input: <input data path>
 opencode run \
   --share \
   --port 4097 \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -323,7 +323,7 @@ for n in $(seq 1 8); do
   opencode run \
     --share \
     --port "$port" \
-    --model opencode-go/deepseek-v4-pro \
+    --model deepseek/deepseek-v4-pro \
     --agent general \
     --variant high \
     --format json \
@@ -356,7 +356,7 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent general \
   --variant high \
   --format json \
@@ -384,7 +384,7 @@ Target: an implementation-ready plan that another agent can execute.
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent ai-council \
   --variant high \
   --format json \
@@ -410,7 +410,7 @@ Format: markdown.
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-pro \
+  --model deepseek/deepseek-v4-pro \
   --agent write \
   --variant high \
   --format json \
@@ -534,7 +534,7 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ## 16. TEMPLATE 15 — MiMo (XIAOMI TOKEN PLAN + DIRECT API; COSTAR + LEAN)
 
-**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slugs `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token; pick UltraSpeed for latency-sensitive checks/smokes — same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). For cheap iteration / probing, the free gateway path `opencode/mimo-v2.5-free` (opencode-go credit pool; v2.5, not -pro tier) is available. Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
+**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe) — primary slug `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`) — or via the Xiaomi Direct API — slugs `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token; pick UltraSpeed for latency-sensitive checks/smokes — same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback); use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format + brevity, **not** guardrails — TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`** — opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13); high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
 
 **Invocation (Token Plan)**:
 
@@ -562,7 +562,7 @@ opencode run \
 
 **Prompt scaffold (COSTAR — empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing — it ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
 
-**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe) and the Xiaomi Direct API; the default skill model stays `opencode-go/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/004-mimo-prompt-framework/eval/synthesis.md`.
+**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe) and the Xiaomi Direct API; the default skill model stays `deepseek/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/004-mimo-prompt-framework/eval/synthesis.md`.
 
 ---
 
