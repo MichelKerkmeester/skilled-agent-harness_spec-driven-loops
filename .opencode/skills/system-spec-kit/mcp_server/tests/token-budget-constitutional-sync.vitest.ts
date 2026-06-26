@@ -13,7 +13,7 @@ import {
   syncEnvelopeTokenCount,
   serializeEnvelopeWithTokenCount,
 } from '../lib/response/envelope.js';
-import { selectBudgetTrimIndex } from '../context-server.js';
+import { enforceEnvelopeResultBudget } from '../context-server.js';
 
 // ── Helpers ────────────────────────────────────────────────────
 
@@ -36,10 +36,12 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 /**
- * Runs the same trim loop that context-server.ts uses after token-budget
- * enforcement, then returns the envelope parsed back from its serialized form.
- * Row selection delegates to the real selectBudgetTrimIndex, so the surviving
- * set always matches the live dispatch behavior.
+ * Drives the REAL dispatch-path budget enforcement (enforceEnvelopeResultBudget)
+ * the same way context-server.ts does, then returns the envelope parsed back from
+ * its serialized form. Calling the live function — not a re-implementation — means
+ * this test can never drift from the dispatch behavior: the display floor, the
+ * compact-overflow rendering, and the constitutionalCount / summary reconciliation
+ * are all exercised exactly as shipped.
  */
 function runTruncationLoop(
   envelope: EnvelopeRecord,
@@ -47,53 +49,14 @@ function runTruncationLoop(
 ): EnvelopeRecord {
   const meta = isRecord(envelope.meta) ? envelope.meta as Record<string, unknown> : {};
   envelope.meta = meta;
-  const dataValue = envelope.data;
-  const data = isRecord(dataValue) ? dataValue as Record<string, unknown> : null;
 
   syncEnvelopeTokenCount(envelope);
 
-  if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
-    const innerResults = data?.results;
-    if (Array.isArray(innerResults) && innerResults.length > 1) {
-      const originalCount = innerResults.length;
-      while (innerResults.length > 1) {
-        innerResults.splice(selectBudgetTrimIndex(innerResults), 1);
-        syncEnvelopeTokenCount(envelope);
-        if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
-      }
-      if (data && data.count !== undefined) {
-        data.count = innerResults.length;
-      }
-      // ── FIX under test ──────────────────────────────────────
-      if (data) {
-        const survivingConstitutionalCount = (innerResults as unknown[]).filter(
-          (r: unknown) =>
-            r !== null &&
-            typeof r === 'object' &&
-            (r as Record<string, unknown>).isConstitutional === true,
-        ).length;
-        data.constitutionalCount = survivingConstitutionalCount;
-        if (typeof envelope.summary === 'string') {
-          envelope.summary =
-            survivingConstitutionalCount > 0
-              ? `Found ${innerResults.length} memories (${survivingConstitutionalCount} constitutional)`
-              : `Found ${innerResults.length} memories`;
-        }
-      }
-      // ────────────────────────────────────────────────────────
-      if (Array.isArray(envelope.hints)) {
-        envelope.hints.push(
-          `Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`,
-        );
-      }
-      meta.tokenBudgetTruncated = true;
-      meta.originalResultCount = originalCount;
-      meta.returnedResultCount = innerResults.length;
-    } else {
-      // No truncatable results array — add warning hint only
-      if (Array.isArray(envelope.hints)) {
-        envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
-      }
+  const enforced = enforceEnvelopeResultBudget(envelope, budget, syncEnvelopeTokenCount);
+  if (!enforced && typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
+    // ≤1 row or no results array — dispatch adds a warning hint only.
+    if (Array.isArray(envelope.hints)) {
+      envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
     }
   }
 
@@ -137,12 +100,11 @@ describe('T206: Token budget truncation — constitutionalCount + summary sync',
 
   // ── Tail constitutional result is PINNED, ordinary rows drop first ──
 
-  it('T206-A1: spares the tail constitutional result, drops ordinary rows → constitutionalCount + summary stay in sync', () => {
-    // 3 results; the last (tail) is constitutional and large. Under the real
-    // selectBudgetTrimIndex an always-surface row is at least as protected as any
-    // other row, so the squeeze drops the ordinary rows first and the constitutional
-    // pin survives — the opposite of a blind pop()-from-tail. This test documents the
-    // CURRENT pinned-row behavior and that the counts still reconcile after the trim.
+  it('T206-A1: spares the tail constitutional result, compacts ordinary rows → constitutionalCount + summary stay in sync', () => {
+    // 3 results; the last (tail) is constitutional and large. The set is at/below the
+    // display floor, so no row is deleted — instead the ordinary rows are rendered
+    // compact to reclaim budget while the constitutional pin keeps its full content.
+    // This documents that the counts still reconcile after the in-place compaction.
     const results: ResultItem[] = [
       { id: 1, content: 'short', isConstitutional: false },
       { id: 2, content: 'medium content for budget padding '.repeat(4), isConstitutional: false },
@@ -272,5 +234,67 @@ describe('T206: Token budget truncation — constitutionalCount + summary sync',
     expect(outData.constitutionalCount).toBe(
       outData.results.filter((r) => r.isConstitutional === true).length,
     );
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// Display floor + compact-overflow contract.
+// A populated result set is never collapsed toward one row by token-budget
+// enforcement; overflow beyond what fits at full detail is rendered compact
+// (metadata-only) instead of deleted, and a set larger than the floor is trimmed
+// down to the floor rather than to one.
+// ───────────────────────────────────────────────────────────────
+
+type CompactResultItem = ResultItem & { compact?: boolean };
+
+describe('T207: display floor + compact overflow', () => {
+
+  it('T207-A1: a populated set at/below the floor keeps every row; overflow is compact, not deleted', () => {
+    // 6 ordinary results, each heavy enough that the full set blows the budget.
+    const results: ResultItem[] = Array.from({ length: 6 }, (_, i) => ({
+      id: i + 1,
+      content: `result ${i + 1} body `.repeat(40),
+      isConstitutional: false,
+    }));
+
+    const envelope = makeSearchEnvelope(results);
+    const out = runTruncationLoop(envelope, 200);
+    const outData = out.data as { count: number; constitutionalCount: number; results: CompactResultItem[] };
+
+    // The whole set survives (6 <= floor of 10) — never collapsed toward one row.
+    expect(outData.results.length).toBe(6);
+    expect(outData.count).toBe(6);
+    expect(outData.results.length).toBe(outData.count);
+
+    // Overflow rows were rendered compact (content dropped) to reclaim budget.
+    const compactRows = outData.results.filter((r) => r.compact === true);
+    expect(compactRows.length).toBeGreaterThan(0);
+    expect(compactRows[0].content).toBeUndefined();
+    expect(compactRows[0].id).toBeDefined();
+
+    // The top row stays full (keeps its content).
+    expect(typeof outData.results[0].content).toBe('string');
+
+    const meta = out.meta as Record<string, unknown>;
+    expect(meta.tokenBudgetTruncated).toBe(true);
+    expect(meta.returnedResultCount).toBe(6);
+    expect(meta.originalResultCount).toBe(6);
+  });
+
+  it('T207-A2: a set larger than the floor is trimmed down to the floor (10), never to one', () => {
+    const results: ResultItem[] = Array.from({ length: 15 }, (_, i) => ({
+      id: i + 1,
+      content: 'big body '.repeat(60),
+      isConstitutional: false,
+    }));
+
+    const envelope = makeSearchEnvelope(results);
+    // Budget far below any multi-row set forces Phase-1 trimming all the way to the floor.
+    const out = runTruncationLoop(envelope, 150);
+    const outData = out.data as { count: number; results: CompactResultItem[] };
+
+    // Floored at exactly 10: never below the display floor, never above it once over budget.
+    expect(outData.results.length).toBe(10);
+    expect(outData.count).toBe(10);
   });
 });

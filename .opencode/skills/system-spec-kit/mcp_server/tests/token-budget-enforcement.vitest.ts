@@ -5,6 +5,8 @@ import * as path from 'path';
 
 import * as layerDefs from '../lib/architecture/layer-definitions';
 import * as memoryContext from '../handlers/memory-context';
+import { enforceEnvelopeResultBudget } from '../context-server.js';
+import { syncEnvelopeTokenCount } from '../lib/response/envelope.js';
 import { expectReturnedCountMatchesPayload } from './_support/token-budget-assertions';
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
@@ -273,12 +275,24 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
       expect(serverSrc).toContain('returnedResultCount');
     });
 
-    it('T205-C3: Dispatch preserves at least 1 result', () => {
-      const serverSrc = fs.readFileSync(
-        path.join(PROJECT_ROOT, 'context-server.ts'),
-        'utf8'
-      );
-      expect(serverSrc).toContain('innerResults.length > 1');
+    it('T205-C3: Dispatch floors a populated set and never collapses it below the floor', () => {
+      // Behavioral: a populated over-budget envelope is floored at min(n, FLOOR) and
+      // its overflow rendered compact — never collapsed toward one row, never to zero.
+      const results = Array.from({ length: 4 }, (_, i) => ({ id: i + 1, content: 'x'.repeat(400) }));
+      const envelope: Record<string, unknown> = {
+        summary: `Found ${results.length} memories`,
+        hints: [],
+        data: { count: results.length, constitutionalCount: 0, results },
+        meta: { tool: 'memory_search', tokenCount: 0 },
+      };
+      syncEnvelopeTokenCount(envelope);
+      const enforced = enforceEnvelopeResultBudget(envelope, 50, syncEnvelopeTokenCount);
+      const out = envelope.data as { results: unknown[]; count: number };
+      expect(enforced).toBe(true);
+      // 4 <= floor of 10 → every row kept (overflow compacted), never collapsed to 1.
+      expect(out.results.length).toBe(4);
+      expect(out.results.length).toBeGreaterThanOrEqual(1);
+      expect(out.count).toBe(out.results.length);
     });
 
     it('T205-C4: Uses getTokenBudget for layer-specific budgets', () => {

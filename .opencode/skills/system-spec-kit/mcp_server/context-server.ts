@@ -530,6 +530,118 @@ export function selectBudgetTrimIndex(rows: readonly unknown[]): number {
   return rows.length - 1;
 }
 
+/**
+ * Display floor for token-budget enforcement: a populated result set is never
+ * collapsed below this many rows. Overflow beyond what fits at full detail is
+ * rendered compact (metadata-only) rather than deleted, so fixed envelope overhead
+ * (constitutional injection, decision envelopes) cannot starve result visibility.
+ */
+const ENVELOPE_RESULT_DISPLAY_FLOOR = 10;
+
+/**
+ * Heavy per-result explainability fields dropped when a row is rendered compact.
+ * The light identity + ranking fields (id, paths, title, score, tier) are kept so
+ * the reader can still identify and rank the match.
+ */
+const COMPACT_RESULT_DROP_FIELDS: ReadonlySet<string> = new Set([
+  'content', 'snippet', 'trustBadges', 'why', 'why_ranked', 'whyRanked',
+  'confidence', 'preCalibrationValue', 'scores', 'source', 'trace',
+  'anchorIds', 'anchorTypes',
+]);
+
+/**
+ * Render a result row compact: keep its identity + ranking fields, drop the heavy
+ * explainability payload, and stamp `compact: true` so the reader can tell. Rows
+ * that are already compact (or not objects) are returned unchanged.
+ */
+function compactEnvelopeResultRow(row: unknown): unknown {
+  if (!isObjectRow(row) || row.compact === true) return row;
+  const compacted: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(row)) {
+    if (COMPACT_RESULT_DROP_FIELDS.has(key)) continue;
+    compacted[key] = value;
+  }
+  compacted.compact = true;
+  return compacted;
+}
+
+/**
+ * Enforce a result-bearing envelope's token budget in place. A populated result set
+ * is never collapsed below ENVELOPE_RESULT_DISPLAY_FLOOR rows: genuinely-excess rows
+ * beyond the floor are trimmed from the tail (lowest-value first, via
+ * selectBudgetTrimIndex), and if the envelope is still over budget the remaining
+ * overflow rows are rendered compact (identity + ranking only) instead of deleted —
+ * so fixed envelope overhead can no longer starve result visibility. Reconciles
+ * data.count / constitutionalCount / summary with the survivors and stamps the
+ * truncation telemetry. Returns true when any trim or compaction was applied.
+ *
+ * Parameterized on the token-count sync so it is unit-testable without the live
+ * dispatch wrapper; mutates only the passed envelope.
+ */
+export function enforceEnvelopeResultBudget(
+  envelope: Record<string, unknown>,
+  budget: number,
+  syncTokenCount: (env: Record<string, unknown>) => void,
+): boolean {
+  const meta = isObjectRow(envelope.meta) ? envelope.meta : (envelope.meta = {});
+  const data = isObjectRow(envelope.data) ? envelope.data : null;
+  const innerResults = data?.results;
+  if (!Array.isArray(innerResults) || innerResults.length <= 1) return false;
+  if (typeof meta.tokenCount !== 'number' || meta.tokenCount <= budget) return false;
+
+  const originalCount = innerResults.length;
+  const displayFloor = Math.min(originalCount, ENVELOPE_RESULT_DISPLAY_FLOOR);
+
+  // Phase 1: trim genuinely-excess rows beyond the display floor (lowest-value first).
+  while (innerResults.length > displayFloor) {
+    innerResults.splice(selectBudgetTrimIndex(innerResults), 1);
+    syncTokenCount(envelope);
+    if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
+  }
+
+  // Phase 2: still over budget at the floor → render overflow rows compact (drop the
+  // heavy payload) instead of deleting, keeping them visible. The top row and any
+  // constitutional pin stay full.
+  if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
+    for (let i = innerResults.length - 1; i >= 1; i -= 1) {
+      const row = innerResults[i];
+      if (isConstitutionalRow(row) || (isObjectRow(row) && row.compact === true)) continue;
+      innerResults[i] = compactEnvelopeResultRow(row);
+      syncTokenCount(envelope);
+      if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
+    }
+  }
+
+  const compactedCount = innerResults.filter((r) => isObjectRow(r) && r.compact === true).length;
+
+  if (data && data.count !== undefined) {
+    data.count = innerResults.length;
+  }
+  if (data) {
+    const survivingConstitutionalCount = innerResults.filter(
+      (r) => isObjectRow(r) && r.isConstitutional === true,
+    ).length;
+    data.constitutionalCount = survivingConstitutionalCount;
+    if (typeof envelope.summary === 'string') {
+      envelope.summary = survivingConstitutionalCount > 0
+        ? `Found ${innerResults.length} memories (${survivingConstitutionalCount} constitutional)`
+        : `Found ${innerResults.length} memories`;
+    }
+  }
+  if (Array.isArray(envelope.hints)) {
+    const trimmed = originalCount - innerResults.length;
+    envelope.hints.push(
+      trimmed > 0
+        ? `Token budget enforced: ${originalCount} → ${innerResults.length} results (${compactedCount} compact) to fit ${budget} token budget`
+        : `Token budget enforced: ${compactedCount} of ${innerResults.length} results rendered compact to fit ${budget} token budget`,
+    );
+  }
+  meta.tokenBudgetTruncated = true;
+  meta.originalResultCount = originalCount;
+  meta.returnedResultCount = innerResults.length;
+  return true;
+}
+
 export function maybeStructuralNudge(
   task: string,
   options: {
@@ -1380,49 +1492,15 @@ function registerContextServerHandlers(targetServer: Server): void {
             // below pops a result before it re-measures.
             const stillOverBudget = typeof meta.tokenCount === 'number' && meta.tokenCount > budget;
             const innerResults = data?.results;
-            if (stillOverBudget && Array.isArray(innerResults) && innerResults.length > 1) {
-              const originalCount = innerResults.length;
-              // Results are typically sorted by score (highest first), so the
-              // lowest-value rows sit at the end. Trim from the end, but skip rows
-              // the formatter marked `appendExempt` (the additive tail appends —
-              // deterministic multi-hop / lane-champion backfill). selectBudgetTrimIndex
-              // returns the last NON-exempt row, sacrificing an exempt row only once
-              // nothing else remains. When no row is exempt (both append flags off →
-              // no append rows) it returns the last index every pass, identical to the
-              // original pop().
-              while (innerResults.length > 1) {
-                innerResults.splice(selectBudgetTrimIndex(innerResults), 1);
-                // Recalculate token count from the full envelope
-                // (not just results) so trace metadata is included in the budget.
-                syncEnvelopeTokenCount(envelope);
-                if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
-              }
-              if (data && data.count !== undefined) {
-                data.count = innerResults.length;
-              }
-              // Recompute constitutionalCount from the results that survived truncation
-              // so consumers reading data.constitutionalCount or envelope.summary see
-              // counts that agree with data.results.length.
-              if (data) {
-                const survivingConstitutionalCount = innerResults.filter(
-                  (r: unknown) => r !== null && typeof r === 'object' && (r as Record<string, unknown>).isConstitutional === true
-                ).length;
-                data.constitutionalCount = survivingConstitutionalCount;
-                if (typeof envelope.summary === 'string') {
-                  envelope.summary = survivingConstitutionalCount > 0
-                    ? `Found ${innerResults.length} memories (${survivingConstitutionalCount} constitutional)`
-                    : `Found ${innerResults.length} memories`;
-                }
-              }
-              if (Array.isArray(envelope.hints)) {
-                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
-              }
-              meta.tokenBudgetTruncated = true;
-              meta.originalResultCount = originalCount;
-              meta.returnedResultCount = innerResults.length;
-            } else if (stillOverBudget) {
-              // No truncatable results array — add warning hint only
-              if (Array.isArray(envelope.hints)) {
+            // A populated result set is floored at ENVELOPE_RESULT_DISPLAY_FLOOR and its
+            // overflow rendered compact rather than deleted (see enforceEnvelopeResultBudget),
+            // so a budget dominated by fixed overhead never collapses the answer to one row.
+            const enforced = enforceEnvelopeResultBudget(envelope, budget, syncEnvelopeTokenCount);
+            if (stillOverBudget && !enforced) {
+              // No truncatable results array (≤1 row) — add warning hint only.
+              if (Array.isArray(innerResults) && innerResults.length <= 1 && Array.isArray(envelope.hints)) {
+                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
+              } else if (!Array.isArray(innerResults) && Array.isArray(envelope.hints)) {
                 envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
               }
             }
