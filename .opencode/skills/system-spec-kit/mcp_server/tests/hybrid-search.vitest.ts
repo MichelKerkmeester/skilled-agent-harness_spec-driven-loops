@@ -1586,6 +1586,7 @@ describe('P1 post-ranking truncation and token budget regressions', () => {
     SPECKIT_CONTEXT_HEADERS: process.env.SPECKIT_CONTEXT_HEADERS,
     SPECKIT_SEARCH_FALLBACK: process.env.SPECKIT_SEARCH_FALLBACK,
     SPECKIT_DOCSCORE_AGGREGATION: process.env.SPECKIT_DOCSCORE_AGGREGATION,
+    SPECKIT_COSINE_TOPN_REORDER: process.env.SPECKIT_COSINE_TOPN_REORDER,
   };
 
   afterEach(() => {
@@ -1715,6 +1716,59 @@ describe('P1 post-ranking truncation and token budget regressions', () => {
     expect(truncated.results[0]?.content).toContain('[Summary] Oversized top match:');
     expect(truncated.results[0]?._summarized).toBe(true);
     expect(truncated.overflow?.truncatedToCount).toBe(1);
+  });
+
+  it('keeps folder-rank order in the final returned results after budget and cosine stages', async () => {
+    process.env.SPECKIT_CONFIDENCE_TRUNCATION = 'false';
+    process.env.SPECKIT_MMR = 'false';
+    process.env.SPECKIT_CROSS_ENCODER = 'false';
+    process.env.SPECKIT_FOLDER_SCORING = 'true';
+    process.env.SPECKIT_FOLDER_TOP_K = '2';
+    process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET = 'false';
+    process.env.SPECKIT_CONTEXT_HEADERS = 'false';
+    process.env.SPECKIT_SEARCH_FALLBACK = 'false';
+    process.env.SPECKIT_DOCSCORE_AGGREGATION = 'false';
+    process.env.SPECKIT_COSINE_TOPN_REORDER = 'true';
+
+    const docs = [
+      { id: 101, title: 'Lower rank high score', content: 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda', spec_folder: 'lower-rank', importance_tier: 'normal' },
+      { id: 201, title: 'Higher rank aggregate one', content: 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda', spec_folder: 'higher-rank', importance_tier: 'normal' },
+      { id: 202, title: 'Higher rank aggregate two', content: 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda', spec_folder: 'higher-rank', importance_tier: 'normal' },
+    ];
+    const folderRankDb = {
+      prepare(sql: string) {
+        return {
+          get() {
+            if (sql.includes('memory_fts')) return { count: 1 };
+            return null;
+          },
+          all() {
+            if (sql.includes('SELECT id, spec_folder FROM memory_index')) {
+              return docs.map(({ id, spec_folder }) => ({ id, spec_folder }));
+            }
+            return [];
+          },
+        };
+      },
+    } as unknown as Database.Database;
+    const vectorSearch: VectorSearchFn = () => ([
+      { ...docs[0], similarity: 0.99, score: 0.99 },
+      { ...docs[1], similarity: 0.8, score: 0.8 },
+      { ...docs[2], similarity: 0.79, score: 0.79 },
+    ]);
+
+    hybridSearch.init(folderRankDb, vectorSearch, null);
+    const results = await hybridSearch.hybridSearchEnhanced('folder rank final ordering', new Float32Array(768).fill(0.2), {
+      limit: 3,
+      useFts: false,
+      useBm25: false,
+      useGraph: false,
+      forceAllChannels: true,
+    });
+
+    expect(results.map((result) => result.id).slice(0, 2)).toEqual([201, 202]);
+    expect((results[0] as Record<string, unknown>).folderRank).toBe(1);
+    expect((results.find((result) => result.id === 101) as Record<string, unknown>).folderRank).toBe(2);
   });
 
   it('T311: truncateToBudget reuses the per-result token estimate during total and greedy passes', () => {

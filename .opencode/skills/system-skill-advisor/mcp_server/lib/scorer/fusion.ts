@@ -602,8 +602,7 @@ function primaryIntentBonus(
   // Colon-command review-loop syntax (":review:auto") invokes the deep-review
   // loop; rank it above single-pass code review.
   if (/:review:(auto|confirm)\b/.test(promptLower)) {
-    if (recommendation.skill === 'deep-review') return R.reviewLoopDeepReviewBonus;
-    if (recommendation.skill === 'deep-loop-workflows') return R.deepReviewSkCodeReviewPenalty;
+    if (recommendation.skill === 'deep-loop-workflows') return R.reviewLoopDeepReviewBonus;
     if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
   }
   // Auditing recommendation quality is a review task, not an advisor-self task.

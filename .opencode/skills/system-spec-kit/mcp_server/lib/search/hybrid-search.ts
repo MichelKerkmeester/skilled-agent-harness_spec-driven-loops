@@ -37,6 +37,7 @@ import {
   enrichResultsWithFolderScores,
   isFolderScoringEnabled,
   lookupFolders,
+  orderResultsByFolderRank,
   twoPhaseRetrieval,
 } from './folder-relevance.js';
 import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
@@ -1927,6 +1928,7 @@ async function enrichFusedResults(
   // Reuse embeddings already returned by the vector channel when present and
   // only query vec_memories for missing IDs.
   let reranked: HybridSearchResult[] = fusedHybridResults.slice(0, limit);
+  let folderRankOrderingApplied = false;
 
   if (db && isMMREnabled()) {
     const numericIds = reranked
@@ -2053,6 +2055,7 @@ async function enrichFusedResults(
           const twoPhaseResults = twoPhaseRetrieval(reranked, folderScores, folderMap, topK);
           const postFolderResults = twoPhaseResults.length > 0 ? twoPhaseResults : reranked;
           reranked = enrichResultsWithFolderScores(postFolderResults, folderScores, folderMap) as HybridSearchResult[];
+          folderRankOrderingApplied = true;
         }
       }
     } catch (_folderErr: unknown) {
@@ -2170,6 +2173,10 @@ async function enrichFusedResults(
     if (isCosineTopnReorderEnabled() && reranked.length > 1) {
       reranked = reorderTopNByCosine(reranked);
     }
+  }
+
+  if (!evaluationMode && folderRankOrderingApplied && reranked.length > 1) {
+    reranked = orderResultsByFolderRank(reranked);
   }
 
   if (reranked.length > 0) {

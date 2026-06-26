@@ -246,3 +246,39 @@ export function twoPhaseRetrieval<
     return (aRank - bRank) || (b.score - a.score);
   });
 }
+
+function resultSources(result: { source?: unknown; sources?: unknown }): string[] {
+  if (Array.isArray(result.sources)) {
+    return result.sources.filter((source): source is string => typeof source === 'string');
+  }
+  return typeof result.source === 'string' && result.source.length > 0 ? [result.source] : [];
+}
+
+function isGraphOnlyResult(result: { source?: unknown; sources?: unknown }): boolean {
+  const sources = resultSources(result);
+  return sources.length > 0 && sources.every((source) => source === 'graph' || source === 'degree');
+}
+
+function folderRankComparator<T extends { score: number; folderRank?: number }>(a: T, b: T): number {
+  const aRank = typeof a.folderRank === 'number' ? a.folderRank : Number.POSITIVE_INFINITY;
+  const bRank = typeof b.folderRank === 'number' ? b.folderRank : Number.POSITIVE_INFINITY;
+  return (aRank - bRank) || (b.score - a.score);
+}
+
+export function orderResultsByFolderRank<
+  T extends { score: number; folderRank?: number; source?: unknown; sources?: unknown },
+>(results: T[]): T[] {
+  const baseline: T[] = [];
+  const graphOnlyTail: T[] = [];
+  for (const result of results) {
+    if (isGraphOnlyResult(result)) {
+      graphOnlyTail.push(result);
+    } else {
+      baseline.push(result);
+    }
+  }
+  return [
+    ...baseline.sort(folderRankComparator),
+    ...graphOnlyTail.sort(folderRankComparator),
+  ];
+}

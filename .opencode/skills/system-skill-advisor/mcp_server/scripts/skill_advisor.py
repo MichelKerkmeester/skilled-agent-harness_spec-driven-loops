@@ -226,9 +226,6 @@ GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
 GRAPHLESS_INLINE_SKILL_IDS = {
     "create:agent",
     "create:testing-playbook",
-    "deep-improvement",
-    "deep-research",
-    "deep-review",
     "memory:save",
 }
 
@@ -1730,11 +1727,11 @@ PHRASE_INTENT_BOOSTERS = {
     "auto review security audit": [("deep-review", 2.5)],
     "auto review audit": [("deep-review", 2.2)],
     "auto review loop": [("deep-review", 2.5)],
-    ":start-review-loop": [("deep-review", 3.0)],
-    ":start-review-loop:auto": [("deep-review", 3.0)],
-    ":start-review-loop:confirm": [("deep-review", 3.0)],
-    ":review:auto": [("deep-review", 3.0)],
-    ":review:confirm": [("deep-review", 3.0)],
+    ":start-review-loop": [("deep-loop-workflows", 3.0)],
+    ":start-review-loop:auto": [("deep-loop-workflows", 3.0)],
+    ":start-review-loop:confirm": [("deep-loop-workflows", 3.0)],
+    ":review:auto": [("deep-loop-workflows", 3.0)],
+    ":review:confirm": [("deep-loop-workflows", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
     "system code style guidance": [("sk-code", 1.7)],
     "python shell json standards": [("sk-code", 1.9)],
@@ -2076,31 +2073,6 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         path=None,
         extra_variants={"/create:testing-playbook", "create testing playbook", "create test playbook"},
     )
-    skills["deep-research"] = _build_inline_record(
-        name="deep-research",
-        description="Autonomous deep-research loop for iterative investigation and persisted research state.",
-        kind="skill",
-        source="bridge",
-        path=None,
-        extra_variants={"/deep:start-research-loop", "deep research", "research loop", "autoresearch"},
-    )
-    skills["deep-review"] = _build_inline_record(
-        name="deep-review",
-        description="Autonomous deep-review loop for iterative code review and convergence-tracked findings.",
-        kind="skill",
-        source="bridge",
-        path=None,
-        extra_variants={"/deep:start-review-loop", ":review:auto", "deep review", "review loop"},
-    )
-    skills["deep-improvement"] = _build_inline_record(
-        name="deep-improvement",
-        description="Evaluator-first agent improvement workflow with scoring, profiling, and guarded promotion.",
-        kind="skill",
-        source="bridge",
-        path=None,
-        extra_variants={"/deep:start-agent-improvement-loop", "5d scoring", "integration scan", "dynamic profile"},
-    )
-
     for command_name, command_config in COMMAND_BRIDGES.items():
         markers = set(command_config.get("slash_markers", []))
         skills[command_name] = _build_inline_record(
@@ -2355,6 +2327,7 @@ DEEP_ROUTING_MODE_BY_KEY = {
 
 DEEP_ROUTING_LEXICAL_PATTERNS = {
     "deep-review": (
+        (r":review:(?:auto|confirm)\b", 2.0),
         (r"\bdeep[- ]review\b", 1.8),
         (r"\breview loop\b|\biterative review\b|\bmulti-pass review\b", 1.4),
         (r"\baudit\b|\breview\b", 0.7),
@@ -2556,9 +2529,8 @@ def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, A
     winner_mode = DEEP_ROUTING_MODE_BY_KEY[winner_key]
     runner_up_mode = DEEP_ROUTING_MODE_BY_KEY.get(runner_up_key, runner_up_key)
     mode_scores = {DEEP_ROUTING_MODE_BY_KEY[key]: value for key, value in scores.items()}
-    payload_skill = winner_key if winner_key in {"deep-research", "deep-review"} else MERGED_DEEP_SKILL_ID
     payload: Dict[str, Any] = {
-        "skill": payload_skill,
+        "skill": MERGED_DEEP_SKILL_ID,
         "mode": winner_mode,
         "scores": mode_scores,
         "winner": winner_mode,
@@ -2582,7 +2554,7 @@ def _apply_deep_skill_routing_layer(
 
     prompt_lower = prompt.lower()
     has_deep_signal = re.search(
-        r"\b(deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
+        r":review:(?:auto|confirm)\b|\b(deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
         prompt_lower,
     )
     if not has_deep_signal:
@@ -2591,6 +2563,10 @@ def _apply_deep_skill_routing_layer(
     payload = deep_skill_routing_payload(prompt, packet_context or {})
     mode_scores = payload["scores"]  # keyed by workflowMode
     winner_mode = payload["mode"]
+    has_merged_deep_candidate = any(
+        recommendation.get("skill") == MERGED_DEEP_SKILL_ID
+        for recommendation in recommendations
+    )
 
     for recommendation in recommendations:
         skill = recommendation.get("skill")
@@ -2602,11 +2578,11 @@ def _apply_deep_skill_routing_layer(
             mode = winner_mode
         elif skill in DEEP_ROUTING_MODE_BY_KEY:
             mode = DEEP_ROUTING_MODE_BY_KEY[skill]
+            if has_merged_deep_candidate and mode in {"research", "review"}:
+                recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.74)
+                recommendation["uncertainty"] = max(float(recommendation.get("uncertainty", 0.0)), 0.42)
+                continue
         else:
-            continue
-        if skill == MERGED_DEEP_SKILL_ID and winner_mode in {"research", "review"}:
-            recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.74)
-            recommendation["uncertainty"] = max(float(recommendation.get("uncertainty", 0.0)), 0.42)
             continue
         routed_confidence = mode_scores.get(mode, 0.0)
         recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
@@ -3216,7 +3192,7 @@ def _apply_deep_research_disambiguation(
             loser["reason"] = f"{existing_reason}{note}"
 
     def _deep_winner(legacy_id: str) -> Optional[Dict[str, Any]]:
-        return _find(legacy_id) or _find(MERGED_DEEP_SKILL_ID)
+        return _find(MERGED_DEEP_SKILL_ID) or _find(legacy_id)
 
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
         winner = _deep_winner("deep-research")

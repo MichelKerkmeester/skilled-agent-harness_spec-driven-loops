@@ -527,6 +527,27 @@ function detectState(rootDir: string): {
   };
 }
 
+type ReadinessStateForSelectiveRefresh = Pick<ReturnType<typeof detectState>, 'action' | 'staleFiles' | 'reason'>;
+
+function hasUnsafeFullScanCause(reason: string): boolean {
+  return reason.includes('git HEAD changed:')
+    || reason.includes('candidate manifest drift:')
+    || reason.includes('code graph scope changed:')
+    || reason.includes('stale files exceed selective threshold');
+}
+
+export function canRunInlineSelectiveRefreshForFullScan(
+  state: ReadinessStateForSelectiveRefresh,
+  options: { canRunFullScan: boolean; allowInlineIndex: boolean },
+): boolean {
+  return state.action === 'full_scan'
+    && !options.canRunFullScan
+    && options.allowInlineIndex
+    && state.staleFiles.length > 0
+    && state.staleFiles.length <= SELECTIVE_REINDEX_THRESHOLD
+    && !hasUnsafeFullScanCause(state.reason);
+}
+
 /** Run indexFiles with a timeout guard */
 async function indexWithTimeout(
   config: IndexerConfig,
@@ -690,10 +711,10 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       ? evaluateGuardedFullScan(diagnostics, parseErrorBacklogThreshold)
       : { autoRescanSafety: 'blocked' as const, autoRescanBlockReason: 'guard_disabled' };
   const canRunFullScan = allowInlineFullScan || guardedFullScan.autoRescanSafety === 'allowed';
-  const canRunSelectiveRefresh = state.action === 'full_scan'
-    && !canRunFullScan
-    && allowInlineIndex
-    && state.staleFiles.length > 0;
+  const canRunSelectiveRefresh = canRunInlineSelectiveRefreshForFullScan(state, {
+    canRunFullScan,
+    allowInlineIndex,
+  });
   if (state.action === 'full_scan' && !canRunFullScan && !canRunSelectiveRefresh) {
     return {
       freshness: state.freshness,

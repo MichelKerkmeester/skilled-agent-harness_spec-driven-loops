@@ -148,54 +148,6 @@ const COMMAND_BRIDGES: readonly SkillProjection[] = [
   },
 ];
 
-const INLINE_WORKFLOW_SKILLS: readonly SkillProjection[] = [
-  {
-    id: 'deep-research',
-    kind: 'skill',
-    family: 'deep-loop',
-    category: 'workflow',
-    name: 'deep-research',
-    description: 'Autonomous deep-research loop for iterative investigation and persisted research state.',
-    keywords: ['deep research', 'research loop', 'autoresearch', '/deep:start-research-loop'],
-    domains: ['deep-loop', 'research'],
-    intentSignals: ['deep research', 'research loop', 'autoresearch', 'resume deep research'],
-    derivedTriggers: [],
-    derivedKeywords: [],
-    sourcePath: null,
-    lifecycleStatus: 'active',
-  },
-  {
-    id: 'deep-review',
-    kind: 'skill',
-    family: 'deep-loop',
-    category: 'workflow',
-    name: 'deep-review',
-    description: 'Autonomous deep-review loop for iterative code review and convergence-tracked findings.',
-    keywords: ['deep review', 'review loop', ':review:auto', '/deep:start-review-loop'],
-    domains: ['deep-loop', 'review'],
-    intentSignals: ['deep review', 'review loop', 'resume deep review', ':review:auto'],
-    derivedTriggers: [],
-    derivedKeywords: [],
-    sourcePath: null,
-    lifecycleStatus: 'active',
-  },
-  {
-    id: 'deep-improvement',
-    kind: 'skill',
-    family: 'deep-loop',
-    category: 'workflow',
-    name: 'deep-improvement',
-    description: 'Evaluator-first agent improvement workflow with scoring, profiling, and guarded promotion.',
-    keywords: ['agent improvement', '5d scoring', 'integration scan', 'dynamic profile'],
-    domains: ['deep-loop', 'improvement'],
-    intentSignals: ['agent improvement', '5d scoring', 'integration scan', 'dynamic profile'],
-    derivedTriggers: [],
-    derivedKeywords: [],
-    sourcePath: null,
-    lifecycleStatus: 'active',
-  },
-];
-
 function jsonArray(value: string | null | undefined): string[] {
   return value ? parseJsonStringArray(value) : [];
 }
@@ -665,7 +617,6 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
           const docTriggers = docTriggersBySkill.get(row.id);
           return docTriggers && docTriggers.length > 0 ? { ...projection, docTriggers } : projection;
         }),
-        ...INLINE_WORKFLOW_SKILLS,
         ...COMMAND_BRIDGES,
       ],
       edges: edgeRows.map((row) => ({
@@ -690,7 +641,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
   const skills: SkillProjection[] = [];
   const edges: SkillEdgeProjection[] = [];
   if (!existsSync(skillRoot)) {
-    return { skills: [...INLINE_WORKFLOW_SKILLS, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
+    return { skills: [...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
   }
   for (const entry of readdirSync(skillRoot, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
@@ -738,7 +689,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       redirectFrom: stringArray(metadata.redirect_from),
     });
   }
-  return { skills: [...skills, ...INLINE_WORKFLOW_SKILLS, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
+  return { skills: [...skills, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
 }
 
 // Previously a bare `catch {}` swallowed every SQLite read error

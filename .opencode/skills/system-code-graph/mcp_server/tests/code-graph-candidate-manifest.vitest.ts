@@ -20,7 +20,11 @@ import {
   setCodeGraphMetadata,
   upsertFile,
 } from '../lib/code-graph-db.js';
-import { getGraphReadinessSnapshot, recordCandidateManifest } from '../lib/ensure-ready.js';
+import {
+  canRunInlineSelectiveRefreshForFullScan,
+  getGraphReadinessSnapshot,
+  recordCandidateManifest,
+} from '../lib/ensure-ready.js';
 import { generateContentHash, getDefaultConfig } from '../lib/indexer-types.js';
 
 function writeWorkspaceFile(rootDir: string, relativePath: string, content: string): string {
@@ -129,5 +133,29 @@ describe('F-014-C4-03: candidate manifest persistence', () => {
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
+  });
+});
+
+describe('inline selective refresh full-scan fallback gate', () => {
+  it('blocks selective refresh when a HEAD-drift full scan has only a partial stale-file set', () => {
+    expect(canRunInlineSelectiveRefreshForFullScan({
+      action: 'full_scan',
+      staleFiles: ['src/changed.ts'],
+      reason: 'git HEAD changed: 11111111 -> 22222222; 1 file(s) have newer mtime than indexed_at',
+    }, {
+      canRunFullScan: false,
+      allowInlineIndex: true,
+    })).toBe(false);
+  });
+
+  it('allows selective refresh only for a bounded stale-file full-scan fallback', () => {
+    expect(canRunInlineSelectiveRefreshForFullScan({
+      action: 'full_scan',
+      staleFiles: ['src/changed.ts'],
+      reason: '1 file(s) have newer mtime than indexed_at',
+    }, {
+      canRunFullScan: false,
+      allowInlineIndex: true,
+    })).toBe(true);
   });
 });
