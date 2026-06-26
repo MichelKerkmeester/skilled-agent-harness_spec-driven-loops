@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.081Z",
+    "last_save_at": "2026-06-26T16:28:46.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c8533811f8ee0e64a723db784e97d3355a19ad2d259a41e3edc62bf9e871145",
+    "source_fingerprint": "sha256:538f9730427920251b962cb1e426ffc1123fad01ae8230fa481d9336dce85349",
     "source_doc_hashes": {
-      "spec.md": "a705a2d55fa673ec84a37408c3cb290ab47479893cbeef69be4ddb00216fc1ee",
+      "spec.md": "34c25c501fd933a31a14813e99acb55a273076d7da55b4c3c7b9670a9ca6727e",
       "plan.md": "d9756523f839856d2e8f2b3b5d0b6e50d357b3e754e34f3d53af301df3718c9a",
       "tasks.md": "69013d4877045cd47344a639bbaacd78cb0bb04ceaade297d34ea51bdfb657e0",
       "checklist.md": "4cd961d9aea87718b217358f735ec1e699c74e4d2ff98bffece9722658ecab89",

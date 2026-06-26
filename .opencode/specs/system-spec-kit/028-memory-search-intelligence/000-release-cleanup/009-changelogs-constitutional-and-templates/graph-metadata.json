@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.117Z",
+    "last_save_at": "2026-06-26T16:28:47.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d7566b33b7756d981daacd76b979400a8723dd01212eed48609353689e9ce10",
+    "source_fingerprint": "sha256:e8595f4b67aa86b173f63937e820dcb38ce1341b92da567bc2f7a94ad41d2b75",
     "source_doc_hashes": {
-      "spec.md": "3faf65fd81d693bcbc85064b448fcd52c4cb9768f2e559f333047194773c79d9",
+      "spec.md": "98df3be91514174dd37fd235c44f19e3aa54b264b74bc62fc4abb83e0c87bcc7",
       "plan.md": "13608e8c2add1d28ec553c81b8655304da279a8d4b2fbc93cb3a48f93d4826ee",
       "tasks.md": "503d1e6ad870c6827b1e52ce886f98d9e5cf28bef2ec19abe35e355bba6fb79a",
       "checklist.md": "0393b97fc2007a03e844fde070fa505cc6375aaa4418bbf9b4afa97e05b7df1e",

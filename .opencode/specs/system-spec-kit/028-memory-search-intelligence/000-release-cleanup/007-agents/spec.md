@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
-| **Phase** | 007 of 009 |
+| **Phase** | 007 of 012 |
 | **Predecessor** | ../006-commands/spec.md |
 | **Successor** | ../008-agents-md/spec.md |
 <!-- /ANCHOR:metadata -->

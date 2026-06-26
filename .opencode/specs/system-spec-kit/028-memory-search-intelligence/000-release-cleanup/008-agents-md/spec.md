@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
-| **Phase** | 008 of 009 |
+| **Phase** | 008 of 012 |
 | **Predecessor** | ../007-agents/spec.md |
 | **Successor** | ../009-changelogs-constitutional-and-templates/spec.md |
 <!-- /ANCHOR:metadata -->
@@ -57,7 +57,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The the root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.
+The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.
 
 ### Purpose
 Gates, rules and routing tables are current, section structure is clean and referenced skills do not contradict their source docs. This phase only defines the pending cleanup scope, objective and verification steps.

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.073Z",
+    "last_save_at": "2026-06-26T16:28:46.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:064244600b082dcce61f20e4091f3a805cd3de1689b68cd26d55bdbb4fb1e057",
+    "source_fingerprint": "sha256:d34a8dd40007d4e827a31f2f1ba9003501f2d403cd1eab37ee34281e562f9ba1",
     "source_doc_hashes": {
-      "spec.md": "2845507a5e9ceb953b676a88ac20674b8da0f6d15223687e6beee5f2f8d07688",
+      "spec.md": "fbc66a43250a0b347af055ae6edf645b5a8107b408840291a5d023a5ce78c9c0",
       "plan.md": "ffbed3ebef02367301b50320f10e418b8002ecc37877813a0074dfb446a17fd5",
       "tasks.md": "cc38e1a773dc019bca35969d301bdf09e5c8496ab8f70611ca66fa016619bb14",
       "checklist.md": "be7433d80e0b7d8dea6287f9a6c287a15924fab8ab42449b1f35180a47f491e6",

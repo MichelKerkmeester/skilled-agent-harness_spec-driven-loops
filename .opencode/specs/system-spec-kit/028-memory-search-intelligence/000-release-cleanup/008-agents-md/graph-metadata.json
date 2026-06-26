@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The the root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
+    "causal_summary": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.110Z",
+    "last_save_at": "2026-06-26T16:28:47.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7adde0127a3a48f9949f5c40fc5d390f2973c86e883ce7c20e03bde4928891c5",
+    "source_fingerprint": "sha256:7155089591ea1e33614e5e70f977959d00619f24b89839a6a5ec2c23a1028bcd",
     "source_doc_hashes": {
-      "spec.md": "a1e67dcaa5b617ec9f7a12f8b651c3f2b0f0a624c85bf31383412dd5ebca8589",
+      "spec.md": "d441747e5973cfa5c494970be108ce6ce54be1dc179331ad3ef70a828df0dc71",
       "plan.md": "a4b61a6a404b72430fdd1b901ea8d7183c77a9cbf732886ae67774aef471cfc5",
       "tasks.md": "d643588ab11aec01db32697d90789553821eea8961a8566efe7ebc7d8d425a9f",
       "checklist.md": "9ce3d2afd9684be1429f4f8c56c971cdaf186d67b9ac05dfa2246a02cc0aed86",

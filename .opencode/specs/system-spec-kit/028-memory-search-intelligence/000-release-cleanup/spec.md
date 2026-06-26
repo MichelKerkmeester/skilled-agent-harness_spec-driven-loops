@@ -93,6 +93,9 @@ Define the release-cleanup root purpose and child phase map without executing th
 | `007-agents/spec.md` | Create | 007 | Defines scope and acceptance criteria |
 | `008-agents-md/spec.md` | Create | 008 | Defines scope and acceptance criteria |
 | `009-changelogs-constitutional-and-templates/spec.md` | Create | 009 | Defines scope and acceptance criteria |
+| `010-catalog-playbook-coverage-audit/spec.md` | Create | 010 | Catalog and playbook coverage audit |
+| `011-daemon-skills-playbook-validation/spec.md` | Create | 011 | Daemon skills playbook validation |
+| `012-playbook-findings-remediation/spec.md` | Create | 012 | Playbook findings remediation |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,6 +114,9 @@ Define the release-cleanup root purpose and child phase map without executing th
 | 007 | `007-agents/` | Agent definition and runtime mirror sweep | COMPLETE |
 | 008 | `008-agents-md/` | Root AGENTS and runtime-routing mirror sweep | COMPLETE |
 | 009 | `009-changelogs-constitutional-and-templates/` | Changelog, constitutional doc and template sweep | COMPLETE |
+| 010 | `010-catalog-playbook-coverage-audit/` | Catalog and playbook coverage audit | COMPLETE |
+| 011 | `011-daemon-skills-playbook-validation/` | Daemon skills playbook validation | COMPLETE, salvaged |
+| 012 | `012-playbook-findings-remediation/` | Playbook findings remediation | COMPLETE |
 
 ### Phase Transition Rules
 
@@ -141,5 +147,5 @@ Define the release-cleanup root purpose and child phase map without executing th
 
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
-- **Child phases**: `001-code-readmes/` through `009-changelogs-constitutional-and-templates/`
+- **Child phases**: `001-code-readmes/` through `012-playbook-findings-remediation/`
 
