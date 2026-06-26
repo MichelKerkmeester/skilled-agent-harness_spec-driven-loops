@@ -365,7 +365,7 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
       });
     });
 
-    it('T006-A10b: SPECKIT_EVAL_DB_PATH temporarily swaps the ablation DB and restores MEMORY_DB_PATH', async () => {
+    it('T006-A10b: SPECKIT_EVAL_DB_PATH opens the ablation DB by path without mutating MEMORY_DB_PATH', async () => {
       const originalMemoryDbPath = '/tmp/original-context-index.sqlite';
       const overrideDbPath = '/tmp/eval-context-index.sqlite';
       const originalDb = { prepare: vi.fn(), name: 'original-db' };
@@ -385,7 +385,8 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
       await evalReporting.handleEvalRunAblation({ channels: ['vector'] });
 
       expect(mocks.mockCloseDb).toHaveBeenCalledTimes(2);
-      expect(mocks.mockInitializeDb).toHaveBeenNthCalledWith(1);
+      // The override DB is opened by explicit path, not by mutating process.env.MEMORY_DB_PATH.
+      expect(mocks.mockInitializeDb).toHaveBeenNthCalledWith(1, overrideDbPath);
       expect(mocks.mockAssertGroundTruthAlignment).toHaveBeenCalledWith(
         overrideDb,
         {

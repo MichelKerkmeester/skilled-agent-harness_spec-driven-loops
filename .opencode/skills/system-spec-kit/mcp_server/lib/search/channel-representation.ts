@@ -3,12 +3,13 @@
 // ───────────────────────────────────────────────────────────────
 /* --- 1. CONSTANTS --- */
 
-/** Minimum similarity / relevance score for a result to qualify for promotion.
- * QUALITY_FLOOR changed from 0.2 to 0.005 during calibration. The original 0.2
- * assumed normalized [0,1] scores, but raw RRF scores (~0.01-0.03) never exceeded that
- * threshold, causing channel-representation promotion to silently reject ALL RRF results.
- * The 0.005 floor prevents promoting genuinely irrelevant results while remaining
- * compatible with both raw RRF scores and normalized [0,1] scores. */
+/** Calibration reference for raw-RRF-scale relevance scores (~0.01-0.03), retained
+ * from when promotion was floor-gated: the threshold was lowered 0.2 -> 0.005 because
+ * the original 0.2 assumed normalized [0,1] scores and silently rejected ALL raw RRF
+ * results. NOTE: channel-min-representation promotion no longer gates on this value —
+ * to guarantee representation it promotes each under-represented channel's best result
+ * even below the floor (see the `analyzeChannelRepresentation` rules below). The constant
+ * is kept as the documented calibration anchor, not an active promotion gate. */
 
 // Feature catalog: Channel min-representation
 import { isChannelMinRepEnabled } from './search-flags.js';

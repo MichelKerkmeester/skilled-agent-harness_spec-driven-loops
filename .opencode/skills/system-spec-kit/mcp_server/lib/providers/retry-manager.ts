@@ -7,7 +7,7 @@ import * as fsPromises from 'fs/promises';
 
 // Internal modules
 import * as vectorIndex from '../search/vector-index.js';
-import { getIndex as getBm25Index } from '../search/bm25-index.js';
+import { getIndex as getBm25Index, isBm25Enabled } from '../search/bm25-index.js';
 import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
 import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
 import { generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
@@ -762,11 +762,16 @@ async function retryEmbedding(
 
       const embeddingBuffer = Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
       db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer);
-      getBm25Index().syncChangedRows(db, [id]);
     });
 
     try {
       updateTx();
+      if (isBm25Enabled()) {
+        const syncedRows = getBm25Index().syncChangedRows(db, [id]);
+        if (syncedRows === 0) {
+          console.warn(`[retry-manager] BM25 sync returned no rows after retry success for #${id}; lexical repair may be needed`);
+        }
+      }
       applyRetryHealthTransition(previousStatus, 'success');
       return { success: true, id, dimensions: embedding.length };
     } catch (tx_error: unknown) {

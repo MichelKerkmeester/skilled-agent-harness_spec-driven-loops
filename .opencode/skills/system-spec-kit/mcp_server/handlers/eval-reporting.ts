@@ -135,20 +135,13 @@ async function withAblationDb<T>(
     return run(activeDb, currentDbPath);
   }
 
-  const previousMemoryDbPath = process.env.MEMORY_DB_PATH;
   vectorIndex.closeDb();
-  process.env.MEMORY_DB_PATH = overrideDbPath;
 
   try {
-    const overrideDb = vectorIndex.initializeDb();
+    const overrideDb = vectorIndex.initializeDb(overrideDbPath);
     return await run(overrideDb, vectorIndex.getDbPath());
   } finally {
     vectorIndex.closeDb();
-    if (previousMemoryDbPath === undefined) {
-      delete process.env.MEMORY_DB_PATH;
-    } else {
-      process.env.MEMORY_DB_PATH = previousMemoryDbPath;
-    }
     vectorIndex.initializeDb();
   }
 }

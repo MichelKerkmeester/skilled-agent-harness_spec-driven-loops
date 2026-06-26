@@ -345,7 +345,7 @@ function validate_embedding_dimension_for_connection(
       const warning = `EMBEDDING DIMENSION MISMATCH: Existing database stores ${existing.stored_dim}-dim vectors (${source_label}), ` +
         `but the active embedding configuration resolves to ${current_dim}. Refusing to bootstrap because vector search would fail. ` +
         `Solutions: 1) Delete database and re-index, 2) Set EMBEDDINGS_PROVIDER to match original, ` +
-        `3) Let SPEC_KIT_DB_DIR auto-derive a profile-specific database, or set MEMORY_DB_PATH only for an intentional file override.`;
+        `3) Let SPEC_KIT_DB_DIR auto-derive a profile-specific database, or unset SPEC_KIT_DB_DIR when MEMORY_DB_PATH must select a specific directory.`;
       console.error(`[vector-index] WARNING: ${warning}`);
       return { valid: false, stored: existing.stored_dim, current: current_dim, warning };
     }
