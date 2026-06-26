@@ -18,10 +18,12 @@
     "extractor",
     "sk-design-md-generator"
   ],
-  "lastUpdated": "2026-06-25T13:10:23.761Z",
+  "lastUpdated": "2026-06-26T19:35:16.253Z",
   "specId": "154",
   "folderSlug": "sk-design-parent",
   "parentChain": [
+    ".opencode",
+    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,

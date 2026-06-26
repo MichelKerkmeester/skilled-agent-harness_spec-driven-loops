@@ -104,6 +104,12 @@ Per-phase detail lives in each child's `plan.md`. Summary for audit trail only:
 | 005 | `005-build-subskills/` | Build the 3 net-new children: `sk-design-foundations`, `sk-design-motion`, `sk-design-audit` | complete |
 | 006 | `006-integration-validation/` | Advisor + skill-graph rebuild, routing/regression tests, family validation, changelog | complete |
 | 007 | 007-family-deep-review/ | 2-model deep review (~58 iters) + comprehensive remediation of all 6 family skills | complete |
+| 008 | `008-nested-parent-conversion/` | Convert the flat umbrella family to a nested-packet parent (Model A): one invokable `sk-design` hub, five nested mode packets, one graph-metadata | complete |
+| 009 | `009-reference-asset-expansion/` | 2-lineage deep research (10 Opus + 10 GPT-5.5, 16 iters) producing the per-mode reference and asset expansion matrix | complete |
+| 010 | `010-shared-register/` | Build the shared Brand-vs-Product operating register and its fill-in card | complete |
+| 011 | `011-interface-audit-core/` | Build the interface preflight, the author-once layout/content gates, plus the audit report template, AI-tell catalog and transform verbs | complete |
+| 012 | `012-foundations-motion-audit/` | Build foundations (data-viz, adaptation, tokens), motion (restraint gate, cards) and audit depth (evidence, a11y, hardening) | complete |
+| 013 | `013-mdgen-boundary-cleanup/` | Build the md-generator authoring boundary and card, fix the stale changelog pointer, then run family validation | complete |
 
 ### Phase Transition Rules
 
@@ -130,7 +136,7 @@ Per-phase detail lives in each child's `plan.md`. Summary for audit trail only:
 ## 4. OPEN QUESTIONS
 
 - Final sub-skill taxonomy (4–7 children) — resolved by 001 research.
-- Structural model (hub + nested packets vs. umbrella + sibling family) — defaulted to umbrella + siblings; confirmed at 002 against research evidence.
+- Structural model (hub + nested packets vs. umbrella + sibling family) — 002 defaulted to umbrella + siblings, superseded at 008 by the nested-packet parent (Model A) that the family now ships.
 - Whether `sk-design-md-generator` folds in as a packet or remains a sibling under the umbrella — decided at 002.
 <!-- /ANCHOR:questions -->
 

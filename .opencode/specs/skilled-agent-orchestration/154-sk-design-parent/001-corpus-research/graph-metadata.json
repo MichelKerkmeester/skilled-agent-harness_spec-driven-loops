@@ -45,8 +45,6 @@
       "research/deep-research-fanout-config.json",
       "spec.md",
       "plan.md",
-      ".opencode/skills/sk-design-interface/SKILL.md",
-      ".opencode/skills/sk-design-md-generator/SKILL.md",
       ".opencode/skills/deep-loop-workflows/SKILL.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/spec.md",
@@ -93,7 +91,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
         "source": "derived"
       },
       {
@@ -201,8 +199,8 @@
     ],
     "causal_summary": "The `sk-design` family's composition is undecided",
     "created_at": "2026-06-25T10:04:31Z",
-    "last_save_at": "2026-06-25T15:01:53.434Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-26T10:26:25.477Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

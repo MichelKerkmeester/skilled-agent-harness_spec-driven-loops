@@ -10,7 +10,13 @@
     "skilled-agent-orchestration/154-sk-design-parent/004-onboard-existing",
     "skilled-agent-orchestration/154-sk-design-parent/005-build-subskills",
     "skilled-agent-orchestration/154-sk-design-parent/006-integration-validation",
-    "skilled-agent-orchestration/154-sk-design-parent/007-family-deep-review"
+    "skilled-agent-orchestration/154-sk-design-parent/007-family-deep-review",
+    "skilled-agent-orchestration/154-sk-design-parent/008-nested-parent-conversion",
+    "skilled-agent-orchestration/154-sk-design-parent/009-reference-asset-expansion",
+    "skilled-agent-orchestration/154-sk-design-parent/010-shared-register",
+    "skilled-agent-orchestration/154-sk-design-parent/011-interface-audit-core",
+    "skilled-agent-orchestration/154-sk-design-parent/012-foundations-motion-audit",
+    "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -88,17 +94,17 @@
     ],
     "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
     "created_at": "2026-06-25T10:04:30Z",
-    "last_save_at": "2026-06-25T21:28:00.602Z",
+    "last_save_at": "2026-06-26T19:35:16.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:66b58d9e53a68976996b76536c665c7600d3792cec32a28f32716ffe2e10b93a",
+    "source_fingerprint": "sha256:641d0fa5a68e1ce30e71f55e05c18635c26eee90a7d94229f99959862f20419e",
     "source_doc_hashes": {
-      "spec.md": "83e2e5a72ea1d83123fd644dd82209ef904745bee601c573f3dde1ef49e94b0c"
+      "spec.md": "a6e9f0e79a413cdb07aecb111e48c46b74e286ebb7c1b9ae8f0504f512500326"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup",
+    "last_active_at": "2026-06-26T10:38:30.453Z"
   }
 }
