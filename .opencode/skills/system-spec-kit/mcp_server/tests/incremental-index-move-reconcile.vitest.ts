@@ -228,4 +228,62 @@ describe('reconcileMoves', () => {
 
     db.close();
   });
+
+  it('repoints a re-parent move (different grandparent, same packet slug) in place', () => {
+    const db = makeTestDb();
+    // A packet re-homed beneath a new parent and renumbered: the grandparent changes, so the
+    // old sibling-rename matcher missed it and dropped the row + embedding. The packet slug
+    // (folder name minus its numeric prefix) is stable on both sides, so this must repoint.
+    const oldPath = '/workspace/specs/028/012-foo/spec.md';
+    const newPath = '/workspace/specs/028/006-bar/005-foo/spec.md';
+    const packetId = 'pkt-reparent-010';
+
+    db.prepare(
+      'INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, embedding_status) VALUES (?, ?, ?, ?)'
+    ).run('/workspace/specs/028/012-foo', oldPath, path.resolve(oldPath), 'success');
+
+    mockFsState['/workspace/specs/028/012-foo/graph-metadata.json'] = null;
+    mockFsState['/workspace/specs/028/006-bar/005-foo/graph-metadata.json'] = JSON.stringify({ packet_id: packetId });
+
+    incrementalIndex.init(db);
+    const result = incrementalIndex.reconcileMoves([oldPath], [newPath]);
+
+    expect(result.reconciled).toHaveLength(1);
+    expect(result.reconciled[0].oldPath).toBe(oldPath);
+    expect(result.reconciled[0].newPath).toBe(newPath);
+    expect(result.filteredToDelete).toHaveLength(0);
+
+    const updatedRow = db.prepare('SELECT file_path, spec_folder FROM memory_index WHERE id = ?')
+      .get(result.reconciled[0].rowId) as { file_path: string; spec_folder: string } | undefined;
+    expect(updatedRow?.file_path).toBe(newPath);
+    expect(updatedRow?.spec_folder).toBe(extractSpecFolder(newPath));
+
+    db.close();
+  });
+
+  it('does NOT repoint an ambiguous re-parent (two old packets share slug+basename) — falls back to drop+reindex', () => {
+    const db = makeTestDb();
+    // Two different old packets both '...-foo/spec.md' are deleted; one new 005-foo/spec.md
+    // appears. The slug+basename match is now ambiguous (2 candidates), so the unique-candidate
+    // guard fires and the safe path is drop + reindex, not a guessed repoint.
+    const oldA = '/workspace/specs/028/012-foo/spec.md';
+    const oldB = '/workspace/specs/028/099-foo/spec.md';
+    const newPath = '/workspace/specs/028/006-bar/005-foo/spec.md';
+    const packetId = 'pkt-ambig-011';
+
+    db.prepare('INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, embedding_status) VALUES (?, ?, ?, ?)')
+      .run('/workspace/specs/028/012-foo', oldA, path.resolve(oldA), 'success');
+    db.prepare('INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, embedding_status) VALUES (?, ?, ?, ?)')
+      .run('/workspace/specs/028/099-foo', oldB, path.resolve(oldB), 'success');
+
+    mockFsState['/workspace/specs/028/006-bar/005-foo/graph-metadata.json'] = JSON.stringify({ packet_id: packetId });
+
+    incrementalIndex.init(db);
+    const result = incrementalIndex.reconcileMoves([oldA, oldB], [newPath]);
+
+    expect(result.reconciled).toHaveLength(0);
+    expect(result.filteredToIndex).toContain(newPath);
+
+    db.close();
+  });
 });

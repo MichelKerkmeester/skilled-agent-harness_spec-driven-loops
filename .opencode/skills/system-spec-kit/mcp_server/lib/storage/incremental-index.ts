@@ -538,6 +538,12 @@ interface MemoizedPlanningResult {
   invalidatedComponentPaths: string[];
 }
 
+/** The packet slug — a spec folder name with its leading NNN- numeric prefix removed,
+ * so a re-parented + renumbered packet (012-foo → 005-foo) keeps a stable logical key. */
+function stripNumericPrefix(folderName: string): string {
+  return folderName.replace(/^\d{3}-/, '');
+}
+
 function reconcileMoves(
   toDelete: string[],
   toIndex: string[],
@@ -598,17 +604,31 @@ function reconcileMoves(
 
       const newBasename = path.basename(newPath);
 
-      // Find toDelete paths that are sibling renames: same grandparent dir, same basename.
-      // A sibling rename means only the immediate spec folder name changed (e.g. 012-old → 012-new).
+      // Pair the old path. Prefer a sibling rename (same grandparent + basename, where only
+      // the immediate folder's numeric prefix changed). When there is none, fall back to a
+      // re-parent move: same basename and same packet slug (the immediate folder name minus
+      // its NNN- numeric prefix) under a DIFFERENT grandparent — how a reorg re-homes a packet
+      // beneath a new parent and renumbers it while the slug stays stable. The unique-candidate
+      // requirement plus the DB-row uniqueness and document_type guards below prevent an
+      // ambiguous or mismatched repoint; an ambiguous basename (the common case where many
+      // packets share spec.md) falls back to the safe drop + reindex.
       const siblingDeleted = toDelete.filter(oldPath =>
         !reconciledOldPaths.has(oldPath) &&
         path.basename(oldPath) === newBasename &&
         path.dirname(path.dirname(oldPath)) === newGrandparent
       );
+      const newSlug = stripNumericPrefix(path.basename(path.dirname(newPath)));
+      const candidates = siblingDeleted.length > 0
+        ? siblingDeleted
+        : toDelete.filter(oldPath =>
+            !reconciledOldPaths.has(oldPath) &&
+            path.basename(oldPath) === newBasename &&
+            stripNumericPrefix(path.basename(path.dirname(oldPath))) === newSlug
+          );
 
-      if (siblingDeleted.length !== 1) continue; // uniqueness required
+      if (candidates.length !== 1) continue; // uniqueness required
 
-      const oldPath = siblingDeleted[0];
+      const oldPath = candidates[0];
       const canonicalOld = getCanonicalPathKey(oldPath);
 
       // Verify in DB: exactly one live row for this old path (uniqueness guard).
