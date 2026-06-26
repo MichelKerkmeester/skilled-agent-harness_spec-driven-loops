@@ -2,7 +2,7 @@
 name: design-audit
 description: Design QA and critique mode for accessibility, performance, responsive, theming, anti-slop detection, scoring, and production hardening.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.1
+version: 1.0.0.0
 metadata:
   author: OpenCode
   family: sk-code

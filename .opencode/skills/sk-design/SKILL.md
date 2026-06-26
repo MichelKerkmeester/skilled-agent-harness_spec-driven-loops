@@ -2,7 +2,7 @@
 name: sk-design
 description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five modes (interface, foundations, motion, audit, md-generator) via mode-registry.json, and each mode holds its own design logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.0.0.0
 metadata:
   author: OpenCode
   family: sk-code

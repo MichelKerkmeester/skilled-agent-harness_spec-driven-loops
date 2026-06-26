@@ -1,6 +1,6 @@
 ---
 name: deep-loop-runtime
-version: 1.5.0.0
+version: 1.5.0.1
 description: "Shared deep-loop runtime: executor + prompt-pack + validation + atomic state + coverage-graph + Bayesian scoring + fallback routing."
 allowed-tools: [Bash, Read, Glob, Grep]
 ---

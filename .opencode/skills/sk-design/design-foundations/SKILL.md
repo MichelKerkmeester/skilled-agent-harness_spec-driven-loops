@@ -2,7 +2,7 @@
 name: design-foundations
 description: Static visual-system design for color, typography, layout, spacing, hierarchy, responsive adaptation, themes, and design tokens.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.1
+version: 1.0.0.0
 metadata:
   author: OpenCode
   family: sk-code

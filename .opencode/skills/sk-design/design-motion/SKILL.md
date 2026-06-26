@@ -2,7 +2,7 @@
 name: design-motion
 description: Temporal interaction design for purposeful animation, micro-interactions, transitions, motion materials, AnimatePresence, and reduced motion.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.1.0
+version: 1.0.0.0
 metadata:
   author: OpenCode
   family: sk-code
