@@ -69,7 +69,9 @@ STATIC SYSTEM TASK
 
 - `references/color/` contains OKLCH workflow, palette generation, contrast, gamut, color dosage, semantic colors, theme tokens, and dark mode.
 - `references/type/` contains typography scale, pairing, measure, hierarchy, role tokens, and text rendering checks.
-- `references/layout/` contains spacing systems, rhythm, hierarchy, grids, density, responsive adaptation, container queries, touch targets, and platform context.
+- `references/layout/` contains spacing systems, rhythm, hierarchy, grids, density, responsive adaptation, container queries, touch targets, platform context, and the context adaptation matrix.
+- `references/data_viz.md` contains chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
+- `assets/` contains fill-in scaffolds, starting with `token_starter.md` for an OKLCH ramp, type scale and spacing scale.
 - `references/corpus_map.md` records the source corpus distilled into this skill.
 
 The folders are intentionally split-ready so `color`, `type`, and `layout` could become separate children later without rewriting the knowledge base.
@@ -78,10 +80,14 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
+| ALWAYS | The first step of any foundations task | `../shared/register.md` (set the Brand-vs-Product register, which sets the color strategy and token density this skill inherits) |
 | ALWAYS | Any foundations task | `references/corpus_map.md` plus the matching axis reference |
 | CONDITIONAL | Color or theme work | `references/color/oklch_workflow.md`, `references/color/palette_theming.md` |
 | CONDITIONAL | Typography work | `references/type/typography_system.md` |
 | CONDITIONAL | Layout or responsive work | `references/layout/layout_responsive.md` |
+| CONDITIONAL | Data visualization, charts, or data tables | `references/data_viz.md` |
+| CONDITIONAL | Device, input, or context adaptation | `references/layout/adaptation_matrix.md` |
+| CONDITIONAL | Scaffolding a new token system | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
 
 ### Smart Router Pseudocode
@@ -270,11 +276,18 @@ def route_foundations_resources(user_request, task=None):
 - [`references/color/palette_theming.md`](references/color/palette_theming.md) - Color dosage, semantic roles, tinted neutrals, surface scales, and dark mode.
 - [`references/type/typography_system.md`](references/type/typography_system.md) - Type roles, scale, pairing, measure, hierarchy, and text checks.
 - [`references/layout/layout_responsive.md`](references/layout/layout_responsive.md) - Spacing, rhythm, hierarchy, grids, responsive adaptation, and input contexts.
+- [`references/layout/adaptation_matrix.md`](references/layout/adaptation_matrix.md) - Device, input, and context adaptation across mobile, tablet, desktop, print, and constrained surfaces as rethinking for context.
+- [`references/data_viz.md`](references/data_viz.md) - Chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
+
+### Assets
+
+- [`assets/token_starter.md`](assets/token_starter.md) - Fill-in scaffold for an OKLCH ramp, type scale, and spacing scale, keyed to the shared register for color strategy and density.
 
 ### Parent Shared Base
 
 Use, do not duplicate, the parent vocabulary:
+- [`../shared/register.md`](../shared/register.md) - The shared Brand-vs-Product operating register. Set it first. It sets the color strategy and token density this skill inherits. The mode router does not discover `shared/`, so this pointer is explicit.
 - `../shared/anti_slop_principles.md`
 - `../shared/design_token_vocabulary.md`
 - `../shared/cognitive_laws.md`

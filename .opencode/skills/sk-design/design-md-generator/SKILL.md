@@ -103,6 +103,7 @@ references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md 
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
 | ALWAYS      | Every invocation                     | `references/design_md_format.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
 | CONDITIONAL | EXTRACT_WRITE intent                 | `references/color_role_taxonomy.md`, `references/component_taxonomy.md`, `references/anti_patterns.md` |
+| CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring_boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source_of_truth_router_card.md` (the fill-in provenance card) |
 | CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
 | ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti_patterns.md`, `references/component_taxonomy.md` |
@@ -132,7 +133,7 @@ INTENT_MODEL = {
 RESOURCE_MAP = {
     "EXTRACT_WRITE": ["references/design_md_format.md", "references/writing_style_guide.md",
                        "references/color_role_taxonomy.md", "references/component_taxonomy.md",
-                       "references/anti_patterns.md"],
+                       "references/anti_patterns.md", "references/authoring_boundary.md"],
     "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
                        "references/design_md_format.md"],
     "REPORT":        ["references/design_md_format.md"],
@@ -355,17 +356,24 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 - [references/extraction_workflow.md](references/extraction_workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
+- [references/authoring_boundary.md](references/authoring_boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to a separate design-spec decision.
+
+### Shared
+
+- [../shared/register.md](../shared/register.md) — The Brand-vs-Product operating register. This mode records the extracted surface's register so a captured Style Reference carries the posture forward. It does not author a register from a brief.
 
 ### Assets
 
 - [assets/design_md_prompt_template.md](assets/design_md_prompt_template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the v3 Style Reference contract.
 - [assets/cardinal_rules_card.md](assets/cardinal_rules_card.md) — One-page fidelity checklist for a pre-validate self-check.
+- [assets/source_of_truth_router_card.md](assets/source_of_truth_router_card.md) — Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing, so no value is fabricated or backfilled.
 
 ### Reference Loading Notes
 
 - `references/design_md_format.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
 - Load the taxonomy docs (`color_role_taxonomy.md`, `component_taxonomy.md`) and `anti_patterns.md` only when the intent is EXTRACT_WRITE.
 - Load `quality_checklist.md` before any validation or completion claim.
+- Load `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` when a value's origin is unclear (brief versus measured) or when a request asks to author from a brief with no live site. The boundary doc keeps the cardinal rule enforceable and routes forward-authoring out of scope.
 - Load one example site at a time from `references/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 

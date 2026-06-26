@@ -90,9 +90,16 @@ DESIGN QA TASK
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Any audit or critique | `references/corpus_map.md`, `references/audit_contract.md` |
+| ALWAYS | Set the audit-severity posture | `../shared/register.md` (the audit-severity dial weights findings by Brand-vs-Product posture) |
 | CONDITIONAL | Accessibility or performance concern | `references/accessibility_performance.md` |
 | CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique_hardening.md` |
 | CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti_patterns_production.md` |
+| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md` (Codex, Gemini, 2026-general fingerprints as checkable findings) |
+| CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform_remediation.md` (register-gated transform verbs mapped to findings and owners) |
+| CONDITIONAL | Resolving the target and labeling evidence | `references/evidence_capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
+| CONDITIONAL | Production-readiness and edge-case probes | `references/hardening_edge_cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
+| CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
+| CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
 | ON_DEMAND | Code correctness beyond UI quality | `sk-code-review` plus `sk-code` surface evidence |
 
 ### Smart Router Pseudocode
@@ -313,11 +320,21 @@ Each dimension scores 0-4. Total `/20` rating:
 - [`references/accessibility_performance.md`](references/accessibility_performance.md) - Accessibility and performance checks.
 - [`references/critique_hardening.md`](references/critique_hardening.md) - Holistic critique, cognitive load, personas, polish, and hardening.
 - [`references/anti_patterns_production.md`](references/anti_patterns_production.md) - Anti-slop, theming, pseudo-elements, copy clarity, and production details.
+- [`references/ai_fingerprint_tells.md`](references/ai_fingerprint_tells.md) - Model-specific AI tells turned into checkable P0-P3 findings.
+- [`references/transform_remediation.md`](references/transform_remediation.md) - Register-gated directional verbs mapped to findings and owners.
+- [`references/evidence_capture.md`](references/evidence_capture.md) - Target resolution, browser and deterministic evidence, screenshot and overlay notes, fallback labels.
+- [`references/hardening_edge_cases.md`](references/hardening_edge_cases.md) - Production-readiness matrix of extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
+
+### Assets
+
+- [`assets/audit_report_template.md`](assets/audit_report_template.md) - Fill-in findings-first report with the five-dimension `/20` score, anti-pattern verdict, owner mapping, and evidence caveats.
+- [`assets/a11y_quick_fixes.md`](assets/a11y_quick_fixes.md) - Snippet-level accessibility fixes the report cites by reference; the audit names the fix, `sk-code` applies it.
 
 ### Parent Shared Base
 
 Use, do not duplicate, the parent references for shared vocabulary:
+- [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product register that sets the audit-severity dial; outside this mode's scope, so cited explicitly.
 - `../shared/anti_slop_principles.md`
 - `../shared/design_token_vocabulary.md`
 - `../shared/cognitive_laws.md`
@@ -347,4 +364,4 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.1.md`.
+Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`.

@@ -78,20 +78,29 @@ MOTION TASK
 
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
 
+- `references/animation_decision_framework.md` covers the restraint gate that decides whether an interaction animates at all, the frequency tiers, the keyboard rule, and the coupling to the register motion-budget dial.
 - `references/motion_strategy.md` covers why motion exists, timing, easing, staging, animation principles, and materials.
 - `references/micro_interactions.md` covers interaction feedback, loading states, gesture patterns, delight, and morphing icons.
 - `references/animate_presence_patterns.md` covers `motion/react`, `AnimatePresence`, exit props, keys, modes, nested exits, and presence hooks.
 - `references/performance_reduced_motion.md` covers compositor safety, FLIP, scroll motion, expensive effects, off-screen pausing, and reduced-motion alternatives.
 - `references/corpus_map.md` maps the source corpus.
+- `assets/motion_pattern_cards.md` provides fill-in cards for the common motion patterns (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop), each naming owner, purpose, states, and reduced-motion path.
+- `assets/animate_presence_checklist.md` provides a pass-or-fail checklist for shipping `AnimatePresence` exits.
+- `assets/motion_performance_failure_card.md` provides a build-side card of motion patterns that drop frames, each with its failure signature and the cheaper mechanism to replace it.
+- `../shared/register.md` is the parent Brand-vs-Product register. This child reads its motion-budget dial. It sits outside the mode and is not auto-discovered, so it is pointed to explicitly.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
+| ALWAYS | The first step of any motion task | `../shared/register.md` (read the motion-budget dial that sets the ceiling) and `references/animation_decision_framework.md` (the restraint gate that runs before timing and easing) |
 | ALWAYS | Any motion task | `references/corpus_map.md` plus the matching temporal-concern reference (`references/motion_strategy.md` for strategy/timing) |
 | CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
 | CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
 | CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
+| CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` |
+| CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate_presence_checklist.md` |
+| CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
 | ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
 
 ### Smart Router Pseudocode
@@ -286,15 +295,24 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 
 ### Core References
 
+- [`references/animation_decision_framework.md`](references/animation_decision_framework.md) - The restraint gate: frequency tiers, the keyboard rule, the purpose test, and register coupling. Run it before any timing or easing choice.
 - [`references/motion_strategy.md`](references/motion_strategy.md) - Purpose, timing, easing, staging, principles, and motion materials.
 - [`references/micro_interactions.md`](references/micro_interactions.md) - Feedback, loading, gestures, delight, sound boundaries, and morphing icons.
 - [`references/animate_presence_patterns.md`](references/animate_presence_patterns.md) - `motion/react` and `AnimatePresence` patterns.
 - [`references/performance_reduced_motion.md`](references/performance_reduced_motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
 
+### Assets
+
+Fill-in cards. Copy, complete, and hand off:
+- [`assets/motion_pattern_cards.md`](assets/motion_pattern_cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
+- [`assets/animate_presence_checklist.md`](assets/animate_presence_checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
+- [`assets/motion_performance_failure_card.md`](assets/motion_performance_failure_card.md) - Build-side failure-mode card for motion that drops frames.
+
 ### Parent Shared Base
 
 Use, do not duplicate, the parent references for shared vocabulary:
+- [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product operating register. Read the motion-budget dial first, because it sets the motion ceiling for the surface.
 - `../shared/anti_slop_principles.md`
 - `../shared/design_token_vocabulary.md`
 - `../shared/cognitive_laws.md`

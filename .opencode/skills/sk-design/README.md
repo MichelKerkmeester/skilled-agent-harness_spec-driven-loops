@@ -1,0 +1,96 @@
+---
+title: "sk-design"
+description: "The single advisor-routable design skill: a hub that routes to five design modes (interface, foundations, motion, audit, md-generator)."
+trigger_phrases:
+  - "design skill"
+  - "ui design interface foundations motion audit"
+  - "design system tokens accessibility"
+version: 1.0.0.0
+---
+
+# sk-design
+
+> Make a UI look custom and intentional instead of templated, across direction, system, motion, audit and CSS extraction.
+
+---
+
+## 1. AT A GLANCE
+
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Distinctive UI design and the full design surface: visual direction, design systems, motion, quality audit and live-site CSS extraction. |
+| **Invoke with** | `Skill(sk-design)`, the `/design:*` commands or the `design` agent. |
+| **Works on** | A design request, an existing interface or a live URL to extract from. |
+| **Produces** | Design direction and tokens, motion specs, an audit with scores or a Style Reference DESIGN.md. |
+
+---
+
+## 2. OVERVIEW
+
+### Why This Skill Exists
+
+Most generated UI looks templated: default palettes, default spacing, default component shapes. Good design judgment is a different skill from writing the markup, and folding it into a code skill produces safe, generic output. sk-design keeps the design judgment separate and routes each kind of design work to a focused mode.
+
+### What It Does
+
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of five modes through `mode-registry.json`. Each mode holds its own design logic and the hub itself is routing-only. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `mcp-open-design` or `mcp-figma` only as transport.
+
+---
+
+## 3. QUICK START
+
+**Step 1: Invoke it.** Let the advisor route a design request, run a `/design:*` command, or read `SKILL.md`.
+
+**Step 2: Run a mode.** For example, a visual-system pass:
+
+```bash
+/design:foundations
+```
+
+The hub resolves the request to the `design-foundations` mode and applies it.
+
+**Step 3: Hand off the build.** Take the design decisions to `sk-code` for the implementation.
+
+---
+
+## 4. HOW IT WORKS
+
+A design request resolves through the hub to exactly one mode. A request that spans modes stays at the hub for disambiguation. The five modes:
+
+| Mode | Owns |
+|---|---|
+| `design-interface` | Visual direction, taste and the brainstorm-to-build loop for a distinctive interface. |
+| `design-foundations` | The static visual system: color and OKLCH, typography, layout, spacing and design tokens. |
+| `design-motion` | Animation, transitions, micro-interactions and reduced-motion behavior. |
+| `design-audit` | Design QA: accessibility, performance, responsive, anti-slop and quality scoring. |
+| `design-md-generator` | Extraction of a live site's real CSS into a Style Reference DESIGN.md. |
+
+### One advisor identity
+
+The mode packets carry no `graph-metadata.json` of their own, so the advisor discovers exactly one design skill. The shared baselines under `shared/` (anti-slop principles, cognitive laws and the design-token vocabulary) load for every mode.
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+Reach for sk-design when output looks generic and needs taste, when a visual system or motion language needs designing, when a UI needs an accessibility and anti-slop audit or when a live site's design system needs extracting. For the implementation itself, use `sk-code`.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `sk-code` | Builds what sk-design designs. sk-design decides taste and sk-code writes the code. |
+| `mcp-open-design` | Transport for design work. It never decides taste, so it co-loads sk-design. |
+| `mcp-figma` | The sibling Figma transport. |
+
+---
+
+## 6. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
+| [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
+| [`design-interface/SKILL.md`](./design-interface/SKILL.md) | An example mode packet. |
