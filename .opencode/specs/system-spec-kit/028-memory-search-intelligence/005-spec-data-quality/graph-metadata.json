@@ -43,7 +43,11 @@
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark"
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/041-search-quality-fixes",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap"
   ],
   "manual": {
     "depends_on": [],
@@ -241,7 +245,7 @@
     ],
     "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
     "created_at": "2026-06-21T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.533Z",
+    "last_save_at": "2026-06-26T10:39:18.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
