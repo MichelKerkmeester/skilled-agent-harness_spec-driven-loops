@@ -39,8 +39,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |
+| **Status** | COMPLETE, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |
 | **Created** | 2026-06-25 |
+| **Phase** | 012 of 012 |
 | **Branch** | Authored in worktree `wt/0008-findings-remediation`; landed on the 028 review-branch mainline `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 

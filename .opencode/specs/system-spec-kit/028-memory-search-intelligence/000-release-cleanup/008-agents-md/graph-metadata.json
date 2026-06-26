@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-26T16:28:47.190Z",
+    "last_save_at": "2026-06-26T17:51:32.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7155089591ea1e33614e5e70f977959d00619f24b89839a6a5ec2c23a1028bcd",
+    "source_fingerprint": "sha256:c81d3b3726e6050de942e1b85f1958aaa5ac5c1527f71a9c70bad3bcb8932ae8",
     "source_doc_hashes": {
-      "spec.md": "d441747e5973cfa5c494970be108ce6ce54be1dc179331ad3ef70a828df0dc71",
+      "spec.md": "e872995943d614c797d637c6fde5bea1e0769ec29c4b72feced09c5e0d66e65d",
       "plan.md": "a4b61a6a404b72430fdd1b901ea8d7183c77a9cbf732886ae67774aef471cfc5",
       "tasks.md": "d643588ab11aec01db32697d90789553821eea8961a8566efe7ebc7d8d425a9f",
       "checklist.md": "9ce3d2afd9684be1429f4f8c56c971cdaf186d67b9ac05dfa2246a02cc0aed86",
-      "implementation-summary.md": "cca925ab76619294ce73a30d0226aa8d6631b283a5f76b24d1ac9c233e51cc8f"
+      "implementation-summary.md": "f200075a5784ca5989b5ee464947264f0469b4cb4e22c1624b6550907a591809"
     },
     "last_active_child_id": null,
     "last_active_at": null

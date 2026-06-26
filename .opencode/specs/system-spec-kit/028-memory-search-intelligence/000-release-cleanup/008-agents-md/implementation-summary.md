@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: AGENTS And Runtime Routing Cleanup"
-description: "Pending scaffold summary for the AGENTS And Runtime Routing Cleanup release-cleanup phase."
+description: "Execution summary for the AGENTS And Runtime Routing Cleanup release-cleanup phase."
 trigger_phrases:
   - "008-agents-md implementation summary"
   - "028 release cleanup 008-agents-md"

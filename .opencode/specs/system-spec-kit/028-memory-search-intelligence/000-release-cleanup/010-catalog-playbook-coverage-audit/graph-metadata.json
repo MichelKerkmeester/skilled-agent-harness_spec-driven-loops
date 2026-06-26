@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-06-23T03:49:58.125Z",
+    "last_save_at": "2026-06-26T17:51:32.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b6638d30e30faca2289bb558215f1402eb8e2ca92c1ce01ddc68f7bec739cfba",
+    "source_fingerprint": "sha256:2fe4f9a40db26200f8d0c50a40dba1217610c5df17a25a25dfd8e300995be113",
     "source_doc_hashes": {
-      "spec.md": "e80144720c45da16459166f887dba93f8f8c1c82de09fe31aa88fd7b991647fb",
+      "spec.md": "7cc3fc46897efbea6558c807aa1fe9a293f62f385941777c9b709d4219e39521",
       "plan.md": "44d5cb3fdcb760ed8aa335c15d4a554a82698aed96992b89ff81e1642044ceb9",
       "tasks.md": "1e1b13086c9b9a18244972071895e1b71858d3f2b875963dd300c1158070bf2e",
       "checklist.md": "e7ed99569a363c24c9f8f58041d7f764ba7a22cfc2d8f3f53040f08847dd490f",

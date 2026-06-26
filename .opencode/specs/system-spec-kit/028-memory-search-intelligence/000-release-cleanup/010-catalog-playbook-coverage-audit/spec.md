@@ -39,8 +39,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
+| **Phase** | 010 of 012 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
