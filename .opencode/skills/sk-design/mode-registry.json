@@ -15,61 +15,61 @@
     {
       "workflowMode": "interface",
       "backendKind": "reference-base",
-      "packet": "interface",
-      "packetSkillName": "interface",
+      "packet": "design-interface",
+      "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
       "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "ui build", "design variations"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "interface"
+        "packetSkillName": "design-interface"
       }
     },
     {
       "workflowMode": "foundations",
       "backendKind": "reference-base",
-      "packet": "foundations",
-      "packetSkillName": "foundations",
+      "packet": "design-foundations",
+      "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
       "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "foundations"
+        "packetSkillName": "design-foundations"
       }
     },
     {
       "workflowMode": "motion",
       "backendKind": "reference-base",
-      "packet": "motion",
-      "packetSkillName": "motion",
+      "packet": "design-motion",
+      "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
       "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "motion"
+        "packetSkillName": "design-motion"
       }
     },
     {
       "workflowMode": "audit",
       "backendKind": "reference-base",
-      "packet": "audit",
-      "packetSkillName": "audit",
+      "packet": "design-audit",
+      "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
       "aliases": ["design audit", "ui critique", "accessibility audit", "performance audit", "anti-slop detection", "production hardening", "design quality score", "P0 P1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "audit"
+        "packetSkillName": "design-audit"
       }
     },
     {
       "workflowMode": "md-generator",
       "backendKind": "playwright-extract",
-      "packet": "md-generator",
-      "packetSkillName": "md-generator",
+      "packet": "design-md-generator",
+      "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
       "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "design-to-markdown", "extract design tokens"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "md-generator"
+        "packetSkillName": "design-md-generator"
       }
     }
   ]

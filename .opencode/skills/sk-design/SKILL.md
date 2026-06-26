@@ -1,6 +1,6 @@
 ---
 name: sk-design
-description: "Unified design skill: routes a request to one of five modes (interface, foundations, motion, audit, md-generator) over a shared design reference base. Holds no per-mode design logic — it dispatches by workflowMode through mode-registry.json. Use for distinctive UI direction and build, visual foundations and tokens, motion and micro-interactions, design QA and anti-slop audit, and live-site DESIGN.md extraction."
+description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five modes (interface, foundations, motion, audit, md-generator) via mode-registry.json, and each mode holds its own design logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 metadata:
@@ -8,7 +8,7 @@ metadata:
   family: sk-code
 ---
 
-<!-- Keywords: sk-design, design-family, mode-registry, workflowmode, backendkind, reference-base, anti-slop, design-tokens, cognitive-laws, interface-design, frontend-design, visual-design, visual-identity, make-it-look-good, looks-templated, redesign-the-ui, hero-section, ui-build, typography, palette, color-palette, font-pairing, ux-quality-checklist, design-variations, foundations, color-system, oklch, color-token-system, dark-mode, typography-scale, spacing-system, responsive-layout, layout, hierarchy, grid, themes, motion-design, animation, animate-this, transitions, micro-interactions, framer-motion, animatepresence, exit-animation, reduced-motion, morphing-icons, motion-performance, design-audit, ui-critique, accessibility-audit, performance-audit, anti-slop-detection, production-hardening, design-quality-score, P0-P1-design-findings, polish, theming, design.md, design-md, css-extraction, website-design-extraction, design-reference, tokens.json, playwright, design-to-markdown, design-system-generator, css-tokens, color-extraction, typography-extraction, hex-extraction, shadow-extraction, spacing-extraction, design-fidelity, anti-hallucination, extract-design-system, generate-design-md, capture-website-css, design-tokens-from-url -->
+<!-- Keywords: sk-design, design-family, mode-registry, workflowmode, backendkind, reference-base, anti-slop, design-tokens, cognitive-laws, interface-design, frontend-design, visual-design, visual-identity, make-it-look-good, looks-templated, redesign-the-ui, hero-section, ui-build, typography, palette, color-palette, font-pairing, ux-quality-checklist, design-variations, foundations, color-system, oklch, color-token-system, dark-mode, typography-scale, spacing-system, responsive-layout, layout, hierarchy, grid, themes, motion-design, animation, animate-this, transitions, micro-interactions, framer-motion, animatepresence, exit-animation, reduced-motion, morphing-icons, motion-performance, design-audit, ui-critique, accessibility-audit, performance-audit, anti-slop-detection, production-hardening, design-quality-score, P0-P1-design-findings, polish, theming, design.md, design-md, css-extraction, website-design-extraction, design-reference, tokens.json, playwright, design-to-markdown, design-system-generator, css-tokens, color-extraction, typography-extraction, hex-extraction, shadow-extraction, spacing-extraction, design-fidelity, anti-hallucination, extract-design-system, generate-design-md, capture-website-css, design-tokens-from-url, distinctive-interface, intentional-design, polished-ui, refined-ui, custom-not-templated, premium-ui, aesthetic, design-taste, visual-direction, craft, make-it-beautiful, less-generic, redesign-distinctive, smooth-animation, hover-effect, scroll-animation, choreography, interaction-feel, animate-the-menu, transition-design, design-audit, accessibility-audit, design-quality-audit, design-review, design-qa, audit-the-design, review-the-ui, wcag-contrast, ui-quality-review -->
 
 # Design Family Hub (sk-design)
 
@@ -22,11 +22,11 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 
 | Mode | Use it for | Packet |
 |------|-----------|--------|
-| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing | `sk-design/interface/` |
-| **foundations** | Static visual-system decisions: color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens | `sk-design/foundations/` |
-| **motion** | Temporal interaction design: animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion | `sk-design/motion/` |
-| **audit** | Design QA and critique: accessibility, performance, responsive, theming, anti-slop detection, scoring, production hardening | `sk-design/audit/` |
-| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/md-generator/` |
+| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing | `sk-design/design-interface/` |
+| **foundations** | Static visual-system decisions: color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens | `sk-design/design-foundations/` |
+| **motion** | Temporal interaction design: animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion | `sk-design/design-motion/` |
+| **audit** | Design QA and critique: accessibility, performance, responsive, theming, anti-slop detection, scoring, production hardening | `sk-design/design-audit/` |
+| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/design-md-generator/` |
 
 ### When NOT to Use
 - A single quick read/edit with no design judgment — use the relevant skill directly.
@@ -49,7 +49,7 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 classify the request to a workflowMode (dominant design intent; mode hint like "motion: ..." overrides)
 read mode-registry.json
   → resolve workflowMode from the hint / classified intent
-  → load the mode packet at registry[mode].packet (e.g. sk-design/interface/SKILL.md)
+  → load the mode packet at registry[mode].packet (e.g. sk-design/design-interface/SKILL.md)
   → the mode cites the shared reference base, or runs its own backend per registry[mode].backendKind
 ```
 
@@ -68,7 +68,7 @@ sk-design/
   mode-registry.json     # the discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
   references/            # shared design reference base the hub + modes cite
-  interface/  foundations/  motion/  audit/  md-generator/   # five mode packets
+  design-interface/  design-foundations/  design-motion/  design-audit/  design-md-generator/   # five mode packets
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The mode packet folders are created when the flat skills move under the hub; the hub references those packet paths now.
@@ -103,7 +103,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 ## 5. REFERENCES
 
 - Shared reference base: `references/anti_slop_principles.md`, `references/cognitive_laws.md`, `references/design_token_vocabulary.md` (cited by every doc-guidance mode).
-- Mode packets: `interface/SKILL.md`, `foundations/SKILL.md`, `motion/SKILL.md`, `audit/SKILL.md`, `md-generator/SKILL.md` (per-mode detail).
+- Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; `sk-code-review` can audit it after build.
 

@@ -106,24 +106,6 @@
       }
     },
     {
-      "name": "mobbin",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "mobbin": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "-y",
-              "mcp-remote",
-              "https://api.mobbin.com/mcp"
-            ],
-            "env": {}
-          }
-        }
-      }
-    },
-    {
       "name": "open_design",
       "call_template_type": "mcp",
       "config": {
