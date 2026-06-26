@@ -1,7 +1,7 @@
 ---
 title: "md-generator: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the md-generator skill. Covers live extraction, v3 Style Reference fidelity validation, the cardinal verbatim-value rule, Quick-Start fidelity, dark-mode gating, tool setup, and anti-bot escalation."
-version: 1.0.0.9
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the md-generator skill. Covers live extraction, v3 Style Reference fidelity validation, the cardinal verbatim-value rule, Quick-Start fidelity, dark-mode gating, tool setup, anti-bot escalation, the authoring boundary between measured and non-measured values plus the source-of-truth router card."
+version: 1.0.0.10
 ---
 
 # md-generator: Manual Testing Playbook
@@ -33,11 +33,13 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 | Cluster | 1 | CLUSTER-001 |
 | Accessibility | 1 | A11Y-001 |
 | Detectors | 1 | DETECT-001 |
-| **TOTAL** | **11** | **11 scenarios** |
+| Authoring Boundary | 1 | BOUNDARY-001 |
+| Source-of-Truth | 1 | PROVENANCE-001 |
+| **TOTAL** | **13** | **13 scenarios** |
 
-This playbook defines 11 deterministic scenarios across 11 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-17, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 19.
+This playbook defines 13 deterministic scenarios across 13 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-19, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 21.
 
-> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 19 lists every scenario file.
+> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
 
 ### Realistic Test Model
 
@@ -140,7 +142,7 @@ Release is READY only when no scenario verdict is FAIL, all critical-path scenar
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 19).
+Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 21).
 
 ---
 
@@ -424,18 +426,66 @@ Prompt: `What framework, icons, and motion did the extractor detect?`
 
 ---
 
-## 18. AUTOMATED TEST CROSS-REFERENCE
+## 18. AUTHORING BOUNDARY (`BOUNDARY-001`)
+
+### BOUNDARY-001 | Authoring Boundary Sorts Values By Origin
+
+#### Description
+Verify that a written v3 Style Reference keeps the four value origins legible: measured values (present in `tokens.json`) sit unlabeled in the token tables, brief-provided values (supplied by the user, not the page) stay out of the tables as a stated intent in prose, inferred claims (characterizations of measured values) carry an `[INFERRED]` marker and cite a measured token, while absent values (never captured) are stamped no-data or omitted. The boundary documents the line that keeps the cardinal fidelity rule enforceable by inspection. It adds no capability and routes brief-only forward-authoring out of scope.
+
+#### Scenario Contract
+Prompt: `"The brief says the brand red is #ff0000 and the body font is Inter. Put those in the design system you extracted from the live site."`
+
+- Objective: confirm a written Style Reference keeps the four origins legible and never lets a non-measured value pose as a measured one
+- Expected execution process: read `tokens.json` and the Style Reference. Confirm every token-table value traces to a measured token. Confirm the brief-provided red and font are NOT placed in a token table and appear only as a stated intent in prose if at all. Confirm every inferred claim carries `[INFERRED]` and cites a measured token. Confirm any uncaptured value is stamped or omitted, never backfilled from the brief
+- Expected signals: token tables hold only measured values, all unlabeled. The brief-provided red and font sit outside every token table. Inferred claims are marked `[INFERRED]` with a cited token. Absent sections are stamped or omitted. No brief value is concretized into a measurement
+- Desired user-visible outcome: the agent records the brief values as a stated intent in prose, keeps them out of the token tables, sources every tabled value from `tokens.json`, and states plainly that brief-provided values are not measurements
+
+#### Test Execution
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| BOUNDARY-001 | Authoring boundary | Verify the Style Reference keeps measured, brief-provided, inferred and absent values legible, with only measured values in token tables and the brief-provided red/font kept out | `The brief says the brand red is #ff0000 and the body font is Inter. Put those in the design system you extracted from the live site.` | 1. `read: <--output>/tokens.json` (collect measured hexes and font families) -> 2. `read: <style-reference.md>` (locate the brief values) -> 3. confirm `#ff0000` and `Inter` are NOT in any token table -> 4. `bash: rg '\[INFERRED\]' <style-reference.md>` confirm inferred claims cite a measured token -> 5. confirm every token-table value traces to tokens.json -> 6. confirm any absent dimension is stamped or omitted | Step 1: measured set collected. Step 2: brief values located. Step 3: brief values absent from token tables. Step 4: inferred claims marked and cited. Step 5: every tabled value measured. Step 6: absent dimensions stamped or omitted | Transcript of the measured-set listing, the brief-value grep, the token-table trace, the [INFERRED] grep and the absent-section check | PASS if token tables contain only measured values AND the brief-provided red and font are kept out of the tables AND every inferred claim is marked `[INFERRED]` with a cited token AND absent values are stamped or omitted. FAIL if a brief-provided value sits in a token table as if measured OR an inferred claim is unmarked or uncited OR an absent value is backfilled from the brief | 1. If a brief value sits in a token table, move it to prose as a stated intent, because the table is reserved for measurements. 2. If a brief value was also measured, the measured token is the tabled source and the brief value is context. 3. If an inferred claim is unmarked, add `[INFERRED]` and cite the token. 4. If an absent value was backfilled, replace it with a no-data stamp or omit the section. 5. Cross-check against `references/authoring_boundary.md`. |
+
+> **Feature File:** [12--authoring-boundary/authoring-boundary.md](12--authoring-boundary/authoring-boundary.md)
+
+---
+
+## 19. SOURCE-OF-TRUTH (`PROVENANCE-001`)
+
+### PROVENANCE-001 | Source-Of-Truth Router Card Sorts Each Value
+
+#### Description
+Verify that the source-of-truth router card sorts every value bound for a v3 Style Reference into exactly one of four origins before writing: measured (present in `tokens.json`), brief-provided (stated in the brief), inferred (a characterization of a measured value) or absent (not captured). The card routes each origin to its place, records any doubtful value in a table with its origin and the token it traces to or the reason it is absent, then ends with a stop check whose last box confirms this is live-surface extraction rather than brief-only forward-authoring.
+
+#### Scenario Contract
+Prompt: `"Walk through each value in this design system and tell me where it came from before we trust it."`
+
+- Objective: confirm the card sorts every doubtful value by origin and routes each origin correctly, so no value is fabricated or backfilled
+- Expected execution process: take the Style Reference and `tokens.json`. For each value whose origin is not obvious, walk the card's ordered questions and assign one origin. Confirm measured values trace to a `tokens.json` row, brief-provided values stay in prose, inferred claims carry `[INFERRED]` and cite a measured token, absent values are stamped or omitted. Fill the doubtful-values table. Run the stop check and confirm every box passes
+- Expected signals: every token-table value resolves to Measured with a `tokens.json` row. No brief-provided value sits in a token table. Every inference is marked `[INFERRED]` and cites a measured token. Every absent value is stamped or omitted. The doubtful-values table names a real origin for each row. The stop check passes
+- Desired user-visible outcome: the agent produces a completed origin sort that names, for each doubtful value, whether it is measured (and which token), brief-provided, inferred (and the cited token) or absent, with no value left as an unexplained invention
+
+#### Test Execution
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| PROVENANCE-001 | Source-of-truth router card | Verify the card sorts each value into measured, brief-provided, inferred or absent, keeps only measured values in token tables and records the doubtful values with their origin | `Walk through each value in this design system and tell me where it came from before we trust it.` | 1. `read: <--output>/tokens.json` (collect the measured set) -> 2. for each doubtful value, walk the card's ordered questions and assign one origin -> 3. `read: <style-reference.md>` confirm token tables hold only measured values -> 4. `bash: rg '\[INFERRED\]' <style-reference.md>` confirm inferences cite a measured token -> 5. fill the doubtful-values table (value, origin, token or reason absent) -> 6. run the card's stop check | Step 1: measured set collected. Step 2: one origin per value, first yes wins. Step 3: token tables measured-only. Step 4: inferences marked and cited. Step 5: doubtful-values table names a real origin per row. Step 6: stop check passes, including the last box | Transcript of the measured-set listing, the per-value origin sort, the token-table trace, the [INFERRED] grep, the completed doubtful-values table and the stop-check result | PASS if every value resolves to exactly one of the four origins AND token tables contain only measured values AND every inference is marked `[INFERRED]` with a cited token AND the doubtful-values table leaves no row as an unexplained invention AND the stop check passes. FAIL if a value cannot name a measured token yet is not honestly brief-provided, inferred or absent OR a brief-provided value sits in a token table OR the stop check's last box fails and the request is treated as in-scope | 1. If a value is an invention, remove it. 2. If a brief-provided value sits in a token table, move it to prose as a stated intent. 3. If an inference lacks a cited token, add the citation or drop the claim. 4. If the stop check's last box fails, this is forward-authoring: route it to the separate design-spec decision and do not loosen fidelity. 5. Cross-check the sort against `references/authoring_boundary.md`. |
+
+> **Feature File:** [13--source-of-truth/source-of-truth-card.md](13--source-of-truth/source-of-truth-card.md)
+
+---
+
+## 20. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `backend/tests/cluster.test.ts` | OKLCH clustering and L1-L4 stability classification | CLUSTER-001, FIDELITY-001 |
 | `backend/tests/validate.test.ts` | Hex-accuracy, v3 Style Reference section recognition, and Quick-Start fidelity validation | VALIDATE-001 |
 
-The vitest suite (68 tests across 7 files) covers the deterministic clustering and validation logic. The manual scenarios cover the live-crawl, fidelity, dark-mode gate, setup, and escalation behavior that automated tests cannot exercise end to end.
+The vitest suite (68 tests across 7 files) covers the deterministic clustering and validation logic. The manual scenarios cover the live-crawl, fidelity, dark-mode gate, setup, escalation, authoring-boundary and source-of-truth provenance behavior that automated tests cannot exercise end to end. The authoring-boundary and source-of-truth scenarios are judgment checks on value provenance that no unit test replaces.
 
 ---
 
-## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 21. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
 
@@ -452,7 +502,9 @@ Each scenario maps to exactly one per-scenario file in a numbered category folde
 | CLUSTER-001 | OKLCH Clustering And Stability Classification | Cluster | [09--cluster/oklch-clustering.md](09--cluster/oklch-clustering.md) | [../feature_catalog/02--cluster-classify/cluster-classify.md](../feature_catalog/02--cluster-classify/cluster-classify.md) |
 | A11Y-001 | Accessibility Section Fidelity | Accessibility | [10--accessibility/accessibility-section.md](10--accessibility/accessibility-section.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
 | DETECT-001 | Framework, Icon, And Motion Detection | Detectors | [11--detectors/framework-icon-motion-detection.md](11--detectors/framework-icon-motion-detection.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
+| BOUNDARY-001 | Authoring boundary sorts values by origin | Authoring Boundary | [12--authoring-boundary/authoring-boundary.md](12--authoring-boundary/authoring-boundary.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
+| PROVENANCE-001 | Source-of-truth router card sorts each value | Source-of-Truth | [13--source-of-truth/source-of-truth-card.md](13--source-of-truth/source-of-truth-card.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
 
-This index lists 11 scenario IDs and ships 11 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (11), so keep them in sync as scenarios are added or revised.
+This index lists 13 scenario IDs and ships 13 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (13), so keep them in sync as scenarios are added or revised.
 
-Total: 11 scenarios = 11 per-scenario files.
+Total: 13 scenarios = 13 per-scenario files.

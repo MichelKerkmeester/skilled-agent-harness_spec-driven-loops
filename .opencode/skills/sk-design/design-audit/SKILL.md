@@ -2,7 +2,7 @@
 name: design-audit
 description: Design QA and critique mode for accessibility, performance, responsive, theming, anti-slop detection, scoring, and production hardening.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+version: 1.0.0.1
 metadata:
   author: OpenCode
   family: sk-code
@@ -24,10 +24,11 @@ Use this skill when the request involves:
 - Auditing or critiquing a UI, design plan, component, page, or design-system output.
 - Checking accessibility, contrast, keyboard navigation, focus, forms, ARIA, or WCAG compliance.
 - Reviewing animation performance, load performance, responsive behavior, touch targets, or production readiness.
-- Detecting AI-generated design slop, theming drift, token misuse, hard-coded values, or generic patterns.
-- Producing a findings-first design quality report with P0-P3 severity and a `/20` score.
+- Detecting AI-generated design slop, theming drift, token misuse, hard-coded values, or generic patterns, including the model-specific tell catalog for Codex, Gemini and 2026-general fingerprints.
+- Routing a bolder, quieter, distill or redesign direction to the right owner once a finding names the problem.
+- Producing a findings-first design quality report with P0-P3 severity and a `/20` score, including the fill-in report template.
 
-Keyword triggers: `audit design`, `critique UI`, `design review`, `accessibility audit`, `WCAG`, `performance audit`, `hardening`, `polish pass`, `responsive QA`, `anti-slop`, `looks AI-generated`, `quality score`, `P0`, `P1`.
+Keyword triggers: `audit design`, `critique UI`, `design review`, `accessibility audit`, `WCAG`, `performance audit`, `hardening`, `polish pass`, `responsive QA`, `anti-slop`, `looks AI-generated`, `AI tell`, `bolder`, `quieter`, `distill`, `quality score`, `P0`, `P1`.
 
 ### When NOT to Use
 
@@ -246,16 +247,16 @@ def route_audit_resources(user_request, task=None):
 
 ### Audit Workflow
 
-1. Resolve the target: source files, URL, screenshot, design plan, or rendered UI evidence.
-2. State evidence available and evidence missing. A visual claim needs visual evidence or a clear caveat.
+1. Resolve the target and the register: source files, URL, screenshot, design plan or rendered UI evidence, then read `../shared/register.md` so the audit-severity dial weights findings by Brand-vs-Product posture. `references/evidence_capture.md` owns target resolution.
+2. State evidence available and evidence missing. A visual claim needs visual evidence or a clear caveat. A finding read from real evidence is confirmed, while a finding from a screenshot alone is inferred.
 3. Score the five audit dimensions 0-4 each:
    - Accessibility.
    - Performance.
    - Responsive Design.
    - Theming.
-   - Anti-Patterns.
-4. Produce a findings-first report ordered by P0, P1, P2, P3.
-5. Map each finding to the owning sibling or implementation skill.
+   - Anti-Patterns. Detect model-specific tells with `references/ai_fingerprint_tells.md` and probe production readiness with `references/hardening_edge_cases.md`.
+4. Produce a findings-first report ordered by P0, P1, P2, P3. Use `assets/audit_report_template.md` for the fill-in skeleton.
+5. Map each finding to the owning sibling or implementation skill. Route a bolder, quieter, distill or redesign direction through `references/transform_remediation.md` first, because the correct direction depends on the register.
 6. End with recommended next actions; do not silently implement fixes during a review-only request.
 
 ### Severity Model
@@ -343,10 +344,11 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 6. SUCCESS CRITERIA
 
-- Audit output is findings-first, severity-ordered, and evidence-backed.
-- Full audits include the five-dimension `/20` score or explicit caveats for unassessed dimensions.
-- Accessibility, performance, responsive, theming, and anti-patterns are all considered.
-- Findings map to concrete next actions and owning skills.
+- Audit output is findings-first, severity-ordered and evidence-backed, with each finding labeled confirmed or inferred.
+- The register is resolved before scoring so the audit-severity dial weights findings by Brand-vs-Product posture.
+- Full audits include the five-dimension `/20` score or explicit caveats for unassessed dimensions. The fill-in report template carries the structure when a full report is requested.
+- Accessibility, performance, responsive, theming and anti-patterns are all considered, with model-specific tells and production-readiness edge cases checked where they apply.
+- Findings map to concrete next actions and owning skills, with directional remediation routed by register.
 - No positive completion or release-readiness claim is made from missing evidence.
 
 ---

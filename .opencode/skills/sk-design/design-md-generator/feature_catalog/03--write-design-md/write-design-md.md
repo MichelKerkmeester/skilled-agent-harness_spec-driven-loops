@@ -8,7 +8,7 @@ trigger_phrases:
   - "6-digit lowercase hex"
   - "v3 Style Reference design system handoff"
 importance_tier: "normal"
-version: 1.0.0.9
+version: 1.0.0.10
 ---
 
 # Write DESIGN.md (Phase 2)
@@ -28,6 +28,10 @@ To remove the AI from the highest-risk value surface, the phase runs `backend/sc
 ### Cardinal fidelity rule
 
 Every hex code, pixel value, font weight, box shadow, border radius, and spacing value in `DESIGN.md` must be copied verbatim from `tokens.json`. No estimation, no rounding, no invention, no close-enough substitution. If a value is not in `tokens.json`, it does not appear in the document. This rule is what makes `DESIGN.md` a trustworthy reference: every claim is traceable to a measured browser value.
+
+### Authoring boundary
+
+The cardinal rule stays enforceable by inspection because every value has a legible origin. A value is measured (present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent and never sit in a value table. Inferred claims carry `[INFERRED]` and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. The boundary adds no capability and relaxes the contract by not one digit. Authoring a Style Reference from a brief alone with no live site is forward-authoring, which is out of scope for this mode. The full line lives in `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` is the fill-in card that sorts each value before writing.
 
 ### Doc-as-view value rendering
 
@@ -81,6 +85,8 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 | `backend/scripts/formatters-v3.ts` | Script | Deterministic v3 emitters: hue+lightness colour namer, Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start (every value verbatim from tokens, L4 excluded) |
 | `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
+| `references/authoring_boundary.md` | Shared | The four value origins, the source-of-truth labels and the forward-authoring out-of-scope rule that keep the cardinal rule legible |
+| `assets/source_of_truth_router_card.md` | Script | Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing |
 | `references/design_md_format.md` | Shared | Authoritative v3 Style Reference section specification |
 | `references/anti_patterns.md` | Shared | Authoring anti-patterns including AP-29 Interpretive Fabrication |
 

@@ -21,6 +21,7 @@ metadata:
 ### Activation Triggers
 
 Use this skill when the request involves:
+- Deciding whether an interaction should animate at all, setting a motion budget for a surface or trimming an over-animated interface against the restraint gate.
 - Designing or implementing animation, transitions, micro-interactions, hover/focus/active feedback, loading motion, or gesture behavior.
 - Choosing timing, easing, spring behavior, stagger, entrance/exit choreography, or motion materials.
 - Reviewing or authoring `motion/react`, Framer Motion, `AnimatePresence`, CSS transitions, View Transitions, or SVG icon morphs.
@@ -241,16 +242,18 @@ def route_motion_resources(user_request, task=None):
 
 ### Motion Design Workflow
 
-1. Name the purpose: feedback, orientation, focus, continuity, perceived performance, or earned delight.
-2. Decide the motion budget: one hero moment, local feedback layer, state transitions, or no motion.
-3. Choose timing and easing:
+1. Run the restraint gate first (`references/animation_decision_framework.md`): check frequency, the keyboard rule, a named purpose and the register motion-budget dial, stopping at the first no. A choice that fails ships as an instant state change, not a downgrade.
+2. Name the purpose: feedback, orientation, focus, continuity, perceived performance, or earned delight.
+3. Decide the motion budget: one hero moment, local feedback layer, state transitions, or no motion.
+4. Choose timing and easing:
    - `100-150ms` for instant feedback.
    - `200-300ms` for small state transitions.
    - `300-500ms` for modal, drawer, or layout transitions.
    - `500-800ms` only for earned entrances or choreographed brand moments.
-4. Choose the material: transform/opacity first; bounded blur, filter, mask, clip-path, shadow, or color only when it creates a real effect and can be verified smooth.
-5. Define reduced-motion behavior that preserves state information without non-essential movement.
-6. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks.
+5. Choose the material: transform/opacity first; bounded blur, filter, mask, clip-path, shadow, or color only when it creates a real effect and can be verified smooth.
+6. Define reduced-motion behavior that preserves state information without non-essential movement.
+7. Spec the pattern with the matching card in `assets/motion_pattern_cards.md`, run `assets/animate_presence_checklist.md` for any exit and clear `assets/motion_performance_failure_card.md` before handoff.
+8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks.
 
 ### Motion Judgment
 
@@ -321,9 +324,11 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 6. SUCCESS CRITERIA
 
+- The restraint gate ran first, and any high-frequency or keyboard-driven action stays instant.
 - Every motion choice has a purpose and an affected state.
 - Timing, easing, and material choices are explicit.
 - Reduced-motion behavior is specified.
+- A pattern card is filled, the AnimatePresence checklist passes for any exit and the performance failure card clears before handoff.
 - Implementation handoff names the target states, target properties, and verification risks.
 - Motion does not block interaction, compete with primary hierarchy, or exhaust the user.
 

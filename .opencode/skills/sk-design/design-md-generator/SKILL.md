@@ -2,7 +2,7 @@
 name: design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
@@ -43,6 +43,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 **Skip this skill when:**
 - The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
+- The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring_boundary.md`.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
 - The target is an **Open Design project**. Use `mcp-open-design`.
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
@@ -254,6 +255,10 @@ REPORT (Phase 4, optional)
 - **Stability gates**: only L1 (permanent/brand-level) and L2 (system/component-level) tokens belong in the main DESIGN.md sections. L3 (campaign-level, e.g., a seasonal accent color) may appear with an explicit "Subject to change" annotation. L4 (content-level, e.g., a hero image's dominant color) is excluded.
 - **Dark mode**: include a dark-mode section ONLY when the extractor detected a dark-mode palette. Do not fabricate a dark palette from the light one.
 - **What `validate.ts` traces**: validation hard-checks hex codes (against `tokens.colorTokens`) and the Quick Start values (every Quick Start hex traces to a token; `--page-max-width` matches `tokens.spacingSystem.maxContentWidth`). Non-hex values (pixel sizes, font weights, shadows, radii) are NOT re-traced by the validator — their fidelity is guaranteed upstream because the WRITE phase pre-renders the value tables from `formatters-v3.ts` and supplies the typography/component numbers verbatim in the FACTS block, so the AI never types them. Treat the cardinal rule as the binding contract for those values even though validation does not re-check each one.
+
+### Authoring Boundary
+
+The cardinal rule stays enforceable by inspection because every value has a legible origin. A value is **measured** (read off the page and present in `tokens.json`), **brief-provided** (supplied by the user, not the page), **inferred** (a grounded characterization of a measured value) or **absent** (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent and never sit in a value table. Inferred claims carry `[INFERRED]` and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. This boundary adds no capability and relaxes the fidelity contract by not one digit. When a value's origin is unclear, or a request asks to author from a brief with no live site, load `references/authoring_boundary.md` for the full line and `assets/source_of_truth_router_card.md` to sort each value before writing. Authoring from a brief alone is forward-authoring and stays out of scope (Section 1, When NOT to Use).
 
 ### Invocation
 

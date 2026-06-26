@@ -2,7 +2,7 @@
 name: design-interface
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+version: 1.0.0.1
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -26,6 +26,8 @@ Approach UI work as the design lead at a studio known for visual identities that
 - Reshaping or restyling an existing interface that feels generic or templated.
 - Choosing palette, typography, layout, motion, or interface copy.
 - Reviewing a design direction before code is written.
+- Reading a brief into the register and the variance, motion, and density dials before any visual choice.
+- Running the mechanical pre-flight gate over a built or planned surface before delivery, including the layout and content gates.
 
 **Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity".
 
@@ -97,6 +99,10 @@ DESIGN TASK
 
 ## 3. HOW IT WORKS
 
+### Register And Dials First
+
+Before any visual choice, set the Brand-vs-Product posture from `../shared/register.md`, which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity. Then read the brief into the VARIANCE, MOTION, and DENSITY dials with `references/design-process/brief_to_dials.md`, stated once in a one-line Design Read. The dials are internal calibration, never a chooser surfaced to the user.
+
 ### The Two-Pass Process
 
 **Process Flow**:
@@ -125,6 +131,10 @@ Calibration matters: current AI design clusters around three default looks (crea
 ### Quality Floor
 
 Build to it without announcing it: responsive down to mobile, visible keyboard focus, and reduced motion respected. Do most of the planning and iteration in thinking, and show the user ideas only at higher confidence.
+
+### Mechanical Delivery Gates
+
+A taste read misses structural and content tells, so two binary gates run before delivery. The layout gate in `references/design-process/mechanical_defaults.md` counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in `references/design-process/copy_and_mock_data.md` sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The fill-in `assets/interface_preflight_card.md` is the checkable form of both plus the dials: every box is binary, and a single fail means the surface is not done.
 
 ---
 
@@ -192,11 +202,13 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 ## 6. SUCCESS CRITERIA
 
 **A design is ready when:**
+- ✅ The register posture is set and the brief is read into the variance, motion, and density dials in a one-line Design Read.
 - ✅ The subject, audience, and the page's single job are named.
 - ✅ A token system (color, type, layout, signature) exists and was critiqued against the AI-default looks.
 - ✅ Every color and type decision derives from the revised plan.
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
+- ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
 
 ---
 

@@ -24,9 +24,11 @@ Use this skill when the request involves:
 - Building or correcting a color system, OKLCH palette, theme, dark mode, or semantic color token set.
 - Choosing type scale, font pairing, line length, hierarchy, tabular numerals, or typography roles.
 - Fixing layout rhythm, spacing, density, alignment, grid behavior, hierarchy, or responsive adaptation.
-- Translating a design direction into reusable static tokens for `sk-code` implementation.
+- Adapting a design across device, input method, orientation and context, including print and constrained surfaces.
+- Encoding quantitative content: chart-type selection, axis honesty, color-for-data scales, sparklines and data-table alignment.
+- Translating a design direction into reusable static tokens for `sk-code` implementation, often by filling the token starter scaffold.
 
-Keyword triggers: `OKLCH`, `palette`, `contrast`, `dark mode`, `theme tokens`, `typography scale`, `font pairing`, `measure`, `spacing`, `grid`, `layout rhythm`, `responsive`, `container queries`, `design tokens`.
+Keyword triggers: `OKLCH`, `palette`, `contrast`, `dark mode`, `theme tokens`, `typography scale`, `font pairing`, `measure`, `spacing`, `grid`, `layout rhythm`, `responsive`, `container queries`, `adaptation matrix`, `data visualization`, `chart type`, `data tables`, `design tokens`, `token starter`.
 
 ### When NOT to Use
 
@@ -222,9 +224,10 @@ def route_foundations_resources(user_request, task=None):
 3. Build the static system in layers:
    - Color: OKLCH primitives, semantic tokens, contrast pairs, surface scale, dark-mode mapping.
    - Type: role scale, pairing, measure, line height, data/text utilities.
-   - Layout: spacing scale, grouping, hierarchy, grid, responsive and input adaptation.
+   - Layout: spacing scale, grouping, hierarchy, grid, responsive and input adaptation, with the adaptation matrix when a surface spans device, input and context.
+   - Data: when the surface carries charts or tables, encode the question with the right chart type, axis discipline, color-for-data scale and table alignment.
 4. Test against the parent anti-slop base: every token needs a purpose, and free axes must not default to the median AI look.
-5. Produce a compact handoff for implementation: named tokens, usage rules, responsive breakpoints, and explicit risks.
+5. Produce a compact handoff for implementation: named tokens, usage rules, responsive breakpoints, and explicit risks. The token starter scaffold turns this into a fill-in deliverable.
 
 ### Decision Rules
 
@@ -233,6 +236,8 @@ def route_foundations_resources(user_request, task=None):
 - Treat dark mode as a separate surface system, not an inverted light palette.
 - Use spacing and hierarchy before adding borders, colors, or cards.
 - Let content drive breakpoints. Device sizes are a starting hypothesis, not the truth.
+- Adapt across contexts by rethinking layout, interaction, content and navigation, and detect input capability rather than inferring it from width.
+- Match a chart to the question, keep one variable per visual channel, and choose the color-for-data scale by the question rather than the dataset shape.
 
 ---
 
@@ -299,6 +304,9 @@ Use, do not duplicate, the parent vocabulary:
 - Color tokens have OKLCH values or a deliberate compatibility reason, semantic names, contrast evidence, and dark-mode behavior when needed.
 - Typography has role-based sizes, pairing rationale, line-height and measure constraints, and data/text utility guidance.
 - Layout uses a consistent spacing scale, clear grouping, visible hierarchy, and content-driven responsive behavior.
+- Context adaptation rethinks layout, interaction, content and navigation per target, keeps core functionality everywhere, and responds to input method rather than width alone.
+- Data visualization matches the chart to the question, keeps axes honest with one variable per channel, chooses the color-for-data scale by the question, and aligns numeric tables with tabular numerals.
+- When a token system is scaffolded, the token starter is filled from the register with OKLCH values, type roles and scale-bound spacing.
 - The final handoff is implementable by `sk-code` without guessing token roles or breakpoint intent.
 
 ---

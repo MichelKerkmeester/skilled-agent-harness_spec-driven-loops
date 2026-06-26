@@ -7,7 +7,7 @@ trigger_phrases:
   - "make it look good"
   - "looks templated"
   - "redesign"
-version: 1.5.1.0
+version: 1.6.0.0
 ---
 
 # interface
@@ -75,6 +75,10 @@ Full guidance: [`references/design-process/design_principles.md`](./references/d
 
 ## 4. HOW IT WORKS
 
+### Register And Dials First
+
+Before the token system, the skill sets one posture and reads the brief into three working values. The shared [`../shared/register.md`](../shared/register.md) decides whether the surface is a Brand surface (design IS the product) or a Product surface (design SERVES the product), which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity. Then [`references/design-process/brief_to_dials.md`](./references/design-process/brief_to_dials.md) reads the brief into the VARIANCE, MOTION, and DENSITY dials within that posture. The dials are the agent's internal calibration stated in a one-line Design Read, never a pick-a-vibe menu surfaced to the user.
+
 ### The Two-Pass Process
 
 The skill never jumps straight to code. It grounds the subject, brainstorms a token system, and critiques that plan against three known AI-default looks before building. Anything that reads as a generic default gets revised with a stated reason, and every color and type decision in the build derives from the revised plan.
@@ -90,6 +94,10 @@ Words exist to make an interface easier to use. The skill writes from the end us
 ### Producing Real UI
 
 When the work moves past a plan into a real render, on a recreated repo, a generation run, or code, the skill follows the real-UI loop: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md).
+
+### Mechanical Delivery Gates
+
+A taste read does not catch a four-line hero, a button the same color as its label, "Jane Doe" in a testimonial, or a visible em-dash. Two binary gates close that gap before delivery. The layout gate in [`references/design-process/mechanical_defaults.md`](./references/design-process/mechanical_defaults.md) counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in [`references/design-process/copy_and_mock_data.md`](./references/design-process/copy_and_mock_data.md) sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The checkable form of both, plus the dial calibration, is the fill-in [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md): every box is binary and a single fail means the surface is not done.
 
 ### Where The Detail Lives
 
@@ -162,6 +170,11 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
 | [`references/design-process/design_principles.md`](./references/design-process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
+| [`../shared/register.md`](../shared/register.md) | The shared Brand-vs-Product operating register, set first: it gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity |
+| [`references/design-process/brief_to_dials.md`](./references/design-process/brief_to_dials.md) | The Design Read intake that reads a brief into the VARIANCE, MOTION, and DENSITY dials within the posture: internal calibration, never a chooser |
+| [`references/design-process/mechanical_defaults.md`](./references/design-process/mechanical_defaults.md) | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing |
+| [`references/design-process/copy_and_mock_data.md`](./references/design-process/copy_and_mock_data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
+| [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md) | The binary fill-in PASS or FAIL pre-flight card: the checkable form of the layout gate, content gate, and dials, run as the last filter before delivery |
 | [`references/design-process/ux_quality_reference.md`](./references/design-process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
 | [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |

@@ -1,7 +1,7 @@
 ---
 title: "interface: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the interface skill."
-version: 1.5.0.10
+version: 1.6.0.0
 ---
 
 # interface: Manual Testing Playbook
@@ -24,14 +24,18 @@ Canonical package artifacts:
 - `06--licensing-and-provenance/`
 - `07--real-ui-loop/`
 - `08--design-references-routing/`
+- `09--mechanical-preflight-card/`
+- `10--mechanical-layout-gate/`
+- `11--content-and-mock-data-gate/`
+- `12--brief-to-dials-intake/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 10 deterministic scenarios across 8 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 14 deterministic scenarios across 12 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique each with a negative control, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. Per-feature files anchor directly to `SKILL.md`, the `references/` docs.
+Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique each with a negative control, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface_preflight_card.md`.
 
 ### Realistic Test Model
 
@@ -57,7 +61,8 @@ Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critiqu
 3. `.opencode/skills/sk-design/design-interface/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
 4. The operator can run `python3`, `rg`, and `git diff` from the repository root.
 5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the design-system grounding scenario assumes a real design system you own is available to read live, the render fidelity scenario assumes `mcp-chrome-devtools`, and the design-references routing scenario assumes the Mobbin or Refero MCPs resolve through Code Mode with a connected subscription for its initiative path (its fall-back path stays exercisable without one), otherwise record SKIP with the missing dependency.
-6. No scenario writes design-system files, copies any external design-system content into the skill, or edits the skill's reference files. Any such mutation is contradictory evidence.
+6. The mechanical pre-flight card, the mechanical layout gate, and the content gate each assume the operator supplies a real built or planned UI as the fixture so the boxes, counts, and sweeps run against a concrete render. The brief-to-dials intake assumes a concrete brief is supplied so the dials read from real signals.
+7. No scenario writes design-system files, copies any external design-system content into the skill, or edits the skill's reference files. Any such mutation is contradictory evidence.
 
 ---
 
@@ -91,7 +96,7 @@ Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critiqu
 1. `manual_testing_playbook.md`
 2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
 3. Scenario execution evidence from section 3
-4. Feature-to-scenario coverage map from section 16
+4. Feature-to-scenario coverage map from section 20
 5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
 
 ### Scenario Acceptance Rules
@@ -126,7 +131,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 10`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 14`).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -139,7 +144,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific caveats, 
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 10 files.
+2. Per-feature structural sweep checks all 14 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
@@ -149,7 +154,11 @@ Before declaring this playbook release-ready, confirm:
 9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
 10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check.
 11. The design-references routing scenario records its three branches (initiative, ask, fall-back), the Mobbin-vs-Refero source pick, and its negative control: no chooser or gallery, no copied or cached reference, read live, and grounding kept upstream.
-12. The final report separates playbook defects from interface product defects.
+12. The mechanical pre-flight card scenario records the filled context table, a binary mark on every box, the failing box numbers, and a SHIP verdict reached only with zero failing boxes.
+13. The mechanical layout gate scenario records the counted hero lines, bento cells, and eyebrows against the `ceil(sectionCount / 3)` ceiling, with button contrast computed against the real background rather than assumed white.
+14. The content gate scenario records the sweeps run over the real strings, every number listed with its grounding, and the single copy register named and matched to the posture.
+15. The brief-to-dials intake scenario records the register posture set first, the one-line Design Read with the three dial values, and its negative control: the dials kept internal and never surfaced as a chooser.
+16. The final report separates playbook defects from interface product defects.
 
 ---
 
@@ -157,7 +166,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 10-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 14-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -178,7 +187,9 @@ This section records wave planning and capacity guidance for executing the 10-sc
 | 3 | Abstention and routing | ID-005, ID-006 | Routing away from non-visual work is read-only and isolates from the design path |
 | 4 | Real-UI loop | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the real-UI loop protocol and the render surface |
 | 5 | Design-references routing | ID-010 | The initiative/ask/fall-back gate reads one design-references doc and exercises a paid-lookup decision, so it runs in its own wave to isolate the subscription-status branch |
-| 6 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
+| 6 | Mechanical pre-flight + layout + content gates | ID-011, ID-012, ID-013 | The three delivery gates all read on-disk references against one supplied built UI fixture, so they share the render fixture and isolate cleanly |
+| 7 | Brief-to-dials intake | ID-014 | The Design Read intake reads a brief into the dials after the register posture, so it runs with the other intake-shaped checks and isolates the dial calibration |
+| 8 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
 
@@ -399,7 +410,95 @@ Desired user-visible outcome: A single named real-world default with its cited U
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. MECHANICAL PRE-FLIGHT CARD (ID-011)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-011 | Mechanical pre-flight card on a built UI
+
+#### Description
+
+A built or planned interface is walked box by box against the binary fill-in card in `assets/interface_preflight_card.md`, the context is recorded, and the verdict is SHIP only when every box passes, with the register and dials setting context without relaxing any mechanical box.
+
+#### Scenario Contract
+
+Prompt: `Run the interface pre-flight card over this built page and give me a SHIP or FIX verdict with the failing box numbers.`
+
+Desired user-visible outcome: A filled pre-flight card with a binary mark on every box, the context recorded, the failing box numbers listed, and a SHIP verdict reached only when no box fails.
+
+#### Test Execution
+
+> **Feature File:** [ID-011](09--mechanical-preflight-card/preflight-card-on-built-ui.md)
+
+---
+
+## 16. MECHANICAL LAYOUT GATE (ID-012)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-012 | Mechanical layout gate on a built UI
+
+#### Description
+
+A built UI is graded against the countable layout rules in `references/design-process/mechanical_defaults.md` across the hero line count, gapless bento math, the eyebrow ceiling, button contrast, and section spacing, where each check is binary and counted rather than estimated.
+
+#### Scenario Contract
+
+Prompt: `Run the mechanical layout gate over this built page: count the hero lines, the bento cells, the eyebrows, and check button contrast, then tell me what fails.`
+
+Desired user-visible outcome: A pass/fail layout report keyed to the `mechanical_defaults.md` rules, with the countable checks shown as actual counts, each failing rule named, and a concrete fix for each.
+
+#### Test Execution
+
+> **Feature File:** [ID-012](10--mechanical-layout-gate/mechanical-layout-gate-on-built-ui.md)
+
+---
+
+## 17. CONTENT AND MOCK-DATA GATE (ID-013)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-013 | Content and mock-data gate on a built UI
+
+#### Description
+
+A built UI is swept against `references/design-process/copy_and_mock_data.md` across no lorem, no AI-tell phrasing, plausible names and numbers, one copy register matched to the posture, and descriptive unique image seeds, where each check is a pass or fail sweep run over the real strings rather than from memory.
+
+#### Scenario Contract
+
+Prompt: `Sweep this built page for content tells: lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, and lazy image seeds, then tell me what fails.`
+
+Desired user-visible outcome: A pass/fail content report keyed to the `copy_and_mock_data.md` rules, each failing string or value named, the copy register stated, and a concrete fix for each finding.
+
+#### Test Execution
+
+> **Feature File:** [ID-013](11--content-and-mock-data-gate/content-and-mock-data-gate-on-built-ui.md)
+
+---
+
+## 18. BRIEF-TO-DIALS INTAKE (ID-014)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-014 | Brief read into the variance, motion, and density dials
+
+#### Description
+
+A brief is read into the three working dials of variance, motion, and density after the register posture is set, the one-line Design Read states the values, and the dials stay an internal calibration the agent sets rather than a style chooser surfaced to the user.
+
+#### Scenario Contract
+
+Prompt: `Read this premium cookware landing brief into the variance, motion, and density dials and state your one-line Design Read before you design.`
+
+Desired user-visible outcome: A one-line Design Read that names the subject, the posture, and the three dial values, with the dials used as internal calibration and never offered to the user as a style menu.
+
+#### Test Execution
+
+> **Feature File:** [ID-014](12--brief-to-dials-intake/brief-read-into-dials.md)
+
+---
+
+## 19. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `interface/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
 
@@ -409,12 +508,16 @@ The current repository has no dedicated automated test module for `interface/man
 | `references/design-process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
 | `references/design-process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
 | `references/design-grounding/design_references_mcp.md` | The design-references initiative/ask/fall-back gate, the Mobbin-vs-Refero source pick, and the no-chooser, read-live, never-copied hard rules | ID-010 |
+| `assets/interface_preflight_card.md` | The binary fill-in pre-flight card walked box by box as the last filter, with the SHIP-only-when-all-pass verdict | ID-011 |
+| `references/design-process/mechanical_defaults.md` | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing | ID-012 |
+| `references/design-process/copy_and_mock_data.md` | The content gate: lorem and filler sweep, AI-tell phrasing, fake-precision rules, one copy register, and image-seed discipline | ID-013 |
+| `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 20. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -428,3 +531,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](07--real-ui-loop/reuse-before-generate-with-design-system.md) |
 | ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](07--real-ui-loop/render-fidelity-check.md) |
 | ID-010 | Design-references initiative/ask routing for Mobbin and Refero | DESIGN-REFERENCES ROUTING | [ID-010](08--design-references-routing/initiative-ask-fallback-routing.md) |
+| ID-011 | Mechanical pre-flight card on a built UI | MECHANICAL PRE-FLIGHT CARD | [ID-011](09--mechanical-preflight-card/preflight-card-on-built-ui.md) |
+| ID-012 | Mechanical layout gate on a built UI | MECHANICAL LAYOUT GATE | [ID-012](10--mechanical-layout-gate/mechanical-layout-gate-on-built-ui.md) |
+| ID-013 | Content and mock-data gate on a built UI | CONTENT AND MOCK-DATA GATE | [ID-013](11--content-and-mock-data-gate/content-and-mock-data-gate-on-built-ui.md) |
+| ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](12--brief-to-dials-intake/brief-read-into-dials.md) |

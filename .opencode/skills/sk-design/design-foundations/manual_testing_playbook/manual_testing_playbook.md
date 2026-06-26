@@ -15,6 +15,9 @@ version: 1.0.0.0
 | FOUND-COLOR-001 | OKLCH palette and dark-mode token plan | [`01--color/oklch-palette-and-dark-mode.md`](01--color/oklch-palette-and-dark-mode.md) |
 | FOUND-TYPE-001 | Typography role system and measure | [`02--type/type-roles-and-measure.md`](02--type/type-roles-and-measure.md) |
 | FOUND-LAYOUT-001 | Layout rhythm and responsive adaptation | [`03--layout/layout-rhythm-responsive.md`](03--layout/layout-rhythm-responsive.md) |
+| FOUND-LAYOUT-002 | Context adaptation matrix across device, input and posture | [`03--layout/context-adaptation-matrix.md`](03--layout/context-adaptation-matrix.md) |
+| FOUND-DATAVIZ-001 | Data visualization encoding and color-for-data scales | [`04--data-viz/chart-encoding-and-color.md`](04--data-viz/chart-encoding-and-color.md) |
+| FOUND-TOKEN-001 | Token starter scaffold handoff | [`05--tokens/token-starter-handoff.md`](05--tokens/token-starter-handoff.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -32,4 +35,4 @@ version: 1.0.0.0
 
 ## 4. RELEASE READINESS
 
-Release is ready when all three scenarios PASS or are SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, or generic responsive scaling.
+Release is ready when every scenario PASSes or is SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, dishonest chart axes or generic responsive scaling.

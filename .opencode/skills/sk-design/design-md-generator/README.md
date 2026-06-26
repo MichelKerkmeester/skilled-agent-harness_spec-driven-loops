@@ -27,6 +27,8 @@ The skill ships an embedded Playwright crawler that runs a three-phase pipeline.
 
 The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the value tables and the typography/component numbers come verbatim from the FACTS block, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
 
+The authoring boundary keeps that cardinal rule enforceable by inspection. A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent, inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on, while absent values are stamped or omitted rather than backfilled. [`references/authoring_boundary.md`](./references/authoring_boundary.md) draws this line in full, and [`assets/source_of_truth_router_card.md`](./assets/source_of_truth_router_card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability: authoring a design from a brief alone with no live site to measure is forward-authoring, and it stays OUT OF SCOPE for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here.
+
 ---
 
 ## 3. QUICK START
@@ -216,4 +218,6 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
 | [`references/design_md_format.md`](./references/design_md_format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
 | [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
+| [`references/authoring_boundary.md`](./references/authoring_boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
+| [`assets/source_of_truth_router_card.md`](./assets/source_of_truth_router_card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
