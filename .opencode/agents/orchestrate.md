@@ -182,7 +182,7 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 | @context  | `.opencode/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
 | @markdown | `.opencode/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
-| @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). |
+| @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). |
 | @review   | `.opencode/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
 | @debug    | `.opencode/agents/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.opencode/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |

@@ -26,8 +26,8 @@ Runtime primitives consumed by deep-ai-council orchestrators for iterative multi
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-topic.cjs`
-- `.opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-session.cjs`
+- `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs`
+- `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs`
 - `.opencode/skills/deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` for `loopType=council` graph operations
 
 ## 4. TESTS

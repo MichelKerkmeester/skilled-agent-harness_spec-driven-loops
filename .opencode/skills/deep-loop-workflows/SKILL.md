@@ -15,15 +15,15 @@ One skill, five workflow modes, one shared backend. `deep-loop-workflows` is the
 
 ## 1. WHEN TO USE
 
-Use this skill (through its `/deep:*` commands and native agents) for any deep-loop workflow:
+Use this skill (through the hub) for any deep-loop workflow. Invoke it as `Skill(deep-loop-workflows)` (optionally with a mode hint such as `research: <request>`); the hub classifies the request, resolves a `workflowMode`, and loads the matching nested mode packet. The `/deep:*` commands and native agent types remain as complementary surfaces over the same packets.
 
-| Mode | Use it for | Command | Agent |
-|------|-----------|---------|-------|
-| **context** | Inward codebase-context gathering → reuse-first Context Report, before `/speckit:plan` | `/deep:context` | `deep-context` |
-| **research** | Outward, web + code iterative investigation → `research/research.md` | `/deep:research` | `deep-research` |
-| **review** | Iterative code audit → P0/P1/P2 findings + verdict | `/deep:review` | `deep-review` |
-| **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `/deep:ai-council` | `ai-council` |
-| **improvement** (4 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark`, `non-dev-ai-system-refine` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` | `deep-improvement` |
+| Mode | Use it for | Packet | Command | Agent |
+|------|-----------|--------|---------|-------|
+| **context** | Inward codebase-context gathering → reuse-first Context Report, before `/speckit:plan` | `deep-loop-workflows/deep-context/` | `/deep:context` | `deep-context` |
+| **research** | Outward, web + code iterative investigation → `research/research.md` | `deep-loop-workflows/deep-research/` | `/deep:research` | `deep-research` |
+| **review** | Iterative code audit → P0/P1/P2 findings + verdict | `deep-loop-workflows/deep-review/` | `/deep:review` | `deep-review` |
+| **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `deep-loop-workflows/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
+| **improvement** (4 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark`, `non-dev-ai-system-refine` | `deep-loop-workflows/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` | `deep-improvement` |
 
 ### When NOT to Use
 - A single quick read/edit (no loop) — use the relevant code or doc skill directly.
@@ -33,7 +33,7 @@ Use this skill (through its `/deep:*` commands and native agents) for any deep-l
 
 ## 2. SMART ROUTING
 
-Routing is **registry-projected**. `mode-registry.json` is declarative and advisor projections are drift-guarded, but command files are static routers with hardcoded assets/mode routing; they do not resolve from `mode-registry.json`.
+Routing is **registry-driven** (invokable-hub, Option E). `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. When invoked as `Skill(deep-loop-workflows[, "<mode>: <request>"])`, the hub classifies the request to a `workflowMode`, resolves it through the registry, and loads `registry[mode].packet`. The advisor routes any deep-loop query to the single identity `deep-loop-workflows`; the hub then picks the mode. The `/deep:*` commands and native agent types remain as complementary surfaces — they reach the same packets through static routers/agent definitions — and the hub holds NO per-mode logic.
 
 ### The three-tier discriminator
 - **`workflowMode`** — the public mode key (all modes): `context`, `research`, `review`, `ai-council`, and the four improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement` (its loop-host mode stays `non-dev-ai-system-refine`).
@@ -42,14 +42,19 @@ Routing is **registry-projected**. `mode-registry.json` is declarative and advis
 
 ### Routing rule
 ```
+classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
 read mode-registry.json
-  → resolve workflowMode from the command / advisor alias
-  → load the mode packet at registry[mode].packet/   (the 4 improvement modes all share the deep-improvement/ packet)
+  → resolve workflowMode from the hint / classified intent (or the /deep:* command / advisor alias)
+  → load the mode packet at registry[mode].packet/SKILL.md
+       e.g. registry["research"].packet → deep-loop-workflows/deep-research/SKILL.md
+       (the 4 improvement modes all share the deep-loop-workflows/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
      else: backend = improvement loop-host (--mode) or external adapter, per backendKind
 ```
 
-Per-mode behavior is **not flattened**: each packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/context/ai-council are code/inward-only; improvement is the only mutating family).
+Intent classification favors the single dominant deep-loop mode; a mode hint (`research: ...`, `review: ...`, `context: ...`, `ai-council: ...`, or an improvement lane) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+
+Per-mode behavior is **not flattened**: each packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/context/ai-council are code/inward-only; improvement is the only mutating family). Exactly one `graph-metadata.json` — this hub's — is preserved, so the advisor discovers exactly one skill identity regardless of which surface (hub `Skill()`, `/deep:*` command, or agent) reaches a mode.
 
 ---
 
@@ -59,13 +64,13 @@ Per-mode behavior is **not flattened**: each packet keeps its own convergence ma
 ```
 deep-loop-workflows/
   SKILL.md               # this routing hub (no per-mode logic)
-  mode-registry.json     # the three-tier discriminator (single source of truth)
+  mode-registry.json     # the three-tier discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  deep-context/   deep-research/   deep-review/   ai-council/   deep-improvement/   # five verbatim mode packets
+  deep-context/   deep-research/   deep-review/   deep-ai-council/   deep-improvement/   # five verbatim mode packets
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
-Each mode packet is the former skill's content moved verbatim (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill.
+Each mode packet is the former skill's content moved verbatim (its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder is a grandfathered name case (folder `deep-ai-council`, `packetSkillName` `deep-ai-council`); the registry references it by its `packet` key, so always resolve the path through `mode-registry.json` rather than hardcoding it.
 
 ### Backend
 All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out, the council primitives, and the promoted plumbing (capability resolver, artifact-root, loop-lock CLI, lifecycle taxonomy). The runtime never gains an `improvement` loopType — improvement stays host-driven.
@@ -75,9 +80,11 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 ## 4. RULES
 
 ### ALWAYS
+- **ALWAYS** resolve a mode through `mode-registry.json` (read the `packet` key; never hardcode a router mapping or packet path in the hub).
 - **ALWAYS** keep advisor projection maps hardcoded and drift-guarded against the registry; command mode routing is still hardcoded in the command files and does not resolve through `mode-registry.json`.
 - **ALWAYS** keep each mode's convergence/state/artifact contract in its packet — the hub stays logic-free.
-- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill.
+- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity, whether a mode is reached via `Skill(deep-loop-workflows)`, a `/deep:*` command, or an agent.
+- **ALWAYS** keep `Skill(deep-loop-workflows)` hub routing, the `/deep:*` commands, and the agent types as complementary surfaces over the same packets — never let one surface fork per-mode logic out of its packet.
 
 ### NEVER
 - **NEVER** add an `improvement` `loopType` to `deep-loop-runtime/convergence.cjs` (improvement is host-driven; `runtimeLoopType` stays `null`).
@@ -94,6 +101,39 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 ## 5. REFERENCES
 
 - Backend: `.opencode/skills/deep-loop-runtime/` (frozen, consumed by every mode).
-- Mode packets: `deep-context/SKILL.md`, `deep-research/SKILL.md`, `deep-review/SKILL.md`, `ai-council/SKILL.md`, `deep-improvement/SKILL.md` (per-mode detail).
-- Commands: the eight `/deep:*` commands under `.opencode/commands/deep/`.
-- Registry: `mode-registry.json` (the routing contract).
+- Mode packets: `deep-context/SKILL.md`, `deep-research/SKILL.md`, `deep-review/SKILL.md`, `deep-ai-council/SKILL.md`, `deep-improvement/SKILL.md` (per-mode detail).
+- Commands: the eight `/deep:*` commands under `.opencode/commands/deep/` (complementary surface).
+- Registry: `mode-registry.json` (the routing contract — the authoritative `packet` paths).
+
+---
+
+## 6. SUCCESS CRITERIA
+
+- The hub resolves one primary `workflowMode` for the request through `mode-registry.json` (improvement folds to the right lane via the registry, never by array order).
+- The selected mode packet owns the detailed convergence/state/artifact workflow; the hub stayed routing-only.
+- `Skill(deep-loop-workflows[, hint])` reaches a mode, and the `/deep:*` commands and agent types still reach the same packets.
+- Exactly one `graph-metadata.json` exists for the whole skill; no packet carries its own.
+
+---
+
+## 7. INTEGRATION POINTS
+
+### Modes
+- `context` — inward codebase-context gathering, reuse-first Context Report.
+- `research` — outward web + code iterative investigation (`research/research.md`).
+- `review` — iterative code audit, P0/P1/P2 findings + verdict.
+- `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
+- `improvement` (4 lanes) — evaluator-first agent/model/skill/non-dev-system improvement.
+
+### Surfaces and Consumers
+- `Skill(deep-loop-workflows)` is the invokable hub; the `/deep:*` commands and the agent types (`deep-context`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`) are complementary surfaces over the same packets.
+- `deep-loop-runtime` is the frozen, MCP-free backend every mode consumes.
+- `/speckit:plan` consumes the context mode's Context Report; spec-folder docs consume research/review output.
+
+---
+
+## 8. RELATED RESOURCES
+
+- Pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Sibling example: `.opencode/skills/sk-design/` (the same invokable-hub + `mode-registry.json` Option E pattern).
+- Registry: `mode-registry.json` (this hub's routing contract).

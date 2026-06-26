@@ -54,15 +54,15 @@ All tasks below are pending. This packet is plan-only and every task is gated on
 
 **Structural alignment (plan Stages 0–2): inventory + baseline, then the lowest-blast structural fixes.**
 
-- [ ] T001 Stage 0 — Record a recovery baseline before any mutation (baseline SHA)
-- [ ] T002 [P] Stage 0 — Inventory every `ai-council` reference: commands, agents, `mode-registry.json`, `deep-loop-runtime`, cross-refs (inventory notes)
-- [ ] T003 [P] Stage 0 — Inventory each deep mode's `feature_catalog/` contents (inventory notes)
-- [ ] T004 [P] Stage 0 — Inventory `deep-loop-runtime` path/identity assumptions + the merged-identity projection sites (inventory notes)
-- [ ] T005 Stage 1 (R2) — Rename folder `ai-council` → `deep-ai-council` per ADR-001 (`.opencode/skills/deep-loop-workflows/`)
-- [ ] T006 Stage 1 (R2) — Rewire every reference from the T002 inventory (commands, agents, registry, runtime, cross-refs)
-- [ ] T007 Stage 1 (R2) — `package_skill.py --check` passes for the hub + all five packets; zero broken `ai-council` refs
-- [ ] T008 Stage 2 (R3) — Apply the ADR-003 ruling per mode: keep `feature_catalog/` where earned, remove the rest
-- [ ] T009 Stage 2 (R3) — Repoint `SKILL.md`/reference pointers; zero dangling `feature_catalog` refs; `--check` still green
+- [x] T001 Stage 0 — Record a recovery baseline before any mutation (baseline SHA)
+- [x] T002 [P] Stage 0 — Inventory every `ai-council` reference: commands, agents, `mode-registry.json`, `deep-loop-runtime`, cross-refs (inventory notes)
+- [x] T003 [P] Stage 0 — Inventory each deep mode's `feature_catalog/` contents (inventory notes)
+- [x] T004 [P] Stage 0 — Inventory `deep-loop-runtime` path/identity assumptions + the merged-identity projection sites (inventory notes)
+- [x] T005 Stage 1 (R2) — Rename folder `ai-council` → `deep-ai-council` per ADR-001 (`.opencode/skills/deep-loop-workflows/`)
+- [x] T006 Stage 1 (R2) — Rewire every reference from the T002 inventory (commands, agents, registry, runtime, cross-refs)
+- [x] T007 Stage 1 (R2) — `package_skill.py --check` passes for the hub + all five packets; zero broken `ai-council` refs
+- [x] T008 Stage 2 (R3) — Apply the ADR-003 ruling per mode: keep `feature_catalog/` where earned, remove the rest
+- [x] T009 Stage 2 (R3) — Repoint `SKILL.md`/reference pointers; zero dangling `feature_catalog` refs; `--check` still green
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -72,10 +72,10 @@ All tasks below are pending. This packet is plan-only and every task is gated on
 
 **Routing + runtime (plan Stages 3–4): the higher-blast work, gated on Phase 1.**
 
-- [ ] T010 [B] Stage 3 (R1) — Retrofit Option E onto the deep-loop hub `SKILL.md` + `mode-registry.json` routing
-- [ ] T011 [B] Stage 3 (R1) — Confirm `Skill(deep-loop-workflows[,hint])` resolves a mode; `/deep:*` + agents still work; one `graph-metadata.json` preserved
-- [ ] T012 [B] Stage 4 (R4) — Verify `deep-loop-runtime` path/identity assumptions hold post-1–3
-- [ ] T013 [B] Stage 4 (R4) — Evaluate and record the merged-identity keep/simplify decision (ADR-002) against routing fixtures
+- [x] T010 [B] Stage 3 (R1) — Retrofit Option E onto the deep-loop hub `SKILL.md` + `mode-registry.json` routing
+- [x] T011 [B] Stage 3 (R1) — Confirm `Skill(deep-loop-workflows[,hint])` resolves a mode; `/deep:*` + agents still work; one `graph-metadata.json` preserved
+- [x] T012 [B] Stage 4 (R4) — Verify `deep-loop-runtime` path/identity assumptions hold post-1–3
+- [x] T013 [B] Stage 4 (R4) — Evaluate and record the merged-identity keep/simplify decision (ADR-002) against routing fixtures
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -85,10 +85,10 @@ All tasks below are pending. This packet is plan-only and every task is gated on
 
 **Validation (plan Stage 5), gated on Phase 2.**
 
-- [ ] T014 [B] Stage 5 (R5) — `package_skill.py --check` (hub + packets)
-- [ ] T015 [B] Stage 5 (R5) — `advisor_rebuild` + `skill_graph_validate` clean
-- [ ] T016 [B] Stage 5 (R5) — Routing fixtures: a deep-loop query resolves to `deep-loop-workflows`
-- [ ] T017 [B] Stage 5 (R5) — `validate.sh --recursive` green on this packet + the parent
+- [x] T014 [B] Stage 5 (R5) — `package_skill.py --check` (hub + packets)
+- [x] T015 [B] Stage 5 (R5) — `advisor_rebuild` + `skill_graph_validate` clean
+- [x] T016 [B] Stage 5 (R5) — Routing fixtures: a deep-loop query resolves to `deep-loop-workflows`
+- [x] T017 [B] Stage 5 (R5) — `validate.sh --recursive` green on this packet + the parent
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -96,10 +96,10 @@ All tasks below are pending. This packet is plan-only and every task is gated on
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] All gates green; `/deep:*` commands + agents still function
-- [ ] deep-loop workflow behavior unchanged (only structure/invocation aligned)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] All gates green; `/deep:*` commands + agents still function
+- [x] deep-loop workflow behavior unchanged (only structure/invocation aligned)
 <!-- /ANCHOR:completion -->
 
 ---

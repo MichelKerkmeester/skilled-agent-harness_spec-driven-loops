@@ -38,11 +38,11 @@ context_loading:
 
 skill_reference:
   skill: deep-loop-workflows
-  skill_md: .opencode/skills/deep-loop-workflows/ai-council/SKILL.md
+  skill_md: .opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md
   scripts:
-    orchestrate_session: .opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-session.cjs
-    findings_registry: .opencode/skills/deep-loop-workflows/ai-council/scripts/lib/findings-registry.cjs
-    replay_graph: .opencode/skills/deep-loop-workflows/ai-council/scripts/replay-graph-from-artifacts.cjs
+    orchestrate_session: .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs
+    findings_registry: .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/findings-registry.cjs
+    replay_graph: .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs
   runtime_primitives:
     session_state: .opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs
     round_state: .opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs
@@ -116,7 +116,7 @@ workflow:
           - executor_config: "Executor config with seats, cost guards, and dispatch/adjudication functions"
       step_orchestrate_session:
         action: "Run bounded multi-topic council session"
-        command: "node .opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-session.cjs --session-state {session_state_json} --executor-config {executor_config_json}"
+        command: "node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs --session-state {session_state_json} --executor-config {executor_config_json}"
         writes:
           - "{state_paths.session_state_log}"
           - "{state_paths.findings_registry}"

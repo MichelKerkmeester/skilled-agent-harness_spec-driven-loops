@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded plan-only status; no implementation done"
+    recent_action: "Executed: rename + invokable-hub routing; all 6 deep-loop packets pass --check"
     next_safe_action: "Await gate, then run plan Stage 0"
     blockers: []
     key_files:
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 155-parent-skill-native-invocability/002-deep-loop-alignment |
-| **Completed** | Not implemented (plan-only) |
+| **Completed** | Executed: rename + invokable-hub routing done; R3/R4 = keep; R5 validated |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet is plan-only, so no skill, runtime, command, agent, or configuration was built. What exists is the planning record for aligning the deep-loop parent-skill family with the phase-001 invokable-hub mechanism and the sk-design parent-skill conventions.
+This packet's alignment is EXECUTED: ai-council renamed to deep-ai-council, invokable-hub routing retrofitted onto the deep-loop hub, feature-catalogs kept (R3), and the merged-identity layer kept (R4). What exists is the planning record for aligning the deep-loop parent-skill family with the phase-001 invokable-hub mechanism and the sk-design parent-skill conventions.
 
 ### Planning artifacts authored
 The packet authors `spec.md` (problem, scope, R1–R5, success criteria, risks), `plan.md` (the staged, gated execution mirroring the 154 conversion), `tasks.md` (the R1–R5 task breakdown mapped to Stages 0–5), `decision-record.md` (the `ai-council` rename, merged-identity, and feature-catalog decisions as ADR-001/002/003), and `checklist.md` (acceptance items). No source tree changed; the named execution targets are `.opencode/skills/deep-loop-workflows/SKILL.md`, `mode-registry.json`, and `.opencode/skills/deep-loop-runtime/`.

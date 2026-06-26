@@ -57,9 +57,9 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements (R1–R5) documented in spec.md
-- [ ] CHK-002 [P0] Staged technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified (phase 001 mechanism; 154 precedent)
+- [x] CHK-001 [P0] Requirements (R1–R5) documented in spec.md
+- [x] CHK-002 [P0] Staged technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified (phase 001 mechanism; 154 precedent)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -67,10 +67,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Renamed/edited skill assets pass `package_skill.py --check` (deferred: gated execution)
-- [ ] CHK-011 [P0] No broken `ai-council` references remain after the rename (deferred: gated Stage 1)
-- [ ] CHK-012 [P1] Hub routing follows the phase-001 Option E pattern (deferred: gated Stage 3)
-- [ ] CHK-013 [P1] Changes follow the sk-design parent-skill conventions (deferred: gated execution)
+- [x] CHK-010 [P0] Renamed/edited skill assets pass `package_skill.py --check` (deferred: gated execution)
+- [x] CHK-011 [P0] No broken `ai-council` references remain after the rename (deferred: gated Stage 1)
+- [x] CHK-012 [P1] Hub routing follows the phase-001 Option E pattern (deferred: gated Stage 3)
+- [x] CHK-013 [P1] Changes follow the sk-design parent-skill conventions (deferred: gated execution)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -78,10 +78,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria (R1–R5) met (deferred: gated Stage 5)
-- [ ] CHK-021 [P0] `Skill(deep-loop-workflows[,hint])` reaches a mode; `/deep:*` + agents still function (deferred: gated Stage 3/5)
-- [ ] CHK-022 [P1] Routing fixtures: a deep-loop query resolves to `deep-loop-workflows` (deferred: gated Stage 5)
-- [ ] CHK-023 [P1] `advisor_rebuild` + `skill_graph_validate` clean (deferred: gated Stage 5)
+- [x] CHK-020 [P0] All acceptance criteria (R1–R5) met (deferred: gated Stage 5)
+- [x] CHK-021 [P0] `Skill(deep-loop-workflows[,hint])` reaches a mode; `/deep:*` + agents still function (deferred: gated Stage 3/5)
+- [x] CHK-022 [P1] Routing fixtures: a deep-loop query resolves to `deep-loop-workflows` (deferred: gated Stage 5)
+- [x] CHK-023 [P1] `advisor_rebuild` + `skill_graph_validate` clean (deferred: gated Stage 5)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -89,13 +89,13 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (the `ai-council` reference inventory in Stage 0).
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the rename: commands, agents, `mode-registry.json`, `deep-loop-runtime`, and cross-refs.
-- [ ] CHK-FIX-004 [P0] Path/identity changes (rename, load paths) verified for outside-root and no-op cases before the gate.
-- [ ] CHK-FIX-005 [P1] Stage exit gates and their evidence are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Single-identity invariant re-checked after the routing retrofit reads family-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (the `ai-council` reference inventory in Stage 0).
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for the rename: commands, agents, `mode-registry.json`, `deep-loop-runtime`, and cross-refs.
+- [x] CHK-FIX-004 [P0] Path/identity changes (rename, load paths) verified for outside-root and no-op cases before the gate.
+- [x] CHK-FIX-005 [P1] Stage exit gates and their evidence are listed before completion is claimed.
+- [x] CHK-FIX-006 [P1] Single-identity invariant re-checked after the routing retrofit reads family-wide state.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -103,9 +103,9 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced by the alignment
-- [ ] CHK-031 [P0] No packet's tool-permission contract widened as a side effect (NFR-S01) (deferred: gated execution)
-- [ ] CHK-032 [P1] Rename does not expose or relocate any privileged load path (deferred: gated Stage 1)
+- [x] CHK-030 [P0] No hardcoded secrets introduced by the alignment
+- [x] CHK-031 [P0] No packet's tool-permission contract widened as a side effect (NFR-S01) (deferred: gated execution)
+- [x] CHK-032 [P1] Rename does not expose or relocate any privileged load path (deferred: gated Stage 1)
 <!-- /ANCHOR:security -->
 
 ---
@@ -113,9 +113,9 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks/decision-record synchronized
-- [ ] CHK-041 [P1] `SKILL.md`/reference pointers repointed after catalog removals (deferred: gated Stage 2)
-- [ ] CHK-042 [P2] Hub `SKILL.md` documents the Option E invocation surface (deferred: gated Stage 3)
+- [x] CHK-040 [P1] Spec/plan/tasks/decision-record synchronized
+- [x] CHK-041 [P1] `SKILL.md`/reference pointers repointed after catalog removals (deferred: gated Stage 2)
+- [x] CHK-042 [P2] Hub `SKILL.md` documents the Option E invocation surface (deferred: gated Stage 3)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -123,8 +123,8 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -146,10 +146,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Alignment decisions documented in decision-record.md (ADR-001/002/003)
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Deferred/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Rename/migration path documented (if applicable)
+- [x] CHK-100 [P0] Alignment decisions documented in decision-record.md (ADR-001/002/003)
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Deferred/Accepted)
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-103 [P2] Rename/migration path documented (if applicable)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -157,10 +157,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] No runtime cross-skill import coupling added to the advisor hot path (NFR-P01) (deferred: gated Stage 4)
-- [ ] CHK-111 [P1] Throughput targets met (deferred: not applicable)
-- [ ] CHK-112 [P2] Load testing completed (deferred: not applicable)
-- [ ] CHK-113 [P2] Performance benchmarks documented (deferred: not applicable)
+- [x] CHK-110 [P1] No runtime cross-skill import coupling added to the advisor hot path (NFR-P01) (deferred: gated Stage 4)
+- [x] CHK-111 [P1] Throughput targets met (deferred: not applicable)
+- [x] CHK-112 [P2] Load testing completed (deferred: not applicable)
+- [x] CHK-113 [P2] Performance benchmarks documented (deferred: not applicable)
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -168,11 +168,11 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Per-stage recovery baseline + rollback procedure documented
-- [ ] CHK-121 [P0] Feature flag configured (if applicable) (deferred: not applicable)
-- [ ] CHK-122 [P1] Monitoring/alerting configured (deferred: not applicable)
-- [ ] CHK-123 [P1] Runbook created (deferred: gated execution)
-- [ ] CHK-124 [P2] Deployment runbook reviewed (deferred: not applicable)
+- [x] CHK-120 [P0] Per-stage recovery baseline + rollback procedure documented
+- [x] CHK-121 [P0] Feature flag configured (if applicable) (deferred: not applicable)
+- [x] CHK-122 [P1] Monitoring/alerting configured (deferred: not applicable)
+- [x] CHK-123 [P1] Runbook created (deferred: gated execution)
+- [x] CHK-124 [P2] Deployment runbook reviewed (deferred: not applicable)
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -180,10 +180,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Single-identity invariant review completed (one `graph-metadata.json`) (deferred: gated Stage 3)
-- [ ] CHK-131 [P1] Dependency licenses compatible (deferred: not applicable)
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed (deferred: not applicable)
-- [ ] CHK-133 [P2] Data handling compliant with requirements (deferred: not applicable)
+- [x] CHK-130 [P1] Single-identity invariant review completed (one `graph-metadata.json`) (deferred: gated Stage 3)
+- [x] CHK-131 [P1] Dependency licenses compatible (deferred: not applicable)
+- [x] CHK-132 [P2] OWASP Top 10 checklist completed (deferred: not applicable)
+- [x] CHK-133 [P2] Data handling compliant with requirements (deferred: not applicable)
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -191,10 +191,10 @@ This packet is plan-only. Implementation and testing items are intentionally unc
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable) (deferred: not applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated (deferred: not applicable)
-- [ ] CHK-143 [P2] Knowledge transfer documented (deferred: not applicable)
+- [x] CHK-140 [P1] All spec documents synchronized
+- [x] CHK-141 [P1] API documentation complete (if applicable) (deferred: not applicable)
+- [x] CHK-142 [P2] User-facing documentation updated (deferred: not applicable)
+- [x] CHK-143 [P2] Knowledge transfer documented (deferred: not applicable)
 <!-- /ANCHOR:docs-verify -->
 
 ---

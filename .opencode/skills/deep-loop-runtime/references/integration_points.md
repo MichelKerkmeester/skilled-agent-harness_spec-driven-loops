@@ -162,7 +162,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
 | 1 | `/deep:ai-council` command | `.opencode/commands/deep/assets/deep_ai-council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
-| 2 | `deep-ai-council` orchestration | `.opencode/skills/deep-loop-workflows/ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
+| 2 | `deep-ai-council` orchestration | `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to deep-loop-runtime scripts |
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
 | 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |

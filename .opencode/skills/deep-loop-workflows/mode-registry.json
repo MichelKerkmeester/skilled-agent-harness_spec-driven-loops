@@ -66,7 +66,7 @@
       "workflowMode": "ai-council",
       "runtimeLoopType": "council",
       "backendKind": "runtime-loop-type",
-      "packet": "ai-council",
+      "packet": "deep-ai-council",
       "command": "/deep:ai-council",
       "agent": "ai-council",
       "artifactRoot": "ai-council/",

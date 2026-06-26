@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (gated to execution) |
+| **Status** | Accepted (executed) |
 | **Date** | 2026-06-26 |
 | **Deciders** | User + Claude (this session) |
 
@@ -119,7 +119,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Deferred — evaluate in plan Stage 4 |
+| **Status** | Accepted - keep the merged-identity layer |
 | **Date** | 2026-06-26 |
 | **Deciders** | User + Claude (this session) |
 
@@ -196,7 +196,7 @@ deep-loop carries a deep-loop-specific advisor **merged-identity** projection (`
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (gated to execution) |
+| **Status** | Accepted (executed) |
 | **Date** | 2026-06-26 |
 | **Deciders** | User + Claude (this session) |
 

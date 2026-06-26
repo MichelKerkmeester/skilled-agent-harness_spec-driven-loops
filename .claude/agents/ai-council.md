@@ -16,7 +16,7 @@ The Multi-AI Council is a scoped-write planning architect that seeks diverse AI 
 
 ## Deep Mode Availability
 
-Single-round council behavior remains the default for this agent. Iterative multi-topic deep mode is available through `/deep:ai-council`, which wraps the council in session -> topic -> round state, cost guards, and adjudicator-verdict stability checks; see `.opencode/skills/deep-loop-workflows/ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
+Single-round council behavior remains the default for this agent. Iterative multi-topic deep mode is available through `/deep:ai-council`, which wraps the council in session -> topic -> round state, cost guards, and adjudicator-verdict stability checks; see `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
 
 ## Convergence Threshold Semantics
 
@@ -405,7 +405,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
-The canonical schema for §8 lives at `.opencode/skills/deep-loop-workflows/ai-council/references/structure/output_schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+The canonical schema for §8 lives at `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
 
 ### Multi-AI Council Report
 
@@ -627,7 +627,7 @@ File shape contracts:
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
 - `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-Reference: `.opencode/skills/deep-loop-workflows/ai-council/references/structure/folder_layout.md`.
+Reference: `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/folder_layout.md`.
 
 ---
 
@@ -647,7 +647,7 @@ Reference: `.opencode/skills/deep-loop-workflows/ai-council/references/structure
 2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Append state events; do not rewrite history.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
-Reference: `.opencode/skills/deep-loop-workflows/ai-council/references/structure/state_format.md`.
+Reference: `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md`.
 
 ---
 
@@ -680,7 +680,7 @@ type ArtifactSuperseded = {event:"artifact_superseded"; original_path:string; ro
 
 Writer-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; v1.2 writers emit `"1.2"`, `protocol:"ai-council"`, and `producer:"persist-artifacts@1.2.0"`.
 
-Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/deep-loop-workflows/ai-council/references/structure/state_format.md`.
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md`.
 
 ---
 
@@ -699,14 +699,14 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ## 16. COUNCIL PERSISTENCE PROTOCOL
 
-The council writes packet artifacts directly through `.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
+The council writes packet artifacts directly through `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
 
 Scoped-write rules:
 
 1. **Allowed root**: `<packet>/ai-council/**` only.
 2. **Denied operations**: Bash and Patch remain denied. Do not shell out for persistence.
 3. **Out-of-scope writes**: any target outside `ai-council/**` must fail with `OUT_OF_SCOPE_WRITE` before touching the filesystem.
-4. **Helper fallback**: non-council callers may still invoke `.opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs`. The helper is now a thin CLI wrapper around the same library exports.
+4. **Helper fallback**: non-council callers may still invoke `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs`. The helper is now a thin CLI wrapper around the same library exports.
 
 Depth-1 rule: the LEAF council owns writes to `ai-council/**` directly. The dispatching parent owns code/spec implementation after the council returns, but it does not need to invoke the helper for normal council artifact persistence.
 
@@ -717,7 +717,7 @@ Forward-only scope: this convention applies to council dispatches from this poin
 Fallback callers may add `--memory-save-payload-out FILE` when invoking the helper. On `council_complete`, the helper writes a `generate-context.js` compatible JSON payload; without the flag, no payload is written.
 
 ```bash
-node .opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs <packet> \
+node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file council-report.md \
   --memory-save-payload-out /tmp/council-payload.json
 
@@ -725,7 +725,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 
-The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/deep-loop-workflows/ai-council/references/patterns/command_wiring.md`.
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/deep-loop-workflows/deep-ai-council/references/patterns/command_wiring.md`.
 
 ---
 

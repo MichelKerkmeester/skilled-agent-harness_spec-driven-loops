@@ -316,8 +316,7 @@ Lane B benchmarks a model or prompt framework instead of mutating an agent file.
 
 ---
 
-## 6. MULTI-ITER METHODOLOGY
-
+## 6. HOW IT WORKS (Multi-Iteration Methodology)
 For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pass gives better breadth, better synthesis, and less noise than a single-executor run.
 
 - **Mixed-executor 8+2 split**: run breadth iterations on a breadth executor (e.g. cli-opencode or cli-codex with a fast model) and synthesis iterations on a synthesis executor (e.g. cli-codex gpt-5.5). For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
