@@ -31,6 +31,7 @@ Tune the popover and tooltip motion for a dense toolbar. The first tooltip can w
 3. Specify origin-aware popover movement from the trigger edge.
 4. Specify delayed first tooltip and instant warm follow-up behavior.
 5. Include reduced-motion and slow-motion debugging checks.
+6. If the effect becomes ambitious, expensive, or technically extraordinary, require a proposal before implementation.
 
 ## Pass Criteria
 
@@ -38,4 +39,5 @@ Tune the popover and tooltip motion for a dense toolbar. The first tooltip can w
 - Tooltip follow-up timing is immediate while the cluster is warm.
 - `@starting-style` is suggested only for CSS mounted entries.
 - Framer Motion shorthand is caveated under load.
+- High-ambition effects are proposed before building, naming the effect, served user moment, materials, performance budget, and reduced-motion fallback.
 - No extra motion is added beyond the interaction need.

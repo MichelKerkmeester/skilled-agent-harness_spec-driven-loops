@@ -33,9 +33,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 14 deterministic scenarios across 12 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 17 deterministic scenarios across 13 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique each with a negative control, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface_preflight_card.md`.
+Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface_preflight_card.md`.
 
 ### Realistic Test Model
 
@@ -131,7 +131,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 15`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 17`).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -152,7 +152,7 @@ Before declaring this playbook release-ready, confirm:
 7. Every pass/fail rule cites a real interface source file.
 8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
 9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
-10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check.
+10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check, and no native-image direction branch unless the work is net-new, ambiguous, or image-led with approval before code.
 11. The design-references routing scenario records its three branches (initiative, ask, fall-back), the Mobbin-vs-Refero source pick, and its negative control: no chooser or gallery, no copied or cached reference, read live, and grounding kept upstream.
 12. The mechanical pre-flight card scenario records the filled context table, a binary mark on every box, the failing box numbers, and a SHIP verdict reached only with zero failing boxes.
 13. The mechanical layout gate scenario records the counted hero lines, bento cells, and eyebrows against the `ceil(sectionCount / 3)` ceiling, with button contrast computed against the real background rather than assumed white.
@@ -167,7 +167,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 15-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 17-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -186,7 +186,7 @@ This section records wave planning and capacity guidance for executing the 15-sc
 | 1 | Direction freedom + brief pinning | ID-001, ID-002 | The deviate-vs-obey precedence pair is the core behavior and isolates cleanly |
 | 2 | Quality floor + system critique | ID-003, ID-004 | The objective gate reads on-disk references while the critique-against scenario reads one real design system live, and both are read-only and isolate cleanly |
 | 3 | Abstention and routing | ID-005, ID-006 | Routing away from non-visual work is read-only and isolates from the design path |
-| 4 | Real-UI loop | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the real-UI loop protocol and the render surface |
+| 4 | Real-UI loop | ID-008, ID-009, ID-017 | Reuse-before-generate, the fidelity check, and the guarded native-image branch share the real-UI loop protocol and the render surface |
 | 5 | Design-references routing | ID-010 | The initiative/ask/fall-back gate reads one design-references doc and exercises a paid-lookup decision, so it runs in its own wave to isolate the subscription-status branch |
 | 6 | Mechanical pre-flight + layout + content gates | ID-011, ID-012, ID-013 | The three delivery gates all read on-disk references against one supplied built UI fixture, so they share the render fixture and isolate cleanly |
 | 7 | Brief-to-dials intake | ID-014 | The Design Read intake reads a brief into the dials after the register posture, so it runs with the other intake-shaped checks and isolates the dial calibration |
@@ -352,9 +352,9 @@ Desired user-visible outcome: A provenance report confirming `design_principles.
 
 ---
 
-## 13. REAL-UI LOOP (ID-008..ID-009)
+## 13. REAL-UI LOOP (ID-008, ID-009, ID-017)
 
-This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
 
 ### ID-008 | Reuse before generate when a design system is present
 
@@ -387,6 +387,22 @@ Desired user-visible outcome: A fidelity verdict over the real render that names
 #### Test Execution
 
 > **Feature File:** [ID-009](07--real-ui-loop/009-render-fidelity-check.md)
+
+### ID-017 | Guarded native-image visual-direction branch
+
+#### Description
+
+The native-image branch runs only for net-new, ambiguous, or image-led mid-fidelity work when image generation is available, confirms the palette first, creates 1-3 brief-specific mock directions, critiques them, and waits for approval before code.
+
+#### Scenario Contract
+
+Prompt: `This is a net-new image-led landing page. Use native image generation to explore the visual direction before writing code.`
+
+Desired user-visible outcome: A compact visual-direction packet with guarded-condition proof, palette, 1-3 mock directions, critique, approval request, and no implementation started from an unapproved image direction.
+
+#### Test Execution
+
+> **Feature File:** [ID-017](07--real-ui-loop/017-native-image-visual-direction-branch.md)
 
 ---
 
@@ -478,9 +494,9 @@ Desired user-visible outcome: A pass/fail content report keyed to the `copy_and_
 
 ---
 
-## 18. BRIEF-TO-DIALS INTAKE (ID-014)
+## 18. BRIEF-TO-DIALS INTAKE (ID-014, ID-016)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
 
 ### ID-014 | Brief read into the variance, motion, and density dials
 
@@ -497,6 +513,22 @@ Desired user-visible outcome: A one-line Design Read that names the subject, the
 #### Test Execution
 
 > **Feature File:** [ID-014](12--brief-to-dials-intake/014-brief-read-into-dials.md)
+
+### ID-016 | Register-first context gate on a UI build
+
+#### Description
+
+A UI build request sets the Brand-vs-Product register and dials before palette, layout, motion, copy, or delivery language, names the loaded context bundle, and refuses to proceed when those proof fields are missing.
+
+#### Scenario Contract
+
+Prompt: `Design a dense operations dashboard for incident commanders and show the register, dials, and loaded context before any visual choices.`
+
+Desired user-visible outcome: A context-loaded card that sets Product register first, states the variance, motion, and density dials, names the required files from the shared context-loading contract, and blocks any palette, layout, motion, or copy decision until the register proof is present.
+
+#### Test Execution
+
+> **Feature File:** [ID-016](12--brief-to-dials-intake/016-register-first-context-gate.md)
 
 ---
 
@@ -530,12 +562,14 @@ The current repository has no dedicated automated test module for `interface/man
 |---|---|---|
 | `references/design-grounding/design_inventory.md` | The reuse-ground and critique-against framing over a live design system; the no-chooser and no-cache hard rules | ID-004 |
 | `references/design-process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
-| `references/design-process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
+| `references/design-process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, the guarded native-image branch, and the no-style-presets guardrail | ID-008, ID-009, ID-017 |
 | `references/design-grounding/design_references_mcp.md` | The design-references initiative/ask/fall-back gate, the Mobbin-vs-Refero source pick, and the no-chooser, read-live, never-copied hard rules | ID-010 |
 | `assets/interface_preflight_card.md` | The binary fill-in pre-flight card walked box by box as the last filter, with the SHIP-only-when-all-pass verdict | ID-011 |
 | `references/design-process/mechanical_defaults.md` | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing | ID-012 |
 | `references/design-process/copy_and_mock_data.md` | The content gate: lorem and filler sweep, AI-tell phrasing, fake-precision rules, one copy register, and image-seed discipline | ID-013 |
-| `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014 |
+| `../shared/context_loading_contract.md` | The shared context manifest and register/dials gate that blocks design decisions before loaded-file proof exists | ID-016 |
+| `../shared/register.md` | The Brand-vs-Product operating posture that must be set before color, type, layout, motion, copy, or audit severity decisions | ID-016 |
+| `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014, ID-016 |
 | `references/design-process/redesign_intake.md` | The redesign classification gate and never-silently-change list for existing surfaces | ID-015 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
@@ -555,9 +589,11 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](06--licensing-and-provenance/007-licensing-and-provenance-integrity.md) |
 | ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](07--real-ui-loop/008-reuse-before-generate-with-design-system.md) |
 | ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](07--real-ui-loop/009-render-fidelity-check.md) |
+| ID-017 | Guarded native-image visual-direction branch | REAL-UI LOOP | [ID-017](07--real-ui-loop/017-native-image-visual-direction-branch.md) |
 | ID-010 | Design-references initiative/ask routing for Mobbin and Refero | DESIGN-REFERENCES ROUTING | [ID-010](08--design-references-routing/010-initiative-ask-fallback-routing.md) |
 | ID-011 | Mechanical pre-flight card on a built UI | MECHANICAL PRE-FLIGHT CARD | [ID-011](09--mechanical-preflight-card/011-preflight-card-on-built-ui.md) |
 | ID-012 | Mechanical layout gate on a built UI | MECHANICAL LAYOUT GATE | [ID-012](10--mechanical-layout-gate/012-mechanical-layout-gate-on-built-ui.md) |
 | ID-013 | Content and mock-data gate on a built UI | CONTENT AND MOCK-DATA GATE | [ID-013](11--content-and-mock-data-gate/013-content-and-mock-data-gate-on-built-ui.md) |
 | ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](12--brief-to-dials-intake/014-brief-read-into-dials.md) |
 | ID-015 | Redesign intake classification | REDESIGN INTAKE | [ID-015](13--redesign-intake/015-redesign-intake-classification.md) |
+| ID-016 | Register-first context gate on a UI build | BRIEF-TO-DIALS INTAKE | [ID-016](12--brief-to-dials-intake/016-register-first-context-gate.md) |

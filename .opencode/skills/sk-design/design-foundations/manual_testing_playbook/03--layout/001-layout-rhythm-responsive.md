@@ -33,12 +33,14 @@ Fix the layout system for a desktop dashboard that becomes a mobile task flow wi
 2. Load `references/layout/layout_responsive.md`.
 3. Define spacing scale, grouping, hierarchy, and grid behavior.
 4. Adapt the experience for touch and mobile context instead of only scaling widths.
+5. Use an intrinsic grid recipe before media queries for simple card, gallery, tile, or metric grids.
 
 ## Pass Criteria
 
 - Uses a spacing scale and proximity before adding containers.
 - Chooses grid/flex by structural need.
 - Defines the grid contract before placement, including columns, gutters, page margins, and region ownership for phone, tablet, and desktop breakpoints.
+- For simple equal-width tile grids, reaches first for `repeat(auto-fit, minmax(280px, 1fr))` before breakpoint-specific media queries.
 - Names comfortable and compact density behavior from the same spacing scale while preserving touch targets, focus rings, and readable row height.
 - Applies containment restraint: borders, fills, elevation, and cards are used only when proximity, alignment, headings, or dividers are insufficient.
 - Keeps core functionality available on mobile.

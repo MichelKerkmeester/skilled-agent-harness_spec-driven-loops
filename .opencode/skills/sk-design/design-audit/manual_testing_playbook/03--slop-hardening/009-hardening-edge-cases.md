@@ -36,12 +36,15 @@ Supply one concrete interactive artifact in the `<TARGET>` slot that takes input
 
 1. Load `references/hardening_edge_cases.md` and `references/audit_contract.md`.
 2. Walk the matrix against real evidence, labeling any probe that cannot run on the available evidence as inferred.
-3. File each failure with the exact element, the user impact and a severity.
-4. Route the owner: `foundations` for layout, logical-property and token fixes, `interface` for empty-state and error-state direction, `sk-code` for implementation.
+3. Probe overlays from inside scroll panels, cards, drawers, and constrained layout regions to catch clipping and stacking-context traps.
+4. File each failure with the exact element, the user impact and a severity.
+5. Route the owner: `foundations` for layout, logical-property and token fixes, `interface` for empty-state and error-state direction, `sk-code` for implementation.
 
 ## Pass Criteria
 
 - Probes cover extreme inputs, API and network errors, permissions and rate limits, concurrency, internationalization and RTL, text expansion and CJK and emoji.
+- Flags dropdowns, menus, or tooltips rendered with `position: absolute` inside `overflow: hidden` or `overflow: auto` containers when they clip, hide, or scroll away.
+- Names the fix shape for trapped overlays: native `<dialog>`, popover API, `position: fixed` with measured coordinates, or a portal that escapes the overflow and stacking context.
 - A missing empty, loading or error state is filed as a production-readiness finding even when the happy path is flawless.
 - Applies the Polish As Trust lens by scanning repeated consistency failures, grid-alignment drift, spacing/radius/icon mismatches, and fallback states with a lower craft bar than the primary flow.
 - Holds error, empty, loading, disabled, permission, and success states to primary-flow quality before marking the interface production-ready.
