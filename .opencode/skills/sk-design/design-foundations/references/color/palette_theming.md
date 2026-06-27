@@ -70,6 +70,8 @@ The canonical color roles are primary/accent, neutral, semantic, surface, border
 | Surface | cards, modals, overlays | Supports depth and grouping without nested-card clutter. |
 | Border/stroke | separation | Prefer hairline full borders over decorative side stripes. |
 
+Semantically loaded colors may need locale-aware review when status, ritual, political, or cultural meaning could change by market.
+
 ---
 
 ## 5. TINTED NEUTRALS
@@ -90,6 +92,18 @@ Dark mode is not inverted light mode.
 | White canvas | Deep brand-tinted canvas or black when the brand supports it |
 
 Build a three-step dark surface scale where raised surfaces get lighter, such as `L 0.15`, `0.20`, `0.25`, with consistent hue/chroma. Reduce body text weight slightly in dark mode (e.g. 350 vs 400), because light text on a dark surface reads as heavier than dark text on light.
+
+### Optical Separators And Depth
+
+- Give images a `1px` inset outline as an optical separator: `rgba(0,0,0,0.1)` in light mode and `rgba(255,255,255,0.1)` in dark mode, with `outline-offset: -1px` so it does not affect layout. This is an exception to tinted neutrals: a tinted image outline picks up the surrounding surface color and reads as dirt on the image edge.
+- Image-edge outlines are not semantic border tokens, accent rings, or layout-affecting borders.
+- For a raised control, card, container, or overlay that needs depth, a transparent layered shadow ring may replace a decorative depth border. It must not coexist with a solid `1px` border plus a wide shadow on the same element; that combination is the existing ghost-card AI tell and stays a defect.
+- Dividers, table cell boundaries, and form-input outlines remain real borders.
+- In dark mode, a single low-opacity white ring can work as an optical separator or state/focus ring. It is not the primary elevation system; dark-mode depth should come from lightness steps, not stacked shadows.
+
+### Theme-Specific Media
+
+Verify logos, illustrations, screenshots, maps, charts, and embedded media in every supported theme. Some assets need separate light/dark files; others need a theme-specific matte, crop, or contrast treatment so the image content still reads and the brand mark does not disappear into the surface.
 
 ---
 

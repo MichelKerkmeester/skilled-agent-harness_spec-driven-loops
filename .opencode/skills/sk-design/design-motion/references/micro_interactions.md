@@ -45,11 +45,67 @@ Design the small, local feedback that makes an interface feel alive and trustwor
 
 Interactive controls REQUIRE an active/pressed state; a hover-only control fails physics expectations. Press feedback scales down into the `0.95-1.0` range (`0.96` is a good default) and never below `0.95`, which reads as exaggerated. The `1.05` value belongs to a hover lift, not a press.
 
+For controls where press shrink would distract, fight the interaction, or make the control feel unstable, expose a `static` prop that disables only the transform feedback. Default controls keep pressed feedback; the escape hatch is for static-feeling surfaces such as scrubbers, segmented controls, dense toolbars, or controls that already move content.
+
+```tsx
+type PressableProps = {
+  static?: boolean;
+};
+
+function Pressable({ static: isStatic, ...props }: PressableProps) {
+  return <button data-static={isStatic ? "true" : undefined} {...props} />;
+}
+```
+
+```css
+.pressable {
+  transition: transform 120ms var(--ease-out-quart);
+}
+
+.pressable:active:not([data-static="true"]) {
+  transform: scale(var(--press-scale));
+}
+```
+
 ### Animation Mechanism
 
 - Use CSS transitions for interactive state changes (hover, active, focus, toggle). They can be interrupted mid-animation, so a user who reverses an action gets an immediate response instead of waiting for a keyframe sequence to finish.
 - Reserve keyframes (`@keyframes`, one-shot Motion sequences) for staged sequences that run once, such as a success flourish or an entrance.
 - For springs on most UI and icon motion, set `bounce: 0` (for example `transition: { type: "spring", duration: 0.3, bounce: 0 }`). Keep overshoot only when an element should physically settle; default icon and control springs should not bounce.
+
+When a project has no animation library, swap contextual state or hover icons with CSS only. Keep both icons in the DOM, absolutely position one over the other, and cross-fade the active state. The entering icon moves from `scale(0.25)` to `scale(1)`, opacity `0` to `1`, and `blur(4px)` to `blur(0)` with `cubic-bezier(0.2, 0, 0, 1)`. Because neither icon unmounts, enter and exit both animate. Do not add an animation dependency for icon swaps alone.
+
+```css
+.iconSwap {
+  position: relative;
+  display: inline-block;
+}
+
+.iconSwapIcon {
+  display: block;
+  transition:
+    opacity 180ms cubic-bezier(0.2, 0, 0, 1),
+    transform 180ms cubic-bezier(0.2, 0, 0, 1),
+    filter 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.iconSwapIcon + .iconSwapIcon {
+  position: absolute;
+  inset: 0;
+}
+
+.iconSwapIcon[data-active="false"] {
+  opacity: 0;
+  transform: scale(0.25);
+  filter: blur(4px);
+}
+
+.iconSwapIcon[data-active="true"] {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+```
 
 ## 3. Loading And Waiting
 

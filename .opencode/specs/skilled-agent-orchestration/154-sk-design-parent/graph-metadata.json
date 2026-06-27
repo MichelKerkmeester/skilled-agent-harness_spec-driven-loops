@@ -24,7 +24,13 @@
     "skilled-agent-orchestration/154-sk-design-parent/018-routing-wiring",
     "skilled-agent-orchestration/154-sk-design-parent/019-handoff-card",
     "skilled-agent-orchestration/154-sk-design-parent/020-benchmark-fixtures",
-    "skilled-agent-orchestration/154-sk-design-parent/021-content-topups"
+    "skilled-agent-orchestration/154-sk-design-parent/021-content-topups",
+    "skilled-agent-orchestration/154-sk-design-parent/022-mifb-design-research",
+    "skilled-agent-orchestration/154-sk-design-parent/023-mifb-design-adoption",
+    "skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research",
+    "skilled-agent-orchestration/154-sk-design-parent/025-audit-adoption",
+    "skilled-agent-orchestration/154-sk-design-parent/026-interface-motion-adoption",
+    "skilled-agent-orchestration/154-sk-design-parent/027-foundations-adoption"
   ],
   "manual": {
     "depends_on": [],
@@ -102,7 +108,7 @@
     ],
     "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
     "created_at": "2026-06-25T10:04:30Z",
-    "last_save_at": "2026-06-27T05:47:43.392Z",
+    "last_save_at": "2026-06-27T12:05:10.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -112,7 +118,7 @@
     "source_doc_hashes": {
       "spec.md": "cc20a90daa21f1e2f8b7371a810d15627266facfe08e0f6e1e16f421c658d0cb"
     },
-    "last_active_child_id": "skilled-agent-orchestration/154-sk-design-parent/016-register-loader-contract",
-    "last_active_at": "2026-06-27T00:00:00.000Z"
+    "last_active_child_id": "skilled-agent-orchestration/154-sk-design-parent/027-foundations-adoption",
+    "last_active_at": "2026-06-27T12:05:10.050Z"
   }
 }

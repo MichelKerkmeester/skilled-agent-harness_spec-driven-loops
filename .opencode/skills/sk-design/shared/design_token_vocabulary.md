@@ -70,6 +70,8 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 - **Radius**: corner treatment and softness.
 - **Shadow**: depth cue, not decoration by default.
+- **Image-edge outline**: an inset 1px pure-black or pure-white optical separator on images, distinct from semantic border tokens.
+- **Shadow ring**: a transparent shadow used as a depth or border replacement, distinct from a solid border.
 - **Stroke**: border width and emphasis.
 - **Layer**: z-axis ordering for sticky bars, popovers, modals, and overlays.
 - **Material**: the combined surface behavior: flat, tactile, translucent, recessed, or raised.

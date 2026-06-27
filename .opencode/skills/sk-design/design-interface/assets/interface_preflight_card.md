@@ -85,6 +85,7 @@ Count `__` eyebrows against a ceiling of `__`.
 | One label per intent across the whole page (nav, hero, footer) | [ ] |
 | Form inputs, placeholders, focus rings, helper and error text all pass contrast against the section background | [ ] |
 | Label sits above the input, error text below, no placeholder-as-label | [ ] |
+| Hit areas are at least 44x44, and expanded hit areas do not overlap neighboring controls | [ ] |
 
 ---
 
@@ -98,6 +99,7 @@ Count `__` eyebrows against a ceiling of `__`.
 | Every multi-column section declares its narrow-viewport fallback explicitly | [ ] |
 | Viewport-height sections use a dynamic-viewport unit, never a fixed screen height | [ ] |
 | At most one repeat per layout family, at most two consecutive zigzag splits, no default split-header | [ ] |
+| Icons, play triangles, and icon-text buttons are optically aligned, with tiny nudges where the math looks off | [ ] |
 
 ---
 
@@ -111,6 +113,7 @@ Count `__` eyebrows against a ceiling of `__`.
 | No div-based fake product UI, no sketchy hand-rolled SVG as a fallback | [ ] |
 | No decoration pills or photo-credit captions overlaid on placeholder images | [ ] |
 | Every meaningful image has real alt text | [ ] |
+| Image edges over variable backgrounds use an inset pure black/white alpha outline, not a tinted stroke | [ ] |
 
 ---
 
@@ -152,6 +155,7 @@ Count `__` eyebrows against a ceiling of `__`.
 | No three-equal-card feature row, no hero-metric template (big number, small label, supporting stats, gradient accent) | [ ] |
 | No side-stripe borders, no gradient text, no decorative glassmorphism by default | [ ] |
 | Icons from one allowed library, no hand-rolled SVG icon paths | [ ] |
+| Nested border radii are concentric, with the inner radius reduced by the inset spacing | [ ] |
 | If someone could say "AI made that" without doubt, it has failed: reworked until the answer is not obvious from the category alone | [ ] |
 
 ---

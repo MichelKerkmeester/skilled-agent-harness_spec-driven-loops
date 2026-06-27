@@ -19,6 +19,12 @@ How to use a card: copy the table, replace every `__________` and tick the boxes
 
 ---
 
+## 0. OVERVIEW
+
+These cards are handoff artifacts, not reusable components. Fill one card per interaction, keep it attached to the surface that owns the behavior, and treat any unchecked box as a design problem to resolve before implementation.
+
+---
+
 ## 1. SHARED FIELDS
 
 Every card carries these. They are repeated in each table so a single card can travel on its own.
@@ -186,3 +192,25 @@ Reordering or moving items between containers. A specialized gesture, so it inhe
 | Properties | `__________` (transform, with FLIP for the settle of displaced items) |
 | Reduced motion | `__________` (instant reorder, keep the result, drop the travel) |
 | Checks | [ ] lift feedback present [ ] drop target legible [ ] undo or rollback for meaningful moves [ ] list settle uses FLIP, not layout animation |
+
+---
+
+## 11. ASYNC STATE-MACHINE CARD
+
+Branching async UI needs a state fragment before it needs animation. Use this for upload, sync, payment, import, generation, search, or any flow where pending, success, failure, retry, cancellation, and disabled states can overlap.
+
+| Field | Value |
+|---|---|
+| Owner | `__________` |
+| Purpose | orientation |
+| States | `__________` (idle / pending / success / error / retrying / cancelled / disabled) |
+| Events | `__________` (submit, resolve, reject, retry, cancel, timeout, reset) |
+| Transitions | `__________` (event -> from state -> to state) |
+| Guards | `__________` (conditions that block or redirect a transition) |
+| Impossible states | `__________` (for example loading + success visible at the same time) |
+| Entry actions | `__________` (disable controls, start progress, announce state, focus target) |
+| Exit actions | `__________` (clear timers, restore controls, preserve user input, stop loop) |
+| Visible UI per state | `__________` (copy, control state, affordance, feedback location) |
+| Timing and easing | `__________` (cite `references/motion_strategy.md`; no custom values) |
+| Reduced motion | `__________` (same state feedback, movement removed) |
+| Checks | [ ] every event has a target state [ ] impossible states cannot render [ ] errors preserve recovery path [ ] visible UI matches the current state |

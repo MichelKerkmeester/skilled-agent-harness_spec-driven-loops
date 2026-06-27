@@ -30,6 +30,20 @@ Accessibility and performance are release gates. A beautiful UI that blocks keyb
 
 Prefer native HTML before adding ARIA. Do not add ARIA to compensate for avoidable custom controls.
 
+### Modality Coverage
+
+Before a release-ready accessibility verdict, cover the main modalities:
+
+| Modality | Minimum audit pass |
+| --- | --- |
+| Keyboard | Reach every control, see focus, operate menus/dialogs, and escape overlays. |
+| Screen reader | Names, roles, values, headings, regions, live updates, and error relationships make sense in reading order. |
+| Zoom and reflow | 200% zoom and narrow widths preserve content, controls, and reading order without two-axis scrolling. |
+| High contrast | Text, icons, focus indicators, borders, and selected states survive forced-color or high-contrast themes. |
+| Reduced motion | Motion-heavy feedback has a reduced path without hiding state changes or progress. |
+
+A11y findings can be grouped under POUR when useful: Perceivable, Operable, Understandable, Robust.
+
 ### Concrete Thresholds (verify, do not eyeball)
 
 These are the pass/fail numbers behind the contrast and touch checks. Cite a measured ratio or size in the finding; do not file a contrast or touch P0-P3 on a guess.
@@ -77,12 +91,14 @@ Critical failures:
 - Endless `requestAnimationFrame` loops.
 - Large continuous blur/filter animation.
 - `will-change` applied broadly or permanently.
+- `transition: all` or Tailwind's bare `transition` shorthand on interaction surfaces; both are static-risk findings because they map to broad property animation.
 - Mixing animation libraries inside one interaction surface.
 
 Recommended fixes:
 - Use FLIP for layout-like motion.
 - Use IntersectionObserver for visibility and pausing.
 - Scope paint-heavy effects to small surfaces.
+- Name exact transition properties instead of using all-property shorthands.
 - Pause off-screen loops.
 - Downgrade technique before deleting useful state feedback.
 

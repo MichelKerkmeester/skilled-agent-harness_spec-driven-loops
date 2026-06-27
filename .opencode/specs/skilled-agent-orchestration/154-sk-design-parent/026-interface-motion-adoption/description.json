@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/026-interface-motion-adoption",
+  "description": "The 024 backlog's interface and motion items had not been applied",
+  "keywords": [
+    "024",
+    "backlog",
+    "interface",
+    "motion",
+    "items",
+    "applied"
+  ],
+  "lastUpdated": "2026-06-27T12:05:06.445Z",
+  "specId": "026",
+  "folderSlug": "interface-motion-adoption",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-06-26_13-05__build-phase-026-interface-motion-adoption-applied.md"
+  ]
+}

@@ -233,6 +233,7 @@ Every extraction runs as a sequential pipeline. No phase can be skipped in a ful
 EXTRACT (Phase 1)
     ├─ Playwright crawls the target URL across 5 viewports (mobile through wide desktop)
     ├─ Collects computed CSS: colors, typography, shadows, radii, spacing, CSS variables
+    ├─ Preserves measured image-edge outlines, box-shadows, nested/concentric radii, root font smoothing, and hit-target affordances when present
     ├─ Detects dark-mode palette, framework markers, icon system, motion tokens, a11y data
     ├─ Each token tagged with a 4-layer stability class (L1 permanent → L4 content)
     └─ Output: tokens.json (verbatim measured values)

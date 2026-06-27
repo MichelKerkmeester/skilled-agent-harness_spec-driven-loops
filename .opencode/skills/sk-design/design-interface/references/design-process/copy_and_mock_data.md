@@ -114,6 +114,14 @@ A register is the voice and texture of the words. Mixing registers in one compos
 - **Each element does exactly one job.** A label labels, an example demonstrates, a caption captions. Nothing quietly does double duty. A control names what people recognize and control, never how the system is built (a person manages notifications, not webhook config).
 - **Consistency is how people learn the surface.** The vocabulary of an interface is the signposting. An action keeps its name through the flow, terms stay stable across sections. Cohesion is a usability property, not a style preference.
 
+### State Copy Formulas
+
+State copy keeps the same voice across the flow, but its tone changes with the moment: calm for errors, direct for empty states, brief for success, and specific for actions.
+
+- **Error message:** what happened -> why, if known -> what to do next. Keep it near the failed field or action.
+- **Empty state:** what will appear here -> the action that creates it -> a light encouragement -> one clear CTA.
+- **CTA:** verb -> specific outcome -> matches the user's intent and the follow-up state. If the button says "Publish", the confirmation says "Published".
+
 **Pass check:** read the surface end to end and name its register in one phrase. Confirm no section breaks into a different register without a brand reason. Confirm action names are stable across the flow. A mixed register with no brand justification is a fail.
 
 ---

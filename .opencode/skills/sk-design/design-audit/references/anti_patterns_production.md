@@ -33,7 +33,12 @@ Report:
 - Dark mode variants missing or failing contrast.
 - Primitive tokens used directly in components instead of semantic tokens.
 - One-off spacing, radius, shadow, or z-index values.
+- Same-radius nested surfaces: a rounded child inside a rounded parent with small padding and the same `border-radius`; correct close nesting uses `outer radius = inner radius + inset`.
+- Image-edge outlines using tinted or branded neutrals, accent colors, or layout-affecting borders; correct image outlines are inset pure-black/white alpha (`rgba(0,0,0,0.1)` on light, `rgba(255,255,255,0.1)` on dark).
+- Solid `1px` border plus a wide shadow on the same element; file this as the existing ghost-card tell in `ai_fingerprint_tells.md`, while allowing transparent shadow rings that replace a decorative border.
 - Theme switching that leaves stale colors or surfaces.
+- Token tier misuse: primitive tokens in product UI, semantic tokens in low-level primitives, or alias tokens that hide one-off values.
+- Prioritize token cleanup by overuse frequency: fix repeated misuse across components before isolated cosmetic drift.
 
 Map token fixes to `foundations` and implementation to `sk-code`.
 
@@ -58,6 +63,7 @@ Rules (map each finding to P0-P3 by user impact; a broken `content` declaration 
 - Layering needs z-index discipline so decoration does not cover content.
 - Decorative layers should prefer pseudo-elements over extra DOM nodes.
 - Pseudo-elements can expand hit targets with negative inset.
+- Expanded hit areas must not overlap adjacent interactive targets; keep the 44x44 target floor and shrink the pseudo-element inset until targets do not collide.
 
 ## 5. View Transitions
 
@@ -79,6 +85,13 @@ Production-readiness findings include:
 - Offline and slow-network paths missing.
 - Client-only validation for server-required constraints.
 - Missing alt text, captions, or media controls.
+- Component incompleteness: missing anatomy, variants, disabled/loading/error/focus states, or accessible names and keyboard behavior.
+- Pseudo-localization not exercised before localized UI ships: run an expansion plus special-character pass and inspect overflow, truncation, and broken glyph handling.
+
+Release-hardening detectors:
+- Component anatomy: label the required slots, optional slots, interactive targets, focus order, and owned states before calling a component complete.
+- Component states: verify default, hover, focus-visible, active, disabled, loading, empty, error, success, selected, and destructive states where relevant.
+- Component accessibility: check name, role, value, keyboard path, focus visibility, announcements, contrast, and reduced-motion behavior.
 
 ## 7. Finding Owner Map
 

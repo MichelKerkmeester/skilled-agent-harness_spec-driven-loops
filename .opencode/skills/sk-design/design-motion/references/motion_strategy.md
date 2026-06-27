@@ -71,6 +71,7 @@ Reserve `linear` for determinate progress bars and similar progress indicators; 
 ## 5. Staging
 
 - Animate one focal point prominently at a time.
+- On enter, animate semantic chunks separately instead of wrapping the whole surface in one large reveal. Title, body, and actions can each arrive with opacity and a small translate so hierarchy becomes readable as the surface appears. Add bounded blur only after verifying it stays smooth on the target device.
 - Dim modal backgrounds to direct focus.
 - Coordinate z-index and layer hierarchy before animating overlays.
 - Stagger lists only when they are actual related siblings. Cap total delay; reduce per-item delay when the list is long.
@@ -87,6 +88,8 @@ Transform and opacity are reliable defaults, but not the whole palette.
 | Shadow/glow/color | active state, affordance, warmth | local UI only; avoid page-wide effects |
 | FLIP/grid-row | layout-like transitions | measure once, animate transform or bounded row expansion |
 
+For lightweight removals, use a small fixed translate on exit instead of moving the element by its full height or turning the exit into a dramatic departure. Around `12px` is enough to show direction while keeping the exit shorter and softer than the enter.
+
 ## 7. Verification
 
 Check:
@@ -96,3 +99,7 @@ Check:
 - Reduced-motion alternative exists.
 - Motion does not compete with the primary content.
 - Interaction remains usable during and after motion.
+
+For product-scale motion systems, verify the implementation uses named duration and easing tokens mapped to the timing bands in Section 3 and the easing curves in Section 4. Also verify a global reduced-motion override exists, and name the no-motion cases explicitly: high-frequency keyboard paths, repeated table/list operations, dense admin surfaces, and any interaction where movement would delay comprehension.
+
+Every gesture needs a non-gesture alternative and a discoverable affordance before it ships.

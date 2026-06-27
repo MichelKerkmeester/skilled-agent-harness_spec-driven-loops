@@ -100,6 +100,14 @@ The rule under every row: a confirmed finding is read from real evidence, an inf
 
 ---
 
+### Impact Claims Need Impact Evidence
+
+Static and visual evidence can support risk language: hard to scan, visually ambiguous, inaccessible, inconsistent, or production-unready. It cannot support claims about conversion, findability, user confidence, behavior change, support load, revenue, retention, or business impact unless the user supplies metrics, a baseline, usability-test evidence, or experiment results.
+
+When impact evidence is missing, phrase the finding as a design risk and name the evidence that would prove the impact.
+
+---
+
 ## 7. EVIDENCE TO SEVERITY HANDOFF
 
 Once a finding has evidence and a confirmed-or-inferred label, it carries that into the severity and scoring step in `audit_contract.md`. The handoff rules:

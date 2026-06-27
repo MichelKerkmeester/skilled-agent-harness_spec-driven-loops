@@ -43,6 +43,8 @@ Typography is hierarchy and reading comfort first, personality second. Define ro
 | Utility | buttons, nav, badges, dense controls | Stable, compact, high legibility. |
 | Data | numbers, metrics, tables | Use tabular numerals and predictable alignment. |
 
+Use `font-variant-numeric: tabular-nums` for numbers that update dynamically: counters, timers, prices, and updating numeric tables or columns. Static or decorative numerals do not need tabular alignment by default.
+
 ---
 
 ## 3. SCALE
@@ -70,8 +72,13 @@ Pair typefaces by job, not taste alone:
 - Body copy usually reads best at 45 to 75 characters per line.
 - Use `text-wrap: balance` for headings when available.
 - Use `text-wrap: pretty` for paragraphs when available.
+- Apply macOS font smoothing once at the root with `-webkit-font-smoothing: antialiased;` and `-moz-osx-font-smoothing: grayscale;`. Other platforms ignore it, so it is safe globally and should not be repeated per component.
+- Use `text-wrap: balance` only for short headings; browsers only balance short blocks, usually around six lines or fewer.
+- Use `text-wrap: pretty` for short-to-medium body and UI text to avoid orphans.
+- Use neither wrap hint for long text, roughly 10 or more lines, where default wrapping is fine and cheaper.
 - Use truncation or line clamp only when the full value is available elsewhere or not required for the task.
 - Plan for text expansion in localization; German strings run about 20-35% longer and Finnish about 30-40% longer than English.
+- Non-Latin scripts need script-specific checks for line height, weight, fallback fonts, and glyph shaping; CJK, Arabic, Devanagari, and similar systems should not inherit Latin metrics untested.
 
 ---
 

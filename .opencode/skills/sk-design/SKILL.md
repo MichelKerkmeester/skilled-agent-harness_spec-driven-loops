@@ -2,7 +2,7 @@
 name: sk-design
 description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five modes (interface, foundations, motion, audit, md-generator) via mode-registry.json, and each mode holds its own design logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.0.2
 metadata:
   author: OpenCode
   family: sk-code
@@ -67,14 +67,14 @@ sk-design/
   SKILL.md               # this routing hub (no per-mode design logic)
   mode-registry.json     # the discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  references/            # shared design reference base the hub + modes cite
+  shared/                # shared design reference base the hub + modes cite
   design-interface/  design-foundations/  design-motion/  design-audit/  design-md-generator/   # five mode packets
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The mode packet folders are created when the flat skills move under the hub; the hub references those packet paths now.
 
 ### Backend
-The four doc-guidance modes (interface, foundations, motion, audit) consume the shared **design reference base** under `references/` — `anti_slop_principles.md`, `cognitive_laws.md`, `design_token_vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across modes without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
+The four doc-guidance modes (interface, foundations, motion, audit) consume the shared **design reference base** under `shared/` — `anti_slop_principles.md`, `cognitive_laws.md`, `design_token_vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across modes without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
 
 ---
 
@@ -102,7 +102,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 ## 5. REFERENCES
 
-- Shared reference base: `references/anti_slop_principles.md`, `references/cognitive_laws.md`, `references/design_token_vocabulary.md` (cited by every doc-guidance mode).
+- Shared reference base: `shared/anti_slop_principles.md`, `shared/cognitive_laws.md`, `shared/design_token_vocabulary.md` (cited by every doc-guidance mode).
 - Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; `sk-code-review` can audit it after build.

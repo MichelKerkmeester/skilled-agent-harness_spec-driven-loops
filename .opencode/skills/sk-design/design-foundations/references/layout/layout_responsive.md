@@ -43,6 +43,16 @@ Rules:
 - Use semantic custom properties (`--space-xs`, `--space-section`) when defining tokens.
 - Use `clamp()` for fluid space that breathes on large screens without exploding on mobile.
 
+### Density Modes
+
+Use one canonical spacing scale, then express density as a multiplier or named token set. Comfortable mode can use the scale as written; compact mode should step selected layout gaps down one notch (`--space-md` to `--space-sm`) or apply a clear multiplier such as `0.75`, while preserving touch targets, focus rings, and readable row height.
+
+### Concentric Radius
+
+When a rounded element nests inside another rounded surface, keep the radii concentric: the outer radius should equal the inner radius plus the padding or inset between them. A `12px` inner radius inside `8px` of padding wants about a `20px` outer radius.
+
+This matters most when the surfaces sit close together. Once the gap is larger than about `24px`, treat the layers as separate surfaces and choose each radius independently. Mismatched nested radii are one of the fastest ways to make an otherwise careful UI feel slightly off.
+
 ---
 
 ## 3. HIERARCHY AND RHYTHM
@@ -65,6 +75,14 @@ Preferred hierarchy tools:
 - Use named grid areas for complex page layouts that change at breakpoints.
 - Avoid identical card grids everywhere. Cards are for distinct actionable units, not every piece of content.
 - Never nest cards inside cards; use spacing, headings, dividers, or common regions.
+
+### Grid Contract
+
+Define the page grid as a contract before placing content. A typical product grid uses `4` columns on phones, `8` on tablets, and `12` on desktop, with gutters and page margins from the spacing scale (`16px` mobile margins, `24-32px` tablet, `32-64px` desktop). Name what owns each region: navigation may reserve fixed columns, primary work content should own the widest continuous span, secondary panels get a predictable side span, and metadata or tools should not steal columns from the main task.
+
+### Containment Restraint
+
+Containment has to earn its border, fill, or elevation. If proximity, alignment, a heading, or a divider already separates a group, keep the region flat; reserve bordered or raised containers for interactive objects, modal focus, mixed backgrounds, or groups that would collapse without a boundary.
 
 ### Container Queries
 

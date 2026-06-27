@@ -84,6 +84,26 @@ Polish starts with design-system discovery. For drift, name the root cause:
 
 Then check spacing, optical alignment, typography, states, copy, icons, forms, edge cases, responsiveness, performance, and code cleanliness.
 
+### Visual-Critique Crosswalk
+
+Use these as scan probes feeding the existing audit dimensions and P0-P3 severity. They are lenses, not a second score.
+
+| Critique dimension | Scan probe | Feeds existing audit model |
+| --- | --- | --- |
+| Hierarchy | Can the primary action, primary content, and supporting content be named in five seconds from the rendered screen? | Anti-Patterns or Responsive Design; P1 when task direction is unclear, P2-P3 when the issue is localized. |
+| Brand consistency | Do supplied brand references and the screen disagree on palette, type, imagery, tone, or component language? | Theming or Anti-Patterns; requires supplied references. Without them, report only internal consistency. |
+| Composition | Does the layout use alignment, spacing, and grouping to make regions readable without accidental tangents or trapped whitespace? | Responsive Design or Anti-Patterns; usually P2-P3 unless the layout blocks use on a target viewport. |
+| Typography | Are scale, line length, weight, rhythm, and label hierarchy doing distinct jobs? | Accessibility for readability failures; Anti-Patterns for generic or muddy type systems. |
+| Color | Are contrast, semantic meaning, state color, and theme behavior coherent in the actual UI? | Accessibility or Theming; severity follows measured contrast, state ambiguity, and theme drift. |
+| Affordance | Can interactive elements be identified before hover, focus, or instruction text? | Accessibility or Anti-Patterns; P1 for core controls, P2-P3 for secondary ambiguity. |
+| Information density | Is the screen dense enough for the task without forcing scanning, memory, or avoidable scrolling? | Responsive Design or Anti-Patterns; severity follows task friction and viewport breakage. |
+
+### Polish As Trust
+
+Perceived quality is audit evidence when it is tied to observable consistency. Scan for repeated spacing drift, grid misalignment, mismatched radii, uneven icon sizing, and state surfaces that use a lower craft bar than the main flow.
+
+Hold error, empty, loading, disabled, permission, and success states to the same visual quality as the primary path. File weak fallback states as P2 when they create uncertainty or recovery friction, P3 when they are mainly craft debt.
+
 ## 7. Evidence Limits
 
 A clean detector result is not proof of a strong design. Browser/rendered evidence and human judgment still matter for hierarchy, emotional fit, slop, and flow shape.

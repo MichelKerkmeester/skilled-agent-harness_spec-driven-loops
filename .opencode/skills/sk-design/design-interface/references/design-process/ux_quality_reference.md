@@ -76,6 +76,10 @@ These are not style choices. They are the rules that, when broken, make an inter
 - **Labels are visible and persistent.** Submit and validation feedback is immediate and specific.
 - **Errors say what went wrong and how to fix it**, next to the field, not only in a top banner.
 
+### Compact Product Flow Floor
+
+Product UI flows fail if any routine state is missing or displaced. Forms need visible labels, validation, error recovery, and a clear next step after submit. Search needs loading, empty, zero-result, and success states, with the query preserved so the user can recover. Navigation needs a current-location signal and a reliable back path. Feedback and errors sit near the cause, not in a detached global message unless the whole page is affected. First-run and empty states explain what will appear there, guide the first useful action, and expose a clear CTA.
+
 ---
 
 ## 7. DATA VISUALIZATION
