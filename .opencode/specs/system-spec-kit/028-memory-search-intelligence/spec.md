@@ -58,7 +58,7 @@ Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `be
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Phase Parent |
+| **Status** | complete|
 | **Created** | 2026-06-16 |
 | **Updated** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |

@@ -46,7 +46,7 @@
       "track"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-code-readmes/spec.md",
@@ -83,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -105,19 +99,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-27T15:13:40.181Z",
+    "last_save_at": "2026-06-27T15:51:54.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cbf37746e4ea8fa88a400170568867f617530984be6028d3cf612303de32580a",
+    "source_fingerprint": "sha256:9798ff23f9c0117b1de17a42f1829ae6db35b5d8dbbf59f25b05f09913d87b08",
     "source_doc_hashes": {
-      "spec.md": "a866e8806c59c976262e47d8706b311a4598cc4463be519c7f30becb6e5e83a6"
+      "spec.md": "0fcf41a2129c5f05c9bbc5bd880bda755cacb984c5e63ae9ca5c3a1fac2d3167"
     },
     "last_active_child_id": null,
     "last_active_at": null

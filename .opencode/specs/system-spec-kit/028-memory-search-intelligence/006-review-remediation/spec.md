@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Phase Parent |
+| **Status** | in_progress|
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |

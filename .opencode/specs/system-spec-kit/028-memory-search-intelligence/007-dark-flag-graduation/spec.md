@@ -36,6 +36,11 @@ _memory:
 
 Phase-parent for a benchmark program. The children are per-feature benchmark phases that each measure one dark flag (or one tight cluster) and return a verdict. This parent owns the shared methodology, the candidate triage, and the verdict gate. It carries no harness of its own.
 
+| Field | Value |
+|-------|-------|
+| **Status** | complete |
+| **Level** | phase |
+
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement

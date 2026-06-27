@@ -63,7 +63,7 @@
       "planning"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "research/research.md",
@@ -220,16 +220,16 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-27T15:13:40.474Z",
+    "last_save_at": "2026-06-27T15:51:54.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f11d24f57854b9a41f5d742db713bfd746a356c46ac418be01908156f62dc409",
+    "source_fingerprint": "sha256:426ff7ad0630c53e42ade842d24b6c2177cf51f90c329cde31003a1d292addaa",
     "source_doc_hashes": {
-      "spec.md": "f130ee773330fcb5c8b6abad65508d959b01a2d193a646c16536754245e97563",
+      "spec.md": "7a4fb6675a1291f6ebe63ef78a9c1fb60385b5b223e70bc0dc1f6d9fdf1a5003",
       "research/research.md": "2a9367720adbdc512305f6a7362d5fd5dfd4277168a1072812e0efbebe5412e8"
     },
     "last_active_child_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",

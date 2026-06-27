@@ -39,7 +39,7 @@
       "context"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "shared/algorithms/rrf-fusion.ts",
       "spec.md",
@@ -76,12 +76,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,19 +92,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-27T15:13:41.300Z",
+    "last_save_at": "2026-06-27T15:51:55.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5658d67c7a5fcafd00eac06349a1bfb3e27b6ee4e9f5ebbb8ecf7ac3f63c8ef8",
+    "source_fingerprint": "sha256:5eb0c55e909bce11982be2f3632c00002a88505614eba8005eeed464adfccf81",
     "source_doc_hashes": {
-      "spec.md": "4041dd5795032533662b136cebc13fc6393af47f1480091e2afae5e1ef3e987f"
+      "spec.md": "409bd6e7fb36d21a4110fcc7d2627f21e367c7cddbcb1331c33ce7cc129809a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

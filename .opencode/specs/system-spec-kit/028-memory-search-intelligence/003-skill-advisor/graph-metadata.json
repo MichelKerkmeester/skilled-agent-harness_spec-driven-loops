@@ -45,7 +45,7 @@
       "research"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "research/research.md",
@@ -95,13 +95,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -139,16 +139,16 @@
     ],
     "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-27T15:13:40.767Z",
+    "last_save_at": "2026-06-27T15:51:54.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a2d4d32af1c297a5c386ebc8571560f4a4bf082d7ee16bcea70760b7986c3062",
+    "source_fingerprint": "sha256:e92c5031368c7ae64d7b14c646292d4061a8bf74f7f46eaf29aea27aa3644477",
     "source_doc_hashes": {
-      "spec.md": "50fabecb19d72b61056d5145e2274c13ca617fbbf185de6f8af080eb00daf00e",
+      "spec.md": "445dfa8ab09c576cd47a906fc4aa18690f308f45f818e63b0e1fc6f3ac5fc5ef",
       "research/research.md": "e059059c359a659407760183083cb505fa8eab8581cbd78e3b4ee50562efa8f3"
     },
     "last_active_child_id": null,
