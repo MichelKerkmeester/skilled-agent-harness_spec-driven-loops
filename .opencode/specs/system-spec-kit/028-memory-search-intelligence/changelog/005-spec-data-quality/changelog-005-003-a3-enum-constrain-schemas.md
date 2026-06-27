@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A3 Enum-Constrain JSON Metadata Schemas [005-spec-data-quality/003-a3-enum-constrain-schemas]"
+title: "Changelog: A3 Enum-Constrain JSON Metadata Schemas [005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas]"
 description: "Chronological changelog for the A3 Enum-Constrain JSON Metadata Schemas phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

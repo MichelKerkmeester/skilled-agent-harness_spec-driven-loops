@@ -1,5 +1,5 @@
 ---
-title: "Changelog: B2 Guarded data-quality Route on /doctor [005-spec-data-quality/012-b2-doctor-dq-route]"
+title: "Changelog: B2 Guarded data-quality Route on /doctor [005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route]"
 description: "Chronological changelog for the B2 Guarded data-quality Route on /doctor phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

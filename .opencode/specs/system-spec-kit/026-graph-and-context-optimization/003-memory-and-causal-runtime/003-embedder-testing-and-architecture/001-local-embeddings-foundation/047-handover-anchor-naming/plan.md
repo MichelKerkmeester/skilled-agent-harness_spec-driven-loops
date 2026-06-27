@@ -94,7 +94,7 @@ Surgical contract alignment.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Handover template | Defines canonical handover anchors | Unchanged; already uses `session-notes` | `grep -n "ANCHOR" .../handover.md.tmpl` |
+| Handover template | Defines canonical handover anchors | Unchanged; already uses `session-notes` | `grep -n "ANCHOR" .../archive/handover.md.tmpl` |
 | Existing handover docs | Live docs consumed by memory-save | Unchanged; sampled docs use `session-notes` | `find .opencode/specs -name handover.md ... grep "ANCHOR:session"` |
 | Content router | Owns default route target | Updated `DEFAULT_HANDOVER_ANCHOR` | `content-router.vitest.ts` |
 | Spec-doc validator | Validates merge legality and route contamination | Updated for handover section shape and accepted override warnings | `spec-doc-structure.vitest.ts` |

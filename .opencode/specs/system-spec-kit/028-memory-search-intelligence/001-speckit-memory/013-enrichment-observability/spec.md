@@ -61,7 +61,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete'`]. Without read-side gauges over this backlog, a stuck or backed-up scheduler is a silent outage: the operator cannot see how many rows are pending/failed, nor how old the oldest unprocessed row is. The 027-revisit research (Q9 Observability) confirmed the substrate to surface this already exists and is unexposed for the age dimension [CONFIRMED: `../research/from-005-revisit-027/research.md:62,92,93`].
+The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete'`]. Without read-side gauges over this backlog, a stuck or backed-up scheduler is a silent outage: the operator cannot see how many rows are pending/failed, nor how old the oldest unprocessed row is. The 027-revisit research (Q9 Observability) confirmed the substrate to surface this already exists and is unexposed for the age dimension [CONFIRMED: `../research/cross-packet-027-reconciliation/research.md:62,92,93`].
 
 ### Purpose
 Expose decoupled read-side observability of the enrichment backlog, pending count, failed count (both shipped) and oldest-pending age (lag, not yet shipped), by reusing existing columns and the existing health query, with no new background state and no schema migration.
@@ -79,7 +79,7 @@ Expose decoupled read-side observability of the enrichment backlog, pending coun
 | **gauge-pending-failed** | alias the at-rest pending/failed backlog distribution onto the existing `getBackgroundEnrichmentStats` aggregator (no new state) | `handlers/memory-save.ts:2954-2972`, `handlers/memory-crud-health.ts:902-913` | S | **DONE** (`e1c6a3c793`) |
 | **gauge-lag** | oldest-pending age = `MIN(created_at)` over rows WHERE `post_insert_enrichment_status != 'complete'`, surfaced as a backlog-age gauge, **decoupled from C4-C** (the consolidation cursor). It rides the existing status column + `created_at` + the health query | `handlers/memory-crud-health.ts` (extends the existing backlog query) | S | **DONE** |
 
-> Both candidates are read-side only, additive and individually reversible. `gauge-pending-failed` shipped first. `gauge-lag` now extends the same health block. The research is explicit that lag is **decoupled from C4-C**, it does NOT depend on the consolidation cursor / Wave-1 shared infra [CONFIRMED: `../../research/roadmap.md:295`, `../../research/synthesis/01-go-candidates.md:32`, `../research/from-005-revisit-027/research.md:62`].
+> Both candidates are read-side only, additive and individually reversible. `gauge-pending-failed` shipped first. `gauge-lag` now extends the same health block. The research is explicit that lag is **decoupled from C4-C**, it does NOT depend on the consolidation cursor / Wave-1 shared infra [CONFIRMED: `../../research/roadmap.md:295`, `../../research/synthesis/01-go-candidates.md:32`, `../research/cross-packet-027-reconciliation/research.md:62`].
 
 ### Out of Scope
 - The C4-C consolidation cursor + per-item `raw|in_progress|consolidated|failed` state machine (Wave-1/Wave-2, schema work), gauge-lag is explicitly decoupled from it.
@@ -157,5 +157,5 @@ Expose decoupled read-side observability of the enrichment backlog, pending coun
 - **Subsystem research**: `../research/research.md`
 - **Roadmap (authoritative addenda)**: `../../research/roadmap.md`
 - **GO candidates**: `../../research/synthesis/01-go-candidates.md`
-- **027-revisit detail**: `../research/from-005-revisit-027/research.md`
+- **027-revisit detail**: `../research/cross-packet-027-reconciliation/research.md`
 <!-- /ANCHOR:related-docs -->

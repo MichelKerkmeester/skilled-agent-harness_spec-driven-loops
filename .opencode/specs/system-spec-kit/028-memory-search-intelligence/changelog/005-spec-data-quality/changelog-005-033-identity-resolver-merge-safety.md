@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Identity Resolver Merge Safety [005-spec-data-quality/033-identity-resolver-merge-safety]"
+title: "Changelog: Identity Resolver Merge Safety [005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety]"
 description: "Chronological changelog for the identity resolver merge safety phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/033-identity-resolver-merge-safety` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

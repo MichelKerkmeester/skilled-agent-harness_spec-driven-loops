@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Novel typed-relation KG auto-extracted [005-spec-data-quality/023-novel-typed-relation-kg]"
+title: "Changelog: Novel typed-relation KG auto-extracted [005-spec-data-quality/004-novel-research/023-novel-typed-relation-kg]"
 description: "Chronological changelog for the Novel typed-relation KG auto-extracted phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/023-novel-typed-relation-kg` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

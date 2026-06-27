@@ -50,7 +50,7 @@ _memory:
 | **Phase** | 001 of 004 |
 | **Predecessor** | None |
 | **Successor** | ../002-memory-schema-and-concurrency/spec.md |
-| **Source Review** | `../../review-report.md` |
+| **Source Review** | `../../archive/review-report.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

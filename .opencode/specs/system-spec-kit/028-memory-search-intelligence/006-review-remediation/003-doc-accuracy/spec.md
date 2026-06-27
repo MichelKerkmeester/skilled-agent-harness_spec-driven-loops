@@ -50,7 +50,7 @@ _memory:
 | **Phase** | 003 of 004 |
 | **Predecessor** | ../002-memory-schema-and-concurrency/spec.md |
 | **Successor** | ../004-p2-triage/spec.md |
-| **Source Review** | `../../review-report.md` |
+| **Source Review** | `../../archive/review-report.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

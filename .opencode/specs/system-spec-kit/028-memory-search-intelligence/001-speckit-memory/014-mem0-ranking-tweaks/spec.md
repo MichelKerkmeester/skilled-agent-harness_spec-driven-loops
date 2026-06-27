@@ -22,7 +22,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "../research/research.md"
-      - "../research/from-007-memory-systems/research.md"
+      - "../research/external-memory-systems/research.md"
       - "../../research/synthesis/06-memory-systems-findings.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
-| **Source research** | `../research/research.md`, `../research/from-007-memory-systems/{research.md,iterations,deltas}`, `../../research/synthesis/06-memory-systems-findings.md`, `../../research/roadmap.md` (MEMORY-SYSTEMS addendum) |
+| **Source research** | `../research/research.md`, `../research/external-memory-systems/{research.md,iterations,deltas}`, `../../research/synthesis/06-memory-systems-findings.md`, `../../research/roadmap.md` (MEMORY-SYSTEMS addendum) |
 | **Wave-0 done-record** | Wave-0 record, this bundle is **entirely absent** from it |
 <!-- /ANCHOR:metadata -->
 
@@ -248,7 +248,7 @@ Per-candidate. Each candidate's seam is in the table above. Production code unde
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Source research (PRIMARY)**: `../research/research.md`
-- **External-memory-systems detail**: `../research/from-007-memory-systems/{research.md, iterations/iteration-001.md, iteration-002.md, iteration-007.md, iteration-009.md, iteration-019.md}`
+- **External-memory-systems detail**: `../research/external-memory-systems/{research.md, iterations/iteration-001.md, iteration-002.md, iteration-007.md, iteration-009.md, iteration-019.md}`
 - **Plain-language before→after**: `../../research/synthesis/06-memory-systems-findings.md`
 - **Roadmap (MEMORY-SYSTEMS addendum, authoritative)**: `../../research/roadmap.md`
 <!-- /ANCHOR:related-docs -->

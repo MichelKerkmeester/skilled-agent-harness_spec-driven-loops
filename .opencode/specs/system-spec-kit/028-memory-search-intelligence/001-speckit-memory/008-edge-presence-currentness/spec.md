@@ -59,7 +59,7 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Source synthesis** | `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md` |
-| **Source research** | `../research/research.md`, `../research/from-005-revisit-027/research.md`, `../research/from-007-memory-systems/research.md` |
+| **Source research** | `../research/research.md`, `../research/cross-packet-027-reconciliation/research.md`, `../research/external-memory-systems/research.md` |
 | **Wave-0 shipped record** | Wave-0 record (none of these five) |
 <!-- /ANCHOR:metadata -->
 
@@ -254,5 +254,5 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - **Phase research (PRIMARY):** `../research/research.md` (Memory MCP external mining).
 - **Cross-cutting roadmap (authoritative):** `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda).
 - **Synthesis:** `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md`, `04-sibling-and-cross-cutting.md`.
-- **027 reconciliation (memory_history + bi-temporal scoping):** `../research/from-005-revisit-027/research.md`.
-- **Memory-systems mining (temporal-query-extraction):** `../research/from-007-memory-systems/research.md`.
+- **027 reconciliation (memory_history + bi-temporal scoping):** `../research/cross-packet-027-reconciliation/research.md`.
+- **Memory-systems mining (temporal-query-extraction):** `../research/external-memory-systems/research.md`.

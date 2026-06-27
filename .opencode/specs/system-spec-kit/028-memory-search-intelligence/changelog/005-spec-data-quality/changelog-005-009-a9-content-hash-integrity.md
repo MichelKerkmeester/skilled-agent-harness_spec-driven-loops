@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A9 Read-Time Content-Hash Integrity Verification [005-spec-data-quality/009-a9-content-hash-integrity]"
+title: "Changelog: A9 Read-Time Content-Hash Integrity Verification [005-spec-data-quality/001-on-write-quality/009-content-hash-integrity]"
 description: "Chronological changelog for the A9 Read-Time Content-Hash Integrity Verification phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

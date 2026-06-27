@@ -277,7 +277,7 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM §"New initiative B, async sleep-time consolidation"), `../../research/synthesis/06-memory-systems-findings.md` (§"New initiative B" + #14 governor note), `../research/from-007-memory-systems/research.md` (+ `iterations/iteration-020.md`, `deltas/iter-020.jsonl`)
+- **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM §"New initiative B, async sleep-time consolidation"), `../../research/synthesis/06-memory-systems-findings.md` (§"New initiative B" + #14 governor note), `../research/external-memory-systems/research.md` (+ `iterations/iteration-020.md`, `deltas/iter-020.jsonl`)
 - **Sibling (depends-on)**: `../010-consolidation-cursor-clock/`, C-G1 clock host + C4-C cursor + `LT-turn-cadence-trigger` gate
 - **Sibling (supplies governor template to)**: `../016-iterative-agentic-recall/`, `CG-agentic-tool-loop` reuses this packet's tool-rule DAG
 - **Shipped record (Wave-0)**: Wave-0 record, async-sleeptime-consolidation is **absent** from the status table (never shipped), confirming PENDING

@@ -39,7 +39,7 @@ _memory:
 > narrative rather than a standalone Wave-0 record. The per-subsystem phase rosters live in each
 > track's `changelog-00N-root.md` rollup. The before-and-after narrative is in
 > [`before-vs-after.md`](./before-vs-after.md). The dependency order is in
-> [`implementation-schedule.md`](./implementation-schedule.md).
+> [`archive/implementation-schedule.md`](./archive/archive/implementation-schedule.md).
 
 ---
 
@@ -448,15 +448,15 @@ prod path, while adherence, logic and write-time candidates bypass the truncatio
 The keystone recommendation is to extend the live default-on `quality-loop.ts`, the memory-save scorers and
 auto-fix that already ship, to the authored spec-doc and metadata-JSON write surface. From there the
 program tiers by where each candidate sits against the truncation. Tier A is on-write reuse-first across
-`001-a1-extend-quality-loop-authored` through `010-a10-per-surface-gates`, and its decision-unconditional GO
-is `004-a4-schema-warn-to-error` which promotes the JSON-schema shape rules from warn to error, a validation
+`001-extend-quality-loop-authored` through `010-per-surface-gates`, and its decision-unconditional GO
+is `004-schema-warn-to-error` which promotes the JSON-schema shape rules from warn to error, a validation
 tightening and not a ranking win. That decision is unconditional but the error flip is gated on a backfill
 to zero, since a real schema run still fails twenty-four files, sixteen live, against the target shape. The
-rest of the tier ships on cost. Tier B is retroactive automation across `011-b1-scheduled-dq-sweep` through
-`013-b3-retrieval-feedback-edge`, a standing scheduled DQ sweep with guarded auto-fix, a `/doctor`
+rest of the tier ships on cost. Tier B is retroactive automation across `011-scheduled-dq-sweep` through
+`013-retrieval-feedback-edge`, a standing scheduled DQ sweep with guarded auto-fix, a `/doctor`
 data-quality auto-remediation route and a retrieval-learning feedback edge. Tier C is retrieval across
-`014-c1-chunk-prefix` through `018-c5-llm-judge-scorer`, all default-off and all gated on the
-`015-c2-prodmode-recall-gate` prod-mode recall gate, which reads the @3, @5 and @8 completeRecall columns the
+`014-chunk-prefix` through `018-llm-judge-scorer`, all default-off and all gated on the
+`015-prodmode-recall-gate` prod-mode recall gate, which reads the @3, @5 and @8 completeRecall columns the
 harness already emits plus an order-sensitive NDCG@K with a top1 guard, so a promotion needs a recall rise
 and a ranking-quality hold. That gate is the unblocker for the tier and has not run. The novel slate across
 `019-novel-contradiction-detection` through `025-novel-per-doc-quality-slas` is seven floor-bypassing
@@ -472,15 +472,15 @@ the whole Tier-C slate, and like C2 it is proposed not run.
 The research then scaffolded all twenty-eight recommendations as Level-2 phase children under
 [`005-spec-data-quality/`](./005-spec-data-quality/), each carrying the full doc set of spec, plan, tasks,
 checklist and implementation-summary and each marked PLANNED with no code landed. The phase tree runs
-`001-a1-extend-quality-loop-authored` through `028-governance-rollout`. Finally the per-phase changelogs
+`001-extend-quality-loop-authored` through `028-governance-rollout`. Finally the per-phase changelogs
 were generated in the 027 pattern, one leaf changelog per phase under
 [`changelog/005-spec-data-quality/`](./changelog/005-spec-data-quality/) with the
 [`changelog-005-root.md`](./changelog/005-spec-data-quality/changelog-005-root.md) rollup over them.
 
 So TRACK C adds a researched and scaffolded program and not a shipped one. The honest scope is single-digit.
-Its buildable-now subset is `004-a4-schema-warn-to-error` the decision-unconditional schema tightening,
-`026-shared-safe-fix-engine` the shared engine, `001-a1-extend-quality-loop-authored` the on-write keystone
-and `003-a3-enum-constrain-schemas` the producer enum guard. The retrieval tier and the thin novel items are
+Its buildable-now subset is `004-schema-warn-to-error` the decision-unconditional schema tightening,
+`026-shared-safe-fix-engine` the shared engine, `001-extend-quality-loop-authored` the on-write keystone
+and `003-enum-constrain-schemas` the producer enum guard. The retrieval tier and the thin novel items are
 deferred-until-measured behind a real prod@K read and not scaffolded as ready. No phase was deleted, all
 twenty-eight scaffolds are kept by operator intent. It is the successor question the truncation law raised,
 carried as far as a plan and no further.

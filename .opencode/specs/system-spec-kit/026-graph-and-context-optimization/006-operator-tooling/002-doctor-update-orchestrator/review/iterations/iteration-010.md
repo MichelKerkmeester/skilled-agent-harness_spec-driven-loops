@@ -7,7 +7,7 @@
 
 ## Closure Verification
 
-All 10 finding clusters (A–J) from the original deep-review report (§3 of `review_archive/.../review-report.md`) remain closed on disk. Remediation commit `495fdd282` closed all 30 P1 findings and 28/30 P2 findings. Two P2 were formally deferred (see §Deferred Findings below).
+All 10 finding clusters (A–J) from the original deep-review report (§3 of `review_archive/.../archive/review-report.md`) remain closed on disk. Remediation commit `495fdd282` closed all 30 P1 findings and 28/30 P2 findings. Two P2 were formally deferred (see §Deferred Findings below).
 
 | Cluster ID | Original symptom | Fix applied (commit 495fdd282) | Re-verified status |
 |---|---|---|---|

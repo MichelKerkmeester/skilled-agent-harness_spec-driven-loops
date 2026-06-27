@@ -57,7 +57,7 @@ Track the deferred findings with the exact reason each was held back, so they ca
 ## 3. SCOPE
 
 ### In Scope
-- The findings listed in §4, sourced from the parent audit `../review-report.md`.
+- The findings listed in §4, sourced from the parent audit `../archive/review-report.md`.
 
 ### Out of Scope
 - Merging into `main` (operator-gated; the live tree has active BUG-04/BUG-06 WIP).
@@ -90,7 +90,7 @@ Track the deferred findings with the exact reason each was held back, so they ca
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | Each finding traceable to parent review-report | CG-IDs map to `../review-report.md` |
+| REQ-002 | Each finding traceable to parent review-report | CG-IDs map to `../archive/review-report.md` |
 <!-- /ANCHOR:requirements -->
 
 ---

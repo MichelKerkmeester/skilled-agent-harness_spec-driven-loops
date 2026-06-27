@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Novel Freshness Decay Auto-Refresh Queue [005-spec-data-quality/024-novel-freshness-decay-queue]"
+title: "Changelog: Novel Freshness Decay Auto-Refresh Queue [005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue]"
 description: "Chronological changelog for the Novel Freshness Decay Auto-Refresh Queue phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

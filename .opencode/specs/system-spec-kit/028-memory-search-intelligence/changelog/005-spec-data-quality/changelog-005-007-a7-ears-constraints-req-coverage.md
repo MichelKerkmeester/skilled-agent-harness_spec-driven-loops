@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [005-spec-data-quality/007-a7-ears-constraints-req-coverage]"
+title: "Changelog: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage]"
 description: "Chronological changelog for the A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

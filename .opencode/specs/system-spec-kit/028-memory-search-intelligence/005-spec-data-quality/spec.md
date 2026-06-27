@@ -166,34 +166,34 @@ A4 is the one measured GO. It is unconditional as a decision but flip-gated as a
 
 | Phase | Folder | Scope | Verdict tier |
 |-------|--------|-------|--------------|
-| 001 | `001-a1-extend-quality-loop-authored/` | Extend the live default-ON quality loop to score authored spec docs, the keystone on-write reuse seam | GO-on-cost |
-| 002 | `002-a2-trigger-propagation-description/` | Propagate trigger phrases into description.json so retrieval and adherence read the same signal | GO-on-cost |
-| 003 | `003-a3-enum-constrain-schemas/` | Enum-constrain the two metadata JSON schemas so invalid field values fail fast | GO-on-cost |
-| 004 | `004-a4-schema-warn-to-error/` | Promote the JSON-schema validation gate from warn to error, the one measured GO, unconditional as a decision but flip-gated on re-measuring the corpus to zero schema failures | GO |
-| 005 | `005-a5-trigger-coherence-assertion/` | Assert trigger coherence between spec.md and description.json so they cannot drift | GO-on-cost |
-| 006 | `006-a6-hvr-style-autofix/` | Autofix HVR style violations at write time so the voice rules hold without manual passes | GO-on-cost |
-| 007 | `007-a7-ears-constraints-req-coverage/` | Add EARS constraints and requirement-coverage checks to raise adherence on authored docs | GO-on-cost |
-| 008 | `008-a8-surface-provenance-fields/` | Surface provenance fields on each doc so a reader can trace where a claim came from | GO-on-cost |
-| 009 | `009-a9-content-hash-integrity/` | Add a content-hash integrity field so a stale or tampered doc surfaces as an error | GO-on-cost |
-| 010 | `010-a10-per-surface-gates/` | Add per-surface gates so each doc family enforces only the checks that fit it | GO-on-cost |
+| 001 | `001-extend-quality-loop-authored/` | Extend the live default-ON quality loop to score authored spec docs, the keystone on-write reuse seam | GO-on-cost |
+| 002 | `002-trigger-propagation-description/` | Propagate trigger phrases into description.json so retrieval and adherence read the same signal | GO-on-cost |
+| 003 | `003-enum-constrain-schemas/` | Enum-constrain the two metadata JSON schemas so invalid field values fail fast | GO-on-cost |
+| 004 | `004-schema-warn-to-error/` | Promote the JSON-schema validation gate from warn to error, the one measured GO, unconditional as a decision but flip-gated on re-measuring the corpus to zero schema failures | GO |
+| 005 | `005-trigger-coherence-assertion/` | Assert trigger coherence between spec.md and description.json so they cannot drift | GO-on-cost |
+| 006 | `006-hvr-style-autofix/` | Autofix HVR style violations at write time so the voice rules hold without manual passes | GO-on-cost |
+| 007 | `007-ears-constraints-req-coverage/` | Add EARS constraints and requirement-coverage checks to raise adherence on authored docs | GO-on-cost |
+| 008 | `008-surface-provenance-fields/` | Surface provenance fields on each doc so a reader can trace where a claim came from | GO-on-cost |
+| 009 | `009-content-hash-integrity/` | Add a content-hash integrity field so a stale or tampered doc surfaces as an error | GO-on-cost |
+| 010 | `010-per-surface-gates/` | Add per-surface gates so each doc family enforces only the checks that fit it | GO-on-cost |
 
 ### Tier B retroactive automation
 
 | Phase | Folder | Scope | Verdict tier |
 |-------|--------|-------|--------------|
-| 011 | `011-b1-scheduled-dq-sweep/` | Run a scheduled data-quality sweep across the corpus, the keystone retroactive automation | GO-on-cost |
-| 012 | `012-b2-doctor-dq-route/` | Add a doctor data-quality route so an operator can run the sweep on demand | GO-on-cost |
-| 013 | `013-b3-retrieval-feedback-edge/` | Write a retrieval-feedback edge so observed recall flows back into the quality signal | GO-on-cost |
+| 011 | `011-scheduled-dq-sweep/` | Run a scheduled data-quality sweep across the corpus, the keystone retroactive automation | GO-on-cost |
+| 012 | `012-doctor-dq-route/` | Add a doctor data-quality route so an operator can run the sweep on demand | GO-on-cost |
+| 013 | `013-retrieval-feedback-edge/` | Write a retrieval-feedback edge so observed recall flows back into the quality signal | GO-on-cost |
 
 ### Tier C retrieval, C2-gated
 
 | Phase | Folder | Scope | Verdict tier |
 |-------|--------|-------|--------------|
-| 014 | `014-c1-chunk-prefix/` | Prefix each embedded chunk with its header path and global identity to lift recall | CONDITIONAL |
-| 015 | `015-c2-prodmode-recall-gate/` | Stand up the prod-mode completeRecall@3 benchmark gate, the unblocker for every other Tier-C retrieval candidate (C1, C3, C4, C5) | CONDITIONAL |
-| 016 | `016-c3-answerable-questions-tags/` | Tag each doc with the questions it can answer so retrieval matches intent | CONDITIONAL |
-| 017 | `017-c4-metadata-fusion/` | Fuse metadata into the embedding so the signal travels inside the vector not beside it | CONDITIONAL |
-| 018 | `018-c5-llm-judge-scorer/` | Add an LLM-judge scorer to grade retrieval candidates the floor would otherwise hide | CONDITIONAL |
+| 014 | `014-chunk-prefix/` | Prefix each embedded chunk with its header path and global identity to lift recall | CONDITIONAL |
+| 015 | `015-prodmode-recall-gate/` | Stand up the prod-mode completeRecall@3 benchmark gate, the unblocker for every other Tier-C retrieval candidate (C1, C3, C4, C5) | CONDITIONAL |
+| 016 | `016-answerable-questions-tags/` | Tag each doc with the questions it can answer so retrieval matches intent | CONDITIONAL |
+| 017 | `017-metadata-fusion/` | Fuse metadata into the embedding so the signal travels inside the vector not beside it | CONDITIONAL |
+| 018 | `018-llm-judge-scorer/` | Add an LLM-judge scorer to grade retrieval candidates the floor would otherwise hide | CONDITIONAL |
 
 ### Novel out-of-the-box GO
 

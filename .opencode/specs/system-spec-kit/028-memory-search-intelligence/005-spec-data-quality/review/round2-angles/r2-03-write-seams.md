@@ -2,7 +2,7 @@
 
 **Angle summary:** The 001 A1 spec names real seams at exact line numbers, but its byte-identity premise for the `description.json` seam is unachievable at the cited call site because the writer merges its argument against the existing file, and the two metadata seams serialize differently.
 
-**Slice:** r2-03 write-seams. Scope read: `generate-context.ts` (`atomicWriteJson`), `workflow.ts` (`savePerFolderDescription` via `savePFD`, the `reviewPostSaveQuality` call), `folder-discovery.ts` (`savePerFolderDescription` body), `quality-loop.ts` (scorer and destructive loop), against `001-a1-extend-quality-loop-authored/spec.md` and `plan.md`.
+**Slice:** r2-03 write-seams. Scope read: `generate-context.ts` (`atomicWriteJson`), `workflow.ts` (`savePerFolderDescription` via `savePFD`, the `reviewPostSaveQuality` call), `folder-discovery.ts` (`savePerFolderDescription` body), `quality-loop.ts` (scorer and destructive loop), against `001-extend-quality-loop-authored/spec.md` and `plan.md`.
 
 **Verdict on the program premise:** Nothing in 005 is built. These are findings against the SPEC PREMISE that the 001 docs assert, checked against the LIVE tree.
 

@@ -67,7 +67,7 @@ Compare the failing-test set against the B0 baseline; require zero net-new failu
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-Parent audit `../review-report.md`; operator merge decision.
+Parent audit `../archive/review-report.md`; operator merge decision.
 <!-- /ANCHOR:dependencies -->
 
 ---

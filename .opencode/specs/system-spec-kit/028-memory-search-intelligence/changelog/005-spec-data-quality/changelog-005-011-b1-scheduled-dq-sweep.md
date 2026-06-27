@@ -1,5 +1,5 @@
 ---
-title: "Changelog: B1 Scheduled DQ Sweep [005-spec-data-quality/011-b1-scheduled-dq-sweep]"
+title: "Changelog: B1 Scheduled DQ Sweep [005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep]"
 description: "Chronological changelog for the B1 Scheduled DQ Sweep phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

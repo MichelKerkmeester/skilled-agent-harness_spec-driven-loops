@@ -35,8 +35,8 @@ The honest read is still the one captured by the review remediation: the buildab
 | Phase | Folder | Status | Focus |
 |-------|--------|--------|-------|
 | 029 | `029-vague-query-model-benchmark/` | Complete, benchmark | Vague-query model-behavior benchmark over 144 cells across four models. |
-| 030 | `030-improvement-research/` | Complete, research | Improvement research that diagnosed a calibration miss and produced ranked proposals. |
-| 031 | `031-generated-json-quality-research/` | Complete, research | Generated-JSON quality research that drove the 033 through 040 build. |
+| 030 | `030-vague-query-improvement-research/` | Complete, research | Improvement research that diagnosed a calibration miss and produced ranked proposals. |
+| 031 | `031-generated-metadata-quality-research/` | Complete, research | Generated-JSON quality research that drove the 033 through 040 build. |
 | 032 | `032-z-future-always-ignored/` | Complete | Added `z_future` to the generated-metadata exclusion rule while leaving `z_archive` covered. |
 
 ---

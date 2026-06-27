@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Gap-Threshold Calibration Benchmark [005-spec-data-quality/043-gap-threshold-calibration-benchmark]"
+title: "Changelog: Gap-Threshold Calibration Benchmark [005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark]"
 description: "Chronological changelog for the gap-threshold calibration benchmark phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -47,9 +47,9 @@ Tested whether the Stage-4 evidence-gap detector's Z-score threshold of 1.3 is c
 
 ### Files Changed
 
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark/scripts/gap-threshold-calibration-benchmark.mjs`: created the read-only 18-query calibration harness with the faithfulness assertion.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark/results/metrics.json`: created the per-query Z-score, distribution and sweep data.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/043-gap-threshold-calibration-benchmark/benchmark-results.md`: created the calibration table, the inverted-distribution table and the redesign verdict.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark/scripts/gap-threshold-calibration-benchmark.mjs`: created the read-only 18-query calibration harness with the faithfulness assertion.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark/results/metrics.json`: created the per-query Z-score, distribution and sweep data.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark/benchmark-results.md`: created the calibration table, the inverted-distribution table and the redesign verdict.
 
 ### Follow-Ups
 

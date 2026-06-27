@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Flag Graduation Benchmark [005-spec-data-quality/040-flag-graduation-benchmark]"
+title: "Changelog: Flag Graduation Benchmark [005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark]"
 description: "Chronological changelog for the flag graduation benchmark phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -52,9 +52,9 @@ Built and ran the Stage 4 before-and-after benchmark that decides which default-
 
 ### Files Changed
 
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs`: created the Stage 4 graduation driver.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark/scripts/benchmark-report.json`: created the raw machine report.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md`: created the per-flag verdict table and the field census.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs`: created the Stage 4 graduation driver.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/benchmark-report.json`: created the raw machine report.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md`: created the per-flag verdict table and the field census.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts`: graduated the six benchmark-earned flags to their new defaults (orchestrator-applied flips).
 
 ### Follow-Ups

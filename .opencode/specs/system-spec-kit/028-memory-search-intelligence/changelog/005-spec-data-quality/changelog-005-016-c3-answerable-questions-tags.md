@@ -1,5 +1,5 @@
 ---
-title: "Changelog: C3 answerable_questions and semantic_intent tags [005-spec-data-quality/016-c3-answerable-questions-tags]"
+title: "Changelog: C3 answerable_questions and semantic_intent tags [005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags]"
 description: "Chronological changelog for the C3 answerable_questions and semantic_intent tags phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -47,4 +47,4 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Build this retrieval-class change per plan.md and keep it default-off.
-- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-c2-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.
+- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.

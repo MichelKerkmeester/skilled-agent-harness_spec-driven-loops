@@ -174,6 +174,6 @@ Letta runs memory reorganization *after* the foreground turn, on a cadence — a
 
 - `05` is the **internal-style plain-language** view of the 200-iteration aionforge/galadriel campaign; **`06` is its external-memory-systems sequel** (Mem0/Graphiti/Letta/Cognee, +22 iters).
 - The Wave-0/1/2 tiers here feed the **same structure as `01-go-candidates.md`** — `06`'s GO set is the input to the same future implementation packet.
-- Detailed per-iteration evidence: `../../001-speckit-memory/research/from-007-memory-systems/{research.md, iterations/, deltas/}`. Top-7 + tiering: `../../001-speckit-memory/research/from-007-memory-systems/research.md` (Consolidated roadmap).
+- Detailed per-iteration evidence: `../../001-speckit-memory/research/external-memory-systems/{research.md, iterations/, deltas/}`. Top-7 + tiering: `../../001-speckit-memory/research/external-memory-systems/research.md` (Consolidated roadmap).
 
 > **Scope reminder.** Research-only (spec §3). The packet ends at this roadmap; implementation is a separate, later decision. Nothing here is built or benchmarked.

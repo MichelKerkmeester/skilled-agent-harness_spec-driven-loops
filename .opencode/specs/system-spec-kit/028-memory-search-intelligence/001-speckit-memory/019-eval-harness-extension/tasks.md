@@ -120,7 +120,7 @@ _memory:
 - **Specification**: `spec.md`, especially §14 candidate status.
 - **Plan**: `plan.md`.
 - **Checklist**: `checklist.md`.
-- **Phase research**: `../research/from-008-retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`).
+- **Phase research**: `../research/retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`).
 - **Synthesis (the spine)**: `../../research/synthesis/08-retrieval-evaluation-findings.md`.
 - **Roadmap (authoritative)**: `../../research/roadmap.md`.
 - **Gate-zero precondition (sibling)**: `../001-corpus-reindex-gate-zero/`.

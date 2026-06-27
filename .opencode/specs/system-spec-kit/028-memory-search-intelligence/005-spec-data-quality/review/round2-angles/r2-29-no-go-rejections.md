@@ -19,8 +19,8 @@
   - typed-relation KG (`research/research.md:78`) → `023-novel-typed-relation-kg/spec.md:56` verdict tier "novel-GO (GO-on-cost...)"
   - freshness decay queue (`research/research.md:79`) → `024-novel-freshness-decay-queue/spec.md:206` GO-on-cost (thin)
   - per-doc SLAs (`research/research.md:80`) → `025-novel-per-doc-quality-slas/spec.md:57` verdict "novel-GO (thin, GO-on-cost...)"
-  - LLM-judge scorer (`research/research.md:81`) → `018-c5-llm-judge-scorer/spec.md:204` "conditional (C2-gated)" framed as a "buildable phase spec"
-  - answerable_questions tags (`research/research.md:82`) → `016-c3-answerable-questions-tags/spec.md:198` "conditional (C2-gated)" framed as a "buildable phase spec"
+  - LLM-judge scorer (`research/research.md:81`) → `018-llm-judge-scorer/spec.md:204` "conditional (C2-gated)" framed as a "buildable phase spec"
+  - answerable_questions tags (`research/research.md:82`) → `016-answerable-questions-tags/spec.md:198` "conditional (C2-gated)" framed as a "buildable phase spec"
 
 **Adversarial read:** A NO-GO list whose only acceptance test is "enumerates eighteen items with a deciding reason each, maps each to one of ten anti-patterns" (`028-governance-rollout/spec.md:117`) never requires marking which 5 entries are actually buildable. A contributor honoring the plan.md:94 contract would read 5 of the program's own scoped phases as forbidden and would not propose or build them. The list, as specified, suppresses 023, 024, 025, 018 and 016. The rejection framing is wrong for these 5. They were not killed too early in research (the tables say GO-on-cost and conditional), they are being misfiled as NO-GO at the consolidation layer.
 

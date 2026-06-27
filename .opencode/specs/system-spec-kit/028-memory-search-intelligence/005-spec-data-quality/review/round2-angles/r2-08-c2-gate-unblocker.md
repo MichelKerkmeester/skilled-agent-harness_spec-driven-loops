@@ -25,8 +25,8 @@
 
 **Evidence:**
 - SPEC: the gate promotes only on a prod completeRecall@3 RISE over a stored baseline (spec.md REQ-003) read from a single `spec-corpus-golden.json` (spec.md §3 Files to Change).
-- SPEC: every downstream item names this one gate as its shared unblock condition: `014-c1-chunk-prefix/spec.md:20,57`, `016-c3-answerable-questions-tags/spec.md:132`, `017-c4-metadata-fusion/spec.md:133`, `018-c5-llm-judge-scorer/spec.md:135`, `027-retrieval-floor-experiment/spec.md:138`.
-- CHECKED ABSENT: no held-out, cross-validation, second-corpus or train-test mention anywhere in `015-c2-prodmode-recall-gate/` (grep returned nothing).
+- SPEC: every downstream item names this one gate as its shared unblock condition: `014-chunk-prefix/spec.md:20,57`, `016-answerable-questions-tags/spec.md:132`, `017-metadata-fusion/spec.md:133`, `018-llm-judge-scorer/spec.md:135`, `027-retrieval-floor-experiment/spec.md:138`.
+- CHECKED ABSENT: no held-out, cross-validation, second-corpus or train-test mention anywhere in `015-prodmode-recall-gate/` (grep returned nothing).
 
 **Issue:** Four-plus retrieval-class changes will each be tuned until they raise completeRecall@3 on the same small frozen hand-authored set. With no held-out split the gate stops measuring "retrieval improved" and starts measuring "the change overfit the gold set." This is the core risk of making four phases depend on one gate, and it is the thing most likely to make the gate confidently wrong.
 
@@ -63,7 +63,7 @@
 
 **Evidence:**
 - SPEC: the verdict for C1, C3, C4, C5 and 027 is only as correct as the relevance labels in `spec-corpus-golden.json`, authored as a one-pass task (`spec.md` continuity `last_updated_by: "markdown-agent"`, `recent_action` authored from research.md) with no integrity, provenance or second-review acceptance criterion in REQ-001 through REQ-006.
-- SPEC SIBLINGS: the same 005 program builds `008-a8-surface-provenance-fields` and `009-a9-content-hash-integrity` for other surfaces.
+- SPEC SIBLINGS: the same 005 program builds `008-surface-provenance-fields` and `009-content-hash-integrity` for other surfaces.
 
 **Issue:** A single mislabeled target (an irrelevant memoryId marked relevant, or a missing relevant sibling) silently corrupts every downstream promotion and regression decision across the whole retrieval tier. The keystone gold set exempts itself from the integrity discipline the program is building for less load-bearing artifacts. Advisory because it is a process gap rather than a code defect, but it is the highest-leverage one.
 

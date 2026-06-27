@@ -26,7 +26,7 @@ _memory:
 
 ### Executive Summary
 
-META-PHASE synthesizing remediation needs identified across all 20 preceding audit phases. This phase collects cross-cutting catalog hygiene issues, classifies them by severity, and tracks their resolution. The original zero-MISMATCH baseline is superseded by the re-audit/deep-review state: 222 audited features, 133 MATCH, 84 PARTIAL, and 5 MISMATCH. Remediation now spans both catalog hygiene and audit/runtime-path drift. Full remediation plan pending — 22 P1 findings documented in `../review-report.md`.
+META-PHASE synthesizing remediation needs identified across all 20 preceding audit phases. This phase collects cross-cutting catalog hygiene issues, classifies them by severity, and tracks their resolution. The original zero-MISMATCH baseline is superseded by the re-audit/deep-review state: 222 audited features, 133 MATCH, 84 PARTIAL, and 5 MISMATCH. Remediation now spans both catalog hygiene and audit/runtime-path drift. Full remediation plan pending — 22 P1 findings documented in `../archive/review-report.md`.
 
 **Key Decisions**: Audit against current feature catalog as source of truth, document findings per feature. Remediation is partially complete; final verification remains pending until `012-pre-release-fixes-alignment-preparation` closes under `001-hybrid-rag-fusion-epic`.
 
@@ -223,10 +223,10 @@ All P0 items have been identified and documented. Catalog updates for P0 items a
 | Finding Class | Count | Status |
 |---------------|-------|--------|
 | P0 | 0 | No new deep-review blockers |
-| P1 | 22 | Active remediation backlog documented in `../review-report.md` |
-| P2 | 35 | Advisory follow-up items documented in `../review-report.md` |
+| P1 | 22 | Active remediation backlog documented in `../archive/review-report.md` |
+| P2 | 35 | Advisory follow-up items documented in `../archive/review-report.md` |
 
-Full remediation plan pending — 22 P1 findings documented in `../review-report.md`.
+Full remediation plan pending — 22 P1 findings documented in `../archive/review-report.md`.
 
 ---
 

@@ -95,5 +95,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Parent**: See `../spec.md`
-- **Source review**: See `../../review-report.md`
+- **Source review**: See `../../archive/review-report.md`
 <!-- /ANCHOR:cross-refs -->

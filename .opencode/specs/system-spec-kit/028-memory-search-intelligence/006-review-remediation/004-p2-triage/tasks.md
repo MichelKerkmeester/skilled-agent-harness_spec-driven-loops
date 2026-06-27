@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read all 91 P2 findings from `../../review-report.md`.
+- [ ] T001 Read all 91 P2 findings from `../../archive/review-report.md`.
 - [ ] T002 Confirm the 15 lens families cover every finding.
 - [ ] T003 Note the lineage re-root and bitemporal zero-callers caveats.
 <!-- /ANCHOR:phase-1 -->
@@ -95,5 +95,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Parent**: See `../spec.md`
-- **Source review**: See `../../review-report.md`
+- **Source review**: See `../../archive/review-report.md`
 <!-- /ANCHOR:cross-refs -->

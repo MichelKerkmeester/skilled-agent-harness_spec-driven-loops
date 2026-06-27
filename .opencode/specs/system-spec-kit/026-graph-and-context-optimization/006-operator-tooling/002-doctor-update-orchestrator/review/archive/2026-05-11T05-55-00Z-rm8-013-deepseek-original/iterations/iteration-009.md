@@ -90,7 +90,7 @@
 - Evidence: The `## RELATED DOCUMENTS` section lists `../001-initial-doctor-commands/handover.md` which does not exist. The 001 child handover was moved to the 013 root per the parent aggregate resource-map (line 110: "Moved | MISSING").
 - Finding class: instance-only
 - Scope proof: Only this one reference; 013/handover.md correctly replaces it
-- Recommendation: Replace `../001-initial-doctor-commands/handover.md` with `../handover.md` (the root handover that now serves as the active continuation point) or remove the line.
+- Recommendation: Replace `../001-initial-doctor-commands/handover.md` with `../archive/handover.md` (the root handover that now serves as the active continuation point) or remove the line.
 
 ## Traceability Checks
 

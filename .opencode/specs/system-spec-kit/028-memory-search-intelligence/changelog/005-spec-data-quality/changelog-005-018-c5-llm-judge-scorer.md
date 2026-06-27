@@ -1,5 +1,5 @@
 ---
-title: "Changelog: C5 LLM-as-judge quality scorer [005-spec-data-quality/018-c5-llm-judge-scorer]"
+title: "Changelog: C5 LLM-as-judge quality scorer [005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer]"
 description: "Chronological changelog for the C5 LLM-as-judge quality scorer phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/018-c5-llm-judge-scorer` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -51,4 +51,4 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 ### Follow-Ups
 
 - Build this retrieval-class change per plan.md and keep it default-off.
-- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-c2-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.
+- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.

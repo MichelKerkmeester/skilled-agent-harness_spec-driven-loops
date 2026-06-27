@@ -192,7 +192,7 @@ Next: Continue implementation
 - [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
 - [`research/research.md`](./research/research.md) - Research findings
-- [`handover.md`](./handover.md) - Session handover notes
+- [`handover.md`](./archive/handover.md) - Session handover notes
 
 **Key Topics:** `decision` | `release` | `readme` | `spec` | `mcp` | `sections` | `memory` | `coverage` | `keep` | `system` | `hybrid` | `documentation` | 
 

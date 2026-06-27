@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A2 Trigger Propagation and Derived Description [005-spec-data-quality/002-a2-trigger-propagation-description]"
+title: "Changelog: A2 Trigger Propagation and Derived Description [005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description]"
 description: "Chronological changelog for the A2 Trigger Propagation and Derived Description phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

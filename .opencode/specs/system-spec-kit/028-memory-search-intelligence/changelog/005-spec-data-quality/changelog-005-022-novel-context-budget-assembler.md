@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Novel Context-Budget-Fitting Assembler [005-spec-data-quality/022-novel-context-budget-assembler]"
+title: "Changelog: Novel Context-Budget-Fitting Assembler [005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler]"
 description: "Chronological changelog for the Novel Context-Budget-Fitting Assembler phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

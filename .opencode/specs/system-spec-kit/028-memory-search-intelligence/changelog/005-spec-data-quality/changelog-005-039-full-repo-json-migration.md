@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Full-Repo JSON Migration [005-spec-data-quality/039-full-repo-json-migration]"
+title: "Changelog: Full-Repo JSON Migration [005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration]"
 description: "Chronological changelog for the full-repo json migration phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
