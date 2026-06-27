@@ -315,7 +315,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | ---------------------------------- | ---------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
 | Spec Kit Memory (`mk-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
-| Skill Advisor (`mk_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (8 tools)                         | Node.js 20.11+                          |
+| Skill Advisor (`mk_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
 | System Code Graph (`mk_code_index`)| MCP Server | Structural AST + blast-radius + neighborhood context (8 tools)             | Node.js 20.11+                          |
 | Sequential Thinking                | MCP Server | Complex reasoning chains                                                    | npx (Node.js 18+)                       |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |

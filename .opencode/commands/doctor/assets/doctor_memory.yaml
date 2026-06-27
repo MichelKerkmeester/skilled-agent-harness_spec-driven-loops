@@ -19,9 +19,8 @@ operating_mode:
 
 
 memory_doctor_invariant: |
-  Memory doctor is read-only by contract. It treats the active provider-keyed
-  profile DBs (ollama, hf-local, voyage, and openai profiles matching
-  context-index__*.sqlite) as the memory-owned stores it diagnoses but never
+  Memory doctor is read-only by contract. It treats the canonical
+  context-index.sqlite DB as the memory-owned store it diagnoses but never
   mutates. Rebuilds are owned by the /doctor:update orchestrator, which relies on
   the per-file memory_index_scan transaction model so SIGINT uses the ~5 sec settle
   window before restoring snapshots for cross-file consistency.
@@ -64,7 +63,7 @@ field_handling:
     false: "diagnostic input only; recommend full apply when high-severity drift is detected"
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/context-index__*.sqlite"  # provider-keyed active profile DBs
+    - "mcp_server/database/context-index.sqlite"  # canonical memory DB
     - "mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak"  # memory snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor memory
@@ -150,7 +149,7 @@ workflow:
       - "Run: memory_health({reportMode: 'full'})"
       - "Inspect memory_health.data.exclusionAudit; classify hard_exclusion_risk from diagnostics without changing recall"
       - "Run: memory_stats({})"
-      - "Bash: stat -f '%m %z' database/context-index__*.sqlite (mtime + size for present profile DBs)"
+      - "Bash: stat -f '%m %z' database/context-index.sqlite (mtime + size for canonical DB)"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - cli_availability: available|retryable-unavailable|failed
@@ -158,8 +157,8 @@ workflow:
       - last_index_at: ISO_timestamp
       - fts_health: ok|degraded|missing
       - embedding_health: ok|degraded|missing
-      - profile_db_sizes: [{path: string, size: bytes}]
-      - profile_db_mtimes: [{path: string, mtime: epoch_seconds}]
+      - canonical_db_size: {path: string, size: bytes}
+      - canonical_db_mtime: {path: string, mtime: epoch_seconds}
     validation: discovery_complete
     fail_fast:
       - "memory_health returns error → STATUS=FAIL with diagnostic"

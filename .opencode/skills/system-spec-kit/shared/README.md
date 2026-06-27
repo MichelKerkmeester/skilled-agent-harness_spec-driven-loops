@@ -192,7 +192,7 @@ shared/
 	│   └── database/
 	│       ├── .db-updated         # Update marker for the shared database directory
 	│       ├── README.md           # Database directory notes and handling guidance
-	│       └── context-index__*.sqlite # Active profile-keyed SQLite database files
+	│       └── context-index.sqlite    # Canonical SQLite memory database
 ├── parsing/
 │   ├── memory-sufficiency.ts          # Memory sufficiency checks
 │   ├── memory-template-contract.ts    # Template contract validation for continuity support artifacts
@@ -339,7 +339,7 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 4. Auto-cascade: OpenAI when local providers fail and `OPENAI_API_KEY` is usable.
 5. Auto-cascade: Voyage when earlier providers fail and `VOYAGE_API_KEY` is usable.
 
-### Per-Profile Databases
+### Canonical Database
 
 The shared database directory currently contains the runtime database plus its marker/readme files:
 
@@ -347,7 +347,7 @@ The shared database directory currently contains the runtime database plus its m
 database/
 ├── .db-updated              # Update marker for the shared database directory
 ├── README.md                # Database directory notes and handling guidance
-└── context-index__*.sqlite  # Active profile-keyed SQLite database files
+└── context-index.sqlite     # Canonical SQLite memory database
 ```
 
 ---
@@ -471,11 +471,11 @@ await preWarmModel()
 
 **Cause**: Changed providers without updating database
 
-**Solution**: Per-profile databases should prevent this. If it occurs:
+**Solution**: The canonical database and per-profile vector shards should prevent this. If it occurs:
 ```bash
-# Delete old database and let system create new one
-# Database filenames encode provider, model, dim and dtype.
-rm .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite*
+# Delete old database and let system create a new one
+# Vector shard filenames still encode provider, model, dim and dtype.
+rm .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite*
 ```
 
 ---

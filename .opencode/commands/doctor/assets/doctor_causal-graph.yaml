@@ -158,7 +158,7 @@ workflow:
     purpose: "Read causal graph coverage and baseline stats."
     activities:
       - "Run: memory_causal_stats({})"
-      - "Bash: stat -f '%m %z' mcp_server/database/context-index__*.sqlite"
+      - "Bash: stat -f '%m %z' mcp_server/database/context-index.sqlite"
       - "Capture total_edges, by_relation, avg_strength, unique_sources, unique_targets, link_coverage_percent, orphanedEdges, health, relationCoverage."
       - "Interactive gate: before_phase_1_analysis"
     outputs:
@@ -171,7 +171,7 @@ workflow:
     validation: discovery_complete
     fail_fast:
       - "memory_causal_stats returns error -> STATUS=FAIL with diagnostic"
-      - "context-index__*.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory"
+      - "context-index.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory"
 
   phase_1_analysis:
     purpose: "Sample up to 10 records around drift signals using read-only traversal."
@@ -248,7 +248,7 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 fails to read memory_causal_stats -> STATUS=FAIL"
-  - "context-index__*.sqlite missing -> STATUS=MISSING; recommend /doctor memory"
+  - "context-index.sqlite missing -> STATUS=MISSING; recommend /doctor memory"
   - "Any phase emits a write attempt -> STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "Any operation attempts causal_edges deletion -> STATUS=FAIL with ERROR='causal-delete-forbidden'"
   - "User answers n at any interactive gate -> STATUS=CANCELLED and emit state log"

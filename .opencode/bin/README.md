@@ -19,7 +19,7 @@ trigger_phrases:
 Current state:
 
 - Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the MCP child and bridges stdio to the running daemon.
-- The three CLI shims run the built daemon-backed CLIs (`spec-memory` 37 tools, `code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use — a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
+- The three CLI shims run the built daemon-backed CLIs (`spec-memory` 39 tools, `code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use — a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
 - Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and default-on daemon re-election for mk-spec-memory — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
@@ -62,10 +62,10 @@ bin/
 +-- mk-spec-memory-launcher.cjs    # Launches mk-spec-memory MCP, owns shared hf-model-server lease
 +-- mk-skill-advisor-launcher.cjs  # Launches mk-skill-advisor MCP, optional model-server supervision
 +-- mk-code-index-launcher.cjs     # Launches mk-code-index MCP, maintainer-mode INDEX_* override
-+-- spec-memory.cjs                # Daemon-backed CLI shim for mk-spec-memory (37 tools)
++-- spec-memory.cjs                # Daemon-backed CLI shim for mk-spec-memory (39 tools)
 +-- code-index.cjs                 # Daemon-backed CLI shim for mk-code-index (8 tools)
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for mk-skill-advisor (9 tools)
-+-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts (37/8/9), cwd-independent
++-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts (39/8/9), cwd-independent
 +-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
 +-- cli-offline-smoke.test.cjs     # Test runner asserting cli-offline-smoke.cjs passes
 +-- hf-model-server.cjs            # Local HTTP/UDS HuggingFace embedding server
@@ -190,7 +190,7 @@ node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
 node .opencode/bin/spec-memory.cjs list-tools --format text | head -3
 node .opencode/bin/code-index.cjs list-tools --format text | head -3
 node .opencode/bin/skill-advisor.cjs list-tools --format text | head -3
-node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts 37/8/9, cwd-independent
+node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts 39/8/9, cwd-independent
 node .opencode/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
 bash -n .opencode/bin/worktree-session.sh
 bash -n .opencode/bin/worktree-reaper.sh

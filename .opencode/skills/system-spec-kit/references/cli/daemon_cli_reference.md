@@ -24,7 +24,7 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 37 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
+| `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 39 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
 | `node .opencode/bin/code-index.cjs` | `mk-code-index` | 8 | Code graph status, scan, verify, query, context, apply-mode recovery, and diff impact fallback. |
 | `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 

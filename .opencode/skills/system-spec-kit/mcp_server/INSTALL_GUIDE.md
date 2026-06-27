@@ -63,7 +63,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │                                                                 │
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
-│    mcp_server/database/context-index__*.sqlite (active profile) │
+│    mcp_server/database/context-index.sqlite (canonical)          │
 │    skills/system-code-graph/.../database/code-graph.sqlite      │
 └────────────────────┬────────────────────────────────────────────┘
                      │
@@ -95,10 +95,10 @@ This guide addresses the full installation lifecycle and common failures after m
 |---|---|
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
-| `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
+| `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` | Canonical repo-local memory database |
 | `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | Default structural code-graph database (skill-local; override with `SPECKIT_CODE_GRAPH_DB_DIR`. The former shared `.opencode/.spec-kit/code-graph/database/` location is superseded and auto-migrated back on first launcher startup) |
 
-The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`, `context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`, and `context-index__voyage__voyage-code-3__1024__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime uses the canonical `context-index.sqlite` memory database; profile-specific vector shards remain under `vectors/context-vectors__*.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
 ### What Gets Picked
 

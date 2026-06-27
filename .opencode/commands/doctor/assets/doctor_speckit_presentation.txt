@@ -46,7 +46,7 @@ On any other response, re-emit the menu once. On a second invalid response, retu
 Pick by symptom:
 
    Search returns stale or empty results               -> 2  Memory
-   "context-index__*.sqlite missing" warning           -> 2  Memory
+   "context-index.sqlite missing" warning              -> 2  Memory
    Model mismatch or hf-local loading state unclear    -> 3  Embeddings
    memory_drift_why returns nothing                    -> 4  Causal-Graph
    "causal coverage <60%" warning                      -> 4  Causal-Graph

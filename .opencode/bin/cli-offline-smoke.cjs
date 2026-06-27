@@ -9,7 +9,7 @@ const { spawnSync } = require('child_process');
 const repoRoot = path.resolve(__dirname, '..', '..');
 const socketFileName = 'daemon-ipc.sock';
 const checks = [
-  { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 37 },
+  { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 39 },
   { name: 'code-index', shim: path.join(__dirname, 'code-index.cjs'), expectedCount: 8 },
   { name: 'skill-advisor', shim: path.join(__dirname, 'skill-advisor.cjs'), expectedCount: 9 },
 ];
