@@ -1,24 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins",
-  "description": "The 028 drift audit surfaced 16 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
+  "description": "The 2026-06-27 drift audit converged 21 findings in this phase covering the removed opencode-go gateway (purged to its last straggler, the matrix-adap",
   "keywords": [
-    "028",
+    "2026-06-27",
     "drift",
     "audit",
-    "surfaced",
-    "evidence-backed",
+    "converged",
     "findings",
-    "surface",
-    "area",
-    "doc",
-    "config",
-    "test",
-    "reality",
-    "drifted",
-    "code"
+    "phase",
+    "covering",
+    "removed",
+    "opencode-go",
+    "gateway",
+    "purged",
+    "last",
+    "straggler",
+    "matrix-adap"
   ],
-  "lastUpdated": "2026-06-27T08:06:59.789Z",
+  "lastUpdated": "2026-06-27T13:49:09.306Z",
   "specId": "003",
   "folderSlug": "opencode-go-and-codex-pins",
   "parentChain": [
@@ -26,7 +26,8 @@
     "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "008-drift-remediation"
+    "000-release-cleanup",
+    "013-drift-remediation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

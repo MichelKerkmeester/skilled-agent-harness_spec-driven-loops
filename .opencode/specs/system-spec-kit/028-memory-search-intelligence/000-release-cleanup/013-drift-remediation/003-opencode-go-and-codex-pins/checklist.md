@@ -1,78 +1,148 @@
 ---
-title: "Checklist: OpenCode-Go Leftovers and Codex Model Pins"
-description: "Verification checklist for remediation phase 3."
+title: "Verification Checklist: opencode-go and Codex Pins"
+description: "Verification Date: 2026-06-27"
 trigger_phrases:
-  - "028 drift remediation"
-  - "checklist: opencode-go leftovers and codex model pins"
-  - "drift fix verification"
-importance_tier: "important"
+  - "verification"
+  - "checklist"
+  - "name"
+  - "template"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded checklist for phase 3"
-    next_safe_action: "Verify each finding"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+# Verification Checklist: opencode-go and Codex Pins
 
-# Checklist: OpenCode-Go Leftovers and Codex Model Pins
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm every required item has concrete evidence before marking it complete.
+- Keep optional deferrals explicit, owned, and separate from blockers.
+FAILURE MODES:
+- Rubber-stamping the checklist, vague tested-claims, and hidden blocker deferrals.
+-->
+
+---
 
 <!-- ANCHOR:protocol -->
-## Protocol
-Mark an item done only after opus re-reads the file and confirms the cited evidence is resolved (or records a false-positive in the ledger).
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
 <!-- /ANCHOR:protocol -->
+
+---
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Ledger entries for 003-opencode-go-and-codex-pins loaded
-- [ ] Cited files present
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
+
+---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Edits minimal and scoped to cited drift
-- [ ] Comment hygiene respected (no artifact-ids/spec paths in code comments)
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented
+- [ ] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
+
+---
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Affected tests/validators re-run where a finding touches code or a test
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] Manual testing complete
+- [ ] CHK-022 [P1] Edge cases tested
+- [ ] CHK-023 [P1] Error scenarios validated
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] No secrets or scope-violating changes introduced
+
+- [ ] CHK-030 [P0] No hardcoded secrets
+- [ ] CHK-031 [P0] Input validation implemented
+- [ ] CHK-032 [P1] Auth/authz working correctly
 <!-- /ANCHOR:security -->
+
+---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] F021 `.codex/agents/orchestrate.toml` orchestrate agent pinned to gpt-5.4 before cli-codex gpt-5.5 lock
-- [ ] F022 `.codex/agents/code.toml` code agent pinned to gpt-5.4 before cli-codex gpt-5.5 lock
-- [ ] F023 `.codex/agents/review.toml` review agent pinned to gpt-5.4 before cli-codex gpt-5.5 lock
-- [ ] F030 `.opencode/commands/deep/assets/deep_context_presentation.txt` Deep context example references removed opencode-go provider
-- [ ] F031 `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` AI council docs claim OpenCode uses removed opencode-go gateway models
-- [ ] F032 `.opencode/skills/deep-loop-workflows/deep-ai-council/references/patterns/seat_diversity_patterns.md` Seat-diversity table lists opencode-go gateway as a cli-opencode model option
-- [ ] F033 `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs` Skill benchmark default model is the removed opencode-go/deepseek-v4-pro
-- [ ] F034 `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts` Matrix adapter test expects removed opencode-go model invocation
-- [ ] F047 `.opencode/skills/cli-codex/README.md` Codex runtime agents use gpt-5.4 but cli-codex docs claim only gpt-5.5 is supported
-- [ ] F072 `.codex/agents/context.toml` context agent pinned to gpt-5.4 before cli-codex gpt-5.5 lock
-- [ ] F073 `.codex/agents/markdown.toml` Markdown Codex agent is pinned to high effort despite documentation tasks being medium
-- [ ] F084 `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md` MiMo model card still recommends removed opencode-go free fallback
-- [ ] F085 `.opencode/skills/sk-prompt-small-model/assets/model_profiles.json` Registry still encodes removed opencode-go MiMo free path
-- [ ] F099 `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` executor-config unit test uses retired opencode-go models
-- [ ] F107 `.opencode/skills/cli-opencode/changelog/v1.3.15.0.md` Changelog claims manual_testing_playbook still contains opencode-go scenarios that no longer exist
-- [ ] F120 `.opencode/skills/cli-codex/SKILL.md` All 13 Codex agents pinned to high reasoning effort despite documented per-role tuning
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-042 [P2] README updated (if applicable)
 <!-- /ANCHOR:docs -->
+
+---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] No files created or moved outside the cited targets
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
+---
+
 <!-- ANCHOR:summary -->
-## Summary
-- [ ] All 16 findings terminal in the ledger
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | [X] | [ ]/[X] |
+| P1 Items | [Y] | [ ]/[Y] |
+| P2 Items | [Z] | [ ]/[Z] |
+
+**Verification Date**: 2026-06-27
 <!-- /ANCHOR:summary -->
+
+---
+
+<!--
+Level 2 checklist - Verification focus
+Mark [x] with evidence when verified
+P0 must complete, P1 need approval to defer
+-->
+

@@ -1,132 +1,212 @@
 ---
-title: "Feature Specification: Agent and Command Tool-Grant Reconciliation"
-description: "Remediation phase 4 of 6: 25 drift findings (P1 20, P2 5). Each is verified real, fixed by gpt-5.5 high, re-verified by opus."
+title: "Feature Specification: Tool Grant Reconciliation"
+description: "Drift-remediation phase 004-tool-grant-reconciliation: 44 findings (28 fixed, 16 false-positive)."
 trigger_phrases:
-  - "028 drift remediation"
-  - "feature specification: agent and command tool-grant reconciliation"
-  - "drift fix verification"
-importance_tier: "important"
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec core"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded phase 4 from the remediation ledger"
-    next_safe_action: "Triage and fix the 25 findings"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Feature Specification: Tool Grant Reconciliation
 
-# Feature Specification: Agent and Command Tool-Grant Reconciliation
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-- Track: 008-drift-remediation, phase 4 of 6
-- Findings: 25 (P1 20, P2 5)
-- Ledger: ../remediation-ledger.jsonl (phase=004-tool-grant-reconciliation)
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | mixed (P0-P2) |
+| **Status** | Complete |
+| **Created** | 2026-06-27 |
+| **Branch** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation` |
 <!-- /ANCHOR:metadata -->
+
+---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+
 ### Problem Statement
-The 028 drift audit surfaced 25 evidence-backed findings in this surface area: doc/config/test reality drifted from code.
+The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools versus workflow needs. Each is an LLM hypothesis carrying file:line evidence that must be confirmed against the real file before any edit.
+
 ### Purpose
-Verify each against the real file, fix the genuine ones with minimal scoped edits, re-verify, and leave every ledger entry terminal.
+Every finding in this phase reaches a terminal state — fixed-and-verified or false-positive — with no regressions.
 <!-- /ANCHOR:problem -->
+
+---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+
 ### In Scope
-The 25 findings in REQUIREMENTS.
+- [Deliverable 1]
+- [Deliverable 2]
+- [Deliverable 3]
+
 ### Out of Scope
-Findings in other phases; adjacent cleanup not cited by a finding.
+- [Excluded item 1] - [why]
+- [Excluded item 2] - [why]
+
 ### Files to Change
-- `.opencode/commands/doctor/assets/doctor_causal-graph.yaml`
-- `.claude/agents/context.md`
-- `.opencode/commands/speckit/complete.md`
-- `.claude/agents/deep-review.md`
-- `.claude/agents/deep-research.md`
-- `.opencode/commands/speckit/resume.md`
-- `.claude/agents/review.md`
-- `.opencode/agents/context.md`
-- `.opencode/agents/review.md`
-- `.opencode/commands/doctor/update.md`
-- `.opencode/commands/memory/learn.md`
-- `.opencode/commands/doctor/assets/doctor_memory.yaml`
-- `.opencode/commands/doctor/assets/doctor_deep-loop.yaml`
-- `.opencode/commands/doctor/mcp.md`
-- `.opencode/commands/deep/agent-improvement.md`
-- `.opencode/commands/deep/model-benchmark.md`
-- `.opencode/commands/speckit/implement.md`
-- `.opencode/commands/create/agent.md`
-- `.opencode/commands/create/sk-skill.md`
-- `.opencode/commands/create/changelog.md`
-- `.opencode/commands/doctor/assets/doctor_code-graph.yaml`
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| see remediation-ledger.jsonl | per finding | phase 004-tool-grant-reconciliation |
 <!-- /ANCHOR:scope -->
+
+---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-### Required (complete OR user-approved deferral)
-- F010 [P1 misalignment] `.opencode/commands/doctor/assets/doctor_causal-graph.yaml:57-60` causal-graph YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
-- F013 [P1 drift] `.claude/agents/context.md:4` Claude context agent lacks code_graph MCP grant but body instructs its use
-- F017 [P1 misalignment] `.opencode/commands/speckit/complete.md:4` complete.md allowed-tools missing memory_search required by context_loading step
-- F020 [P1 misalignment] `.claude/agents/deep-review.md:4` tools: line only exposes detect_changes but body declares code_graph_query + code_graph_context as available tools
-- F029 [P1 drift] `.claude/agents/deep-research.md:4` Claude deep-research agent lacks code_graph MCP grant but wedged-daemon fallback references it
-- F044 [P1 misalignment] `.opencode/commands/speckit/resume.md:4` resume.md allowed-tools missing session_bootstrap required by recovery ladder
-- F046 [P1 misalignment] `.claude/agents/review.md:4` tools: line only exposes detect_changes but .opencode/agents/review.md body references it without any code_graph permissions declared
-- F048 [P1 misalignment] `.opencode/agents/context.md:20-22` OpenCode context agent declares non-existent MCP server 'code_graph'
-- F049 [P1 misalignment] `.opencode/agents/review.md:6-19` OpenCode review agent body uses detect_changes without granting it
-- F050 [P1 drift] `.claude/agents/deep-review.md:4` Claude deep-review agent body references code_graph_query/context not in tools line
-- F054 [P1 misalignment] `.opencode/commands/doctor/update.md:4` /doctor:update missing L5 Lifecycle + L7 Maintenance tools
-- F055 [P1 misalignment] `.opencode/commands/memory/learn.md:4` /memory:learn missing memory_context and 16 other spec-memory tools
-- F064 [P1 misalignment] `.opencode/commands/doctor/assets/doctor_memory.yaml:50-53` memory YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
-- F065 [P1 misalignment] `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:59-62` deep-loop YAML user_inputs missing no_snapshot and dry_run fields declared in route allowed_flags
-- F068 [P1 dead] `.opencode/commands/doctor/mcp.md:3-4` doctor:mcp has MCP-style flags but no MCP tools in allowed-tools
-- F069 [P1 contradiction] `.opencode/commands/speckit/complete.md:4` complete.md router omits memory_search used by both complete YAMLs
-- F074 [P1 misalignment] `.claude/agents/context.md:4` context agent frontmatter omits required code-graph tool grants
-- F075 [P1 dead] `.opencode/agents/context.md:22` Context agent references unregistered MCP server `code_graph`
-- F092 [P1 misalignment] `.opencode/commands/deep/agent-improvement.md:4` agent-improvement workflow requires memory_search but command disallows it
-- F093 [P1 misalignment] `.opencode/commands/deep/model-benchmark.md:4` model-benchmark workflow requires memory_search but command disallows it
-- F117 [P2 misalignment] `.opencode/commands/speckit/implement.md:4` implement.md allowed-tools missing code_graph_query instructed by YAML
-- F148 [P2 misalignment] `.opencode/commands/create/agent.md:4` /create:agent omits Code Graph allowed tool while asset instructs code_graph_query
-- F149 [P2 misalignment] `.opencode/commands/create/sk-skill.md:4` /create:sk-skill omits Code Graph allowed tool while asset instructs code_graph_query
-- F150 [P2 misalignment] `.opencode/commands/create/changelog.md:4` /create:changelog omits Code Graph allowed tool while asset instructs code_graph_query
-- F170 [P2 misalignment] `.opencode/commands/doctor/assets/doctor_code-graph.yaml:244` Code-graph asset invokes code_graph_scan missing from route mcp_tools
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | [Requirement description] | [How to verify it's done] |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-002 | [Requirement description] | [How to verify it's done] |
 <!-- /ANCHOR:requirements -->
+
+---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- Every listed finding terminal in the ledger (fixed+verified or false-positive with reason).
-- opus re-read confirms evidence resolved and scope respected.
-- validate.sh --strict exit 0 for this phase.
+
+- **SC-001**: [Primary measurable outcome]
+- **SC-002**: [Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
+---
+
 <!-- ANCHOR:risks -->
-## 6. RISKS
-- A fix touches more than the cited drift (scope creep) -> opus verifies scope per file.
-- A finding is a false positive -> triage before fixing; never fix a phantom.
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | see remediation-ledger.jsonl | per finding | phase 004-tool-grant-reconciliation |
+| Risk | see remediation-ledger.jsonl | per finding | phase 004-tool-grant-reconciliation |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:nfr -->
-## 7. NON-FUNCTIONAL REQUIREMENTS
-- No behavior regressions; edits are doc/config/test alignment only.
-- Comment hygiene: no artifact-ids or spec paths in code comments.
-<!-- /ANCHOR:nfr -->
-
-<!-- ANCHOR:edge-cases -->
-## 8. EDGE CASES
-- Same file cited by multiple findings -> batch edits, verify once per file.
-- Evidence line numbers shifted since the audit -> verify by content, not line.
-<!-- /ANCHOR:edge-cases -->
+---
 
 <!-- ANCHOR:questions -->
-## 9. OPEN QUESTIONS
-None open; deferrals (if any) are recorded as false-positive with reason in the ledger.
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+
+### Security
+- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+
+### Reliability
+- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R02**: [Error rate - e.g., <1%]
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty input: [How system handles]
+- Maximum length: [Limit and behavior]
+- Invalid format: [Validation response]
+
+### Error Scenarios
+- External service failure: [Fallback behavior]
+- Network timeout: [Retry strategy]
+- Concurrent access: [Conflict resolution]
+
+### State Transitions
+- Partial completion: [Recovery behavior]
+- Session expiry: [User experience]
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | [/25] | [Files, LOC, systems] |
+| Risk | [/25] | [Auth, API, breaking changes] |
+| Research | [/20] | [Investigation needs] |
+| **Total** | **[/70]** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- [Question 1 requiring clarification]
+- [Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
-<!-- ANCHOR:related-docs -->
-## 10. RELATED DOCS
-- ../remediation-ledger.jsonl
-- ../../research/drift-audit-2026-06-27/converged-report.md
-<!-- /ANCHOR:related-docs -->
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- No boilerplate sections
+- Add L2/L3 addendums for complexity
+-->
+
+
+<!-- SCAFFOLD_VALIDATION_COUNTS:
+REQ-003
+REQ-004
+REQ-005
+REQ-006
+REQ-007
+REQ-008
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+-->

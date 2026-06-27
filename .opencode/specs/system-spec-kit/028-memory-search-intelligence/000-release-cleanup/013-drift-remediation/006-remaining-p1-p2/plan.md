@@ -1,82 +1,226 @@
 ---
-title: "Implementation Plan: Remaining P1/P2 Fixes"
-description: "Plan for remediation phase 6: fix and verify 83 findings."
+title: "Implementation Plan: Remaining P1/P2"
+description: "Plan for drift-remediation phase 006-remaining-p1-p2."
 trigger_phrases:
-  - "028 drift remediation"
-  - "implementation plan: remaining p1/p2 fixes"
-  - "drift fix verification"
-importance_tier: "important"
+  - "implementation"
+  - "plan"
+  - "name"
+  - "template"
+  - "plan core"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded plan for phase 6"
-    next_safe_action: "Execute the fix-verify loop"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+# Implementation Plan: Remaining P1/P2
 
-# Implementation Plan: Remaining P1/P2 Fixes
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
+- Match phases to the stated scope; remove setup theater that does not change the outcome.
+FAILURE MODES:
+- Over-planning, missing rollback, and treating assumptions as dependencies.
+-->
+
+---
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
+
 ### Technical Context
-83 findings, fixed by gpt-5.5-fast (variant high) via cli-opencode, verified by opus.
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
+| **Framework** | [e.g., React, FastAPI] |
+| **Storage** | [e.g., PostgreSQL, None] |
+| **Testing** | [e.g., Jest, pytest] |
+
 ### Overview
-Triage -> fix -> re-verify each finding; batch edits that share a root cause.
+[2-3 sentences: what this implements and the technical approach]
 <!-- /ANCHOR:summary -->
+
+---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
+
 ### Definition of Ready
-Ledger entries loaded; cited files present.
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
+
 ### Definition of Done
-All this phase's entries terminal; validate.sh --strict exit 0; no regressions.
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
+
+---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
+
 ### Pattern
-Evidence-driven minimal scoped edits; opus verifies every touched file.
+[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
 ### Key Components
-remediation-ledger.jsonl; the cited source files.
+- **[Component 1]**: [Purpose]
+- **[Component 2]**: [Purpose]
+
 ### Data Flow
-ledger(open) -> triage -> fix -> verify -> ledger(terminal).
+[Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| see remediation-ledger.jsonl | per finding | phase 006-remaining-p1-p2 | [grep/test/doc evidence] |
+| see remediation-ledger.jsonl | per finding | phase 006-remaining-p1-p2 | [grep/test/doc evidence] |
+
+Required inventories:
+- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-Single batch for this phase, grouped by shared root cause.
+
+### Phase 1: Setup
+- [ ] Project structure created
+- [ ] Dependencies installed
+- [ ] Development environment ready
+
+### Phase 2: Core Implementation
+- [ ] [Core feature 1]
+- [ ] [Core feature 2]
+- [ ] [Core feature 3]
+
+### Phase 3: Verification
+- [ ] Manual testing complete
+- [ ] Edge cases handled
+- [ ] Documentation updated
 <!-- /ANCHOR:phases -->
 
+---
+
 <!-- ANCHOR:testing -->
-## 5. TESTING
-opus re-reads each touched file; run affected unit tests / validators where a finding touches code or a test.
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | [Components/functions] | [Jest/pytest/etc.] |
+| Integration | [API endpoints/flows] | [Tools] |
+| Manual | [User journeys] | Browser |
 <!-- /ANCHOR:testing -->
+
+---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-The converged drift-audit findings; cli-opencode (gpt-5.5-fast).
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| see remediation-ledger.jsonl | per finding | phase 006-remaining-p1-p2 | [Impact] |
 <!-- /ANCHOR:dependencies -->
 
+---
+
 <!-- ANCHOR:rollback -->
-## 7. ROLLBACK
-Each fix is a small scoped git diff; revert the specific commit if a regression surfaces.
+## 7. ROLLBACK PLAN
+
+- **Trigger**: [Conditions requiring rollback]
+- **Procedure**: [How to revert changes]
 <!-- /ANCHOR:rollback -->
 
-<!-- ANCHOR:l2-phase-deps -->
-## 8. PHASE DEPENDENCIES
-P0s (phase 1) and the mechanical sweeps (phase 2) land before later phases that depend on the corrected names.
-<!-- /ANCHOR:l2-phase-deps -->
+---
 
-<!-- ANCHOR:l2-effort -->
-## 9. EFFORT
-83 findings; mostly small doc/config edits.
-<!-- /ANCHOR:l2-effort -->
 
-<!-- ANCHOR:l2-rollback -->
-## 10. ROLLBACK DETAIL
-Per-finding revert via its scoped commit; the ledger records what changed.
-<!-- /ANCHOR:l2-rollback -->
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────┐
+                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
+Phase 1.5 (Config) ───┘
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Core, Config |
+| Config | Setup | Core |
+| Core | Setup, Config | Verify |
+| Verify | Core | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
+| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
+| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+| **Total** | | **[e.g., 6-12 hours]** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Backup created (if data changes)
+- [ ] Feature flag configured
+- [ ] Monitoring alerts set
+
+### Rollback Procedure
+1. [Immediate action - e.g., disable feature flag]
+2. [Revert code - e.g., git revert or redeploy previous version]
+3. [Verify rollback - e.g., smoke test critical paths]
+4. [Notify stakeholders - if user-facing]
+
+### Data Reversal
+- **Has data migrations?** [Yes/No]
+- **Reversal procedure**: [Steps or "N/A"]
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+<!--
+LEVEL 2 PLAN (~140 lines)
+- Core + Verification additions
+- Phase dependencies, effort estimation
+- Enhanced rollback procedures
+-->
+

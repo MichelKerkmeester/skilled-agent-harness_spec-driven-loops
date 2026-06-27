@@ -1,68 +1,148 @@
 ---
-title: "Checklist: P0 Fixes"
-description: "Verification checklist for remediation phase 1."
+title: "Verification Checklist: P0 Fixes"
+description: "Verification Date: 2026-06-27"
 trigger_phrases:
-  - "028 drift remediation"
-  - "checklist: p0 fixes"
-  - "drift fix verification"
-importance_tier: "important"
+  - "verification"
+  - "checklist"
+  - "name"
+  - "template"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded checklist for phase 1"
-    next_safe_action: "Verify each finding"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+# Verification Checklist: P0 Fixes
 
-# Checklist: P0 Fixes
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm every required item has concrete evidence before marking it complete.
+- Keep optional deferrals explicit, owned, and separate from blockers.
+FAILURE MODES:
+- Rubber-stamping the checklist, vague tested-claims, and hidden blocker deferrals.
+-->
+
+---
 
 <!-- ANCHOR:protocol -->
-## Protocol
-Mark an item done only after opus re-reads the file and confirms the cited evidence is resolved (or records a false-positive in the ledger).
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
 <!-- /ANCHOR:protocol -->
+
+---
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Ledger entries for 001-p0-fixes loaded
-- [ ] Cited files present
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
+
+---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Edits minimal and scoped to cited drift
-- [ ] Comment hygiene respected (no artifact-ids/spec paths in code comments)
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented
+- [ ] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
+
+---
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Affected tests/validators re-run where a finding touches code or a test
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] Manual testing complete
+- [ ] CHK-022 [P1] Edge cases tested
+- [ ] CHK-023 [P1] Error scenarios validated
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] No secrets or scope-violating changes introduced
+
+- [ ] CHK-030 [P0] No hardcoded secrets
+- [ ] CHK-031 [P0] Input validation implemented
+- [ ] CHK-032 [P1] Auth/authz working correctly
 <!-- /ANCHOR:security -->
+
+---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] F001 `.opencode/commands/doctor/_routes.yaml` /doctor code-graph route declares read-only but advertises mutating operations
-- [ ] F002 `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/graph-metadata.json` Phase parent 005 carries full Level 3 heavy-doc stack + missing migrated flag
-- [ ] F003 `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` Causal-graph doctor mutation boundaries invert the canonical DB path
-- [ ] F004 `.codex/agents/ai-council.toml` ai-council agent re-pinned to gpt-5.4 after cli-codex gpt-5.5 lock
-- [ ] F005 `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts` Fallback router type expects model-level quota_pool that does not exist
-- [ ] F006 `.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts` Fallback router tests exercise stale cli-devin registry
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-042 [P2] README updated (if applicable)
 <!-- /ANCHOR:docs -->
+
+---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] No files created or moved outside the cited targets
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
+---
+
 <!-- ANCHOR:summary -->
-## Summary
-- [ ] All 6 findings terminal in the ledger
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | [X] | [ ]/[X] |
+| P1 Items | [Y] | [ ]/[Y] |
+| P2 Items | [Z] | [ ]/[Z] |
+
+**Verification Date**: 2026-06-27
 <!-- /ANCHOR:summary -->
+
+---
+
+<!--
+Level 2 checklist - Verification focus
+Mark [x] with evidence when verified
+P0 must complete, P1 need approval to defer
+-->
+

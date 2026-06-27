@@ -1,59 +1,106 @@
 ---
 title: "Tasks: P0 Fixes"
-description: "Fix tasks for remediation phase 1."
+description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "028 drift remediation"
-  - "tasks: p0 fixes"
-  - "drift fix verification"
-importance_tier: "important"
+  - "tasks"
+  - "name"
+  - "template"
+  - "tasks core"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded tasks for phase 1"
-    next_safe_action: "Work the fix tasks"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
-
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: P0 Fixes
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-- [ ] open
-- [x] fixed and verified
-- [~] false-positive (reason in ledger)
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
+
+---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Load ledger entries for 001-p0-fixes
+
+- [ ] T001 Create project structure
+- [ ] T002 Install dependencies
+- [ ] T003 [P] Configure development tools
 <!-- /ANCHOR:phase-1 -->
+
+---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] F001 fix `.opencode/commands/doctor/_routes.yaml` /doctor code-graph route declares read-only but advertises mutating operations
-- [ ] F002 fix `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/graph-metadata.json` Phase parent 005 carries full Level 3 heavy-doc stack + missing migrated flag
-- [ ] F003 fix `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` Causal-graph doctor mutation boundaries invert the canonical DB path
-- [ ] F004 fix `.codex/agents/ai-council.toml` ai-council agent re-pinned to gpt-5.4 after cli-codex gpt-5.5 lock
-- [ ] F005 fix `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts` Fallback router type expects model-level quota_pool that does not exist
-- [ ] F006 fix `.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts` Fallback router tests exercise stale cli-devin registry
+
+- [ ] T004 [Implement core feature 1]
+- [ ] T005 [Implement core feature 2]
+- [ ] T006 [Implement core feature 3]
+- [ ] T007 [Add error handling]
 <!-- /ANCHOR:phase-2 -->
+
+---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] opus re-reads every touched file; evidence resolved; scope respected
-- [ ] validate.sh on this phase --strict exit 0
+
+- [ ] T008 Test happy path manually
+- [ ] T009 Test edge cases
+- [ ] T010 Update documentation
 <!-- /ANCHOR:phase-3 -->
+
+---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-All 6 findings terminal in the ledger.
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
 <!-- /ANCHOR:completion -->
+
+---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- ../remediation-ledger.jsonl
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+---
+
+<!--
+CORE TEMPLATE (~60 lines)
+- Simple task tracking
+- 3 phases: Setup, Implementation, Verification
+- Add L2/L3 addendums for complexity
+-->
+

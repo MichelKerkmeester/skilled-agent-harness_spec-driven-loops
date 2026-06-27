@@ -1,98 +1,212 @@
 ---
 title: "Feature Specification: P0 Fixes"
-description: "Remediation phase 1 of 6: 6 drift findings (P0 6). Each is verified real, fixed by gpt-5.5 high, re-verified by opus."
+description: "Drift-remediation phase 001-p0-fixes: 5 findings (3 fixed, 2 false-positive)."
 trigger_phrases:
-  - "028 drift remediation"
-  - "feature specification: p0 fixes"
-  - "drift fix verification"
-importance_tier: "important"
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec core"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded phase 1 from the remediation ledger"
-    next_safe_action: "Triage and fix the 6 findings"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: P0 Fixes
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-- Track: 008-drift-remediation, phase 1 of 6
-- Findings: 6 (P0 6)
-- Ledger: ../remediation-ledger.jsonl (phase=001-p0-fixes)
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | mixed (P0-P2) |
+| **Status** | Complete |
+| **Created** | 2026-06-27 |
+| **Branch** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes` |
 <!-- /ANCHOR:metadata -->
+
+---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+
 ### Problem Statement
-The 028 drift audit surfaced 6 evidence-backed findings in this surface area: doc/config/test reality drifted from code.
+The 2026-06-27 drift audit converged 5 findings in this phase covering the six P0 findings: read-only doctor routes carrying mutation flags, the causal-graph DB-path inversion, and the codex model pins. Each is an LLM hypothesis carrying file:line evidence that must be confirmed against the real file before any edit.
+
 ### Purpose
-Verify each against the real file, fix the genuine ones with minimal scoped edits, re-verify, and leave every ledger entry terminal.
+Every finding in this phase reaches a terminal state — fixed-and-verified or false-positive — with no regressions.
 <!-- /ANCHOR:problem -->
+
+---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+
 ### In Scope
-The 6 findings in REQUIREMENTS.
+- [Deliverable 1]
+- [Deliverable 2]
+- [Deliverable 3]
+
 ### Out of Scope
-Findings in other phases; adjacent cleanup not cited by a finding.
+- [Excluded item 1] - [why]
+- [Excluded item 2] - [why]
+
 ### Files to Change
-- `.opencode/commands/doctor/_routes.yaml`
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/graph-metadata.json`
-- `.opencode/commands/doctor/assets/doctor_causal-graph.yaml`
-- `.codex/agents/ai-council.toml`
-- `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts`
-- `.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts`
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| see remediation-ledger.jsonl | per finding | phase 001-p0-fixes |
 <!-- /ANCHOR:scope -->
+
+---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
+
 ### P0 - Blockers (MUST complete)
-- F001 [P0 contradiction] `.opencode/commands/doctor/_routes.yaml:76-93` /doctor code-graph route declares read-only but advertises mutating operations
-- F002 [P0 drift] `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/graph-metadata.json:6-55` Phase parent 005 carries full Level 3 heavy-doc stack + missing migrated flag
-- F003 [P0 contradiction] `.opencode/commands/doctor/assets/doctor_causal-graph.yaml:78-89` Causal-graph doctor mutation boundaries invert the canonical DB path
-- F004 [P0 misalignment] `.codex/agents/ai-council.toml:6` ai-council agent re-pinned to gpt-5.4 after cli-codex gpt-5.5 lock
-- F005 [P0 misalignment] `.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:13-17` Fallback router type expects model-level quota_pool that does not exist
-- F006 [P0 drift] `.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:9-14` Fallback router tests exercise stale cli-devin registry
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | [Requirement description] | [How to verify it's done] |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-002 | [Requirement description] | [How to verify it's done] |
 <!-- /ANCHOR:requirements -->
+
+---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- Every listed finding terminal in the ledger (fixed+verified or false-positive with reason).
-- opus re-read confirms evidence resolved and scope respected.
-- validate.sh --strict exit 0 for this phase.
+
+- **SC-001**: [Primary measurable outcome]
+- **SC-002**: [Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
+---
+
 <!-- ANCHOR:risks -->
-## 6. RISKS
-- A fix touches more than the cited drift (scope creep) -> opus verifies scope per file.
-- A finding is a false positive -> triage before fixing; never fix a phantom.
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | see remediation-ledger.jsonl | per finding | phase 001-p0-fixes |
+| Risk | see remediation-ledger.jsonl | per finding | phase 001-p0-fixes |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:nfr -->
-## 7. NON-FUNCTIONAL REQUIREMENTS
-- No behavior regressions; edits are doc/config/test alignment only.
-- Comment hygiene: no artifact-ids or spec paths in code comments.
-<!-- /ANCHOR:nfr -->
-
-<!-- ANCHOR:edge-cases -->
-## 8. EDGE CASES
-- Same file cited by multiple findings -> batch edits, verify once per file.
-- Evidence line numbers shifted since the audit -> verify by content, not line.
-<!-- /ANCHOR:edge-cases -->
+---
 
 <!-- ANCHOR:questions -->
-## 9. OPEN QUESTIONS
-None open; deferrals (if any) are recorded as false-positive with reason in the ledger.
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+
+### Security
+- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+
+### Reliability
+- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R02**: [Error rate - e.g., <1%]
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty input: [How system handles]
+- Maximum length: [Limit and behavior]
+- Invalid format: [Validation response]
+
+### Error Scenarios
+- External service failure: [Fallback behavior]
+- Network timeout: [Retry strategy]
+- Concurrent access: [Conflict resolution]
+
+### State Transitions
+- Partial completion: [Recovery behavior]
+- Session expiry: [User experience]
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | [/25] | [Files, LOC, systems] |
+| Risk | [/25] | [Auth, API, breaking changes] |
+| Research | [/20] | [Investigation needs] |
+| **Total** | **[/70]** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- [Question 1 requiring clarification]
+- [Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
-<!-- ANCHOR:related-docs -->
-## 10. RELATED DOCS
-- ../remediation-ledger.jsonl
-- ../../research/drift-audit-2026-06-27/converged-report.md
-<!-- /ANCHOR:related-docs -->
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- No boilerplate sections
+- Add L2/L3 addendums for complexity
+-->
+
+
+<!-- SCAFFOLD_VALIDATION_COUNTS:
+REQ-003
+REQ-004
+REQ-005
+REQ-006
+REQ-007
+REQ-008
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+-->

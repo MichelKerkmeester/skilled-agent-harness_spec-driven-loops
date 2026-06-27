@@ -1,24 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
-  "description": "The 028 drift audit surfaced 35 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
+  "description": "The 2026-06-27 drift audit converged 37 findings in this phase covering graph-metadata path normalization, phase-parent migrated/level metadata, and s",
   "keywords": [
-    "028",
+    "2026-06-27",
     "drift",
     "audit",
-    "surfaced",
-    "evidence-backed",
+    "converged",
     "findings",
-    "surface",
-    "area",
-    "doc",
-    "config",
-    "test",
-    "reality",
-    "drifted",
-    "code"
+    "phase",
+    "covering",
+    "graph-metadata",
+    "path",
+    "normalization",
+    "phase-parent",
+    "migrated",
+    "level",
+    "metadata"
   ],
-  "lastUpdated": "2026-06-27T08:07:00.171Z",
+  "lastUpdated": "2026-06-27T13:49:13.696Z",
   "specId": "005",
   "folderSlug": "spec-housekeeping",
   "parentChain": [
@@ -26,7 +26,8 @@
     "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "008-drift-remediation"
+    "000-release-cleanup",
+    "013-drift-remediation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

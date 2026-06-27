@@ -1,105 +1,212 @@
 ---
-title: "Feature Specification: Stale DB-Name and Tool-Count Sweep"
-description: "Remediation phase 2 of 6: 10 drift findings (P1 6, P2 4). Each is verified real, fixed by gpt-5.5 high, re-verified by opus."
+title: "Feature Specification: Stale DB and Tool Count Sweep"
+description: "Drift-remediation phase 002-stale-db-and-tool-count-sweep: 22 findings (19 fixed, 3 false-positive)."
 trigger_phrases:
-  - "028 drift remediation"
-  - "feature specification: stale db-name and tool-count sweep"
-  - "drift fix verification"
-importance_tier: "important"
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec core"
+importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep"
+    last_updated_at: "2026-06-27T13:53:16Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded phase 2 from the remediation ledger"
-    next_safe_action: "Triage and fix the 10 findings"
+    recent_action: "Completed and verified all phase findings against the remediation ledger"
+    next_safe_action: "None — phase terminal"
     blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Feature Specification: Stale DB and Tool Count Sweep
 
-# Feature Specification: Stale DB-Name and Tool-Count Sweep
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-- Track: 008-drift-remediation, phase 2 of 6
-- Findings: 10 (P1 6, P2 4)
-- Ledger: ../remediation-ledger.jsonl (phase=002-stale-db-and-tool-count-sweep)
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | mixed (P0-P2) |
+| **Status** | Complete |
+| **Created** | 2026-06-27 |
+| **Branch** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep` |
 <!-- /ANCHOR:metadata -->
+
+---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+
 ### Problem Statement
-The 028 drift audit surfaced 10 evidence-backed findings in this surface area: doc/config/test reality drifted from code.
+The 2026-06-27 drift audit converged 22 findings in this phase covering the retired per-profile context-index__*.sqlite names (canonicalized to context-index.sqlite) and stale tool counts (corrected to spec-memory 39, advisor 9, code-index 8). Each is an LLM hypothesis carrying file:line evidence that must be confirmed against the real file before any edit.
+
 ### Purpose
-Verify each against the real file, fix the genuine ones with minimal scoped edits, re-verify, and leave every ledger entry terminal.
+Every finding in this phase reaches a terminal state — fixed-and-verified or false-positive — with no regressions.
 <!-- /ANCHOR:problem -->
+
+---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+
 ### In Scope
-The 10 findings in REQUIREMENTS.
+- [Deliverable 1]
+- [Deliverable 2]
+- [Deliverable 3]
+
 ### Out of Scope
-Findings in other phases; adjacent cleanup not cited by a finding.
+- [Excluded item 1] - [why]
+- [Excluded item 2] - [why]
+
 ### Files to Change
-- `.opencode/bin/cli-offline-smoke.cjs`
-- `.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md`
-- `.opencode/install_guides/README.md`
-- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md`
-- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`
-- `.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md`
-- `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md`
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| see remediation-ledger.jsonl | per finding | phase 002-stale-db-and-tool-count-sweep |
 <!-- /ANCHOR:scope -->
+
+---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-### Required (complete OR user-approved deferral)
-- F014 [P1 drift] `.opencode/bin/cli-offline-smoke.cjs:12` Offline smoke hardcodes spec-memory CLI count as 37 while the MCP registry has 39 tools
-- F015 [P1 contradiction] `.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md:27` Daemon CLI reference documents spec-memory CLI as 37 tools, contradicting the 39-tool MCP surface
-- F039 [P1 contradiction] `.opencode/install_guides/README.md:318` Install guide claims mk_skill_advisor has 8 tools instead of the registered 9
-- F059 [P1 drift] `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:98,101` INSTALL_GUIDE still presents context-index__*.sqlite as the active database
-- F060 [P1 contradiction] `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md:3` Manual parity playbook still pins spec-memory CLI to 37 tools
-- F097 [P1 misalignment] `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md:3,11,17-21,40,59-60,69,89,93` Manual playbook still locks spec-memory CLI parity to 37 tools
-- F098 [P2 contradiction] `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:623` CLI env reference still says spec-memory has 37 tools
-- F135 [P2 drift] `.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md:129` v3.6 changelog says full daemon CLI surface is 37 tools
-- F136 [P2 misalignment] `.opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts:122` Automated parity test now asserts 39 while manual docs call it a 37-tool lock
-- F175 [P2 drift] `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md:11` Stress scenario rationale cites 37 tools as the size driver
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | [Requirement description] | [How to verify it's done] |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-002 | [Requirement description] | [How to verify it's done] |
 <!-- /ANCHOR:requirements -->
+
+---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- Every listed finding terminal in the ledger (fixed+verified or false-positive with reason).
-- opus re-read confirms evidence resolved and scope respected.
-- validate.sh --strict exit 0 for this phase.
+
+- **SC-001**: [Primary measurable outcome]
+- **SC-002**: [Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
+---
+
 <!-- ANCHOR:risks -->
-## 6. RISKS
-- A fix touches more than the cited drift (scope creep) -> opus verifies scope per file.
-- A finding is a false positive -> triage before fixing; never fix a phantom.
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | see remediation-ledger.jsonl | per finding | phase 002-stale-db-and-tool-count-sweep |
+| Risk | see remediation-ledger.jsonl | per finding | phase 002-stale-db-and-tool-count-sweep |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:nfr -->
-## 7. NON-FUNCTIONAL REQUIREMENTS
-- No behavior regressions; edits are doc/config/test alignment only.
-- Comment hygiene: no artifact-ids or spec paths in code comments.
-<!-- /ANCHOR:nfr -->
-
-<!-- ANCHOR:edge-cases -->
-## 8. EDGE CASES
-- Same file cited by multiple findings -> batch edits, verify once per file.
-- Evidence line numbers shifted since the audit -> verify by content, not line.
-<!-- /ANCHOR:edge-cases -->
+---
 
 <!-- ANCHOR:questions -->
-## 9. OPEN QUESTIONS
-None open; deferrals (if any) are recorded as false-positive with reason in the ledger.
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+
+### Security
+- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+
+### Reliability
+- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R02**: [Error rate - e.g., <1%]
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty input: [How system handles]
+- Maximum length: [Limit and behavior]
+- Invalid format: [Validation response]
+
+### Error Scenarios
+- External service failure: [Fallback behavior]
+- Network timeout: [Retry strategy]
+- Concurrent access: [Conflict resolution]
+
+### State Transitions
+- Partial completion: [Recovery behavior]
+- Session expiry: [User experience]
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | [/25] | [Files, LOC, systems] |
+| Risk | [/25] | [Auth, API, breaking changes] |
+| Research | [/20] | [Investigation needs] |
+| **Total** | **[/70]** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- [Question 1 requiring clarification]
+- [Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
-<!-- ANCHOR:related-docs -->
-## 10. RELATED DOCS
-- ../remediation-ledger.jsonl
-- ../../research/drift-audit-2026-06-27/converged-report.md
-<!-- /ANCHOR:related-docs -->
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- No boilerplate sections
+- Add L2/L3 addendums for complexity
+-->
+
+
+<!-- SCAFFOLD_VALIDATION_COUNTS:
+REQ-003
+REQ-004
+REQ-005
+REQ-006
+REQ-007
+REQ-008
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+-->

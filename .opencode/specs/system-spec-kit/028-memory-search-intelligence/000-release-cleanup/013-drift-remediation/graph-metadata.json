@@ -87,15 +87,15 @@
     ],
     "causal_summary": "The 028 drift audit produced 175 converged findings (6 P0 / 91 P1 / 78 P2)",
     "created_at": "2026-06-27T08:02:59.187Z",
-    "last_save_at": "2026-06-27T08:07:00.531Z",
+    "last_save_at": "2026-06-27T13:44:16.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f3aa7903f12d0c102ad335ffda3f47244832af526bc9ce290ef51aa757790532",
+    "source_fingerprint": "sha256:2071458cdf869d5267f0bddee54137520bee7d268c203ae2033a338c1e1a925e",
     "source_doc_hashes": {
-      "spec.md": "b1d11532b6ce1f8bc8fbe2fa830a854757a060954aae53d3053106102e4c3937"
+      "spec.md": "771d6f2e159823e5bc9c1952c2ce57b746fa2b57cdadd7f00b5fc9ea78920382"
     },
     "last_active_child_id": null,
     "last_active_at": null

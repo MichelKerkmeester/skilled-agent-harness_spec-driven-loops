@@ -1,24 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
-  "description": "The 028 drift audit surfaced 83 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
+  "description": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands, an",
   "keywords": [
-    "028",
+    "2026-06-27",
     "drift",
     "audit",
-    "surfaced",
-    "evidence-backed",
+    "converged",
     "findings",
-    "surface",
-    "area",
+    "phase",
+    "covering",
+    "env-var",
+    "documentation",
+    "code",
     "doc",
-    "config",
-    "test",
-    "reality",
-    "drifted",
-    "code"
+    "drift-guard",
+    "memory",
+    "commands"
   ],
-  "lastUpdated": "2026-06-27T08:07:00.341Z",
+  "lastUpdated": "2026-06-27T13:49:15.940Z",
   "specId": "006",
   "folderSlug": "remaining-p1-p2",
   "parentChain": [
@@ -26,7 +26,8 @@
     "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "008-drift-remediation"
+    "000-release-cleanup",
+    "013-drift-remediation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

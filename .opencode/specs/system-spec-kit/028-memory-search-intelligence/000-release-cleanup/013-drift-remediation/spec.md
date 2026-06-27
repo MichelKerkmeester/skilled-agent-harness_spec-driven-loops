@@ -9,6 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation"
     last_updated_at: "2026-06-27T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the remediation track"
