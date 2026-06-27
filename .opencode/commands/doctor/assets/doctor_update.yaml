@@ -398,35 +398,59 @@ workflow:
       context-index:
         action: "memory_index_scan({ incremental: false, force: true })"
         post_run_count_skipped: |
-          # Count spec folders that exist but were not indexed.
-          # memory_index_scan silently skips folders missing description.json or graph-metadata.json.
-          total_specs=$(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null | wc -l)
-          indexed_specs=$(node -e "
-            const Database = require('better-sqlite3');
-            const fs = require('fs');
-            const path = require('path');
-            const dir = '.opencode/skills/system-spec-kit/mcp_server/database';
-            // Picks the first context-index shard for the coverage count; when multiple provider DBs coexist this is ambiguous. Unambiguous active-profile selection (via shared/embeddings/profile.js resolveActiveProfileDbPath) is tracked as a follow-on code task, not wired here.
-            const file = fs.readdirSync(dir).find((name) => /^context-index__.*\.sqlite$/.test(name));
-            if (!file) {
-              console.log(0);
-              process.exit(0);
-            }
-            const db = new Database(path.join(dir, file));
-            const r = db.prepare(\"SELECT COUNT(DISTINCT spec_folder) AS n FROM memory_index WHERE spec_folder IS NOT NULL\").get();
-            console.log(r.n);
-            db.close();
-          " 2>/dev/null || echo 0)
-          skipped=$((total_specs - indexed_specs))
-          echo "{\"total_specs\":$total_specs,\"indexed\":$indexed_specs,\"skipped\":$skipped}" \
-            > .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.context-index-coverage.log
+          # Coverage gap = on-disk spec folders (those containing spec.md) the index
+          # does not cover, computed as a set-difference (NOT total-minus-indexed: the
+          # index holds historical/phase folders, so a raw subtraction is meaningless).
+          # memory_index stores spec_folder relative to .opencode/specs and some legacy
+          # rows keep the prefix, so both sides are prefix-normalized before comparison;
+          # ln/ + external/ are excluded to mirror the memory index-scope policy. The
+          # canonical DB is resolved via shared/embeddings/profile.js (post vector-shard
+          # split it is the single context-index.sqlite; only vector shards are
+          # per-profile). The node read is cwd-independent and read-only so it never
+          # contends with the daemon's single-writer lock.
+          coverage=$(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
+            | sed 's#/spec.md$##' \
+            | node -e "
+                const fs = require('fs'), path = require('path');
+                const dir = '.opencode/skills/system-spec-kit/mcp_server/database';
+                const LOG = path.join(dir, '.doctor-update.context-index-coverage.log');
+                let Database; try { Database = require(path.resolve(dir, '../node_modules/better-sqlite3')); } catch (e) { Database = require('better-sqlite3'); }
+                const norm = (s) => String(s).replace(/^[.][/]/, '').replace(/^[.]opencode[/]specs[/]/, '').replace(/^specs[/]/, '').replace(/[/]+\$/, '');
+                const excluded = (p) => /(^|[/])(ln|external)([/]|\$)/.test(p);
+                const onDisk = fs.readFileSync(0, 'utf8').split('\n').map(norm).filter((s) => s && !excluded(s));
+                (async () => {
+                  let dbPath;
+                  try { const m = await import(path.resolve(dir, '../../shared/dist/embeddings/profile.js')); dbPath = m.resolveActiveProfileDbPath(undefined, dir); }
+                  catch (e) { dbPath = path.join(dir, 'context-index.sqlite'); }
+                  let indexed = new Set();
+                  if (fs.existsSync(dbPath)) {
+                    const db = new Database(dbPath, { readonly: true, fileMustExist: true });
+                    indexed = new Set(db.prepare('SELECT DISTINCT spec_folder FROM memory_index WHERE spec_folder IS NOT NULL').all().map((r) => norm(r.spec_folder)));
+                    db.close();
+                  }
+                  const missing = onDisk.filter((f) => !indexed.has(f));
+                  fs.writeFileSync(LOG, JSON.stringify({ total_specs: onDisk.length, indexed: onDisk.length - missing.length, skipped: missing.length, db: path.basename(dbPath), missing: missing.slice(0, 50) }));
+                  process.stdout.write(onDisk.length + ' ' + (onDisk.length - missing.length) + ' ' + missing.length);
+                })().catch((e) => { try { fs.writeFileSync(LOG, JSON.stringify({ error: String((e && e.message) || e) })); } catch (_) {} process.stdout.write('0 0 0'); });
+              " 2>/dev/null || echo "0 0 0")
+          total_specs=$(printf '%s' "$coverage" | cut -d' ' -f1)
+          indexed_specs=$(printf '%s' "$coverage" | cut -d' ' -f2)
+          skipped=$(printf '%s' "$coverage" | cut -d' ' -f3)
         report_when_skipped: |
-          if [ "$skipped" -gt 0 ]; then
-            echo "WARNING: context-index coverage gap detected"
-            echo "  total spec folders found: $total_specs"
-            echo "  indexed:                  $indexed_specs"
-            echo "  skipped:                  $skipped (likely missing description.json or graph-metadata.json)"
-            echo "  run Phase 8 backfill OR /memory:save per affected packet to fix"
+          # Self-contained: reads the coverage log written by post_run_count_skipped,
+          # so it does not depend on shell vars surviving between steps.
+          LOG=.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.context-index-coverage.log
+          skipped=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')).skipped || 0); } catch (e) { console.log(0); }" "$LOG" 2>/dev/null || echo 0)
+          if [ "${skipped:-0}" -gt 0 ]; then
+            node -e "
+              const d = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
+              console.log('WARNING: context-index coverage gap detected');
+              console.log('  total spec folders found: ' + d.total_specs);
+              console.log('  indexed:                  ' + d.indexed);
+              console.log('  skipped:                  ' + d.skipped + ' (exist on disk but absent from the index)');
+              if (Array.isArray(d.missing) && d.missing.length) console.log('  e.g.: ' + d.missing.slice(0, 5).join(', ') + (d.skipped > 5 ? ' ...' : ''));
+              console.log('  run Phase 8 backfill OR /memory:save per affected packet to fix (or add the path to the index-scope exclusions if intentional)');
+            " "$LOG"
           fi
       causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
       skill-graph: "mk_skill_advisor.skill_graph_scan({})"
