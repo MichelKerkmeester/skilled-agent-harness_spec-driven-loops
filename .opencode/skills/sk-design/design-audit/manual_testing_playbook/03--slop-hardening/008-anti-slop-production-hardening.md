@@ -12,6 +12,7 @@ expected_intent: ANTI_PATTERNS_PRODUCTION
 expected_resources:
   - references/corpus_map.md
   - ../shared/register.md
+  - references/critique_hardening.md
   - references/anti_patterns_production.md
   - references/ai_fingerprint_tells.md
   - assets/anti_patterns_score_rubric.md
@@ -42,6 +43,9 @@ Supply one concrete landing-page or marketing UI artifact in the `<TARGET>` slot
 ## Pass Criteria
 
 - Starts anti-pattern verdict with concrete tells.
+- Applies the visual-critique crosswalk dimensions as lenses feeding existing severity: hierarchy, brand consistency, composition, typography, color, affordance, and information density.
 - Includes hardening checks for long text, empty/error/loading states, and localization/RTL risk.
+- Flags component-completeness gaps and token-tier misuse where anatomy, variants, states, accessible names, keyboard behavior, or primitive/semantic token layers are incomplete.
+- Runs a pseudo-localization check for expansion, special characters, overflow, truncation, and broken glyph handling before localized UI is called ready.
 - Does not confuse critique with implementation.
 - Provides concrete next actions by owner.

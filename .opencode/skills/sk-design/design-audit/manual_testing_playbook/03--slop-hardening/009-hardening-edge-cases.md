@@ -43,6 +43,8 @@ Supply one concrete interactive artifact in the `<TARGET>` slot that takes input
 
 - Probes cover extreme inputs, API and network errors, permissions and rate limits, concurrency, internationalization and RTL, text expansion and CJK and emoji.
 - A missing empty, loading or error state is filed as a production-readiness finding even when the happy path is flawless.
+- Applies the Polish As Trust lens by scanning repeated consistency failures, grid-alignment drift, spacing/radius/icon mismatches, and fallback states with a lower craft bar than the primary flow.
+- Holds error, empty, loading, disabled, permission, and success states to primary-flow quality before marking the interface production-ready.
 - Severity follows user impact: lost work or a stranded flow is P0 or P1, a cosmetic overflow with a workaround is P2 or P3.
 - RTL failures trace to physical CSS properties and route to `foundations`. Double-submission is flagged when the action is not disabled while in flight.
 - Resilience gaps that block assistive use route to Accessibility, with the disabled-control explanation pointing at `assets/a11y_quick_fixes.md`.

@@ -39,3 +39,5 @@ Audit this screenshot-only UI and carry confirmed, inferred and not-assessed lab
 - Missing browser or source evidence is not-assessed, not a pass.
 - Findings preserve evidence labels.
 - The score names any dimension that lacks evidence.
+- Does not make conversion, behavior, confidence, business-impact, revenue, retention, support-load, or similar impact claims without supplied metrics, a baseline, usability-test evidence, or experiment results.
+- Rephrases unsupported impact language as design risk and names the evidence that would prove the impact.

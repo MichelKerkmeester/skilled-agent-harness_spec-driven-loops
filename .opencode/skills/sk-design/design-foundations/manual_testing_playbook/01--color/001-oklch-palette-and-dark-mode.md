@@ -42,3 +42,5 @@ Create a color token system for a finance dashboard with a teal brand color, res
 - Covers the accent states (action, selection, focus) under the primary/accent role rather than inventing a separate focus role.
 - Repairs contrast through lightness changes.
 - Dark mode uses surface lightness and semantic token remapping, not inversion.
+- Verifies theme-specific media, including logos, illustrations, screenshots, maps, charts, and embedded media, so assets remain legible and brand marks do not disappear in each supported theme.
+- Notes when semantically loaded colors need locale-aware review because status, ritual, political, or cultural meanings could change by market.

@@ -38,5 +38,8 @@ Design the motion for a product landing hero and pricing cards; make it feel pre
 
 - Names motion purpose for each animated element.
 - Uses timing and easing from the reference.
+- Verifies named duration and easing tokens map to the reference timing bands and easing curves.
+- Includes a global reduced-motion override and names explicit no-motion cases for high-frequency keyboard paths, repeated list/table operations, dense admin surfaces, and interactions where movement delays comprehension.
+- Provides a non-gesture accessible alternative for every gesture-driven interaction.
 - Avoids scattershot scroll reveals.
 - Includes reduced-motion fallback.

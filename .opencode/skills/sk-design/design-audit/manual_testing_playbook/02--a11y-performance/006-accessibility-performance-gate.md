@@ -41,6 +41,8 @@ Supply one concrete interactive component artifact in the `<TARGET>` slot (for e
 ## Pass Criteria
 
 - Flags missing names, focus traps, keyboard traps, or contrast failures as P0/P1 as appropriate.
+- Covers the main accessibility modalities before a release-ready verdict: keyboard, screen reader, zoom/reflow, high contrast, and reduced motion.
+- Groups accessibility findings under WCAG POUR when that improves readability, without replacing the severity model.
 - Identifies motion jank risks with concrete property/mechanism alternatives.
 - Distinguishes measured evidence from static risk.
 - Maps motion repair to `motion` and implementation to `sk-code`.

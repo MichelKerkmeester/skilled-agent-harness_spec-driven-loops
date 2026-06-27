@@ -38,5 +38,8 @@ Fix the layout system for a desktop dashboard that becomes a mobile task flow wi
 
 - Uses a spacing scale and proximity before adding containers.
 - Chooses grid/flex by structural need.
+- Defines the grid contract before placement, including columns, gutters, page margins, and region ownership for phone, tablet, and desktop breakpoints.
+- Names comfortable and compact density behavior from the same spacing scale while preserving touch targets, focus rings, and readable row height.
+- Applies containment restraint: borders, fills, elevation, and cards are used only when proximity, alignment, headings, or dividers are insufficient.
 - Keeps core functionality available on mobile.
 - Includes touch target, safe-area, orientation, and content-driven breakpoint notes.

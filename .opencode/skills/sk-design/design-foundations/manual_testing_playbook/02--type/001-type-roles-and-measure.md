@@ -39,4 +39,5 @@ Define typography for a dense analytics app with long labels, metrics, and a sma
 - Does not pick fonts before roles.
 - Keeps expressive display type limited to identity moments.
 - Addresses long labels and localization expansion.
+- Checks non-Latin scripts beyond RTL and expansion, including line height, weight, fallback fonts, and glyph shaping for CJK, Arabic, Devanagari, and similar systems.
 - Provides implementable role guidance for `sk-code`.

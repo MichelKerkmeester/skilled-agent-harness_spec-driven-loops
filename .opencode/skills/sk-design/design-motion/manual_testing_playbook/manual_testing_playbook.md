@@ -14,6 +14,7 @@ version: 1.0.0.0
 | --- | --- | --- |
 | MOTION-STRATEGY-001 | Purposeful motion plan | [`01--strategy/001-purposeful-motion-plan.md`](01--strategy/001-purposeful-motion-plan.md) |
 | MOTION-STRATEGY-002 | Motion pattern card | [`01--strategy/002-motion-pattern-card.md`](01--strategy/002-motion-pattern-card.md) |
+| MOTION-STRATEGY-003 | Async state-machine card | [`01--strategy/003-async-state-machine-card.md`](01--strategy/003-async-state-machine-card.md) |
 | MOTION-PRESENCE-001 | AnimatePresence exit rules | [`02--presence/001-animate-presence-exit-rules.md`](02--presence/001-animate-presence-exit-rules.md) |
 | MOTION-PRESENCE-002 | AnimatePresence checklist | [`02--presence/002-animate-presence-checklist.md`](02--presence/002-animate-presence-checklist.md) |
 | MOTION-REDUCED-001 | Performance and reduced motion | [`03--reduced-motion/001-performance-and-reduced-motion.md`](03--reduced-motion/001-performance-and-reduced-motion.md) |
