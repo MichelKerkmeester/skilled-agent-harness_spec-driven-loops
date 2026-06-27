@@ -1,7 +1,7 @@
 ---
 description: Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.
 argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__mk_code_index__code_graph_query
 ---
 
 # /create:changelog Router

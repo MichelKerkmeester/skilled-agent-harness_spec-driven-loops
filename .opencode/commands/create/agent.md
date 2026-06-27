@@ -1,7 +1,7 @@
 ---
 description: Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.
 argument-hint: "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__mk_code_index__code_graph_query, mcp__mk_spec_memory__memory_save
 ---
 
 # /create:agent Router

@@ -230,7 +230,7 @@ The `/memory:manage` command accepts these subcommands:
 
 Primary MCP tools mapped to their command home:
 
-> **026 Note:** Tool count increased from 33 to 44 with the addition of session management tools (`session_bootstrap`, `session_health`, `session_resume`) and code graph tools (`code_graph_query`, `code_graph_scan`, `code_graph_status`, `code_graph_context`); the former code-search bridge tools were removed in the 014 deprecation. Graph-first retrieval routing (026) means `code_graph_query` is now the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Phase 005 moved code-graph implementation/docs ownership to `.opencode/skills/system-code-graph/` while preserving tool IDs.
+> **026 Note:** The matrix lists the current 39 public Spec Kit Memory tools plus the 4 code-graph tools used by memory/search workflows. Graph-first retrieval routing (026) means `code_graph_query` is now the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Phase 005 moved code-graph implementation/docs ownership to `.opencode/skills/system-code-graph/` while preserving tool IDs.
 
 | # | Tool | Layer | Primary Command |
 |---|------|-------|-----------------|
@@ -246,40 +246,50 @@ Primary MCP tools mapped to their command home:
 | 10 | `memory_update` | L4 | `/memory:manage` |
 | 11 | `memory_validate` | L4 | `/memory:manage` |
 | 12 | `memory_bulk_delete` | L4 | `/memory:manage` |
-| 13 | `checkpoint_create` | L5 | `/memory:manage` |
-| 14 | `checkpoint_list` | L5 | `/memory:manage` |
-| 15 | `checkpoint_restore` | L5 | `/memory:manage` |
-| 16 | `checkpoint_delete` | L5 | `/memory:manage` |
-| 17 | `task_preflight` | L6 | `/memory:search` |
-| 18 | `task_postflight` | L6 | `/memory:search` |
-| 19 | `memory_drift_why` | L6 | `/memory:search` |
-| 20 | `memory_causal_link` | L6 | `/memory:search` |
-| 21 | `memory_causal_stats` | L6 | `/memory:search` |
-| 22 | `memory_causal_unlink` | L6 | `/memory:search` |
-| 23 | `eval_run_ablation` | L6 | `/memory:search` |
-| 24 | `eval_reporting_dashboard` | L6 | `/memory:search` |
-| 25 | `memory_index_scan` | L7 | `/memory:manage` |
-| 26 | `memory_get_learning_history` | L7 | `/memory:search` |
-| 27 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
-| 28 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
-| 29 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
-| 30 | `session_bootstrap` | L1 | `/speckit:resume` |
-| 31 | `session_health` | L3 | `/memory:manage` |
-| 32 | `session_resume` | L1 | `/speckit:resume` |
-| 33 | `code_graph_query` | L2 | `/memory:search` |
-| 34 | `code_graph_scan` | L7 | `/memory:manage` |
-| 35 | `code_graph_status` | L3 | `/memory:manage` |
-| 36 | `code_graph_context` | L2 | `/memory:search` |
+| 13 | `memory_retention_sweep` | L4 | `/memory:manage` |
+| 14 | `memory_embedding_reconcile` | L4 | `/memory:manage` |
+| 15 | `checkpoint_create` | L5 | `/memory:manage` |
+| 16 | `checkpoint_list` | L5 | `/memory:manage` |
+| 17 | `checkpoint_restore` | L5 | `/memory:manage` |
+| 18 | `checkpoint_delete` | L5 | `/memory:manage` |
+| 19 | `task_preflight` | L6 | `/memory:search` |
+| 20 | `task_postflight` | L6 | `/memory:search` |
+| 21 | `memory_drift_why` | L6 | `/memory:search` |
+| 22 | `memory_causal_link` | L6 | `/memory:search` |
+| 23 | `memory_causal_stats` | L6 | `/memory:search` |
+| 24 | `memory_causal_unlink` | L6 | `/memory:search` |
+| 25 | `eval_run_ablation` | L6 | `/memory:search` |
+| 26 | `eval_reporting_dashboard` | L6 | `/memory:search` |
+| 27 | `memory_index_scan` | L7 | `/memory:manage` |
+| 28 | `memory_index_scan_status` | L7 | `/memory:manage scan` |
+| 29 | `memory_index_scan_cancel` | L7 | `/memory:manage scan` |
+| 30 | `memory_get_learning_history` | L7 | `/memory:search` |
+| 31 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
+| 32 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
+| 33 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
+| 34 | `embedder_list` | L7 | MCP direct (maintenance) |
+| 35 | `embedder_set` | L7 | MCP direct (maintenance) |
+| 36 | `embedder_status` | L7 | `/doctor embeddings` |
+| 37 | `session_bootstrap` | L1 | `/speckit:resume` |
+| 38 | `session_health` | L3 | `/memory:manage` |
+| 39 | `session_resume` | L1 | `/speckit:resume` |
+| 40 | `code_graph_query` | L2 | `/memory:search` |
+| 41 | `code_graph_scan` | L7 | `/memory:manage` |
+| 42 | `code_graph_status` | L3 | `/memory:manage` |
+| 43 | `code_graph_context` | L2 | `/memory:search` |
+
 ### Coverage by Command
 
 | Command | Tools Owned | Helper Tools | Layers |
 |---------|-------------|--------------|--------|
 | `/memory:search` | 15 | (none) | L1, L2, L6, L7 |
 | `/memory:save` | 1 | 3 (index_scan, stats, update) | L2 |
-| `/memory:manage` | 20 | 1 (search) | L3, L4, L5, L7 |
+| `/memory:manage` | 22 | 1 (search) | L3, L4, L5, L7 |
 | `/memory:learn` | 0 | uses manage/save tools | (none) |
-| `/speckit:resume` | 3 | uses search/manage tools | L1 |
-| **Total** | **39 listed** | | **L1-L7** |
+| `/doctor embeddings` | 1 | (none) | L7 |
+| MCP direct maintenance | 2 | (none) | L7 |
+| `/speckit:resume` | 2 | uses search/manage tools | L1 |
+| **Total** | **43 listed** | | **L1-L7** |
 
 > **Note:** Commands may include helper tools in their `allowed-tools` frontmatter beyond their primary ownership. Helper tools are borrowed from other command scopes for operational needs (e.g., `/memory:save` uses `memory_index_scan` from `/memory:manage` for post-save indexing). The coverage matrix above shows primary ownership. Each command file's `allowed-tools` shows the full operational set.
 

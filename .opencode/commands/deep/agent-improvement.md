@@ -1,7 +1,7 @@
 ---
 description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
 argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search
 ---
 
 # Deep Start Agent Improvement Loop
