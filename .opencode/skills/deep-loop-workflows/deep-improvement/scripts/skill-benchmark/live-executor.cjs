@@ -56,17 +56,19 @@ const GRADED_RESPONSE_MAX_CHARS = 8000;
  * @param {Object} scenario - Scenario being dispatched.
  * @returns {string} The routing-analysis dispatch prompt.
  */
-function buildLiveDispatchPrompt(scenario) {
+function buildLiveDispatchPrompt(scenario, skillId) {
   const base = scenario.prompt || '';
+  const skill = skillId || 'the target skill';
   return [
     'You are analyzing skill routing only - do NOT edit files.',
     `Task: ${base}`,
     '',
-    'Using the project code skill, determine: (1) the detected SURFACE '
-      + '(WEBFLOW / OPENCODE / UNKNOWN), (2) the OPENCODE sub-language if any, '
-      + '(3) the exact reference/asset file paths you would load (relative to the '
-      + 'skill root, e.g. references/... and assets/...), (4) the agent you would '
-      + 'dispatch, or "none".',
+    `Within the \`${skill}\` skill ONLY (do not route to or read any other skill), `
+      + "consulting that skill's SKILL.md router, determine: (1) the detected SURFACE "
+      + 'if the skill defines one (e.g. WEBFLOW / OPENCODE), else "UNKNOWN", (2) the '
+      + 'sub-language if any, else "none", (3) the exact reference/asset file paths you '
+      + 'would load (relative to the skill root, e.g. references/... and assets/...), '
+      + '(4) the agent you would dispatch, or "none".',
     'Then emit ONLY a fenced ```json code block, nothing after it:',
     '{"surface": "...", "subLanguage": "...", "resources": ["references/..."], '
       + '"assets": ["assets/..."], "agent": "none", "disambiguation": false}',
@@ -268,7 +270,7 @@ function parseLiveResult(stdout, { skillId } = {}) {
  */
 function runLiveScenario({ scenario, skillRoot, model } = {}) {
   const skillId = path.basename(skillRoot || '');
-  const prompt = buildLiveDispatchPrompt(scenario);
+  const prompt = buildLiveDispatchPrompt(scenario, skillId);
   const chosenModel = model || DEFAULT_MODEL;
   const disp = runDispatch({ prompt, dir: skillRoot ? path.resolve(skillRoot, '..', '..', '..') : process.cwd(), model: chosenModel, variant: DEFAULT_VARIANT });
   if (disp.status !== 0) {
