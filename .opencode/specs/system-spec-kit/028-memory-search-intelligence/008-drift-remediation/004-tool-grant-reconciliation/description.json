@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/004-tool-grant-reconciliation",
+  "description": "The 028 drift audit surfaced 25 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
+  "keywords": [
+    "028",
+    "drift",
+    "audit",
+    "surfaced",
+    "evidence-backed",
+    "findings",
+    "surface",
+    "area",
+    "doc",
+    "config",
+    "test",
+    "reality",
+    "drifted",
+    "code"
+  ],
+  "lastUpdated": "2026-06-27T08:06:59.981Z",
+  "specId": "004",
+  "folderSlug": "tool-grant-reconciliation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "008-drift-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

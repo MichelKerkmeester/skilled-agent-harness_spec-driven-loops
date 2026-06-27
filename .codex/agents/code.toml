@@ -3,7 +3,7 @@
 name = "code"
 description = "Application-code implementation specialist via sk-code. LEAF, dispatched only by @orchestrate."
 sandbox_mode = "workspace-write"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

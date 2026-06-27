@@ -77,10 +77,9 @@ routes:
     yaml: doctor_code-graph.yaml
     setup_vars: [execution_mode, scope]
     allowed_flags:
+      # apply-mode flags (--operation, --confirm) return when the confirm workflow is promoted (phase_b)
       - "--scope=stale|missed|bloat|all|excludes"
-      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply"
       - "--dry-run"
-      - "--confirm"
     mutating: read-only
     gate3_location: "n/a (Phase A diagnostic is read-only; emits an exclude/language report, never scans or writes the index)"
     mcp_tools:

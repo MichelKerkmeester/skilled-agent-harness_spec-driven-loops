@@ -3,7 +3,7 @@
 name = "deep-review"
 description = "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
 sandbox_mode = "workspace-write"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

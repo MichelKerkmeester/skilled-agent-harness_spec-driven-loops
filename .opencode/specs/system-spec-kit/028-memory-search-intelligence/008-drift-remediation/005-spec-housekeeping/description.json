@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/005-spec-housekeeping",
+  "description": "The 028 drift audit surfaced 35 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
+  "keywords": [
+    "028",
+    "drift",
+    "audit",
+    "surfaced",
+    "evidence-backed",
+    "findings",
+    "surface",
+    "area",
+    "doc",
+    "config",
+    "test",
+    "reality",
+    "drifted",
+    "code"
+  ],
+  "lastUpdated": "2026-06-27T08:07:00.171Z",
+  "specId": "005",
+  "folderSlug": "spec-housekeeping",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "008-drift-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

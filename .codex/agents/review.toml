@@ -3,7 +3,7 @@
 name = "review"
 description = "Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes"
 sandbox_mode = "read-only"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

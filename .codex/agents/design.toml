@@ -3,7 +3,7 @@
 name = "design"
 description = "Design specialist via the sk-design parent hub: routes to interface/foundations/motion/audit/md-generator modes, applies the mode, and verifies. LEAF."
 sandbox_mode = "workspace-write"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

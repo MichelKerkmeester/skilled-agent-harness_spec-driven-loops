@@ -75,8 +75,8 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/context-index__*.sqlite"  # active profile DB for causal_edges table
-    - "mcp_server/database/context-index__*.sqlite.pre-doctor-causal-graph.*.bak"  # causal-edge snapshot files only
+    - "mcp_server/database/context-index.sqlite"  # canonical DB for causal_edges table
+    - "mcp_server/database/context-index.sqlite.pre-doctor-causal-graph.*.bak"  # causal-edge snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from causal doctor
     - "<active-spec-folder>/description.json"  # metadata updates belong to memory-save tooling
@@ -86,7 +86,7 @@ mutation_boundaries:
     - ".opencode/agents/**/*.md"
     - ".opencode/commands/doctor/*.md"
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
-    - "mcp_server/database/context-index.sqlite*"  # legacy singleton DB path and snapshots
+    - "mcp_server/database/context-index__*.sqlite*"  # retired per-profile DB path and snapshots
     - "mcp_server/database/*code-graph*"
     - "mcp_server/database/*deep-loop*"
     - "mcp_server/database/*eval*"

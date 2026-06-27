@@ -4,7 +4,7 @@ name = "orchestrate"
 description = "Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis."
 profile = "orchestrate"
 sandbox_mode = "read-only"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

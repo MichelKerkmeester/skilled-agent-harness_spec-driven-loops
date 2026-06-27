@@ -3,7 +3,7 @@
 name = "ai-council"
 description = "AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
 sandbox_mode = "workspace-write"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

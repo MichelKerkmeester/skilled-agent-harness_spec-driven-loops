@@ -7,7 +7,7 @@
 name = "deep-context"
 description = "LEAF read-only deep-context analyzer seat: one parallel sweep of a slice, returns a reuse-first finding set."
 sandbox_mode = "read-only"
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 
 developer_instructions = '''
