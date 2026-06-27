@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":16,"newInfoRatio":0.15,"status":"insight","focus":"completeness sweep (Kimi-k2.7) over design-systems/prototyping-testing/designer-toolkit"}
+{"type":"finding","id":"f-iter016-001","label":"WCAG POUR scaffold (marginal) + script-specific typography + cultural color + pseudo-localization test (thin gaps) -> audit/foundations","iteration":16}
+{"type":"ruled_out","direction":"Nielsen 10 heuristics as net-new","reason":"usability-eval methodology; risks scope creep; corroborated out by DeepSeek","iteration":16}
+{"type":"observation","id":"obs-iter016-001","label":"motion choreography mostly covered (duration bands already exist in motion_strategy.md)","iteration":16}

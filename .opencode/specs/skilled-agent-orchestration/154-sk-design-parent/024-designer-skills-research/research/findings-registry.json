@@ -1,0 +1,502 @@
+{
+  "sessionId": "dr-154-024-designer-skills-research",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-across-the-9-plugins-96-skills-which-capabilities-and-techniques-are-genuinel",
+      "text": "Q1: Across the 9 plugins / ~96 skills, which capabilities and techniques are genuinely net-new or stronger than what sk-design's five modes encode, and which fall OUTSIDE sk-design's build/visual scope (design-ops, research, and strategy are lifecycle stages sk-design does not own)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-for-each-genuinely-adoptable-item-which-sk-design-home-is-correct-interface-f",
+      "text": "Q2: For each genuinely adoptable item, which sk-design home is correct — interface, foundations, motion, audit, md-generator, the shared register, or a justified NEW mode — and what is the minimal, surgical edit (file + anchor)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-where-does-designer-skills-main-conflict-with-duplicate-or-deliberately-excee",
+      "text": "Q3: Where does designer-skills-main conflict with, duplicate, or deliberately exceed sk-design's scope (taste-led build vs full design-ops lifecycle), and what must be ruled out to avoid scope creep or bloat?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-what-is-the-prioritized-concrete-adoption-backlog-per-mode-plus-any-justified",
+      "text": "Q4: What is the prioritized, concrete adoption backlog (per mode, plus any justified new-mode proposal), each item traced to a corpus skill and an sk-design target file, with leverage and effort noted?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which individual `visual-critique` skills contain concrete rubric language stronger than audit's current critique/hardening references?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which `design-systems` skills are practical system-craft versus lifecycle governance, and where do they map without bloating foundations?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The root README says `interaction-design` has 16 skills, while its plugin README lists 15. The next pass should use filesystem skill inventory as the source of truth before declaring coverage complete. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:73]",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `ui-design` contain net-new operational checklists after excluding already-adopted typography, readable measure, data visualization, and cognitive-law material?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which `interaction-design` skills add net-new state or flow structure beyond motion's existing micro-interaction and reduced-motion guidance?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "For the eventual build phase, should the interface quality reference become the single compact home for flow floors, or should search/forms/navigation each get separate references? My read: keep one compact home unless the content grows beyond a single page.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "After the eventual build edit, does the expanded flow-floor section remain compact enough, or does it need a split then?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the rest of `ui-design` contain net-new operational checklists after excluding already-adopted typography, readable measure, data visualization, and cognitive-law material?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "After the eventual build edit, does the expanded interface flow-floor section remain compact enough, or does it need a split then?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The `interaction-design` root/plugin README skill-count mismatch still needs filesystem confirmation before declaring that plugin fully covered.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the expanded interface flow-floor section remain compact enough after the eventual build edit, or does it need a split then?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the remaining corpus outside `interaction-design` and the read `ui-design` slice contain any high-leverage, build-facing checks not already captured in the backlog?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "After all remaining plugins are sampled, what is the final priority order across audit, interface, foundations, motion, and explicit ruled-out lifecycle material?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Finish the rest of `design-systems` coverage: which remaining skills are pure docs/lifecycle versus small build-facing checks worth keeping?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do `prototyping-testing`, `design-ops`, and `designer-toolkit` contain audit-adjacent material stronger than the now-expanded audit backlog, or are they mostly validation/process wrappers?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the design-systems corpus add a better token-audit evidence schema than the visual-critique brand/token compliance language?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the future audit report template include an optional \"Visual critique probes assessed\" row, or is it enough for findings to cite the relevant sub-probe? My read: keep it out of the template unless users ask for a visual-only audit mode.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "In the eventual build phase, should typography and color sub-probes be placed directly in `critique_hardening.md`, or should audit keep them as short pointers to `foundations` and `accessibility_performance` to avoid duplicating deeper system guidance?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should direction-neutral naming be added as part of the token-layer edit, or left only as an audit hardening finding? My read: add one naming sentence to shared vocabulary, but do not import localization as a standalone topic.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the future build put component-level handoff completeness in `design-foundations/SKILL.md` or in the shared sk-code handoff envelope? This iteration targets `design-foundations/SKILL.md` because that was in the requested read scope.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the icon craft rule live in foundations layout, shared token vocabulary, or parent-level design instructions? Foundations layout is the smallest build-facing target from the files read here.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the token-audit mini-process live only in `anti_patterns_production.md`, or should `audit_report_template.md` get an optional token-audit evidence row? My read: start in `anti_patterns_production.md`; template changes are only needed if audit reports repeatedly miss token evidence.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should data annotation/context be added to `data_viz.md` despite the rest being covered? My read: yes, as one small verification bullet because the current target has pointing/accent language but not explicit annotation/benchmark context.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "During implementation, should the expanded UX flow floor remain one compact Section 6 or split after the first actual edit? Prior evidence still favors one compact home unless it stops being pass/fail. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-003.md:55]",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "If future reviewers want deeper certainty on `design-research` or `ux-strategy`, a README-level exclusion is enough for current scope because their declared skills are upstream strategy/research artifacts, not build-facing visual guidance. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-research/README.md:7] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/ux-strategy/README.md:4]",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 implementation should re-check exact target files and line anchors before editing; this iteration intentionally did not edit live `sk-design`.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No research blocker remains for final synthesis. The remaining decisions are implementation-phase sizing decisions: whether to batch the audit hardening bundle or split it into separate edits, and whether the expanded interface flow-floor section remains compact after wording is drafted.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None blocking; the gesture-a11y refinement is folded into the sweep summary in research.md §13.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None blocking.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Build-phase check: do the interaction-design/ui-design copy sources already provide the error/empty-state/CTA formula structures?",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Across the 9 plugins / ~96 skills, which capabilities and techniques are genuinely net-new or stronger than what sk-design's five modes encode, and which fall OUTSIDE sk-design's build/visual scope (design-ops, research, and strategy are lifecycle stages sk-design does not own)?",
+    "Q2: For each genuinely adoptable item, which sk-design home is correct — interface, foundations, motion, audit, md-generator, the shared register, or a justified NEW mode — and what is the minimal, surgical edit (file + anchor)?",
+    "Q3: Where does designer-skills-main conflict with, duplicate, or deliberately exceed sk-design's scope (taste-led build vs full design-ops lifecycle), and what must be ruled out to avoid scope creep or bloat?",
+    "Q4: What is the prioritized, concrete adoption backlog (per mode, plus any justified new-mode proposal), each item traced to a corpus skill and an sk-design target file, with leverage and effort noted?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-add-a-visual-critique-dimension-crosswalk-to-design-audit",
+      "text": "Add a visual-critique dimension crosswalk to `design-audit`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-deep-read-interaction-design-for-state-machine-error-flow-feedback-forms-onboard",
+      "text": "Deep-read `interaction-design` for state-machine, error-flow, feedback, forms, onboarding, navigation, and search patterns.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-deep-read-ui-design-only-after-checking-existing-coverage-focusing-on-layout-gri",
+      "text": "Deep-read `ui-design` only after checking existing coverage, focusing on layout-grid, color-system, dark-mode, responsive-design, illustration-style, and data-visualization for concrete checklists.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-deep-read-the-in-scope-subset-of-design-systems-token-component-spec-theming-ico",
+      "text": "Deep-read the in-scope subset of `design-systems`: token, component-spec, theming, icon-system, motion-system, localization, accessibility.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-do-not-absorb-designer-skills-main-commands-as-sk-design-workflows-the-corpus-it",
+      "text": "Do not absorb designer-skills-main commands as sk-design workflows. The corpus itself treats commands as chained workflows, while sk-design is a five-mode taste/build/visual family. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:117]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-do-not-adopt-design-research-discovery-ux-strategy-design-ops-process-stakeholde",
+      "text": "Do not adopt design-research discovery, UX strategy, design ops process, stakeholder alignment, impact reporting, case studies, presentations, or adoption strategy into sk-design. They are lifecycle and organizational capabilities, not visual/build craft.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-do-not-create-a-research-strategy-ops-or-testing-mode-inside-sk-design-the-hub-a",
+      "text": "Do not create a `research`, `strategy`, `ops`, or `testing` mode inside sk-design. The hub already says new modes require escalation, and the current corpus split can be handled by existing modes plus explicit exclusions. [SOURCE: .opencode/skills/sk-design/SKILL.md:96]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-park-designer-toolkit-for-a-later-focused-pass-on-ux-writing-and-token-audit-onl",
+      "text": "Park `designer-toolkit` for a later focused pass on UX writing and token audit only.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-search-forms-navigation-begin-carrying-lifecycle-content-such-as-analytics-first",
+      "text": "Search/forms/navigation begin carrying lifecycle content such as analytics, first-click testing, field abandonment measurement, or IA validation programs.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-the-content-needs-different-routing-triggers-or-different-ownership-than-ux-qual",
+      "text": "The content needs different routing triggers or different ownership than `UX_QUALITY`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-the-material-stops-being-pass-fail-and-becomes-a-how-to-playbook",
+      "text": "The material stops being pass/fail and becomes a how-to playbook.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-the-section-6-addition-cannot-stay-under-roughly-one-compact-page",
+      "text": "The Section 6 addition cannot stay under roughly one compact page.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-ai-generated-design-tells-are-already-much-stronger-in-audit-than-in-visual-crit",
+      "text": "AI-generated design tells are already much stronger in audit than in visual-critique. Audit has a model-specific catalog with concrete checks, severity rules, owners, and evidence labels; visual-critique does not add a stronger anti-slop detector. [SOURCE: .opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md:16] [SOURCE: .opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md:22]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-do-not-import-seven-visual-critique-dimensions-as-new-top-level-audit-score-dime",
+      "text": "Do not import seven visual-critique dimensions as new top-level audit score dimensions. Audit already owns a five-dimension score, and changing that would create incompatible report semantics. [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:29]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-do-not-make-audit-apply-token-fixes-or-perform-exhaustive-token-remediation-audi",
+      "text": "Do not make audit apply token fixes or perform exhaustive token remediation. Audit maps findings to owners; foundations and `sk-code` own the actual changes. [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:315] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:381]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-do-not-require-mood-md-voice-md-and-tokens-md-for-every-audit-the-adoptable-part",
+      "text": "Do not require `mood.md`, `voice.md`, and `tokens.md` for every audit. The adoptable part is the evidence guard, not a universal project-file convention. The corpus itself says missing files should be noted and skipped rather than invented. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/visual-critique/skills/critique-brand-consistency/SKILL.md:14]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-empty-loading-error-permission-offline-long-text-rtl-and-translation-expansion-r",
+      "text": "Empty, loading, error, permission, offline, long-text, RTL, and translation-expansion readiness are already covered across `critique_hardening.md` hardening checks and `anti_patterns_production.md` production readiness. [SOURCE: .opencode/skills/sk-design/design-audit/references/critique_hardening.md:66] [SOURCE: .opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:76]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-the-visual-critique-output-pattern-of-observation-problem-fix-and-pass-minor-maj",
+      "text": "The visual-critique output pattern of Observation, Problem, Fix, and pass/minor/major rating is weaker than audit's existing contract. Audit already requires severity-ordered P0-P3 findings, evidence, category, impact, recommended fix, owner, and a five-dimension `/20` score. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/visual-critique/skills/critique-affordance/SKILL.md:34] [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:48]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-token-drift-and-hard-coded-values-are-already-covered-in-anti-patterns-productio",
+      "text": "Token drift and hard-coded values are already covered in `anti_patterns_production.md`: hard-coded colors, primitive tokens, one-off spacing/radius/shadow/z-index, same-radius nesting, ghost-card border plus shadow, and stale theme colors. [SOURCE: .opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:29]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-touch-target-sizing-is-already-part-of-the-audit-score-contract-s-responsive-des",
+      "text": "Touch target sizing is already part of the audit score contract's Responsive Design dimension. The affordance skill repeats the 44x44px mobile floor, so the net-new piece is not the threshold; it is false/missing affordance and non-hover discoverability. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/visual-critique/skills/critique-affordance/SKILL.md:15] [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:37]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-treat-numeric-hierarchy-thresholds-from-the-corpus-as-calibration-prompts-not-ha",
+      "text": "Treat numeric hierarchy thresholds from the corpus as calibration prompts, not hard release gates, unless the issue is accessibility. The visual hierarchy skill suggests 1.5x differentials, while typography suggests >=1.25x scale contrast; audit should file the observed hierarchy failure and impact rather than enforce both numbers mechanically. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/visual-critique/skills/critique-visual-hierarchy/SKILL.md:22] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/visual-critique/skills/critique-typography/SKILL.md:15]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-add-a-component-level-handoff-completeness-sentence-to-design-foundations-skill-",
+      "text": "Add a component-level handoff completeness sentence to `design-foundations/SKILL.md`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-add-icon-craft-to-design-foundations-references-layout-layout-responsive-md",
+      "text": "Add icon craft to `design-foundations/references/layout/layout_responsive.md`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-add-motion-token-framing-to-design-motion-references-motion-strategy-md",
+      "text": "Add motion-token framing to `design-motion/references/motion_strategy.md`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-add-token-layer-and-naming-rules-to-shared-design-token-vocabulary-md",
+      "text": "Add token-layer and naming rules to `shared/design_token_vocabulary.md`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-7-documentation-lifecycle-is-out-component-pattern-foundation-doc-templates-maturi",
+      "text": "Documentation lifecycle is out: component/pattern/foundation doc templates, maturity indicators, quarterly freshness audits, and new-team-member doc testing. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/documentation-template/SKILL.md:16] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/documentation-template/SKILL.md:23]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-extend-theming-guidance-in-design-foundations-references-color-palette-theming-m",
+      "text": "Extend theming guidance in `design-foundations/references/color/palette_theming.md`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-6-governance-adoption-is-out-ownership-models-contribution-processes-versioning-de",
+      "text": "Governance/adoption is out: ownership models, contribution processes, versioning, deprecation, release communication, office hours, adoption metrics, and migration programs. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/design-system-governance/SKILL.md:10] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/design-system-governance/SKILL.md:73]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-9-localization-lifecycle-is-out-as-a-standalone-import-in-market-consultants-per-l",
+      "text": "Localization lifecycle is out as a standalone import: in-market consultants, per-locale component certification, and broad internationalization programs do not belong in sk-design. Existing audit hardening should remain the owner for RTL/text-expansion/CJK/emoji findings. [SOURCE: .opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md:97] [SOURCE: .opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md:111] [SOURCE: .opencode/skills/sk-design/design-audit/references/hardening_edge_cases.md:124]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-8-pattern-library-operations-are-out-related-pattern-graphs-library-category-maint",
+      "text": "Pattern-library operations are out: related-pattern graphs, library category maintenance, and updating patterns as research evolves. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/pattern-library/SKILL.md:17] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/pattern-library/SKILL.md:23]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-10-design-audit-references-anti-patterns-production-md-add-deterministic-token-audi",
+      "text": "`design-audit/references/anti_patterns_production.md`: add deterministic token-audit mini-process. Row 25.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-9-design-audit-references-critique-hardening-md-add-error-path-shape-and-perceived",
+      "text": "`design-audit/references/critique_hardening.md`: add error-path shape and perceived-quality severity note. Rows 2 and 22.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-7-design-foundations-references-color-palette-theming-md-add-dark-mode-media-safet",
+      "text": "`design-foundations/references/color/palette_theming.md`: add dark-mode media safety verification. Row 19.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-8-design-foundations-references-data-viz-md-add-annotation-context-micro-rule-only",
+      "text": "`design-foundations/references/data_viz.md`: add annotation/context micro-rule only; do not re-import data-viz basics. Rows 17-18.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-6-design-foundations-references-layout-layout-responsive-md-add-grid-contract-and-",
+      "text": "`design-foundations/references/layout/layout_responsive.md`: add grid contract and density stepping; optional weakest-container wording if the section is touched. Rows 13-15.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-design-interface-references-design-process-copy-and-mock-data-md-add-positive-co",
+      "text": "`design-interface/references/design-process/copy_and_mock_data.md`: add positive copy-by-state and confirmation/onboarding/localization sweep items. Rows 9 and 23.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-design-interface-references-design-process-design-principles-md-add-media-illust",
+      "text": "`design-interface/references/design-process/design_principles.md`: add media/illustration contract and earned-deviation restraint. Rows 20 and 21.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-design-interface-references-design-process-ux-quality-reference-md-expand-sectio",
+      "text": "`design-interface/references/design-process/ux_quality_reference.md`: expand Section 6 into one compact flow floor covering forms, search, navigation, first-run/empty states, and feedback hierarchy. Rows 3, 5, 6, 7, 8, and 16.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-design-motion-assets-motion-pattern-cards-md-add-a-state-machine-fragment-card-a",
+      "text": "`design-motion/assets/motion_pattern_cards.md`: add a State Machine Fragment card and loading duration bands. Rows 1 and 4.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-design-motion-references-micro-interactions-md-add-gesture-conflict-resolution-r",
+      "text": "`design-motion/references/micro_interactions.md`: add gesture conflict resolution. Row 10.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-11-covered-animation-principles-micro-interaction-handoff-basics-core-data-viz-rule",
+      "text": "Covered: animation principles, micro-interaction handoff basics, core data-viz rules, readable measure, typography scale, CTA/error/empty baseline copy, core visual hierarchy/proximity checks, and common-region theory. Current `sk-design` already has stronger or equivalent homes. [SOURCE: .opencode/skills/sk-design/design-motion/references/micro_interactions.md:149] [SOURCE: .opencode/skills/sk-design/design-foundations/references/data_viz.md:125] [SOURCE: .opencode/skills/sk-design/design-foundations/references/type/typography_system.md:70] [SOURCE: .opencode/skills/sk-design/shared/cognitive_laws.md:56]",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-12-ruled-out-as-lifecycle-ops-search-analytics-form-abandonment-measurement-onboard",
+      "text": "Ruled out as lifecycle/ops: search analytics, form abandonment measurement, onboarding activation metrics, first-click/task-based IA testing, user-testing programs, illustration contributor processes, reusable illustration libraries, representation-governance programs, and token adoption tracking over time. The useful build-facing pieces are captured above; the measurement/governance programs are outside this research slice. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/interaction-design/skills/search-ux/SKILL.md:57] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/interaction-design/skills/form-design/SKILL.md:53] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/interaction-design/skills/onboarding-design/SKILL.md:47] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/designer-toolkit/skills/design-token-audit/SKILL.md:35]",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-business-impact-and-user-behavior-claims-are-ruled-out-without-evidence-a-design",
+      "text": "**Business-impact and user-behavior claims are ruled out without evidence.** A design audit may report static risk, but it must not claim conversion, confidence, findability, behavior, or business impact unless supplied metrics, baseline, experiment, or test evidence support it. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-008.md:39] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-009.md:14]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-documentation-and-governance-systems-are-ruled-out-pattern-libraries-documentati",
+      "text": "**Documentation and governance systems are ruled out.** Pattern libraries, documentation templates, naming-lint programs, contribution models, versioning, deprecation, adoption, presentations, negotiation, case studies, and rationale workflows belong to design-system ops or communication, not `sk-design`'s mode set. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/pattern-library/SKILL.md:20] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/naming-convention/SKILL.md:22] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/design-systems/skills/documentation-template/SKILL.md:22] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-008.md:60]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-duplicate-foundations-imports-are-ruled-out-color-system-responsive-design-cogni",
+      "text": "**Duplicate foundations imports are ruled out.** `color-system`, `responsive-design`, cognitive-law skills, token architecture, and icon-system material are mostly already covered more strongly by current `sk-design`; only narrow edge checks survive. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-002.md:91] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-004.md:41] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-006.md:67]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-parallel-scoring-systems-are-ruled-out-visual-critique-can-supply-dimension-labe",
+      "text": "**Parallel scoring systems are ruled out.** `visual-critique` can supply dimension labels, but `design-audit` already owns severity, evidence, scoring, and owner routing. The adoption should be a crosswalk, not a second score model. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-006.md:37]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-research-strategy-testing-programs-and-operations-are-ruled-out-as-first-class-s",
+      "text": "**Research, strategy, testing programs, and operations are ruled out as first-class `sk-design` capabilities.** The corpus covers user research, UX strategy, validation, operations, and stakeholder utilities, but those exceed taste-led build/visual scope unless reduced to a concrete observable UI check. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:69] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:74] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:75] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/024-designer-skills-research/research/iterations/iteration-009.md:65]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-workflow-suite-import-is-ruled-out-the-source-corpus-is-a-marketplace-of-skills-",
+      "text": "**Workflow-suite import is ruled out.** The source corpus is a marketplace of skills plus commands; commands chain skills into complete jobs. `sk-design` is a five-mode design-family hub, not a command-suite owner. [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:113] [SOURCE: .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/external/designer-skills-main/README.md:117] [SOURCE: .opencode/skills/sk-design/SKILL.md:21]",
+      "addedAtIteration": 13,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 17,
+    "openQuestions": 4,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 30,
+    "keyFindings": 48,
+    "convergenceScore": 0.1,
+    "coverageBySources": {
+      "code": 1,
+      "other": 7
+    }
+  },
+  "corruptionWarnings": [],
+  "status": "COMPLETE"
+}
