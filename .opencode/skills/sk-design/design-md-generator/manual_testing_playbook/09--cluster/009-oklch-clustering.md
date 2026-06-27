@@ -4,8 +4,17 @@ description: "Validates OKLCH color clustering and L1-L4 stability classificatio
 version: 1.0.0.5
 expected_intent: EXTRACT_WRITE
 expected_resources:
-  - references/color_role_taxonomy.md
   - references/design_md_format.md
+  - references/writing_style_guide.md
+  - references/color_role_taxonomy.md
+  - references/component_taxonomy.md
+  - references/anti_patterns.md
+  - references/authoring_boundary.md
+  - references/extraction_workflow.md
+  - references/troubleshooting.md
+  - assets/design_md_prompt_template.md
+  - assets/cardinal_rules_card.md
+  - assets/source_of_truth_router_card.md
 ---
 
 **Exact prompt**

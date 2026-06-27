@@ -2,10 +2,28 @@
 title: "VALIDATE-001 -- Validator Passes On Faithful Style Reference And Flags Phantom Hexes"
 description: "This scenario validates fidelity validation for VALIDATE-001. It focuses on confirming validate.ts recognizes the v3 Style Reference schema, passes a faithful Style Reference, and flags a planted phantom hex, a Quick Start phantom hex, and a mismatched Quick Start --page-max-width."
 version: 1.0.0.8
-expected_intent: VALIDATE
+expected_intent: EXTRACT_WRITE
 expected_resources:
-  - references/quality_checklist.md
+  - references/design_md_format.md
+  - references/writing_style_guide.md
+  - references/color_role_taxonomy.md
+  - references/component_taxonomy.md
   - references/anti_patterns.md
+  - references/authoring_boundary.md
+  - references/extraction_workflow.md
+  - references/troubleshooting.md
+  - assets/design_md_prompt_template.md
+  - assets/cardinal_rules_card.md
+  - assets/source_of_truth_router_card.md
+  - references/quality_checklist.md
+  - references/examples/stripe/DESIGN.md
+  - references/examples/stripe/writing-notes.md
+  - references/examples/vercel/DESIGN.md
+  - references/examples/vercel/writing-notes.md
+  - references/examples/linear/DESIGN.md
+  - references/examples/linear/writing-notes.md
+  - references/examples/supabase/DESIGN.md
+  - references/examples/supabase/writing-notes.md
 ---
 
 **Exact prompt**

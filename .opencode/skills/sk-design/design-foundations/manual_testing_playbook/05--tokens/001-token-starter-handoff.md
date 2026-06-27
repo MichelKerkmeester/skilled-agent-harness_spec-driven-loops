@@ -8,9 +8,17 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.1
-expected_intent: TOKENS
+expected_intent: COLOR
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
+  - references/color/oklch_workflow.md
+  - references/color/palette_theming.md
   - assets/token_starter.md
+  - references/type/typography_system.md
+  - references/layout/layout_responsive.md
+  - ../shared/design_token_vocabulary.md
+  - ../shared/sk_code_handoff.md
 ---
 
 **Exact prompt**

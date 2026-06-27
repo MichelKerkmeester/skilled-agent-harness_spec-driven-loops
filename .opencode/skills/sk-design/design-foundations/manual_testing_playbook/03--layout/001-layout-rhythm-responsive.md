@@ -10,6 +10,8 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: LAYOUT
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
   - references/layout/layout_responsive.md
 ---
 

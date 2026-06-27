@@ -11,6 +11,7 @@ version: 1.0.0.0
 expected_intent: MICRO_INTERACTIONS
 expected_resources:
   - references/corpus_map.md
+  - ../shared/register.md
   - references/micro_interactions.md
   - assets/motion_pattern_cards.md
 ---

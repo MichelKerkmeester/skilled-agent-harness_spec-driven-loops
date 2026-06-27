@@ -6,6 +6,7 @@ id: ID-006
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
   - references/design-process/design_principles.md
+  - ../shared/register.md
 ---
 
 # ID-006 -- Documentation task routes away to sk-doc

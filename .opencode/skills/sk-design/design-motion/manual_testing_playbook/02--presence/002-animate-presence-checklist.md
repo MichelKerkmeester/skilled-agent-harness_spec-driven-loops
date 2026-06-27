@@ -11,6 +11,7 @@ version: 1.0.0.0
 expected_intent: PRESENCE
 expected_resources:
   - references/corpus_map.md
+  - ../shared/register.md
   - references/animate_presence_patterns.md
   - assets/animate_presence_checklist.md
 ---

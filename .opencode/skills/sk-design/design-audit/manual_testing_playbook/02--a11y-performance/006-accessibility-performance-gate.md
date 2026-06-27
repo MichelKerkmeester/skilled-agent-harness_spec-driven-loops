@@ -10,7 +10,10 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: ACCESSIBILITY_PERFORMANCE
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
   - references/accessibility_performance.md
+  - assets/a11y_quick_fixes.md
 ---
 
 **Exact prompt**

@@ -11,7 +11,9 @@ version: 1.0.0.0
 expected_intent: STRATEGY
 expected_resources:
   - references/corpus_map.md
+  - ../shared/register.md
   - references/motion_strategy.md
+  - ../shared/sk_code_handoff.md
 ---
 
 **Exact prompt**

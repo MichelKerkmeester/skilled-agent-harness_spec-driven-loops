@@ -6,6 +6,8 @@ version: 1.0.0.0
 id: ID-013
 expected_intent: COPY_MOCK_DATA
 expected_resources:
+  - references/design-process/design_principles.md
+  - ../shared/register.md
   - references/design-process/copy_and_mock_data.md
 ---
 

@@ -1,0 +1,494 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "design-motion",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-motion"
+  },
+  "verdict": "PASS",
+  "aggregateScore": 100,
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 100
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 100
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    }
+  },
+  "funnel": {
+    "passed": 6
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "coverage": {
+    "routing": 6,
+    "advisor": 0,
+    "browser": 2,
+    "routedOut": 2,
+    "scored": 6
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "001-restraint-gate",
+      "leaks": [
+        "animation everywhere",
+        "command palette",
+        "polished",
+        "hover"
+      ]
+    },
+    {
+      "scenarioId": "001-micro-interactions-feedback",
+      "leaks": [
+        "hover",
+        "active",
+        "loading",
+        "delight",
+        "icon",
+        "morph",
+        "feedback",
+        "button",
+        "menu"
+      ]
+    },
+    {
+      "scenarioId": "001-animate-presence-exit-rules",
+      "leaks": [
+        "presence",
+        "animatepresence",
+        "modal"
+      ]
+    },
+    {
+      "scenarioId": "002-animate-presence-checklist",
+      "leaks": [
+        "exit",
+        "modal",
+        "checklist"
+      ]
+    },
+    {
+      "scenarioId": "001-purposeful-motion-plan",
+      "leaks": [
+        "design the motion",
+        "motion for",
+        "premium",
+        "feel premium"
+      ]
+    },
+    {
+      "scenarioId": "002-motion-pattern-card",
+      "leaks": [
+        "toast",
+        "drawer",
+        "notification"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "001-restraint-gate",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "001-micro-interactions-feedback",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "001-performance-and-reduced-motion",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "002-motion-performance-failure-card",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "001-animate-presence-exit-rules",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "002-animate-presence-checklist",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "001-purposeful-motion-plan",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "002-motion-pattern-card",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 8,
+    "traceMode": "router",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  }
+}

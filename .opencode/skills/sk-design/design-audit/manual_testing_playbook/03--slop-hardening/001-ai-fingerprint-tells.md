@@ -10,6 +10,9 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: ANTI_PATTERNS_PRODUCTION
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
+  - references/anti_patterns_production.md
   - references/ai_fingerprint_tells.md
 ---
 

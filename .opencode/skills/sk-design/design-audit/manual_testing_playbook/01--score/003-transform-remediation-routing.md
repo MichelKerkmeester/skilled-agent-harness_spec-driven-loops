@@ -10,6 +10,8 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: TRANSFORM_REMEDIATION
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
   - references/transform_remediation.md
 ---
 

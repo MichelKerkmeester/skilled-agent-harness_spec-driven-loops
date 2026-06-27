@@ -11,6 +11,7 @@ version: 1.0.0.0
 expected_intent: DECISION
 expected_resources:
   - references/corpus_map.md
+  - ../shared/register.md
   - references/animation_decision_framework.md
 ---
 

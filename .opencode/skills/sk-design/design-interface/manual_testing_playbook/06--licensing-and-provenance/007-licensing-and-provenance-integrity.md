@@ -6,6 +6,7 @@ id: ID-007
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
   - references/design-process/design_principles.md
+  - ../shared/register.md
 ---
 
 # ID-007 -- Licensing and provenance integrity

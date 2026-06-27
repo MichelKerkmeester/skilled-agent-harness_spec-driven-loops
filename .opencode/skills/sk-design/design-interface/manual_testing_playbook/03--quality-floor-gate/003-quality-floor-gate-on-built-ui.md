@@ -5,6 +5,8 @@ version: 1.5.0.5
 id: ID-003
 expected_intent: UX_QUALITY
 expected_resources:
+  - references/design-process/design_principles.md
+  - ../shared/register.md
   - references/design-process/ux_quality_reference.md
 ---
 

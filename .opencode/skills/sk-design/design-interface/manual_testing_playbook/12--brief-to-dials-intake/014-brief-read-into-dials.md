@@ -6,6 +6,8 @@ version: 1.0.0.0
 id: ID-014
 expected_intent: REGISTER_DIALS
 expected_resources:
+  - references/design-process/design_principles.md
+  - ../shared/register.md
   - references/design-process/brief_to_dials.md
 ---
 

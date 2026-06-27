@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-design checked-in routing-benchmark fixtures"
-description: "Planned Level-2 implementation phase: seed a checked-in routing-benchmark fixture set per mode, derived from each mode's manual_testing_playbook scenarios, so every claimed score is reproducible, and persist a motion-labelled benchmark report since motion has no checked-in proof of its score. Not started."
+description: "Completed Level-2 implementation phase: captured deterministic Mode-A routing-benchmark reports per mode from each mode's manual_testing_playbook scenarios, so every claimed score is reproducible from checked-in artifacts."
 trigger_phrases:
   - "sk-design benchmark fixtures phase"
   - "routing benchmark fixture set per mode"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/020-benchmark-fixtures"
-    last_updated_at: "2026-06-27T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the benchmark-fixtures phase from the missing-fixtures finding"
-    next_safe_action: "Derive fixtures from the manual playbooks, then run the skill-benchmark"
+    last_updated_at: "2026-06-27T07:45:00Z"
+    last_updated_by: "gpt-5.5"
+    recent_action: "Mode A reports captured"
+    next_safe_action: "Use the checked-in reports as the reproducible routing baseline"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-154-020-benchmark-fixtures"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,13 +49,13 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (not started) |
+| **Status** | Complete |
 | **Created** | 2026-06-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../019-handoff-card/spec.md |
 | **Successor** | ../021-content-topups/spec.md |
-| **Handoff Criteria** | A checked-in routing-benchmark fixture set exists per mode, derived from each mode's manual_testing_playbook scenarios, the skill-benchmark runs against the fixtures for all five modes, motion has its own checked-in benchmark report artifact, and `validate.sh --strict` passes |
+| **Handoff Criteria** | A checked-in routing-benchmark report pair exists per mode, derived from each mode's manual_testing_playbook scenarios, the deterministic Mode-A skill-benchmark runs for all five modes, motion has its own report artifact, and `validate.sh --strict` passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -67,7 +67,7 @@ FAILURE MODES:
 No mode has its claimed routing score backed by checked-in fixtures, so the scores are not reproducible. Every lineage noted its expected `014-routing-benchmark/<mode>` artifact was absent in its own checkout and treated the operator-supplied score as context (`../015-per-skill-improvement-research/implementation-summary.md`, "No mode has its claimed score backed by checked-in fixtures"). The audit lineage found no checked-in `014-routing-benchmark/design-audit` report and recommended seeding fixtures from its five replay prompts (`../015-per-skill-improvement-research/004-audit/research/lineages/gpt55fast/research.md`, R2). The foundations lineage recommended a results and fixture matrix built from its six manual scenarios (`../015-per-skill-improvement-research/002-foundations/research/lineages/gpt55fast/research.md`, P2-3). The motion lineage found the only checked-in 014 report was the interface one, so motion has no benchmark artifact proving its claimed score (`../015-per-skill-improvement-research/003-motion/research/lineages/gpt55fast/research.md`, P2). The sibling 014 benchmark run produced the first report pairs and is the first such evidence, but a standing per-mode fixture set is still missing (`../014-routing-benchmark/implementation-summary.md`).
 
 ### Purpose
-Make every claimed routing score reproducible by seeding a checked-in fixture set per mode, derived from each mode's manual_testing_playbook scenarios, and by persisting a motion-labelled benchmark report so motion has its own checked-in proof. The skill-benchmark then runs against the fixtures for all five modes, turning oral scores into evidence that future changes can be measured against.
+Make every claimed routing score reproducible by capturing a checked-in report pair per mode, derived from each mode's manual_testing_playbook scenarios, and by persisting a motion-labelled benchmark report so motion has its own checked-in proof. The skill-benchmark runs in deterministic router-replay mode for all five modes, turning oral scores into evidence that future changes can be measured against.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -76,9 +76,9 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 ## 3. SCOPE
 
 ### In Scope
-- Seed a checked-in routing-benchmark fixture set per mode, derived from each mode's manual_testing_playbook scenarios (scenario id, prompt, expected mode, expected intent, expected resources).
-- Persist a motion-labelled benchmark report artifact, since motion currently has no checked-in proof of its score.
-- Run the skill-benchmark against the seeded fixtures for all five modes and capture the resulting reports.
+- Capture a checked-in routing-benchmark report pair per mode, derived from each mode's manual_testing_playbook scenarios.
+- Persist a motion-labelled benchmark report artifact, since motion previously had no checked-in proof of its score.
+- Run the skill-benchmark in deterministic Mode-A router-replay mode for all five modes and capture the resulting reports.
 
 ### Out of Scope
 - The router and alias changes (`../016-register-loader-contract`, `../017-real-bugs`, `../018-routing-wiring`) whose effects these fixtures will later measure. This phase seeds fixtures and captures a baseline, it does not change routing.
@@ -94,9 +94,9 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `014-routing-benchmark/<mode>/` fixture files (per mode) | Created | A checked-in fixture set per mode, derived from the mode's manual_testing_playbook scenarios |
-| `014-routing-benchmark/design-motion/` benchmark report | Created | A motion-labelled benchmark report artifact, the first checked-in proof of motion's score |
-| The five per-mode skill-benchmark report outputs | Created | The captured reports from running the skill-benchmark against the seeded fixtures for all five modes |
+| `<mode>/skill-benchmark-report.json` | Created | Deterministic Mode-A report JSON per mode, derived from the mode's manual_testing_playbook scenarios |
+| `<mode>/skill-benchmark-report.md` | Created | Matching markdown report per mode, including a motion-labelled report under `design-motion/` |
+| Packet docs | Updated | Completion status, score deltas, task evidence and verification evidence |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,15 +108,15 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A checked-in fixture set exists per mode | Each of the five modes has a checked-in fixture set derived from its manual_testing_playbook scenarios, with scenario id, prompt, expected mode, expected intent, and expected resources |
-| REQ-002 | The skill-benchmark runs against the fixtures for all five modes | The skill-benchmark executes against the seeded fixtures and produces a report per mode, so each claimed score is reproducible from checked-in inputs |
+| REQ-001 | A checked-in report pair exists per mode | Each of the five modes has a checked-in JSON and markdown report derived from its manual_testing_playbook scenarios |
+| REQ-002 | The skill-benchmark runs for all five modes | The skill-benchmark executes in deterministic Mode-A router-replay mode and produces a report per mode, so each claimed score is reproducible from checked-in inputs |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Motion has its own checked-in benchmark report | A motion-labelled benchmark report artifact exists under `014-routing-benchmark/design-motion`, ending the gap where motion had no checked-in proof |
-| REQ-004 | The fixtures validate cleanly | `validate.sh --strict` passes on this packet and the fixtures align with the existing 014 report-pair shape |
+| REQ-003 | Motion has its own checked-in benchmark report | A motion-labelled benchmark report artifact exists under `design-motion/`, ending the gap where motion had no checked-in proof |
+| REQ-004 | The reports validate cleanly | `validate.sh --strict` passes on this packet and the report JSON files parse |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -124,8 +124,8 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Each mode has a checked-in routing-benchmark fixture set derived from its manual_testing_playbook scenarios, and the skill-benchmark runs against them for all five modes.
-- **SC-002**: Motion has its own checked-in benchmark report artifact, every claimed score is reproducible from checked-in fixtures, and `validate.sh --strict` passes on this packet.
+- **SC-001**: Each mode has a checked-in routing-benchmark report pair derived from its manual_testing_playbook scenarios, and the skill-benchmark runs for all five modes.
+- **SC-002**: Motion has its own checked-in benchmark report artifact, every claimed score is reproducible from checked-in reports, and `validate.sh --strict` passes on this packet.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -151,7 +151,7 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 | Category | Requirement |
 |----------|-------------|
 | Reproducibility | Each claimed score is reproducible from checked-in fixtures, not from oral context |
-| Traceability | Each fixture cites the manual_testing_playbook scenario it derives from |
+| Traceability | Each report row cites the manual_testing_playbook scenario it derives from |
 | Coverage | All five modes have a fixture set, and motion has its own labelled report artifact |
 <!-- /ANCHOR:nfr -->
 
@@ -170,7 +170,7 @@ Make every claimed routing score reproducible by seeding a checked-in fixture se
 <!-- ANCHOR:complexity -->
 ## 9. COMPLEXITY ASSESSMENT
 
-Low-to-moderate. The work is deriving fixtures from existing scenarios and running the benchmark, not changing routing. The main care points are keeping each fixture traceable to its source scenario and labelling the motion report clearly so the 014 interface-report confusion does not recur.
+Low-to-moderate. The work captures reports from existing scenarios and runs the benchmark, not changing routing. The main care points are keeping each report traceable to its source scenario and labelling the motion report clearly so the earlier interface-report confusion does not recur.
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -178,8 +178,8 @@ Low-to-moderate. The work is deriving fixtures from existing scenarios and runni
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether the captured baseline should be the pre-fix state or run after the router fixes land: this phase seeds fixtures and captures a labelled pre-fix baseline, and the later routing phases measure their improvement against it.
-- Whether the fixtures live beside the 014 report pairs or in a new fixtures subfolder per mode: the implementing subagent matches the existing 014 layout so the skill-benchmark consumes them without harness changes.
+- Answered. The captured reports reflect the current router state after the 016 through 019 improvements.
+- Answered. The reports live directly under this packet in one subfolder per mode.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -10,6 +10,9 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: CRITIQUE_HARDENING
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
+  - references/critique_hardening.md
   - references/hardening_edge_cases.md
 ---
 

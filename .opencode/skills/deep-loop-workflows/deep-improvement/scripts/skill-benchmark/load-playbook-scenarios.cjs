@@ -77,9 +77,12 @@ function readFileSafe(p) {
 }
 
 /**
- * Pull every `references/...` / `assets/...` markdown-ish path token out of a
- * text block, deduped, order-preserving. Tolerates backticks, bullets, and
- * trailing parentheticals like "(when intent is X)".
+ * Pull every `references/...` / `assets/...` / `../shared/...` markdown-ish path
+ * token out of a text block, deduped, order-preserving. Tolerates backticks,
+ * bullets, and trailing parentheticals like "(when intent is X)". The sibling
+ * `../shared/` form is included so a gold list can credit the family-shared
+ * docs (the operating register, the handoff card) a nested mode loads on
+ * routes, matching what the router actually returns.
  *
  * @param {string} block - Text block to scan.
  * @returns {string[]} Deduped, order-preserving list of path tokens.
@@ -88,7 +91,7 @@ function extractPaths(block) {
   if (!block) return [];
   const out = [];
   const seen = new Set();
-  const re = /(?:references|assets)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
+  const re = /(?:references|assets|\.\.\/shared)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
   let m;
   while ((m = re.exec(block)) !== null) {
     const p = m[0];

@@ -10,6 +10,8 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: EVIDENCE_CAPTURE
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
   - references/evidence_capture.md
 ---
 

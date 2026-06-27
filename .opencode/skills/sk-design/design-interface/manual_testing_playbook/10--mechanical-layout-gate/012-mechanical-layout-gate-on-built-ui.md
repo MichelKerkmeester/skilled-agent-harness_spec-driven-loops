@@ -6,7 +6,12 @@ version: 1.0.0.0
 id: ID-012
 expected_intent: MECHANICAL_PREFLIGHT
 expected_resources:
+  - references/design-process/design_principles.md
+  - ../shared/register.md
   - references/design-process/mechanical_defaults.md
+  - references/design-process/copy_and_mock_data.md
+  - references/design-process/brief_to_dials.md
+  - assets/interface_preflight_card.md
 ---
 
 # ID-012 -- Mechanical layout gate on a built UI

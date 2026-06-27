@@ -2,10 +2,28 @@
 title: "FIDELITY-001 -- Cardinal Verbatim-Value Rule Enforced"
 description: "This scenario validates the cardinal verbatim-value rule for FIDELITY-001. It focuses on confirming the v3 Style Reference copies every hex, pixel, font weight, shadow, radius, and layout max-width verbatim from tokens.json (so 100% stays 100%, never 100rem) with no estimation, 6-digit lowercase hex, L4 excluded, and L3 under the Subject-to-change sub-table."
 version: 1.0.0.7
-expected_intent: VALIDATE
+expected_intent: EXTRACT_WRITE
 expected_resources:
-  - references/quality_checklist.md
+  - references/design_md_format.md
+  - references/writing_style_guide.md
+  - references/color_role_taxonomy.md
+  - references/component_taxonomy.md
+  - references/anti_patterns.md
+  - references/authoring_boundary.md
+  - references/extraction_workflow.md
+  - references/troubleshooting.md
+  - assets/design_md_prompt_template.md
   - assets/cardinal_rules_card.md
+  - assets/source_of_truth_router_card.md
+  - references/quality_checklist.md
+  - references/examples/stripe/DESIGN.md
+  - references/examples/stripe/writing-notes.md
+  - references/examples/vercel/DESIGN.md
+  - references/examples/vercel/writing-notes.md
+  - references/examples/linear/DESIGN.md
+  - references/examples/linear/writing-notes.md
+  - references/examples/supabase/DESIGN.md
+  - references/examples/supabase/writing-notes.md
 ---
 
 **Exact prompt**

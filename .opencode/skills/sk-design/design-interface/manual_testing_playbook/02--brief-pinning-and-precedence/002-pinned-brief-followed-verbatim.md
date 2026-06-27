@@ -6,6 +6,8 @@ id: ID-002
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
   - references/design-process/design_principles.md
+  - ../shared/register.md
+  - references/design-process/ux_quality_reference.md
 ---
 
 # ID-002 -- Pinned brief is followed verbatim

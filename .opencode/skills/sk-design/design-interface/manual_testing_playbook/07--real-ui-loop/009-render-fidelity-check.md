@@ -5,8 +5,10 @@ version: 1.5.0.1
 id: ID-009
 expected_intent: REAL_UI_LOOP
 expected_resources:
+  - references/design-process/design_principles.md
+  - ../shared/register.md
   - references/design-process/real_ui_loop.md
-  - references/design-process/ux_quality_reference.md
+  - ../shared/sk_code_handoff.md
 ---
 
 # ID-009 -- Render fidelity check gated on the quality floor and anti-default critique

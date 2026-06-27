@@ -10,8 +10,11 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: AUDIT_CONTRACT
 expected_resources:
+  - references/corpus_map.md
+  - ../shared/register.md
   - references/audit_contract.md
   - assets/audit_report_template.md
+  - ../shared/sk_code_handoff.md
 ---
 
 **Exact prompt**

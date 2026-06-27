@@ -6,6 +6,7 @@ id: ID-001
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
   - references/design-process/design_principles.md
+  - ../shared/register.md
 ---
 
 # ID-001 -- Free-axis brainstorm critique and deliberate deviation

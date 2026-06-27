@@ -11,6 +11,7 @@ version: 1.0.0.0
 expected_intent: PERFORMANCE
 expected_resources:
   - references/corpus_map.md
+  - ../shared/register.md
   - references/performance_reduced_motion.md
   - assets/motion_performance_failure_card.md
 ---

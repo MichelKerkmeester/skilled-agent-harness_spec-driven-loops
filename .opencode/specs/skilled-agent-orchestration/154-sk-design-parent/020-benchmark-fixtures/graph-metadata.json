@@ -38,8 +38,19 @@
       "artifact"
     ],
     "importance_tier": "supporting",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "design-interface/skill-benchmark-report.json",
+      "design-interface/skill-benchmark-report.md",
+      "design-foundations/skill-benchmark-report.json",
+      "design-foundations/skill-benchmark-report.md",
+      "design-motion/skill-benchmark-report.json",
+      "design-motion/skill-benchmark-report.md",
+      "design-audit/skill-benchmark-report.json",
+      "design-audit/skill-benchmark-report.md",
+      "design-md-generator/skill-benchmark-report.json",
+      "design-md-generator/skill-benchmark-report.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,6 +58,24 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": "design-interface/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": "design-interface/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Planned Level",
+        "name": "Completed Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,33 +197,15 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "No mode has its claimed routing score backed by checked-in fixtures, so the scores are not reproducible",
     "created_at": "2026-06-27T05:42:27.793Z",
-    "last_save_at": "2026-06-27T05:43:45.169Z",
+    "last_save_at": "2026-06-27T08:14:52.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:963518b8dfdaa2897a4f996db5074e9ddbcef4f738e720401cc4cb240948d7d7",
+    "source_fingerprint": "sha256:31b44100dac27937f8336cf89f0a94e5091aa79a46f24bfd7ea6b4b620c764de",
     "source_doc_hashes": {
-      "spec.md": "1d1085010e95c06119a8484dd4139d6d924d58278ec794b25d94688230e1ff13",
-      "plan.md": "79fab711c914a9d0c158a8ca6e0ffa2a10d8aeb3f73cb8ef9387f9796bb7e0cf",
-      "tasks.md": "51900daccb606b20351ff27052d50058184e5145a78955b216d71c0b654167d2",
-      "checklist.md": "14fc9cf3175a1b792f0b6a6b4d23a4242642a19187a9aeb00b032b8219c0950d",
-      "implementation-summary.md": "dbcf61dd33a778c87460bb78d4d1c4bb21a890eb08fe60d126d3c14425af14c3"
+      "spec.md": "78349ee0e59412370d4099ea9b9fef46eef8ac4c385b1a9dc261f4728dddbd16",
+      "plan.md": "713c16ba97b744b3b2192b633e7e1e94f04828160d68661c0865b44e1c9133be",
+      "tasks.md": "c3bfa5257fca9c9412becf8ae6438675b81c76e59cdd27ff88b92d9cf91fd4a3",
+      "checklist.md": "87f7340331730f6e21eebb6b2ba4d027ca310ae3f508a79a2a04c9f9e48aa279",
+      "implementation-summary.md": "d65a39150fbc5d33db385b43feb8b117cc1263c8f095a9853b32d162355c5508"
     },
     "last_active_child_id": null,
     "last_active_at": null
