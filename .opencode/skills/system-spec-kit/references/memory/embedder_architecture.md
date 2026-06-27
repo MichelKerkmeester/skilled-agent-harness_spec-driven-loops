@@ -178,15 +178,13 @@ Use `SPECKIT_BM25_ENGINE=legacy-inmemory` to restore the old warm JavaScript sin
 
 The lexical normalizer lives in `mcp_server/lib/search/lexical-normalizer.ts` and is shared by both BM25 paths. It remains the source of truth for query synonyms, lightweight stemming, FTS-safe query expansion, and BM25 query tokens, so switching the rank provider does not silently drop synonym recall.
 
-### Sidecar Execution
+### Direct Provider Execution
 
-Embedding execution is routed through `mcp_server/lib/embedders/execution-router.ts`. The router keeps SQLite reads/writes, cache lookup/store, and vector table mutations in the MCP process, but can move heavy local model runtimes into a child Node sidecar that speaks JSONL over stdio.
+Embedding execution is routed through `mcp_server/lib/embedders/execution-router.ts`. The router keeps SQLite reads/writes, cache lookup/store, vector table mutations, and provider calls in the MCP process through direct provider routing.
 
 `SPECKIT_EMBEDDER_EXECUTION` is **deprecated and ignored**. `execution-router.ts` calls `warnIgnoredExecutionPolicyEnv()`, which logs `SPECKIT_EMBEDDER_EXECUTION="..." is deprecated and ignored; using direct provider routing` and early-returns without applying the value. All providers use direct provider routing regardless of the env var; there is no `auto`/`direct`/`sidecar` routing switch in effect.
 
-Sidecars are lazy: the worker is not forked until the first embedding request for a `(provider, model)` tuple. `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` evicts an idle worker after 300000 ms by default, so the MCP daemon's RSS stays small and local model memory can leave the machine-wide resident set after idle. `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` bounds the health ping before each request; a timed-out worker is respawned before embedding.
-
-Full `memory_health` reports expose `sidecar_workers`, keyed by provider/model, with the worker pid, model, last request timestamp, idle age, and request count. An empty object means no sidecar is currently spawned.
+Use `embedder_status` and `memory_health` to inspect provider readiness and cache/vector consistency; there is no embedding worker lifecycle to tune.
 
 ### Profile-Aware Caching
 

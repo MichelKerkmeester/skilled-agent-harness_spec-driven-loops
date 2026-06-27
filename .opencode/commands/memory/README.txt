@@ -341,10 +341,10 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 
 | Document | Purpose |
 |----------|---------|
-| [Parent: OpenCode Commands](../README.md) | Overview of all command groups |
-| [system-spec-kit SKILL.md](../../skill/system-spec-kit/SKILL.md) | Memory system architecture and spec folder workflow |
-| [Spec Kit Memory MCP](../../skill/system-spec-kit/mcp_server/) | MCP server implementation for memory operations |
-| [Tool Schemas](../../skill/system-spec-kit/mcp_server/tool-schemas.ts) | Canonical 47-tool inventory and property definitions |
-| [Tool Input Schemas](../../skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts) | Zod validation schemas and ALLOWED_PARAMETERS |
+| [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
+| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Memory system architecture and spec folder workflow |
+| [Spec Kit Memory MCP](../../skills/system-spec-kit/mcp_server/) | MCP server implementation for memory operations |
+| [Tool Schemas](../../skills/system-spec-kit/mcp_server/tool-schemas.ts) | Canonical 39-tool inventory and property definitions |
+| [Tool Input Schemas](../../skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts) | Zod validation schemas and ALLOWED_PARAMETERS |
 
 <!-- /ANCHOR:related-documents -->

@@ -38,7 +38,7 @@ Prefer a visible degraded mode over silent vector drift. Missing or mismatched e
 
 When `vec_metadata` has no active pointer, daemon startup probes providers in this **local-first** order (ADR-014, 2026-05-19):
 
-1. Ollama: reachable `/api/tags`, choosing the first pulled model in ADR-013 order: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`.
+1. Ollama: reachable `/api/tags`, choosing the first pulled model from `shared/embeddings/registry.ts` (currently `nomic-embed-text-v1.5`, tag `nomic-embed-text:v1.5`).
 2. hf-local: Node.js model server answers `/api/health` (launcher-supervised pure-Node `@huggingface/transformers`; ready or loading both count), selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
 3. OpenAI API: `OPENAI_API_KEY` plus a successful `text-embedding-3-small` embeddings request.
 4. Voyage API: `VOYAGE_API_KEY` plus a successful `voyage-code-3` embeddings request.

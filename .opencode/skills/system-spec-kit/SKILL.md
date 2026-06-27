@@ -416,7 +416,7 @@ The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 
 
 `memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface. It converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. It runs dry-run by default so operators can inspect the proposed changes before committing them.
 
-The current memory baseline is schema v37. The 027 hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
+The current memory baseline is schema v41. The hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
 
 ### Reranking
 
@@ -433,7 +433,7 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### Code Graph and Search Routing
 
-Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the full `mcp__mk_code_index__*` family split: `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
+Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the 8-tool `mcp__mk_code_index__*` surface: read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
 
 ---
 

@@ -28,7 +28,7 @@ No workflow-asset gap exists for this command.
 
 1. Read `.opencode/commands/doctor/assets/doctor_update_presentation.txt`.
 2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
-3. Bind setup values: `execution_mode`, `intent`, `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and `skip_status_check`.
+3. Bind setup values: `execution_mode`, `intent`, `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and internal `skip_status_check` (fixed `false`; no user flag).
 4. If `--force` is absent, ask the presentation contract's initial confirmation prompt and wait.
 5. If `--force` is present, auto-answer the initial confirmation as proceed; the active-MCP-client prompt still fires when the workflow detects active clients.
 6. Load `.opencode/commands/doctor/assets/doctor_update.yaml` only after every setup value is bound.

@@ -20,7 +20,7 @@ Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
 ## 1. OVERVIEW
 
-Current baseline: schema v37 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints and tombstone partitions), 3 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
+Current baseline: schema v41 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints, tombstone partitions, retention-forgetting, and semantic-edge substrate support), 3 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 

@@ -17,6 +17,8 @@ What do you want to do?
    6) Debug Deep-Loop history            (research/review iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
+   9) Audit Parent Skill structure       (mode registry, graph metadata)
+   10) Audit Fable Mode metrics          (behavioral efficiency signals)
    0) Full sweep - rebuild everything    (no migration, current schema)
    H) Help me decide
    X) Cancel
@@ -34,6 +36,8 @@ Accepted answers:
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
 | `8` | target = `skill-budget` |
+| `9` | target = `parent-skill` |
+| `10` | target = `fable-mode` |
 | `0` | Abort `/doctor`; display `Switch to /doctor:update for full sweep. Exiting /doctor.` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
@@ -57,20 +61,22 @@ Pick by symptom:
    Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
    New skill not appearing in advisor results          -> 7  Skill Advisor
    Description char-count over hard cap                -> 8  Skill Budget
+   Parent skill graph-metadata or mode registry drift  -> 9  Parent Skill
+   Fable-5 behavioral metric drift                     -> 10 Fable Mode
 
 Quick reference for confusable pairs:
    Code-Graph (5) is STRUCTURAL - functions, files, dirs, AST
    Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
    Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
 
-Press 1-8, 0, or X.
+Press 1-10, 0, or X.
 ```
 
 ### Unknown Target Failure
 
 ```text
 Unknown target: [target]
-Valid targets: memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget
+Valid targets: memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget, parent-skill, fable-mode
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -95,6 +101,8 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `deep-loop` | `doctor_deep-loop.yaml` | read-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor_skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
 | `skill-budget` | `doctor_skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
+| `parent-skill` | `doctor_parent-skill.yaml` | read-only | Audit parent skill structure, mode registry, and graph metadata |
+| `fable-mode` | `doctor_fable-mode.yaml` | read-only | Audit behavioral metrics for fable-mode review quality |
 
 ## 3. Setup Prompts
 

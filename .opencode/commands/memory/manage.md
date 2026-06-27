@@ -1,6 +1,6 @@
 ---
 description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest.
-argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>]"
+argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <true|false>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>]"
 allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_validate, mcp__mk_spec_memory__memory_update, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_bulk_delete, mcp__mk_spec_memory__memory_retention_sweep, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__checkpoint_create, mcp__mk_spec_memory__checkpoint_restore, mcp__mk_spec_memory__checkpoint_list, mcp__mk_spec_memory__checkpoint_delete, mcp__mk_spec_memory__memory_ingest_start, mcp__mk_spec_memory__memory_ingest_status, mcp__mk_spec_memory__memory_ingest_cancel
 ---
 
@@ -29,7 +29,7 @@ Recognized modes:
 - `bulk-delete <tier> [--older-than <days>] [--folder <spec>]`
 - `tier <id> <tier>`
 - `triggers <id>`
-- `validate <id> <useful|not>`
+- `validate <id> <true|false>`
 - `delete <id>`
 - `health`
 - `checkpoint create|restore|list|delete <name>`

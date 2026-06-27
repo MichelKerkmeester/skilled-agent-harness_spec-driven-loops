@@ -153,7 +153,7 @@ Main flow:
                      ▼
 ┌──────────────────────────────────────────┐
 │ search and reindex run through           │
-│ active_vec.vec_<dim>                     │
+│ active_vec.vec_<dim> and vec_memories    │
 └──────────────────────────────────────────┘
 ```
 

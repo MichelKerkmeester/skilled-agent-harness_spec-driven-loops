@@ -40,6 +40,7 @@ interface AdvisorRouting {
 }
 interface Mode {
   readonly workflowMode: string;
+  readonly packet: string;
   readonly advisorRouting: AdvisorRouting;
 }
 const registry = JSON.parse(readFileSync(registryPath, 'utf8')) as { modes: readonly Mode[] };
@@ -70,6 +71,7 @@ describe('routing-registry-drift-guard', () => {
       expect(mode.advisorRouting, `mode ${mode.workflowMode} missing advisorRouting`).toBeDefined();
       expect(valid.has(mode.advisorRouting.routingClass), `mode ${mode.workflowMode} bad routingClass`).toBe(true);
       expect(mode.advisorRouting.packetSkillName, `mode ${mode.workflowMode} missing packetSkillName`).toBeTruthy();
+      expect(mode.advisorRouting.packetSkillName, `mode ${mode.workflowMode} packetSkillName drift`).toBe(mode.packet);
       // lexical + alias-fold modes must name a legacyAdvisorId (the projection-map key)
       if (mode.advisorRouting.routingClass === 'lexical' || mode.advisorRouting.routingClass === 'alias-fold') {
         expect(mode.advisorRouting.legacyAdvisorId, `mode ${mode.workflowMode} missing legacyAdvisorId`).toBeTruthy();

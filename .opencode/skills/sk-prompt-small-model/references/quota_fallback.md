@@ -1,6 +1,6 @@
 ---
 title: Quota-Pool-Aware Fallback
-description: One-step small-model fallback rules for Cognition free, Cognition Pro, and Anthropic quota pools. Re-homed from cli-devin.
+description: One-step small-model fallback rules for the small-model registry quota pools. Re-homed from cli-devin.
 trigger_phrases:
   - "quota pool aware fallback"
   - "small model fallback rules"
@@ -21,9 +21,10 @@ Phase 005 ships a quota-pool-aware fallback contract for the user's small-only m
 
 The fallback engine reads `sk-prompt-small-model/assets/model_profiles.json`.
 
-It uses two fields:
+It uses these fields:
 
-- `quota_pool`
+- `primary_quota_pool`
+- `executors[].quota_pool`
 - `fallback_target`
 
 Fallback is one step.
@@ -56,7 +57,7 @@ It may route to a configured separate-pool target later, after the operator adop
 
 ADR-001 says:
 
-> The user's actual model rotation is small-only: DeepSeek-v4-pro (opencode-go pool via cli-opencode), Kimi-k2.7-code (kimi-for-coding pool), MiniMax-M3 (minimax-token-plan pool), MiMo-V2.5-Pro (xiaomi-token-plan pool), with optional future Claude Haiku. There are no frontier models (Opus / Sonnet / gpt-5.5) in scope to escalate to. The original Phase D plan assumed a small→frontier escalation chain — that assumption is gone. Naïve "pick another model" routing on hard-fail would just pick a same-pool sibling — accomplishing nothing while spending more quota.
+> The user's actual model rotation is small-only: DeepSeek-v4-pro (deepseek-api pool), Kimi-k2.7-code (kimi-for-coding pool), MiniMax-M3 (minimax-token-plan primary pool, minimax-api secondary executor pool), MiMo-V2.5-Pro (xiaomi-token-plan pool), with optional future Claude Haiku. There are no frontier models (Opus / Sonnet / gpt-5.5) in scope to escalate to. The original Phase D plan assumed a small-to-frontier escalation chain; that assumption is gone. Naive "pick another model" routing on hard-fail would just pick a same-pool sibling, accomplishing nothing while spending more quota.
 
 Implementation follows that rationale.
 
@@ -68,10 +69,10 @@ The safe result is explicit failure when no configured separate-pool target exis
 
 | Quota pool | Active members | Optional members | Notes |
 | --- | --- | --- | --- |
-| `opencode-go` | `deepseek-v4-pro` | none | Shared opencode-go credit pool. |
-| `deepseek-api` | `deepseek-v4-pro` | none | Direct DeepSeek API key path. |
+| `deepseek-api` | `deepseek-v4-pro` | none | Direct DeepSeek API key path; primary pool for DeepSeek. |
 | `kimi-for-coding` | `kimi-k2.7-code` | none | Kimi For Coding subscription pool. |
 | `minimax-token-plan` | `minimax-m3` | none | MiniMax Token Plan subscription. |
+| `minimax-api` | `minimax-m3` | none | Direct MiniMax API executor pool. |
 | `xiaomi-token-plan` | `mimo-v2.5-pro` | none | Xiaomi Token Plan Europe. |
 | `anthropic` | none | `haiku` | Optional separate provider pool. |
 
@@ -100,12 +101,12 @@ Algorithm:
 
 1. Find the failed model by `id`.
 2. If the failed model is unknown, return `fail-fast`.
-3. Read the failed model's `quota_pool`.
+3. Read the failed model's `primary_quota_pool`.
 4. Read the failed model's `fallback_target`.
 5. If `fallback_target` is `null`, return `fail-fast`.
 6. Find the target model by `id`.
 7. If the target model is unknown, return `fail-fast`.
-8. Compare `target.quota_pool` with `failed.quota_pool`.
+8. Compare `target.primary_quota_pool` with `failed.primary_quota_pool`.
 9. If the pools match, return `fail-fast`.
 10. If the pools differ, return `fallback` with `target`.
 
@@ -128,13 +129,13 @@ const failed = registry.models.find((model) => model.id === failedModelId);
 if (!failed) return failFast("unknown model");
 
 if (failed.fallback_target === null) {
-  return failFast(`${failed.quota_pool} pool exhausted, no separate-pool fallback configured`);
+  return failFast(`${failed.primary_quota_pool} pool exhausted, no separate-pool fallback configured`);
 }
 
 const target = registry.models.find((model) => model.id === failed.fallback_target);
 if (!target) return failFast("configured fallback is not in the registry");
 
-if (target.quota_pool === failed.quota_pool) {
+if (target.primary_quota_pool === failed.primary_quota_pool) {
   return failFast("same-pool fallback rejected");
 }
 
@@ -144,8 +145,11 @@ return fallback(target.id);
 The production helper is:
 
 ```text
-.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts
+.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts
 ```
+
+That helper consumes a normalized projection where `quota_pool` is derived from
+the registry's `primary_quota_pool`.
 
 ---
 
@@ -158,7 +162,7 @@ Registry:
 ```json
 {
   "id": "deepseek-v4-pro",
-  "quota_pool": "opencode-go",
+  "primary_quota_pool": "deepseek-api",
   "fallback_target": null
 }
 ```
@@ -168,21 +172,21 @@ Result:
 ```json
 {
   "action": "fail-fast",
-  "reason": "opencode-go pool exhausted, no separate-pool fallback configured for deepseek-v4-pro"
+  "reason": "deepseek-api pool exhausted, no separate-pool fallback configured for deepseek-v4-pro"
 }
 ```
 
-This prevents a useless retry through another opencode-go model.
+This prevents an unapproved retry through another provider path.
 
 ### Same-Pool Fallback Rejected (hypothetical)
 
-If `deepseek-v4-pro` were configured to fall back to a second model that also lived on the `opencode-go` pool:
+If `deepseek-v4-pro` were configured to fall back to a second model that also lived on the `deepseek-api` pool:
 
 ```json
 {
   "id": "deepseek-v4-pro",
-  "quota_pool": "opencode-go",
-  "fallback_target": "some-opencode-go-model"
+  "primary_quota_pool": "deepseek-api",
+  "fallback_target": "some-deepseek-api-model"
 }
 ```
 
@@ -190,8 +194,8 @@ Target (same pool):
 
 ```json
 {
-  "id": "some-opencode-go-model",
-  "quota_pool": "opencode-go"
+  "id": "some-deepseek-api-model",
+  "primary_quota_pool": "deepseek-api"
 }
 ```
 
@@ -200,7 +204,7 @@ Result:
 ```json
 {
   "action": "fail-fast",
-  "reason": "opencode-go pool exhausted, fallback target some-opencode-go-model shares the same pool; same-pool fallback rejected"
+  "reason": "deepseek-api pool exhausted, fallback target some-deepseek-api-model shares the same pool; same-pool fallback rejected"
 }
 ```
 
@@ -213,7 +217,7 @@ Registry change:
 ```json
 {
   "id": "haiku",
-  "quota_pool": "anthropic",
+  "primary_quota_pool": "anthropic",
   "fallback_target": "deepseek-v4-pro"
 }
 ```
@@ -223,7 +227,7 @@ Target:
 ```json
 {
   "id": "deepseek-v4-pro",
-  "quota_pool": "opencode-go"
+  "primary_quota_pool": "deepseek-api"
 }
 ```
 
@@ -304,7 +308,7 @@ Empirical simulations to keep:
 
 - default `resolveFallback("deepseek-v4-pro", registry)` fails fast
 - in-memory `deepseek-v4-pro.fallback_target = "haiku"` routes to Haiku (separate pool)
-- a same-pool fallback target on the `opencode-go` pool is rejected
+- a same-pool fallback target on the `deepseek-api` pool is rejected
 
 ---
 

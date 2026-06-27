@@ -1023,14 +1023,13 @@ export function isLaneChampionBackfillEnabled(): boolean {
  * Relevance-aware evidence-gap decision: replace the Z-score peakedness check in
  * detectEvidenceGap with the noise-floor-subtracted absolute relevance the
  * request-quality banding already computes, banded at the same LOW_THRESHOLD. A
- * 043 benchmark proved the Z-score measures peakedness, not relevance, so it
- * over-flags strong tight clusters and misses flat off-corpus ones. When ON, the
+ * real-corpus benchmark proved the Z-score measures peakedness, not relevance,
+ * so it over-flags strong tight clusters and misses flat off-corpus ones. When ON, the
  * gap fires when the subtracted top relevance falls below the band's low floor;
  * when no embedder noise-floor resolves it fails closed to the Z-score path.
- * Default: FALSE (opt-in): with the flag OFF detectEvidenceGap returns the exact
- * Z-score result unchanged, so flag-off is byte-identical. It must earn promotion
- * on an off-vs-on benchmark before running by default. Set
- * SPECKIT_RELEVANCE_AWARE_GAP=true to enable.
+ * Default: TRUE: the relevance-aware gap earned graduation over the Z-score on a
+ * real-corpus benchmark. Set SPECKIT_RELEVANCE_AWARE_GAP=false to restore the
+ * previous Z-score path.
  */
 export function isRelevanceAwareGapEnabled(): boolean {
   // Default-on. The relevance-aware gap earned graduation over the Z-score on a

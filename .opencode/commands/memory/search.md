@@ -1,6 +1,6 @@
 ---
 description: Unified continuity retrieval: spec-doc search, baselines, memory causal graph, ablations, dashboards.
-argument-hint: "<query> [--intent:<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
+argument-hint: "<query> [--intent <type>|--intent=<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
 allowed-tools: Read, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_quick_search, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_match_triggers, mcp__mk_spec_memory__task_preflight, mcp__mk_spec_memory__task_postflight, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_unlink, mcp__mk_spec_memory__eval_run_ablation, mcp__mk_spec_memory__eval_reporting_dashboard, mcp__mk_spec_memory__memory_get_learning_history, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
@@ -40,7 +40,7 @@ Before asking startup questions or displaying results, read the presentation ass
 
 ## 3. RETRIEVAL MODE
 
-Enter this mode when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent:<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
+Enter this mode when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent <type>` or `--intent=<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
 
 1. Extract `query` (the resolved `QUERY`) and optional intent override.
 2. Prefer `memory_context({ input: query, mode: "auto", intent, includeContent: true, enableDedup: true })`.

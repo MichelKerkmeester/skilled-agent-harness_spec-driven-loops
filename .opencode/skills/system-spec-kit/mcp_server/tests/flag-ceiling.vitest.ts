@@ -26,6 +26,7 @@ import {
   isEntityLinkingEnabled,
   isDegreeBoostEnabled,
   isConfidenceCalibrationEnabled,
+  isRelevanceAwareGapEnabled,
 } from '../lib/search/search-flags';
 
 /**
@@ -54,6 +55,7 @@ const ALL_SPECKIT_FLAGS = [
   'SPECKIT_ENTITY_LINKING',
   'SPECKIT_DEGREE_BOOST',
   'SPECKIT_CONFIDENCE_CALIBRATION',
+  'SPECKIT_RELEVANCE_AWARE_GAP',
 ] as const;
 
 /** Flag checker functions mapped to their flag names for batch verification */
@@ -77,6 +79,7 @@ const FLAG_CHECKERS: Array<{ flag: string; checker: () => boolean }> = [
   { flag: 'SPECKIT_ENTITY_LINKING', checker: isEntityLinkingEnabled },
   { flag: 'SPECKIT_DEGREE_BOOST', checker: isDegreeBoostEnabled },
   { flag: 'SPECKIT_CONFIDENCE_CALIBRATION', checker: isConfidenceCalibrationEnabled },
+  { flag: 'SPECKIT_RELEVANCE_AWARE_GAP', checker: isRelevanceAwareGapEnabled },
 ];
 
 const ORIGINAL_ENV: Partial<Record<string, string | undefined>> = {};
@@ -278,7 +281,6 @@ const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
   'SPECKIT_EVIDENCE_GAP_VERDICT',
   'SPECKIT_CITE_WITH_CAVEAT',
   'SPECKIT_ENVELOPE_FIDELITY',
-  'SPECKIT_RELEVANCE_AWARE_GAP',
   'SPECKIT_RESPONSE_PROFILE',
   'SPECKIT_RESULT_CONFIDENCE',
   'SPECKIT_RESULT_EXPLAIN',

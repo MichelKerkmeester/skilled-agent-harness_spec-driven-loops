@@ -101,9 +101,9 @@ export const MEMORY_SAVE_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
 /**
  * Resume / continue triggers.
  *
- * `/speckit:resume` and deep-research `resume` produce writes (iteration-NNN.md
- * and JSONL appends), so they require Gate 3 even though the surface name sounds
- * read-only.
+ * `/speckit:resume` and deep-loop resume/context flows produce writes such as
+ * iteration markdown, JSONL appends, and generated artifacts, so they require
+ * Gate 3 even when the surface name sounds read-only.
  */
 export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
   { pattern: '/speckit:resume',     kind: 'phrase', category: 'resume' },
@@ -111,6 +111,8 @@ export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
   { pattern: 'speckit:deep-research',   kind: 'phrase', category: 'resume' },
   { pattern: '/deep:review',   kind: 'phrase', category: 'resume' },
   { pattern: 'speckit:deep-review',     kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:ai-council', kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:context',    kind: 'phrase', category: 'resume' },
   { pattern: 'resume the packet',        kind: 'phrase', category: 'resume' },
   { pattern: 'resume the phase folder',  kind: 'phrase', category: 'resume' },
   { pattern: 'reconstruct continuity',   kind: 'phrase', category: 'resume' },

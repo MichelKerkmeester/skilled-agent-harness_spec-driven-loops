@@ -18,7 +18,7 @@ The scenario is daemon-free: list output and completion scripts are generated fr
 - Real user request: `I want a small automation payload for tool names and generated shell completion for every daemon CLI. Can I validate those without starting daemons?`
 - Prompt: `Validate compact list-tools, names-only list-tools, and bash/zsh completion generation for spec-memory, code-index, and skill-advisor.`
 - Expected execution process: Run the documented command sequence from the repository root, capture JSON counts and schema-field counts, generate bash and zsh completion snippets into temporary files, and parse those files with `bash -n` and `zsh -n`.
-- Expected signals: Compact and names-only counts are `37`, `8`, and `9`; compact and names-only outputs contain zero `inputSchema` fields; generated bash and zsh completion scripts parse successfully for all three CLIs.
+- Expected signals: Compact and names-only counts are `39`, `8`, and `9`; compact and names-only outputs contain zero `inputSchema` fields; generated bash and zsh completion scripts parse successfully for all three CLIs.
 - Desired user-visible outcome: The operator can state that all three CLIs expose compact automation output and parseable shell completion without daemon contact.
 - Pass/fail: PASS only when all counts match, schema-field counts are zero, and every generated completion script parses under its target shell.
 
@@ -48,7 +48,7 @@ import pathlib
 import sys
 
 root = pathlib.Path(sys.argv[1])
-expected = {"spec-memory": 37, "code-index": 8, "skill-advisor": 9}
+expected = {"spec-memory": 39, "code-index": 8, "skill-advisor": 9}
 for cli, count in expected.items():
     compact = json.loads((root / f"{cli}.compact.json").read_text())
     names = json.loads((root / f"{cli}.names.json").read_text())
