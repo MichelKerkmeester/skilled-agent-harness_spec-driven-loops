@@ -44,6 +44,7 @@ These are not style choices. They are the rules that, when broken, make an inter
 - **Every image has alt text.** Decorative images get empty `alt=""`, not a missing attribute.
 - **Interactive elements expose accessible names** (ARIA label or visible label). Icon-only buttons MUST set an accessible label.
 - **Full keyboard operability** with a visible focus ring on every focusable element. Never remove focus outlines without replacing them.
+- **Focus rings use `:focus-visible`, not raw `:focus`.** Add `outline-offset` so the ring is legible outside the control edge, and verify the ring reaches at least 3:1 contrast against the adjacent background.
 - **Form controls have real labels** (not placeholder-as-label). Errors are announced, specific, and tied to the field.
 
 ---
@@ -60,6 +61,21 @@ These are not style choices. They are the rules that, when broken, make an inter
 
 - **Touch targets at least 44x44 px** with adequate spacing. Do not rely on hover for primary actions on touch devices.
 - **Interactive areas are touch-friendly** on small viewports (spacing, hit area, no tiny tap targets).
+
+### Interactive State Table
+
+Every interactive element specifies all routine states, even when a state is visually quiet. Missing states are product defects, not polish items.
+
+| State | Requirement |
+| ----- | ----------- |
+| Default | The resting control is recognizable, named, and meets contrast. |
+| Hover | Pointer feedback clarifies affordance without being the only signal. |
+| Focus | Keyboard focus is visible with `:focus-visible`, offset, and 3:1 ring contrast. |
+| Active | Pressed or selected feedback confirms the action is being taken. |
+| Disabled | Unavailable controls explain or imply why, and never rely on opacity alone below contrast. |
+| Loading | The control or region shows progress and prevents duplicate action when needed. |
+| Error | The failed element gets nearby, specific recovery copy tied to the cause. |
+| Success | The completed action gets brief confirmation in the same vocabulary as the trigger. |
 
 ---
 
@@ -79,6 +95,14 @@ These are not style choices. They are the rules that, when broken, make an inter
 ### Compact Product Flow Floor
 
 Product UI flows fail if any routine state is missing or displaced. Forms need visible labels, validation, error recovery, and a clear next step after submit. Search needs loading, empty, zero-result, and success states, with the query preserved so the user can recover. Navigation needs a current-location signal and a reliable back path. Feedback and errors sit near the cause, not in a detached global message unless the whole page is affected. First-run and empty states explain what will appear there, guide the first useful action, and expose a clear CTA.
+
+### First-Value Onboarding Floor
+
+Onboarding succeeds when the user reaches the first useful outcome quickly, not when the tour is complete.
+
+- **Skip and dismissal are always available.** A first-run prompt, checklist, coach mark, or setup guide must be dismissible without blocking the core product.
+- **Teach at the point of use.** Prefer contextual, just-in-time hints beside the thing the user is doing. Do not front-load a wall of tour tooltips before the user has a reason to care.
+- **Optimize for first value.** The first-run path should get the user to a saved object, useful preview, connected account, answered question, or equivalent concrete outcome as fast as the product honestly allows.
 
 ---
 

@@ -126,6 +126,11 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM guessed "Tailwind" from utility-like classes that were actually custom CSS
   - Fix: Verify framework from package.json, import statements, or distinctive class patterns (e.g., `chakra-`, `MuiButton`)
 
+- [ ] **[SC-09]** Primitive and semantic token names are not conflated
+  - Check: Primitive tokens may describe raw values or scale positions (e.g., `blue-600`), but semantic tokens must describe role or meaning (e.g., `color-action`, `color-surface`, `color-danger`). Verify that role-based tokens are not just raw-value names wearing semantic slots.
+  - Fail reason: LLM copied primitive scale names into semantic guidance, causing downstream agents to choose tokens by hue instead of UI role
+  - Fix: Keep raw-value names in the primitive layer; rename semantic tokens by purpose, usage, or state, and map each semantic token back to the primitive value it uses
+
 ---
 
 ## 4. Completeness

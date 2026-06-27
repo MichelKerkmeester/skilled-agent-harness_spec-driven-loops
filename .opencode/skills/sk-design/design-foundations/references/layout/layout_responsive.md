@@ -80,6 +80,20 @@ Preferred hierarchy tools:
 
 Define the page grid as a contract before placing content. A typical product grid uses `4` columns on phones, `8` on tablets, and `12` on desktop, with gutters and page margins from the spacing scale (`16px` mobile margins, `24-32px` tablet, `32-64px` desktop). Name what owns each region: navigation may reserve fixed columns, primary work content should own the widest continuous span, secondary panels get a predictable side span, and metadata or tools should not steal columns from the main task.
 
+### Breakpoint-Free Tile Grids
+
+For card or tile grids where each item can share the available row width, use an intrinsic grid before adding media queries:
+
+```css
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+```
+
+This lets tiles reflow as space appears, keeps the minimum readable width explicit, and avoids breakpoint churn for simple gallery, card, and metric grids.
+
 ### Containment Restraint
 
 Containment has to earn its border, fill, or elevation. If proximity, alignment, a heading, or a divider already separates a group, keep the region flat; reserve bordered or raised containers for interactive objects, modal focus, mixed backgrounds, or groups that would collapse without a boundary.

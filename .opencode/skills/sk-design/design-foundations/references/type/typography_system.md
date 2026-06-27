@@ -55,6 +55,10 @@ Use a modular scale only as a starting point. The useful result is role separati
 - Heading ratios: strong hierarchy needs roughly 2 to 3 times contrast across primary levels when size is the main tool.
 - Dense UI: prefer fewer sizes and stronger weight/spacing differences.
 
+### Fluid Type Bounds
+
+Use `clamp()` for fluid type only when the minimum, preferred, and maximum values are all deliberate. Cap the maximum size at no more than about `2.5x` the minimum size; wider ranges tend to shout on large viewports and can break zoom, reflow, and localization.
+
 ---
 
 ## 4. PAIRING
@@ -64,6 +68,22 @@ Pair typefaces by job, not taste alone:
 - If a display face is loud, keep utility text plain.
 - If the product is data-heavy, choose numeral quality and legibility before personality.
 - Avoid changing letter spacing by reflex; use it only for uppercase utility text or deliberate optical correction.
+
+### Font Loading
+
+- Use `font-display: swap` for most UI text; use `optional` when the brand face is decorative or the fallback is acceptable.
+- Choose metric-matched fallback fonts so the fallback and loaded face have similar x-height, width, and line metrics. This reduces layout shift when the web font arrives.
+- Preload only the critical above-the-fold weight and style. Extra preloads compete with product content and should earn their cost.
+- Prefer a variable font when the design uses at least three weights or axes from the same family and the compressed file is competitive. Use static files when the system needs only one or two weights.
+
+### OpenType Polish
+
+Use OpenType features for text that needs typographic finish, not as blanket decoration:
+- Use diagonal fractions for measurements, recipes, odds, and compact numeric annotations.
+- Use real small caps for short labels only when the face includes them.
+- Control ligatures deliberately: keep standard ligatures for body text, disable them for code, identifiers, and dense data.
+- Set `font-kerning: normal` unless a browser or face produces visible defects.
+- Track short uppercase labels and eyebrows by about `0.05em` to `0.12em`; avoid tracking lowercase body text.
 
 ---
 
@@ -79,6 +99,13 @@ Pair typefaces by job, not taste alone:
 - Use truncation or line clamp only when the full value is available elsewhere or not required for the task.
 - Plan for text expansion in localization; German strings run about 20-35% longer and Finnish about 30-40% longer than English.
 - Non-Latin scripts need script-specific checks for line height, weight, fallback fonts, and glyph shaping; CJK, Arabic, Devanagari, and similar systems should not inherit Latin metrics untested.
+
+### Light-On-Dark Compensation
+
+Light text on a dark background needs optical correction:
+- Increase line height by about `0.05` to `0.1`.
+- Add about `0.01em` to `0.02em` letter spacing when the face closes up.
+- Step weight up one notch when thin light text starts to sparkle or break on dark surfaces.
 
 ---
 

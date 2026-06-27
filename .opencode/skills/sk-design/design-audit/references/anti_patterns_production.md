@@ -30,9 +30,11 @@ Use parent `sk-design/references/anti_slop_principles.md` as the shared vocabula
 
 Report:
 - Hard-coded colors where semantic tokens exist.
+- Design-source drift: a committed design-token or `DESIGN.md` export names the source of truth, but the rendered surface uses hard-coded values, off-token colors, or one-off spacing that bypasses it.
 - Dark mode variants missing or failing contrast.
 - Primitive tokens used directly in components instead of semantic tokens.
 - One-off spacing, radius, shadow, or z-index values.
+- Magic z-index values such as `999` or `9999`; fix with a named semantic layer scale such as dropdown, sticky, modal-backdrop, modal, toast, and tooltip.
 - Same-radius nested surfaces: a rounded child inside a rounded parent with small padding and the same `border-radius`; correct close nesting uses `outer radius = inner radius + inset`.
 - Image-edge outlines using tinted or branded neutrals, accent colors, or layout-affecting borders; correct image outlines are inset pure-black/white alpha (`rgba(0,0,0,0.1)` on light, `rgba(255,255,255,0.1)` on dark).
 - Solid `1px` border plus a wide shadow on the same element; file this as the existing ghost-card tell in `ai_fingerprint_tells.md`, while allowing transparent shadow rings that replace a decorative border.
@@ -41,6 +43,7 @@ Report:
 - Prioritize token cleanup by overuse frequency: fix repeated misuse across components before isolated cosmetic drift.
 
 Map token fixes to `foundations` and implementation to `sk-code`.
+Map semantic layering fixes to `foundations` for the scale and `sk-code` for replacing arbitrary values in components.
 
 ## 3. UX Copy Clarity
 

@@ -135,6 +135,18 @@ Emoji and CJK characters are multi-byte, so any logic that counts characters as 
 
 ---
 
+## 8A. OVERLAYS AND TOP LAYER
+
+Menus, dropdowns and tooltips often fail because they are visually small but structurally trapped inside a clipping or stacking context. Probe overlays from inside scroll panels, cards, drawers and constrained layout regions.
+
+| Probe | Expected symptom when unhardened | Finding to file |
+|---|---|---|
+| A dropdown, menu or tooltip rendered with `position: absolute` inside an `overflow: hidden` or `overflow: auto` container | The overlay is clipped, partly hidden, or scrolls away with the container | Overlay is trapped inside a clipping or stacking context instead of escaping to the top layer |
+
+Fix shape: use the native `<dialog>` or popover API where it fits the interaction, move the overlay to `position: fixed` with measured coordinates, or render it through a portal so it escapes the overflow and stacking context.
+
+---
+
 ## 9. ROUTING SUMMARY
 
 1. Walk the matrix against real evidence, labeling any probe you could not run as inferred.

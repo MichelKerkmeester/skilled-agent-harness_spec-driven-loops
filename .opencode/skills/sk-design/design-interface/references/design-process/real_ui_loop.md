@@ -98,6 +98,18 @@ UI work often treats "done" as compiles plus responsive, never matches-intent. C
 
 For open-ended visual work, it can help to sketch two or three brief-specific directions, critique each against the AI-default looks, and recommend one before building. This is allowed only when each direction is grounded in the subject. It is never a menu of reusable styles or palettes. If the directions could be reused across briefs, it has become a preset and must not ship.
 
+### Native-Image Visual-Direction Branch (Guarded)
+
+When the work is net-new, ambiguous, or image-led, the target is mid-fidelity or higher, and native image generation is available, run a visual-direction branch before writing code. This branch replaces guessing, not the subject-grounded process.
+
+1. **Ask the Step-A direction questions.** Confirm the subject, audience, page job, image role, target fidelity, output surface, and any must-keep constraints.
+2. **Confirm the palette before generating.** Name the palette in 4-6 values, including background, text, primary accent, support color, and any image-led color constraint.
+3. **Produce 1-3 mock directions.** Each direction is brief-specific, includes a generated or image-led visual direction, and states the layout, typography, palette, and one signature move. Critique each against the AI-default looks.
+4. **Get approval before code.** Do not start implementation from an unapproved mock direction.
+5. **Inventory the ingredients.** Before writing code, list the approved palette, type choices, layout grammar, image assets, component/tokens to reuse, motion budget, and open risks. Then continue through the normal reuse, render, check, revise, and handoff loop.
+
+Use this branch only under the guarded conditions above. For lower-fidelity, non-image-led, or already-pinned work, use the optional direction gate without native-image mock directions.
+
 ---
 
 ## 8. WHAT THIS LOOP DOES NOT ADD (GUARDRAILS)

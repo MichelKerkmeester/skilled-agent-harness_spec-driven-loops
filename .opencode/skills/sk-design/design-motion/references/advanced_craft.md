@@ -85,3 +85,16 @@ Avoid shorthand when:
 - The stack already uses CSS or another animation system for the same surface.
 
 Prefer explicit variants, stable keys, bounded properties and a named reduced-motion path. If the shorthand makes ownership unclear, write the longer version.
+
+## 6. High-Ambition Effects
+
+When an effect is ambitious, expensive, or meant to feel technically extraordinary, propose it before building.
+
+The proposal must name:
+
+- The effect and the user moment it serves.
+- The materials involved: transform, opacity, mask, blur, filter, canvas, WebGL, View Transitions or another mechanism.
+- The performance budget: target devices, frame-rate expectation, maximum duration, off-screen behavior and the properties that must stay compositor-safe.
+- The reduced-motion fallback that preserves the same state information without the spectacle.
+
+Do not silently ship a heavy effect because it looks impressive. The higher the ambition, the more explicit the motion contract needs to be.

@@ -73,6 +73,17 @@ Re-read every visible string: headlines, subheads, eyebrows, button labels, body
 
 Rewrite every flagged string. If you are unsure whether a string makes sense, replace it with a plain functional sentence. Cute AI copy is worse than boring copy.
 
+### Selected UI-copy tells (examples, not a validator)
+
+Use these as auditable examples during the self-audit. Do not turn them into a regex, denylist, or wholesale prose validator; the test is whether the string serves this interface.
+
+- **Hedge stacks:** "can help to potentially reduce friction" says less than "reduces handoff time" or "keeps handoffs in one place".
+- **Competitor-swappable copy:** "Work smarter with powerful insights" could describe any product in the category. Replace it with the specific job, data, or outcome this surface owns.
+- **Negation pivot:** "Not just dashboards, but decisions" is a stock contrast unless the surface proves the second half immediately.
+- **Triadic everything:** three cards, three verbs, three clauses, and three benefits on every section reads assembled. Vary the structure to match the content.
+- **Uniform paragraph length:** every card carrying the same two-line rhythm is a filler tell. Let importance and content shape the line count.
+- **Hollow confidence:** "built for teams who demand excellence" performs certainty without evidence. Name the workflow, constraint, or result instead.
+
 **Pass check:** grep the surface for the banned filler list and for exclamation marks in status copy. Run the self-audit over every visible string. Any banned phrase, any flagged string left unrewritten, is a fail.
 
 ---
@@ -126,6 +137,25 @@ State copy keeps the same voice across the flow, but its tone changes with the m
 
 ---
 
+## 6A. LOCALIZATION AND EXPANSION
+
+Interface copy must survive translation without breaking the layout or hiding meaning. English strings are often shorter than their translated equivalents, and some languages are much shorter, so do not design controls that only fit the first draft.
+
+| Language | Typical UI expansion from English |
+| -------- | --------------------------------- |
+| German | +30% |
+| French | +20% |
+| Finnish | +30-40% |
+| Chinese | -30% |
+
+- **Keep numbers separate from translatable strings.** Store values, units, dates, and counts as variables so translators can reorder grammar without editing the data.
+- **Avoid abbreviations that do not translate.** Short labels like "Mgmt", "Prefs", or "Sync'd" save space in English and create ambiguity elsewhere. Use clear labels and design enough room for them.
+- **Do not bake layout into copy.** A string should not depend on line breaks, punctuation art, or fixed-width rhythm to make sense.
+
+**Pass check:** inspect compact controls, cards, tabs, nav labels, and state messages for expansion room. Confirm numeric values are separate from translatable strings. Any control that only works at the exact English length is a fail.
+
+---
+
 ## 7. IMAGE-SEED DISCIPLINE
 
 Placeholder imagery is content too, and a lazy seed is as much a tell as lazy copy. Real or generated imagery is always first choice, the rules here govern the placeholder fallback.
@@ -150,10 +180,12 @@ Run this as the last content filter. Every box is binary.
 - [ ] No banned filler verbs or nouns, no exclamation marks in status copy, no "Oops!" error voice.
 - [ ] Active voice as default, action names stable across the flow.
 - [ ] Copy self-audit run over every visible string, every flagged string rewritten or replaced with a plain sentence.
+- [ ] Selected UI-copy tells checked as examples: no hedge stacks, competitor-swappable claims, stock negation pivots, triadic-everything, uniform paragraph rhythm, or hollow confidence left unexamined.
 - [ ] No generic person names, no placeholder company names, no repeated avatars or dates as filler.
 - [ ] Sentence case on headers, real logos (not text wordmarks) on any trust wall, logos only with no category labels.
 - [ ] Every number is grounded in the brief or marked mock, no invented engineering precision, no fake-perfect round numbers as real claims.
 - [ ] One copy register across the surface, matched to the Brand-vs-Product posture.
+- [ ] Compact UI strings have expansion room, numbers stay separate from translatable strings, and abbreviations are avoided unless the brief requires them.
 - [ ] Every placeholder image seed is descriptive and unique, apt aspect ratio per slot.
 - [ ] No div-based fake screenshots, no sketchy SVG fallback, no decoration pills or photo-credit captions.
 - [ ] Every meaningful image has real alt text.

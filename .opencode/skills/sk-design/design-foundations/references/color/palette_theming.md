@@ -34,6 +34,8 @@ Color is system behavior, not decoration. Choose the dosage, assign roles, then 
 
 ## 2. CHOOSE THE REGISTER
 
+Before choosing light, dark, restrained, or drenched, write one sentence describing the physical scene: who uses this, where they are, the ambient light, and the mood the surface should create. If that sentence does not force a direction, add detail until it does.
+
 | Register | Best for | Color behavior |
 | --- | --- | --- |
 | Restrained | product UI, admin, transactional flows | One accent for primary action, selection, focus, and important states. |
@@ -71,6 +73,8 @@ The canonical color roles are primary/accent, neutral, semantic, surface, border
 | Border/stroke | separation | Prefer hairline full borders over decorative side stripes. |
 
 Semantically loaded colors may need locale-aware review when status, ritual, political, or cultural meaning could change by market.
+
+Avoid dangerous meaning pairs: red/green, blue/red, and yellow/white are common failure points for contrast, vibration, and color-vision differences. Roughly `8%` of men have a color-vision deficiency, so never encode meaning by hue alone; pair hue with text, icon shape, pattern, position, or state copy.
 
 ---
 
