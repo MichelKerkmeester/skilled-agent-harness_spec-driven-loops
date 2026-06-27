@@ -1,0 +1,1 @@
+{"iteration":7,"type":"finding","id":"F8","title":"Transform routing depends on register loading","summary":"Bolder/quieter/distill/redesign are well scoped, but without the shared register loaded the same observation can route to the wrong owner or direction."}

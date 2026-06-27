@@ -16,7 +16,9 @@
     "skilled-agent-orchestration/154-sk-design-parent/010-shared-register",
     "skilled-agent-orchestration/154-sk-design-parent/011-interface-audit-core",
     "skilled-agent-orchestration/154-sk-design-parent/012-foundations-motion-audit",
-    "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup"
+    "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup",
+    "skilled-agent-orchestration/154-sk-design-parent/014-routing-benchmark",
+    "skilled-agent-orchestration/154-sk-design-parent/015-per-skill-improvement-research"
   ],
   "manual": {
     "depends_on": [],
@@ -94,17 +96,17 @@
     ],
     "causal_summary": "Design capability today lives in one strong interface skill (`sk-design-interface`) plus a sibling style-reference extractor (`sk-design-md-generator`), while a large external corpus of design skills (interface, color/tokens, motion, interaction, accessibility, QA, design systems, process) sits unorganized in `external/`",
     "created_at": "2026-06-25T10:04:30Z",
-    "last_save_at": "2026-06-26T19:35:16.032Z",
+    "last_save_at": "2026-06-27T04:48:26.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:641d0fa5a68e1ce30e71f55e05c18635c26eee90a7d94229f99959862f20419e",
+    "source_fingerprint": "sha256:7a73c944cc2a597c7a49f0ab61d725e8f694b01897da2fcb87dbfea9e2ddc66e",
     "source_doc_hashes": {
-      "spec.md": "a6e9f0e79a413cdb07aecb111e48c46b74e286ebb7c1b9ae8f0504f512500326"
+      "spec.md": "d39e79215355e75b509f7bdbe99114173ff8218ff91d20c4d91b6669c8bf5126"
     },
-    "last_active_child_id": "skilled-agent-orchestration/154-sk-design-parent/013-mdgen-boundary-cleanup",
-    "last_active_at": "2026-06-26T10:38:30.453Z"
+    "last_active_child_id": "skilled-agent-orchestration/154-sk-design-parent/015-per-skill-improvement-research",
+    "last_active_at": "2026-06-27T00:00:00.000Z"
   }
 }

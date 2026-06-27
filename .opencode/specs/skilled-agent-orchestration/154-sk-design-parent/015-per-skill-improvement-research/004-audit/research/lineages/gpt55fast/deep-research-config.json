@@ -1,0 +1,53 @@
+{
+  "topic": "Prioritized improvements for sk-design audit mode",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/015-per-skill-improvement-research/004-audit",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/154-sk-design-parent/015-per-skill-improvement-research/004-audit/research/lineages/gpt55fast",
+  "createdAt": "2026-06-27T04:01:05Z",
+  "updatedAt": "2026-06-27T04:01:05Z",
+  "status": "complete",
+  "executionMode": "fanout-lineage",
+  "loopType": "research",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true,
+    "file": "resource-map.md"
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-gpt55fast-1782532104406-avrwmk",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "gpt55fast"
+  },
+  "writeBoundary": {
+    "artifactOnly": true,
+    "parentSpecWrites": "skipped_by_operator_constraint",
+    "phaseSave": "not_requested_for_lineage",
+    "resolveArtifactRoot": "not_run_by_operator_constraint"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "deep-research-findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  }
+}

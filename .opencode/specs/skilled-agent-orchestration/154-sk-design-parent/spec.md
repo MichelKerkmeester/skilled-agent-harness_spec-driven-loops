@@ -110,6 +110,8 @@ Per-phase detail lives in each child's `plan.md`. Summary for audit trail only:
 | 011 | `011-interface-audit-core/` | Build the interface preflight, the author-once layout/content gates, plus the audit report template, AI-tell catalog and transform verbs | complete |
 | 012 | `012-foundations-motion-audit/` | Build foundations (data-viz, adaptation, tokens), motion (restraint gate, cards) and audit depth (evidence, a11y, hardening) | complete |
 | 013 | `013-mdgen-boundary-cleanup/` | Build the md-generator authoring boundary and card, fix the stale changelog pointer, then run family validation | complete |
+| 014 | `014-routing-benchmark/` | Routing-efficiency benchmark of the five modes, two ways (deterministic router-replay and live Kimi k2.7 dispatch), with the verdict table and the audit and md-generator fan-out finding | complete |
+| 015 | `015-per-skill-improvement-research/` | Five parallel GPT-5.5-xhigh deep-research lineages, one per mode, converging on the plumbing frontier (shared-register loader, router precision, handoff cards, benchmark fixtures) | complete |
 
 ### Phase Transition Rules
 

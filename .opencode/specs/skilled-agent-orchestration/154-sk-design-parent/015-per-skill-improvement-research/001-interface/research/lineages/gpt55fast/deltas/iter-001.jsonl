@@ -1,0 +1,1 @@
+{"type":"iteration","run":1,"iteration":1,"status":"complete","focus":"Current interface packet inventory and post-009 landed state","findingsCount":5,"newInfoRatio":1.0,"noveltyJustification":"First pass established the actual on-disk interface packet, alias mismatch, and which 009 expansion recommendations already landed.","timestamp":"2026-06-27T04:18:00Z"}

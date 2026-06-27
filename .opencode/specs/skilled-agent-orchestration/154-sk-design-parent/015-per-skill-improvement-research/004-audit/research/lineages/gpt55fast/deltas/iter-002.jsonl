@@ -1,0 +1,2 @@
+{"iteration":2,"type":"finding","id":"F2","title":"Evidence worksheet gap","summary":"The evidence model and report frame exist, but no reusable worksheet carries confirmed/inferred/not-assessed labels through scans, probes, dimensions and findings."}
+{"iteration":2,"type":"recommendation","id":"R2","summary":"Add assets/audit_evidence_worksheet.md or equivalent report adjunct."}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "deep-research/findings-registry/1.0",
+  "sessionId": "fanout-gpt55fast-1782532104406-xmcn5n",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "question": "What is the live md-generator contract and path?",
+      "answer": "The active packet is .opencode/skills/sk-design/design-md-generator. It extracts live CSS into tokens.json, builds a v3 Style Reference through deterministic value-section emitters, then validates fidelity."
+    },
+    {
+      "id": "Q2",
+      "question": "Which prior recommendations are already implemented?",
+      "answer": "authoring_boundary.md and source_of_truth_router_card.md are present, and v3 doc-as-view emitters plus validation scoring exist."
+    },
+    {
+      "id": "Q3",
+      "question": "What most improves efficiency?",
+      "answer": "Restore setup viability around the missing backend package.json, then add a guided preflight/run wrapper over extract -> build-write-prompt -> validate -> report."
+    },
+    {
+      "id": "Q4",
+      "question": "What most improves routing?",
+      "answer": "Expand mode aliases and benchmark cases beyond extraction to validation, report/preview/proof, style-reference study, DESIGN.md update, and live-URL refusal/boundary intents."
+    },
+    {
+      "id": "Q5",
+      "question": "What should not be added?",
+      "answer": "Do not add forward authoring, a second backend, duplicated format/taxonomy references, bulk corpus imports, or hub-level per-mode logic."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "MDG-P1-001",
+      "priority": "P1",
+      "title": "Restore backend setup viability before other tooling UX work",
+      "evidence": [
+        ".opencode/skills/sk-design/design-md-generator/SKILL.md:276-307",
+        ".opencode/skills/sk-design/design-md-generator/backend/README.md:38-58",
+        ".opencode/skills/sk-design/design-md-generator/backend/README.md:88-107",
+        ".opencode/skills/sk-design/design-md-generator/backend/package-lock.json:1-26"
+      ],
+      "rationale": "The documented one-time setup requires backend/package.json, but the nested backend has package-lock.json and no package.json in this checkout. That makes npm install, npm test, and the advertised bin fragile or impossible."
+    },
+    {
+      "id": "MDG-P1-002",
+      "priority": "P1",
+      "title": "Expand routing aliases and benchmark cases for non-extract md-generator intents",
+      "evidence": [
+        ".opencode/skills/sk-design/mode-registry.json:63-73",
+        ".opencode/skills/sk-design/graph-metadata.json:49-65",
+        ".opencode/skills/sk-design/design-md-generator/SKILL.md:32-40"
+      ],
+      "rationale": "Live routing aliases cover extraction/generation, but the mode also owns validation-only, visual reports, and example study. The operator-supplied Mode A score of 76/100 plausibly reflects this narrower routing surface."
+    },
+    {
+      "id": "MDG-P1-003",
+      "priority": "P1",
+      "title": "Add a guided pipeline wrapper/preflight to reduce operator friction",
+      "evidence": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:7-18",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:43-53",
+        ".opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md:46-69"
+      ],
+      "rationale": "The current CLI is extraction-oriented and hands the user several next commands. A wrapper that preflights Node/Chromium/package readiness, runs extraction, builds the prompt, validates, and optionally reports would improve efficiency without changing fidelity rules."
+    },
+    {
+      "id": "MDG-P1-004",
+      "priority": "P1",
+      "title": "Align manual playbook probes with emitted schema and add a short smoke lane",
+      "evidence": [
+        ".opencode/skills/sk-design/design-md-generator/manual_testing_playbook/manual_testing_playbook.md:23-40",
+        ".opencode/skills/sk-design/design-md-generator/manual_testing_playbook/manual_testing_playbook.md:63-75",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts:337-410",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts:461-478"
+      ],
+      "rationale": "The full 13-scenario playbook is valuable for release readiness, but day-to-day use needs a smaller smoke path. Prior review also flagged stale schema expectations around detector and interaction fields, so probes should verify meta.framework, iconSystem, motionSystem, a11yTokens, and component variant state fields."
+    },
+    {
+      "id": "MDG-P2-005",
+      "priority": "P2",
+      "title": "Add one non-SaaS exemplar only after setup/routing work",
+      "evidence": [
+        ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/009-reference-asset-expansion/research/research.md:115-125",
+        ".opencode/skills/sk-design/design-md-generator/references/examples/stripe/DESIGN.md:1-6",
+        ".opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md:1-6",
+        ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md:1-6",
+        ".opencode/skills/sk-design/design-md-generator/references/examples/supabase/DESIGN.md:1-6"
+      ],
+      "rationale": "The existing examples are strong but clustered around developer/SaaS surfaces. A real editorial, ecommerce, hospitality, or maximalist extraction would broaden study coverage without adding abstract references."
+    }
+  ],
+  "ruledOutDirections": [
+    "Forward DESIGN.md authoring inside md-generator",
+    "Second crawler/backend",
+    "Bulk import of the 43-entry external corpus",
+    "Duplicate format/taxonomy docs when existing references already cover them",
+    "Per-mode logic in the sk-design hub",
+    "Completion claims based on docs without running validator/tooling"
+  ]
+}

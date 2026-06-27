@@ -1,0 +1,2 @@
+{"iteration":3,"type":"finding","id":"F3","title":"Router pseudocode loop defect","summary":"SKILL.md iterates `for keyword, weight in cfg[\"keywords\"]` even though keywords is a string list; the executable form should iterate keywords and add cfg.weight."}
+{"iteration":3,"type":"finding","id":"F4","title":"Shared register missing from parseable routing","summary":"Loading levels require ../shared/register.md, but RESOURCE_MAP and router replay outputs omit it; _guard_in_skill would reject a parent path without a deliberate exception."}

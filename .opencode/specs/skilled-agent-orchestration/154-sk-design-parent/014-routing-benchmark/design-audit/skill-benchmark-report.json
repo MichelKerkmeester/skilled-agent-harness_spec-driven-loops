@@ -1,0 +1,608 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "design-audit",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-audit"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 61,
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 43
+    },
+    "D2": {
+      "points": 20,
+      "score": 72
+    },
+    "D3": {
+      "points": 15,
+      "score": 20
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    }
+  },
+  "funnel": {
+    "passed": 6,
+    "browser": 2,
+    "routed-intra": 1
+  },
+  "headlineBottleneck": "browser",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "browser",
+      "detail": "2 scenario(s) first fail at stage 'browser'"
+    }
+  ],
+  "coverage": {
+    "routing": 7,
+    "advisor": 0,
+    "browser": 2,
+    "routedOut": 0,
+    "scored": 7
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "scenarioId": "001-ai-fingerprint-tells",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.19999999999999996,
+          "routedCount": 5,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 64,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/corpus_map.md\",\n    \"references/audit_contract.md\",\n    \"../shared/register.md\",\n    \"references/anti_patterns_production.md\",\n    \"references/ai_fingerprint_tells.md\"\n  ],\n  \"assets\": [\n    \"assets/audit_rep"
+      }
+    },
+    {
+      "scenarioId": "008-anti-slop-production-hardening",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 68,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"references/corpus_map.md\", \"references/anti_patterns_production.md\", \"references/ai_fingerprint_tells.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      }
+    },
+    {
+      "scenarioId": "009-hardening-edge-cases",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.1428571428571429,
+          "routedCount": 7,
+          "wastedCount": 6,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 62,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 12,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/audit_contract.md\",\n    \"references/corpus_map.md\",\n    \"references/accessibility_performance.md\",\n    \"references/critique_hardening.md\",\n    \"references/evidence_capture.md\",\n    \"references/hardening_edge_"
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "006-accessibility-performance-gate",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "007-a11y-quick-fixes",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "scenarioId": "002-findings-first-score",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 68,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/corpus_map.md\",\n    \"references/audit_contract.md\",\n    \"../shared/register.md\"\n  ],\n  \"assets\": [\n    \"assets/audit_report_template.md\"\n  ],\n  \"agent\": \"none\",\n  \"disambiguation\": false\n}\n```"
+      }
+    },
+    {
+      "scenarioId": "003-transform-remediation-routing",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 68,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 11,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "glob",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "references/**/*",
+          "assets/**/*",
+          "references/transform_remediation.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/corpus_map.md\",\n    \"references/audit_contract.md\",\n    \"references/transform_remediation.md\"\n  ],\n  \"assets\": [],\n  \"agent\": \"none\",\n  \"disambiguation\": false\n}\n```"
+      }
+    },
+    {
+      "scenarioId": "004-evidence-capture",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 68,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/corpus_map.md\",\n    \"references/audit_contract.md\",\n    \"references/evidence_capture.md\"\n  ],\n  \"assets\": [],\n  \"agent\": \"none\",\n  \"disambiguation\": false\n}\n```"
+      }
+    },
+    {
+      "scenarioId": "005-audit-report-template",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.3,
+          "intentRecall": 0,
+          "resourceRecall": 0.5,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.11111111111111116,
+          "routedCount": 9,
+          "wastedCount": 8,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 32,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 11,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "glob",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [
+          "references/*.md",
+          "assets/*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/corpus_map.md\",\n    \"references/audit_contract.md\",\n    \"references/evidence_capture.md\",\n    \"references/accessibility_performance.md\",\n    \"references/critique_hardening.md\",\n    \"references/anti_patterns_p"
+      }
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 9,
+    "traceMode": "live",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  }
+}

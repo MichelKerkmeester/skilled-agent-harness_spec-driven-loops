@@ -1,0 +1,1 @@
+{"type":"iteration","run":2,"iteration":2,"status":"complete","focus":"Routing benchmark bottlenecks and score discrepancy","findingsCount":6,"newInfoRatio":0.72,"noveltyJustification":"Added benchmark-specific evidence: current report shows 70/100 conditional, not the stale 78/100 prompt value, with two concrete intra-router failures.","timestamp":"2026-06-27T04:26:00Z"}
