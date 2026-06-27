@@ -26,8 +26,8 @@ schema_version: 1
 routes:
   - target: memory
     yaml: doctor_memory.yaml
-    setup_vars: [execution_mode, intent, incremental, no_snapshot, dry_run]
-    allowed_flags: ["--incremental=true|false", "--no-snapshot", "--dry-run"]
+    setup_vars: [execution_mode, intent, incremental]
+    allowed_flags: ["--incremental=true|false"]
     mutating: read-only
     gate3_location: "n/a (read-only diagnostic; reports drift and recommends action, no DB writes)"
     mcp_tools:
@@ -59,8 +59,8 @@ routes:
 
   - target: causal-graph
     yaml: doctor_causal-graph.yaml
-    setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run]
-    allowed_flags: ["--confidence-threshold=N", "--no-snapshot", "--dry-run"]
+    setup_vars: [execution_mode, intent, confidence_threshold]
+    allowed_flags: ["--confidence-threshold=N"]
     mutating: read-only
     gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"
     mcp_tools:
@@ -99,8 +99,8 @@ routes:
 
   - target: deep-loop
     yaml: doctor_deep-loop.yaml
-    setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
-    allowed_flags: ["--scope=research|review|council|both|all", "--no-snapshot", "--dry-run"]
+    setup_vars: [execution_mode, intent, scope]
+    allowed_flags: ["--scope=research|review|council|both|all"]
     mutating: read-only
     gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
     mcp_tools: []
