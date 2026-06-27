@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **13** · routed out to browser harness: **0**
-- By class — routing: 13 · advisor: 0 · browser: 0
+- Scored (text executors): **15** · routed out to browser harness: **0**
+- By class — routing: 15 · advisor: 0 · browser: 0
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 13
+- passed: 15
 
 ## Ranked bottlenecks
 
@@ -39,6 +39,8 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
+| 015-editorial-exemplar-study | routing | 100/100 | passed |
+| 014-guided-run-smoke-lane | routing | 100/100 | passed |
 | 013-source-of-truth-card | routing | 100/100 | passed |
 | 012-authoring-boundary | routing | 100/100 | passed |
 | 011-framework-icon-motion-detection | routing | 100/100 | passed |
@@ -56,6 +58,8 @@ _None._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
+- 015-editorial-exemplar-study: extract, study, reference, editorial, ecommerce, non-saas
+- 014-guided-run-smoke-lane: extract, design.md, wrapper, smoke, design
 - 013-source-of-truth-card: design system, design
 - 012-authoring-boundary: extract, design system, live, design
 - 011-framework-icon-motion-detection: extract
@@ -73,4 +77,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 13.
+- Scenario count: 15.

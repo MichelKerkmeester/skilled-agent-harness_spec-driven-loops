@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **6** · routed out to browser harness: **2**
-- By class — routing: 6 · advisor: 0 · browser: 2
+- Scored (text executors): **7** · routed out to browser harness: **2**
+- By class — routing: 7 · advisor: 0 · browser: 2
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 6
+- passed: 7
 
 ## Ranked bottlenecks
 
@@ -39,6 +39,7 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
+| 001-advanced-craft-popover-tooltip | routing | 100/100 | passed |
 | 001-restraint-gate | routing | 100/100 | passed |
 | 001-micro-interactions-feedback | routing | 100/100 | passed |
 | 001-performance-and-reduced-motion | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
@@ -51,6 +52,7 @@ _None._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
+- 001-advanced-craft-popover-tooltip: motion for, popover, tooltip, dense toolbar
 - 001-restraint-gate: animation everywhere, command palette, polished, hover
 - 001-micro-interactions-feedback: hover, active, loading, delight, icon, morph
 - 001-animate-presence-exit-rules: presence, animatepresence, modal
@@ -61,4 +63,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 8.
+- Scenario count: 9.

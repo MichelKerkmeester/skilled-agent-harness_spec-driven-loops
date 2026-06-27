@@ -2,19 +2,19 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
 
-**Verdict: PASS** · aggregate 98/100
+**Verdict: PASS** · aggregate 99/100
 
 ## Coverage
 
-- Scored (text executors): **14** · routed out to browser harness: **0**
-- By class — routing: 14 · advisor: 0 · browser: 0
+- Scored (text executors): **15** · routed out to browser harness: **0**
+- By class — routing: 15 · advisor: 0 · browser: 0
 
 ## Dimension scores
 
 | Dimension | Weight | Score |
 | --------- | ------ | ----- |
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
-| D1 intra (router) | 13pts | 94/100 |
+| D1 intra (router) | 13pts | 95/100 |
 | D2 discovery | 20pts | 100/100 |
 | D3 efficiency | 15pts | 100/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 14
+- passed: 15
 
 ## Ranked bottlenecks
 
@@ -39,6 +39,7 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
+| ID-015 | routing | 100/100 | passed |
 | ID-014 | routing | 100/100 | passed |
 | ID-013 | routing | 100/100 | passed |
 | ID-012 | routing | 100/100 | passed |
@@ -57,6 +58,7 @@ _None._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
+- ID-015: design, redesign, do not surprise
 - ID-014: design, dials, variance, density, design read
 - ID-013: register, what fails, copy, lorem, ai-tell phrasing, fake-precise
 - ID-012: layout, contrast, what fails, mechanical, layout gate, hero lines
@@ -74,4 +76,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 14.
+- Scenario count: 15.

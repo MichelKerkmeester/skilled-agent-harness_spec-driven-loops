@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **7** · routed out to browser harness: **2**
-- By class — routing: 7 · advisor: 0 · browser: 2
+- Scored (text executors): **8** · routed out to browser harness: **2**
+- By class — routing: 8 · advisor: 0 · browser: 2
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 7
+- passed: 8
 
 ## Ranked bottlenecks
 
@@ -39,6 +39,7 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
+| 010-evidence-worksheet-labels | routing | 100/100 | passed |
 | 001-ai-fingerprint-tells | routing | 100/100 | passed |
 | 008-anti-slop-production-hardening | routing | 100/100 | passed |
 | 009-hardening-edge-cases | routing | 100/100 | passed |
@@ -52,6 +53,7 @@ _None._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
+- 010-evidence-worksheet-labels: audit, screenshot
 - 001-ai-fingerprint-tells: audit, ai-generated, fingerprint
 - 008-anti-slop-production-hardening: slop, ai-generated, theme, token, pseudo, copy
 - 009-hardening-edge-cases: critique, harden, edge case, i18n, production readiness
@@ -63,4 +65,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 9.
+- Scenario count: 10.

@@ -84,6 +84,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/micro_interactions.md` covers interaction feedback, loading states, gesture patterns, delight, and morphing icons.
 - `references/animate_presence_patterns.md` covers `motion/react`, `AnimatePresence`, exit props, keys, modes, nested exits, and presence hooks.
 - `references/performance_reduced_motion.md` covers compositor safety, FLIP, scroll motion, expensive effects, off-screen pausing, and reduced-motion alternatives.
+- `references/advanced_craft.md` covers origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
 - `references/corpus_map.md` maps the source corpus.
 - `assets/motion_pattern_cards.md` provides fill-in cards for the common motion patterns (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop), each naming owner, purpose, states, and reduced-motion path.
 - `assets/animate_presence_checklist.md` provides a pass-or-fail checklist for shipping `AnimatePresence` exits.
@@ -100,6 +101,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
 | CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
 | CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
+| CONDITIONAL | Advanced popover, tooltip, CSS entry, debugging, or shorthand-under-load craft | `references/advanced_craft.md` |
 | CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` and `../shared/sk_code_handoff.md` |
 | CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate_presence_checklist.md` |
 | CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
@@ -122,6 +124,7 @@ INTENT_SIGNALS = {
     "MICRO_INTERACTIONS": {"weight": 4, "keywords": ["micro", "hover", "active", "loading", "gesture", "delight", "icon", "morph", "feedback", "press", "pattern card", "spec card", "toast", "drawer", "notification", "button", "menu"]},
     "PRESENCE": {"weight": 4, "keywords": ["animatepresence", "framer", "motion/react", "exit", "presence", "modal", "checklist"]},
     "PERFORMANCE": {"weight": 4, "keywords": ["reduced motion", "performance", "jank", "scroll", "blur", "filter", "will-change", "flip", "dropped frames", "failure card", "compositor"]},
+    "ADVANCED_CRAFT": {"weight": 4, "keywords": ["origin-aware", "origin aware", "popover", "tooltip", "instant follow-up", "follow-up tooltip", "@starting-style", "starting-style", "slow-motion debugging", "slow motion debugging", "shorthand under load", "dense toolbar"]},
 }
 
 RESOURCE_MAP = {
@@ -130,6 +133,7 @@ RESOURCE_MAP = {
     "MICRO_INTERACTIONS": ["references/micro_interactions.md", "assets/motion_pattern_cards.md"],
     "PRESENCE": ["references/animate_presence_patterns.md", "assets/animate_presence_checklist.md"],
     "PERFORMANCE": ["references/performance_reduced_motion.md", "assets/motion_performance_failure_card.md"],
+    "ADVANCED_CRAFT": ["references/advanced_craft.md", "references/animation_decision_framework.md", "references/performance_reduced_motion.md"],
 }
 
 LOAD_LEVELS = {
@@ -317,6 +321,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 - [`references/micro_interactions.md`](references/micro_interactions.md) - Feedback, loading, gestures, delight, sound boundaries, and morphing icons.
 - [`references/animate_presence_patterns.md`](references/animate_presence_patterns.md) - `motion/react` and `AnimatePresence` patterns.
 - [`references/performance_reduced_motion.md`](references/performance_reduced_motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
+- [`references/advanced_craft.md`](references/advanced_craft.md) - Compact advanced craft for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
 
 ### Assets

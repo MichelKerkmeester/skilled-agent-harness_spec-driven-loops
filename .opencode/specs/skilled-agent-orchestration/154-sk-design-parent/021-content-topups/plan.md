@@ -1,6 +1,6 @@
 ---
 title: "Plan: sk-design targeted per-mode content top-ups"
-description: "Execution plan for the per-mode content top-ups: author the interface redesign intake, foundations examples, motion advanced-craft top-up, audit worksheet and calibration rubric, and the md-generator wrapper, smoke lane, probes, and exemplar, then package and validate. Not started."
+description: "Execution plan for the completed per-mode content top-ups: authored the interface redesign intake, foundations examples, motion advanced-craft top-up, audit worksheet and calibration rubric, and the md-generator wrapper, smoke lane, probes and exemplar, then packaged and validated."
 trigger_phrases:
   - "sk-design content topups plan"
   - "md-generator wrapper plan"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/021-content-topups"
-    last_updated_at: "2026-06-27T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Drafted the per-mode top-ups approach across five modes"
-    next_safe_action: "Author the per-mode top-ups, then run package and strict validation"
+    last_updated_at: "2026-06-27T08:55:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Marked the plan complete after package, benchmark and backend verification"
+    next_safe_action: "Use the refreshed packet and benchmark reports as the handoff state"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-154-021-content-topups"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +32,7 @@ _memory:
 <!--
 SELF-CHECK:
 - Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
+- Match phases to the stated scope and remove setup theater that does not change the outcome.
 FAILURE MODES:
 - Over-planning, missing rollback, and treating assumptions as dependencies.
 -->
@@ -61,15 +61,15 @@ Add the one evidence-backed content gap each lineage named, keeping the family l
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The five lineage content findings and the do-not list read
-- [ ] The live five mode packets confirmed for each addition's home, avoiding duplication
-- [ ] The md-generator fidelity boundary confirmed so the wrapper never auto-authors
+- [x] The five lineage content findings and the do-not list read
+- [x] The live five mode packets confirmed for each addition's home, avoiding duplication
+- [x] The md-generator fidelity boundary confirmed so the wrapper never auto-authors
 
 ### Definition of Done
-- [ ] Each of the five modes gains its named content top-up
-- [ ] The foundations examples are marked illustrative, not presets, and the wrapper never auto-authors
-- [ ] `package_skill.py --check` passes on every touched skill
-- [ ] `validate.sh --strict` passes on this packet and all new prose is HVR-clean
+- [x] Each of the five modes gains its named content top-up
+- [x] The foundations examples are marked illustrative, not presets, and the wrapper never auto-authors
+- [x] `package_skill.py --check` passes on every touched skill
+- [x] `validate.sh --strict` passes on this packet and all new prose is HVR-clean
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -113,21 +113,21 @@ This phase adds one evidence-backed content top-up per mode. It adds no forward-
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read the five lineage content findings and the `../015-per-skill-improvement-research/decision-record.md` do-not list
-- [ ] Confirm each addition's home in the live five mode packets, avoiding duplication of existing content
-- [ ] Confirm the md-generator fidelity boundary so the wrapper orchestrates without auto-authoring
+- [x] Read the five lineage content findings and the `../015-per-skill-improvement-research/decision-record.md` do-not list
+- [x] Confirm each addition's home in the live five mode packets, avoiding duplication of existing content
+- [x] Confirm the md-generator fidelity boundary so the wrapper orchestrates without auto-authoring
 
 ### Phase 2: Core Implementation
-- [ ] Author the interface redesign intake (greenfield vs preserve vs overhaul) with the never-silently-change list
-- [ ] Author the two foundations annotated examples, each marked illustrative and not a preset
-- [ ] Author the motion compact advanced-craft top-up reference
-- [ ] Author the audit evidence worksheet and the 0-4 Anti-Patterns calibration rubric
-- [ ] Author the md-generator guided preflight/run wrapper, the smoke lane, the schema-aligned probes, and one non-SaaS exemplar
+- [x] Author the interface redesign intake (greenfield vs preserve vs overhaul) with the never-silently-change list
+- [x] Author the two foundations annotated examples, each marked illustrative and not a preset
+- [x] Author the motion compact advanced-craft top-up reference
+- [x] Author the audit evidence worksheet and the 0-4 Anti-Patterns calibration rubric
+- [x] Author the md-generator guided preflight/run wrapper, the smoke lane, the schema-aligned probes and one non-SaaS exemplar
 
 ### Phase 3: Verification
-- [ ] Run `package_skill.py --check` on every touched skill (exit 0)
-- [ ] Run `validate.sh --strict` on this packet and confirm all new prose is HVR-clean
-- [ ] Confirm the wrapper never auto-authors and the foundations examples are marked illustrative
+- [x] Run `package_skill.py --check` on every touched skill (exit 0)
+- [x] Run `validate.sh --strict` on this packet and confirm all new prose is HVR-clean
+- [x] Confirm the wrapper never auto-authors and the foundations examples are marked illustrative
 <!-- /ANCHOR:phases -->
 
 ---

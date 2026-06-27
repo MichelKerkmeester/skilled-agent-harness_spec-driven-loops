@@ -20,6 +20,7 @@ version: 1.0.0.0
 | MOTION-REDUCED-002 | Motion performance failure card | [`03--reduced-motion/002-motion-performance-failure-card.md`](03--reduced-motion/002-motion-performance-failure-card.md) |
 | MOTION-MICRO-001 | Micro-interactions feedback | [`04--micro-interactions/001-micro-interactions-feedback.md`](04--micro-interactions/001-micro-interactions-feedback.md) |
 | MOTION-DECISION-001 | Restraint gate | [`05--decision/001-restraint-gate.md`](05--decision/001-restraint-gate.md) |
+| MOTION-ADVANCED-001 | Advanced craft popover and tooltip timing | [`06--advanced-craft/001-advanced-craft-popover-tooltip.md`](06--advanced-craft/001-advanced-craft-popover-tooltip.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

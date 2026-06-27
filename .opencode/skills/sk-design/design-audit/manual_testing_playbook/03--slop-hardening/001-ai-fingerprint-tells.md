@@ -14,6 +14,7 @@ expected_resources:
   - ../shared/register.md
   - references/anti_patterns_production.md
   - references/ai_fingerprint_tells.md
+  - assets/anti_patterns_score_rubric.md
 ---
 
 **Exact prompt**

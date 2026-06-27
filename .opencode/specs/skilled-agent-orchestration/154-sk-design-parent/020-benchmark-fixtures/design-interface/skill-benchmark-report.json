@@ -9,7 +9,7 @@
     "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-interface"
   },
   "verdict": "PASS",
-  "aggregateScore": 98,
+  "aggregateScore": 99,
   "gate": {
     "d5Score": 100,
     "gateFailed": false,
@@ -23,7 +23,7 @@
     },
     "D1intra": {
       "points": 13,
-      "score": 94
+      "score": 95
     },
     "D2": {
       "points": 20,
@@ -66,19 +66,27 @@
     }
   },
   "funnel": {
-    "passed": 14
+    "passed": 15
   },
   "headlineBottleneck": null,
   "bottlenecks": [],
   "coverage": {
-    "routing": 14,
+    "routing": 15,
     "advisor": 0,
     "browser": 0,
     "routedOut": 0,
-    "scored": 14
+    "scored": 15
   },
   "divergence": [],
   "lintFindings": [
+    {
+      "scenarioId": "ID-015",
+      "leaks": [
+        "design",
+        "redesign",
+        "do not surprise"
+      ]
+    },
     {
       "scenarioId": "ID-014",
       "leaks": [
@@ -193,6 +201,62 @@
     }
   ],
   "scenarioRows": [
+    {
+      "scenarioId": "ID-015",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
     {
       "scenarioId": "ID-014",
       "tier": "playbook",
@@ -979,7 +1043,7 @@
     }
   ],
   "runQuality": {
-    "scenarioCount": 14,
+    "scenarioCount": 15,
     "traceMode": "router",
     "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
   }

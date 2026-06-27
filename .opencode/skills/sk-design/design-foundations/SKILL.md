@@ -73,6 +73,7 @@ STATIC SYSTEM TASK
 - `references/type/` contains typography scale, pairing, measure, hierarchy, role tokens, and text rendering checks.
 - `references/layout/` contains spacing systems, rhythm, hierarchy, grids, density, responsive adaptation, container queries, touch targets, platform context, and the context adaptation matrix.
 - `references/data_viz.md` contains chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
+- `references/worked_examples.md` contains two illustrative, fully worked examples for output-shape calibration. They are not reusable presets.
 - `assets/` contains fill-in scaffolds, starting with `token_starter.md` for an OKLCH ramp, type scale and spacing scale.
 - `references/corpus_map.md` records the source corpus distilled into this skill.
 - `../shared/sk_code_handoff.md` defines the family handoff envelope used for the final foundations card.
@@ -89,6 +90,7 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | CONDITIONAL | Typography work | `references/type/typography_system.md` |
 | CONDITIONAL | Layout or responsive work | `references/layout/layout_responsive.md` |
 | CONDITIONAL | Data visualization, charts, or data tables | `references/data_viz.md` |
+| CONDITIONAL | Calibrating what a complete foundations answer looks like | `references/worked_examples.md` (illustrative dashboard and brand landing examples, never presets) |
 | CONDITIONAL | Device, input, or context adaptation | `references/layout/adaptation_matrix.md` |
 | CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card) |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
@@ -110,6 +112,7 @@ INTENT_SIGNALS = {
     "LAYOUT": {"weight": 4, "keywords": ["layout", "spacing", "grid", "responsive", "breakpoint", "density", "container query", "rhythm", "hierarchy"]},
     "ADAPTATION": {"weight": 4, "keywords": ["adaptation matrix", "context adaptation", "device adaptation", "input method", "orientation", "print", "posture", "constrained surface"]},
     "DATA_VIZ": {"weight": 4, "keywords": ["data visualization", "chart", "chart type", "axis", "sparkline", "data table", "color-for-data", "encoding", "data-viz"]},
+    "WORKED_EXAMPLES": {"weight": 4, "keywords": ["worked example", "worked examples", "complete foundations answer", "annotated example", "example output", "not a preset", "dashboard example", "brand landing example"]},
     "TOKENS": {"weight": 4, "keywords": ["token starter", "token scaffold", "design tokens", "token system", "starter scaffold", "handoff", "fill-in scaffold"]},
 }
 
@@ -119,6 +122,7 @@ RESOURCE_MAP = {
     "LAYOUT": ["references/corpus_map.md", "references/layout/layout_responsive.md"],
     "ADAPTATION": ["references/corpus_map.md", "references/layout/adaptation_matrix.md"],
     "DATA_VIZ": ["references/corpus_map.md", "references/data_viz.md"],
+    "WORKED_EXAMPLES": ["references/corpus_map.md", "references/worked_examples.md"],
     "TOKENS": ["references/corpus_map.md", "assets/token_starter.md", "references/color/oklch_workflow.md", "references/type/typography_system.md", "references/layout/layout_responsive.md", "../shared/design_token_vocabulary.md", "../shared/sk_code_handoff.md"],
 }
 
@@ -301,6 +305,7 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 - [`references/layout/layout_responsive.md`](references/layout/layout_responsive.md) - Spacing, rhythm, hierarchy, grids, responsive adaptation, and input contexts.
 - [`references/layout/adaptation_matrix.md`](references/layout/adaptation_matrix.md) - Device, input, and context adaptation across mobile, tablet, desktop, print, and constrained surfaces as rethinking for context.
 - [`references/data_viz.md`](references/data_viz.md) - Chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
+- [`references/worked_examples.md`](references/worked_examples.md) - Two annotated examples, a dense product dashboard and a generous brand landing, marked illustrative and not reusable presets.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
 
 ### Assets

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-design targeted per-mode content top-ups"
-description: "Planned Level-2 implementation phase: add the evidence-backed content each lineage named as a real gap. Interface gets a redesign intake, foundations two annotated examples, motion an advanced-craft top-up, audit an evidence worksheet plus an Anti-Patterns calibration rubric, and md-generator a guided preflight/run wrapper, a smoke lane, schema-aligned probes, and one non-SaaS exemplar. Not started."
+description: "Completed Level-2 implementation phase: added the evidence-backed content each lineage named as a real gap. Interface gained a redesign intake, foundations gained worked examples, motion gained an advanced-craft top-up, audit gained an evidence worksheet plus an Anti-Patterns rubric, and md-generator gained a guided wrapper, smoke lane and non-SaaS exemplar."
 trigger_phrases:
   - "sk-design content topups phase"
   - "interface redesign intake"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/021-content-topups"
-    last_updated_at: "2026-06-27T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the per-mode content top-ups phase from the five lineages"
-    next_safe_action: "Author the per-mode top-ups, then run package and strict validation"
+    last_updated_at: "2026-06-27T08:55:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Completed the per-mode content top-ups and refreshed verification evidence"
+    next_safe_action: "Use the refreshed packet and benchmark reports as the handoff state"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-154-021-content-topups"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned (not started) |
+| **Status** | Complete |
 | **Created** | 2026-06-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -80,7 +80,7 @@ Add the targeted, evidence-backed content each lineage named, and nothing more, 
 - Foundations: two fully-worked annotated examples (a dense product dashboard and a generous brand landing), each clearly marked illustrative and NOT a reusable preset.
 - Motion: a compact advanced-craft top-up reference (origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging, the Framer Motion shorthand-under-load caveat).
 - Audit: an evidence worksheet carrying confirmed, inferred, and not-assessed labels into findings, plus a 0-4 calibration rubric for the Anti-Patterns score.
-- Md-generator: a guided preflight/run wrapper (checks Node, deps, Chromium, output path, then orchestrates extract to write-prompt to validate to report; must not auto-author or weaken fidelity), a 3-step smoke lane, schema-aligned validation probes, and one non-SaaS extraction exemplar.
+- Md-generator: a guided preflight/run wrapper (checks Node, deps, Chromium, output path, then orchestrates extract to write-prompt to validate to report and must not auto-author or weaken fidelity), a 3-step smoke lane, schema-aligned validation probes, and one non-SaaS extraction exemplar.
 
 ### Out of Scope
 - The plumbing fixes in the sibling phases: the shared-register loader (016), the two real bugs (017), the routing wiring (018), the handoff schema (019), and the benchmark fixtures (020).

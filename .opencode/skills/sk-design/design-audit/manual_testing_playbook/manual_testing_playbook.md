@@ -21,6 +21,7 @@ version: 1.0.0.3
 | AUDIT-SLOP-001 | Anti-slop and production hardening | ANTI_PATTERNS_PRODUCTION | [`03--slop-hardening/008-anti-slop-production-hardening.md`](03--slop-hardening/008-anti-slop-production-hardening.md) |
 | AUDIT-SLOP-002 | AI fingerprint tell detection | ANTI_PATTERNS_PRODUCTION | [`03--slop-hardening/001-ai-fingerprint-tells.md`](03--slop-hardening/001-ai-fingerprint-tells.md) |
 | AUDIT-SLOP-003 | Hardening edge-case matrix | CRITIQUE_HARDENING | [`03--slop-hardening/009-hardening-edge-cases.md`](03--slop-hardening/009-hardening-edge-cases.md) |
+| AUDIT-EVIDENCE-010 | Evidence worksheet label carry-through | EVIDENCE_CAPTURE | [`04--evidence-worksheet/010-evidence-worksheet-labels.md`](04--evidence-worksheet/010-evidence-worksheet-labels.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

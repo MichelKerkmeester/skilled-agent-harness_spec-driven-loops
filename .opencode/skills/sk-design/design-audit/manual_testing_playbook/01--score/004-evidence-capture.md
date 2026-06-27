@@ -13,6 +13,7 @@ expected_resources:
   - references/corpus_map.md
   - ../shared/register.md
   - references/evidence_capture.md
+  - assets/audit_evidence_worksheet.md
 ---
 
 **Exact prompt**

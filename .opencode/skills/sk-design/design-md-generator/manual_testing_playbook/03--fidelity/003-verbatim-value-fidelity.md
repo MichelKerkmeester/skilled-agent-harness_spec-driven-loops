@@ -24,6 +24,7 @@ expected_resources:
   - references/examples/linear/writing-notes.md
   - references/examples/supabase/DESIGN.md
   - references/examples/supabase/writing-notes.md
+  - references/examples/editorial_exemplar.md
 ---
 
 **Exact prompt**

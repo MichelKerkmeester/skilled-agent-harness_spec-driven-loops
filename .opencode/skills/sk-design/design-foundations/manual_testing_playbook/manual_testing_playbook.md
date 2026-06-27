@@ -18,6 +18,7 @@ version: 1.0.0.0
 | FOUND-LAYOUT-002 | Context adaptation matrix across device, input and posture | [`03--layout/002-context-adaptation-matrix.md`](03--layout/002-context-adaptation-matrix.md) |
 | FOUND-DATAVIZ-001 | Data visualization encoding and color-for-data scales | [`04--data-viz/001-chart-encoding-and-color.md`](04--data-viz/001-chart-encoding-and-color.md) |
 | FOUND-TOKEN-001 | Token starter scaffold handoff | [`05--tokens/001-token-starter-handoff.md`](05--tokens/001-token-starter-handoff.md) |
+| FOUND-EXAMPLE-001 | Worked examples used as calibration, not presets | [`06--worked-examples/001-worked-examples-not-presets.md`](06--worked-examples/001-worked-examples-not-presets.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

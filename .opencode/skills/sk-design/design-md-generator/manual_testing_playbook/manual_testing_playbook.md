@@ -35,9 +35,11 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 | Detectors | 1 | DETECT-001 |
 | Authoring Boundary | 1 | BOUNDARY-001 |
 | Source-of-Truth | 1 | PROVENANCE-001 |
-| **TOTAL** | **13** | **13 scenarios** |
+| Guided Run | 1 | GUIDED-014 |
+| Study | 1 | STUDY-015 |
+| **TOTAL** | **15** | **15 scenarios** |
 
-This playbook defines 13 deterministic scenarios across 13 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-19, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 21.
+This playbook defines 15 deterministic scenarios across 15 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-21, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 22.
 
 > **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
 
@@ -485,7 +487,23 @@ The vitest suite (68 tests across 7 files) covers the deterministic clustering a
 
 ---
 
-## 21. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 20. GUIDED RUN (`GUIDED-014`)
+
+The guided wrapper smoke lane checks runtime readiness, runs extraction, saves the write prompt and stops before validation when `DESIGN.md` has not been authored.
+
+> **Feature File:** [GUIDED-014](14--guided-run/014-guided-run-smoke-lane.md)
+
+---
+
+## 21. STUDY (`STUDY-015`)
+
+The non-SaaS study lane uses an editorial or ecommerce exemplar to broaden v3 Style Reference calibration without turning it into a preset.
+
+> **Feature File:** [STUDY-015](15--study/015-editorial-exemplar-study.md)
+
+---
+
+## 22. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
 
@@ -504,7 +522,9 @@ Each scenario maps to exactly one per-scenario file in a numbered category folde
 | DETECT-001 | Framework, Icon, And Motion Detection | Detectors | [11--detectors/011-framework-icon-motion-detection.md](11--detectors/011-framework-icon-motion-detection.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
 | BOUNDARY-001 | Authoring boundary sorts values by origin | Authoring Boundary | [12--authoring-boundary/012-authoring-boundary.md](12--authoring-boundary/012-authoring-boundary.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
 | PROVENANCE-001 | Source-of-truth router card sorts each value | Source-of-Truth | [13--source-of-truth/013-source-of-truth-card.md](13--source-of-truth/013-source-of-truth-card.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
+| GUIDED-014 | Guided wrapper smoke lane | Guided Run | [14--guided-run/014-guided-run-smoke-lane.md](14--guided-run/014-guided-run-smoke-lane.md) | N/A |
+| STUDY-015 | Editorial or ecommerce exemplar study | Study | [15--study/015-editorial-exemplar-study.md](15--study/015-editorial-exemplar-study.md) | N/A |
 
-This index lists 13 scenario IDs and ships 13 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (13), so keep them in sync as scenarios are added or revised.
+This index lists 15 scenario IDs and ships 15 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (15), so keep them in sync as scenarios are added or revised.
 
-Total: 13 scenarios = 13 per-scenario files.
+Total: 15 scenarios = 15 per-scenario files.

@@ -99,6 +99,8 @@ DESIGN QA TASK
 | CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md` (Codex, Gemini, 2026-general fingerprints as checkable findings) |
 | CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform_remediation.md` (register-gated transform verbs mapped to findings and owners) |
 | CONDITIONAL | Resolving the target and labeling evidence | `references/evidence_capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
+| CONDITIONAL | Carrying confirmed, inferred and not-assessed labels into findings and scores | `assets/audit_evidence_worksheet.md` (target, evidence inventory, dimension coverage, probes and finding handoff rows) |
+| CONDITIONAL | Calibrating the Anti-Patterns dimension | `assets/anti_patterns_score_rubric.md` (0 to 4 ladder for model tells and generic design risk) |
 | CONDITIONAL | Production-readiness and edge-case probes | `references/hardening_edge_cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
 | CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
 | CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
@@ -129,7 +131,7 @@ INTENT_SIGNALS = {
     "AUDIT_CONTRACT": {"weight": 4, "keywords": ["audit", "score", "release readiness", "severity", "p0", "p1", "quality score", "report template"]},
     "ACCESSIBILITY_PERFORMANCE": {"weight": 4, "keywords": ["accessibility", "wcag", "aria", "keyboard", "focus", "contrast", "performance", "jank", "core web vitals", "a11y fix"]},
     "CRITIQUE_HARDENING": {"weight": 4, "keywords": ["critique", "cognitive", "heuristic", "persona", "polish", "harden", "edge case", "i18n", "production readiness"]},
-    "ANTI_PATTERNS_PRODUCTION": {"weight": 4, "keywords": ["slop", "ai-generated", "theme", "token", "pseudo", "copy", "clarify", "view transition", "fingerprint", "model tell"]},
+    "ANTI_PATTERNS_PRODUCTION": {"weight": 4, "keywords": ["slop", "ai-generated", "theme", "token", "pseudo", "copy", "clarify", "view transition", "fingerprint", "model tell", "anti-patterns score", "anti patterns score", "score calibration"]},
     "TRANSFORM_REMEDIATION": {"weight": 4, "keywords": ["bolder", "quieter", "distill", "redesign", "transform", "remediation", "make it bolder"]},
     "EVIDENCE_CAPTURE": {"weight": 3, "keywords": ["evidence", "screenshot", "browser", "deterministic scan", "source target", "provenance"]},
 }
@@ -138,9 +140,9 @@ RESOURCE_MAP = {
     "AUDIT_CONTRACT": ["references/corpus_map.md", "references/audit_contract.md", "assets/audit_report_template.md", "../shared/sk_code_handoff.md"],
     "ACCESSIBILITY_PERFORMANCE": ["references/accessibility_performance.md", "assets/a11y_quick_fixes.md"],
     "CRITIQUE_HARDENING": ["references/critique_hardening.md", "references/hardening_edge_cases.md"],
-    "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md"],
+    "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md", "assets/anti_patterns_score_rubric.md"],
     "TRANSFORM_REMEDIATION": ["references/transform_remediation.md"],
-    "EVIDENCE_CAPTURE": ["references/evidence_capture.md"],
+    "EVIDENCE_CAPTURE": ["references/evidence_capture.md", "assets/audit_evidence_worksheet.md"],
 }
 
 LOAD_LEVELS = {
@@ -351,6 +353,8 @@ Each dimension scores 0-4. Total `/20` rating:
 
 - [`assets/audit_report_template.md`](assets/audit_report_template.md) - Fill-in findings-first report with the five-dimension `/20` score, anti-pattern verdict, owner mapping, and evidence caveats.
 - [`assets/a11y_quick_fixes.md`](assets/a11y_quick_fixes.md) - Snippet-level accessibility fixes the report cites by reference; the audit names the fix, `sk-code` applies it.
+- [`assets/audit_evidence_worksheet.md`](assets/audit_evidence_worksheet.md) - Fill-in worksheet that carries confirmed, inferred and not-assessed labels into findings and scores.
+- [`assets/anti_patterns_score_rubric.md`](assets/anti_patterns_score_rubric.md) - Anti-Patterns 0 to 4 calibration ladder for full audits.
 
 ### Parent Shared Base
 

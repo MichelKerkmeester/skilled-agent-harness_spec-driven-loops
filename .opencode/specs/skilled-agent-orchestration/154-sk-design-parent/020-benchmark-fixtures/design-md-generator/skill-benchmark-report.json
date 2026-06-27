@@ -66,19 +66,40 @@
     }
   },
   "funnel": {
-    "passed": 13
+    "passed": 15
   },
   "headlineBottleneck": null,
   "bottlenecks": [],
   "coverage": {
-    "routing": 13,
+    "routing": 15,
     "advisor": 0,
     "browser": 0,
     "routedOut": 0,
-    "scored": 13
+    "scored": 15
   },
   "divergence": [],
   "lintFindings": [
+    {
+      "scenarioId": "015-editorial-exemplar-study",
+      "leaks": [
+        "extract",
+        "study",
+        "reference",
+        "editorial",
+        "ecommerce",
+        "non-saas"
+      ]
+    },
+    {
+      "scenarioId": "014-guided-run-smoke-lane",
+      "leaks": [
+        "extract",
+        "design.md",
+        "wrapper",
+        "smoke",
+        "design"
+      ]
+    },
     {
       "scenarioId": "013-source-of-truth-card",
       "leaks": [
@@ -194,6 +215,118 @@
     }
   ],
   "scenarioRows": [
+    {
+      "scenarioId": "015-editorial-exemplar-study",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 11,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "014-guided-run-smoke-lane",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 12,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
     {
       "scenarioId": "013-source-of-truth-card",
       "tier": "playbook",
@@ -771,7 +904,7 @@
         },
         "d3": {
           "score": 1,
-          "routedCount": 20,
+          "routedCount": 21,
           "wastedCount": 0,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
@@ -827,7 +960,7 @@
         },
         "d3": {
           "score": 1,
-          "routedCount": 20,
+          "routedCount": 21,
           "wastedCount": 0,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
@@ -924,7 +1057,7 @@
     }
   ],
   "runQuality": {
-    "scenarioCount": 13,
+    "scenarioCount": 15,
     "traceMode": "router",
     "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
   }

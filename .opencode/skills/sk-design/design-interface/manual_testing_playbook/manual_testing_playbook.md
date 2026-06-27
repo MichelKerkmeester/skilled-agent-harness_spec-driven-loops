@@ -131,7 +131,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 14`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 15`).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -144,7 +144,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific caveats, 
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 14 files.
+2. Per-feature structural sweep checks all 15 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
@@ -158,7 +158,8 @@ Before declaring this playbook release-ready, confirm:
 13. The mechanical layout gate scenario records the counted hero lines, bento cells, and eyebrows against the `ceil(sectionCount / 3)` ceiling, with button contrast computed against the real background rather than assumed white.
 14. The content gate scenario records the sweeps run over the real strings, every number listed with its grounding, and the single copy register named and matched to the posture.
 15. The brief-to-dials intake scenario records the register posture set first, the one-line Design Read with the three dial values, and its negative control: the dials kept internal and never surfaced as a chooser.
-16. The final report separates playbook defects from interface product defects.
+16. The redesign intake scenario records the greenfield, preserve or overhaul lane and every approval-gated item before any visual change.
+17. The final report separates playbook defects from interface product defects.
 
 ---
 
@@ -166,7 +167,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 14-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 15-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -189,7 +190,8 @@ This section records wave planning and capacity guidance for executing the 14-sc
 | 5 | Design-references routing | ID-010 | The initiative/ask/fall-back gate reads one design-references doc and exercises a paid-lookup decision, so it runs in its own wave to isolate the subscription-status branch |
 | 6 | Mechanical pre-flight + layout + content gates | ID-011, ID-012, ID-013 | The three delivery gates all read on-disk references against one supplied built UI fixture, so they share the render fixture and isolate cleanly |
 | 7 | Brief-to-dials intake | ID-014 | The Design Read intake reads a brief into the dials after the register posture, so it runs with the other intake-shaped checks and isolates the dial calibration |
-| 8 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
+| 8 | Redesign intake | ID-015 | Redesign classification protects existing URLs, nav labels, form fields, legal copy and locked tokens before the visual pass |
+| 9 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
 
@@ -498,7 +500,29 @@ Desired user-visible outcome: A one-line Design Read that names the subject, the
 
 ---
 
-## 19. AUTOMATED TEST CROSS-REFERENCE
+## 19. REDESIGN INTAKE (ID-015)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-015 | Redesign intake classification
+
+#### Description
+
+An existing surface is classified as greenfield, preserve or overhaul before visual work begins. The intake protects URLs, nav labels, form fields, legal copy and locked tokens from silent change.
+
+#### Scenario Contract
+
+Prompt: `Redesign this account settings page, but do not surprise returning users. Classify the redesign lane before you change the UI.`
+
+Desired user-visible outcome: A compact redesign intake that names the lane, approval-gated preserve list and next step before design work.
+
+#### Test Execution
+
+> **Feature File:** [ID-015](13--redesign-intake/015-redesign-intake-classification.md)
+
+---
+
+## 20. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `interface/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
 
@@ -512,12 +536,13 @@ The current repository has no dedicated automated test module for `interface/man
 | `references/design-process/mechanical_defaults.md` | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing | ID-012 |
 | `references/design-process/copy_and_mock_data.md` | The content gate: lorem and filler sweep, AI-tell phrasing, fake-precision rules, one copy register, and image-seed discipline | ID-013 |
 | `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014 |
+| `references/design-process/redesign_intake.md` | The redesign classification gate and never-silently-change list for existing surfaces | ID-015 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
 ---
 
-## 20. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 21. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -535,3 +560,4 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-012 | Mechanical layout gate on a built UI | MECHANICAL LAYOUT GATE | [ID-012](10--mechanical-layout-gate/012-mechanical-layout-gate-on-built-ui.md) |
 | ID-013 | Content and mock-data gate on a built UI | CONTENT AND MOCK-DATA GATE | [ID-013](11--content-and-mock-data-gate/013-content-and-mock-data-gate-on-built-ui.md) |
 | ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](12--brief-to-dials-intake/014-brief-read-into-dials.md) |
+| ID-015 | Redesign intake classification | REDESIGN INTAKE | [ID-015](13--redesign-intake/015-redesign-intake-classification.md) |

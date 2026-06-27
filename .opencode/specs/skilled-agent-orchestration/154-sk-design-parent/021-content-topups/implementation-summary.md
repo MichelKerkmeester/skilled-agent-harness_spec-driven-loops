@@ -1,19 +1,19 @@
 ---
 title: "Implementation Summary: sk-design targeted per-mode content top-ups"
-description: "Not started. Scaffold for the one evidence-backed content gap per mode: interface redesign intake, foundations annotated examples, motion advanced-craft top-up, audit evidence worksheet and Anti-Patterns rubric, and the md-generator wrapper, smoke lane, probes, and non-SaaS exemplar. A later subagent implements and verifies."
+description: "Completed. Added the one evidence-backed content gap per mode: interface redesign intake, foundations annotated examples, motion advanced-craft top-up, audit evidence worksheet and Anti-Patterns rubric, and the md-generator wrapper, smoke lane, probes and non-SaaS exemplar. Verification passed."
 trigger_phrases:
   - "sk-design content topups status"
   - "md-generator wrapper outcome"
 importance_tier: "important"
 contextType: "implementation"
-status: not-started
+status: complete
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/021-content-topups"
-    last_updated_at: "2026-06-27T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Created the not-started status stub"
-    next_safe_action: "Author the per-mode top-ups, then run package and strict validation"
+    last_updated_at: "2026-06-27T08:55:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Completed five per-mode top-ups and refreshed verification evidence"
+    next_safe_action: "Use the refreshed packet and benchmark reports as the handoff state"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-154-021-content-topups"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 154-sk-design-parent/021-content-topups |
-| **Completed** | Not started (scaffold only) |
+| **Completed** | 2026-06-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,9 +50,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase is scaffolded and not started. The planned work adds the one evidence-backed content gap each lineage named, each landing in its mode packet under `.opencode/skills/sk-design/`: an interface redesign intake with a never-silently-change list, two foundations annotated examples marked illustrative, a motion advanced-craft top-up, an audit evidence worksheet plus a 0-4 Anti-Patterns calibration rubric, and an md-generator guided preflight/run wrapper plus a smoke lane, schema-aligned probes, and one non-SaaS exemplar.
+This phase added the one evidence-backed content gap each lineage named, each landing in its mode packet under `.opencode/skills/sk-design/`:
 
-A later subagent will record the per-mode additions and the verification evidence here.
+- Interface: `design-interface/references/design-process/redesign_intake.md` plus router and playbook coverage for greenfield, preserve and overhaul redesign prompts.
+- Foundations: `design-foundations/references/worked_examples.md` with dense product dashboard and generous brand landing examples marked illustrative, not reusable presets.
+- Motion: `design-motion/references/advanced_craft.md` plus router coverage for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and the Framer Motion shorthand caveat.
+- Audit: `design-audit/assets/audit_evidence_worksheet.md` and `design-audit/assets/anti_patterns_score_rubric.md` with playbook coverage for evidence labels and Anti-Patterns calibration.
+- Md-generator: `design-md-generator/backend/scripts/guided-run.ts`, `backend/tests/guided-run.test.ts`, `references/guided_run.md`, `references/examples/editorial_exemplar.md` and smoke or study playbook coverage.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -60,7 +64,7 @@ A later subagent will record the per-mode additions and the verification evidenc
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. The per-mode gaps are grounded in the interface (P1 redesign intake), foundations (P2-2 examples), motion (P1 advanced craft), audit (R3 worksheet, R5 calibration), and md-generator (P1 wrapper, P1 smoke lane, P2 exemplar) lineage research. The unanimous do-not list in `../015-per-skill-improvement-research/decision-record.md` and the md-generator authoring boundary constrain the additions to evidence-backed, non-preset, non-authoring content.
+The implementation stayed additive and mode-local. Each top-up is routed only where its prompt vocabulary needs it, then covered by a manual playbook scenario so the benchmark can verify D2 resource recall and D3 precision. The md-generator wrapper is an orchestrator: it checks the run setup, invokes existing extractor and prompt tooling, waits for a user-authored `DESIGN.md`, then validates and reports. It does not write Style Reference content.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,6 +78,7 @@ Not yet delivered. The per-mode gaps are grounded in the interface (P1 redesign 
 | Keep the foundations examples non-preset | The foundations lineage warns examples must teach output shape, not become a pick-a-style menu |
 | Keep the md-generator wrapper non-authoring | The cardinal fidelity rule must hold, so the wrapper orchestrates the existing tools and never writes DESIGN.md content |
 | Hold every line to the Human Voice Rules | The phase gate requires HVR-clean prose: no em dashes, no semicolons, no Oxford commas |
+| Sync benchmark gold after router changes | The new resources should count as expected only where the router loads them |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,11 +88,13 @@ Not yet delivered. The per-mode gaps are grounded in the interface (P1 redesign 
 
 | Check | Result |
 |-------|--------|
-| Each of the five modes gains its named evidence-backed top-up | PENDING |
-| The md-generator wrapper orchestrates without auto-authoring | PENDING |
-| The foundations examples are marked illustrative, not presets | PENDING |
-| `package_skill.py --check` on every touched skill | PENDING |
-| `validate.sh --strict` on this packet and all new prose HVR-clean | PENDING |
+| Each of the five modes gains its named evidence-backed top-up | PASS: new references, assets, wrapper, tests and playbook scenarios landed in the five scoped modes |
+| The md-generator wrapper orchestrates without auto-authoring | PASS: `npm --prefix .opencode/skills/sk-design/design-md-generator/backend test` passed 8 files and 72 tests |
+| The foundations examples are marked illustrative, not presets | PASS: `worked_examples.md` carries explicit non-preset framing |
+| Mode-A benchmark reports | PASS: interface 99, foundations 100, motion 100, audit 100 and md-generator 100 |
+| D5 connectivity | PASS: all five modes scored 100 with no dead paths, no dead intent keys, no orphan references and no path escapes |
+| `package_skill.py --check` on every touched skill | PASS: all five touched modes returned `Result: PASS` |
+| `validate.sh --strict` on this packet and all new prose HVR-clean | PASS: strict validation passed with 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,6 +102,6 @@ Not yet delivered. The per-mode gaps are grounded in the interface (P1 redesign 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** This is a scaffold. The five content gaps remain open in the live family.
-2. **Scope is deliberately narrow.** Only the named per-mode gaps are in scope, so broader content expansion stays out by the unanimous do-not list.
+1. **Existing packaging warnings remain.** Interface still exceeds the recommended SKILL.md word count and md-generator still has legacy example naming or frontmatter warnings. The package checker still returns PASS for both.
+2. **Scope is deliberately narrow.** Only the named per-mode gaps were added, so broader content expansion stays out by the unanimous do-not list.
 <!-- /ANCHOR:limitations -->

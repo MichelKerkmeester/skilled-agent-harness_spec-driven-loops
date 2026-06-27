@@ -78,6 +78,7 @@ DESIGN TASK
 | CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real_ui_loop.md` (ground in a system, reuse before generating, fidelity check, handoff) and `../shared/sk_code_handoff.md` (required build manifest for sk-code) |
 | CONDITIONAL | Final mechanical pass before shipping | `references/design-process/mechanical_defaults.md` (the layout gate) and `assets/interface_preflight_card.md` (the fill-in PASS or FAIL pre-flight card) |
 | CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy_and_mock_data.md` (realistic mock content, no lorem, no AI-tell copy) |
+| CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign_intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design_inventory.md` |
 | ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against reference only, subordinate to grounding, never a chooser, preset, or pick-a-vibe axis. See `references/aesthetics/README.md` |
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
@@ -104,6 +105,7 @@ INTENT_SIGNALS = {
     "REAL_UI_LOOP": {"weight": 4, "keywords": ["real ui", "real-ui loop", "reuse before generate", "existing design system", "registered component", "render fidelity", "dev server", "actually rendered", "matches the intent", "handoff", "screenshot the build"]},
     "MECHANICAL_PREFLIGHT": {"weight": 4, "keywords": ["mechanical", "pre-flight", "preflight", "pre flight", "preflight card", "ship or fix", "layout gate", "hero lines", "bento", "eyebrow", "button contrast", "section spacing", "before shipping", "before i ship"]},
     "COPY_MOCK_DATA": {"weight": 4, "keywords": ["copy", "mock data", "placeholder", "lorem", "ai-tell phrasing", "fake-precise", "fake precision", "copy register", "image seed", "names and numbers", "realistic content", "content tells"]},
+    "REDESIGN_INTAKE": {"weight": 4, "keywords": ["redesign", "preserve", "overhaul", "greenfield", "existing surface", "existing interface", "do not surprise", "keep the nav", "keep urls", "locked tokens", "form fields", "legal copy"]},
     "REAL_SYSTEM_GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "existing design system", "our design system", "reuse-ground"]},
     "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
     "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
@@ -117,6 +119,7 @@ RESOURCE_MAP = {
     "REAL_UI_LOOP": ["references/design-process/real_ui_loop.md", "../shared/sk_code_handoff.md"],
     "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical_defaults.md", "references/design-process/copy_and_mock_data.md", "references/design-process/brief_to_dials.md", "assets/interface_preflight_card.md"],
     "COPY_MOCK_DATA": ["references/design-process/copy_and_mock_data.md"],
+    "REDESIGN_INTAKE": ["references/design-process/redesign_intake.md"],
     "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design_inventory.md"],
     "REAL_WORLD_REFERENCE": ["references/design-grounding/design_references_mcp.md", "references/mcp-tooling/mobbin_tools.md", "references/mcp-tooling/refero_tools.md"],
     "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple_bento.md"],
@@ -221,6 +224,7 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 - [`references/design-process/brief_to_dials.md`](references/design-process/brief_to_dials.md) - Design Read intake that maps the variance, motion and density dials to choices and defers the Brand-vs-Product posture to the shared register. Consult at the start of a task.
 - [`references/design-process/mechanical_defaults.md`](references/design-process/mechanical_defaults.md) - The mechanical anti-default layout gate (hero, bento, meta-label, button contrast, spacing). Authored once here, referenced by the audit mode.
 - [`references/design-process/copy_and_mock_data.md`](references/design-process/copy_and_mock_data.md) - The content gate for realistic mock data and copy (no lorem, no AI-tell phrasing, one copy register). Authored once here, referenced by the audit mode.
+- [`references/design-process/redesign_intake.md`](references/design-process/redesign_intake.md) - Redesign lane intake for existing surfaces, including greenfield, preserve and overhaul classification plus approval-gated never-silently-change items.
 - [`assets/interface_preflight_card.md`](assets/interface_preflight_card.md) - The fill-in PASS or FAIL mechanical pre-flight card. Run it before shipping.
 - [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues (brutalist, minimalist, soft, apple-bento) for naming a realized default to critique against. Subordinate to grounding and the anti-default critique, never a chooser, preset, or pick-a-vibe axis.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.

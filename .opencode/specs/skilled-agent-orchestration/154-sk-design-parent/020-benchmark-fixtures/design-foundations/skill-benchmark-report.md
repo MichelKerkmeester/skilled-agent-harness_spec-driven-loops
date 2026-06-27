@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **6** · routed out to browser harness: **0**
-- By class — routing: 6 · advisor: 0 · browser: 0
+- Scored (text executors): **7** · routed out to browser harness: **0**
+- By class — routing: 7 · advisor: 0 · browser: 0
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 6
+- passed: 7
 
 ## Ranked bottlenecks
 
@@ -39,6 +39,7 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
+| 001-worked-examples-not-presets | routing | 100/100 | passed |
 | 001-token-starter-handoff | routing | 100/100 | passed |
 | 001-chart-encoding-and-color | routing | 100/100 | passed |
 | 001-layout-rhythm-responsive | routing | 100/100 | passed |
@@ -49,6 +50,7 @@ _None._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
+- 001-worked-examples-not-presets: complete foundations answer
 - 001-token-starter-handoff: dark mode, token system
 - 001-chart-encoding-and-color: density, data visualization
 - 001-layout-rhythm-responsive: layout
@@ -59,4 +61,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 6.
+- Scenario count: 7.

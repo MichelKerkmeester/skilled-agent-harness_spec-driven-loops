@@ -97,6 +97,8 @@ references/quality_checklist.md      # pre-validate self-check
 references/extraction_workflow.md    # three-phase workflow, invocations, handoff
 references/troubleshooting.md        # failure modes and fixes
 references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + writing-notes pairs (STUDY intent)
+references/examples/editorial_exemplar.md  # non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction
+references/guided_run.md          # wrapper contract for preflight, extract, write prompt, validate, report
 assets/design_md_prompt_template.md  # copy-paste WRITE-phase prompt
 assets/cardinal_rules_card.md        # one-page pre-write / pre-validate fidelity gate
 assets/source_of_truth_router_card.md  # fill-in provenance card
@@ -108,6 +110,7 @@ assets/source_of_truth_router_card.md  # fill-in provenance card
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
 | ALWAYS      | Every invocation                     | `references/design_md_format.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
 | CONDITIONAL | EXTRACT_WRITE intent                 | `references/color_role_taxonomy.md`, `references/component_taxonomy.md`, `references/anti_patterns.md` |
+| CONDITIONAL | Guided run or smoke extraction wrapper | `references/guided_run.md`, `references/extraction_workflow.md`, `references/troubleshooting.md` |
 | CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring_boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source_of_truth_router_card.md` (the fill-in provenance card) |
 | CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
@@ -130,8 +133,9 @@ INTENT_SIGNALS = {
     "VALIDATE":      {"weight": 4, "keywords": ["validate", "check", "verify", "accuracy", "hex",
                                                  "section completeness", "fidelity"]},
     "REPORT":        {"weight": 4, "keywords": ["report", "preview", "visual", "html", "diff", "render"]},
+    "RUN_WRAPPER":   {"weight": 4, "keywords": ["guided run", "wrapper", "smoke", "preflight", "readiness", "run wrapper"]},
     "STUDY":         {"weight": 4, "keywords": ["example", "stripe", "vercel", "linear", "supabase",
-                                                 "gold standard", "reference"]},
+                                                 "gold standard", "reference", "editorial", "ecommerce", "non-saas", "non saas"]},
 }
 
 # Every reference and asset on disk is reachable from a RESOURCE_MAP entry (or the
@@ -147,11 +151,13 @@ RESOURCE_MAP = {
     "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
                        "references/design_md_format.md", "assets/cardinal_rules_card.md"],
     "REPORT":        ["references/design_md_format.md"],
+    "RUN_WRAPPER":   ["references/extraction_workflow.md", "references/troubleshooting.md", "references/guided_run.md", "assets/cardinal_rules_card.md"],
     "STUDY":         ["references/design_md_format.md", "references/writing_style_guide.md",
-                       "references/examples/stripe/DESIGN.md", "references/examples/stripe/writing-notes.md",
-                       "references/examples/vercel/DESIGN.md", "references/examples/vercel/writing-notes.md",
-                       "references/examples/linear/DESIGN.md", "references/examples/linear/writing-notes.md",
-                       "references/examples/supabase/DESIGN.md", "references/examples/supabase/writing-notes.md"],
+                        "references/examples/stripe/DESIGN.md", "references/examples/stripe/writing-notes.md",
+                        "references/examples/vercel/DESIGN.md", "references/examples/vercel/writing-notes.md",
+                        "references/examples/linear/DESIGN.md", "references/examples/linear/writing-notes.md",
+                        "references/examples/supabase/DESIGN.md", "references/examples/supabase/writing-notes.md",
+                        "references/examples/editorial_exemplar.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -362,6 +368,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 - [component_taxonomy.md](references/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
 - [anti_patterns.md](references/anti_patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
 - [quality_checklist.md](references/quality_checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
+- [guided_run.md](references/guided_run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
 
 ### Gold-Standard Examples
 
@@ -369,12 +376,14 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 - [references/examples/vercel/](references/examples/vercel/) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
 - [references/examples/linear/](references/examples/linear/) — DESIGN.md + tokens.json + writing-notes.md for Linear.
 - [references/examples/supabase/](references/examples/supabase/) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
+- [references/examples/editorial_exemplar.md](references/examples/editorial_exemplar.md) - Non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction shape. Illustrative only, never a preset.
 
 ### Skill-Owned References
 
 - [references/extraction_workflow.md](references/extraction_workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
 - [references/authoring_boundary.md](references/authoring_boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to a separate design-spec decision.
+- [references/guided_run.md](references/guided_run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
 
 ### Shared
 
@@ -393,6 +402,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 - Load `quality_checklist.md` before any validation or completion claim.
 - Load `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` when a value's origin is unclear (brief versus measured) or when a request asks to author from a brief with no live site. The boundary doc keeps the cardinal rule enforceable and routes forward-authoring out of scope.
 - Load one example site at a time from `references/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
+- Load `references/guided_run.md` for wrapper, smoke lane, preflight, readiness, or guided run requests.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 
 ---
