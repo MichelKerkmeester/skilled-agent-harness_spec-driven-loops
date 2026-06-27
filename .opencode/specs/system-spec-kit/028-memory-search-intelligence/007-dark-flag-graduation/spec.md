@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Graduated four dark-flag families on measured wins, cut four on measured loss/tie, held the citation ledger at refine"
+    recent_action: "Dark-flag graduation complete: 4 graduated, 4 cut, 1 refined"
     next_safe_action: "None — track complete; production flips remain separate evidence-gated decisions"
     blockers: []
     key_files:
