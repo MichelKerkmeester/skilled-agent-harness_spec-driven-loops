@@ -15,7 +15,8 @@
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
     "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",

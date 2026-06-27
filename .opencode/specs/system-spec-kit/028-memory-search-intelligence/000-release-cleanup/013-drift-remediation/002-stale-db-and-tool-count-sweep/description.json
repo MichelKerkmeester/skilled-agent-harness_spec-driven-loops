@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/002-stale-db-and-tool-count-sweep",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
   "description": "The 028 drift audit surfaced 10 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
   "keywords": [
     "028",

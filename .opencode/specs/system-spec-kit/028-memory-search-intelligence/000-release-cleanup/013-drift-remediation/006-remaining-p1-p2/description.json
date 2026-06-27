@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/006-remaining-p1-p2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
   "description": "The 028 drift audit surfaced 83 evidence-backed findings in this surface area: doc/config/test reality drifted from code",
   "keywords": [
     "028",

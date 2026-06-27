@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/008-drift-remediation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/001-p0-fixes",
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/002-stale-db-and-tool-count-sweep",
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/003-opencode-go-and-codex-pins",
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/004-tool-grant-reconciliation",
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/005-spec-housekeeping",
-    "system-spec-kit/028-memory-search-intelligence/008-drift-remediation/006-remaining-p1-p2"
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
+    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2"
   ],
   "manual": {
     "depends_on": [],
