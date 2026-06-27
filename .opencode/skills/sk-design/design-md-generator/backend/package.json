@@ -1,0 +1,32 @@
+{
+  "name": "design-system-extractor",
+  "version": "0.0.4",
+  "private": true,
+  "description": "Embedded extract-write-validate backend that captures a live website's real CSS into a v3 Style Reference DESIGN.md for the design-md-generator skill.",
+  "main": "dist/cli.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "extract": "ts-node scripts/extract.ts",
+    "write-prompt": "ts-node scripts/build-write-prompt.ts",
+    "validate": "ts-node scripts/validate.ts"
+  },
+  "dependencies": {
+    "css-tree": "^3.0.0",
+    "culori": "^4.0.0",
+    "playwright": "^1.50.0",
+    "playwright-extra": "^4.3.0",
+    "puppeteer-extra-plugin-stealth": "^2.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.5.0",
+    "vitest": "^3.0.0"
+  }
+}

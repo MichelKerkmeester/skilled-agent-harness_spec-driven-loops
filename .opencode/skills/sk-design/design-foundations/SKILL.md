@@ -100,7 +100,7 @@ The authoritative routing logic discovers markdown at runtime, guards every path
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets", SKILL_ROOT.parent / "shared")
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
@@ -132,10 +132,14 @@ AMBIGUITY_DELTA = 1
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
+    shared_root = (SKILL_ROOT.parent / "shared").resolve()
+    # The sibling shared/ dir holds family docs like the operating register, a
+    # sanctioned cross-packet location. Every other parent path is rejected.
+    if not (resolved.is_relative_to(SKILL_ROOT) or resolved.is_relative_to(shared_root)):
+        raise ValueError(f"Resource escapes the skill root: {relative_path}")
     if resolved.suffix.lower() != ".md":
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
+    return relative_path if resolved.is_relative_to(shared_root) else resolved.relative_to(SKILL_ROOT).as_posix()
 
 def discover_markdown_resources() -> set[str]:
     docs = []
@@ -181,12 +185,14 @@ def route_foundations_resources(user_request, task=None):
 
     def load_if_available(relative_path: str):
         guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
+        available = guarded in inventory or (SKILL_ROOT / guarded).resolve().exists()
+        if available and guarded not in seen:
             load(guarded)
             loaded.append(guarded)
             seen.add(guarded)
 
-    load_if_available(DEFAULT_RESOURCE)
+    for default_path in DEFAULT_RESOURCE:
+        load_if_available(default_path)
     baseline_count = len(loaded)
     if max(scores.values() or [0]) < 0.5:
         # No-signal / unscoped request: load one reference from each axis as a safe fallback.

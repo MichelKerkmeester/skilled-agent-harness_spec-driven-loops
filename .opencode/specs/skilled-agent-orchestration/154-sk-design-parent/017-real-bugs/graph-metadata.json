@@ -38,8 +38,11 @@
       "weight"
     ],
     "importance_tier": "supporting",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/.gitignore",
+      "dist/cli.js",
+      ".opencode/skills/sk-design/design-md-generator/backend/package.json",
       ".opencode/skills/sk-design/design-audit/SKILL.md",
       "spec.md",
       "plan.md",
@@ -48,6 +51,24 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "cli.js",
+        "kind": "code",
+        "path": "dist/cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/package.json",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two concrete bugs block documented behavior in the sk-design family",
     "created_at": "2026-06-27T05:42:26.710Z",
-    "last_save_at": "2026-06-27T05:42:26.710Z",
+    "last_save_at": "2026-06-27T07:01:45.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0c6e84d6e1ec9a2e74196ecf4864cbfca7b5048603baaeacd44b0763c81dd8f",
+    "source_fingerprint": "sha256:bdc96eca8d588ab3149446a024e4d6c6b237588650ef6ccb56bad6bd051e2458",
     "source_doc_hashes": {
       "spec.md": "a447e7d575fcd0e4a4c8d898f762c8506ce011237feb350aa4806bcba83fe9dd",
       "plan.md": "cf5c3bfbfa901389a7085af118362a2a3c23f7f0aa9d760ec0afe8e4ff10afb7",
-      "tasks.md": "cadc1d577bcebe407190fca2838eab47211eb3a4194070f43e13d3b074662641",
-      "checklist.md": "6d1512157d821b90c3bff62c317465f35a50cd6c020919fb41a09b3ecda7c7fe",
-      "implementation-summary.md": "98fa18fce53d4c53a9455091bc557ded7d30a0821f3846ef422d0aa8c0d8f0fa"
+      "tasks.md": "1ce16aa9c3c658ca63ac8fe207a05c26cff4c0c789e3ca205fe4d792e8e927d6",
+      "checklist.md": "88984caea74f286349fdd78ec87923bf8c1bed2bcfdcb9517e20fa3680a26204",
+      "implementation-summary.md": "f85a35b033f5bcf6c82018cb727ddbd7526c214e8cade3bf6754e631cda3eab2"
     },
     "last_active_child_id": null,
     "last_active_at": null
