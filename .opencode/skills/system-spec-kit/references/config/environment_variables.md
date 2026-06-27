@@ -59,13 +59,13 @@ The sibling families for the other daemons (`SPECKIT_CODE_INDEX_CLI_*`, `MK_SKIL
 ## 3. EMBEDDING PROVIDERS
 
 The MCP server supports multiple embedding providers for semantic search. Provider selection is **local-first** and follows this precedence:
-1. Explicit `EMBEDDINGS_PROVIDER` setting (the only way to auto-select cloud)
-2. `ollama` when the persisted `vec_metadata` active embedder pointer is set and reachable
+1. Explicit `EMBEDDINGS_PROVIDER` setting (tries the pinned provider first, then falls back to the cascade if unreachable)
+2. `ollama` when a supported model is pulled and reachable
 3. Falls back to `hf-local` (Hugging Face local inference)
-4. `openai` — reached only as a last-resort cascade fallback when `hf-local` creation fails
-5. `voyage` — reached only as a last-resort cascade fallback when `hf-local` creation fails
+4. `openai` — reached as a cloud cascade fallback when local providers are unavailable and `OPENAI_API_KEY` is usable
+5. `voyage` — reached as a cloud cascade fallback when local providers are unavailable and `VOYAGE_API_KEY` is usable
 
-Cloud providers (OpenAI/Voyage) are never auto-selected from a detected API key; set `EMBEDDINGS_PROVIDER` explicitly to use them.
+Cloud providers (OpenAI/Voyage) can be selected by the cascade as a last resort from usable API keys, but detected keys do not outrank local providers. Set `EMBEDDINGS_PROVIDER` explicitly to force a cloud provider first.
 
 ### Provider Selection
 

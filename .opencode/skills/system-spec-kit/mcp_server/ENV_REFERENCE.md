@@ -128,7 +128,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 269, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 293, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -141,7 +141,7 @@ Default-OFF safety and grandfather flags for the spec-data-quality and generator
 | Identity and merge safety | ON | `SPECKIT_IDENTITY_MERGE_SAFETY` | Graduated default-on: both generators resolve a shared specs-root-relative spec-folder identity and the merge preserves a non-null parent plus unions children so a scoped re-derive cannot erase lineage. Set `false`/`0`/`off` to restore the legacy caller-base path and spread merge | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts` |
 | Idempotent description writes | ON | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | Graduated default-on: a per-folder description write whose only delta is the volatile stamp is skipped and the aggregate-cache write is gated on a real member delta, preserving the prior timestamp. Set `false`/`0`/`off` to restore the unconditional legacy write | `lib/config/capability-flags.ts` |
 | Generated-metadata z-exclusion | ON | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | Excludes `z_*` archive directories from the spec-folder discovery scanner. Set `false` to restore the prior scanner that descended them | `lib/search/folder-discovery.ts` |
-| Lexical grounding v1 | ON | `SPECKIT_LEXICAL_GROUNDING` | Graduated default-on: the grounding floor and single-hit corroboration guard run on the request-quality verdict. Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict | `lib/search/search-flags.ts` |
+| Lexical grounding | ON | `SPECKIT_LEXICAL_GROUNDING` | Graduated default-on: the grounding floor and single-hit corroboration guard run on the request-quality verdict. Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict | `lib/search/search-flags.ts` |
 | False-confirm max rate | 0 (enforcing) | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | Graduated default: the off-corpus eval gate enforces a zero-tolerance ceiling when unset, so any false-confirm rate past 0 fails. Set a number in `[0,1]` to override the ceiling | `scripts/evals/run-false-confirm-eval.mjs` |
 | Entity config path override | (bundled rules) | `SPECKIT_ENTITY_CONFIG_PATH` | Overrides the path to the entity-extraction rules JSON. Unset uses the bundled ruleset | `lib/extraction/entity-extractor.ts` |
 
@@ -182,6 +182,9 @@ the publication guard helpers used by the evaluation dashboard.
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
+| `MEMORY_DB_PATH` | (unset) | string | Explicit SQLite file path override; its parent directory becomes the active database directory unless `SPEC_KIT_DB_DIR`/`SPECKIT_DB_DIR` is set. | `core/config.ts` |
+| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root override used for path validation and startup/pending-file recovery scans. | `core/config.ts`, `context-server.ts` |
+| `MEMORY_ALLOWED_PATHS` | (unset) | string (path-list) | Adds extra allowed base paths for migration/index file access, split with the platform path delimiter. | `lib/search/vector-index-schema.ts` |
 | `SPECKIT_HEAP_SNAPSHOT_DIR` | (unset) | string | Opt-in directory for V8 heap snapshots written by byte-aware health telemetry. The server creates the directory with mode `0700` and snapshot files with mode `0600`. Snapshots can contain sensitive memory contents. | `mcp_server/lib/telemetry/heap-profiler.ts` |
 | `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` | (unset) | number | Optional child-process V8 old-space cap for `context-server.js`. The launcher passes `--max-old-space-size=<value>` only when set. No cap is applied by default. | `.opencode/bin/mk-spec-memory-launcher.cjs` |
 | `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for MCP launcher bridge mode. Set `1` to force legacy strict-single-writer behavior where secondary launchers print `LEASE_HELD_BY` and exit instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/mk-*-launcher.cjs` |
@@ -204,6 +207,13 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_VERBOSE_RESOLVER` | `false` | flag (`"1"`) | Set `1` to log the underlying cause when the documentation-level contract resolver falls back. Diagnostic only. | `lib/templates/level-contract-resolver.ts` |
 | `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | Enforce strict JSON schema validation on MCP tool inputs. Set `false` to relax. | `schemas/tool-input-schemas.ts` |
 | `SPECKIT_SKIP_API_VALIDATION` | `false` | boolean | Skip API-level input validation. Opt-in: set `true` to enable. | `context-server.ts` |
+| `MCP_CHARS_PER_TOKEN` | `4` | number | Character-to-token estimate used by preflight token budget validation. | `lib/validation/preflight.ts` |
+| `MCP_MAX_MEMORY_TOKENS` | `8000` | number | Maximum estimated tokens allowed for a single memory during preflight validation. | `lib/validation/preflight.ts` |
+| `MCP_TOKEN_WARNING_THRESHOLD` | `0.8` | number | Fraction of the token budget at which preflight emits a warning. | `lib/validation/preflight.ts` |
+| `MCP_MIN_CONTENT_LENGTH` | `10` | number | Minimum content length accepted by preflight validation. | `lib/validation/preflight.ts` |
+| `MCP_MAX_CONTENT_LENGTH` | `250000` | number | Maximum content length accepted before preflight reports large-content handling. | `lib/validation/preflight.ts` |
+| `MCP_DUPLICATE_THRESHOLD` | `0.95` | number | Similarity threshold for preflight similar-duplicate detection. | `lib/validation/preflight.ts` |
+| `MCP_ANCHOR_STRICT` | `false` | boolean | Enables strict anchor validation when set to lowercase `true`. | `lib/validation/preflight.ts` |
 | `SPECKIT_BOOT_FTS_AUTOHEAL` | `true` | boolean | Boot-time FTS5 shadow-index auto-heal after an unclean shutdown marker. When unset, the server rebuilds and re-verifies the derived FTS shadow index before serving. Set `0` for detect-only mode that logs the failure without attempting the rebuild. | `context-server.ts` |
 | `SPECKIT_DYNAMIC_INIT` | `true` | boolean | Dynamic startup instruction injection for the MCP server. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ROLLOUT_PERCENT` | `100` | number | Global rollout percentage (0-100) for feature flag gating. Controls what fraction of feature checks pass. | `lib/cognitive/rollout-policy.ts` |
@@ -283,6 +293,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_QUERY_SURROGATES` | `true` | boolean | Index-time surrogate metadata for recall improvement (REQ-D2-005). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_QUERY_CONCEPT_EXPANSION` | `true` | boolean | Query concept expansion via alias matching for hybrid search (Phase B T016). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_LLM_REFORMULATION` | `true` | boolean | Corpus-grounded LLM query reformulation, deep-mode only (REQ-D2-003). Requires LLM endpoint. Graduated ON. | `lib/search/search-flags.ts` |
+| `LLM_REFORMULATION_ENDPOINT` | (unset) | string | OpenAI-compatible base URL used for query reformulation; unset disables the provider call and falls back locally. | `lib/search/llm-reformulation.ts` |
+| `LLM_REFORMULATION_API_KEY` | empty string | string | Optional bearer token for the reformulation endpoint. | `lib/search/llm-reformulation.ts` |
+| `LLM_REFORMULATION_MODEL` | `gpt-4o-mini` | string | Model name sent to the configured reformulation endpoint. | `lib/search/llm-reformulation.ts` |
 | `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_HYDE_ACTIVE` | (derived) | boolean | Runtime HyDE activation gate. Lowercase `true` enables. | `lib/search/hyde.ts` |
 | `SPECKIT_HYDE_LOG` | `false` | boolean | Enable verbose HyDE generation logging. Opt-in. | `lib/search/hyde.ts` |
@@ -410,6 +423,12 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_IDEMPOTENCY_RECEIPT_TTL_DAYS` | `30` | number (positive int) | Retention window, in days, for stored idempotency-replay receipts before pruning. An explicit caller argument takes precedence. Invalid/non-positive values fall back to the default (minimum 1). | `lib/storage/idempotency-receipts.ts` |
 | `SPECKIT_MEMORY_IDEMPOTENCY` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Default-off server-derived replay receipts for `memory_save`/`memory_update`, plus advisory `near_duplicate_of` hints. Default OFF, so set an enabled value to opt in. | `lib/storage/idempotency-receipts.ts` |
 | `SPECKIT_SOFT_DELETE_TOMBSTONES` | `false` | boolean (`'true'`) | Default-off tombstone delete path for memory deletes and the purgeable retention partition. Keep OFF until recall surfaces filter `deleted_at IS NULL`, then set `true` to enable. | `handlers/memory-crud-delete.ts`, `lib/governance/memory-retention-sweep.ts` |
+| `SESSION_TTL_MINUTES` | `30` | number | Working-memory session TTL in minutes. | `lib/session/session-manager.ts` |
+| `SESSION_MAX_ENTRIES` | `100` | number | Maximum working-memory entries retained per session. | `lib/session/session-manager.ts` |
+| `DISABLE_SESSION_DEDUP` | `false` | boolean | Disables session-level deduplication when set to lowercase `true`. | `lib/session/session-manager.ts` |
+| `SESSION_DEDUP_DB_UNAVAILABLE_MODE` | `block` | enum: `block`, `allow` | Chooses whether session dedup blocks or allows operation when its database path is unavailable. | `lib/session/session-manager.ts` |
+| `STALE_CLEANUP_INTERVAL_MS` | `3600000` | number | Interval for background stale-session cleanup. | `lib/session/session-manager.ts` |
+| `STALE_SESSION_THRESHOLD_MS` | `86400000` | number | Inactivity threshold before a session is considered stale. | `lib/session/session-manager.ts` |
 | `SPECKIT_MEMORY_SESSION_ID` | (unset) | string | Explicit override for the no-session `memory_context` anchor. When set, the trimmed value is used as the session-bucket anchor instead of the scope-derived or single-user default. It is not a governance boundary. | `handlers/memory-context.ts` |
 | `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | boolean | Opt-in placeholder for rendering acceptance-criteria traceability tables in future scaffold templates. Current delivery documents the flag. Template mutation is intentionally outside this rollout. | `scripts/rules/check-ac-coverage.sh` |
 | `SPECKIT_AC_COVERAGE` | `false` | boolean | Opt-in acceptance-criteria coverage scan during spec validation. When unset, the registered rule exits pass with no warnings, preserving strict-validation results for existing folders. | `scripts/rules/check-ac-coverage.sh` |
@@ -558,6 +577,11 @@ These variables are no longer active but may still appear in compatibility code.
 | `SPECKIT_LAZY_LOADING` | **Deprecated** | (removed) | Lazy loading is always enabled. Compatibility flag. |
 | `SPECKIT_SHADOW_SCORING` | **Deprecated** | `SPECKIT_SHADOW_FEEDBACK` | Shadow scoring flag removed. Shadow evaluation uses SHADOW_FEEDBACK. |
 | `SPECKIT_RSF_FUSION` | **Deprecated** | `SPECKIT_RRF` | Referenced in tests only. Legacy alias. |
+| `SPECKIT_LEXICAL_GROUNDING_V1` | **Deprecated** | `SPECKIT_LEXICAL_GROUNDING` | Legacy graduated flag name; use the unsuffixed current variable. |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | **Deprecated** | `SPECKIT_NOISE_FLOOR_SUBTRACTION` | Legacy graduated flag name; use the unsuffixed current variable. |
+| `SPECKIT_CITE_WITH_CAVEAT_V1` | **Deprecated** | `SPECKIT_CITE_WITH_CAVEAT` | Legacy graduated flag name; use the unsuffixed current variable. |
+| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | **Deprecated** | `SPECKIT_EVIDENCE_GAP_VERDICT` | Legacy graduated flag name; use the unsuffixed current variable. |
+| `SPECKIT_ENVELOPE_FIDELITY_V1` | **Deprecated** | `SPECKIT_ENVELOPE_FIDELITY` | Legacy graduated flag name; use the unsuffixed current variable. |
 
 ---
 
@@ -623,6 +647,12 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (39 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons. MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.
 
 Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of them is set, the CLI defaults to `--warm-only`: it probes the daemon socket and exits `75` instead of cold-spawning the launcher, which is the contract prompt-time hooks rely on. `--no-warm-only` on the command line overrides the env default. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`.
+
+Spec-memory CLI also accepts `--session-id ID`. The CLI injects it as `sessionId` or `session_id` only when the selected tool schema supports that field, preserving explicit JSON/per-parameter values when already supplied.
+
+| CLI flag | Default | Description | Source |
+|----------|---------|-------------|--------|
+| `--session-id ID` | (unset) | Supplies a shared session identifier to tools that accept session continuity or session-scoped telemetry. | `mcp_server/spec-memory-cli.ts` |
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|

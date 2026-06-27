@@ -248,8 +248,8 @@ Four flip default-ON, one flips OFF to enforce and one sets its CI ceiling. Each
 |------|-------|---------|-------------------|
 | `SPECKIT_IDENTITY_MERGE_SAFETY` | 033 | GRADUATE default-ON | Migrate driver verify pass on the restamped tree read 2049 folders with 0 violations, clean true, exit 0, so the lineage-preserving re-derive now reads a tree written under the new merge. |
 | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | 035 | GRADUATE default-ON | A double generate held deterministic on 61 of 61 folders, so the no-op-skip no longer mass-rewrites the normalized tree on first save. |
-| `SPECKIT_LEXICAL_GROUNDING_V1` | 026 | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, a clean before-and-after on the metric the switch exists to move. |
-| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | 028-scoring-hardening | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, the same measured win lexical grounding cleared. |
+| `SPECKIT_LEXICAL_GROUNDING` | 026 | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, a clean before-and-after on the metric the switch exists to move. |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION` | 028-scoring-hardening | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, the same measured win lexical grounding cleared. |
 | `SPECKIT_GENERATED_METADATA_GRANDFATHER` | 036 | GRADUATE default-OFF enforcing | Verify pass on the restamped tree read 2049 folders with 0 violations, exit 0, so the integrity rule flips from report-only `info` to a hard strict error. |
 | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | 025 | GRADUATE ceiling 0 | The CI gate exits 0 with lexical grounding on and exits 1 with the verdict flags off, so the ceiling is set to 0 and the gate now fails on any off-corpus false confirm. |
 
@@ -274,9 +274,9 @@ it was deleted with its code under the earn-or-delete bar.
 | Flag | Phase | Verdict | Measured evidence |
 |------|-------|---------|-------------------|
 | `SPECKIT_GROUNDING_SIGNAL_V1` | 028-scoring-hardening | DELETED | A grounded-vs-low fixture confirmed it sets the field correctly, but it moves no retrieval metric: a display-only field. Deleted with its flag, reader, fixture and test under earn-or-delete. |
-| `SPECKIT_CITE_WITH_CAVEAT_V1` | 028-scoring-hardening | GRADUATE default-ON | On a borderline-grounded fixture it recovered one result the binary policy drops to do_not_cite and fired only on the borderline, a measurable effect. |
-| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | 028-scoring-hardening | GRADUATE default-ON | On a Stage-4 gap fixture it capped one otherwise-good verdict to weak and left a no-gap verdict unchanged, a measurable safety effect. |
-| `SPECKIT_ENVELOPE_FIDELITY_V1` | 027 | GRADUATE default-ON | A captured render corpus showed the checker flags 3 of 3 dropped renders a no-checker baseline passes silently and passes 3 of 3 faithful renders, a measurable effect. |
+| `SPECKIT_CITE_WITH_CAVEAT` | 028-scoring-hardening | GRADUATE default-ON | On a borderline-grounded fixture it recovered one result the binary policy drops to do_not_cite and fired only on the borderline, a measurable effect. |
+| `SPECKIT_EVIDENCE_GAP_VERDICT` | 028-scoring-hardening | GRADUATE default-ON | On a Stage-4 gap fixture it capped one otherwise-good verdict to weak and left a no-gap verdict unchanged, a measurable safety effect. |
+| `SPECKIT_ENVELOPE_FIDELITY` | 027 | GRADUATE default-ON | A captured render corpus showed the checker flags 3 of 3 dropped renders a no-checker baseline passes silently and passes 3 of 3 faithful renders, a measurable effect. |
 
 ### Default-ON by construction (1)
 
