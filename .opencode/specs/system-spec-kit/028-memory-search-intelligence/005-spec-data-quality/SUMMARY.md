@@ -1,72 +1,72 @@
-# Data Quality Program: Plain-Language Summary
+# Data Quality Program: Navigation Index
 
-> What this folder is, in one line: a research packet that asked how to make spec-kit write the best possible documentation and metadata by default, and turned the answer into 28 planned improvements. Nothing here is built yet. It is a researched, costed, ready-to-build plan.
-
----
-
-## The two things to understand first
-
-**1. Production keeps at least three results, and the "3" is a floor, not a cap.** When the system looks something up it always returns at least three results, and usually more, up to about twenty. It only trims the longer tail in two cases: when there is a sharp relevance drop-off it cuts at that cliff, and a running token budget caps how much text can be handed to the AI. That token budget, not the number three, is the real limiter in production. So an improvement that "finds more documents" is not automatically wasted. The catch is that the offline test harness does not trim the way production does, so any retrieval improvement has to be re-measured in production mode before it can be trusted. Write-time fixes (improving a document as it is saved) skip the retrieval path entirely, so they ship on cost alone. That split, retrieval must be proven and write-time is cheap, is what decides which ideas below are worth doing.
-
-**2. There is already an automatic quality checker that nobody pointed at the right files.** A tool already grades documents and auto-fixes problems when memories get saved. The biggest single win in the whole program is just to *also run it on the spec docs and the JSON metadata files*, where it does not run today. Most of the program is wiring up machinery that already exists, not building new things.
+> What this folder is, in one line: a built-out data-quality lineage with 44 verified child folders. Children 001 through 028 preserve the original planned research scaffold, and children 029 through 044 record the shipped benchmark, generated-metadata, migration, flag-graduation and search-quality tail.
 
 ---
 
-## What got added to this folder
+## Current Navigation
 
-- **The research** (`research/`): five independent deep-research passes (37 rounds total, run on Opus) that produced `research/research.md`, the full findings and the tiered list of recommendations.
-- **28 planned phase folders** (`001-*` through `028-*`): one per recommendation, each with its own spec, plan, task list, checklist and summary. They are grouped into on-write checks (001-010), background automation (011-013), search-tuning items (014-018, all gated), novel ideas (019-025), the shared engine (026), the search-window experiment (027) and the rollout plan (028).
-- **A changelog for every phase** plus a rollup, in the packet changelog directory.
-- **Updates to the wider 028 planning docs** so the parent packet records this work honestly as a research track.
-
----
-
-## The recommendations in plain terms
-
-**Do now, one sure thing (low risk):** turn on a schema check that already exists but is not switched on. It catches malformed metadata files. The one catch is small but real: a few older files fail the check today, so the switch flips to error-level only after those are repaired to a clean baseline. Cheap, not literally free.
-
-**Cheap wins, extend the existing quality checker to the docs:**
-- Auto-write a real description instead of copying the title.
-- Lock the allowed values for status and tier fields so typos cannot sneak in.
-- Make the keywords match across the three places they are stored.
-- Auto-fix the house-style rules.
-- Add fill-in-the-blank requirement templates so the AI follows specs more precisely.
-- Surface the freshness and source information that is already computed but hidden.
-
-**The most-automated layer (the part that runs itself):**
-- A scheduled sweep that re-checks every document on a timer and auto-fixes the safe problems, flagging the risky ones for a human.
-- Give the `/doctor` command the ability to fix things, not just detect them.
-- A feedback loop where documents that never get used in searches get flagged for improvement.
-
-**The novel ideas (judged 12, kept 7):** an AI that grades each doc's quality, auto-generated "what questions does this answer" tags, cross-document contradiction detection, freshness decay, search-index drift monitoring, auto-generated examples and tests and a quality dashboard.
-
-**The maybes (do not build until proven):** the search-tuning tricks. They only pay off if a real production-mode measurement shows they help, and that proof does not exist yet. The plan builds the measurement first.
-
-**The do-nots:** do not swap the database, do not add cryptographic signing and above all do not build a second quality system. Extend the one that already runs.
+- **Program narrative:** [`../before-vs-after.md`](../before-vs-after.md) explains how this track fits into the wider 028 program.
+- **Benchmark and test status:** [`benchmark-and-test-status.md`](benchmark-and-test-status.md) records the local benchmark and verification state.
+- **Authoritative rollup:** [`../changelog/005-spec-data-quality/changelog-005-root.md`](../changelog/005-spec-data-quality/changelog-005-root.md) is the source-of-truth rollup for phase status.
 
 ---
 
-## What is buildable now, and what waits for proof
+## 001-028: Original Planned Research Scaffold
 
-Of the 28 planned phases, four are ready to build today, because the machinery they lean on already ships and their value does not depend on an unproven measurement:
-- the schema check that catches malformed metadata (the one sure thing),
-- the shared engine that the on-write checks share,
-- the keystone that points the existing quality checker at the spec docs and JSON files,
-- locking the allowed values for the status and tier fields.
+The original research program remains intact as planned scaffolding. These folders hold the deep-research recommendations and build contracts, not shipped implementation evidence.
 
-Everything in the search-tuning group and the thinner novel ideas is deferred-until-measured. They earn a build only once a real production-mode measurement shows that the change actually helps what readers see, and that measurement does not exist yet. So those phases stay scaffolded and planned, not started. Nothing here is removed. The honest reading is "a handful of buildable phases plus a measurement gate", not "all 28 ready to go".
+| Range | Folders | Status |
+|-------|---------|--------|
+| 001-010 | On-write authored-doc and metadata quality checks | Planned scaffold |
+| 011-013 | Retroactive automation and `/doctor` data-quality route | Planned scaffold |
+| 014-018 | Retrieval-tier search tuning behind the prod-mode measurement gate | Planned scaffold |
+| 019-025 | Novel write-surface and quality-analysis ideas | Planned scaffold |
+| 026 | Shared safe-fix engine | Planned scaffold |
+| 027 | Retrieval floor experiment | Planned scaffold |
+| 028 | Governance and rollout plan | Planned scaffold |
 
----
-
-## What was done to this folder (the work history)
-
-1. **Researched** the topic with the official multi-pass deep-research workflow.
-2. **Scaffolded** all 28 phases to full detail so each is ready to pick up and build.
-3. **Wrote** a changelog for every phase and wove the program into the parent planning docs.
-4. **Reviewed** the whole packet with a 20-round deep review. It caught a real bookkeeping mistake (some docs claimed 100 percent done while others still said 5 percent and pointed at "start the research loop") and a few inaccurate scaffold details (a plan that said to add an export which already exists, a seam that needed to cover both metadata files not one, a reuse that crossed a code boundary). All of these were verified and fixed.
+The honest read is still the one captured by the review remediation: the buildable-now subset was small, while retrieval-facing candidates wait on production-mode evidence.
 
 ---
 
-## Honest status
+## 029-032: Research and Benchmark Bridge
 
-This is research only. Nothing is built and nothing is shipped. The only measurement that exists is the small census that sized the schema-check win, and the pass-or-fail outcomes that would prove each phase are SPECIFIED but not yet run. The one sure-thing improvement is turning on an existing schema check, once the few stale files it flags are cleaned up first. The search-tuning ideas stay switched off until a real production-mode measurement proves they help, because production trims results differently than the offline test harness does. The single biggest piece of value is the keystone: extend the live quality checker to the documents and JSON files it does not yet touch. The folder is a ready-to-build plan, not a delivered feature.
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 029 | `029-vague-query-model-benchmark/` | Complete, benchmark | Vague-query model-behavior benchmark over 144 cells across four models. |
+| 030 | `030-improvement-research/` | Complete, research | Improvement research that diagnosed a calibration miss and produced ranked proposals. |
+| 031 | `031-generated-json-quality-research/` | Complete, research | Generated-JSON quality research that drove the 033 through 040 build. |
+| 032 | `032-z-future-always-ignored/` | Complete | Added `z_future` to the generated-metadata exclusion rule while leaving `z_archive` covered. |
+
+---
+
+## 033-040: Generated Metadata Build, Migration and Flag Graduation
+
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 033 | `033-identity-resolver-merge-safety/` | Complete, graduated default-on | Preserves one specs-root-relative identity with parent and child lineage on re-derive. |
+| 034 | `034-scoped-backfill-boundary/` | Complete, default-on by construction | Keeps `z_*` staging out of descriptions cache writes through the scoped backfill boundary. |
+| 035 | `035-idempotent-writes-cache-upsert/` | Complete, graduated default-on | Skips volatile-only description rewrites and narrows cache upserts to real deltas. |
+| 036 | `036-metadata-validator-status-enum/` | Complete, graduated enforcing | Generated-metadata validator and status enum enforcement. |
+| 037 | `037-drift-gate-synopsis-extractor/` | Complete, graduated default-on | Shared synopsis extraction and drift freshness keys. |
+| 038 | `038-generator-hardening/` | Complete, graduated default-on | Source fingerprint, one child enumeration path and index-layer telemetry. |
+| 039 | `039-full-repo-json-migration/` | Complete | Regenerated every eligible `description.json` and `graph-metadata.json` to the new format. |
+| 040 | `040-flag-graduation-benchmark/` | Complete | Earn-or-delete benchmark that kept twelve generated-metadata and verdict flags and deleted one. |
+
+---
+
+## 041-044: Search Quality and Evidence-Gap Wave
+
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 041 | `041-search-quality-fixes/` | Complete | Six live search-quality fixes, including the evidence-gap cap bridge and deterministic-ranking flag. |
+| 042 | `042-deterministic-ranking-benchmark/` | Complete | Read-only graduation benchmark for the deterministic-ranking flag. |
+| 043 | `043-gap-threshold-calibration-benchmark/` | Complete | Threshold sweep proving the Z-score gap detector measured peakedness rather than relevance. |
+| 044 | `044-relevance-aware-evidence-gap/` | Complete | Gated relevance-aware evidence-gap detector and re-benchmark. |
+
+---
+
+## Count and Source Notes
+
+The verified disk inventory is 44 child folders, `001-*` through `044-*`. No `045-*` child folder is present in this track at this point. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.

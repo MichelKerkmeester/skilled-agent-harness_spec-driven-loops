@@ -1,29 +1,22 @@
 {
   "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
-  "description": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict:",
+  "description": "The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
   "keywords": [
-    "028",
-    "deep",
-    "review",
-    "tri-model",
-    "40-seat",
-    "fan-out",
-    "plus",
-    "10-iteration",
-    "lens",
-    "deep-dive",
-    "claude",
-    "adversarially",
-    "verified",
+    "original",
+    "source-review",
+    "context",
     "closed",
     "converged",
-    "verdict"
+    "verdict",
+    "confirmed"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.810Z",
+  "lastUpdated": "2026-06-27T15:13:41.159Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence"
   ],

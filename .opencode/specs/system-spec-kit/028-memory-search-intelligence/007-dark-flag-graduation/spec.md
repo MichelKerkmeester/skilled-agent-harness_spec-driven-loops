@@ -14,6 +14,20 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
+    recent_action: "Graduated four dark-flag families on measured wins, cut four on measured loss/tie, held the citation ledger at refine"
+    next_safe_action: "None — track complete; production flips remain separate evidence-gated decisions"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "011-graduation-follow-ups/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-24-028-007-dark-flag-graduation-parent"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Eight dark-flag families were measured against the real graph and corpus; four graduated, four were cut, and the true-citation ledger was held at refine."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: Dark Flag Graduation Suite

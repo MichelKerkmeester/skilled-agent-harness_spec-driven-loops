@@ -20,10 +20,12 @@
     "eval",
     "coverage"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.134Z",
+  "lastUpdated": "2026-06-27T15:13:40.310Z",
   "specId": "001",
   "folderSlug": "speckit-memory",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence"
   ],

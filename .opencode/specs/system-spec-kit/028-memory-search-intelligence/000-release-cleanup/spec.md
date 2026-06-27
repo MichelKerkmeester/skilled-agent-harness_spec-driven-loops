@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "All nine child cleanup phases executed and committed"
+    recent_action: "All thirteen child cleanup and validation phases executed"
     next_safe_action: "Parent complete, 003 and 006 subsets deferred to concurrent session"
     blockers: []
     key_files:
@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "All nine child cleanup phases executed against their doc surfaces."
+      - "All thirteen child phases executed or recorded their validation and drift-remediation scope."
       - "Phases 003 and 006 defer a subset to the concurrent session that owns it."
 ---
 
@@ -54,10 +54,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 is approaching release and its documentation surfaces need a focused release-readiness sweep. The cleanup must be split by document family so each pass has a clear target, explicit discovery method and verification contract.
+Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases. The parent needs to read as the completed cleanup rollup, not as an unexecuted scaffold, while still recording that the 003 and 006 subsets owned by a concurrent session were deliberately deferred.
 
 ### Purpose
-Define the release-cleanup root purpose and child phase map without executing the cleanup. Each child phase owns one documentation surface, lists its candidate set as PENDING and records the checks that must pass during the later cleanup run.
+Define the release-cleanup root purpose and executed child phase map. Each child phase owns one documentation or validation surface and the detailed evidence lives in `../changelog/000-release-cleanup/changelog-000-root.md` plus the linked child changelogs.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -68,34 +68,35 @@ Define the release-cleanup root purpose and child phase map without executing th
 ## 3. SCOPE
 
 ### In Scope
-- Release-readiness documentation sweep planning across every doc surface in the repository.
-- Child phase definitions for README files, skill docs, catalogs, playbooks, commands, agents, routing docs, changelogs, constitutional docs and templates.
-- Discovery and verification contracts for later cleanup execution.
+- Executed release-readiness documentation sweeps across README files, skill docs, catalogs, playbooks, commands, agents, routing docs, changelogs, constitutional docs and templates.
+- Follow-on coverage audit, daemon-skills playbook validation, playbook findings remediation and drift remediation children.
+- Explicit recording of the deferred 003 and 006 subsets that stayed with their concurrent owning session.
 
 ### Out of Scope
-- Executing any cleanup.
+- Re-executing cleanup already recorded in the child changelogs.
 - Editing packet 030.
-- Marking cleanup candidates complete.
+- Owning the deferred 003 and 006 file subsets outside this session's scope.
 
 ### Files to Change
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `spec.md` | Create | parent | Root purpose and child map |
-| `description.json` | Create | parent | Search metadata for this phase parent |
-| `graph-metadata.json` | Create | parent | Child identity and phase graph metadata |
-| `001-code-readmes/spec.md` | Create | 001 | Defines scope and acceptance criteria |
-| `002-skill-and-repo-readmes/spec.md` | Create | 002 | Defines scope and acceptance criteria |
-| `003-skill-references-assets-and-skillmd/spec.md` | Create | 003 | Defines scope and acceptance criteria |
-| `004-feature-catalogs/spec.md` | Create | 004 | Defines scope and acceptance criteria |
-| `005-manual-testing-playbooks/spec.md` | Create | 005 | Defines scope and acceptance criteria |
-| `006-commands/spec.md` | Create | 006 | Defines scope and acceptance criteria |
-| `007-agents/spec.md` | Create | 007 | Defines scope and acceptance criteria |
-| `008-agents-md/spec.md` | Create | 008 | Defines scope and acceptance criteria |
-| `009-changelogs-constitutional-and-templates/spec.md` | Create | 009 | Defines scope and acceptance criteria |
-| `010-catalog-playbook-coverage-audit/spec.md` | Create | 010 | Catalog and playbook coverage audit |
-| `011-daemon-skills-playbook-validation/spec.md` | Create | 011 | Daemon skills playbook validation |
-| `012-playbook-findings-remediation/spec.md` | Create | 012 | Playbook findings remediation |
+| `spec.md` | Maintain | parent | Executed root purpose and child map |
+| `description.json` | Generator-owned | parent | Search metadata for this phase parent |
+| `graph-metadata.json` | Generator-owned | parent | Child identity and phase graph metadata |
+| `001-code-readmes/spec.md` | Executed | 001 | Per-directory code README sweep |
+| `002-skill-and-repo-readmes/spec.md` | Executed | 002 | Skill-level and top-level README sweep |
+| `003-skill-references-assets-and-skillmd/spec.md` | Executed | 003 | SKILL.md, references and assets sweep with subset deferred |
+| `004-feature-catalogs/spec.md` | Executed | 004 | Feature catalog sweep |
+| `005-manual-testing-playbooks/spec.md` | Executed | 005 | Manual testing playbook sweep |
+| `006-commands/spec.md` | Executed | 006 | Command doc sweep with subset deferred |
+| `007-agents/spec.md` | Executed | 007 | Agent definition and runtime mirror sweep |
+| `008-agents-md/spec.md` | Executed | 008 | Root AGENTS and runtime-routing mirror sweep |
+| `009-changelogs-constitutional-and-templates/spec.md` | Executed | 009 | Changelog, constitutional doc and template sweep |
+| `010-catalog-playbook-coverage-audit/spec.md` | Executed | 010 | Catalog and playbook coverage audit |
+| `011-daemon-skills-playbook-validation/spec.md` | Executed | 011 | Daemon skills playbook validation |
+| `012-playbook-findings-remediation/spec.md` | Executed | 012 | Playbook findings remediation |
+| `013-drift-remediation/spec.md` | Executed | 013 | Drift-remediation findings closure |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,20 +118,21 @@ Define the release-cleanup root purpose and child phase map without executing th
 | 010 | `010-catalog-playbook-coverage-audit/` | Catalog and playbook coverage audit | COMPLETE |
 | 011 | `011-daemon-skills-playbook-validation/` | Daemon skills playbook validation | COMPLETE, salvaged |
 | 012 | `012-playbook-findings-remediation/` | Playbook findings remediation | COMPLETE |
+| 013 | `013-drift-remediation/` | Drift-audit findings remediation relocated from the former 028/008 track | COMPLETE |
 
 ### Phase Transition Rules
 
-- Each child phase starts PENDING and defines scope only.
-- Cleanup execution must happen inside one child phase at a time.
-- Parent status changes only after child strict validation passes.
-- Packet 030 remains out of scope for this release-cleanup scaffold.
+- Each child phase records the scope and evidence for its own cleanup or validation pass.
+- Phases 003 and 006 are complete for their owned scope and defer only the subsets held by a concurrent session.
+- Parent state follows the executed child changelog rollup.
+- Packet 030 remains out of scope for this release-cleanup track.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| parent | child | Select one PENDING documentation surface | Child `spec.md` names discovery, scope and acceptance criteria |
-| child | parent | Child cleanup later reaches strict validation green | `validate.sh <child> --strict` exits 0 |
+| parent | child | Inspect one executed documentation or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
+| child | parent | Child state changes | Update the child changelog and roll up through `changelog-000-root.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -138,7 +140,7 @@ Define the release-cleanup root purpose and child phase map without executing th
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None for the scaffold. Cleanup findings belong in the selected child phase during execution.
+- None at the parent level. The detailed evidence source is `../changelog/000-release-cleanup/changelog-000-root.md`.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -147,5 +149,4 @@ Define the release-cleanup root purpose and child phase map without executing th
 
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
-- **Child phases**: `001-code-readmes/` through `012-playbook-findings-remediation/`
-
+- **Child phases**: `001-code-readmes/` through `013-drift-remediation/`

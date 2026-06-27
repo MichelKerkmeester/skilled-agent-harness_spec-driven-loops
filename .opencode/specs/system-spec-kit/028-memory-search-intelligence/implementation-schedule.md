@@ -1,5 +1,7 @@
 # 028 Dependency Ordered Build Schedule
 
+> **HISTORICAL:** This schedule is superseded by the per-track changelog rollups and current graph metadata. Use `changelog/README.md` and `spec.md` for current state.
+
 Read basis: all 42 implementation child `spec.md` and `plan.md` files under `001-speckit-memory`, `002-code-graph`, `003-skill-advisor` and `004-deep-loop`.
 
 This schedule orders phases, not task files. Candidate counts are phase-local candidate rows or explicit prose counts from the child docs. DONE candidates shipped in packet 030 stay skipped unless a phase also has pending residue.

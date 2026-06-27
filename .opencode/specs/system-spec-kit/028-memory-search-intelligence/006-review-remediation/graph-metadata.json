@@ -34,25 +34,27 @@
       "deep",
       "phase",
       "parent",
-      "tri-model",
-      "40-seat",
-      "fan-out"
+      "original",
+      "source-review",
+      "context"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+      "shared/algorithms/rrf-fusion.ts",
       "spec.md",
       "001-eval-benchmark-fidelity/spec.md",
       "002-memory-schema-and-concurrency/spec.md",
       "003-doc-accuracy/spec.md",
-      "004-p2-triage/spec.md"
+      "004-p2-triage/spec.md",
+      "005-env-documentation-audit/spec.md",
+      "006-review-record-packet-type/spec.md"
     ],
     "entities": [
       {
         "name": "rrf-fusion.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+        "path": "shared/algorithms/rrf-fusion.ts",
         "source": "derived"
       },
       {
@@ -98,17 +100,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
+    "causal_summary": "The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-25T18:01:44.482Z",
+    "last_save_at": "2026-06-27T15:13:41.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7ea62d86e48e7e061f935c113efe50e24c303b415f288b85206609b416fc64d9",
+    "source_fingerprint": "sha256:5658d67c7a5fcafd00eac06349a1bfb3e27b6ee4e9f5ebbb8ecf7ac3f63c8ef8",
     "source_doc_hashes": {
-      "spec.md": "a211658d566c3e9fdb376f6d341638dcd4897dd1c559b0fc5e0efd8b89bc3841"
+      "spec.md": "4041dd5795032533662b136cebc13fc6393af47f1480091e2afae5e1ef3e987f"
     },
     "last_active_child_id": null,
     "last_active_at": null

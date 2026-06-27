@@ -348,7 +348,7 @@ flag was deleted along with its code rather than left dormant. The final tally i
 delete 10. The per-flag resolution table lives in
 [`keep-off-flag-roadmap.md`](./keep-off-flag-roadmap.md) and the final tally in
 [`benchmark-status.md`](./benchmark-status.md), with the full method and 4-layer verification in
-[`007-kept-off-flag-resolution/`](./007-kept-off-flag-resolution/).
+[`001-speckit-memory/022-kept-off-flag-resolution/`](./001-speckit-memory/022-kept-off-flag-resolution/).
 
 Five switches earned default-on. The honest framing matters so a release sign-off does not read a safety
 flip as a precision win. `SPECKIT_CONFIDENCE_CALIBRATION` kept on an unqualified win, held-out ECE 0.184
@@ -394,7 +394,7 @@ The reckoning did not end the campaign, it opened the next one. The ten deletion
 lever fails to move live recall, and those teachings were read as a research input rather than a dead end.
 The research found four candidate features that might earn a flip where the deleted ten did not. The arc
 then ran research to eval-v2 to build to benchmark to a fresh-Opus hold. The full method lives in
-[`008-new-feature-research-build/`](./008-new-feature-research-build/) and the held flags are recorded in
+[`001-speckit-memory/023-new-feature-research-build/`](./001-speckit-memory/023-new-feature-research-build/) and the held flags are recorded in
 [`feature-flags.md`](./feature-flags.md).
 
 eval-v2 was built first and kept. The old harness had hidden the deleted features behind eval-saturation, so

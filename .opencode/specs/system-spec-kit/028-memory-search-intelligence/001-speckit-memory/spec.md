@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Spec-Kit Memory MCP Phase Parent"
-description: "Phase parent for 21 Spec-Kit Memory MCP implementation plans derived from packet 028 research."
+description: "Phase parent for 29 Spec-Kit Memory MCP child phases derived from packet 028 research and follow-on builds."
 trigger_phrases:
   - "028 speckit memory implementation parent"
   - "memory mcp child phase map"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 21 implementation sub-phases"
+    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 29 child phases"
     next_safe_action: "Use the child map to implement PENDING memory candidates in gate order"
     blockers: []
     key_files:
@@ -22,6 +22,7 @@ _memory:
       - "research/research.md"
       - "001-corpus-reindex-gate-zero/spec.md"
       - "021-residual-correctness/spec.md"
+      - "029-substrate-sandbox-cleanup/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-speckit-memory-parent"
@@ -29,7 +30,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The memory research child now routes to 21 implementation child folders."
+      - "The memory research child now routes to 29 child folders."
       - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
 ---
 
@@ -72,7 +73,7 @@ Provide the subsystem root purpose and implementation phase map for the Memory M
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 21 Memory MCP implementation child folders.
+- Root-level routing for the 29 Memory MCP child folders.
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -121,6 +122,14 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 019 | `019-eval-harness-extension/` | Evaluation harness extension | Partial |
 | 020 | `020-eval-calibration-ab/` | Evaluation calibration A/B plan | Partial (observe-only) |
 | 021 | `021-residual-correctness/` | Residual correctness from candidate 015 | Done |
+| 022 | `022-kept-off-flag-resolution/` | Flag-resolution reckoning across every built keep-off flag | Milestone, after the phase builds |
+| 023 | `023-new-feature-research-build/` | TRACK B new-feature research, eval-v2 and three held default-off builds | Milestone, after the reckoning |
+| 024 | `024-reranker-research/` | Citation reranker research verdict | Research, no code |
+| 025 | `025-off-corpus-eval-fixture-gate/` | Off-corpus eval fixture and false-confirm CI gate | Complete, enforcing |
+| 026 | `026-lexical-grounding-floor/` | Lexical-grounding floor for off-corpus false-confirm reduction | Complete, graduated default-on |
+| 027 | `027-envelope-fidelity-enforcement/` | Envelope render slot fidelity and checker | Complete, graduated default-on |
+| 028 | `028-scoring-hardening/` | Verdict-path scoring hardening flags | Complete, three graduated and one deleted |
+| 029 | `029-substrate-sandbox-cleanup/` | Substrate stress-harness sandbox cleanup | Complete |
 
 ### Phase Transition Rules
 

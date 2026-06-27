@@ -47,7 +47,7 @@ The whole point of the reckoning was to stop carrying machinery the system never
 
 ## 4. THE TEN DELETED SWITCHES (FOR THE RECORD)
 
-The reckoning deleted ten default-off switches and their code after a fair real-world simulation showed each one was not worthwhile. They are listed here so a reader who remembers them knows they were resolved and removed, not silently left off. The per-flag deciding evidence lives in [`benchmark-status.md`](./benchmark-status.md) and [`007-kept-off-flag-resolution/`](./007-kept-off-flag-resolution/).
+The reckoning deleted ten default-off switches and their code after a fair real-world simulation showed each one was not worthwhile. They are listed here so a reader who remembers them knows they were resolved and removed, not silently left off. The per-flag deciding evidence lives in [`benchmark-status.md`](./benchmark-status.md) and [`001-speckit-memory/022-kept-off-flag-resolution/`](./001-speckit-memory/022-kept-off-flag-resolution/).
 
 | deleted flag | one-line deciding evidence | 028 phase |
 | --- | --- | --- |
@@ -78,7 +78,7 @@ The other three candidates were built default-off, benchmarked in prod mode and 
 | `SPECKIT_LANE_CHAMPION_BACKFILL` | OFF (`false`) | Reserves a backfill slot for the top hit of each retrieval lane so no lane is shut out of the result set. | 0.000 delta, structurally redundant with RRF which already absorbs every lane champion. Reserving a slot duplicates work the fuser already does. | Retire the investment. It has no path to a flip and is redundant with the fuser. | 001 |
 | `SPECKIT_TRUE_CITATION_EMITTER` | OFF (`false`) | Emits a clean default-off shadow that produces the corpus's missing negative-citation labels for evaluation. | The shadow is clean and produces the missing negatives, but its positive label depends on the assistant literally echoing the memory id, so positives are under-counted and the measured signal cannot credit it yet. | Fix the positive label with content-attribution, then run a one-shot offline mining pass before any collection decision. | 001 |
 
-The full method, the per-feature prod-mode numbers and the append-not-displace truncation finding live in [`008-new-feature-research-build/`](./008-new-feature-research-build/).
+The full method, the per-feature prod-mode numbers and the append-not-displace truncation finding live in [`001-speckit-memory/023-new-feature-research-build/`](./001-speckit-memory/023-new-feature-research-build/).
 
 ---
 

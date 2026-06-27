@@ -28,6 +28,8 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+> **HISTORICAL:** This handover is superseded by the per-track changelog rollups and current graph metadata. Use `changelog/README.md` and `spec.md` for current state.
+
 # Session Handover Document
 
 Handover for continuing packet 028 with **broadening rounds**: adversarial verification of the roadmap's inferred cross-system claims, deeper external-source mining, and per-candidate feasibility/migration-risk. Research-only — no production code changes.

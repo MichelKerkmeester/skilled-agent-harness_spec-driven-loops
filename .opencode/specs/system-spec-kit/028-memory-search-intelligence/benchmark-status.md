@@ -163,7 +163,7 @@ default-on flips with the rest held off pending a path to useful. The reckoning 
 Each default-off flag was simulated under a fair real-world load and given a final keep-or-delete decision
 per flag, fresh-Opus confirmed. Five switches earned default-ON and stayed. Ten did not earn their keep
 and their code was removed from the tree. The full per-flag method and the 4-layer verification live in
-[`007-kept-off-flag-resolution/`](./007-kept-off-flag-resolution/).
+[`001-speckit-memory/022-kept-off-flag-resolution/`](./001-speckit-memory/022-kept-off-flag-resolution/).
 
 **Final tally: KEEP 5 default-ON, DELETE 10.**
 

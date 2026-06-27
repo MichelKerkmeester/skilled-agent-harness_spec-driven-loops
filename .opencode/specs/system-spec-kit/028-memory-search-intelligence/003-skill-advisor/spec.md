@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Advisor Phase Parent"
-description: "Phase parent for 7 Skill Advisor implementation plans derived from packet 028 research."
+description: "Phase parent for 8 Skill Advisor implementation plans derived from packet 028 research."
 trigger_phrases:
   - "028 skill advisor implementation parent"
   - "skill advisor child phase map"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired Skill Advisor as a phase parent with 7 implementation sub-phases"
+    recent_action: "Wired Skill Advisor as a phase parent with 8 implementation sub-phases"
     next_safe_action: "Use the child map to implement PENDING advisor candidates after the shared RRF foundation"
     blockers: []
     key_files:
@@ -22,6 +22,7 @@ _memory:
       - "research/research.md"
       - "001-rrf-determinism-spine/spec.md"
       - "007-outcome-weighted-ranking-followon/spec.md"
+      - "008-advisor-workspace-root-resolution/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-skill-advisor-parent"
@@ -29,7 +30,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The skill-advisor research child now routes to 7 implementation child folders."
+      - "The skill-advisor research child now routes to 8 implementation child folders."
       - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
 ---
 
@@ -72,7 +73,7 @@ Provide the subsystem root purpose and implementation phase map for the Skill Ad
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 7 Skill Advisor implementation child folders.
+- Root-level routing for the 8 Skill Advisor implementation child folders.
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -107,6 +108,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 005 | `005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Implemented (default-off) |
 | 006 | `006-provenance-drift-observability/` | Provenance drift observability | Partial |
 | 007 | `007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Implemented (shadow-only, live NO-GO) |
+| 008 | `008-advisor-workspace-root-resolution/` | Resolve the advisor workspace root by walking up from the module location so advisor state writes to the canonical root | Complete |
 
 ### Phase Transition Rules
 

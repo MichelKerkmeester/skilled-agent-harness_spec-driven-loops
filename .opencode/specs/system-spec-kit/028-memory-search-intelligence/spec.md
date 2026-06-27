@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Memory Search Intelligence Phase Parent"
-description: "Phase parent for the five subsystem and release-readiness tracks."
+description: "Phase parent for the eight release, subsystem, data-quality, remediation and dark-flag tracks."
 trigger_phrases:
   - "028 memory search intelligence"
   - "external memory systems research"
@@ -26,6 +26,9 @@ _memory:
       - "003-skill-advisor/spec.md"
       - "004-deep-loop/spec.md"
       - "000-release-cleanup/spec.md"
+      - "005-spec-data-quality/SUMMARY.md"
+      - "006-review-remediation/spec.md"
+      - "007-dark-flag-graduation/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-memory-search-intelligence-parent"
@@ -43,6 +46,10 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Feature Specification: Memory Search Intelligence Phase Parent
+
+## How to read this packet
+
+Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `before-vs-after.md`, `feature-flags.md` and `benchmark-status.md` as the current navigation and evidence set. Treat `handover.md` and `review-report.md` as historical continuity, `implementation-schedule.md` as historical scheduling, and `timeline.md` as the chronological record.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -64,10 +71,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its seven top-level children span a release-cleanup phase parent, four subsystem phase parents, the spec-data-quality research packet and a review-remediation phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement and scoring-hardening builds as children 025 through 028.
+Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its eight top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent and the dark-flag graduation program so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 000 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
+Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the release-cleanup, subsystem, data-quality, review-remediation and dark-flag children to their current child maps and records packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 > **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -78,8 +85,8 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for packet 028 subsystem phase parents.
-- Phase-documentation map updates for children 000 through 006.
+- Root-level routing for packet 028 phase parents and track roots.
+- Phase-documentation map updates for children 000 through 007.
 - Release-cleanup scope routing for every pre-release documentation surface.
 - Merged research archive pointers for earlier research-only rounds.
 - A pointer to packet 030 as the Wave-0 SHIPPED done-evidence record.
@@ -111,17 +118,21 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
-| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 28 implementation child plans, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024 and the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement and scoring-hardening builds as 025 through 028 | Phase parent |
+| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 29 child phases, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024 and the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as 025 through 029 | Phase parent |
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
-| 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
+| 003 | `003-skill-advisor/` | Skill Advisor research plus 8 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
-| 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 40 child phases spanning the go/no-go research tiering, the generated-metadata build phases 033 through 038, the full-repo JSON migration 039 and the flag-graduation benchmark 040 that kept twelve flags and deleted one | Complete |
-| 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
+| 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 44 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave | Complete |
+| 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005 and 006 executed, 002 and 004 pending | Phase parent |
+| 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
 
 ### Phase Transition Rules
 
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
-- Child 000 is a release-cleanup phase parent. Its direct child folders define cleanup scopes only until a later execution pass.
+- Child 000 is an executed release-cleanup phase parent. Its direct child folders record the cleanup, validation and drift-remediation scopes.
+- Child 005 is the data-quality lineage. Its first 28 children remain the planned research scaffold and children 029 through 044 record the shipped benchmark, generated-metadata, migration and search-quality tail.
+- Child 006 is the review-remediation rollup, with four executed children and two pending remediation contracts.
+- Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
@@ -129,9 +140,9 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| root | child parent | Select a child from 000 through 006 | Child `spec.md` lists all direct children or scoped docs |
+| root | child parent | Select a child from 000 through 007 | Child `spec.md` lists all direct children or scoped docs |
 | subsystem parent | implementation child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
-| release cleanup parent | cleanup child | Select one PENDING documentation surface | Child `spec.md` names discovery, scope and verification |
+| release cleanup parent | cleanup child | Inspect one executed cleanup or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
@@ -156,6 +167,6 @@ The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates alr
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Child parents**: `000-release-cleanup/`, `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-spec-data-quality/`, `006-review-remediation/`
+- **Child parents**: `000-release-cleanup/`, `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-spec-data-quality/`, `006-review-remediation/`, `007-dark-flag-graduation/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

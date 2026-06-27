@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 028 Review Remediation Phase Parent"
-description: "Phase parent for remediating the 028 deep-review findings (0 P0, 6 P1, 91 P2, NOT CONVERGED)."
+description: "Phase parent for the six-child 028 review-remediation track, with four executed scopes and two pending remediation contracts."
 trigger_phrases:
   - "028 review remediation"
   - "memory search intelligence review remediation"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Created review-remediation phase-parent scaffold from deep-review findings"
-    next_safe_action: "Select a child phase and execute only that remediation scope"
+    recent_action: "Reconciled the review-remediation parent to the six-child executed and pending state"
+    next_safe_action: "Execute 002 and finalize 004 in their owning child phases"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,15 +21,17 @@ _memory:
       - "002-memory-schema-and-concurrency/spec.md"
       - "003-doc-accuracy/spec.md"
       - "004-p2-triage/spec.md"
+      - "005-env-documentation-audit/spec.md"
+      - "006-review-record-packet-type/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-006-review-remediation-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 67
     open_questions: []
     answered_questions:
-      - "This scaffold plans remediation scope only."
-      - "Code fixes are executed inside the child phases by separate seats."
+      - "001, 003, 005 and 006 executed their scopes."
+      - "002 and 004 remain pending remediation contracts."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -57,10 +59,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 028 deep review (tri-model 40-seat fan-out plus a 10-iteration lens deep-dive, claude adversarially verified) closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. The single blocking class is benchmark fidelity, where the per-flag eval driver measures every flag on a non-representative all-channels path so the criterion-4 flip decision rests on the wrong data. Two concurrency races, one schema identity split and a shipped-doc mislabel round out the P1 set. The findings need a bounded, per-family remediation plan so each fix has a clear target, a quoted source finding and an explicit verification contract.
+The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. That source review remains the frozen input for the first four remediation families, but the track has since progressed. Phases 001 and 003 executed their source-review remediation scopes, phases 002 and 004 remain pending contracts, and phases 005 and 006 later shipped the ENV-documentation audit/remediation and marker-gated review packet type work.
 
 ### Purpose
-Turn the review-report findings into independently executable remediation phases without performing the fixes here. Each child phase owns one finding family, cites the exact `file:line` and quoted fix intent from `../review-report.md` and records the checks that must pass when the fix runs. The parent records the convergence note and the per-child roster only.
+Keep the parent as the six-child review-remediation rollup. The child folders own implementation detail, evidence and verification; `../changelog/006-review-remediation/changelog-006-root.md` is the current status source and `../review-report.md` is source-review context for the first four children.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning, tasks and checklists live in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -71,12 +73,13 @@ Turn the review-report findings into independently executable remediation phases
 ## 3. SCOPE
 
 ### In Scope
-- Remediation planning for the 6 confirmed P1 findings, split into eval-benchmark fidelity, memory schema and concurrency and doc accuracy.
-- A scope-and-triage pass over the 91 P2 findings grouped by review lens, marking each group fix-now versus accept-as-is.
-- Per-phase discovery, fix intent and verification contracts quoted from `../review-report.md`.
+- The six-child review-remediation roster and current status.
+- Executed state for 001 eval-benchmark fidelity, 003 doc accuracy, 005 ENV-documentation audit and 006 review-record packet type.
+- Pending state for 002 memory schema and concurrency and 004 P2 triage.
+- Source-review context for the original P1/P2 finding families.
 
 ### Out of Scope
-- Executing any code fix at the parent level (the child phases own execution, dispatched to separate seats).
+- Executing any code fix at the parent level.
 - Touching the concurrent session's files (`shared/algorithms/rrf-fusion.ts`, deep-research assets, `.opencode/commands/*`, `.gitignore`).
 - Editing packet 030 or any sibling 028 child outside the cited findings.
 - Re-deriving the review verdict (the report is the frozen source of truth for this remediation).
@@ -85,13 +88,15 @@ Turn the review-report findings into independently executable remediation phases
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `spec.md` | Create | parent | Root purpose, convergence note, child roster |
-| `description.json` | Create | parent | Search metadata for this phase parent |
-| `graph-metadata.json` | Create | parent | Child identity and phase graph metadata |
-| `001-eval-benchmark-fidelity/spec.md` | Create | 001 | P1-1 + P1-3 eval-driver fidelity remediation scope |
-| `002-memory-schema-and-concurrency/spec.md` | Create | 002 | P1-2 + P1-4 + P1-5 schema and concurrency remediation scope |
-| `003-doc-accuracy/spec.md` | Create | 003 | P1-6 + the iteration-9 doc staleness cluster remediation scope |
-| `004-p2-triage/spec.md` | Create | 004 | 91 P2 grouped by lens, fix-now versus accept-as-is triage |
+| `spec.md` | Maintain | parent | Six-child current-state roster |
+| `description.json` | Generator-owned | parent | Search metadata for this phase parent |
+| `graph-metadata.json` | Generator-owned | parent | Child identity and phase graph metadata |
+| `001-eval-benchmark-fidelity/spec.md` | Executed | 001 | P1-1 + P1-3 eval-driver fidelity remediation scope |
+| `002-memory-schema-and-concurrency/spec.md` | Pending | 002 | P1-2 + P1-4 + P1-5 schema and concurrency remediation scope |
+| `003-doc-accuracy/spec.md` | Executed | 003 | P1-6 + the iteration-9 doc staleness cluster remediation scope |
+| `004-p2-triage/spec.md` | Pending | 004 | 91 P2 grouped by lens, fix-now versus accept-as-is triage |
+| `005-env-documentation-audit/spec.md` | Executed | 005 | ENV-documentation review and remediation |
+| `006-review-record-packet-type/spec.md` | Executed | 006 | Marker-gated review packet type validation |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,29 +108,32 @@ Turn the review-report findings into independently executable remediation phases
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-eval-benchmark-fidelity/` | P1-1 forceAllChannels + P1-3 trigger-ablation no-op, fix driver, re-run criterion-4 benchmark | PENDING |
-| 002 | `002-memory-schema-and-concurrency/` | P1-2 derived-id split + P1-4 embedding-in-lock + P1-5 retention spare-only stale snapshot | PENDING |
-| 003 | `003-doc-accuracy/` | P1-6 changelog shipped-vs-Planned mislabel + 12-strong doc staleness cluster | PENDING |
-| 004 | `004-p2-triage/` | 91 P2 grouped by lens, each marked fix-now or accept-as-is (scope only) | PENDING |
+| 001 | `001-eval-benchmark-fidelity/` | Corrected the per-flag benchmark driver to production routing, dropped the no-op trigger-ablation row and re-ran criterion 4 | Shipped |
+| 002 | `002-memory-schema-and-concurrency/` | Derived-id split, in-lock embedding and retention spare-axis fixes scoped from source-review findings | PENDING, scaffold only |
+| 003 | `003-doc-accuracy/` | Reclassified the shipped-default-off rollup and reconciled timeline, before-vs-after and benchmark-status staleness | Shipped, parent-dispatched scope |
+| 004 | `004-p2-triage/` | 91 P2 grouped into 15 lens families with fix-now versus accept-as-is routing still open | PENDING, scaffold only |
+| 005 | `005-env-documentation-audit/` | ENV-documentation deep review and remediation across stale dist, flag defaults and structure gaps | Complete |
+| 006 | `006-review-record-packet-type/` | Marker-gated review packet type that validates lean review records without the full Level 1 doc set | Complete |
 
-### Convergence Note
+### Source-Review Context
 
-The deep review verdict is **NOT CONVERGED**. The last three deep-dive iterations did not stop surfacing new P1 (the largest confirmed-P1 spike, 13, landed in the second-to-last iteration), so there is no clean trailing window. After phases 001-003 fix the confirmed P1 and phase 004 closes its fix-now P2 set, the deep review **MUST be re-run until a round surfaces zero new P0/P1**, then this remediation can be declared release-clean. A single clean round is the convergence gate. Phase 001 also supersedes the prior criterion-4 measurement and must re-run that benchmark.
+The old deep-review detail is source-review context for the first four children, not the current parent status. That source review was NOT CONVERGED and required a clean re-review after the confirmed P1 fixes and fix-now P2 set closed. The current rollup records that 001 and 003 executed, 002 and 004 remain pending, and 005 and 006 completed later scoped work.
 
 ### Phase Transition Rules
 
-- Each child phase starts PENDING and defines remediation scope only.
-- A separate seat executes each fix inside one child phase at a time.
-- Parent status changes only after the child's strict validation passes.
+- Children 001, 003, 005 and 006 are executed scopes.
+- Children 002 and 004 remain pending remediation contracts.
+- A separate seat executes each remaining fix inside one child phase at a time.
+- Parent status follows the per-child changelog rollup.
 - The concurrent session's files and packet 030 remain out of scope.
-- After 001-003 land, re-run `/deep:review` on 028 until a clean round before closing.
+- After 002 executes and 004 closes its fix-now set, re-run `/deep:review` on 028 until a clean round before closing the source-review remediation loop.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| parent | child | Select one PENDING finding family | Child `spec.md` cites the finding `file:line` and quoted fix intent |
-| child | re-review | All cited findings in the child are fixed | `validate.sh <child> --strict` exits 0 and the child's verification commands pass |
+| parent | child | Select one pending finding family or inspect an executed child | Child `spec.md` and changelog cite scope, evidence and status |
+| child | re-review | All cited findings in a pending child are fixed | `validate.sh <child> --strict` exits 0 and the child's verification commands pass |
 | re-review | parent | Deep review re-run surfaces zero new P0/P1 | A clean `/deep:review` round on 028 |
 <!-- /ANCHOR:phase-map -->
 
@@ -144,4 +152,4 @@ The deep review verdict is **NOT CONVERGED**. The last three deep-dive iteration
 - **Source review**: `../review-report.md`
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
-- **Child phases**: `001-eval-benchmark-fidelity/` through `004-p2-triage/`
+- **Child phases**: `001-eval-benchmark-fidelity/` through `006-review-record-packet-type/`

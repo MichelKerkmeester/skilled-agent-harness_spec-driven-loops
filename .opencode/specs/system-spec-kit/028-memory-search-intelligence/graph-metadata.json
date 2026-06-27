@@ -50,7 +50,9 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/merged-research-index.md",
+      "changelog/README.md",
+      "handover.md",
+      "001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
       "002-code-graph/spec.md",
       "003-skill-advisor/spec.md",
@@ -61,8 +63,7 @@
       "001-speckit-memory/research/from-007-memory-systems/research.md",
       "001-speckit-memory/research/from-005-revisit-027/research.md",
       ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
-      "handover.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts"
+      "lib/response/envelope.ts"
     ],
     "entities": [
       {
@@ -72,9 +73,21 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "merged-research-index.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/merged-research-index.md",
+        "path": "001-speckit-memory/research/merged-research-index.md",
         "source": "derived"
       },
       {
@@ -90,15 +103,9 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "envelope.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts",
+        "path": "lib/response/envelope.ts",
         "source": "derived"
       },
       {
@@ -204,9 +211,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces",
+    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-26T20:31:34.159Z",
+    "last_save_at": "2026-06-27T15:13:39.916Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +221,11 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:28f00781e044997de12e8279ac48a680c4177de0bca123c3de9761e02b9eb716",
+    "source_fingerprint": "sha256:c78e6d03fe2904a1616092b170b5d7bb3161a33dd38249bf61a6a983324b9bcf",
     "source_doc_hashes": {
-      "spec.md": "03a1091c5dc1c259da8e282178743e0160964dff664bf6962779f5f922120da7",
+      "spec.md": "fa36c29f6d45060f183ea56e1eedfbb12309040ad577ecb0083ae86c9f2a02a0",
       "research/research.md": "0ca48b10a71cbbce24603941b831f0184c1371959a33363276b7bebb688c78a3",
-      "handover.md": "76d08d445b698c6d60fff25380b935cbac662b57bc01d75dfabf988c315555c4"
+      "handover.md": "7549be2c5d63718c1ea3f7e585923e8d09369868e7550c68ae4295ded81adf60"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

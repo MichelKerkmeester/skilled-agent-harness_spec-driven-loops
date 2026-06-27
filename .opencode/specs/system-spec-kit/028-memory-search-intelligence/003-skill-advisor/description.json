@@ -21,10 +21,12 @@
     "drift",
     "metrics"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.421Z",
+  "lastUpdated": "2026-06-27T15:13:40.610Z",
   "specId": "003",
   "folderSlug": "skill-advisor",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence"
   ],
