@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands, and agent metadata",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-06-27T13:56:37.288Z",
+    "last_save_at": "2026-06-27T14:02:25.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:765cfa8778b7c59fba58679a740d0c594ca32264c3117e84e0c5328c40808e34",
+    "source_fingerprint": "sha256:37a61fac6d2e55b04f8713c62677cbfd537ee1a08ca32deb7036e594f0be4e77",
     "source_doc_hashes": {
-      "spec.md": "fcbf157417457ec79abf4b49b8e16842f4e778d195497f47d227421427f8de79",
+      "spec.md": "c0eb5434d5bf36359c17a0f2f459661fee11348f20b22dfe7e0c1cbcf24fc9a3",
       "plan.md": "3112aa9f31c5db961cfce92381de677377f17f803f7e8a56906cd7c2b1efd156",
       "tasks.md": "00e7a36c5e4a1fb31d2a36c7c7042a8daa32c6b3cab8024f214ea0588a7a9bd0",
       "checklist.md": "95ea59f3ecdb5cea0e42cf791edeb44b4723ffc4210f741e8528ec8bd14abcbe",
-      "implementation-summary.md": "2c118e769fe7ebe0ff8d9561d075a77454e41124c732e5a4f5079a7db4b14465"
+      "implementation-summary.md": "3140adb0d91f0a88379ec5adc655b5825c82ae3e72c8e936e0f2ec1180dd5711"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Remaining P1/P2"
-description: "Drift-remediation phase 006-remaining-p1-p2: 46 findings (35 fixed, 11 false-positive)."
+description: "Drift-remediation phase 006-remaining-p1-p2: 46 findings (34 fixed, 12 false-positive)."
 trigger_phrases:
   - "feature"
   - "specification"

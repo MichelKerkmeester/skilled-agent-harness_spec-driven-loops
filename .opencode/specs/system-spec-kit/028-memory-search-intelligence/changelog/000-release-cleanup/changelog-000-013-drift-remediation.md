@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-A 50-iteration, multi-model drift audit of packet 028 converged 175 findings (6 P0, 91 P1, 78 P2) — each an LLM hypothesis with file:line evidence. This phase remediated and verified every one under a two-role contract: gpt-5.5-fast high implemented the fixes, and opus did both pre-fix triage (read the cited file, mark REAL or FALSE-POSITIVE) and post-fix verification (git-diff + re-read the real file; never trust the implementer's self-report). The remediation ledger (`remediation-ledger.jsonl`) reached 100% terminal: **131 fixed-verified + 44 false-positive**. No regressions — a captured baseline showed the one failing test (a gate-3 classifier case referencing the renamed `/deep:start-research-loop`) was pre-existing from the deep-loop merge, not introduced here.
+A 50-iteration, multi-model drift audit of packet 028 converged 175 findings (6 P0, 91 P1, 78 P2) — each an LLM hypothesis with file:line evidence. This phase remediated and verified every one under a two-role contract: gpt-5.5-fast high implemented the fixes, and opus did both pre-fix triage (read the cited file, mark REAL or FALSE-POSITIVE) and post-fix verification (git-diff + re-read the real file; never trust the implementer's self-report). The remediation ledger (`remediation-ledger.jsonl`) reached 100% terminal: **130 fixed-verified + 45 false-positive**. No regressions — a captured baseline showed the one failing test (a gate-3 classifier case referencing the renamed `/deep:start-research-loop`) was pre-existing from the deep-loop merge, not introduced here.
 
 ### Changed
 

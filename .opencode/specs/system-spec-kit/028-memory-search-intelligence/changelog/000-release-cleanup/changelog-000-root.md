@@ -36,7 +36,7 @@ This rollup reflects the executed state of the release-cleanup children. The fir
 | [`010-catalog-playbook-coverage-audit`](./changelog-000-010-catalog-playbook-coverage-audit.md) | Complete | Research-only 20-iteration audit confirmed roughly fifty catalog and playbook coverage gaps across the three system skills and cleared a twelve-flag false positive, no catalog or playbook modified. |
 | [`011-daemon-skills-playbook-validation`](./changelog-000-011-daemon-skills-playbook-validation.md) | Complete | Ran every stress suite plus 222 of 471 playbook scenarios across three cli models, documented fourteen real product findings with remediation, report salvaged after the workspace wipe. |
 | [`012-playbook-findings-remediation`](./changelog-000-012-playbook-findings-remediation.md) | Complete | Remediated the about twenty-two real findings from the daemon-skills playbook validation in eight clusters A through H, verified per cluster, landed on the 028 review-branch mainline (commits adbcc65e83 through 64d064d868). |
-| [`013-drift-remediation`](./changelog-000-013-drift-remediation.md) | Complete | Remediated and verified all 175 converged drift-audit findings (6 P0, 91 P1, 78 P2); ledger 100% terminal at 131 fixed-verified + 44 false-positive, zero regressions. Relocated from 028/008-drift-remediation. |
+| [`013-drift-remediation`](./changelog-000-013-drift-remediation.md) | Complete | Remediated and verified all 175 converged drift-audit findings (6 P0, 91 P1, 78 P2); ledger 100% terminal at 130 fixed-verified + 45 false-positive, zero regressions. Relocated from 028/008-drift-remediation. |
 
 ### Added
 

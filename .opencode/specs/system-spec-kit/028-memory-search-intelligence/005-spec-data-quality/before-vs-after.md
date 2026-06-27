@@ -106,4 +106,4 @@ The current state splits in two. The original twenty-eight research phases stay 
 
 ---
 
-The 2026-06-27 post-release drift audit + remediation (175 findings converged across packet 028, driven to 100% terminal — 131 fixed-verified, 44 false-positive) corrected residual documentation, config and metadata drift touching this track. The umbrella record is in the [028 before-vs-after.md](../before-vs-after.md) Section 12 and the [013 drift-remediation changelog](../changelog/000-release-cleanup/changelog-000-013-drift-remediation.md).
+The 2026-06-27 post-release drift audit + remediation (175 findings converged across packet 028, driven to 100% terminal — 130 fixed-verified, 45 false-positive) corrected residual documentation, config and metadata drift touching this track. The umbrella record is in the [028 before-vs-after.md](../before-vs-after.md) Section 12 and the [013 drift-remediation changelog](../changelog/000-release-cleanup/changelog-000-013-drift-remediation.md).

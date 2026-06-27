@@ -56,7 +56,7 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-This phase remediated env-var documentation, code/doc drift, the CI drift-guard, memory commands, and agent metadata. gpt-5.5-fast high implemented the scoped fixes; opus triaged each finding real-vs-false-positive against the cited file and re-verified every fix by re-reading the real file. Result: 35 fixed-verified, 11 false-positive, 0 open.
+This phase remediated env-var documentation, code/doc drift, the CI drift-guard, memory commands, and agent metadata. gpt-5.5-fast high implemented the scoped fixes; opus triaged each finding real-vs-false-positive against the cited file and re-verified every fix by re-reading the real file. Result: 34 fixed-verified, 12 false-positive, 0 open.
 
 ### Terminal remediation of 46 findings
 
