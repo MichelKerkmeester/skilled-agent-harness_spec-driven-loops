@@ -59,6 +59,6 @@ Nothing. No defects were introduced or corrected in production paths.
 ### Follow-Ups
 
 - True-citation ledger confidence remains Low. Live density only accumulates from new session-carrying traffic. No graduation action possible until production data exists.
-- Bitemporal reads consumer wiring is not confirmed end-to-end. The review recommends re-classifying bitemporal reads as REFINE before final production graduation decision.
+- Bitemporal reads consumer wiring is not confirmed end-to-end. The review recommends re-classifying bitemporal reads as REFINE before final production graduation decision. **Update: the writer wiring landed in the 011 graduation follow-ups (`011-graduation-follow-ups/001-codegraph-defaults-bitemporal`) — `code-graph-db.ts` now writes `valid_at`/`invalid_at` on the `replaceEdges` path behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.**
 - Three unset production tunables (degree-cap default 0, heartbeat cadence 0, lag ceiling 0) need defined values before flip.
 - Token-budget truncation at the MCP response-serialization boundary for multihop tail-appended rows (P1-001) warrants a follow-up `appendExempt` flag on the response serializer.

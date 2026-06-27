@@ -59,6 +59,6 @@ _No file-level detail recorded._
 
 ### Follow-Ups
 
-- The bitemporal edge writer must be wired into the `replaceEdges` reindex path behind its read flag before that flag can flip. The validation and review phases both recorded the wiring as the one honest remaining step.
+- The bitemporal edge writer must be wired into the `replaceEdges` reindex path behind its read flag before that flag can flip. The validation and review phases both recorded the wiring as the one honest remaining step. **Resolved in the 011 graduation follow-ups (`011-graduation-follow-ups/001-codegraph-defaults-bitemporal`): the writer was wired into `code-graph-db.ts` behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`, closing superseded edges with an open validity window on reindex.**
 - The true-citation ledger stays at refine until live session-carrying traffic reaches the density floor the probe now reports.
 - The unset production tunables for the deep-loop gauges and the degree cap need defined values, and flipping any graduated default on stays a separate evidence-gated decision outside this program.
