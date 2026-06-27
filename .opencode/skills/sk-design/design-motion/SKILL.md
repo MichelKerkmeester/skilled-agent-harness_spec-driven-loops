@@ -89,6 +89,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/animate_presence_checklist.md` provides a pass-or-fail checklist for shipping `AnimatePresence` exits.
 - `assets/motion_performance_failure_card.md` provides a build-side card of motion patterns that drop frames, each with its failure signature and the cheaper mechanism to replace it.
 - `../shared/register.md` is the parent Brand-vs-Product register. This child reads its motion-budget dial. It sits outside the mode and is not auto-discovered, so it is pointed to explicitly.
+- `../shared/sk_code_handoff.md` defines the implementation mechanism and stack-boundary field for motion handoff.
 
 ### Resource Loading Levels
 
@@ -99,7 +100,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
 | CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
 | CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
-| CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` |
+| CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` and `../shared/sk_code_handoff.md` |
 | CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate_presence_checklist.md` |
 | CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
 | ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
@@ -117,7 +118,7 @@ DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
     "DECISION": {"weight": 4, "keywords": ["should this animate", "restraint", "restraint gate", "animate at all", "motion budget", "frequency", "keyboard rule", "trim", "over-animated", "decision framework", "animate everywhere", "animation everywhere", "command palette", "polished"]},
-    "STRATEGY": {"weight": 4, "keywords": ["motion strategy", "timing", "easing", "choreography", "stagger", "material", "purpose", "duration", "spring", "design the motion", "motion for", "premium", "feel premium"]},
+    "STRATEGY": {"weight": 4, "keywords": ["motion strategy", "timing", "easing", "choreography", "stagger", "material", "purpose", "duration", "spring", "design the motion", "motion for", "premium", "feel premium", "handoff", "stack boundary", "animation library"]},
     "MICRO_INTERACTIONS": {"weight": 4, "keywords": ["micro", "hover", "active", "loading", "gesture", "delight", "icon", "morph", "feedback", "press", "pattern card", "spec card", "toast", "drawer", "notification", "button", "menu"]},
     "PRESENCE": {"weight": 4, "keywords": ["animatepresence", "framer", "motion/react", "exit", "presence", "modal", "checklist"]},
     "PERFORMANCE": {"weight": 4, "keywords": ["reduced motion", "performance", "jank", "scroll", "blur", "filter", "will-change", "flip", "dropped frames", "failure card", "compositor"]},
@@ -125,7 +126,7 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "DECISION": ["references/animation_decision_framework.md"],
-    "STRATEGY": ["references/motion_strategy.md", "references/corpus_map.md"],
+    "STRATEGY": ["references/motion_strategy.md", "references/corpus_map.md", "../shared/sk_code_handoff.md"],
     "MICRO_INTERACTIONS": ["references/micro_interactions.md", "assets/motion_pattern_cards.md"],
     "PRESENCE": ["references/animate_presence_patterns.md", "assets/animate_presence_checklist.md"],
     "PERFORMANCE": ["references/performance_reduced_motion.md", "assets/motion_performance_failure_card.md"],
@@ -264,6 +265,10 @@ def route_motion_resources(user_request, task=None):
 7. Spec the pattern with the matching card in `assets/motion_pattern_cards.md`, run `assets/animate_presence_checklist.md` for any exit and clear `assets/motion_performance_failure_card.md` before handoff.
 8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks.
 
+### Motion sk-code Handoff Boundary
+
+Before `sk-code` implements motion, fill the shared envelope from `../shared/sk_code_handoff.md`. The motion-owned field is `IMPLEMENTATION MECHANISM / STACK BOUNDARY`: name CSS transitions, Web Animations, View Transitions, `motion/react`, GSAP or the existing project animation system. If no library applies, say `no animation library`. `sk-code` must not migrate or mix animation systems inside one interaction surface without approval.
+
 ### Motion Judgment
 
 Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehearsed transition beats scattered reveal effects across every section.
@@ -320,6 +325,7 @@ Fill-in cards. Copy, complete, and hand off:
 - [`assets/motion_pattern_cards.md`](assets/motion_pattern_cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
 - [`assets/animate_presence_checklist.md`](assets/animate_presence_checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
 - [`assets/motion_performance_failure_card.md`](assets/motion_performance_failure_card.md) - Build-side failure-mode card for motion that drops frames.
+- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Motion uses it for implementation mechanism and stack-boundary fields.
 
 ### Parent Shared Base
 
@@ -339,6 +345,7 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - Reduced-motion behavior is specified.
 - A pattern card is filled, the AnimatePresence checklist passes for any exit and the performance failure card clears before handoff.
 - Implementation handoff names the target states, target properties, and verification risks.
+- Implementation handoff names the animation mechanism and forbids accidental library migration or mixed animation systems.
 - Motion does not block interaction, compete with primary hierarchy, or exhaust the user.
 
 ---

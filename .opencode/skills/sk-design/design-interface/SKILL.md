@@ -75,7 +75,7 @@ DESIGN TASK
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
-| CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real_ui_loop.md` (ground in a system, reuse before generating, fidelity check, handoff) |
+| CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real_ui_loop.md` (ground in a system, reuse before generating, fidelity check, handoff) and `../shared/sk_code_handoff.md` (required build manifest for sk-code) |
 | CONDITIONAL | Final mechanical pass before shipping | `references/design-process/mechanical_defaults.md` (the layout gate) and `assets/interface_preflight_card.md` (the fill-in PASS or FAIL pre-flight card) |
 | CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy_and_mock_data.md` (realistic mock content, no lorem, no AI-tell copy) |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design_inventory.md` |
@@ -114,7 +114,7 @@ RESOURCE_MAP = {
     "REGISTER_DIALS": ["references/design-process/brief_to_dials.md"],
     "VARIATION_DIVERSITY": ["references/design-process/variation_diversity.md"],
     "UX_QUALITY": ["references/design-process/ux_quality_reference.md"],
-    "REAL_UI_LOOP": ["references/design-process/real_ui_loop.md"],
+    "REAL_UI_LOOP": ["references/design-process/real_ui_loop.md", "../shared/sk_code_handoff.md"],
     "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical_defaults.md", "references/design-process/copy_and_mock_data.md", "references/design-process/brief_to_dials.md", "assets/interface_preflight_card.md"],
     "COPY_MOCK_DATA": ["references/design-process/copy_and_mock_data.md"],
     "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design_inventory.md"],
@@ -172,6 +172,10 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 A taste read misses structural and content tells, so two binary gates run before delivery. The layout gate in `references/design-process/mechanical_defaults.md` counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in `references/design-process/copy_and_mock_data.md` sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The fill-in `assets/interface_preflight_card.md` is the checkable form of both plus the dials: every box is binary, and a single fail means the surface is not done.
 
+### Required sk-code Build Manifest
+
+When interface hands a built or specified UI to `sk-code`, emit the shared handoff envelope from `../shared/sk_code_handoff.md`. The interface-owned fields are required: `WHAT`, locked tokens and values, signature moves, motion budget, reuse list, open risks with verification, and `NEVER-CHANGE` constraints. Include URLs, nav labels, form field names, legal copy and any brief-pinned values when they must remain untouched.
+
 ---
 
 ## 4. RULES
@@ -212,6 +216,7 @@ A taste read misses structural and content tells, so two binary gates run before
 - [`references/mcp-tooling/refero_tools.md`](references/mcp-tooling/refero_tools.md) - Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, call convention, result shape, troubleshooting.
 - [`references/design-process/variation_diversity.md`](references/design-process/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
 - [`references/design-process/real_ui_loop.md`](references/design-process/real_ui_loop.md) - The real-UI loop: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
+- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Interface uses it as the required build manifest for real UI handoff.
 - [`../shared/register.md`](../shared/register.md) - The shared Brand-vs-Product operating register. Set it first. It gates density, motion, color dosage, copy, anti-slop strictness.
 - [`references/design-process/brief_to_dials.md`](references/design-process/brief_to_dials.md) - Design Read intake that maps the variance, motion and density dials to choices and defers the Brand-vs-Product posture to the shared register. Consult at the start of a task.
 - [`references/design-process/mechanical_defaults.md`](references/design-process/mechanical_defaults.md) - The mechanical anti-default layout gate (hero, bento, meta-label, button contrast, spacing). Authored once here, referenced by the audit mode.
@@ -245,6 +250,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
 - ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
+- ✅ Any handoff to `sk-code` includes the required build manifest with locked values, signature moves, reuse list, open risks and never-change constraints.
 
 ---
 

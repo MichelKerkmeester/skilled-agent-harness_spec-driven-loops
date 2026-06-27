@@ -38,15 +38,28 @@
       "tasks"
     ],
     "importance_tier": "supporting",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "sk_code_handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,12 +82,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A required structured handoff to sk-code recurs in four of five modes under different names, which the 015 synthesis flagged as one need served by one schema (`../015-per-skill-improvement-research/implementation-summary.md`, \"A required structured handoff card to sk-code recurs in four of five modes\")",
     "created_at": "2026-06-27T05:42:27.427Z",
-    "last_save_at": "2026-06-27T05:43:43.255Z",
+    "last_save_at": "2026-06-27T07:30:00.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbaa85e3b42ddf10d2768fecee74b17fbef9562df1b01f26dcd55043ea7b0c15",
+    "source_fingerprint": "sha256:e4d5b57b32182b94e62bd3d3b25de4094db02816cad37e21ddb2334e520ee399",
     "source_doc_hashes": {
       "spec.md": "e67057324aa1a8987834b6afb705f5f3e6d75343ea3fe0812e0df584e5c2eef9",
       "plan.md": "f2b98021935cb0b7077e1ee8f9611b59a8f5f6fa0314419463fc647d3ee31db1",
-      "tasks.md": "3766b6d8193042a1a6fdd098b23ac35f32c1931898eb25046f9e7a4b2db97575",
-      "checklist.md": "60348e0cc8513a56709268252ed6a2686f13ebfdab609a6e8a057eaef47b6958",
-      "implementation-summary.md": "d3b6e6f3007a31f243a33a33d182e5e1e0bbeba93fd31a5a4e4ec556a0671285"
+      "tasks.md": "68cd9a436a52bc4eb3c5cca667244527f5445ad484de55c8de33d8de5400baee",
+      "checklist.md": "b07718f319e3afa0fcbeb5cfbcc2b8e14aa82a71e6a872c5d6e7b6bc473e38e3",
+      "implementation-summary.md": "50750a53fce89546c3ba6feefd8e1f29c94b99e0cc4aab5cf9b8e7dcb7119ade"
     },
     "last_active_child_id": null,
     "last_active_at": null

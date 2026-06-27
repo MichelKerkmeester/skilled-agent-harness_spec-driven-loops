@@ -85,6 +85,7 @@ DESIGN QA TASK
 - `references/critique_hardening.md` covers critique workflow, cognitive load, Nielsen heuristics, personas, polish, edge cases, i18n, error states, and resilience.
 - `references/anti_patterns_production.md` covers slop detection, theming drift, token misuse, pseudo-elements, View Transitions, copy clarity, and production hardening.
 - `references/corpus_map.md` maps the source corpus.
+- `../shared/sk_code_handoff.md` defines the accepted-finding backlog handoff to `sk-code`.
 
 ### Resource Loading Levels
 
@@ -101,6 +102,7 @@ DESIGN QA TASK
 | CONDITIONAL | Production-readiness and edge-case probes | `references/hardening_edge_cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
 | CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
 | CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
+| CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
 | ON_DEMAND | Code correctness beyond UI quality | `sk-code-review` plus `sk-code` surface evidence |
 
 ### Smart Router Pseudocode
@@ -133,7 +135,7 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "AUDIT_CONTRACT": ["references/corpus_map.md", "references/audit_contract.md", "assets/audit_report_template.md"],
+    "AUDIT_CONTRACT": ["references/corpus_map.md", "references/audit_contract.md", "assets/audit_report_template.md", "../shared/sk_code_handoff.md"],
     "ACCESSIBILITY_PERFORMANCE": ["references/accessibility_performance.md", "assets/a11y_quick_fixes.md"],
     "CRITIQUE_HARDENING": ["references/critique_hardening.md", "references/hardening_edge_cases.md"],
     "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md"],
@@ -272,6 +274,10 @@ def route_audit_resources(user_request, task=None):
 5. Map each finding to the owning sibling or implementation skill. Route a bolder, quieter, distill or redesign direction through `references/transform_remediation.md` first, because the correct direction depends on the register.
 6. End with recommended next actions; do not silently implement fixes during a review-only request.
 
+### Backlog Handoff To sk-code
+
+When accepted findings move to implementation, emit the shared handoff envelope from `../shared/sk_code_handoff.md` as a backlog card. Each finding includes id, severity, owner, target, evidence label, one-line fix shape and verification. An audit with zero accepted findings emits an empty valid backlog. The audit never applies fixes, edits files or grants write authority.
+
 ### Severity Model
 
 Use the same findings-first spirit as `sk-code-review`: concrete evidence, severity order, impact, and recommended fix.
@@ -339,6 +345,7 @@ Each dimension scores 0-4. Total `/20` rating:
 - [`references/evidence_capture.md`](references/evidence_capture.md) - Target resolution, browser and deterministic evidence, screenshot and overlay notes, fallback labels.
 - [`references/hardening_edge_cases.md`](references/hardening_edge_cases.md) - Production-readiness matrix of extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
+- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Audit uses it for accepted-finding backlog handoff without applying fixes.
 
 ### Assets
 
@@ -363,6 +370,7 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - Accessibility, performance, responsive, theming and anti-patterns are all considered, with model-specific tells and production-readiness edge cases checked where they apply.
 - Findings map to concrete next actions and owning skills, with directional remediation routed by register.
 - No positive completion or release-readiness claim is made from missing evidence.
+- Accepted findings route through a backlog handoff card and preserve the audit-never-fixes boundary.
 
 ---
 

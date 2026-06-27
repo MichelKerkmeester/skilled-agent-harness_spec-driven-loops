@@ -75,6 +75,7 @@ STATIC SYSTEM TASK
 - `references/data_viz.md` contains chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
 - `assets/` contains fill-in scaffolds, starting with `token_starter.md` for an OKLCH ramp, type scale and spacing scale.
 - `references/corpus_map.md` records the source corpus distilled into this skill.
+- `../shared/sk_code_handoff.md` defines the family handoff envelope used for the final foundations card.
 
 The folders are intentionally split-ready so `color`, `type`, and `layout` could become separate children later without rewriting the knowledge base.
 
@@ -89,7 +90,7 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | CONDITIONAL | Layout or responsive work | `references/layout/layout_responsive.md` |
 | CONDITIONAL | Data visualization, charts, or data tables | `references/data_viz.md` |
 | CONDITIONAL | Device, input, or context adaptation | `references/layout/adaptation_matrix.md` |
-| CONDITIONAL | Scaffolding a new token system | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) |
+| CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card) |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
 
 ### Smart Router Pseudocode
@@ -118,7 +119,7 @@ RESOURCE_MAP = {
     "LAYOUT": ["references/corpus_map.md", "references/layout/layout_responsive.md"],
     "ADAPTATION": ["references/corpus_map.md", "references/layout/adaptation_matrix.md"],
     "DATA_VIZ": ["references/corpus_map.md", "references/data_viz.md"],
-    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md", "references/color/oklch_workflow.md", "references/type/typography_system.md", "references/layout/layout_responsive.md", "../shared/design_token_vocabulary.md"],
+    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md", "references/color/oklch_workflow.md", "references/type/typography_system.md", "references/layout/layout_responsive.md", "../shared/design_token_vocabulary.md", "../shared/sk_code_handoff.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -242,6 +243,10 @@ def route_foundations_resources(user_request, task=None):
 4. Test against the parent anti-slop base: every token needs a purpose, and free axes must not default to the median AI look.
 5. Produce a compact handoff for implementation: named tokens, usage rules, responsive breakpoints, and explicit risks. The token starter scaffold turns this into a fill-in deliverable.
 
+### Foundations sk-code Handoff Card
+
+When foundations sends a static system to `sk-code`, fill the shared envelope from `../shared/sk_code_handoff.md`. The foundations-owned fields are required: register posture, surface role, source evidence, output schema, CSS-variable or theme-token names, breakpoint intent, accessibility checks, and unresolved risks. `sk-code` implements those tokens and breakpoints. It must not invent new token roles or change breakpoint intent.
+
 ### Decision Rules
 
 - Prefer OKLCH for new color systems because lightness and chroma behave predictably across palette steps.
@@ -306,6 +311,7 @@ def route_foundations_resources(user_request, task=None):
 
 Use, do not duplicate, the parent vocabulary:
 - [`../shared/register.md`](../shared/register.md) - The shared Brand-vs-Product operating register. Set it first. It sets the color strategy and token density this skill inherits. The mode router does not discover `shared/`, so this pointer is explicit.
+- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Foundations uses it for register posture, surface role, source evidence, output schema, CSS variables and breakpoint intent.
 - `../shared/anti_slop_principles.md`
 - `../shared/design_token_vocabulary.md`
 - `../shared/cognitive_laws.md`
@@ -321,6 +327,7 @@ Use, do not duplicate, the parent vocabulary:
 - Data visualization matches the chart to the question, keeps axes honest with one variable per channel, chooses the color-for-data scale by the question, and aligns numeric tables with tabular numerals.
 - When a token system is scaffolded, the token starter is filled from the register with OKLCH values, type roles and scale-bound spacing.
 - The final handoff is implementable by `sk-code` without guessing token roles or breakpoint intent.
+- The handoff card carries CSS-variable or theme-token names, breakpoint intent, source evidence and verification risks from the shared schema.
 
 ---
 
