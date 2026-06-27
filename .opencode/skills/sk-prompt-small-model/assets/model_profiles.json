@@ -1,6 +1,6 @@
 {
   "version": "1.5",
-  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stub: Claude Haiku.",
+  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`). Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
     {
       "id": "deepseek-v4-pro",
@@ -14,13 +14,6 @@
           "quota_pool": "deepseek-api",
           "status": "active",
           "notes": "Direct DeepSeek API key (`DEEPSEEK_API_KEY`). Requires `--pure` flag; rejects tool names with `:`."
-        },
-        {
-          "executor": "cli-opencode",
-          "provider": "opencode-go",
-          "quota_pool": "opencode-go",
-          "status": "active",
-          "notes": "Through opencode-go provider credits (workspace-wide pool; 401 Insufficient balance when exhausted)."
         }
       ],
       "primary_quota_pool": "deepseek-api",
@@ -83,7 +76,7 @@
         "notes": "Live slug `kimi-for-coding/k2p7` confirmed responsive 2026-06-15 (`opencode models kimi-for-coding`; smoke dispatch returned 'pong', cost 0). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: `--variant high` is accepted without error but its reasoning-effort effect is not benchmark-confirmed for this provider — safe to pass, do not depend on it. Subscription billing: dispatch cost shows 0. Re-verify slug before dispatch (Kimi/Moonshot ids drift)."
       },
       "strengths": [
-        "dedicated Kimi For Coding subscription pool (`kimi-for-coding`), independent of opencode-go / minimax / xiaomi pools",
+        "dedicated Kimi For Coding subscription pool (`kimi-for-coding`), independent of minimax / xiaomi pools",
         "coding-optimized Kimi K2.7 (display name 'Kimi K2.7 Code')",
         "256k (262,144-token) context for long-file and multi-file work",
         "subscription billing — dispatch cost 0 (no pay-per-token burn)",
@@ -151,7 +144,7 @@
       },
       "strengths": [
         "subscription billing (no pay-per-token burn) via the MiniMax Token Plan",
-        "separate quota pool (minimax-token-plan) independent of cognition/opencode-go",
+        "separate quota pool (minimax-token-plan) independent of cognition and Xiaomi pools",
         "responds well to guardrail-heavy framing (TIDD-EC) + dense pre-planning",
         "Direct API alternative available via provider `minimax` (pay-per-token)"
       ],
@@ -189,7 +182,7 @@
           "provider": "xiaomi-token-plan-ams",
           "quota_pool": "xiaomi-token-plan",
           "status": "active",
-          "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Free cheap-iteration path: opencode/mimo-v2.5-free (opencode-go gateway, v2.5 tier). Context window 1,000,000 tokens (released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (benchmark 004, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
+          "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Manual direct-provider reroute uses xiaomi/mimo-v2.5-pro when configured; no automatic gateway fallback is defined. Context window 1,000,000 tokens (released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (benchmark 004, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
         }
       ],
       "primary_quota_pool": "xiaomi-token-plan",
@@ -203,15 +196,15 @@
         "format_mode": "json",
         "quota_pool": "xiaomi-token-plan",
         "variant_status": "confirmed",
-        "notes": "Live slug `xiaomi-token-plan-ams/mimo-v2.5-pro` confirmed responsive on opencode 1.15.13 (2026-06-01). default_variant high: `--variant` maps to MiMo reasoning effort (low/medium/high) and `--variant high` is confirmed accepted — always dispatch with it. agent_policy omit-general: `--agent` warns and falls back on 1.15.13. format_mode json: OpenAI-compatible endpoint; dispatch via `opencode run --format json` for the normalized envelope. Free cheap-iteration sibling `opencode/mimo-v2.5-free` (opencode-go gateway) is a separate path not covered by this capability default."
+        "notes": "Live slug `xiaomi-token-plan-ams/mimo-v2.5-pro` confirmed responsive on opencode 1.15.13 (2026-06-01). default_variant high: `--variant` maps to MiMo reasoning effort (low/medium/high) and `--variant high` is confirmed accepted — always dispatch with it. agent_policy omit-general: `--agent` warns and falls back on 1.15.13. format_mode json: OpenAI-compatible endpoint; dispatch via `opencode run --format json` for the normalized envelope. Manual direct-provider reroutes use `xiaomi/mimo-v2.5-pro` when configured; no automatic gateway fallback is defined."
       },
       "strengths": [
         "1,000,000-token context window (largest in the small-model rotation)",
         "strongly agentic — sustains 1000+ sequential tool calls (SWE-bench Pro 57.2)",
         "token-efficient — 40-60% fewer tokens/trajectory vs frontier models (Opus 4.6 / GPT-5.4)",
         "Xiaomi Token Plan (Europe) subscription billing via provider xiaomi-token-plan-ams",
-        "separate quota pool (xiaomi-token-plan) independent of opencode-go / minimax / cognition pools",
-        "free cheap-iteration sibling available at opencode/mimo-v2.5-free"
+        "separate quota pool (xiaomi-token-plan) independent of minimax / cognition pools",
+        "manual direct-provider reroute available at xiaomi/mimo-v2.5-pro when configured"
       ],
       "weaknesses": [
         "long-context quality degrades past ~512k despite the 1M window",

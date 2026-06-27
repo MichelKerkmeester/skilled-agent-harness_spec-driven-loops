@@ -152,7 +152,7 @@ PROMPT
 
 ```bash
 opencode run \
-  --model "opencode-go/glm-5.1" \
+  --model "deepseek/deepseek-v4-pro" \
   --pure \
   --prompt "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
   </dev/null
@@ -203,7 +203,7 @@ Summary table across CLIs tested:
 |-----------------|------------------|---------------------------------------------------------------------|---------------------------|---------------------------------------|---------|
 | cli-codex       | gpt-5.5 high     | 005-fix-deep-review-p0-p1-for-skill-local-benchmarks-format         | deep-review-p0-p1         | for-skill-local-benchmarks-format     | PASS    |
 | cli-codex       | gpt-5.5 medium   | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
-| cli-opencode    | glm-5.1          | ...                                                                 | ...                       | ...                                   | ...     |
+| cli-opencode    | deepseek-v4-pro  | ...                                                                 | ...                       | ...                                   | ...     |
 ```
 
 Include verbatim JSON responses from each CLI in the test report.
@@ -225,7 +225,7 @@ Aggregate verdict:
 - If a CLI returns a bare stoplist slug: confirm rule 20 is surfaced to that CLI's session. Run `grep -F "Literal naming for AI-derived" .opencode/skills/system-spec-kit/SKILL.md` and expect at least 1 match. If the match is absent, the Packet 012 implementation is incomplete.
 - If the rule is present but the CLI ignored it: the rule wording may have insufficient weight in the SKILL.md context. Flag this as a behavioral failure of the rule instruction and record it in the test report. Consider adding an explicit `ALWAYS:` enforcement prefix to rule 20 text in a follow-on packet.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
-- If `cli-opencode` returns `401 Insufficient balance` for `opencode-go` models: check workspace credits with `opencode providers list`. Substitute `opencode-go/qwen3.6-plus` if GLM-5.1 is unavailable.
+- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.
 - If the target component token is ambiguous (e.g., slug says `for-004-format` without naming the packet context): this is a PARTIAL, not a FAIL, as long as the target portion is distinct from a bare generic word.
 
 ---

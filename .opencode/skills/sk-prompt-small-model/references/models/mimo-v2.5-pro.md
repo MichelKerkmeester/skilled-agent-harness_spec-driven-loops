@@ -45,11 +45,11 @@ MiMo-V2.5-Pro wins on COSTAR plus lean pre-planning — frame for output format,
 | Quota pool | `xiaomi-token-plan` (Xiaomi Token Plan, Europe) |
 | Provider id | `xiaomi-token-plan-ams` |
 | Executor path | `cli-opencode` → provider `xiaomi-token-plan-ams` |
-| Free cheap-iteration sibling | `opencode/mimo-v2.5-free` (opencode-go gateway, v2.5 tier, separate pool) |
+| Direct-provider fallback | `xiaomi/mimo-v2.5-pro` (manual reroute only; no automatic gateway fallback) |
 | SWE-bench Pro | 57.2 (strongly agentic; sustains 1000+ sequential tool calls) |
 | Token efficiency | 40–60% fewer tokens/trajectory vs frontier models (Opus 4.6 / GPT-5.4) |
 
-MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and the most token-efficient. It lives on its own subscription quota pool (`xiaomi-token-plan`), isolated from `opencode-go`, `cognition-pro`, and `minimax-token-plan`. Billing via the Token Plan shows cost 0/0 in opencode — no pay-per-token burn on the primary path.
+MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and the most token-efficient. It lives on its own subscription quota pool (`xiaomi-token-plan`), isolated from `cognition-pro` and `minimax-token-plan`. Billing via the Token Plan shows cost 0/0 in opencode — no pay-per-token burn on the primary path.
 
 ---
 
@@ -161,12 +161,12 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 | `variant_status` | `confirmed` | Unlike MiniMax, `--variant` forwarding is verified for this provider |
 | `agent_policy` | `omit-general` | **Omit `--agent`** — `--agent general` warns and falls back on opencode 1.15.13; do not pass any `--agent` flag |
 | `format_mode` | `json` | Dispatch via `opencode run --format json` for the normalized token/cost/latency envelope |
-| `quota_pool` | `xiaomi-token-plan` | Independent pool — does not draw from `opencode-go`, `cognition-pro`, or `minimax-token-plan` |
-| `fallback_target` | `null` | No automatic pool fallback defined; use `opencode/mimo-v2.5-free` (opencode-go) for cheap iteration when the primary pool is exhausted |
+| `quota_pool` | `xiaomi-token-plan` | Independent pool — does not draw from `cognition-pro` or `minimax-token-plan` |
+| `fallback_target` | `null` | No automatic gateway fallback; use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) when manually rerouting from the token-plan pool |
 
 **Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
-**Fallback target:** `opencode/mimo-v2.5-free` (opencode-go gateway, v2.5 tier, free). Use for cheap probing / iterative drafts when you do not need full -pro reasoning depth. Verify live model ids with `opencode models xiaomi-token-plan-ams` and `opencode models opencode-go` before relying on either path.
+**Fallback target:** no automatic gateway fallback is defined. For manual reroutes, use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) and verify live model ids with `opencode models xiaomi` before relying on that path.
 
 **Long-context degradation:** MiMo's 1M-token window is real, but quality degrades past ~512k. For tasks approaching that boundary, prefer tighter context slices over full-context dumps.
 

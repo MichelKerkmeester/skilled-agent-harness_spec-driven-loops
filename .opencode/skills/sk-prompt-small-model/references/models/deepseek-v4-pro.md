@@ -22,7 +22,7 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ### Purpose
 
-This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model_profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` via the direct DeepSeek provider as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model_profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
@@ -42,11 +42,10 @@ RCAF + medium pre-planning, leaning into depth: name concrete files, exact symbo
 | --- | --- |
 | **Model slug** | `deepseek-v4-pro`. Direct-API id is not pinned in the registry — confirm the live id with `opencode models deepseek` before use |
 | **Context window** | 64,000 tokens |
-| **Primary quota pool** | `deepseek-api` (direct) or `opencode-go` (go provider) |
+| **Primary quota pool** | `deepseek-api` (direct) |
 | **Executor paths** | `cli-opencode` → provider `deepseek-api` (requires `DEEPSEEK_API_KEY`; `--pure` flag mandatory), pool `deepseek-api` |
-| | `cli-opencode` → provider `opencode-go`, pool `opencode-go` |
 | **Avg iteration wall-clock** | ~18 min |
-| **Role in rotation** | Escalation target for complex review, RCA, and architecture trade-off analysis; strongest reasoning depth in the opencode-go tier |
+| **Role in rotation** | Escalation target for complex review, RCA, and architecture trade-off analysis; strongest reasoning depth in the direct DeepSeek path |
 
 ---
 
@@ -150,12 +149,12 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 
 | Field | Value | Notes |
 | --- | --- | --- |
-| `primary_quota_pool` | `deepseek-api` (direct) / `opencode-go` (go provider) | Two independent pools |
-| `executor paths` | `cli-opencode` (deepseek-api, opencode-go) | Two paths; direct API requires `DEEPSEEK_API_KEY` |
+| `primary_quota_pool` | `deepseek-api` (direct) | Primary pool |
+| `executor paths` | `cli-opencode` (deepseek-api) | Direct API requires `DEEPSEEK_API_KEY` |
 | `variant_flag` | not present | No `--variant` flag for this model; the field is absent in the registry entry |
 | `agent_policy` | not specified in registry | No `capability.agent_policy` field — follow the executor's default `--agent` behavior; verify before dispatch |
 | `format_mode` | not specified in registry | No `capability.format_mode` field — executor default applies; `--format json` is not mandated but safe to add |
-| `quota_pool` | `cognition-pro` (primary), `deepseek-api` (direct), `opencode-go` (go provider) | Three distinct pools; fallback routes to a different pool if primary is exhausted |
+| `quota_pool` | `deepseek-api` (primary/direct) | No automatic gateway fallback; operator reroutes manually on pool exhaustion |
 | **`--pure` flag** | **Required** on `cli-opencode` + `deepseek-api` provider | DeepSeek API rejects tool names containing `:` — `--pure` strips them. Omitting it causes silent tool-call failures |
 | **Non-TTY rule** | Append `</dev/null` in any automation script | Applies to all cli-opencode invocations; missing redirect is the #1 hang cause in non-TTY environments (see cli-opencode SKILL.md §ALWAYS rule 5) |
 | **Timeout headroom** | Budget ≥ 25 min (`gtimeout` / `--timeout`) | Avg wall-clock is 18 min; complex RCA fixtures can run long — under-budgeted timeouts kill mid-reasoning |
@@ -182,6 +181,6 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
 - [`../pattern_index.md`](../pattern_index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
-- [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for deepseek-api + opencode-go paths; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
+- [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for the deepseek-api path; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 - **Other active profiles:** [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) (COSTAR + lean — benchmark 007), [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium), [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
 - **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

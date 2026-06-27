@@ -125,7 +125,7 @@ PROMPT
 
 ```bash
 opencode run \
-  --model "opencode-go/glm-5.1" \
+  --model "deepseek/deepseek-v4-pro" \
   --pure \
   --prompt "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
@@ -188,7 +188,7 @@ Summary table across CLIs tested:
 |-----------------|------------------|----------------------------------|-------------------------------------|-----------------------------------|---------|
 | cli-codex       | gpt-5.5 high     | fix-singleton-leak-in-launcher   | harden-session-teardown             | add-launcher-uptime-smoke         | PASS    |
 | cli-codex       | gpt-5.5 medium   | identify-singleton-leak-site     | implement-teardown-cache-release    | smoke-test-multi-hour-uptime      | PASS    |
-| cli-opencode    | glm-5.1          | ...                              | ...                                 | ...                               | ...     |
+| cli-opencode    | deepseek-v4-pro  | ...                              | ...                                 | ...                               | ...     |
 ```
 
 Include verbatim JSON responses from each CLI in the test report.
@@ -210,7 +210,7 @@ Aggregate verdict:
 - If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
 - If the YAML is present but the CLI ignores it: re-run with explicit reference to `/speckit:plan :with-phases` in the user prompt. The YAML activity fires only when the command route is active.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
-- If `cli-opencode` returns `401 Insufficient balance` for `opencode-go` models: check workspace credits with `opencode providers list`. Substitute `opencode-go/qwen3.6-plus` if GLM-5.1 is unavailable.
+- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.
 
 ---
 

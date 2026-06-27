@@ -38,7 +38,7 @@ const { spawnSync } = require('child_process');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const DEFAULT_MODEL = process.env.SKILL_BENCH_OPENCODE_MODEL || 'opencode-go/deepseek-v4-pro';
+const DEFAULT_MODEL = process.env.SKILL_BENCH_OPENCODE_MODEL || 'deepseek/deepseek-v4-pro';
 const DEFAULT_VARIANT = process.env.SKILL_BENCH_OPENCODE_VARIANT || 'high';
 const OPENCODE_BIN = process.env.OPENCODE_BIN || 'opencode';
 const DISPATCH_TIMEOUT_MS = Number(process.env.SKILL_BENCH_DISPATCH_TIMEOUT_MS || 360000);

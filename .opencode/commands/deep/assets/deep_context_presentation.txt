@@ -368,7 +368,7 @@ STATUS=FAIL ERROR="[message]"
   --executor=native --label=native-a \
   --executor=cli-opencode --model=xiaomi-token-plan-ams/mimo-v2.5-pro --prompt-framework=costar --label=mimo \
   --executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --label=gpt \
-  --executor=cli-opencode --model=opencode-go/deepseek-v4-pro --prompt-framework=tidd-ec --label=deepseek \
+  --executor=cli-opencode --model=deepseek/deepseek-v4-pro --prompt-framework=tidd-ec --label=deepseek \
   --concurrency=4
 
 # Pool via JSON escape hatch

@@ -61,7 +61,7 @@ Vantage = the CLI whose model bench supplies the round's seats. Each row below i
 | --- | --- | --- | --- | --- |
 | `cli-claude-code` | in-CLI when active runtime is Claude Code; otherwise external | model: Opus / Sonnet / Haiku; reasoning: high / xhigh | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
 | `cli-codex` | in-CLI when active runtime is Codex; otherwise external | model: gpt-5.5 / gpt-5.5-pro / gpt-5.5-fast; reasoning: medium / high / xhigh | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
-| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | model via `opencode-go/*` gateway (`deepseek-v4-pro`, `kimi-k2.6`, `glm-5.1`, etc.) or direct provider (`deepseek/deepseek-v4-pro`, `openai/gpt-5.5-pro`); `--variant low/medium/high` | Full plugin/skill/MCP runtime, cross-model gateway, broad model bench within one CLI | Holistic, Research, or Creative |
+| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | direct provider models such as `deepseek/deepseek-v4-pro`, `xiaomi/mimo-v2.5-pro`, or `openai/gpt-5.5-pro`; `--variant low/medium/high` where supported | Full plugin/skill/MCP runtime, direct-provider coverage, broad model bench within one CLI | Holistic, Research, or Creative |
 | native `@deep-research` | always in-CLI (active runtime's research agent) | n/a (single-seat round) | Evidence-first investigation and citation discipline | Research or Critical |
 
 The default council run is an in-CLI round on the active runtime. External-CLI rounds are dispatched only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested by the caller.
@@ -100,8 +100,8 @@ Pair lenses and vantages to create complementary coverage. **All pairings below 
 
 - Analytical + `cli-codex` (gpt-5.5 high): implementation sequence and codebase fit.
 - Pragmatic + `cli-codex` (gpt-5.5 medium): minimal working path and churn control.
-- Holistic + `cli-opencode` (deepseek-v4-pro high): system-wide impact, broad architectural fit via gateway model bench.
-- Research + `cli-opencode` (multiple gateway models in one round): ecosystem context and external unknowns covered by multiple models within ONE CLI invocation.
+- Holistic + `cli-opencode` (`deepseek/deepseek-v4-pro` high): system-wide impact, broad architectural fit via direct-provider model bench.
+- Research + `cli-opencode` (multiple direct-provider models in one round): ecosystem context and external unknowns covered by multiple models within ONE CLI invocation.
 - Analytical + `cli-claude-code` (Opus high): deep decomposition.
 - Critical + `cli-claude-code` (Opus xhigh): edge-case and correctness scrutiny.
 - Research + native `@deep-research`: source discipline and evidence reduction.
@@ -131,7 +131,7 @@ Analytical + Critical + Pragmatic
 
 ### 2. Vantage Diversity (within a single round)
 
-Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `opencode-go/deepseek-v4-pro --variant high` + `opencode-go/kimi-k2.6`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
+Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.5-pro`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
 
 If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
 
@@ -232,9 +232,9 @@ Task Type Received
     │       Optional Round 2: cli-codex (gpt-5.5 high) for implementation-realism cross-check.
     │
     ├─► New Feature
-    │   └─► Round 1: cli-opencode (via opencode-go gateway)
-    │       Seats: Creative (kimi-k2.6) + Analytical (deepseek-v4-pro high) + Holistic (glm-5.1)
-    │       Rationale: broad model bench within one CLI; novel → structured → system-fit.
+    │   └─► Round 1: cli-opencode (direct providers)
+    │       Seats: Creative (xiaomi/mimo-v2.5-pro) + Analytical (deepseek/deepseek-v4-pro high) + Holistic (openai/gpt-5.5-pro)
+    │       Rationale: broad direct-provider model bench within one CLI; novel → structured → system-fit.
     │       Optional Round 2: cli-claude-code for correctness-scrutiny pass.
     │
     ├─► Refactoring
@@ -252,7 +252,7 @@ Task Type Received
     ├─► Research / Unknowns
     │   └─► Round 1: native @deep-research (single seat)
     │       Rationale: evidence-first investigation with citation discipline.
-    │       Optional Round 2: cli-opencode (multiple gateway models) for alternative framing.
+    │       Optional Round 2: cli-opencode (multiple direct-provider models) for alternative framing.
     │       Optional Round 3: cli-claude-code (Critical lens) to test assumptions.
     │
     └─► Custom (user specifies)
