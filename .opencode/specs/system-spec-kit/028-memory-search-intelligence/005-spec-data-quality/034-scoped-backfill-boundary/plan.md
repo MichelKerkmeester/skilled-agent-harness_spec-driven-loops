@@ -100,8 +100,6 @@ A scoped invocation resolves one folder, validates it through the supported-root
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `backfill-graph-metadata.ts` CLI args | Ignores a positional folder and defaults to the repo-wide root, refreshing every collected folder | add a required positional target or `--spec-folder` that refreshes one packet, reject unknown args, validate through the supported-root checks, keep broad mode behind a default-off `--all` | a default run with one folder refreshes only that packet, an unknown arg or a missing target exits non-zero, and a non-root target is rejected before any write |
