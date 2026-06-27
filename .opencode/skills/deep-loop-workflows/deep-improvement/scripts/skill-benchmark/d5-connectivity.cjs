@@ -52,6 +52,21 @@ function listMarkdownRefs(skillRoot) {
   return out;
 }
 
+// A routed path is contained if it stays within the skill root, or within the
+// sibling shared/ dir one level up. Nested mode packets load family-wide docs
+// such as the operating register from the parent packet's shared/ dir, so that
+// single hop into shared/ is a sanctioned cross-packet resource location, not an
+// escape. Separator-bounded checks stop a sibling dir that merely shares the
+// root's name prefix from being mistaken for "inside".
+function resolveRoutedPath(skillRoot, r) {
+  const root = path.resolve(skillRoot);
+  const sharedRoot = path.resolve(skillRoot, '..', 'shared');
+  const resolved = path.resolve(skillRoot, r);
+  const inRoot = resolved === root || resolved.startsWith(root + path.sep);
+  const inShared = resolved === sharedRoot || resolved.startsWith(sharedRoot + path.sep);
+  return { resolved, escapes: !inRoot && !inShared };
+}
+
 /**
  * Statically scan a skill's router connectivity and produce the D5 gate verdict.
  *
@@ -91,11 +106,8 @@ function scanConnectivity({ skillRoot }) {
     }
     for (const r of resources) {
       routedRefs.add(r);
-      const root = path.resolve(skillRoot);
-      const resolved = path.resolve(skillRoot, r);
-      // Separator-bounded containment: a bare startsWith(root) would let a
-      // sibling like `<root>-evil/...` slip through as "inside" the skill root.
-      if (resolved !== root && !resolved.startsWith(root + path.sep)) {
+      const { resolved, escapes } = resolveRoutedPath(skillRoot, r);
+      if (escapes) {
         pathEscapes.push(r);
         findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root` });
       } else if (!fs.existsSync(resolved)) {

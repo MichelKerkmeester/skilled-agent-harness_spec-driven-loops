@@ -120,8 +120,8 @@ The router fills in this skill's a11y/perf/critique/harden `INTENT_SIGNALS`, `RE
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/corpus_map.md"
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets", SKILL_ROOT.parent / "shared")
+DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
     "AUDIT_CONTRACT": {"weight": 4, "keywords": ["audit", "score", "release readiness", "severity", "p0", "p1", "quality score", "report template"]},

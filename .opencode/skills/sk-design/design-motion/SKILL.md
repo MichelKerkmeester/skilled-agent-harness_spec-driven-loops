@@ -112,8 +112,8 @@ The authoritative routing logic: runtime discovery, scoped path guards, weighted
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/corpus_map.md"
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets", SKILL_ROOT.parent / "shared")
+DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
     "DECISION": {"weight": 4, "keywords": ["should this animate", "restraint", "restraint gate", "animate at all", "motion budget", "frequency", "keyboard rule", "trim", "over-animated", "decision framework", "animate everywhere", "animation everywhere", "command palette", "polished"]},

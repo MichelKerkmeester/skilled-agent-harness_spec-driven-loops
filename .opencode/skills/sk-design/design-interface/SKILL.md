@@ -85,7 +85,7 @@ DESIGN TASK
 
 ### Smart Router (parseable intent model)
 
-The Resource Loading Levels table above is the human-readable view; the fenced block below is the machine-parseable router that drives deterministic routing and the skill-benchmark D5 connectivity gate. `INTENT_SIGNALS` scores the lowercased task by keyword, `RESOURCE_MAP` maps each intent to the in-skill references and assets it loads, and `DEFAULT_RESOURCE` is loaded on every design task. Routing semantics match the table one-for-one: the same references load for the same intents. The shared register (`../shared/register.md`) is consulted on every task as a routing preamble but lives outside this skill root, so it is cited in prose rather than in the in-skill `RESOURCE_MAP`.
+The Resource Loading Levels table above is the human-readable view; the fenced block below is the machine-parseable router that drives deterministic routing and the skill-benchmark D5 connectivity gate. `INTENT_SIGNALS` scores the lowercased task by keyword, `RESOURCE_MAP` maps each intent to the in-skill references and assets it loads, and `DEFAULT_RESOURCE` is loaded on every design task. Routing semantics match the table one-for-one: the same references load for the same intents. The shared register (`../shared/register.md`) is loaded on every task via `DEFAULT_RESOURCE`. It lives in the parent skill's `shared/` dir, a sanctioned cross-packet location the D5 gate recognizes.
 
 ```python
 # In-skill router for a design task. Substring-scored, ambiguity-aware: lowercase
@@ -94,7 +94,7 @@ The Resource Loading Levels table above is the human-readable view; the fenced b
 # Every reference and asset on disk appears in exactly one RESOURCE_MAP entry, so
 # no on-disk guidance is unreachable; design_principles.md is also the default.
 
-DEFAULT_RESOURCE = "references/design-process/design_principles.md"
+DEFAULT_RESOURCE = ["references/design-process/design_principles.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
     "DESIGN_PRINCIPLES": {"weight": 4, "keywords": ["design", "redesign", "make it look good", "looks generic", "looks templated", "looks ai-generated", "visual identity", "distinctive", "palette", "typography", "type", "layout", "brainstorm", "critique", "deviate", "templated default", "hero section", "landing page"]},
@@ -121,7 +121,7 @@ RESOURCE_MAP = {
 }
 
 # Routing flow on top of the model above:
-# 1) DEFAULT_RESOURCE (design_principles.md) loads on every design task.
+# 1) DEFAULT_RESOURCE (design_principles.md and the shared register) loads on every design task.
 # 2) If the brief pins the visual direction, follow it verbatim and skip default-avoidance.
 # 3) If axes are free, apply DESIGN_PRINCIPLES (subject, principles, process, restraint).
 # 4) If two or more directions are requested, VARIATION_DIVERSITY runs the seed-of-thought debias.

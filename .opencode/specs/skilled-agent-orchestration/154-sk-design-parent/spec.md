@@ -112,6 +112,12 @@ Per-phase detail lives in each child's `plan.md`. Summary for audit trail only:
 | 013 | `013-mdgen-boundary-cleanup/` | Build the md-generator authoring boundary and card, fix the stale changelog pointer, then run family validation | complete |
 | 014 | `014-routing-benchmark/` | Routing-efficiency benchmark of the five modes, two ways (deterministic router-replay and live Kimi k2.7 dispatch), with the verdict table and the audit and md-generator fan-out finding | complete |
 | 015 | `015-per-skill-improvement-research/` | Five parallel GPT-5.5-xhigh deep-research lineages, one per mode, converging on the plumbing frontier (shared-register loader, router precision, handoff cards, benchmark fixtures) | complete |
+| 016 | `016-register-loader-contract/` | Make the parent shared register loadable by the motion, audit, and interface routers via a hub preamble or a register-scoped allowlist, the highest-leverage family fix | planned / not started |
+| 017 | `017-real-bugs/` | Fix the two real bugs: regenerate the md-generator backend package.json and correct the audit router scoring loop plus its shared-register load | planned / not started |
+| 018 | `018-routing-wiring/` | Tighten router precision and resource loading: interface grounding split and preflight dial input, foundations aliases and cross-axis TOKENS load, precise md-generator aliases | planned / not started |
+| 019 | `019-handoff-card/` | Standardize one sk-code handoff schema across interface, foundations, audit, and motion, with the audit variant routing findings without applying them | planned / not started |
+| 020 | `020-benchmark-fixtures/` | Seed a checked-in routing-benchmark fixture set per mode from the manual playbooks and persist a motion-labelled benchmark report | planned / not started |
+| 021 | `021-content-topups/` | Add the one evidence-backed content gap per mode: interface redesign intake, foundations examples, motion advanced craft, audit worksheet and rubric, md-generator wrapper and exemplar | planned / not started |
 
 ### Phase Transition Rules
 

@@ -1,0 +1,27 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/018-routing-wiring",
+  "description": "Router and registry wiring lags the landed design content in three modes",
+  "keywords": [
+    "router",
+    "registry",
+    "wiring",
+    "lags",
+    "landed",
+    "design",
+    "content",
+    "three",
+    "modes"
+  ],
+  "lastUpdated": "2026-06-27T05:42:26.889Z",
+  "specId": "018",
+  "folderSlug": "routing-wiring",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
