@@ -41,11 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/retrieval-class-routing-benchmark.mjs",
-      "results/metrics.json",
-      "lib/search/query-router.ts",
-      "lib/search/retrieval-class-classifier.ts",
-      "lib/search/search-flags.ts",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights/scripts/retrieval-class-routing-benchmark.mjs",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights/results/metrics.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-class-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -56,31 +56,31 @@
       {
         "name": "retrieval-class-routing-benchmark.mjs",
         "kind": "file",
-        "path": "scripts/retrieval-class-routing-benchmark.mjs",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights/scripts/retrieval-class-routing-benchmark.mjs",
         "source": "derived"
       },
       {
         "name": "metrics.json",
         "kind": "config",
-        "path": "results/metrics.json",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights/results/metrics.json",
         "source": "derived"
       },
       {
         "name": "query-router.ts",
         "kind": "code",
-        "path": "lib/search/query-router.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
         "source": "derived"
       },
       {
         "name": "retrieval-class-classifier.ts",
         "kind": "code",
-        "path": "lib/search/retrieval-class-classifier.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-class-classifier.ts",
         "source": "derived"
       },
       {
         "name": "search-flags.ts",
         "kind": "code",
-        "path": "lib/search/search-flags.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {

@@ -41,14 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/recon-precision-benchmark.mjs",
-      "results/precision-metrics.json",
-      "scripts/recon-gate-and-writes.mjs",
-      "results/gate-metrics.json",
-      "lib/storage/reconsolidation.ts",
-      "lib/search/search-flags.ts",
-      "handlers/save/db-helpers.ts",
-      "handlers/save/reconsolidation-bridge.ts",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/scripts/recon-precision-benchmark.mjs",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/results/precision-metrics.json",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/scripts/recon-gate-and-writes.mjs",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/results/gate-metrics.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       "implementation-summary.md",
       "spec.md",
@@ -60,49 +60,49 @@
       {
         "name": "recon-precision-benchmark.mjs",
         "kind": "file",
-        "path": "scripts/recon-precision-benchmark.mjs",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/scripts/recon-precision-benchmark.mjs",
         "source": "derived"
       },
       {
         "name": "precision-metrics.json",
         "kind": "config",
-        "path": "results/precision-metrics.json",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/results/precision-metrics.json",
         "source": "derived"
       },
       {
         "name": "recon-gate-and-writes.mjs",
         "kind": "file",
-        "path": "scripts/recon-gate-and-writes.mjs",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/scripts/recon-gate-and-writes.mjs",
         "source": "derived"
       },
       {
         "name": "gate-metrics.json",
         "kind": "config",
-        "path": "results/gate-metrics.json",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation/results/gate-metrics.json",
         "source": "derived"
       },
       {
         "name": "reconsolidation.ts",
         "kind": "code",
-        "path": "lib/storage/reconsolidation.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts",
         "source": "derived"
       },
       {
         "name": "search-flags.ts",
         "kind": "code",
-        "path": "lib/search/search-flags.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
         "name": "db-helpers.ts",
         "kind": "code",
-        "path": "handlers/save/db-helpers.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts",
         "source": "derived"
       },
       {
         "name": "reconsolidation-bridge.ts",
         "kind": "code",
-        "path": "handlers/save/reconsolidation-bridge.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
         "source": "derived"
       },
       {

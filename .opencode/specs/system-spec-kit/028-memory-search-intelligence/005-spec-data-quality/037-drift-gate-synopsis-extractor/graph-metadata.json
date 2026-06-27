@@ -34,23 +34,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/description/packet-synopsis.ts",
-      "mcp_server/lib/graph/generated-metadata-drift.ts",
-      "scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/generated-metadata-drift.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
-      "scripts/lib/validator-registry.json",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -59,13 +55,13 @@
       {
         "name": "packet-synopsis.ts",
         "kind": "code",
-        "path": "mcp_server/lib/description/packet-synopsis.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
         "source": "derived"
       },
       {
         "name": "generated-metadata-drift.ts",
         "kind": "code",
-        "path": "mcp_server/lib/graph/generated-metadata-drift.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/generated-metadata-drift.ts",
         "source": "derived"
       },
       {

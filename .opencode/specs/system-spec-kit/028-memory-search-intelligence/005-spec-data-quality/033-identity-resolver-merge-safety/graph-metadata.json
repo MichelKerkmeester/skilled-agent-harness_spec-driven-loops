@@ -34,7 +34,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
@@ -51,7 +50,7 @@
       {
         "name": "spec-doc-paths.ts",
         "kind": "code",
-        "path": "lib/config/spec-doc-paths.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {

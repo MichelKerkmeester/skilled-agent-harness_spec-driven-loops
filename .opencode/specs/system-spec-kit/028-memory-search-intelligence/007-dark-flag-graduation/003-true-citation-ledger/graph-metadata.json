@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "handlers/memory-search.ts",
-      "lib/feedback/true-citation-emitter.ts",
-      "scripts/citation-ledger-feasibility.mjs",
-      "results/metrics.json",
-      "lib/feedback/feedback-ledger.ts",
-      "hooks/claude/claude-transcript.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger/scripts/citation-ledger-feasibility.mjs",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger/results/metrics.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -57,37 +57,37 @@
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": "handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
         "name": "true-citation-emitter.ts",
         "kind": "code",
-        "path": "lib/feedback/true-citation-emitter.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
         "source": "derived"
       },
       {
         "name": "citation-ledger-feasibility.mjs",
         "kind": "file",
-        "path": "scripts/citation-ledger-feasibility.mjs",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger/scripts/citation-ledger-feasibility.mjs",
         "source": "derived"
       },
       {
         "name": "metrics.json",
         "kind": "config",
-        "path": "results/metrics.json",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger/results/metrics.json",
         "source": "derived"
       },
       {
         "name": "feedback-ledger.ts",
         "kind": "code",
-        "path": "lib/feedback/feedback-ledger.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
         "source": "derived"
       },
       {
         "name": "claude-transcript.ts",
         "kind": "code",
-        "path": "hooks/claude/claude-transcript.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
         "source": "derived"
       },
       {

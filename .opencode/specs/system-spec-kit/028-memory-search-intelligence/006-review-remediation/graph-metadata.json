@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "shared/algorithms/rrf-fusion.ts",
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
       "spec.md",
       "001-eval-benchmark-fidelity/spec.md",
       "002-memory-schema-and-concurrency/spec.md",
@@ -52,7 +52,7 @@
       {
         "name": "rrf-fusion.ts",
         "kind": "code",
-        "path": "shared/algorithms/rrf-fusion.ts",
+        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
         "source": "derived"
       },
       {

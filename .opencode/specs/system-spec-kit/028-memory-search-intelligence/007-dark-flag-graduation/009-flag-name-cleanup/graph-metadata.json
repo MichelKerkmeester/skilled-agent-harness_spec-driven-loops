@@ -35,10 +35,10 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "lib/response/profile-formatters.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "references/config/environment_variables.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
       ".opencode/commands/memory/search.md",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
       ".opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts",
@@ -58,7 +58,7 @@
       {
         "name": "profile-formatters.ts",
         "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts",
         "source": "derived"
       },
       {
@@ -76,7 +76,7 @@
       {
         "name": "environment_variables.md",
         "kind": "doc",
-        "path": "references/config/environment_variables.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
         "source": "derived"
       },
       {

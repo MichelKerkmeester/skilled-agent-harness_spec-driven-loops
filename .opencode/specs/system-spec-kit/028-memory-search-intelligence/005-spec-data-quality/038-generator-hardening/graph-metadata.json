@@ -43,10 +43,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
-      "lib/validation/generated-metadata-integrity.ts",
-      "scripts/tests/phase-parent-pointer.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-      "mcp_server/tests/generator-hardening.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -111,7 +109,7 @@
       {
         "name": "phase-parent-pointer.vitest.ts",
         "kind": "test",
-        "path": "scripts/tests/phase-parent-pointer.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
         "source": "derived"
       },
       {

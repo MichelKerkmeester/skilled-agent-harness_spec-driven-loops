@@ -55,9 +55,8 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "scripts/graph/migrate-generated-json.ts",
-      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
+      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
       "plan.md",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
@@ -69,7 +68,7 @@
       {
         "name": "migrate-generated-json.ts",
         "kind": "code",
-        "path": "scripts/graph/migrate-generated-json.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
         "source": "derived"
       },
       {

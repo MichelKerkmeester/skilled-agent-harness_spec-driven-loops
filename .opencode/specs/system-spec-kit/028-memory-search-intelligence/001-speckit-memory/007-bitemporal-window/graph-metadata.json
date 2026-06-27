@@ -41,18 +41,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "lib/search/vector-index-schema.ts",
-      "lib/graph/temporal-edges.ts",
-      "lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "lib/causal/frontmatter-promoter.ts",
       "spec.md",
       "implementation-summary.md"
     ],
@@ -60,19 +57,19 @@
       {
         "name": "vector-index-schema.ts",
         "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
         "source": "derived"
       },
       {
         "name": "temporal-edges.ts",
         "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
         "source": "derived"
       },
       {
         "name": "search-flags.ts",
         "kind": "code",
-        "path": "lib/search/search-flags.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {

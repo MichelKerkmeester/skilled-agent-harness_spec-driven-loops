@@ -34,18 +34,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/validation/generated-metadata-integrity.ts",
-      "scripts/validation/generated-metadata-integrity.ts",
-      "scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
       "spec.md",
@@ -57,13 +54,13 @@
       {
         "name": "generated-metadata-integrity.ts",
         "kind": "code",
-        "path": "mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
         "source": "derived"
       },
       {
         "name": "validator-registry.json",
         "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {

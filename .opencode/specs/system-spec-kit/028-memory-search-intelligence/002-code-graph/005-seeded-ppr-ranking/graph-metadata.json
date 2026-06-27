@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "lib/graph/bfs-traversal.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,7 +53,7 @@
       {
         "name": "bfs-traversal.ts",
         "kind": "code",
-        "path": "lib/graph/bfs-traversal.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts",
         "source": "derived"
       },
       {

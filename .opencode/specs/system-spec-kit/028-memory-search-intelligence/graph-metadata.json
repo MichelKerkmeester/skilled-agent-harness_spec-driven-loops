@@ -50,7 +50,7 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-speckit-memory/research/merged-research-index.md",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
       "002-code-graph/spec.md",
       "003-skill-advisor/spec.md",
@@ -62,7 +62,7 @@
       "001-speckit-memory/research/from-005-revisit-027/research.md",
       ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
       "handover.md",
-      "lib/response/envelope.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts"
     ],
     "entities": [
       {
@@ -74,7 +74,7 @@
       {
         "name": "merged-research-index.md",
         "kind": "doc",
-        "path": "001-speckit-memory/research/merged-research-index.md",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/merged-research-index.md",
         "source": "derived"
       },
       {
@@ -98,7 +98,7 @@
       {
         "name": "envelope.ts",
         "kind": "code",
-        "path": "lib/response/envelope.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts",
         "source": "derived"
       },
       {

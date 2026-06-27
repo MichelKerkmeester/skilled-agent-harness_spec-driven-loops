@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "results/metrics.json",
-      "scripts/multihop-tail-appends-benchmark.mjs",
-      "lib/search/deterministic-multihop.ts",
-      "lib/search/lane-champion-backfill.ts",
-      "lib/search/hybrid-search.ts",
-      "handlers/memory-search.ts",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends/results/metrics.json",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends/scripts/multihop-tail-appends-benchmark.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/deterministic-multihop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/lane-champion-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -57,37 +57,37 @@
       {
         "name": "metrics.json",
         "kind": "config",
-        "path": "results/metrics.json",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends/results/metrics.json",
         "source": "derived"
       },
       {
         "name": "multihop-tail-appends-benchmark.mjs",
         "kind": "file",
-        "path": "scripts/multihop-tail-appends-benchmark.mjs",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends/scripts/multihop-tail-appends-benchmark.mjs",
         "source": "derived"
       },
       {
         "name": "deterministic-multihop.ts",
         "kind": "code",
-        "path": "lib/search/deterministic-multihop.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/deterministic-multihop.ts",
         "source": "derived"
       },
       {
         "name": "lane-champion-backfill.ts",
         "kind": "code",
-        "path": "lib/search/lane-champion-backfill.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/lane-champion-backfill.ts",
         "source": "derived"
       },
       {
         "name": "hybrid-search.ts",
         "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
         "source": "derived"
       },
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": "handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
