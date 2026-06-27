@@ -91,7 +91,7 @@ The Resource Loading Levels table above is the human-readable view; the fenced b
 # In-skill router for a design task. Substring-scored, ambiguity-aware: lowercase
 # the task, sum each intent's weight per keyword hit, keep intents within the delta
 # of the top score, then union DEFAULT_RESOURCE + RESOURCE_MAP[intent] for each.
-# Every reference and asset on disk appears in exactly one RESOURCE_MAP entry, so
+# Every reference and asset on disk appears in at least one RESOURCE_MAP entry, so
 # no on-disk guidance is unreachable; design_principles.md is also the default.
 
 DEFAULT_RESOURCE = ["references/design-process/design_principles.md", "../shared/register.md"]
@@ -104,7 +104,8 @@ INTENT_SIGNALS = {
     "REAL_UI_LOOP": {"weight": 4, "keywords": ["real ui", "real-ui loop", "reuse before generate", "existing design system", "registered component", "render fidelity", "dev server", "actually rendered", "matches the intent", "handoff", "screenshot the build"]},
     "MECHANICAL_PREFLIGHT": {"weight": 4, "keywords": ["mechanical", "pre-flight", "preflight", "pre flight", "preflight card", "ship or fix", "layout gate", "hero lines", "bento", "eyebrow", "button contrast", "section spacing", "before shipping", "before i ship"]},
     "COPY_MOCK_DATA": {"weight": 4, "keywords": ["copy", "mock data", "placeholder", "lorem", "ai-tell phrasing", "fake-precise", "fake precision", "copy register", "image seed", "names and numbers", "realistic content", "content tells"]},
-    "GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "critique against", "default to deviate from", "mobbin", "refero", "real-world reference", "shipped ui", "the cliche", "the usual look", "typical look"]},
+    "REAL_SYSTEM_GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "existing design system", "our design system", "reuse-ground"]},
+    "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
     "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
 }
 
@@ -114,9 +115,10 @@ RESOURCE_MAP = {
     "VARIATION_DIVERSITY": ["references/design-process/variation_diversity.md"],
     "UX_QUALITY": ["references/design-process/ux_quality_reference.md"],
     "REAL_UI_LOOP": ["references/design-process/real_ui_loop.md"],
-    "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical_defaults.md", "references/design-process/copy_and_mock_data.md", "assets/interface_preflight_card.md"],
+    "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical_defaults.md", "references/design-process/copy_and_mock_data.md", "references/design-process/brief_to_dials.md", "assets/interface_preflight_card.md"],
     "COPY_MOCK_DATA": ["references/design-process/copy_and_mock_data.md"],
-    "GROUNDING": ["references/design-grounding/design_inventory.md", "references/design-grounding/design_references_mcp.md", "references/mcp-tooling/mobbin_tools.md", "references/mcp-tooling/refero_tools.md"],
+    "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design_inventory.md"],
+    "REAL_WORLD_REFERENCE": ["references/design-grounding/design_references_mcp.md", "references/mcp-tooling/mobbin_tools.md", "references/mcp-tooling/refero_tools.md"],
     "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple_bento.md"],
 }
 

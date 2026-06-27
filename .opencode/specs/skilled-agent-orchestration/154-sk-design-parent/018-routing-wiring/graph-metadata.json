@@ -38,7 +38,7 @@
       "plan"
     ],
     "importance_tier": "supporting",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/design-interface/SKILL.md",
@@ -183,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "foundations",
+        "name": "no",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "each",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Router and registry wiring lags the landed design content in three modes",
     "created_at": "2026-06-27T05:42:27.063Z",
-    "last_save_at": "2026-06-27T05:43:41.181Z",
+    "last_save_at": "2026-06-27T07:13:35.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebbffc74c293629e5b832985177cb5cf53714208a075567bc25c059bb0e153e1",
+    "source_fingerprint": "sha256:8e561f85a92dcfcd573d685c2315579434ecb8dff8975e96d7049fbad0551420",
     "source_doc_hashes": {
       "spec.md": "2750620954463cfa18ee2d59e15f7e745eae8b78516adad9ccf96abb1a693ace",
       "plan.md": "eeb0823d94d673fa3694105f20efd4a65e4f856e91f29f67acb0c10e070464e2",
-      "tasks.md": "f5a3a62bf3e3d81c42327d3f445b2294ed6586d097f22393b3b1d57f48ad64a2",
-      "checklist.md": "2618e93ea337124782b947d23e30d9697f593cfcbc7a2d02dd31a0ef044fd5df",
-      "implementation-summary.md": "3237cdfeb0d2cd7cb1ab255042d266e3b35f569bc8047d90e5f37fbf5a99b854"
+      "tasks.md": "0e5f87f7f5b693ab8b885ab8bcbbed9f2536fe5f16250ef4789220f517a9ae72",
+      "checklist.md": "fff3d2d7d4af4d24633fef1d11daf671a5557ecc7909d013b8e23131209191f7",
+      "implementation-summary.md": "f6698726054d60e650b0026f9e72ad0971d5620cb4e9ee459894280bac0ac920"
     },
     "last_active_child_id": null,
     "last_active_at": null

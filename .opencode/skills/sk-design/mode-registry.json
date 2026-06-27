@@ -30,7 +30,7 @@
       "packet": "design-foundations",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens"],
+      "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-foundations"
@@ -66,7 +66,7 @@
       "packet": "design-md-generator",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "design-to-markdown", "extract design tokens"],
+      "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "design-to-markdown", "extract design tokens", "validate design.md", "design fidelity check", "design.md report", "render design preview", "study design.md format"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-md-generator"

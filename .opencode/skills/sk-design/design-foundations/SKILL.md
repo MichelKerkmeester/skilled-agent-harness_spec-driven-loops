@@ -118,7 +118,7 @@ RESOURCE_MAP = {
     "LAYOUT": ["references/corpus_map.md", "references/layout/layout_responsive.md"],
     "ADAPTATION": ["references/corpus_map.md", "references/layout/adaptation_matrix.md"],
     "DATA_VIZ": ["references/corpus_map.md", "references/data_viz.md"],
-    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md"],
+    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md", "references/color/oklch_workflow.md", "references/type/typography_system.md", "references/layout/layout_responsive.md", "../shared/design_token_vocabulary.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
