@@ -77,7 +77,7 @@ MOTION TASK
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_SIGNALS`.
 
 - `references/animation_decision_framework.md` covers the restraint gate that decides whether an interaction animates at all, the frequency tiers, the keyboard rule, and the coupling to the register motion-budget dial.
 - `references/motion_strategy.md` covers why motion exists, timing, easing, staging, animation principles, and materials.
@@ -115,21 +115,24 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/corpus_map.md"
 
-INTENT_MODEL = {
-    "STRATEGY": {"keywords": [("motion strategy", 4), ("timing", 3), ("easing", 3), ("choreography", 3), ("stagger", 3), ("material", 2)]},
-    "MICRO_INTERACTIONS": {"keywords": [("micro", 4), ("hover", 3), ("active", 3), ("loading", 3), ("gesture", 3), ("delight", 3), ("icon", 3), ("morph", 3)]},
-    "PRESENCE": {"keywords": [("animatepresence", 4), ("framer", 4), ("motion/react", 4), ("exit", 3), ("presence", 3), ("modal", 3), ("list", 2)]},
-    "PERFORMANCE": {"keywords": [("reduced motion", 4), ("performance", 4), ("jank", 4), ("scroll", 3), ("blur", 3), ("filter", 3), ("will-change", 3), ("flip", 3)]},
+INTENT_SIGNALS = {
+    "DECISION": {"weight": 4, "keywords": ["should this animate", "restraint", "restraint gate", "animate at all", "motion budget", "frequency", "keyboard rule", "trim", "over-animated", "decision framework", "animate everywhere", "animation everywhere", "command palette", "polished"]},
+    "STRATEGY": {"weight": 4, "keywords": ["motion strategy", "timing", "easing", "choreography", "stagger", "material", "purpose", "duration", "spring", "design the motion", "motion for", "premium", "feel premium"]},
+    "MICRO_INTERACTIONS": {"weight": 4, "keywords": ["micro", "hover", "active", "loading", "gesture", "delight", "icon", "morph", "feedback", "press", "pattern card", "spec card", "toast", "drawer", "notification", "button", "menu"]},
+    "PRESENCE": {"weight": 4, "keywords": ["animatepresence", "framer", "motion/react", "exit", "presence", "modal", "checklist"]},
+    "PERFORMANCE": {"weight": 4, "keywords": ["reduced motion", "performance", "jank", "scroll", "blur", "filter", "will-change", "flip", "dropped frames", "failure card", "compositor"]},
 }
 
 RESOURCE_MAP = {
-    "STRATEGY": ["references/motion_strategy.md"],
-    "MICRO_INTERACTIONS": ["references/micro_interactions.md"],
-    "PRESENCE": ["references/animate_presence_patterns.md"],
-    "PERFORMANCE": ["references/performance_reduced_motion.md"],
+    "DECISION": ["references/animation_decision_framework.md"],
+    "STRATEGY": ["references/motion_strategy.md", "references/corpus_map.md"],
+    "MICRO_INTERACTIONS": ["references/micro_interactions.md", "assets/motion_pattern_cards.md"],
+    "PRESENCE": ["references/animate_presence_patterns.md", "assets/animate_presence_checklist.md"],
+    "PERFORMANCE": ["references/performance_reduced_motion.md", "assets/motion_performance_failure_card.md"],
 }
 
 LOAD_LEVELS = {
+    "DECISION": "STANDARD",
     "STRATEGY": "STANDARD",
     "MICRO_INTERACTIONS": "STANDARD",
     "PRESENCE": "STANDARD",
@@ -167,11 +170,11 @@ def get_routing_key(task, intents: list[str]) -> str:
 
 def classify_intents(user_request, task=None):
     text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for keyword, weight in cfg["keywords"]:
+    scores = {intent: 0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
             if keyword in text:
-                scores[intent] += weight
+                scores[intent] += cfg["weight"]
 
     ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
     primary, primary_score = ranked[0]

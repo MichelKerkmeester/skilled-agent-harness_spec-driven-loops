@@ -8,7 +8,18 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: PRESENCE
+expected_resources:
+  - references/corpus_map.md
+  - references/animate_presence_patterns.md
+  - assets/animate_presence_checklist.md
 ---
+
+**Exact prompt**
+
+```
+Here is a list component with conditional motion rows and a modal. Run the exit checklist before we ship.
+```
 
 # MOTION-PRESENCE-002 | AnimatePresence Checklist
 

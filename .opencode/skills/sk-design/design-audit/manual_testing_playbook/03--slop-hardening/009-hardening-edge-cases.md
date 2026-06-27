@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: CRITIQUE_HARDENING
+expected_resources:
+  - references/hardening_edge_cases.md
 ---
+
+**Exact prompt**
+
+```
+Critique this form for production readiness and harden the edge cases: extreme inputs, empty and error states, i18n, and RTL.
+```
 
 # AUDIT-SLOP-003 | Hardening Edge Cases
 

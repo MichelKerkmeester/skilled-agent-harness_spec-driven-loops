@@ -3,11 +3,21 @@ title: "ID-012 -- Mechanical layout gate on a built UI"
 description: "This scenario validates the mechanical anti-default layout gate for `ID-012`. It focuses on confirming a built interface is graded against the countable layout rules in mechanical_defaults.md, hero line count, gapless bento math, the eyebrow ceiling, button contrast, and section spacing, where each check is binary and counted rather than estimated."
 contextType: reference
 version: 1.0.0.0
+id: ID-012
+expected_intent: MECHANICAL_PREFLIGHT
+expected_resources:
+  - references/design-process/mechanical_defaults.md
 ---
 
 # ID-012 -- Mechanical layout gate on a built UI
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-012`.
+
+**Exact prompt**
+
+```
+Run the mechanical layout gate over this built page: count the hero lines, the bento cells, the eyebrows, and check button contrast, then tell me what fails.
+```
 
 ---
 

@@ -1,8 +1,18 @@
 ---
 title: "VALIDATE-001 -- Validator Passes On Faithful Style Reference And Flags Phantom Hexes"
 description: "This scenario validates fidelity validation for VALIDATE-001. It focuses on confirming validate.ts recognizes the v3 Style Reference schema, passes a faithful Style Reference, and flags a planted phantom hex, a Quick Start phantom hex, and a mismatched Quick Start --page-max-width."
-version: 1.0.0.7
+version: 1.0.0.8
+expected_intent: VALIDATE
+expected_resources:
+  - references/quality_checklist.md
+  - references/anti_patterns.md
 ---
+
+**Exact prompt**
+
+```
+Validate the Style Reference I just wrote against its tokens.json.
+```
 
 # VALIDATE-001 -- Validator Passes On Faithful Style Reference And Flags Phantom Hexes
 

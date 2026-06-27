@@ -8,7 +8,18 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: PRESENCE
+expected_resources:
+  - references/corpus_map.md
+  - references/animate_presence_patterns.md
+  - assets/animate_presence_checklist.md
 ---
+
+**Exact prompt**
+
+```
+Review this modal/list transition plan for AnimatePresence correctness before implementation.
+```
 
 # MOTION-PRESENCE-001 | AnimatePresence Exit Rules
 

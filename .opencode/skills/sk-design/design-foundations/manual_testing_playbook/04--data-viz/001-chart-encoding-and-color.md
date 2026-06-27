@@ -7,8 +7,17 @@ trigger_phrases:
   - "foundations data-viz scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: DATA_VIZ
+expected_resources:
+  - references/data_viz.md
 ---
+
+**Exact prompt**
+
+```
+Design the data visualization layer for a finance dashboard: a metric trend, a category comparison, a density map and a numeric table.
+```
 
 # FOUND-DATAVIZ-001 | Data Visualization Encoding And Color
 

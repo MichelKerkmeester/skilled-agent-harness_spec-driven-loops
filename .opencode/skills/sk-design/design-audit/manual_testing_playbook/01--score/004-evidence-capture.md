@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: EVIDENCE_CAPTURE
+expected_resources:
+  - references/evidence_capture.md
 ---
+
+**Exact prompt**
+
+```
+I only have a screenshot of this screen and no source target. Walk the evidence and tell me what you can confirm versus infer.
+```
 
 # AUDIT-SCORE-003 | Evidence Capture
 

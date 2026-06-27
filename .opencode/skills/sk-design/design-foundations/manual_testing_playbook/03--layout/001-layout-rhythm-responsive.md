@@ -7,8 +7,17 @@ trigger_phrases:
   - "foundations layout scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: LAYOUT
+expected_resources:
+  - references/layout/layout_responsive.md
 ---
+
+**Exact prompt**
+
+```
+Fix the layout system for a desktop dashboard that becomes a mobile task flow without hiding core controls.
+```
 
 # FOUND-LAYOUT-001 | Layout Rhythm And Responsive
 

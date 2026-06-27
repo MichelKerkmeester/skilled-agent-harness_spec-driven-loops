@@ -8,7 +8,17 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: AUDIT_CONTRACT
+expected_resources:
+  - references/audit_contract.md
+  - assets/audit_report_template.md
 ---
+
+**Exact prompt**
+
+```
+Run a full audit on this page and give me the complete report using the audit report template with the /20 quality score.
+```
 
 # AUDIT-SCORE-004 | Audit Report Template
 

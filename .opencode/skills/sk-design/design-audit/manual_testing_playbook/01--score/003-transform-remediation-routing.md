@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: TRANSFORM_REMEDIATION
+expected_resources:
+  - references/transform_remediation.md
 ---
+
+**Exact prompt**
+
+```
+This hero feels flat. Tell me whether to make it bolder, quieter or distill it down, and who owns that remediation.
+```
 
 # AUDIT-SCORE-002 | Transform Remediation Routing
 

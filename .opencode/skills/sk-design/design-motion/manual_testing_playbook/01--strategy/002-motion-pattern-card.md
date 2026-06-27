@@ -8,7 +8,18 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: MICRO_INTERACTIONS
+expected_resources:
+  - references/corpus_map.md
+  - references/micro_interactions.md
+  - assets/motion_pattern_cards.md
 ---
+
+**Exact prompt**
+
+```
+Spec a toast notification and a settings drawer toggle so I can hand them to the build team.
+```
 
 # MOTION-STRATEGY-002 | Motion Pattern Card
 

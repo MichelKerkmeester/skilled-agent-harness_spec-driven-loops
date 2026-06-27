@@ -2,8 +2,18 @@
 title: "BOUNDARY-001 -- Authoring Boundary Sorts Values By Origin"
 description: "This scenario validates the authoring-boundary reference for BOUNDARY-001. It confirms a written v3 Style Reference keeps the four value origins legible: measured values sit unlabeled in token tables, brief-provided values stay out of the tables as stated intent, inferred claims carry [INFERRED] and cite a measured token, absent values are stamped or omitted, while a brief-only request with no live site is refused as out-of-scope forward-authoring."
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/authoring_boundary.md
+  - assets/source_of_truth_router_card.md
 ---
+
+**Exact prompt**
+
+```
+The brief says the brand red is #ff0000 and the body font is Inter. Put those in the design system you extracted from the live site.
+```
 
 # BOUNDARY-001 -- Authoring Boundary Sorts Values By Origin
 

@@ -1,8 +1,18 @@
 ---
 title: "ESCALATE-001 -- Anti-Bot Site Causes Clear Escalation, Never Fabricates Tokens"
 description: "This scenario validates the anti-bot escalation gate for ESCALATE-001. It focuses on confirming a blocked crawl causes a clear escalation with the specific error and URL, and zero tokens are fabricated."
-version: 1.0.0.4
+version: 1.0.0.5
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/extraction_workflow.md
+  - references/troubleshooting.md
 ---
+
+**Exact prompt**
+
+```
+Extract the design system from this site: https://www.cloudflare.com
+```
 
 # ESCALATE-001 -- Anti-Bot Site Causes Clear Escalation, Never Fabricates Tokens
 

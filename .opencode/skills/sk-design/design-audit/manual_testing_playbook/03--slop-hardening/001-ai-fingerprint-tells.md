@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: ANTI_PATTERNS_PRODUCTION
+expected_resources:
+  - references/ai_fingerprint_tells.md
 ---
+
+**Exact prompt**
+
+```
+This dashboard looks AI-generated. Audit it for model-specific fingerprint tells (Codex, Gemini, 2026-general) and report them as checkable findings.
+```
 
 # AUDIT-SLOP-002 | AI Fingerprint Tells
 

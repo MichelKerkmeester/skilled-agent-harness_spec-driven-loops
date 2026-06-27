@@ -7,8 +7,17 @@ trigger_phrases:
   - "foundations adaptation scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: ADAPTATION
+expected_resources:
+  - references/layout/adaptation_matrix.md
 ---
+
+**Exact prompt**
+
+```
+Adapt a desktop admin tool for phone, tablet and a print export without dropping any core control.
+```
 
 # FOUND-LAYOUT-002 | Context Adaptation Matrix
 

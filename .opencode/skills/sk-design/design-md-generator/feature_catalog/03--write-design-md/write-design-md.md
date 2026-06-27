@@ -94,7 +94,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/03--fidelity/verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
+| `../../manual_testing_playbook/03--fidelity/003-verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
 | `backend/tests/formatters-v3.test.ts` | Automated test | v3 emitter unit tests: colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start rendering |
 | `backend/tests/build-write-prompt.test.ts` | Automated test | v3 pre-render and FACTS-block / prose-only prompt unit tests |
 

@@ -1,8 +1,18 @@
 ---
 title: "SETUP-001 -- Tool Readiness From A Fresh Checkout"
 description: "This scenario validates tool setup for SETUP-001. It focuses on confirming npm install and npx playwright install chromium prepare the embedded tool, and a missing Chromium binary is reported clearly rather than as a crash."
-version: 1.0.0.5
+version: 1.0.0.6
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/extraction_workflow.md
+  - references/troubleshooting.md
 ---
+
+**Exact prompt**
+
+```
+Set up the design extractor tool so I can extract a design system from a URL.
+```
 
 # SETUP-001 -- Tool Readiness From A Fresh Checkout
 

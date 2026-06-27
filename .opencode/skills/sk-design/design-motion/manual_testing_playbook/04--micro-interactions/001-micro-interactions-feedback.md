@@ -8,7 +8,18 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: MICRO_INTERACTIONS
+expected_resources:
+  - references/corpus_map.md
+  - references/micro_interactions.md
+  - assets/motion_pattern_cards.md
 ---
+
+**Exact prompt**
+
+```
+Specify the hover, active, and loading feedback for a primary button and a menu-to-close morphing icon, with earned delight on success.
+```
 
 # MOTION-MICRO-001 | Micro-Interactions Feedback
 

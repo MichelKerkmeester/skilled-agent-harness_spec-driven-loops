@@ -71,7 +71,7 @@ Every detector that finds no data records a minimal "not detected" result in its
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/04--dark-mode/dark-mode-gate.md` | Manual playbook | Dark-mode gate scenario — confirms section 2.5 appears only when a dark palette is detected and is never fabricated |
+| `../../manual_testing_playbook/04--dark-mode/004-dark-mode-gate.md` | Manual playbook | Dark-mode gate scenario — confirms section 2.5 appears only when a dark palette is detected and is never fabricated |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---

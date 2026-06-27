@@ -8,7 +8,17 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: STRATEGY
+expected_resources:
+  - references/corpus_map.md
+  - references/motion_strategy.md
 ---
+
+**Exact prompt**
+
+```
+Design the motion for a product landing hero and pricing cards; make it feel premium without animating everything.
+```
 
 # MOTION-STRATEGY-001 | Purposeful Motion Plan
 

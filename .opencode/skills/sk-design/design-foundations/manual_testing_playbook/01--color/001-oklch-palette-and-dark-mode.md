@@ -7,8 +7,18 @@ trigger_phrases:
   - "foundations color scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: COLOR
+expected_resources:
+  - references/color/oklch_workflow.md
+  - references/color/palette_theming.md
 ---
+
+**Exact prompt**
+
+```
+Create a color token system for a finance dashboard with a teal brand color, restrained product UI, semantic states, and dark mode.
+```
 
 # FOUND-COLOR-001 | OKLCH Palette And Dark Mode
 

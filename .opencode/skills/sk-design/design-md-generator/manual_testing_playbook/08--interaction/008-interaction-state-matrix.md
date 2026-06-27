@@ -1,8 +1,18 @@
 ---
 title: "INTERACT-001 -- Interaction Capture And State Matrix"
 description: "This scenario validates interaction capture for INTERACT-001. Interaction capture is default-on, so a plain extraction run captures hover, focus, active, and disabled states and the resulting tokens.json carries interaction data the writer turns into the v3 Style Reference's Components hover/focus/active states. The opt-out path (--fast-no-interaction / --no-interaction) leaves those states absent rather than fabricating them."
-version: 1.0.0.6
+version: 1.0.0.7
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/design_md_format.md
+  - references/extraction_workflow.md
 ---
+
+**Exact prompt**
+
+```
+Extract the design system including interaction states from example.com.
+```
 
 # INTERACT-001 -- Interaction Capture And State Matrix
 

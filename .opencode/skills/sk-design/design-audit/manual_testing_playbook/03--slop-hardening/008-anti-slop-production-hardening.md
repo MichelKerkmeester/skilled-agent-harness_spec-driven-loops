@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: ANTI_PATTERNS_PRODUCTION
+expected_resources:
+  - references/anti_patterns_production.md
 ---
+
+**Exact prompt**
+
+```
+This landing page looks AI-generated. Check it for design slop, theme and token drift, pseudo-element tells, and vague copy I should clarify.
+```
 
 # AUDIT-SLOP-001 | Anti-Slop And Production Hardening
 

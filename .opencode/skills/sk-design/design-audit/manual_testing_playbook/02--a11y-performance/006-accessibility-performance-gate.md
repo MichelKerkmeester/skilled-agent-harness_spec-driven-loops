@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: ACCESSIBILITY_PERFORMANCE
+expected_resources:
+  - references/accessibility_performance.md
 ---
+
+**Exact prompt**
+
+```
+Check this modal for accessibility and performance before release: keyboard, focus, contrast, WCAG, and any animation jank.
+```
 
 # AUDIT-A11Y-001 | Accessibility And Performance Gate
 

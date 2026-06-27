@@ -7,8 +7,17 @@ trigger_phrases:
   - "foundations token scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: TOKENS
+expected_resources:
+  - assets/token_starter.md
 ---
+
+**Exact prompt**
+
+```
+Scaffold a token system for a restrained product UI with a teal brand hue and dark mode, ready to hand to sk-code.
+```
 
 # FOUND-TOKEN-001 | Token Starter Handoff
 

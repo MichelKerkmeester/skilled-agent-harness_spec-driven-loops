@@ -8,7 +8,16 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: AUDIT_CONTRACT
+expected_resources:
+  - references/audit_contract.md
 ---
+
+**Exact prompt**
+
+```
+Audit this dashboard for release readiness and give me a design quality score with severity-ranked P0-P1 findings.
+```
 
 # AUDIT-SCORE-001 | Findings-First Score
 

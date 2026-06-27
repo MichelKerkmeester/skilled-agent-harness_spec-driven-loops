@@ -2,11 +2,21 @@
 title: "ID-002 -- Pinned brief is followed verbatim"
 description: "This scenario validates Pinned brief is followed verbatim for `ID-002`. It focuses on confirming the skill follows a brief that pins the direction and never overrides it, even when the brief asks for an AI-default look."
 version: 1.5.0.3
+id: ID-002
+expected_intent: DESIGN_PRINCIPLES
+expected_resources:
+  - references/design-process/design_principles.md
 ---
 
 # ID-002 -- Pinned brief is followed verbatim
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-002`.
+
+**Exact prompt**
+
+```
+Build the hero using exactly this direction: cream #F4F1EA background, a high-contrast serif display, and a terracotta accent. Do not change the palette.
+```
 
 ---
 

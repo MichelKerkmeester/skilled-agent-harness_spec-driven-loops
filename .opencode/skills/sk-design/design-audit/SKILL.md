@@ -109,7 +109,7 @@ DESIGN QA TASK
 
 > Pattern: see [sk-doc smart-router resilience template](../sk-doc/assets/skill/skill_smart_router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
 
-The router fills in this skill's a11y/perf/critique/harden `INTENT_MODEL`, `RESOURCE_MAP`, loading levels, and routing key while keeping the resilience mechanics unchanged: discover resources at runtime, guard every path before loading, derive a routing key from the audit mode or task, and return an `UNKNOWN_FALLBACK` checklist when confidence is too low.
+The router fills in this skill's a11y/perf/critique/harden `INTENT_SIGNALS`, `RESOURCE_MAP`, loading levels, and routing key while keeping the resilience mechanics unchanged: discover resources at runtime, guard every path before loading, derive a routing key from the audit mode or task, and return an `UNKNOWN_FALLBACK` checklist when confidence is too low.
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` guards, checks `inventory`, and suppresses repeats with `seen`.
@@ -123,18 +123,22 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/corpus_map.md"
 
-INTENT_MODEL = {
-    "AUDIT_CONTRACT": {"keywords": [("audit", 4), ("score", 4), ("release readiness", 4), ("severity", 3), ("p0", 3), ("p1", 3), ("quality score", 3)]},
-    "ACCESSIBILITY_PERFORMANCE": {"keywords": [("accessibility", 4), ("wcag", 4), ("aria", 3), ("keyboard", 3), ("focus", 3), ("contrast", 3), ("performance", 4), ("jank", 3), ("core web vitals", 3)]},
-    "CRITIQUE_HARDENING": {"keywords": [("critique", 4), ("cognitive", 3), ("heuristic", 3), ("persona", 3), ("polish", 4), ("harden", 4), ("edge case", 3), ("i18n", 3)]},
-    "ANTI_PATTERNS_PRODUCTION": {"keywords": [("slop", 4), ("ai-generated", 4), ("theme", 3), ("token", 3), ("pseudo", 3), ("copy", 3), ("clarify", 3), ("view transition", 3)]},
+INTENT_SIGNALS = {
+    "AUDIT_CONTRACT": {"weight": 4, "keywords": ["audit", "score", "release readiness", "severity", "p0", "p1", "quality score", "report template"]},
+    "ACCESSIBILITY_PERFORMANCE": {"weight": 4, "keywords": ["accessibility", "wcag", "aria", "keyboard", "focus", "contrast", "performance", "jank", "core web vitals", "a11y fix"]},
+    "CRITIQUE_HARDENING": {"weight": 4, "keywords": ["critique", "cognitive", "heuristic", "persona", "polish", "harden", "edge case", "i18n", "production readiness"]},
+    "ANTI_PATTERNS_PRODUCTION": {"weight": 4, "keywords": ["slop", "ai-generated", "theme", "token", "pseudo", "copy", "clarify", "view transition", "fingerprint", "model tell"]},
+    "TRANSFORM_REMEDIATION": {"weight": 4, "keywords": ["bolder", "quieter", "distill", "redesign", "transform", "remediation", "make it bolder"]},
+    "EVIDENCE_CAPTURE": {"weight": 3, "keywords": ["evidence", "screenshot", "browser", "deterministic scan", "source target", "provenance"]},
 }
 
 RESOURCE_MAP = {
-    "AUDIT_CONTRACT": ["references/audit_contract.md"],
-    "ACCESSIBILITY_PERFORMANCE": ["references/audit_contract.md", "references/accessibility_performance.md"],
-    "CRITIQUE_HARDENING": ["references/audit_contract.md", "references/critique_hardening.md"],
-    "ANTI_PATTERNS_PRODUCTION": ["references/audit_contract.md", "references/anti_patterns_production.md"],
+    "AUDIT_CONTRACT": ["references/corpus_map.md", "references/audit_contract.md", "assets/audit_report_template.md"],
+    "ACCESSIBILITY_PERFORMANCE": ["references/accessibility_performance.md", "assets/a11y_quick_fixes.md"],
+    "CRITIQUE_HARDENING": ["references/critique_hardening.md", "references/hardening_edge_cases.md"],
+    "ANTI_PATTERNS_PRODUCTION": ["references/anti_patterns_production.md", "references/ai_fingerprint_tells.md"],
+    "TRANSFORM_REMEDIATION": ["references/transform_remediation.md"],
+    "EVIDENCE_CAPTURE": ["references/evidence_capture.md"],
 }
 
 LOAD_LEVELS = {
@@ -142,6 +146,8 @@ LOAD_LEVELS = {
     "ACCESSIBILITY_PERFORMANCE": "STANDARD",
     "CRITIQUE_HARDENING": "STANDARD",
     "ANTI_PATTERNS_PRODUCTION": "STANDARD",
+    "TRANSFORM_REMEDIATION": "STANDARD",
+    "EVIDENCE_CAPTURE": "STANDARD",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -175,8 +181,8 @@ def get_routing_key(task, intents: list[str]) -> str:
 
 def classify_intents(user_request, task=None):
     text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
+    scores = {intent: 0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
         for keyword, weight in cfg["keywords"]:
             if keyword in text:
                 scores[intent] += weight

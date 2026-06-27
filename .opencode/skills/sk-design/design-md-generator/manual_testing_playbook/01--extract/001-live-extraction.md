@@ -1,8 +1,18 @@
 ---
 title: "EXTRACT-001 -- Live Extraction Produces Valid tokens.json"
 description: "This scenario validates live extraction for EXTRACT-001. It focuses on confirming extract.ts --fast against a real URL produces a valid, non-empty tokens.json with populated token arrays."
-version: 1.0.0.7
+version: 1.0.0.8
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/design_md_format.md
+  - references/extraction_workflow.md
 ---
+
+**Exact prompt**
+
+```
+Extract the design system from example.com.
+```
 
 # EXTRACT-001 -- Live Extraction Produces Valid tokens.json
 

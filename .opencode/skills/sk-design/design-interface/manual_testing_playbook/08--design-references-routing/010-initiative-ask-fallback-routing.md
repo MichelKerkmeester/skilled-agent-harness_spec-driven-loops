@@ -2,11 +2,23 @@
 title: "ID-010 -- Design-references initiative/ask routing for Mobbin and Refero"
 description: "This scenario validates the hybrid initiative/ask routing for `ID-010`. It focuses on confirming the skill pulls ONE real-world reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or the subscription is unknown, falls back to the generic process when not connected or declined, picks Mobbin for app/iOS and Refero for web/styles, and never surfaces a chooser or copies a reference."
 version: 1.5.0.1
+id: ID-010
+expected_intent: GROUNDING
+expected_resources:
+  - references/design-grounding/design_references_mcp.md
+  - references/mcp-tooling/mobbin_tools.md
+  - references/mcp-tooling/refero_tools.md
 ---
 
 # ID-010 -- Design-references initiative/ask routing for Mobbin and Refero
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-010`.
+
+**Exact prompt**
+
+```
+Design the checkout flow for our new payments app; ground it against the real-world default for this kind of screen, then deviate deliberately.
+```
 
 ---
 

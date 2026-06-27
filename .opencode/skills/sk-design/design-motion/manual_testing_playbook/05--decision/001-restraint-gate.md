@@ -8,7 +8,17 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: DECISION
+expected_resources:
+  - references/corpus_map.md
+  - references/animation_decision_framework.md
 ---
+
+**Exact prompt**
+
+```
+We want to add animation everywhere in our dashboard, including the command palette and every hover. Make it feel polished.
+```
 
 # MOTION-DECISION-001 | Restraint Gate
 

@@ -8,7 +8,17 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: ACCESSIBILITY_PERFORMANCE
+expected_resources:
+  - references/accessibility_performance.md
+  - assets/a11y_quick_fixes.md
 ---
+
+**Exact prompt**
+
+```
+This icon-only button has no accessible name and the contrast looks low. Audit the accessibility defects and point me at the a11y fix shape for each.
+```
 
 # AUDIT-A11Y-002 | Accessibility Quick Fixes
 

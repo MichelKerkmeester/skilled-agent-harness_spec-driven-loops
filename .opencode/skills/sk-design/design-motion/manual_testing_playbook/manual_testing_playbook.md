@@ -12,14 +12,14 @@ version: 1.0.0.0
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| MOTION-STRATEGY-001 | Purposeful motion plan | [`01--strategy/purposeful-motion-plan.md`](01--strategy/purposeful-motion-plan.md) |
-| MOTION-STRATEGY-002 | Motion pattern card | [`01--strategy/motion-pattern-card.md`](01--strategy/motion-pattern-card.md) |
-| MOTION-PRESENCE-001 | AnimatePresence exit rules | [`02--presence/animate-presence-exit-rules.md`](02--presence/animate-presence-exit-rules.md) |
-| MOTION-PRESENCE-002 | AnimatePresence checklist | [`02--presence/animate-presence-checklist.md`](02--presence/animate-presence-checklist.md) |
-| MOTION-REDUCED-001 | Performance and reduced motion | [`03--reduced-motion/performance-and-reduced-motion.md`](03--reduced-motion/performance-and-reduced-motion.md) |
-| MOTION-REDUCED-002 | Motion performance failure card | [`03--reduced-motion/motion-performance-failure-card.md`](03--reduced-motion/motion-performance-failure-card.md) |
-| MOTION-MICRO-001 | Micro-interactions feedback | [`04--micro-interactions/micro-interactions-feedback.md`](04--micro-interactions/micro-interactions-feedback.md) |
-| MOTION-DECISION-001 | Restraint gate | [`05--decision/restraint-gate.md`](05--decision/restraint-gate.md) |
+| MOTION-STRATEGY-001 | Purposeful motion plan | [`01--strategy/001-purposeful-motion-plan.md`](01--strategy/001-purposeful-motion-plan.md) |
+| MOTION-STRATEGY-002 | Motion pattern card | [`01--strategy/002-motion-pattern-card.md`](01--strategy/002-motion-pattern-card.md) |
+| MOTION-PRESENCE-001 | AnimatePresence exit rules | [`02--presence/001-animate-presence-exit-rules.md`](02--presence/001-animate-presence-exit-rules.md) |
+| MOTION-PRESENCE-002 | AnimatePresence checklist | [`02--presence/002-animate-presence-checklist.md`](02--presence/002-animate-presence-checklist.md) |
+| MOTION-REDUCED-001 | Performance and reduced motion | [`03--reduced-motion/001-performance-and-reduced-motion.md`](03--reduced-motion/001-performance-and-reduced-motion.md) |
+| MOTION-REDUCED-002 | Motion performance failure card | [`03--reduced-motion/002-motion-performance-failure-card.md`](03--reduced-motion/002-motion-performance-failure-card.md) |
+| MOTION-MICRO-001 | Micro-interactions feedback | [`04--micro-interactions/001-micro-interactions-feedback.md`](04--micro-interactions/001-micro-interactions-feedback.md) |
+| MOTION-DECISION-001 | Restraint gate | [`05--decision/001-restraint-gate.md`](05--decision/001-restraint-gate.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

@@ -3,11 +3,21 @@ title: "ID-014 -- Brief read into the variance, motion, and density dials"
 description: "This scenario validates the brief-to-dials Design Read intake for `ID-014`. It focuses on confirming a brief is read into the three working dials after the register posture is set, that the one-line Design Read states the values, and that the dials stay an internal calibration the agent sets, never a style chooser surfaced to the user."
 contextType: reference
 version: 1.0.0.0
+id: ID-014
+expected_intent: REGISTER_DIALS
+expected_resources:
+  - references/design-process/brief_to_dials.md
 ---
 
 # ID-014 -- Brief read into the variance, motion, and density dials
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-014`.
+
+**Exact prompt**
+
+```
+Read this premium cookware landing brief into the variance, motion, and density dials and state your one-line Design Read before you design.
+```
 
 ---
 

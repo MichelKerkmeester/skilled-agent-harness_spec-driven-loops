@@ -2,7 +2,7 @@
 name: design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
@@ -84,18 +84,22 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers knowledge from a single root domain — this skill's `references/` directory: eight reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the quality checklist, and the operational extraction-workflow and troubleshooting guides. Examples under `references/examples/` are study artifacts, not resources.
+The router discovers knowledge from this skill's `references/` and `assets/` directories: nine reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the authoring boundary, the quality checklist, and the operational extraction-workflow and troubleshooting guides, plus three assets (the WRITE-phase prompt template, the cardinal-rules card, and the source-of-truth router card). The gold-standard pairs under `references/examples/` are reachable only under STUDY intent — study artifacts the writer reads to learn format conventions, never copied into an extraction.
 
 ```text
-references/design_md_format.md    # v3 Style Reference section specification
+references/design_md_format.md       # v3 Style Reference section specification (DEFAULT_RESOURCE)
 references/writing_style_guide.md    # voice, tone, section composition rules
 references/color_role_taxonomy.md    # color role naming + classification
 references/component_taxonomy.md     # component naming + hierarchy patterns
 references/anti_patterns.md          # common DESIGN.md mistakes to avoid
+references/authoring_boundary.md     # measured / brief-provided / inferred / absent line
 references/quality_checklist.md      # pre-validate self-check
 references/extraction_workflow.md    # three-phase workflow, invocations, handoff
 references/troubleshooting.md        # failure modes and fixes
-references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + tokens.json pairs
+references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + writing-notes pairs (STUDY intent)
+assets/design_md_prompt_template.md  # copy-paste WRITE-phase prompt
+assets/cardinal_rules_card.md        # one-page pre-write / pre-validate fidelity gate
+assets/source_of_truth_router_card.md  # fill-in provenance card
 ```
 
 ### Resource Loading Levels
@@ -117,28 +121,37 @@ references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md 
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references",)
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/design_md_format.md"
 
-INTENT_MODEL = {
-    "EXTRACT_WRITE": {"keywords": [("extract", 4), ("crawl", 4), ("url", 4), ("design.md", 4), ("generate", 3),
-                                    ("capture", 4), ("tokens.json", 4), ("design system", 4), ("live", 3)]},
-    "VALIDATE":      {"keywords": [("validate", 4), ("check", 3), ("verify", 4), ("accuracy", 3), ("hex", 3),
-                                    ("section completeness", 4), ("fidelity", 4)]},
-    "REPORT":        {"keywords": [("report", 4), ("preview", 4), ("visual", 3), ("html", 3), ("diff", 4),
-                                    ("render", 3)]},
-    "STUDY":         {"keywords": [("example", 3), ("stripe", 4), ("vercel", 4), ("linear", 4), ("supabase", 4),
-                                    ("gold standard", 4), ("reference", 3)]},
+INTENT_SIGNALS = {
+    "EXTRACT_WRITE": {"weight": 4, "keywords": ["extract", "crawl", "url", "design.md", "generate",
+                                                 "capture", "tokens.json", "design system", "live"]},
+    "VALIDATE":      {"weight": 4, "keywords": ["validate", "check", "verify", "accuracy", "hex",
+                                                 "section completeness", "fidelity"]},
+    "REPORT":        {"weight": 4, "keywords": ["report", "preview", "visual", "html", "diff", "render"]},
+    "STUDY":         {"weight": 4, "keywords": ["example", "stripe", "vercel", "linear", "supabase",
+                                                 "gold standard", "reference"]},
 }
 
+# Every reference and asset on disk is reachable from a RESOURCE_MAP entry (or the
+# always-loaded DEFAULT_RESOURCE); no orphans. The examples/ pairs are reachable
+# only under STUDY intent — they are study artifacts the writer reads, never copied.
 RESOURCE_MAP = {
     "EXTRACT_WRITE": ["references/design_md_format.md", "references/writing_style_guide.md",
                        "references/color_role_taxonomy.md", "references/component_taxonomy.md",
-                       "references/anti_patterns.md", "references/authoring_boundary.md"],
+                       "references/anti_patterns.md", "references/authoring_boundary.md",
+                       "references/extraction_workflow.md", "references/troubleshooting.md",
+                       "assets/design_md_prompt_template.md", "assets/cardinal_rules_card.md",
+                       "assets/source_of_truth_router_card.md"],
     "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
-                       "references/design_md_format.md"],
+                       "references/design_md_format.md", "assets/cardinal_rules_card.md"],
     "REPORT":        ["references/design_md_format.md"],
-    "STUDY":         ["references/design_md_format.md", "references/writing_style_guide.md"],
+    "STUDY":         ["references/design_md_format.md", "references/writing_style_guide.md",
+                       "references/examples/stripe/DESIGN.md", "references/examples/stripe/writing-notes.md",
+                       "references/examples/vercel/DESIGN.md", "references/examples/vercel/writing-notes.md",
+                       "references/examples/linear/DESIGN.md", "references/examples/linear/writing-notes.md",
+                       "references/examples/supabase/DESIGN.md", "references/examples/supabase/writing-notes.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -166,11 +179,11 @@ def discover_markdown_resources() -> set[str]:
 
 def classify_intents(request: str):
     text = (request or "").lower()
-    scores = {i: 0 for i in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for kw, w in cfg["keywords"]:
+    scores = {i: 0 for i in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for kw in cfg["keywords"]:
             if kw in text:
-                scores[intent] += w
+                scores[intent] += cfg["weight"]
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
     primary, top = ranked[0]
     if top == 0:

@@ -103,16 +103,22 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/corpus_map.md"
 
-INTENT_MODEL = {
-    "COLOR": {"keywords": [("oklch", 4), ("palette", 4), ("color", 3), ("contrast", 3), ("theme", 3), ("dark mode", 4), ("gamut", 3)]},
-    "TYPE": {"keywords": [("typography", 4), ("font", 3), ("type", 3), ("measure", 3), ("line length", 4), ("scale", 2), ("pairing", 3)]},
-    "LAYOUT": {"keywords": [("layout", 4), ("spacing", 4), ("grid", 3), ("responsive", 4), ("breakpoint", 3), ("density", 3), ("container query", 4)]},
+INTENT_SIGNALS = {
+    "COLOR": {"weight": 4, "keywords": ["oklch", "palette", "color", "contrast", "theme", "dark mode", "gamut", "semantic color", "surface scale"]},
+    "TYPE": {"weight": 4, "keywords": ["typography", "font", "type scale", "measure", "line length", "pairing", "tabular numerals", "type roles"]},
+    "LAYOUT": {"weight": 4, "keywords": ["layout", "spacing", "grid", "responsive", "breakpoint", "density", "container query", "rhythm", "hierarchy"]},
+    "ADAPTATION": {"weight": 4, "keywords": ["adaptation matrix", "context adaptation", "device adaptation", "input method", "orientation", "print", "posture", "constrained surface"]},
+    "DATA_VIZ": {"weight": 4, "keywords": ["data visualization", "chart", "chart type", "axis", "sparkline", "data table", "color-for-data", "encoding", "data-viz"]},
+    "TOKENS": {"weight": 4, "keywords": ["token starter", "token scaffold", "design tokens", "token system", "starter scaffold", "handoff", "fill-in scaffold"]},
 }
 
 RESOURCE_MAP = {
-    "COLOR": ["references/color/oklch_workflow.md", "references/color/palette_theming.md"],
-    "TYPE": ["references/type/typography_system.md"],
-    "LAYOUT": ["references/layout/layout_responsive.md"],
+    "COLOR": ["references/corpus_map.md", "references/color/oklch_workflow.md", "references/color/palette_theming.md"],
+    "TYPE": ["references/corpus_map.md", "references/type/typography_system.md"],
+    "LAYOUT": ["references/corpus_map.md", "references/layout/layout_responsive.md"],
+    "ADAPTATION": ["references/corpus_map.md", "references/layout/adaptation_matrix.md"],
+    "DATA_VIZ": ["references/corpus_map.md", "references/data_viz.md"],
+    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -146,9 +152,10 @@ def get_routing_key(task, intents: list[str]) -> str:
 
 def classify_intents(user_request, task=None):
     text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for keyword, weight in cfg["keywords"]:
+    scores = {intent: 0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        weight = cfg["weight"]
+        for keyword in cfg["keywords"]:
             if keyword in text:
                 scores[intent] += weight
 

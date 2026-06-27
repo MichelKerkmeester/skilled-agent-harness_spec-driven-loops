@@ -2,11 +2,21 @@
 title: "ID-005 -- Pure-logic task routes away to sk-code"
 description: "This scenario validates Pure-logic task routes away to sk-code for `ID-005`. It focuses on confirming a back-end task with no visual surface routes to sk-code instead of producing a design plan."
 version: 1.5.0.2
+id: ID-005
+expected_intent: DESIGN_PRINCIPLES
+expected_resources:
+  - references/design-process/design_principles.md
 ---
 
 # ID-005 -- Pure-logic task routes away to sk-code
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-005`.
+
+**Exact prompt**
+
+```
+Write a function that dedupes and sorts a list of order records by timestamp, then total the amounts per customer.
+```
 
 ---
 

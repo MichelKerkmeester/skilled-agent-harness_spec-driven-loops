@@ -7,8 +7,17 @@ trigger_phrases:
   - "foundations type scenario"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: TYPE
+expected_resources:
+  - references/type/typography_system.md
 ---
+
+**Exact prompt**
+
+```
+Define typography for a dense analytics app with long labels, metrics, and a small marketing header.
+```
 
 # FOUND-TYPE-001 | Type Roles And Measure
 

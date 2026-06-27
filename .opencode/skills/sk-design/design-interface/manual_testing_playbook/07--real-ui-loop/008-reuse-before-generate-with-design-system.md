@@ -2,11 +2,21 @@
 title: "ID-008 -- Reuse before generate when a design system is present"
 description: "This scenario validates Reuse before generate when a design system is present for `ID-008`. It focuses on confirming the loop searches the active system's registered components before authoring net-new, with a negative control proving no style-preset menu exists."
 version: 1.5.0.1
+id: ID-008
+expected_intent: REAL_UI_LOOP
+expected_resources:
+  - references/design-process/real_ui_loop.md
 ---
 
 # ID-008 -- Reuse before generate when a design system is present
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-008`.
+
+**Exact prompt**
+
+```
+Build this pricing section using our existing design system; reuse the components and tokens we already have before making anything new.
+```
 
 ---
 

@@ -2,11 +2,22 @@
 title: "ID-009 -- Render fidelity check gated on the quality floor and anti-default critique"
 description: "This scenario validates the render fidelity check for `ID-009`. It focuses on confirming the dev-server build's render is judged against the quality floor and the anti-default critique, never claimed from a build that did not actually render."
 version: 1.5.0.1
+id: ID-009
+expected_intent: REAL_UI_LOOP
+expected_resources:
+  - references/design-process/real_ui_loop.md
+  - references/design-process/ux_quality_reference.md
 ---
 
 # ID-009 -- Render fidelity check gated on the quality floor and anti-default critique
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-009`.
+
+**Exact prompt**
+
+```
+Verify the built UI actually rendered a design that matches the intent, and tell me if it clears our quality bar.
+```
 
 ---
 

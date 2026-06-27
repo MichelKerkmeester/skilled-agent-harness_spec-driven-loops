@@ -1,8 +1,18 @@
 ---
 title: "A11Y-001 -- Accessibility Section Fidelity"
 description: "Validates the accessibility data in the v3 Style Reference mirrors the a11y data captured by a11y-extract.ts, with honest absence-notation when no a11y data exists. Tests that the Style Reference's Agent Prompt Guide and any flagged a11y problems reflect measured contrast ratios, focus indicators, and touch-target sizes without fabrication."
-version: 1.0.0.6
+version: 1.0.0.7
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/design_md_format.md
+  - references/writing_style_guide.md
 ---
+
+**Exact prompt**
+
+```
+Does the design system capture accessibility data?
+```
 
 # A11Y-001 -- Accessibility Section Fidelity
 

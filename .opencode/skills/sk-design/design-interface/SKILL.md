@@ -83,16 +83,50 @@ DESIGN TASK
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
-### Smart Router Pseudocode
+### Smart Router (parseable intent model)
+
+The Resource Loading Levels table above is the human-readable view; the fenced block below is the machine-parseable router that drives deterministic routing and the skill-benchmark D5 connectivity gate. `INTENT_SIGNALS` scores the lowercased task by keyword, `RESOURCE_MAP` maps each intent to the in-skill references and assets it loads, and `DEFAULT_RESOURCE` is loaded on every design task. Routing semantics match the table one-for-one: the same references load for the same intents. The shared register (`../shared/register.md`) is consulted on every task as a routing preamble but lives outside this skill root, so it is cited in prose rather than in the in-skill `RESOURCE_MAP`.
 
 ```python
-# Route a design task to the right guidance.
-# 1) Always load references/design-process/design_principles.md.
-# 2) If the brief fixes the visual direction, follow the brief verbatim and skip default-avoidance.
-# 3) If axes are free, apply Sections 2-5 (subject, principles, process, restraint).
-# 3b) If the brief asks for two or more directions, load references/design-process/variation_diversity.md and run the seed-of-thought debias so the set is not N copies of the median.
-# 4) If the task writes interface copy, also apply Section 6 (writing).
-# 5) Hand implementation to sk-code for the detected web surface. This skill owns the look, not the build mechanics.
+# In-skill router for a design task. Substring-scored, ambiguity-aware: lowercase
+# the task, sum each intent's weight per keyword hit, keep intents within the delta
+# of the top score, then union DEFAULT_RESOURCE + RESOURCE_MAP[intent] for each.
+# Every reference and asset on disk appears in exactly one RESOURCE_MAP entry, so
+# no on-disk guidance is unreachable; design_principles.md is also the default.
+
+DEFAULT_RESOURCE = "references/design-process/design_principles.md"
+
+INTENT_SIGNALS = {
+    "DESIGN_PRINCIPLES": {"weight": 4, "keywords": ["design", "redesign", "make it look good", "looks generic", "looks templated", "looks ai-generated", "visual identity", "distinctive", "palette", "typography", "type", "layout", "brainstorm", "critique", "deviate", "templated default", "hero section", "landing page"]},
+    "REGISTER_DIALS": {"weight": 4, "keywords": ["register", "brand vs product", "posture", "dials", "variance", "motion dial", "density", "design read", "read the brief", "intake", "calibrate", "calibration"]},
+    "VARIATION_DIVERSITY": {"weight": 4, "keywords": ["variation", "variations", "give me options", "multiple directions", "several directions", "show me options", "n directions", "two directions", "three directions", "diverse", "seed of thought", "debias"]},
+    "UX_QUALITY": {"weight": 4, "keywords": ["quality floor", "accessibility", "accessible", "contrast", "focus", "keyboard", "reduced motion", "touch target", "responsive", "forms", "charts", "data visualization", "what fails"]},
+    "REAL_UI_LOOP": {"weight": 4, "keywords": ["real ui", "real-ui loop", "reuse before generate", "existing design system", "registered component", "render fidelity", "dev server", "actually rendered", "matches the intent", "handoff", "screenshot the build"]},
+    "MECHANICAL_PREFLIGHT": {"weight": 4, "keywords": ["mechanical", "pre-flight", "preflight", "pre flight", "preflight card", "ship or fix", "layout gate", "hero lines", "bento", "eyebrow", "button contrast", "section spacing", "before shipping", "before i ship"]},
+    "COPY_MOCK_DATA": {"weight": 4, "keywords": ["copy", "mock data", "placeholder", "lorem", "ai-tell phrasing", "fake-precise", "fake precision", "copy register", "image seed", "names and numbers", "realistic content", "content tells"]},
+    "GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "critique against", "default to deviate from", "mobbin", "refero", "real-world reference", "shipped ui", "the cliche", "the usual look", "typical look"]},
+    "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
+}
+
+RESOURCE_MAP = {
+    "DESIGN_PRINCIPLES": ["references/design-process/design_principles.md"],
+    "REGISTER_DIALS": ["references/design-process/brief_to_dials.md"],
+    "VARIATION_DIVERSITY": ["references/design-process/variation_diversity.md"],
+    "UX_QUALITY": ["references/design-process/ux_quality_reference.md"],
+    "REAL_UI_LOOP": ["references/design-process/real_ui_loop.md"],
+    "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical_defaults.md", "references/design-process/copy_and_mock_data.md", "assets/interface_preflight_card.md"],
+    "COPY_MOCK_DATA": ["references/design-process/copy_and_mock_data.md"],
+    "GROUNDING": ["references/design-grounding/design_inventory.md", "references/design-grounding/design_references_mcp.md", "references/mcp-tooling/mobbin_tools.md", "references/mcp-tooling/refero_tools.md"],
+    "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple_bento.md"],
+}
+
+# Routing flow on top of the model above:
+# 1) DEFAULT_RESOURCE (design_principles.md) loads on every design task.
+# 2) If the brief pins the visual direction, follow it verbatim and skip default-avoidance.
+# 3) If axes are free, apply DESIGN_PRINCIPLES (subject, principles, process, restraint).
+# 4) If two or more directions are requested, VARIATION_DIVERSITY runs the seed-of-thought debias.
+# 5) If the task writes interface copy or mock data, COPY_MOCK_DATA gates the content.
+# 6) Hand implementation to sk-code for the detected web surface; this skill owns the look, not the build.
 ```
 
 ---

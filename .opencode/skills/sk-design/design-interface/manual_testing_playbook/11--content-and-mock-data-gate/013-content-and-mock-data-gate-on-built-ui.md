@@ -3,11 +3,21 @@ title: "ID-013 -- Content and mock-data gate on a built UI"
 description: "This scenario validates the copy and mock-data content gate for `ID-013`. It focuses on confirming a built interface is swept against copy_and_mock_data.md, no lorem, no AI-tell phrasing, plausible names and numbers, one copy register matched to the posture, and descriptive unique image seeds, where each check is a pass or fail sweep run over the real strings rather than from memory."
 contextType: reference
 version: 1.0.0.0
+id: ID-013
+expected_intent: COPY_MOCK_DATA
+expected_resources:
+  - references/design-process/copy_and_mock_data.md
 ---
 
 # ID-013 -- Content and mock-data gate on a built UI
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-013`.
+
+**Exact prompt**
+
+```
+Sweep this built page for content tells: lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, and lazy image seeds, then tell me what fails.
+```
 
 ---
 

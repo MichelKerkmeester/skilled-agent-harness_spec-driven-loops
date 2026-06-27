@@ -2,8 +2,18 @@
 title: "PROVENANCE-001 -- Source-Of-Truth Router Card Sorts Each Value"
 description: "This scenario validates the source-of-truth router card for PROVENANCE-001. It confirms the fill-in card sorts every value bound for a v3 Style Reference into measured, brief-provided, inferred or absent before writing, so only measured values land in token tables, doubtful values are recorded with their origin, while a brief-only request with no live site is routed out of scope as forward-authoring."
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
+expected_intent: EXTRACT_WRITE
+expected_resources:
+  - references/authoring_boundary.md
+  - assets/source_of_truth_router_card.md
 ---
+
+**Exact prompt**
+
+```
+Walk through each value in this design system and tell me where it came from before we trust it.
+```
 
 # PROVENANCE-001 -- Source-Of-Truth Router Card Sorts Each Value
 

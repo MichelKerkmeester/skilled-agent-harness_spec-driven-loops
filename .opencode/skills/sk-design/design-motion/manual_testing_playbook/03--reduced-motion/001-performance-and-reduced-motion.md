@@ -8,7 +8,18 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 version: 1.0.0.0
+expected_intent: PERFORMANCE
+expected_resources:
+  - references/corpus_map.md
+  - references/performance_reduced_motion.md
+  - assets/motion_performance_failure_card.md
 ---
+
+**Exact prompt**
+
+```
+Plan a drawer animation with blur and layout change, but make sure it performs on mobile and respects reduced motion.
+```
 
 # MOTION-REDUCED-001 | Performance And Reduced Motion
 

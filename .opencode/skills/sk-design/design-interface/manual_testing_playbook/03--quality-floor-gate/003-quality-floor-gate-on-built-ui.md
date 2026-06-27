@@ -2,11 +2,21 @@
 title: "ID-003 -- Quality-floor gate on a built UI"
 description: "This scenario validates Quality-floor gate on a built UI for `ID-003`. It focuses on confirming a built interface is checked against the objective quality floor in ux_quality_reference.md."
 version: 1.5.0.5
+id: ID-003
+expected_intent: UX_QUALITY
+expected_resources:
+  - references/design-process/ux_quality_reference.md
 ---
 
 # ID-003 -- Quality-floor gate on a built UI
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-003`.
+
+**Exact prompt**
+
+```
+Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.
+```
 
 ---
 

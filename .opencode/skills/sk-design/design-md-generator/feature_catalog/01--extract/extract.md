@@ -80,8 +80,8 @@ If Playwright cannot reach the URL, JavaScript rendering times out, or the page 
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/01--extract/live-extraction.md` | Manual playbook | Live extraction end-to-end scenario — confirms extract.ts produces a valid, non-empty tokens.json |
-| `../../manual_testing_playbook/06--escalation/anti-bot-escalation.md` | Manual playbook | Anti-bot crawl escalation scenario — confirms blocked crawls never fabricate tokens |
+| `../../manual_testing_playbook/01--extract/001-live-extraction.md` | Manual playbook | Live extraction end-to-end scenario — confirms extract.ts produces a valid, non-empty tokens.json |
+| `../../manual_testing_playbook/06--escalation/006-anti-bot-escalation.md` | Manual playbook | Anti-bot crawl escalation scenario — confirms blocked crawls never fabricate tokens |
 | (no automated test) | Automated test | Covered by the manual playbook scenarios |
 
 ---

@@ -3,11 +3,23 @@ title: "ID-011 -- Mechanical pre-flight card on a built UI"
 description: "This scenario validates the Interface Pre-Flight Card for `ID-011`. It focuses on confirming a built or planned interface is walked box by box against the binary fill-in card in interface_preflight_card.md, that the verdict is SHIP only when every box passes, and that the register and dials set the context without relaxing any mechanical box."
 contextType: reference
 version: 1.0.0.0
+id: ID-011
+expected_intent: MECHANICAL_PREFLIGHT
+expected_resources:
+  - assets/interface_preflight_card.md
+  - references/design-process/mechanical_defaults.md
+  - references/design-process/copy_and_mock_data.md
 ---
 
 # ID-011 -- Mechanical pre-flight card on a built UI
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-011`.
+
+**Exact prompt**
+
+```
+Run the interface pre-flight card over this built page and give me a SHIP or FIX verdict with the failing box numbers.
+```
 
 ---
 

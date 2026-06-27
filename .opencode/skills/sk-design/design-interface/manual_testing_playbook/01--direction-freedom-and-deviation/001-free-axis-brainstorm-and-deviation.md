@@ -2,11 +2,21 @@
 title: "ID-001 -- Free-axis brainstorm critique and deliberate deviation"
 description: "This scenario validates Free-axis brainstorm critique and deliberate deviation for `ID-001`. It focuses on confirming the skill brainstorms a token system, critiques it against the three AI-default clusters, and deviates deliberately."
 version: 1.5.0.3
+id: ID-001
+expected_intent: DESIGN_PRINCIPLES
+expected_resources:
+  - references/design-process/design_principles.md
 ---
 
 # ID-001 -- Free-axis brainstorm critique and deliberate deviation
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `ID-001`.
+
+**Exact prompt**
+
+```
+Design a landing page for an artisan letterpress studio; the brand has no fixed colors or fonts yet, so make it feel distinctive rather than generic.
+```
 
 ---
 
