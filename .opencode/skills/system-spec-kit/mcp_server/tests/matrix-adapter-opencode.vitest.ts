@@ -33,7 +33,7 @@ describe('adapterCliOpencode', () => {
     expectSpawned('opencode', [
       'run',
       '--model',
-      'opencode-go/deepseek-v4-pro',
+      'deepseek/deepseek-v4-pro',
       '--variant',
       'high',
       '--format',

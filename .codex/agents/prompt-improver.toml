@@ -2,7 +2,6 @@
 # Converted from: .opencode/agents/prompt-improver.md
 name = "prompt-improver"
 description = "Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages."
-profile = "default"
 sandbox_mode = "read-only"
 model = "gpt-5.5"
 model_reasoning_effort = "high"

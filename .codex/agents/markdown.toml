@@ -2,7 +2,6 @@
 # Converted from: .opencode/agents/markdown.md
 name = "markdown"
 description = "Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring"
-profile = "default"
 sandbox_mode = "workspace-write"
 model = "gpt-5.5"
 model_reasoning_effort = "medium"

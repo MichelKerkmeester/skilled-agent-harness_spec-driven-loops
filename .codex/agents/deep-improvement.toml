@@ -2,7 +2,6 @@
 # Converted from: .opencode/agents/deep-improvement.md
 name = "deep-improvement"
 description = "Proposal-only mutator for bounded deep-improvement candidate generation with evaluator-first rules"
-profile = "default"
 sandbox_mode = "workspace-write"
 model = "gpt-5.5"
 model_reasoning_effort = "high"
