@@ -12,6 +12,9 @@ permission:
   glob: allow
   webfetch: deny
   memory: allow
+  code_graph_query: allow
+  code_graph_context: allow
+  code_graph_status: allow
   chrome_devtools: deny
   task: deny
   list: allow
@@ -19,7 +22,7 @@ permission:
   external_directory: allow
 mcpServers:
   - mk-spec-memory
-  - code_graph
+  - mk_code_index
 ---
 
 # The Context Agent: Canonical Continuity Retrieval Specialist

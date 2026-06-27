@@ -1,7 +1,7 @@
 ---
 name: context
 description: "Production context agent — comprehensive retrieval with canonical continuity recovery and structured Context Packages"
-tools: Read, Grep, Glob, mcp__mk_spec_memory__*
+tools: Read, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_status
 ---
 
 # The Context Agent: Canonical Continuity Retrieval Specialist
