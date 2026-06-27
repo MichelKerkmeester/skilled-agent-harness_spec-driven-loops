@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/029-design-context-loading",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/029-design-context-loading",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design context under-loading research",
+      "design context loading guardrails",
+      "prevent AI missing design sub-skill context",
+      "design context manifest research",
+      "design context loading research plan",
+      "deep research plan sk-design context",
+      "design context loading research tasks",
+      "deep research tasks sk-design context",
+      "design context loading research summary",
+      "sk-design context under-loading findings",
+      "design context manifest summary"
+    ],
+    "key_topics": [
+      "sk-design",
+      "context",
+      "under-loading",
+      "research",
+      "design",
+      "loading",
+      "guardrails",
+      "prevent",
+      "missing",
+      "sub-skill",
+      "manifest",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/fanout-attribution.md",
+      "research/deep-research-findings-registry.json",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/shared/register.md",
+      ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+      ".opencode/skills/sk-design/shared/anti_slop_principles.md",
+      ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+      ".opencode/skills/sk-design/design-interface/references/design-process/brief_to_dials.md",
+      ".opencode/skills/sk-design/design-interface/references/design-process/ux_quality_reference.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md",
+      ".opencode/skills/sk-design/design-foundations/references/color/palette_theming.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "register.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/register.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_token_vocabulary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti_slop_principles.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/anti_slop_principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_code_handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface_preflight_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief_to_dials.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/brief_to_dials.md",
+        "source": "derived"
+      },
+      {
+        "name": "ux_quality_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/ux_quality_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "oklch_workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "palette_theming.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/references/color/palette_theming.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` is a routed hub of five modes over a shared reference base; the strongest design context (the Brand-vs-Product register and its six dials, the foundations token + contrast discipline, the audit contract, and the interface pre-flight card) lives in always-load and conditional resources the modes own",
+    "created_at": "2026-06-27T14:34:48.913Z",
+    "last_save_at": "2026-06-27T14:40:39.092Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2a2d5d0f0bfe3734e898d50eaf0432ffb08fe98e581fd979bb903a7cff481535",
+    "source_doc_hashes": {
+      "spec.md": "a455dd03d8d9b96207b5cdb42f08c560798fd69a90d42a65e542761bfc8df7b9",
+      "plan.md": "6517048d53f7051e6412564df12593726c7f08168d22b913424671c22268d522",
+      "tasks.md": "5a97c773ceca5293bab8c95065781831d84736d291712f4c37ec60136d34d330",
+      "implementation-summary.md": "dd95c3903a9cacc9cd8fca30e7c6795c53aaef08de46d87894a8a67aabaf459b",
+      "research/research.md": "5a42c5c8c78615514486f2901d013d07ae0ad8d0c930c5ceaa8b4fff9562f37f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

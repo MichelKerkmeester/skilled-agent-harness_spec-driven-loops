@@ -1,0 +1,27 @@
+{
+  "topic": "Deep review of sk-design design context-loading work",
+  "mode": "review",
+  "reviewTarget": "session design context-loading work",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "internal coherence",
+    "cross-reference integrity",
+    "no-duplication",
+    "smart-router and anchor safety",
+    "sk-doc quality",
+    "four observed misses closure",
+    "research completeness",
+    "security and path guards",
+    "maintainability and drift risk"
+  ],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/031-design-context-benchmark",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/031-design-context-benchmark/review",
+  "sessionId": "rvw-2026-06-27-design-context-loading",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "createdAt": "2026-06-27T00:00:00Z",
+  "scopeLock": "Write only under .opencode/specs/skilled-agent-orchestration/154-sk-design-parent/031-design-context-benchmark/review/"
+}

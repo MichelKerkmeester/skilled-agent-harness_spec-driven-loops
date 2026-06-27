@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anobel – Bestellimieten</title>
+  <style>
+    :root {
+      --blue: #06458c;
+      --blue-deep: #053b77;
+      --blue-darker: #043367;
+      --tint-100: #f2f3f6;
+      --tint-200: #e7e9ee;
+      --tint-300: #cbd0dc;
+      --green: #367e39;
+      --red: #c9140f;
+      --gold: #dbab00;
+      --white: #fefefe;
+      --black: #0a0a0a;
+      --text: #0a1a2f;
+      --muted: #787878;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--tint-100);
+      color: var(--text);
+      font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.35;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .card {
+      width: 560px;
+      height: 480px;
+      background: var(--white);
+      border: 1px solid var(--tint-300);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--blue);
+      color: var(--white);
+      padding: 18px 20px 16px;
+      flex-shrink: 0;
+    }
+
+    .card-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 2px;
+    }
+
+    .card-header p {
+      font-size: 12px;
+      color: var(--tint-200);
+      font-weight: 400;
+    }
+
+    .summary {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--tint-200);
+      flex-shrink: 0;
+    }
+
+    .summary-item {
+      flex: 1;
+    }
+
+    .summary-item dt {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+
+    .summary-item dd {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .summary-item.positive dd {
+      color: var(--green);
+    }
+
+    .alert {
+      background: var(--red);
+      color: var(--white);
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .alert-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--white);
+      border-radius: 50%;
+      font-size: 11px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .alert-detail {
+      font-weight: 400;
+      color: var(--tint-200);
+      margin-left: auto;
+    }
+
+    .locations {
+      flex: 1;
+      overflow: auto;
+      padding: 8px 0 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    th {
+      background: var(--tint-100);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 20px;
+      border-bottom: 1px solid var(--tint-300);
+    }
+
+    td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--tint-200);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.alert-row td {
+      background: rgba(201, 20, 15, 0.05);
+      border-left: 3px solid var(--red);
+      padding-left: 17px;
+    }
+
+    tr.warning-row td {
+      border-left: 3px solid var(--gold);
+      padding-left: 17px;
+    }
+
+    .location-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .location-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .amount {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .amount.positive {
+      color: var(--green);
+    }
+
+    .amount.negative {
+      color: var(--red);
+    }
+
+    .amount.warning {
+      color: var(--gold);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+    }
+
+    .badge-alert {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .badge-warning {
+      background: var(--gold);
+      color: var(--text);
+    }
+
+    .card-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--tint-200);
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <article class="card">
+    <header class="card-header">
+      <h1>Bestellimieten</h1>
+      <p>Per schip / locatie · Periode: Q2 2026</p>
+    </header>
+
+    <dl class="summary">
+      <div class="summary-item">
+        <dt>Totaallimiet</dt>
+        <dd>€ 35.000,00</dd>
+      </div>
+      <div class="summary-item">
+        <dt>Totaal besteed</dt>
+        <dd>€ 31.890,50</dd>
+      </div>
+      <div class="summary-item positive">
+        <dt>Resterend</dt>
+        <dd>€ 3.109,50</dd>
+      </div>
+    </dl>
+
+    <div class="alert" role="alert">
+      <span class="alert-icon">!</span>
+      <span>Overschrijding op MV Zeeland</span>
+      <span class="alert-detail">€ 450,00 boven limiet</span>
+    </div>
+
+    <div class="locations">
+      <table>
+        <thead>
+          <tr>
+            <th>Locatie / Schip</th>
+            <th>Limiet</th>
+            <th>Besteed</th>
+            <th>Resterend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="location-name">Amsterdam</div>
+              <div class="location-meta">MV Rotterdam</div>
+            </td>
+            <td class="amount">€ 12.000,00</td>
+            <td class="amount">€ 9.240,50</td>
+            <td class="amount positive">€ 2.759,50</td>
+          </tr>
+          <tr class="alert-row">
+            <td>
+              <div class="location-name">Rotterdam</div>
+              <div class="location-meta">MV Zeeland</div>
+            </td>
+            <td class="amount">€ 8.000,00</td>
+            <td class="amount negative">€ 8.450,00</td>
+            <td class="amount negative">− € 450,00 <span class="badge badge-alert">Alert</span></td>
+          </tr>
+          <tr class="warning-row">
+            <td>
+              <div class="location-name">Antwerpen</div>
+              <div class="location-meta">MV IJssel</div>
+            </td>
+            <td class="amount">€ 15.000,00</td>
+            <td class="amount warning">€ 14.200,00</td>
+            <td class="amount warning">€ 800,00 <span class="badge badge-warning">Bijna</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="card-footer">
+      Limieten worden dagelijks gesynchroniseerd vanuit het hoofdadministratiesysteem.
+    </footer>
+  </article>
+</body>
+</html>

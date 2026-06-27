@@ -566,7 +566,78 @@ opencode run \
 
 ---
 
-## 17. RELATED RESOURCES
+## 17. TEMPLATE 16 — DESIGN/UI TASK DISPATCH
+
+**Framework:** RCAF + sk-design Context Manifest
+**Agent:** `general`, `write`, or a design-capable leaf agent
+**Use case:** 1 or 3
+
+Use this for delegated UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. The dispatched agent must load `sk-design` with the right mode bundle before any design decision. For MiniMax-M3 or other small-model dispatches, pair this contract with the model profile variant in `../../sk-prompt-small-model/references/models/minimax-m3.md`.
+
+```text
+You are dispatching a design/UI task through cli-opencode.
+
+Goal: <one-sentence design/UI goal>
+
+Context Manifest:
+- Spec folder: <path> (pre-approved, skip Gate 3)
+- Write scope: <read-only | allowed write paths>
+- Target surface: <page | component | flow | audit target>
+- Task type: <build | redesign | review | accessibility | release-readiness | recommendation>
+- Register: <Brand | Product | unknown until shared/register.md is read>
+- Required mode bundle: <interface | interface + foundations | interface + foundations + audit | audit>
+- Exact files to read:
+  - .opencode/skills/sk-design/shared/context_loading_contract.md
+  - .opencode/skills/sk-design/shared/register.md
+  - <required mode SKILL.md files and axis references>
+  - .opencode/skills/sk-design/shared/assets/context_loaded_card.md
+  - .opencode/skills/sk-design/shared/assets/proof_of_application_card.md
+
+Instructions:
+1. Load `sk-design` and the required mode bundle before any design decision.
+2. Read the exact files in the Context Manifest. If a listed shared contract or card is missing, report that path as missing and do not substitute memory.
+3. Emit the Context Loaded card before recommendations, code, audit findings, or design direction.
+4. Apply the task, staying inside the write scope.
+5. Emit the Proof Of Application card before any "ready", "accessible", "release-ready", "done", or equivalent claim.
+
+Required proof fields in the Proof Of Application card:
+- REGISTER / DIALS: Brand|Product, why, variance, motion, density, and downstream effect.
+- CONTRAST PAIRS: every foreground/background pair touched or evaluated, target, result, and fix if failing.
+- INTERFACE PREFLIGHT: surface, narrowest tested width, required pass/fail rows, and verdict.
+- AUDIT EVIDENCE: target, evidence labels, dimensions checked, and any not-assessed areas.
+
+Do's:
+- Treat `.opencode/skills/sk-design/shared/context_loading_contract.md` as the shared contract.
+- Use `shared/register.md` before palette, layout, motion, density, copy, or audit-severity choices.
+- Use foundations references for color, theme, token, contrast, layout, or responsive decisions.
+- Use audit evidence labels before accessibility, score, release-readiness, or review claims.
+
+Don'ts:
+- Do not summarize `sk-design` from memory.
+- Do not make design recommendations before the Context Loaded card.
+- Do not claim accessibility, readiness, release quality, or completion without the Proof Of Application card and all four proof fields.
+- Do not touch files outside the allowed write scope.
+
+Output:
+1. Context Loaded card.
+2. Recommendations, code, or findings.
+3. Verification commands or evidence.
+4. Proof Of Application card.
+```
+
+```bash
+opencode run \
+  --model deepseek/deepseek-v4-pro \
+  --agent general \
+  --variant high \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt-from-template>" 2>&1
+```
+
+---
+
+## 18. RELATED RESOURCES
 
 - `../references/cli_reference.md` - Full subcommand and flag reference
 - `../references/integration_patterns.md` - Three use cases and decision tree

@@ -34,7 +34,7 @@ Canonical package artifacts:
 
 This playbook provides 34 deterministic scenarios across 9 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 13-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
@@ -568,11 +568,11 @@ Expected signals: Exit 0. Exactly one MEMORY_HANDBACK delimiter pair. Payload pa
 
 ---
 
-## 13. PROMPT TEMPLATES (`CO-023..CO-025`, `CO-035..CO-036`)
+## 13. PROMPT TEMPLATES (`CO-023..CO-025`, `CO-035..CO-037`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the 13-template inventory in `assets/prompt_templates.md`, the CLEAR quality card and a real template-driven dispatch.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the 16-template inventory in `assets/prompt_templates.md`, the CLEAR quality card, real template-driven dispatch, small-model dispatch matrices, and design-context manifest handoff.
 
-### CO-023 | Prompt templates inventory (13 templates)
+### CO-023 | Prompt templates inventory (16 templates)
 
 #### Description
 
@@ -580,7 +580,7 @@ Verify `assets/prompt_templates.md` contains exactly 13 numbered templates (TEMP
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 13 templates are present, each named template includes a Framework tag and each invocation template includes a bash code block (Templates 1-11).
+Prompt summary: As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present, each named template includes a Framework tag and each invocation template includes a bash code block (Templates 1-11).
 
 Expected signals: 13 unique TEMPLATE headers. >=12 Framework lines. >=11 bash code blocks. Templates 12 and 13 present.
 
@@ -655,6 +655,24 @@ Desired user-visible outcome: A consolidated multi-file analysis demonstrating K
 #### Test Execution
 
 > **Feature File:** [CO-036](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
+
+### CO-037 | MiniMax design dispatch carries context manifest and proof cards
+
+#### Description
+
+Verify a MiniMax-M3 design/UI dispatch is not sent with thin generic context: the dispatched prompt uses the MiniMax profile shape, embeds the sk-design context manifest, and requires Context Loaded and Proof Of Application cards.
+
+#### Scenario Contract
+
+Prompt: `Use MiniMax-M3 to review a SaaS onboarding redesign direction. Dispatch it with the sk-design context manifest, register/dials, contrast-pair, pre-flight, and audit-evidence proof requirements.`
+
+Expected signals: Advisor or operator consults `sk-prompt-small-model` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context_loading_contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
+
+Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo loaded context and proof-of-application sections, rather than a generic design-review prompt that omits the manifest.
+
+#### Test Execution
+
+> **Feature File:** [CO-037](07--prompt-templates/minimax-design-context-manifest.md)
 
 ---
 
@@ -824,11 +842,12 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### PROMPT TEMPLATES
 
-- CO-023: [Prompt templates inventory (13 templates)](07--prompt-templates/templates-inventory.md)
+- CO-023: [Prompt templates inventory (16 templates)](07--prompt-templates/templates-inventory.md)
 - CO-024: [CLEAR quality card 5-check](07--prompt-templates/clear-quality-card.md)
 - CO-025: [Template applied to a real dispatch](07--prompt-templates/template-applied-to-real-dispatch.md)
 - CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt-small-model + sk-prompt](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-small-model.md)
 - CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt-small-model + sk-prompt](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-small-model.md)
+- CO-037: [MiniMax design dispatch carries context manifest and proof cards](07--prompt-templates/minimax-design-context-manifest.md)
 
 ### PARALLEL DETACHED
 

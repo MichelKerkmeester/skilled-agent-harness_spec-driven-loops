@@ -265,6 +265,7 @@ def route_audit_resources(user_request, task=None):
 ### Audit Workflow
 
 1. Resolve the target and the register: source files, URL, screenshot, design plan or rendered UI evidence, then read `../shared/register.md` so the audit-severity dial weights findings by Brand-vs-Product posture. `references/evidence_capture.md` owns target resolution.
+   **Ready-claim gate:** before any ready, release, or accessibility claim, complete the five-dimension score with evidence labels (`confirmed`, `inferred`, `not-assessed`) per `references/audit_contract.md`; reuse `assets/audit_evidence_worksheet.md` to carry those labels into findings and scores.
 2. State evidence available and evidence missing. A visual claim needs visual evidence or a clear caveat. A finding read from real evidence is confirmed, while a finding from a screenshot alone is inferred.
 3. Score the five audit dimensions 0-4 each:
    - Accessibility.

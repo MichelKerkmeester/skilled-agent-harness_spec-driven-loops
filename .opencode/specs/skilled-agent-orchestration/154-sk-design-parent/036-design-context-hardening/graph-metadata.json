@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/036-design-context-hardening",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/036-design-context-hardening",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context contract hardening",
+      "contrast checker script",
+      "design contract review fixes",
+      "F-005 F-003 F-006 remediation",
+      "context contract hardening plan",
+      "contrast checker plan",
+      "context contract hardening tasks",
+      "contrast checker tasks",
+      "context contract hardening summary",
+      "contrast checker added",
+      "design contract fixes applied"
+    ],
+    "key_topics": [
+      "context",
+      "contract",
+      "hardening",
+      "contrast",
+      "checker",
+      "script",
+      "design",
+      "review",
+      "fixes",
+      "f-005",
+      "f-003",
+      "f-006"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "contrast_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/design-foundations/scripts/contrast_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatched",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 031 evaluation proved the contract works but found a safety defect (F-005), a cross-reference robustness gap (F-003), inventory drift (F-006), and an empirical soft spot: a weak model (Kimi) ran the contrast inventory but mislabeled two failing pairs as pass",
+    "created_at": "2026-06-27T16:46:38.954Z",
+    "last_save_at": "2026-06-27T16:46:38.954Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8237e3ea3dfd7b8e3d70b35854ea816387fa27a6e1e1e304da658f242ebda548",
+    "source_doc_hashes": {
+      "spec.md": "2acc16f75ad829ed003aff9479320235f224d83f9cb0d6b67e6bf105f1ec799f",
+      "plan.md": "ee3abf809c9ed6ca92c9d1bf90c5d4b16eba874ca7f8c25ad65f85a6e00259ab",
+      "tasks.md": "e3a8c15b377f2478c13c26f9ca370252894012f324358ce953d9e2d139363030",
+      "implementation-summary.md": "48847e976b110c4846ac8426d961c69ccae331ace4df7d5fd041a5e8fd41d9fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

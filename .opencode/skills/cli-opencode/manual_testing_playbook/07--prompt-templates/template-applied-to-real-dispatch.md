@@ -16,7 +16,7 @@ This scenario validates Template applied to a real dispatch for `CO-025`. It foc
 
 ### Why This Matters
 
-The 13 templates exist so operators do not author dispatch prompts from scratch. Their value depends on producing predictable, well-shaped output when used as documented. If a template's placeholders are too loose or the documented output shape does not actually emerge when the template is dispatched, the inventory's promise fails. This test takes one representative template (TEMPLATE 5) and exercises the full path from template -> populated prompt -> dispatch -> shape-matched response.
+The 16 templates exist so operators do not author dispatch prompts from scratch. Their value depends on producing predictable, well-shaped output when used as documented. If a template's placeholders are too loose or the documented output shape does not actually emerge when the template is dispatched, the inventory's promise fails. This test takes one representative template (TEMPLATE 5) and exercises the full path from template -> populated prompt -> dispatch -> shape-matched response.
 
 ---
 

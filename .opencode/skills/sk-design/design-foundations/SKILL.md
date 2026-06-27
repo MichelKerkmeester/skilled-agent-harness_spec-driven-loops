@@ -87,6 +87,7 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | ALWAYS | The first step of any foundations task | `../shared/register.md` (set the Brand-vs-Product register, which sets the color strategy and token density this skill inherits) |
 | ALWAYS | Any foundations task | `references/corpus_map.md` plus the matching axis reference |
 | CONDITIONAL | Color or theme work | `references/color/oklch_workflow.md`, `references/color/palette_theming.md` |
+| CONDITIONAL | Any UI build with changed foreground/background text or surface pairs | `references/color/oklch_workflow.md` Section 4 plus the mandatory contrast-pair inventory `assets/contrast_pair_inventory.md`, with every ratio computed by `scripts/contrast_check.py` (a calculator, not eyeballed); see `../shared/context_loading_contract.md` |
 | CONDITIONAL | Typography work | `references/type/typography_system.md` |
 | CONDITIONAL | Layout or responsive work | `references/layout/layout_responsive.md` |
 | CONDITIONAL | Data visualization, charts, or data tables | `references/data_viz.md` |

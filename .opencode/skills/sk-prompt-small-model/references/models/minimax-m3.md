@@ -127,6 +127,73 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ---
 
+## Design-Task Variant
+
+Use this variant when MiniMax-M3 is dispatched for UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. It keeps the tuned TIDD-EC + dense pre-plan scaffold above and adds the shared design-loading contract from [`../../../sk-design/shared/context_loading_contract.md`](../../../sk-design/shared/context_loading_contract.md).
+
+```markdown
+## Task
+Load and apply the sk-design context bundle for <surface> before producing <recommendations | code | review findings>.
+
+## Instructions
+1. Write a `<pre-plan>` block with 4-5 ordered steps (dense). Each step must include:
+   - Input: what this step receives
+   - Output: what this step produces
+   - Acceptance criterion: the exact condition that proves this step is done
+   - Verification command: the shell/test command that checks it
+2. Read the required design context files before design decisions.
+3. Emit the Context Loaded card before recommendations, code, audit findings, or design direction.
+4. Emit the Proof Of Application card before any "ready", "accessible", "release-ready", "done", or equivalent claim.
+5. End with a `## Verification` section listing the exact commands or evidence that prove all acceptance criteria are met.
+
+## Design Manifest
+- Files loaded:
+  - .opencode/skills/sk-design/shared/context_loading_contract.md
+  - .opencode/skills/sk-design/shared/register.md
+  - <required mode SKILL.md files and axis references>
+  - .opencode/skills/sk-design/shared/assets/context_loaded_card.md
+  - .opencode/skills/sk-design/shared/assets/proof_of_application_card.md
+- Register: Brand | Product
+- Dials:
+  - VARIANCE: <0-5>
+  - MOTION: <0-5>
+  - DENSITY: <0-5>
+- Proof fields:
+  - REGISTER / DIALS: <complete | incomplete>
+  - CONTRAST PAIRS: <complete | incomplete | not applicable with reason>
+  - INTERFACE PREFLIGHT: <complete | incomplete | not applicable with reason>
+  - AUDIT EVIDENCE: <complete | incomplete | not applicable with reason>
+
+## Do's
+- Stay strictly within the allowed-writes scope (list affected files explicitly).
+- Use only documented, real CLI flags, functions, and file paths.
+- Read `.opencode/skills/sk-design/shared/register.md` first and set Brand|Product plus dials before palette, layout, motion, density, copy, or audit-severity choices.
+- Emit the Context Loaded card before recommendations.
+- Produce a contrast-pair inventory for all foreground/background pairs touched or evaluated.
+- Fill interface pre-flight before any "done", "ready", "ship", or equivalent claim.
+- Use audit evidence labels before accessibility, score, release-readiness, or review claims.
+
+## Don'ts
+- Do not invent CLI flags, functions, or files that are not in the codebase.
+- Do not touch files outside the explicit scope list.
+- Do not summarize `sk-design` from memory.
+- Do not claim accessibility without audit evidence.
+- Do not omit any proof field from the Design Manifest or Proof Of Application card.
+- Do not replace code blocks with prose disclaimers or "you could also..." alternatives.
+
+## Examples
+Output shape: a `<pre-plan>` block, then the Design Manifest, then the Context Loaded card, then recommendations/code/findings, then `## Verification`, then the Proof Of Application card.
+
+## Context
+- CWD: <absolute path>
+- Active surface: <surface name, e.g. "React app / marketing page">
+- Files in scope: <list of files that may be read or written>
+- Required mode bundle: <interface | interface + foundations | interface + foundations + audit | audit>
+- Acceptance criteria: <what "done" means — be concrete>
+```
+
+---
+
 ## 6. DISPATCH GOTCHAS
 
 Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) → `models[id="minimax-m3"].capability`.

@@ -1,0 +1,22 @@
+{
+  "run_id": "1782569918698-7ovcgo",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/029-design-context-loading",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/029-design-context-loading/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -13,6 +13,7 @@ version: 1.0.0.0
 | ID | Scenario | File |
 | --- | --- | --- |
 | FOUND-COLOR-001 | OKLCH palette and dark-mode token plan | [`01--color/001-oklch-palette-and-dark-mode.md`](01--color/001-oklch-palette-and-dark-mode.md) |
+| FOUND-COLOR-002 | Contrast-pair inventory before audit | [`01--color/002-contrast-pair-inventory-before-audit.md`](01--color/002-contrast-pair-inventory-before-audit.md) |
 | FOUND-TYPE-001 | Typography role system and measure | [`02--type/001-type-roles-and-measure.md`](02--type/001-type-roles-and-measure.md) |
 | FOUND-LAYOUT-001 | Layout rhythm and responsive adaptation | [`03--layout/001-layout-rhythm-responsive.md`](03--layout/001-layout-rhythm-responsive.md) |
 | FOUND-LAYOUT-002 | Context adaptation matrix across device, input and posture | [`03--layout/002-context-adaptation-matrix.md`](03--layout/002-context-adaptation-matrix.md) |

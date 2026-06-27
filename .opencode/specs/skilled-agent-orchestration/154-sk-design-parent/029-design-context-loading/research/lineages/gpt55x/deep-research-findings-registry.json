@@ -1,0 +1,120 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "When should sk-design auto-pair interface, foundations and audit?",
+    "What context must be loaded before visual choices?",
+    "How should contrast discipline be encoded before implementation?",
+    "What audit artifacts must be loaded before release claims?",
+    "What must be passed to dispatched sub-agents and small models?",
+    "How should MiniMax-M3 prompts differ from frontier-model prompts?",
+    "What hard gates prevent repeat misses?",
+    "How should fan-out outputs be verified and adopted?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-mode-bundle",
+      "title": "UI build work needs a context bundle, not interface-only routing",
+      "summary": "The hub says generic design prompts default to interface, but interface itself requires the shared register, dials, mechanical pre-flight, and quality floor. Any build or redesign task should load interface plus register plus foundations contrast and audit pre-flight context.",
+      "sources": [
+        "file:.opencode/skills/sk-design/SKILL.md:56",
+        "file:.opencode/skills/sk-design/design-interface/SKILL.md:73",
+        "file:.opencode/skills/sk-design/design-interface/SKILL.md:176"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-register-gate",
+      "title": "The Brand-vs-Product register must be a hard first-step gate",
+      "summary": "The shared register says skipping it is the common cause of generic drift and sets six downstream dials. Interface, foundations and audit each load it first, so missing it is a workflow failure.",
+      "sources": [
+        "file:.opencode/skills/sk-design/shared/register.md:16",
+        "file:.opencode/skills/sk-design/shared/register.md:28",
+        "file:.opencode/skills/sk-design/design-interface/SKILL.md:141"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-foundations-contrast",
+      "title": "Contrast must be checked as token-pair inventory before build handoff",
+      "summary": "Foundations owns contrast work; OKLCH repair starts from actual foreground/background pairs, and interface quality says WCAG AA must be verified, not eyeballed.",
+      "sources": [
+        "file:.opencode/skills/sk-design/design-foundations/SKILL.md:31",
+        "file:.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md:61",
+        "file:.opencode/skills/sk-design/design-interface/references/design-process/ux_quality_reference.md:42"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-audit-contract",
+      "title": "Audit must use the pre-flight and evidence contracts, not ad-hoc critique",
+      "summary": "The pre-flight card is a binary ship/fix gate; the audit contract is a severity, evidence and score contract. Both prevent release claims from unsupported visual judgment.",
+      "sources": [
+        "file:.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:16",
+        "file:.opencode/skills/sk-design/design-audit/SKILL.md:267",
+        "file:.opencode/skills/sk-design/design-audit/references/audit_contract.md:61"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-dispatch-manifest",
+      "title": "Sub-agents need a sk-design context manifest with required reads and proof fields",
+      "summary": "Dispatch prompts must include the spec folder, allowed write scope, loaded references, output format, and verification. Otherwise delegated agents cannot satisfy Gate 3 or prove they loaded the right mode context.",
+      "sources": [
+        "file:.opencode/skills/cli-opencode/SKILL.md:318",
+        "file:.opencode/skills/cli-opencode/SKILL.md:319",
+        "file:.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md:66"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-minimax-profile",
+      "title": "MiniMax-M3 must receive the profiled TIDD-EC dense scaffold",
+      "summary": "MiniMax-M3 is an explicit exception to generic prompt defaults; the model profile says TIDD-EC plus dense pre-planning and explicit Do/Don't sections are the mechanism that curbs drift.",
+      "sources": [
+        "file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:35",
+        "file:.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md:56",
+        "file:.opencode/skills/cli-opencode/assets/prompt_templates.md:488"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "finding-fanout-adoption",
+      "title": "Adopt-if-better needs merge attribution plus promotion gates",
+      "summary": "Fan-out can deduplicate and preserve lineage attribution, but it does not by itself prove a recommendation is better. Canonical adoption should require score, benchmark or deterministic checks, boundary compliance, and operator approval.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/fanout-merge.md:21",
+        "file:.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-research.md:27",
+        "file:.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md:22"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "ruledOutDirections": [
+    "Interface-only routing for UI builds",
+    "Post-build-only contrast audit",
+    "Prose-only design audit",
+    "Thin small-model delegation",
+    "Automatic adoption from a single lineage recommendation"
+  ],
+  "coverageBySources": {
+    "sk-design hub and registry": 2,
+    "shared register and shared vocabulary": 3,
+    "interface packet and pre-flight card": 5,
+    "foundations color/token references": 4,
+    "audit contract references": 4,
+    "small-model and cli-opencode references": 5,
+    "fan-out and promotion references": 4
+  },
+  "convergenceScore": 1.0,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": "not_applicable",
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 6,
+    "averageNewInfoRatio": 0.74,
+    "answeredQuestions": 10,
+    "totalQuestions": 10
+  },
+  "lastUpdated": "2026-06-27T14:20:58Z"
+}

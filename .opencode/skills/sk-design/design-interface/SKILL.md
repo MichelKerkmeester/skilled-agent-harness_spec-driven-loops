@@ -71,7 +71,7 @@ DESIGN TASK
 | Level | When to Load | Resource |
 | ----- | ------------ | -------- |
 | ALWAYS | Any design task | `references/design-process/design_principles.md` (palette, type, structure, motion, restraint) |
-| ALWAYS | The first step of any design task | `../shared/register.md` (set the Brand-vs-Product register, which gates density, motion, color dosage, copy, anti-slop strictness) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials) |
+| ALWAYS | The first step of any design task | `../shared/register.md` (set the Brand-vs-Product register, which gates density, motion, color dosage, copy, anti-slop strictness) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials). **Required load-and-prove loop:** register + brief-to-dials + `assets/interface_preflight_card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery. |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
@@ -254,6 +254,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
 - ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
+- ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context_loading_contract.md`, requires `../shared/assets/context_loaded_card.md` before recommendations, and requires `../shared/assets/proof_of_application_card.md` before any ready claim.
 - ✅ Any handoff to `sk-code` includes the required build manifest with locked values, signature moves, reuse list, open risks and never-change constraints.
 
 ---

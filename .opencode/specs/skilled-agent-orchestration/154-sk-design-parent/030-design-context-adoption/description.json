@@ -1,0 +1,37 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/030-design-context-adoption",
+  "description": "Research `029` proved the recurring design misses (skipped register, late contrast → a WCAG-AA P1, ad-hoc audit instead of the pre-flight card, thinne",
+  "keywords": [
+    "research",
+    "029",
+    "proved",
+    "recurring",
+    "design",
+    "misses",
+    "skipped",
+    "register",
+    "late",
+    "contrast",
+    "wcag-aa",
+    "ad-hoc",
+    "audit",
+    "instead",
+    "pre-flight",
+    "card",
+    "thinne"
+  ],
+  "lastUpdated": "2026-06-27T15:28:11.173Z",
+  "specId": "030",
+  "folderSlug": "design-context-adoption",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-06-26_16-28__next-steps.md"
+  ]
+}
