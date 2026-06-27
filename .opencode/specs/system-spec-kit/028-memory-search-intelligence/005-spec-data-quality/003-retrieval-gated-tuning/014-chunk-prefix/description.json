@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
   "description": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
   "keywords": [
     "embed",
@@ -13,14 +13,18 @@
     "reaches",
     "vector"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.630Z",
+  "lastUpdated": "2026-06-27T17:15:36.165Z",
   "specId": "014",
-  "folderSlug": "c1-chunk-prefix",
+  "folderSlug": "chunk-prefix",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "003-retrieval-gated-tuning"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
   "description": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
   "keywords": [
     "prod",
@@ -13,14 +13,18 @@
     "measures",
     "gap"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.654Z",
+  "lastUpdated": "2026-06-27T17:15:36.438Z",
   "specId": "015",
-  "folderSlug": "c2-prodmode-recall-gate",
+  "folderSlug": "prodmode-recall-gate",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "003-retrieval-gated-tuning"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

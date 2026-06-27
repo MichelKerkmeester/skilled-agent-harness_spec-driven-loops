@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,15 +34,18 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "mcp_server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/validation/generated-metadata-integrity.ts",
+      "scripts/lib/validator-registry.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
       "spec.md",
@@ -54,13 +57,13 @@
       {
         "name": "generated-metadata-integrity.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "path": "mcp_server/lib/validation/generated-metadata-integrity.ts",
         "source": "derived"
       },
       {
         "name": "validator-registry.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "path": "scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -197,8 +200,8 @@
       }
     ],
     "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.779Z",
+    "created_at": "2026-06-27T17:15:42.257Z",
+    "last_save_at": "2026-06-27T17:15:42.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0b07fa4556e0d0ae90e799e08a5e59f835f1faca8b29a6c93abedd3043c1225",
+    "source_fingerprint": "sha256:ce38a6a1ff19d61d388b30e139e75f7bb9b231f14cb41b7c3633b2cda80996fe",
     "source_doc_hashes": {
-      "spec.md": "cd15a02ff177a89ac33df2c551fa54b2a1aabecc19bccd72a3f8a89bc730d1ae",
-      "plan.md": "2c05e7bb0e6b2d8bd3be5c7f09849558a31727e9994ab23d611b9437d9a12004",
-      "tasks.md": "666594393643982d5bc577d90c2985909a98db531fb81e6e0fcccfa741921b8a",
-      "checklist.md": "596732d54b3c56c4cb23087b27f2da605007f5a5bf64ad31db3301422b99e3fc",
-      "implementation-summary.md": "04b48ae6dff145841a6f01a16f6f087db9208d32dce72386d361d1a3e64f713e"
+      "spec.md": "4f2ca199e1299291b44644e01022f8de71d464994f9440a37cef4d6faa1e2720",
+      "plan.md": "b77f18473cfbe0abb28df11c327dc12d6fbddebfe3ce13027620b015044d3a4d",
+      "tasks.md": "3b1abb8e3a4b4fd655509d80eeb1cf41834e5488cfe5a287818ab71294a420f4",
+      "checklist.md": "7e0ca495af100077642366102cd3a4103abc3eccdf8b439bf1b6175a51b15f79",
+      "implementation-summary.md": "f70b87f788d7d220c51719bf82209eb6998284cc7dbc3ce01646a66386a2a52b"
     },
     "last_active_child_id": null,
     "last_active_at": null

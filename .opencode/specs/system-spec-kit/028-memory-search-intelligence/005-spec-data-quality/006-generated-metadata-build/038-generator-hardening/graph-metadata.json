@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,8 +43,10 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
+      "lib/validation/generated-metadata-integrity.ts",
+      "scripts/tests/phase-parent-pointer.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      "mcp_server/tests/generator-hardening.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -109,7 +111,7 @@
       {
         "name": "phase-parent-pointer.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
+        "path": "scripts/tests/phase-parent-pointer.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,8 +200,8 @@
       }
     ],
     "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.791Z",
+    "created_at": "2026-06-27T17:15:42.806Z",
+    "last_save_at": "2026-06-27T17:15:42.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:317150caf2f93c9ff667386fe3f38cfcb7bbf0ecc0d783790c7afb764d492739",
+    "source_fingerprint": "sha256:f47321e3e23f6a77b79373edaae0780aa7eb4cb21e17ce2afa765c528da745ef",
     "source_doc_hashes": {
-      "spec.md": "e85b264204e584cd2dc56138d1309b31894c41575bbe1ff99cca0c20335201ff",
-      "plan.md": "0c0d93ddde0ece901b0cc87f586954670fb13f51b6820aa9ca59588d02b5959e",
-      "tasks.md": "ab04c75a9c8e0ca7de9140544f790f567bf4cc97f72282f194696372c6be0f56",
-      "checklist.md": "b1402f4e9cf948655649047fefa24daf2f7bbb6ca3dbcf9aadf1a71bb73b8eb4",
-      "implementation-summary.md": "06f64d19f8e163db7bcac3256ba480db153a2234e97cb2cf2553da3a872247d8"
+      "spec.md": "85ad39e0f078ef3ff7626a42e36222f5acecf875bba731af86d8990114acf4f5",
+      "plan.md": "da63bd002864dd609c108a975f26df72d80fd8bc0b9879935125629a056ba213",
+      "tasks.md": "5d6436838796d43f8563b442e8d3786cf23bc3649988e5693e99e2d116043970",
+      "checklist.md": "3ff0d943050470e566dd4919b10b764e54833b32c8b21c14499d0c97b95ea644",
+      "implementation-summary.md": "e663c7c962895aa21419246871cb8ab0c14e2d680796cebcebd48606e9d486b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

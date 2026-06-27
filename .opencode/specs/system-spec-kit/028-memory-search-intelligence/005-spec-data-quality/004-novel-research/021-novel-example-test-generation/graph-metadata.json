@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,8 +198,8 @@
       }
     ],
     "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
-    "created_at": "2026-06-21T10:22:34.990Z",
-    "last_save_at": "2026-06-23T03:49:58.689Z",
+    "created_at": "2026-06-27T17:15:38.197Z",
+    "last_save_at": "2026-06-27T17:15:38.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebe883af997febfa34156931e1e5e55efef19588a3ffa84568d1777543e65a2f",
+    "source_fingerprint": "sha256:2db57c73402605386910b8fc45fc78e560e5a91295e6da839e8b31a18afc9cb0",
     "source_doc_hashes": {
-      "spec.md": "f8c933cc433c79d789a095a2c20d783ce255c1c21bc04cb8402794cac6ca597c",
-      "plan.md": "ae2f19fbeab84759e02326bee4f37a55153ac70b4f8aa5726a473449c2b5daba",
-      "tasks.md": "7d5bf1011774eb4eff71bb2c64f75cd7ba307119665efe8d770d0c26390e92cb",
-      "checklist.md": "602c9191ce99c8da9032a93f722a0392eba5377be2fced7f6e1d20402ef41934",
-      "implementation-summary.md": "4960b0127c21a692d423877e8f4a6f17297a94a49923e003dbb2d630d0156588"
+      "spec.md": "1e956ba51e3dc6ecc085f4495bd1d4f11012421dc6a05ce687a448b00f36e9b0",
+      "plan.md": "ace2f5a96846b3f8d24d6866d15d0e50ec58cfe292f2b8531d770dacae64a44c",
+      "tasks.md": "2b777bd908457ac37f427c2bf9c0452bad7890d1bf37e294afe7b049ec74ec2d",
+      "checklist.md": "8c5a66a4e1f0a07c464aad44429b46b7575a748a3c0b7b441c2fa28c1c961056",
+      "implementation-summary.md": "5900f6a2fe64b0d7fd254e13b815675c17b4f647b1ab0a62c1344ea6db39a2d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

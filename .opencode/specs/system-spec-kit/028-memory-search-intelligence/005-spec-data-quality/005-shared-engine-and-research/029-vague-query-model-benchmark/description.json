@@ -1,6 +1,5 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
   "description": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
   "keywords": [
     "pilot",
@@ -19,14 +18,18 @@
     "vague",
     "query"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.739Z",
+  "lastUpdated": "2026-06-27T17:15:40.226Z",
   "specId": "029",
   "folderSlug": "vague-query-model-benchmark",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "005-shared-engine-and-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

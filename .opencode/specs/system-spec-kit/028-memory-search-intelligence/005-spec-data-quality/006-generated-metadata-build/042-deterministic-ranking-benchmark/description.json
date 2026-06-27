@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
   "description": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
   "keywords": [
     "fix",
@@ -8,14 +8,18 @@
     "ships",
     "default-off"
   ],
-  "lastUpdated": "2026-06-23T15:21:27.760Z",
+  "lastUpdated": "2026-06-27T17:15:43.765Z",
   "specId": "042",
   "folderSlug": "deterministic-ranking-benchmark",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "006-generated-metadata-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

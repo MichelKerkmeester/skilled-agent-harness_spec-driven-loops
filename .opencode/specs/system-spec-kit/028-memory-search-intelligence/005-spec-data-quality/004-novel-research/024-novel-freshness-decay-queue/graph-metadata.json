@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,8 +187,8 @@
       }
     ],
     "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
-    "created_at": "2026-06-21T10:22:34.992Z",
-    "last_save_at": "2026-06-23T03:49:58.707Z",
+    "created_at": "2026-06-27T17:15:39.015Z",
+    "last_save_at": "2026-06-27T17:15:39.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e42c91ff6e489006e63c300d8c970ded308f4a8cb1540676bdd4468b4998ba6",
+    "source_fingerprint": "sha256:7625b65a66e84a5fc0c6c559266a0ab49bb38a0348825a89b74660bd1ea84c7d",
     "source_doc_hashes": {
-      "spec.md": "20d899ef77e988a5f5c751ada512b739b10d134a74e6233f643634d30c92fcc6",
-      "plan.md": "3bf575f7eb5840c6806458d6959630bf60923c8950b121b91cbed8b956378986",
-      "tasks.md": "95a7e4e2104b8af925ab0e88a5c3e4843e51a7a8f4ee5203813105513185bf3a",
-      "checklist.md": "accd349760e6d22003b6066a9370eb16ee9f7676485a93dda9fe12c9c13e85cc",
-      "implementation-summary.md": "f88f32c672715eb66683890b6bb4493d9803a8083f4cfaaefe5711dceaa05f64"
+      "spec.md": "0a7756f841edc64dc3b9336c4069052ef3458347ef67c8d1cc3ef09e36066d91",
+      "plan.md": "b322318a1f0b22bf8e0a9a2b4ceaa0546368591498b095fd35b5152cebfbc442",
+      "tasks.md": "6bbc282d505b759ccddeba5a2ddbdcc3ec990a22f8d138187bcb66fb695208d5",
+      "checklist.md": "21f92a3fc2d3e8f01210222ee8793a47fcd251d9a745c2ee077c0f192adbc0d7",
+      "implementation-summary.md": "f92367af9ca44f9fa7c18f97223c118cbc7cb2ace0b3386e7368d7b70a8b76f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

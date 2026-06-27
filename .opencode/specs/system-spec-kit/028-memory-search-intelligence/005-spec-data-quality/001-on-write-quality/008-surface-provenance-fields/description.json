@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
   "description": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
   "keywords": [
     "memory",
@@ -20,14 +20,18 @@
     "first-class",
     "fields"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.588Z",
+  "lastUpdated": "2026-06-27T17:15:34.544Z",
   "specId": "008",
-  "folderSlug": "a8-surface-provenance-fields",
+  "folderSlug": "surface-provenance-fields",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "001-on-write-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

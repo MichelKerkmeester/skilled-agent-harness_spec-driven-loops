@@ -1,11 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/034-scoped-backfill-boundary",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
-  "migrated": true,
-  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -196,8 +194,8 @@
       }
     ],
     "causal_summary": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual defects in the backfill and exclusion paths",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.767Z",
+    "created_at": "2026-06-27T17:15:41.714Z",
+    "last_save_at": "2026-06-27T17:15:41.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e81094a3442264ddf4b45e50dd9ef38e7d7b71be296155c33b9fecda2be5f0c7",
+    "source_fingerprint": "sha256:37531c3f3e20b733123e04a7737d04cf2c1fc881f37a22e46e5abe9150a03db9",
     "source_doc_hashes": {
-      "spec.md": "10381ee707ae734adcaebbf79ee9aef5ad0f3bdb9f9c615e9e74bbd88598a4fa",
-      "plan.md": "24210803be8ba0cccc81aa9e661ccaed64b9be491f30d4e234f599720f165aca",
-      "tasks.md": "fb403dcde0db5753957144801e866c9c0f77acd0d3c9770f893de0a82b0c6225",
-      "checklist.md": "163aa6da4d2f1c6a253c9755cc1a0aa554856989fd3648382fba7787b3575dd9",
-      "implementation-summary.md": "5a77a0b9b97cb3b09e6eb2d66a88c614881a36b706294f6961fd15d48b6ac4b3"
+      "spec.md": "8a096d69da835f406504ae11a1dd2d4c01ff1de1c97058bfaf7acf5f0a449718",
+      "plan.md": "648a6088f8d8daff3355be1585d1cbdac148aa87ef9a1108ff781b98bd89b6e5",
+      "tasks.md": "9f1fed68cf6e40d134ac6a726fe32d7df312ef7db9ca21a2c7f97d47a2df6431",
+      "checklist.md": "4882c307039713939d479f3d28e674c10c8dcd68d407e4924bfe9826d7afc04f",
+      "implementation-summary.md": "7c27c7ac05bdefa15395cf289f35ce582480045fcfc2d1ab9d4dc0a390800275"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "run_id": "1782055949478-i1h3i4",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
-  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate/review",
+  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

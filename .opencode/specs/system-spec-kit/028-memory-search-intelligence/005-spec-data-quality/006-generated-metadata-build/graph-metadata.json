@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generated metadata build",
+      "spec data quality generated-metadata build",
+      "generated-metadata build phase parent"
+    ],
+    "key_topics": [
+      "generated",
+      "metadata",
+      "build",
+      "spec",
+      "data",
+      "quality",
+      "generated-metadata",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Build Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated Metadata Build Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Identity Resolver Merge Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Backfill Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and search-quality/evidence-gap wave.",
+    "created_at": "2026-06-27T17:26:05.303Z",
+    "last_save_at": "2026-06-27T17:26:05.303Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a8f394601c50ae8d92775ac04fd6be65c11c954fcdfe3607d358717159881f15",
+    "source_doc_hashes": {
+      "spec.md": "208be8616f57f68dcbbad2bb569709f6a400ab1ac64eda02a0d032decdc768d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

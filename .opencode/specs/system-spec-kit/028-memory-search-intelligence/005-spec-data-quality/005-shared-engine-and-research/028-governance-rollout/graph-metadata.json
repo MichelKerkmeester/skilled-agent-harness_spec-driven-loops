@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,8 +196,8 @@
       }
     ],
     "causal_summary": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only in research prose at `../research/research.md:104-118` and nowhere executable",
-    "created_at": "2026-06-21T10:22:34.994Z",
-    "last_save_at": "2026-06-23T03:49:58.731Z",
+    "created_at": "2026-06-27T17:15:40.091Z",
+    "last_save_at": "2026-06-27T17:15:40.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9cd2f23d123726351174209b047cbf90b41cb948c3bf6af2f754300bfcc327d",
+    "source_fingerprint": "sha256:1e21cf662e5c416823e22ee57f7a5be3674e1c5fe3a88893e180a94891b233d0",
     "source_doc_hashes": {
-      "spec.md": "8b992f49013240af799f2a342ada62cb8282cf3e6f3ed08b7a8ace5213928b58",
-      "plan.md": "1415d16b5a36ea986f44dd6a35c77ed55b86dae5a51e71a84d413e2e6c4e4e16",
-      "tasks.md": "a3f01e0c34a4efbfac5155671d86388b3aedf609fb5ffe9b29aa831ea4a49992",
-      "checklist.md": "e832c837e65d3e8e87fd06ec80a9e32176ae4a5cb26b8823dbc1eaea5427daa0",
-      "implementation-summary.md": "87a4dea33c3b640890e6db3d9b661133f145091bd4649b3ea38b5ee118916b03"
+      "spec.md": "c8e97267a565c030fc2ccde34e233204ac655859cea8cf5505f2112a03d517a1",
+      "plan.md": "95376935db3bdbd829bcaffc6dc8b8a5eca5b057a049a913b707a4317183ecf8",
+      "tasks.md": "449f07f86103fd0d55e9ac23cd5789522bfa200e354b1c3553dd04f7be88c1e1",
+      "checklist.md": "5b00a3b75c8485626348219baed5a1029866774da364bc0ceaef2cd41a730ce2",
+      "implementation-summary.md": "cd5e318da349680bb5b4d1ea0f253d7074c7700d9d7247be3153abe2a6a28550"
     },
     "last_active_child_id": null,
     "last_active_at": null

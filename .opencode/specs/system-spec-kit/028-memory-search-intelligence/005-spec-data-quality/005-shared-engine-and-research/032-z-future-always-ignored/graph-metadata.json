@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,8 +195,8 @@
       }
     ],
     "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.755Z",
+    "created_at": "2026-06-27T17:15:41.172Z",
+    "last_save_at": "2026-06-27T17:15:41.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d7c415c6a0c8013e06309d98021335e1416ca0fa2bac38ba93ef8a1899c043d",
+    "source_fingerprint": "sha256:64f725885f065499c56239ed2de3dd0aae60b993713d14b2404af6352c7cb8a7",
     "source_doc_hashes": {
-      "spec.md": "384c41957e5d7d75c84c7ba856a18968ea474090ea33b8de6bd35c05a8814f8b",
-      "plan.md": "b431dd57c806b52b9a09d73fd02116634513c9b58c4dd31ff57222a77bea5868",
-      "tasks.md": "ba99a847e04e5d7ed5bbb648d86561d1a56444ee2cea9277d17e160f9687250a",
-      "checklist.md": "8356432b2fc4c09d892becad092d90f78986e8da81a3545b8f0177402e1098e9",
-      "implementation-summary.md": "4eab65ddc630b789aac1cda57badb5858cfa581599f4ae0e4020af3be04de222"
+      "spec.md": "8fb3aaf795e7633da4553db03fef72014d30fdbd30fb2e3eb6facdf0a094b985",
+      "plan.md": "7c679e8b66f7b3eaa7ed725ccdda3f450802f018a574586e062af1ab4b36b095",
+      "tasks.md": "385e53adeacc08a38df40cf5956775e883aa0e8204aa7f3f6ffa2d8cdb3f1fa0",
+      "checklist.md": "51090cc05a8aef10187ecfd759a679ab9e62001e9e772d482279763b3116735e",
+      "implementation-summary.md": "8ec722aa7584b67d75739e4a1352ad8a5848419ea02b45e6f614640567158919"
     },
     "last_active_child_id": null,
     "last_active_at": null

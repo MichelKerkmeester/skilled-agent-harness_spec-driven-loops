@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,8 +196,8 @@
       }
     ],
     "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
-    "created_at": "2026-06-21T10:22:34.993Z",
-    "last_save_at": "2026-06-23T03:49:58.713Z",
+    "created_at": "2026-06-27T17:15:39.283Z",
+    "last_save_at": "2026-06-27T17:15:39.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a9e9018ce82b5457407a9f569bd29a744f7d8ca28a049a4c570356d8c601ea4",
+    "source_fingerprint": "sha256:2912fc35a313c0854ae5cb4f42fcdca93dffcff09247e235cc31a0d45be912a2",
     "source_doc_hashes": {
-      "spec.md": "3d5ee98d9d7c109fb64efc530018dda41e8dd0a0c9b8fac80b5f40689aac199b",
-      "plan.md": "daaba85df3aff330e3e35581405511d6b345fe45c949e6289c57aab79317de99",
-      "tasks.md": "7d87c1ae3d4153654fc45bcf5bf494e4a3ca400c1e5c321bda6ce2ec0664b84c",
-      "checklist.md": "a2d170af5153289a1306961856c9c9d2435e4b0aeab416b06d79807f265b187f",
-      "implementation-summary.md": "c930ca06ed04d01f7503d5665410472adee763057c7a828c092a4760fe4ff206"
+      "spec.md": "bc572735b0d38b3312684125b2d10e36febd0d8cc0f3e5fc6d3d99e6a9475ab2",
+      "plan.md": "8e9458437f41f2b613c16fd188c2f29afef5536b026db2d1db1d89c6f15ea3cb",
+      "tasks.md": "ee7981994bbe60985746c9ec14196ffdbbe5adf01ccd7d35fca56da6258fdbd3",
+      "checklist.md": "407ac2cfe463f11c101875ad3a4db25253f6cb76b54cf624443a60c32fcf3f45",
+      "implementation-summary.md": "8c38224848d6c91bcc483d722f01b932f62cf08b8b39a4be112b745a36551ee7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,35 @@
+---
+title: "Feature Specification: Generated-Metadata Build Phase Parent"
+description: "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and search-quality/evidence-gap wave."
+trigger_phrases:
+  - "generated metadata build"
+  - "spec data quality generated-metadata build"
+  - "generated-metadata build phase parent"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build"
+    last_updated_at: "2026-06-27T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Grouped the generated-metadata build phases under one subparent during the 005 restructure"
+    next_safe_action: "None — subgroup complete"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "033-identity-resolver-merge-safety/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-27-028-005-006-generated-metadata-build-parent"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The generated-metadata build phases are grouped under this subparent (12 children)."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
 # Generated Metadata Build
 
 Groups generated-metadata build phases for identity resolution, scoped backfill, idempotent writes, validator statuses, synopsis extraction, hardening, migration, benchmark graduation, search quality fixes, ranking benchmarks, threshold calibration, and evidence-gap handling.

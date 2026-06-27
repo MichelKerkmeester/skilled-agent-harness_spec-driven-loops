@@ -1,6 +1,5 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
   "description": "The graph-metadata backfill generator refreshed `zfuture/` by default",
   "keywords": [
     "graph-metadata",
@@ -10,14 +9,18 @@
     "zfuture",
     "default"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.757Z",
+  "lastUpdated": "2026-06-27T17:15:41.036Z",
   "specId": "032",
   "folderSlug": "z-future-always-ignored",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "005-shared-engine-and-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

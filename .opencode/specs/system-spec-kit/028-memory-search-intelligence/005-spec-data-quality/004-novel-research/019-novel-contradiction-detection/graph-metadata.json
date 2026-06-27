@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,8 +191,8 @@
       }
     ],
     "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts",
-    "created_at": "2026-06-21T10:22:34.989Z",
-    "last_save_at": "2026-06-23T03:49:58.678Z",
+    "created_at": "2026-06-27T17:15:37.645Z",
+    "last_save_at": "2026-06-27T17:15:37.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17ff33e2f947748d6f565d3249ab16691e58dd2db1737165051fe59d425514b6",
+    "source_fingerprint": "sha256:0b45b66445ac3abb87e8fd5044c6ed304302a806a83cbf8e9c4673415f80daa1",
     "source_doc_hashes": {
-      "spec.md": "8636de2ff65469f63000deae59947a6679700ccef8e98fdf01865b21eb228592",
-      "plan.md": "aaf5f539070608bca4eaf8d0a16cca0b028e48a87ae589d8c551bfe5348e186f",
-      "tasks.md": "9199ff883618e4a8d942d982cfe9336ae375df6070201122d223dab43ed1088f",
-      "checklist.md": "751b024b31f32cfc68700446109d6c7341c54102711882994a230cdc9903e234",
-      "implementation-summary.md": "ec0ce2eeb528e7414864f66da64a17c5d935287b1031edc287697769a4c337a4"
+      "spec.md": "c8403347fc20da99dcc7c5f54d0e017ce2424b15f7d2a73609c3193a16894643",
+      "plan.md": "6b456c1ba699b38d56a5b9d1142210bdd63caac644fbc957509a208767343519",
+      "tasks.md": "ab875d2bd379756d6b83b4a793d640cc438b3d7b14ba0bde73b5a8235e50fb8d",
+      "checklist.md": "af72eb8aa3b5fa230d1e214c77c4040eaf016db249a074c094bd7bdd68e38fb1",
+      "implementation-summary.md": "9f95c48118e79562f23374ec9d3184b7771b2d5fc2cd45f22c303fae10e54391"
     },
     "last_active_child_id": null,
     "last_active_at": null

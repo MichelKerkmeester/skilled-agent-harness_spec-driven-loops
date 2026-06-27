@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/023-novel-typed-relation-kg",
   "description": "The save-time LLM typed-relation backfill is scaffolded but unwired",
   "keywords": [
     "save-time",
@@ -9,14 +9,18 @@
     "scaffolded",
     "unwired"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.703Z",
+  "lastUpdated": "2026-06-27T17:15:38.608Z",
   "specId": "023",
   "folderSlug": "novel-typed-relation-kg",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "004-novel-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

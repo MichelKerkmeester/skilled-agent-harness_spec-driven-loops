@@ -7,7 +7,7 @@
   "generation": 1,
   "continuedFromRun": null,
   "releaseReadinessState": "converged",
-  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
   "reviewTargetType": "spec-folder",
   "executor": {
     "kind": "cli-claude-code",
@@ -31,5 +31,5 @@
     "emit": true
   },
   "fanoutLineage": "review",
-  "artifactDir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate/review/lineages/review"
+  "artifactDir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate/review/lineages/review"
 }

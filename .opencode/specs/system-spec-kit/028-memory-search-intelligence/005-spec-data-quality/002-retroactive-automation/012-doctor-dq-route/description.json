@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
   "description": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate s",
   "keywords": [
     "doctor",
@@ -20,14 +20,18 @@
     "inspect",
     "remediate"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.616Z",
+  "lastUpdated": "2026-06-27T17:15:35.626Z",
   "specId": "012",
-  "folderSlug": "b2-doctor-dq-route",
+  "folderSlug": "doctor-dq-route",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "002-retroactive-automation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

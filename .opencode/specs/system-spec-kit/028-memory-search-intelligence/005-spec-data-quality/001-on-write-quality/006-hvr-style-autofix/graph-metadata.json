@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,8 +189,8 @@
       }
     ],
     "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
-    "created_at": "2026-06-21T10:22:34.981Z",
-    "last_save_at": "2026-06-23T03:49:58.573Z",
+    "created_at": "2026-06-27T17:15:34.135Z",
+    "last_save_at": "2026-06-27T17:15:34.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebfdd467d631b8f7664ab95a344e7b66975a0adcdfd97e47e2580f03a5a0eec5",
+    "source_fingerprint": "sha256:9d1450de51826aa804b466d88716d5f4a7d8c5dec5fc1e6089c6d8e80fd55af0",
     "source_doc_hashes": {
-      "spec.md": "26d5611819d0270c17c6ff27b7f14244917f92e71fee1ff939f66e60888dd64b",
-      "plan.md": "f3fa539607a7aa7e565ac49218af50e41f8bae69f47080d9a050686aae29a239",
-      "tasks.md": "99e9f57f754477cae4350a30fe2f5ccd1957e6bac352be4250ef3dbac34c3cb0",
-      "checklist.md": "897396365784dada3f912a65146d5a9069b743857b486984a967d77a79daed19",
-      "implementation-summary.md": "f3daf4a8abc6f8405e4c0e227e6a6360c6b0a2042a1f724bd547156e72e0f1d0"
+      "spec.md": "9debefd01e11d6fc84dbb789223606880f4cfa9654a5fb3a29f4511d627175cb",
+      "plan.md": "796712c8402d0d8e59853e6821d7591254fd5b0109ffdb9393f4580f0da862bd",
+      "tasks.md": "5349e9f96eff58d6910ebd9ac26f31ed953fa72e11a3dee308b0d7b53816c790",
+      "checklist.md": "5e3c29b95e85d56f6518a07e5a0d3ec795d8dcbff3e763bf45128c5dd08c19a1",
+      "implementation-summary.md": "e30ff948491248d50aa971c56fab45f92204a0c5f604147e960ff73faa174263"
     },
     "last_active_child_id": null,
     "last_active_at": null

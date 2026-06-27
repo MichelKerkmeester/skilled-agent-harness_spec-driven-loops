@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,8 +199,8 @@
       }
     ],
     "causal_summary": "The retrieval-learning loop records only the positive selection edge",
-    "created_at": "2026-06-21T10:22:34.985Z",
-    "last_save_at": "2026-06-23T03:49:58.620Z",
+    "created_at": "2026-06-27T17:15:36.032Z",
+    "last_save_at": "2026-06-27T17:15:36.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddba4fbd6a823c9a6353c61d8d7b4cd1b23f2053a1dddce31f3e7f819e4bfac1",
+    "source_fingerprint": "sha256:a5e87d9ed6833f456560ab13e21078fef634b05e885699c66ceadc53b46be56e",
     "source_doc_hashes": {
-      "spec.md": "3c560f4b04acbd4e895302f9c5ce6871495abcfa9eab0483e080040adfda5601",
-      "plan.md": "73549b2837ccc8f4106bd30ff16d6e3aa45cce452f676ba6944985891ba687f5",
-      "tasks.md": "c0e39b31f679a8f6ffdc43c1ca669c59c19d224482ff690148e3b4515b4b23d1",
-      "checklist.md": "4756dc837136abac78b47eb7a74dde3e742cdc1e6d7c1b8929016914685bd0a2",
-      "implementation-summary.md": "7a956f92863f7b587e530fd9b54e41d233ed02cb074fbe09abe4f7f630d8068d"
+      "spec.md": "d778014b98cb336db3581d32dce19df32ac2cf8e7a1467d03a8abf45544825b4",
+      "plan.md": "7f395f41bc03e645bb4d60b6dea08717da16d45e4393bca6f56a9f54669ec188",
+      "tasks.md": "84fb6b0c29a5fbf00728659d771b8a9dd87f7f1f70c14a3cdb1cb7baa1ed9e46",
+      "checklist.md": "f1eac0ca46b47260f5d25fef064395a2b8657ab572654d9bea2f35918298a802",
+      "implementation-summary.md": "ae133f33a87e7f212cbfcbba38a06dfca0a83dae7bb45ae6b9f07a26396a4877"
     },
     "last_active_child_id": null,
     "last_active_at": null

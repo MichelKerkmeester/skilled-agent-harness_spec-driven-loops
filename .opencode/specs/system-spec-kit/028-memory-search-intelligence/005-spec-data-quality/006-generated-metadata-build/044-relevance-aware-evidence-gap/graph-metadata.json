@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -201,8 +201,8 @@
       }
     ],
     "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
-    "created_at": "2026-06-23T17:28:14.374Z",
-    "last_save_at": "2026-06-23T19:05:48.415Z",
+    "created_at": "2026-06-27T17:15:44.445Z",
+    "last_save_at": "2026-06-27T17:15:44.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8babaa787b3ace8a983cb807784204d9a5c50d3a44fa42b96e9325af5f2167a",
+    "source_fingerprint": "sha256:6707e8c3d5e613d02e92836e5e0876bb8822b8af3809243b30ea0d517896d0cc",
     "source_doc_hashes": {
-      "spec.md": "ec76309a8197e0eb3ccf61b0a7274c1d8918d3f5f22b83c11fb5fee5e5c00315",
-      "plan.md": "09e87b30f6f68f13d33b60baf2d3031e91277d50c2f602ede21ce38b6b338c8b",
-      "tasks.md": "cb67179a32fff4975ac40a33c8727010e56a2d6b6c316c41298abbe1cca5b56e",
-      "checklist.md": "7b0970147443b9f21b5740b4b691e3eab04fbf190b6f379b1b836efe6cc32a35",
-      "implementation-summary.md": "523aff430c572e0a51b0ff0e9b3b29e985f5c23f7703e6f3c972dffed0cfebc5"
+      "spec.md": "80e8fb14252f66baca33f10af0682bce1070ba870974f0da72271bb0b5b31821",
+      "plan.md": "17738f73ace3adb17f816144e8b88d62f0c4bf94f65390350d54776b88be8b59",
+      "tasks.md": "7598b7e43287088f76f5db96cb6c898d6df66e3fa213f2805c70878c39def743",
+      "checklist.md": "096cb11f67d0dfbdab27245ea6b8e144eb97c68fdd8556cf20bf95c92a7aea4d",
+      "implementation-summary.md": "adb2bb72577ad37177afd2179b29d32eb43c259900ec2d5b88f3306991a124e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

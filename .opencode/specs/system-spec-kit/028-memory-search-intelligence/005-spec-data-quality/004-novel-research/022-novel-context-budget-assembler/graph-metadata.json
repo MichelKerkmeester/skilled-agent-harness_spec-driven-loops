@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,8 +188,8 @@
       }
     ],
     "causal_summary": "The prod search path returns the post-floor result set with no density discipline",
-    "created_at": "2026-06-21T10:22:34.991Z",
-    "last_save_at": "2026-06-23T03:49:58.695Z",
+    "created_at": "2026-06-27T17:15:38.473Z",
+    "last_save_at": "2026-06-27T17:15:38.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0cff131c80f0554536f9c252e8361d821c4280730e36c3eafa8eea00c1fb59c",
+    "source_fingerprint": "sha256:8ca02d676bd843db8d4bba9f329c116670f8a07c700f87335df6000e1fc6c60f",
     "source_doc_hashes": {
-      "spec.md": "75eecc27e69694f3aaba975bfa8ca92d0b4cbe3b693f8b08fc98910e2d65c01d",
-      "plan.md": "7d0e6e20e25a6ef4dbef4cb15e778bfa9fb6674579ded50ae7349e0ed5d71428",
-      "tasks.md": "c05e2be3937b5454b94bb8b0f4fc7bec13b3985453f5cffe74062f5c7beebc28",
-      "checklist.md": "8e3ac691df044a24de0ca3f91892f981c254aae63efb46a11c483bb905464d06",
-      "implementation-summary.md": "a6174ea0c33872ea8709aca2aac88d23630c54d791d96df01d3e4dffdf1e7e3d"
+      "spec.md": "b0303eb66b0b79d705d75176fdcc99b87d0741d0afee0ee7a0836e6b15b91218",
+      "plan.md": "78f06e402067ea2fbbfcc85442ffeeb3b7504453c594e5813e9b319b277ba324",
+      "tasks.md": "e27714bd1f13c4f4daa863512128559fd16f0a6a40821ae575d9d5764f91275c",
+      "checklist.md": "da9954020c88414411120fe861eb4499c06ec9e39157af222f279af8e2b1844e",
+      "implementation-summary.md": "8a6163086672595bc0e65f682b1c7a4eb67a0c5e524aa6b8ae2de909392a086e"
     },
     "last_active_child_id": null,
     "last_active_at": null

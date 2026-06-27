@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,8 +188,8 @@
       }
     ],
     "causal_summary": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand",
-    "created_at": "2026-06-21T10:22:34.984Z",
-    "last_save_at": "2026-06-23T03:49:58.606Z",
+    "created_at": "2026-06-27T17:15:35.490Z",
+    "last_save_at": "2026-06-27T17:15:35.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:450d13f41c7c5b5cb0410558222a32da9b9920d3d7b36d9440b92c6fa9d69ced",
+    "source_fingerprint": "sha256:c8de6654cada2171249f90408b9a032e8a1025bee48e9f38b1aaef2ce18c00b1",
     "source_doc_hashes": {
-      "spec.md": "0359663fbcf8148f5e89f9d28df3b21aac2bef62182862e85aa8e8ca6469baa7",
-      "plan.md": "bdcd7888d5df01a4703e58da285e1d2198e460a9f7674696ef6f9222f818e8be",
-      "tasks.md": "7ca4f75c6cb2b9de73c85df8d6dc3e46ffdf8f1c1597b029c2c63d5eb2288b20",
-      "checklist.md": "b5f7eb6745d2d9ee3f20d591fff1b825e8a8323ee912b8b1bb9e8cc7f4844a0e",
-      "implementation-summary.md": "0f4dff523634a250b6eb005a65f8a047adbcc0e3f33689b7dcb15a1793255cb6"
+      "spec.md": "707dff9c48f5240893642ba92b5fdc97430893eff7e25e0b5e45dc678e475bac",
+      "plan.md": "711f866b0cb8a7f938d78947eb3e2c25e7f1e2a062d382ee9716120b0ef4c90d",
+      "tasks.md": "f3e99c7ee0e50bd18dac24a00b3389fd79a6e7d5b1a953a35b9184d18d58d3a1",
+      "checklist.md": "394e547028162909dd0383bc5a36245a95c4b4a2077d0f14c23510a1c64cff7f",
+      "implementation-summary.md": "8d5b94c499c2004c39a43ae49d9d8be94e6bb76bdcd2bf930c4aaa10bb990076"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,8 +190,8 @@
       }
     ],
     "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
-    "created_at": "2026-06-21T10:22:34.980Z",
-    "last_save_at": "2026-06-23T03:49:58.567Z",
+    "created_at": "2026-06-27T17:15:33.865Z",
+    "last_save_at": "2026-06-27T17:15:33.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11d56afd4cfa0c98141855a73ceef361115a7b5db514f241bcedbf115d3bced0",
+    "source_fingerprint": "sha256:6470761a951cf644ee69335f56c7bd1b18fab2131f976b479fd7fc46267da434",
     "source_doc_hashes": {
-      "spec.md": "d88f2094be8002f247c86619f3b68cee2809d31d6c2f4cf5d1ddd83f1385fbc2",
-      "plan.md": "d7ec36a533d82bc9e46e2da0d423b539615e3b3878e5d7e86f409af807b6d12b",
-      "tasks.md": "8618491552ce03823f36df79b4c380cd13be9cd588dd27ee7e1b5af8524d26eb",
-      "checklist.md": "48b391df943386449747bedd981bef96b8790288519d0ecc5b785fa3f9f673b4",
-      "implementation-summary.md": "104bad0b8b5caa5bb8eac731d2ac17de4e3fa1d5dd1f295f7843fbb30cb46f31"
+      "spec.md": "48bbf255e658d0f93a979b4cf09450f62389523fc90d4373102209a736a3dd97",
+      "plan.md": "ec2a4fa6db664544746bab75f88fd422b71f5c4ce191a1664021056eb3a10a87",
+      "tasks.md": "b2552af9df32615ea7e6afdd3437d422bc9ce8a627a109d62486651a862a4d21",
+      "checklist.md": "7cfd7543d7d768d45cfb081f81194154ba23c3f7ca9590982cc8d7e1d6a7796d",
+      "implementation-summary.md": "39d81637dda6eeacd9c667335f94b1b1300e6ba938b10c109ecf64345e2fa5b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
   "description": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
   "keywords": [
     "contenthash",
@@ -15,14 +15,18 @@
     "idempotency",
     "receipt"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.595Z",
+  "lastUpdated": "2026-06-27T17:15:34.816Z",
   "specId": "009",
-  "folderSlug": "a9-content-hash-integrity",
+  "folderSlug": "content-hash-integrity",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "001-on-write-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

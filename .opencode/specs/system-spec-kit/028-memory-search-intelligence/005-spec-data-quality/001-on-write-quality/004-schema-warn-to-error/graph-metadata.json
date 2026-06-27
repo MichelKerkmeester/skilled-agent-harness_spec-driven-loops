@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,8 +192,8 @@
       }
     ],
     "causal_summary": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corpus unchecked",
-    "created_at": "2026-06-21T10:22:34.979Z",
-    "last_save_at": "2026-06-23T03:49:58.559Z",
+    "created_at": "2026-06-27T17:15:33.598Z",
+    "last_save_at": "2026-06-27T17:15:33.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5b0b5a131d25322c452c1c257192b94968130c4acebcba6fc46bfad2b9b676e",
+    "source_fingerprint": "sha256:a2ee556114b24d1c9a8255a485ee58eb26782c716bb8de64fb18c26932798195",
     "source_doc_hashes": {
-      "spec.md": "cde03ce6f6dc9fb987348e8a03b463296de340364e014eb4c5bd000dcfbe35b2",
-      "plan.md": "1ae7928b50488b5cb98552bc8de226a840cf69d3c80c3b36e01a088812ab8013",
-      "tasks.md": "61deb1f128b51e2705f87828b4033d5bb18186ab07b3532f8d179092798ab2e8",
-      "checklist.md": "86898ce266ae75f026234a0f33d5a08ac78ba09d5b30126936476186107c4e5f",
-      "implementation-summary.md": "0236beedf59696ad6e19802e7bd1e8be053e60327e4d4917570c935ae41646c4"
+      "spec.md": "ed5a4f2ada7196aa2b97cb321ee0eccd1902d1663075c408ec162ab03fd687e8",
+      "plan.md": "c51881880d16da77619593f503d9ed45d4cedefc760170b0502df34c9d35de05",
+      "tasks.md": "e69d52406f88b390eec4746b48ef3bdc59d739dd3eee6d9901353af73dbe3ab1",
+      "checklist.md": "a1441deef631244a8582f8a9283a6c09e76c9ee03f14ceeffaf4d30ca21c6267",
+      "implementation-summary.md": "11f4e5bf433088d2c2e4b030c8399c5a6ff9c3eed07e26ce1a636c1b8c42a61a"
     },
     "last_active_child_id": null,
     "last_active_at": null

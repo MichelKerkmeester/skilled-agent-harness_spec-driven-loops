@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/023-novel-typed-relation-kg",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "novel research",
+      "spec data quality novel research",
+      "novel research phase parent"
+    ],
+    "key_topics": [
+      "novel",
+      "research",
+      "spec",
+      "data",
+      "quality",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track",
+      "data-quality",
+      "ideas"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Contradiction Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Embedding Drift Monitor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
+    "created_at": "2026-06-27T17:25:47.076Z",
+    "last_save_at": "2026-06-27T17:25:47.076Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0a897b902266150b55b35ec2d7de722570ade831f4c2f3feefc95ea04d35b406",
+    "source_doc_hashes": {
+      "spec.md": "9cac76e90a67752d71e210ee178f9c471a75c89056e1a05abdf568309e8f5e16"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

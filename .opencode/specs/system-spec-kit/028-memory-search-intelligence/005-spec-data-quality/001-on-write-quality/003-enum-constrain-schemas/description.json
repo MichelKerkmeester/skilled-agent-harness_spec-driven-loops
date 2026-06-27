@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
   "description": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
   "keywords": [
     "two",
@@ -12,14 +12,18 @@
     "free",
     "strings"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.555Z",
+  "lastUpdated": "2026-06-27T17:15:33.202Z",
   "specId": "003",
-  "folderSlug": "a3-enum-constrain-schemas",
+  "folderSlug": "enum-constrain-schemas",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "001-on-write-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,8 +189,8 @@
       }
     ],
     "causal_summary": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but those tags are inert today",
-    "created_at": "2026-06-21T10:22:34.987Z",
-    "last_save_at": "2026-06-23T03:49:58.659Z",
+    "created_at": "2026-06-27T17:15:36.837Z",
+    "last_save_at": "2026-06-27T17:15:36.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ff4d66a3e7e17e704f347164e8d9a469abe2354a793d9abc5235ad0f452af2a",
+    "source_fingerprint": "sha256:0e1ed9007c71a67915e45d312ffdd97f9cc0e861665499f3715b8f7192b21b6c",
     "source_doc_hashes": {
-      "spec.md": "d1c81573669b92eb657430ada6aa27260a31455a5d719db9b56e463a8318e9c6",
-      "plan.md": "d9d5fcee9c93ce406b09ee992671e98cde0eb3b1bc92381b328c560a7bc07a8b",
-      "tasks.md": "c64727818229ba7709b73b314e9df4f98d4aa6fa0a43eb837b898e51c7170263",
-      "checklist.md": "1aae849ca283e111e744d46b78b40fa99e537af55b6e46bea1e67949674fdfeb",
-      "implementation-summary.md": "a64cc5eec3b2571866500301b0c452810b7aa14ee5af2678ead0b24a7a065f00"
+      "spec.md": "55a1ea78304fa8c28c8bc461ad206af9b8d21fe0fe4cfcddb7fea35080257584",
+      "plan.md": "2b64a44b8d3a83589a91025613f38d02ec204f7cc7f90eab68cddfad2f8e21d0",
+      "tasks.md": "be0638f1e33f9d527f625c92197b18e93eb561e2fa9d5ffc3c625ea289da391f",
+      "checklist.md": "4aa52c3c3520b7de87a75e399f61be44fdbf5e5459bd1243f29f874c09a4110e",
+      "implementation-summary.md": "7687b4a8b855424900938dab92274dbc5ce03dff2823947fdd5290c74cf32bd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

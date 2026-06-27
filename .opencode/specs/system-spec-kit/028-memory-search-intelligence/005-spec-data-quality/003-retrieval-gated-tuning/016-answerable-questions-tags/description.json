@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
   "description": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but t",
   "keywords": [
     "document",
@@ -15,14 +15,18 @@
     "class",
     "serves"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.661Z",
+  "lastUpdated": "2026-06-27T17:15:36.701Z",
   "specId": "016",
-  "folderSlug": "c3-answerable-questions-tags",
+  "folderSlug": "answerable-questions-tags",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "003-retrieval-gated-tuning"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,30 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/040-flag-graduation-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/039-full-repo-json-migration",
-        "reason": "Imported from legacy graph-metadata.json",
-        "source": "legacy"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
-        "reason": "Imported from legacy graph-metadata.json",
-        "source": "legacy"
-      },
-      {
-        "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
-        "reason": "Imported from legacy graph-metadata.json",
-        "source": "legacy"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -207,8 +190,8 @@
       }
     ],
     "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T06:05:13.573Z",
+    "created_at": "2026-06-27T17:15:43.353Z",
+    "last_save_at": "2026-06-27T17:15:43.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13497940fdb668940d87f35d5a0ff43f604d66d8cf0d97b3fdf216bf351baf77",
+    "source_fingerprint": "sha256:d228b06b6f23369c871ff70d7b73fb8d68f684b60e49c68d537259561e0824bf",
     "source_doc_hashes": {
-      "spec.md": "9b76e3ecb92dd838ac089c90e4192c89f3332c947f5886ea964344fc52d7b308",
-      "plan.md": "5bfa7e31b7906a05fb4719cdc180844e534e9c553120080e0b2700ad3befc2ec",
-      "tasks.md": "a24b19f2ad89d8f79f2f918dfcef27507483327dda92932cfd6b8d32dfa1dbb2",
-      "checklist.md": "61d1553ed717a63b80df4d34b733e28d90ef9b4944901930714037614bcee00f",
-      "implementation-summary.md": "a4a4da35b50a3527ac25052b8f96898508fe805340dd724b70bcd79173ba3a79"
+      "spec.md": "39226ab6921c6151b0a319de9218ce54c1113038fbaa09f6180d09a99936909d",
+      "plan.md": "1452c3d30d5d42c3a34bc65539a5191fc9b4d497103eb19fd89c58483b4f30c8",
+      "tasks.md": "a4cfeba0171098b3bf989f2c977d0a4bcf10aa7173602a22d37ca1ef8aac6ba6",
+      "checklist.md": "8e50cb36d77cd474ade26d0804bbe4eb9ff183bb77953779f449f6ab63ad1e5b",
+      "implementation-summary.md": "f8baab83cab67cc7e407d739cfb730e3ca4600c7db07027d700cd166eecf4344"
     },
     "last_active_child_id": null,
     "last_active_at": null

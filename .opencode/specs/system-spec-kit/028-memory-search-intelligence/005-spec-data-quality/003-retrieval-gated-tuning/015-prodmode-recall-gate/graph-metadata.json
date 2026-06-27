@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,8 +191,8 @@
       }
     ],
     "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
-    "created_at": "2026-06-21T10:22:34.987Z",
-    "last_save_at": "2026-06-23T03:49:58.637Z",
+    "created_at": "2026-06-27T17:15:36.570Z",
+    "last_save_at": "2026-06-27T17:15:36.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07cb12e0010a1fe24528057667dfa646e53d1e69a44100d228d955fc4f8a8495",
+    "source_fingerprint": "sha256:109e34399431beec7f225cdf79a4c3834c851770106198092c28888ac6187f02",
     "source_doc_hashes": {
-      "spec.md": "32de18cdcdf421f034d62eed34a641ed83decdeed0c2590e6757ed247a5def13",
-      "plan.md": "4f586fa98761083a1856b50e99054553c893a2a926ee8cc040d8dc728ea712cc",
-      "tasks.md": "4fd53a48c1d9ddc5e5aada9f83582af13a6d8107beaa4749fa5d5dff05c4ca41",
-      "checklist.md": "c30baaaf858c328772b9968aaed4cafa9522d2f082690ad0ecb8029fd8993a8e",
-      "implementation-summary.md": "be4009965b6471b0254e6208dd640b419e4d492299ecb72e11f6328f9c5c6065"
+      "spec.md": "24cdd2f6b9d1b9ecb657e7095a529a3716f6ce04315cba112fa2bd8f9db396b3",
+      "plan.md": "bba5075b9ebccabbccf0913ae55983b8ca137a25d144f8088fb53801851dab0f",
+      "tasks.md": "296847d6015e989696a01be7985ede67cdef1ace09a0eabd1b9b77e332780c7b",
+      "checklist.md": "4a44528f9f6179ff03e91b15c67a4b93fc542eb1dec4262f8557fdbb4ce713f6",
+      "implementation-summary.md": "4fed240cf4fdfbb790acae04227955a1f9780f03548cc02ef8e0b74adf99ef79"
     },
     "last_active_child_id": null,
     "last_active_at": null

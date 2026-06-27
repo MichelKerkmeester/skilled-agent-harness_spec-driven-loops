@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,8 +199,8 @@
       }
     ],
     "causal_summary": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
-    "created_at": "2026-06-22T10:45:14.318Z",
-    "last_save_at": "2026-06-23T12:57:37.850Z",
+    "created_at": "2026-06-27T17:15:40.361Z",
+    "last_save_at": "2026-06-27T17:15:40.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ce82a31f6f919cd07b539ff52c2e8acc88339c4c1f28c3cf2d4665548540d717",
+    "source_fingerprint": "sha256:2a4294da1cd427bed69b9e04533ee2e59bc0532e61b851153ef3937f3583e772",
     "source_doc_hashes": {
-      "spec.md": "2695481267cdf373808de0861cdc02781ec5b11101e3c9c6702dcb106746056a",
-      "plan.md": "0e184997ee25d0cee315bdfa2225a8b53a0c7d24fd14bab096346c57ccfd6f71",
-      "tasks.md": "cfe2ad0089a43b23042871f7e5553c0c6cd34b78157b3852a69c04e49cf7edc0",
-      "checklist.md": "226c23c8e16990812287f0886103998a941b3da3be686f6bea945ad65f22e328",
-      "implementation-summary.md": "e5a20e94f97bdbd620d0aeec4913f8602acd8cc668c1294d82e562aa11fb60af",
-      "research/research.md": "69fe7c547652fa4346e7db491d809ad60f0fba63a5786e074bd2b8f4dde33b8e"
+      "spec.md": "1776ccb9f36101f781c1e30a16faadae08515f490a5da62689469292c3456609",
+      "plan.md": "e28df92b5850fc100142baef7e84ba4ba2d34ca677f866ea41ebc19f55a35197",
+      "tasks.md": "310b0fc9aac5e4d4c0e74fce45b62676df03494098bf6d1f5e44c019777da478",
+      "checklist.md": "48188a9ce58a6d68b4856fd4f0642ee20a65d69733c963025c3ef7c724d52d53",
+      "implementation-summary.md": "53d7c16b9105c91aa7d131bda4a915d754c1164fe6fcf1af2f6ec8d36bb15f2d",
+      "research/research.md": "3ca8ca1f81ab5b1491524de4ed970317dacdb44a4424f5483833b85cad02c5a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

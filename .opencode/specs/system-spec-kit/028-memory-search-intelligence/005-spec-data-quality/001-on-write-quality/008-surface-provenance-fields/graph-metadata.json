@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,8 +197,8 @@
       }
     ],
     "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
-    "created_at": "2026-06-21T10:22:34.982Z",
-    "last_save_at": "2026-06-23T03:49:58.586Z",
+    "created_at": "2026-06-27T17:15:34.677Z",
+    "last_save_at": "2026-06-27T17:15:34.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d910aba3a6aa336d3d1e307680383c55c2c38f143db502c5c47f0e311ffbde85",
+    "source_fingerprint": "sha256:af67d09cebc64f478095345bdc78dfc439eb639d977f8a0429a046358f86db16",
     "source_doc_hashes": {
-      "spec.md": "b8ce41999c09cfc599a23a5b8aa14162b64633a84b984ab42416ff902aff5699",
-      "plan.md": "5fc7ab7b3dc4f5aeeaddd5527e5ec5fa1f41cc6eee9d21ae74367089d4d052e5",
-      "tasks.md": "04b37f5e231f4fc976dac6eb610f2b24be2933ec5dffd5dd1909723ae3ee9719",
-      "checklist.md": "9599d0a5bff2ebcccb42f590804263720412e5049daf983b665f02f16f97ac54",
-      "implementation-summary.md": "2a9a0ac5e01f263350ec97f8ebf4b4fcff12a3109bec570fcdcd5c047636f1a3"
+      "spec.md": "0f3e819f64643407ebb12e9b3b29e2151ea72dace501532b2580efa07b7d0d44",
+      "plan.md": "9b0232a6ef6c9b9e26e0f0b44f6cf2c67c958360d211265d46c9498610d5d349",
+      "tasks.md": "4db9fed70020924ad3fb634ead0d1aa76efb9863d3d0b97ab892606e6d718572",
+      "checklist.md": "268c3311b3f68abca1330f55e510a78322884907ed8d96aa9846fb864c3d68d1",
+      "implementation-summary.md": "8c595cf3e88a82f3024ca2313e19aae82c96bfbe8c6f728d845ba98a4ef36c3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

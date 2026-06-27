@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,19 +34,23 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "mcp_server/lib/description/packet-synopsis.ts",
+      "mcp_server/lib/graph/generated-metadata-drift.ts",
+      "scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/generated-metadata-drift.ts",
-      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
+      "scripts/lib/validator-registry.json",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -55,13 +59,13 @@
       {
         "name": "packet-synopsis.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+        "path": "mcp_server/lib/description/packet-synopsis.ts",
         "source": "derived"
       },
       {
         "name": "generated-metadata-drift.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/generated-metadata-drift.ts",
+        "path": "mcp_server/lib/graph/generated-metadata-drift.ts",
         "source": "derived"
       },
       {
@@ -198,8 +202,8 @@
       }
     ],
     "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
-    "created_at": "2026-06-22T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.785Z",
+    "created_at": "2026-06-27T17:15:42.529Z",
+    "last_save_at": "2026-06-27T17:15:42.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dae1040325b76a7ff14561d1a7abab0c8bf9b7616ea0a8b8dd4b61a4b01dd75",
+    "source_fingerprint": "sha256:c059d337142b54b404ec315bf5c700461756baa41e6aaa67bdd5a4bde4f86d1f",
     "source_doc_hashes": {
-      "spec.md": "943d425f090b91c8113b02727c01a38b2d1591bc60e9069bc0923e29ae0d5b82",
-      "plan.md": "bd7fed8011719d2b5920f43036dcdc5b998a3dff3b78cc3d67dcafcf297a427b",
-      "tasks.md": "710a121fb1ea69ae7d461741bdc5a5d970f1f4e95ed10c82dee414ef03683d81",
-      "checklist.md": "087c6ab8beebaf15e2aebd32b47fba1ce903ceb447a1eec07d6849d22be2a5d6",
-      "implementation-summary.md": "6aa35eb53cc62ccb2d39ca24100becd68d2282a007e0e08c69e3f8556b10b667"
+      "spec.md": "3bb5c57b0ccb67ff4c8e54151f37aec6ce709bc39a8a92d5e3e563abf8e806c5",
+      "plan.md": "9ff8ba80202261a21df570fd2be3c46d7e2f25a570954a902d791d8291c21317",
+      "tasks.md": "43b64891f9f40ca8a29fa4be251ae49f12f882d8648b4d3ceec4da27cfb7cf5b",
+      "checklist.md": "fcf7b77c9ba20d770ab4e8ef405b14d39e1f618fd4a11335394aad001d5f13f6",
+      "implementation-summary.md": "6f20546a13cd5dfcb59f2f53dafc81b00da144ae492d68d4c2fa7c685261e76b"
     },
     "last_active_child_id": null,
     "last_active_at": null

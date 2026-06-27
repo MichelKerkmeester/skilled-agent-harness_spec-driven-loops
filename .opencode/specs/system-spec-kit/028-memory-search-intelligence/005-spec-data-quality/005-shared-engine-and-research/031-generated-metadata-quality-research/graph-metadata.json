@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,8 +200,8 @@
       }
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
-    "created_at": "2026-06-22T16:18:00.000Z",
-    "last_save_at": "2026-06-23T03:49:58.749Z",
+    "created_at": "2026-06-27T17:15:40.899Z",
+    "last_save_at": "2026-06-27T17:15:40.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1fbef4c7e2891f3adb8be4919f858b52110f48ac3e0a136a0eb2847458daa2a7",
+    "source_fingerprint": "sha256:b88faa5d3cf53e1529f2c3e39e6959073ab1ac8d94b599e80a664423530ac1d6",
     "source_doc_hashes": {
-      "spec.md": "6cba38c81f3991dfefefbff32b0bd3cd6d2ef47c36b70509713dfbd0bcba3f6b",
-      "plan.md": "1983a48ef26000624d41b30a778b3354326846b75f09dd5f8496c2d1527af80f",
-      "tasks.md": "3df61ef033a955abc0abb22b05746cbf9f65dd663f18b13918516d778f37c056",
-      "checklist.md": "43326d2463ec5108ea33c67673d7ffbad155f21b76fb0f67c8ca4ac3bc3f3cf3",
-      "implementation-summary.md": "67d16f168337f35d68ddce84e29f6ffcecffad4b78144e563f0932d6c300ce6d",
-      "research/research.md": "568f047d52c31eea4ccff3fbba8cc527fb3eba7dad8335fbeda54d0b1db3e6ba"
+      "spec.md": "db6f25173f2b48bf869449fa3f8f1b58759fb615af2bc235693d8a6258284362",
+      "plan.md": "d45b18dccb3ff963051d79a31ad447d2f017e8c1f1089610ebd6b241b743030b",
+      "tasks.md": "af97727572d592d914a6fc8505b3bf55db82f4697b01aa4250c8e958203ca145",
+      "checklist.md": "4a23d3540d71e7c18138d246ead0c2296c16a8aae36dc98857c3502cf09bffeb",
+      "implementation-summary.md": "c294a793eb78dd62b16c0441d56d456171bba22e06cd4f03b584792fc8db0e1d",
+      "research/research.md": "909acaf93f19381424da0c2d540904b466f36cfd2e28a69e6fc275fd9947c1bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

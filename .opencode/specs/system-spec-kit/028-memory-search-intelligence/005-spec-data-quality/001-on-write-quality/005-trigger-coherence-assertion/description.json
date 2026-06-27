@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
   "description": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
   "keywords": [
     "spec",
@@ -15,14 +15,18 @@
     "asserted",
     "agree"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.569Z",
+  "lastUpdated": "2026-06-27T17:15:33.735Z",
   "specId": "005",
-  "folderSlug": "a5-trigger-coherence-assertion",
+  "folderSlug": "trigger-coherence-assertion",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "001-on-write-quality"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

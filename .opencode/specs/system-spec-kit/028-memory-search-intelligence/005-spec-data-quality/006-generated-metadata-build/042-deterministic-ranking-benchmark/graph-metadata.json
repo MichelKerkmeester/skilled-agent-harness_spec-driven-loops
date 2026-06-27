@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,8 +194,8 @@
       }
     ],
     "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
-    "created_at": "2026-06-23T15:21:27.943Z",
-    "last_save_at": "2026-06-23T19:04:47.699Z",
+    "created_at": "2026-06-27T17:15:43.899Z",
+    "last_save_at": "2026-06-27T17:15:43.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b8f91daaddfb6101f66262bd5cafa7914828643b3290e17781b52f0bc3f5725",
+    "source_fingerprint": "sha256:b6e33d8d1ed157bba862a480b8efc76d1dcee4928b7f5df9a02ad9448b169e92",
     "source_doc_hashes": {
-      "spec.md": "dc957843baaeeb3c74ed0d1092e3e09e2299bec6571440708e0238015a6969d1",
-      "plan.md": "1d18aea193d951874b270854a833c86db927197b8d010c884dc832ca92583c96",
-      "tasks.md": "a7a0a5fd3bef42fb3389957c764be57d3de438726e9b4d688679b4539a853704",
-      "checklist.md": "abac742ffa85bd2440216c86d1adb39015fd8f388e7ff4e9055785c0ec0d2bf4",
-      "implementation-summary.md": "8d1f733fc4242b4a2ede3058ca2212595124206c994521811276e217423fcce5"
+      "spec.md": "1c170a4fd9ca5f74a8414f5bde023affcf81d44fde236555ad78caaea2e64e8b",
+      "plan.md": "147774e9d12b65869f87c512fd5e10286f9393c0bfabe0982b1a3f00e66e473c",
+      "tasks.md": "3eab4864fa14fb96b869be9d5b01b15f37c909f436c00e1f5c635b740eb6ca22",
+      "checklist.md": "94298713ad4e925d94828396043802df4e804c7b7493c6a4155976a7db36b2ef",
+      "implementation-summary.md": "ddea73d84c00e12f9f346d65fef17b9caa6ecfa44760f5f3f8df8661ef52a2c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

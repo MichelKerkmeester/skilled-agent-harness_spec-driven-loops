@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/017-c4-metadata-fusion",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
   "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-2",
   "keywords": [
     "fusion",
@@ -16,14 +16,18 @@
     "stage2-fusion",
     "261-2"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.667Z",
+  "lastUpdated": "2026-06-27T17:15:36.974Z",
   "specId": "017",
-  "folderSlug": "c4-metadata-fusion",
+  "folderSlug": "metadata-fusion",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-spec-data-quality"
+    "005-spec-data-quality",
+    "003-retrieval-gated-tuning"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }
