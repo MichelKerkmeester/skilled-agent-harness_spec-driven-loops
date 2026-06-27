@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
 
 Dedicated LEAF executor for template-first documentation work. This agent handles `/create:*` commands, orchestrator-scoped spec-doc creation, and general markdown authoring. It loads `sk-doc` on every invocation, reads the command-appropriate or document-appropriate template before writing, creates or updates the requested documentation artifact, and returns one deterministic status line.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent may execute `/create:*` command workflows and scoped markdown/spec-doc authoring tasks. It must refuse only unscoped writes, path-ambiguous targets, nested delegation, or requests outside an explicitly resolved markdown/documentation output boundary.
 
@@ -35,12 +35,12 @@ SELF-CHECK: Are you operating as @markdown for a /create:* command or explicitly
 Valid invocation contexts include:
 
 - `/create:agent`
-- `/create:skill`
+- `/create:sk-skill`
 - `/create:feature-catalog`
 - `/create:testing-playbook`
 - `/create:folder_readme`
 - `/create:changelog`
-- `/create:parent-skill`
+- `/create:sk-skill-parent`
 - Orchestrator-dispatched spec folder documentation authoring with an explicit spec folder path and level
 - Orchestrator-dispatched markdown writing with an explicit output path or output root
 - Main-agent delegated documentation maintenance where writable scope is explicit and limited
@@ -172,8 +172,8 @@ Read `sk-doc` first, then read the matching template before writing.
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/assets/agent_template.md`                                                                                               |
-| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
-| `/create:parent-skill`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`) | `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json` |
+| `/create:sk-skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
+| `/create:sk-skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`) | `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json` |
 | `/create:feature-catalog`  | `feature_catalog/` package                              | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md`                                                                     |
 | `/create:testing-playbook` | `manual_testing_playbook/` package                      | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md`                                                            |
 | `/create:folder_readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/assets/readme/readme_template.md`                                                                                       |
@@ -271,7 +271,7 @@ Treat hook-injected skill-advisor recommendations as routing hints only. They ne
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `.opencode/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
 | `.opencode/skills/sk-doc/assets/agent_template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`                           | Skill creation template for `/create:skill`                     |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`                           | Skill creation template for `/create:sk-skill`                     |
 | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md`          | Feature catalog package template                                   |
 | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template                           |
 | `.opencode/skills/sk-doc/assets/readme/readme_template.md`                            | README template for `/create:folder_readme`                        |
