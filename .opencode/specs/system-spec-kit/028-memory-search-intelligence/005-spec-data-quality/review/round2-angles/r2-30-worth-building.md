@@ -17,7 +17,7 @@
 ### F2 — P1 — The headline ROI inversion rests on an unmeasured floor-fire frequency
 - **Type:** SPEC-PREMISE issue
 - **Evidence (premise):** `research.md:8` builds the whole tiering on "the truncation law" and cites "028 already measured a 5.9x eval-versus-prod fidelity gap on this exact corpus" to argue retrieval candidates are taxed while write-time candidates bypass the floor.
-- **Evidence (live code):** Whether the floor actually cuts depends on cliff frequency, which is data-dependent (`confidence-truncation.ts:166-185`). This packet measures nothing. The instrument that would measure it (C2 prod-mode completeRecall@3, phase `015-c2-prodmode-recall-gate`) is itself unbuilt, and `research.md:46` confirms the shipped harness "reports but performs no baseline comparison".
+- **Evidence (live code):** Whether the floor actually cuts depends on cliff frequency, which is data-dependent (`confidence-truncation.ts:166-185`). This packet measures nothing. The instrument that would measure it (C2 prod-mode completeRecall@3, phase `015-prodmode-recall-gate`) is itself unbuilt, and `research.md:46` confirms the shipped harness "reports but performs no baseline comparison".
 - **Why it matters for worth-building:** The program correctly gates retrieval BUILDS on measurement, then uses the same unmeasured premise one-directionally to justify CUTTING the retrieval tier now. The cut may well be right, but the asymmetry (measure before you build, assert before you cut) is the one place the otherwise-honest synthesis leans on an un-re-verified prior.
 
 ### F3 — P2 — Defensible buildable subset is single-digit phases, so 28 full-detail scaffolds over-invested

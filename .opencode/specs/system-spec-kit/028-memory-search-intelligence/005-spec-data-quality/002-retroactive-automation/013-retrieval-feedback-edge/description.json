@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
+  "description": "The retrieval-learning loop records only the positive selection edge",
+  "keywords": [
+    "retrieval-learning",
+    "loop",
+    "records",
+    "only",
+    "positive",
+    "selection",
+    "edge"
+  ],
+  "lastUpdated": "2026-06-27T17:15:35.901Z",
+  "specId": "013",
+  "folderSlug": "retrieval-feedback-edge",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality",
+    "002-retroactive-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

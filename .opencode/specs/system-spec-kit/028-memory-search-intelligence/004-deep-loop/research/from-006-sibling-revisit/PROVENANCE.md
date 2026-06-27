@@ -4,7 +4,7 @@
 
 Source phase: 006-sibling-revisit/research/
 
-Merged location: 004-deep-loop/research/from-006-sibling-revisit/
+Merged location: 004-deep-loop/research/sibling-cross-cutting-revisit/
 
 Primary archive: No, duplicate target archive
 

@@ -112,6 +112,6 @@ Both candidates are DONE in this phase. Packet 030 remains untouched, the curren
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
-- **A4 research**: `../research/from-008-retrieval-evaluation/deltas/iter-002.jsonl` (`A4-resolveSearchScore-residual`, `A4-similarity-present-gate`)
-- **A7 research**: `../research/from-008-retrieval-evaluation/deltas/iter-007.jsonl` (`A7-4-marker-ttl-to-lease-window`, `A7-5-phase-yield-invariant`)
+- **A4 research**: `../research/retrieval-evaluation/deltas/iter-002.jsonl` (`A4-resolveSearchScore-residual`, `A4-similarity-present-gate`)
+- **A7 research**: `../research/retrieval-evaluation/deltas/iter-007.jsonl` (`A7-4-marker-ttl-to-lease-window`, `A7-5-phase-yield-invariant`)
 <!-- /ANCHOR:cross-refs -->

@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Relevance-Aware Evidence Gap [005-spec-data-quality/044-relevance-aware-evidence-gap]"
+title: "Changelog: Relevance-Aware Evidence Gap [005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap]"
 description: "Chronological changelog for the relevance-aware evidence-gap phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-23: Production-scoring fix and graduation
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap` (Level 2)
 
 ### Summary
 
@@ -43,7 +43,7 @@ The first graduation attempt flagged every query with the evidence-gap banner. P
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -85,7 +85,7 @@ Fixed the 043 finding that the Z-score evidence-gap detector measures peakedness
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts`: threaded the embedder seam into the detector.
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`: registered `SPECKIT_RELEVANCE_AWARE_GAP` default false.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-relevance.vitest.ts`: created the five-case coverage.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/044-relevance-aware-evidence-gap/{scripts/gap-relevance-rebenchmark.mjs,results/metrics.json,benchmark-results.md}`: created the re-benchmark, its data and the verdict.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap/{scripts/gap-relevance-rebenchmark.mjs,results/metrics.json,benchmark-results.md}`: created the re-benchmark, its data and the verdict.
 
 ### Follow-Ups
 

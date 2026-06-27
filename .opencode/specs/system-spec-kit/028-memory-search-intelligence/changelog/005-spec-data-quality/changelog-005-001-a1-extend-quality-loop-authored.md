@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A1 Extend the Live Quality Machinery to Authored Specs [005-spec-data-quality/001-a1-extend-quality-loop-authored]"
+title: "Changelog: A1 Extend the Live Quality Machinery to Authored Specs [005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored]"
 description: "Chronological changelog for the A1 Extend the Live Quality Machinery to Authored Specs phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

@@ -52,7 +52,7 @@ This phase is a decision layer, not a change. It reads the 91 P2 from the review
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The full P2 set is read from `../../review-report.md`.
+- [ ] The full P2 set is read from `../../archive/review-report.md`.
 - [ ] The lens families are enumerated.
 - [ ] The two review caveats (lineage re-root, bitemporal zero-callers) are noted.
 
@@ -88,7 +88,7 @@ The review report finding set is partitioned into families. Each family gets a v
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `../../review-report.md` | Per-item P2 source of truth | Read only | Triage maps every P2 |
+| `../../archive/review-report.md` | Per-item P2 source of truth | Read only | Triage maps every P2 |
 | This phase scaffold | Triage decision record | Author | Verdicts and routing complete |
 | Follow-on phases | Fix-now owners | Route to | Each fix-now family has an owner |
 <!-- /ANCHOR:affected-surfaces -->

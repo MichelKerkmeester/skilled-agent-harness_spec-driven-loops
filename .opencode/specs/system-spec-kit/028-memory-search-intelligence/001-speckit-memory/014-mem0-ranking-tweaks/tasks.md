@@ -134,5 +134,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source research**: `../research/research.md`, `../research/from-007-memory-systems/`
+- **Source research**: `../research/research.md`, `../research/external-memory-systems/`
 <!-- /ANCHOR:cross-refs -->

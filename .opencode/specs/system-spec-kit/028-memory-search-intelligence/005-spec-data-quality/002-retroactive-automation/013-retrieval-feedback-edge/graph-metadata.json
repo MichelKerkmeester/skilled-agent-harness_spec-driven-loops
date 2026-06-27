@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval feedback edge",
+      "impression signal",
+      "recall gap",
+      "below floor truncation",
+      "refinement queue",
+      "retrieval feedback edge plan",
+      "impression signal capture",
+      "recall gap detector",
+      "below floor truncation edge",
+      "refinement queue governance",
+      "retrieval feedback edge tasks",
+      "impression capture tasks"
+    ],
+    "key_topics": [
+      "retrieval",
+      "feedback",
+      "edge",
+      "impression",
+      "signal",
+      "recall",
+      "gap",
+      "floor",
+      "truncation",
+      "refinement",
+      "queue",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-triggers-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-truncation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Feedback Edge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Seam",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The retrieval-learning loop records only the positive selection edge",
+    "created_at": "2026-06-27T17:15:36.032Z",
+    "last_save_at": "2026-06-27T17:15:36.032Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5e87d9ed6833f456560ab13e21078fef634b05e885699c66ceadc53b46be56e",
+    "source_doc_hashes": {
+      "spec.md": "d778014b98cb336db3581d32dce19df32ac2cf8e7a1467d03a8abf45544825b4",
+      "plan.md": "7f395f41bc03e645bb4d60b6dea08717da16d45e4393bca6f56a9f54669ec188",
+      "tasks.md": "84fb6b0c29a5fbf00728659d771b8a9dd87f7f1f70c14a3cdb1cb7baa1ed9e46",
+      "checklist.md": "f1eac0ca46b47260f5d25fef064395a2b8657ab572654d9bea2f35918298a802",
+      "implementation-summary.md": "ae133f33a87e7f212cbfcbba38a06dfca0a83dae7bb45ae6b9f07a26396a4877"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

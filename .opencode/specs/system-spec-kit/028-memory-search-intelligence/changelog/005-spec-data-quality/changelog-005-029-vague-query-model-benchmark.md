@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Vague-Query Model Benchmark [005-spec-data-quality/029-vague-query-model-benchmark]"
+title: "Changelog: Vague-Query Model Benchmark [005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark]"
 description: "Chronological changelog for the vague-query model benchmark phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

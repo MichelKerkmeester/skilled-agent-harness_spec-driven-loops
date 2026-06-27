@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retroactive automation",
+      "spec data quality retroactive automation",
+      "retroactive automation phase parent"
+    ],
+    "key_topics": [
+      "retroactive",
+      "automation",
+      "spec",
+      "data",
+      "quality",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track",
+      "scheduled",
+      "doctor"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Automation Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Automation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Automation Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Feedback Edge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Retroactive Automation subgroup of the spec-data-quality track: scheduled/doctor/feedback automation over stored metadata.",
+    "created_at": "2026-06-27T17:25:35.599Z",
+    "last_save_at": "2026-06-27T17:25:35.599Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:99f716f0531438803ddef8a931cca96c5a03a03c4370234e9fca2f81c7b0ce9f",
+    "source_doc_hashes": {
+      "spec.md": "bf252efb3ea33073e5d2b2a62f0114c14b9afbfbc5f0d20c6585fa8636ed0a82"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A8 Surface Provenance Fields [005-spec-data-quality/008-a8-surface-provenance-fields]"
+title: "Changelog: A8 Surface Provenance Fields [005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields]"
 description: "Chronological changelog for the A8 Surface Provenance Fields phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

@@ -70,7 +70,7 @@ The Phase 1 harness at `.opencode/specs/_sandbox/37--llama-cpp-context-size/repr
 | `.opencode/specs/_sandbox/37--llama-cpp-context-size/run-3.15.1.{jsonl,summary.tsv}` | Created | Raw + summary evidence: 5 sizes PASS (43–492 tokens), 6 sizes THROW (655–1640 tokens). |
 | `.opencode/specs/_sandbox/37--llama-cpp-context-size/version-comparison.md` | Created | Documents the 3.17.1 version probe telescoping (Phase 1 IS the 3.17.1 evidence — the project's resolved version is already 3.17.1). |
 | `.opencode/specs/.../037-.../decision-record.md` | Created | ADR-003 captures: rationale, 4 alternatives weighed, evidence chain, consequences, hotfix narrative. |
-| `.opencode/specs/.../032-.../handover.md` | Modified | One-paragraph 037 closure note pointing at this packet's evidence + ADR. |
+| `.opencode/specs/.../032-.../archive/handover.md` | Modified | One-paragraph 037 closure note pointing at this packet's evidence + ADR. |
 | `.opencode/specs/.../037-.../spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `description.json`, `graph-metadata.json` | Created | Canonical Level-2 docs (Phase 0 scaffold). |
 <!-- /ANCHOR:what-built -->
 

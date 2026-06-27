@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Idempotent Writes Cache Upsert [005-spec-data-quality/035-idempotent-writes-cache-upsert]"
+title: "Changelog: Idempotent Writes Cache Upsert [005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert]"
 description: "Chronological changelog for the idempotent writes cache upsert phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

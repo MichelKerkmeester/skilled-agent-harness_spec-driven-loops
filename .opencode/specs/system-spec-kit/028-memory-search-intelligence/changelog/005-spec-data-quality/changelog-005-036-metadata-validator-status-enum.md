@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Metadata Validator Status Enum [005-spec-data-quality/036-metadata-validator-status-enum]"
+title: "Changelog: Metadata Validator Status Enum [005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum]"
 description: "Chronological changelog for the metadata validator status enum phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

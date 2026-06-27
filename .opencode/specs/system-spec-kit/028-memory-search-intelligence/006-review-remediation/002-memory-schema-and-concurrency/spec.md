@@ -51,7 +51,7 @@ _memory:
 | **Phase** | 002 of 004 |
 | **Predecessor** | ../001-eval-benchmark-fidelity/spec.md |
 | **Successor** | ../003-doc-accuracy/spec.md |
-| **Source Review** | `../../review-report.md` |
+| **Source Review** | `../../archive/review-report.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

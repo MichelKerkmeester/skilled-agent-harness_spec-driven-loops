@@ -1,5 +1,5 @@
 ---
-title: "Changelog: A6 HVR Style Auto-Fix Linter [005-spec-data-quality/006-a6-hvr-style-autofix]"
+title: "Changelog: A6 HVR Style Auto-Fix Linter [005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix]"
 description: "Chronological changelog for the A6 HVR Style Auto-Fix Linter phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

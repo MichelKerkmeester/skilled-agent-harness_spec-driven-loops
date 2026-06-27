@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "schema warn to error",
+      "description shape",
+      "graph metadata shape",
+      "legacy grandfathered",
+      "zod schema validation"
+    ],
+    "key_topics": [
+      "schema",
+      "warn",
+      "error",
+      "description",
+      "shape",
+      "graph",
+      "metadata",
+      "legacy",
+      "grandfathered",
+      "zod",
+      "validation",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/specs/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-description-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Warn",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corpus unchecked",
+    "created_at": "2026-06-27T17:15:33.598Z",
+    "last_save_at": "2026-06-27T17:15:33.598Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a2ee556114b24d1c9a8255a485ee58eb26782c716bb8de64fb18c26932798195",
+    "source_doc_hashes": {
+      "spec.md": "ed5a4f2ada7196aa2b97cb321ee0eccd1902d1663075c408ec162ab03fd687e8",
+      "plan.md": "c51881880d16da77619593f503d9ed45d4cedefc760170b0502df34c9d35de05",
+      "tasks.md": "e69d52406f88b390eec4746b48ef3bdc59d739dd3eee6d9901353af73dbe3ab1",
+      "checklist.md": "a1441deef631244a8582f8a9283a6c09e76c9ee03f14ceeffaf4d30ca21c6267",
+      "implementation-summary.md": "11f4e5bf433088d2c2e4b030c8399c5a6ff9c3eed07e26ce1a636c1b8c42a61a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

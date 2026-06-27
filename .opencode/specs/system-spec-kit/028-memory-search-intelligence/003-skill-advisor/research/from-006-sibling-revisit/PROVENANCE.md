@@ -4,7 +4,7 @@
 
 Source phase: 006-sibling-revisit/research/
 
-Merged location: 003-skill-advisor/research/from-006-sibling-revisit/
+Merged location: 003-skill-advisor/research/sibling-cross-cutting-revisit/
 
 Primary archive: No, duplicate target archive
 

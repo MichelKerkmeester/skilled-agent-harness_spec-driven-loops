@@ -1,5 +1,5 @@
 ---
-title: "Changelog: 005 Post-Benchmark Improvement Research [005-spec-data-quality/030-improvement-research]"
+title: "Changelog: 005 Post-Benchmark Improvement Research [005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research]"
 description: "Chronological changelog for the 005 post-benchmark improvement research phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

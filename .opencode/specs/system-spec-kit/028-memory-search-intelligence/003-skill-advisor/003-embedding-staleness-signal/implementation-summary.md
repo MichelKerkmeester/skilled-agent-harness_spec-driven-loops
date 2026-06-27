@@ -120,7 +120,7 @@ The implementation followed the signal-first sequence. `types.ts` adds the proje
 - **Plan**: `plan.md`.
 - **Tasks**: `tasks.md`.
 - **Checklist**: `checklist.md`.
-- **Source research**: `../research/research.md`, `../research/from-006-sibling-revisit/research.md:80` (SA8 origin), `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md:36` + `04-sibling-and-cross-cutting.md:15,:34`.
+- **Source research**: `../research/research.md`, `../research/sibling-cross-cutting-revisit/research.md:80` (SA8 origin), `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md:36` + `04-sibling-and-cross-cutting.md:15,:34`.
 - **Shared-infra dependency**: `../../001-speckit-memory/010-consolidation-cursor-clock/spec.md` (idempotent-async primitive).
 - **Mirror reference (read-only)**: `embedding-reconcile.ts:162-189`.
 - **Shipped record (historical evidence)**: Wave-0 record and Wave-1 list.

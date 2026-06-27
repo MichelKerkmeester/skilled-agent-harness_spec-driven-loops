@@ -130,7 +130,7 @@ _memory:
 - **Specification**: `spec.md`, especially section 10 candidate status.
 - **Plan**: `plan.md`.
 - **Checklist**: `checklist.md`.
-- **Source research**: `../research/research.md`, `../research/from-006-sibling-revisit/research.md:80` (SA8 origin), `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md:36`, `../../research/synthesis/04-sibling-and-cross-cutting.md:15,:34`.
+- **Source research**: `../research/research.md`, `../research/sibling-cross-cutting-revisit/research.md:80` (SA8 origin), `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md:36`, `../../research/synthesis/04-sibling-and-cross-cutting.md:15,:34`.
 - **Shared-infra dependency**: `../../001-speckit-memory/010-consolidation-cursor-clock/spec.md` (idempotent-async primitive).
 - **Mirror reference (read-only)**: `memory_embedding_reconcile`, `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:162-189`.
 - **Shipped record (historical evidence)**: Wave-0 record (SA8 absent → PENDING) + Wave-1 list.

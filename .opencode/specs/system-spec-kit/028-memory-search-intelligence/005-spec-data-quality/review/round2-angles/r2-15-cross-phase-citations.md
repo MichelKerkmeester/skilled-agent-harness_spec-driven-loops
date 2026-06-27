@@ -5,15 +5,15 @@
 ## What checked clean (with evidence)
 
 - All 28 `children_ids` in `graph-metadata.json:6-35` match 1:1 the 28 phase-map rows at `spec.md:157-206` and the 28 real folders on disk. No orphan, no dangling, no extra.
-- Every build-order folder citation resolves to a real folder: 001-a1, 011-b1, 012-b2, 026-shared-safe-fix-engine, 015-c2-prodmode-recall-gate, 027-retrieval-floor-experiment (confirmed by `ls`).
+- Every build-order folder citation resolves to a real folder: 001-a1, 011-b1, 012-b2, 026-shared-safe-fix-engine, 015-prodmode-recall-gate, 027-retrieval-floor-experiment (confirmed by `ls`).
 - The 028 research line-citations land in the correct sections: `research.md:55-66` is the Tier-D NO-GO table (10 rows), `research.md:78-85` is the novel non-GO table, `research.md:104-118` is section 5 the governance layer. Cited from `028-governance-rollout/spec.md:66,83`.
-- Reciprocal edges are bidirectionally consistent on the core: 026 names 001-a1, 011-b1, 012-b2 as front doors at `026-shared-safe-fix-engine/spec.md:82-84` and `:215`, and 015 gates the Tier-C retrieval candidates at `015-c2-prodmode-recall-gate/spec.md:65`.
+- Reciprocal edges are bidirectionally consistent on the core: 026 names 001-a1, 011-b1, 012-b2 as front doors at `026-shared-safe-fix-engine/spec.md:82-84` and `:215`, and 015 gates the Tier-C retrieval candidates at `015-prodmode-recall-gate/spec.md:65`.
 - The non-resolving slugs surfaced by a broad grep (`031-stage-0-init`, `005-release-cleanup`, `031-spec-data-quality`) are benign: a frontmatter session_id and historical reorg records at `handover.md:36`, not live dependency citations.
 
 ## FINDINGS
 
 ### Finding 1 (P2 advisory): Self-referential build-order edge, 015 cited as shipping "before every Tier-C item" but 015 is itself a Tier-C item
-- **Evidence**: parent `spec.md:183` calls 015 "the unblocker for every Tier-C item" and `spec.md:211` says it "ships before every Tier-C item", restated at `implementation-summary.md:70`. Tier-C is defined as 014-018 at `spec.md:180-186`, which includes 015. The canonical child scopes it correctly: `015-c2-prodmode-recall-gate/spec.md:65` reads "every Tier-C retrieval candidate (C1, C3, C4, C5)", that is the four OTHER items, excluding C2 itself. The parent phrasing is literally self-including. Under the topological-sort contract the 028 child asserts at `028-governance-rollout/spec.md:113` (REQ-001, "no stage precedes a stage it depends on"), a self-edge is unsatisfiable, so a builder taking the parent wording at face value hits a self-cycle. Fix is "every other Tier-C item" or "every Tier-C retrieval candidate".
+- **Evidence**: parent `spec.md:183` calls 015 "the unblocker for every Tier-C item" and `spec.md:211` says it "ships before every Tier-C item", restated at `implementation-summary.md:70`. Tier-C is defined as 014-018 at `spec.md:180-186`, which includes 015. The canonical child scopes it correctly: `015-prodmode-recall-gate/spec.md:65` reads "every Tier-C retrieval candidate (C1, C3, C4, C5)", that is the four OTHER items, excluding C2 itself. The parent phrasing is literally self-including. Under the topological-sort contract the 028 child asserts at `028-governance-rollout/spec.md:113` (REQ-001, "no stage precedes a stage it depends on"), a self-edge is unsatisfiable, so a builder taking the parent wording at face value hits a self-cycle. Fix is "every other Tier-C item" or "every Tier-C retrieval candidate".
 - **Type**: SPEC-PREMISE.
 
 ### Finding 2 (P2 advisory): Edge-count drift, parent says the build order is "fixed by two dependencies" while the canonical governance child says five inviolable edges

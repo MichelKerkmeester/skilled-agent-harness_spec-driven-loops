@@ -22,7 +22,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - "../research/from-008-retrieval-evaluation/research.md"
+      - "../research/retrieval-evaluation/research.md"
       - "../../research/synthesis/08-retrieval-evaluation-findings.md"
       - "../../research/roadmap.md"
     session_dedup:
@@ -57,7 +57,7 @@ This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Candidate** | `eval-harness-spine` (C9-1 / C9-2 / C9-3 + A8-1/A8-2/A8-5/A8-4) |
-| **Source research** | `../research/from-008-retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`) |
+| **Source research** | `../research/retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`) |
 | **Source synthesis** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-1 spine) |
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Gate-zero precondition** | `../001-corpus-reindex-gate-zero/` (sibling, reindex + C9-4 coverage guard) |
@@ -272,7 +272,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 
 ## RELATED DOCUMENTS
 
-- **Phase research (PRIMARY):** `../research/from-008-retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`, `deltas/`).
+- **Phase research (PRIMARY):** `../research/retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`, `deltas/`).
 - **Synthesis (the spine):** `../../research/synthesis/08-retrieval-evaluation-findings.md`.
 - **Cross-cutting roadmap (authoritative):** `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda).
 - **Gate-zero precondition (sibling):** `../001-corpus-reindex-gate-zero/spec.md` (reindex + C9-4 `assertEmbeddingCoverage`).

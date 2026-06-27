@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "idempotent description writes",
+      "global cache upsert",
+      "content hash gated description",
+      "ensureDescriptionCache over-reach",
+      "description json no-op skip"
+    ],
+    "key_topics": [
+      "idempotent",
+      "description",
+      "writes",
+      "global",
+      "cache",
+      "upsert",
+      "content",
+      "hash",
+      "gated",
+      "ensuredescriptioncache",
+      "over-reach",
+      "json"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-idempotent.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts",
+      "mcp_server/tests/folder-discovery-idempotent.vitest.ts",
+      "tests/env-reference-drift.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery-idempotent.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-idempotent.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-canonical-save-metadata.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "env-reference-drift.vitest.ts",
+        "kind": "test",
+        "path": "tests/env-reference-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Idempotent Writes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cache Upsert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged content dirties files and buries real diffs under wall-clock churn",
+    "created_at": "2026-06-27T17:15:41.988Z",
+    "last_save_at": "2026-06-27T17:15:41.988Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ffa0d00c4bbf6c4bf74c803509e06efb2340d7792c7d233948049e6f19781767",
+    "source_doc_hashes": {
+      "spec.md": "f665df7d7a48176aa5f0db9f41243764b748f126d60ef0e2e03afba0ab0926de",
+      "plan.md": "88e9e7b42775af9db5ac3a9596d3aa39262b8a8a21a93452e896f97d827e3ff9",
+      "tasks.md": "c7ccfaa69947ec1ed739d7154d4c94acec2aec47508d08a6c31208158ec208d7",
+      "checklist.md": "2ff0e9d3baedc6f772258709b1f88ed1a3b7de1d2da70fea088d7350d5fdb01e",
+      "implementation-summary.md": "d7d0f1f2dd46a0f4196b1554fa3195e20b3367a2f85ed2a302a6a755f05a2074"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

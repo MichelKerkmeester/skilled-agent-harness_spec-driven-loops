@@ -31,7 +31,7 @@ This follows the `013/003` precedent: cli-codex batched remediation worked there
 Scope:
 - `../017-llama-cpp-default-flip/implementation-summary.md` (primary target)
 - `../spec.md` (parent 014 spec — check for "llama-cpp opt-in" wording)
-- `../handover.md` (if exists at parent)
+- `../archive/handover.md` (if exists at parent)
 - `../SETUP_A_RECIPE.md` (if exists at parent)
 
 Prompt outline:

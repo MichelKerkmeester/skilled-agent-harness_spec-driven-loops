@@ -1,5 +1,5 @@
 ---
-title: "Changelog: C1 deterministic header-path plus curated-signal chunk prefix [005-spec-data-quality/014-c1-chunk-prefix]"
+title: "Changelog: C1 deterministic header-path plus curated-signal chunk prefix [005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix]"
 description: "Chronological changelog for the C1 deterministic header-path plus curated-signal chunk prefix phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -53,4 +53,4 @@ This phase is PLANNED and scaffolded. Nothing is implemented yet. The spec, plan
 ### Follow-Ups
 
 - Build this retrieval-class change per plan.md and keep it default-off.
-- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-c2-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.
+- It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.

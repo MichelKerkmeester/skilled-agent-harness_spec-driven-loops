@@ -187,7 +187,7 @@ Next: Continue implementation
 - [`tasks.md`](./tasks.md) - Task breakdown
 - [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
-- [`handover.md`](./handover.md) - Session handover notes
+- [`handover.md`](./archive/handover.md) - Session handover notes
 
 **Key Topics:** `spec` | `tests` | `decision` | `test` | `vitest ts` | `db` | `rather than` | `live db` | `because` | `ts` | `that` | `updated modularization` | 
 

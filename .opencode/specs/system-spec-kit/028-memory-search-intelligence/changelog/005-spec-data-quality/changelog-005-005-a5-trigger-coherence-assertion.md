@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Cross-Surface trigger_phrases Coherence Assertion [005-spec-data-quality/005-a5-trigger-coherence-assertion]"
+title: "Changelog: Cross-Surface trigger_phrases Coherence Assertion [005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion]"
 description: "Chronological changelog for the Cross-Surface trigger_phrases Coherence Assertion phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

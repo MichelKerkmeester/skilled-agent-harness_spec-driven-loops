@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Novel GO Automatic Example and Test Generation From Specs [005-spec-data-quality/021-novel-example-test-generation]"
+title: "Changelog: Novel GO Automatic Example and Test Generation From Specs [005-spec-data-quality/004-novel-research/021-novel-example-test-generation]"
 description: "Chronological changelog for the Novel GO Automatic Example and Test Generation From Specs phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

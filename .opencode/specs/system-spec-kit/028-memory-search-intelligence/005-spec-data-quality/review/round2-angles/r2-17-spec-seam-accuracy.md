@@ -13,14 +13,14 @@
 ### FINDING 1 — P2 — 003-a3 cites the `type` field one line above its real location
 - **Severity:** P2 advisory
 - **Type:** SPEC-PREMISE issue (a doc citation points to the wrong line for the named field, the live field is one line below)
-- **Evidence (spec):** `003-a3-enum-constrain-schemas/spec.md:65` reads "The description schema carries `type` as a bare `z.string().optional()` (`description-schema.ts:64`)".
+- **Evidence (spec):** `003-enum-constrain-schemas/spec.md:65` reads "The description schema carries `type` as a bare `z.string().optional()` (`description-schema.ts:64`)".
 - **Evidence (live):** `mcp_server/lib/description/description-schema.ts:64` is `title: z.string().optional(),` and `description-schema.ts:65` is `type: z.string().optional(),`. The named `type` field is at line 65, line 64 holds `title`.
 - **Note:** The substantive premise still holds, `type` IS a bare optional free string, so this is a one-line citation slip not a false claim. Low impact because 005 is research-only and nothing reads this line. A future implementer following the citation lands on `title` instead of `type`.
 
 ### FINDING 2 — P2 — 017-c4 seam range starts inside the doc comment, not at the function def
 - **Severity:** P2 advisory (low confidence, arguably acceptable)
 - **Type:** SPEC-PREMISE issue (range boundary precision)
-- **Evidence (spec):** `017-c4-metadata-fusion/spec.md:63` cites `stage2-fusion.ts:261-289` as the validation-signal scoring seam.
+- **Evidence (spec):** `017-metadata-fusion/spec.md:63` cites `stage2-fusion.ts:261-289` as the validation-signal scoring seam.
 - **Evidence (live):** `mcp_server/lib/search/pipeline/stage2-fusion.ts:264` is `function applyValidationSignalScoring(results: PipelineRow[])`, lines 261-263 are the tail of the preceding doc comment. The cited range opens 3 lines early.
 - **Note:** Including the doc comment in a seam range is common and the range still captures the real multiplier body (264-289). Flagged only for completeness, not a real defect.
 

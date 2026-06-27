@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger phrases coherence",
+      "cross-surface assertion",
+      "subset coherence",
+      "description.json triggers",
+      "graph-metadata derived"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrases",
+      "coherence",
+      "cross-surface",
+      "assertion",
+      "subset",
+      "description",
+      "json",
+      "triggers",
+      "graph-metadata",
+      "derived",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-extractor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coherence Assertion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Coherence Assertion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern New",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
+    "created_at": "2026-06-27T17:15:33.865Z",
+    "last_save_at": "2026-06-27T17:15:33.865Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6470761a951cf644ee69335f56c7bd1b18fab2131f976b479fd7fc46267da434",
+    "source_doc_hashes": {
+      "spec.md": "48bbf255e658d0f93a979b4cf09450f62389523fc90d4373102209a736a3dd97",
+      "plan.md": "ec2a4fa6db664544746bab75f88fd422b71f5c4ce191a1664021056eb3a10a87",
+      "tasks.md": "b2552af9df32615ea7e6afdd3437d422bc9ce8a627a109d62486651a862a4d21",
+      "checklist.md": "7cfd7543d7d768d45cfb081f81194154ba23c3f7ca9590982cc8d7e1d6a7796d",
+      "implementation-summary.md": "39d81637dda6eeacd9c667335f94b1b1300e6ba938b10c109ecf64345e2fa5b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

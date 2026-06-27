@@ -49,7 +49,7 @@ _memory:
 
 ## How to read this packet
 
-Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `before-vs-after.md`, `feature-flags.md` and `benchmark-status.md` as the current navigation and evidence set. Treat `handover.md` and `review-report.md` as historical continuity, `implementation-schedule.md` as historical scheduling, and `timeline.md` as the chronological record.
+Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `before-vs-after.md`, `feature-flags.md` and `benchmark-status.md` as the current navigation and evidence set. Treat `archive/handover.md` and `archive/review-report.md` as historical continuity, `archive/implementation-schedule.md` as historical scheduling, and `timeline.md` as the chronological record.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

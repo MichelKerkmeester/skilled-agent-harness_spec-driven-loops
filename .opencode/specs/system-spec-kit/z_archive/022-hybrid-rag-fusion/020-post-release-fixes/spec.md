@@ -59,7 +59,7 @@ This documentation pass does not fix those findings yet. Its job is narrower and
 | **Successor** | `../021-ground-truth-id-remapping/spec.md` |
 | **Historical Predecessors** | `012-pre-release-fixes-alignment-preparation`, `013-v7-remediation`, `014-v8-p1-p2-remediation` |
 | **Canonical Review Source** | `./review/review-report.md` |
-| **Historical Report** | `./review-report.md` (historical evidence only) |
+| **Historical Report** | `./archive/review-report.md` (historical evidence only) |
 | **Packet Role** | Post-review remediation program and execution contract for the 012 packet |
 | **Source-of-Truth Date** | 2026-03-27 |
 

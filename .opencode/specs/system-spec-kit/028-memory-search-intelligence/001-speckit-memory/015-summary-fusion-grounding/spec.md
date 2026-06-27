@@ -273,6 +273,6 @@ Per-candidate status. The fused summary lane has shadow-gated code and determini
 - **Implementation Plan**: See `plan.md`.
 - **Task Breakdown**: See `tasks.md`.
 - **Parent Spec**: See `../spec.md`.
-- **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM #5/#13), `../../research/synthesis/06-memory-systems-findings.md`, `../research/from-007-memory-systems/iterations/iteration-{017,018,019,022}.md`.
+- **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM #5/#13), `../../research/synthesis/06-memory-systems-findings.md`, `../research/external-memory-systems/iterations/iteration-{017,018,019,022}.md`.
 - **Wave-0 shipped record**: Wave-0 record (neither candidate listed → PENDING).
 <!-- /ANCHOR:related-docs -->

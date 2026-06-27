@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Novel embedding-drift monitoring plus alerting [005-spec-data-quality/020-novel-embedding-drift-monitor]"
+title: "Changelog: Novel embedding-drift monitoring plus alerting [005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor]"
 description: "Chronological changelog for the Novel embedding-drift monitoring plus alerting phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/020-novel-embedding-drift-monitor` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

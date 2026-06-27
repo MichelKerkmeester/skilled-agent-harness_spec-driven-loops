@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chunk prefix",
+      "header path",
+      "embedding coverage guard",
+      "dual cache key",
+      "retrieval re-embed",
+      "chunk prefix plan",
+      "header path prefix",
+      "chunk prefix tasks",
+      "header path tasks",
+      "embedding coverage guard tasks",
+      "dual cache key tasks",
+      "chunk prefix checklist"
+    ],
+    "key_topics": [
+      "chunk",
+      "prefix",
+      "header",
+      "path",
+      "embedding",
+      "coverage",
+      "guard",
+      "dual",
+      "cache",
+      "key",
+      "retrieval",
+      "re-embed"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "content-normalizer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Embed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
+    "created_at": "2026-06-27T17:15:36.300Z",
+    "last_save_at": "2026-06-27T17:15:36.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:10d3951320481a39164f554b66d064e93603c76038254ae7acaed853f78b1a67",
+    "source_doc_hashes": {
+      "spec.md": "cac684edfd612c70a721f5483afc9fde23199c773499cded47915ff2ef69b7d9",
+      "plan.md": "a5015d9ae7381ca7d188a80a2bf04206f65c82d70952200f58455129dccc3a95",
+      "tasks.md": "76fa958388a6945adb899c12bf9579ae77015753e2c9240790260f60410c89b4",
+      "checklist.md": "c6bcfa269cd65701e6dea59dc1cf6186281f173ee901894f772068447b19f9ef",
+      "implementation-summary.md": "f11f6aedd540b012e6d54e7240e1f3f958025954e446d4874ff69ceeb6f171cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

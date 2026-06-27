@@ -31855,7 +31855,7 @@
       "lastUpdated": "2026-06-23T03:49:58.535Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
       "description": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
       "keywords": [
         "verify-fix-verify",
@@ -31871,7 +31871,7 @@
       "lastUpdated": "2026-06-23T03:49:58.542Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
       "description": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the",
       "keywords": [
         "per-folder",
@@ -31889,7 +31889,7 @@
       "lastUpdated": "2026-06-23T03:49:58.548Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
       "description": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
       "keywords": [
         "two",
@@ -31905,7 +31905,7 @@
       "lastUpdated": "2026-06-23T03:49:58.555Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
       "description": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corp",
       "keywords": [
         "two",
@@ -31927,7 +31927,7 @@
       "lastUpdated": "2026-06-23T03:49:58.561Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
       "description": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
       "keywords": [
         "spec",
@@ -31946,7 +31946,7 @@
       "lastUpdated": "2026-06-23T03:49:58.569Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
       "description": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts ev",
       "keywords": [
         "hvr",
@@ -31968,7 +31968,7 @@
       "lastUpdated": "2026-06-23T03:49:58.575Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
       "description": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extract",
       "keywords": [
         "spec",
@@ -31989,7 +31989,7 @@
       "lastUpdated": "2026-06-23T03:49:58.582Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
       "description": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
       "keywords": [
         "memory",
@@ -32013,7 +32013,7 @@
       "lastUpdated": "2026-06-23T03:49:58.588Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
       "description": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
       "keywords": [
         "contenthash",
@@ -32032,7 +32032,7 @@
       "lastUpdated": "2026-06-23T03:49:58.595Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
       "description": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
       "keywords": [
         "three",
@@ -32051,7 +32051,7 @@
       "lastUpdated": "2026-06-23T03:49:58.602Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
       "description": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` retu",
       "keywords": [
         "eight",
@@ -32070,7 +32070,7 @@
       "lastUpdated": "2026-06-23T03:49:58.608Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
       "description": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate s",
       "keywords": [
         "doctor",
@@ -32094,7 +32094,7 @@
       "lastUpdated": "2026-06-23T03:49:58.616Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
       "description": "The retrieval-learning loop records only the positive selection edge",
       "keywords": [
         "retrieval-learning",
@@ -32108,7 +32108,7 @@
       "lastUpdated": "2026-06-23T03:49:58.622Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
       "description": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
       "keywords": [
         "embed",
@@ -32125,7 +32125,7 @@
       "lastUpdated": "2026-06-23T03:49:58.630Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
       "description": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
       "keywords": [
         "prod",
@@ -32142,7 +32142,7 @@
       "lastUpdated": "2026-06-23T03:49:58.654Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
       "description": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but t",
       "keywords": [
         "document",
@@ -32161,7 +32161,7 @@
       "lastUpdated": "2026-06-23T03:49:58.661Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/017-c4-metadata-fusion",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
       "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-2",
       "keywords": [
         "fusion",
@@ -32181,7 +32181,7 @@
       "lastUpdated": "2026-06-23T03:49:58.667Z"
     },
     {
-      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/018-c5-llm-judge-scorer",
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
       "description": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
       "keywords": [
         "retrieval",

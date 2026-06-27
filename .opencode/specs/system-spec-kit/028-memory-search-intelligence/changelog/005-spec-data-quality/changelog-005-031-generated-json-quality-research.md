@@ -1,5 +1,5 @@
 ---
-title: "Changelog: 031 Generated JSON Quality and Safety Research [005-spec-data-quality/031-generated-json-quality-research]"
+title: "Changelog: 031 Generated JSON Quality and Safety Research [005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research]"
 description: "Chronological changelog for the 031 generated json quality and safety research phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

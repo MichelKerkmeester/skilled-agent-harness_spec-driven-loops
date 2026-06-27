@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Search-Quality Fixes [005-spec-data-quality/041-search-quality-fixes]"
+title: "Changelog: Search-Quality Fixes [005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes]"
 description: "Chronological changelog for the search-quality fixes phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/041-search-quality-fixes` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -53,7 +53,7 @@ Landed and verified the six search-quality fixes the 029 deep-research surfaced.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`: routed ranking through the deterministic flag with the always-on trigger id tie-break.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`: zeroed the wall-clock recency inputs behind the flag.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-results.ts`: resolved the `score` on graph and degree rows.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark/scripts/extract-metrics.mjs`: made the `citeCorrect` metric three-tier-aware.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark/scripts/extract-metrics.mjs`: made the `citeCorrect` metric three-tier-aware.
 - `.opencode/commands/memory/assets/search_presentation.txt`: tightened the count-equals-rows contract and corrected the leaf title.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts` and `deterministic-ranking-flag.vitest.ts`: added the new flag mock and the deterministic-ranking coverage.
 

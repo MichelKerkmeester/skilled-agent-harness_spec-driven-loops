@@ -50,7 +50,7 @@ _memory:
 | **Phase** | 004 of 004 |
 | **Predecessor** | ../003-doc-accuracy/spec.md |
 | **Successor** | None |
-| **Source Review** | `../../review-report.md` |
+| **Source Review** | `../../archive/review-report.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,7 +62,7 @@ _memory:
 The review surfaced 91 P2 findings. None is a shipped runtime defect on a default-on path, but they are not uniform: some are cheap default-off-contract guards worth fixing before release, some are latent injection seams that are safe only while inputs stay constrained and many are missing-assertion gaps on default-off features whose blast radius is low. Shipping a flat list invites either over-fixing low-value items or silently dropping ones that matter. The packet needs a single triaged view that says, per finding family, whether to fix now or accept as is, with the reason recorded.
 
 ### Purpose
-Group the 91 P2 by review lens, and for each group record a fix-now or accept-as-is verdict with a one-line reason. This phase does not fix anything: it produces the triage and routes the fix-now groups to a follow-on phase or to the existing P1 phases where they ride along. The per-item enumeration stays authoritative in `../../review-report.md`. This phase is the decision layer over it.
+Group the 91 P2 by review lens, and for each group record a fix-now or accept-as-is verdict with a one-line reason. This phase does not fix anything: it produces the triage and routes the fix-now groups to a follow-on phase or to the existing P1 phases where they ride along. The per-item enumeration stays authoritative in `../../archive/review-report.md`. This phase is the decision layer over it.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -83,7 +83,7 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 ### P2 Lens Triage
 
-> Counts are approximate and families overlap where the tri-model pass and the deep-dive both surfaced the same code. The authoritative per-item list is `../../review-report.md`. Each group carries one verdict. Documented exceptions are noted inline.
+> Counts are approximate and families overlap where the tri-model pass and the deep-dive both surfaced the same code. The authoritative per-item list is `../../archive/review-report.md`. Each group carries one verdict. Documented exceptions are noted inline.
 
 | # | Lens / Family | Approx count | Verdict | One-line reason |
 |---|---------------|--------------|---------|-----------------|

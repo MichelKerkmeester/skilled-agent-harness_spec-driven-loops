@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Deterministic-Ranking Benchmark [005-spec-data-quality/042-deterministic-ranking-benchmark]"
+title: "Changelog: Deterministic-Ranking Benchmark [005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark]"
 description: "Chronological changelog for the deterministic-ranking benchmark phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
@@ -46,9 +46,9 @@ Benchmarked the 041 `SPECKIT_DETERMINISTIC_RANKING` flag against the real corpus
 
 ### Files Changed
 
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark/scripts/deterministic-ranking-benchmark.mjs`: created the read-only 72-cell graduation harness.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark/results/metrics.json`: created the per-query determinism and divergence data.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/042-deterministic-ranking-benchmark/benchmark-results.md`: created the per-query rows and the verdict.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark/scripts/deterministic-ranking-benchmark.mjs`: created the read-only 72-cell graduation harness.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark/results/metrics.json`: created the per-query determinism and divergence data.
+- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark/benchmark-results.md`: created the per-query rows and the verdict.
 
 ### Follow-Ups
 

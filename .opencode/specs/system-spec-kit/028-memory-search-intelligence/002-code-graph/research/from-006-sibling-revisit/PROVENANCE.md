@@ -4,7 +4,7 @@
 
 Source phase: 006-sibling-revisit/research/
 
-Merged location: 002-code-graph/research/from-006-sibling-revisit/
+Merged location: 002-code-graph/research/sibling-cross-cutting-revisit/
 
 Primary archive: No, duplicate target archive
 

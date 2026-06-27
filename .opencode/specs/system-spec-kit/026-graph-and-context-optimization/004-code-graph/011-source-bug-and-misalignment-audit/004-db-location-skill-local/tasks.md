@@ -66,6 +66,6 @@ _memory:
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- Findings: `../review-report.md` (CG-013/CG-014/CG-038)
+- Findings: `../archive/review-report.md` (CG-013/CG-014/CG-038)
 - Commit: 69e7bf12
 <!-- /ANCHOR:cross-refs -->

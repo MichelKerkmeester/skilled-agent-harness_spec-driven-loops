@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
-| **Source Review** | `../review-report.md` |
+| **Source Review** | `../archive/review-report.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,7 +62,7 @@ _memory:
 The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. That source review remains the frozen input for the first four remediation families, but the track has since progressed. Phases 001 and 003 executed their source-review remediation scopes, phases 002 and 004 remain pending contracts, and phases 005 and 006 later shipped the ENV-documentation audit/remediation and marker-gated review packet type work.
 
 ### Purpose
-Keep the parent as the six-child review-remediation rollup. The child folders own implementation detail, evidence and verification; `../changelog/006-review-remediation/changelog-006-root.md` is the current status source and `../review-report.md` is source-review context for the first four children.
+Keep the parent as the six-child review-remediation rollup. The child folders own implementation detail, evidence and verification; `../changelog/006-review-remediation/changelog-006-root.md` is the current status source and `../archive/review-report.md` is source-review context for the first four children.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning, tasks and checklists live in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -149,7 +149,7 @@ The old deep-review detail is source-review context for the first four children,
 
 ## RELATED DOCUMENTS
 
-- **Source review**: `../review-report.md`
+- **Source review**: `../archive/review-report.md`
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
 - **Child phases**: `001-eval-benchmark-fidelity/` through `006-review-record-packet-type/`

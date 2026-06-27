@@ -1,6 +1,6 @@
 # 028 ↔ 027 — Cross-Packet Reconciliation (parent-level summary)
 
-> Packet 027 (XCE-Derived Spec Kit Refinement) hardened the memory/causal/search/infra surfaces using peck, gem-team, memclaw, OpenLTM. Packet 028 then mined aionforge + galadriel — prior art 027 never had. Child `005-revisit-027` (50 iterations) reconciled 028's findings against **027's live shipped code**. This is the parent-level summary; full ledger with `file:line` evidence is **`../../001-speckit-memory/research/from-005-revisit-027/research.md`**.
+> Packet 027 (XCE-Derived Spec Kit Refinement) hardened the memory/causal/search/infra surfaces using peck, gem-team, memclaw, OpenLTM. Packet 028 then mined aionforge + galadriel — prior art 027 never had. Child `005-revisit-027` (50 iterations) reconciled 028's findings against **027's live shipped code**. This is the parent-level summary; full ledger with `file:line` evidence is **`../../001-speckit-memory/research/cross-packet-027-reconciliation/research.md`**.
 
 ## Verdict ledger (10 subjects)
 

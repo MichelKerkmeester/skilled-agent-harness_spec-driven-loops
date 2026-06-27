@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scheduled dq sweep",
+      "data quality sweep",
+      "github actions schedule",
+      "post-merge hook",
+      "guarded auto-fix"
+    ],
+    "key_topics": [
+      "scheduled",
+      "sweep",
+      "data",
+      "quality",
+      "github",
+      "actions",
+      "schedule",
+      "post-merge",
+      "hook",
+      "guarded",
+      "auto-fix",
+      "eight"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/tests/flag-ceiling.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "schedule",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand",
+    "created_at": "2026-06-27T17:15:35.490Z",
+    "last_save_at": "2026-06-27T17:15:35.490Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8de6654cada2171249f90408b9a032e8a1025bee48e9f38b1aaef2ce18c00b1",
+    "source_doc_hashes": {
+      "spec.md": "707dff9c48f5240893642ba92b5fdc97430893eff7e25e0b5e45dc678e475bac",
+      "plan.md": "711f866b0cb8a7f938d78947eb3e2c25e7f1e2a062d382ee9716120b0ef4c90d",
+      "tasks.md": "f3e99c7ee0e50bd18dac24a00b3389fd79a6e7d5b1a953a35b9184d18d58d3a1",
+      "checklist.md": "394e547028162909dd0383bc5a36245a95c4b4a2077d0f14c23510a1c64cff7f",
+      "implementation-summary.md": "8d5b94c499c2004c39a43ae49d9d8be94e6bb76bdcd2bf930c4aaa10bb990076"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -113,10 +113,10 @@ const LABELED_QUERIES = [
     text: 'spec data quality extend quality loop trigger propagation enum schema',
     hubFolder: 'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality',
     targets: [
-      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored',
-      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description',
-      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas',
-      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error',
+      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored',
+      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description',
+      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas',
+      'system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error',
     ],
   },
   {

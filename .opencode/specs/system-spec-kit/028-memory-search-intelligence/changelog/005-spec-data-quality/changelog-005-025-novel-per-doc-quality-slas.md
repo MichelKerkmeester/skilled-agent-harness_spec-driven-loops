@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Per-Doc Quality SLAs [005-spec-data-quality/025-novel-per-doc-quality-slas]"
+title: "Changelog: Per-Doc Quality SLAs [005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas]"
 description: "Chronological changelog for the Per-Doc Quality SLAs phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

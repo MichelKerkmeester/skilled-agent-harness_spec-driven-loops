@@ -1,5 +1,5 @@
 ---
-title: "Changelog: C2 Prod-Mode Recall Gate [005-spec-data-quality/015-c2-prodmode-recall-gate]"
+title: "Changelog: C2 Prod-Mode Recall Gate [005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate]"
 description: "Chronological changelog for the C2 Prod-Mode Recall Gate phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

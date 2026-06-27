@@ -295,7 +295,7 @@ Per-candidate status. Neither candidate appears in the Wave-0 shipped record (Wa
 - **Implementation Plan**: See `plan.md`.
 - **Task Breakdown**: See `tasks.md`.
 - **Parent Spec**: See `../spec.md`.
-- **Source research**: `../../research/synthesis/08-retrieval-evaluation-findings.md` (#6 isotonic / #7 A/B levers), `../research/from-008-retrieval-evaluation/research.md`, `../research/from-008-retrieval-evaluation/deltas/iter-004.jsonl` (A2), `.../deltas/iter-005.jsonl` (A3), `.../deltas/iter-010.jsonl` + `iter-012.jsonl` (verify + tiering), `../../research/roadmap.md` (BROADENING §6 "no measured benefit number").
+- **Source research**: `../../research/synthesis/08-retrieval-evaluation-findings.md` (#6 isotonic / #7 A/B levers), `../research/retrieval-evaluation/research.md`, `../research/retrieval-evaluation/deltas/iter-004.jsonl` (A2), `.../deltas/iter-005.jsonl` (A3), `.../deltas/iter-010.jsonl` + `iter-012.jsonl` (verify + tiering), `../../research/roadmap.md` (BROADENING §6 "no measured benefit number").
 - **Gate dependency**: `../001-corpus-reindex-gate-zero/spec.md` (gate-zero reindex). The 019 eval-harness spine (`C9-1/C9-2/C9-3 → A8`, sibling phase) for the ECE lane + promotion gate.
 - **Wave-0 shipped record**: Wave-0 record (neither candidate listed → PENDING).
 <!-- /ANCHOR:related-docs -->

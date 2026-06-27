@@ -26,11 +26,7 @@
       "external memory systems research",
       "galadriel aionforge mining",
       "memory retrieval improvements",
-      "028 implementation phase parent",
-      "028 broadening rounds handover",
-      "memory search intelligence broadening",
-      "deep research continuation 028",
-      "adversarial verification cross-system claims"
+      "028 implementation phase parent"
     ],
     "key_topics": [
       "028",
@@ -51,7 +47,9 @@
     "key_files": [
       "spec.md",
       "changelog/README.md",
-      "handover.md",
+      "archive/handover.md",
+      "archive/review-report.md",
+      "archive/implementation-schedule.md",
       "001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
       "002-code-graph/spec.md",
@@ -59,11 +57,7 @@
       "004-deep-loop/spec.md",
       "000-release-cleanup/spec.md",
       "research/roadmap.md",
-      "research/research.md",
-      "001-speckit-memory/research/from-007-memory-systems/research.md",
-      "001-speckit-memory/research/from-005-revisit-027/research.md",
-      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
-      "lib/response/envelope.ts"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -79,9 +73,15 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "handover.md",
+        "path": "archive/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-schedule.md",
+        "kind": "doc",
+        "path": "archive/implementation-schedule.md",
         "source": "derived"
       },
       {
@@ -100,12 +100,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.ts",
-        "kind": "code",
-        "path": "lib/response/envelope.ts",
         "source": "derived"
       },
       {
@@ -179,53 +173,21 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Session Handover",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Session Handover Document Handover",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handover Summary",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "From Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "To Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-27T15:51:54.226Z",
+    "last_save_at": "2026-06-27T17:17:32.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "research/research.md",
-      "handover.md"
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:09b7dc344fd80f4d711f53f12cd29983f16b36e78d3029024a7e33be24508e5b",
+    "source_fingerprint": "sha256:81da8b1b506ea4f7cfbea9827fbd8494ff3549288e3f0303d655a9c544cf52f6",
     "source_doc_hashes": {
-      "spec.md": "5bc37342dea72f72f1e63520672e259b8a527abc2ac3a51175fb4c9480f835c5",
-      "research/research.md": "0ca48b10a71cbbce24603941b831f0184c1371959a33363276b7bebb688c78a3",
-      "handover.md": "7549be2c5d63718c1ea3f7e585923e8d09369868e7550c68ae4295ded81adf60"
+      "spec.md": "155e31808303153c730578525e6886c1c47d118b7af21110d1ef21104d5c6733",
+      "research/research.md": "0ca48b10a71cbbce24603941b831f0184c1371959a33363276b7bebb688c78a3"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

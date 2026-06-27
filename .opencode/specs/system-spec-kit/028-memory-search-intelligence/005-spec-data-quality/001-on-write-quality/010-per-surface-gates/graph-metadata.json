@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per-surface gates",
+      "skill-doc frontmatter gate",
+      "route-validate contract",
+      "workflow yaml schema",
+      "trigger vocabulary canary",
+      "per-surface gates plan",
+      "route-validate generalization",
+      "workflow yaml schema gate",
+      "per-surface gates tasks",
+      "per-surface gates checklist",
+      "per-surface gates implementation"
+    ],
+    "key_topics": [
+      "per-surface",
+      "gates",
+      "skill-doc",
+      "frontmatter",
+      "gate",
+      "route-validate",
+      "contract",
+      "workflow",
+      "yaml",
+      "schema",
+      "trigger",
+      "vocabulary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-rebuild.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.default.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Detector",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
+    "created_at": "2026-06-27T17:15:35.223Z",
+    "last_save_at": "2026-06-27T17:15:35.223Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6726ca2620e455e3ad2a813e25506ebc81928e14b581c2916a1f0bf67e81d3f8",
+    "source_doc_hashes": {
+      "spec.md": "f9a729802fda9f6b8801e259b18d4b47991071ce055c9592fba3c307ac97b1b2",
+      "plan.md": "5bbe77c3585d21e92af99c657037808a1f434673f946e998d16e92b5f632aedc",
+      "tasks.md": "98da726c5b6b77db26c1a2d49f223ed694fe6bf2694b6a84e435a998001c6e53",
+      "checklist.md": "39654ef225ae44511bd0459d73d2c8f2c022cd9cb383d45eccd73a4a369c4408",
+      "implementation-summary.md": "81f06858a593b364a9c55751ff4e9584471c2c5e3e93337dba79b70c9f12a711"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

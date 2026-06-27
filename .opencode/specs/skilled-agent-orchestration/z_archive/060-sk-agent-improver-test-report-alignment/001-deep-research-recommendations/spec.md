@@ -129,7 +129,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 | `.opencode/specs/.../060-.../checklist.md` | Create | Level 3 checklist |
 | `.opencode/specs/.../060-.../decision-record.md` | Create | 4 ADRs |
 | `.opencode/specs/.../060-.../implementation-summary.md` | Create | Placeholder until research completes |
-| `.opencode/specs/.../060-.../handover.md` | Create | Resume state |
+| `.opencode/specs/.../060-.../archive/handover.md` | Create | Resume state |
 | `.opencode/specs/.../060-.../resource-map.md` | Create | File ledger |
 | `.opencode/specs/.../060-.../description.json` | Create (auto) | via generate-context.js |
 | `.opencode/specs/.../060-.../graph-metadata.json` | Create (auto) | via generate-context.js |

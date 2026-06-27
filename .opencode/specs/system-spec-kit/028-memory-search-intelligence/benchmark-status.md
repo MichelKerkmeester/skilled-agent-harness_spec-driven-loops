@@ -119,7 +119,7 @@ retrieval tier and the thin novel items are deferred until a prod-mode read just
 deleted, all 28 scaffolds are kept by operator intent.
 
 The keystone retrieval unblocker is a spec-corpus prod-mode benchmark (phase
-015-c2-prodmode-recall-gate) built around the existing dual-mode `run-eval-v2.mjs`. It would read the
+015-prodmode-recall-gate) built around the existing dual-mode `run-eval-v2.mjs`. It would read the
 spec-doc corpus through the production default route and score completeRecall across the @3/@5/@8 window the
 harness already emits plus an order-sensitive NDCG@K with a top1 guard, so a promotion needs a recall rise
 AND a ranking-quality hold rather than a single set-membership number. It is PROPOSED and not yet built or
@@ -135,7 +135,7 @@ default-off: a retrieval candidate cannot earn a prod-path keep until the prod-m
 and the prod window itself does not widen until the phase-027 experiment shows results past rank 3 are signal
 rather than noise. Until both run, no Tier-C retrieval claim carries measured support.
 
-The nearest-to-measured item in the whole program is A4 (phase 004-a4-schema-warn-to-error, the JSON-schema
+The nearest-to-measured item in the whole program is A4 (phase 004-schema-warn-to-error, the JSON-schema
 shape-rule warn-to-error promotion). It touches write-time validation not retrieval ranking, so it sits
 upstream of the prod truncation stages and carries zero prod-retrieval risk. A4 is unconditional as a
 DECISION but its error flip is gated on a backfill-to-zero: a real `graphMetadataSchema` run fails 24 files
@@ -236,7 +236,7 @@ migrated tree, reusing the phase 036 integrity validator through the migrate dri
 migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the
 behavioral flags. The false-confirm baseline reproduced the documented 0.833 rate exactly, which confirms the
 driver is wired to the live verdict path. The full numbers live in
-[`005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md`](./005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md).
+[`005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md`](./005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md).
 
 **Final verdict tally: twelve of thirteen kept, one deleted.** Eleven graduated on a measured before-and-after, one stays default-ON by construction, and grounding-signal was deleted as purely informational. A migration re-run then wrote the drift-gate and generator-hardening fields and a fixture re-benchmark measured the verdict and render flags, so the two pending-re-run rows and three of the four neutral rows below have since graduated, recorded in place.
 

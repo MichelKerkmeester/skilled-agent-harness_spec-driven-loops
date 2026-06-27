@@ -45,7 +45,7 @@ The defective mechanism statement does not collapse the program, because the con
 - "Retrieval gated" holds. The eval-vs-prod divergence is real and already first-class in live code: eval path runs forceAllChannels with no truncation, prod path runs the routed, truncation-active default, and the delta is reported as a FIDELITY metric (`run-eval-v2.mjs:16-23`). Test DRV-02 guards exactly this eval-vs-prod delta per cutoff (`eval-v2-measurability.vitest.ts:154-158`). So external recall@K alone genuinely cannot promote a retrieval candidate, which is the gated-Tier-C conclusion.
 - "Write-time ships on cost" holds. Confidence truncation runs only inside the retrieval pipeline as Stage D (`hybrid-search.ts:2046-2073`) and never touches write-time authoring, so adherence, logic and write-time candidates do bypass the floor as claimed.
 
-One internal inconsistency to note: the parent EXECUTIVE SUMMARY implies the dual-mode eval-v2 measurement still needs building (`spec.md` line 51), while phase 015's own spec correctly records that `run-eval-v2.mjs` already reports the fidelity delta and only needs a baseline, multi-target goldens and a gate (`015-c2-prodmode-recall-gate/spec.md` description line 3). The phase is accurate, the parent overstates what is missing.
+One internal inconsistency to note: the parent EXECUTIVE SUMMARY implies the dual-mode eval-v2 measurement still needs building (`spec.md` line 51), while phase 015's own spec correctly records that `run-eval-v2.mjs` already reports the fidelity delta and only needs a baseline, multi-target goldens and a gate (`015-prodmode-recall-gate/spec.md` description line 3). The phase is accurate, the parent overstates what is missing.
 
 - **Evidence:** `run-eval-v2.mjs:16-23`, `eval-v2-measurability.vitest.ts:154-158`, `hybrid-search.ts:2046-2073` (live, corroborating); `spec.md` line 51 vs `015-.../spec.md` line 3 (premise inconsistency).
 - **Type:** LIVE-CODE corroboration plus minor SPEC-PREMISE inconsistency.
@@ -54,4 +54,4 @@ One internal inconsistency to note: the parent EXECUTIVE SUMMARY implies the dua
 
 ## What I checked and did not modify
 
-Read only: `confidence-truncation.ts`, `confidence-truncation.vitest.ts`, `hybrid-search.ts` (truncation Stage D + DEFAULT_LIMIT), `memory-context.ts` (strategy default limits), `run-eval-v2.mjs`, `eval-v2-measurability.vitest.ts`, `metrics.ts`, and the program docs `spec.md`, `SUMMARY.md`, `015-c2-prodmode-recall-gate/spec.md`. No reviewed file was modified.
+Read only: `confidence-truncation.ts`, `confidence-truncation.vitest.ts`, `hybrid-search.ts` (truncation Stage D + DEFAULT_LIMIT), `memory-context.ts` (strategy default limits), `run-eval-v2.mjs`, `eval-v2-measurability.vitest.ts`, `metrics.ts`, and the program docs `spec.md`, `SUMMARY.md`, `015-prodmode-recall-gate/spec.md`. No reviewed file was modified.

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "freshness decay queue",
+      "fsrs retrievability",
+      "auto-refresh queue",
+      "staleness maintenance queue",
+      "report-only freshness"
+    ],
+    "key_topics": [
+      "freshness",
+      "decay",
+      "queue",
+      "fsrs",
+      "retrievability",
+      "auto-refresh",
+      "staleness",
+      "maintenance",
+      "report-only",
+      "number",
+      "shipped",
+      "computed"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Freshness Decay Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refresh Queue",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
+    "created_at": "2026-06-27T17:15:39.015Z",
+    "last_save_at": "2026-06-27T17:15:39.015Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7625b65a66e84a5fc0c6c559266a0ab49bb38a0348825a89b74660bd1ea84c7d",
+    "source_doc_hashes": {
+      "spec.md": "0a7756f841edc64dc3b9336c4069052ef3458347ef67c8d1cc3ef09e36066d91",
+      "plan.md": "b322318a1f0b22bf8e0a9a2b4ceaa0546368591498b095fd35b5152cebfbc442",
+      "tasks.md": "6bbc282d505b759ccddeba5a2ddbdcc3ec990a22f8d138187bcb66fb695208d5",
+      "checklist.md": "21f92a3fc2d3e8f01210222ee8793a47fcd251d9a745c2ee077c0f192adbc0d7",
+      "implementation-summary.md": "f92367af9ca44f9fa7c18f97223c118cbc7cb2ace0b3386e7368d7b70a8b76f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Shared Safe-Fix Engine [005-spec-data-quality/026-shared-safe-fix-engine]"
+title: "Changelog: Shared Safe-Fix Engine [005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine]"
 description: "Chronological changelog for the Shared Safe-Fix Engine phase."
 trigger_phrases:
  - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary

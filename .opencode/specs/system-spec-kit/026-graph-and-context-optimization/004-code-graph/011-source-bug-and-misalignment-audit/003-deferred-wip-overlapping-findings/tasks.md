@@ -29,7 +29,7 @@ _memory:
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-`[x]` done. Findings keyed to `../review-report.md` CG-IDs.
+`[x]` done. Findings keyed to `../archive/review-report.md` CG-IDs.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -64,6 +64,6 @@ _memory:
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- Findings: `../review-report.md`
+- Findings: `../archive/review-report.md`
 - Parent: `../spec.md`
 <!-- /ANCHOR:cross-refs -->

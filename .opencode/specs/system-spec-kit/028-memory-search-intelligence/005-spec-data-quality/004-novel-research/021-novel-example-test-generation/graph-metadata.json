@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "example generation",
+      "test generation from specs",
+      "additive adherence artifacts",
+      "novel go floor bypass",
+      "ears ac coverage consumer",
+      "example generation plan",
+      "test generation from specs plan",
+      "additive adherence artifacts plan",
+      "novel go floor bypass plan",
+      "ears ac coverage consumer plan",
+      "example generation tasks",
+      "test generation from specs tasks"
+    ],
+    "key_topics": [
+      "example",
+      "generation",
+      "test",
+      "specs",
+      "additive",
+      "adherence",
+      "artifacts",
+      "novel",
+      "floor",
+      "bypass",
+      "ears",
+      "coverage"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "spec.md",
+      "mcp_server/tests/flag-ceiling.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automatic Example",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Generation From Specs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Authored",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its REQ",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
+    "created_at": "2026-06-27T17:15:38.197Z",
+    "last_save_at": "2026-06-27T17:15:38.197Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2db57c73402605386910b8fc45fc78e560e5a91295e6da839e8b31a18afc9cb0",
+    "source_doc_hashes": {
+      "spec.md": "1e956ba51e3dc6ecc085f4495bd1d4f11012421dc6a05ce687a448b00f36e9b0",
+      "plan.md": "ace2f5a96846b3f8d24d6866d15d0e50ec58cfe292f2b8531d770dacae64a44c",
+      "tasks.md": "2b777bd908457ac37f427c2bf9c0452bad7890d1bf37e294afe7b049ec74ec2d",
+      "checklist.md": "8c5a66a4e1f0a07c464aad44429b46b7575a748a3c0b7b441c2fa28c1c961056",
+      "implementation-summary.md": "5900f6a2fe64b0d7fd254e13b815675c17b4f647b1ab0a62c1344ea6db39a2d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

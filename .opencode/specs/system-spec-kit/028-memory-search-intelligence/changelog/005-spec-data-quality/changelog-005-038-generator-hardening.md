@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Generator Hardening [005-spec-data-quality/038-generator-hardening]"
+title: "Changelog: Generator Hardening [005-spec-data-quality/006-generated-metadata-build/038-generator-hardening]"
 description: "Chronological changelog for the generator hardening phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality`
 
 ### Summary
