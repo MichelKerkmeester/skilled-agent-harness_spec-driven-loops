@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "migrated": true,
   "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",

@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "migrated": true,
   "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",

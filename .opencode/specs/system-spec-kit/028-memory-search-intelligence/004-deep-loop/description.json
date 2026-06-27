@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
   "description": "The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input",
   "keywords": [

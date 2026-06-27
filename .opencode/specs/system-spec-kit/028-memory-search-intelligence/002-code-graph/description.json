@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
   "description": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
   "keywords": [

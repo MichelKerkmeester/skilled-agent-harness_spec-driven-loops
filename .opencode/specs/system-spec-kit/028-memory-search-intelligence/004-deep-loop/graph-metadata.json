@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "migrated": true,
   "packet_id": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",

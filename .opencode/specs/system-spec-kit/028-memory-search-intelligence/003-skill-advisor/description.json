@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "phase",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
   "description": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and out",
   "keywords": [
