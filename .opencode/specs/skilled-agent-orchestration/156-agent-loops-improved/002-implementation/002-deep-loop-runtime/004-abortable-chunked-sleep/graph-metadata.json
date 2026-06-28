@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "004-abortable-chunked-sleep summary"
     ],
     "key_topics": [
       "abortable-chunked-sleep",
@@ -35,12 +35,14 @@
       "template",
       "core",
       "tasks",
-      "summary",
-      "wait"
+      "004-abortable-chunked-sleep",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
       "spec.md",
       "plan.md",
@@ -48,6 +50,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "sleep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sleep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "executor-audit.ts",
         "kind": "code",
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Wait calls are scattered across the deep-loop executor as bare `setTimeout` promises with no cancellation support — a cancelled run must wait the full timeout before cleanup can begin and crash-resume restart can proceed",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-06-28T14:29:31.311Z",
+    "last_save_at": "2026-06-28T16:39:03.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41595be6b16233120a6943d1fa633d8782ad56af13c72ce557fd37ba87f48635",
+    "source_fingerprint": "sha256:d58b2fcc08281c4b00c9197e65b6bb9c4ad8eb864ce4209c9d38079e04508c1f",
     "source_doc_hashes": {
-      "spec.md": "043c412f85c671a4733fbb73be64b0da44674aab85278f735b067efb6aeba73c",
+      "spec.md": "f81df8c247f581290f5f75c9b508d758b78717daba73eb822fbc06f2def68be9",
       "plan.md": "6d4b5b9795ca11d17ae6f89421bcb7692d4af183eb6e3f08721103f0ed360e7b",
       "tasks.md": "c4b463291ee3d969e035567f4f766c7f8a33466c55f9055e6db60f5bc63fa6fc",
-      "implementation-summary.md": "38147e5ad0c373fd4c0aac9b3c7bf3ba64394f8fbef21a579293712e734bfa32"
+      "implementation-summary.md": "8946184ecb911344ff09bfb2787d879ca0d300b84e230d231fe56f5b15c721c7"
     },
     "last_active_child_id": null,
     "last_active_at": null
