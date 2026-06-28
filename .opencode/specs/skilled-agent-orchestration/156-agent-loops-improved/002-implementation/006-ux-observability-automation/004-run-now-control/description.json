@@ -15,11 +15,10 @@
     "restart",
     "process"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.420Z",
+  "lastUpdated": "2026-06-28T16:59:37.368Z",
   "specId": "004",
   "folderSlug": "run-now-control",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "006-ux-observability-automation"

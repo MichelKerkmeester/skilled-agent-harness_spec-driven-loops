@@ -1,7 +1,220 @@
-Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control
-Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control
-Status: planned
-Importance Tier: important
-Summary: The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "run now control",
+      "forced run sentinel",
+      "004 run now control",
+      "deep-research-run-now",
+      "run now sentinel",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "run",
+      "now",
+      "control",
+      "forced",
+      "sentinel",
+      "004",
+      "deep-research-run-now",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-yaml-control.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Now Control",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Sentinel",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
+    "created_at": "2026-06-28T16:59:37.521Z",
+    "last_save_at": "2026-06-28T16:59:37.521Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38d454b672315a4d3d2f6a3f1460511de54321356d0dfcff3cb189f827e709bf",
+    "source_doc_hashes": {
+      "spec.md": "dc621604ff0e5f729248776ec1a32c53ac3a6d6c1f227da1f6f878795646c999",
+      "plan.md": "ab023a485aabb32c1f0ac33104f6055ba8c70155b2b193245dd07404a33e3a68",
+      "tasks.md": "c376c660b650b827a8f5190b32f7a29150fae882778f2cb4f662634d3f8316e4",
+      "implementation-summary.md": "d19a4f70dbb6c4addbb36ee47e7e82aa15b7719dc132ac5526fe0322b4584534"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -102,6 +102,7 @@ state_paths:
   registry: "{artifact_dir}/deep-research-findings-registry.json"
   dashboard: "{artifact_dir}/deep-research-dashboard.md"
   pause_sentinel: "{artifact_dir}/.deep-research-pause"
+  run_now_sentinel: "{artifact_dir}/.deep-research-run-now"
   lock_file: "{artifact_dir}/.deep-research.lock"
   prompt_dir: "{artifact_dir}/prompts"
   iteration_dir: "{artifact_dir}/iterations"
@@ -445,6 +446,68 @@ workflow:
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
 
+      step_run_now_check:
+        action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
+        command: |
+          node <<'EOF'
+          const { appendFileSync, existsSync, renameSync, unlinkSync } = require('node:fs');
+
+          const stateLogPath = "{state_paths.state_log}";
+          const sentinelPath = "{state_paths.run_now_sentinel}";
+          const pausePath = "{state_paths.pause_sentinel}";
+          const timestamp = "{ISO_8601_NOW}";
+          const sessionId = "{config.lineage.sessionId}";
+          const generation = Number("{config.lineage.generation}");
+          const run = Number("{current_iteration}");
+
+          function append(event) {
+            appendFileSync(
+              stateLogPath,
+              `${JSON.stringify({
+                type: "event",
+                mode: "research",
+                run,
+                timestamp,
+                sessionId,
+                generation,
+                ...event,
+              })}\n`,
+              "utf8",
+            );
+          }
+
+          if (existsSync(sentinelPath)) {
+            append({ event: "run_now_requested", sentinelPath });
+            if (existsSync(pausePath)) {
+              append({
+                event: "run_now_rejected",
+                reason: "loop_paused",
+                sentinelPath,
+                pauseSentinelPath: pausePath,
+              });
+            } else {
+              const claimPath = `${sentinelPath}.consuming.${process.pid}.${Date.now()}`;
+              try {
+                renameSync(sentinelPath, claimPath);
+                unlinkSync(claimPath);
+                append({
+                  event: "run_now_accepted",
+                  sentinelPath,
+                  dispatchEvent: "iteration_start",
+                });
+              } catch (error) {
+                if (!error || error.code !== "ENOENT") {
+                  throw error;
+                }
+              }
+            }
+          }
+          EOF
+        outputs:
+          - run_now_requested: "Emitted when {state_paths.run_now_sentinel} exists at the loop boundary"
+          - run_now_accepted: "Emitted after the sentinel is atomically renamed and deleted before dispatch"
+          - run_now_rejected: "Emitted with reason loop_paused when pause takes precedence; sentinel remains present"
+
       step_check_pause_sentinel:
         action: "Check for pause sentinel file"
         check: "Does {state_paths.pause_sentinel} exist?"
@@ -776,6 +839,51 @@ workflow:
             - "delta_file_missing_iteration_record — delta file lacks any record with type='iteration'"
             - "executor_missing — non-native executor did not record provenance"
             - "dispatch_failure_logged — last record is an explicit dispatch_failure event"
+
+      step_run_now_restore_check:
+        action: "Record a run-now sentinel recreated during the completed dispatch"
+        command: |
+          node <<'EOF'
+          const { appendFileSync, existsSync, readFileSync } = require('node:fs');
+
+          const stateLogPath = "{state_paths.state_log}";
+          const sentinelPath = "{state_paths.run_now_sentinel}";
+          const timestamp = "{ISO_8601_NOW}";
+          const sessionId = "{config.lineage.sessionId}";
+          const generation = Number("{config.lineage.generation}");
+          const run = Number("{current_iteration}");
+
+          function hasAcceptedCurrentRun() {
+            if (!existsSync(stateLogPath)) return false;
+            const lines = readFileSync(stateLogPath, "utf8").trim().split(/\r?\n/).filter(Boolean);
+            for (let index = lines.length - 1; index >= 0; index -= 1) {
+              const record = JSON.parse(lines[index]);
+              if (record.run !== run || record.sessionId !== sessionId) continue;
+              if (record.event === "run_now_accepted") return true;
+              if (record.event === "run_now_rejected") return false;
+            }
+            return false;
+          }
+
+          if (existsSync(sentinelPath) && hasAcceptedCurrentRun()) {
+            appendFileSync(
+              stateLogPath,
+              `${JSON.stringify({
+                type: "event",
+                event: "run_now_restored",
+                mode: "research",
+                run,
+                sentinelPath,
+                timestamp,
+                sessionId,
+                generation,
+              })}\n`,
+              "utf8",
+            );
+          }
+          EOF
+        outputs:
+          - run_now_restored: "Emitted when an operator recreates the sentinel before the accepted dispatch completes"
 
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
