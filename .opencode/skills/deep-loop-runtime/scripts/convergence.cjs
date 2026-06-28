@@ -35,11 +35,42 @@ const TSX_LOADER = require.resolve('tsx');
 const DEFAULT_REPORTED_NOVELTY_THRESHOLD = 0.05;
 const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
 
+/**
+ * Shared convergence profile schema:
+ * - threshold: numeric boundary a metric is compared against before STOP can be allowed.
+ * - weight: contribution a metric makes to a loop-local composite score; use 0 for pure guards.
+ * - role: whether a metric is a weighted score input, a blocking guard, or both.
+ * - direction: passing comparison for the metric (`gte`, `lte`, or `eq`).
+ * - normalizer: named loop-local transform that converts raw observations into comparable metric values.
+ *
+ * The shared shape keeps metric contracts explicit while each loop preserves its
+ * own semantics; convergence does not collapse into one universal formula.
+ */
+/**
+ * @typedef {'weighted' | 'blocking_guard' | 'weighted_guard'} ConvergenceProfileRole
+ * @typedef {'gte' | 'lte' | 'eq'} ConvergenceProfileDirection
+ * @typedef {'identity' | 'clamp01' | 'inverseClamp01' | 'capRatio' | 'presence'} ConvergenceProfileNormalizer
+ * @typedef {Object} ConvergenceProfileSchema
+ * @property {'number'} threshold
+ * @property {'number'} weight
+ * @property {ReadonlyArray<ConvergenceProfileRole>} role
+ * @property {ReadonlyArray<ConvergenceProfileDirection>} direction
+ * @property {ReadonlyArray<ConvergenceProfileNormalizer>} normalizer
+ */
+/** @type {Readonly<ConvergenceProfileSchema>} */
+const CONVERGENCE_PROFILE_SCHEMA = Object.freeze({
+  threshold: 'number',
+  weight: 'number',
+  role: Object.freeze(['weighted', 'blocking_guard', 'weighted_guard']),
+  direction: Object.freeze(['gte', 'lte', 'eq']),
+  normalizer: Object.freeze(['identity', 'clamp01', 'inverseClamp01', 'capRatio', 'presence']),
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
 
-if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
+if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(
     process.execPath,
     ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
@@ -523,11 +554,17 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  const code = classifyExitCode(err);
-  jsonOut({ status: 'error', error: err instanceof Error ? err.message : String(err), code: err && err.code ? err.code : 'SCRIPT_ERROR' });
-  if (code === 1) {
-    process.stderr.write(JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n');
-  }
-  process.exit(code);
-});
+module.exports = {
+  CONVERGENCE_PROFILE_SCHEMA,
+};
+
+if (require.main === module) {
+  main().catch((err) => {
+    const code = classifyExitCode(err);
+    jsonOut({ status: 'error', error: err instanceof Error ? err.message : String(err), code: err && err.code ? err.code : 'SCRIPT_ERROR' });
+    if (code === 1) {
+      process.stderr.write(JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n');
+    }
+    process.exit(code);
+  });
+}

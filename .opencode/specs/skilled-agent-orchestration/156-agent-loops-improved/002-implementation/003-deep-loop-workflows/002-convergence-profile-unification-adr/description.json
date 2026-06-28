@@ -14,11 +14,10 @@
     "coverage-graph-signals",
     "shared"
   ],
-  "lastUpdated": "2026-06-28T14:26:01.787Z",
+  "lastUpdated": "2026-06-28T17:17:41.336Z",
   "specId": "002",
   "folderSlug": "convergence-profile-unification-adr",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

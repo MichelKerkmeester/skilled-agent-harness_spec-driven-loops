@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "convergence profile unification adr"
     ],
     "key_topics": [
       "convergence",
@@ -38,8 +38,8 @@
       "plan",
       "name"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
@@ -48,6 +48,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -85,6 +86,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,31 +195,27 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Convergence math is spread across `convergence.cjs`, `lib/council/convergence.cjs`, and `lib/coverage-graph/coverage-graph-signals.ts` with no shared shape, no parity test, and no declared contract",
     "created_at": "2026-06-28T14:02:07Z",
-    "last_save_at": "2026-06-28T14:27:35.606Z",
+    "last_save_at": "2026-06-28T17:17:41.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:113a860ea8e8496ea8a662cc5526c399a75fdea6671edf6eed1f68ae957e6483",
+    "source_fingerprint": "sha256:bc376380439a46540c0b83fe20449c959560e70c7661d87868111f547661013b",
     "source_doc_hashes": {
-      "spec.md": "fcd6ecbc1cfc19f5f91b691967c6b32001c768b58d3e5d18bf120591bbfcee6c",
+      "spec.md": "4dde9e7343d0acdfdc4c333d632e936baf612660988620d7a28e7ddbf8f178bf",
       "plan.md": "b770f58769fab686cb2e0444a43aa08e9f639007cb318eb83948662ebbcb0910",
       "tasks.md": "8350cad0b10112f35c3de52b0838b3cceb0a208bd3cb33381469d2be353fe629",
-      "implementation-summary.md": "5f65b1a671bb044b4c01a1baa114f728e2b25d3632c58f3dea7651696eaeb0d5"
+      "decision-record.md": "51a701df1545208bc79d48ee7b75eb9551306522e0addd01c4e2d4ecc28a99dd",
+      "implementation-summary.md": "3c4444afcd4858f6241eb336d77bf00f597776f4fafca22c2a080beb66318d92"
     },
     "last_active_child_id": null,
     "last_active_at": null

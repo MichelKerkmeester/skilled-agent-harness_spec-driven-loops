@@ -19,6 +19,17 @@ import {
 
 // ───── TYPE DEFINITIONS ─────
 
+/**
+ * Shared convergence profile schema:
+ * - threshold: numeric boundary a metric is compared against before STOP can be allowed.
+ * - weight: contribution a metric makes to a loop-local composite score; use 0 for pure guards.
+ * - role: whether a metric is a weighted score input, a blocking guard, or both.
+ * - direction: passing comparison for the metric (`gte`, `lte`, or `eq`).
+ * - normalizer: named loop-local transform that converts raw observations into comparable metric values.
+ *
+ * The shared shape keeps metric contracts explicit while each loop preserves its
+ * own semantics; convergence does not collapse into one universal formula.
+ */
 export interface NodeSignal {
   nodeId: string;
   kind: string;
