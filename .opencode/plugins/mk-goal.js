@@ -25,6 +25,7 @@ const DEFAULT_STATE_DIR = fileURLToPath(new URL('../skills/.goal-state/', import
 const DEFAULT_MAX_OBJECTIVE_CHARS = 2000;
 const DEFAULT_MAX_INJECTION_CHARS = 2400;
 const DEFAULT_MAX_REASON_CHARS = 280;
+const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
 const DEFAULT_MAX_AUTO_TURNS = 8;
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
 const VALID_STATUSES = new Set([
@@ -35,6 +36,7 @@ const VALID_STATUSES = new Set([
   'budget_limited',
   'complete',
 ]);
+const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
 const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause'];
 const mutationQueues = new Map();
@@ -62,6 +64,7 @@ function normalizePositiveInt(value, fallback) {
 function normalizeOptions(rawOptions = {}) {
   const envMaxObjectiveChars = Number(process.env.MK_GOAL_MAX_OBJECTIVE_CHARS);
   const envMaxInjectionChars = Number(process.env.MK_GOAL_MAX_INJECTION_CHARS);
+  const envMaxEvidenceChars = Number(process.env.MK_GOAL_MAX_EVIDENCE_CHARS);
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
 
   return {
@@ -77,8 +80,13 @@ function normalizeOptions(rawOptions = {}) {
       options.maxInjectionChars,
       normalizePositiveInt(envMaxInjectionChars, DEFAULT_MAX_INJECTION_CHARS),
     ),
+    maxEvidenceChars: normalizePositiveInt(
+      options.maxEvidenceChars,
+      normalizePositiveInt(envMaxEvidenceChars, DEFAULT_MAX_EVIDENCE_CHARS),
+    ),
     nowMs: Number.isFinite(options.nowMs) ? Math.trunc(options.nowMs) : null,
     goalIdFactory: typeof options.goalIdFactory === 'function' ? options.goalIdFactory : null,
+    supervisorVerifier: typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null,
   };
 }
 
@@ -150,6 +158,16 @@ function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   return clampText(text, maxChars);
 }
 
+function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
+  const text = sanitizeInlineText(value, maxChars)
+    .replace(/\b(sk-[A-Za-z0-9_-]{8,})\b/g, '[secret-redacted]')
+    .replace(/\b(gh[pousr]_[A-Za-z0-9_]{12,})\b/g, '[secret-redacted]')
+    .replace(/\b(xox[baprs]-[A-Za-z0-9-]{12,})\b/g, '[secret-redacted]')
+    .replace(/\b(AKIA[0-9A-Z]{12,})\b/g, '[secret-redacted]')
+    .replace(/\b(api[_-]?key|token|password|secret)\s*[:=]\s*['"]?[^'"\s,;]+/gi, '$1=[secret-redacted]');
+  return clampText(text, maxChars);
+}
+
 function normalizeTokenBudget(value) {
   if (value === undefined) return undefined;
   if (value === null) return null;
@@ -169,6 +187,173 @@ function goalIdFromFactory(options) {
   const normalized = sanitizeInlineText(candidate || `goal-${randomUUID()}`, 160);
   if (!normalized) return `goal-${randomUUID()}`;
   return normalized.replace(/\s+/g, '-');
+}
+
+function eventPayloadFrom(event) {
+  if (event?.payload && typeof event.payload === 'object') return event.payload;
+  return event;
+}
+
+function eventTypeFrom(event) {
+  const payload = eventPayloadFrom(event);
+  return typeof payload?.type === 'string' ? payload.type : null;
+}
+
+function eventPropertiesFrom(event) {
+  const payload = eventPayloadFrom(event);
+  return payload?.properties && typeof payload.properties === 'object' ? payload.properties : {};
+}
+
+function extractEventSessionID(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  return normalizeSessionID(
+    payload?.sessionID
+      || payload?.sessionId
+      || payload?.session?.id
+      || properties.sessionID
+      || properties.sessionId
+      || properties.session?.id
+      || properties.info?.sessionID
+      || properties.info?.sessionId
+      || properties.message?.sessionID
+      || properties.message?.sessionId
+      || properties.part?.sessionID
+      || properties.part?.sessionId
+      || null,
+  );
+}
+
+function extractEventMessageID(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  return normalizeSessionID(
+    payload?.messageID
+      || payload?.messageId
+      || payload?.id
+      || payload?.message?.id
+      || properties.messageID
+      || properties.messageId
+      || properties.id
+      || properties.info?.messageID
+      || properties.info?.messageId
+      || properties.info?.id
+      || properties.message?.id
+      || properties.part?.messageID
+      || properties.part?.messageId
+      || null,
+  );
+}
+
+function extractEventGoalID(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  return sanitizeInlineText(
+    payload?.goalID
+      || payload?.goalId
+      || properties.goalID
+      || properties.goalId
+      || properties.info?.goalID
+      || properties.info?.goalId
+      || null,
+    160,
+  ).replace(/\s+/g, '-');
+}
+
+function numericField(source, keys) {
+  if (!source || typeof source !== 'object') return null;
+  for (const key of keys) {
+    const value = Number(source[key]);
+    if (Number.isFinite(value) && value > 0) return Math.trunc(value);
+  }
+  return null;
+}
+
+function tokenCountFromUsage(usage) {
+  if (!usage || typeof usage !== 'object') return 0;
+  const direct = numericField(usage, [
+    'tokenDelta',
+    'token_delta',
+    'tokensDelta',
+    'tokens_delta',
+    'totalTokens',
+    'total_tokens',
+    'tokens',
+    'tokenCount',
+    'token_count',
+  ]);
+  if (direct !== null) return direct;
+  const input = numericField(usage, ['inputTokens', 'input_tokens', 'promptTokens', 'prompt_tokens']) || 0;
+  const output = numericField(usage, ['outputTokens', 'output_tokens', 'completionTokens', 'completion_tokens']) || 0;
+  return input + output;
+}
+
+function secondsFromUsage(usage) {
+  if (!usage || typeof usage !== 'object') return 0;
+  const direct = numericField(usage, ['timeSeconds', 'time_seconds', 'seconds', 'durationSeconds', 'duration_seconds']);
+  if (direct !== null) return direct;
+  const millis = numericField(usage, ['timeMs', 'time_ms', 'durationMs', 'duration_ms']);
+  return millis === null ? 0 : Math.max(1, Math.trunc(millis / 1000));
+}
+
+function extractUsageFromEvent(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  const candidates = [
+    payload?.usage,
+    payload?.message?.usage,
+    properties.usage,
+    properties.info?.usage,
+    properties.info?.tokens,
+    properties.message?.usage,
+    properties.part?.usage,
+  ].filter((candidate) => candidate && typeof candidate === 'object');
+  const usage = candidates.find((candidate) => tokenCountFromUsage(candidate) > 0) || candidates[0] || null;
+  const tokenDelta = tokenCountFromUsage(usage);
+  const timeDeltaSeconds = secondsFromUsage(usage);
+  const source = sanitizeInlineText(usage?.source || usage?.usageSource || (tokenDelta > 0 ? 'message.updated' : 'unavailable'), 80);
+  return {
+    tokenDelta,
+    timeDeltaSeconds,
+    usageSource: source || 'unavailable',
+  };
+}
+
+function roleFromObject(value) {
+  if (!value || typeof value !== 'object') return null;
+  return sanitizeInlineText(value.role || value.author?.role || value.sender?.role || '', 80).toLowerCase() || null;
+}
+
+function textFromValue(value, depth = 0) {
+  if (depth > 4 || value === null || value === undefined) return '';
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value)) return value.map((entry) => textFromValue(entry, depth + 1)).filter(Boolean).join(' ');
+  if (typeof value !== 'object') return '';
+  for (const key of ['text', 'content', 'markdown', 'output', 'summary']) {
+    const text = textFromValue(value[key], depth + 1);
+    if (text) return text;
+  }
+  return '';
+}
+
+function extractAssistantEvidence(event, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  const candidates = [
+    payload?.message,
+    payload?.info,
+    payload?.part,
+    properties.message,
+    properties.info,
+    properties.part,
+    payload,
+  ].filter((candidate) => candidate && typeof candidate === 'object');
+  const role = candidates.map(roleFromObject).find(Boolean);
+  if (role && role !== 'assistant') return null;
+  const text = candidates.map((candidate) => textFromValue(candidate)).find(Boolean);
+  const redacted = redactEvidence(text, options.maxEvidenceChars);
+  return redacted || null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -233,11 +418,33 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     continuationSuppressed: rawGoal.continuationSuppressed === true,
     autoTurnsUsed: Number.isFinite(rawGoal.autoTurnsUsed) ? Math.max(0, Math.trunc(rawGoal.autoTurnsUsed)) : 0,
     maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns) ? Math.max(0, Math.trunc(rawGoal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS,
+    startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
+    lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
+    lastActivityMessageID: rawGoal.lastActivityMessageID === null || rawGoal.lastActivityMessageID === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.lastActivityMessageID, 160),
+    blockedByPrompt: rawGoal.blockedByPrompt === true,
     iterations: Number.isFinite(rawGoal.iterations) ? Math.max(0, Math.trunc(rawGoal.iterations)) : 0,
     lastVerifierVerdict: sanitizeInlineText(rawGoal.lastVerifierVerdict || 'not_evaluated', 80),
     lastVerifierReason: rawGoal.lastVerifierReason === null || rawGoal.lastVerifierReason === undefined
       ? null
       : sanitizeInlineText(rawGoal.lastVerifierReason, DEFAULT_MAX_REASON_CHARS),
+    lastVerifierConfidence: Number.isFinite(rawGoal.lastVerifierConfidence)
+      ? Math.max(0, Math.min(1, Number(rawGoal.lastVerifierConfidence)))
+      : null,
+    lastCheckAtMs: Number.isFinite(rawGoal.lastCheckAtMs) ? Math.max(0, Math.trunc(rawGoal.lastCheckAtMs)) : 0,
+    lastEvidence: rawGoal.lastEvidence === null || rawGoal.lastEvidence === undefined
+      ? null
+      : redactEvidence(rawGoal.lastEvidence, options.maxEvidenceChars),
+    completionSource: rawGoal.completionSource === null || rawGoal.completionSource === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.completionSource, 80),
+    verifierRunID: rawGoal.verifierRunID === null || rawGoal.verifierRunID === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.verifierRunID, 160),
+    lastAccountedMessageID: rawGoal.lastAccountedMessageID === null || rawGoal.lastAccountedMessageID === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.lastAccountedMessageID, 160),
     usageSource: sanitizeInlineText(rawGoal.usageSource || 'unavailable', 80),
   };
 }
@@ -367,10 +574,13 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     autoTurnsUsed: 0,
     maxAutoTurns: DEFAULT_MAX_AUTO_TURNS,
     startedAtMs: timestamp,
+    lastActivityAtMs: 0,
+    lastActivityMessageID: null,
     lastContinuationAtMs: 0,
     lastContinuationMessageId: null,
     lastContinuationError: null,
     continuationSuppressedReason: null,
+    blockedByPrompt: false,
     iterations: 0,
     lastCheckAtMs: 0,
     lastVerifierVerdict: 'not_evaluated',
@@ -413,6 +623,7 @@ export async function setGoal(sessionID, objective, rawOptions = {}) {
         updatedAt: isoFromMs(timestamp),
         continuationSuppressed: false,
         continuationSuppressedReason: null,
+        blockedByPrompt: false,
       };
     }
     return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
@@ -448,6 +659,224 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
       completionSource: status === 'complete' ? 'manual' : current.completionSource,
     };
   }, rawOptions);
+}
+
+function budgetWasCrossed(nextTokensUsed, tokenBudget) {
+  return Number.isFinite(tokenBudget) && tokenBudget > 0 && nextTokensUsed >= tokenBudget;
+}
+
+/**
+ * Charge token usage to the active goal when the event still belongs to it.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {string} expectedGoalID - Goal id observed before accounting
+ * @param {Object} usage - Usage details extracted from a lifecycle event
+ * @param {Object} [rawOptions] - State helper options
+ * @returns {Promise<Object|null>} Updated goal, unchanged goal, or null
+ */
+export async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const normalizedExpectedGoalID = sanitizeInlineText(expectedGoalID, 160).replace(/\s+/g, '-');
+  const messageID = usage.messageID === null || usage.messageID === undefined
+    ? null
+    : sanitizeInlineText(usage.messageID, 160);
+  const tokenDelta = Number.isFinite(usage.tokenDelta) && usage.tokenDelta > 0 ? Math.trunc(usage.tokenDelta) : 0;
+  const timeDeltaSeconds = Number.isFinite(usage.timeDeltaSeconds) && usage.timeDeltaSeconds > 0
+    ? Math.trunc(usage.timeDeltaSeconds)
+    : 0;
+  const usageSource = sanitizeInlineText(usage.usageSource || 'unavailable', 80) || 'unavailable';
+
+  return mutateGoal(sessionID, (current) => {
+    if (!current) return null;
+    if (current.status !== 'active') return current;
+    if (!normalizedExpectedGoalID || current.goalId !== normalizedExpectedGoalID) return current;
+    if (messageID && current.lastAccountedMessageID === messageID) return current;
+
+    const timestamp = nowMs(options);
+    if (tokenDelta <= 0) {
+      return {
+        ...current,
+        usageSource,
+        updatedAtMs: timestamp,
+        updatedAt: isoFromMs(timestamp),
+      };
+    }
+
+    const nextTokensUsed = current.tokensUsed + tokenDelta;
+    const nextStatus = budgetWasCrossed(nextTokensUsed, current.tokenBudget) ? 'budget_limited' : current.status;
+    return {
+      ...current,
+      status: nextStatus,
+      tokensUsed: nextTokensUsed,
+      timeUsedSeconds: current.timeUsedSeconds + timeDeltaSeconds,
+      lastAccountedMessageID: messageID || current.lastAccountedMessageID,
+      usageSource,
+      continuationSuppressed: nextStatus === 'budget_limited' ? true : current.continuationSuppressed,
+      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : current.continuationSuppressedReason,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, options);
+}
+
+async function refreshGoalActivity(sessionID, event, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const messageID = extractEventMessageID(event);
+  const evidence = extractAssistantEvidence(event, options);
+
+  return mutateGoal(sessionID, (current) => {
+    if (!current) return null;
+    const timestamp = nowMs(options);
+    return {
+      ...current,
+      lastActivityAtMs: timestamp,
+      lastActivityMessageID: messageID || current.lastActivityMessageID,
+      lastEvidence: evidence || current.lastEvidence,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, options);
+}
+
+async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const goalAfterActivity = await refreshGoalActivity(sessionID, event, options);
+  if (!goalAfterActivity) return null;
+  const usage = extractUsageFromEvent(event);
+  const eventGoalID = extractEventGoalID(event);
+  return accountUsage(sessionID, eventGoalID || goalAfterActivity.goalId, {
+    ...usage,
+    messageID: extractEventMessageID(event),
+  }, options);
+}
+
+async function setBlockedByPrompt(sessionID, blockedByPrompt, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  return mutateGoal(sessionID, (current) => {
+    if (!current) return null;
+    const timestamp = nowMs(options);
+    return {
+      ...current,
+      blockedByPrompt: blockedByPrompt === true,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, options);
+}
+
+async function restoreActiveGoal(sessionID, rawOptions = {}) {
+  const goal = await readGoal(sessionID, rawOptions);
+  return goal?.status === 'active' ? goal : null;
+}
+
+function defaultVerifierResult(reason, evidence = null) {
+  return {
+    verdict: 'not_met',
+    confidence: 0,
+    reason,
+    evidence,
+  };
+}
+
+function normalizeVerifierResult(rawResult, fallbackEvidence, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  if (!rawResult || typeof rawResult !== 'object') {
+    return defaultVerifierResult('Verifier returned no usable result', redactEvidence(fallbackEvidence, options.maxEvidenceChars));
+  }
+  const verdict = VALID_VERIFIER_VERDICTS.has(rawResult.verdict) ? rawResult.verdict : 'not_met';
+  const confidence = Number.isFinite(rawResult.confidence)
+    ? Math.max(0, Math.min(1, Number(rawResult.confidence)))
+    : 0;
+  const reason = sanitizeInlineText(
+    rawResult.reason || (verdict === 'not_met' ? 'Evidence does not prove the goal is met' : verdict),
+    DEFAULT_MAX_REASON_CHARS,
+  );
+  const evidence = redactEvidence(rawResult.evidence ?? fallbackEvidence, options.maxEvidenceChars) || null;
+  return {
+    verdict,
+    confidence,
+    reason,
+    evidence,
+  };
+}
+
+async function runSupervisorVerifier(goal, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  if (!goal?.lastEvidence) {
+    return defaultVerifierResult('No verifier evidence is available', null);
+  }
+  if (!options.supervisorVerifier) {
+    return defaultVerifierResult('Supervisor verifier is not configured', goal.lastEvidence);
+  }
+  try {
+    const result = await options.supervisorVerifier({
+      goal,
+      sessionID: goal.sessionId,
+      evidence: goal.lastEvidence,
+    });
+    return normalizeVerifierResult(result, goal.lastEvidence, options);
+  } catch (error) {
+    return {
+      verdict: 'blocked',
+      confidence: 0,
+      reason: sanitizeInlineText(`Verifier failed: ${error?.message || 'unknown error'}`, DEFAULT_MAX_REASON_CHARS),
+      evidence: redactEvidence(goal.lastEvidence, options.maxEvidenceChars),
+    };
+  }
+}
+
+/**
+ * Run the goal supervisor once and apply only compare-safe state transitions.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {Object} [rawOptions] - State helper options
+ * @returns {Promise<Object>} Verifier verdict envelope
+ */
+export async function maybeVerifyGoal(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const goal = await readGoal(sessionID, options);
+  if (!goal || goal.status !== 'active') {
+    return defaultVerifierResult('No active goal to verify', null);
+  }
+
+  const result = await runSupervisorVerifier(goal, options);
+  const verifierRunID = `verifier-${randomUUID()}`;
+  await mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== goal.goalId || current.status !== 'active') return current;
+    const timestamp = nowMs(options);
+    const next = {
+      ...current,
+      lastCheckAtMs: timestamp,
+      lastVerifierVerdict: result.verdict,
+      lastVerifierReason: result.reason,
+      lastVerifierConfidence: result.confidence,
+      lastEvidence: result.evidence || current.lastEvidence,
+      verifierRunID,
+      iterations: result.verdict === 'not_met' ? current.iterations + 1 : current.iterations,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+    if (result.verdict === 'met') {
+      return {
+        ...next,
+        status: 'complete',
+        completionSource: 'supervisor',
+        continuationSuppressed: true,
+        continuationSuppressedReason: 'goal verified complete',
+      };
+    }
+    if (result.verdict === 'blocked') {
+      return {
+        ...next,
+        status: 'blocked',
+        continuationSuppressed: true,
+        continuationSuppressedReason: result.reason,
+      };
+    }
+    return next;
+  }, options);
+
+  return result;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -527,9 +956,16 @@ function goalStateLines(action, goal, rawOptions = {}) {
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `tokens_used=${goal.tokensUsed}`,
     `time_used_seconds=${goal.timeUsedSeconds}`,
+    `usage_source=${goal.usageSource || 'unavailable'}`,
+    `budget_tokens_used=${goal.tokensUsed}`,
+    `budget_token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
+    `budget_usage_source=${goal.usageSource || 'unavailable'}`,
     `created_at_ms=${goal.createdAtMs}`,
     `updated_at_ms=${goal.updatedAtMs}`,
     `last_check=${goal.lastVerifierVerdict || 'not_evaluated'}`,
+    `verifier_last_verdict=${goal.lastVerifierVerdict || 'not_evaluated'}`,
+    `verifier_last_evidence=${quoteValue(redactEvidence(goal.lastEvidence || '', normalizeOptions(rawOptions).maxEvidenceChars))}`,
+    `blocked_by_prompt=${goal.blockedByPrompt === true}`,
     `continuation_suppressed=${goal.continuationSuppressed === true}`,
     `injection_preview=${JSON.stringify(injectionPreview)}`,
   ].join('\n');
@@ -605,9 +1041,75 @@ async function executeGoalStatus(context, rawOptions = {}) {
  */
 export default async function MkGoalPlugin(ctx, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
+  const runtimeState = {
+    inFlightVerifications: new Set(),
+    blockedByPromptSessions: new Set(),
+  };
   void ctx;
 
+  function flushVolatileLocks(sessionID = null) {
+    if (sessionID) {
+      runtimeState.inFlightVerifications.delete(sessionID);
+      runtimeState.blockedByPromptSessions.delete(sessionID);
+      return;
+    }
+    runtimeState.inFlightVerifications.clear();
+    runtimeState.blockedByPromptSessions.clear();
+  }
+
+  async function handleEvent(event) {
+    const eventType = eventTypeFrom(event);
+    const sessionID = extractEventSessionID(event);
+    if (!eventType) return;
+
+    if (eventType === 'session.created') {
+      if (sessionID) await restoreActiveGoal(sessionID, options);
+      return;
+    }
+
+    if (eventType === 'message.updated') {
+      if (sessionID) await recordMessageUpdated(sessionID, event, options);
+      return;
+    }
+
+    if (eventType === 'permission.asked' || eventType === 'question.asked') {
+      if (sessionID) {
+        runtimeState.blockedByPromptSessions.add(sessionID);
+        await setBlockedByPrompt(sessionID, true, options);
+      }
+      return;
+    }
+
+    if (eventType === 'session.idle') {
+      if (!sessionID || runtimeState.inFlightVerifications.has(sessionID)) return;
+      runtimeState.inFlightVerifications.add(sessionID);
+      try {
+        await maybeVerifyGoal(sessionID, options);
+      } finally {
+        runtimeState.inFlightVerifications.delete(sessionID);
+      }
+      return;
+    }
+
+    if (eventType === 'session.deleted') {
+      flushVolatileLocks(sessionID);
+      return;
+    }
+
+    if (eventType.endsWith('.disposed')) {
+      flushVolatileLocks();
+    }
+  }
+
   return {
+    event: async (input = {}) => {
+      try {
+        await handleEvent(input.event || input);
+      } catch {
+        return;
+      }
+    },
+
     'experimental.chat.system.transform': async (input, output) => {
       if (!options.enabled) return;
       await appendGoalBrief(input, output, options);
@@ -648,11 +1150,13 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
  */
 export const __test = Object.freeze({
   GoalError,
+  accountUsage,
   clearGoal,
   ensureGoalStateDir,
   executeGoalAction,
   executeGoalStatus,
   goalPathForSession,
+  maybeVerifyGoal,
   readGoal,
   renderGoalInjection,
   setGoal,
