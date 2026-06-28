@@ -1,9 +1,15 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 
-import { writeStateAtomic, writeStateIfChangedAtomic } from '../../lib/deep-loop/atomic-state.js';
+import {
+  computeIntegrityHash,
+  stampIntegrity,
+  verifyIntegrity,
+  writeStateAtomic,
+  writeStateIfChangedAtomic,
+} from '../../lib/deep-loop/atomic-state.js';
 import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const hermeticEnvs: HermeticEnv[] = [];
@@ -23,6 +29,8 @@ function tempSiblings(path: string): string[] {
 }
 
 afterEach(() => {
+  vi.restoreAllMocks();
+
   while (hermeticEnvs.length > 0) {
     hermeticEnvs.pop()?.cleanup();
   }
@@ -80,6 +88,43 @@ describe('atomic-state', () => {
       expect(thirdWrite).toBe(true);
       expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({ status: 'finished', iteration: 2 });
       expect(tempSiblings(statePath)).toEqual([]);
+    });
+  });
+
+  it('stamps and verifies object state integrity', () => {
+    withHermeticState('integrity-roundtrip', (statePath) => {
+      const stamped = stampIntegrity({
+        status: 'started',
+        iteration: 1,
+        registry: { beta: true, alpha: true },
+      });
+
+      writeStateAtomic(statePath, stamped);
+
+      const parsed = JSON.parse(readFileSync(statePath, 'utf8'));
+      expect(parsed._integrity).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(parsed._integrity).toBe(computeIntegrityHash(parsed));
+      expect(computeIntegrityHash({ beta: true, alpha: true })).toBe(
+        computeIntegrityHash({ alpha: true, beta: true }),
+      );
+      expect(verifyIntegrity(parsed)).toBe(true);
+    });
+  });
+
+  it('warns and returns false when stamped object state is tampered', () => {
+    withHermeticState('integrity-tamper', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+      const stamped = stampIntegrity({ status: 'started', iteration: 1 });
+      const tampered = { ...stamped, iteration: 2 };
+
+      expect(verifyIntegrity(tampered)).toBe(false);
+      expect(warn).toHaveBeenCalledWith(
+        '[deep-loop] State integrity mismatch detected; continuing with on-disk state.',
+        expect.objectContaining({
+          stored: stamped._integrity,
+          computed: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        }),
+      );
     });
   });
 });

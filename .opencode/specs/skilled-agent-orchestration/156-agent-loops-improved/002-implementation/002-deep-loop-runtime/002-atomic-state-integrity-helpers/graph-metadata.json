@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "002-atomic-state-integrity-helpers summary"
     ],
     "key_topics": [
       "atomic-state-integrity-helpers",
@@ -35,13 +35,14 @@
       "template",
       "core",
       "tasks",
-      "summary",
-      "integrity"
+      "002-atomic-state-integrity-helpers",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "atomic-state.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistinguishable from a clean one and silently corrupts the loop session on resume",
     "created_at": "2026-06-28T14:01:52Z",
-    "last_save_at": "2026-06-28T14:29:30.615Z",
+    "last_save_at": "2026-06-28T16:30:14.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a365510a9307a7b50be7bf4105ec3b7fbd4c41a55780a999b4038ebf2c0f605b",
+    "source_fingerprint": "sha256:b73c125feec25a8a15befa2607ae340941f87cae07b9bf6dee4ffdd72d59f932",
     "source_doc_hashes": {
-      "spec.md": "8c62177fbf80a4bc538462b9c30e75be2bbec2a0253caacf9380e61ed7cb2af1",
+      "spec.md": "7a72563722640492da52f13ec78c9fc6f807065c8913311a288f121ca1dfaee6",
       "plan.md": "8089f3de26e206058413fd126a5a0a725cf1dd51c53c9e6c30246f34deb6da9f",
       "tasks.md": "95f56d2f84988bf76c574236c8ad780bcbacd06e457414a121b6786fccdda746",
-      "implementation-summary.md": "dcd64cd288cfa4e470a091b69764966aa0fb8cbbe01688e36062da506f28d273"
+      "implementation-summary.md": "8532ad12dc1f818b8a3c9983cc0c61759b056596178913c28c1872df844f6083"
     },
     "last_active_child_id": null,
     "last_active_at": null

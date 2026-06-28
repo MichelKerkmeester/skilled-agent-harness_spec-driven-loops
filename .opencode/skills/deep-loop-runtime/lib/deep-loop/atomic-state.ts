@@ -2,6 +2,7 @@
 // MODULE: Deep-Loop Atomic State
 // ───────────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, openSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
@@ -10,6 +11,29 @@ import { dirname, resolve } from 'node:path';
 // ───────────────────────────────────────────────────────────────────
 
 const serializedStateCache = new Map<string, string>();
+
+function canonicalizeJson(value: unknown, isRoot = false): unknown {
+  if (Array.isArray(value)) {
+    return value.map((entry) => canonicalizeJson(entry));
+  }
+
+  if (typeof value !== 'object' || value === null) {
+    return value;
+  }
+
+  const source = value as Record<string, unknown>;
+  const sorted: Record<string, unknown> = {};
+
+  for (const key of Object.keys(source).sort()) {
+    if (isRoot && key === '_integrity') {
+      continue;
+    }
+
+    sorted[key] = canonicalizeJson(source[key]);
+  }
+
+  return sorted;
+}
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;
@@ -35,9 +59,79 @@ function serializeState(data: unknown): string {
   return serialized;
 }
 
+function serializeIntegrityPayload(data: unknown): string {
+  const serialized = JSON.stringify(canonicalizeJson(data, true));
+  if (typeof serialized !== 'string') {
+    throw new TypeError('State data must serialize to JSON.');
+  }
+  return serialized;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. EXPORTS
 // ───────────────────────────────────────────────────────────────────
+
+/**
+ * Compute a deterministic SHA-256 digest for JSON state.
+ *
+ * The root `_integrity` field is excluded so stamped snapshots can verify
+ * against the same payload that produced their stored hash.
+ *
+ * @param obj - JSON-serializable object or registry snapshot.
+ * @returns Digest formatted as `sha256:<hex>`.
+ * @throws If the input cannot be serialized as JSON.
+ */
+export function computeIntegrityHash(obj: unknown): string {
+  const digest = createHash('sha256').update(serializeIntegrityPayload(obj)).digest('hex');
+  return `sha256:${digest}`;
+}
+
+/**
+ * Attach an integrity stamp to a JSON object before writing it.
+ *
+ * This mutates the provided object so callers can stamp existing state
+ * snapshots without changing their write path.
+ *
+ * @param obj - JSON object to stamp.
+ * @returns The same object with `_integrity` set.
+ */
+export function stampIntegrity<T extends object>(obj: T): T & { _integrity: string } {
+  const stamped = obj as T & { _integrity: string };
+  stamped._integrity = computeIntegrityHash(obj);
+  return stamped;
+}
+
+/**
+ * Verify a stamped JSON object and warn rather than throw on mismatch.
+ *
+ * This helper is for whole-object registry/config snapshots only. Append-only
+ * JSONL needs a deferred sidecar or per-record design, so this function does
+ * not stamp or validate JSONL streams. A mismatch is warning-only for now;
+ * blocking mutation is a follow-up once operators have confirmed warnings
+ * surface reliably in practice.
+ *
+ * @param obj - Stamped JSON object to verify.
+ * @returns True when the stored integrity hash matches; false otherwise.
+ */
+export function verifyIntegrity(obj: unknown): boolean {
+  if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
+    console.warn('[deep-loop] State integrity check skipped: expected stamped object state.');
+    return false;
+  }
+
+  const storedIntegrity = (obj as Record<string, unknown>)._integrity;
+  const computedIntegrity = computeIntegrityHash(obj);
+
+  if (storedIntegrity === computedIntegrity) {
+    return true;
+  }
+
+  console.warn('[deep-loop] State integrity mismatch detected; continuing with on-disk state.', {
+    stored: typeof storedIntegrity === 'string' ? storedIntegrity : null,
+    computed: computedIntegrity,
+  });
+  return false;
+}
 
 /**
  * Atomically write JSON-serializable state to a file.
