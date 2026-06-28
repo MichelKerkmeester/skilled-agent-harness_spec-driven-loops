@@ -40,6 +40,13 @@ export interface NodeSignal {
   weightSum: number;
 }
 
+export type TimeDecayNow = string | number | Date;
+
+export interface SignalRankingOptions {
+  decayDays?: number;
+  now?: TimeDecayNow;
+}
+
 export interface ResearchConvergenceSignals {
   questionCoverage: number;
   claimVerificationRate: number;
@@ -129,6 +136,9 @@ interface SqlFragment {
 const DEFAULT_MIN_OBSERVATIONS = 2;
 const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
+const DEFAULT_TIME_DECAY_DAYS = 0;
+const MIN_TIME_DECAY_DAYS = 5;
+const DAY_MS = 24 * 60 * 60 * 1000;
 const FINDING_OBSERVATION_KINDS = new Set(['FINDING', 'REUSE_CANDIDATE', 'PATTERN', 'CONSTRAINT']);
 const OBSERVATION_COUNT_METADATA_KEYS = [
   'observations',
@@ -212,6 +222,54 @@ function parseTimestampMs(value: string | null | undefined): number | null {
   if (!value) return null;
   const ms = Date.parse(value);
   return Number.isFinite(ms) ? ms : null;
+}
+
+function parseTimeInputMs(value: TimeDecayNow): number | null {
+  if (value instanceof Date) {
+    const ms = value.getTime();
+    return Number.isFinite(ms) ? ms : null;
+  }
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : null;
+  }
+  return parseTimestampMs(value);
+}
+
+export function normalizeTimeDecayDays(value: unknown = DEFAULT_TIME_DECAY_DAYS): number {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    throw new TypeError('decayDays must be a finite number');
+  }
+  if (parsed < 0) {
+    throw new RangeError('decayDays must be 0 or at least 5');
+  }
+  if (parsed > 0 && parsed < MIN_TIME_DECAY_DAYS) {
+    throw new RangeError('decayDays must be 0 or at least 5');
+  }
+  return parsed === 0 ? 0 : Math.trunc(parsed);
+}
+
+function normalizeSignalRankingOptions(options: SignalRankingOptions = {}): Required<SignalRankingOptions> {
+  return {
+    decayDays: normalizeTimeDecayDays(options.decayDays ?? DEFAULT_TIME_DECAY_DAYS),
+    now: options.now ?? Date.now(),
+  };
+}
+
+export function timeDecayWeight(
+  createdAt: string | null | undefined,
+  decayDays: number,
+  now: TimeDecayNow = Date.now(),
+): number {
+  const normalizedDecayDays = normalizeTimeDecayDays(decayDays);
+  if (normalizedDecayDays === 0) return 1.0;
+
+  const createdAtMs = parseTimestampMs(createdAt);
+  const nowMs = parseTimeInputMs(now);
+  if (createdAtMs === null || nowMs === null) return 1.0;
+
+  const ageDays = Math.max(0, (nowMs - createdAtMs) / DAY_MS);
+  return 0.5 ** (ageDays / normalizedDecayDays);
 }
 
 function latestPriorSnapshot(snapshots: ReadonlyArray<GraphNoveltySnapshotLike>): GraphNoveltySnapshotLike | null {
@@ -441,9 +499,11 @@ function computeHotspotSaturation(d: Database.Database, ns: Namespace): number {
  * Compute degree, depth, and weight signals for all nodes in a namespace.
  *
  * @param ns - Namespace identifying the coverage graph.
+ * @param options - Optional ranking controls. `decayDays=0` keeps raw edge weights.
  * @returns Array of node-level signal objects.
  */
-export function computeNodeSignals(ns: Namespace): NodeSignal[] {
+export function computeNodeSignals(ns: Namespace, options: SignalRankingOptions = {}): NodeSignal[] {
+  const rankingOptions = normalizeSignalRankingOptions(options);
   const nodes = getNodes(ns);
   const edges = getEdges(ns);
 
@@ -452,10 +512,11 @@ export function computeNodeSignals(ns: Namespace): NodeSignal[] {
   const weightSumMap = new Map<string, number>();
 
   for (const edge of edges) {
+    const rankingWeight = edge.weight * timeDecayWeight(edge.createdAt, rankingOptions.decayDays, rankingOptions.now);
     outDegreeMap.set(edge.sourceId, (outDegreeMap.get(edge.sourceId) ?? 0) + 1);
     inDegreeMap.set(edge.targetId, (inDegreeMap.get(edge.targetId) ?? 0) + 1);
-    weightSumMap.set(edge.sourceId, (weightSumMap.get(edge.sourceId) ?? 0) + edge.weight);
-    weightSumMap.set(edge.targetId, (weightSumMap.get(edge.targetId) ?? 0) + edge.weight);
+    weightSumMap.set(edge.sourceId, (weightSumMap.get(edge.sourceId) ?? 0) + rankingWeight);
+    weightSumMap.set(edge.targetId, (weightSumMap.get(edge.targetId) ?? 0) + rankingWeight);
   }
 
   const depthMap = computeDepths(nodes, edges);
@@ -905,11 +966,12 @@ export function computeSignals(ns: Namespace): ConvergenceSignals {
  *
  * @param ns - Namespace identifying the coverage graph.
  * @param iteration - Current iteration number.
+ * @param options - Optional ranking controls for node-level signals.
  * @returns Signal snapshot with signals, node signals, and counts.
  */
-export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSnapshot {
+export function createSignalSnapshot(ns: Namespace, iteration: number, options: SignalRankingOptions = {}): SignalSnapshot {
   const signals = computeSignals(ns);
-  const nodeSignals = computeNodeSignals(ns);
+  const nodeSignals = computeNodeSignals(ns, options);
   const stats = getStats(ns.specFolder, ns.loopType);
 
   const snapshot: SignalSnapshot = {

@@ -85,6 +85,65 @@ describe('coverage-graph-signals', () => {
     expect(sig).toBeTruthy();
   });
 
+  it('timeDecayWeight applies half-life decay and keeps the no-decay path at full weight', () => {
+    const now = '2026-06-28T00:00:00.000Z';
+
+    expect(signalsModule.timeDecayWeight('2026-04-29T00:00:00.000Z', 0, now)).toBe(1.0);
+    expect(signalsModule.timeDecayWeight('2026-05-29T00:00:00.000Z', 30, now)).toBeCloseTo(0.5, 5);
+    expect(signalsModule.timeDecayWeight('2026-04-29T00:00:00.000Z', 30, now)).toBeCloseTo(0.25, 5);
+    expect(() => signalsModule.normalizeTimeDecayDays(4)).toThrow(/decayDays/);
+  });
+
+  it('computeNodeSignals applies decay only to ranking weight, not structural counts', () => {
+    const ns = {
+      specFolder: 'specs/coverage-graph-signals-fixture',
+      loopType: 'review',
+      sessionId: 'coverage-graph-signals-fixture-decay',
+    } as const;
+
+    dbModule.upsertNode({
+      ...ns,
+      id: 'evidence-1',
+      kind: 'EVIDENCE',
+      name: 'Aged evidence',
+    });
+    dbModule.upsertNode({
+      ...ns,
+      id: 'finding-1',
+      kind: 'FINDING',
+      name: 'Finding with aged evidence',
+    });
+    dbModule.upsertEdge({
+      ...ns,
+      id: 'edge-1',
+      sourceId: 'evidence-1',
+      targetId: 'finding-1',
+      relation: 'EVIDENCE_FOR',
+      weight: 2,
+    });
+    dbModule.getDb().prepare(`
+      UPDATE coverage_edges
+      SET created_at = ?
+      WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
+    `).run('2026-05-29T00:00:00.000Z', ns.specFolder, ns.loopType, ns.sessionId, 'edge-1');
+
+    const noDecay = signalsModule.computeNodeSignals(ns, {
+      decayDays: 0,
+      now: '2026-06-28T00:00:00.000Z',
+    });
+    const decayed = signalsModule.computeNodeSignals(ns, {
+      decayDays: 30,
+      now: '2026-06-28T00:00:00.000Z',
+    });
+    const noDecayFinding = noDecay.find((signal) => signal.nodeId === 'finding-1');
+    const decayedFinding = decayed.find((signal) => signal.nodeId === 'finding-1');
+
+    expect(noDecayFinding?.degree).toBe(1);
+    expect(decayedFinding?.degree).toBe(1);
+    expect(noDecayFinding?.weightSum).toBe(2);
+    expect(decayedFinding?.weightSum).toBeCloseTo(1, 5);
+  });
+
   it('createSignalSnapshot includes iteration number', () => {
     const snapshot = signalsModule.createSignalSnapshot(researchNs, 1);
     expect(typeof snapshot).toBe('object');

@@ -938,7 +938,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **cli-opencode**
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
-- Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list.
+- Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code), `zai-coding-plan` (GLM-5.2) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list.
 
 &nbsp;
 #### MCP INTEGRATION
@@ -986,7 +986,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **sk-prompt-models**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
-- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3 and MiMo-V2.5-Pro via `cli-opencode`
+- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro and GLM-5.2 via `cli-opencode`
 - **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
 - **Pool-aware quota fallback** routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
 
