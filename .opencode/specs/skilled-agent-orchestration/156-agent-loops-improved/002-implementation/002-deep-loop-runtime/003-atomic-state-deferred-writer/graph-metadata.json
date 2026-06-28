@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "003-atomic-state-deferred-writer summary"
     ],
     "key_topics": [
       "atomic-state-deferred-writer",
@@ -35,13 +35,14 @@
       "template",
       "core",
       "tasks",
-      "summary",
-      "high-frequency"
+      "003-atomic-state-deferred-writer",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "atomic-state.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "High-frequency reducers (registry, strategy, dashboard) issue rapid successive writes to the same path that overwrite each other wastefully and may race with each other",
     "created_at": "2026-06-28T14:01:53Z",
-    "last_save_at": "2026-06-28T14:29:30.978Z",
+    "last_save_at": "2026-06-28T16:35:00.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:149e0e348132d688e0dc23d2e566e3968ce45ad9b63e89f1091a33237b9ba13c",
+    "source_fingerprint": "sha256:ef213072e01a2d4812975895ef13f92f5687e3da9e6882880b71b4c9d87770b3",
     "source_doc_hashes": {
-      "spec.md": "1688476f70607982f46c7d43f1ac47c283124920f6fe0bbd219d3737a43f2dd9",
+      "spec.md": "1d2d5926857b80bd80bb30624aec06baffe12923e6d78220bca8abd9af08dfb0",
       "plan.md": "e95af8814e06043da7c7e051107360fd28009ad239608bdeac2191efc026a324",
       "tasks.md": "b8ea8339ed4d660bdeabd7c5df200a1d722ad472ac169ab4261c3f9d478d9fca",
-      "implementation-summary.md": "55dcf6b72d6a2a65218030530fe426477ad64083bcfdad979665bdf25a350b0e"
+      "implementation-summary.md": "f002fd6a9bee217aac8f5037f88fcafc99005d4d71fe1e5243fb4194b8d53699"
     },
     "last_active_child_id": null,
     "last_active_at": null

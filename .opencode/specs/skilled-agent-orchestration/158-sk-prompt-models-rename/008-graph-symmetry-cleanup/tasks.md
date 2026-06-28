@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/008-graph-symmetry-cleanup"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Task list scaffolded; not started"
-    next_safe_action: "Begin T001 (enumerate errors)"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/008-graph-symmetry-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Enumerate the 5 symmetry errors (`skill_graph_compiler.py --validate-only`) + confirm whether the enhances weight-band is enforced
+- [x] T001 Enumerate the 5 symmetry errors (`skill_graph_compiler.py --validate-only`) + confirm whether the enhances weight-band is enforced
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,10 +56,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 `sk-design/graph-metadata.json`: add prerequisite_for + sibling for mcp-figma and mcp-open-design
-- [ ] T003 `sk-code-review/graph-metadata.json`: add sibling sk-design
-- [ ] T004 If the weight-band is enforced, set `sk-prompt-models` enhances weight 0.8 → 0.7
-- [ ] T005 `skill_graph_compiler.py --validate-only` → 0 errors; then `--export-json` → exit 0
+- [x] T002 `sk-design/graph-metadata.json`: add prerequisite_for + sibling for mcp-figma and mcp-open-design
+- [x] T003 `sk-code-review/graph-metadata.json`: add sibling sk-design
+- [x] T004 If the weight-band is enforced, set `sk-prompt-models` enhances weight 0.8 → 0.7
+- [x] T005 `skill_graph_compiler.py --validate-only` → 0 errors; then `--export-json` → exit 0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,8 +67,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 `skill_advisor.py --force-refresh`; routing probe surfaces sk-prompt-models
-- [ ] T007 Write implementation-summary.md and refresh continuity
+- [x] T006 `skill_advisor.py --force-refresh`; routing probe surfaces sk-prompt-models
+- [x] T007 Write implementation-summary.md and refresh continuity
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,9 +76,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Compiler exports cleanly; routing intact
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Compiler exports cleanly; routing intact
 <!-- /ANCHOR:completion -->
 
 ---

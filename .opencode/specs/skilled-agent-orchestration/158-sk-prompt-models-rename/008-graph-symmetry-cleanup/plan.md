@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/008-graph-symmetry-cleanup"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Add reciprocal edges, then export"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/008-graph-symmetry-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,10 +52,10 @@ Add the missing reciprocal edges (sk-design ↔ mcp-figma / mcp-open-design prer
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 5 errors enumerated (from `--validate-only`)
+- [x] The 5 errors enumerated (from `--validate-only`)
 
 ### Definition of Done
-- [ ] `--export-json` exits 0; compiled index regenerated; advisor routes sk-prompt-models
+- [x] `--export-json` exits 0; compiled index regenerated; advisor routes sk-prompt-models
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,15 +84,15 @@ Reciprocity repair. Symmetry rules require each directed edge to have its mirror
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Add mirrors
-- [ ] sk-design: add prerequisite_for mcp-figma + mcp-open-design; sibling mcp-figma + mcp-open-design
-- [ ] sk-code-review: add sibling sk-design
+- [x] sk-design: add prerequisite_for mcp-figma + mcp-open-design; sibling mcp-figma + mcp-open-design
+- [x] sk-code-review: add sibling sk-design
 
 ### Phase 2: Validate + export
-- [ ] `skill_graph_compiler.py --validate-only` → 0 errors (resolve weight-band only if enforced)
-- [ ] `skill_graph_compiler.py --export-json` → exit 0
+- [x] `skill_graph_compiler.py --validate-only` → 0 errors (resolve weight-band only if enforced)
+- [x] `skill_graph_compiler.py --export-json` → exit 0
 
 ### Phase 3: Verify
-- [ ] `skill_advisor.py --force-refresh`; routing probe surfaces sk-prompt-models; write implementation-summary.md
+- [x] `skill_advisor.py --force-refresh`; routing probe surfaces sk-prompt-models; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

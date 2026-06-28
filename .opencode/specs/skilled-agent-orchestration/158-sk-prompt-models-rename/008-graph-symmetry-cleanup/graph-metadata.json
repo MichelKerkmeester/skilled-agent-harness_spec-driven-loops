@@ -17,7 +17,8 @@
       "graph symmetry cleanup plan",
       "skill graph reciprocal edges plan",
       "tasks",
-      "graph symmetry cleanup tasks"
+      "graph symmetry cleanup tasks",
+      "008-graph-symmetry-cleanup implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -31,17 +32,18 @@
       "edges",
       "plan",
       "tasks",
-      "skillgraphcompiler"
+      "008-graph-symmetry-cleanup"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-code-review/graph-metadata.json",
       ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,13 +71,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -100,6 +102,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,23 +183,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`, but `sk-design` lacks the reciprocal `prerequisitefor` + `sibling` edges; and `sk-design` declares `sibling sk-code-review` without the reciprocal",
     "created_at": "2026-06-28T15:46:01.946Z",
-    "last_save_at": "2026-06-28T15:46:01.946Z",
+    "last_save_at": "2026-06-28T16:32:22.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78b270ec0c625253d66617b586cedc198371e1e01d5bfd5869990b31bcb2d52f",
+    "source_fingerprint": "sha256:4c75aae9831af31d4360f6bc6a8a316cbe8f89c25c07d29756b1d5984bbc8e25",
     "source_doc_hashes": {
-      "spec.md": "47fb82c9a03e64bf8ab095c82b13483efd9478c687d2d10bba29387753892c33",
-      "plan.md": "e82e651e4e739361b5b171a4aeb90adb3e63853c966b2979c8bb56fa710f743e",
-      "tasks.md": "224b6a3014985bd6c85c9c612a681f7ceb64b77dd1f79b0d2e3e126d7c4872de"
+      "spec.md": "e61c22637afa49fde2d4c3976aff2667efa0bee3cc719d76af5c44fe10c84105",
+      "plan.md": "141730c3cf3d17f1237e6839d79aba914928a39893f5840c0963d4a99543aa8a",
+      "tasks.md": "d522c34a519045e81107a04e404e2b159469bbbfe3c6df1caa31177eae8c6373",
+      "implementation-summary.md": "8c0d717981d251c876a491d9dcb335732c0571ea58598ea62a6ea25a14d58003"
     },
     "last_active_child_id": null,
     "last_active_at": null

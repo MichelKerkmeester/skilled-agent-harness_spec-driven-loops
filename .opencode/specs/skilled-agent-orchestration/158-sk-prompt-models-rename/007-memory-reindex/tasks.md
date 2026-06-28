@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/007-memory-reindex"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Task list scaffolded; not started"
-    next_safe_action: "Begin T001 (baseline count)"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/007-memory-reindex"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Baseline: count `context-index.sqlite` rows referencing the old name scoped to 157/158
+- [x] T001 Baseline: count `context-index.sqlite` rows referencing the old name scoped to 157/158
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,8 +56,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 `memory_index_scan({ specFolder: "skilled-agent-orchestration/157-glm-5-2-support" })`
-- [ ] T003 `memory_index_scan({ specFolder: "skilled-agent-orchestration/158-sk-prompt-models-rename" })`
+- [x] T002 `memory_index_scan({ specFolder: "skilled-agent-orchestration/157-glm-5-2-support" })`
+- [x] T003 `memory_index_scan({ specFolder: "skilled-agent-orchestration/158-sk-prompt-models-rename" })`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,8 +65,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Re-query: 0 live-packet rows with the old name; confirm archived rows untouched
-- [ ] T005 `memory_search` for sk-prompt-models surfaces renamed docs; write implementation-summary.md
+- [x] T004 Re-query: 0 live-packet rows with the old name; confirm archived rows untouched
+- [x] T005 `memory_search` for sk-prompt-models surfaces renamed docs; write implementation-summary.md
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Live-packet stale rows cleared
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Live-packet stale rows cleared
 <!-- /ANCHOR:completion -->
 
 ---

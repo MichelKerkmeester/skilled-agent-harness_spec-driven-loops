@@ -17,7 +17,8 @@
       "memory reindex plan",
       "memory_index_scan 157 158 plan",
       "tasks",
-      "memory reindex tasks"
+      "memory reindex tasks",
+      "007-memory-reindex implementation summary"
     ],
     "key_topics": [
       "memory",
@@ -30,15 +31,16 @@
       "158",
       "plan",
       "tasks",
-      "index",
-      "built"
+      "007-memory-reindex",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,13 +62,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -96,6 +98,12 @@
         "source": "derived"
       },
       {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -103,12 +111,6 @@
       },
       {
         "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -166,23 +168,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ran",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-memory index was built before the rename, so the live packets' rows (157 GLM-5.2, 158 rename) still carry pre-rename content / paths referencing `sk-prompt-small-model`",
     "created_at": "2026-06-28T15:46:01.616Z",
-    "last_save_at": "2026-06-28T15:46:01.616Z",
+    "last_save_at": "2026-06-28T16:28:35.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd64f79c6613a0fee3e00162af709e97c3e252f5562fe314c6f352894c7c9873",
+    "source_fingerprint": "sha256:4bbc0b4f54e97f943e15ebe91008a7fb5a9f446013b0bf9900e73dfdc6acbdf9",
     "source_doc_hashes": {
-      "spec.md": "796b02f2db488e7bf64adbf2f302721e18288a0b393d40bf158e83e554f090aa",
-      "plan.md": "f704e89daaaf2afaa46917eafd6eaa81a25d1de3baa7da369fae129018482937",
-      "tasks.md": "a5482ed6abfb5c887e5c502e8a31c17a7f92b0b0e81c3291930d47bf2df6c829"
+      "spec.md": "ebd835076ad83bb8098efe53f096a6e4a31cbb6cf7749d05bcf7b2c3dbc25953",
+      "plan.md": "6b69b31557f0c9471445ca9b920b1e1584005e3d344c77514dba1242b8aa4103",
+      "tasks.md": "d90800e4b838dfba95aa08e34dee9ae8c32fef745ffb3be5545d3f44d2007dcc",
+      "implementation-summary.md": "f5512dec2ddc5b995d55884d6a181b798111f79d9d13344a984266b54e62931f"
     },
     "last_active_child_id": null,
     "last_active_at": null

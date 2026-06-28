@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/009-filename-residual-cleanup"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "git mv filenames, repair refs, reconcile README"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/009-filename-residual-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,10 +52,10 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Confirm whether `.opencode/changelog/sk-prompt-small-model` is a file or dir + what references it
+- [x] Confirm whether `.opencode/changelog/sk-prompt-small-model` is a file or dir + what references it
 
 ### Definition of Done
-- [ ] `git ls-files '*sk-prompt-small-model*'` returns only history/archive; README HEAD says new name; no unrelated WIP committed
+- [x] `git ls-files '*sk-prompt-small-model*'` returns only history/archive; README HEAD says new name; no unrelated WIP committed
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,15 +84,15 @@ Rename-and-repair. Move the file, fix every reference to it in the same change s
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Filenames
-- [ ] git mv the 2 cli-opencode playbook files → `…-with-sk-prompt-models.md`
-- [ ] Confirm + git mv `.opencode/changelog/sk-prompt-small-model` → `sk-prompt-models`
+- [x] git mv the 2 cli-opencode playbook files → `…-with-sk-prompt-models.md`
+- [x] Confirm + git mv `.opencode/changelog/sk-prompt-small-model` → `sk-prompt-models`
 
 ### Phase 2: References + README
-- [ ] Repair the manual_testing_playbook.md index references to the renamed files
-- [ ] Reconcile README to the new name without bundling unrelated WIP
+- [x] Repair the manual_testing_playbook.md index references to the renamed files
+- [x] Reconcile README to the new name without bundling unrelated WIP
 
 ### Phase 3: Verify
-- [ ] `git ls-files '*sk-prompt-small-model*'` = history/archive only; README HEAD says new name; write implementation-summary.md
+- [x] `git ls-files '*sk-prompt-small-model*'` = history/archive only; README HEAD says new name; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

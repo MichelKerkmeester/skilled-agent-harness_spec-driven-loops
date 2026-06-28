@@ -7,7 +7,25 @@ import { closeSync, existsSync, fsyncSync, openSync, renameSync, rmSync, writeFi
 import { dirname, resolve } from 'node:path';
 
 // ───────────────────────────────────────────────────────────────────
-// 1. HELPERS
+// 1. TYPES & CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+/** Options for deferred atomic snapshot writes. */
+export interface DeferredAtomicWriterOptions {
+  readonly debounceMs?: number;
+}
+
+/** Debounced writer for replace-style JSON state snapshots. */
+export interface DeferredAtomicWriter {
+  write(data: unknown): void;
+  flushNow(): Promise<void>;
+  close(): Promise<void>;
+}
+
+const DEFAULT_DEFERRED_WRITE_DEBOUNCE_MS = 50;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
 const serializedStateCache = new Map<string, string>();
@@ -59,6 +77,14 @@ function serializeState(data: unknown): string {
   return serialized;
 }
 
+function serializePrettyState(data: unknown): string {
+  const serialized = JSON.stringify(data, null, 2);
+  if (typeof serialized !== 'string') {
+    throw new TypeError('State data must serialize to JSON.');
+  }
+  return `${serialized}\n`;
+}
+
 function serializeIntegrityPayload(data: unknown): string {
   const serialized = JSON.stringify(canonicalizeJson(data, true));
   if (typeof serialized !== 'string') {
@@ -68,7 +94,7 @@ function serializeIntegrityPayload(data: unknown): string {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 2. EXPORTS
+// 3. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -176,6 +202,113 @@ export function writeStateIfChangedAtomic(
   writeStateAtomic(targetPath, data);
   cache.set(targetPath, serialized);
   return true;
+}
+
+/**
+ * Create a debounced atomic writer for replace-style JSON snapshots.
+ *
+ * The default debounce window is 50 ms. Writes during that window supersede
+ * older pending state, so callers must use `flushNow()` or `close()` from
+ * process-exit handlers to avoid losing the final in-memory version on crash.
+ * Append-only JSONL streams should keep immediate append semantics instead of
+ * using this coalescing path.
+ *
+ * @param path - Target file path.
+ * @param options - Optional debounce configuration.
+ * @returns Deferred writer bound to the resolved target path.
+ */
+export function createDeferredAtomicWriter(
+  path: string,
+  options: DeferredAtomicWriterOptions = {},
+): DeferredAtomicWriter {
+  const targetPath = resolve(path);
+  const debounceMs = Math.max(0, options.debounceMs ?? DEFAULT_DEFERRED_WRITE_DEBOUNCE_MS);
+  let pendingContent: string | null = null;
+  let pendingVersion = 0;
+  let flushTimer: ReturnType<typeof setTimeout> | null = null;
+  let flushPromise: Promise<void> | null = null;
+  let isClosed = false;
+
+  function clearFlushTimer(): void {
+    if (flushTimer !== null) {
+      clearTimeout(flushTimer);
+      flushTimer = null;
+    }
+  }
+
+  function scheduleFlush(): void {
+    if (flushTimer !== null || flushPromise !== null || isClosed) {
+      return;
+    }
+
+    flushTimer = setTimeout(() => {
+      flushTimer = null;
+      void drainPendingWrites();
+    }, debounceMs);
+  }
+
+  async function drainPendingWrites(): Promise<void> {
+    if (flushPromise !== null) {
+      await flushPromise;
+      if (pendingContent !== null) {
+        await drainPendingWrites();
+      }
+      return;
+    }
+
+    if (pendingContent === null) {
+      return;
+    }
+
+    const activeFlush = (async (): Promise<void> => {
+      while (pendingContent !== null) {
+        const content = pendingContent;
+        const capturedVersion = pendingVersion;
+
+        // Give same-turn callers a chance to mark the writer dirty again.
+        await Promise.resolve();
+
+        writeTextAtomic(targetPath, content);
+
+        if (pendingVersion === capturedVersion) {
+          pendingContent = null;
+        }
+      }
+    })();
+
+    flushPromise = activeFlush;
+    try {
+      await activeFlush;
+    } finally {
+      if (flushPromise === activeFlush) {
+        flushPromise = null;
+      }
+    }
+  }
+
+  async function flushNow(): Promise<void> {
+    clearFlushTimer();
+    await drainPendingWrites();
+  }
+
+  return {
+    write(data: unknown): void {
+      if (isClosed) {
+        throw new Error('Deferred atomic writer is closed.');
+      }
+
+      pendingContent = serializePrettyState(data);
+      pendingVersion += 1;
+      scheduleFlush();
+    },
+
+    flushNow,
+
+    async close(): Promise<void> {
+      isClosed = true;
+      await flushNow();
+    },
+  };
 }
 
 /**

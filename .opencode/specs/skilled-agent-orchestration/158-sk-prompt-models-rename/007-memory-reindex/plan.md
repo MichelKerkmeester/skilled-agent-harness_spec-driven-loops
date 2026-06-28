@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/007-memory-reindex"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Run memory_index_scan on 157 + 158"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/007-memory-reindex"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,10 +52,10 @@ Run `memory_index_scan({ specFolder })` for `157-glm-5-2-support` and `158-sk-pr
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Rename (phases 2–6) complete; docs already say sk-prompt-models
+- [x] Rename (phases 2–6) complete; docs already say sk-prompt-models
 
 ### Definition of Done
-- [ ] 157 + 158 re-indexed; 0 live-packet rows reference the old name
+- [x] 157 + 158 re-indexed; 0 live-packet rows reference the old name
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -82,14 +82,14 @@ Scoped regeneration. The index is derived from the spec docs; a packet-scoped sc
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Baseline: count context-index rows referencing the old name, scoped to 157/158
+- [x] Baseline: count context-index rows referencing the old name, scoped to 157/158
 
 ### Phase 2: Re-index
-- [ ] `memory_index_scan({ specFolder: "skilled-agent-orchestration/157-glm-5-2-support" })`
-- [ ] `memory_index_scan({ specFolder: "skilled-agent-orchestration/158-sk-prompt-models-rename" })`
+- [x] `memory_index_scan({ specFolder: "skilled-agent-orchestration/157-glm-5-2-support" })`
+- [x] `memory_index_scan({ specFolder: "skilled-agent-orchestration/158-sk-prompt-models-rename" })`
 
 ### Phase 3: Verify
-- [ ] Re-query: 0 live-packet rows with the old name; a memory_search for sk-prompt-models surfaces renamed docs; write implementation-summary.md
+- [x] Re-query: 0 live-packet rows with the old name; a memory_search for sk-prompt-models surfaces renamed docs; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

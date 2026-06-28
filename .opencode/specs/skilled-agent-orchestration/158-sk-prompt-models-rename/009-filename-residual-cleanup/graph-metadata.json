@@ -17,7 +17,8 @@
       "filename residual cleanup plan",
       "readme reconcile plan",
       "tasks",
-      "filename residual cleanup tasks"
+      "filename residual cleanup tasks",
+      "009-filename-residual-cleanup implementation summary"
     ],
     "key_topics": [
       "filename",
@@ -30,15 +31,16 @@
       "reconcile",
       "plan",
       "tasks",
-      "swapped",
-      "file"
+      "009-filename-residual-cleanup",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,13 +62,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -91,6 +93,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -166,23 +174,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The rename swapped file CONTENT but not a few FILENAMES that embed the old skill name (2 playbook docs + a changelog entry)",
     "created_at": "2026-06-28T15:46:02.237Z",
-    "last_save_at": "2026-06-28T15:46:02.237Z",
+    "last_save_at": "2026-06-28T16:28:35.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9d7f56320fb6f60efe24c858ccece41f8c92adb3d7ca09914c703afac2211cd",
+    "source_fingerprint": "sha256:51ac602e8fe64b9d5e73ebe8f65bd281087a95f10458330761299bc61d7a491e",
     "source_doc_hashes": {
-      "spec.md": "c4d73ea2de72add0793afd40fe4e55248c97285efa0bb91cf3be7d92191e1206",
-      "plan.md": "b3f6013a761b4ea550bbec6b3051613f96d2a0c066d8feb490f387965087df0b",
-      "tasks.md": "9a03a63b78afed6658e5b8136adda70f9e81f3b7b4c5494ef2679fce1fdfefdc"
+      "spec.md": "c00cef8c83a55a568b58e45e184b3f8fa0487d8cf9d8ccab2a90822b618cd750",
+      "plan.md": "bfe8577246a87b4229e8ebd4214bf2bfd20f4aecab1c1624481975e4c0da2321",
+      "tasks.md": "e9cb787f6619159b3d18c461ad8b2420856752b24d094054fe2a663d86fd982b",
+      "implementation-summary.md": "860fa2a0dbb93740b0549423fd37f417ca3c1f8d527913aa170bee3f0addebb8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,6 +17,11 @@
         "target": "sk-code",
         "weight": 0.4,
         "context": "code quality peer for sk-code surface-aware evidence"
+      },
+      {
+        "target": "sk-design",
+        "weight": 0.4,
+        "context": "Reviews implementation quality after design and build work converge"
       }
     ],
     "conflicts_with": [],

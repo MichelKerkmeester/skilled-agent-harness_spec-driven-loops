@@ -5,6 +5,7 @@ import { basename, dirname, join } from 'node:path';
 
 import {
   computeIntegrityHash,
+  createDeferredAtomicWriter,
   stampIntegrity,
   verifyIntegrity,
   writeStateAtomic,
@@ -14,10 +15,10 @@ import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const hermeticEnvs: HermeticEnv[] = [];
 
-function withHermeticState(testId: string, run: (statePath: string, tempDir: string) => void): void {
+function withHermeticState<T>(testId: string, run: (statePath: string, tempDir: string) => T): T {
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
-  run(join(hermetic.tmpDir, 'state.json'), hermetic.tmpDir);
+  return run(join(hermetic.tmpDir, 'state.json'), hermetic.tmpDir);
 }
 
 /**
@@ -30,6 +31,7 @@ function tempSiblings(path: string): string[] {
 
 afterEach(() => {
   vi.restoreAllMocks();
+  vi.useRealTimers();
 
   while (hermeticEnvs.length > 0) {
     hermeticEnvs.pop()?.cleanup();
@@ -108,6 +110,106 @@ describe('atomic-state', () => {
         computeIntegrityHash({ alpha: true, beta: true }),
       );
       expect(verifyIntegrity(parsed)).toBe(true);
+    });
+  });
+
+  it('coalesces deferred writes so only the last state lands', async () => {
+    vi.useFakeTimers();
+
+    await withHermeticState('deferred-coalesce', async (statePath) => {
+      const writer = createDeferredAtomicWriter(statePath, { debounceMs: 25 });
+
+      for (let iteration = 1; iteration <= 10; iteration += 1) {
+        writer.write({ status: 'pending', iteration });
+      }
+
+      expect(existsSync(statePath)).toBe(false);
+
+      await vi.advanceTimersByTimeAsync(24);
+
+      expect(existsSync(statePath)).toBe(false);
+
+      await vi.advanceTimersByTimeAsync(1);
+      await writer.flushNow();
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'pending',
+        iteration: 10,
+      });
+      expect(tempSiblings(statePath)).toEqual([]);
+
+      await writer.close();
+    });
+  });
+
+  it('flushes again when state changes during an active drain', async () => {
+    await withHermeticState('deferred-dirty-again', async (statePath) => {
+      const writer = createDeferredAtomicWriter(statePath, { debounceMs: 1_000 });
+
+      writer.write({ status: 'first', iteration: 1 });
+      const drain = writer.flushNow();
+      writer.write({ status: 'second', iteration: 2 });
+
+      await Promise.resolve();
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'first',
+        iteration: 1,
+      });
+
+      await drain;
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'second',
+        iteration: 2,
+      });
+      expect(tempSiblings(statePath)).toEqual([]);
+
+      await writer.close();
+    });
+  });
+
+  it('flushNow drains pending state before the debounce window expires', async () => {
+    vi.useFakeTimers();
+
+    await withHermeticState('deferred-flush-now', async (statePath) => {
+      const writer = createDeferredAtomicWriter(statePath, { debounceMs: 1_000 });
+
+      writer.write({ status: 'ready', iteration: 3 });
+      await writer.flushNow();
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'ready',
+        iteration: 3,
+      });
+      expect(tempSiblings(statePath)).toEqual([]);
+
+      await vi.advanceTimersByTimeAsync(1_000);
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'ready',
+        iteration: 3,
+      });
+
+      await writer.close();
+    });
+  });
+
+  it('close drains pending state and rejects later writes', async () => {
+    vi.useFakeTimers();
+
+    await withHermeticState('deferred-close', async (statePath) => {
+      const writer = createDeferredAtomicWriter(statePath, { debounceMs: 1_000 });
+
+      writer.write({ status: 'closing', iteration: 4 });
+      await writer.close();
+
+      expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({
+        status: 'closing',
+        iteration: 4,
+      });
+      expect(() => writer.write({ status: 'late' })).toThrow('Deferred atomic writer is closed.');
+      expect(tempSiblings(statePath)).toEqual([]);
     });
   });
 
