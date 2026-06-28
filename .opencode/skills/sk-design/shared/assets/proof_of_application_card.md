@@ -62,3 +62,7 @@ This card blocks unsupported readiness claims. Fill the read/citation ledger, pr
 | One or more applicable proof fields fail or are missing | [ ] NOT READY |
 
 Gaps blocking readiness: `__________`
+
+---
+
+Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY.

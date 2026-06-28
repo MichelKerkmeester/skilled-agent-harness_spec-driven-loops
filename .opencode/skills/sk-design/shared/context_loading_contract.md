@@ -147,6 +147,8 @@ dimensions:
 | Dispatch Profile | Any small-model delegation where a profile exists |
 | Adoption | Any canonical skill change from lineage findings |
 
+**Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-foundations/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
+
 ---
 
 ## 6. ADOPT-IF-BETTER
