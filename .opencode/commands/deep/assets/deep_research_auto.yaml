@@ -860,6 +860,8 @@ workflow:
             logOffset: "Byte offset where the seekable log region starts"
             logSize: "Byte length of the seekable log region"
             logPath: "Absolute path to the file containing the seekable log region"
+            skippedCount: "Missed fixed-rate slots counted for the completed dispatch; 0 when no slot was missed"
+            slotDurationMs: "Monotonic elapsed duration for the completed dispatch slot"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true

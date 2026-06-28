@@ -296,6 +296,41 @@ function normalizeProgressHeartbeatMs(seconds) {
   return Math.max(1, Math.floor(value * 1000));
 }
 
+function slotDurationMsFromHrtime(hrStart) {
+  const [seconds, nanoseconds] = process.hrtime(hrStart);
+  return Math.max(0, (seconds * 1000) + (nanoseconds / 1e6));
+}
+
+function computeSkippedCount(slotDurationMs, intervalMs) {
+  const elapsed = Number(slotDurationMs);
+  const interval = Number(intervalMs);
+  if (!Number.isFinite(elapsed) || !Number.isFinite(interval) || interval <= 0) {
+    return 0;
+  }
+  return Math.max(0, Math.floor(elapsed / interval) - 1);
+}
+
+function buildSlotAccounting(hrStart, intervalMs) {
+  const slotDurationMs = slotDurationMsFromHrtime(hrStart);
+  return {
+    slotDurationMs,
+    skippedCount: computeSkippedCount(slotDurationMs, intervalMs),
+  };
+}
+
+function decorateSlotAccountingEvent(event, accountingByLabel) {
+  if (!event || typeof event.label !== 'string') return event;
+  if (event.event !== 'completed' && event.event !== 'failed') return event;
+
+  const accounting = accountingByLabel.get(event.label);
+  if (!accounting) return event;
+  return {
+    ...event,
+    skippedCount: accounting.skippedCount,
+    slotDurationMs: accounting.slotDurationMs,
+  };
+}
+
 function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges }) {
   if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) {
     return () => {};
@@ -512,6 +547,7 @@ async function main() {
   const fanoutConfig = parseFanoutConfig(rawConfig);
   const allLineages = expandLineages(fanoutConfig);
   const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
+  const slotIntervalMs = progressHeartbeatMs;
 
   // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
   const cliLineages = allLineages.filter((l) => l.kind !== 'native');
@@ -546,6 +582,7 @@ async function main() {
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
 
   const lineageSnapshots = new Map();
+  const lineageSlotAccounting = new Map();
   let latestGauges = { lag: cliLineages.length, pending: cliLineages.length, failed: 0 };
   let stoppedSummaryWritten = false;
 
@@ -591,11 +628,13 @@ async function main() {
     lagCeilingMs: fanoutConfig.lagCeilingMs,
     initialRetryCounts,
     onEvent: (event) => {
-      updateLineageSnapshot(lineageSnapshots, event);
-      if (event.gauges) latestGauges = event.gauges;
-      appendStatusLedger(ledgerPath, event);
+      const enrichedEvent = decorateSlotAccountingEvent(event, lineageSlotAccounting);
+      updateLineageSnapshot(lineageSnapshots, enrichedEvent);
+      if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
+      appendStatusLedger(ledgerPath, enrichedEvent);
     },
     worker: async (lineage) => {
+      const hrStart = process.hrtime();
       const lineageDir = path.join(lineagesDir, lineage.label);
       const stateDir = path.join(lineageDir, '.executor-state');
       fs.mkdirSync(lineageDir, { recursive: true });
@@ -691,6 +730,8 @@ async function main() {
       // Recover missing iteration files from captured stdout when possible. Runs
       // BEFORE the failure throw below so iteration recovery is never lost.
       const salvage = runSalvageSweep(lineageDir, loopType, savedStdout);
+      const slotAccounting = buildSlotAccounting(hrStart, slotIntervalMs);
+      lineageSlotAccounting.set(lineage.label, slotAccounting);
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
@@ -711,7 +752,7 @@ async function main() {
         throw failure;
       }
 
-      return { label: lineage.label, exitCode, timedOut, salvage };
+      return { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
     },
   });
 
@@ -751,6 +792,8 @@ module.exports = {
   buildLineageCommand,
   buildLoopPrompt,
   normalizeProgressHeartbeatMs,
+  computeSkippedCount,
+  decorateSlotAccountingEvent,
   startLineageProgressHeartbeat,
   updateLineageSnapshot,
 };

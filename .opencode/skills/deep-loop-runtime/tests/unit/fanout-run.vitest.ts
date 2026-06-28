@@ -106,6 +106,20 @@ function writeSleepingStubBinary(binDir: string, name: string, seconds: number):
   return stubPath;
 }
 
+function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: number): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    [
+      '#!/usr/bin/env node',
+      `setTimeout(() => { console.log('delayed'); process.exit(0); }, ${delayMs});`,
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
 function shellQuote(value: string): string {
   return `'${value.replace(/'/g, "'\\''")}'`;
 }
@@ -727,6 +741,107 @@ describe('fanout-run.cjs — progress heartbeat', () => {
       .split('\n')
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     expect(ledgerEvents.some((event) => event.event === 'progress')).toBe(false);
+  });
+});
+
+describe('fanout-run.cjs — slot overrun accounting', () => {
+  it('records skippedCount 0 and slotDurationMs for a fast completed lineage', async () => {
+    const binDir = makeTempDir('fanout-run-fast-slot-bin-');
+    writeStubBinary(binDir, 'codex');
+    const baseDir = makeTempDir('fanout-run-fast-slot-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'fast', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+      progressHeartbeatSeconds: 1,
+    });
+
+    const hermetic = useHermeticEnv('fast-slot-accounting');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-fast-slot',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const completed = ledgerEvents.find((event) => event.event === 'completed' && event.label === 'fast');
+    expect(completed).toEqual(expect.objectContaining({
+      skippedCount: 0,
+      slotDurationMs: expect.any(Number),
+    }));
+    expect(Number(completed?.slotDurationMs)).toBeGreaterThan(0);
+  });
+
+  it('records missed fixed-rate slots without launching catch-up lineages', async () => {
+    const binDir = makeTempDir('fanout-run-overrun-slot-bin-');
+    writeDelayedNodeStubBinary(binDir, 'codex', 3_100);
+    const baseDir = makeTempDir('fanout-run-overrun-slot-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'overrun', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+      progressHeartbeatSeconds: 1,
+    });
+
+    const hermetic = useHermeticEnv('overrun-slot-accounting');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-overrun-slot',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const startedEvents = ledgerEvents.filter((event) => event.event === 'started' && event.label === 'overrun');
+    const completedEvents = ledgerEvents.filter((event) => event.event === 'completed' && event.label === 'overrun');
+    expect(startedEvents).toHaveLength(1);
+    expect(completedEvents).toHaveLength(1);
+    expect(completedEvents[0]).toEqual(expect.objectContaining({
+      skippedCount: 2,
+      slotDurationMs: expect.any(Number),
+    }));
+    expect(Number(completedEvents[0].slotDurationMs)).toBeGreaterThanOrEqual(3_000);
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ output?: { skippedCount?: number; slotDurationMs?: number } }>;
+    };
+    expect(payload.results?.[0]?.output).toEqual(expect.objectContaining({
+      skippedCount: 2,
+      slotDurationMs: expect.any(Number),
+    }));
   });
 });
 

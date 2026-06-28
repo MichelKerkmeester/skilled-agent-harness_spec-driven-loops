@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "010-fixed-rate-overrun-accounting summary"
     ],
     "key_topics": [
       "fixed-rate",
@@ -39,9 +39,11 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +54,18 @@
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a loop iteration overruns its scheduled fixed-rate slot, the next slot starts immediately without any record of the overrun; missed slots are silently dropped and there is no `skippedCount` in the persisted state",
     "created_at": "2026-06-28T14:01:58Z",
-    "last_save_at": "2026-06-28T14:29:33.321Z",
+    "last_save_at": "2026-06-28T18:05:27.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:633afc3eade59b95014925f988b89020d528a33c968030a076335ea5b3f0cbdf",
+    "source_fingerprint": "sha256:4a7ab613d1695a34975a548102f1be805eb04c154fb000e3c31a728dfc162982",
     "source_doc_hashes": {
-      "spec.md": "ca8119474b7e35a5901d9b2556d935d7ab224e2b3d3f605a4eb5fe17574f27b4",
+      "spec.md": "52293b254bfd62037ce201f9dd66a664b8918e13ceb74a0c6385a1a0085ed635",
       "plan.md": "3df4b9f7a8ffb55633b2badf533ec1f8f3d90f988597039b556702ed487f95c8",
       "tasks.md": "9d58ca064495f9503e22eca4bd22d838294d938f2abce07e9d3b8c3740b72ba6",
-      "implementation-summary.md": "abe3bf3bb00393f54d5199da0321c84d52f8746cad5eac737720ee4a0c79c307"
+      "implementation-summary.md": "d4dab44a08db3bd55e2738b9ef8af83e0b8b757a852a336627ae471f50d8c4d0"
     },
     "last_active_child_id": null,
     "last_active_at": null
