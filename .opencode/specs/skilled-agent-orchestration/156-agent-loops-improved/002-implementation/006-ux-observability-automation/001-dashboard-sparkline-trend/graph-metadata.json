@@ -1,7 +1,220 @@
-Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend
-Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend
-Status: planned
-Importance Tier: important
-Summary: The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dashboard sparkline",
+      "sparkline trend",
+      "newInfoRatio trend",
+      "001 dashboard sparkline",
+      "reduce-state trend section",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "dashboard",
+      "sparkline",
+      "trend",
+      "newinforatio",
+      "001",
+      "reduce-state",
+      "section",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state-sparkline.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dashboard Sparkline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trend Rendering",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary",
+    "created_at": "2026-06-28T16:46:11.837Z",
+    "last_save_at": "2026-06-28T16:46:11.837Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:50c3a28f209220564530d7218ee7e96a94a36f2c5e4af22fe04b719ac1b8befe",
+    "source_doc_hashes": {
+      "spec.md": "a1613a07daff96187b349fb26a803e1c3aef953d29f03aff24a5fb7b96604c62",
+      "plan.md": "30c402e571d4bd227c205fe8b77715d83e782dd018acae1877eb1e2b7be04a4a",
+      "tasks.md": "5da73d57800c2a8592905392e4349d3ec690d133b09907a56de277483e718a4b",
+      "implementation-summary.md": "b109b8802cb0a8bca879b111b85d4e1ace59274743a27fd7bac9261390d722bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

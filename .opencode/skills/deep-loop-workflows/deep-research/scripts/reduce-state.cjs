@@ -23,6 +23,10 @@ const {
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const DEFAULT_SPARKLINE_WIDTH = 20;
+const DEFAULT_TREND_FLATLINE_WINDOW = 3;
+const SPARKLINE_BLOCKS = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'];
+
 function readUtf8(filePath) {
   return fs.readFileSync(filePath, 'utf8');
 }
@@ -68,6 +72,138 @@ function contentHash(value) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function resolveSparklineWidth(opts) {
+  const rawWidth = opts && typeof opts === 'object' ? opts.width : undefined;
+  return Number.isInteger(rawWidth) && rawWidth > 0
+    ? rawWidth
+    : DEFAULT_SPARKLINE_WIDTH;
+}
+
+function normalizeSparklineHistory(history) {
+  return Array.isArray(history)
+    ? history.filter((value) => typeof value === 'number' && Number.isFinite(value))
+    : [];
+}
+
+/**
+ * Render numeric history as a fixed-width sparkline for compact trend scans.
+ *
+ * @param {number[]} history - Numeric values to render.
+ * @param {Object} [opts] - Render options.
+ * @param {number} [opts.width=20] - Output character width.
+ * @returns {string} Fixed-width sparkline, or an empty string when no finite values exist.
+ */
+function renderSparkline(history, opts = {}) {
+  const values = normalizeSparklineHistory(history);
+  if (!values.length) {
+    return '';
+  }
+
+  const width = resolveSparklineWidth(opts);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const flatBlock = SPARKLINE_BLOCKS[Math.floor((SPARKLINE_BLOCKS.length - 1) / 2)];
+
+  if (values.length === 1 || min === max) {
+    return flatBlock.repeat(width);
+  }
+
+  const rendered = [];
+  for (let index = 0; index < width; index += 1) {
+    const sourcePosition = width === 1
+      ? values.length - 1
+      : (index / (width - 1)) * (values.length - 1);
+    const lowerIndex = Math.floor(sourcePosition);
+    const upperIndex = Math.min(values.length - 1, Math.ceil(sourcePosition));
+    const mix = sourcePosition - lowerIndex;
+    const value = lowerIndex === upperIndex
+      ? values[lowerIndex]
+      : values[lowerIndex] + ((values[upperIndex] - values[lowerIndex]) * mix);
+    const normalized = (value - min) / (max - min);
+    const blockIndex = Math.max(
+      0,
+      Math.min(SPARKLINE_BLOCKS.length - 1, Math.round(normalized * (SPARKLINE_BLOCKS.length - 1))),
+    );
+    rendered.push(SPARKLINE_BLOCKS[blockIndex]);
+  }
+
+  return rendered.join('');
+}
+
+function resolveTrendFlatlineWindow(config) {
+  const rawWindow =
+    config?.trendFlatlineWindow
+    ?? config?.trendFlatlineIterations
+    ?? config?.stuckThreshold
+    ?? DEFAULT_TREND_FLATLINE_WINDOW;
+  return Number.isInteger(rawWindow) && rawWindow >= 2
+    ? rawWindow
+    : DEFAULT_TREND_FLATLINE_WINDOW;
+}
+
+function isFlatSparkline(sparkline) {
+  return typeof sparkline === 'string'
+    && sparkline.length >= 2
+    && new Set(Array.from(sparkline)).size === 1;
+}
+
+function readIterationScore(record) {
+  const convergenceSignals = record?.convergenceSignals && typeof record.convergenceSignals === 'object'
+    ? record.convergenceSignals
+    : {};
+  return convergenceSignals.compositeStop
+    ?? convergenceSignals.score
+    ?? convergenceSignals.convergenceScore
+    ?? convergenceSignals.stopScore
+    ?? record?.score
+    ?? record?.newInfoRatio;
+}
+
+function readIterationRun(record) {
+  const run = record?.run ?? record?.iteration;
+  return isFiniteNumber(run) ? run : null;
+}
+
+function buildTrendFlatlineAdvisories(config, histories, latestRecord) {
+  const window = resolveTrendFlatlineWindow(config);
+  return Object.entries(histories)
+    .flatMap(([metric, history]) => {
+      const values = normalizeSparklineHistory(history);
+      if (values.length < window) {
+        return [];
+      }
+
+      const recent = values.slice(-window);
+      const sparkline = renderSparkline(recent, { width: window });
+      if (!isFlatSparkline(sparkline)) {
+        return [];
+      }
+
+      return [{
+        type: 'event',
+        event: 'trend_flatline',
+        mode: 'research',
+        severity: 'advisory',
+        metric,
+        run: readIterationRun(latestRecord),
+        window,
+        value: recent.at(-1),
+        sparkline,
+        timestamp: typeof latestRecord?.timestamp === 'string' && latestRecord.timestamp
+          ? latestRecord.timestamp
+          : null,
+      }];
+    });
+}
+
+function formatTrendAdvisoryEvent(event) {
+  const metric = typeof event?.metric === 'string' && event.metric ? event.metric : 'unknown';
+  const run = isFiniteNumber(event?.run) ? event.run : 'unknown';
+  const window = isFiniteNumber(event?.window) ? event.window : 'unknown';
+  const sparkline = typeof event?.sparkline === 'string' && event.sparkline ? event.sparkline : 'N/A';
+  return `- Advisory event: ${event?.event || 'advisory'} metric=${metric} run=${run} window=${window} sparkline=${sparkline}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -835,6 +971,12 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   const ratios = evidenceRecords
     .map((record) => (typeof record.newInfoRatio === 'number' ? record.newInfoRatio : null))
     .filter((value) => value !== null);
+  const scores = evidenceRecords
+    .map(readIterationScore)
+    .filter(isFiniteNumber);
+  const ratioSparkline = renderSparkline(ratios);
+  const scoreSparkline = renderSparkline(scores);
+  const advisoryEvents = Array.isArray(registry.advisoryEvents) ? registry.advisoryEvents : [];
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
   const nextFocus = resolveNextFocus(registry, iterationFiles, iterationRecords);
   const progressRows = iterationRecords
@@ -905,11 +1047,16 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     '<!-- /ANCHOR:uncovered-questions -->',
     '<!-- ANCHOR:trend -->',
     '## 5. TREND',
+    `- newInfoRatio sparkline: ${ratioSparkline || 'N/A'}`,
+    `- score sparkline: ${scoreSparkline || 'N/A'}`,
     `- Last 3 ratios: ${lastThreeRatios}`,
     `- Stuck count: ${iterationRecords.filter((r) => r.status !== 'thought' && r.status !== 'insight' && (r.status === 'stuck' || (typeof r.newInfoRatio === 'number' && r.newInfoRatio === 0))).length}`,
     '- Guard violations: none recorded by the reducer pass',
     `- convergenceScore: ${Number(registry.metrics.convergenceScore || 0).toFixed(2)}`,
     `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
+    ...(advisoryEvents.length
+      ? advisoryEvents.map(formatTrendAdvisoryEvent)
+      : ['- Advisory events: none']),
     '',
     '<!-- /ANCHOR:trend -->',
     '<!-- ANCHOR:dead-ends -->',
@@ -1019,6 +1166,17 @@ function reduceResearchState(specFolder, options = {}) {
   // deep-review.
   registry.corruptionWarnings = corruptionWarnings;
   registry.status = status;
+  const evidenceRecords = records.filter((record) => record.status !== 'thought');
+  const ratioHistory = evidenceRecords
+    .map((record) => (typeof record.newInfoRatio === 'number' ? record.newInfoRatio : null))
+    .filter((value) => value !== null);
+  const scoreHistory = evidenceRecords
+    .map(readIterationScore)
+    .filter(isFiniteNumber);
+  registry.advisoryEvents = buildTrendFlatlineAdvisories(config, {
+    newInfoRatio: ratioHistory,
+    score: scoreHistory,
+  }, evidenceRecords.at(-1));
   const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
   const dashboard = renderDashboard(config, registry, records, iterationFiles);
   let resourceMap = null;
@@ -1153,5 +1311,6 @@ module.exports = {
   parseJsonl,
   parseJsonlDetailed,
   reduceResearchState,
+  renderSparkline,
   readStateLogForReduction,
 };
