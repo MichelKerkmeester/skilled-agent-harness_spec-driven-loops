@@ -13,6 +13,7 @@ Usage:
   proof_check.py --json notes.md
   proof_check.py --require-cards notes.md   # also require both card sections
   proof_check.py --require-source-proof notes.md
+  proof_check.py --require-application-witness notes.md
 
 Required proof fields (matched case-insensitively, tolerant of formatting):
   REGISTER / DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, AUDIT EVIDENCE,
@@ -43,8 +44,10 @@ CARD_SECTIONS = {
 READY = re.compile(r"(?:\[x\]|\*\*|verdict[:\s*]+|result[:\s*]+)\s*READY\b", re.I)
 NOT_READY = re.compile(r"(?:\[x\]|\*\*)\s*NOT[\s-]*READY\b", re.I)
 SOURCE_PROOF_HEADING = re.compile(r"^#{1,6}\s+.*SOURCE\s+PROOF.*$", re.I)
+APPLICATION_WITNESS_HEADING = re.compile(r"^#{1,6}\s+.*APPLICATION\s+WITNESS.*$", re.I)
 MARKDOWN_HEADING = re.compile(r"^#{1,6}\s+")
 SHA256 = re.compile(r"^(?:sha256:)?([0-9a-f]{64})$", re.I)
+APPLICATION_CLASSIFICATIONS = ("not-loaded", "loaded-inert", "loaded-determinative")
 
 
 def _present(text: str, patterns) -> bool:
@@ -108,6 +111,58 @@ def _find_source_proof_rows(text: str) -> list[dict]:
             "sha256": _clean_cell(cells[1]),
             "anchor": _clean_cell(cells[2]),
             "echo": _clean_cell(cells[3]),
+        })
+    return rows
+
+
+def _application_classification(value: str) -> Optional[str]:
+    for classification in APPLICATION_CLASSIFICATIONS:
+        pattern = r"\[[xX]\]\s*" + re.escape(classification) + r"\b"
+        if re.search(pattern, value, re.I):
+            return classification
+    return None
+
+
+def _find_application_witness_rows(text: str) -> list[dict]:
+    lines = text.splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        if APPLICATION_WITNESS_HEADING.search(line):
+            start = i + 1
+            break
+    if start is None:
+        return []
+
+    rows = []
+    in_table = False
+    for line in lines[start:]:
+        if MARKDOWN_HEADING.match(line):
+            break
+        cells = _split_table_row(line)
+        if not cells:
+            if in_table:
+                break
+            continue
+        if len(cells) != 4:
+            continue
+        normalized = [_clean_cell(cell).lower() for cell in cells]
+        if normalized == ["output choice", "loaded rule source", "classification", "counterfactual"] or _is_separator_row(cells):
+            in_table = True
+            continue
+        in_table = True
+        classification = _application_classification(cells[2])
+        if (
+            _is_placeholder(cells[0])
+            and _is_placeholder(cells[1])
+            and classification is None
+            and _is_placeholder(cells[3])
+        ):
+            continue
+        rows.append({
+            "output_choice": _clean_cell(cells[0]),
+            "loaded_rule_source": _clean_cell(cells[1]),
+            "classification": classification,
+            "counterfactual": _clean_cell(cells[3]),
         })
     return rows
 
@@ -177,7 +232,56 @@ def _validate_source_proof(text: str, card_path: Optional[str]) -> dict:
     return result
 
 
-def check(text: str, require_cards: bool, require_source_proof: bool = False, source_path: Optional[str] = None) -> dict:
+def _validate_application_witness(text: str) -> dict:
+    rows = _find_application_witness_rows(text)
+    result = {
+        "rows": len(rows),
+        "items": [],
+        "missing": [],
+        "ok": True,
+    }
+    if not rows:
+        result["missing"].append("application-witness rows missing")
+        result["ok"] = False
+        return result
+
+    has_determinative = False
+    has_well_formed_determinative = False
+    for row in rows:
+        item = {
+            "output_choice": row["output_choice"],
+            "loaded_rule_source": row["loaded_rule_source"],
+            "classification": row["classification"],
+            "ok": True,
+            "errors": [],
+        }
+        if row["classification"] == "loaded-determinative":
+            has_determinative = True
+            if _is_placeholder(row["output_choice"]):
+                item["errors"].append("output choice missing")
+            if _is_placeholder(row["loaded_rule_source"]):
+                item["errors"].append("loaded rule source missing")
+            if not item["errors"]:
+                has_well_formed_determinative = True
+        item["ok"] = not item["errors"]
+        result["items"].append(item)
+        if item["errors"] and "witness not well-formed" not in result["missing"]:
+            result["missing"].append("witness not well-formed")
+
+    if not has_determinative:
+        result["missing"].append("no loaded-determinative witness")
+
+    result["ok"] = not result["missing"] and has_well_formed_determinative
+    return result
+
+
+def check(
+    text: str,
+    require_cards: bool,
+    require_source_proof: bool = False,
+    source_path: Optional[str] = None,
+    require_application_witness: bool = False,
+) -> dict:
     fields = {label: _present(text, pats) for label, pats in PROOF_FIELDS.items()}
     cards = {label: _present(text, pats) for label, pats in CARD_SECTIONS.items()} if require_cards else {}
     not_ready = bool(NOT_READY.search(text))
@@ -186,6 +290,9 @@ def check(text: str, require_cards: bool, require_source_proof: bool = False, so
     source_proof = _validate_source_proof(text, source_path) if require_source_proof else None
     if source_proof:
         missing.extend(source_proof["missing"])
+    application_witness = _validate_application_witness(text) if require_application_witness else None
+    if application_witness:
+        missing.extend(application_witness["missing"])
     ok = not missing and ready
     result = {
         "fields": fields,
@@ -197,6 +304,8 @@ def check(text: str, require_cards: bool, require_source_proof: bool = False, so
     }
     if source_proof:
         result["source_proof"] = source_proof
+    if application_witness:
+        result["application_witness"] = application_witness
     return result
 
 
@@ -204,9 +313,10 @@ def main(argv) -> int:
     as_json = "--json" in argv
     require_cards = "--require-cards" in argv
     require_source_proof = "--require-source-proof" in argv
+    require_application_witness = "--require-application-witness" in argv
     paths = [a for a in argv if not a.startswith("--")]
     if len(paths) != 1:
-        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] <proof-card-or-notes.md>\n")
+        sys.stderr.write("usage: proof_check.py [--json] [--require-cards] [--require-source-proof] [--require-application-witness] <proof-card-or-notes.md>\n")
         return 2
     try:
         with open(paths[0], "r", encoding="utf-8") as fh:
@@ -215,7 +325,7 @@ def main(argv) -> int:
         sys.stderr.write(f"cannot read {paths[0]}: {e}\n")
         return 2
 
-    r = check(text, require_cards, require_source_proof, paths[0])
+    r = check(text, require_cards, require_source_proof, paths[0], require_application_witness)
     if as_json:
         print(json.dumps({"file": paths[0], **r}, indent=2))
     else:
@@ -225,6 +335,9 @@ def main(argv) -> int:
         if require_source_proof:
             source_ok = r["source_proof"]["ok"]
             print(f"  [{'x' if source_ok else ' '}] SOURCE PROOF")
+        if require_application_witness:
+            witness_ok = r["application_witness"]["ok"]
+            print(f"  [{'x' if witness_ok else ' '}] APPLICATION WITNESS")
         print(f"  verdict READY: {'yes' if r['ready'] else 'no'}"
               + (" (NOT READY found)" if r["not_ready_flag"] else ""))
         if r["ok"]:

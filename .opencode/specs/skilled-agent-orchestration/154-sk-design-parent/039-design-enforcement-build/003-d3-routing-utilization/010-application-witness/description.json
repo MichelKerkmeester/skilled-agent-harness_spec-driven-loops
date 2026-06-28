@@ -1,20 +1,16 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/010-application-witness",
-  "description": "Add an APPLICATION WITNESS section to the application proof card and a proof_check.py flag classifying not-loaded/loaded-inert/loaded-determinative.",
+  "description": "Loading a file proves nothing about use",
   "keywords": [
-    "add",
-    "application",
-    "witness",
-    "section",
-    "proof",
-    "card",
-    "flag",
-    "classifying",
-    "not-loaded",
-    "loaded-inert",
-    "loaded-determinative"
+    "loading",
+    "file",
+    "proves",
+    "nothing",
+    "about",
+    "use"
   ],
-  "lastUpdated": "2026-06-28T12:39:57.423Z",
+  "lastUpdated": "2026-06-28T19:25:34.357Z",
   "specId": "010",
   "folderSlug": "application-witness",
   "parentChain": [
@@ -26,6 +22,5 @@
     "003-d3-routing-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

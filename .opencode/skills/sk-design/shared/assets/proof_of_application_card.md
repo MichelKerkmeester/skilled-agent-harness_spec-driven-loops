@@ -75,4 +75,15 @@ Recompute rule: raw-byte sha256 per `../../references/design_proof_token.md` sec
 
 ---
 
+## 7. APPLICATION WITNESS
+
+A witness proves a loaded rule had an observable effect on one named output choice. It does not prove the design is good; taste stays advisory. Classify each row as `not-loaded` (rule never loaded), `loaded-inert` (loaded but no output choice traces to it), or `loaded-determinative` (a cited loaded rule changed a named output choice). A ready-claim needs at least one `loaded-determinative` witness.
+
+| Output choice | Loaded rule source | Classification | Counterfactual |
+|---|---|---|---|
+| `__________` | `__________` | [ ] not-loaded [ ] loaded-inert [ ] loaded-determinative | `__________` |
+
+---
+
 Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY. Add `--require-source-proof` to also verify cited source files by raw-byte hash and literal echo.
+Add `--require-application-witness` to also require a well-formed `loaded-determinative` witness naming both the output choice and the loaded rule source.
