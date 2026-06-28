@@ -1,0 +1,10 @@
+{"iteration":1,"pass":"glm-registration-correctness","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":2,"pass":"glm-bakeoff-evidence-honesty","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":1,"ts":"2026-06-28"}
+{"iteration":3,"pass":"rename-completeness","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":4,"pass":"rename-safety-carveouts","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":5,"pass":"spec-doc-accuracy","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":6,"pass":"cross-ref-consistency","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":7,"pass":"regression-risk","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":8,"pass":"changelog-doc-accuracy","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":9,"pass":"residual-edge-cases","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}
+{"iteration":10,"pass":"scope-adherence","executor":"cli-opencode:xiaomi/mimo-v2.5-pro-ultraspeed","findings":0,"ts":"2026-06-28"}

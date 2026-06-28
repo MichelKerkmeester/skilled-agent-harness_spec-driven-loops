@@ -1,7 +1,7 @@
 ---
 title: GLM-5.2 Prompt-Craft Profile
 model_id: "glm-5.2"
-description: How to prompt GLM-5.2 (Z.AI GLM Coding Plan, slug zai-coding-plan/glm-5.2) via cli-opencode — COSTAR framework (empirical, benchmark 008; fallback TIDD-EC, avoid RCAF) with lean pre-planning over the 1M window, file-anchored context scaffold, and Z.AI Coding Plan dispatch gotchas.
+description: How to prompt GLM-5.2 (Z.AI GLM Coding Plan, slug zai-coding-plan/glm-5.2) via cli-opencode — COSTAR framework (empirical, benchmark 008 — best-of-tied perfect tier; fallback TIDD-EC, avoid RCAF) with lean pre-planning over the 1M window, file-anchored context scaffold, and Z.AI Coding Plan dispatch gotchas.
 trigger_phrases:
   - "glm-5.2 prompt framework"
   - "glm-5.2 dispatch scaffold"

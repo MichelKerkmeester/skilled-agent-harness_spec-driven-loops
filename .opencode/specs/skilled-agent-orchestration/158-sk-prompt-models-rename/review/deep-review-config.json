@@ -1,0 +1,14 @@
+{
+  "target": "session work: GLM-5.2 adoption (packet 157) + sk-prompt-small-model->sk-prompt-models rename (packet 158)",
+  "targetType": "git-diff",
+  "executor": "cli-opencode",
+  "model": "xiaomi/mimo-v2.5-pro-ultraspeed",
+  "variant": "high",
+  "framework": "costar",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.0,
+  "dimensions": [
+    "glm-registration-correctness","glm-bakeoff-evidence-honesty","rename-completeness","rename-safety-carveouts",
+    "spec-doc-accuracy","cross-ref-consistency","regression-risk","scope-adherence","changelog-doc-accuracy","residual-edge-cases"
+  ]
+}

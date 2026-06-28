@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "target": "session work (157 GLM-5.2 + 158 rename)",
+  "executor": "xiaomi/mimo-v2.5-pro-ultraspeed --variant high",
+  "iterations": 10,
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P2",
+      "pass": "glm-bakeoff-evidence-honesty",
+      "file": "sk-prompt-models/references/models/glm-5.2.md",
+      "issue": "frontmatter description omitted the best-of-tied caveat present in §4 and _index",
+      "status": "resolved",
+      "resolution": "added \"best-of-tied perfect tier\" to the frontmatter description"
+    }
+  ],
+  "verdict": "PASS"
+}
