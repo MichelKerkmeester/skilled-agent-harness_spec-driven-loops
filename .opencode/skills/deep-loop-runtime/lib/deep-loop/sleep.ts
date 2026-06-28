@@ -21,15 +21,20 @@ export function composeAbortSignals(signals: readonly AbortSignal[]): AbortSigna
     return signals[0];
   }
 
-  return AbortSignal.any(signals);
+  return AbortSignal.any([...signals]);
 }
 
 function normalizeSignal(signalOrSignals?: SleepSignalInput): AbortSignal | undefined {
+  if (signalOrSignals === undefined) {
+    return undefined;
+  }
+
   if (Array.isArray(signalOrSignals)) {
     return composeAbortSignals(signalOrSignals);
   }
 
-  return signalOrSignals;
+  // Array.isArray does not narrow a readonly tuple type, so assert the remaining single-signal case.
+  return signalOrSignals as AbortSignal;
 }
 
 function sleepChunk(ms: number, signal?: AbortSignal): Promise<void> {
