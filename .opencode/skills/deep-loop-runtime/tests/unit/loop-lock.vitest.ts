@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -254,5 +254,87 @@ describe('loop-lock', () => {
       expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
       expect(acquireLoopLock(lockPath, second)).toEqual({ acquired: true, lock: second });
     });
+  });
+
+  it('does not remove a live host-local socket while probing for stale cleanup', async () => {
+    const env = createHermeticEnv('loop-lock-host-local-live-socket');
+    const connectAttempts: string[] = [];
+    vi.resetModules();
+    vi.doMock('node:net', () => {
+      class FakeServer {
+        once(): this {
+          return this;
+        }
+
+        off(): this {
+          return this;
+        }
+
+        listen(socketPath: string, callback: () => void): this {
+          writeFileSync(socketPath, 'socket', 'utf8');
+          queueMicrotask(callback);
+          return this;
+        }
+
+        unref(): this {
+          return this;
+        }
+
+        close(callback?: () => void): this {
+          callback?.();
+          return this;
+        }
+      }
+
+      return {
+        createServer: () => new FakeServer(),
+        createConnection: (socketPath: string) => {
+          const socket = {
+            once(event: string, listener: () => void) {
+              if (event === 'connect') {
+                connectAttempts.push(socketPath);
+                queueMicrotask(listener);
+              }
+              return socket;
+            },
+            setTimeout() {
+              return socket;
+            },
+            destroy() {
+              return socket;
+            },
+          };
+          return socket;
+        },
+      };
+    });
+
+    try {
+      const firstLoopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const lockPath = join(env.tmpDir, '.deep-loop.lock');
+      const first = await firstLoopLock.acquireLoopLock(lockPath, lockData({ packetId: 'first' }), {
+        hostLocalSingleFlight: true,
+      });
+      const socketPath = firstLoopLock.getLoopLockHostLocalSocketPath(lockPath);
+
+      expect(first).toMatchObject({ acquired: true });
+      expect(existsSync(socketPath)).toBe(true);
+
+      unlinkSync(lockPath);
+      vi.resetModules();
+      const secondLoopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const second = await secondLoopLock.acquireLoopLock(lockPath, lockData({ packetId: 'second' }), {
+        hostLocalSingleFlight: true,
+      });
+
+      expect(second).toMatchObject({ acquired: false });
+      expect(connectAttempts).toEqual([socketPath]);
+      expect(existsSync(socketPath)).toBe(true);
+      rmSync(socketPath, { force: true });
+    } finally {
+      vi.doUnmock('node:net');
+      vi.resetModules();
+      env.cleanup();
+    }
   });
 });

@@ -1,7 +1,10 @@
 // MODULE: Deep-Loop Lock
 
+import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { createConnection, createServer, type Server } from 'node:net';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 
 // ───── TYPE DEFINITIONS ─────
 
@@ -32,6 +35,11 @@ export interface RefreshLoopLockOptions {
   lastActivityIso?: string;
 }
 
+/** Optional behavior for acquiring the loop lock. */
+export interface AcquireLoopLockOptions {
+  hostLocalSingleFlight?: boolean;
+}
+
 export type LoopLockAcquireResult =
   | { acquired: true; lock: LoopLockData; reclaimed?: LoopLockData }
   | { acquired: false; holder: LoopLockData };
@@ -41,8 +49,10 @@ export type LoopLockAcquireResult =
 export const DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS = 15_000;
 
 const DEFAULT_LOOP_LOCK_PHASE = 'running';
+const HOST_LOCAL_SINGLE_FLIGHT_PROBE_TIMEOUT_MS = 500;
 
 let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
+const hostLocalSingleFlightLeases = new Map<string, HostLocalSingleFlightLease>();
 
 // ───── DOMAIN ERRORS ─────
 
@@ -67,6 +77,13 @@ type SerializedLoopLockData = {
   runtime_kind: ExecutorKind | 'main';
   phase?: string;
   last_activity_iso?: string;
+};
+
+type HostLocalSingleFlightLease = {
+  lockPath: string;
+  ownerPid: number;
+  server: Server;
+  socketPath: string;
 };
 
 function normalizeLoopLockData(data: LoopLockData): LoopLockData {
@@ -226,6 +243,169 @@ function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean 
   }
 }
 
+function hostLocalSingleFlightKey(lockPath: string): string {
+  return resolve(lockPath);
+}
+
+export function getLoopLockHostLocalSocketPath(lockPath: string): string {
+  const digest = createHash('sha256').update(hostLocalSingleFlightKey(lockPath)).digest('hex').slice(0, 32);
+  if (process.platform === 'win32') {
+    return `\\\\.\\pipe\\deep-loop-${digest}`;
+  }
+  return join(tmpdir(), `deep-loop-${digest}.sock`);
+}
+
+function hostLocalSingleFlightHolder(lockPath: string, fallback: LoopLockData): LoopLockData {
+  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
+  return holder ?? fallback;
+}
+
+function shouldTreatSocketErrorAsLive(error: unknown): boolean {
+  if (!error || typeof error !== 'object' || !('code' in error)) {
+    return false;
+  }
+  const code = (error as NodeJS.ErrnoException).code;
+  return code === 'EACCES' || code === 'EPERM';
+}
+
+function probeHostLocalSocket(socketPath: string): Promise<'live' | 'stale'> {
+  return new Promise((resolveProbe) => {
+    let settled = false;
+    const socket = createConnection(socketPath);
+
+    const settle = (state: 'live' | 'stale'): void => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      socket.destroy();
+      resolveProbe(state);
+    };
+
+    socket.once('connect', () => settle('live'));
+    socket.once('error', (error: unknown) => settle(shouldTreatSocketErrorAsLive(error) ? 'live' : 'stale'));
+    socket.setTimeout(HOST_LOCAL_SINGLE_FLIGHT_PROBE_TIMEOUT_MS, () => settle('live'));
+  });
+}
+
+async function prepareHostLocalSocketPath(socketPath: string): Promise<boolean> {
+  if (process.platform === 'win32' || !existsSync(socketPath)) {
+    return true;
+  }
+
+  // A live socket path is the guard; only remove it after a failed connection proves it stale.
+  const socketState = await probeHostLocalSocket(socketPath);
+  if (socketState === 'live') {
+    return false;
+  }
+
+  unlinkSync(socketPath);
+  return true;
+}
+
+function listenOnHostLocalSocket(socketPath: string): Promise<Server> {
+  return new Promise((resolveListen, rejectListen) => {
+    const server = createServer((socket) => {
+      socket.end();
+    });
+    const reject = (error: Error): void => {
+      rejectListen(error);
+    };
+
+    server.once('error', reject);
+    server.listen(socketPath, () => {
+      server.off('error', reject);
+      server.unref();
+      resolveListen(server);
+    });
+  });
+}
+
+async function acquireHostLocalSingleFlightLease(
+  lockPath: string,
+  ownerPid: number,
+): Promise<{ acquired: true; lease: HostLocalSingleFlightLease } | { acquired: false }> {
+  const key = hostLocalSingleFlightKey(lockPath);
+  if (hostLocalSingleFlightLeases.has(key)) {
+    return { acquired: false };
+  }
+
+  const socketPath = getLoopLockHostLocalSocketPath(lockPath);
+  if (!(await prepareHostLocalSocketPath(socketPath))) {
+    return { acquired: false };
+  }
+
+  try {
+    const server = await listenOnHostLocalSocket(socketPath);
+    const lease = { lockPath: key, ownerPid, server, socketPath };
+    hostLocalSingleFlightLeases.set(key, lease);
+    return { acquired: true, lease };
+  } catch (error: unknown) {
+    if (error && typeof error === 'object' && 'code' in error && (error as NodeJS.ErrnoException).code === 'EADDRINUSE') {
+      return { acquired: false };
+    }
+    throw error;
+  }
+}
+
+function dropHostLocalSingleFlightLease(lockPath: string, ownerPid: number): void {
+  const key = hostLocalSingleFlightKey(lockPath);
+  const lease = hostLocalSingleFlightLeases.get(key);
+  if (!lease || lease.ownerPid !== ownerPid) {
+    return;
+  }
+
+  hostLocalSingleFlightLeases.delete(key);
+  try {
+    lease.server.close();
+  } catch {
+  }
+  if (process.platform !== 'win32') {
+    rmSync(lease.socketPath, { force: true });
+  }
+}
+
+function acquireLoopLockFileOnly(lockPath: string, data: LoopLockData): LoopLockAcquireResult {
+  const lock = normalizeLoopLockData(data);
+  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
+  if (holder && !isStaleLoopLock(holder)) {
+    return { acquired: false, holder };
+  }
+
+  if (!holder) {
+    if (writeLoopLockExclusive(lockPath, lock)) {
+      return { acquired: true, lock };
+    }
+    const current = readLoopLock(lockPath);
+    return { acquired: false, holder: current ?? lock };
+  }
+
+  if (tryReclaimStaleLoopLock(lockPath, lock)) {
+    return { acquired: true, lock, reclaimed: holder };
+  }
+  const current = readLoopLock(lockPath);
+  return { acquired: false, holder: current ?? holder };
+}
+
+async function acquireLoopLockWithHostLocalSingleFlight(lockPath: string, data: LoopLockData): Promise<LoopLockAcquireResult> {
+  const lock = normalizeLoopLockData(data);
+  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
+  if (holder && !isStaleLoopLock(holder)) {
+    return { acquired: false, holder };
+  }
+
+  const leaseResult = await acquireHostLocalSingleFlightLease(lockPath, lock.ownerPid);
+  if (!leaseResult.acquired) {
+    return { acquired: false, holder: hostLocalSingleFlightHolder(lockPath, lock) };
+  }
+
+  const result = acquireLoopLockFileOnly(lockPath, lock);
+  if (!result.acquired) {
+    dropHostLocalSingleFlightLease(lockPath, lock.ownerPid);
+  }
+  return result;
+}
+
 // ───── EXPORTS ─────
 
 /**
@@ -277,28 +457,34 @@ export function isStaleLoopLock(data: LoopLockData, now: Date = new Date()): boo
  *
  * @param lockPath - File path for the lock file.
  * @param data - Lock metadata for the acquiring process.
+ * @param options - Optional host-local guard behavior.
  * @returns Result indicating whether the lock was acquired and by whom.
  */
-export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockAcquireResult {
-  const lock = normalizeLoopLockData(data);
-  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
-  if (holder && !isStaleLoopLock(holder)) {
-    return { acquired: false, holder };
+export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockAcquireResult;
+export function acquireLoopLock(
+  lockPath: string,
+  data: LoopLockData,
+  options: AcquireLoopLockOptions & { hostLocalSingleFlight?: false | undefined },
+): LoopLockAcquireResult;
+export function acquireLoopLock(
+  lockPath: string,
+  data: LoopLockData,
+  options: AcquireLoopLockOptions & { hostLocalSingleFlight: true },
+): Promise<LoopLockAcquireResult>;
+export function acquireLoopLock(
+  lockPath: string,
+  data: LoopLockData,
+  options: AcquireLoopLockOptions,
+): LoopLockAcquireResult | Promise<LoopLockAcquireResult>;
+export function acquireLoopLock(
+  lockPath: string,
+  data: LoopLockData,
+  options: AcquireLoopLockOptions = {},
+): LoopLockAcquireResult | Promise<LoopLockAcquireResult> {
+  if (options.hostLocalSingleFlight === true) {
+    return acquireLoopLockWithHostLocalSingleFlight(lockPath, data);
   }
-
-  if (!holder) {
-    if (writeLoopLockExclusive(lockPath, lock)) {
-      return { acquired: true, lock };
-    }
-    const current = readLoopLock(lockPath);
-    return { acquired: false, holder: current ?? lock };
-  }
-
-  if (tryReclaimStaleLoopLock(lockPath, lock)) {
-    return { acquired: true, lock, reclaimed: holder };
-  }
-  const current = readLoopLock(lockPath);
-  return { acquired: false, holder: current ?? holder };
+  return acquireLoopLockFileOnly(lockPath, data);
 }
 
 /**
@@ -394,5 +580,6 @@ export function releaseLoopLock(lockPath: string, ownerPid: number): boolean {
   }
 
   unlinkSync(lockPath);
+  dropHostLocalSingleFlightLease(lockPath, ownerPid);
   return true;
 }

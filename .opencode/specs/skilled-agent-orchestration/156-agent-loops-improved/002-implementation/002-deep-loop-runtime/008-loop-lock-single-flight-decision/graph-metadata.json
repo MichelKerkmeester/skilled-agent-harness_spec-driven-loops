@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "008-loop-lock-single-flight-decision summary"
     ],
     "key_topics": [
       "loop-lock",
@@ -39,9 +39,10 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "loop-lock.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before either acquires it",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-06-28T14:29:32.630Z",
+    "last_save_at": "2026-06-28T17:48:30.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:861ecf79b34ac42e08476b8b9a348fd926a76d7fbf3ce454f94cd76d931522e3",
+    "source_fingerprint": "sha256:27390202f6ee6ff60e7e66e9c0437bdda9309c507d007526ada26c9030b5bdd4",
     "source_doc_hashes": {
-      "spec.md": "4aff73c1b9747081fa2dee9cda9d683f4675bdb433c62ca3670484cbf3aa3a5d",
+      "spec.md": "298570e6fc8c9e6012a582ad1dd18b64b371009a3a9f996f8c3e13872bd4c1b3",
       "plan.md": "15a1676ddd506bfb2ee7c0a9d6aa1a17705c5e65fa3901ccd904e347da958e0f",
       "tasks.md": "33992538e4e51e9eb8286c1ef174557dd7e6b902d5b5292f0620cc355862fd01",
-      "implementation-summary.md": "669ebeed3b7fd94ec160315a574c46da85fb1212c2e95e6cd334c0389004267d"
+      "implementation-summary.md": "856d0b3e4be1a1e605101d8f631d4cb421691d9180c57a4dc00b0f00e62dbdb0"
     },
     "last_active_child_id": null,
     "last_active_at": null
