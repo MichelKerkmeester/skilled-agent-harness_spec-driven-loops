@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Rename shipped; 0 live residual; advisor routes sk-prompt-models"
-    next_safe_action: "Packet complete"
+    recent_action: "Deep review PASS; scaffolding 3 remediation phases"
+    next_safe_action: "Begin 007-memory-reindex"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 67
     open_questions:
       - "Also rename the older legacy name sk-small-model (124 files), or leave as pre-rename history? (default: leave)"
     answered_questions:
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | In Progress (rename shipped; 3 review-remediation phases pending) |
 | **Created** | 2026-06-28 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
@@ -116,6 +116,9 @@ Summary of aggregate scope. Per-phase detail lives in child plans. (Nothing is c
 | 4 | 004-commands-scripts-data/ | deep_*.yaml benchmark/context paths, pre-commit hook, agent, benchmark run-pointers | Complete |
 | 5 | 005-specs-history-sweep/ | The "Everything" bulk sweep across specs/logs/changelogs, with the history-care carve-out | Complete |
 | 6 | 006-regenerate-verify/ | Regenerate advisor + memory + packet indexes; card-sync, validate.sh, tests, zero-reference sweep, routing probe, smoke | Complete |
+| 7 | 007-memory-reindex/ | Re-index spec-memory for packets 157 + 158 to clear the 83 stale old-name entries (review rec R1) | Planned |
+| 8 | 008-graph-symmetry-cleanup/ | Fix the 5 pre-existing graph-symmetry validation failures so `skill_graph_compiler --export-json` succeeds (review rec #1) | Planned |
+| 9 | 009-filename-residual-cleanup/ | git mv the residual old-name filenames + reconcile repo-root README (review recs #2/#3) | Planned |
 
 ### Phase Transition Rules
 

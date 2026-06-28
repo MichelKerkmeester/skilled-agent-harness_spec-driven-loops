@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/158-sk-prompt-models-rename/009-filename-residual-cleanup",
+  "spec_folder": "skilled-agent-orchestration/158-sk-prompt-models-rename/009-filename-residual-cleanup",
+  "parent_id": "skilled-agent-orchestration/158-sk-prompt-models-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "filename residual rename cleanup",
+      "sk-prompt-small-model filename git mv",
+      "readme rename reconcile",
+      "filename residual cleanup plan",
+      "readme reconcile plan",
+      "tasks",
+      "filename residual cleanup tasks"
+    ],
+    "key_topics": [
+      "filename",
+      "residual",
+      "rename",
+      "cleanup",
+      "sk-prompt-small-model",
+      "git",
+      "readme",
+      "reconcile",
+      "plan",
+      "tasks",
+      "swapped",
+      "file"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the WIP",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rename swapped file CONTENT but not a few FILENAMES that embed the old skill name (2 playbook docs + a changelog entry)",
+    "created_at": "2026-06-28T15:46:02.237Z",
+    "last_save_at": "2026-06-28T15:46:02.237Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:b9d7f56320fb6f60efe24c858ccece41f8c92adb3d7ca09914c703afac2211cd",
+    "source_doc_hashes": {
+      "spec.md": "c4d73ea2de72add0793afd40fe4e55248c97285efa0bb91cf3be7d92191e1206",
+      "plan.md": "b3f6013a761b4ea550bbec6b3051613f96d2a0c066d8feb490f387965087df0b",
+      "tasks.md": "9a03a63b78afed6658e5b8136adda70f9e81f3b7b4c5494ef2679fce1fdfefdc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
