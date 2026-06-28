@@ -93,6 +93,7 @@ DESIGN QA TASK
 | --- | --- | --- |
 | ALWAYS | Any audit or critique | `references/corpus_map.md`, `references/audit_contract.md` |
 | ALWAYS | Set the audit-severity posture | `../shared/register.md` (the audit-severity dial weights findings by Brand-vs-Product posture) |
+| ALWAYS | Any audit or design-readiness task | `../shared/context_loading_contract.md` (register-first gate, context manifest, the four proof fields incl. audit evidence, and the hard gates that block release/accessibility claims) |
 | CONDITIONAL | Accessibility or performance concern | `references/accessibility_performance.md` |
 | CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique_hardening.md` |
 | CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti_patterns_production.md` |
@@ -125,7 +126,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
+DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md", "../shared/context_loading_contract.md"]
 
 INTENT_SIGNALS = {
     "AUDIT_CONTRACT": {"weight": 4, "keywords": ["audit", "score", "release readiness", "severity", "p0", "p1", "quality score", "report template"]},

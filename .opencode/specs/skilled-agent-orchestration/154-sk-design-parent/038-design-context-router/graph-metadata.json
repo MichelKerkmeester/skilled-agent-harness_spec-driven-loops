@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/038-design-context-router",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/038-design-context-router",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context contract router auto-load",
+      "F-004 router resource map",
+      "design contract default resource",
+      "context contract router plan",
+      "F-004 default resource plan",
+      "context contract router tasks",
+      "F-004 default resource tasks",
+      "context contract router summary",
+      "F-004 closed",
+      "design contract auto-load"
+    ],
+    "key_topics": [
+      "context",
+      "contract",
+      "router",
+      "auto-load",
+      "f-004",
+      "resource",
+      "map",
+      "design",
+      "default",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 035 review (F-004) found the contract enforced only in prose for the orchestrator's own path: `DEFAULTRESOURCE` auto-loaded `register.md` but not the contract, so whether the contract reached context depended on an agent following the resource-loading table rather than the deterministic router",
+    "created_at": "2026-06-28T08:31:15.703Z",
+    "last_save_at": "2026-06-28T08:31:15.703Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:22d39a931419d97ebd2fa299a6531cc247cf0ee8d855038cf5786069f7ed677e",
+    "source_doc_hashes": {
+      "spec.md": "c4ee0aa5e5c6d743182f4d5496f7527b838bf04c51596114ea6865d4cf3cb1ff",
+      "plan.md": "9693088f620620f14b62cd600f9b13df43f1d7f5dc399e2a2817eafeaaab0763",
+      "tasks.md": "369a50539664c73376d8835bf352ab1bd0eb07ba3270b256fcf08b433c60ec93",
+      "implementation-summary.md": "7b1afd1b17aa6caf243b98b17abf675993f45a3bdf833e42d264aa2074e73e3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

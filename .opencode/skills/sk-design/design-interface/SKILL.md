@@ -72,6 +72,7 @@ DESIGN TASK
 | ----- | ------------ | -------- |
 | ALWAYS | Any design task | `references/design-process/design_principles.md` (palette, type, structure, motion, restraint) |
 | ALWAYS | The first step of any design task | `../shared/register.md` (set the Brand-vs-Product register, which gates density, motion, color dosage, copy, anti-slop strictness) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials). **Required load-and-prove loop:** register + brief-to-dials + `assets/interface_preflight_card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery. |
+| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates) |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
@@ -95,7 +96,7 @@ The Resource Loading Levels table above is the human-readable view; the fenced b
 # Every reference and asset on disk appears in at least one RESOURCE_MAP entry, so
 # no on-disk guidance is unreachable; design_principles.md is also the default.
 
-DEFAULT_RESOURCE = ["references/design-process/design_principles.md", "../shared/register.md"]
+DEFAULT_RESOURCE = ["references/design-process/design_principles.md", "../shared/register.md", "../shared/context_loading_contract.md"]
 
 INTENT_SIGNALS = {
     "DESIGN_PRINCIPLES": {"weight": 4, "keywords": ["design", "redesign", "make it look good", "looks generic", "looks templated", "looks ai-generated", "visual identity", "distinctive", "palette", "typography", "type", "layout", "brainstorm", "critique", "deviate", "templated default", "hero section", "landing page"]},

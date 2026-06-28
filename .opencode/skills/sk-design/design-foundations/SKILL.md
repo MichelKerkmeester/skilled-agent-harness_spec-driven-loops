@@ -86,6 +86,7 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | --- | --- | --- |
 | ALWAYS | The first step of any foundations task | `../shared/register.md` (set the Brand-vs-Product register, which sets the color strategy and token density this skill inherits) |
 | ALWAYS | Any foundations task | `references/corpus_map.md` plus the matching axis reference |
+| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates) |
 | CONDITIONAL | Color or theme work | `references/color/oklch_workflow.md`, `references/color/palette_theming.md` |
 | CONDITIONAL | Any UI build with changed foreground/background text or surface pairs | `references/color/oklch_workflow.md` Section 4 plus the mandatory contrast-pair inventory `assets/contrast_pair_inventory.md`, with every ratio computed by `scripts/contrast_check.py` (a calculator, not eyeballed); see `../shared/context_loading_contract.md` |
 | CONDITIONAL | Typography work | `references/type/typography_system.md` |
@@ -105,7 +106,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
+DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md", "../shared/context_loading_contract.md"]
 
 INTENT_SIGNALS = {
     "COLOR": {"weight": 4, "keywords": ["oklch", "palette", "color", "contrast", "theme", "dark mode", "gamut", "semantic color", "surface scale"]},
