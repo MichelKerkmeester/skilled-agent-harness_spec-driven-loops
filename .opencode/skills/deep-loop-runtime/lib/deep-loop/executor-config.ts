@@ -17,6 +17,12 @@ export type ReasoningEffort = typeof REASONING_EFFORTS[number];
 export const SERVICE_TIERS = ['priority', 'standard', 'fast'] as const;
 export type ServiceTier = typeof SERVICE_TIERS[number];
 
+/** Fan-out assignment models accepted by the schema. */
+export const FANOUT_ASSIGNMENT_MODELS = ['flat_pool', 'wave'] as const;
+
+/** Fan-out assignment model selected for a lineage or fan-out block. */
+export type FanoutAssignmentModel = typeof FANOUT_ASSIGNMENT_MODELS[number];
+
 const SANDBOX_MODES = ['read-only', 'workspace-write', 'danger-full-access'] as const;
 export type SandboxMode = typeof SANDBOX_MODES[number];
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
@@ -250,6 +256,10 @@ const LINEAGE_LABEL_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
  *   "tidd-ec") resolved against sk-prompt-models when a consumer renders the
  *   lineage prompt. null = consumer default. Loop-type-agnostic and optional, so
  *   research/review lineages that omit it are unaffected.
+ * - `assignment_model`: defaults to the existing flat pool; `wave` is accepted
+ *   only so the runtime guard can reject activation attempts explicitly.
+ * - `depends_on` / `touches`: reserved dependency and path-domain metadata for
+ *   a future guarded planner; flat-pool execution ignores them after logging.
  */
 export const lineageExecutorSchema = executorConfigSchema.extend({
   label: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
@@ -258,12 +268,16 @@ export const lineageExecutorSchema = executorConfigSchema.extend({
   count: z.number().int().positive().default(1),
   iterations: z.number().int().positive().nullable().default(null),
   promptFramework: z.string().min(1).nullable().default(null),
+  assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
+  depends_on: z.array(z.string().trim().min(1)).default([]),
+  touches: z.array(z.string().trim().min(1)).default([]),
 });
 
 export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
 
 export const fanoutConfigSchema = z.object({
   executors: z.array(lineageExecutorSchema).min(1),
+  assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
   concurrency: z.number().int().positive().default(2),
   maxRetries: z.number().int().nonnegative().default(5),
   lagCeilingMs: z.number().int().nonnegative().default(0),
@@ -294,7 +308,16 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
 
   // Reuse the canonical single-executor validator per entry (kind/model/flags).
   config.executors.forEach((entry, index) => {
-    const { label: _label, count: _count, iterations: _iterations, promptFramework: _promptFramework, ...executorSubset } = entry;
+    const {
+      label: _label,
+      count: _count,
+      iterations: _iterations,
+      promptFramework: _promptFramework,
+      assignment_model: _assignmentModel,
+      depends_on: _dependsOn,
+      touches: _touches,
+      ...executorSubset
+    } = entry;
     try {
       parseExecutorConfig(executorSubset);
     } catch (err: unknown) {

@@ -19,11 +19,10 @@
     "another",
     "lineage"
   ],
-  "lastUpdated": "2026-06-28T14:26:03.141Z",
+  "lastUpdated": "2026-06-28T21:17:52.351Z",
   "specId": "012",
   "folderSlug": "push-wave-fanout",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

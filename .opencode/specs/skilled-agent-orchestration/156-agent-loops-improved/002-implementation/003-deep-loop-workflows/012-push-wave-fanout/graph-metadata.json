@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "012-push-wave-fanout summary"
     ],
     "key_topics": [
       "push",
@@ -39,11 +39,14 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -66,6 +69,24 @@
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage) and overlapping slots (both writing to the same path) consume concurrency slots without making progress and risk file conflicts",
     "created_at": "2026-06-28T14:02:15Z",
-    "last_save_at": "2026-06-28T14:27:37.142Z",
+    "last_save_at": "2026-06-28T21:17:52.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7515507c5a972cfd9a7026c7c5bcf40cc9d3ae12252ba543c50a35a5a3f87f74",
+    "source_fingerprint": "sha256:fd2dbbcdb9157b3e034cece1088b7d5752aded9b2a4abacac91d6977f1a5b4ed",
     "source_doc_hashes": {
-      "spec.md": "5531ae989949f3c126645c6a3176e8b2d9e89cdd9e8eaf433dd4e6bff60cfa09",
+      "spec.md": "6b6e13accf2d01e440d98afe74c4df548bc1703152d9ca9d24defaa47184562b",
       "plan.md": "c98d0cb5259dffe9aa19f8880e264b92497a5c745290e656ecc5a53d9d162477",
       "tasks.md": "c21f10e8694035e1bbc9f34326382eb47a5b22eec5c5e84493ae7e63f3e51e1a",
-      "implementation-summary.md": "168460fbe41e9a2416d1abf9bf6be0ebdf9c33488359fa525e573e90026792fd"
+      "implementation-summary.md": "2b435800a5ca002edf083135ed692fb548b109c625226bfea8c2e828b0c9f1b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

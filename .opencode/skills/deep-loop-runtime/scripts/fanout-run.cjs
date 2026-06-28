@@ -31,6 +31,7 @@ const {
   appendStatusLedger,
   markOrphanedLineages,
   readRetryCountsFromLedger,
+  createWavePlannerInterface,
   writeOrchestrationSummary,
 } = require('./fanout-pool.cjs');
 
@@ -242,6 +243,99 @@ function appendFanoutStatusLedger(ledgerPath, entry) {
     });
   } catch {
     // Observability must not make the primary orchestration ledger fail.
+  }
+}
+
+const FLAT_POOL_ASSIGNMENT_MODEL = 'flat_pool';
+const WAVE_ASSIGNMENT_MODEL = 'wave';
+const WAVE_ASSIGNMENT_MODEL_REJECTION = 'REJECTED: wave assignment_model requires conflict-safety substrate';
+const WAVE_ASSIGNMENT_METADATA_REJECTION = 'REJECTED: wave assignment metadata requires conflict-safety substrate';
+
+function hasNonEmptyArrayField(value) {
+  return Array.isArray(value) && value.length > 0;
+}
+
+function collectFlatPoolGuardRejections(fanoutConfig) {
+  const rejections = [];
+  if (fanoutConfig.assignment_model === WAVE_ASSIGNMENT_MODEL) {
+    rejections.push({
+      scope: 'fanout',
+      label: null,
+      field: 'assignment_model',
+      message: WAVE_ASSIGNMENT_MODEL_REJECTION,
+    });
+  }
+
+  for (const lineage of fanoutConfig.executors) {
+    if (lineage.assignment_model === WAVE_ASSIGNMENT_MODEL) {
+      rejections.push({
+        scope: 'lineage',
+        label: lineage.label,
+        field: 'assignment_model',
+        message: WAVE_ASSIGNMENT_MODEL_REJECTION,
+      });
+    }
+
+    const reservedFields = [];
+    if (hasNonEmptyArrayField(lineage.depends_on)) {
+      reservedFields.push('depends_on');
+    }
+    if (hasNonEmptyArrayField(lineage.touches)) {
+      reservedFields.push('touches');
+    }
+    if (reservedFields.length > 0) {
+      rejections.push({
+        scope: 'lineage',
+        label: lineage.label,
+        field: reservedFields.join(','),
+        message: WAVE_ASSIGNMENT_METADATA_REJECTION,
+      });
+    }
+  }
+
+  return rejections;
+}
+
+/**
+ * Force fan-out execution onto the existing flat pool while wave planning is gated.
+ *
+ * @param {Object} fanoutConfig - Parsed fan-out config.
+ * @returns {{ config: Object, rejections: Array<Object> }} Guarded config and rejection records.
+ */
+function applyFlatPoolAssignmentGuard(fanoutConfig) {
+  const rejections = collectFlatPoolGuardRejections(fanoutConfig);
+  return {
+    config: {
+      ...fanoutConfig,
+      assignment_model: FLAT_POOL_ASSIGNMENT_MODEL,
+      executors: fanoutConfig.executors.map((lineage) => ({
+        ...lineage,
+        assignment_model: FLAT_POOL_ASSIGNMENT_MODEL,
+      })),
+    },
+    rejections,
+  };
+}
+
+function logFlatPoolGuardRejections({ rejections, ledgerPath, runId, loopType, specFolder }) {
+  if (rejections.length === 0) {
+    return;
+  }
+  const wavePlanner = createWavePlannerInterface();
+  for (const rejection of rejections) {
+    const labelSuffix = rejection.label ? ` lineage=${rejection.label}` : '';
+    process.stderr.write(`[fanout-run] ${rejection.message}${labelSuffix}\n`);
+    appendFanoutStatusLedger(ledgerPath, {
+      event: 'assignment_model_rejected',
+      severity: 'warning',
+      at: new Date().toISOString(),
+      run_id: runId,
+      loop_type: loopType,
+      spec_folder: specFolder,
+      planner_status: wavePlanner.status,
+      fallback_assignment_model: FLAT_POOL_ASSIGNMENT_MODEL,
+      ...rejection,
+    });
   }
 }
 
@@ -794,17 +888,27 @@ async function main() {
     throw inputError('fanoutConfigJson is not valid JSON');
   }
 
-  const fanoutConfig = parseFanoutConfig(rawConfig);
-  const allLineages = expandLineages(fanoutConfig);
-  const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
-  const slotIntervalMs = progressHeartbeatMs;
-
-  // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
-  const cliLineages = allLineages.filter((l) => l.kind !== 'native');
   const lineagesDir = path.join(baseArtifactDir, 'lineages');
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  const parsedFanoutConfig = parseFanoutConfig(rawConfig);
+  const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
+  const fanoutConfig = guardedAssignment.config;
+  const allLineages = expandLineages(fanoutConfig);
+  const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
+  const slotIntervalMs = progressHeartbeatMs;
+
+  logFlatPoolGuardRejections({
+    rejections: guardedAssignment.rejections,
+    ledgerPath,
+    runId,
+    loopType,
+    specFolder,
+  });
+
+  // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
+  const cliLineages = allLineages.filter((l) => l.kind !== 'native');
   const checkpointPath = waitCheckpointPath(baseArtifactDir);
   const resumeWaiting = await resumeWaitingCheckpoint({
     checkpointPath,
@@ -1064,4 +1168,5 @@ module.exports = {
   decorateSlotAccountingEvent,
   startLineageProgressHeartbeat,
   updateLineageSnapshot,
+  applyFlatPoolAssignmentGuard,
 };

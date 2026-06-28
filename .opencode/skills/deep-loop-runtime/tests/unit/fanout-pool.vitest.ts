@@ -10,6 +10,7 @@ const {
   runCappedPool,
   buildPoolSummary,
   detectOrphanedLineages,
+  createWavePlannerInterface,
   markOrphanedLineages,
   appendStatusLedger,
   readRetryCountsFromLedger,
@@ -51,6 +52,14 @@ const {
   }>;
   buildPoolSummary: (results: Array<Record<string, unknown>>) => {
     summary: { failure_classes: { timeout: number; exit: number; salvage_miss: number } };
+  };
+  createWavePlannerInterface: () => {
+    assignmentModel: string;
+    status: string;
+    selectEligibleAssignments: () => never;
+    packDisjointGroups: () => never;
+    capConcurrentGroups: () => never;
+    planWave: () => never;
   };
   detectOrphanedLineages: (records: Array<Record<string, unknown>>) => Array<{ label: string }>;
   markOrphanedLineages: (ledgerPath: string, options?: { now?: () => Date | string }) => Array<{ label: string }>;
@@ -598,6 +607,16 @@ describe('runCappedPool', () => {
 });
 
 describe('status ledger helpers', () => {
+  it('exposes a dormant wave-planner interface without scheduling work', () => {
+    const planner = createWavePlannerInterface();
+
+    expect(planner).toMatchObject({ assignmentModel: 'wave', status: 'dormant' });
+    expect(() => planner.selectEligibleAssignments()).toThrow('wave planner is dormant');
+    expect(() => planner.packDisjointGroups()).toThrow('wave planner is dormant');
+    expect(() => planner.capConcurrentGroups()).toThrow('wave planner is dormant');
+    expect(() => planner.planWave()).toThrow('wave planner is dormant');
+  });
+
   it('keeps the failure-class rollup bounded for missing labels', () => {
     const envelope = buildPoolSummary([
       { label: 'legacy', status: 'rejected', error: { message: 'old shape' } },

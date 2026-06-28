@@ -28,6 +28,9 @@ const { classifyLineageFailure } = require('./lib/cli-guards.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const LAG_CEILING_ACTION_ABORT_REQUEUE = 'abort-requeue';
+const WAVE_ASSIGNMENT_MODEL = 'wave';
+const WAVE_PLANNER_STATUS_DORMANT = 'dormant';
+const WAVE_PLANNER_DORMANT_MESSAGE = 'wave planner is dormant until conflict-safety substrate is available';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -158,6 +161,30 @@ function buildLagCeilingTimeoutError({ label, lagMs, lagCeilingMs }) {
   error.timedOut = true;
   error.exitCode = null;
   return error;
+}
+
+function throwDormantWavePlannerError() {
+  throw new Error(WAVE_PLANNER_DORMANT_MESSAGE);
+}
+
+/**
+ * Create the dormant wave-planner contract for future dependency-aware dispatch.
+ *
+ * The methods name the future planning phases without routing production traffic
+ * through them. Runtime dispatch stays on `runCappedPool` until conflict safety
+ * can make overlapping write domains unrepresentable.
+ *
+ * @returns {Object} Dormant planner interface.
+ */
+function createWavePlannerInterface() {
+  return Object.freeze({
+    assignmentModel: WAVE_ASSIGNMENT_MODEL,
+    status: WAVE_PLANNER_STATUS_DORMANT,
+    selectEligibleAssignments: throwDormantWavePlannerError,
+    packDisjointGroups: throwDormantWavePlannerError,
+    capConcurrentGroups: throwDormantWavePlannerError,
+    planWave: throwDormantWavePlannerError,
+  });
 }
 
 function readLedgerRecords(ledgerPath) {
@@ -732,6 +759,7 @@ module.exports = {
   buildPoolGauges,
   classifyLineageFailure,
   detectOrphanedLineages,
+  createWavePlannerInterface,
   markOrphanedLineages,
   readRetryCountsFromLedger,
   appendStatusLedger,

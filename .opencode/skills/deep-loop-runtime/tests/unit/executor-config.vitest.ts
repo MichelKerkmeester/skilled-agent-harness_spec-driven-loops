@@ -231,8 +231,12 @@ describe('parseFanoutConfig', () => {
     expect(config.maxRetries).toBe(5);
     expect(config.lagCeilingMs).toBe(0);
     expect(config.progressHeartbeatSeconds).toBe(0);
+    expect(config.assignment_model).toBe('flat_pool');
     expect(config.executors[0].count).toBe(1);
     expect(config.executors[0].iterations).toBeNull();
+    expect(config.executors[0].assignment_model).toBe('flat_pool');
+    expect(config.executors[0].depends_on).toEqual([]);
+    expect(config.executors[0].touches).toEqual([]);
   });
 
   it('accepts per-lineage cli-claude-code configDir in fan-out config', () => {
@@ -242,6 +246,34 @@ describe('parseFanoutConfig', () => {
       ],
     });
     expect(config.executors[0].configDir).toBe('~/.claude-account2');
+  });
+
+  it('accepts reserved wave assignment metadata without changing defaults', () => {
+    const config = parseFanoutConfig({
+      executors: [
+        {
+          kind: 'native',
+          label: 'planner',
+          depends_on: ['prep'],
+          touches: ['.opencode/skills/deep-loop-runtime/scripts/**'],
+        },
+      ],
+    });
+    expect(config.assignment_model).toBe('flat_pool');
+    expect(config.executors[0]).toMatchObject({
+      assignment_model: 'flat_pool',
+      depends_on: ['prep'],
+      touches: ['.opencode/skills/deep-loop-runtime/scripts/**'],
+    });
+  });
+
+  it('accepts wave as a guarded schema value for fan-out and lineages', () => {
+    const config = parseFanoutConfig({
+      assignment_model: 'wave',
+      executors: [{ kind: 'native', label: 'planner', assignment_model: 'wave' }],
+    });
+    expect(config.assignment_model).toBe('wave');
+    expect(config.executors[0].assignment_model).toBe('wave');
   });
 
   it('honors explicit concurrency, max retries, lag ceiling, heartbeat, count, and per-lineage iterations', () => {

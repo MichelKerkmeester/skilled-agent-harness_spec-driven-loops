@@ -243,6 +243,79 @@ describe('fanout-run.cjs — module basics', () => {
     expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
   });
 
+  it('logs and falls back to flat_pool when wave assignment is requested', async () => {
+    const binDir = makeTempDir('fanout-run-wave-bin-');
+    writeStubBinary(binDir, 'codex');
+    const baseDir = makeTempDir('fanout-run-wave-base-');
+    const fanoutConfig = JSON.stringify({
+      assignment_model: 'wave',
+      executors: [
+        {
+          label: 'wave-seat',
+          kind: 'cli-codex',
+          model: 'o4-mini',
+          assignment_model: 'wave',
+          depends_on: ['prep'],
+          touches: ['.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs'],
+        },
+      ],
+      concurrency: 1,
+    });
+    const hermetic = useHermeticEnv('wave-fallback');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-wave',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stderr).toContain('REJECTED: wave assignment_model requires conflict-safety substrate');
+    expect(result.stderr).toContain('REJECTED: wave assignment metadata requires conflict-safety substrate');
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      summary?: { succeeded?: number; failed?: number };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0 });
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const rejectedEvents = ledgerEvents.filter((event) => event.event === 'assignment_model_rejected');
+    expect(rejectedEvents).toEqual([
+      expect.objectContaining({
+        field: 'assignment_model',
+        message: 'REJECTED: wave assignment_model requires conflict-safety substrate',
+        fallback_assignment_model: 'flat_pool',
+        planner_status: 'dormant',
+      }),
+      expect.objectContaining({
+        label: 'wave-seat',
+        field: 'assignment_model',
+        message: 'REJECTED: wave assignment_model requires conflict-safety substrate',
+        fallback_assignment_model: 'flat_pool',
+      }),
+      expect.objectContaining({
+        label: 'wave-seat',
+        field: 'depends_on,touches',
+        message: 'REJECTED: wave assignment metadata requires conflict-safety substrate',
+        fallback_assignment_model: 'flat_pool',
+      }),
+    ]);
+    expect(ledgerEvents.some((event) => event.event === 'started' && event.label === 'wave-seat')).toBe(true);
+  });
+
   it('replays a native-only fanout cassette with a stable normalized run envelope', async () => {
     const hermetic = useHermeticEnv('native-cassette');
     const baseDir = makeTempDir('fanout-run-cassette-base-');
