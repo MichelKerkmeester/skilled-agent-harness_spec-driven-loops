@@ -12,7 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "d4-r11 automation freeze",
-      "headless automation gate design build"
+      "headless automation gate design build",
+      "open design automation deny by default",
+      "automation freeze plan",
+      "automation freeze tasks",
+      "automation freeze checklist",
+      "open design automation freeze implementation summary",
+      "headless automation deny by default record",
+      "automation freeze escape paths summary"
     ],
     "key_topics": [
       "d4-r11",
@@ -22,18 +29,53 @@
       "gate",
       "design",
       "build",
-      "automationbinding",
-      "routine",
-      "schedule",
-      "subject",
-      "payload"
+      "open",
+      "deny",
+      "default",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "guarded_proxy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +83,133 @@
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Open Design",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Automation Freeze",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Problem Statement",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "The Open Design",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "Purpose Append",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Headless Automation Freeze",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freeze Rule",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freeze automationBinding (routine/schedule/subject/payload digests, maxRunsBeforeReview, singleFire/reviewWindow) at schedule creation; fire-time replay only.",
+    "causal_summary": "A headless automation fires with no interactive operator present",
     "created_at": "2026-06-28T12:39:54.691Z",
-    "last_save_at": "2026-06-28T12:39:54.691Z",
+    "last_save_at": "2026-06-28T21:03:40.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1dea47102a2bfe22deded262cbf045c28ef5304247ea38c3fe2114efcba84780",
+    "source_fingerprint": "sha256:cca3b798e17b1553da54d97f8977acfab3af9b8f1ebbe09c35d6a1f467fdf2a1",
     "source_doc_hashes": {
-      "spec.md": "2fa3f738d5f82a2164d5359d386e78dbec511e31bb98e12e7612090e2793d5c8"
+      "spec.md": "c0577c4fb07cc7baf6924278319c50565826750ec44016fa6849e5145f91f477",
+      "plan.md": "93dfe173c865e0b210e8ccac76a34f67a7a4107e7e6d3a3373e25ad3d1debe01",
+      "tasks.md": "7327229bc327f393d1eb4d681e4f96785420b6ae2376b956d1d9380579226ab7",
+      "checklist.md": "6a4d839dfb8418dfc559c47a3fed5bde7f5d709d3622a16b45d5f46772959a6a",
+      "implementation-summary.md": "85c8542cca1da74aea26908c9d631ccbf9ee912b60e335cc0544921f5e0ee974"
     },
     "last_active_child_id": null,
     "last_active_at": null

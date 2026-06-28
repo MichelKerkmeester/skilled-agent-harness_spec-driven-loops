@@ -1,22 +1,16 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/011-automation-freeze",
-  "description": "Freeze automationBinding (routine/schedule/subject/payload digests, maxRunsBeforeReview, singleFire/reviewWindow) at schedule creation; fire-time repl",
+  "description": "A headless automation fires with no interactive operator present",
   "keywords": [
-    "freeze",
-    "automationbinding",
-    "routine",
-    "schedule",
-    "subject",
-    "payload",
-    "digests",
-    "maxrunsbeforereview",
-    "singlefire",
-    "reviewwindow",
-    "creation",
-    "fire-time",
-    "repl"
+    "headless",
+    "automation",
+    "fires",
+    "interactive",
+    "operator",
+    "present"
   ],
-  "lastUpdated": "2026-06-28T12:39:54.569Z",
+  "lastUpdated": "2026-06-28T21:03:40.507Z",
   "specId": "011",
   "folderSlug": "automation-freeze",
   "parentChain": [
@@ -28,6 +22,5 @@
     "004-d4-open-design-pairing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

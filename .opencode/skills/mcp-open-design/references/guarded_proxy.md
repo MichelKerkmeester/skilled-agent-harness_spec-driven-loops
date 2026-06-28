@@ -207,3 +207,28 @@ The contract is acceptable when all of these are true:
 | A caller omits `openDesignPurpose` or supplies an unknown purpose. | `DENY` for design; the purpose is `unclassified`, and unknown ⇒ guarded. |
 | A new or unknown design-affecting tool is absent from `exemptTransport`. | `DENY` without a token; unknown ⇒ guarded. |
 | A caller reaches the bundled daemon without traversing the agent-side adapter. | Not enforceable by this proxy; the daemon residual is explicitly out of scope. |
+
+## Automation Freeze
+
+A design-affecting automation is FROZEN — DENIED by default. This includes `od automation create` or `od automation run` when the automation triggers a design-mutating operation, and any scheduled `start_run` fire that would launch design work. The reason is the token contract itself: [`DESIGN_PROOF_TOKEN` Section 2](../../sk-design/references/design_proof_token.md#2-field-schema-v1) requires `singleUse: true` and a short `expiresAt` window of approximately 300 seconds. An unattended automation cannot mint or carry a live interactive single-use token at fire time.
+
+There are only two escape paths:
+
+| Escape path | Requirement |
+|---|---|
+| Per-execution fresh-mint | The automation pauses for a live operator to mint a fresh single-use token bound to that fire's actual outgoing payload. This converts a headless fire into an attended execution. |
+| Named, auditable pre-authorization | The automation records a create-time frozen binding: subject digest, payload digests, `maxRuns`, and `reviewWindow`. Fire-time accepts only an exact replay of that binding within the review window and remaining run budget. Any drift, missing binding, expired window, or exhausted budget is `DENY`. |
+
+Read-only automation remains exempt when it feeds or mutates no design decision. `od automation list`, `od automation view`, and `od automation show` are inventory/status reads; with `openDesignPurpose: "openDesignExemption"`, they require no design token.
+
+The named residual is the bundled Open Design daemon's own internal scheduler. It can fire a scheduled automation without traversing the agent-side adapter, so agent-side policy cannot freeze it. This section is a prose policy contract at the agent/proxy boundary, not a daemon patch.
+
+Acceptance for this section:
+
+| Scenario | Expected result |
+|---|---|
+| A design-affecting automation fires without a live per-execution token or valid pre-authorized replay binding. | `DENY`. |
+| The automation pauses for a live operator and receives a fresh single-use token bound to that fire's outgoing payload. | `ALLOW` if the normal token validator passes. |
+| The automation fire exactly replays a named pre-authorized binding inside the review window and run budget. | `ALLOW`; otherwise `DENY`. |
+| `od automation list`, `od automation view`, or `od automation show` is used only for read-only inventory/status and carries `openDesignPurpose: "openDesignExemption"`. | `ALLOW` without a token. |
+| The bundled daemon's internal scheduler fires without traversing the agent-side adapter. | Not enforceable by this proxy; the residual is named plainly. |
