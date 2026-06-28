@@ -3,11 +3,13 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { closeSync, existsSync, fsyncSync, openSync, renameSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { dirname, resolve } from 'node:path';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. HELPERS
 // ───────────────────────────────────────────────────────────────────
+
+const serializedStateCache = new Map<string, string>();
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;
@@ -25,6 +27,14 @@ function makeTempPath(targetPath: string): string {
   return `${targetPath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
 }
 
+function serializeState(data: unknown): string {
+  const serialized = JSON.stringify(data);
+  if (typeof serialized !== 'string') {
+    throw new TypeError('State data must serialize to JSON.');
+  }
+  return serialized;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. EXPORTS
 // ───────────────────────────────────────────────────────────────────
@@ -34,6 +44,8 @@ function makeTempPath(targetPath: string): string {
  *
  * Writes to a temp file first, fsyncs it, then renames onto the target
  * so readers always see either the previous complete file or the new one.
+ * Prefer writeStateIfChangedAtomic for production snapshot writes so
+ * unchanged state does not pay the fsync + rename cost.
  *
  * @param path - Target file path.
  * @param data - Serializable data to write.
@@ -41,6 +53,35 @@ function makeTempPath(targetPath: string): string {
  */
 export function writeStateAtomic(path: string, data: unknown): void {
   writeTextAtomic(path, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+/**
+ * Atomically write JSON-serializable state only when its serialized form changed.
+ *
+ * The cache is keyed by the resolved target path so equivalent relative paths
+ * share the same skip decision.
+ *
+ * @param path - Target file path.
+ * @param data - Serializable data to write.
+ * @param cache - Optional cache override for isolated callers or tests.
+ * @returns True when a write occurred; false when unchanged state was skipped.
+ * @throws If serialization, write, fsync, or rename fails.
+ */
+export function writeStateIfChangedAtomic(
+  path: string,
+  data: unknown,
+  cache: Map<string, string> = serializedStateCache,
+): boolean {
+  const targetPath = resolve(path);
+  const serialized = serializeState(data);
+
+  if (cache.get(targetPath) === serialized) {
+    return false;
+  }
+
+  writeStateAtomic(targetPath, data);
+  cache.set(targetPath, serialized);
+  return true;
 }
 
 /**
