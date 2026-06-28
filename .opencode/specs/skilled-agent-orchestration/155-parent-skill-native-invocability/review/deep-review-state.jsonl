@@ -1,0 +1,5 @@
+{"type":"config","mode":"review","executor":"gpt-5.5/xhigh/fast","reviewTarget":".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability (post-remediation)","maxIterations":10,"createdAt":"2026-06-28T13:40:52.093Z"}
+{"type":"iteration","run":1,"dimension":"correctness","newFindings":2,"p0":0,"p1":2,"p2":0,"wallSeconds":208,"error":false,"timestamp":"2026-06-28T13:44:20.055Z"}
+{"type":"iteration","run":2,"dimension":"correctness","newFindings":1,"p0":0,"p1":3,"p2":0,"wallSeconds":180,"error":false,"timestamp":"2026-06-28T13:47:47.701Z"}
+{"type":"iteration","run":3,"dimension":"traceability","newFindings":1,"p0":0,"p1":4,"p2":0,"wallSeconds":171,"error":false,"timestamp":"2026-06-28T13:50:39.092Z"}
+{"type":"iteration","run":4,"dimension":"traceability","newFindings":1,"p0":0,"p1":5,"p2":0,"wallSeconds":247,"error":false,"timestamp":"2026-06-28T13:54:46.375Z"}
