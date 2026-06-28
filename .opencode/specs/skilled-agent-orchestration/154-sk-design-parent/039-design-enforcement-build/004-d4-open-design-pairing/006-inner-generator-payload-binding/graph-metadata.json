@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d4-r6 inner generator binding",
-      "payload binding design build"
+      "payload binding design build",
+      "inner generator payload binding plan",
+      "open design inner generation binding",
+      "build-fire payload digest binding",
+      "inner generator drift denial",
+      "inner generator binding tasks",
+      "inner payload binding implementer",
+      "build-fire payload digest work items",
+      "inner generation drift denial tasks",
+      "inner generator binding checklist",
+      "inner payload binding verification"
     ],
     "key_topics": [
       "d4-r6",
@@ -22,18 +32,53 @@
       "payload",
       "design",
       "build",
-      "hash",
-      "message",
-      "form-answer",
-      "token",
-      "deny"
+      "plan",
+      "open",
+      "generation",
+      "build-fire",
+      "digest"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-open-design/references/inner_generator_binding.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "inner_generator_binding.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/inner_generator_binding.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -41,53 +86,133 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Open Design",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Purpose Author",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview When",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bound Inner Payload",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recompute And Reject",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inner Generation Boundary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Hash --message/form-answer payload into the token, deny generic 'use recommended defaults' without per-question justification, and require an explicit innerModel.",
+    "causal_summary": "The guarded proxy binds the FIRST outgoing Open Design request to the proof token, but generation is multi-turn",
     "created_at": "2026-06-28T12:39:54.441Z",
-    "last_save_at": "2026-06-28T12:39:54.441Z",
+    "last_save_at": "2026-06-28T19:45:46.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52de82e4e190c683ffed66292183f10218c458130a63bb82935a288d14dc82f3",
+    "source_fingerprint": "sha256:de67d89975cb6591328f517a70a5595d6b2d6eaa1a5aba2624175cb48f0e467f",
     "source_doc_hashes": {
-      "spec.md": "1dc49bdc973161552afe1bfc741648b47a850a3a147a282af127341d046e579a"
+      "spec.md": "3f45f700507252a3abb5c6234d2de14b66dd56e4f4294793fbdecee5b69c8b13",
+      "plan.md": "cc08e376ecb7e9a6c552dd03be0cf353b52a0ff9d1d211b6540a98c847cf8497",
+      "tasks.md": "661d974f79797ad82f38cf224febf5bd2fd05184a62408165346a688ded3dad5",
+      "checklist.md": "e703175f89094423562e69db86852cdfda61765d32612a1292ad83f7757b92bc",
+      "implementation-summary.md": "db56362bd1770dd54add52319eadcfc0a31306296c2e080156ff366feba1611d"
     },
     "last_active_child_id": null,
     "last_active_at": null
