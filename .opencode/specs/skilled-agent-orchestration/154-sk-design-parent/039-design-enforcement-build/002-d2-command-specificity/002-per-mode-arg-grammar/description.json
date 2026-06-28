@@ -1,0 +1,32 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/002-per-mode-arg-grammar",
+  "description": "Replace the identical generic argument-hint with a per-mode argumentHint in command-metadata.json, projected to and drift-checked against the /design:",
+  "keywords": [
+    "replace",
+    "identical",
+    "generic",
+    "argument-hint",
+    "per-mode",
+    "argumenthint",
+    "command-metadata",
+    "json",
+    "projected",
+    "drift-checked",
+    "against",
+    "design"
+  ],
+  "lastUpdated": "2026-06-28T12:40:01.091Z",
+  "specId": "002",
+  "folderSlug": "per-mode-arg-grammar",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

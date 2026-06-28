@@ -1,0 +1,31 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/001-command-recipe-projection",
+  "description": "Add a sibling `command-metadata.json` (argumentGrammar + choreography[] + outputContract + nextOptions[]) projecting over the 5 workflowMode keys and",
+  "keywords": [
+    "add",
+    "sibling",
+    "command-metadata",
+    "json",
+    "argumentgrammar",
+    "choreography",
+    "outputcontract",
+    "nextoptions",
+    "projecting",
+    "workflowmode",
+    "keys"
+  ],
+  "lastUpdated": "2026-06-28T12:40:09.936Z",
+  "specId": "001",
+  "folderSlug": "command-recipe-projection",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

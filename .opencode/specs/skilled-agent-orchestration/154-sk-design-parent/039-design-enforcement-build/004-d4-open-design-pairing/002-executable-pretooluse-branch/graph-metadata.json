@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/002-executable-pretooluse-branch",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/002-executable-pretooluse-branch",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r2 pretooluse branch",
+      "executable design gate design build"
+    ],
+    "key_topics": [
+      "d4-r2",
+      "pretooluse",
+      "branch",
+      "executable",
+      "design",
+      "gate",
+      "build",
+      "insert",
+      "evaluateopendesignprecondition",
+      "input",
+      "policy",
+      "bash-only"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Insert evaluateOpenDesignPrecondition(input,policy) before the Bash-only return {} in pre-tool-use.ts and deny on validator exception.",
+    "created_at": "2026-06-28T12:39:55.693Z",
+    "last_save_at": "2026-06-28T12:39:55.693Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:acda254e40415970a34f3d5fccfc4895b7b8467f5f619fa73cb4ed3c88f36afe",
+    "source_doc_hashes": {
+      "spec.md": "8a5398d0c02c7e4c9501fff54dd4adaf60363b6133d01cffde25fa434ac8485f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

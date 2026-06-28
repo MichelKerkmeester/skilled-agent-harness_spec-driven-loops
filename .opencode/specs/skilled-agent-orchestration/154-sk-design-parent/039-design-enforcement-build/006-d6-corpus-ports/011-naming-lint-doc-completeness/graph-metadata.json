@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/011-naming-lint-doc-completeness",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/011-naming-lint-doc-completeness",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r11 naming lint doc completeness",
+      "naming lint design build"
+    ],
+    "key_topics": [
+      "d6-r11",
+      "naming",
+      "lint",
+      "doc",
+      "completeness",
+      "design",
+      "build",
+      "add",
+      "conditional",
+      "design-system",
+      "artifact",
+      "contract"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a conditional design-system artifact contract (naming regexes, token tiers, required doc headings) for token/component/library outputs only.",
+    "created_at": "2026-06-28T12:40:11.129Z",
+    "last_save_at": "2026-06-28T12:40:11.129Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d975fcd23b353f81c43c2e0ff15ef0a02701d9cc7fbeda997e8dffbfa116bf80",
+    "source_doc_hashes": {
+      "spec.md": "f6e9cce992e15363b0fcd418ccc1fdc7575bccf9224f63a3e108f328b26106e5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

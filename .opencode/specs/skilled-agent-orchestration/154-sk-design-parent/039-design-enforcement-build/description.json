@@ -1,0 +1,31 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build",
+  "description": "Phase-parent for the buildable backlog from the 037 routing-and-integration research. Holds six dimension sub-parents (D1 residual craft, D2 command s",
+  "keywords": [
+    "phase-parent",
+    "buildable",
+    "backlog",
+    "037",
+    "routing-and-integration",
+    "research",
+    "holds",
+    "six",
+    "dimension",
+    "sub-parents",
+    "residual",
+    "craft",
+    "command"
+  ],
+  "lastUpdated": "2026-06-28T12:39:52.598Z",
+  "specId": "039",
+  "folderSlug": "design-enforcement-build",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

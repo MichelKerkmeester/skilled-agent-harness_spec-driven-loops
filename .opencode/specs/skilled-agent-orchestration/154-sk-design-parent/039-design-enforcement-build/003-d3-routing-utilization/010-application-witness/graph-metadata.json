@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/010-application-witness",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/010-application-witness",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r10 application witness",
+      "loaded determinative witness design build"
+    ],
+    "key_topics": [
+      "d3-r10",
+      "application",
+      "witness",
+      "loaded",
+      "determinative",
+      "design",
+      "build",
+      "add",
+      "section",
+      "proof",
+      "card",
+      "flag"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add an APPLICATION WITNESS section to the application proof card and a proof_check.py flag classifying not-loaded/loaded-inert/loaded-determinative.",
+    "created_at": "2026-06-28T12:39:57.564Z",
+    "last_save_at": "2026-06-28T12:39:57.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:899fd8d0b6e3178d5b7e97eb2dd7f2b509da22a162690ddf4437365b71d44599",
+    "source_doc_hashes": {
+      "spec.md": "5a79f138aa16e3619e6bec98a6f27c0e2b391d897510247c8e5a1cab09472269"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

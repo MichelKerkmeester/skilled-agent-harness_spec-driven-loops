@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/012-variant-parameter-contract",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/012-variant-parameter-contract",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r12 variant parameter contract",
+      "variant parameter contract design build"
+    ],
+    "key_topics": [
+      "d1-r12",
+      "variant",
+      "parameter",
+      "contract",
+      "design",
+      "build",
+      "add",
+      "sk-design",
+      "shared",
+      "assets",
+      "defining",
+      "live-variant"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ranges",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "knobs",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add sk-design/shared/assets/variant_parameter_contract.md defining the live-variant numeric knobs with ranges and owner modes, tested across Figma/Open Design/live.",
+    "created_at": "2026-06-28T12:40:06.038Z",
+    "last_save_at": "2026-06-28T12:40:06.038Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d870b39a81f07f9fc9394b6480fbf72ad998ce8b7be44b49887ebca19103eb87",
+    "source_doc_hashes": {
+      "spec.md": "d02a5c93b36693ea33257912523588b1ffe7c248c587614ac4c9dff0c9d0846c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

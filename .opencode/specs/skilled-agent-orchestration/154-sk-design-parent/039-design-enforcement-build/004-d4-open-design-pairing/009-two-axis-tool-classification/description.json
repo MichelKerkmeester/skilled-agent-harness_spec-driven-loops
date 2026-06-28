@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/009-two-axis-tool-classification",
+  "description": "Split tool_surface §3 into mutationSafety × designInfluence, stop labeling ambiguous_read tools always-safe, and emit non-design-use receipts.",
+  "keywords": [
+    "split",
+    "mutationsafety",
+    "designinfluence",
+    "stop",
+    "labeling",
+    "tools",
+    "always-safe",
+    "emit",
+    "non-design-use",
+    "receipts"
+  ],
+  "lastUpdated": "2026-06-28T12:39:55.067Z",
+  "specId": "009",
+  "folderSlug": "two-axis-tool-classification",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

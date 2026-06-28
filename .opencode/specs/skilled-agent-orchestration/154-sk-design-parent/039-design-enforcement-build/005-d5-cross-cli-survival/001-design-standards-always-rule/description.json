@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+  "description": "Add a short Design Standards Loading ALWAYS entry beside the existing code-standards rule in all 3 cli-* SKILLs.",
+  "keywords": [
+    "add",
+    "short",
+    "design",
+    "standards",
+    "loading",
+    "always",
+    "entry",
+    "beside",
+    "existing",
+    "code-standards",
+    "rule",
+    "cli",
+    "skills"
+  ],
+  "lastUpdated": "2026-06-28T12:40:06.915Z",
+  "specId": "001",
+  "folderSlug": "design-standards-always-rule",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "005-d5-cross-cli-survival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

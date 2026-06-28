@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r1 design standards always rule",
+      "design standards loading design build"
+    ],
+    "key_topics": [
+      "d5-r1",
+      "design",
+      "standards",
+      "always",
+      "rule",
+      "loading",
+      "build",
+      "add",
+      "short",
+      "entry",
+      "beside",
+      "existing"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Standards Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Standards Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a short Design Standards Loading ALWAYS entry beside the existing code-standards rule in all 3 cli-* SKILLs.",
+    "created_at": "2026-06-28T12:40:07.040Z",
+    "last_save_at": "2026-06-28T12:40:07.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3382b6da43b3968b40cae6f9e9a3c439edeb680573ce95c619b6ed8c281deb58",
+    "source_doc_hashes": {
+      "spec.md": "f651373eacbf159f34f26bb8f6ca2081346a3d5cc889d7bb5e31525ab7d25019"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/002-transform-verb-aliases",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/002-transform-verb-aliases",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r2 transform verbs",
+      "transform verb aliases design build"
+    ],
+    "key_topics": [
+      "d1-r2",
+      "transform",
+      "verbs",
+      "verb",
+      "aliases",
+      "design",
+      "build",
+      "add",
+      "transform-verb",
+      "mode-registry",
+      "json",
+      "plus"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "gold",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add transform-verb aliases to mode-registry.json plus a design-interface transform_application.md authoring lane with gold prompts.",
+    "created_at": "2026-06-28T12:40:06.534Z",
+    "last_save_at": "2026-06-28T12:40:06.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4b082b875a8ae72002c884261d826e0f68e414396bb131ae1a3919b37bc2ba21",
+    "source_doc_hashes": {
+      "spec.md": "95adc6663aa37444aa3ab97f8d9a1e265bccb137b249202e9c62f3d61433fc8a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

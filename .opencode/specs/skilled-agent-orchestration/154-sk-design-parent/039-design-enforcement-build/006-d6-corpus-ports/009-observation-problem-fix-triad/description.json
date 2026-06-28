@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "description": "Add a neutral OBSERVATION slot before Problem/Fix to audit_contract.md + audit_report_template.md, with an optional proof_check.py --require-observati",
+  "keywords": [
+    "add",
+    "neutral",
+    "observation",
+    "slot",
+    "problem",
+    "fix",
+    "optional",
+    "require-observati"
+  ],
+  "lastUpdated": "2026-06-28T12:40:10.187Z",
+  "specId": "009",
+  "folderSlug": "observation-problem-fix-triad",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

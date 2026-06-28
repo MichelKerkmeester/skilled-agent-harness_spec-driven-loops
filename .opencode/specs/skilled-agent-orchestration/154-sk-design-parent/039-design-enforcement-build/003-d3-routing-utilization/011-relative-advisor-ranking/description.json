@@ -1,0 +1,31 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/011-relative-advisor-ranking",
+  "description": "Add rankBelowSkillIds to the playbook schema and scoreRelativeAdvisorRanking() in advisor-probe.cjs to gate sk-design #1 with transports ranked below.",
+  "keywords": [
+    "add",
+    "rankbelowskillids",
+    "playbook",
+    "schema",
+    "scorerelativeadvisorranking",
+    "advisor-probe",
+    "cjs",
+    "gate",
+    "sk-design",
+    "transports",
+    "ranked"
+  ],
+  "lastUpdated": "2026-06-28T12:39:59.540Z",
+  "specId": "011",
+  "folderSlug": "relative-advisor-ranking",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

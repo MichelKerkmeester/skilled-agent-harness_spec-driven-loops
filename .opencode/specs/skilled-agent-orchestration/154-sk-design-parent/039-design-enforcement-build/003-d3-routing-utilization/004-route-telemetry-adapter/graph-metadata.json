@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/004-route-telemetry-adapter",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/004-route-telemetry-adapter",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r4 route telemetry adapter",
+      "route miss rate design build"
+    ],
+    "key_topics": [
+      "d3-r4",
+      "route",
+      "telemetry",
+      "adapter",
+      "miss",
+      "rate",
+      "design",
+      "build",
+      "extend",
+      "router-replay",
+      "cjs",
+      "output"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "routeTelemetry",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "telemetry",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Extend router-replay.cjs output with routeTelemetry and add reducer miss-rate metrics that separate unobserved from observed-wrong routes.",
+    "created_at": "2026-06-28T12:39:59.158Z",
+    "last_save_at": "2026-06-28T12:39:59.158Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2717d49ca0af4261e15bd58a41337bc8a7e950156a91210c30d0e37b7e1825d4",
+    "source_doc_hashes": {
+      "spec.md": "ad1480bf397628384faeb5b2d30694e2a49fec472d298aa483fb47ccb9012a71"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

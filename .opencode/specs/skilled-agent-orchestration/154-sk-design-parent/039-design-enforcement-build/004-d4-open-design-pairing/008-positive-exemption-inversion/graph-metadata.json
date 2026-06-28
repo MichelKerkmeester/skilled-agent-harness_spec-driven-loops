@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/008-positive-exemption-inversion",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/008-positive-exemption-inversion",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r8 positive exemption inversion",
+      "open design purpose design build"
+    ],
+    "key_topics": [
+      "d4-r8",
+      "positive",
+      "exemption",
+      "inversion",
+      "open",
+      "design",
+      "purpose",
+      "build",
+      "replace",
+      "boolean",
+      "required",
+      "opendesignpurpose"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Replace the boolean feeds_design_decision with a required openDesignPurpose (openDesignExemption vs skDesignGate); missing maps to unclassified and is denied for design.",
+    "created_at": "2026-06-28T12:39:56.491Z",
+    "last_save_at": "2026-06-28T12:39:56.491Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:008db82cb870eef98fe828298aa7d94b153371a48feb23c7b749a22ff9003151",
+    "source_doc_hashes": {
+      "spec.md": "35a476a065566efc619a57bb6941d12292bcc71f0765ddaa916ca4d40791ddc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

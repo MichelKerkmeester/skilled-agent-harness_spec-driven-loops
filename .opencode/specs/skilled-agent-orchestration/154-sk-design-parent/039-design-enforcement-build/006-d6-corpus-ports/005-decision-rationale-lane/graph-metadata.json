@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/005-decision-rationale-lane",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/005-decision-rationale-lane",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r5 decision rationale lane",
+      "decision rationale design build"
+    ],
+    "key_topics": [
+      "d6-r5",
+      "decision",
+      "rationale",
+      "lane",
+      "design",
+      "build",
+      "add",
+      "conditional",
+      "optionsconsidered",
+      "evidencesources",
+      "tradeoffs",
+      "validationplan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rationale Structure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a conditional decision/optionsConsidered/evidenceSources/tradeoffs/validationPlan/sourceProofs field to the contract + proof card + proof_check.py.",
+    "created_at": "2026-06-28T12:40:09.042Z",
+    "last_save_at": "2026-06-28T12:40:09.042Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d669482cda63875bfa71320a0c81997ba7aa2f967eca8382f55504d6771c68b1",
+    "source_doc_hashes": {
+      "spec.md": "57564be7c759333d01ba2573fa259a1331fa18cd210ec69ee2eced67e76f41a3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

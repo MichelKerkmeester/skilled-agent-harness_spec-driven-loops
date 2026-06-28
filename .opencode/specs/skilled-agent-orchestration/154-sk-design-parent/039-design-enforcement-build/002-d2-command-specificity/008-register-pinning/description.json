@@ -1,0 +1,37 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/008-register-pinning",
+  "description": "Add registerPolicy{accepted,default:auto,resolutionOrder,askWhen,proofFields} plus a --register flag to command-metadata.json, emitting STATUS=ASK MIS",
+  "keywords": [
+    "add",
+    "registerpolicy",
+    "accepted",
+    "default",
+    "auto",
+    "resolutionorder",
+    "askwhen",
+    "prooffields",
+    "plus",
+    "register",
+    "flag",
+    "command-metadata",
+    "json",
+    "emitting",
+    "status",
+    "ask",
+    "mis"
+  ],
+  "lastUpdated": "2026-06-28T12:40:03.121Z",
+  "specId": "008",
+  "folderSlug": "register-pinning",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/003-ai-fingerprint-registry",
+  "description": "Add design-audit/assets/ai_fingerprint_registry.json plus a generated self-defect card and a validator that fails catalog tells lacking a registry row",
+  "keywords": [
+    "add",
+    "design-audit",
+    "assets",
+    "json",
+    "plus",
+    "generated",
+    "self-defect",
+    "card",
+    "validator",
+    "fails",
+    "catalog",
+    "tells",
+    "lacking",
+    "registry",
+    "row"
+  ],
+  "lastUpdated": "2026-06-28T12:40:04.863Z",
+  "specId": "003",
+  "folderSlug": "ai-fingerprint-registry",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

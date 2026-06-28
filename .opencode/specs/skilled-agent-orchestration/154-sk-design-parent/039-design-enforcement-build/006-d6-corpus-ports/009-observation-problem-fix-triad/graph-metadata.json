@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/009-observation-problem-fix-triad",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r9 observation problem fix triad",
+      "observation triad design build"
+    ],
+    "key_topics": [
+      "d6-r9",
+      "observation",
+      "problem",
+      "fix",
+      "triad",
+      "design",
+      "build",
+      "add",
+      "neutral",
+      "slot",
+      "optional",
+      "require-observation-triad"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/assets/audit_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Output Format",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "judging",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a neutral OBSERVATION slot before Problem/Fix to audit_contract.md + audit_report_template.md, with an optional proof_check.py --require-observation-triad.",
+    "created_at": "2026-06-28T12:40:10.316Z",
+    "last_save_at": "2026-06-28T12:40:10.316Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:363dc8a8c4aa041809f54033f74ee4ad5f6394f5d8ee3534eaf22da2c0639e8e",
+    "source_doc_hashes": {
+      "spec.md": "3b95d6094b1f1b8c48ce454f64af62e2c826ca9ce952b093b24219938c7a5607"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

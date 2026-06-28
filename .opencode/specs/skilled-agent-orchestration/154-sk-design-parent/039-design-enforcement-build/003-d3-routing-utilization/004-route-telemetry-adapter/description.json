@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/004-route-telemetry-adapter",
+  "description": "Extend router-replay.cjs output with routeTelemetry and add reducer miss-rate metrics that separate unobserved from observed-wrong routes.",
+  "keywords": [
+    "extend",
+    "router-replay",
+    "cjs",
+    "output",
+    "routetelemetry",
+    "add",
+    "reducer",
+    "miss-rate",
+    "metrics",
+    "separate",
+    "unobserved",
+    "observed-wrong",
+    "routes"
+  ],
+  "lastUpdated": "2026-06-28T12:39:59.035Z",
+  "specId": "004",
+  "folderSlug": "route-telemetry-adapter",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

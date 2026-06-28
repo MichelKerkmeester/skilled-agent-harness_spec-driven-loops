@@ -1,0 +1,36 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/011-naming-lint-doc-completeness",
+  "description": "Add a conditional design-system artifact contract (naming regexes, token tiers, required doc headings) for token/component/library outputs only.",
+  "keywords": [
+    "add",
+    "conditional",
+    "design-system",
+    "artifact",
+    "contract",
+    "naming",
+    "regexes",
+    "token",
+    "tiers",
+    "required",
+    "doc",
+    "headings",
+    "component",
+    "library",
+    "outputs",
+    "only"
+  ],
+  "lastUpdated": "2026-06-28T12:40:11.001Z",
+  "specId": "011",
+  "folderSlug": "naming-lint-doc-completeness",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

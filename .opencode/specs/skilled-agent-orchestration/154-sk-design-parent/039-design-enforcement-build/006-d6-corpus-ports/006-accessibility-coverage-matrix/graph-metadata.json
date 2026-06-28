@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/006-accessibility-coverage-matrix",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r6 accessibility coverage matrix",
+      "accessibility coverage design build"
+    ],
+    "key_topics": [
+      "d6-r6",
+      "accessibility",
+      "coverage",
+      "matrix",
+      "design",
+      "build",
+      "split",
+      "single",
+      "a11y",
+      "dimension",
+      "layered",
+      "keyboard"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Matrix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Split the single a11y dimension into a layered keyboard/screenReader/zoom/contrast/reducedMotion/AT/userTesting matrix in the contract + audit_contract.md, gating WCAG/ready claims.",
+    "created_at": "2026-06-28T12:40:10.852Z",
+    "last_save_at": "2026-06-28T12:40:10.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a6eb65b903511a7ae5f44905f20fa9fa365f0c1a96ebc2a846b8e08c19cc9930",
+    "source_doc_hashes": {
+      "spec.md": "057df64006f485ffe0d1074f2e3601ef39fbebaf4dc84a8e8c49b9f8e60e2c35"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/002-gated-hubroute-scorer",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/002-gated-hubroute-scorer",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r2 hubroute scorer",
+      "gated hub route design build"
+    ],
+    "key_topics": [
+      "d3-r2",
+      "hubroute",
+      "scorer",
+      "gated",
+      "hub",
+      "route",
+      "design",
+      "build",
+      "insert",
+      "hard",
+      "stage",
+      "routed-intra"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. EVIDENCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Insert a hard hubRoute stage before routed-intra in score-skill-benchmark.cjs so wrong-mode/silent-default/bundle-mismatch routing fails closed.",
+    "created_at": "2026-06-28T12:39:59.912Z",
+    "last_save_at": "2026-06-28T12:39:59.912Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:735fa8815bd532768af56dba743f72bd09e288ce27bebf8ab0e4b370040e9acd",
+    "source_doc_hashes": {
+      "spec.md": "b29f9e59f539c5f0ab1eb791998c8ceea161fed73a90c59ddd5c49f87c7a5237"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

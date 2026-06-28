@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r12 task verbs",
+      "task verbs design build"
+    ],
+    "key_topics": [
+      "d2-r12",
+      "task",
+      "verbs",
+      "design",
+      "build",
+      "promote",
+      "typeset",
+      "colorize",
+      "bolder",
+      "quieter",
+      "distill",
+      "harden"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ownerModes",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Promote typeset/colorize/bolder/quieter/distill/harden/polish/delight as command-visible task projections (not new modes) in command-metadata.json, rejecting command creep via a negative corpus.",
+    "created_at": "2026-06-28T12:40:01.470Z",
+    "last_save_at": "2026-06-28T12:40:01.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3bbd8e61e13fcf5156394cc7d36018b71b6c8f355b78a58017b1dddaa658e02d",
+    "source_doc_hashes": {
+      "spec.md": "ede0d0d066c4476cf88663d552d1cc7a1f8c86c4034ac4e7f2fb3202ebc9544b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

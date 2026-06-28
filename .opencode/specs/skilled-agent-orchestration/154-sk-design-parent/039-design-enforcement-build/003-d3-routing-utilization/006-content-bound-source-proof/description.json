@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/006-content-bound-source-proof",
+  "description": "Add a SOURCE PROOF (path/sha256/anchor/echo) to the context + application proof cards and a proof_check.py flag that recomputes digest/anchor.",
+  "keywords": [
+    "add",
+    "source",
+    "proof",
+    "path",
+    "sha256",
+    "anchor",
+    "echo",
+    "context",
+    "application",
+    "cards",
+    "flag",
+    "recomputes",
+    "digest"
+  ],
+  "lastUpdated": "2026-06-28T12:39:58.242Z",
+  "specId": "006",
+  "folderSlug": "content-bound-source-proof",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

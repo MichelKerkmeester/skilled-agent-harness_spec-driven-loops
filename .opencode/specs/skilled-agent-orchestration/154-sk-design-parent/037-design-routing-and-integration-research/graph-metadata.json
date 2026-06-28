@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/037-design-routing-and-integration-research",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/037-design-routing-and-integration-research",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design routing utilization research packet",
+      "design command specificity research",
+      "mcp-open-design pairing enforcement research",
+      "sk-design routing research plan",
+      "non-converging deep research execution",
+      "design integration study plan",
+      "sk-design routing research tasks",
+      "design integration study tasks",
+      "non-converging research tasks",
+      "sk-design routing research checklist",
+      "design integration study QA",
+      "non-converging research QA"
+    ],
+    "key_topics": [
+      "sk-design",
+      "routing",
+      "utilization",
+      "research",
+      "packet",
+      "design",
+      "command",
+      "specificity",
+      "mcp-open-design",
+      "pairing",
+      "enforcement",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/angle-bank.json",
+      "spec.md",
+      "plan.md",
+      ".codex/policy.json",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "angle-bank.json",
+        "kind": "config",
+        "path": "research/angle-bank.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": ".codex/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design has absorbed several external corpora into craft, but it cannot today prove that the right mode was selected, the right context was loaded, the pairing fired, or that the contract survived a CLI dispatch",
+    "created_at": "2026-06-28T11:06:37.722Z",
+    "last_save_at": "2026-06-28T11:06:37.722Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:467f459b8935b60addae21055b73fe3fb0bce38445f654f6f75e9d788ace168c",
+    "source_doc_hashes": {
+      "spec.md": "23148831eb58f4876276a3f12cfaa379749280a12cf20849505da59ff2797a9b",
+      "plan.md": "7a83072b1693b8d8cc55b6d85e8ca41addd8e41606e842ee32ba3c0620a793a1",
+      "tasks.md": "27e829dfbb40daecdf8778e773784da66cbf4b4f30aabac85b11a7a5424659d1",
+      "checklist.md": "03a33d8ff65e95675f136ff41c6b68fa3fcccede7782b9a7eaa5df6d31a5d65c",
+      "decision-record.md": "67e90e7c4686fb8b09bf042231512b9052cf963148b99a2b323078c78f83212b",
+      "implementation-summary.md": "1f591ae51cbeeb67d3f9cbaebda78851403af4cf846ff0c7b507705669ae1a99",
+      "research/research.md": "3541f5e9673cc338cadda0ab2425d27cfd371aceb93f3b9f8a6ec4c35663047e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

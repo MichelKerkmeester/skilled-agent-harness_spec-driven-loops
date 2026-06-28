@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/007-baseline-rhythm-token",
+  "description": "Add a baseline rhythm row to the foundations token starter, link it from layout_responsive.md, and add a validator checking spacing is a multiple/frac",
+  "keywords": [
+    "add",
+    "baseline",
+    "rhythm",
+    "row",
+    "foundations",
+    "token",
+    "starter",
+    "link",
+    "validator",
+    "checking",
+    "spacing",
+    "multiple",
+    "frac"
+  ],
+  "lastUpdated": "2026-06-28T12:40:04.361Z",
+  "specId": "007",
+  "folderSlug": "baseline-rhythm-token",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

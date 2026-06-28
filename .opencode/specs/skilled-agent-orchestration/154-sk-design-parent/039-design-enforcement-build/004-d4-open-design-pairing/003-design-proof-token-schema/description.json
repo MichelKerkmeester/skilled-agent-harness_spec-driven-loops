@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/003-design-proof-token-schema",
+  "description": "Design-context loading is self-attested today",
+  "keywords": [
+    "design-context",
+    "loading",
+    "self-attested",
+    "today"
+  ],
+  "lastUpdated": "2026-06-28T13:35:39.957Z",
+  "specId": "003",
+  "folderSlug": "design-proof-token-schema",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

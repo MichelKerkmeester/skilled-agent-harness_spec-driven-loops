@@ -1,0 +1,32 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/005-decision-rationale-lane",
+  "description": "Add a conditional decision/optionsConsidered/evidenceSources/tradeoffs/validationPlan/sourceProofs field to the contract + proof card + proof_check.py",
+  "keywords": [
+    "add",
+    "conditional",
+    "decision",
+    "optionsconsidered",
+    "evidencesources",
+    "tradeoffs",
+    "validationplan",
+    "sourceproofs",
+    "field",
+    "contract",
+    "proof",
+    "card"
+  ],
+  "lastUpdated": "2026-06-28T12:40:08.922Z",
+  "specId": "005",
+  "folderSlug": "decision-rationale-lane",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

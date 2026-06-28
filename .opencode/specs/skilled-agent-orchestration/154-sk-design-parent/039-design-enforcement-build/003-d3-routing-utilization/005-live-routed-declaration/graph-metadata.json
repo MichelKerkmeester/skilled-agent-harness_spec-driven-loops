@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/005-live-routed-declaration",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/005-live-routed-declaration",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r5 routed declaration token",
+      "live route declaration design build"
+    ],
+    "key_topics": [
+      "d3-r5",
+      "routed",
+      "declaration",
+      "token",
+      "live",
+      "route",
+      "design",
+      "build",
+      "add",
+      "line",
+      "json",
+      "prompt"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "live-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. EVIDENCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a ROUTED: line+JSON token to the live prompt and make live-executor.cjs populate observedWorkflowMode/observedIntents, fail-closed when absent.",
+    "created_at": "2026-06-28T12:39:58.911Z",
+    "last_save_at": "2026-06-28T12:39:58.911Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4523dafe0067589a20a09e5bcc08fca26c7ea9b493b625ede3bfb8a54dc682f4",
+    "source_doc_hashes": {
+      "spec.md": "d1508602637f91fa90e81d4218c8a2af1d6665fdacf927e8cb9b6a1c04954aa7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

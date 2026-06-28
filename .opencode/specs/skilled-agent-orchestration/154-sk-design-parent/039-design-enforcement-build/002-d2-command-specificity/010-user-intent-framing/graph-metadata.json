@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/010-user-intent-framing",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/010-user-intent-framing",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r10 user intent framing",
+      "user intent framing design build"
+    ],
+    "key_topics": [
+      "d2-r10",
+      "user",
+      "intent",
+      "framing",
+      "design",
+      "build",
+      "add",
+      "userintent",
+      "job",
+      "ownedsignals",
+      "plus",
+      "copyguard"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Thin",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "thin-bridge",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add userIntent{job,ownedSignals} plus a copyGuard to command-metadata.json so wrappers lead with the user job and move mode-binding into an Internal binding section.",
+    "created_at": "2026-06-28T12:40:02.738Z",
+    "last_save_at": "2026-06-28T12:40:02.738Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ae6ca9d81f7c26ef0310cda960cdac1475f7b0db622080f2dbbbe0917af62e7e",
+    "source_doc_hashes": {
+      "spec.md": "e7b7b45b1a4e2a7872c825c9e00757412000a6e5309e7b9a9595ee6e2fc69a04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

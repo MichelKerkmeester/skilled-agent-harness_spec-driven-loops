@@ -109,6 +109,42 @@ function parseDefaultResource(text) {
   return strM ? [strM[1]] : [];
 }
 
+function projectHubRouter(filePath) {
+  const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const signals = data.routerSignals && typeof data.routerSignals === 'object' ? data.routerSignals : {};
+  const vocabulary = data.vocabularyClasses && typeof data.vocabularyClasses === 'object'
+    ? data.vocabularyClasses
+    : {};
+  const intentSignals = {};
+  const resourceMap = {};
+
+  for (const [mode, signal] of Object.entries(signals)) {
+    const keywords = new Set();
+    for (const className of signal.classes || []) {
+      const klass = vocabulary[className];
+      for (const keyword of klass && Array.isArray(klass.keywords) ? klass.keywords : []) {
+        keywords.add(String(keyword).toLowerCase());
+      }
+    }
+    for (const keyword of Array.isArray(signal.keywords) ? signal.keywords : []) {
+      keywords.add(String(keyword).toLowerCase());
+    }
+
+    intentSignals[mode] = {
+      weight: Number.isFinite(Number(signal.weight)) ? Number(signal.weight) : 1,
+      keywords: [...keywords],
+    };
+    resourceMap[mode] = Array.isArray(signal.resources) ? signal.resources : [];
+  }
+
+  const policy = data.routerPolicy && typeof data.routerPolicy === 'object' ? data.routerPolicy : {};
+  return {
+    intentSignals,
+    resourceMap,
+    defaultResource: Array.isArray(policy.defaultResource) ? policy.defaultResource : [],
+  };
+}
+
 // Some skills keep the authoritative router in a referenced doc (e.g.
 // references/smart_routing.md) rather than inlining it in SKILL.md. When the
 // inline dictionaries are absent we follow that pointer and parse the same
@@ -159,6 +195,18 @@ function parseRouter(skillMdText, skillRoot) {
         resourceMap = refMap;
         defaultResource = defaultResource.length ? defaultResource : parseDefaultResource(refText);
         routerSource = path.relative(skillRoot, refDoc);
+      }
+    }
+
+    const routerStillEmpty = Object.keys(intentSignals).length === 0 && Object.keys(resourceMap).length === 0;
+    const hubRouter = path.join(skillRoot, 'hub-router.json');
+    if (routerStillEmpty && fs.existsSync(hubRouter)) {
+      const projected = projectHubRouter(hubRouter);
+      if (Object.keys(projected.intentSignals).length > 0 || Object.keys(projected.resourceMap).length > 0) {
+        intentSignals = projected.intentSignals;
+        resourceMap = projected.resourceMap;
+        defaultResource = defaultResource.length ? defaultResource : projected.defaultResource;
+        routerSource = 'hub-router.json';
       }
     }
   }

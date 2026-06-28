@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/007-token-lint-route-replay-fixtures",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/007-token-lint-route-replay-fixtures",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r7 token lint route replay fixtures",
+      "design routing fixtures design build"
+    ],
+    "key_topics": [
+      "d5-r7",
+      "token",
+      "lint",
+      "route",
+      "replay",
+      "fixtures",
+      "design",
+      "routing",
+      "build",
+      "add",
+      "asserting",
+      "prompts"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "DESIGN",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add fixtures asserting design prompts route to DESIGN and carry manifest tokens, with a neither-loaded negative control, under the skill-benchmark harness.",
+    "created_at": "2026-06-28T12:40:08.293Z",
+    "last_save_at": "2026-06-28T12:40:08.293Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:81b3e741d05f74bfa3c89637b82519a150ca11cf8eda8a7f76e20f299c83fb7c",
+    "source_doc_hashes": {
+      "spec.md": "f5e4979e4512cc91e7f6da8f9396b044a985322bb34ef362d1408c4e53021da8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

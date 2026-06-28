@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2-r9 pipeline handoff",
+      "pipeline handoff design build"
+    ],
+    "key_topics": [
+      "d2-r9",
+      "pipeline",
+      "handoff",
+      "design",
+      "build",
+      "add",
+      "stage",
+      "acceptsfrom",
+      "produces",
+      "nextcommands",
+      "proofrequired",
+      "command-metadata"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add pipeline{stage,acceptsFrom,produces,nextCommands,proofRequired} to command-metadata.json and emit STATUS=OK PRODUCES= NEXT= PROOF= / DEFER / ASK, recommend-only with no silent chaining.",
+    "created_at": "2026-06-28T12:40:02.475Z",
+    "last_save_at": "2026-06-28T12:40:02.475Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:044c68790069276b54f55b3103912dcca87a339bd415cc11f353a73452f7c026",
+    "source_doc_hashes": {
+      "spec.md": "d4d11a522ec561dee64a51e8cfc8348598948e7304950b3e93ced4540ddf6723"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/003-ai-fingerprint-registry",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/003-ai-fingerprint-registry",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r3 ai fingerprint registry",
+      "ai tell registry design build"
+    ],
+    "key_topics": [
+      "d1-r3",
+      "fingerprint",
+      "registry",
+      "tell",
+      "design",
+      "build",
+      "add",
+      "design-audit",
+      "assets",
+      "json",
+      "plus",
+      "generated"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add design-audit/assets/ai_fingerprint_registry.json plus a generated self-defect card and a validator that fails catalog tells lacking a registry row/fixture.",
+    "created_at": "2026-06-28T12:40:04.989Z",
+    "last_save_at": "2026-06-28T12:40:04.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5a30ebc8a8a89a4259bdea3fae47fbbcdb28b6cd15dbe8419c66b4c1409132ba",
+    "source_doc_hashes": {
+      "spec.md": "825df91786ad653a025e0969878911bbc60d4334f8aa384f90a4e9652c937a4e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/012-dispatch-boundary-proof",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/012-dispatch-boundary-proof",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r12 dispatch boundary proof",
+      "design boundary proof design build"
+    ],
+    "key_topics": [
+      "d3-r12",
+      "dispatch",
+      "boundary",
+      "proof",
+      "design",
+      "build",
+      "add",
+      "envelope",
+      "requiresdesignboundaryproof",
+      "fixture",
+      "one",
+      "shared"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. EVIDENCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a DESIGN_BOUNDARY_PROOF v1 envelope + requiresDesignBoundaryProof fixture, one shared design_dispatch_boundary.md asset, and a CLI template-parity checker.",
+    "created_at": "2026-06-28T12:39:57.285Z",
+    "last_save_at": "2026-06-28T12:39:57.285Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bb38b8e4b1a19a54327d02dafb729d0940d4f076ba1ce370f5ef2819f4e1b617",
+    "source_doc_hashes": {
+      "spec.md": "035b48b96e28411be818e1423e01fdf921dc66e0cf0fc2a80e6554983c77eb5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

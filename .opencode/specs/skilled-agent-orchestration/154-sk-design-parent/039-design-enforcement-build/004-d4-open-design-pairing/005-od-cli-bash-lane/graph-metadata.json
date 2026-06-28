@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r5 od cli bash lane",
+      "bash lane gate file design build"
+    ],
+    "key_topics": [
+      "d4-r5",
+      "cli",
+      "bash",
+      "lane",
+      "gate",
+      "file",
+      "design",
+      "build",
+      "tokenize",
+      "bind",
+      "daemon-cli",
+      "mjs"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tokenize Bash",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Bash",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bash CLI",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Tokenize Bash to bind daemon-cli.mjs/$OD_BIN plus the write verb in the same segment and require a same-command gate file.",
+    "created_at": "2026-06-28T12:39:55.959Z",
+    "last_save_at": "2026-06-28T12:39:55.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ca28e00a9431a8653c381b3a5140cd9dd5f89c8fb4eb8250225676dab691dae3",
+    "source_doc_hashes": {
+      "spec.md": "4cde98bb96884a28bd8765de0f149846a5ab08da1eec0a09576ae45e64316069"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

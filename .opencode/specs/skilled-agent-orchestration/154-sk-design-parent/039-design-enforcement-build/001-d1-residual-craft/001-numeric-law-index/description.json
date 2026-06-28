@@ -1,0 +1,27 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/001-numeric-law-index",
+  "description": "Add a shared numeric_design_laws.md index of cross-mode numeric laws to sk-design/shared/.",
+  "keywords": [
+    "add",
+    "shared",
+    "index",
+    "cross-mode",
+    "numeric",
+    "laws",
+    "sk-design"
+  ],
+  "lastUpdated": "2026-06-28T12:40:04.614Z",
+  "specId": "001",
+  "folderSlug": "numeric-law-index",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

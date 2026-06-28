@@ -1,0 +1,23 @@
+{
+  "topic": "Improve the sk-design design family AND design the enforcement that guarantees parent->sub-skill routing/utilization, more-specific design commands, mcp-open-design pairing, and cross-CLI survival. 50 non-converging iterations.",
+  "maxIterations": 50,
+  "convergenceThreshold": 0.0,
+  "noConverge": true,
+  "stuckThreshold": 99,
+  "maxDurationMinutes": 600,
+  "maxToolCallsPerIteration": 16,
+  "maxMinutesPerIteration": 25,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/037-design-routing-and-integration-research",
+  "createdAt": "2026-06-28T00:00:00Z",
+  "status": "active",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executor": { "kind": "cli-codex", "model": "gpt-5.5", "configDir": null, "reasoningEffort": "xhigh", "serviceTier": "fast", "sandboxMode": null, "timeoutSeconds": 1800, "governor": null },
+  "lineage": { "sessionId": "dr-154-037-design-routing-integration", "parentSessionId": null, "lineageMode": "new", "allowedModes": ["new","resume","restart"], "deferredModes": ["fork","completed-continue"], "generation": 1, "continuedFromRun": null },
+  "reducer": { "enabled": true, "version": "1.0", "registryFile": "research/deep-research-findings-registry.json", "dashboardFile": "research/deep-research-dashboard.md", "strategyFile": "research/deep-research-strategy.md", "machineOwnedSections": ["key-questions","answered-questions","what-worked","what-failed","exhausted-approaches","ruled-out-directions","next-focus"] },
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "fileProtection": { "deep-research-config.json": "immutable", "deep-research-state.jsonl": "append-only", "deep-research-strategy.md": "mutable", "research/research.md": "mutable" }
+}

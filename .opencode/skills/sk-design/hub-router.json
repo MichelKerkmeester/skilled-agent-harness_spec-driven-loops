@@ -1,0 +1,334 @@
+{
+  "skill": "sk-design",
+  "version": "1.0.0",
+  "routerPolicy": {
+    "defaultMode": "interface",
+    "ambiguityDelta": 1,
+    "tieBreak": ["interface", "foundations", "motion", "audit", "md-generator"],
+    "outcomes": {
+      "single": "one dominant design axis routes to one mode",
+      "orderedBundle": "clearly separate design axes route to an ordered mode list",
+      "defer": "unclear or contradictory design intent asks for disambiguation"
+    },
+    "defaultResource": [
+      "shared/anti_slop_principles.md",
+      "shared/cognitive_laws.md",
+      "shared/design_token_vocabulary.md"
+    ]
+  },
+  "routerSignals": {
+    "interface": {
+      "weight": 4,
+      "classes": [
+        "interface-aliases",
+        "interface-taste",
+        "interface-build",
+        "hub-identity"
+      ],
+      "resources": ["design-interface/SKILL.md"]
+    },
+    "foundations": {
+      "weight": 4,
+      "classes": [
+        "foundations-aliases",
+        "foundations-color",
+        "foundations-type",
+        "foundations-layout",
+        "foundations-tokens"
+      ],
+      "resources": ["design-foundations/SKILL.md"]
+    },
+    "motion": {
+      "weight": 4,
+      "classes": [
+        "motion-aliases",
+        "motion-temporal",
+        "motion-runtime",
+        "motion-feel"
+      ],
+      "resources": ["design-motion/SKILL.md"]
+    },
+    "audit": {
+      "weight": 4,
+      "classes": [
+        "audit-aliases",
+        "audit-quality",
+        "audit-accessibility",
+        "audit-hardening"
+      ],
+      "resources": ["design-audit/SKILL.md"]
+    },
+    "md-generator": {
+      "weight": 4,
+      "classes": [
+        "md-generator-aliases",
+        "md-generator-extraction",
+        "md-generator-artifacts",
+        "md-generator-validation"
+      ],
+      "resources": ["design-md-generator/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "keywords": [
+        "sk-design",
+        "design-family",
+        "mode-registry",
+        "workflowmode",
+        "backendkind",
+        "reference-base",
+        "anti-slop",
+        "cognitive-laws"
+      ]
+    },
+    "interface-aliases": {
+      "keywords": [
+        "interface design",
+        "frontend design",
+        "visual design",
+        "visual identity",
+        "make it look good",
+        "looks templated",
+        "redesign the ui",
+        "hero section",
+        "ui build",
+        "design variations"
+      ]
+    },
+    "interface-taste": {
+      "keywords": [
+        "interface-design",
+        "frontend-design",
+        "visual-design",
+        "visual-identity",
+        "make-it-look-good",
+        "looks-templated",
+        "polish",
+        "distinctive-interface",
+        "intentional-design",
+        "polished-ui",
+        "refined-ui",
+        "custom-not-templated",
+        "premium-ui",
+        "aesthetic",
+        "design-taste",
+        "visual-direction",
+        "craft",
+        "make-it-beautiful",
+        "less-generic",
+        "redesign-distinctive",
+        "custom not templated",
+        "premium ui",
+        "make it beautiful",
+        "less generic",
+        "visual direction"
+      ]
+    },
+    "interface-build": {
+      "keywords": [
+        "redesign-the-ui",
+        "hero-section",
+        "ui-build",
+        "ux-quality-checklist",
+        "design-variations",
+        "redesign the hero"
+      ]
+    },
+    "foundations-aliases": {
+      "keywords": [
+        "foundations",
+        "design foundations",
+        "color system",
+        "oklch palette",
+        "color token system",
+        "dark mode palette",
+        "typography scale",
+        "font pairing",
+        "spacing system",
+        "responsive layout",
+        "design tokens",
+        "grid",
+        "container queries",
+        "context adaptation",
+        "data visualization",
+        "chart type",
+        "data tables",
+        "token starter"
+      ]
+    },
+    "foundations-color": {
+      "keywords": [
+        "palette",
+        "color-palette",
+        "color-system",
+        "oklch",
+        "dark-mode",
+        "themes",
+        "theming"
+      ]
+    },
+    "foundations-type": {
+      "keywords": [
+        "typography",
+        "font-pairing",
+        "typography-scale",
+        "typography extraction"
+      ]
+    },
+    "foundations-layout": {
+      "keywords": [
+        "spacing-system",
+        "responsive-layout",
+        "layout",
+        "hierarchy"
+      ]
+    },
+    "foundations-tokens": {
+      "keywords": [
+        "design-tokens",
+        "color-token-system",
+        "css-tokens",
+        "tokens.json"
+      ]
+    },
+    "motion-aliases": {
+      "keywords": [
+        "motion design",
+        "animate this",
+        "micro-interactions",
+        "transitions",
+        "animatepresence",
+        "exit animation",
+        "reduced motion",
+        "morphing icons",
+        "motion performance"
+      ]
+    },
+    "motion-temporal": {
+      "keywords": [
+        "motion-design",
+        "animation",
+        "animate-this",
+        "exit-animation",
+        "reduced-motion",
+        "morphing-icons",
+        "motion-performance",
+        "smooth-animation",
+        "hover-effect",
+        "scroll-animation",
+        "choreography",
+        "animate-the-menu",
+        "transition-design",
+        "smooth animation",
+        "hover effect",
+        "scroll animation",
+        "animate the menu",
+        "transition design"
+      ]
+    },
+    "motion-runtime": {
+      "keywords": [
+        "framer-motion",
+        "framer motion"
+      ]
+    },
+    "motion-feel": {
+      "keywords": [
+        "interaction-feel",
+        "interaction feel"
+      ]
+    },
+    "audit-aliases": {
+      "keywords": [
+        "design audit",
+        "ui critique",
+        "accessibility audit",
+        "performance audit",
+        "anti-slop detection",
+        "production hardening",
+        "design quality score",
+        "p0 p1 design findings"
+      ]
+    },
+    "audit-quality": {
+      "keywords": [
+        "design-audit",
+        "ui-critique",
+        "anti-slop-detection",
+        "design-quality-score",
+        "p0-p1-design-findings",
+        "anti-hallucination",
+        "design-fidelity",
+        "design-quality-audit",
+        "design-review",
+        "design-qa",
+        "audit-the-design",
+        "review-the-ui",
+        "ui-quality-review",
+        "audit the design",
+        "review the ui",
+        "ui quality review"
+      ]
+    },
+    "audit-accessibility": {
+      "keywords": [
+        "accessibility-audit",
+        "wcag-contrast",
+        "wcag contrast"
+      ]
+    },
+    "audit-hardening": {
+      "keywords": [
+        "performance-audit",
+        "production-hardening"
+      ]
+    },
+    "md-generator-aliases": {
+      "keywords": [
+        "extract design system",
+        "generate design.md",
+        "capture website css",
+        "design tokens from url",
+        "create design reference",
+        "design-to-markdown",
+        "extract design tokens",
+        "validate design.md",
+        "design fidelity check",
+        "design.md report",
+        "render design preview",
+        "study design.md format"
+      ]
+    },
+    "md-generator-extraction": {
+      "keywords": [
+        "css-extraction",
+        "website-design-extraction",
+        "color-extraction",
+        "typography-extraction",
+        "hex-extraction",
+        "shadow-extraction",
+        "spacing-extraction",
+        "extract-design-system",
+        "capture-website-css"
+      ]
+    },
+    "md-generator-artifacts": {
+      "keywords": [
+        "design.md",
+        "design-md",
+        "design-reference",
+        "playwright",
+        "design-system-generator",
+        "generate-design-md",
+        "design-tokens-from-url",
+        "generate design md"
+      ]
+    },
+    "md-generator-validation": {
+      "keywords": [
+        "design fidelity"
+      ]
+    }
+  }
+}

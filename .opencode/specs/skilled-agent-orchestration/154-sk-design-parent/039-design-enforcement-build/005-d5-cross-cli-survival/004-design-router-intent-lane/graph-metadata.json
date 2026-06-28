@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/004-design-router-intent-lane",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/004-design-router-intent-lane",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r4 design router intent lane",
+      "design intent lane design build"
+    ],
+    "key_topics": [
+      "d5-r4",
+      "design",
+      "router",
+      "intent",
+      "lane",
+      "build",
+      "add",
+      "keywords",
+      "target",
+      "pointing",
+      "skill-local",
+      "contract"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a DESIGN intent + keywords + RESOURCE_MAP target pointing at the skill-local design contract in each of the three cli-* provider dictionaries.",
+    "created_at": "2026-06-28T12:40:07.543Z",
+    "last_save_at": "2026-06-28T12:40:07.543Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5c570be46844e8adb74f1f18fc5d6a076f4968c4cbd3d31e6031ce39113740c5",
+    "source_doc_hashes": {
+      "spec.md": "319d673f42b8a2ff2bafa03fa9ef94008dcaca74c578ec243ff07f9e0542c123"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

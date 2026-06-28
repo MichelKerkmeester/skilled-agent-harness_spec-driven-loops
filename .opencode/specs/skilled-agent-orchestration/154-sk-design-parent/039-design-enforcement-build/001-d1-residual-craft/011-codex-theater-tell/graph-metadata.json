@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/011-codex-theater-tell",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/011-codex-theater-tell",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r11 codex theater tell",
+      "codex theater tell design build"
+    ],
+    "key_topics": [
+      "d1-r11",
+      "codex",
+      "theater",
+      "tell",
+      "design",
+      "build",
+      "add",
+      "meta-criticism",
+      "narrow",
+      "static",
+      "regex",
+      "advisory"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Missing Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add the Codex theater/meta-criticism tell to ai_fingerprint_tells.md with a narrow static regex (advisory) plus a positive/negative fixture.",
+    "created_at": "2026-06-28T12:40:03.990Z",
+    "last_save_at": "2026-06-28T12:40:03.990Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9e04b81b83e02529c3d64e9a71d08bf9b7163ecd8d315e78f396e7a751b4ae9c",
+    "source_doc_hashes": {
+      "spec.md": "33d2d6c70d31628be9a8627877866d8f7ccfdcb959d8f948a765102060db5d05"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

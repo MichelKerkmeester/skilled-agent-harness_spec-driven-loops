@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/003-lane-c-craft-stress-fixtures",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/003-lane-c-craft-stress-fixtures",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r3 lane c craft fixtures",
+      "craft stress fixtures design build"
+    ],
+    "key_topics": [
+      "d6-r3",
+      "lane",
+      "craft",
+      "fixtures",
+      "stress",
+      "design",
+      "build",
+      "author",
+      "public",
+      "private",
+      "fixture",
+      "pairs"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Author public/private fixture pairs (stateful-upload, dense-dashboard, locale-component) under the Lane C fixture root expecting specific mode bundles + proof fields.",
+    "created_at": "2026-06-28T12:40:11.630Z",
+    "last_save_at": "2026-06-28T12:40:11.630Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a70eb961ca2f2c3a82655500edc3572479564d96559bd40aab0828fb6aeddba4",
+    "source_doc_hashes": {
+      "spec.md": "6ddc81288341396bb469f3ca50fce3b8d887f8e58275d2ef08a705e9bfb01d95"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

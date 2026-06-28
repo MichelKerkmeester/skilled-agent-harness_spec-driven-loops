@@ -1,0 +1,34 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
+  "description": "Tokenize Bash to bind daemon-cli.mjs/$OD_BIN plus the write verb in the same segment and require a same-command gate file.",
+  "keywords": [
+    "tokenize",
+    "bash",
+    "bind",
+    "daemon-cli",
+    "mjs",
+    "plus",
+    "write",
+    "verb",
+    "same",
+    "segment",
+    "require",
+    "same-command",
+    "gate",
+    "file"
+  ],
+  "lastUpdated": "2026-06-28T12:39:55.828Z",
+  "specId": "005",
+  "folderSlug": "od-cli-bash-lane",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

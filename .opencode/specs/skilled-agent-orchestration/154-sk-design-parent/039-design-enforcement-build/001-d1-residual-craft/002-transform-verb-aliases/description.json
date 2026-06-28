@@ -1,0 +1,31 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/002-transform-verb-aliases",
+  "description": "Add transform-verb aliases to mode-registry.json plus a design-interface transform_application.md authoring lane with gold prompts.",
+  "keywords": [
+    "add",
+    "transform-verb",
+    "aliases",
+    "mode-registry",
+    "json",
+    "plus",
+    "design-interface",
+    "authoring",
+    "lane",
+    "gold",
+    "prompts"
+  ],
+  "lastUpdated": "2026-06-28T12:40:06.410Z",
+  "specId": "002",
+  "folderSlug": "transform-verb-aliases",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,36 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/004-ai-tell-fixture-corpus",
+  "description": "Add a fixture-backed AI-tell scenario plus a benchmark asserting expected tell IDs and no off-family false positives, extending the slop-hardening pla",
+  "keywords": [
+    "add",
+    "fixture-backed",
+    "ai-tell",
+    "scenario",
+    "plus",
+    "benchmark",
+    "asserting",
+    "expected",
+    "tell",
+    "ids",
+    "off-family",
+    "false",
+    "positives",
+    "extending",
+    "slop-hardening",
+    "pla"
+  ],
+  "lastUpdated": "2026-06-28T12:40:05.112Z",
+  "specId": "004",
+  "folderSlug": "ai-tell-fixture-corpus",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

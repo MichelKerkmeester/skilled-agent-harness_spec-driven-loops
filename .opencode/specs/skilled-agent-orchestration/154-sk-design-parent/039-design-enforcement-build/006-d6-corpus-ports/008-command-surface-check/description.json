@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/008-command-surface-check",
+  "description": "New checker comparing command files vs command-metadata.json vs generated docs vs wrapper frontmatter vs route fixtures for structural drift.",
+  "keywords": [
+    "new",
+    "checker",
+    "comparing",
+    "command",
+    "files",
+    "command-metadata",
+    "json",
+    "generated",
+    "docs",
+    "wrapper",
+    "frontmatter",
+    "route",
+    "fixtures",
+    "structural",
+    "drift"
+  ],
+  "lastUpdated": "2026-06-28T12:40:10.449Z",
+  "specId": "008",
+  "folderSlug": "command-surface-check",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

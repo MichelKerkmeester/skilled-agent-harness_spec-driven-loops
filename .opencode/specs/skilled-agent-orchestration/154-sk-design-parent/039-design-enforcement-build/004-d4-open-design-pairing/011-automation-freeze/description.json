@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/011-automation-freeze",
+  "description": "Freeze automationBinding (routine/schedule/subject/payload digests, maxRunsBeforeReview, singleFire/reviewWindow) at schedule creation; fire-time repl",
+  "keywords": [
+    "freeze",
+    "automationbinding",
+    "routine",
+    "schedule",
+    "subject",
+    "payload",
+    "digests",
+    "maxrunsbeforereview",
+    "singlefire",
+    "reviewwindow",
+    "creation",
+    "fire-time",
+    "repl"
+  ],
+  "lastUpdated": "2026-06-28T12:39:54.569Z",
+  "specId": "011",
+  "folderSlug": "automation-freeze",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

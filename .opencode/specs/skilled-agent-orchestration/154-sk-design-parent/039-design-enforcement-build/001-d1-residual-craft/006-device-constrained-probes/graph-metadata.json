@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/006-device-constrained-probes",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/006-device-constrained-probes",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1-r6 constrained context probes",
+      "device constrained probes design build"
+    ],
+    "key_topics": [
+      "d1-r6",
+      "constrained",
+      "context",
+      "probes",
+      "device",
+      "design",
+      "build",
+      "add",
+      "section",
+      "hardening",
+      "edge-cases",
+      "reference"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Device And Constrained Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a Device And Constrained Context section to the hardening edge-cases reference covering low-power, Save-Data, CPU-throttle, offline→online, and slow media.",
+    "created_at": "2026-06-28T12:40:05.766Z",
+    "last_save_at": "2026-06-28T12:40:05.766Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:dfc80fb321968d2428eb966fc5d8c0a64de0573c14632615cdfc7a020979e974",
+    "source_doc_hashes": {
+      "spec.md": "d5b257fa78b10d931b79284918da3b30e6f975aeade81a0a5154d4b96db0c7bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

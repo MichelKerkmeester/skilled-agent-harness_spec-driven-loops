@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/005-live-routed-declaration",
+  "description": "Add a ROUTED: line+JSON token to the live prompt and make live-executor.cjs populate observedWorkflowMode/observedIntents, fail-closed when absent.",
+  "keywords": [
+    "add",
+    "routed",
+    "line",
+    "json",
+    "token",
+    "live",
+    "prompt",
+    "make",
+    "live-executor",
+    "cjs",
+    "populate",
+    "observedworkflowmode",
+    "observedintents",
+    "fail-closed",
+    "absent"
+  ],
+  "lastUpdated": "2026-06-28T12:39:58.783Z",
+  "specId": "005",
+  "folderSlug": "live-routed-declaration",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

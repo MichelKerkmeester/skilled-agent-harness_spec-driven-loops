@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection",
+  "description": "Add duplicate-detection to the docs benchmark so it fails on redundant mode-local restatements of timing/color/layout/type defaults and forces referen",
+  "keywords": [
+    "add",
+    "duplicate-detection",
+    "docs",
+    "benchmark",
+    "fails",
+    "redundant",
+    "mode-local",
+    "restatements",
+    "timing",
+    "color",
+    "layout",
+    "type",
+    "defaults",
+    "forces",
+    "referen"
+  ],
+  "lastUpdated": "2026-06-28T12:40:06.660Z",
+  "specId": "013",
+  "folderSlug": "duplicate-law-detection",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

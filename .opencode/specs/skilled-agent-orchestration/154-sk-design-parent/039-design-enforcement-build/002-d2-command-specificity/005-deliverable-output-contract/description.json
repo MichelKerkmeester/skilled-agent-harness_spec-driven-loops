@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/005-deliverable-output-contract",
+  "description": "Add outputContract{primaryArtifactName,artifactKind,requiredFields,fileOutputs} to command-metadata.json and generate an Emit Deliverable section, ban",
+  "keywords": [
+    "add",
+    "outputcontract",
+    "primaryartifactname",
+    "artifactkind",
+    "requiredfields",
+    "fileoutputs",
+    "command-metadata",
+    "json",
+    "generate",
+    "emit",
+    "deliverable",
+    "section",
+    "ban"
+  ],
+  "lastUpdated": "2026-06-28T12:40:01.604Z",
+  "specId": "005",
+  "folderSlug": "deliverable-output-contract",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

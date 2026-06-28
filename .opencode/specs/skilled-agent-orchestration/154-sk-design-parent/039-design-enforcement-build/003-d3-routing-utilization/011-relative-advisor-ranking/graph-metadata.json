@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/011-relative-advisor-ranking",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/011-relative-advisor-ranking",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r11 relative advisor ranking",
+      "transport suppression design build"
+    ],
+    "key_topics": [
+      "d3-r11",
+      "relative",
+      "advisor",
+      "ranking",
+      "transport",
+      "suppression",
+      "design",
+      "build",
+      "add",
+      "rankbelowskillids",
+      "playbook",
+      "schema"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "advisor-probe.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "transports",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "figma",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add rankBelowSkillIds to the playbook schema and scoreRelativeAdvisorRanking() in advisor-probe.cjs to gate sk-design #1 with transports ranked below.",
+    "created_at": "2026-06-28T12:39:59.661Z",
+    "last_save_at": "2026-06-28T12:39:59.661Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0b9a6b6989b27cb03d73bf8c1d34913f018107a058dd5e555fbaa7e80e46e269",
+    "source_doc_hashes": {
+      "spec.md": "bd671a3b48763988991d427c5975a24ca392d5a330cdb80dfc174b60a0ee67bd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

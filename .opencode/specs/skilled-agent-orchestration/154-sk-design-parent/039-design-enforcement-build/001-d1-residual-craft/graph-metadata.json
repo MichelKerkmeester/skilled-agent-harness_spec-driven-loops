@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build",
+  "children_ids": [
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/001-numeric-law-index",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/002-transform-verb-aliases",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/003-ai-fingerprint-registry",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/004-ai-tell-fixture-corpus",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/005-audit-performance-evidence",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/006-device-constrained-probes",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/007-baseline-rhythm-token",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/008-transform-lane-proof-cards",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/009-harden-fix-shapes",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/010-polish-readiness-gate",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/011-codex-theater-tell",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/012-variant-parameter-contract",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/013-duplicate-law-detection"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d1 residual craft build",
+      "design craft phases",
+      "sk-design craft backlog"
+    ],
+    "key_topics": [
+      "residual",
+      "craft",
+      "build",
+      "design",
+      "phases",
+      "sk-design",
+      "backlog",
+      "port",
+      "feature",
+      "reference",
+      "asset",
+      "impeccable-main"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Craft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Missing Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. RECOMMENDATIONS (one phase each)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ENFORCEMENT CEILING",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Port the residual feature/reference/asset craft from impeccable-main and designer-skills-main into the live sk-design modes, one phase per recommendation, D1-R1..R13.",
+    "created_at": "2026-06-28T12:39:53.700Z",
+    "last_save_at": "2026-06-28T12:39:53.700Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0ab8d9e8848d6e49c4268e1dd3b56bf10c77e30e207a31ab1b5e6cfd07994728",
+    "source_doc_hashes": {
+      "spec.md": "a6e607d2383ea17ffc352a38239d4eb73df2f319203353d106b0289282141764"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+  "description": "Promote typeset/colorize/bolder/quieter/distill/harden/polish/delight as command-visible task projections (not new modes) in command-metadata.json, re",
+  "keywords": [
+    "promote",
+    "typeset",
+    "colorize",
+    "bolder",
+    "quieter",
+    "distill",
+    "harden",
+    "polish",
+    "delight",
+    "command-visible",
+    "task",
+    "projections",
+    "new",
+    "modes",
+    "command-metadata",
+    "json"
+  ],
+  "lastUpdated": "2026-06-28T12:40:01.344Z",
+  "specId": "012",
+  "folderSlug": "promote-task-verbs",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "002-d2-command-specificity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

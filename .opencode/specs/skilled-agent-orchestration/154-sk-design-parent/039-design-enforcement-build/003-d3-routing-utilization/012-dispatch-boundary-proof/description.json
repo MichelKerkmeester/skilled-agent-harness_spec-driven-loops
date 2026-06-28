@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/012-dispatch-boundary-proof",
+  "description": "Add a DESIGN_BOUNDARY_PROOF v1 envelope + requiresDesignBoundaryProof fixture, one shared design_dispatch_boundary.md asset, and a CLI template-parity",
+  "keywords": [
+    "add",
+    "envelope",
+    "requiresdesignboundaryproof",
+    "fixture",
+    "one",
+    "shared",
+    "asset",
+    "cli",
+    "template-parity"
+  ],
+  "lastUpdated": "2026-06-28T12:39:57.153Z",
+  "specId": "012",
+  "folderSlug": "dispatch-boundary-proof",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

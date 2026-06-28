@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/010-readability-density-locale-proof",
+  "description": "Add measured readability/density rows and a locale-stress field to the context loading contract for content-heavy/global UI, plus a static margin-left",
+  "keywords": [
+    "add",
+    "measured",
+    "readability",
+    "density",
+    "rows",
+    "locale-stress",
+    "field",
+    "context",
+    "loading",
+    "contract",
+    "content-heavy",
+    "global",
+    "plus",
+    "static",
+    "margin-left"
+  ],
+  "lastUpdated": "2026-06-28T12:40:09.170Z",
+  "specId": "010",
+  "folderSlug": "readability-density-locale-proof",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "006-d6-corpus-ports"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

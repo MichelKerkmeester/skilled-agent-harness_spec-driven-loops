@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/003-design-dispatch-manifest",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/003-design-dispatch-manifest",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5-r3 design dispatch manifest",
+      "dispatch manifest design build"
+    ],
+    "key_topics": [
+      "d5-r3",
+      "design",
+      "dispatch",
+      "manifest",
+      "build",
+      "define",
+      "sk-design",
+      "shared",
+      "pass",
+      "like",
+      "gate-3",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the DESIGN_DISPATCH_MANIFEST in sk-design/shared/context_loading_contract.md and pass it like the Gate-3 spec folder: present + pre-approved, or ASK.",
+    "created_at": "2026-06-28T12:40:07.797Z",
+    "last_save_at": "2026-06-28T12:40:07.797Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f3a0bdc90f4f6b43c1836252533383c91d200ff5ed25ad59949eab4fc9e2704b",
+    "source_doc_hashes": {
+      "spec.md": "0413b5767187479d44e3ed359075e04f02bd4c227a547f0d974c5970886d6402"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

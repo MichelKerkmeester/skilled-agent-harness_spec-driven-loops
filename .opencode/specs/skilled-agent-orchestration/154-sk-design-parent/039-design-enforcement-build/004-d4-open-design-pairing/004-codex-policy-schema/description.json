@@ -1,0 +1,32 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/004-codex-policy-schema",
+  "description": "Add toolPreconditions/openDesignPreconditions to CodexPolicyFile plus the 7 mutating tools and namespace variants in pre-tool-use.ts and .codex/policy",
+  "keywords": [
+    "add",
+    "toolpreconditions",
+    "opendesignpreconditions",
+    "codexpolicyfile",
+    "plus",
+    "mutating",
+    "tools",
+    "namespace",
+    "variants",
+    "pre-tool-use",
+    "codex",
+    "policy"
+  ],
+  "lastUpdated": "2026-06-28T12:39:54.814Z",
+  "specId": "004",
+  "folderSlug": "codex-policy-schema",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

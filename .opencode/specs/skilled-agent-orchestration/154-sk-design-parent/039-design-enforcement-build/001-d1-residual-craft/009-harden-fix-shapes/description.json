@@ -1,0 +1,32 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/001-d1-residual-craft/009-harden-fix-shapes",
+  "description": "Add a 'Fix shape to recommend' column to hardening_edge_cases.md, keeping the audit/implement boundary (recommend shape+owner; sk-code implements).",
+  "keywords": [
+    "add",
+    "fix",
+    "shape",
+    "recommend",
+    "column",
+    "keeping",
+    "audit",
+    "implement",
+    "boundary",
+    "owner",
+    "sk-code",
+    "implements"
+  ],
+  "lastUpdated": "2026-06-28T12:40:04.113Z",
+  "specId": "009",
+  "folderSlug": "harden-fix-shapes",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "001-d1-residual-craft"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

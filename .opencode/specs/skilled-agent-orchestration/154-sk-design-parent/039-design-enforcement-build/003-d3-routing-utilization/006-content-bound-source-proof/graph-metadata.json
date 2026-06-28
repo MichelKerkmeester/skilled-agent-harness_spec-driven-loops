@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/006-content-bound-source-proof",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/006-content-bound-source-proof",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d3-r6 source proof",
+      "content bound proof design build"
+    ],
+    "key_topics": [
+      "d3-r6",
+      "source",
+      "proof",
+      "content",
+      "bound",
+      "design",
+      "build",
+      "add",
+      "path",
+      "sha256",
+      "anchor",
+      "echo"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loaded_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_check.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/proof_check.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-proof",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a SOURCE PROOF (path/sha256/anchor/echo) to the context + application proof cards and a proof_check.py flag that recomputes digest/anchor.",
+    "created_at": "2026-06-28T12:39:58.373Z",
+    "last_save_at": "2026-06-28T12:39:58.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9df2cc4d123c9e73f64da1db2247fc9743421a977b4de5767efdc0f0937c2a69",
+    "source_doc_hashes": {
+      "spec.md": "049da59afc5089283c247dd9261a2c3fa2fa2a18892fc454cfbb70ede8dc7f46"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

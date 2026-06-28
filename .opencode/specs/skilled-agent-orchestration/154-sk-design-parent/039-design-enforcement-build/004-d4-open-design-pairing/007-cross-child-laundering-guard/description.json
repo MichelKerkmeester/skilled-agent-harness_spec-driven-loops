@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/007-cross-child-laundering-guard",
+  "description": "Add a separate required DESIGN_PROOF_TOKEN block to a shared design_delegation_payload.md and have child PreToolUse re-validate before start_run.",
+  "keywords": [
+    "add",
+    "separate",
+    "required",
+    "block",
+    "shared",
+    "child",
+    "pretooluse",
+    "re-validate"
+  ],
+  "lastUpdated": "2026-06-28T12:39:55.307Z",
+  "specId": "007",
+  "folderSlug": "cross-child-laundering-guard",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "004-d4-open-design-pairing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

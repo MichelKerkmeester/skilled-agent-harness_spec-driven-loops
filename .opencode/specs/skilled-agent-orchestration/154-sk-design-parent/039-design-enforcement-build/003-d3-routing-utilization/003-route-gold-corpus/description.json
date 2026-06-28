@@ -1,0 +1,38 @@
+{
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/003-route-gold-corpus",
+  "description": "Add expected route fields to the private gold and author new sk-design alias/holdout/adversarial fixtures the gated hubRoute stage scores against.",
+  "keywords": [
+    "add",
+    "expected",
+    "route",
+    "fields",
+    "private",
+    "gold",
+    "author",
+    "new",
+    "sk-design",
+    "alias",
+    "holdout",
+    "adversarial",
+    "fixtures",
+    "gated",
+    "hubroute",
+    "stage",
+    "scores",
+    "against"
+  ],
+  "lastUpdated": "2026-06-28T12:39:57.981Z",
+  "specId": "003",
+  "folderSlug": "route-gold-corpus",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

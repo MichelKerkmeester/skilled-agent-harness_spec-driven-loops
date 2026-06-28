@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/004-interaction-state-matrix",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports/004-interaction-state-matrix",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/006-d6-corpus-ports",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d6-r4 interaction state matrix",
+      "interaction state design build"
+    ],
+    "key_topics": [
+      "d6-r4",
+      "interaction",
+      "state",
+      "matrix",
+      "design",
+      "build",
+      "add",
+      "conditional",
+      "states",
+      "events",
+      "transitions",
+      "forbidden"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface_preflight_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Ports",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Modeling Approach",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a conditional states/events/transitions/forbidden/guards/uiByState/recovery/a11y/reducedMotion field to the context loading contract + proof card + interface preflight card.",
+    "created_at": "2026-06-28T12:40:11.378Z",
+    "last_save_at": "2026-06-28T12:40:11.378Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:641ca742b2f671ec58a579df2cb09ed3d87e8bd48a1162dfe0c12e7804ab047b",
+    "source_doc_hashes": {
+      "spec.md": "ade29e311e77716019f8389a776413d2c25f53bc8211d25185f8bf2a9719009b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

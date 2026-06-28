@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/011-automation-freeze",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/011-automation-freeze",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4-r11 automation freeze",
+      "headless automation gate design build"
+    ],
+    "key_topics": [
+      "d4-r11",
+      "automation",
+      "freeze",
+      "headless",
+      "gate",
+      "design",
+      "build",
+      "automationbinding",
+      "routine",
+      "schedule",
+      "subject",
+      "payload"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OBJECTIVE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TARGET & CLASS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. BUILD OUTLINE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. ACCEPTANCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze automationBinding (routine/schedule/subject/payload digests, maxRunsBeforeReview, singleFire/reviewWindow) at schedule creation; fire-time replay only.",
+    "created_at": "2026-06-28T12:39:54.691Z",
+    "last_save_at": "2026-06-28T12:39:54.691Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1dea47102a2bfe22deded262cbf045c28ef5304247ea38c3fe2114efcba84780",
+    "source_doc_hashes": {
+      "spec.md": "2fa3f738d5f82a2164d5359d386e78dbec511e31bb98e12e7612090e2793d5c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/001-parseable-hub-router",
+  "description": "`router-replay.cjs` returns `parseable:false` on the `sk-design` parent hub",
+  "keywords": [
+    "router-replay",
+    "cjs",
+    "returns",
+    "parseable",
+    "false",
+    "sk-design",
+    "parent",
+    "hub"
+  ],
+  "lastUpdated": "2026-06-28T13:44:55.501Z",
+  "specId": "001",
+  "folderSlug": "parseable-hub-router",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "154-sk-design-parent",
+    "039-design-enforcement-build",
+    "003-d3-routing-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

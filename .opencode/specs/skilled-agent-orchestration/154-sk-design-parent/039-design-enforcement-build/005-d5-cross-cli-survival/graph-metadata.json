@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build",
+  "children_ids": [
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/001-design-standards-always-rule",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/002-transport-result-revalidation",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/003-design-dispatch-manifest",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/004-design-router-intent-lane",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/005-transport-assertion-pairing",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/006-reject-register-unknown",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/007-token-lint-route-replay-fixtures",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/005-d5-cross-cli-survival/008-agent-io-advisory-only"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5 cross-cli survival build",
+      "design dispatch contract phases",
+      "cli design standards backlog"
+    ],
+    "key_topics": [
+      "cross-cli",
+      "survival",
+      "build",
+      "design",
+      "dispatch",
+      "contract",
+      "phases",
+      "cli",
+      "standards",
+      "backlog",
+      "make",
+      "survive"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Survival Guarantee",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Standards Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Treat Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "static",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make the design contract survive CLI dispatch into codex/claude-code/opencode children — one phase per recommendation, D5-R1..R8.",
+    "created_at": "2026-06-28T12:39:53.949Z",
+    "last_save_at": "2026-06-28T12:39:53.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2303a291c2fe0374f06c345dd6b205172ebe33520552fed93e68528c7bb5daaf",
+    "source_doc_hashes": {
+      "spec.md": "fbf3274b98e5e78b8f968fa7035d10b50721f33201b0e22cce3b881de8666cba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

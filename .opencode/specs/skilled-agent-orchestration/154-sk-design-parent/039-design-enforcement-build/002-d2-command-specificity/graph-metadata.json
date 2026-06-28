@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "spec_folder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity",
+  "parent_id": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build",
+  "children_ids": [
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/001-strip-tool-over-grant",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/002-per-mode-arg-grammar",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/003-command-metadata-ssot",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/004-invocation-example-and-returns",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/005-deliverable-output-contract",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/006-sibling-discriminator",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/007-preconditions-and-failure-modes",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/008-register-pinning",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/009-pipeline-handoff-visibility",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/010-user-intent-framing",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/011-interface-intent-lanes",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/012-promote-task-verbs",
+    "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/002-d2-command-specificity/013-description-role-projection"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d2 command specificity build",
+      "design command phases",
+      "design slash command backlog"
+    ],
+    "key_topics": [
+      "command",
+      "specificity",
+      "build",
+      "design",
+      "phases",
+      "slash",
+      "backlog",
+      "design-command",
+      "surface",
+      "one",
+      "phase",
+      "per"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Specificity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. RECOMMENDATIONS (one phase each)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ENFORCEMENT CEILING",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. SEQUENCING",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. RELATED",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build the D2 design-command surface as one phase per recommendation (D2-R1..R13): a command-metadata.json SSOT plus a deterministic surface checker that restores real per-mode contracts to the five identical /design:* wrappers.",
+    "created_at": "2026-06-28T12:39:53.453Z",
+    "last_save_at": "2026-06-28T12:39:53.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2ecf7a57fef5c71043e6d62dbd6fa724116cbeb6b57d01176fce261c9205ded1",
+    "source_doc_hashes": {
+      "spec.md": "c592a741cd14f9048880b5ed831db9be86d76ae91691116e0633b2e228729285"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
