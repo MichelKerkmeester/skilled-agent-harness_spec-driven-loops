@@ -1,21 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/010-freshness-invalidation",
-  "description": "Add a canonical subjectDigest, ~300s TTL, single-use, mint-side + boundary-side double check, and extend proof_check.py with --require-design-token.",
+  "description": "A valid-but-stale or replayed design proof token otherwise authorizes design-affecting work long after issuance or for a different subject",
   "keywords": [
-    "add",
-    "canonical",
-    "subjectdigest",
-    "300s",
-    "ttl",
-    "single-use",
-    "mint-side",
-    "boundary-side",
-    "double",
-    "check",
-    "extend",
-    "require-design-token"
+    "valid-but-stale",
+    "replayed",
+    "design",
+    "proof",
+    "token",
+    "otherwise",
+    "authorizes",
+    "design-affecting",
+    "work",
+    "long",
+    "issuance",
+    "different",
+    "subject"
   ],
-  "lastUpdated": "2026-06-28T12:39:56.891Z",
+  "lastUpdated": "2026-06-28T21:21:28.166Z",
   "specId": "010",
   "folderSlug": "freshness-invalidation",
   "parentChain": [
@@ -27,6 +29,5 @@
     "004-d4-open-design-pairing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

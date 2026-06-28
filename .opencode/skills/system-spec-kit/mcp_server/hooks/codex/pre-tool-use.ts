@@ -293,6 +293,8 @@ function extractDesignProofToken(input: CodexPreToolUseInput): unknown {
 }
 
 const SHA256_DIGEST_PATTERN = /^sha256:[a-f0-9]{64}$/;
+// Design proof tokens are short-lived; accepting absurd expiry spans would defeat freshness.
+const MAX_DESIGN_TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
@@ -328,8 +330,11 @@ function isValidTokenTimeWindow(issuedAt: unknown, expiresAt: unknown): boolean 
   if (!Number.isFinite(issuedTime) || !Number.isFinite(expiryTime)) {
     return false;
   }
+  const tokenTtlMs = expiryTime - issuedTime;
   const now = Date.now();
-  return issuedTime <= now && now < expiryTime;
+  return tokenTtlMs <= MAX_DESIGN_TOKEN_TTL_MS
+    && issuedTime <= now
+    && now < expiryTime;
 }
 
 function isStructurallyValidDesignProofToken(token: unknown): boolean {
