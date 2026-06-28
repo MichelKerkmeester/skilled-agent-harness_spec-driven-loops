@@ -11,9 +11,15 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const {
+  appendObservabilityEvent,
+} = require('../deep-loop/observability-events.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
+
+const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -77,6 +83,28 @@ function normalizeRecord(record) {
     throw new TypeError('round state record must be an object');
   }
   return record;
+}
+
+function observabilityPathForState(statePath) {
+  return path.join(path.dirname(statePath), OBSERVABILITY_EVENTS_FILENAME);
+}
+
+function appendRoundStateObservabilityEvent(statePath, record) {
+  try {
+    appendObservabilityEvent(observabilityPathForState(statePath), record, {
+      producer: 'round-state-jsonl',
+      stream: 'council-round-state',
+      subject: {
+        topic_id: record.topic_id ?? null,
+        round_id: record.round_id ?? null,
+        seat_id: record.seat_id ?? null,
+      },
+      event: record.event ?? record.type,
+      status: record.status,
+    });
+  } catch {
+    // Round-state JSONL append remains the durable council state write.
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -239,6 +267,7 @@ function appendRoundStateRecord(statePath, record, options = {}) {
     } finally {
       fs.closeSync(fd);
     }
+    appendRoundStateObservabilityEvent(statePath, normalized);
     return { appended: true, repair };
   } finally {
     releaseRoundStateLock(lockPath);

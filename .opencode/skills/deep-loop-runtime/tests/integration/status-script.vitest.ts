@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { SCHEMA_VERSION as COVERAGE_GRAPH_SCHEMA_VERSION } from '../../lib/coverage-graph/coverage-graph-db.js';
 import {
   cleanupNamespace,
   namespaceArgs,
@@ -28,7 +29,7 @@ describe('status.cjs direct invocation', () => {
     expect(result.exitCode).toBe(0);
     expect(result.json.status).toBe('ok');
     expect(result.json).toMatchObject({
-      schemaVersion: 3,
+      schemaVersion: COVERAGE_GRAPH_SCHEMA_VERSION,
       rowCount: 0,
     });
     expect(result.json.data).toMatchObject({

@@ -39,6 +39,10 @@ const {
   extractTextFromOpencodeJson,
 } = require('./fanout-salvage.cjs');
 
+const {
+  appendObservabilityEvent,
+} = require('../lib/deep-loop/observability-events.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
@@ -204,6 +208,43 @@ function summarizeSnapshots(lineages, snapshots) {
   };
 }
 
+function observabilityPathForLedger(ledgerPath) {
+  return path.join(path.dirname(ledgerPath), OBSERVABILITY_EVENTS_FILENAME);
+}
+
+function statusForLedgerEvent(entry) {
+  if (entry && typeof entry.status === 'string' && entry.status.trim() !== '') {
+    return entry.status;
+  }
+  if (!entry || typeof entry.event !== 'string') return 'unknown';
+  if (entry.event === 'started' || entry.event === 'progress' || entry.event === 'resume_waiting') return 'running';
+  if (entry.event === 'completed' || entry.event === 'resume_waiting_complete') return 'completed';
+  if (entry.event === 'failed') return entry.terminal === false ? 'retrying' : 'failed';
+  if (entry.event === 'stopped') return 'stopped';
+  if (entry.event === 'retry_scheduled' || entry.event === 'orphan_requeued') return 'retrying';
+  return 'unknown';
+}
+
+function appendFanoutStatusLedger(ledgerPath, entry) {
+  appendStatusLedger(ledgerPath, entry);
+  try {
+    appendObservabilityEvent(observabilityPathForLedger(ledgerPath), entry, {
+      producer: 'fanout-run',
+      stream: 'orchestration-status',
+      subject: {
+        run_id: entry.run_id ?? null,
+        label: entry.label ?? null,
+        loop_type: entry.loop_type ?? null,
+        spec_folder: entry.spec_folder ?? null,
+      },
+      event: entry.event,
+      status: statusForLedgerEvent(entry),
+    });
+  } catch {
+    // Observability must not make the primary orchestration ledger fail.
+  }
+}
+
 // Per-kind first state-dir env var (used for lockfile isolation across same-kind replicas).
 const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
@@ -215,6 +256,7 @@ const activeLineageProcesses = new Set();
 const WAIT_CHECKPOINT_FILENAME = 'orchestration-wait-checkpoint.json';
 const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
 const WAIT_SLEEP_CHUNK_MS = 200;
+const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
@@ -375,7 +417,7 @@ async function resumeWaitingCheckpoint({ checkpointPath, ledgerPath, runId, loop
     return { didWait: false, migrated: loaded.migrated };
   }
 
-  appendStatusLedger(ledgerPath, {
+  appendFanoutStatusLedger(ledgerPath, {
     event: 'resume_waiting',
     at: new Date().toISOString(),
     run_id: runId,
@@ -391,7 +433,7 @@ async function resumeWaitingCheckpoint({ checkpointPath, ledgerPath, runId, loop
     context: { runId, loopType, specFolder },
   });
 
-  appendStatusLedger(ledgerPath, {
+  appendFanoutStatusLedger(ledgerPath, {
     event: 'resume_waiting_complete',
     at: new Date().toISOString(),
     run_id: runId,
@@ -410,7 +452,7 @@ async function persistPreDispatchWait({ checkpointPath, ledgerPath, runId, loopT
 
   const checkpoint = buildWaitCheckpoint({ waitMs: durationMs, runId, loopType, specFolder });
   atomicWriteJson(checkpointPath, checkpoint);
-  appendStatusLedger(ledgerPath, {
+  appendFanoutStatusLedger(ledgerPath, {
     event: 'wait_checkpoint_persisted',
     at: checkpoint.updatedAt,
     run_id: runId,
@@ -426,7 +468,7 @@ async function persistPreDispatchWait({ checkpointPath, ledgerPath, runId, loopT
     context: { runId, loopType, specFolder },
   });
 
-  appendStatusLedger(ledgerPath, {
+  appendFanoutStatusLedger(ledgerPath, {
     event: 'wait_checkpoint_cleared',
     at: new Date().toISOString(),
     run_id: runId,
@@ -545,7 +587,7 @@ function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges
   }
   const startedAtMs = Date.now();
   const timer = setInterval(() => {
-    appendStatusLedger(ledgerPath, {
+    appendFanoutStatusLedger(ledgerPath, {
       event: 'progress',
       label,
       at: new Date().toISOString(),
@@ -823,7 +865,7 @@ async function main() {
       pending: latestGauges.pending,
       failed: Math.max(latestGauges.failed, partial.summary.failed),
     };
-    appendStatusLedger(ledgerPath, {
+    appendFanoutStatusLedger(ledgerPath, {
       event: 'stopped',
       signal,
       at: stoppedAtIso,
@@ -857,7 +899,7 @@ async function main() {
       const enrichedEvent = decorateSlotAccountingEvent(event, lineageSlotAccounting);
       updateLineageSnapshot(lineageSnapshots, enrichedEvent);
       if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
-      appendStatusLedger(ledgerPath, enrichedEvent);
+      appendFanoutStatusLedger(ledgerPath, enrichedEvent);
     },
     worker: async (lineage) => {
       const hrStart = process.hrtime();

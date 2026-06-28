@@ -1,7 +1,226 @@
-Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope
-Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope
-Status: planned
-Importance Tier: important
-Summary: Each deep-loop producer appends events in a different native format
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unified observability envelope",
+      "observability event envelope",
+      "003 unified observability",
+      "observability-events.cjs",
+      "normalizeObservabilityEvent",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "unified",
+      "observability",
+      "envelope",
+      "event",
+      "003",
+      "observability-events",
+      "cjs",
+      "normalizeobservabilityevent",
+      "implementation",
+      "plan",
+      "name",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/status-script.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "observability-events.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "round-state-jsonl.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "status.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/status-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Observability Event Envelope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each deep-loop producer appends events in a different native format",
+    "created_at": "2026-06-28T21:08:34.372Z",
+    "last_save_at": "2026-06-28T21:08:34.372Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6cd47ba667c1d8aab2d54c9f1ed81e558b55c6874ee13eb6fa28543a2288f04b",
+    "source_doc_hashes": {
+      "spec.md": "07b346de665d7fe3d5b510e76d51cd777fdc0d385f8c03f7c1b9c139b8c4fa17",
+      "plan.md": "8c11efcf0e9cb9ca2f4c1db42ea2819e7602ee02ab8e3c9cf906f62f3041ab15",
+      "tasks.md": "4b03b267c3b34ee88bc0d00aa1e1369a51220f89f55a3bffd4056d3fdce9ac43",
+      "implementation-summary.md": "3dafb9043be6ba176b3774b4e2c9d80f414ce6c2595b3dcea1d4c98a6d55343d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

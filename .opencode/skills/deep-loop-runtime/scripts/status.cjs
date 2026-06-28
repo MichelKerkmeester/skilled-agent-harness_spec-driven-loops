@@ -25,11 +25,16 @@ const {
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
 
+const {
+  appendObservabilityEvent,
+} = require('../lib/deep-loop/observability-events.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -80,6 +85,29 @@ function ensureString(args, key) {
 
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
+}
+
+function observabilityPathForDb(dbModule) {
+  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR ?? dbModule?.COUNCIL_GRAPH_STORAGE_DIR;
+  return typeof dbDir === 'string' && dbDir.trim() !== ''
+    ? path.join(dbDir, OBSERVABILITY_EVENTS_FILENAME)
+    : null;
+}
+
+function appendStatusObservabilityEvent(dbModule, payload, ns) {
+  const eventPath = observabilityPathForDb(dbModule);
+  if (!eventPath) return;
+  try {
+    appendObservabilityEvent(eventPath, payload, {
+      producer: 'status',
+      stream: 'graph-status',
+      subject: ns,
+      event: 'status_reported',
+      status: payload.status,
+    });
+  } catch {
+    // Status stdout remains the script contract.
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -137,7 +165,9 @@ async function main() {
         signals: stats.totalNodes > 0 ? await convergence.computeCouncilSignals({ ...councilNs, loopType }) : null,
         momentum: null,
       };
-      jsonOut({ status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges });
+      const payload = { status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges };
+      appendStatusObservabilityEvent(db, payload, ns);
+      jsonOut(payload);
       return;
     }
 
@@ -165,7 +195,9 @@ async function main() {
       signals: nodes.length > 0 ? signals.computeSignals(ns) : null,
       momentum: null,
     };
-    jsonOut({ status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges });
+    const payload = { status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges };
+    appendStatusObservabilityEvent(db, payload, ns);
+    jsonOut(payload);
   } finally {
     db?.closeDb();
   }

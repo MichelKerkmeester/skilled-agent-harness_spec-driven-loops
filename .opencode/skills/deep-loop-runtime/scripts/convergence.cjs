@@ -27,6 +27,10 @@ const {
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
 
+const {
+  appendObservabilityEvent,
+} = require('../lib/deep-loop/observability-events.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,6 +41,7 @@ const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
 const DEFAULT_MIN_OBSERVATIONS = 2;
 const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
+const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 /**
  * Shared convergence profile schema:
@@ -199,6 +204,29 @@ function readObservationThresholdConfig(args) {
 
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
+}
+
+function observabilityPathForDb(dbModule) {
+  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR ?? dbModule?.COUNCIL_GRAPH_STORAGE_DIR;
+  return typeof dbDir === 'string' && dbDir.trim() !== ''
+    ? path.join(dbDir, OBSERVABILITY_EVENTS_FILENAME)
+    : null;
+}
+
+function appendConvergenceObservabilityEvent(dbModule, payload, ns) {
+  const eventPath = observabilityPathForDb(dbModule);
+  if (!eventPath) return;
+  try {
+    appendObservabilityEvent(eventPath, payload, {
+      producer: 'convergence',
+      stream: 'graph-convergence',
+      subject: ns,
+      event: 'convergence_evaluated',
+      status: payload.graph_decision ?? payload.status,
+    });
+  } catch {
+    // Convergence stdout and snapshot persistence remain authoritative.
+  }
 }
 
 function blockersCsv(blockers) {
@@ -568,7 +596,9 @@ async function main() {
         roundId: args.roundId,
         persistSnapshot: asBoolean(args.persistSnapshot),
       });
-      jsonOut(councilConvergence.bridgePayload(data));
+      const payload = councilConvergence.bridgePayload(data);
+      appendConvergenceObservabilityEvent(db, payload, ns);
+      jsonOut(payload);
       return;
     }
 
@@ -599,7 +629,9 @@ async function main() {
         nodeCount: 0,
         edgeCount: 0,
       };
-      jsonOut({ status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' });
+      const payload = { status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' };
+      appendConvergenceObservabilityEvent(db, payload, ns);
+      jsonOut(payload);
       return;
     }
 
@@ -736,6 +768,7 @@ async function main() {
     };
     if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
     if (observationThreshold) payload.graph_observation_threshold_json = observationThreshold;
+    appendConvergenceObservabilityEvent(db, payload, ns);
     jsonOut(payload);
   } finally {
     db?.closeDb();

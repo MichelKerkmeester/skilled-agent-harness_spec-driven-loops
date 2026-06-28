@@ -11,11 +11,10 @@
     "native",
     "format"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.415Z",
+  "lastUpdated": "2026-06-28T21:08:34.217Z",
   "specId": "003",
   "folderSlug": "unified-observability-event-envelope",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "006-ux-observability-automation"

@@ -422,11 +422,14 @@ workflow:
           import { readFileSync } from 'node:fs';
 
           import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
 
+          const { appendObservabilityEvent } = observabilityEvents;
           const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
           const timestamp = '{ISO_8601_NOW}';
           const sessionId = String(config.lineage?.sessionId ?? '{AUTO_SESSION_ID}');
           const generation = Number(config.lineage?.generation ?? 1);
+          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
           const row = {
             event: 'started',
             label: 'single',
@@ -438,10 +441,21 @@ workflow:
             gauges: { iterations: 0, elapsed_ms: 0, score: 0 },
           };
 
-          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
             diffData: { event: row.event, label: row.label, sessionId, generation, gauges: { iterations: 0, score: 0 } },
             diffField: 'state_hash',
           });
+          if (appended) {
+            try {
+              appendObservabilityEvent(observabilityPath, row, {
+                producer: 'deep-research-auto',
+                stream: 'single-loop-telemetry',
+                subject: { label: row.label, sessionId, generation },
+                event: row.event,
+                status: 'running',
+              });
+            } catch {}
+          }
           EOF
         working_directory: "{repo_root}"
         outputs:
@@ -1105,11 +1119,14 @@ workflow:
           import { existsSync, readFileSync } from 'node:fs';
 
           import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
 
+          const { appendObservabilityEvent } = observabilityEvents;
           const stateLogPath = '{state_paths.state_log}';
           const timestamp = '{ISO_8601_NOW}';
           const sessionId = '{config.lineage.sessionId}';
           const generation = Number('{config.lineage.generation}');
+          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
 
           function readRecords(path) {
             if (!existsSync(path)) return [];
@@ -1150,10 +1167,21 @@ workflow:
             gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
           };
 
-          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
             diffData: { event: row.event, label: row.label, sessionId, generation, run, status, gauges: { iterations: iterations.length, score } },
             diffField: 'state_hash',
           });
+          if (appended) {
+            try {
+              appendObservabilityEvent(observabilityPath, row, {
+                producer: 'deep-research-auto',
+                stream: 'single-loop-telemetry',
+                subject: { label: row.label, sessionId, generation, run },
+                event: row.event,
+                status,
+              });
+            } catch {}
+          }
           EOF
         working_directory: "{repo_root}"
         outputs:
@@ -1305,13 +1333,16 @@ workflow:
           import { existsSync, readFileSync } from 'node:fs';
 
           import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
 
+          const { appendObservabilityEvent } = observabilityEvents;
           const stateLogPath = '{state_paths.state_log}';
           const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
           const timestamp = '{ISO_8601_NOW}';
           const sessionId = String(config.lineage?.sessionId ?? '{config.lineage.sessionId}');
           const generation = Number(config.lineage?.generation ?? '{config.lineage.generation}');
           const reason = '{reason}';
+          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
 
           function readRecords(path) {
             if (!existsSync(path)) return [];
@@ -1357,10 +1388,21 @@ workflow:
             gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
           };
 
-          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
             diffData: { event, label: row.label, reason, sessionId, generation, gauges: { iterations: iterations.length, score } },
             diffField: 'state_hash',
           });
+          if (appended) {
+            try {
+              appendObservabilityEvent(observabilityPath, row, {
+                producer: 'deep-research-auto',
+                stream: 'single-loop-telemetry',
+                subject: { label: row.label, sessionId, generation, reason },
+                event,
+                status: event,
+              });
+            } catch {}
+          }
           EOF
         working_directory: "{repo_root}"
         outputs:
