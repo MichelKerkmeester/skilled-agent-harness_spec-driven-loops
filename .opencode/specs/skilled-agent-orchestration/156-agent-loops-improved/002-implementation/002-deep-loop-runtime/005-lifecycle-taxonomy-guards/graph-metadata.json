@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "005-lifecycle-taxonomy-guards summary"
     ],
     "key_topics": [
       "lifecycle-taxonomy-guards",
@@ -35,13 +35,14 @@
       "template",
       "core",
       "tasks",
-      "summary",
-      "active"
+      "005-lifecycle-taxonomy-guards",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "lifecycle-taxonomy.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy-guards.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across multiple files with no single authoritative source",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-06-28T14:29:31.631Z",
+    "last_save_at": "2026-06-28T16:51:28.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d236e3695961ed2681c02a5a7cd55a5107f51ceba32a742353399bd0aec5dd6a",
+    "source_fingerprint": "sha256:244cc7bddf15712014ef7fb7f4fce767d551548a788e623b9f03fcbe03314f7c",
     "source_doc_hashes": {
-      "spec.md": "59a4450be7f2297c8c6adbc76be1f2993190e3359efcabada5edd6ed27dd096c",
+      "spec.md": "b58860ac5d96e1ee7c00e53d712357bbbf4c350addbd9ed5f96269c544090a14",
       "plan.md": "3e5a9fdddae758d5fc0dfed3b6f107d166e59bb181635eb5c844f647a0e54b37",
       "tasks.md": "d3c361b30162daaf1b83e67c2275b274a1f2d0480a08cb1be7f4d45b2fdf7428",
-      "implementation-summary.md": "f1abded8ad64833801aaf9762d131639e72d172da821a1462edd92dc88a53362"
+      "implementation-summary.md": "42c9f84ae21f95a914dd855bfc5a1c725a84889c089869fee59f6eef5b947d79"
     },
     "last_active_child_id": null,
     "last_active_at": null
