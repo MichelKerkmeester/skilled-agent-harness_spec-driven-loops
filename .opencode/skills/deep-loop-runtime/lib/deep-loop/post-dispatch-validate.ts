@@ -2,7 +2,8 @@
 // MODULE: Deep-Loop Post-Dispatch Validator
 // ───────────────────────────────────────────────────────────────────
 
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 import { validateEvidenceContract } from './evidence-contract.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
@@ -138,6 +139,17 @@ type V2ValidationFailure = {
   reason: PostDispatchFailureReason;
   details: string;
   fieldPath?: string;
+};
+type IterationRecordWithLogRegion = Record<string, unknown> & {
+  logOffset?: number;
+  logSize?: number;
+  logPath?: string;
+};
+type JsonlLineRegion = {
+  rawLine: string;
+  startOffset: number;
+  nextOffset: number;
+  record: Record<string, unknown>;
 };
 
 // ───── HELPERS ─────
@@ -333,6 +345,100 @@ function findLastIterationRecord(content: string): Record<string, unknown> | nul
     }
   }
   return null;
+}
+
+function findLastJsonlObjectRegion(content: Buffer): JsonlLineRegion | null {
+  const regions: JsonlLineRegion[] = [];
+  let startOffset = 0;
+
+  while (startOffset < content.length) {
+    const newlineOffset = content.indexOf(0x0a, startOffset);
+    const lineEndOffset = newlineOffset === -1 ? content.length : newlineOffset;
+    const nextOffset = newlineOffset === -1 ? content.length : newlineOffset + 1;
+    const rawEndOffset = lineEndOffset > startOffset && content[lineEndOffset - 1] === 0x0d
+      ? lineEndOffset - 1
+      : lineEndOffset;
+    const rawLine = content.toString('utf8', startOffset, rawEndOffset);
+
+    if (rawLine.trim() !== '') {
+      const parsed = JSON.parse(rawLine);
+      if (isObjectRecord(parsed)) {
+        regions.push({
+          rawLine,
+          startOffset,
+          nextOffset,
+          record: parsed,
+        });
+      }
+    }
+
+    startOffset = nextOffset;
+  }
+
+  return regions.at(-1) ?? null;
+}
+
+function buildStampedJsonlContent(
+  content: Buffer,
+  region: JsonlLineRegion,
+  record: Record<string, unknown>,
+  logOffset: number,
+  logPath: string,
+): Buffer {
+  let logSize = Math.max(0, content.length - logOffset);
+  let stampedLine = Buffer.from(`${region.rawLine}\n`, 'utf8');
+
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const stampedRecord: IterationRecordWithLogRegion = {
+      ...record,
+      logOffset,
+      logSize,
+      logPath,
+    };
+    stampedLine = Buffer.from(`${JSON.stringify(stampedRecord)}\n`, 'utf8');
+    const nextContentSize = region.startOffset + stampedLine.length + (content.length - region.nextOffset);
+    const nextLogSize = Math.max(0, nextContentSize - logOffset);
+    if (nextLogSize === logSize) {
+      break;
+    }
+    logSize = nextLogSize;
+  }
+
+  return Buffer.concat([
+    content.subarray(0, region.startOffset),
+    stampedLine,
+    content.subarray(region.nextOffset),
+  ]);
+}
+
+function writeBufferAtomic(filePath: string, content: Buffer): void {
+  const tempPath = `${filePath}.tmp.${process.pid}.${Date.now()}`;
+
+  try {
+    writeFileSync(tempPath, content);
+    renameSync(tempPath, filePath);
+  } catch (error) {
+    rmSync(tempPath, { force: true });
+    throw error;
+  }
+}
+
+function stampIterationLogRegion(input: PostDispatchValidateInput, record: Record<string, unknown>): void {
+  const content = readFileSync(input.stateLogPath);
+  const region = findLastJsonlObjectRegion(content);
+  if (!region || region.record.type !== CANONICAL_ITERATION_TYPE) {
+    return;
+  }
+
+  const logOffset = Math.max(0, Math.min(input.previousStateLogSize, region.startOffset));
+  const stampedContent = buildStampedJsonlContent(
+    content,
+    region,
+    record,
+    logOffset,
+    resolve(input.stateLogPath),
+  );
+  writeBufferAtomic(input.stateLogPath, stampedContent);
 }
 
 function validateV2IterationRecord(
@@ -779,6 +885,8 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
         details: verificationResult.details,
       };
     }
+
+    stampIterationLogRegion(input, parsedRecord);
   } catch (error: unknown) {
     const details = error instanceof Error ? error.message : String(error);
     return { ok: false, reason: 'jsonl_parse_error', details };

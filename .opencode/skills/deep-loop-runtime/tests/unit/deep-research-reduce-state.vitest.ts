@@ -1,9 +1,10 @@
 import { createRequire } from 'node:module';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const nodeRequire = createRequire(import.meta.url);
 const {
@@ -16,15 +17,17 @@ const {
     requireExistingState?: boolean;
   }) => {
     registry: { status?: string };
+    dashboard: string;
     hasCorruption: boolean;
   };
 };
 
-const tempDirs: string[] = [];
+const hermeticEnvs: HermeticEnv[] = [];
 
 function makeTempSpec(): string {
-  const specFolder = mkdtempSync(join(tmpdir(), 'deep-research-reducer-'));
-  tempDirs.push(specFolder);
+  const env = createHermeticEnv('deep-research-reducer');
+  hermeticEnvs.push(env);
+  const specFolder = join(env.tmpDir, 'spec');
   mkdirSync(join(specFolder, 'research'), { recursive: true });
   writeFileSync(join(specFolder, 'spec.md'), '# Test Packet\n', 'utf8');
   writeFileSync(
@@ -105,9 +108,11 @@ function expectRecoveryRefusal(action: () => void, reason: string): void {
 }
 
 afterEach(() => {
-  while (tempDirs.length > 0) {
-    const dir = tempDirs.pop();
-    if (dir) rmSync(dir, { recursive: true, force: true });
+  while (hermeticEnvs.length > 0) {
+    const env = hermeticEnvs.pop();
+    if (env) {
+      env.cleanup();
+    }
   }
 });
 
@@ -149,5 +154,25 @@ describe('deep-research reduce-state recovery gate', () => {
 
     expect(result.hasCorruption).toBe(false);
     expect(result.registry.status).toBe('INITIALIZED');
+  });
+
+  it('renders log region fields when iteration records carry byte metadata', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      run: 1,
+      status: 'complete',
+      focus: 'offset metadata',
+      findingsCount: 1,
+      newInfoRatio: 0.4,
+      logOffset: 34,
+      logSize: 211,
+      logPath: '/tmp/research/deep-research-state.jsonl',
+    })}\n`);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.dashboard).toContain('| # | Focus | Track | Ratio | Findings | Status | Log Offset | Log Size | Log Path |');
+    expect(result.dashboard).toContain('| 1 | offset metadata | - | 0.40 | 1 | complete | 34 | 211 | /tmp/research/deep-research-state.jsonl |');
   });
 });

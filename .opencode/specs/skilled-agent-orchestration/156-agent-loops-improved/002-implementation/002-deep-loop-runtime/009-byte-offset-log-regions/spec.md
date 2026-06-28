@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -109,8 +109,8 @@ Enable tooling to seek directly to the byte range of any iteration's transcript 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts` | Modify | Stamp `logOffset`/`logSize`/`logPath` on each iteration record after transcript write |
-| `.opencode/skills/deep-loop-runtime/scripts/reduce-state.cjs` | Modify | Read and display `logOffset`/`logSize`/`logPath` in dashboard output |
-| `.opencode/skills/deep-loop-runtime/deep_research_auto.yaml` | Modify | Add optional `logOffset`, `logSize`, `logPath` field definitions to iteration schema |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modify | Read and display `logOffset`/`logSize`/`logPath` in dashboard output |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | Modify | Add optional `logOffset`, `logSize`, `logPath` field definitions to iteration schema |
 <!-- /ANCHOR:scope -->
 
 ---

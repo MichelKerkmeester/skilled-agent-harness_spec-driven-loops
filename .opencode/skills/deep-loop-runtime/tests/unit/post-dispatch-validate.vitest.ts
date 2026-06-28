@@ -10,6 +10,7 @@ import {
   validateIterationOutputs,
   validateOrThrow,
 } from '../../lib/deep-loop/post-dispatch-validate.js';
+import { createHermeticEnv } from '../helpers/spawn-cjs';
 
 type TempPaths = {
   tempDir: string;
@@ -54,6 +55,51 @@ describe('post-dispatch-validate', () => {
         }),
       ).toEqual({ ok: true });
     });
+  });
+
+  it('stamps byte log region metadata onto a validated iteration record', () => {
+    const hermetic = createHermeticEnv('post-dispatch-log-region');
+    try {
+      const iterationFile = join(hermetic.tmpDir, 'iteration-001.md');
+      const stateLogPath = join(hermetic.tmpDir, 'state.jsonl');
+      writeFileSync(iterationFile, '# Iteration 1\n\nTranscript body\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"event","event":"started"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+      };
+
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+        }),
+      ).toEqual({ ok: true });
+
+      const lines = readFileSync(stateLogPath, 'utf8').trim().split(/\r?\n/);
+      const stamped = JSON.parse(lines[lines.length - 1] ?? '{}') as Record<string, unknown>;
+      expect(stamped.logOffset).toBe(previousStateLogSize);
+      expect(stamped.logSize).toBeGreaterThan(0);
+      expect(stamped.logPath).toBe(stateLogPath);
+
+      const slice = readFileSync(String(stamped.logPath))
+        .subarray(Number(stamped.logOffset), Number(stamped.logOffset) + Number(stamped.logSize))
+        .toString('utf8');
+      expect(slice).toContain('"type":"iteration"');
+      expect(slice).toContain('"logOffset"');
+      expect(slice).toContain('"logSize"');
+      expect(slice).toContain('"logPath"');
+    } finally {
+      hermetic.cleanup();
+    }
   });
 
   it('returns iteration_file_missing when the iteration file does not exist', () => {

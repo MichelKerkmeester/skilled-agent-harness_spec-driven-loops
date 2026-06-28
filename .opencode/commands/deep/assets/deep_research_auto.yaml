@@ -856,6 +856,10 @@ workflow:
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus]
+          optional_jsonl_fields:
+            logOffset: "Byte offset where the seekable log region starts"
+            logSize: "Byte length of the seekable log region"
+            logPath: "Absolute path to the file containing the seekable log region"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true

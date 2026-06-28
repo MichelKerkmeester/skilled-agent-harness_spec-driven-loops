@@ -166,6 +166,20 @@ function readIterationRun(record) {
   return isFiniteNumber(run) ? run : null;
 }
 
+function hasLogRegionFields(record) {
+  return isFiniteNumber(record?.logOffset)
+    || isFiniteNumber(record?.logSize)
+    || (typeof record?.logPath === 'string' && record.logPath !== '');
+}
+
+function formatLogRegionNumber(value) {
+  return isFiniteNumber(value) ? String(value) : '-';
+}
+
+function formatLogRegionPath(value) {
+  return typeof value === 'string' && value ? value : '-';
+}
+
 function buildTrendFlatlineAdvisories(config, histories, latestRecord) {
   const window = resolveTrendFlatlineWindow(config);
   return Object.entries(histories)
@@ -979,13 +993,28 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   const advisoryEvents = Array.isArray(registry.advisoryEvents) ? registry.advisoryEvents : [];
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
   const nextFocus = resolveNextFocus(registry, iterationFiles, iterationRecords);
+  const showLogRegionColumns = iterationRecords.some(hasLogRegionFields);
   const progressRows = iterationRecords
     .map((record) => {
       const track = record.focusTrack || '-';
       const ratio = typeof record.newInfoRatio === 'number' ? record.newInfoRatio.toFixed(2) : '0.00';
-      return `| ${record.run} | ${record.focus || 'unknown'} | ${track} | ${ratio} | ${record.findingsCount || 0} | ${record.status || 'complete'} |`;
+      const baseRow = `| ${record.run} | ${record.focus || 'unknown'} | ${track} | ${ratio} | ${record.findingsCount || 0} | ${record.status || 'complete'} |`;
+      return showLogRegionColumns
+        ? `${baseRow} ${formatLogRegionNumber(record.logOffset)} | ${formatLogRegionNumber(record.logSize)} | ${formatLogRegionPath(record.logPath)} |`
+        : baseRow;
     })
-    .join('\n') || '| 0 | none yet | - | 0.00 | 0 | initialized |';
+    .join('\n') || (showLogRegionColumns
+      ? '| 0 | none yet | - | 0.00 | 0 | initialized | - | - | - |'
+      : '| 0 | none yet | - | 0.00 | 0 | initialized |');
+  const progressTableHeader = showLogRegionColumns
+    ? [
+        '| # | Focus | Track | Ratio | Findings | Status | Log Offset | Log Size | Log Path |',
+        '|---|-------|-------|-------|----------|--------|------------|----------|----------|',
+      ]
+    : [
+        '| # | Focus | Track | Ratio | Findings | Status |',
+        '|---|-------|-------|-------|----------|--------|',
+      ];
 
   return [
     '---',
@@ -1020,8 +1049,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     '<!-- ANCHOR:progress -->',
     '## 3. PROGRESS',
     '',
-    '| # | Focus | Track | Ratio | Findings | Status |',
-    '|---|-------|-------|-------|----------|--------|',
+    ...progressTableHeader,
     progressRows,
     '',
     `- iterationsCompleted: ${registry.metrics.iterationsCompleted}`,
