@@ -1,12 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import {
+  persistJudgeCardUnlessQuarantined,
   PostDispatchValidationError,
+  runJudgeWithHardening,
   runOptionalVerificationPass,
+  type JudgePersistenceSurface,
   validateIterationOutputs,
   validateOrThrow,
 } from '../../lib/deep-loop/post-dispatch-validate.js';
@@ -539,6 +542,182 @@ describe('post-dispatch-validate', () => {
       expect(result.ok).toBe(true);
       const evidenceWarnings = (result.warnings ?? []).filter((w) => w.code.startsWith('evidence_contract'));
       expect(evidenceWarnings).toHaveLength(0);
+    });
+  });
+
+  it('recovers a transient judge model failure inside the retry window', async () => {
+    let calls = 0;
+
+    const result = await runJudgeWithHardening({
+      maxAttempts: 2,
+      backoffMs: 0,
+      fastTimeoutMs: 100,
+      slowTimeoutMs: 200,
+      invoke: async () => {
+        calls += 1;
+        if (calls === 1) {
+          throw new Error('temporary model outage');
+        }
+        return '{"overall_score":0.82,"verdict":"pass"}';
+      },
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.card).toMatchObject({ overall_score: 0.82, verdict: 'pass' });
+    }
+    expect(result.attempts).toBe(2);
+    expect(result.failures).toEqual([
+      expect.objectContaining({ attempt: 1, kind: 'model_error', fastTimedOut: false }),
+    ]);
+    expect(calls).toBe(2);
+  });
+
+  it('strips markdown fences and parses judge JSON without issuing a fallback card', async () => {
+    const result = await runJudgeWithHardening({
+      invoke: async () => '```json\n{"overall_score":0.73,"verdict":"continue"}\n```',
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.card).toMatchObject({ overall_score: 0.73, verdict: 'continue' });
+      expect(result.card.quarantined).toBeUndefined();
+    }
+    expect(result.formatStripRetries).toBe(1);
+    expect(result.failures).toEqual([]);
+  });
+
+  it('keeps the slow-path escape hatch after the fast judge timeout fires', async () => {
+    vi.useFakeTimers();
+    try {
+      const resultPromise = runJudgeWithHardening({
+        fastTimeoutMs: 5,
+        slowTimeoutMs: 50,
+        invoke: () =>
+          new Promise((resolveJudge) => {
+            setTimeout(() => resolveJudge('{"overall_score":0.91,"verdict":"pass"}'), 20);
+          }),
+      });
+
+      await vi.advanceTimersByTimeAsync(5);
+      await vi.advanceTimersByTimeAsync(15);
+      const result = await resultPromise;
+
+      expect(result.ok).toBe(true);
+      expect(result.fastTimeouts).toBe(1);
+      expect(result.slowTimeouts).toBe(0);
+      if (result.ok) {
+        expect(result.card).toMatchObject({ overall_score: 0.91, verdict: 'pass' });
+      }
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('issues a quarantined neutral fallback card after exhausted parse retries', async () => {
+    const result = await runJudgeWithHardening({
+      maxAttempts: 2,
+      backoffMs: 0,
+      invoke: async () => '```json\nnot-json\n```',
+      fallbackReason: 'judge unavailable',
+      now: () => '2026-06-28T00:00:00.000Z',
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.card).toMatchObject({
+        type: 'judge_fallback_card',
+        fallback: true,
+        quarantined: true,
+        score: 0.5,
+        confidence: 0,
+        reason: 'judge unavailable',
+        metadata: {
+          attempts: 2,
+          maxAttempts: 2,
+          failureKind: 'parse_error',
+          formatStripRetries: 2,
+          fastTimeouts: 0,
+          slowTimeouts: 0,
+          generatedAt: '2026-06-28T00:00:00.000Z',
+        },
+      });
+      expect(result.card.metadata.failures).toHaveLength(2);
+    }
+  });
+
+  it('does not write quarantined fallback cards to persistence, convergence, or coverage surfaces', async () => {
+    const fallback = await runJudgeWithHardening({
+      maxAttempts: 1,
+      invoke: async () => 'not-json',
+    });
+    expect(fallback.ok).toBe(false);
+    if (fallback.ok) {
+      throw new Error('expected fallback card');
+    }
+
+    const writes: JudgePersistenceSurface[] = [];
+    const result = await persistJudgeCardUnlessQuarantined(fallback.card, {
+      persistence: (_card, surface) => {
+        writes.push(surface);
+      },
+      convergence: (_card, surface) => {
+        writes.push(surface);
+      },
+      coverage: (_card, surface) => {
+        writes.push(surface);
+      },
+    });
+
+    expect(writes).toEqual([]);
+    expect(result).toEqual({
+      persisted: false,
+      writtenSurfaces: [],
+      skippedSurfaces: ['persistence', 'convergence', 'coverage'],
+      reason: 'quarantined',
+    });
+  });
+
+  it('skips post-dispatch state writes for quarantined judge records when enabled', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      const record = {
+        type: 'iteration',
+        iteration: 1,
+        newInfoRatio: 0.4,
+        status: 'continue',
+        focus: 'coverage',
+        fallback: true,
+        quarantined: true,
+      };
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(record)}\n`, 'utf8');
+      const beforeValidation = readFileSync(stateLogPath, 'utf8');
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+        recipeConfig: {
+          judge_quarantine_enabled: true,
+          verification_enabled: true,
+          verification_threshold: 1,
+        },
+      });
+
+      expect(result).toEqual({
+        ok: true,
+        warnings: [
+          {
+            code: 'judge_card_quarantined',
+            detail: 'quarantined judge card skipped before post-dispatch writes',
+            fieldPath: 'quarantined',
+          },
+        ],
+      });
+      expect(readFileSync(stateLogPath, 'utf8')).toBe(beforeValidation);
     });
   });
 });

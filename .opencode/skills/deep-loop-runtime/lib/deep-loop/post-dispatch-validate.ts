@@ -9,7 +9,7 @@ import { validateEvidenceContract } from './evidence-contract.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
 import type { ExecutorKind } from './executor-config.js';
 
-// ───── TYPE DEFINITIONS ─────
+// ───── 1. TYPE DEFINITIONS ─────
 
 export type VerificationLanguage = 'python' | 'typescript' | 'javascript' | 'rust' | 'go';
 
@@ -17,6 +17,7 @@ export type PostDispatchRecipeConfig = {
   verification_enabled?: boolean;
   verification_languages?: VerificationLanguage[];
   verification_threshold?: number;
+  judge_quarantine_enabled?: boolean;
 };
 
 export type PostDispatchValidateInput = {
@@ -28,6 +29,112 @@ export type PostDispatchValidateInput = {
   deltaFilePath?: string;
   recipeConfig?: PostDispatchRecipeConfig;
 };
+
+/** Failure class recorded for a hardened judge attempt. */
+export type JudgeFailureKind = 'model_error' | 'parse_error' | 'slow_timeout' | 'unknown';
+
+/** Persistence destinations protected by judge-card quarantine. */
+export type JudgePersistenceSurface = 'persistence' | 'convergence' | 'coverage';
+
+/** A failed judge attempt with retry and timeout diagnostics. */
+export interface JudgeAttemptFailure {
+  attempt: number;
+  kind: JudgeFailureKind;
+  message: string;
+  fastTimedOut: boolean;
+  formatStripRetried: boolean;
+}
+
+/** Retry, timeout, and parser configuration for a hardened judge call. */
+export interface JudgeHardeningConfig {
+  maxAttempts?: number;
+  backoffMs?: number | ((attempt: number) => number);
+  fastTimeoutMs?: number;
+  slowTimeoutMs?: number;
+  now?: () => string;
+  sleep?: (ms: number) => Promise<void>;
+}
+
+/** Input for running one model-backed judge call through hardening layers. */
+export interface JudgeHardeningInput<TCard extends Record<string, unknown>> extends JudgeHardeningConfig {
+  invoke: () => Promise<string>;
+  parse?: (record: Record<string, unknown>) => TCard;
+  fallbackReason?: string;
+}
+
+/** Metadata attached to neutral judge fallback cards. */
+export interface JudgeFallbackMetadata {
+  attempts: number;
+  maxAttempts: number;
+  failureKind: JudgeFailureKind;
+  failures: JudgeAttemptFailure[];
+  formatStripRetries: number;
+  fastTimeouts: number;
+  slowTimeouts: number;
+  generatedAt: string;
+}
+
+/** Input for constructing a neutral quarantined judge fallback card. */
+export interface JudgeFallbackInput {
+  reason: string;
+  failures: JudgeAttemptFailure[];
+  maxAttempts: number;
+  formatStripRetries: number;
+  fastTimeouts: number;
+  slowTimeouts: number;
+  now?: () => string;
+}
+
+/** Neutral card emitted when judge retries cannot produce a parseable score. */
+export interface NeutralJudgeFallbackCard extends Record<string, unknown> {
+  type: 'judge_fallback_card';
+  fallback: true;
+  quarantined: true;
+  score: 0.5;
+  confidence: 0;
+  reason: string;
+  metadata: JudgeFallbackMetadata;
+}
+
+/** Result from a hardened judge call. */
+export type JudgeHardeningResult<TCard extends Record<string, unknown>> =
+  | {
+      ok: true;
+      card: TCard;
+      attempts: number;
+      failures: JudgeAttemptFailure[];
+      formatStripRetries: number;
+      fastTimeouts: number;
+      slowTimeouts: number;
+    }
+  | {
+      ok: false;
+      card: NeutralJudgeFallbackCard;
+      attempts: number;
+      failures: JudgeAttemptFailure[];
+      formatStripRetries: number;
+      fastTimeouts: number;
+      slowTimeouts: number;
+    };
+
+/** Writer callback for a judge card persistence surface. */
+export type JudgePersistenceWriter<TCard extends Record<string, unknown>> = (
+  card: TCard,
+  surface: JudgePersistenceSurface,
+) => void | Promise<void>;
+
+/** Persistence writers guarded by the quarantine boundary. */
+export type JudgePersistenceWriters<TCard extends Record<string, unknown>> = Partial<
+  Record<JudgePersistenceSurface, JudgePersistenceWriter<TCard>>
+>;
+
+/** Summary of judge-card persistence after quarantine checks. */
+export interface JudgePersistenceResult {
+  persisted: boolean;
+  writtenSurfaces: JudgePersistenceSurface[];
+  skippedSurfaces: JudgePersistenceSurface[];
+  reason?: 'quarantined' | 'no_writer';
+}
 
 export type VerificationStageScores = {
   compiled: boolean;
@@ -87,7 +194,7 @@ export type PostDispatchValidateResult =
       warnings?: PostDispatchAdvisory[];
     };
 
-// ───── DOMAIN ERRORS ─────
+// ───── 2. DOMAIN ERRORS ─────
 
 export class PostDispatchValidationError extends Error {
   result: PostDispatchValidateResult;
@@ -99,10 +206,25 @@ export class PostDispatchValidationError extends Error {
   }
 }
 
-// ───── CONSTANTS ─────
+class JudgeTimeoutError extends Error {
+  kind: 'slow_timeout';
+
+  constructor(message: string) {
+    super(message);
+    this.name = 'JudgeTimeoutError';
+    this.kind = 'slow_timeout';
+  }
+}
+
+// ───── 3. CONSTANTS ─────
 
 const CANONICAL_ITERATION_TYPE = 'iteration' as const;
 const DEFAULT_VERIFICATION_THRESHOLD = 0.5;
+const DEFAULT_JUDGE_MAX_ATTEMPTS = 1;
+const DEFAULT_JUDGE_BACKOFF_MS = 0;
+const DEFAULT_JUDGE_FAST_TIMEOUT_MS = 10_000;
+const DEFAULT_JUDGE_SLOW_TIMEOUT_MS = 60_000;
+const JUDGE_PERSISTENCE_SURFACES = ['persistence', 'convergence', 'coverage'] as const;
 const SUPPORTED_VERIFICATION_LANGUAGES = new Set<VerificationLanguage>([
   'python',
   'typescript',
@@ -152,7 +274,131 @@ type JsonlLineRegion = {
   record: Record<string, unknown>;
 };
 
-// ───── HELPERS ─────
+// ───── 4. HELPERS ─────
+
+type JudgeParseResult =
+  | { ok: true; record: Record<string, unknown>; formatStripRetried: boolean }
+  | { ok: false; error: string; formatStripRetried: boolean };
+
+function normalizePositiveInteger(value: number | undefined, fallback: number): number {
+  if (value === undefined || !Number.isFinite(value)) {
+    return fallback;
+  }
+  return Math.max(1, Math.floor(value));
+}
+
+function normalizeNonNegativeInteger(value: number | undefined, fallback: number): number {
+  if (value === undefined || !Number.isFinite(value)) {
+    return fallback;
+  }
+  return Math.max(0, Math.floor(value));
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function defaultSleep(ms: number): Promise<void> {
+  return new Promise((resolveSleep) => {
+    setTimeout(resolveSleep, ms);
+  });
+}
+
+function resolveJudgeBackoffMs(backoff: JudgeHardeningConfig['backoffMs'], attempt: number): number {
+  if (typeof backoff === 'function') {
+    return normalizeNonNegativeInteger(backoff(attempt), DEFAULT_JUDGE_BACKOFF_MS);
+  }
+  return normalizeNonNegativeInteger(backoff, DEFAULT_JUDGE_BACKOFF_MS);
+}
+
+function parseJsonObject(text: string): { ok: true; record: Record<string, unknown> } | { ok: false; error: string } {
+  try {
+    const parsed: unknown = JSON.parse(text);
+    if (!isObjectRecord(parsed)) {
+      return { ok: false, error: 'judge response JSON is not an object' };
+    }
+    return { ok: true, record: parsed };
+  } catch (error: unknown) {
+    return { ok: false, error: errorMessage(error) };
+  }
+}
+
+function stripMarkdownJsonFence(text: string): string {
+  const trimmed = text.trim();
+  const match = trimmed.match(/^```(?:json)?\s*\r?\n?([\s\S]*?)\r?\n?```\s*$/i);
+  return match?.[1]?.trim() ?? trimmed;
+}
+
+function parseJudgeJsonWithFormatStrip(text: string): JudgeParseResult {
+  const trimmed = text.trim();
+  if (trimmed === '') {
+    return { ok: false, error: 'judge response was empty', formatStripRetried: false };
+  }
+
+  const direct = parseJsonObject(trimmed);
+  if (direct.ok) {
+    return { ok: true, record: direct.record, formatStripRetried: false };
+  }
+
+  const stripped = stripMarkdownJsonFence(trimmed);
+  if (stripped !== trimmed) {
+    const strippedParse = parseJsonObject(stripped);
+    if (strippedParse.ok) {
+      return { ok: true, record: strippedParse.record, formatStripRetried: true };
+    }
+    return { ok: false, error: strippedParse.error, formatStripRetried: true };
+  }
+
+  return { ok: false, error: direct.error, formatStripRetried: false };
+}
+
+async function callJudgeWithDualTimeouts(
+  invoke: () => Promise<string>,
+  fastTimeoutMs: number,
+  slowTimeoutMs: number,
+): Promise<{ text: string; fastTimedOut: boolean }> {
+  const normalizedSlowTimeoutMs = Math.max(fastTimeoutMs, slowTimeoutMs);
+  const operation = invoke();
+  let fastTimer: ReturnType<typeof setTimeout> | undefined;
+
+  const fastResult = await Promise.race<
+    | { kind: 'response'; text: string }
+    | { kind: 'fast_timeout' }
+  >([
+    operation.then((text) => ({ kind: 'response', text })),
+    new Promise<{ kind: 'fast_timeout' }>((resolveTimeout) => {
+      fastTimer = setTimeout(() => resolveTimeout({ kind: 'fast_timeout' }), fastTimeoutMs);
+    }),
+  ]);
+  if (fastTimer !== undefined) {
+    clearTimeout(fastTimer);
+  }
+
+  if (fastResult.kind === 'response') {
+    return { text: fastResult.text, fastTimedOut: false };
+  }
+
+  let slowTimer: ReturnType<typeof setTimeout> | undefined;
+  const remainingTimeoutMs = Math.max(0, normalizedSlowTimeoutMs - fastTimeoutMs);
+  try {
+    const text = await Promise.race([
+      operation,
+      new Promise<never>((_, reject) => {
+        slowTimer = setTimeout(() => {
+          reject(new JudgeTimeoutError(`judge slow timeout after ${normalizedSlowTimeoutMs}ms`));
+        }, remainingTimeoutMs);
+      }),
+    ]);
+    return { text, fastTimedOut: true };
+  } catch (error: unknown) {
+    operation.catch(() => undefined);
+    throw error;
+  } finally {
+    if (slowTimer !== undefined) {
+      clearTimeout(slowTimer);
+    }
+  }
+}
 
 function getLastNonEmptyLine(content: string): string | null {
   const lines = content.split(/\r?\n/);
@@ -556,7 +802,190 @@ function validateV2IterationRecord(
   return failures;
 }
 
-// ───── EXPORTS ─────
+// ───── 5. EXPORTS ─────
+
+/**
+ * Build a neutral fallback card for an exhausted judge path.
+ *
+ * @param input - Failure metadata used to construct the fallback card.
+ * @returns A quarantined neutral score card.
+ */
+export function createNeutralJudgeFallbackCard(input: JudgeFallbackInput): NeutralJudgeFallbackCard {
+  const failureKind = input.failures.at(-1)?.kind ?? 'unknown';
+
+  return {
+    type: 'judge_fallback_card',
+    fallback: true,
+    quarantined: true,
+    score: 0.5,
+    confidence: 0,
+    reason: input.reason,
+    metadata: {
+      attempts: input.failures.length,
+      maxAttempts: input.maxAttempts,
+      failureKind,
+      failures: input.failures,
+      formatStripRetries: input.formatStripRetries,
+      fastTimeouts: input.fastTimeouts,
+      slowTimeouts: input.slowTimeouts,
+      generatedAt: input.now?.() ?? new Date().toISOString(),
+    },
+  };
+}
+
+/**
+ * Check whether a value is marked for judge quarantine.
+ *
+ * @param value - Candidate judge card or state record.
+ * @returns True when the value must be excluded from write paths.
+ */
+export function isQuarantinedJudgeCard(value: unknown): value is Record<string, unknown> & { quarantined: true } {
+  return isObjectRecord(value) && value.quarantined === true;
+}
+
+/**
+ * Run a model-backed judge call with retry, timeout, parse, and fallback guards.
+ *
+ * @param input - Judge invocation and hardening configuration.
+ * @returns A parsed judge card or a quarantined neutral fallback card.
+ */
+export async function runJudgeWithHardening<TCard extends Record<string, unknown>>(
+  input: JudgeHardeningInput<TCard>,
+): Promise<JudgeHardeningResult<TCard>> {
+  const maxAttempts = normalizePositiveInteger(input.maxAttempts, DEFAULT_JUDGE_MAX_ATTEMPTS);
+  const fastTimeoutMs = normalizeNonNegativeInteger(input.fastTimeoutMs, DEFAULT_JUDGE_FAST_TIMEOUT_MS);
+  const slowTimeoutMs = normalizeNonNegativeInteger(input.slowTimeoutMs, DEFAULT_JUDGE_SLOW_TIMEOUT_MS);
+  const sleep = input.sleep ?? defaultSleep;
+  const failures: JudgeAttemptFailure[] = [];
+  let formatStripRetries = 0;
+  let fastTimeouts = 0;
+  let slowTimeouts = 0;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    let fastTimedOut = false;
+    try {
+      const response = await callJudgeWithDualTimeouts(input.invoke, fastTimeoutMs, slowTimeoutMs);
+      fastTimedOut = response.fastTimedOut;
+      if (response.fastTimedOut) {
+        fastTimeouts += 1;
+      }
+
+      const parsed = parseJudgeJsonWithFormatStrip(response.text);
+      if (parsed.formatStripRetried) {
+        formatStripRetries += 1;
+      }
+      if (!parsed.ok) {
+        failures.push({
+          attempt,
+          kind: 'parse_error',
+          message: parsed.error,
+          fastTimedOut,
+          formatStripRetried: parsed.formatStripRetried,
+        });
+      } else {
+        try {
+          const card = input.parse ? input.parse(parsed.record) : (parsed.record as TCard);
+          return {
+            ok: true,
+            card,
+            attempts: attempt,
+            failures,
+            formatStripRetries,
+            fastTimeouts,
+            slowTimeouts,
+          };
+        } catch (error: unknown) {
+          failures.push({
+            attempt,
+            kind: 'parse_error',
+            message: errorMessage(error),
+            fastTimedOut,
+            formatStripRetried: parsed.formatStripRetried,
+          });
+        }
+      }
+    } catch (error: unknown) {
+      const kind: JudgeFailureKind = error instanceof JudgeTimeoutError ? 'slow_timeout' : 'model_error';
+      if (kind === 'slow_timeout') {
+        slowTimeouts += 1;
+      }
+      failures.push({
+        attempt,
+        kind,
+        message: errorMessage(error),
+        fastTimedOut,
+        formatStripRetried: false,
+      });
+    }
+
+    if (attempt < maxAttempts) {
+      const backoffMs = resolveJudgeBackoffMs(input.backoffMs, attempt);
+      if (backoffMs > 0) {
+        await sleep(backoffMs);
+      }
+    }
+  }
+
+  const card = createNeutralJudgeFallbackCard({
+    reason: input.fallbackReason ?? 'judge failed after hardened retries',
+    failures,
+    maxAttempts,
+    formatStripRetries,
+    fastTimeouts,
+    slowTimeouts,
+    now: input.now,
+  });
+
+  return {
+    ok: false,
+    card,
+    attempts: maxAttempts,
+    failures,
+    formatStripRetries,
+    fastTimeouts,
+    slowTimeouts,
+  };
+}
+
+/**
+ * Persist a judge card only when it is not quarantined.
+ *
+ * @param card - Judge card to write.
+ * @param writers - Optional writers for each persistence surface.
+ * @returns A summary of written and skipped surfaces.
+ */
+export async function persistJudgeCardUnlessQuarantined<TCard extends Record<string, unknown>>(
+  card: TCard,
+  writers: JudgePersistenceWriters<TCard>,
+): Promise<JudgePersistenceResult> {
+  const configuredSurfaces = JUDGE_PERSISTENCE_SURFACES.filter((surface) => writers[surface] !== undefined);
+
+  if (isQuarantinedJudgeCard(card)) {
+    return {
+      persisted: false,
+      writtenSurfaces: [],
+      skippedSurfaces: configuredSurfaces.length > 0 ? configuredSurfaces : [...JUDGE_PERSISTENCE_SURFACES],
+      reason: 'quarantined',
+    };
+  }
+
+  const writtenSurfaces: JudgePersistenceSurface[] = [];
+  for (const surface of JUDGE_PERSISTENCE_SURFACES) {
+    const writer = writers[surface];
+    if (!writer) {
+      continue;
+    }
+    await writer(card, surface);
+    writtenSurfaces.push(surface);
+  }
+
+  return {
+    persisted: writtenSurfaces.length > 0,
+    writtenSurfaces,
+    skippedSurfaces: JUDGE_PERSISTENCE_SURFACES.filter((surface) => !writtenSurfaces.includes(surface)),
+    reason: writtenSurfaces.length === 0 ? 'no_writer' : undefined,
+  };
+}
 
 /**
  * Compute a verification confidence score from stage scores.
@@ -709,6 +1138,19 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
           typeof parsedRecord.reason === 'string'
             ? `dispatch_failure:${parsedRecord.reason}${typeof parsedRecord.detail === 'string' ? `:${parsedRecord.detail}` : ''}`
             : 'dispatch_failure',
+      };
+    }
+
+    if (input.recipeConfig?.judge_quarantine_enabled === true && isQuarantinedJudgeCard(parsedRecord)) {
+      return {
+        ok: true,
+        warnings: [
+          {
+            code: 'judge_card_quarantined',
+            detail: 'quarantined judge card skipped before post-dispatch writes',
+            fieldPath: 'quarantined',
+          },
+        ],
       };
     }
 
