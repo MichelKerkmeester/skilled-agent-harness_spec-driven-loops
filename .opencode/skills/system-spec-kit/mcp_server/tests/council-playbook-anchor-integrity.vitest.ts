@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const MCP_SERVER_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-workflows/ai-council/manual_testing_playbook');
+const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook');
 const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/mcp_server/tests');
 const DEEP_LOOP_RUNTIME_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-runtime/tests');
 

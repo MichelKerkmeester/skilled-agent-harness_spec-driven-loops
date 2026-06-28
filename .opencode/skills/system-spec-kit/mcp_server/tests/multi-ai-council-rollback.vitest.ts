@@ -11,14 +11,14 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const rollback = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/rollback.cjs',
+  '.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/rollback.cjs',
 )) as {
   moveRoundToFailed: (packet: string, round: string, options?: Record<string, unknown>) => { moved: string[] };
   markSuperseded: (statePath: string, options?: Record<string, unknown>) => { superseded: string[] };
 };
 const audit = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/audit-trail.cjs',
+  '.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/audit-trail.cjs',
 )) as {
   appendArtifactWrittenEvent: (statePath: string, event: Record<string, unknown>) => string;
   computeChecksum: (content: string) => string;

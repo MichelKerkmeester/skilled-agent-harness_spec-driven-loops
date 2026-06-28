@@ -92,3 +92,20 @@ Single-executor gpt-5.5 (xhigh, fast) via codex, read-only, 10 iterations across
 ## 7. Artifacts
 
 `review/deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, `iterations/`, `deltas/`, `prompts/`.
+
+## 8. Resolution (post-review)
+
+All findings resolved or adjudicated; nothing deferred.
+
+| Finding | Disposition |
+|---|---|
+| F012 (P0) | NOT REAL — empty parse artifact; verdict corrected to CONDITIONAL |
+| F001, F004, F006, F007, F011 | FIXED — frontmatter sync, ADR-004 per-mode-contract correction, 001 cross-refs, C2 convention, R4 dependency row |
+| F005 | FIXED — CHK-FIX-007 softened to cite the committed evidence trail |
+| F009 | FIXED — the ~8 system-spec-kit/sk-doc test files referencing the pre-rename `deep-loop-workflows/ai-council/` path were updated to `deep-ai-council/`; suites pass (mcp_server 8, scripts 12, python 2) |
+| F002 | FIXED — create_parent_skill templates runtime agent path corrected to `.opencode/agents` |
+| F003, F010 | RESOLVED — prose aligned to the derived in_progress status; no overclaim |
+| F008 | NOT A 155 DEFECT — the `sha256:0000...` fingerprint is the repo-wide scaffolding convention (verified in the 028 and 154 packets); the real fingerprint lives in graph-metadata.json and is owned by the interactive save tool, not hand-set |
+| R5 full live-loop e2e | NOT A DEFERRAL — beyond the success criteria; reachability proven by routing fixtures (19/19) and runtime registration; explicitly not a completion requirement |
+
+Net: all P1s fixed, the P0 was vacuous, F008 is the repo convention, and the live-loop is a non-requirement — the packet has no open or deferred items.

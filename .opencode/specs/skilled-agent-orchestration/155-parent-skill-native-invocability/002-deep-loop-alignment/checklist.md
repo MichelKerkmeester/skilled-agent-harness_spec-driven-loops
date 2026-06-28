@@ -74,7 +74,7 @@ This packet is effectively complete for required gates. Items are checked only w
 ## Code Quality
 
 - [x] CHK-010 [P0] Renamed/edited skill assets pass `package_skill.py --check` on the hub and all five packets
-- [x] CHK-011 [P0] No known broken `ai-council` filesystem references remain on the scoped deep-loop live surface after the rename; legacy public command/agent surfaces remain intentional. Out-of-packet stale references remain in about eight system-spec-kit/sk-doc test files and are tracked as a separate follow-up outside packet 155.
+- [x] CHK-011 [P0] No broken `ai-council` filesystem references remain after the rename: the scoped deep-loop live surface is clean, and the eight system-spec-kit/sk-doc test files that referenced the pre-rename `deep-loop-workflows/ai-council/` path were updated to `deep-ai-council/` (suites pass: mcp_server 8, scripts 12, python 2). Legacy public command/agent surfaces remain intentional.
 - [x] CHK-012 [P1] Static hub routing follows the phase-001 Option E pattern
 - [x] CHK-013 [P1] R3/R4 changes follow the sk-design parent-skill conventions where applicable: earned catalogs stay, merged identity is kept as a documented deep-loop exception, and R5 closure evidence is recorded
 <!-- /ANCHOR:code-quality -->
