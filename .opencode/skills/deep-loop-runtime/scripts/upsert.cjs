@@ -87,6 +87,47 @@ function parseJsonValue(value, fallback, label) {
   }
 }
 
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+function hasNodeSeedMetadata(node) {
+  return node
+    && typeof node === 'object'
+    && (hasOwn(node, 'seedSource')
+      || hasOwn(node, 'seed_source')
+      || hasOwn(node, 'seedConfidence')
+      || hasOwn(node, 'seed_confidence'));
+}
+
+function parseSeedOptions(args, rawNodes, isCouncil) {
+  const hasSeedSource = args.seedSource !== undefined;
+  const hasSeedConfidence = args.seedConfidence !== undefined;
+  const hasInlineSeedMetadata = Array.isArray(rawNodes) && rawNodes.some(hasNodeSeedMetadata);
+  const isSeedPath = hasSeedSource || hasSeedConfidence || hasInlineSeedMetadata;
+  if (!isSeedPath) return null;
+  if (isCouncil) throw inputError('seed options are only supported for coverage graph loops');
+  if (!hasSeedSource || !hasSeedConfidence) {
+    throw inputError('seedSource and seedConfidence are required for seeding');
+  }
+  if (typeof args.seedSource !== 'string' || args.seedSource.trim().length === 0) {
+    throw inputError('seedSource must be a non-empty string');
+  }
+  if (typeof args.seedConfidence !== 'string') {
+    throw inputError('seedConfidence must be a number between 0 and 1');
+  }
+
+  const confidence = Number(args.seedConfidence);
+  if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1) {
+    throw inputError('seedConfidence must be a number between 0 and 1');
+  }
+
+  return {
+    seedSource: args.seedSource.trim(),
+    seedConfidence: confidence,
+  };
+}
+
 function readEvents(arg) {
   if (!arg) return null;
   const raw = arg === '-' ? fs.readFileSync(0, 'utf8') : fs.readFileSync(path.resolve(arg), 'utf8');
@@ -130,6 +171,7 @@ async function main() {
       ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
       : parseJsonValue(args.edges, [], 'edges');
     if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
+    const seedOptions = parseSeedOptions(args, rawNodes, isCouncil);
     if (rawNodes.length === 0 && rawEdges.length === 0) {
       if (isCouncil) {
         const namespace = { specFolder, loopType, sessionId };
@@ -150,7 +192,7 @@ async function main() {
         });
         return;
       }
-      throw inputError('At least one node or edge must be provided');
+      if (!seedOptions) throw inputError('At least one node or edge must be provided');
     }
 
     const validationErrors = [];
@@ -190,6 +232,8 @@ async function main() {
             loopType,
             contentHash: n.contentHash,
             iteration: n.iteration,
+            seedSource: seedOptions?.seedSource,
+            seedConfidence: seedOptions?.seedConfidence,
           });
     }
 
@@ -238,7 +282,7 @@ async function main() {
     const storageDir = isCouncil ? db.COUNCIL_GRAPH_STORAGE_DIR : db.COVERAGE_GRAPH_DATABASE_DIR;
     releaseWriterLock = acquireWriterLock(path.join(storageDir, isCouncil ? '.council-graph-writer.lock' : '.deep-loop-graph-writer.lock'));
     sleepSync(Number(process.env.DEEP_LOOP_SCRIPT_LOCK_HOLD_MS || 0));
-    const result = db.batchUpsert(nodes, edges);
+    const result = db.batchUpsert(nodes, edges, seedOptions ?? undefined);
     const namespace = { specFolder, loopType, sessionId };
     const data = {
       insertedNodes: result.insertedNodes,
@@ -246,6 +290,10 @@ async function main() {
       rejectedEdges: result.rejectedEdges,
       rejectedSelfLoops,
       validationErrors: validationErrors.length > 0 ? validationErrors : undefined,
+      warnings: result.warnings?.length ? result.warnings : undefined,
+      seed: seedOptions
+        ? { source: seedOptions.seedSource, confidence: seedOptions.seedConfidence }
+        : undefined,
       namespace,
       ...(isCouncil ? { sourceOfTruth: 'derived_from_ai_council_artifacts' } : {}),
     };

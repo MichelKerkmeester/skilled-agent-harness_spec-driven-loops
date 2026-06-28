@@ -410,6 +410,25 @@ workflow:
           convergence_threshold: "{convergence_threshold}"
         output: "{state_paths.strategy}"
 
+      step_seed_coverage_graph:
+        action: "Seed the review coverage graph before the first convergence check"
+        transform: |
+          1. Convert review_scope_files into FILE nodes.
+          2. Convert review target groupings into coarse SLICE nodes only; do not expand SYMBOL
+             or DEPENDENCY nodes in review mode.
+          3. Emit COVERS edges from SLICE nodes to FILE nodes when the grouping is known.
+          4. Bind coverage_seed_source to "scope_discovery" and coverage_seed_confidence to 0.50.
+          5. When scope discovery yields no files, emit [] for both arrays; the upsert script
+             returns a warning and review continues with an empty graph.
+        bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{config.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
+        outputs:
+          - coverage_seed_nodes_json: "Seed nodes for review SLICE and FILE kinds only"
+          - coverage_seed_edges_json: "Seed COVERS edges where review target groupings resolved"
+          - coverage_seed_warning: "Warning emitted when the seed batch inserts zero nodes, else empty"
+        on_warning:
+          log: "Coverage graph seed inserted zero nodes; continuing with an empty graph."
+          proceed: true
+
       step_enrich_strategy_context:
         action: "Ensure Known Context is written only after strategy.md exists"
         condition: "prior_context_found"

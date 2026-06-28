@@ -56,6 +56,71 @@ describe('upsert.cjs direct invocation', () => {
     expect(result.json.error).toContain('sessionId is required');
   });
 
+  it('requires both seed flags when node seed metadata is present', () => {
+    const namespace = uniqueNamespace('upsert');
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes',
+      JSON.stringify([{ id: 'dim-1', kind: 'DIMENSION', name: 'Correctness', seedSource: 'scope_discovery' }]),
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+    expect(result.json.error).toContain('seedSource and seedConfidence are required for seeding');
+  });
+
+  it('applies seed metadata from CLI flags to review seed nodes', () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes',
+      JSON.stringify([
+        { id: 'slice-1', kind: 'SLICE', name: 'Review target' },
+        { id: 'file-1', kind: 'FILE', name: 'lib/review.ts' },
+      ]),
+      '--seed-source',
+      'scope_discovery',
+      '--seed-confidence',
+      '0.5',
+    ]);
+
+    expect(result.exitCode).toBe(0);
+    expect(result.json.data).toMatchObject({
+      insertedNodes: 2,
+      insertedEdges: 0,
+      seed: { source: 'scope_discovery', confidence: 0.5 },
+    });
+    expect(result.json.graph_nodes_json).toEqual([
+      expect.objectContaining({ id: 'slice-1', seedSource: 'scope_discovery', seedConfidence: 0.5 }),
+      expect.objectContaining({ id: 'file-1', seedSource: 'scope_discovery', seedConfidence: 0.5 }),
+    ]);
+  });
+
+  it('returns a non-fatal warning when a seed invocation has no nodes', () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes',
+      '[]',
+      '--edges',
+      '[]',
+      '--seed-source',
+      'scope_discovery',
+      '--seed-confidence',
+      '0.5',
+    ]);
+
+    expect(result.exitCode).toBe(0);
+    expect(result.json.data).toMatchObject({
+      insertedNodes: 0,
+      warnings: ['Coverage graph seeding inserted zero nodes for seed source "scope_discovery"'],
+    });
+  });
+
   it('exits 2 for DB errors', () => {
     const namespace = uniqueNamespace('upsert');
     const result = runScript('upsert', [

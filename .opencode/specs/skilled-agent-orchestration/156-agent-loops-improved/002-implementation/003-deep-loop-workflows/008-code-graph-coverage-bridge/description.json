@@ -11,11 +11,10 @@
     "coverage",
     "graph"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.572Z",
+  "lastUpdated": "2026-06-28T20:06:43.406Z",
   "specId": "008",
   "folderSlug": "code-graph-coverage-bridge",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

@@ -17,6 +17,7 @@ export type LoopType = 'research' | 'review' | 'context';
 export type ResearchNodeKind = 'QUESTION' | 'FINDING' | 'CLAIM' | 'SOURCE';
 
 export type ReviewNodeKind =
+  | 'SLICE'
   | 'DIMENSION'
   | 'FILE'
   | 'FINDING'
@@ -85,6 +86,8 @@ export interface CoverageNode {
   contentHash?: string;
   iteration?: number;
   metadata?: Record<string, unknown>;
+  seedSource?: string;
+  seedConfidence?: number;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -123,11 +126,25 @@ export interface Namespace {
   sessionId?: string;
 }
 
+/** Optional provenance controls for graph initialization upserts. */
+export interface BatchUpsertOptions {
+  seedSource?: string;
+  seedConfidence?: number;
+}
+
+/** Result of a batch graph upsert transaction. */
+export interface BatchUpsertResult {
+  insertedNodes: number;
+  insertedEdges: number;
+  rejectedEdges: number;
+  warnings?: string[];
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 
 const DB_FILENAME = 'deep-loop-graph.sqlite';
 export const COVERAGE_GRAPH_DATABASE_DIR = join(
@@ -180,6 +197,7 @@ export const CONTEXT_WEIGHTS: Record<ContextRelation, number> = {
 export const VALID_KINDS: Record<LoopType, readonly string[]> = {
   research: ['QUESTION', 'FINDING', 'CLAIM', 'SOURCE'] as const,
   review: [
+    'SLICE',
     'DIMENSION',
     'FILE',
     'FINDING',
@@ -224,6 +242,8 @@ const SCHEMA_SQL = `
     content_hash TEXT,
     iteration INTEGER,
     metadata TEXT,
+    seed_source TEXT,
+    seed_confidence REAL CHECK(seed_confidence IS NULL OR (seed_confidence >= 0.0 AND seed_confidence <= 1.0)),
     created_at TEXT DEFAULT (datetime('now')),
     updated_at TEXT DEFAULT (datetime('now')),
     PRIMARY KEY (spec_folder, loop_type, session_id, id)
@@ -310,7 +330,7 @@ export function initDb(dbDir: string): Database.Database {
     ).get() as { name: string } | undefined;
     if (schemaTableExists) {
       const existing = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
-      if (existing && existing.version < SCHEMA_VERSION) {
+      if (existing && existing.version < 3) {
         db.exec(`
           DROP INDEX IF EXISTS idx_coverage_folder_type;
           DROP INDEX IF EXISTS idx_coverage_kind;
@@ -330,6 +350,7 @@ export function initDb(dbDir: string): Database.Database {
     }
 
     db.exec(SCHEMA_SQL);
+    ensureCoverageNodeSeedColumns();
 
     const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
     if (!versionRow) {
@@ -391,6 +412,43 @@ function prepareStatement(sql: string): Database.Statement {
   return statement;
 }
 
+function ensureCoverageNodeSeedColumns(): void {
+  if (!db) return;
+  const tableExists = db.prepare(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='coverage_nodes'",
+  ).get() as { name: string } | undefined;
+  if (!tableExists) return;
+
+  const columns = new Set(
+    (db.prepare('PRAGMA table_info(coverage_nodes)').all() as Array<{ name: string }>)
+      .map((column) => column.name),
+  );
+
+  if (!columns.has('seed_source')) {
+    db.exec('ALTER TABLE coverage_nodes ADD COLUMN seed_source TEXT');
+  }
+  if (!columns.has('seed_confidence')) {
+    db.exec('ALTER TABLE coverage_nodes ADD COLUMN seed_confidence REAL CHECK(seed_confidence IS NULL OR (seed_confidence >= 0.0 AND seed_confidence <= 1.0))');
+  }
+}
+
+function normalizeSeedSource(seedSource: string | undefined): string | null {
+  if (seedSource === undefined) return null;
+  const trimmed = seedSource.trim();
+  if (trimmed.length === 0) {
+    throw new RangeError('seedSource must be a non-empty string');
+  }
+  return trimmed;
+}
+
+function normalizeSeedConfidence(seedConfidence: number | undefined): number | null {
+  if (seedConfidence === undefined) return null;
+  if (!Number.isFinite(seedConfidence) || seedConfidence < 0 || seedConfidence > 1) {
+    throw new RangeError('seedConfidence must be a number between 0 and 1');
+  }
+  return seedConfidence;
+}
+
 function buildNamespaceWhere(ns: Namespace): { clause: string; params: unknown[] } {
   const parts: string[] = ['spec_folder = ?', 'loop_type = ?'];
   const params: unknown[] = [ns.specFolder, ns.loopType];
@@ -402,7 +460,7 @@ function buildNamespaceWhere(ns: Namespace): { clause: string; params: unknown[]
 }
 
 function rowToNode(r: Record<string, unknown>): CoverageNode {
-  return {
+  const node: CoverageNode = {
     id: r.id as string,
     specFolder: r.spec_folder as string,
     loopType: r.loop_type as LoopType,
@@ -415,6 +473,13 @@ function rowToNode(r: Record<string, unknown>): CoverageNode {
     createdAt: r.created_at as string | undefined,
     updatedAt: r.updated_at as string | undefined,
   };
+  if (r.seed_source !== null && r.seed_source !== undefined) {
+    node.seedSource = r.seed_source as string;
+  }
+  if (r.seed_confidence !== null && r.seed_confidence !== undefined) {
+    node.seedConfidence = Number(r.seed_confidence);
+  }
+  return node;
 }
 
 function rowToEdge(r: Record<string, unknown>): CoverageEdge {
@@ -474,6 +539,8 @@ export function upsertNode(node: CoverageNode): string {
   const d = getDb();
   const now = new Date().toISOString();
   const metadataStr = node.metadata ? JSON.stringify(node.metadata) : null;
+  const seedSource = normalizeSeedSource(node.seedSource);
+  const seedConfidence = normalizeSeedConfidence(node.seedConfidence);
 
   const existing = prepareStatement(
     'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
@@ -482,11 +549,14 @@ export function upsertNode(node: CoverageNode): string {
     prepareStatement(`
       UPDATE coverage_nodes SET
         kind = ?, name = ?, content_hash = ?, iteration = ?,
-        metadata = ?, updated_at = ?
+        metadata = ?,
+        seed_source = COALESCE(?, seed_source),
+        seed_confidence = COALESCE(?, seed_confidence),
+        updated_at = ?
       WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
     `).run(
       node.kind, node.name, node.contentHash ?? null, node.iteration ?? null,
-      metadataStr, now,
+      metadataStr, seedSource, seedConfidence, now,
       node.specFolder, node.loopType, node.sessionId, node.id,
     );
     return node.id;
@@ -495,13 +565,13 @@ export function upsertNode(node: CoverageNode): string {
   prepareStatement(`
     INSERT INTO coverage_nodes (
       spec_folder, loop_type, session_id, id, kind, name,
-      content_hash, iteration, metadata, created_at, updated_at
+      content_hash, iteration, metadata, seed_source, seed_confidence, created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     node.specFolder, node.loopType, node.sessionId, node.id,
     node.kind, node.name, node.contentHash ?? null,
-    node.iteration ?? null, metadataStr, now, now,
+    node.iteration ?? null, metadataStr, seedSource, seedConfidence, now, now,
   );
   return node.id;
 }
@@ -872,8 +942,11 @@ export function getStats(specFolder: string, loopType: LoopType): {
 export function batchUpsert(
   nodes: CoverageNode[],
   edges: CoverageEdge[],
-): { insertedNodes: number; insertedEdges: number; rejectedEdges: number } {
+  options: BatchUpsertOptions = {},
+): BatchUpsertResult {
   const d = getDb();
+  const seedSource = normalizeSeedSource(options.seedSource);
+  if (options.seedConfidence !== undefined) normalizeSeedConfidence(options.seedConfidence);
   let insertedNodes = 0;
   let insertedEdges = 0;
   let rejectedEdges = 0;
@@ -894,5 +967,9 @@ export function batchUpsert(
   });
   tx();
 
-  return { insertedNodes, insertedEdges, rejectedEdges };
+  const warnings = seedSource && insertedNodes === 0
+    ? [`Coverage graph seeding inserted zero nodes for seed source "${seedSource}"`]
+    : undefined;
+
+  return { insertedNodes, insertedEdges, rejectedEdges, warnings };
 }

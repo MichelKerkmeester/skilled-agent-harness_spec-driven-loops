@@ -293,6 +293,29 @@ workflow:
         content: '{"reuseCandidates":[],"integrationPoints":[],"conventions":[],"dependencies":[],"gaps":[],"contradictions":[],"metrics":{"iterationsCompleted":0,"findings":0,"agreementEligible":0,"sliceCoverage":0,"reuseCatalogCoverage":0,"agreementRate":0,"relevanceFloor":0,"dependencyCompleteness":0,"convergenceScore":0}}'
         output: "{state_paths.registry}"
 
+      step_seed_coverage_graph:
+        action: "Seed the coverage graph from the resolved frontier before the first convergence check"
+        transform: |
+          1. Convert frontier_slices_json into a deduplicated node batch:
+             - SLICE nodes from each ranked frontier slice
+             - FILE nodes from every slice path
+             - SYMBOL nodes from slice symbol entries when present
+             - DEPENDENCY nodes from import/dependency expansion when available
+          2. Emit best-effort edges only when both endpoints exist: FILE CONTAINS SYMBOL,
+             SYMBOL DEPENDS_ON DEPENDENCY, and FILE IMPORTS FILE.
+          3. Bind coverage_seed_source to frontier_source and coverage_seed_confidence to 0.55
+             for code_graph, else 0.35 for fallback-derived seeds.
+          4. When the frontier is empty, emit [] for both arrays; the upsert script returns
+             a warning and the loop continues with an empty graph.
+        bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"context\" --session-id \"{config.lineage.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
+        outputs:
+          - coverage_seed_nodes_json: "Seed nodes for SLICE, FILE, SYMBOL, and DEPENDENCY kinds"
+          - coverage_seed_edges_json: "Seed edges for import/dependency containment where endpoints resolved"
+          - coverage_seed_warning: "Warning emitted when the seed batch inserts zero nodes, else empty"
+        on_warning:
+          log: "Coverage graph seed inserted zero nodes; continuing with an empty graph."
+          proceed: true
+
       step_enrich_strategy_context:
         action: "Ensure Known Context is written only after strategy.md exists"
         condition: "prior_context_found"

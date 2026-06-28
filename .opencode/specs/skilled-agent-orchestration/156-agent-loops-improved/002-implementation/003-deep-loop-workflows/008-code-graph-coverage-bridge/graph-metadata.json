@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "008-code-graph-coverage-bridge summary"
     ],
     "key_topics": [
       "code",
@@ -39,11 +39,14 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_context_auto.yaml",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      ".opencode/commands/deep/assets/deep_context_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-db.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/upsert-script.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,21 +54,39 @@
     ],
     "entities": [
       {
-        "name": "deep_context_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
-        "source": "derived"
-      },
-      {
         "name": "coverage-graph-db.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
         "source": "derived"
       },
       {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+        "source": "derived"
+      },
+      {
         "name": "deep_review_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-db.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-db.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upsert-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/upsert-script.vitest.ts",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-context and deep-review loops start with an empty coverage graph",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-06-28T14:27:36.561Z",
+    "last_save_at": "2026-06-28T20:06:43.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f085b3a15b61b4be5883182c412a0257afe170d630076f90a188096fedd683a",
+    "source_fingerprint": "sha256:ea781c3b0a9fbdb48573bb0681ca73a79732248269caf33010cf7bda38ac9644",
     "source_doc_hashes": {
-      "spec.md": "e385979a314223be54c7167a62bc196e9bee3e87120c9e919b30e88f9d26a7c7",
+      "spec.md": "f15559f010de9b36fc46c2282b0dcd7aca512d6e3eb9197a7de2a9ae8ae622ac",
       "plan.md": "98bb957487eef79ad26e8d5b13beb0bcc1486ce4fbe523de74e22327f2b3ace2",
       "tasks.md": "11f9a07a94a3eeff941a905c2dbdc5c2a65579cee552b1d5f3c5438b2e75ced7",
-      "implementation-summary.md": "1d2349958954f3799ddf2d7729a17094711f5dbd38c9ea919412e6bdba6d0ae7"
+      "implementation-summary.md": "5295d6e0c92e68258b99b4fb7e855d56efe9e5acba52a4661fb1452b0e3198ac"
     },
     "last_active_child_id": null,
     "last_active_at": null
