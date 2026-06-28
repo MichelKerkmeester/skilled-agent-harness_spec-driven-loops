@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "011-convergence-score-delta summary"
     ],
     "key_topics": [
       "convergence",
@@ -39,9 +39,11 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/convergence-score-delta.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +54,18 @@
         "name": "convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-score-delta.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/convergence-score-delta.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The convergence signal reports current novelty but carries no signal for whether the loop is actually improving across iterations; a run can generate novel findings while scores plateau at the same value each iteration",
     "created_at": "2026-06-28T14:01:59Z",
-    "last_save_at": "2026-06-28T14:29:33.665Z",
+    "last_save_at": "2026-06-28T18:10:49.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4514665488ed24f5c8ff4f47a09c8ec7170a9355187de92f4f1d4f4c3cdf90d",
+    "source_fingerprint": "sha256:57780d9b8bac4c426096ac55d254563d7487ea0693a2207c22da61750325ba73",
     "source_doc_hashes": {
-      "spec.md": "b692a5c89d236da750bf1f4681ec2935c49f38081a0a8d05e84e1e59efe52799",
+      "spec.md": "f0ab06fd7f9e31d697e5bf2507da7a84d2ea54e356997eb53f7f5830f7d52409",
       "plan.md": "ccdfdbbde98255bf599fa3dd222ef8e2c8ec3a22b8282395f3150de7673fe844",
       "tasks.md": "99298d82e256223d4233b028b3fcfd4eea7e47222d5151969db47fce1a44d2a5",
-      "implementation-summary.md": "fe8fce9b940497792d868e58d4782a6cb973b34e306f465077d8091ba64ef059"
+      "implementation-summary.md": "7ac498af43b5ddfbbb7a1dbfc104784ae9df812cd1f5173e4a7cce0a4cda7edf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -380,6 +380,67 @@ function buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args) {
   };
 }
 
+function roundMetricDelta(value) {
+  const rounded = Math.round(value * 1000) / 1000;
+  return Object.is(rounded, -0) ? 0 : rounded;
+}
+
+function snapshotScore(snapshot) {
+  if (!snapshot || typeof snapshot !== 'object') return null;
+  if (typeof snapshot.score === 'number' && Number.isFinite(snapshot.score)) return snapshot.score;
+  const metrics = snapshot.metrics && typeof snapshot.metrics === 'object' ? snapshot.metrics : null;
+  if (metrics && typeof metrics.score === 'number' && Number.isFinite(metrics.score)) return metrics.score;
+  return null;
+}
+
+function computeScoreDelta(score, priorSnapshot) {
+  const priorScore = snapshotScore(priorSnapshot);
+  if (priorScore === null || !Number.isFinite(score)) return null;
+  return roundMetricDelta(score - priorScore);
+}
+
+function shouldTraceImprovementEffect(args) {
+  return asBoolean(args.improvementEffect) || asBoolean(args.improvementEffectTrace) || asBoolean(args.traceImprovementEffect);
+}
+
+function buildImprovementEffect(snapshots, scoreDelta) {
+  const historicalDeltas = [];
+  for (let i = 1; i < snapshots.length; i += 1) {
+    const previousScore = snapshotScore(snapshots[i - 1]);
+    const latestScore = snapshotScore(snapshots[i]);
+    if (previousScore !== null && latestScore !== null) {
+      historicalDeltas.push(roundMetricDelta(latestScore - previousScore));
+    }
+  }
+  const deltas = scoreDelta === null ? historicalDeltas : [...historicalDeltas, scoreDelta];
+  if (deltas.length === 0) {
+    return {
+      latestDelta: scoreDelta,
+      sampleCount: 0,
+      helped: 0,
+      hurt: 0,
+      flat: 0,
+      averageDelta: null,
+      summary: 'no prior snapshot',
+    };
+  }
+
+  const helped = deltas.filter((delta) => delta > 0).length;
+  const hurt = deltas.filter((delta) => delta < 0).length;
+  const flat = deltas.filter((delta) => delta === 0).length;
+  const averageDelta = roundMetricDelta(deltas.reduce((sum, delta) => sum + delta, 0) / deltas.length);
+  const avgDir = averageDelta > 0 ? '+' : '';
+  return {
+    latestDelta: scoreDelta,
+    sampleCount: deltas.length,
+    helped,
+    hurt,
+    flat,
+    averageDelta,
+    summary: `Avg delta: ${avgDir}${(averageDelta * 100).toFixed(1)}% (${helped} helped, ${hurt} hurt, ${flat} flat)`,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -433,6 +494,8 @@ async function main() {
       const data = {
         decision: 'CONTINUE',
         reason: 'Graph is empty; insufficient data for convergence assessment',
+        scoreDelta: null,
+        scoreDeltaNote: 'no prior snapshot',
         signals: null,
         blockers: [],
         trace: [],
@@ -441,7 +504,7 @@ async function main() {
         nodeCount: 0,
         edgeCount: 0,
       };
-      jsonOut({ status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0 });
+      jsonOut({ status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' });
       return;
     }
 
@@ -457,6 +520,12 @@ async function main() {
         ? signalsLib.computeContextSignalsFromData(nodes, edges)
         : buildReviewSignals(nodes, edges);
     const score = computeCompositeScore(signals, loopType);
+    const priorSnapshot = snapshots.length > 0 ? snapshots[snapshots.length - 1] : null;
+    const scoreDelta = computeScoreDelta(score, priorSnapshot);
+    const scoreDeltaNote = priorSnapshot === null
+      ? 'no prior snapshot'
+      : scoreDelta === null ? 'prior snapshot has no score' : 'prior snapshot compared';
+    const improvementEffect = shouldTraceImprovementEffect(args) ? buildImprovementEffect(snapshots, scoreDelta) : null;
     const noveltyCorroboration = loopType === 'research'
       ? buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args)
       : null;
@@ -525,6 +594,8 @@ async function main() {
       decision,
       reason: decisionReason(decision, blockingBlockers, trace),
       score,
+      scoreDelta,
+      scoreDeltaNote,
       signals: signalsWithScore,
       blockers,
       trace,
@@ -537,7 +608,8 @@ async function main() {
       edgeCount: stats.totalEdges,
       lastIteration: stats.lastIteration,
     };
-    jsonOut({
+    if (improvementEffect) data.improvementEffect = improvementEffect;
+    const payload = {
       status: 'ok',
       data,
       graph_decision: decision,
@@ -548,7 +620,11 @@ async function main() {
       graph_stop_blocked: decision === 'STOP_BLOCKED',
       graph_trace_json: trace,
       graph_convergence_score: score,
-    });
+      graph_score_delta: scoreDelta,
+      graph_score_delta_json: JSON.stringify(scoreDelta),
+    };
+    if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
+    jsonOut(payload);
   } finally {
     db?.closeDb();
   }
@@ -556,6 +632,9 @@ async function main() {
 
 module.exports = {
   CONVERGENCE_PROFILE_SCHEMA,
+  buildImprovementEffect,
+  computeScoreDelta,
+  shouldTraceImprovementEffect,
 };
 
 if (require.main === module) {

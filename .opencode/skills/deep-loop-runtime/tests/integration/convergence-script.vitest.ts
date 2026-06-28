@@ -114,6 +114,16 @@ function addInsightOnlyFinding(namespace: ScriptNamespace) {
   ]);
 }
 
+function addReviewFinding(namespace: ScriptNamespace) {
+  return runScript('upsert', [
+    ...namespaceArgs(namespace),
+    '--nodes',
+    JSON.stringify([
+      { id: 'finding-1', kind: 'FINDING', name: 'Stable finding' },
+    ]),
+  ]);
+}
+
 afterEach(async () => {
   while (namespaces.length > 0) {
     const namespace = namespaces.pop();
@@ -160,6 +170,56 @@ describe('convergence.cjs direct invocation', () => {
         expect.objectContaining({ type: 'uncovered_dimensions', severity: 'blocking' }),
       ]),
     );
+  });
+
+  it('emits null score delta before a prior snapshot exists', () => {
+    const namespace = uniqueNamespace('convergence');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+
+    const result = runScript('convergence', namespaceArgs(namespace));
+    const data = result.json.data as Record<string, unknown>;
+
+    expect(result.exitCode).toBe(0);
+    expect(data.scoreDelta).toBeNull();
+    expect(data.scoreDeltaNote).toBe('no prior snapshot');
+    expect(data).not.toHaveProperty('improvementEffect');
+    expect(result.json.graph_score_delta).toBeNull();
+  });
+
+  it('emits score delta from the latest prior snapshot and gates improvement effect output', () => {
+    const namespace = uniqueNamespace('convergence');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    expect(runScript('convergence', [...namespaceArgs(namespace), '--persist-snapshot', '--iteration', '1']).exitCode).toBe(0);
+    expect(addReviewFinding(namespace).exitCode).toBe(0);
+
+    const baseResult = runScript('convergence', namespaceArgs(namespace));
+    const baseData = baseResult.json.data as Record<string, unknown>;
+
+    expect(baseResult.exitCode).toBe(0);
+    expect(baseData.scoreDelta).toBe(0.2);
+    expect(baseData.scoreDeltaNote).toBe('prior snapshot compared');
+    expect(baseData).not.toHaveProperty('improvementEffect');
+    expect(baseResult.json.graph_score_delta).toBe(0.2);
+
+    const tracedResult = runScript('convergence', [...namespaceArgs(namespace), '--trace-improvement-effect']);
+    const tracedData = tracedResult.json.data as {
+      scoreDelta: number;
+      improvementEffect: Record<string, unknown>;
+    };
+
+    expect(tracedResult.exitCode).toBe(0);
+    expect(tracedData.scoreDelta).toBe(0.2);
+    expect(tracedData.improvementEffect).toMatchObject({
+      latestDelta: 0.2,
+      sampleCount: 1,
+      helped: 1,
+      hurt: 0,
+      flat: 0,
+      averageDelta: 0.2,
+    });
+    expect(tracedResult.json.graph_improvement_effect_json).toMatchObject(tracedData.improvementEffect);
   });
 
   it('returns non-zero structured JSON for invalid input', () => {
