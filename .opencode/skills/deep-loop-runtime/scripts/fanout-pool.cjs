@@ -24,7 +24,13 @@ const path = require('node:path');
 const { classifyLineageFailure } = require('./lib/cli-guards.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const LAG_CEILING_ACTION_ABORT_REQUEUE = 'abort-requeue';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function isRecord(value) {
@@ -90,6 +96,17 @@ function normalizeNonNegativeDuration(value) {
   return Math.floor(n);
 }
 
+function normalizeLagCeilingAction(value) {
+  if (value === undefined || value === null || value === '') {
+    return null;
+  }
+  const action = String(value).trim();
+  if (action !== LAG_CEILING_ACTION_ABORT_REQUEUE) {
+    throw new TypeError('lagCeilingAction must be "abort-requeue" when set');
+  }
+  return action;
+}
+
 function normalizeRetryCountMap(value) {
   const counts = new Map();
   if (!isRecord(value)) {
@@ -131,6 +148,16 @@ function normalizeError(error) {
     message: error && error.message ? String(error.message) : String(error),
     ...classification,
   };
+}
+
+function buildLagCeilingTimeoutError({ label, lagMs, lagCeilingMs }) {
+  const error = new Error(
+    `lineage ${label} exceeded lag ceiling ${lagCeilingMs}ms after ${Math.max(0, Math.floor(lagMs))}ms without pool progress`,
+  );
+  error.name = 'AbortError';
+  error.timedOut = true;
+  error.exitCode = null;
+  return error;
 }
 
 function readLedgerRecords(ledgerPath) {
@@ -217,7 +244,7 @@ function markOrphanedLineages(ledgerPath, options = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -229,24 +256,41 @@ function markOrphanedLineages(ledgerPath, options = {}) {
  * @param {Object} params - Settlement parameters.
  * @param {*} params.item - The work item (e.g. a lineage descriptor).
  * @param {number} params.index - Zero-based item index (preserves order).
- * @param {Function} params.worker - Async worker: (item, { index }) => output.
+ * @param {Function} params.worker - Async worker: (item, { index, signal? }) => output.
  * @param {Function} params.now - Callable returning a Date or ISO timestamp.
  * @param {Function} [params.onEvent] - Optional callback for ledger events.
+ * @param {AbortSignal} [params.abortSignal] - Optional per-attempt abort signal.
+ * @param {number} [params.attempt] - One-based attempt number.
+ * @param {boolean} [params.emitSettledEvent] - False when the caller emits terminal events.
+ * @param {string} [params.startedAtIso] - Stable started timestamp for synthetic settlement.
+ * @param {number} [params.startedAtMs] - Stable started clock for duration accounting.
  * @returns {Promise<Object>} Result with label, status, timing, output|error.
  */
-async function settleItem({ item, index, worker, now, onEvent, attempt: rawAttempt, emitSettledEvent: shouldEmitSettledEvent }) {
+async function settleItem({
+  item,
+  index,
+  worker,
+  now,
+  onEvent,
+  attempt: rawAttempt,
+  emitSettledEvent: shouldEmitSettledEvent,
+  abortSignal,
+  startedAtIso: rawStartedAtIso,
+  startedAtMs: rawStartedAtMs,
+}) {
   const attempt = Number.isFinite(Number(rawAttempt)) ? Number(rawAttempt) : 1;
   const emitSettledEvent = shouldEmitSettledEvent !== false;
   const label = labelFor(item, index);
-  const startedAtIso = normalizeTimestamp(now());
-  const startedAtMs = Date.now();
+  const startedAtIso = normalizeTimestamp(rawStartedAtIso ?? now());
+  const startedAtMs = Number.isFinite(Number(rawStartedAtMs)) ? Number(rawStartedAtMs) : Date.now();
 
   if (typeof onEvent === 'function') {
     onEvent({ event: 'started', label, index, attempt, at: startedAtIso });
   }
 
   try {
-    const output = await worker(item, { index });
+    const workerContext = abortSignal ? { index, signal: abortSignal } : { index };
+    const output = await worker(item, workerContext);
     const completedAtIso = normalizeTimestamp(now());
     const durationMs = Math.max(0, Date.now() - startedAtMs);
     if (emitSettledEvent && typeof onEvent === 'function') {
@@ -290,9 +334,10 @@ async function settleItem({ item, index, worker, now, onEvent, attempt: rawAttem
  * @param {Object} options - Pool configuration.
  * @param {Array} options.items - Work items (each ideally has a `label`).
  * @param {number} options.concurrency - Max items in flight (clamped to >= 1).
- * @param {Function} options.worker - Async worker: (item, { index }) => output.
+ * @param {Function} options.worker - Async worker: (item, { index, signal? }) => output.
  * @param {Function} [options.now] - Callable returning a Date/ISO timestamp.
  * @param {Function} [options.onEvent] - Optional ledger-event callback.
+ * @param {string} [options.lagCeilingAction] - Optional `abort-requeue` action.
  * @returns {Promise<Object>} { results: [...ordered], summary: { total,
  *   succeeded, failed, all_failed } }.
  * @throws {TypeError} If items is not an array or worker is not a function.
@@ -317,8 +362,14 @@ function runCappedPool(options) {
   const results = new Array(items.length);
   const queue = items.map((_item, index) => index);
   const lagCeilingMs = normalizeNonNegativeDuration(options.lagCeilingMs ?? options.lag_ceiling_ms ?? options.lag_ceiling);
+  const lagCeilingAction = normalizeLagCeilingAction(options.lagCeilingAction ?? options.lag_ceiling_action);
+  const shouldAbortStalledLineages = lagCeilingAction === LAG_CEILING_ACTION_ABORT_REQUEUE;
+  if (shouldAbortStalledLineages && lagCeilingMs <= 0) {
+    throw new TypeError('lagCeilingAction "abort-requeue" requires lagCeilingMs > 0');
+  }
   let lagCeilingTimer = null;
   let lagCeilingExceeded = false;
+  let nextAttemptId = 1;
 
   // STALL DETECTOR (not queue backpressure). The lag metric is the time since the pool
   // last made progress — i.e. since the last item settled (or pool start if nothing has
@@ -360,6 +411,7 @@ function runCappedPool(options) {
 
     let active = 0;
     let resolved = false;
+    const activeAttempts = new Map();
     const clearLagCeilingTimer = () => {
       if (lagCeilingTimer) {
         clearTimeout(lagCeilingTimer);
@@ -367,15 +419,15 @@ function runCappedPool(options) {
       }
     };
 
-    const emitLagCeilingWarning = () => {
+    const emitLagCeilingWarning = (gauges = buildCurrentGauges()) => {
       if (!onEvent || lagCeilingMs <= 0 || lagCeilingExceeded || queue.length === 0) return;
-      const gauges = buildCurrentGauges();
       if ((gauges.oldest_pending_lag_ms ?? 0) < lagCeilingMs) return;
       lagCeilingExceeded = true;
       onEvent({
         event: 'lag_ceiling_exceeded',
         at: normalizeTimestamp(now()),
         severity: 'warning',
+        ...(lagCeilingAction ? { action: lagCeilingAction } : {}),
         // The lag metric is time-since-last-progress while work is pending: a genuine
         // stall signal, not queue backpressure. oldest_pending_lag_ms keeps its name for
         // ledger shape compatibility but now carries the stall duration.
@@ -388,12 +440,17 @@ function runCappedPool(options) {
 
     const scheduleLagCeilingCheck = () => {
       clearLagCeilingTimer();
-      if (!onEvent || lagCeilingMs <= 0 || lagCeilingExceeded || queue.length === 0) return;
+      if (lagCeilingMs <= 0 || queue.length === 0) return;
+      if (!onEvent && !shouldAbortStalledLineages) return;
+      if (!shouldAbortStalledLineages && lagCeilingExceeded) return;
       const lag = oldestPendingLagMs() ?? 0;
       const delayMs = Math.max(0, lagCeilingMs - lag);
       lagCeilingTimer = setTimeout(() => {
         lagCeilingTimer = null;
-        emitLagCeilingWarning();
+        handleLagCeilingExceeded();
+        if (!resolved) {
+          scheduleLagCeilingCheck();
+        }
       }, delayMs);
       lagCeilingTimer.unref?.();
     };
@@ -407,6 +464,26 @@ function runCappedPool(options) {
           emitLagCeilingWarning();
         }
       : undefined;
+
+    const buildSyntheticAbortResult = (activeAttempt, gauges, error) => {
+      const lagMs = gauges.oldest_pending_lag_ms ?? lagCeilingMs;
+      const completedAtIso = normalizeTimestamp(now());
+      const durationMs = Math.max(0, Date.now() - activeAttempt.startedAtMs);
+      return {
+        label: activeAttempt.label,
+        status: 'rejected',
+        index: activeAttempt.index,
+        attempt: activeAttempt.attempt,
+        started_at_iso: activeAttempt.startedAtIso,
+        completed_at_iso: completedAtIso,
+        duration_ms: durationMs,
+        error: {
+          ...normalizeError(error),
+          aborted: true,
+          abort_reason: 'lag_ceiling_exceeded',
+        },
+      };
+    };
 
     const emitSettledResult = (result, isTerminal) => {
       if (!emitEvent) return;
@@ -426,6 +503,109 @@ function runCappedPool(options) {
       }
     };
 
+    const handleSettledResult = (activeAttempt, result) => {
+      const { index, label, retryCount } = activeAttempt;
+      result.index = index;
+      if (result.status === 'fulfilled') {
+        result.retry_attempts = retryCount;
+        results[index] = result;
+        emitSettledResult(result, true);
+        return;
+      }
+
+      const canRetry = result.error.retryable === true && retryCount < maxRetries;
+      if (canRetry) {
+        const nextRetryCount = retryCount + 1;
+        retryCounts.set(label, nextRetryCount);
+        emitSettledResult(result, false);
+        queue.push(index);
+        if (emitEvent) {
+          emitEvent({
+            event: 'retry_scheduled',
+            label,
+            index,
+            at: normalizeTimestamp(now()),
+            retry_count: nextRetryCount,
+            next_attempt: nextRetryCount + 1,
+            max_retries: maxRetries,
+            failure_class: result.error.failure_class,
+            retry_verdict: result.error.retry_verdict,
+          });
+        }
+        return;
+      }
+
+      result.retry_attempts = retryCount;
+      result.retry_exhausted = result.error.retryable === true && retryCount >= maxRetries;
+      results[index] = result;
+      emitSettledResult(result, true);
+    };
+
+    const buildPoolErrorResult = (activeAttempt, error) => ({
+      label: activeAttempt.label,
+      status: 'rejected',
+      index: activeAttempt.index,
+      attempt: activeAttempt.attempt,
+      started_at_iso: activeAttempt.startedAtIso,
+      completed_at_iso: normalizeTimestamp(now()),
+      duration_ms: Math.max(0, Date.now() - activeAttempt.startedAtMs),
+      error: normalizeError({ name: 'PoolError', message: String(error) }),
+    });
+
+    const settleActiveAttempt = (activeAttempt, result) => {
+      if (activeAttempt.settled) {
+        return;
+      }
+      activeAttempt.settled = true;
+      activeAttempts.delete(activeAttempt.id);
+      handleSettledResult(activeAttempt, result);
+      active -= 1;
+      // Every settlement (success, failure, or retry re-queue) is forward progress:
+      // reset the stall clock so a healthy pool's steady completions keep the lag
+      // metric small and only a true stall (no settlement) lets it grow.
+      markProgress();
+      scheduleLagCeilingCheck();
+      pump();
+    };
+
+    const abortStalledAttempt = (gauges) => {
+      if (!shouldAbortStalledLineages || activeAttempts.size === 0 || queue.length === 0) return false;
+      if ((gauges.oldest_pending_lag_ms ?? 0) < lagCeilingMs) return false;
+      const activeAttempt = activeAttempts.values().next().value;
+      if (!activeAttempt || activeAttempt.settled) return false;
+
+      const error = buildLagCeilingTimeoutError({
+        label: activeAttempt.label,
+        lagMs: gauges.oldest_pending_lag_ms ?? lagCeilingMs,
+        lagCeilingMs,
+      });
+      const result = buildSyntheticAbortResult(activeAttempt, gauges, error);
+      activeAttempt.abortController.abort(error);
+      if (onEvent) {
+        onEvent({
+          event: 'lag_ceiling_abort',
+          label: activeAttempt.label,
+          index: activeAttempt.index,
+          attempt: activeAttempt.attempt,
+          at: result.completed_at_iso,
+          action: lagCeilingAction,
+          lag_ceiling_ms: lagCeilingMs,
+          oldest_pending_lag_ms: gauges.oldest_pending_lag_ms,
+          gauges: buildCurrentGauges(),
+        });
+      }
+      settleActiveAttempt(activeAttempt, result);
+      return true;
+    };
+
+    const handleLagCeilingExceeded = () => {
+      if (lagCeilingMs <= 0 || queue.length === 0) return;
+      const gauges = buildCurrentGauges();
+      if ((gauges.oldest_pending_lag_ms ?? 0) < lagCeilingMs) return;
+      emitLagCeilingWarning(gauges);
+      abortStalledAttempt(gauges);
+    };
+
     const pump = () => {
       if (resolved) {
         return;
@@ -441,63 +621,42 @@ function runCappedPool(options) {
         const label = labelFor(items[index], index);
         const retryCount = retryCounts.get(label) || 0;
         const attempt = retryCount + 1;
+        const startedAtIso = normalizeTimestamp(now());
+        const startedAtMs = Date.now();
+        const abortController = shouldAbortStalledLineages ? new AbortController() : null;
+        const activeAttempt = {
+          id: nextAttemptId,
+          index,
+          label,
+          retryCount,
+          attempt,
+          startedAtIso,
+          startedAtMs,
+          abortController,
+          settled: false,
+        };
+        nextAttemptId += 1;
+        activeAttempts.set(activeAttempt.id, activeAttempt);
         active += 1;
-        settleItem({ item: items[index], index, worker, now, onEvent: emitEvent, attempt, emitSettledEvent: false })
+        settleItem({
+          item: items[index],
+          index,
+          worker,
+          now,
+          onEvent: emitEvent,
+          attempt,
+          emitSettledEvent: false,
+          abortSignal: abortController ? abortController.signal : undefined,
+          startedAtIso,
+          startedAtMs,
+        })
           .then((result) => {
-            result.index = index;
-            if (result.status === 'fulfilled') {
-              result.retry_attempts = retryCount;
-              results[index] = result;
-              emitSettledResult(result, true);
-              return;
-            }
-
-            const canRetry = result.error.retryable === true && retryCount < maxRetries;
-            if (canRetry) {
-              const nextRetryCount = retryCount + 1;
-              retryCounts.set(label, nextRetryCount);
-              emitSettledResult(result, false);
-              queue.push(index);
-              if (emitEvent) {
-                emitEvent({
-                  event: 'retry_scheduled',
-                  label,
-                  index,
-                  at: normalizeTimestamp(now()),
-                  retry_count: nextRetryCount,
-                  next_attempt: nextRetryCount + 1,
-                  max_retries: maxRetries,
-                  failure_class: result.error.failure_class,
-                  retry_verdict: result.error.retry_verdict,
-                });
-              }
-              return;
-            }
-
-            result.retry_attempts = retryCount;
-            result.retry_exhausted = result.error.retryable === true && retryCount >= maxRetries;
-            results[index] = result;
-            emitSettledResult(result, true);
+            settleActiveAttempt(activeAttempt, result);
           })
           .catch((error) => {
             // The item settler is meant to capture worker failures; this keeps
             // an unexpected bug in the settler from wedging the whole pool.
-            results[index] = {
-              label: labelFor(items[index], index),
-              status: 'rejected',
-              index,
-              error: normalizeError({ name: 'PoolError', message: String(error) }),
-            };
-            emitSettledResult(results[index], true);
-          })
-          .finally(() => {
-            active -= 1;
-            // Every settlement (success, failure, or retry re-queue) is forward progress:
-            // reset the stall clock so a healthy pool's steady completions keep the lag
-            // metric small and only a true stall (no settlement) lets it grow.
-            markProgress();
-            scheduleLagCeilingCheck();
-            pump();
+            settleActiveAttempt(activeAttempt, buildPoolErrorResult(activeAttempt, error));
           });
       }
       scheduleLagCeilingCheck();
@@ -533,7 +692,7 @@ function buildPoolSummary(results) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. STATUS LEDGER
+// 5. STATUS LEDGER
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -563,7 +722,7 @@ function writeOrchestrationSummary(summaryPath, summary) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. EXPORTS
+// 6. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

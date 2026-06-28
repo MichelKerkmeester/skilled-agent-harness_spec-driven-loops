@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "017-fanout-stall-watchdog summary"
     ],
     "key_topics": [
       "fanout",
@@ -39,9 +39,10 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "fanout-pool.cjs",
         "kind": "file",
         "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A hung lineage blocks all queued work until the child timeout expires; no mechanism exists to detect a stall and free the slot sooner than the hard child timeout",
     "created_at": "2026-06-28T14:02:04Z",
-    "last_save_at": "2026-06-28T14:29:35.714Z",
+    "last_save_at": "2026-06-28T20:06:40.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bab994dc15924d05013164b2dfca14d09d3284b300737cd992330e688213d91",
+    "source_fingerprint": "sha256:815d3c7a82101abd38b427d3cce1a4044a697e6ce46cbdcdacc9a5dd0f614e5f",
     "source_doc_hashes": {
-      "spec.md": "90cfa4c38fe1efac619b6d5fbe0d3f1737229407e59e0c10db8960411db2579b",
+      "spec.md": "9fb543336be65e64a36c493a9eef404c0f2554264b7956411cfe0e15d32a8867",
       "plan.md": "ced1e5913292ef3150fb57379fcd8a90c7cd4ac7cf712d0cbf498a55a38cd27e",
       "tasks.md": "0843ff03a88e0efc27e53bb3dd3b7bd0e92189147b4aee25e4d69174e54fdf16",
-      "implementation-summary.md": "50c7ca9995132500d41b1d3090403706a83041a9e37901be6588c168e51b1afe"
+      "implementation-summary.md": "df1ea6160dd2b887ac4a2327981d178025edf1974eea8436e8c34dff300ca5df"
     },
     "last_active_child_id": null,
     "last_active_at": null

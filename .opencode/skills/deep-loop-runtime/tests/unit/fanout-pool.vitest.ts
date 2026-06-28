@@ -18,11 +18,12 @@ const {
   runCappedPool: (options: {
     items: Array<{ label?: string } | unknown>;
     concurrency: number;
-    worker: (item: unknown, ctx: { index: number }) => Promise<unknown>;
+    worker: (item: unknown, ctx: { index: number; signal?: AbortSignal }) => Promise<unknown>;
     onEvent?: (event: Record<string, unknown>) => void;
     maxRetries?: number;
     initialRetryCounts?: Record<string, number>;
     lagCeilingMs?: number;
+    lagCeilingAction?: 'abort-requeue';
   }) => Promise<{
     results: Array<{
       label: string;
@@ -33,6 +34,8 @@ const {
         failure_class?: 'timeout' | 'exit' | 'salvage_miss';
         retry_verdict?: 'transient' | 'fatal';
         retryable?: boolean;
+        aborted?: boolean;
+        abort_reason?: string;
       };
       retry_attempts?: number;
       retry_exhausted?: boolean;
@@ -235,7 +238,7 @@ describe('runCappedPool', () => {
     expect(result.summary.gauges).toEqual({ lag: 0, pending: 0, failed: 1 });
   });
 
-  it('emits one stall warning when no item settles while work is pending (time-since-last-completion)', async () => {
+  it('emits one stall warning without aborting when no lag action is configured', async () => {
     // The lag-ceiling is a STALL detector: its metric is time since the pool last made
     // progress while work is still queued. Here the active item is gated forever (a hung
     // worker holding the only slot) while 'queued' waits, so nothing settles past the
@@ -252,6 +255,7 @@ describe('runCappedPool', () => {
 
     await flush();
     await sleep(30);
+    expect(gated.inFlight()).toEqual(['active']);
     expect(events.filter((event) => event.event === 'lag_ceiling_exceeded')).toEqual([
       expect.objectContaining({
         severity: 'warning',
@@ -260,12 +264,102 @@ describe('runCappedPool', () => {
         gauges: expect.objectContaining({ pending: 1 }),
       }),
     ]);
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toEqual([]);
 
     gated.releaseAll();
     await flush();
     gated.releaseAll();
     const result = await run;
     expect(result.summary).toMatchObject({ succeeded: 2, failed: 0 });
+  });
+
+  it('aborts and requeues a stalled item through the timeout retry ledger when opted in', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const calls = new Map<string, number>();
+    const abortedLabels: string[] = [];
+    let liveWorkers = 0;
+    let maxLiveWorkers = 0;
+    const worker = (item: { label: string }, ctx: { signal?: AbortSignal }) => {
+      const callCount = (calls.get(item.label) ?? 0) + 1;
+      calls.set(item.label, callCount);
+      liveWorkers += 1;
+      maxLiveWorkers = Math.max(maxLiveWorkers, liveWorkers);
+
+      if (item.label === 'active' && callCount === 1) {
+        ctx.signal?.addEventListener('abort', () => {
+          abortedLabels.push(item.label);
+          liveWorkers -= 1;
+        }, { once: true });
+        return new Promise(() => {});
+      }
+
+      return Promise.resolve().then(() => {
+        liveWorkers -= 1;
+        return { label: item.label, callCount };
+      });
+    };
+
+    const run = runCappedPool({
+      items: [{ label: 'active' }, { label: 'queued' }],
+      concurrency: 1,
+      maxRetries: 1,
+      lagCeilingMs: 10,
+      lagCeilingAction: 'abort-requeue',
+      worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    await sleep(30);
+    const result = await run;
+    expect(abortedLabels).toEqual(['active']);
+    expect(calls.get('active')).toBe(2);
+    expect(calls.get('queued')).toBe(1);
+    expect(maxLiveWorkers).toBe(1);
+    expect(result.results[0]).toMatchObject({
+      status: 'fulfilled',
+      retry_attempts: 1,
+      output: { label: 'active', callCount: 2 },
+    });
+    expect(events.filter((event) => event.event === 'lag_ceiling_abort')).toEqual([
+      expect.objectContaining({
+        label: 'active',
+        action: 'abort-requeue',
+        lag_ceiling_ms: 10,
+      }),
+    ]);
+    expect(events.filter((event) => event.event === 'failed' && event.label === 'active')).toEqual([
+      expect.objectContaining({
+        terminal: false,
+        error: expect.objectContaining({
+          failure_class: 'timeout',
+          retry_verdict: 'transient',
+          retryable: true,
+          aborted: true,
+          abort_reason: 'lag_ceiling_exceeded',
+        }),
+      }),
+    ]);
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toEqual([
+      expect.objectContaining({
+        label: 'active',
+        retry_count: 1,
+        next_attempt: 2,
+        failure_class: 'timeout',
+        retry_verdict: 'transient',
+      }),
+    ]);
+    expect(result.summary).toMatchObject({ total: 2, succeeded: 2, failed: 0 });
+  });
+
+  it('requires an explicit positive lag ceiling for abort-requeue', () => {
+    expect(() =>
+      runCappedPool({
+        items: [{ label: 'active' }, { label: 'queued' }],
+        concurrency: 1,
+        lagCeilingAction: 'abort-requeue',
+        worker: async () => ({}),
+      }),
+    ).toThrow('lagCeilingAction "abort-requeue" requires lagCeilingMs > 0');
   });
 
   it('stays silent on normal width>concurrency backpressure (steady completions reset the stall clock)', async () => {
