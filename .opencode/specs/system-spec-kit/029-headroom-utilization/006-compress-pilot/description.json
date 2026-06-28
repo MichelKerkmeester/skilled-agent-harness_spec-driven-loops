@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-spec-kit/029-headroom-utilization/006-compress-pilot",
+  "description": "The research specified a perfect-fit integration (guarded offline compress() over copied non-authoritative bundles) and demonstrated ~47% savings as a",
+  "keywords": [
+    "research",
+    "specified",
+    "perfect-fit",
+    "integration",
+    "guarded",
+    "offline",
+    "compress",
+    "copied",
+    "non-authoritative",
+    "bundles",
+    "demonstrated",
+    "savings"
+  ],
+  "lastUpdated": "2026-06-28T09:18:04.439Z",
+  "specId": "006",
+  "folderSlug": "compress-pilot",
+  "parentChain": [
+    "system-spec-kit",
+    "029-headroom-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

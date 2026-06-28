@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":4,"status":"insight","focus":"system-skill-advisor and hook system fit","newInfoRatio":0.7,"findingsCount":7,"answeredQuestions":[4],"citations":[".opencode/skills/system-skill-advisor/SKILL.md:55",".opencode/skills/cli-codex/references/hook_contract.md:121",".opencode/skills/system-spec-kit/references/config/hook_system.md:149"]}
+{"type":"finding","id":"I004-F1","summary":"Advisor and hook data are control-plane data; do not compress or output-shape prompt-time hook JSON or rendered advisor briefs."}

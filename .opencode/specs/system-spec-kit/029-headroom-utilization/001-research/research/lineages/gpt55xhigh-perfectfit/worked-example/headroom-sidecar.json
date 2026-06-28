@@ -1,0 +1,86 @@
+{
+  "artifactKind": "worked-example-token-sidecar",
+  "rawBundlePath": ".opencode/specs/system-spec-kit/029-headroom-utilization/001-research/research/lineages/gpt55xhigh-perfectfit/worked-example/raw-bundle.json",
+  "compactBundlePath": ".opencode/specs/system-spec-kit/029-headroom-utilization/001-research/research/lineages/gpt55xhigh-perfectfit/worked-example/compact-bundle.md",
+  "rawSha256": "5a49e447441ffe40cfee7cd912eaaa3c863922d000e0b752ecf028cb2d6ec76a",
+  "compactSha256": "c5a4344f8a39bdb9c35bb9aa994b54cba6a09af670aab6df05e3ce77266bf548",
+  "estimator": "ceil(characters / 4), deterministic local estimate for research comparison only",
+  "beforeChars": 7870,
+  "afterChars": 4148,
+  "estimatedTokensBefore": 1968,
+  "estimatedTokensAfter": 1037,
+  "estimatedTokensSaved": 931,
+  "savingsRatio": 0.4731,
+  "citationsBefore": [
+    "[SOURCE: .opencode/skills/system-spec-kit/constitutional/memory-system-spec-kit-only.md:24]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:133]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:208]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1246]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1435]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:291]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:317]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:325]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:360]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:333]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:443]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/learn.py:75]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/proxy.py:750]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:100]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:111]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/learn/writer.py:347]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:253]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:289]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/telemetry/beacon.py:1]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:1]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:266]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/smart_crusher.py:190]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/tag_protector.py:97]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/llms.txt:67]"
+  ],
+  "citationsAfter": [
+    "[SOURCE: .opencode/skills/system-spec-kit/constitutional/memory-system-spec-kit-only.md:24]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:133]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:208]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1246]",
+    "[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1435]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:291]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:317]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:325]",
+    "[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:360]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:333]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:443]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/learn.py:75]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/proxy.py:750]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:100]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:111]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/learn/writer.py:347]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:253]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:289]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/telemetry/beacon.py:1]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:1]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:266]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/smart_crusher.py:190]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/tag_protector.py:97]",
+    "[SOURCE: .opencode/specs/system-spec-kit/029-headroom-utilization/external/llms.txt:67]"
+  ],
+  "citationSetPreserved": true,
+  "missingCitations": [],
+  "answerProbes": [
+    {
+      "id": "best_fit_surface",
+      "expected": "offline Headroom library compression over copied prompt-pack/tool-output bundles"
+    },
+    {
+      "id": "cache_aligner_status",
+      "expected": "detector-only, zero-conflict, no token savings by itself"
+    },
+    {
+      "id": "guard_status",
+      "expected": "allowlist/denylist, key denylist, sha256 sidecar, citation equality, inflation fallback"
+    }
+  ],
+  "liveHeadroomRun": {
+    "status": "not_run_in_fanout",
+    "reason": "Import check failed with ModuleNotFoundError: opentelemetry; installing dependencies is outside this research-only lineage."
+  }
+}

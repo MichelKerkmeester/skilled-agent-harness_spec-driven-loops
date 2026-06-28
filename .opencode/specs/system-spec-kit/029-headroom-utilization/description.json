@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/029-headroom-utilization",
+  "description": "We have vendored the Headroom project under `external/`",
+  "keywords": [
+    "vendored",
+    "headroom",
+    "project",
+    "external"
+  ],
+  "lastUpdated": "2026-06-28T09:26:31.497Z",
+  "specId": "029",
+  "folderSlug": "headroom-utilization",
+  "parentChain": [
+    "system-spec-kit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "28-06-26_10-26__5-phasers-1-for-each-rec.md"
+  ]
+}

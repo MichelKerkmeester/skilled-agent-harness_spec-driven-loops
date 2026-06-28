@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/029-headroom-utilization/001-research",
+  "spec_folder": "system-spec-kit/029-headroom-utilization/001-research",
+  "parent_id": "system-spec-kit/029-headroom-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "headroom utilization research",
+      "headroom integration research",
+      "029 research headroom",
+      "headroom compatibility deep research",
+      "headroom research plan",
+      "headroom deep research loop",
+      "029 research plan",
+      "headroom research tasks",
+      "029 research tasks",
+      "headroom research summary",
+      "029 research outcome",
+      "headroom perfect-fit integration"
+    ],
+    "key_topics": [
+      "headroom",
+      "utilization",
+      "research",
+      "integration",
+      "029",
+      "compatibility",
+      "deep",
+      "plan",
+      "loop",
+      "tasks",
+      "summary",
+      "outcome"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Headroom Utilization Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Headroom promises 60–95% token reduction on agent context without changing application code, plus cross-agent memory and failure-learning",
+    "created_at": "2026-06-28T06:52:23.001Z",
+    "last_save_at": "2026-06-28T07:59:47.749Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:be8475c1254964c6d6dcc02fb5447d439b8e41481da1c01a96092c9f891bf732",
+    "source_doc_hashes": {
+      "spec.md": "1a388ab8ebbd9c9cca6114423584897416114182f21f7827015f3f88c779bf5f",
+      "plan.md": "0a22f59f8a34f06d5c9de745f68c61ecfb14491b3423a1df1277cc19230dd12e",
+      "tasks.md": "a475867c2db65a6db7199456a199d84330cc9d0db69ff11f0c1b52a9925d5a1e",
+      "implementation-summary.md": "0d2e26bd26beed7a96e0a3ba9cb9742fb69cdce63d778a75b8354d1e032f3429",
+      "research/research.md": "345b4a8c757f6895ab1ec60049c196c5a1e57b957c2d6bf3f382806cffa3d05e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

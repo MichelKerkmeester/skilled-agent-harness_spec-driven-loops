@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-spec-kit/029-headroom-utilization/001-research",
+  "description": "Headroom promises 60–95% token reduction on agent context without changing application code, plus cross-agent memory and failure-learning",
+  "keywords": [
+    "headroom",
+    "promises",
+    "token",
+    "reduction",
+    "agent",
+    "context",
+    "without",
+    "changing",
+    "application",
+    "code",
+    "plus",
+    "cross-agent",
+    "memory",
+    "failure-learning"
+  ],
+  "lastUpdated": "2026-06-28T06:51:58.885Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "system-spec-kit",
+    "029-headroom-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,85 @@
+{
+  "sessionId": "fanout-gpt55xhigh-1782630120377-76c6nl",
+  "status": "complete",
+  "stopReason": "converged",
+  "iterations": 8,
+  "findings": [
+    {
+      "id": "F1",
+      "surface": "library compress()",
+      "verdict": "selective needs-shim",
+      "summary": "Best first adoption candidate for offline or host-owned compression of natural-language and large tool-output context, provided system prompts, recent turns, structured JSON, generated metadata, and tool envelopes are excluded.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:100",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:106",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:242",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/compress.py:262"
+      ]
+    },
+    {
+      "id": "F2",
+      "surface": "proxy and wrap",
+      "verdict": "later isolated experiment only",
+      "summary": "Technically broad runtime support exists, but proxy/wrap mutates provider traffic and environment, which is too high blast-radius for core spec-kit gates and hooks.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:49",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/README.md:191",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/wrap.py:137",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/providers/opencode/runtime.py:17"
+      ]
+    },
+    {
+      "id": "F3",
+      "surface": "MCP server",
+      "verdict": "manual helper fits with guardrails",
+      "summary": "Headroom MCP can be useful as an explicit compression/retrieval helper, but must not replace mk-spec-memory, mk-skill-advisor, or mk-code-index tool contracts.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/ccr/mcp_server.py:1",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/ccr/mcp_server.py:511",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/mcp_registry/install.py:24",
+        ".opencode/skills/system-code-graph/references/runtime/tool_surface.md:38"
+      ]
+    },
+    {
+      "id": "F4",
+      "surface": "headroom learn and cross-agent memory",
+      "verdict": "do not adopt into core",
+      "summary": "They create a parallel memory/instruction plane and write AGENTS.md or native memory files, conflicting with Spec Kit Memory as the single memory source of truth.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/cli/learn.py:75",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/learn/writer.py:347",
+        ".opencode/skills/system-spec-kit/constitutional/memory-system-spec-kit-only.md:24"
+      ]
+    },
+    {
+      "id": "F5",
+      "surface": "CacheAligner",
+      "verdict": "fits as detector-only",
+      "summary": "CacheAligner is now detector-only and explicitly avoids prompt mutation, making it compatible with prompt-cache diagnostics.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:1",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:214",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/transforms/cache_aligner.py:266"
+      ]
+    },
+    {
+      "id": "F6",
+      "surface": "output-shaper",
+      "verdict": "do not adopt for core runtime",
+      "summary": "It appends system-prompt instructions and lowers effort on mechanical turns; useful experimentally, but conflicts with constitutional voice, prompt immutability, and deep-loop reasoning guarantees.",
+      "citations": [
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:7",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:20",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:253",
+        ".opencode/specs/system-spec-kit/029-headroom-utilization/external/headroom/proxy/output_shaper.py:289"
+      ]
+    }
+  ],
+  "rankedRecommendation": [
+    "Pilot library compress() in an offline benchmark harness over copied deep-loop artifacts and large natural-language tool outputs.",
+    "Adopt CacheAligner only as detector/logging signal if needed.",
+    "Evaluate Headroom MCP as an explicit manual helper with a non-default server name and no auto-registration.",
+    "Evaluate RTK directly or through Headroom only for shell-output shortening.",
+    "Do not adopt proxy, wrap, output-shaper, headroom learn, or cross-agent memory into the core stack without a separate guarded experiment."
+  ]
+}

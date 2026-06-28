@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-spec-kit/029-headroom-utilization/005-rtk-shell-output-trial",
+  "description": "Our tooling runs many noisy shell commands (git status/diff/log, test runs, builds) whose raw output eats context budget",
+  "keywords": [
+    "tooling",
+    "runs",
+    "many",
+    "noisy",
+    "shell",
+    "commands",
+    "git",
+    "status",
+    "diff",
+    "log",
+    "test",
+    "builds",
+    "whose",
+    "raw",
+    "output",
+    "eats",
+    "context",
+    "budget"
+  ],
+  "lastUpdated": "2026-06-28T09:18:02.596Z",
+  "specId": "005",
+  "folderSlug": "rtk-shell-output-trial",
+  "parentChain": [
+    "system-spec-kit",
+    "029-headroom-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

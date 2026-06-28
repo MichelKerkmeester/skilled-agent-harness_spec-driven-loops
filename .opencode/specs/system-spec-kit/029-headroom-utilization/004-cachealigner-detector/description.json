@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-spec-kit/029-headroom-utilization/004-cachealigner-detector",
+  "description": "We want CacheAligner findings as a proper report rather than a manual grep, which requires actually running Headroom",
+  "keywords": [
+    "want",
+    "cachealigner",
+    "findings",
+    "proper",
+    "report",
+    "rather",
+    "manual",
+    "grep",
+    "requires",
+    "actually",
+    "running",
+    "headroom"
+  ],
+  "lastUpdated": "2026-06-28T09:18:00.658Z",
+  "specId": "004",
+  "folderSlug": "cachealigner-detector",
+  "parentChain": [
+    "system-spec-kit",
+    "029-headroom-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
