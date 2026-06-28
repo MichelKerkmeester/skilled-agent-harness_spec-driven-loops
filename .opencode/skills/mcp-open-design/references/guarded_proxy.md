@@ -1,6 +1,6 @@
 ---
 title: "Open Design Guarded Proxy Contract"
-description: "Deny-by-default precondition contract for Open Design calls that mutate state or feed a design decision."
+description: "Deny-by-default precondition contract for Open Design calls that mutate state, feed a design decision, or omit a positive purpose."
 trigger_phrases:
   - "open design guarded proxy"
   - "opendesigndesignprecondition"
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 This document defines a contract, not a running server. The guarded proxy is the agent-side boundary that every wired Open Design surface must traverse before a call can spawn an inner agent, fire a build, mutate project state, or provide Open Design content as design-decision input.
 
-The contract is deny-by-default. Anything not positively recognized as pure transport is guarded.
+The contract is deny-by-default. Anything not positively recognized as pure transport for a positive purpose is guarded. The controlling invariant is "unknown ⇒ guarded": unknown tool AND unknown purpose both deny without a token.
 
 ## Boundary
 
@@ -31,13 +31,13 @@ Every surface adapter MUST normalize its request into this canonical shape befor
 | `surface` | yes | One of `mcp`, `http`, `cli`, or `skills`. |
 | `toolOrVerb` | yes | Stable tool name, route verb, CLI command form, or Skills action. |
 | `mutationClass` | yes | One of `read`, `mutating`, `destructive`, or `transport`. |
-| `feedsDesignDecision` | yes | `true` when the response or request content will shape a UI, design system, visual artifact, prototype, motion, or build brief. |
+| `openDesignPurpose` | yes | Required positive purpose. Exactly `openDesignExemption` for pure transport that forbids any later design use of the artifact, or `skDesignGate` for design-authorized calls that require a valid token. Missing, unknown, or any other value maps to `unclassified`. |
 | `target` | yes for guarded calls | Stable target surface, project, run, artifact, file, route, or output artifact identity. |
 | `designProofToken` | conditional | Structured `DESIGN_PROOF_TOKEN` metadata supplied by the caller for guarded calls. |
 | `payloadDigestInputs` | yes for guarded calls | Reconstructable inputs used by the token validator: subject, brief object, form-answer object, Open Design lineage object, and reachable loaded-file hashes. |
 | `rawRequest` | yes | The original request payload, retained for forwarding only after the precondition allows it. |
 
-Normalization MUST be lossless for `surface`, `toolOrVerb`, `mutationClass`, `feedsDesignDecision`, `target`, token metadata, and payload digest inputs. If any of those fields cannot be reconstructed unambiguously, the request is treated as guarded and denied unless a valid token can be checked against the real outgoing payload.
+Normalization MUST be lossless for `surface`, `toolOrVerb`, `mutationClass`, `openDesignPurpose`, `target`, token metadata, and payload digest inputs. If any of those fields cannot be reconstructed unambiguously, the request is treated as guarded and denied unless a valid token can be checked against the real outgoing payload.
 
 ## Surface Mapping
 
@@ -57,11 +57,12 @@ Classification uses two axes:
 | Rule | Decision |
 |---|---|
 | `mutationClass` is `mutating` or `destructive` | Guarded. |
-| `mutationClass` is `read` and `feedsDesignDecision` is `true` | Guarded. |
-| `mutationClass` is `read` or `transport` and `feedsDesignDecision` is `false`, and the operation is listed in `exemptTransport` | Exempt. |
-| Operation is missing from the policy block, ambiguous, or throws while classifying | Guarded. |
+| `openDesignPurpose` is `skDesignGate` | Guarded; requires a valid `DESIGN_PROOF_TOKEN`. |
+| `mutationClass` is `read` or `transport`, `openDesignPurpose` is `openDesignExemption`, and the operation is listed in `exemptTransport` | Exempt. |
+| `openDesignPurpose` is missing, unknown, any value other than `openDesignExemption` or `skDesignGate`, or cannot be reconstructed | Guarded. |
+| Operation is missing from the policy block, ambiguous, not listed in `exemptTransport`, or throws while classifying | Guarded. |
 
-This mirrors the existing design gate: running Open Design generation is design work, and a read that feeds the design decision is also design work. Bare inventory, status, diagnostics, and non-design transport can pass without a design token.
+This mirrors the design gate without relying on a caller boolean. Running Open Design generation is design work, and a read that feeds the design decision is also design work. Bare inventory, status, diagnostics, and non-design transport can pass without a design token only when the caller positively asserts `openDesignExemption`.
 
 ## `openDesignDesignPrecondition`
 
@@ -88,11 +89,13 @@ DENY: every other case.
 
 The proxy MUST fail closed. Absence, ambiguity, stale token state, exceptions, or unmapped surfaces are denial conditions.
 
+The `od` CLI design-mutating Bash surface is enforced by the codex PreToolUse hook's `od` CLI lane; that Bash lane is enforced at the hook, not by this proxy.
+
 ## Exemption Model
 
-`exemptTransport` is a positive allowlist. These operations are allowed without `DESIGN_PROOF_TOKEN` only when `feedsDesignDecision` is `false`.
+`exemptTransport` is a positive allowlist. These operations are allowed without `DESIGN_PROOF_TOKEN` only when the caller supplies `openDesignPurpose: "openDesignExemption"` and the operation is listed in the allowlist. Either condition missing means guarded.
 
-A listed read becomes guarded when its output is used to decide layout, visual language, component styling, content hierarchy, motion, prototype behavior, or a build brief. This prevents laundering design context through a nominally read-only operation while still allowing harmless transport, inventory, status, and polling.
+A listed read becomes guarded when its output is used to decide layout, visual language, component styling, content hierarchy, motion, prototype behavior, or a build brief. A caller that asserts `openDesignExemption` also asserts that the returned artifact will not later be used as design-decision input. This prevents laundering design context through a nominally read-only operation while still allowing harmless transport, inventory, status, and polling.
 
 ## Policy
 
@@ -113,17 +116,12 @@ The policy is derived from the Open Design tool-surface reference.
       "delete_file",
       "delete_project"
     ],
-    "mcpReadToolsWhenFeedsDesignDecision": [
-      "list_projects",
+    "mcpReadToolsWhenPurposeRequiresToken": [
       "get_active_context",
       "get_artifact",
       "get_project",
       "get_file",
       "search_files",
-      "list_files",
-      "list_skills",
-      "list_plugins",
-      "list_agents",
       "get_run"
     ],
     "cliVerbs": [
@@ -151,23 +149,18 @@ The policy is derived from the Open Design tool-surface reference.
       "od desktop import",
       "od auth internals"
     ],
-    "httpRoutes": "Map method and path to the equivalent MCP tool or CLI verb; guard when the mapped operation is guarded, when feedsDesignDecision is true, or when mapping fails.",
-    "skillsActions": "Map message intent to the equivalent run, artifact, file, project, UI, automation, memory, plugin, daemon, diagnostic, media, research, connector, import, or auth operation; guard when the mapped operation is guarded, when feedsDesignDecision is true, or when mapping fails."
+    "httpRoutes": "Map method and path to the equivalent MCP tool or CLI verb; guard when the mapped operation is guarded, when openDesignPurpose is skDesignGate or unclassified, or when mapping fails.",
+    "skillsActions": "Map message intent to the equivalent run, artifact, file, project, UI, automation, memory, plugin, daemon, diagnostic, media, research, connector, import, or auth operation; guard when the mapped operation is guarded, when openDesignPurpose is skDesignGate or unclassified, or when mapping fails."
   },
   "exemptTransport": {
-    "requiresFeedsDesignDecisionFalse": true,
+    "requiresOpenDesignPurpose": "openDesignExemption",
+    "forbidsLaterDesignUse": true,
     "mcpTools": [
       "list_projects",
-      "get_active_context",
-      "get_artifact",
-      "get_project",
-      "get_file",
-      "search_files",
       "list_files",
       "list_skills",
       "list_plugins",
-      "list_agents",
-      "get_run"
+      "list_agents"
     ],
     "cliVerbs": [
       "od tools design-systems read",
@@ -187,19 +180,21 @@ The policy is derived from the Open Design tool-surface reference.
       "od ui view",
       "od ui show"
     ],
-    "httpRoutes": "Map method and path to the equivalent exempt MCP tool or CLI verb; exempt only when feedsDesignDecision is false and mapping succeeds.",
-    "skillsActions": "Map message intent to inventory, status, polling, list, view, show, or read-only transport; exempt only when feedsDesignDecision is false and mapping succeeds."
+    "httpRoutes": "Map method and path to the equivalent exempt MCP tool or CLI verb; exempt only when openDesignPurpose is openDesignExemption and mapping succeeds.",
+    "skillsActions": "Map message intent to inventory, status, polling, list, view, show, or read-only transport; exempt only when openDesignPurpose is openDesignExemption and mapping succeeds."
   }
 }
 ```
 
-Anything omitted from `exemptTransport` is guarded. A new Open Design tool, route, command, or Skills action starts guarded until the tool-surface reference classifies it and this policy is updated.
+Anything omitted from `exemptTransport` is guarded. A new Open Design tool, route, command, or Skills action starts guarded until the tool-surface reference classifies it and this policy is updated. Missing, unknown, or any other `openDesignPurpose` starts as `unclassified` and is guarded. The policy is deny-by-default on both axes: unknown operation and unknown purpose.
 
 ## Named Residual
 
 The bundled Open Design daemon ships inside the Mac app and is not modified by this contract. A raw HTTP-port call, or an in-app Skills-UI message, that reaches the daemon without traversing the agent-side adapter cannot be forced through this proxy.
 
 That daemon-side bypass is out of scope for this contract. The honest boundary is agent-side enforcement across wired adapters, with the daemon residual named rather than implied away.
+
+Any PreToolUse hook, policy file, adapter, or caller still reading a `feedsDesignDecision` boolean instead of required `openDesignPurpose` speaks the old contract. That consumer can still misclassify omission as non-design until it is migrated.
 
 ## Acceptance
 
@@ -208,5 +203,7 @@ The contract is acceptable when all of these are true:
 | Scenario | Expected result |
 |---|---|
 | A guarded MCP, HTTP, CLI, or Skills request arrives without a fresh valid `DESIGN_PROOF_TOKEN` bound to the normalized target. | `DENY` before inner-agent spawn, build-fire, or mutation. |
-| A listed pure-transport operation arrives with `feedsDesignDecision: false`. | `ALLOW` without requiring a token. |
+| A listed pure-transport operation arrives with `openDesignPurpose: "openDesignExemption"`. | `ALLOW` without requiring a token. |
+| A caller omits `openDesignPurpose` or supplies an unknown purpose. | `DENY` for design; the purpose is `unclassified`, and unknown ⇒ guarded. |
+| A new or unknown design-affecting tool is absent from `exemptTransport`. | `DENY` without a token; unknown ⇒ guarded. |
 | A caller reaches the bundled daemon without traversing the agent-side adapter. | Not enforceable by this proxy; the daemon residual is explicitly out of scope. |
