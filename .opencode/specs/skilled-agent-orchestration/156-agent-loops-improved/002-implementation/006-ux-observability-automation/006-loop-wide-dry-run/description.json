@@ -18,11 +18,10 @@
     "reads",
     "cann"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.429Z",
+  "lastUpdated": "2026-06-28T20:20:45.224Z",
   "specId": "006",
   "folderSlug": "loop-wide-dry-run",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "006-ux-observability-automation"

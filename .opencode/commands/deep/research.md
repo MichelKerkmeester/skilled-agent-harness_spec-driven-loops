@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
-argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--executor=<type> [--model=X] [--config-dir=PATH] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
@@ -28,6 +28,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `execution_mode`
 >    - `maxIterations`
 >    - `convergenceThreshold`
+>    - `dry_run` (default false unless `--dry-run` is present)
 > 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep_research_auto.yaml`
 >    - Confirm: `deep_research_confirm.yaml`
@@ -80,6 +81,7 @@ SELF-CHECK: Are you operating as the @general agent?
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
+  - `dry_run` is normalized to `true` or `false`; absence means `false`
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 
@@ -107,13 +109,19 @@ No workflow-asset gap exists for this command.
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
-2. Treat `--max-iterations`, `--convergence`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
+2. Treat `--max-iterations`, `--convergence`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
 3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep_research_auto.yaml`.
 4. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when the topic is present, names no resolvable spec folder, and the folder choice is ambiguous. Missing `research_topic` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
 5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep_research_confirm.yaml`.
 6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
+
+### Dry-Run Flag
+
+`--dry-run` is a first-class flag on the confirm flow, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
+
+When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn. A fresh packet will stop at the first persistent state boundary; an existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
 
 ---
 
