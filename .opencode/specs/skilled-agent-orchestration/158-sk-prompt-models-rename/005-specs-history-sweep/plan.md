@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/005-specs-history-sweep"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Run the guarded bulk replace"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/005-specs-history-sweep"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ Run the phase-1 replace command across the spec/log/archive/changelog TEXT set, 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 1 TEXT-REPLACE set + binary exclusion list + history-care lines defined
+- [x] Phase 1 TEXT-REPLACE set + binary exclusion list + history-care lines defined
 
 ### Definition of Done
-- [ ] Bulk replace applied; only history-care lines remain
-- [ ] No binary in `git diff`; touched active docs still validate
+- [x] Bulk replace applied; only history-care lines remain
+- [x] No binary in `git diff`; touched active docs still validate
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -83,13 +83,13 @@ Guarded bulk replace. Text-glob-scoped find+replace with an explicit binary/REGE
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Bulk replace
-- [ ] Run the phase-1 text-scoped replace over `.opencode/specs/**` (binary-excluded)
+- [x] Run the phase-1 text-scoped replace over `.opencode/specs/**` (binary-excluded)
 
 ### Phase 2: History-care
-- [ ] Hand-apply the clarifying parenthetical to the rename-documenting changelog line(s)
+- [x] Hand-apply the clarifying parenthetical to the rename-documenting changelog line(s)
 
 ### Phase 3: Verify
-- [ ] `rg "sk-prompt-small-model" .opencode/specs` = 0 (or only history-care lines); `git diff --stat` has no binary; touched active docs validate; write implementation-summary.md
+- [x] `rg "sk-prompt-small-model" .opencode/specs` = 0 (or only history-care lines); `git diff --stat` has no binary; touched active docs validate; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

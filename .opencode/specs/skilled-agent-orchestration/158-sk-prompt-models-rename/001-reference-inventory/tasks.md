@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/001-reference-inventory"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Task list scaffolded; not started"
-    next_safe_action: "Begin T001 (rg sweep)"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/001-reference-inventory"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Sweep: `rg -l "sk-prompt-small-model" | wc -l` + `rg -c` totals; bucket by top-level dir + extension (no `-E`)
-- [ ] T002 Enumerate binary/generated: `*.sqlite`, compiled `skill-graph.json`, derived `description.json`/`graph-metadata.json` blocks → REGENERATE set
+- [x] T001 Sweep: `rg -l "sk-prompt-small-model" | wc -l` + `rg -c` totals; bucket by top-level dir + extension (no `-E`)
+- [x] T002 Enumerate binary/generated: `*.sqlite`, compiled `skill-graph.json`, derived `description.json`/`graph-metadata.json` blocks → REGENERATE set
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,10 +57,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Classify every file into TEXT-REPLACE / REGENERATE / GIT-MV / HISTORY-CARE
-- [ ] T004 Cross-check vs the known high-risk hardcoded list (card-sync guard `.sh`, deep_*.yaml, reviewer-regression.json, secret-scrubber test, model_profiles profile_refs, models/*.md back-links)
-- [ ] T005 Identify the rename-documenting changelog line(s) → HISTORY-CARE
-- [ ] T006 Write `001-reference-inventory/reference-map.md` (buckets + counts + exclusions + replace command)
+- [x] T003 Classify every file into TEXT-REPLACE / REGENERATE / GIT-MV / HISTORY-CARE
+- [x] T004 Cross-check vs the known high-risk hardcoded list (card-sync guard `.sh`, deep_*.yaml, reviewer-regression.json, secret-scrubber test, model_profiles profile_refs, models/*.md back-links)
+- [x] T005 Identify the rename-documenting changelog line(s) → HISTORY-CARE
+- [x] T006 Write `001-reference-inventory/reference-map.md` (buckets + counts + exclusions + replace command)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,8 +68,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Reconcile map count vs a fresh `rg -l ... | wc -l`
-- [ ] T008 Dry-run the replace command (no write); confirm hit counts; write implementation-summary.md
+- [x] T007 Reconcile map count vs a fresh `rg -l ... | wc -l`
+- [x] T008 Dry-run the replace command (no write); confirm hit counts; write implementation-summary.md
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Map reconciles 100%
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Map reconciles 100%
 <!-- /ANCHOR:completion -->
 
 ---

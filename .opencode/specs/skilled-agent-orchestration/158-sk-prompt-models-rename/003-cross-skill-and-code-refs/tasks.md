@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/003-cross-skill-and-code-refs"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Task list scaffolded; not started"
-    next_safe_action: "Begin T001 (card-sync guard path)"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/003-cross-skill-and-code-refs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Update the card-sync guard `.sh` hardcoded `H` path; run the guard to confirm it resolves `sk-prompt-models`
+- [x] T001 Update the card-sync guard `.sh` hardcoded `H` path; run the guard to confirm it resolves `sk-prompt-models`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Token-replace across the 8 referencing skills (non-generated files): cli-opencode, deep-loop-workflows, sk-prompt, cli-codex, cli-claude-code, system-spec-kit, deep-loop-runtime, system-skill-advisor
-- [ ] T003 Update `reviewer-regression.json` `outputsDir`
-- [ ] T004 [P] Update `secret-scrubber.vitest.ts` fixture string + `executor-config.ts` prose comment
+- [x] T002 Token-replace across the 8 referencing skills (non-generated files): cli-opencode, deep-loop-workflows, sk-prompt, cli-codex, cli-claude-code, system-spec-kit, deep-loop-runtime, system-skill-advisor
+- [x] T003 Update `reviewer-regression.json` `outputsDir`
+- [x] T004 [P] Update `secret-scrubber.vitest.ts` fixture string + `executor-config.ts` prose comment
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run the secret-scrubber vitest; `rg "sk-prompt-small-model"` over each skill = 0 (minus generated/logs)
-- [ ] T006 Write implementation-summary.md and refresh continuity
+- [x] T005 Run the secret-scrubber vitest; `rg "sk-prompt-small-model"` over each skill = 0 (minus generated/logs)
+- [x] T006 Write implementation-summary.md and refresh continuity
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Card-sync guard resolves the new path
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Card-sync guard resolves the new path
 <!-- /ANCHOR:completion -->
 
 ---

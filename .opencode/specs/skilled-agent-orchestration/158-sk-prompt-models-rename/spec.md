@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Packet scaffolded (6 phases planned, no rename executed yet)"
-    next_safe_action: "Begin 001-reference-inventory"
+    recent_action: "Rename shipped; 0 live residual; advisor routes sk-prompt-models"
+    next_safe_action: "Packet complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Also rename the older legacy name sk-small-model (124 files), or leave as pre-rename history? (default: leave)"
     answered_questions:
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned (scaffolded, not started) |
+| **Status** | Complete |
 | **Created** | 2026-06-28 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
@@ -110,12 +110,12 @@ Summary of aggregate scope. Per-phase detail lives in child plans. (Nothing is c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-reference-inventory/ | Exhaustive reference map (799 files) classified TEXT-REPLACE / REGENERATE / GIT-MV / HISTORY-CARE; the replace command + binary exclusions | Planned |
-| 2 | 002-core-rename/ | `git mv` the folder; skill identity (`name:`, `skill_id`), internal back-links, `model_profiles.json` profile_refs | Planned |
-| 3 | 003-cross-skill-and-code-refs/ | Other skills' refs + hardcoded code/config (card-sync guard `.sh`, reviewer-regression.json, secret-scrubber test, executor-config.ts) | Planned |
-| 4 | 004-commands-scripts-data/ | deep_*.yaml benchmark/context paths, pre-commit hook, agent, benchmark run-pointers | Planned |
-| 5 | 005-specs-history-sweep/ | The "Everything" bulk sweep across specs/logs/changelogs, with the history-care carve-out | Planned |
-| 6 | 006-regenerate-verify/ | Regenerate advisor + memory + packet indexes; card-sync, validate.sh, tests, zero-reference sweep, routing probe, smoke | Planned |
+| 1 | 001-reference-inventory/ | Exhaustive reference map (799 files) classified TEXT-REPLACE / REGENERATE / GIT-MV / HISTORY-CARE; the replace command + binary exclusions | Complete |
+| 2 | 002-core-rename/ | `git mv` the folder; skill identity (`name:`, `skill_id`), internal back-links, `model_profiles.json` profile_refs | Complete |
+| 3 | 003-cross-skill-and-code-refs/ | Other skills' refs + hardcoded code/config (card-sync guard `.sh`, reviewer-regression.json, secret-scrubber test, executor-config.ts) | Complete |
+| 4 | 004-commands-scripts-data/ | deep_*.yaml benchmark/context paths, pre-commit hook, agent, benchmark run-pointers | Complete |
+| 5 | 005-specs-history-sweep/ | The "Everything" bulk sweep across specs/logs/changelogs, with the history-care carve-out | Complete |
+| 6 | 006-regenerate-verify/ | Regenerate advisor + memory + packet indexes; card-sync, validate.sh, tests, zero-reference sweep, routing probe, smoke | Complete |
 
 ### Phase Transition Rules
 

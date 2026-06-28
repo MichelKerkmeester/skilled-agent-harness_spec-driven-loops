@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/004-commands-scripts-data"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Token-replace command/script/agent paths"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/004-commands-scripts-data"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ Token-replace `sk-prompt-small-model` across the deep_model-benchmark + deep_con
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 2 done (benchmarks dir lives under the new path)
+- [x] Phase 2 done (benchmarks dir lives under the new path)
 
 ### Definition of Done
-- [ ] All command/script/agent/run-pointer paths updated
-- [ ] `rg` over commands/scripts/agents = 0; YAMLs parse
+- [x] All command/script/agent/run-pointer paths updated
+- [x] `rg` over commands/scripts/agents = 0; YAMLs parse
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,13 +84,13 @@ Path repointing. The workflows consume the skill's benchmarks dir + SKILL.md by 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Commands
-- [ ] Token-replace in deep_model-benchmark_{auto,confirm}.yaml + deep_context_{auto,confirm}.yaml + model-benchmark.md
+- [x] Token-replace in deep_model-benchmark_{auto,confirm}.yaml + deep_context_{auto,confirm}.yaml + model-benchmark.md
 
 ### Phase 2: Scripts/agents/pointers
-- [ ] Update pre-commit hook, the agent ref, and benchmark run-pointers
+- [x] Update pre-commit hook, the agent ref, and benchmark run-pointers
 
 ### Phase 3: Verify
-- [ ] `rg` over commands/scripts/agents = 0; YAML parse; write implementation-summary.md
+- [x] `rg` over commands/scripts/agents = 0; YAML parse; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

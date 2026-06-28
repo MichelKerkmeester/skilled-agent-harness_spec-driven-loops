@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/001-reference-inventory"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Run the rg sweep and classify"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/001-reference-inventory"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ Sweep `sk-prompt-small-model` repo-wide, bucket by directory + extension, then c
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `rg` available; repo clean enough to sweep
+- [x] `rg` available; repo clean enough to sweep
 
 ### Definition of Done
-- [ ] 100% of files classified; counts reconcile
-- [ ] Binary/generated exclusion list complete; replace command dry-run-checked
+- [x] 100% of files classified; counts reconcile
+- [x] Binary/generated exclusion list complete; replace command dry-run-checked
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -86,16 +86,16 @@ Discovery-then-classify. The map is the contract phases 2–6 execute against; n
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Sweep
-- [ ] `rg -l "sk-prompt-small-model" | wc -l` and `rg -c` totals; bucket by top-level dir + extension
-- [ ] Enumerate `*.sqlite` + compiled indexes + derived-metadata files (REGENERATE set)
+- [x] `rg -l "sk-prompt-small-model" | wc -l` and `rg -c` totals; bucket by top-level dir + extension
+- [x] Enumerate `*.sqlite` + compiled indexes + derived-metadata files (REGENERATE set)
 
 ### Phase 2: Classify
-- [ ] Assign every file a bucket; cross-check vs the known high-risk hardcoded list
-- [ ] Identify the rename-documenting changelog line(s) (HISTORY-CARE)
+- [x] Assign every file a bucket; cross-check vs the known high-risk hardcoded list
+- [x] Identify the rename-documenting changelog line(s) (HISTORY-CARE)
 
 ### Phase 3: Record
-- [ ] Write `reference-map.md` (buckets + counts + exclusions + replace command)
-- [ ] Dry-run the replace command (no `-i`/no write) and confirm hit counts match
+- [x] Write `reference-map.md` (buckets + counts + exclusions + replace command)
+- [x] Dry-run the replace command (no `-i`/no write) and confirm hit counts match
 <!-- /ANCHOR:phases -->
 
 ---

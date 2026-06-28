@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/002-core-rename"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "git mv, then edit identity + links"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/002-core-rename"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 1 map identifies the in-folder references
+- [x] Phase 1 map identifies the in-folder references
 
 ### Definition of Done
-- [ ] Folder moved; identity + back-links + profile_refs updated
-- [ ] `rg "sk-prompt-small-model"` inside the new folder = 0 live hits
+- [x] Folder moved; identity + back-links + profile_refs updated
+- [x] `rg "sk-prompt-small-model"` inside the new folder = 0 live hits
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,14 +84,14 @@ Move-then-fix. The folder move handles the path segment; the in-tree token repla
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Move
-- [ ] `git mv .opencode/skills/sk-prompt-small-model .opencode/skills/sk-prompt-models`; confirm untracked files moved
+- [x] `git mv .opencode/skills/sk-prompt-small-model .opencode/skills/sk-prompt-models`; confirm untracked files moved
 
 ### Phase 2: Fix identity + links
-- [ ] Update `SKILL.md` `name:` + Keywords, `graph-metadata.json` `skill_id`, `description.json`, `README.md`
-- [ ] Token-replace the in-tree back-links + `model_profiles.json` profile_refs
+- [x] Update `SKILL.md` `name:` + Keywords, `graph-metadata.json` `skill_id`, `description.json`, `README.md`
+- [x] Token-replace the in-tree back-links + `model_profiles.json` profile_refs
 
 ### Phase 3: Verify
-- [ ] `rg "sk-prompt-small-model"` inside the new folder = 0; resolve each profile_ref; write implementation-summary.md
+- [x] `rg "sk-prompt-small-model"` inside the new folder = 0; resolve each profile_ref; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

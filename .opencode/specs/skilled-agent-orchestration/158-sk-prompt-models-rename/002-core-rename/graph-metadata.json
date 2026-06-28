@@ -17,7 +17,8 @@
       "sk-prompt-models core rename plan",
       "git mv skill folder",
       "tasks",
-      "sk-prompt-models core rename tasks"
+      "sk-prompt-models core rename tasks",
+      "sk-prompt-models rename 002-core-rename"
     ],
     "key_topics": [
       "sk-prompt-models",
@@ -30,15 +31,16 @@
       "plan",
       "folder",
       "tasks",
-      "own",
-      "internal"
+      "002-core-rename",
+      "own"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,13 +62,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -91,6 +93,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -166,23 +174,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After `git mv`, the skill's own internal references still name the old folder: `references/models/.md` link `../../../sk-prompt-small-model/...` (now a dead path), `modelprofiles.json` carries `profileref: \"sk-prompt-small-model/references/models/...\"`, and the `name:`/`skillid` still say the old name",
     "created_at": "2026-06-28T13:47:21.316Z",
-    "last_save_at": "2026-06-28T13:47:21.316Z",
+    "last_save_at": "2026-06-28T14:29:58.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19ab48b236fdd5f36d3ecb0b823af6ea0aac08f07c88ac77d1d45a78a6b2e9af",
+    "source_fingerprint": "sha256:50fa6018564416bc786327650fa89dfa03c62016f1e85bbd006c9022a8af8574",
     "source_doc_hashes": {
-      "spec.md": "130b0c906f1d3811b517a70b2f2171f7c375dcff783f4af149a618f1ce2f051b",
-      "plan.md": "ed9098739c12f6f8f99f3767183bebb918ebd71661eae62807ef1778aca38928",
-      "tasks.md": "1c45b9ecc3684fbea4be9b955fa3d0f17b243dffa2df6ce9654e63d5ca987250"
+      "spec.md": "5a97d3ce68ec35fb20f1c6e208045c97d0c9e2699cef471020114ac3d08e9f49",
+      "plan.md": "8df8f1395555f10066a53a79deff7faf274e119366b985509787b89139e05956",
+      "tasks.md": "3a4b91f1e31e8fdec9e64f922c96d4716522b1e7fbefdec5a6abdb96fe75a0ec",
+      "implementation-summary.md": "acd61dbf2726ca254569060a1550335f371292267d1c7a00e3b2183ea77490f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

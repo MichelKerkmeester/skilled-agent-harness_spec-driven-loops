@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/003-cross-skill-and-code-refs"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Update card-sync guard path first, then the rest"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/003-cross-skill-and-code-refs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ Update the card-sync guard's hardcoded path FIRST (it is the model-registry gate
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 2 done (new folder exists)
+- [x] Phase 2 done (new folder exists)
 
 ### Definition of Done
-- [ ] Card-sync guard path updated; guard runs clean
-- [ ] All 8 skills + code/config refs updated; secret-scrubber suite passes
+- [x] Card-sync guard path updated; guard runs clean
+- [x] All 8 skills + code/config refs updated; secret-scrubber suite passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,14 +84,14 @@ Gate-first ordering. Fix the card-sync guard path before broad edits so the gate
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Gate first
-- [ ] Update the card-sync guard `.sh` hardcoded `H` path; run the guard to confirm it resolves the new path
+- [x] Update the card-sync guard `.sh` hardcoded `H` path; run the guard to confirm it resolves the new path
 
 ### Phase 2: Cross-skill + code/config
-- [ ] Token-replace across cli-opencode, deep-loop-workflows, sk-prompt, cli-codex, cli-claude-code, system-spec-kit, deep-loop-runtime, system-skill-advisor (non-generated)
-- [ ] Update reviewer-regression.json `outputsDir`, secret-scrubber fixture, executor-config comment
+- [x] Token-replace across cli-opencode, deep-loop-workflows, sk-prompt, cli-codex, cli-claude-code, system-spec-kit, deep-loop-runtime, system-skill-advisor (non-generated)
+- [x] Update reviewer-regression.json `outputsDir`, secret-scrubber fixture, executor-config comment
 
 ### Phase 3: Verify
-- [ ] Run the secret-scrubber vitest; `rg` over each skill = 0 (minus generated/logs); write implementation-summary.md
+- [x] Run the secret-scrubber vitest; `rg` over each skill = 0 (minus generated/logs); write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---

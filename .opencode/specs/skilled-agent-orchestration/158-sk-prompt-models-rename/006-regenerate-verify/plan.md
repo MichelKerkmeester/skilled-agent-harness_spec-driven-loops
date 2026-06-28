@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/158-sk-prompt-models-rename/006-regenerate-verify"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase plan scaffolded; not started"
-    next_safe_action: "Regenerate indexes, then run gates"
+    recent_action: "Phase complete"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session/006-regenerate-verify"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,10 +52,10 @@ Regenerate every derived index from the renamed source (advisor force-refresh + 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 2–5 complete (all text edits landed)
+- [x] Phases 2–5 complete (all text edits landed)
 
 ### Definition of Done
-- [ ] Indexes regenerated; all gates green; zero live old-name refs; advisor routes to the new name
+- [x] Indexes regenerated; all gates green; zero live old-name refs; advisor routes to the new name
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,15 +84,15 @@ Regenerate-then-prove. Derived state is rebuilt from source, then a layered gate
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Regenerate
-- [ ] Advisor force-refresh + `skill_graph_compiler.py --export-json`
-- [ ] spec-memory `memory_index_scan`; packet `generate-description.js` + `backfill-graph-metadata.js`
+- [x] Advisor force-refresh + `skill_graph_compiler.py --export-json`
+- [x] spec-memory `memory_index_scan`; packet `generate-description.js` + `backfill-graph-metadata.js`
 
 ### Phase 2: Gates
-- [ ] Card-sync guard exit 0; `validate.sh --strict --recursive` on the 158 packet; secret-scrubber + model-benchmark vitest suites
+- [x] Card-sync guard exit 0; `validate.sh --strict --recursive` on the 158 packet; secret-scrubber + model-benchmark vitest suites
 
 ### Phase 3: Prove completeness
-- [ ] `rg -c "sk-prompt-small-model"` = 0 (or only listed history-care lines)
-- [ ] Advisor routing probe returns `sk-prompt-models`; small-model smoke resolves its profile; write implementation-summary.md
+- [x] `rg -c "sk-prompt-small-model"` = 0 (or only listed history-care lines)
+- [x] Advisor routing probe returns `sk-prompt-models`; small-model smoke resolves its profile; write implementation-summary.md
 <!-- /ANCHOR:phases -->
 
 ---
