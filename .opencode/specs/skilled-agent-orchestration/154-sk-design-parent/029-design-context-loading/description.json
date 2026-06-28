@@ -18,7 +18,7 @@
     "six",
     "dials"
   ],
-  "lastUpdated": "2026-06-27T14:40:39.092Z",
+  "lastUpdated": "2026-06-28T06:40:34.384Z",
   "specId": "029",
   "folderSlug": "design-context-loading",
   "parentChain": [
@@ -28,10 +28,12 @@
     "skilled-agent-orchestration",
     "154-sk-design-parent"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "27-06-26_15-34__next-steps.md",
     "27-06-26_15-38__next-steps.md",
-    "27-06-26_15-40__next-steps.md"
+    "27-06-26_15-40__next-steps.md",
+    "28-06-26_07-40__next-steps.md",
+    "28-06-26_07-40__next-steps.md"
   ]
 }
