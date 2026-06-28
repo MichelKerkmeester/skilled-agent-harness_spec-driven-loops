@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "006-rejected-pattern-cache summary"
     ],
     "key_topics": [
       "rejected",
@@ -39,18 +39,25 @@
       "loop"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
       ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
       {
         "name": "state_jsonl.md",
         "kind": "doc",
@@ -64,15 +71,15 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the very next iteration's next-focus candidates, wasting an iteration slot and polluting the convergence signal",
     "created_at": "2026-06-28T14:02:10Z",
-    "last_save_at": "2026-06-28T14:27:36.187Z",
+    "last_save_at": "2026-06-28T20:41:57.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fce9d2997413fb580eb6455d35fd0e5d013df39df97c68b7be28577248c5fdc",
+    "source_fingerprint": "sha256:dfcb6d105e7ab0fc37025b2b80b4a83ee85f368fd2a9fef8ffc1060177daaa6a",
     "source_doc_hashes": {
-      "spec.md": "6f65ad2824f1dfc0efc26ac1440a86d259ad06b1bb7cb8cbf4174065f5a7c106",
+      "spec.md": "5f0cd96f8bf5f7675321cb04da887876e988edaf509874f7cd825ef6e29e4829",
       "plan.md": "0f731f9662bc4b1293281ce9d1da32115f2522fd304fc6d82f2b169bf14b75c8",
       "tasks.md": "1c779fe882eb2b326067604c2348c7efa4b6070e3f1593f151ce8c9eb9ee5ea2",
-      "implementation-summary.md": "d7599b61cb3c65aded43c08d86ee01f188af7d6a56e6ae2a1478b9b3a9429461"
+      "implementation-summary.md": "f9befc21facf54a7cf045e40bfb7e6a0d689ea22b353e7c76e73da5fa20317bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

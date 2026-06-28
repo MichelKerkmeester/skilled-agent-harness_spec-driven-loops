@@ -494,6 +494,9 @@ workflow:
           - min_iterations_guard_already_passed: "Boolean true when state_log already contains event == 'min_iterations_guard_pass'"
           - convergence_mode: "Extract convergenceMode when it is 'default' or 'off'; default to 'default'"
           - convergence_mode_warning: "Boolean true when convergenceMode is present with an unsupported value; use 'default'"
+          - rejected_patterns_count: "Read registry.rejectedPatterns length when registry exists, else 0"
+          - rejected_candidate_matches: "Read registry.suppressedCandidates when registry exists, else []"
+          - rejected_pattern_fuzzy_threshold: "Read config.rejectedPatternFuzzyThreshold when present, else 0.85"
 
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
@@ -692,6 +695,46 @@ workflow:
           reset: { stuck_count: 0 }
         if_continue:
           log: "Iteration {current_iteration}: Continuing. Focus: {next_focus}"
+
+      step_rejected_pattern_cache:
+        action: "Apply reducer-derived rejected-pattern suppression before dispatch candidate selection"
+        read:
+          - "{state_paths.state_log}"
+          - "{state_paths.registry}"
+          - "{state_paths.strategy}"
+        candidate_sources:
+          next_focus:
+            category: "next-focus"
+            values:
+              - "{next_focus}"
+              - "{remaining_questions_list}"
+              - "{carried_forward_open_questions}"
+          recovery:
+            category: "recovery"
+            values:
+              - "{recovery_strategy}"
+              - "{least_explored}"
+          ideas:
+            category: "ideas"
+            optional_file: "{state_paths.packet_dir}/research-ideas.md"
+        algorithm: |
+          Use registry.rejectedPatternIndex from the latest reducer pass as the source of truth.
+          Compare normalized exact text first. Then compare fuzzy similarity with
+          rejected_pattern_fuzzy_threshold, but only when candidate and rejected categories
+          are compatible. Remove suppressed candidates from next_focus, recovery, and ideas
+          selection before rendering the dispatch prompt. If all candidates are suppressed,
+          halt for operator input instead of reusing a rejected idea.
+        outputs:
+          - accepted_next_focus: "First unsuppressed next-focus candidate, or null"
+          - accepted_recovery_candidate: "First unsuppressed recovery candidate, or null"
+          - accepted_idea_candidate: "First unsuppressed ideas candidate, or null"
+          - rejected_candidate_matches: "Suppressed candidate diagnostics from registry.suppressedCandidates plus any current-step matches"
+        if_next_focus_suppressed:
+          set: { next_focus: "{accepted_next_focus || accepted_recovery_candidate || accepted_idea_candidate}" }
+          log: "Rejected-pattern cache suppressed the prior candidate; dispatching the next accepted candidate."
+        if_all_candidates_suppressed:
+          halt: true
+          message: "All next-focus, recovery, and ideas candidates match active rejected patterns. Remove/reset the rejected pattern or provide a new focus."
 
       step_normalize_pause_events:
         action: "Normalize pause and recovery lifecycle events to the frozen STOP_REASONS enum at emission time"
@@ -980,6 +1023,7 @@ workflow:
           - "{state_paths.dashboard}"
           - "{state_paths.strategy}"
           - "{state_paths.state_log} question_conflict events when inbox text disagrees with registry-owned question text"
+          - "{state_paths.registry} rejectedPatterns and suppressedCandidates from ideaRejected events"
         failure_modes:
           malformed_delta: "skip + warn"
           missing_iteration_file: "no-op + error"

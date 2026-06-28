@@ -228,6 +228,50 @@ Stuck recovery event:
 }
 ```
 
+Rejected idea event:
+
+```json
+{
+  "type": "event",
+  "event": "ideaRejected",
+  "mode": "research",
+  "run": 7,
+  "pattern": "Retry HTTP/3 as the primary latency fix",
+  "category": "next-focus",
+  "reason": "Already rejected by environment evidence",
+  "timestamp": "2026-05-24T00:00:00Z"
+}
+```
+
+Rejected idea removal event:
+
+```json
+{
+  "type": "event",
+  "event": "ideaRejectedRemoved",
+  "mode": "research",
+  "pattern": "Retry HTTP/3 as the primary latency fix",
+  "category": "next-focus",
+  "timestamp": "2026-05-24T00:00:00Z"
+}
+```
+
+Rejected idea reset event:
+
+```json
+{
+  "type": "event",
+  "event": "ideaRejectedReset",
+  "mode": "research",
+  "reason": "Operator wants previously rejected ideas eligible again",
+  "timestamp": "2026-05-24T00:00:00Z"
+}
+```
+
+The reducer derives a bounded active rejected-pattern cache from these events. `ideaRejected` adds or refreshes one pattern, `ideaRejectedRemoved` removes a single matching pattern or id, and `ideaRejectedReset` clears the active cache. The active cache is capped at 100 entries; when more are added, the oldest active entry is evicted and the reducer emits a warning.
+
+Candidate checks compare normalized exact text first, then apply fuzzy matching only when the candidate category is compatible with the rejected category. Omit `category` for a general rejection that can suppress candidates across next-focus, recovery, or ideas surfaces.
+
 Graph convergence event shape lives in `../convergence/convergence_graph.md`.
 
 ---

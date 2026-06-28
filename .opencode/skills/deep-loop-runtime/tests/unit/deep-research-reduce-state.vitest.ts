@@ -8,8 +8,35 @@ import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const nodeRequire = createRequire(import.meta.url);
 const {
+  deriveRejectedPatternIndex,
+  filterRejectedIdeaCandidates,
   reduceResearchState,
 } = nodeRequire('../../../deep-loop-workflows/deep-research/scripts/reduce-state.cjs') as {
+  deriveRejectedPatternIndex: (eventRecords: Array<Record<string, unknown>>, options?: {
+    fuzzyThreshold?: number;
+  }) => {
+    entries: Array<{
+      id: string;
+      pattern: string;
+      category: string;
+    }>;
+    maxEntries: number;
+    fuzzyThreshold: number;
+    warnings: string[];
+  };
+  filterRejectedIdeaCandidates: (
+    candidates: Array<string | Record<string, unknown>>,
+    rejectedIndex: Record<string, unknown>,
+    options?: { category?: string; fuzzyThreshold?: number },
+  ) => {
+    accepted: Array<string | Record<string, unknown>>;
+    suppressed: Array<{
+      candidateText: string;
+      category: string;
+      matchType: string;
+      rejectedPattern: string;
+    }>;
+  };
   reduceResearchState: (specFolder: string, options?: {
     write?: boolean;
     lenient?: boolean;
@@ -55,6 +82,22 @@ const {
         registryValue: string;
         inboxValue: string;
       }>;
+      rejectedPatterns?: Array<{
+        id: string;
+        pattern: string;
+        category: string;
+      }>;
+      suppressedCandidates?: Array<{
+        candidateText: string;
+        category: string;
+        matchType: string;
+        rejectedPattern: string;
+      }>;
+      rejectedPatternIndex?: {
+        entries: Array<Record<string, unknown>>;
+        maxEntries: number;
+        fuzzyThreshold: number;
+      };
     };
     strategy: string;
     dashboard: string;
@@ -394,5 +437,130 @@ describe('deep-research reduce-state recovery gate', () => {
     } finally {
       warnSpy.mockRestore();
     }
+  });
+
+  it('suppresses an exact rejected next-focus candidate from reducer output', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'event',
+      event: 'ideaRejected',
+      mode: 'research',
+      run: 1,
+      pattern: 'What should be checked?',
+      category: 'next-focus',
+      reason: 'operator rejected this focus',
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })}\n`);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.rejectedPatterns).toEqual([
+      expect.objectContaining({
+        pattern: 'What should be checked?',
+        category: 'next-focus',
+      }),
+    ]);
+    expect(result.registry.suppressedCandidates).toEqual([
+      expect.objectContaining({
+        candidateText: 'What should be checked?',
+        matchType: 'exact',
+        rejectedPattern: 'What should be checked?',
+      }),
+    ]);
+    expect(result.strategy).toContain('## 11. NEXT FOCUS\n[All tracked questions are resolved]');
+    expect(result.dashboard).toContain('## Rejected Pattern Cache');
+    expect(result.dashboard).toContain('What should be checked? suppressed by What should be checked?');
+  });
+
+  it('re-admits a pattern after a rejected-pattern removal event', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, [
+      JSON.stringify({
+        type: 'event',
+        event: 'ideaRejected',
+        mode: 'research',
+        run: 1,
+        pattern: 'What should be checked?',
+        category: 'next-focus',
+        timestamp: '2026-06-28T00:00:00.000Z',
+      }),
+      JSON.stringify({
+        type: 'event',
+        event: 'ideaRejectedRemoved',
+        mode: 'research',
+        pattern: 'What should be checked?',
+        category: 'next-focus',
+        timestamp: '2026-06-28T00:01:00.000Z',
+      }),
+      '',
+    ].join('\n'));
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.rejectedPatterns).toEqual([]);
+    expect(result.registry.suppressedCandidates).toEqual([]);
+    expect(result.strategy).toContain('## 11. NEXT FOCUS\nWhat should be checked?');
+  });
+
+  it('derives a bounded rejected-pattern index and honors reset events', () => {
+    const rejectionEvents = Array.from({ length: 105 }, (_unused, index) => ({
+      type: 'event',
+      event: 'ideaRejected',
+      mode: 'research',
+      pattern: `Candidate pattern ${index}`,
+      category: 'ideas',
+      timestamp: `2026-06-28T00:${String(index).padStart(2, '0')}:00.000Z`,
+    }));
+
+    const bounded = deriveRejectedPatternIndex(rejectionEvents);
+
+    expect(bounded.entries).toHaveLength(100);
+    expect(bounded.entries[0].pattern).toBe('Candidate pattern 5');
+    expect(bounded.warnings).toHaveLength(5);
+
+    const reset = deriveRejectedPatternIndex([
+      rejectionEvents[0],
+      {
+        type: 'event',
+        event: 'ideaRejectedReset',
+        mode: 'research',
+        reason: 'operator reset',
+      },
+    ]);
+
+    expect(reset.entries).toHaveLength(0);
+  });
+
+  it('uses fuzzy matching only for compatible rejected-pattern categories', () => {
+    const rejectedIndex = deriveRejectedPatternIndex([
+      {
+        type: 'event',
+        event: 'ideaRejected',
+        mode: 'research',
+        pattern: 'Investigate cache stampede mitigation plan',
+        category: 'next-focus',
+      },
+    ]);
+
+    const nextFocus = filterRejectedIdeaCandidates(
+      [{ text: 'Investigate cache stampede mitigation plans', category: 'next-focus' }],
+      rejectedIndex,
+      { category: 'next-focus' },
+    );
+    const recovery = filterRejectedIdeaCandidates(
+      [{ text: 'Investigate cache stampede mitigation plans', category: 'recovery' }],
+      rejectedIndex,
+      { category: 'recovery' },
+    );
+
+    expect(nextFocus.accepted).toHaveLength(0);
+    expect(nextFocus.suppressed[0]).toMatchObject({
+      candidateText: 'Investigate cache stampede mitigation plans',
+      category: 'next-focus',
+      matchType: 'fuzzy',
+      rejectedPattern: 'Investigate cache stampede mitigation plan',
+    });
+    expect(recovery.accepted).toHaveLength(1);
+    expect(recovery.suppressed).toHaveLength(0);
   });
 });

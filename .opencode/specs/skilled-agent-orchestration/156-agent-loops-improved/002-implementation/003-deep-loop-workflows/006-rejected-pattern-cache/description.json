@@ -16,11 +16,10 @@
     "re-emerge",
     "ver"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.298Z",
+  "lastUpdated": "2026-06-28T20:41:57.106Z",
   "specId": "006",
   "folderSlug": "rejected-pattern-cache",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

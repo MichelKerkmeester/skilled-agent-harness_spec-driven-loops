@@ -25,12 +25,17 @@ const {
 
 const DEFAULT_SPARKLINE_WIDTH = 20;
 const DEFAULT_TREND_FLATLINE_WINDOW = 3;
+const DEFAULT_REJECTED_PATTERN_CATEGORY = 'general';
+const DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD = 0.85;
 const INBOX_FILE_NAME = 'inbox.jsonl';
 const DEFAULT_INBOX_SOURCE = 'research-inbox';
 const LEGACY_IMPORT_ORIGIN = 'legacy-import';
 const LEGACY_IMPORT_SOURCE = 'key-questions';
 const QUESTION_CONFLICT_EVENT = 'question_conflict';
 const DEFAULT_QUESTION_DECISION = 'needs_decision';
+const MAX_REJECTED_PATTERNS = 100;
+const REJECTED_PATTERN_CANDIDATE_FIELDS = ['text', 'focus', 'nextFocus', 'pattern', 'idea', 'title'];
+const REJECTED_PATTERN_EVENT_FIELDS = ['pattern', 'idea', 'text', 'candidate'];
 const VALID_QUESTION_ORIGINS = new Set([
   'angle-bank',
   'analyst-strategy',
@@ -113,6 +118,452 @@ function contentHash(value) {
     .update(normalizeText(String(value)).toLowerCase())
     .digest('hex')
     .slice(0, 12);
+}
+
+function normalizeRejectedPatternKey(value) {
+  return normalizeText(String(value ?? ''))
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function normalizeRejectedPatternCategory(value) {
+  const normalized = normalizeOptionalText(value).toLowerCase();
+  return normalized || DEFAULT_REJECTED_PATTERN_CATEGORY;
+}
+
+function normalizeRejectedPatternId(value) {
+  const normalized = normalizeOptionalText(value);
+  return normalized || null;
+}
+
+function readFirstTextField(record, fields) {
+  if (!record || typeof record !== 'object' || Array.isArray(record)) {
+    return '';
+  }
+
+  for (const field of fields) {
+    const value = normalizeOptionalText(record[field]);
+    if (value) {
+      return value;
+    }
+  }
+  return '';
+}
+
+function readRejectedPatternText(record) {
+  return readFirstTextField(record, REJECTED_PATTERN_EVENT_FIELDS);
+}
+
+function readCandidateText(candidate) {
+  if (typeof candidate === 'string') {
+    return normalizeOptionalText(candidate);
+  }
+  return readFirstTextField(candidate, REJECTED_PATTERN_CANDIDATE_FIELDS);
+}
+
+function readCandidateCategory(candidate, fallbackCategory) {
+  if (candidate && typeof candidate === 'object' && !Array.isArray(candidate)) {
+    return normalizeRejectedPatternCategory(candidate.category ?? fallbackCategory);
+  }
+  return normalizeRejectedPatternCategory(fallbackCategory);
+}
+
+function isRejectedPatternCategoryCompatible(rejectedCategory, candidateCategory) {
+  const rejected = normalizeRejectedPatternCategory(rejectedCategory);
+  const candidate = normalizeRejectedPatternCategory(candidateCategory);
+  return rejected === candidate
+    || rejected === DEFAULT_REJECTED_PATTERN_CATEGORY
+    || candidate === DEFAULT_REJECTED_PATTERN_CATEGORY;
+}
+
+function resolveRejectedPatternFuzzyThreshold(config) {
+  const rawThreshold =
+    config?.rejectedPatternFuzzyThreshold
+    ?? config?.rejectedPatterns?.fuzzyThreshold
+    ?? DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD;
+  return typeof rawThreshold === 'number' && Number.isFinite(rawThreshold) && rawThreshold >= 0 && rawThreshold <= 1
+    ? rawThreshold
+    : DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD;
+}
+
+function normalizeRejectedPatternEvent(record) {
+  const pattern = readRejectedPatternText(record);
+  const normalizedPattern = normalizeRejectedPatternKey(pattern);
+  if (!normalizedPattern) {
+    return null;
+  }
+
+  const category = normalizeRejectedPatternCategory(record.category);
+  return {
+    id: normalizeRejectedPatternId(record.rejectedId ?? record.id)
+      || `rejected-${category}-${contentHash(normalizedPattern)}`,
+    pattern,
+    normalizedPattern,
+    category,
+    reason: normalizeOptionalText(record.reason),
+    addedAtRun: isFiniteNumber(record.run) ? record.run : null,
+    timestamp: normalizeOptionalText(record.timestamp),
+    sessionId: normalizeRejectedPatternId(record.sessionId),
+    generation: isFiniteNumber(record.generation) ? record.generation : null,
+  };
+}
+
+function removeRejectedPatternEntries(entries, record) {
+  const rejectedId = normalizeRejectedPatternId(record.rejectedId ?? record.id);
+  const patternKey = normalizeRejectedPatternKey(readRejectedPatternText(record));
+  const rawCategory = normalizeOptionalText(record.category);
+  const category = rawCategory ? normalizeRejectedPatternCategory(rawCategory) : null;
+
+  return entries.filter((entry) => {
+    if (rejectedId && entry.id === rejectedId) {
+      return false;
+    }
+    if (!patternKey || entry.normalizedPattern !== patternKey) {
+      return true;
+    }
+    return category ? entry.category !== category : false;
+  });
+}
+
+/**
+ * Derive the active rejected-pattern cache from append-only research events.
+ *
+ * @param {Array<Object>} eventRecords - Parsed JSONL event records.
+ * @param {Object} [options] - Index options.
+ * @param {number} [options.fuzzyThreshold=0.85] - Similarity threshold used by candidate checks.
+ * @returns {{entries: Array<Object>, maxEntries: number, fuzzyThreshold: number, warnings: string[]}} Bounded rejected-pattern index.
+ */
+function deriveRejectedPatternIndex(eventRecords, options = {}) {
+  const fuzzyThreshold = typeof options.fuzzyThreshold === 'number'
+    ? options.fuzzyThreshold
+    : DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD;
+  const entries = [];
+  const warnings = [];
+
+  for (const record of Array.isArray(eventRecords) ? eventRecords : []) {
+    if (!record || record.type !== 'event') {
+      continue;
+    }
+
+    if (record.event === 'ideaRejectedReset') {
+      entries.length = 0;
+      continue;
+    }
+
+    if (record.event === 'ideaRejectedRemoved') {
+      const nextEntries = removeRejectedPatternEntries(entries, record);
+      entries.length = 0;
+      entries.push(...nextEntries);
+      continue;
+    }
+
+    if (record.event !== 'ideaRejected') {
+      continue;
+    }
+
+    const entry = normalizeRejectedPatternEvent(record);
+    if (!entry) {
+      continue;
+    }
+
+    const replacedEntries = entries.filter((existing) =>
+      existing.id !== entry.id
+      && !(existing.category === entry.category && existing.normalizedPattern === entry.normalizedPattern),
+    );
+    replacedEntries.push(entry);
+    entries.length = 0;
+    entries.push(...replacedEntries);
+
+    while (entries.length > MAX_REJECTED_PATTERNS) {
+      const evicted = entries.shift();
+      warnings.push(
+        `[deep-research] evicted rejected pattern "${evicted.pattern}" from bounded rejected-pattern cache (max ${MAX_REJECTED_PATTERNS})`,
+      );
+    }
+  }
+
+  return {
+    entries,
+    maxEntries: MAX_REJECTED_PATTERNS,
+    fuzzyThreshold,
+    warnings,
+  };
+}
+
+function calculateLevenshteinDistance(left, right) {
+  if (left === right) {
+    return 0;
+  }
+  if (!left.length) {
+    return right.length;
+  }
+  if (!right.length) {
+    return left.length;
+  }
+
+  const previous = Array.from({ length: right.length + 1 }, (_unused, index) => index);
+  const current = new Array(right.length + 1);
+
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    current[0] = leftIndex;
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      const substitutionCost = left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1;
+      current[rightIndex] = Math.min(
+        previous[rightIndex] + 1,
+        current[rightIndex - 1] + 1,
+        previous[rightIndex - 1] + substitutionCost,
+      );
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+
+  return previous[right.length];
+}
+
+function calculateRejectedPatternSimilarity(left, right) {
+  const normalizedLeft = normalizeRejectedPatternKey(left).slice(0, 500);
+  const normalizedRight = normalizeRejectedPatternKey(right).slice(0, 500);
+  if (!normalizedLeft || !normalizedRight) {
+    return 0;
+  }
+  if (normalizedLeft === normalizedRight) {
+    return 1;
+  }
+
+  const distance = calculateLevenshteinDistance(normalizedLeft, normalizedRight);
+  return 1 - (distance / Math.max(normalizedLeft.length, normalizedRight.length));
+}
+
+function readRejectedEntries(rejectedIndex) {
+  if (Array.isArray(rejectedIndex)) {
+    return rejectedIndex;
+  }
+  return Array.isArray(rejectedIndex?.entries) ? rejectedIndex.entries : [];
+}
+
+function resolveCandidateThreshold(rejectedIndex, options) {
+  const threshold = options?.fuzzyThreshold ?? rejectedIndex?.fuzzyThreshold ?? rejectedIndex?.threshold;
+  return typeof threshold === 'number' && Number.isFinite(threshold) && threshold >= 0 && threshold <= 1
+    ? threshold
+    : DEFAULT_REJECTED_PATTERN_FUZZY_THRESHOLD;
+}
+
+/**
+ * Find the active rejected pattern that suppresses a candidate, if any.
+ *
+ * @param {string|Object} candidate - Candidate text or structured candidate.
+ * @param {Object|Array<Object>} rejectedIndex - Derived rejected-pattern index.
+ * @param {Object} [options] - Match options.
+ * @param {string} [options.category="general"] - Candidate category.
+ * @returns {Object|null} Match metadata when the candidate is suppressed.
+ */
+function findRejectedPatternMatch(candidate, rejectedIndex, options = {}) {
+  const candidateText = readCandidateText(candidate);
+  const candidateKey = normalizeRejectedPatternKey(candidateText);
+  if (!candidateKey) {
+    return null;
+  }
+
+  const candidateCategory = readCandidateCategory(candidate, options.category);
+  const fuzzyThreshold = resolveCandidateThreshold(rejectedIndex, options);
+  let bestFuzzyMatch = null;
+
+  for (const entry of readRejectedEntries(rejectedIndex)) {
+    const rejectedPattern = entry.pattern || entry.text || '';
+    const rejectedKey = entry.normalizedPattern || normalizeRejectedPatternKey(rejectedPattern);
+    const rejectedCategory = normalizeRejectedPatternCategory(entry.category);
+    if (!rejectedKey || !isRejectedPatternCategoryCompatible(rejectedCategory, candidateCategory)) {
+      continue;
+    }
+
+    if (rejectedKey === candidateKey) {
+      return {
+        candidateText,
+        candidateCategory,
+        matchType: 'exact',
+        similarity: 1,
+        rejectedPattern: {
+          ...entry,
+          pattern: rejectedPattern,
+          normalizedPattern: rejectedKey,
+          category: rejectedCategory,
+        },
+      };
+    }
+
+    const similarity = calculateRejectedPatternSimilarity(candidateKey, rejectedKey);
+    if (similarity < fuzzyThreshold) {
+      continue;
+    }
+    if (!bestFuzzyMatch || similarity > bestFuzzyMatch.similarity) {
+      bestFuzzyMatch = {
+        candidateText,
+        candidateCategory,
+        matchType: 'fuzzy',
+        similarity,
+        rejectedPattern: {
+          ...entry,
+          pattern: rejectedPattern,
+          normalizedPattern: rejectedKey,
+          category: rejectedCategory,
+        },
+      };
+    }
+  }
+
+  return bestFuzzyMatch;
+}
+
+/**
+ * Remove rejected ideas from candidate lists while preserving input order.
+ *
+ * @param {Array<string|Object>} candidates - Candidate ideas or focus records.
+ * @param {Object|Array<Object>} rejectedIndex - Derived rejected-pattern index.
+ * @param {Object} [options] - Match options.
+ * @returns {{accepted: Array<string|Object>, suppressed: Array<Object>}} Accepted candidates and suppression diagnostics.
+ */
+function filterRejectedIdeaCandidates(candidates, rejectedIndex, options = {}) {
+  const accepted = [];
+  const suppressed = [];
+
+  for (const candidate of Array.isArray(candidates) ? candidates : []) {
+    const match = findRejectedPatternMatch(candidate, rejectedIndex, options);
+    if (!match) {
+      accepted.push(candidate);
+      continue;
+    }
+
+    suppressed.push({
+      candidate,
+      candidateText: match.candidateText,
+      category: match.candidateCategory,
+      matchType: match.matchType,
+      similarity: match.similarity,
+      rejectedPattern: match.rejectedPattern.pattern,
+      rejectedPatternId: match.rejectedPattern.id,
+      rejectedPatternCategory: match.rejectedPattern.category,
+    });
+  }
+
+  return { accepted, suppressed };
+}
+
+function serializeRejectedPatternEntry(entry) {
+  return {
+    id: entry.id,
+    pattern: entry.pattern,
+    category: entry.category,
+    reason: entry.reason,
+    addedAtRun: entry.addedAtRun,
+    timestamp: entry.timestamp,
+    sessionId: entry.sessionId,
+    generation: entry.generation,
+  };
+}
+
+function uniqueSuppressedCandidates(items) {
+  const seen = new Set();
+  const result = [];
+
+  for (const item of items) {
+    const key = [
+      normalizeRejectedPatternKey(item.candidateText),
+      normalizeRejectedPatternCategory(item.category),
+      item.rejectedPatternId || normalizeRejectedPatternKey(item.rejectedPattern),
+      item.matchType,
+    ].join('\0');
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    result.push(item);
+  }
+  return result;
+}
+
+function filterItemTextField(items, field, rejectedIndex, category) {
+  return items.map((item) => {
+    if (!Array.isArray(item?.[field])) {
+      return item;
+    }
+
+    const candidates = item[field].map((text) => ({ text, category }));
+    const { accepted } = filterRejectedIdeaCandidates(candidates, rejectedIndex, { category });
+    if (accepted.length === item[field].length) {
+      return item;
+    }
+
+    return {
+      ...item,
+      [field]: accepted.map((candidate) => candidate.text),
+    };
+  });
+}
+
+function buildSuppressedNextFocusCandidates({
+  openQuestions,
+  carriedForwardOpenQuestions,
+  iterationFiles,
+  iterationRecords,
+  blockedStopHistory,
+  rejectedIndex,
+}) {
+  const suppressed = [];
+  suppressed.push(...filterRejectedIdeaCandidates(openQuestions, rejectedIndex, { category: 'next-focus' }).suppressed);
+  suppressed.push(...filterRejectedIdeaCandidates(carriedForwardOpenQuestions, rejectedIndex, { category: 'next-focus' }).suppressed);
+  suppressed.push(...iterationFiles.flatMap((iteration) =>
+    filterRejectedIdeaCandidates(
+      iteration.findings.map((text) => ({ text, category: 'next-focus', run: iteration.run, source: 'iteration-finding' })),
+      rejectedIndex,
+      { category: 'next-focus' },
+    ).suppressed,
+  ));
+  suppressed.push(...iterationRecords.flatMap((record) =>
+    filterRejectedIdeaCandidates(
+      (Array.isArray(record.findings) ? record.findings : []).map((text) => ({
+        text,
+        category: 'next-focus',
+        run: record.run,
+        source: 'iteration-record-finding',
+      })),
+      rejectedIndex,
+      { category: 'next-focus' },
+    ).suppressed,
+  ));
+  suppressed.push(...filterRejectedIdeaCandidates(
+    blockedStopHistory
+      .map((entry) => entry.recoveryStrategy)
+      .filter(Boolean)
+      .map((text) => ({ text, category: 'recovery' })),
+    rejectedIndex,
+    { category: 'recovery' },
+  ).suppressed);
+
+  return uniqueSuppressedCandidates(suppressed);
+}
+
+function filterNextFocusInputs(registry, iterationFiles, iterationRecords) {
+  const rejectedIndex = registry.rejectedPatternIndex;
+  if (!readRejectedEntries(rejectedIndex).length) {
+    return {
+      openQuestions: registry.openQuestions,
+      carriedForwardOpenQuestions: registry.carriedForwardOpenQuestions,
+      iterationFiles,
+      iterationRecords,
+    };
+  }
+
+  return {
+    openQuestions: filterRejectedIdeaCandidates(registry.openQuestions, rejectedIndex, { category: 'next-focus' }).accepted,
+    carriedForwardOpenQuestions: filterRejectedIdeaCandidates(
+      registry.carriedForwardOpenQuestions,
+      rejectedIndex,
+      { category: 'next-focus' },
+    ).accepted,
+    iterationFiles: filterItemTextField(iterationFiles, 'findings', rejectedIndex, 'next-focus'),
+    iterationRecords: filterItemTextField(iterationRecords, 'findings', rejectedIndex, 'next-focus'),
+  };
 }
 
 function escapeRegExp(value) {
@@ -1198,6 +1649,7 @@ function getTimestampValue(timestamp) {
 }
 
 function resolveNextFocus(registry, iterationFiles, iterationRecords) {
+  const rejectedIndex = registry.rejectedPatternIndex;
   const latestBlockedStop = Array.isArray(registry.blockedStopHistory)
     ? registry.blockedStopHistory.at(-1)
     : null;
@@ -1208,19 +1660,28 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
     const latestIterationTimestamp = getTimestampValue(latestIteration?.timestamp);
 
     if (latestBlockedTimestamp > latestIterationTimestamp) {
-      return [
-        `BLOCKED on: ${formatBlockedByList(latestBlockedStop.blockedBy)}`,
-        `Recovery: ${latestBlockedStop.recoveryStrategy || '[No recovery strategy recorded]'}`,
-        'Address the blocking gates before the next iteration.',
-      ].join('\n');
+      const recoveryStrategy = latestBlockedStop.recoveryStrategy || '[No recovery strategy recorded]';
+      const recoveryMatch = findRejectedPatternMatch(
+        { text: recoveryStrategy, category: 'recovery' },
+        rejectedIndex,
+        { category: 'recovery' },
+      );
+      if (!recoveryMatch) {
+        return [
+          `BLOCKED on: ${formatBlockedByList(latestBlockedStop.blockedBy)}`,
+          `Recovery: ${recoveryStrategy}`,
+          'Address the blocking gates before the next iteration.',
+        ].join('\n');
+      }
     }
   }
 
+  const filteredInputs = filterNextFocusInputs(registry, iterationFiles, iterationRecords);
   return deriveNextFocusFromContinuity({
-    iterationFiles,
-    iterationRecords,
-    carriedForwardOpenQuestions: registry.carriedForwardOpenQuestions,
-    machineOpenQuestions: registry.openQuestions,
+    iterationFiles: filteredInputs.iterationFiles,
+    iterationRecords: filteredInputs.iterationRecords,
+    carriedForwardOpenQuestions: filteredInputs.carriedForwardOpenQuestions,
+    machineOpenQuestions: filteredInputs.openQuestions,
   });
 }
 
@@ -1310,6 +1771,10 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       recoveryStrategy: typeof record.recoveryStrategy === 'string' ? record.recoveryStrategy : '',
       timestamp: typeof record.timestamp === 'string' ? record.timestamp : '',
     }));
+  const rejectedPatternIndex = deriveRejectedPatternIndex(eventRecords, {
+    fuzzyThreshold: reducerState.rejectedPatternFuzzyThreshold,
+  });
+  const rejectedPatterns = rejectedPatternIndex.entries.map(serializeRejectedPatternEntry);
   const graphConvergence = buildGraphConvergenceRollup(eventRecords);
   const lineage = reducerState.lineage && typeof reducerState.lineage === 'object'
     ? reducerState.lineage
@@ -1327,6 +1792,14 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     iterationFiles,
     iterationRecords,
     machineOpenQuestions: openQuestions,
+  });
+  const suppressedCandidates = buildSuppressedNextFocusCandidates({
+    openQuestions,
+    carriedForwardOpenQuestions,
+    iterationFiles,
+    iterationRecords,
+    blockedStopHistory,
+    rejectedIndex: rejectedPatternIndex,
   });
   const uncoveredQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => question.text);
 
@@ -1349,6 +1822,14 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     uncoveredQuestions,
     keyFindings,
     ruledOutDirections,
+    rejectedPatterns,
+    rejectedPatternIndex: {
+      maxEntries: rejectedPatternIndex.maxEntries,
+      fuzzyThreshold: rejectedPatternIndex.fuzzyThreshold,
+      entries: rejectedPatterns,
+    },
+    rejectedPatternWarnings: rejectedPatternIndex.warnings,
+    suppressedCandidates,
     blockedStopHistory,
     graphConvergenceScore: graphConvergence.graphConvergenceScore,
     graphDecision: graphConvergence.graphDecision,
@@ -1360,6 +1841,8 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       resolvedQuestions: keyedQuestions.filter((question) => question.resolved).length,
       carriedForwardOpenQuestions: carriedForwardOpenQuestions.length,
       keyFindings: keyFindings.length,
+      rejectedPatterns: rejectedPatterns.length,
+      suppressedCandidates: suppressedCandidates.length,
       ...(questionConflicts.length ? { questionConflicts: questionConflicts.length } : {}),
       convergenceScore,
       coverageBySources,
@@ -1477,6 +1960,21 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, iterat
     formatCarriedForwardOpenQuestions(registry.carriedForwardOpenQuestions),
     'next-focus',
   );
+  if (registry.rejectedPatterns.length || registry.suppressedCandidates.length) {
+    const rejectedPatternLines = registry.rejectedPatterns
+      .map((entry) => `- ${entry.pattern} [${entry.category}]${entry.reason ? ` — ${entry.reason}` : ''}`);
+    const suppressedLines = registry.suppressedCandidates
+      .map((entry) =>
+        `- Suppressed ${entry.category}: ${entry.candidateText} (${entry.matchType} match to ${entry.rejectedPattern})`,
+      );
+    updated = upsertAnchorSectionBefore(
+      updated,
+      'rejected-pattern-cache',
+      '11B. REJECTED PATTERN CACHE',
+      blockFromBulletList(rejectedPatternLines.concat(suppressedLines)),
+      'next-focus',
+    );
+  }
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
   return updated;
 }
@@ -1510,6 +2008,28 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
   const nextFocus = resolveNextFocus(registry, iterationFiles, iterationRecords);
   const showLogRegionColumns = iterationRecords.some(hasLogRegionFields);
+  const rejectedPatternLines = registry.rejectedPatterns
+    .map((entry) => `- ${entry.pattern} [${entry.category}]${entry.reason ? ` — ${entry.reason}` : ''}`);
+  const suppressedCandidateLines = registry.suppressedCandidates
+    .map((entry) =>
+      `- ${entry.candidateText} suppressed by ${entry.rejectedPattern} (${entry.matchType}, ${entry.similarity.toFixed(2)})`,
+    );
+  const rejectedPatternWarningLines = Array.isArray(registry.rejectedPatternWarnings)
+    ? registry.rejectedPatternWarnings.map((warning) => `- ${warning}`)
+    : [];
+  const rejectedPatternSection = rejectedPatternLines.length || suppressedCandidateLines.length || rejectedPatternWarningLines.length
+    ? [
+        '<!-- ANCHOR:rejected-pattern-cache -->',
+        '## Rejected Pattern Cache',
+        `- Active rejected patterns: ${rejectedPatternLines.length}`,
+        `- Suppressed candidates: ${suppressedCandidateLines.length}`,
+        ...rejectedPatternLines,
+        ...suppressedCandidateLines,
+        ...rejectedPatternWarningLines,
+        '',
+        '<!-- /ANCHOR:rejected-pattern-cache -->',
+      ]
+    : [];
   const progressRows = iterationRecords
     .map((record) => {
       const track = record.focusTrack || '-';
@@ -1610,6 +2130,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       : ['- None yet'],
     '',
     '<!-- /ANCHOR:dead-ends -->',
+    ...rejectedPatternSection,
     '<!-- ANCHOR:next-focus -->',
     '## 7. NEXT FOCUS',
     nextFocus,
@@ -1722,6 +2243,7 @@ function reduceResearchState(specFolder, options = {}) {
     terminalStop,
     status,
     questionConflicts: questionResolution.questionConflicts,
+    rejectedPatternFuzzyThreshold: resolveRejectedPatternFuzzyThreshold(config),
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
@@ -1729,6 +2251,11 @@ function reduceResearchState(specFolder, options = {}) {
   registry.inboxPath = inboxPath;
   registry.inboxWarnings = inbox.warnings;
   registry.status = status;
+  if (write) {
+    for (const warning of registry.rejectedPatternWarnings) {
+      console.warn(warning);
+    }
+  }
   const evidenceRecords = records.filter((record) => record.status !== 'thought');
   const ratioHistory = evidenceRecords
     .map((record) => (typeof record.newInfoRatio === 'number' ? record.newInfoRatio : null))
@@ -1874,7 +2401,10 @@ module.exports = {
   buildLineageState,
   buildTerminalStopState,
   computeGraphConvergenceScore,
+  deriveRejectedPatternIndex,
   deriveDashboardStatus,
+  filterRejectedIdeaCandidates,
+  findRejectedPatternMatch,
   parseIterationFile,
   parseJsonl,
   parseJsonlDetailed,

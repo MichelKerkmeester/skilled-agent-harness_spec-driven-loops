@@ -214,6 +214,32 @@ Next focus: {strategy.nextFocus}
 
 This summary is prepended to the dispatch context (Step 3) to ensure the agent has baseline context even if detailed strategy.md reading fails or is incomplete. It serves as a redundant context channel.
 
+#### Step 2d: Rejected Pattern Cache Check
+
+Before selecting the next-focus, recovery, or ideas-backed candidate for dispatch, read the reducer-owned rejected-pattern cache from the findings registry.
+
+Rejected-cache lifecycle:
+
+1. `ideaRejected` appends one rejected pattern to JSONL with `pattern`, optional `category`, optional `reason`, and normal lifecycle fields.
+2. The reducer derives the active cache from JSONL events; generated registry and dashboard files expose `rejectedPatterns`, `rejectedPatternIndex`, and `suppressedCandidates`.
+3. Exact suppression compares normalized candidate text against normalized rejected text.
+4. Fuzzy suppression uses `rejectedPatternFuzzyThreshold` from config when present, otherwise `0.85`, and only applies when the rejected category is compatible with the candidate category.
+5. `ideaRejectedRemoved` removes a single active pattern by id or by pattern/category.
+6. `ideaRejectedReset` clears all active rejected patterns for the current replay.
+
+The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `ideaRejected` event if it remains relevant.
+
+Candidate categories:
+
+| Category | Candidate source |
+|----------|------------------|
+| `next-focus` | Strategy next-focus, carried-forward open questions, open questions, and follow-up findings |
+| `recovery` | Stuck and blocked-stop recovery strategies |
+| `ideas` | Deferred or promoted ideas backlog entries |
+| `general` | Cross-category fallback when a narrower category is not known |
+
+When all candidates in a category are suppressed, continue with the next eligible category or halt for operator input rather than reusing the rejected idea.
+
 #### Step 3: Dispatch Agent
 Dispatch `@deep-research` with explicit context:
 ```text
