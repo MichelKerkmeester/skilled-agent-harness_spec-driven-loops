@@ -23,7 +23,7 @@ This milestone is the flag-resolution reckoning that closed the keep-off experim
 
 ### Added
 
-- Added the final per-flag resolution table that records each flag as KEPT default-on or DELETED with its one-line deciding evidence, recorded in [`../../keep-off-flag-roadmap.md`](../../keep-off-flag-roadmap.md) and [`../../benchmark-status.md`](../../benchmark-status.md).
+- Added the final per-flag resolution table that records each flag as KEPT default-on or DELETED with its one-line deciding evidence, recorded in `../../keep-off-flag-roadmap.md` and [`../../benchmark-status.md`](../../benchmark-status.md).
 - Added the deleted-superseded-by-measurement note to each affected decision-record so the design-of-record stays readable while the flag and code are gone.
 - Added the coupling guard follow-up that pairs `confidence_calibration` with `absolute_relevance_calibration`, since the isotonic model was fitted on the cosine-prior value distribution and silently mis-calibrates if the absolute lever is turned off underneath it.
 

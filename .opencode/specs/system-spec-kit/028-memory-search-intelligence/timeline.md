@@ -39,7 +39,7 @@ _memory:
 > narrative rather than a standalone Wave-0 record. The per-subsystem phase rosters live in each
 > track's `changelog-00N-root.md` rollup. The before-and-after narrative is in
 > [`before-vs-after.md`](./before-vs-after.md). The dependency order is in
-> [`archive/implementation-schedule.md`](./archive/archive/implementation-schedule.md).
+> `archive/implementation-schedule.md`.
 
 ---
 
@@ -346,7 +346,7 @@ finally given a per-flag keep-or-delete decision behind a fresh-Opus gate. The r
 path-to-useful framing. Where the connection to live data was made and the metric still did not move, the
 flag was deleted along with its code rather than left dormant. The final tally is keep 5 default-on and
 delete 10. The per-flag resolution table lives in
-[`keep-off-flag-roadmap.md`](./keep-off-flag-roadmap.md) and the final tally in
+`keep-off-flag-roadmap.md` and the final tally in
 [`benchmark-status.md`](./benchmark-status.md), with the full method and 4-layer verification in
 [`001-speckit-memory/022-kept-off-flag-resolution/`](./001-speckit-memory/022-kept-off-flag-resolution/).
 

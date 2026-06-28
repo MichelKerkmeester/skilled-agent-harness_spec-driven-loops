@@ -49,14 +49,12 @@
       "changelog/README.md",
       "archive/handover.md",
       "archive/review-report.md",
-      "archive/implementation-schedule.md",
       "001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
       "002-code-graph/spec.md",
       "003-skill-advisor/spec.md",
       "004-deep-loop/spec.md",
       "000-release-cleanup/spec.md",
-      "research/roadmap.md",
       "research/research.md"
     ],
     "entities": [
@@ -79,21 +77,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-schedule.md",
-        "kind": "doc",
-        "path": "archive/implementation-schedule.md",
-        "source": "derived"
-      },
-      {
         "name": "merged-research-index.md",
         "kind": "doc",
         "path": "001-speckit-memory/research/merged-research-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "roadmap.md",
-        "kind": "doc",
-        "path": "research/roadmap.md",
         "source": "derived"
       },
       {
@@ -177,7 +163,7 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-27T17:17:32.047Z",
+    "last_save_at": "2026-06-28T06:44:53.095Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,7 +8,7 @@
 > `external/` is gitignored and absent on disk, so the doc-read confirmations below rest on a checkout
 > that the repository does not retain. The seeded-PPR candidate Q3-C1 is a research proposal, and the
 > `code_graph_seeded_ppr` flag stayed default-off after benchmarking, recorded in
-> [`../../../../keep-off-flag-roadmap.md`](../../../../keep-off-flag-roadmap.md). Read the synthesized
+> `../../../../keep-off-flag-roadmap.md`. Read the synthesized
 > [`../../research.md`](../../research.md) for the converged code-graph conclusions.
 
 ## Focus
