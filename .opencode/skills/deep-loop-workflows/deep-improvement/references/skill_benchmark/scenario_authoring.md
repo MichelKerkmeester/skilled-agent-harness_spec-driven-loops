@@ -26,6 +26,23 @@ Each scenario is a public/private pair under `assets/skill_benchmark/fixtures/<s
 - `<scenarioId>.public.json` — dispatched material only. `{ scenarioId, tier, public: { prompt, runtime, mutationBoundary, outputContract }, provenance }`. The `prompt` is written in **domain language** — it must NOT name the skill, its triggers, intent keys, resource paths/basenames, or commands (the contamination linter rejects leaks before scoring).
 - `<scenarioId>.private.json` — scorer-only gold, never crosses the dispatch boundary. `{ scenarioId, expected: { skillId, advisorLane, intentKeys, resources, negativeActivation }, rubric }`.
 
+Route-gold fixtures may extend the private `expected` block with workflow-router fields:
+
+```json
+{
+  "expected": {
+    "workflowMode": "interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["audit"],
+    "minimalPairGroup": null
+  }
+}
+```
+
+`workflowMode` is a string for `single` and `defer` outcomes, and an ordered array for `orderedBundle` outcomes. `routeOutcome` is one of `single`, `orderedBundle`, or `defer`. `forbiddenWorkflowModes` lists workflow modes that must not appear in the selected route. `minimalPairGroup` is a shared stable id for paired adversarial fixtures, or `null` when the fixture is unpaired.
+
+For router-scoring corpora, domain router keywords are allowed when they are the behavior under test. Use identity-scoped contamination lint for those prompts: ban the skill id, workflow mode names, and resource basenames, but do not ban the domain keywords the router is meant to match.
+
 ## 3. THREE TIERS (ANTI-CIRCULARITY)
 
 - **T1 — auto-derived + paraphrased.** Gold keys mechanically derived from the skill's own `RESOURCE_MAP[intent]`; prompt paraphrased from the task domain and decontaminated. Breadth/coverage; circular unless decontaminated.

@@ -1,0 +1,23 @@
+{
+  "scenarioId": "sk-design-holdout-mdgen-001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "md-generator",
+    "advisorLane": "sk-design",
+    "intentKeys": ["md-generator"],
+    "resources": ["design-md-generator/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "md-generator",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["records the intended workflow mode for a known silent-default gap"],
+    "harmChecks": ["does not mislabel the current silent-default behavior as correct routing"]
+  },
+  "notes": {
+    "observedRoute": [],
+    "status": "known silent-default gap"
+  }
+}

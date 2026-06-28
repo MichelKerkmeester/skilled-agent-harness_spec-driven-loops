@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-mp-tokens-002",
+  "tier": "T3",
+  "public": {
+    "prompt": "design tokens from url",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

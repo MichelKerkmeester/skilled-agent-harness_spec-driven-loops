@@ -7,6 +7,24 @@ trigger_phrases:
   - "all-surface gate design build"
 importance_tier: "normal"
 contextType: "planning"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/001-all-surface-guarded-gate"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Confirm the guarded proxy plan against the delivered contract and mark phases done"
+    next_safe_action: "Let the parent process refresh description.json and graph-metadata.json"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-open-design/references/guarded_proxy.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "markdown-agent-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Implementation Plan: All-surface guarded proxy + openDesignDesignPrecondition contract
 
@@ -86,28 +104,28 @@ Deny-by-default boundary contract anchored at the single convergent run/build ch
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Ground the contract
-- [ ] Re-read the token boundary contract (`design_proof_token.md` §2 schema, §6 boundary, §7 acceptance, §8 consumers).
-- [ ] Re-read `tool_surface.md` §2 (read-only 11 / mutating 5 / destructive 2) and §3 (surface / gate / omit).
-- [ ] Read SKILL.md:209 (one daemon, four surfaces) and the `design_gate` prose at SKILL.md:164–175.
-- [ ] Fix the canonical request field set and the GUARDED-vs-EXEMPT rule before writing prose.
+- [x] Re-read the token boundary contract (`design_proof_token.md` §2 schema, §6 boundary, §7 acceptance, §8 consumers).
+- [x] Re-read `tool_surface.md` §2 (read-only 11 / mutating 5 / destructive 2) and §3 (surface / gate / omit).
+- [x] Read SKILL.md:209 (one daemon, four surfaces) and the `design_gate` prose at SKILL.md:164–175.
+- [x] Fix the canonical request field set and the GUARDED-vs-EXEMPT rule before writing prose.
 
 ### Phase 2: Author guarded_proxy.md
-- [ ] Section 1 — Purpose: guarded-proxy boundary; CONTRACT not a running server; why the run/build chokepoint.
-- [ ] Section 2 — Boundary placement: agent-side, before inner-agent spawn / build-fire; the four wired adapters it governs.
-- [ ] Section 3 — Request-normalization contract: canonical request shape (field table) + per-surface adapter mapping; lossless on security fields.
-- [ ] Section 4 — Two-axis classification: `mutationClass × feedsDesignDecision` → GUARDED/EXEMPT, cross-referencing `tool_surface.md` and `design_gate`.
-- [ ] Section 5 — `openDesignDesignPrecondition`: deny-by-default contract; delegate token validity to `DESIGN_PROOF_TOKEN`; surface-match check; fail-closed rules; ALLOW/DENY decision.
-- [ ] Section 6 — Exemption allowlist: positive list of pure-transport tools; unlisted → GUARDED; must NOT block legitimate non-design transport.
-- [ ] Section 7 — Policy block: embedded JSON enumerating `guarded[]` vs `exemptTransport[]`, derived from `tool_surface.md`.
-- [ ] Section 8 — Residual & boundary of enforceability: name the daemon-side bypass (raw HTTP port + in-app Skills UI), out of scope because the bundled daemon is unmodifiable.
-- [ ] Section 9 — Acceptance: the three acceptance conditions stated in-doc.
+- [x] Section 1 — Purpose: guarded-proxy boundary; CONTRACT not a running server; why the run/build chokepoint.
+- [x] Section 2 — Boundary placement: agent-side, before inner-agent spawn / build-fire; the four wired adapters it governs.
+- [x] Section 3 — Request-normalization contract: canonical request shape (field table) + per-surface adapter mapping; lossless on security fields.
+- [x] Section 4 — Two-axis classification: `mutationClass × feedsDesignDecision` → GUARDED/EXEMPT, cross-referencing `tool_surface.md` and `design_gate`.
+- [x] Section 5 — `openDesignDesignPrecondition`: deny-by-default contract; delegate token validity to `DESIGN_PROOF_TOKEN`; surface-match check; fail-closed rules; ALLOW/DENY decision.
+- [x] Section 6 — Exemption allowlist: positive list of pure-transport tools; unlisted → GUARDED; must NOT block legitimate non-design transport.
+- [x] Section 7 — Policy block: embedded JSON enumerating `guarded[]` vs `exemptTransport[]`, derived from `tool_surface.md`.
+- [x] Section 8 — Residual & boundary of enforceability: name the daemon-side bypass (raw HTTP port + in-app Skills UI), out of scope because the bundled daemon is unmodifiable.
+- [x] Section 9 — Acceptance: the three acceptance conditions stated in-doc.
 
 ### Phase 3: Verification
-- [ ] Confirm the three acceptance scenarios are specified (deny on every wired surface; exempt passes; residual named).
-- [ ] Evergreen grep: no spec/packet/phase IDs or spec paths in `guarded_proxy.md`.
-- [ ] Internal references resolve to `design_proof_token.md` and `tool_surface.md`.
-- [ ] Two-axis classifier covers every tool in the `tool_surface.md` inventory (no tool unclassified).
-- [ ] OPTIONAL thin cross-link from SKILL.md anchor (single line, no rewrite) — defer unless trivially safe.
+- [x] Confirm the three acceptance scenarios are specified (deny on every wired surface; exempt passes; residual named).
+- [x] Evergreen grep: no spec/packet/phase IDs or spec paths in `guarded_proxy.md`.
+- [x] Internal references resolve to `design_proof_token.md` and `tool_surface.md`.
+- [x] Two-axis classifier covers every tool in the `tool_surface.md` inventory (no tool unclassified).
+- [x] OPTIONAL thin cross-link from SKILL.md anchor — DEFERRED: SKILL.md left untouched to hold scope to the one new doc.
 
 <!-- /ANCHOR:phases -->
 ---
@@ -150,7 +168,7 @@ This is a contract doc; "tests" are structural and acceptance-coverage checks, n
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -163,10 +181,10 @@ Phase 1 (Ground) ──> Phase 2 (Author guarded_proxy.md + policy) ──> Phas
 | Author | Ground | Verify |
 | Verify | Author | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -176,16 +194,16 @@ Phase 1 (Ground) ──> Phase 2 (Author guarded_proxy.md + policy) ──> Phas
 | Verification (acceptance, evergreen, classifier completeness) | Low | 45–60 minutes |
 | **Total** | | **3.25–4.75 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-authoring Checklist
-- [ ] Confirm no existing `references/guarded_proxy.md` would be overwritten (it is a new file)
-- [ ] Feature flag configured (N/A — static reference doc, no runtime toggle)
-- [ ] Monitoring alerts set (N/A — no runtime surface)
+- [x] Confirm no existing `references/guarded_proxy.md` would be overwritten (it is a new file)
+- [x] Feature flag configured (N/A — static reference doc, no runtime toggle)
+- [x] Monitoring alerts set (N/A — no runtime surface)
 
 ### Rollback Procedure
 1. **Immediate**: Delete `.opencode/skills/mcp-open-design/references/guarded_proxy.md`.
@@ -196,7 +214,7 @@ Phase 1 (Ground) ──> Phase 2 (Author guarded_proxy.md + policy) ──> Phas
 - **Has data migrations?** No.
 - **Reversal procedure**: N/A — additive documentation only; nothing persisted outside the doc file.
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

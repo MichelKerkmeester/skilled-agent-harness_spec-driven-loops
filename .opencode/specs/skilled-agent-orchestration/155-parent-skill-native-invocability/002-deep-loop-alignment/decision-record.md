@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: deep-loop parent-skill alignment"
-description: "Decision record for deep-loop alignment. ADR-001 is accepted/executed for the deep-ai-council rename; ADR-002 keeps the merged-identity layer by sign-off with drift-guard green; ADR-003 keeps all five feature catalogs as earned; ADR-004 accepts the NFR-S01 hub union-grant contract."
+description: "Decision record for deep-loop alignment. ADR-001 is accepted/executed for the deep-ai-council rename; ADR-002 keeps the merged-identity layer by sign-off with drift-guard green; ADR-003 keeps all five feature catalogs as earned; ADR-004 accepts the NFR-S01 per-mode allowed-tools contract."
 trigger_phrases:
   - "ai-council rename decision"
   - "deep-loop merged-identity keep or drop"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "ADR-001 done; ADR-002 kept; ADR-003 keep-all earned; ADR-004 union-grant accepted"
-    next_safe_action: "Run remaining R5 validation gates"
+    recent_action: "ADR-001 done; ADR-002 kept; ADR-003 keep-all earned; ADR-004 per-mode allowed-tools accepted"
+    next_safe_action: "Optional: run a full live deep-loop e2e; refresh metadata separately"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,14 +22,14 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "author-155-002-deep-loop-alignment"
       parent_session_id: null
-    completion_pct: 85
-    open_questions:
-      - "Which R5 gates remain after R3/R4 close?"
+    completion_pct: 95
+    open_questions: []
     answered_questions:
       - "ADR-001 executed: folder/name identity is deep-ai-council."
       - "ADR-002 accepted: keep the merged-identity layer by maintainer sign-off; the routing-registry drift-guard is green."
       - "ADR-003 accepted: keep all five feature catalogs because each mode's catalog is substantial and earned."
-      - "ADR-004 accepted: NFR-S01 is a hub union-grant pattern; do not strip WebFetch in this pass."
+      - "ADR-004 accepted: NFR-S01 is resolved on the per-mode allowed-tools contract; optional live-loop e2e remains residual."
+      - "R5 required gates are closed; optional live-loop e2e and metadata refresh remain available."
 ---
 # Decision Record: deep-loop parent-skill alignment
 
@@ -299,7 +299,7 @@ Apply the same earned-keep test per deep mode and **keep all five** `feature_cat
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted - hub union-grant contract |
+| **Status** | Accepted - per-mode allowed-tools contract |
 | **Date** | 2026-06-28 |
 | **Deciders** | User + Codex (this session) |
 
@@ -308,7 +308,7 @@ Apply the same earned-keep test per deep mode and **keep all five** `feature_cat
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-The deep-loop hub is a routing-only parent skill. Its `allowed-tools` grant is the union of the tools its nested modes require, including `WebFetch` for deep research. Each mode still owns its operational tool contract in its own frontmatter. The runtime has not been proven to narrow the hub grant to the selected mode after dispatch, so the docs must not imply per-mode narrowing.
+The deep-loop hub is a routing-only parent skill. Verified current state: the hub declares `allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]`; deep-research additionally requires `memory_context` and `memory_search`; deep-review requires `memory_context`, `memory_search`, and `code_graph_query`; deep-review does not include `WebFetch`. So the hub grant is not the union of mode tools. Each mode packet declares its own `allowed-tools`, which is the authoritative per-mode contract.
 <!-- /ANCHOR:adr-004-context -->
 
 ---
@@ -316,7 +316,7 @@ The deep-loop hub is a routing-only parent skill. Its `allowed-tools` grant is t
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
 
-Accept the union-grant contract for NFR-S01. The hub `allowed-tools` remains the union its modes need, the hub remains routing-only, and per-mode frontmatter remains the real mode contract. Do **not** strip `WebFetch` from the hub in this pass.
+Accept the per-mode allowed-tools contract for NFR-S01. Each mode packet declares its own allowed-tools, which is the authoritative per-mode contract; the hub's allowed-tools is the hub's own grant, not the union of mode tools. Modes are not widened by the hub because per-mode frontmatter governs at dispatch. Do **not** strip tools from the hub or modes in this pass.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -324,9 +324,9 @@ Accept the union-grant contract for NFR-S01. The hub `allowed-tools` remains the
 <!-- ANCHOR:adr-004-consequences -->
 ### Consequences
 
-- The permission contract is honest about current runtime evidence: hub-level grants may be broader than a non-research mode's own tool list.
-- The residual risk is accepted for this packet because the hub is a dispatcher, not the execution policy for every mode.
-- A future runtime tool-narrowing probe is optional hardening, not a blocker for C1 closeout.
+- The permission contract is honest about current repo state: hub-level grants are the hub's own grant and are not the union of mode tools.
+- The residual risk is accepted for this packet because per-mode frontmatter governs at dispatch; a future runtime dispatch probe can harden that evidence.
+- A future runtime dispatch probe is optional hardening, not a blocker for C1 closeout.
 - No hub `allowed-tools`, per-mode `allowed-tools`, source files, or generated metadata are changed.
 <!-- /ANCHOR:adr-004-consequences -->
 
@@ -336,10 +336,10 @@ Accept the union-grant contract for NFR-S01. The hub `allowed-tools` remains the
 ### Implementation
 
 **What changes**:
-- NFR-S01 is closed as an accepted hub union-grant decision.
+- NFR-S01 is closed as an accepted per-mode allowed-tools decision.
 - Phase 001's carry-forward note is updated to point here as the resolution.
-- The optional future hardening path is a runtime narrowing probe, not a permission-stripping proposal.
+- The optional future hardening path is a runtime dispatch probe, not a permission-stripping proposal.
 
-**How to roll back**: Reopen NFR-S01 and run a runtime narrowing probe before changing any hub or mode tool grants.
+**How to roll back**: Reopen NFR-S01 and run a runtime dispatch probe before changing any hub or mode tool grants.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->

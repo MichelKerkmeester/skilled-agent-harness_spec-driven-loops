@@ -1,23 +1,25 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/001-all-surface-guarded-gate",
-  "description": "Add a guarded MCP/HTTP proxy + openDesignDesignPrecondition validator that normalizes every surface before build-fire, anchored at mcp-open-design/SKI",
+  "description": "One Open Design daemon backs four interchangeable surfaces (stdio MCP, HTTP API, the `od` CLI, in-app Skills)",
   "keywords": [
-    "add",
-    "guarded",
+    "one",
+    "open",
+    "design",
+    "daemon",
+    "backs",
+    "four",
+    "interchangeable",
+    "surfaces",
+    "stdio",
     "mcp",
     "http",
-    "proxy",
-    "opendesigndesignprecondition",
-    "validator",
-    "normalizes",
-    "every",
-    "surface",
-    "build-fire",
-    "anchored",
-    "mcp-open-design",
-    "ski"
+    "api",
+    "cli",
+    "in-app",
+    "skills"
   ],
-  "lastUpdated": "2026-06-28T12:39:56.627Z",
+  "lastUpdated": "2026-06-28T14:23:46.710Z",
   "specId": "001",
   "folderSlug": "all-surface-guarded-gate",
   "parentChain": [
@@ -29,6 +31,5 @@
     "004-d4-open-design-pairing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

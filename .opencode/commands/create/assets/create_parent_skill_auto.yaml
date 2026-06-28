@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Prefer the shipped sk-doc parent-skill pattern over ad-hoc nested-skill layouts"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
   codex: .codex/agents
 

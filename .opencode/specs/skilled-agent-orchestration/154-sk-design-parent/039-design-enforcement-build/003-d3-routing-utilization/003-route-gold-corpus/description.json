@@ -1,27 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/003-route-gold-corpus",
-  "description": "Add expected route fields to the private gold and author new sk-design alias/holdout/adversarial fixtures the gated hubRoute stage scores against.",
+  "description": "There was no standing corpus of hint-free prompts to score sk-design routing against, so the gated `hubRoute` stage (D3-R2) had nothing concrete to fa",
   "keywords": [
-    "add",
-    "expected",
-    "route",
-    "fields",
-    "private",
-    "gold",
-    "author",
-    "new",
+    "standing",
+    "corpus",
+    "hint-free",
+    "prompts",
+    "score",
     "sk-design",
-    "alias",
-    "holdout",
-    "adversarial",
-    "fixtures",
+    "routing",
+    "against",
     "gated",
     "hubroute",
     "stage",
-    "scores",
-    "against"
+    "d3-r2",
+    "nothing",
+    "concrete"
   ],
-  "lastUpdated": "2026-06-28T12:39:57.981Z",
+  "lastUpdated": "2026-06-28T14:36:42.849Z",
   "specId": "003",
   "folderSlug": "route-gold-corpus",
   "parentChain": [
@@ -33,6 +30,5 @@
     "003-d3-routing-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

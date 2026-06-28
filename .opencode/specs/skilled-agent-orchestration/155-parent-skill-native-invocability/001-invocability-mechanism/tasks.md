@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Parent-skill native invocability"
-description: "Task Format: T### [P?] Description (file path). Decision tasks for ADR-001 are complete; 001 has no source build and carries NFR-S01 to 002."
+description: "Task Format: T### [P?] Description (file path). Decision tasks for ADR-001 are complete; 001 has no source build and NFR-S01 is resolved in 002."
 trigger_phrases:
   - "parent skill invocability tasks"
   - "native invocation task list"
@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled tasks to ADR-001 Accepted: Option E chosen; no runtime probe/source build in 001"
-    next_safe_action: "Use 002 to document hub union-grant semantics and finish remaining validation"
+    next_safe_action: "Optional: run a full live deep-loop e2e from 002; refresh metadata separately"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md"
@@ -23,12 +23,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-155-parent-skill-native-invocability"
       parent_session_id: null
-    completion_pct: 70
-    open_questions:
-      - "NFR-S01 closure is carried to 002."
+    completion_pct: 95
+    open_questions: []
     answered_questions:
       - "A-E mechanism framing is complete."
       - "Option E is accepted; A/B remain fallback surfaces."
+      - "NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted."
 ---
 # Tasks: Parent-skill native invocability
 
@@ -49,7 +49,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Decision tasks are reconciled to reality. This packet has no source implementation; downstream validation and NFR-S01 closure live in 002.
+Decision tasks are reconciled to reality. This packet has no source implementation; NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -63,7 +63,7 @@ Decision tasks are reconciled to reality. This packet has no source implementati
 - [x] T002 Frame mechanism options A through E with tradeoffs (decision-record.md)
 - [x] T003 Accept Option E, invokable-hub routing, as the chosen mechanism (decision-record.md)
 - [x] T004 Record A/B commands and agents as fallback complementary surfaces if hub invocation is insufficient (decision-record.md)
-- [ ] T005 Carry NFR-S01 to 002 because 001 does not prove per-mode permission narrowing (spec.md, checklist.md)
+- [x] T005 NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted (spec.md, checklist.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -74,7 +74,7 @@ Decision tasks are reconciled to reality. This packet has no source implementati
 **No source build happens in 001. Downstream packets apply the accepted mechanism.**
 
 - [x] T006 Record that 001 changes authored docs only and does not edit skill/runtime/configuration files (implementation-summary.md)
-- [ ] T007 Apply/document the hub union-grant decision in 002 before claiming NFR-S01 satisfied (002-deep-loop-alignment)
+- [x] T007 Apply/document the per-mode allowed-tools contract decision in 002 before claiming NFR-S01 satisfied (002-deep-loop-alignment)
 - [ ] T008 Keep routing-parity and drift-guard fixtures green when downstream packets implement or validate the mechanism (test fixtures)
 <!-- /ANCHOR:phase-2 -->
 
@@ -86,7 +86,7 @@ Decision tasks are reconciled to reality. This packet has no source implementati
 **Downstream verification.**
 
 - [ ] T009 Confirm a parent skill's modes are reachable through `Skill(<parent>)` (downstream runtime probe)
-- [ ] T010 Confirm the single-identity invariant and hub union-grant documentation remain accurate (fixtures plus review)
+- [x] T010 Confirm the single-identity invariant and per-mode allowed-tools documentation remain accurate (fixtures plus review)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -96,7 +96,7 @@ Decision tasks are reconciled to reality. This packet has no source implementati
 
 - [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] NFR-S01 carried to 002 is closed or explicitly accepted there
+- [x] NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted
 - [ ] Manual downstream verification passed
 <!-- /ANCHOR:completion -->
 

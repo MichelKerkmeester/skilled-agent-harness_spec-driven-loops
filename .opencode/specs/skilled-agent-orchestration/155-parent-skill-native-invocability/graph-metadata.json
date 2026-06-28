@@ -77,7 +77,7 @@
         "source": "derived"
       },
       {
-        "name": "optional",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -85,15 +85,15 @@
     ],
     "causal_summary": "Phase parent. Make nested parent-skill mode packets natively reachable without breaking the one-graph-metadata single-identity invariant, then propagate the resulting parent-skill optimizations across the skill system. Phase 001 decides and proves the mechanism (invokable-hub routing); phase 002 aligns the deep-loop parent-skill family with it.",
     "created_at": "2026-06-26T11:31:00.291Z",
-    "last_save_at": "2026-06-28T12:49:06.854Z",
+    "last_save_at": "2026-06-28T14:36:29.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4f3553b55bc2c67a062d98353a6f83653b6510b4e811871de50a09e95435ffb2",
+    "source_fingerprint": "sha256:883fa77db5f9a3c040f9fb57bacae99017369086d20980734a5f0e16486ca36b",
     "source_doc_hashes": {
-      "spec.md": "312c63480719248c8800571101e760d1cf2cce55e18a322c754f040f819816ea"
+      "spec.md": "28cd555c37e7816b5f61c21874695df4443e7426c29d73922296cbf4bb5d059f"
     },
     "last_active_child_id": "skilled-agent-orchestration/155-parent-skill-native-invocability/002-deep-loop-alignment",
     "last_active_at": "2026-06-28T09:50:00Z"

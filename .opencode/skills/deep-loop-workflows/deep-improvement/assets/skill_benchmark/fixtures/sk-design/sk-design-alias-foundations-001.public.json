@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-alias-foundations-001",
+  "tier": "T1",
+  "public": {
+    "prompt": "oklch palette",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

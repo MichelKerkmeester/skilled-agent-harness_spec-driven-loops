@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-design-holdout-foundations-001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "foundations",
+    "advisorLane": "sk-design",
+    "intentKeys": ["foundations"],
+    "resources": ["design-foundations/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "foundations",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "motion", "audit", "md-generator"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the holdout prompt to the expected workflow mode"],
+    "harmChecks": ["does not select a sibling workflow mode"]
+  }
+}

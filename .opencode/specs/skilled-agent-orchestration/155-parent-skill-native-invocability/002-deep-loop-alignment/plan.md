@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: deep-loop parent-skill alignment"
-description: "Closure execution plan/status for deep-loop parent-skill alignment. R1-R5 are done; NFR-S01 union-grant is accepted; the full live-loop e2e remains optional and was not run."
+description: "Closure execution plan/status for deep-loop parent-skill alignment. R1-R5 are done; NFR-S01 per-mode allowed-tools contract is accepted; the full live-loop e2e remains optional and was not run."
 trigger_phrases:
   - "deep-loop alignment plan"
   - "deep-loop staged conversion"
@@ -29,7 +29,7 @@ _memory:
       - "R2 deep-ai-council rename is done."
       - "R3 feature_catalog hygiene is done as keep-all earned; no deletion or repointing needed."
       - "R4 merged-identity layer is kept by maintainer sign-off; drift-guard is green."
-      - "NFR-S01 uses the accepted hub union-grant pattern."
+      - "NFR-S01 uses the accepted per-mode allowed-tools contract: mode frontmatter is authoritative at dispatch."
       - "R5 is done: strict recursive validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
 ---
 # Implementation Plan: deep-loop parent-skill alignment
@@ -60,7 +60,7 @@ FAILURE MODES:
 | **Testing** | `package_skill.py --check`; advisor + skill-graph rebuilds; routing-parity fixtures; `validate.sh --recursive`; manual `Skill()` + `/deep:*` probes |
 
 ### Overview
-This plan is now a closure execution/status record. R2 (`deep-ai-council` folder/name alignment) is done. R1 static invokable-hub routing is done in the hub docs/registry contract, and reachability is confirmed by runtime registration. R3 is done as keep-all earned: all five mode catalogs stay because each is substantial and warranted. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is accepted as the hub union-grant permission contract. R5 is done: strict recursive validation, package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. The full live-loop e2e remains optional and was not run.
+This plan is now a closure execution/status record. R2 (`deep-ai-council` folder/name alignment) is done. R1 static invokable-hub routing is done in the hub docs/registry contract, and reachability is confirmed by runtime registration. R3 is done as keep-all earned: all five mode catalogs stay because each is substantial and warranted. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is accepted on the corrected per-mode allowed-tools contract: mode frontmatter is authoritative at dispatch, and the hub's allowed-tools is its own grant, not the union of mode tools. R5 is done: strict recursive validation, package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. The full live-loop e2e remains optional and was not run.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -138,19 +138,19 @@ Required remaining inventories: none. Optional residual: a full live-loop e2e ca
 Closes the open items (R3, R4, R5, and the NFR-S01 carry-in from phase 001) in dependency order: cheap decisions and assessment first, reversible doc-only resolutions next, live-infra changes only where a decision requires them, full validation last. Recommended defaults are noted so a happy-path exists.
 
 **C0 - Decisions & assessment (read-only, zero mutations):**
-- [x] NFR-S01: accept the union-grant hub contract (hub `allowed-tools` is the union the modes need; hub is routing-only) plus a documented residual risk and optional future runtime-narrowing probe.
+- [x] NFR-S01: accept the per-mode allowed-tools contract: each mode packet declares its authoritative allowed-tools; the hub's allowed-tools is its own grant, not the union of mode tools; residual dispatch evidence risk is documented.
 - [x] R3: run the per-mode earned-keep assessment across all five `feature_catalog/` directories; verdict is keep all five.
 - [x] R4: accept maintainer sign-off to keep merged identity; drift-guard is green.
 
 **C1 - Doc-only resolutions (low blast, reversible, no live-infra):**
-- [x] NFR-S01 (A): record the union-grant decision in `decision-record.md`; close the security checklist rows; flip NFR-S01 to resolved (accepted risk + hardening probe noted).
+- [x] NFR-S01 (A): record the per-mode allowed-tools decision in `decision-record.md`; close the security checklist rows; flip NFR-S01 to resolved (accepted risk + hardening probe noted).
 - [x] R3 keep-all branch: amend ADR-003, fill the assessment table, mark Stage 2 and its tasks complete.
 - [x] R4 sign-off branch: record keep + rationale; ADR-002 accepted as kept.
 
 **C2 - Live-infra execution (gated on a C0 sign-off; skip entirely if C1 closes everything):**
-- [ ] Not triggered - R3 remove branch: no unearned `feature_catalog/` directories were found.
-- [ ] Not triggered - NFR-S01 (B) branch: union-grant accepted; runtime narrowing probe is optional future hardening.
-- [ ] Not triggered - R4 fixture branch: sign-off keeps the layer; fixture comparison is optional.
+- [x] Not triggered - R3 remove branch (not triggered - skipped by decision): no unearned `feature_catalog/` directories were found.
+- [x] Not triggered - NFR-S01 (B) branch (not triggered - skipped by decision): per-mode allowed-tools accepted; runtime dispatch probe is optional future hardening.
+- [x] Not triggered - R4 fixture branch (not triggered - skipped by decision): sign-off keeps the layer; fixture comparison is optional.
 
 **C3 - Full R5 validation & close-out:**
 - [x] Routing-parity query fixtures passed; advisor/graph consistency confirmed by drift-guard, routing-parity fixtures, and `parent-skill-check.cjs`; forced `advisor_rebuild` was not run and is not required because routing data was unchanged.
@@ -184,7 +184,7 @@ Closes the open items (R3, R4, R5, and the NFR-S01 carry-in from phase 001) in d
 |------------|------|--------|-------------------|
 | Phase 001 Option E mechanism | Internal | Green | Defines the invokable-hub routing this packet retrofits |
 | Spec 154 staged conversion | Internal | Green | Execution precedent and source of the sk-design conventions |
-| deep-loop-runtime current assumptions | Internal | Amber | R4 must verify them before any simplification; default keep merged identity until evidence or sign-off |
+| deep-loop-runtime current assumptions | Internal | Green | R4 is closed: keep merged identity by maintainer sign-off; drift-guard green; fixture comparison optional hardening |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -322,7 +322,7 @@ Stage 0 (done) ──► Stage 1 (R2 done) ──► Stage 2 (R3 done: keep-all)
 
 **Context**: The former `ai-council` packet mismatch has been resolved on disk. The packet folder and SKILL name are now `deep-ai-council`; legacy public `/deep:ai-council` and agent surfaces remain intentional.
 
-**Decision**: Rename the folder to `deep-ai-council`; executed. The merged-identity keep call (ADR-002), the feature-catalog keep-all ruling (ADR-003), and the NFR-S01 union-grant contract (ADR-004) remain separate decisions.
+**Decision**: Rename the folder to `deep-ai-council`; executed. The merged-identity keep call (ADR-002), the feature-catalog keep-all ruling (ADR-003), and the NFR-S01 per-mode allowed-tools contract (ADR-004) remain separate decisions.
 
 **Consequences**:
 - Resolving the rename unblocks package checks; current evidence passes on the hub and all five packets.
@@ -345,6 +345,6 @@ Stage 0 (done) ──► Stage 1 (R2 done) ──► Stage 2 (R3 done: keep-all)
 
 ### ADR-004: NFR-S01 hub tool-permission contract (see decision-record.md)
 
-**Status**: Accepted - hub union-grant contract
+**Status**: Accepted - per-mode allowed-tools contract
 
-**Decision**: Accept the hub `allowed-tools` union as the permission contract for the routing-only hub. Per-mode contracts remain mode-owned, residual hub grant risk is documented, and a runtime tool-narrowing probe is optional future hardening.
+**Decision**: Accept that each mode packet declares its own allowed-tools, which is the authoritative per-mode contract. The hub's allowed-tools is the hub's own grant, not the union of mode tools. Modes are not widened by the hub because per-mode frontmatter governs at dispatch; a runtime dispatch probe is optional future hardening.

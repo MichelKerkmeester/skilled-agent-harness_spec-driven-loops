@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Ask for approval at the mode-plan and hub/registry preview checkpoints"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
   codex: .codex/agents
 

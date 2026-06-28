@@ -1,0 +1,23 @@
+{
+  "scenarioId": "sk-design-mp-menu-002",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["foundations", "motion", "audit", "md-generator"],
+    "minimalPairGroup": "mp-menu-animate-vs-redesign"
+  },
+  "rubric": {
+    "usefulnessChecks": ["records the intended workflow mode for a known silent-default gap"],
+    "harmChecks": ["does not mislabel the current silent-default behavior as correct routing"]
+  },
+  "notes": {
+    "observedRoute": [],
+    "status": "known silent-default gap"
+  }
+}

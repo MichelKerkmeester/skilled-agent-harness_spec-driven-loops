@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Parent-skill native invocability"
-description: "Decision-complete status record. This packet owns ADR-001, which accepts Option E invokable-hub routing. No source build happened in 001; NFR-S01 is carried to phase 002."
+description: "Decision-complete status record. This packet owns ADR-001, which accepts Option E invokable-hub routing. No source build happened in 001; NFR-S01 is resolved in phase 002."
 trigger_phrases:
   - "parent skill invocability status"
   - "plan only implementation summary"
@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded ADR-001 Accepted: Option E chosen; no source build in 001"
-    next_safe_action: "Use 002 to document hub union-grant semantics and close remaining validation gates"
+    next_safe_action: "Optional: run a full live deep-loop e2e from 002; refresh metadata separately"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,12 +24,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-155-parent-skill-native-invocability"
       parent_session_id: null
-    completion_pct: 70
-    open_questions:
-      - "NFR-S01 remains unresolved in 001 and carried to 002."
+    completion_pct: 95
+    open_questions: []
     answered_questions:
       - "Option E invokable-hub routing is accepted."
       - "A/B commands and agents remain fallback complementary surfaces."
+      - "NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted."
 ---
 # Implementation Summary: Parent-skill native invocability
 
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | skilled-agent-orchestration/155-parent-skill-native-invocability/001-invocability-mechanism |
-| **Completed** | Decision complete: ADR-001 Accepted (Option E); no source build in 001; NFR-S01 carried to 002 |
+| **Completed** | Decision-complete / phase scope done: ADR-001 Accepted (Option E); no source build in 001; NFR-S01 resolved in 002; packet remains in progress pending optional live-loop e2e |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -65,7 +65,7 @@ The packet authors `spec.md` (gap, scope, requirements, and NFR carry-forward), 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The planning documents were reconciled against the parent-skill pattern, the live `deep-loop-workflows` hub, and the phase review findings. No rollout occurred because 001 is decision-only. The next substantive work is in 002: document the hub union-grant permission contract and close the remaining deep-loop validation gates.
+The planning documents were reconciled against the parent-skill pattern, the live `deep-loop-workflows` hub, and the phase review findings. No rollout occurred because 001 is decision-only. NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted. The remaining residual is optional live-loop e2e evidence owned by 002, not source build work in 001.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +77,7 @@ The planning documents were reconciled against the parent-skill pattern, the liv
 |----------|-----|
 | Chose Option E (invokable-hub routing) | Reaches nested modes through the invokable parent hub with one advisor identity; needs no runtime change |
 | Keep A/B as fallback complementary surfaces | Commands and agents already work and avoid the shim identity cost |
-| Carry NFR-S01 to 002 | The hub `allowed-tools` grant is the union the modes need; 001 does not prove runtime narrowing to per-mode declarations |
+| Carry NFR-S01 to 002 | NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -99,5 +99,5 @@ The planning documents were reconciled against the parent-skill pattern, the liv
 
 1. **No code in this packet.** 001 owns the decision only.
 2. **Mechanism decided.** Option E (invokable-hub routing) is Accepted (ADR-001); all five options are recorded with their tradeoffs and A/B remain fallbacks.
-3. **NFR-S01 unresolved here.** The accepted hub pattern uses a union tool grant at the hub level; phase 002 documents that contract and carries the remaining validation.
+3. **NFR-S01 resolved in 002.** ADR-004 records that per-mode allowed-tools is the authoritative contract; accepted.
 <!-- /ANCHOR:limitations -->

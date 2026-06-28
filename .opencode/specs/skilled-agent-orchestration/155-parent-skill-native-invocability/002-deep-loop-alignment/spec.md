@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: deep-loop parent-skill alignment"
-description: "Closure deep-loop parent-skill alignment record. R1-R5, the deep-ai-council rename, the keep-all feature-catalog ruling, the merged-identity keep, and NFR-S01 union-grant are done; full live-loop e2e remains optional and was not run."
+description: "Closure deep-loop parent-skill alignment record. R1-R5, the deep-ai-council rename, the keep-all feature-catalog ruling, the merged-identity keep, and NFR-S01 per-mode allowed-tools contract are done; full live-loop e2e remains optional and was not run."
 trigger_phrases:
   - "deep-loop parent skill alignment"
   - "deep-loop invokable hub routing"
@@ -32,7 +32,7 @@ _memory:
       - "R2 is done: the packet folder is deep-ai-council and the legacy ai-council public surfaces are preserved."
       - "R3 is done: all five feature_catalog directories earn keep status and stay."
       - "R4 is done: the merged-identity layer is kept by maintainer sign-off; the drift-guard is green."
-      - "NFR-S01 is resolved as an accepted hub union-grant pattern; do not strip WebFetch in this pass."
+      - "NFR-S01 is resolved in ADR-004: per-mode allowed-tools is the authoritative contract; the hub's allowed-tools is its own grant, not the union of mode tools."
       - "R5 is done: strict recursive validation passed for parent plus 001/002, package checks passed for hub plus all five packets, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; the full live-loop e2e remains optional and was not run."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -52,9 +52,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-`deep-loop-workflows` was the canonical parent-skill example, and the alignment is now closed against the required R5 evidence. R1 is done: the hub documents Option E invokable-hub routing through `Skill(deep-loop-workflows)`, with `mode-registry.json` as the routing source of truth. R2 is done: the nested packet folder is `deep-ai-council`, matching the packet name, while `/deep:ai-council` and the `ai-council` agent remain legacy public surfaces. R3 is done as keep-all earned: all five mode catalogs are substantial and stay. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is resolved as an accepted hub union-grant permission contract. R5 is done: strict recursive spec validation, family package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. A full live-loop e2e was deliberately not run and remains optional.
+`deep-loop-workflows` was the canonical parent-skill example, and the alignment is now closed against the required R5 evidence. R1 is done: the hub documents Option E invokable-hub routing through `Skill(deep-loop-workflows)`, with `mode-registry.json` as the routing source of truth. R2 is done: the nested packet folder is `deep-ai-council`, matching the packet name, while `/deep:ai-council` and the `ai-council` agent remain legacy public surfaces. R3 is done as keep-all earned: all five mode catalogs are substantial and stay. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is resolved in ADR-004: per-mode allowed-tools is the authoritative contract; the hub's allowed-tools is its own grant, not the union of mode tools. R5 is done: strict recursive spec validation, family package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. A full live-loop e2e was deliberately not run and remains optional.
 
-**Key Decisions**: ADR-001 is executed for the rename. ADR-002 keeps the merged-identity layer by maintainer sign-off, with the routing-registry drift-guard green. ADR-003 keeps all five `feature_catalog/` directories as earned. ADR-004 accepts the NFR-S01 hub union-grant contract and leaves `WebFetch` on the hub.
+**Key Decisions**: ADR-001 is executed for the rename. ADR-002 keeps the merged-identity layer by maintainer sign-off, with the routing-registry drift-guard green. ADR-003 keeps all five `feature_catalog/` directories as earned. ADR-004 accepts NFR-S01 on the basis that per-mode allowed-tools is authoritative at dispatch; the hub's allowed-tools is its own grant, not the union of mode tools.
 
 **Critical Dependencies**: Phase 001's Option E mechanism is the invocation precedent; the 154 staged conversion is the execution precedent. deep-loop is the most-used skill family, so the work is high blast and must be staged.
 
@@ -155,7 +155,7 @@ This doc-reconciliation pass edits only authored markdown. Earlier alignment wor
 | Risk | deep-loop is the most-used skill family (`/deep:*`, agents, fanout) — high blast | High. A regression hits the most-exercised workflow surface | Stage and gate like the 154 conversion; record a recovery baseline before each stage |
 | Risk | `ai-council` rename ripples across commands, agents, registry, runtime, and cross-refs | Medium. A missed reference leaves a broken load path | Inventory every `ai-council` reference first; rename in one pass; verify zero broken refs |
 | Risk | Removing the merged-identity layer could regress deep-loop advisor routing | Medium. Per-mode routing strength may drop | R4 keeps the layer; optional fixture comparison remains future hardening |
-| Risk | Hub `allowed-tools` union grant is mistaken for per-mode runtime narrowing | Medium. Non-research modes can appear to have narrower contracts than the invokable hub actually grants | NFR-S01 is accepted as a union-grant pattern: hub allowed-tools is the union the modes need; hub is routing-only; per-mode contracts are mode-owned |
+| Risk | Hub `allowed-tools` is mistaken for the union of per-mode tool contracts | Medium. A reviewer could assume modes are widened by the hub or that the hub carries tools only declared by modes | NFR-S01 is accepted on the corrected contract: each mode packet declares its own authoritative allowed-tools; the hub's allowed-tools is the hub's own grant, not the union of mode tools; per-mode frontmatter governs at dispatch |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -168,7 +168,7 @@ This doc-reconciliation pass edits only authored markdown. Earlier alignment wor
 - **NFR-P01**: The alignment must not add runtime cross-skill import coupling to the advisor hot path. If the merged-identity projection is kept, it stays a code-resident map guarded by a test, not a runtime registry load.
 
 ### Security
-- **NFR-S01**: Resolved as documentation of the union-grant pattern, not by stripping tools. The hub `allowed-tools` is the union the modes need, the hub is routing-only, and per-mode contracts remain the modes' own operational contracts. Do not remove `WebFetch` from the hub in this pass.
+- **NFR-S01**: Resolved as documentation of the per-mode allowed-tools contract, not by stripping tools. Each mode packet declares its own allowed-tools, which is the authoritative per-mode contract; the hub's allowed-tools is the hub's own grant, not the union of mode tools. Modes are not widened by the hub because per-mode frontmatter governs at dispatch. Residual risk: this depends on dispatch loading the selected mode packet before mode execution; a future runtime probe can harden that evidence.
 
 ### Reliability
 - **NFR-R01**: The family must keep exactly one advisor identity (one `graph-metadata.json`) so routing-parity fixtures that assert a single skill-to-mode mapping stay valid.

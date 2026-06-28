@@ -1,6 +1,6 @@
 ---
 title: "Tasks: deep-loop parent-skill alignment"
-description: "Closure task breakdown for deep-loop alignment. R1-R5 and NFR-S01 C0/C1/C3 closeout are done; C2 did not trigger; the full live-loop e2e remains optional and was not run."
+description: "Closure task breakdown for deep-loop alignment. R1-R5 and NFR-S01 per-mode allowed-tools C0/C1/C3 closeout are done; C2 did not trigger; the full live-loop e2e remains optional and was not run."
 trigger_phrases:
   - "deep-loop alignment tasks"
   - "ai-council rename tasks"
@@ -27,7 +27,7 @@ _memory:
       - "R2 deep-ai-council rename done."
       - "R3 done: all five feature_catalog directories are earned and stay."
       - "R4 done: merged identity is kept by sign-off; drift-guard is green."
-      - "NFR-S01 done: hub union-grant accepted."
+      - "NFR-S01 done: per-mode allowed-tools contract accepted."
       - "R5 done: strict recursive spec validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
 ---
 # Tasks: deep-loop parent-skill alignment
@@ -50,7 +50,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Tasks map to `plan.md` stages (Stage 0-5). A task is either complete or pending; `[B]` is not combined with `[x]`. Current state: R1-R5 and NFR-S01 C0/C1/C3 closeout are done; C2 did not trigger; the full live-loop e2e remains optional and was not executed.
+Tasks map to `plan.md` stages (Stage 0-5). A task is either complete or pending; `[B]` is not combined with `[x]`. Current state: R1-R5 and NFR-S01 C0/C1/C3 closeout are done; C2 did not trigger and is checked as skipped by decision; the full live-loop e2e remains optional and was not executed.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -99,19 +99,19 @@ Tasks map to `plan.md` stages (Stage 0-5). A task is either complete or pending;
 **Deferred-item closeout (maps to plan.md "Deferred-Item Closeout"; C0 decisions first, live-infra only on a gated branch):**
 
 C0 — decisions & assessment (read-only):
-- [x] T018 Decide NFR-S01: accept union-grant + document residual risk + optional hardening probe (decision-record.md)
+- [x] T018 Decide NFR-S01: accept per-mode allowed-tools as authoritative + document residual dispatch evidence risk + optional hardening probe (decision-record.md)
 - [x] T019 Per-mode earned-keep assessment of all five `feature_catalog/` dirs; record keep-all verdict table (decision-record.md)
 - [x] T020 Decide R4: maintainer sign-off keeps merged identity; drift-guard green (decision-record.md)
 
 C1 — doc-only resolutions (reversible):
-- [x] T021 NFR-S01 (A): record the union-grant decision; close the security checklist rows (decision-record.md, checklist.md)
+- [x] T021 NFR-S01 (A): record the per-mode allowed-tools decision; close the security checklist rows (decision-record.md, checklist.md)
 - [x] T022 R3 keep-all branch: amend ADR-003, fill the assessment table, mark Stage 2 done (decision-record.md, checklist.md)
 - [x] T023 R4 sign-off branch: record keep + rationale; ADR-002 → Accepted (kept) (decision-record.md)
 
 C2 — live-infra (gated on sign-off; skip if C1 closes everything):
-- [x] T024 Not triggered — R3 remove branch: keep-all verdict means no unearned `feature_catalog/` directories to remove
-- [x] T025 Not triggered — NFR-S01 (B) branch: union-grant accepted; runtime tool-narrowing probe is optional future hardening
-- [x] T026 Not triggered — R4 fixture branch: maintainer sign-off keeps the layer; fixture comparison is optional
+- [x] T024 Not triggered — R3 remove branch (not triggered - skipped by decision): keep-all verdict means no unearned `feature_catalog/` directories to remove
+- [x] T025 Not triggered — NFR-S01 (B) branch (not triggered - skipped by decision): per-mode allowed-tools accepted; runtime dispatch probe is optional future hardening
+- [x] T026 Not triggered — R4 fixture branch (not triggered - skipped by decision): maintainer sign-off keeps the layer; fixture comparison is optional
 
 C3 — full validation & close-out (also completes T015–T017 above):
 - [x] T027 Operator reachability: `Skill(deep-loop-workflows)` reachability is confirmed by runtime registration; `/deep:*` commands and the `ai-council` agent are registered/available; full live-loop e2e was not executed and remains optional

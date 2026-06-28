@@ -28,7 +28,7 @@ _memory:
       - "R2 deep-ai-council rename done."
       - "R3 feature_catalog assessment done: keep all five as earned."
       - "R4 merged-identity decision done: keep by sign-off; drift-guard green."
-      - "NFR-S01 accepted as hub union-grant."
+      - "NFR-S01 accepted as per-mode allowed-tools authoritative."
       - "R5 done: strict recursive spec validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
 ---
 # Verification Checklist: deep-loop parent-skill alignment
@@ -55,7 +55,7 @@ FAILURE MODES:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-This packet is effectively complete. Items are checked only where current evidence supports them. R1-R5, R3 feature-catalog hygiene, R4 keep, and NFR-S01 union-grant are closed by ratified decisions and verified gates. The only residual is an optional full live-loop e2e, which was deliberately not run.
+This packet is effectively complete for required gates. Items are checked only where current evidence supports them. R1-R5, R3 feature-catalog hygiene, R4 keep, and NFR-S01 per-mode allowed-tools contract are closed by ratified decisions and verified gates. The only residual is an optional full live-loop e2e, which was deliberately not run.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -74,7 +74,7 @@ This packet is effectively complete. Items are checked only where current eviden
 ## Code Quality
 
 - [x] CHK-010 [P0] Renamed/edited skill assets pass `package_skill.py --check` on the hub and all five packets
-- [x] CHK-011 [P0] No known broken `ai-council` filesystem references remain after the rename; legacy public command/agent surfaces remain intentional
+- [x] CHK-011 [P0] No known broken `ai-council` filesystem references remain on the scoped deep-loop live surface after the rename; legacy public command/agent surfaces remain intentional. Out-of-packet stale references remain in about eight system-spec-kit/sk-doc test files and are tracked as a separate follow-up outside packet 155.
 - [x] CHK-012 [P1] Static hub routing follows the phase-001 Option E pattern
 - [x] CHK-013 [P1] R3/R4 changes follow the sk-design parent-skill conventions where applicable: earned catalogs stay, merged identity is kept as a documented deep-loop exception, and R5 closure evidence is recorded
 <!-- /ANCHOR:code-quality -->
@@ -101,7 +101,7 @@ This packet is effectively complete. Items are checked only where current eviden
 - [x] CHK-FIX-004 [P0] Path/identity changes verified by package checks, runtime registration, and parent-skill invariants; no live-loop e2e was run.
 - [x] CHK-FIX-005 [P1] Stage exit gates and their evidence are listed before completion is claimed.
 - [x] CHK-FIX-006 [P1] Single-identity invariant re-checked after routing/runtime gates by `parent-skill-check.cjs`: all invariants passed with 0 warnings.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-007 [P1] Evidence is recorded in the committed `review/` and `research/` artifacts as the canonical trail for this packet; no fix SHA or explicit diff range is fabricated in these docs.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -110,7 +110,7 @@ This packet is effectively complete. Items are checked only where current eviden
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced by the alignment
-- [x] CHK-031 [P0] NFR-S01 accepted as hub union-grant pattern in ADR-004; residual risk and optional future runtime-narrowing probe documented; no claim of runtime per-mode narrowing
+- [x] CHK-031 [P0] NFR-S01 accepted in ADR-004: per-mode allowed-tools is authoritative at dispatch; the hub's allowed-tools is its own grant, not the union of mode tools; residual dispatch evidence risk and optional future runtime probe documented
 - [x] CHK-032 [P1] Rename does not expose or relocate any privileged load path; package checks and parent-skill invariants are green
 <!-- /ANCHOR:security -->
 
@@ -153,7 +153,7 @@ This packet is effectively complete. Items are checked only where current eviden
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [x] CHK-100 [P0] Alignment decisions documented in decision-record.md (ADR-001/002/003/004)
-- [x] CHK-101 [P1] All ADRs have current status (ADR-001 accepted/executed; ADR-002 accepted/kept; ADR-003 accepted/keep-all; ADR-004 accepted/union-grant)
+- [x] CHK-101 [P1] All ADRs have current status (ADR-001 accepted/executed; ADR-002 accepted/kept; ADR-003 accepted/keep-all; ADR-004 accepted/per-mode allowed-tools)
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale
 - [x] CHK-103 [P2] Rename/migration path documented (if applicable)
 <!-- /ANCHOR:arch-verify -->

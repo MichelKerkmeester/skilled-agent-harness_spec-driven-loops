@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-design-alias-audit-001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "audit",
+    "advisorLane": "sk-design",
+    "intentKeys": ["audit"],
+    "resources": ["design-audit/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "audit",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "md-generator"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the alias prompt to the expected workflow mode"],
+    "harmChecks": ["does not select a sibling workflow mode"]
+  }
+}

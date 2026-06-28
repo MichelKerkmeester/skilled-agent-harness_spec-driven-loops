@@ -7,7 +7,26 @@ trigger_phrases:
   - "proof_check require source proof"
 importance_tier: "normal"
 contextType: "planning"
-status: "planned"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/006-content-bound-source-proof"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Confirm the plan against the delivered source-proof cards and checker"
+    next_safe_action: "Let the parent process refresh description.json and graph-metadata.json"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/shared/assets/context_loaded_card.md"
+      - ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md"
+      - ".opencode/skills/sk-design/shared/scripts/proof_check.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "markdown-agent-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Implementation Plan: Content-bound SOURCE PROOF
 
@@ -48,11 +67,11 @@ The new flag is **additive**: with no flag (or `--json` / `--require-cards`), `p
 - [x] Scope frozen to the 2 cards + 1 script
 
 ### Definition of Done
-- [ ] SOURCE PROOF block added to both cards (path / sha256 / anchor / echo)
-- [ ] `proof_check.py --require-source-proof` recomputes digest + verifies echo
-- [ ] Faithful card passes; tampered digest fails; absent/forged echo fails
-- [ ] No-regression: no-flag, `--json`, `--require-cards` invocations unchanged
-- [ ] Evergreen: no spec/packet/phase IDs or spec paths in cards or script
+- [x] SOURCE PROOF block added to both cards (path / sha256 / anchor / echo)
+- [x] `proof_check.py --require-source-proof` recomputes digest + verifies echo
+- [x] Faithful card passes; tampered digest fails; absent/forged echo fails
+- [x] No-regression: no-flag, `--json`, `--require-cards` invocations unchanged
+- [x] Evergreen: no spec/packet/phase IDs or spec paths in cards or script
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -107,22 +126,22 @@ The **echo** is the anti-self-attestation lever: a checkbox can be ticked withou
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Cards
-- [ ] Add `SOURCE PROOF` section (path/sha256/anchor/echo table + recompute rule line) to `context_loaded_card.md`
-- [ ] Add `SOURCE PROOF` section to `proof_of_application_card.md`; extend the footer gate hint with the `--require-source-proof` stricter mode
+- [x] Add `SOURCE PROOF` section (path/sha256/anchor/echo table + recompute rule line) to `context_loaded_card.md`
+- [x] Add `SOURCE PROOF` section to `proof_of_application_card.md`; extend the footer gate hint with the `--require-source-proof` stricter mode
 
 ### Phase 2: Checker
-- [ ] Add `--require-source-proof` to arg parsing (additive, beside `--json` / `--require-cards`)
-- [ ] Implement SOURCE PROOF table parser (heading scope, row extraction, placeholder skip)
-- [ ] Implement raw-byte sha256 recompute (binary read) + compare per token §4
-- [ ] Implement echo verbatim verification (decoded substring) + fail-closed unreadable
-- [ ] Thread result into `check()` output + overall `ok` without breaking existing keys
+- [x] Add `--require-source-proof` to arg parsing (additive, beside `--json` / `--require-cards`)
+- [x] Implement SOURCE PROOF table parser (heading scope, row extraction, placeholder skip)
+- [x] Implement raw-byte sha256 recompute (binary read) + compare per token §4
+- [x] Implement echo verbatim verification (decoded substring) + fail-closed unreadable
+- [x] Thread result into `check()` output + overall `ok` without breaking existing keys
 
 ### Phase 3: Verification
-- [ ] Faithful card → exit 0
-- [ ] Tampered digest → exit 1 (tamper test)
-- [ ] Forged/absent echo → exit 1 (tamper test)
-- [ ] No-regression: no-flag / `--json` / `--require-cards` identical to baseline
-- [ ] Evergreen + scope audit (grep for IDs/paths; only 2 cards + script changed)
+- [x] Faithful card → exit 0
+- [x] Tampered digest → exit 1 (tamper test)
+- [x] Forged/absent echo → exit 1 (tamper test)
+- [x] No-regression: no-flag / `--json` / `--require-cards` identical to baseline
+- [x] Evergreen + scope audit (grep for IDs/paths; only 2 cards + script changed)
 
 <!-- /ANCHOR:phases -->
 ---
@@ -163,7 +182,7 @@ The **echo** is the anti-self-attestation lever: a checkbox can be ticked withou
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -178,10 +197,10 @@ Phase 2 (Checker)┘
 | Checker | None (can be drafted in parallel) | Verify |
 | Verify | Cards, Checker | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -191,16 +210,16 @@ Phase 2 (Checker)┘
 | Verification (3 acceptance + no-regression + tamper) | Medium | 1 hour |
 | **Total** | | **~3-3.5 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline captured: current `proof_check.py` output for no-flag / `--json` / `--require-cards` on an existing card
-- [ ] Confirm only the 3 scope-locked files are staged
-- [ ] Confirm `design_proof_token.md` is NOT modified (reused, not edited)
+- [x] Baseline captured: current `proof_check.py` output for no-flag / `--json` / `--require-cards` on an existing card
+- [x] Confirm only the 3 scope-locked files are staged
+- [x] Confirm `design_proof_token.md` is NOT modified (reused, not edited)
 
 ### Rollback Procedure
 1. `git checkout -- <the 3 files>` to restore the originals
@@ -211,7 +230,7 @@ Phase 2 (Checker)┘
 - **Has data migrations?** No
 - **Reversal procedure**: File revert only
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-design-alias-interface-001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["foundations", "motion", "audit", "md-generator"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the alias prompt to the expected workflow mode"],
+    "harmChecks": ["does not select a sibling workflow mode"]
+  }
+}

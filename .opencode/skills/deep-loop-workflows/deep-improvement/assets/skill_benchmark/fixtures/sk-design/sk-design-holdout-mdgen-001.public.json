@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk-design-holdout-mdgen-001",
+  "tier": "T2",
+  "public": {
+    "prompt": "pull the visual styling off this live site into a reusable spec",
+    "runtime": "codex",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": true
+  }
+}

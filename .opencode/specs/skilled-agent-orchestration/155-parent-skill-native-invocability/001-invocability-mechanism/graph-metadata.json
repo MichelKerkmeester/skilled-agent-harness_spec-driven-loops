@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Parent skills route to nested mode packets, but those packets are not invocable through the runtime `Skill` tool",
     "created_at": "2026-06-26T05:52:39.211Z",
-    "last_save_at": "2026-06-28T12:38:34.486Z",
+    "last_save_at": "2026-06-28T14:36:29.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,14 +232,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b7f75104cd8017bb4fb57a6e43959c871bfb17d0b4d20f5a0e16d65c2af9503",
+    "source_fingerprint": "sha256:da4d41cb9f1379a9083d1bfc3f994b12a9cd5ccd5d90b7d8e6c25c142b8142ff",
     "source_doc_hashes": {
       "spec.md": "b67b0f90a3fb0277bea807bc3be60c6cd7f2dd913cc21312189a9f2420a67398",
       "plan.md": "a213d105dacdd7f0af6e2a73a908359c944a96f958364178ce602fd3789271ee",
-      "tasks.md": "bd3441f218bd6910285cef3fc9a0944e5b9ce17f0be1a820f6cf0050dc4f3ccc",
-      "checklist.md": "1c52b5ac623c7252deac28d570c95f520c201da4446d23f64cc6e1a945b9f99a",
+      "tasks.md": "83c166021e82660b3f68c56f858786b27def44a1d4caa6507b07df1d522eba82",
+      "checklist.md": "52de3c2621c48e3caaf8b57f44d1fbc43346f5fcbaea32176396c2a2a25f47ce",
       "decision-record.md": "4e4cf872afece6d870c4f49da33598336b1436c803eeb8b76ae5026c02c0ce7c",
-      "implementation-summary.md": "e407aafdf437f9f637fba4abfabbea890b740d393e45dce12f3796a2ca4be967"
+      "implementation-summary.md": "7f876b5ac5f809fed8492493b8ddb1509ba3afe8e7634f5a44d422645a1f8b9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

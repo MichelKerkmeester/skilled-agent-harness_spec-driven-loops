@@ -68,3 +68,13 @@ This card blocks pre-work drift. Fill the surface, register, dials, loaded-file 
 | AUDIT EVIDENCE | [ ] yes [ ] no [ ] N/A |
 
 Context verdict: [ ] LOADED [ ] BLOCKED, gaps: `__________`
+
+---
+
+## 6. SOURCE PROOF
+
+Recompute rule: raw-byte sha256 per `../../references/design_proof_token.md` section 4. Gate: `python3 ../scripts/proof_check.py --require-source-proof <this-file>.md`.
+
+| Path | SHA256 | Anchor | Echo |
+|---|---|---|---|
+| `__________` | `sha256:__________` | `__________` | `__________` |

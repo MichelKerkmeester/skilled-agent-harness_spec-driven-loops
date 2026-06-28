@@ -5,7 +5,7 @@
 
 ## 1. Verdict
 
-**FAIL** — P0=1 · P1=11 · P2=0 · total 12
+**CONDITIONAL** — P0=0 · P1=11 · P2=0 · total 11. The previous P0 row was an empty parse artifact, not an actionable finding.
 
 ## 2. Dimension coverage
 
@@ -15,13 +15,11 @@
 - maintainability: covered
 
 ## 3. P0 — Blockers
-### P0 (1)
+### P0 (0)
 
-- **R155-F012 [P0/maintainability]** 
-  - File: ``
-  - Evidence: 
-  - Impact: 
-  - Fix:  _(iter 10)_
+_none_
+
+**R155-F012 note:** the prior P0 row was an empty parse artifact from iteration 10: no file, evidence, impact, or fix was recorded. It is not counted as a blocker.
 
 ## 4. P1 — Required
 ### P1 (11)

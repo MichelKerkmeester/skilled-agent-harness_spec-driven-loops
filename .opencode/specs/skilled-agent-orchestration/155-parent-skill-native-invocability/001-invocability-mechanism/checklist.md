@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Parent-skill native invocability"
-description: "Decision-complete verification checklist. Documentation and ADR synchronization items are complete; NFR-S01 is resolved in 002 as union-grant accepted; implementation and runtime probes remain pending downstream."
+description: "Decision-complete verification checklist. Documentation and ADR synchronization items are complete; NFR-S01 is resolved in 002 as per-mode allowed-tools accepted; implementation and runtime probes remain pending downstream."
 trigger_phrases:
   - "parent skill invocability checklist"
   - "native invocation verification"
@@ -28,7 +28,7 @@ _memory:
     answered_questions:
       - "ADR-001 status is Accepted across spec.md, plan.md, decision-record.md, and implementation-summary.md."
       - "Option E fallback is recorded as commands/agents A/B."
-      - "NFR-S01 is resolved in 002: union-grant accepted."
+      - "NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted."
 ---
 # Verification Checklist: Parent-skill native invocability
 
@@ -53,7 +53,7 @@ FAILURE MODES:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-This packet is decision-only. Documentation and ADR synchronization items are checked where evidenced by these authored docs. NFR-S01 is resolved in 002 as union-grant accepted. Runtime probes and implementation checks remain intentionally unchecked and carried to downstream work.
+This packet is decision-only. Documentation and ADR synchronization items are checked where evidenced by these authored docs. NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted. Runtime probes and implementation checks remain intentionally unchecked and carried to downstream work.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -108,7 +108,7 @@ This packet is decision-only. Documentation and ADR synchronization items are ch
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
-- [x] CHK-031 [P0] NFR-S01 permission-contract semantics resolved in 002 (union-grant accepted)
+- [x] CHK-031 [P0] NFR-S01 resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted
 - [ ] CHK-032 [P1] Auth/authz working correctly (deferred: gated Phase 2)
 <!-- /ANCHOR:security -->
 

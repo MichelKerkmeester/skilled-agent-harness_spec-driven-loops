@@ -8,6 +8,25 @@ trigger_phrases:
   - "hub-router replay corpus"
 importance_tier: "normal"
 contextType: "planning"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/003-route-gold-corpus"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Confirm the plan against the delivered route-gold corpus and replay"
+    next_safe_action: "Let the parent process refresh description.json and graph-metadata.json"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/references/skill_benchmark/scenario_authoring.md"
+      - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/sk-design/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "markdown-agent-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Implementation Plan: Standing route-gold corpus + minimal pairs
 
@@ -44,11 +63,11 @@ Add four route fields to the scorer-only private gold (`expected.workflowMode`, 
 - [x] All 21 candidate prompts empirically replayed against the live router
 
 ### Definition of Done
-- [ ] Private gold schema extended with the four route fields + documented shape
-- [ ] Alias, holdout, and adversarial minimal-pair fixtures authored under the corpus root
-- [ ] Every must-pass fixture routes correctly under `router-replay.cjs`; forbidden modes never selected
-- [ ] Contamination lint (identity-scoped) reports clean on every public prompt
-- [ ] No spec/packet/phase IDs or spec paths embedded in any fixture or schema-doc file
+- [x] Private gold schema extended with the four route fields + documented shape — `scenario_authoring.md` fixture-structure section gained `workflowMode`/`routeOutcome`/`forbiddenWorkflowModes`/`minimalPairGroup` (+17 lines)
+- [x] Alias, holdout, and adversarial minimal-pair fixtures authored under the corpus root — 18 pairs (36 files) under `fixtures/sk-design/`
+- [x] Every must-pass fixture routes correctly under `router-replay.cjs`; forbidden modes never selected — 13/18 land on `expected.workflowMode`; forbidden modes absent across the corpus
+- [x] Contamination lint (identity-scoped) reports clean on every public prompt — `lintFixture` returns `passed: true` for all 18 scenarios
+- [x] No spec/packet/phase IDs or spec paths embedded in any fixture or schema-doc file — evergreen scan clean
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -88,20 +107,20 @@ Add to each `*.private.json` `expected` block (alongside the existing `skillId`/
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Schema extension
-- [ ] Add `workflowMode`/`routeOutcome`/`forbiddenWorkflowModes`/`minimalPairGroup` to the private `expected` shape
-- [ ] Document the shape in `scenario_authoring.md` §2 (no embedded IDs/paths)
+- [x] Add `workflowMode`/`routeOutcome`/`forbiddenWorkflowModes`/`minimalPairGroup` to the private `expected` shape — present in every `*.private.json` under `fixtures/sk-design/`
+- [x] Document the shape in the fixture-structure section (no embedded IDs/paths) — `scenario_authoring.md` +17 lines, additive
 
 ### Phase 2: Author fixtures (all empirically grounded below)
-- [ ] **Alias (single, T1)** — one per mode: `make it look good`→interface, `oklch palette`→foundations, `micro-interactions`→motion, `production hardening`→audit, `capture website css`→md-generator
-- [ ] **Adversarial minimal pairs (T3)** — must-pass-now: `redesign the ui`→interface / `review the ui`→audit (group `mp-ui-redesign-vs-review`); `ui build`→interface / `ui critique`→audit (group `mp-ui-build-vs-critique`); `design tokens`→foundations `single` (forbidden md-generator) / `design tokens from url`→`orderedBundle` [foundations, md-generator] (group `mp-tokens-single-vs-bundle`)
-- [ ] **Adversarial silent-default pair (T3, standing gap)** — the brief's canonical pair: `animate the menu`→motion (routes now) / `redesign the menu`→interface gold but currently routes `[]` (group `mp-menu-animate-vs-redesign`); recorded as standing gap, NOT a this-phase gate
-- [ ] **Holdout (T2, hint-free)** — gold = correct mode, current routing recorded: `fix the visual hierarchy of the dashboard`→foundations (routes now); `tune the easing so the drawer feels less abrupt when it opens`→motion gold/`[]` now; `this landing page feels generic and templated; give it a point of view`→interface gold/`[]` now; `go over the checkout screen and list what is broken or sloppy`→audit gold/`[]` now; `pull the visual styling off this live site into a reusable spec`→md-generator gold/`[]` now
+- [x] **Alias (single, T1)** — one per mode authored and replayed: `make it look good`→interface, `oklch palette`→foundations, `micro-interactions`→motion, `production hardening`→audit, `capture website css`→md-generator
+- [x] **Adversarial minimal pairs (T3)** — must-pass-now, all flip correctly: `redesign the ui`→interface / `review the ui`→audit (group `mp-ui-redesign-vs-review`); `ui build`→interface / `ui critique`→audit (group `mp-ui-build-vs-critique`); `design tokens`→foundations `single` (forbidden md-generator) / `design tokens from url`→`orderedBundle` [foundations, md-generator] (group `mp-tokens-single-vs-bundle`)
+- [x] **Adversarial silent-default pair (T3, standing gap)** — authored and recorded: `animate the menu`→motion (routes now) / `redesign the menu`→interface gold but routes `[]` now (group `mp-menu-animate-vs-redesign`); standing gap, NOT a this-phase gate
+- [x] **Holdout (T2, hint-free)** — gold = correct mode, current routing recorded: `fix the visual hierarchy of the dashboard`→foundations (routes now); `tune the easing so the drawer feels less abrupt when it opens`→motion gold/`[]` now; `this landing page feels generic and templated; give it a point of view`→interface gold/`[]` now; `go over the checkout screen and list what is broken or sloppy`→audit gold/`[]` now; `pull the visual styling off this live site into a reusable spec`→md-generator gold/`[]` now
 
 ### Phase 3: Verification
-- [ ] Replay every fixture through `router-replay.cjs`; record intents per fixture
-- [ ] Assert must-pass fixtures land on `expected.workflowMode`; pairs land on distinct outcomes; forbidden modes absent
-- [ ] Run identity-scoped contamination lint on every public prompt → all clean
-- [ ] Confirm no spec/packet/phase IDs or paths in any corpus/schema file
+- [x] Replay every fixture through `router-replay.cjs`; record intents per fixture — all 18 replayed against `hub-router.json`
+- [x] Assert must-pass fixtures land on `expected.workflowMode`; pairs land on distinct outcomes; forbidden modes absent — 13/18 land on gold; pairs flip; zero forbidden modes
+- [x] Run identity-scoped contamination lint on every public prompt → all clean — `lintFixture` `passed: true` for all 18
+- [x] Confirm no spec/packet/phase IDs or paths in any corpus/schema file — evergreen scan clean
 
 <!-- /ANCHOR:phases -->
 ---
@@ -142,7 +161,7 @@ Add to each `*.private.json` `expected` block (alongside the existing `skillId`/
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -155,10 +174,10 @@ Phase 1 (Schema) ──> Phase 2 (Author fixtures) ──> Phase 3 (Verify routi
 | Author fixtures | Schema | Verify |
 | Verify | Author fixtures | None |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -168,16 +187,16 @@ Phase 1 (Schema) ──> Phase 2 (Author fixtures) ──> Phase 3 (Verify routi
 | Verification (replay + lint + evergreen grep) | Low | 1 hour |
 | **Total** | | **3.75-4.75 hours** |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Existing corpus + `score-skill-benchmark.cjs` confirmed untouched (additive-only change)
-- [ ] New `sk-design/` directory is the only fixture mutation
-- [ ] Schema-doc edit is confined to `scenario_authoring.md` §2
+- [x] Existing corpus + `score-skill-benchmark.cjs` confirmed untouched (additive-only change)
+- [x] New `sk-design/` directory is the only fixture mutation
+- [x] Schema-doc edit is confined to the `scenario_authoring.md` fixture-structure section
 
 ### Rollback Procedure
 1. **Remove**: delete `assets/skill_benchmark/fixtures/sk-design/`
@@ -189,7 +208,7 @@ Phase 1 (Schema) ──> Phase 2 (Author fixtures) ──> Phase 3 (Verify routi
 - **Has data migrations?** No (static JSON gold only)
 - **Reversal procedure**: directory delete + single doc revert; no DB/state to unwind
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

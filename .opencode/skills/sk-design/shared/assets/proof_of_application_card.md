@@ -65,4 +65,14 @@ Gaps blocking readiness: `__________`
 
 ---
 
-Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY.
+## 6. SOURCE PROOF
+
+Recompute rule: raw-byte sha256 per `../../references/design_proof_token.md` section 4. Gate: `python3 ../scripts/proof_check.py --require-source-proof <this-file>.md`.
+
+| Path | SHA256 | Anchor | Echo |
+|---|---|---|---|
+| `__________` | `sha256:__________` | `__________` | `__________` |
+
+---
+
+Gate this card deterministically: `python3 ../scripts/proof_check.py <this-file>.md` exits non-zero unless all four proof fields are present and the verdict reads READY. Add `--require-source-proof` to also verify cited source files by raw-byte hash and literal echo.
