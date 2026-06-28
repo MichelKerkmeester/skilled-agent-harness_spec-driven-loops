@@ -47,6 +47,27 @@ function seedConvergedResearchGraph(namespace: ScriptNamespace) {
   ]);
 }
 
+function seedObservationThresholdResearchGraph(namespace: ScriptNamespace, observations: number) {
+  return runScript('upsert', [
+    ...namespaceArgs(namespace),
+    '--nodes',
+    JSON.stringify([
+      { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
+      { id: 'finding-1', kind: 'FINDING', name: 'Repeated answer', metadata: { observations } },
+      { id: 'finding-2', kind: 'FINDING', name: 'Second answer', metadata: { observations: 1 } },
+      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', metadata: { quality_class: 'primary' } },
+      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', metadata: { quality_class: 'secondary' } },
+    ]),
+    '--edges',
+    JSON.stringify([
+      { id: 'answer-1', sourceId: 'finding-1', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'answer-2', sourceId: 'finding-2', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'cite-1', sourceId: 'finding-1', targetId: 'source-1', relation: 'CITES' },
+      { id: 'cite-2', sourceId: 'finding-2', targetId: 'source-2', relation: 'CITES' },
+    ]),
+  ]);
+}
+
 function seedConvergedContextGraph(namespace: ScriptNamespace) {
   return runScript('upsert', [
     ...namespaceArgs(namespace),
@@ -277,6 +298,53 @@ describe('convergence.cjs direct invocation', () => {
     expect(data.signals).not.toHaveProperty('graphNoveltyDelta');
     expect(data.signals).not.toHaveProperty('reportedNovelty');
     expect(data.blockers).toEqual([]);
+  });
+
+  it('blocks research STOP under an explicit observation threshold until the leading finding is confirmed enough times', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedObservationThresholdResearchGraph(namespace, 2).exitCode).toBe(0);
+
+    const blocked = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--min-observations',
+      '3',
+    ]);
+    const blockedData = blocked.json.data as {
+      observationThreshold: {
+        minObservations: number;
+        leadingFinding: { id: string; observations: number; subThreshold: boolean };
+        findings: Array<{ id: string; subThreshold: boolean }>;
+      };
+    };
+
+    expect(blocked.exitCode).toBe(0);
+    expect(blocked.json.graph_decision).toBe('STOP_BLOCKED');
+    expect(blockedData.observationThreshold.leadingFinding).toMatchObject({
+      id: 'finding-1',
+      observations: 2,
+      subThreshold: true,
+    });
+    expect(blockedData.observationThreshold.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'finding-1', subThreshold: true }),
+      ]),
+    );
+
+    expect(seedObservationThresholdResearchGraph(namespace, 3).exitCode).toBe(0);
+    const allowed = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--min-observations',
+      '3',
+    ]);
+
+    expect(allowed.exitCode).toBe(0);
+    expect(allowed.json.graph_decision).toBe('STOP_ALLOWED');
+    expect(allowed.json.graph_trace_json).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ signal: 'minObservations', value: 3, threshold: 3, passed: true }),
+      ]),
+    );
   });
 
   it('blocks research STOP when low reported novelty disagrees with graph novelty', () => {

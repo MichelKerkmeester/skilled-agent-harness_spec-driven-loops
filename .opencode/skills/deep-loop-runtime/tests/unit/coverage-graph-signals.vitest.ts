@@ -154,6 +154,44 @@ describe('coverage-graph-signals', () => {
     expect(signalsModule.computeGraphNoveltyDelta(nodes, [], [])).toBe(0);
   });
 
+  it('computeFindingObservationSignalsFromData marks findings below the observation threshold', () => {
+    const signals = signalsModule.computeFindingObservationSignalsFromData(
+      [
+        { id: 'finding-1', kind: 'FINDING', name: 'Confirmed twice', metadata: { observations: 2 } },
+        { id: 'finding-2', kind: 'FINDING', name: 'Confirmed once', metadata: { observations: 1 } },
+      ],
+      [],
+      3,
+    );
+
+    expect(signals).toEqual({
+      minObservations: 3,
+      leadingFinding: {
+        id: 'finding-1',
+        kind: 'FINDING',
+        name: 'Confirmed twice',
+        observations: 2,
+        subThreshold: true,
+      },
+      findings: [
+        {
+          id: 'finding-1',
+          kind: 'FINDING',
+          name: 'Confirmed twice',
+          observations: 2,
+          subThreshold: true,
+        },
+        {
+          id: 'finding-2',
+          kind: 'FINDING',
+          name: 'Confirmed once',
+          observations: 1,
+          subThreshold: true,
+        },
+      ],
+    });
+  });
+
   // ───── Context signals (closes the zero-coverage gap on the deep-context path) ─────
 
   it('computeContextSignalsFromData vacuous-passes all five signals on an empty graph', () => {

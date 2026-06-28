@@ -64,6 +64,20 @@ export interface ContextConvergenceSignals {
   dependencyCompleteness: number;
 }
 
+export interface FindingObservationSignal {
+  id: string;
+  kind: string;
+  name?: string;
+  observations: number;
+  subThreshold: boolean;
+}
+
+export interface ObservationThresholdSignals {
+  minObservations: number;
+  leadingFinding: FindingObservationSignal | null;
+  findings: FindingObservationSignal[];
+}
+
 export type ConvergenceSignals =
   | ResearchConvergenceSignals
   | ReviewConvergenceSignals
@@ -103,10 +117,28 @@ type GraphNoveltyEdgeLike = ResearchSignalEdgeLike;
 
 type GraphNoveltySnapshotLike = Pick<CoverageSnapshot, 'iteration' | 'createdAt'>;
 
+type FindingObservationNodeLike = ResearchSignalNodeLike & {
+  name?: string;
+};
+
 interface SqlFragment {
   clause: string;
   params: unknown[];
 }
+
+const DEFAULT_MIN_OBSERVATIONS = 2;
+const MIN_OBSERVATIONS_FLOOR = 1;
+const MIN_OBSERVATIONS_CEILING = 10;
+const FINDING_OBSERVATION_KINDS = new Set(['FINDING', 'REUSE_CANDIDATE', 'PATTERN', 'CONSTRAINT']);
+const OBSERVATION_COUNT_METADATA_KEYS = [
+  'observations',
+  'observation_count',
+  'observationCount',
+  'confirmations',
+  'confirmation_count',
+  'confirmationCount',
+  'count',
+];
 
 // ───── HELPERS ─────
 
@@ -243,6 +275,66 @@ function buildCitedSourcesByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike>
   }
 
   return citedSources;
+}
+
+export function normalizeMinObservations(value: unknown = DEFAULT_MIN_OBSERVATIONS): number {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return DEFAULT_MIN_OBSERVATIONS;
+  return Math.max(MIN_OBSERVATIONS_FLOOR, Math.min(MIN_OBSERVATIONS_CEILING, Math.trunc(parsed)));
+}
+
+function readObservationCountFromMetadata(
+  metadata: CoverageNode['metadata'] | CoverageEdge['metadata'] | string | null | undefined,
+): number | null {
+  const parsed = parseMetadataRecord(metadata);
+  if (!parsed) return null;
+
+  for (const key of OBSERVATION_COUNT_METADATA_KEYS) {
+    if (!(key in parsed)) continue;
+    const count = Number(parsed[key]);
+    if (Number.isFinite(count)) return Math.max(0, Math.trunc(count));
+  }
+
+  return null;
+}
+
+function buildConfirmCountsByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const edge of edges) {
+    if (edge.relation === 'CONFIRMS') {
+      counts.set(edge.targetId, (counts.get(edge.targetId) ?? 0) + 1);
+    }
+  }
+  return counts;
+}
+
+export function computeFindingObservationSignalsFromData(
+  nodes: ReadonlyArray<FindingObservationNodeLike>,
+  edges: ReadonlyArray<ResearchSignalEdgeLike>,
+  minObservationsInput: unknown = DEFAULT_MIN_OBSERVATIONS,
+): ObservationThresholdSignals {
+  const minObservations = normalizeMinObservations(minObservationsInput);
+  const confirmCounts = buildConfirmCountsByFinding(edges);
+  const findings = nodes
+    .filter((node) => FINDING_OBSERVATION_KINDS.has(node.kind))
+    .map((node) => {
+      const metadataCount = readObservationCountFromMetadata(node.metadata);
+      const observations = Math.max(metadataCount ?? 1, confirmCounts.get(node.id) ?? 0);
+      return {
+        id: node.id,
+        kind: node.kind,
+        ...(node.name ? { name: node.name } : {}),
+        observations,
+        subThreshold: observations < minObservations,
+      };
+    })
+    .sort((left, right) => right.observations - left.observations || left.id.localeCompare(right.id));
+
+  return {
+    minObservations,
+    leadingFinding: findings[0] ?? null,
+    findings,
+  };
 }
 
 /**

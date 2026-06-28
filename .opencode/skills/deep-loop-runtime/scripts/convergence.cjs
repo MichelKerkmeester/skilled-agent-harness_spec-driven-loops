@@ -34,6 +34,9 @@ const {
 const TSX_LOADER = require.resolve('tsx');
 const DEFAULT_REPORTED_NOVELTY_THRESHOLD = 0.05;
 const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
+const DEFAULT_MIN_OBSERVATIONS = 2;
+const MIN_OBSERVATIONS_FLOOR = 1;
+const MIN_OBSERVATIONS_CEILING = 10;
 
 /**
  * Shared convergence profile schema:
@@ -126,6 +129,21 @@ function asBoolean(value) {
   return value === true || value === 'true' || value === '1';
 }
 
+function parseOptionalJsonObject(value, key) {
+  if (value === undefined || value === null || value === true || value === '') return {};
+  if (typeof value !== 'string') throw inputError(`${key} must be a JSON object`);
+  let parsed;
+  try {
+    parsed = JSON.parse(value);
+  } catch {
+    throw inputError(`${key} must be valid JSON`);
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw inputError(`${key} must be a JSON object`);
+  }
+  return parsed;
+}
+
 function parseOptionalRatio(value, key) {
   if (value === undefined || value === null || value === true || value === '') return null;
   const parsed = Number(value);
@@ -138,6 +156,45 @@ function parseOptionalRatio(value, key) {
 function parseRatioWithDefault(value, key, fallback) {
   const parsed = parseOptionalRatio(value, key);
   return parsed === null ? fallback : parsed;
+}
+
+function parseMinObservationsValue(value, key = 'minObservations') {
+  if (value === undefined || value === null || value === true || value === '') return DEFAULT_MIN_OBSERVATIONS;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    throw inputError(`${key} must be a finite number`);
+  }
+  return Math.max(MIN_OBSERVATIONS_FLOOR, Math.min(MIN_OBSERVATIONS_CEILING, Math.trunc(parsed)));
+}
+
+function resolveMinObservationsInput(args) {
+  if (args.minObservations !== undefined) return { value: args.minObservations, key: 'minObservations' };
+  if (args.min_observations !== undefined) return { value: args.min_observations, key: 'min_observations' };
+
+  const config = parseOptionalJsonObject(args.configJson, 'configJson');
+  if (config.min_observations !== undefined) return { value: config.min_observations, key: 'min_observations' };
+  if (config.minObservations !== undefined) return { value: config.minObservations, key: 'minObservations' };
+  if (process.env.DEEP_LOOP_MIN_OBSERVATIONS !== undefined) {
+    return { value: process.env.DEEP_LOOP_MIN_OBSERVATIONS, key: 'DEEP_LOOP_MIN_OBSERVATIONS' };
+  }
+  return null;
+}
+
+function readObservationThresholdConfig(args) {
+  const input = resolveMinObservationsInput(args);
+  const enabledByFlag =
+    asBoolean(args.observationThresholdGuard) ||
+    asBoolean(args.minObservationsGuard) ||
+    asBoolean(process.env.DEEP_LOOP_MIN_OBSERVATIONS_GUARD);
+
+  if (!input && !enabledByFlag) {
+    return { enabled: false, minObservations: 1 };
+  }
+
+  return {
+    enabled: true,
+    minObservations: parseMinObservationsValue(input?.value, input?.key),
+  };
 }
 
 function jsonOut(payload) {
@@ -403,6 +460,44 @@ function shouldTraceImprovementEffect(args) {
   return asBoolean(args.improvementEffect) || asBoolean(args.improvementEffectTrace) || asBoolean(args.traceImprovementEffect);
 }
 
+function applyObservationThresholdGuard(decision, blockers, trace, observationThreshold) {
+  if (!observationThreshold || decision !== 'STOP_ALLOWED') {
+    return { decision, blockers, trace };
+  }
+
+  const leadingFinding = observationThreshold.leadingFinding;
+  if (!leadingFinding) {
+    return { decision, blockers, trace };
+  }
+
+  const traceEntry = {
+    signal: 'minObservations',
+    value: leadingFinding.observations,
+    threshold: observationThreshold.minObservations,
+    passed: !leadingFinding.subThreshold,
+    role: 'blocking_guard',
+  };
+  if (!leadingFinding.subThreshold) {
+    return { decision, blockers, trace: [...trace, traceEntry] };
+  }
+
+  return {
+    decision: 'STOP_BLOCKED',
+    blockers: [
+      ...blockers,
+      {
+        type: 'min_observations_guard',
+        description: `Leading finding "${leadingFinding.id}" has ${leadingFinding.observations} observation(s), below min_observations (${observationThreshold.minObservations}). STOP is blocked until the finding is confirmed again.`,
+        count: leadingFinding.observations,
+        severity: 'blocking',
+        minObservations: observationThreshold.minObservations,
+        leadingFinding,
+      },
+    ],
+    trace: [...trace, traceEntry],
+  };
+}
+
 function buildImprovementEffect(snapshots, scoreDelta) {
   const historicalDeltas = [];
   for (let i = 1; i < snapshots.length; i += 1) {
@@ -529,7 +624,11 @@ async function main() {
     const noveltyCorroboration = loopType === 'research'
       ? buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args)
       : null;
-    const signalsWithScore = noveltyCorroboration
+    const observationThresholdConfig = readObservationThresholdConfig(args);
+    const observationThreshold = observationThresholdConfig.enabled && loopType === 'research'
+      ? signalsLib.computeFindingObservationSignalsFromData(nodes, edges, observationThresholdConfig.minObservations)
+      : null;
+    const baseSignalsWithScore = noveltyCorroboration
       ? {
           ...signals,
           score,
@@ -538,6 +637,13 @@ async function main() {
           effectiveNovelty: noveltyCorroboration.effectiveNovelty,
         }
       : { ...signals, score };
+    const signalsWithScore = observationThreshold
+      ? {
+          ...baseSignalsWithScore,
+          minObservations: observationThreshold.minObservations,
+          observationThreshold,
+        }
+      : baseSignalsWithScore;
     const gaps = queryLib.findCoverageGaps(ns);
     const contradictions = queryLib.findContradictions(ns);
     const unverified = loopType === 'research' ? queryLib.findUnverifiedClaims(ns) : [];
@@ -562,6 +668,10 @@ async function main() {
         decision = 'STOP_BLOCKED';
       }
     }
+    const observationGuarded = applyObservationThresholdGuard(decision, blockers, trace, observationThreshold);
+    decision = observationGuarded.decision;
+    blockers = observationGuarded.blockers;
+    trace = observationGuarded.trace;
     const blockingBlockers = blockers.filter((blocker) => blocker.severity === 'blocking');
     const momentum = snapshots.length < 2
       ? null
@@ -609,6 +719,7 @@ async function main() {
       lastIteration: stats.lastIteration,
     };
     if (improvementEffect) data.improvementEffect = improvementEffect;
+    if (observationThreshold) data.observationThreshold = observationThreshold;
     const payload = {
       status: 'ok',
       data,
@@ -624,6 +735,7 @@ async function main() {
       graph_score_delta_json: JSON.stringify(scoreDelta),
     };
     if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
+    if (observationThreshold) payload.graph_observation_threshold_json = observationThreshold;
     jsonOut(payload);
   } finally {
     db?.closeDb();
@@ -632,8 +744,11 @@ async function main() {
 
 module.exports = {
   CONVERGENCE_PROFILE_SCHEMA,
+  applyObservationThresholdGuard,
   buildImprovementEffect,
   computeScoreDelta,
+  parseMinObservationsValue,
+  readObservationThresholdConfig,
   shouldTraceImprovementEffect,
 };
 
