@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/001-hermetic-test-isolation
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/001-hermetic-test-isolation
+Status: planned
+Importance Tier: important
+Summary: Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`, `database/`, and system temp directories because there is no shared hermetic helper
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

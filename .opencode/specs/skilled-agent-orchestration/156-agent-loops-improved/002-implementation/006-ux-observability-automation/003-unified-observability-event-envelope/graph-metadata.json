@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope
+Status: planned
+Importance Tier: important
+Summary: Each deep-loop producer appends events in a different native format
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

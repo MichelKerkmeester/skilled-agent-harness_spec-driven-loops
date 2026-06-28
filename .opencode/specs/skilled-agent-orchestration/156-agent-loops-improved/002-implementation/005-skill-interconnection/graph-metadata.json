@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/005-skill-interconnection
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/005-skill-interconnection
+Status: planned
+Importance Tier: important
+Summary: New deep-loop lexical modes added to `mode-registry.json` are born inert: the advisor's alias tables and drift-guard test are not automatically regenerated, so the advisor scores against stale projections and `advisorrecommend` responses omit the resolved `workflowMode` field that callers need
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

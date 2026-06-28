@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/005-skill-interconnection/001-advisor-routing-projection
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/005-skill-interconnection/001-advisor-routing-projection
+Status: planned
+Importance Tier: important
+Summary: When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

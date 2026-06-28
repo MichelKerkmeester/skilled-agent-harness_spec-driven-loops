@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope",
+  "description": "Each deep-loop producer appends events in a different native format",
+  "keywords": [
+    "deep-loop",
+    "producer",
+    "appends",
+    "events",
+    "different",
+    "native",
+    "format"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.415Z",
+  "specId": "003",
+  "folderSlug": "unified-observability-event-envelope",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation",
+    "006-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

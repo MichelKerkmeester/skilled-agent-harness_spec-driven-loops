@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/012-push-wave-fanout",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/012-push-wave-fanout",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "push wave fanout assignment",
+      "wave planner executor config",
+      "depends_on touches fan-out",
+      "flat_pool guard wave model",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "push",
+      "wave",
+      "fanout",
+      "assignment",
+      "planner",
+      "executor",
+      "config",
+      "touches",
+      "fan-out",
+      "guard",
+      "model",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wave Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Assignment Model",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage) and overlapping slots (both writing to the same path) consume concurrency slots without making progress and risk file conflicts",
+    "created_at": "2026-06-28T14:02:15Z",
+    "last_save_at": "2026-06-28T14:27:37.142Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7515507c5a972cfd9a7026c7c5bcf40cc9d3ae12252ba543c50a35a5a3f87f74",
+    "source_doc_hashes": {
+      "spec.md": "5531ae989949f3c126645c6a3176e8b2d9e89cdd9e8eaf433dd4e6bff60cfa09",
+      "plan.md": "c98d0cb5259dffe9aa19f8880e264b92497a5c745290e656ecc5a53d9d162477",
+      "tasks.md": "c21f10e8694035e1bbc9f34326382eb47a5b22eec5c5e84493ae7e63f3e51e1a",
+      "implementation-summary.md": "168460fbe41e9a2416d1abf9bf6be0ebdf9c33488359fa525e573e90026792fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loop reference research",
+      "loop-cli kasper mining",
+      "loop improvement recommendations",
+      "agent loops research",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "loop",
+      "reference",
+      "research",
+      "loop-cli",
+      "kasper",
+      "mining",
+      "improvement",
+      "recommendations",
+      "agent",
+      "loops",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fallback-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Systems Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
+    "created_at": "2026-06-28T14:30:35.956Z",
+    "last_save_at": "2026-06-28T14:34:06.815Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:be9dbbf5019829c8bffb69b434f891c9a54d20cd633256644cd7d173a6323de1",
+    "source_doc_hashes": {
+      "spec.md": "a3db03d93854542c1bc7f4241d6433f8870c8f1d07c3223af4053a608cb9c944",
+      "plan.md": "5fbf3386dae8daf17f412e1c6ec8c14d909da872bc2dd5bce2ac3d2597a58849",
+      "tasks.md": "d769a240f531f8e35b4459049dfe0fd00e8a7ebdadb3c742e33b73437139d846",
+      "implementation-summary.md": "d23d34ca398e7c70aaec37bf529ab2572c3a8b958d50b63b183adceeed3688ba",
+      "research/research.md": "99cab63149b6bf2024e9ecd7205ee0c8e644004f2d42ab288972ee711eb24a18"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

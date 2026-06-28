@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "description": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no",
+  "keywords": [
+    "optimizer",
+    "propose",
+    "config",
+    "candidate",
+    "satisfies",
+    "individual",
+    "parameter",
+    "ranges",
+    "while",
+    "violating",
+    "miniterations",
+    "maxiterations"
+  ],
+  "lastUpdated": "2026-06-28T14:26:01.909Z",
+  "specId": "003",
+  "folderSlug": "cross-mode-anti-convergence-adr",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

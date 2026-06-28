@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+  "description": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the",
+  "keywords": [
+    "concurrent",
+    "fan-out",
+    "writers",
+    "salvage",
+    "callers",
+    "append",
+    "same",
+    "jsonl",
+    "file",
+    "without",
+    "read-back-under-lock",
+    "step",
+    "multiple",
+    "processes",
+    "race"
+  ],
+  "lastUpdated": "2026-06-28T14:29:31.780Z",
+  "specId": "006",
+  "folderSlug": "jsonl-lock-held-merge",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-implementation",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

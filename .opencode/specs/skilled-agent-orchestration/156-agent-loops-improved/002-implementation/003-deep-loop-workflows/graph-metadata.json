@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/001-anti-convergence-floor",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/002-convergence-profile-unification-adr",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/004-injection-inbox-provenance",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/005-anchor-ownership-conflict-adr",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/006-rejected-pattern-cache",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/007-ideas-backlog-lifecycle",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/008-code-graph-coverage-bridge",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/009-loop-quality-benchmark",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/011-meta-loop-lane-d-packaging",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/012-push-wave-fanout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop workflows improvements",
+      "003 deep loop workflows",
+      "workflows subsystem recommendations",
+      "deep research improvement recommendations"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "workflows",
+      "improvements",
+      "003",
+      "subsystem",
+      "recommendations",
+      "research",
+      "improvement",
+      "deep-loop-workflows",
+      "layer",
+      "review"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflows Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, collapsed accept/ship promotion steps, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain",
+    "created_at": "2026-06-28T14:00:34Z",
+    "last_save_at": "2026-06-28T14:27:37.303Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e3bcc8b5af403cea3d5881c2bc41760ee8dfa94809e30b12547b1dda7d0e5e41",
+    "source_doc_hashes": {
+      "spec.md": "093f30d154f44b919ae40ffa05a70631e6b03c03430f6733ca043180ff40f9c7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

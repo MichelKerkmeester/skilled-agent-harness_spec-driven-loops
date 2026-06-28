@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit/001-speckit-autopilot-lifecycle",
+  "description": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
+  "keywords": [
+    "speckit",
+    "auto",
+    "mode",
+    "cuts",
+    "interactive",
+    "approval",
+    "prompts",
+    "designed",
+    "crash-safe",
+    "unattended",
+    "execution"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.389Z",
+  "specId": "001",
+  "folderSlug": "speckit-autopilot-lifecycle",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation",
+    "004-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

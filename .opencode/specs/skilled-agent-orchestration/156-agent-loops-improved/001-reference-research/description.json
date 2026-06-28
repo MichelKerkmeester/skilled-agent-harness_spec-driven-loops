@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
+  "description": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
+  "keywords": [
+    "loop",
+    "systems",
+    "unquantified",
+    "gaps",
+    "resilience",
+    "convergence",
+    "quality",
+    "observability",
+    "safety",
+    "interconnection"
+  ],
+  "lastUpdated": "2026-06-28T14:40:36.166Z",
+  "specId": "001",
+  "folderSlug": "reference-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

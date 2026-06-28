@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation
+Status: planned
+Importance Tier: important
+Summary: Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

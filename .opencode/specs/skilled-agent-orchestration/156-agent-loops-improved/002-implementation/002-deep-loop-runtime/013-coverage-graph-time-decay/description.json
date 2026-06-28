@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/013-coverage-graph-time-decay",
+  "description": "Old FINDING/SOURCE nodes accumulate in the coverage graph and continue to exert full convergence force long after their evidence is stale; this causes",
+  "keywords": [
+    "old",
+    "finding",
+    "source",
+    "nodes",
+    "accumulate",
+    "coverage",
+    "graph",
+    "continue",
+    "exert",
+    "full",
+    "convergence",
+    "force",
+    "long",
+    "evidence",
+    "stale",
+    "causes"
+  ],
+  "lastUpdated": "2026-06-28T14:29:34.130Z",
+  "specId": "013",
+  "folderSlug": "coverage-graph-time-decay",
+  "parentChain": [
+    "156-agent-loops-improved",
+    "002-implementation",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

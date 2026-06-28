@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/002-record-replay-cassette-harness
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/002-record-replay-cassette-harness
+Status: planned
+Importance Tier: important
+Summary: Convergence math in `convergence.cjs` is modified frequently (score-delta, observation-threshold, time-decay, fuzzy-merge) but there is no way to verify that a change does not regress existing convergence behavior without re-running a full live deep-loop session
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

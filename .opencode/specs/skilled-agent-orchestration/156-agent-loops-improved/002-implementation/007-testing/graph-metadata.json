@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing
+Status: planned
+Importance Tier: important
+Summary: Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution and risking real-data corruption
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

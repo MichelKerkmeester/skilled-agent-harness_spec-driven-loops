@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/001-atomic-state-serialize-diff",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/002-atomic-state-integrity-helpers",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/003-atomic-state-deferred-writer",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/004-abortable-chunked-sleep",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/009-byte-offset-log-regions",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/010-fixed-rate-overrun-accounting",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/011-convergence-score-delta",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/012-observation-threshold-guard",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/013-coverage-graph-time-decay",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/015-fallback-router-typed-reroute",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/016-llm-judge-hardening",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/017-fanout-stall-watchdog",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/018-persisted-wait-crash-resume"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime improvements",
+      "atomic state hardening",
+      "convergence signal improvements",
+      "loop resilience improvements",
+      "002 deep-loop-runtime"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "improvements",
+      "atomic",
+      "state",
+      "hardening",
+      "convergence",
+      "signal",
+      "loop",
+      "resilience",
+      "002",
+      "core",
+      "library"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fallback-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded for integrity and redundancy, the loop lock has no heartbeat during long dispatch, and there is no crash-resume for killed wait-boundary processes; (2) convergence quality — the convergence signal has no improvement-effect delta, no observation-threshold guard, and no time-decay on stale evidence; (3) observability — log transcript navigation requires full-file scanning and there is no byte-offset indexing; (4) robustness — the fallback router re",
+    "created_at": "2026-06-28T14:00:34Z",
+    "last_save_at": "2026-06-28T14:29:29.900Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ea68aa023dded07df7ec36fd04c04fe246a022c8e9bb0e47e1cfd97a4c48025a",
+    "source_doc_hashes": {
+      "spec.md": "2262e6f551283470dec8f97950aa2e3f7cf78b1226aafa517952b6acd7373b60"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

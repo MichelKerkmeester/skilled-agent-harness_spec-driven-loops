@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit",
+  "description": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
+  "keywords": [
+    "speckit",
+    "auto",
+    "flag",
+    "reduces",
+    "approval",
+    "prompts",
+    "deliver",
+    "crash-safe",
+    "unattended",
+    "execution",
+    "envelope"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.384Z",
+  "specId": "004",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

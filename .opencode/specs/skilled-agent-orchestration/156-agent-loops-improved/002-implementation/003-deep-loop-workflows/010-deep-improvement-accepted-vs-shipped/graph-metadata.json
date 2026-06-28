@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "accepted vs shipped deep improvement",
+      "promotion_blocked_branch_preserved",
+      "rollback candidate deep improvement",
+      "two-step promotion gate",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "accepted",
+      "shipped",
+      "deep",
+      "improvement",
+      "rollback",
+      "candidate",
+      "two-step",
+      "promotion",
+      "gate",
+      "implementation",
+      "plan",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promotion_gate_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "promotion_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improvement Candidate Accepted",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Shipped Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
+    "created_at": "2026-06-28T14:02:13Z",
+    "last_save_at": "2026-06-28T14:27:36.846Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:50820f997ee4ff4b9a5070048474f43df73a01790d38d2ef7a62a50bc1f6aa5d",
+    "source_doc_hashes": {
+      "spec.md": "f28cb39125e00ed343406a54b8b4c3043180702da9b6436358902c94e6f6e508",
+      "plan.md": "cb4f9e92efc21fb79908bbd5da49f04cd43325365b058400c2d70afe32e0c15f",
+      "tasks.md": "4d79dc1e388051c5d83b2d496bd62155da014fd021c61d9676c68d14ed793add",
+      "implementation-summary.md": "e95f43e20126feec0ebb988d53b2d85bea52a200c846583d38330aaaaa672a31"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

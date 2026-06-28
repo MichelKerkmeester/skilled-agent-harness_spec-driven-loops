@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved",
+  "children_ids": [
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/005-skill-interconnection",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation",
+    "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing"
+  ],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loop systems implementation",
+      "apply loop recommendations",
+      "deep-loop improvement phases",
+      "goal plugin implementation"
+    ],
+    "key_topics": [
+      "loop",
+      "systems",
+      "implementation",
+      "apply",
+      "recommendations",
+      "deep-loop",
+      "improvement",
+      "phases",
+      "goal",
+      "plugin",
+      "50-iteration",
+      "reference"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Systems Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 50-iteration reference study (`001-reference-research`) produced 40 concrete, evidence-backed improvements to our loop systems, but a flat backlog is hard to execute safely — several items have hard ordering dependencies (e.g., a convergence contract must be frozen before new convergence signals are added; crash-resume needs integrity + lifecycle first)",
+    "created_at": "2026-06-28T14:00:32Z",
+    "last_save_at": "2026-06-28T14:30:36.287Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:89690f801281b554679c0580b212841367af88ee02cd6dd29579d935d1f1902d",
+    "source_doc_hashes": {
+      "spec.md": "1dfd1cf4087aa99b2c959912bbccfb2dad636a0193b99a2e78238bcddae44ed2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

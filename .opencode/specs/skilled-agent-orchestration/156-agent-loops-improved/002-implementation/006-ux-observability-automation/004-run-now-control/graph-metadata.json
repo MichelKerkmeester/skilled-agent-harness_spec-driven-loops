@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control
+Status: planned
+Importance Tier: important
+Summary: The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "spec_folder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "parent_id": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-mode anti-convergence",
+      "antiConvergence contract ADR",
+      "optimizer invariant groups",
+      "stopPolicy fail-closed",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "cross-mode",
+      "anti-convergence",
+      "anticonvergence",
+      "contract",
+      "adr",
+      "optimizer",
+      "invariant",
+      "groups",
+      "stoppolicy",
+      "fail-closed",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Anti",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
+    "created_at": "2026-06-28T14:02:08Z",
+    "last_save_at": "2026-06-28T14:27:35.736Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0b5f419e1fe1afc9e7568e36b717b5082abf63bd6c4c8e24d733d9ab46f2bc9b",
+    "source_doc_hashes": {
+      "spec.md": "f927f0a329d90d05df010b478211edabe250095df2bb638ec28287e7aafae17c",
+      "plan.md": "eb8b78028ff0134e6e53b9cc9dcb4f3e39cc061e77dbac69ad326a541418f9b8",
+      "tasks.md": "3b2c98ea773d368a43fc88e41b3daa359e9ceb1f25bf9bd6f382a85b8c57b0ff",
+      "implementation-summary.md": "f970da416337b704ccfcdc38236b6f99524993ebea3516271a683ea683734358"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

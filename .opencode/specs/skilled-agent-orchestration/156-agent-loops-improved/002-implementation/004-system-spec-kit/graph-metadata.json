@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/004-system-spec-kit
+Status: planned
+Importance Tier: important
+Summary: The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

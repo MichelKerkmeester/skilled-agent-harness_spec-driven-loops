@@ -1,0 +1,87 @@
+{
+  "topic": "Mine two vendored reference repos (read-only) to produce a ranked, actionable backlog of improvements to OUR loop systems. References, absolute paths: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/external/loop-cli-main and /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/external/kasper. Targets to improve (cite exact files): deep-loop-runtime, deep-loop-workflows, system-spec-kit commands and agents, skill interconnection, UX, and loop/automation. Investigate along 4 rotating dimensions per iteration: D1 source-mining one specific mechanism from a reference; D2 mapping a mechanism onto a named file of ours; D3 cross-cutting (UX, automation, interconnection, observability, loop testing); D4 synthesis (port design, risk/migration, ADR-worthy decisions, quick-win vs deep-rewrite). Every finding must carry reference file:line evidence, the exact OUR target file, a port-difficulty estimate, and a quick-win vs deep-rewrite tag. ANTI-CONVERGENCE is a hard requirement: never stop early; on any convergence, repetition, or stall, broaden scope, rotate dimension, or open a brand-new angle; the target is 50 proper iterations, each adding genuine novelty. Executor: cli-codex, model gpt-5.5, reasoning xhigh, service tier fast.",
+  "maxIterations": 58,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/001-reference-research",
+  "createdAt": "2026-06-28T10:17:45Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "dr-156-001-20260628-121745",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/deep-research-findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

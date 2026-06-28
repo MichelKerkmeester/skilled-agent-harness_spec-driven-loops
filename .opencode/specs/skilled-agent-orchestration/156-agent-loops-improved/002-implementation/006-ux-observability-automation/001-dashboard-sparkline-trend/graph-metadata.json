@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/001-dashboard-sparkline-trend
+Status: planned
+Importance Tier: important
+Summary: The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

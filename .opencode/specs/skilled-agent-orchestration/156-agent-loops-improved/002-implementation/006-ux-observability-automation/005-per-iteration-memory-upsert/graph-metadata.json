@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/005-per-iteration-memory-upsert
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/005-per-iteration-memory-upsert
+Status: planned
+Importance Tier: important
+Summary: Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/002-single-loop-telemetry-heartbeat
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/002-single-loop-telemetry-heartbeat
+Status: planned
+Importance Tier: important
+Summary: The deep-loop dashboard and status tooling reads `orchestration-status.log` rows emitted by fan-out runs
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

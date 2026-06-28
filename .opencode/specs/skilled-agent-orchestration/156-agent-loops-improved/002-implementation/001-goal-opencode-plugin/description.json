@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/001-goal-opencode-plugin",
+  "description": "OpenCode has no goal/completion-condition system",
+  "keywords": [
+    "opencode",
+    "goal",
+    "completion-condition",
+    "system"
+  ],
+  "lastUpdated": "2026-06-28T14:40:36.176Z",
+  "specId": "001",
+  "folderSlug": "goal-opencode-plugin",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

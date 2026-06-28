@@ -1,0 +1,7 @@
+Packet: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/006-loop-wide-dry-run
+Spec Folder: skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/006-loop-wide-dry-run
+Status: planned
+Importance Tier: important
+Summary: There is no safe way for an operator to inspect what a deep-loop run would do without executing it: setup, focus selection, and convergence reads cannot be validated without risking executor dispatch, state mutations, reducer rewrites, or child spawns
+Key Files: spec.md, plan.md, tasks.md
+Source Docs: spec.md, plan.md, tasks.md

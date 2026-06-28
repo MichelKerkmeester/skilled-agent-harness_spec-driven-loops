@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/003-deep-loop-workflows/009-loop-quality-benchmark",
+  "description": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better",
+  "keywords": [
+    "deep-improvement",
+    "benchmark",
+    "currently",
+    "gates",
+    "benchmark-pass",
+    "run",
+    "succeed",
+    "rather",
+    "improvement-over-baseline",
+    "candidate",
+    "better"
+  ],
+  "lastUpdated": "2026-06-28T14:26:02.731Z",
+  "specId": "009",
+  "folderSlug": "loop-quality-benchmark",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

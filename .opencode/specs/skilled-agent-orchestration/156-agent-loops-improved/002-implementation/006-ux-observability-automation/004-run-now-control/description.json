@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/004-run-now-control",
+  "description": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
+  "keywords": [
+    "only",
+    "way",
+    "trigger",
+    "immediate",
+    "deep-loop",
+    "iteration",
+    "wait",
+    "configured",
+    "cadence",
+    "restart",
+    "process"
+  ],
+  "lastUpdated": "2026-06-28T14:23:06.420Z",
+  "specId": "004",
+  "folderSlug": "run-now-control",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "156-agent-loops-improved",
+    "002-implementation",
+    "006-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
