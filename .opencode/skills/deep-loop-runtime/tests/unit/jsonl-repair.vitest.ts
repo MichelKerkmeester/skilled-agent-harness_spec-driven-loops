@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { appendFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { appendJsonlRecord, repairJsonlTail } from '../../lib/deep-loop/jsonl-repair.js';
+import { appendJsonlRecord, mergeJsonlUnderLock, repairJsonlTail } from '../../lib/deep-loop/jsonl-repair.js';
+import { createHermeticEnv, runtimeRoot } from '../helpers/spawn-cjs';
 
 /**
  * Creates a temporary JSONL state file for jsonl-repair tests.
@@ -17,6 +18,71 @@ function withTempJsonl(run: (statePath: string, tempDir: string) => void): void 
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }
+}
+
+function readJsonlRecords(statePath: string): Array<Record<string, unknown>> {
+  const content = readFileSync(statePath, 'utf8').trimEnd();
+  if (!content) {
+    return [];
+  }
+  return content.split(/\r?\n/).map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+function writeMergeWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'merge-writer.cjs');
+  writeFileSync(
+    writerPath,
+    [
+      "const { mergeJsonlUnderLock } = require(process.argv[2]);",
+      'mergeJsonlUnderLock(process.argv[3], JSON.parse(process.argv[4]));',
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+function runMergeWriter(
+  writerPath: string,
+  statePath: string,
+  records: Array<Record<string, unknown>>,
+  env: NodeJS.ProcessEnv,
+): Promise<void> {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(
+      process.execPath,
+      [
+        '--import',
+        'tsx',
+        writerPath,
+        join(runtimeRoot, 'lib', 'deep-loop', 'jsonl-repair.ts'),
+        statePath,
+        JSON.stringify(records),
+      ],
+      {
+        cwd: runtimeRoot,
+        env: {
+          ...env,
+          DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS: '5000',
+          DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS: '5',
+        },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      },
+    );
+    let stdout = '';
+    let stderr = '';
+    child.stdout?.setEncoding('utf8');
+    child.stderr?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => { stdout += chunk; });
+    child.stderr?.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (status, signal) => {
+      if (status === 0) {
+        resolvePromise();
+        return;
+      }
+      reject(new Error(`merge writer failed status=${status} signal=${signal} stdout=${stdout} stderr=${stderr}`));
+    });
+  });
 }
 
 describe('jsonl-repair', () => {
@@ -114,6 +180,71 @@ describe('jsonl-repair', () => {
 
       expect(repairJsonlTail(statePath).repaired).toBe(true);
       expect(readFileSync(statePath, 'utf8')).toBe('{"type":"iteration","iteration":1}\n');
+    });
+  });
+
+  it('merges concurrent salvage-shaped appends without losing unique records', async () => {
+    const hermetic = createHermeticEnv('jsonl-salvage-merge');
+    try {
+      const statePath = join(hermetic.tmpDir, 'state.jsonl');
+      const writerPath = writeMergeWriter(hermetic.tmpDir);
+      appendJsonlRecord(statePath, { type: 'iteration', iteration: 0, focus: 'seed', id: 'seed' });
+
+      await Promise.all(Array.from({ length: 8 }, (_, index) =>
+        runMergeWriter(
+          writerPath,
+          statePath,
+          [
+            {
+              type: 'event',
+              event: 'salvaged_from_stdout',
+              iteration: index,
+              focus: 'salvage',
+              id: `salvage-${index}`,
+              bytes_recovered: 100 + index,
+            },
+            {
+              type: 'event',
+              event: 'salvaged_from_stdout',
+              iteration: 99,
+              focus: 'salvage',
+              id: 'shared-salvage',
+              bytes_recovered: 999,
+            },
+          ],
+          hermetic.env,
+        ),
+      ));
+
+      const records = readJsonlRecords(statePath);
+      const identities = records.map((record) => `${record['type']}:${record['iteration']}:${record['focus']}:${record['id']}`);
+
+      expect(records).toHaveLength(10);
+      expect(new Set(identities).size).toBe(records.length);
+      for (let index = 0; index < 8; index += 1) {
+        expect(identities).toContain(`event:${index}:salvage:salvage-${index}`);
+      }
+      expect(identities).toContain('event:99:salvage:shared-salvage');
+    } finally {
+      hermetic.cleanup();
+    }
+  });
+
+  it('dedupes merged records by stable record identity', () => {
+    withTempJsonl((statePath) => {
+      mergeJsonlUnderLock(statePath, [
+        { type: 'event', iteration: 1, focus: 'salvage', id: 'same', source: 'left' },
+        { type: 'event', iteration: 1, focus: 'salvage', id: 'same', source: 'right' },
+        { type: 'event', iteration: 1, focus: 'salvage', event: { id: 'nested' }, source: 'nested-left' },
+        { type: 'event', iteration: 1, focus: 'salvage', event: { id: 'nested' }, source: 'nested-right' },
+        { type: 'event', iteration: 1, focus: 'other', id: 'same', source: 'other-focus' },
+      ]);
+
+      expect(readJsonlRecords(statePath).map((record) => record['source'])).toEqual([
+        'left',
+        'nested-left',
+        'other-focus',
+      ]);
     });
   });
 });

@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "006-jsonl-lock-held-merge summary"
     ],
     "key_topics": [
       "jsonl-lock-held-merge",
@@ -35,13 +35,15 @@
       "template",
       "core",
       "tasks",
-      "summary",
-      "concurrent"
+      "006-jsonl-lock-held-merge",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +54,18 @@
         "name": "jsonl-repair.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the same file, some records are written twice and others are lost depending on who wins the append race",
     "created_at": "2026-06-28T14:01:55Z",
-    "last_save_at": "2026-06-28T14:29:31.961Z",
+    "last_save_at": "2026-06-28T17:30:02.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddeaffa0f39bce8bf2672e5e30fe01916d07b01a0e5a43bd082fb33f08fe7545",
+    "source_fingerprint": "sha256:e242004bcbccc5264b528d5eab072ad00a277c8554fefc78030ebf3f9d3c669a",
     "source_doc_hashes": {
-      "spec.md": "6dffb7ccb4f2f768b73912bb6a8a258bdce4d5b2a8bbbe0661243882d48876ec",
+      "spec.md": "300d7d8f0745cd66b965b5f57b1716c502eed600b88bd1943286312c1867ea82",
       "plan.md": "078b63aca7665a02b5da5668c38fcbb8a853d176f18cf133c0a65526d6c1cc36",
       "tasks.md": "f10b59d86b0ef1d29274c2ba30290da7bc511829fc2b310053a5aec205baf076",
-      "implementation-summary.md": "b819a1f9ba3402dcf93811bb164f9e984748e1fffabb317b0e79b20a97c9282c"
+      "implementation-summary.md": "c332be054ae91edeb69c51d6b0882bb78a9700b2fca957fbd58ec0c5788157a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

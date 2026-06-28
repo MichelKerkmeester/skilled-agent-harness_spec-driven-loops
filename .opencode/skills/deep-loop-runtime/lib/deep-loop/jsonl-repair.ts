@@ -1,6 +1,14 @@
 // MODULE: Deep-Loop JSONL Repair
 
-import { appendFileSync, existsSync, readFileSync, truncateSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, truncateSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { dirname } from 'node:path';
+import { randomUUID } from 'node:crypto';
+
+const require = createRequire(import.meta.url);
+const { acquireWriterLock } = require('../../scripts/lib/cli-guards.cjs') as {
+  acquireWriterLock: (lockPath: string) => () => void;
+};
 
 // ───── TYPE DEFINITIONS ─────
 
@@ -8,6 +16,8 @@ export type JsonlRepairResult = {
   repaired: boolean;
   droppedBytes: number;
 };
+
+type JsonlRecord = Record<string, unknown>;
 
 // ───── HELPERS ─────
 
@@ -63,6 +73,79 @@ function validPrefixByteLength(content: string): number {
   }
 }
 
+function readJsonlRecords(path: string): JsonlRecord[] {
+  if (!existsSync(path)) {
+    return [];
+  }
+
+  const content = readFileSync(path, 'utf8');
+  if (content.trim() === '') {
+    return [];
+  }
+
+  return content
+    .split(/\r?\n/)
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line) as JsonlRecord);
+}
+
+function nestedEventId(record: JsonlRecord): unknown {
+  const event = record['event'];
+  if (!event || typeof event !== 'object' || Array.isArray(event)) {
+    return undefined;
+  }
+  return (event as JsonlRecord)['id'];
+}
+
+function stableRecordIdentity(record: JsonlRecord): string {
+  const identityParts = [
+    record['type'],
+    record['iteration'],
+    record['focus'],
+    record['id'] ?? nestedEventId(record),
+  ];
+  if (identityParts.every((part) => part === undefined || part === null)) {
+    return `json:${JSON.stringify(record)}`;
+  }
+  return `key:${identityParts.map((part) => JSON.stringify(part ?? null)).join('|')}`;
+}
+
+function dedupeRecords(records: JsonlRecord[]): JsonlRecord[] {
+  const seen = new Set<string>();
+  const deduped: JsonlRecord[] = [];
+
+  for (const record of records) {
+    const identity = stableRecordIdentity(record);
+    if (seen.has(identity)) {
+      continue;
+    }
+    seen.add(identity);
+    deduped.push(record);
+  }
+
+  return deduped;
+}
+
+function mergeRecords(existingRecords: JsonlRecord[], incomingRecords: JsonlRecord[]): JsonlRecord[] {
+  return dedupeRecords([...existingRecords, ...incomingRecords]);
+}
+
+function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
+  mkdirSync(dirname(path), { recursive: true });
+  const tempPath = `${path}.tmp.${process.pid}.${Date.now()}.${randomUUID()}`;
+  const content = records.length > 0
+    ? `${records.map((record) => JSON.stringify(record)).join('\n')}\n`
+    : '';
+
+  try {
+    writeFileSync(tempPath, content, 'utf8');
+    renameSync(tempPath, path);
+  } catch (err) {
+    rmSync(tempPath, { force: true });
+    throw err;
+  }
+}
+
 // ───── EXPORTS ─────
 
 /**
@@ -104,4 +187,31 @@ export function repairJsonlTail(path: string): JsonlRepairResult {
  */
 export function appendJsonlRecord(path: string, record: Record<string, unknown>): void {
   appendFileSync(path, `${JSON.stringify(record)}\n`, { encoding: 'utf8', flag: 'a' });
+}
+
+/**
+ * Merge JSONL records under an exclusive writer lock.
+ *
+ * Incoming records are deduplicated before the critical section; the current
+ * file is reread while holding the lock so racing writers converge instead of
+ * overwriting each other.
+ *
+ * @param path - Path to the JSONL file.
+ * @param incomingRecords - Records to union into the file.
+ */
+export function mergeJsonlUnderLock(path: string, incomingRecords: Array<Record<string, unknown>>): void {
+  const uniqueIncomingRecords = dedupeRecords(incomingRecords);
+  if (uniqueIncomingRecords.length === 0) {
+    return;
+  }
+
+  mkdirSync(dirname(path), { recursive: true });
+  const releaseWriterLock = acquireWriterLock(`${path}.lock`);
+  try {
+    repairJsonlTail(path);
+    const currentRecords = readJsonlRecords(path);
+    writeJsonlRecordsAtomic(path, mergeRecords(currentRecords, uniqueIncomingRecords));
+  } finally {
+    releaseWriterLock();
+  }
 }

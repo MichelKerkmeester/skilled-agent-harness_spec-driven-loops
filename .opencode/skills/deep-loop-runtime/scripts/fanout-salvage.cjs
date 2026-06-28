@@ -10,6 +10,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
+  require('tsx/cjs');
+}
+
+const { mergeJsonlUnderLock } = require('../lib/deep-loop/jsonl-repair.ts');
+
 const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
@@ -118,14 +124,15 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
 
     if (recoveredText) {
       fs.writeFileSync(iterFile, recoveredText, 'utf8');
-      const event = JSON.stringify({
+      const eventRecord = {
         type: 'event',
         event: 'salvaged_from_stdout',
         iteration: iterNum,
+        id: 'salvaged_from_stdout',
         source: 'fanout_lineage_stdout',
         bytes_recovered: recoveredText.length,
-      });
-      fs.appendFileSync(stateLogPath, event + '\n', 'utf8');
+      };
+      mergeJsonlUnderLock(stateLogPath, [eventRecord]);
       salvaged += 1;
     } else {
       fs.writeFileSync(

@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -112,7 +112,7 @@ Implement reread-under-lock + set-union merge keyed by stable record identity so
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts` | Modify | Add `mergeJsonlUnderLock` with reread-under-lock + set-union merge by stable record identity |
-| `.opencode/skills/deep-loop-runtime/lib/deep-loop/fanout-salvage.cjs` | Modify | Wire salvage appends through `mergeJsonlUnderLock` instead of bare append |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs` | Modify | Wire salvage appends through `mergeJsonlUnderLock` instead of bare append |
 <!-- /ANCHOR:scope -->
 
 ---
