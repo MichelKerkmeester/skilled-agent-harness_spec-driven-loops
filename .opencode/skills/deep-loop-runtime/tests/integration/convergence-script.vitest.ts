@@ -1,6 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Convergence Script Integration Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';
+import { join, resolve } from 'node:path';
 
 import {
   computeContextSignalsFromData,
@@ -12,21 +17,27 @@ import {
 } from '../../lib/coverage-graph/coverage-graph-signals.js';
 import {
   cleanupNamespace,
+  createHermeticEnv,
   namespaceArgs,
+  recordScriptRun,
+  replayScriptRun,
   runScript,
+  runtimeRoot,
   seedReviewNode,
   uniqueNamespace,
+  type RunScriptOptions,
   type ScriptNamespace,
 } from '../helpers/spawn-cjs';
 
 const requireCjs = createRequire(import.meta.url);
 const namespaces: ScriptNamespace[] = [];
+const convergenceScript = resolve(runtimeRoot, 'scripts', 'convergence.cjs');
 
 const { CONVERGENCE_PROFILE_SCHEMA } = requireCjs('../../scripts/convergence.cjs') as {
   CONVERGENCE_PROFILE_SCHEMA: Record<string, unknown>;
 };
 
-function seedConvergedResearchGraph(namespace: ScriptNamespace) {
+function seedConvergedResearchGraph(namespace: ScriptNamespace, options: RunScriptOptions = {}) {
   return runScript('upsert', [
     ...namespaceArgs(namespace),
     '--nodes',
@@ -44,7 +55,7 @@ function seedConvergedResearchGraph(namespace: ScriptNamespace) {
       { id: 'cite-1', sourceId: 'finding-1', targetId: 'source-1', relation: 'CITES' },
       { id: 'cite-2', sourceId: 'finding-2', targetId: 'source-2', relation: 'CITES' },
     ]),
-  ]);
+  ], options);
 }
 
 function seedObservationThresholdResearchGraph(namespace: ScriptNamespace, observations: number) {
@@ -427,6 +438,112 @@ describe('convergence.cjs direct invocation', () => {
 });
 
 describe('convergence profile parity pins', () => {
+  it('replays a recorded research convergence cassette against the pinned envelope', async () => {
+    const hermetic = createHermeticEnv('convergence-cassette');
+    try {
+      const namespace: ScriptNamespace = {
+        specFolder: 'specs/cassette-convergence-research',
+        loopType: 'research',
+        sessionId: 'session-cassette-convergence',
+      };
+      const args = namespaceArgs(namespace);
+      const cassetteDir = join(hermetic.tmpDir, 'cassettes');
+      const cassetteId = 'convergence-research-stop-allowed';
+
+      expect(seedConvergedResearchGraph(namespace, { env: hermetic.env }).exitCode).toBe(0);
+
+      const recorded = await recordScriptRun(convergenceScript, args, {
+        cassetteDir,
+        cassetteId,
+        cwd: runtimeRoot,
+        env: hermetic.env,
+      });
+      const payload = JSON.parse(recorded.cassette.envelope.stdout) as Record<string, unknown>;
+
+      expect(recorded.result.exitCode).toBe(0);
+      expect(recorded.cassette.envelope).toMatchObject({
+        scriptPath: '<SCRIPT_PATH>',
+        cwd: '<RUNTIME_ROOT>',
+        argv: args,
+        exitCode: 0,
+        signal: null,
+        timedOut: false,
+      });
+      expect(payload).toEqual({
+        status: 'ok',
+        data: {
+          decision: 'STOP_ALLOWED',
+          reason: 'All convergence signals pass thresholds; STOP is allowed pending newInfoRatio agreement.',
+          score: 0.86,
+          scoreDelta: null,
+          scoreDeltaNote: 'no prior snapshot',
+          signals: {
+            questionCoverage: 1,
+            claimVerificationRate: 1,
+            contradictionDensity: 0,
+            sourceDiversity: 2,
+            evidenceDepth: 2,
+            score: 0.86,
+          },
+          blockers: [],
+          trace: [
+            { signal: 'questionCoverage', value: 1, threshold: 0.7, passed: true, role: 'weighted' },
+            { signal: 'claimVerificationRate', value: 1, threshold: 0.6, passed: true, role: 'weighted' },
+            { signal: 'contradictionDensity', value: 0, threshold: 0.15, passed: true, role: 'weighted' },
+            { signal: 'sourceDiversity', value: 2, threshold: 1.5, passed: true, role: 'blocking_guard' },
+            { signal: 'evidenceDepth', value: 2, threshold: 1.5, passed: true, role: 'blocking_guard' },
+          ],
+          momentum: null,
+          namespace,
+          scopeMode: 'session',
+          notes: ['Convergence signals were computed from the session-scoped subgraph only.'],
+          snapshotPersistence: 'not_requested',
+          nodeCount: 5,
+          edgeCount: 4,
+          lastIteration: null,
+        },
+        graph_decision: 'STOP_ALLOWED',
+        graph_decision_json: '"STOP_ALLOWED"',
+        graph_signals_json: {
+          questionCoverage: 1,
+          claimVerificationRate: 1,
+          contradictionDensity: 0,
+          sourceDiversity: 2,
+          evidenceDepth: 2,
+          score: 0.86,
+        },
+        graph_blockers_json: [],
+        graph_blockers_csv: '',
+        graph_stop_blocked: false,
+        graph_trace_json: [
+          { signal: 'questionCoverage', value: 1, threshold: 0.7, passed: true, role: 'weighted' },
+          { signal: 'claimVerificationRate', value: 1, threshold: 0.6, passed: true, role: 'weighted' },
+          { signal: 'contradictionDensity', value: 0, threshold: 0.15, passed: true, role: 'weighted' },
+          { signal: 'sourceDiversity', value: 2, threshold: 1.5, passed: true, role: 'blocking_guard' },
+          { signal: 'evidenceDepth', value: 2, threshold: 1.5, passed: true, role: 'blocking_guard' },
+        ],
+        graph_convergence_score: 0.86,
+        graph_score_delta: null,
+        graph_score_delta_json: 'null',
+      });
+
+      const replayedOutputs: string[] = [];
+      for (let index = 0; index < 3; index += 1) {
+        const replayed = await replayScriptRun(cassetteId, convergenceScript, args, {
+          cassetteDir,
+          cwd: runtimeRoot,
+          env: hermetic.env,
+        });
+        expect(replayed.matches, replayed.diff.join('\n')).toBe(true);
+        replayedOutputs.push(replayed.normalized.stdout);
+      }
+
+      expect(new Set(replayedOutputs).size).toBe(1);
+    } finally {
+      hermetic.cleanup();
+    }
+  });
+
   it('exports the shared profile schema without running the CLI', () => {
     expect(CONVERGENCE_PROFILE_SCHEMA).toEqual({
       threshold: 'number',

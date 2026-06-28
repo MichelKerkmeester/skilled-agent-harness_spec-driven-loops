@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fanout Run Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -7,6 +11,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   createHermeticEnv,
+  recordScriptRun,
+  replayScriptRun,
   runtimeRoot,
   spawnCjs,
   type HermeticEnv,
@@ -235,6 +241,75 @@ describe('fanout-run.cjs — module basics', () => {
     };
     expect(summary.convergence).toEqual({ status: 'converged', reason: 'empty_tick', no_new_findings: true });
     expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
+  });
+
+  it('replays a native-only fanout cassette with a stable normalized run envelope', async () => {
+    const hermetic = useHermeticEnv('native-cassette');
+    const baseDir = makeTempDir('fanout-run-cassette-base-');
+    const cassetteDir = makeTempDir('fanout-run-cassette-dir-');
+    const cassetteId = 'fanout-native-empty';
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'native-a', kind: 'native', count: 1 }],
+      concurrency: 2,
+    });
+    const args = [
+      '--spec-folder',
+      'specs/cassette-fanout-native',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      baseDir,
+    ];
+    const options = {
+      cassetteDir,
+      cassetteId,
+      cwd: hermetic.tmpDir,
+      env: hermetic.env,
+      redactions: { [baseDir]: '<BASE_ARTIFACT_DIR>' },
+      timeoutMs: 15_000,
+    };
+
+    const recorded = await recordScriptRun(fanoutRunScript, args, options);
+    const payload = JSON.parse(recorded.cassette.envelope.stdout) as Record<string, unknown>;
+
+    expect(recorded.result.exitCode).toBe(0);
+    expect(recorded.cassette.envelope).toMatchObject({
+      scriptPath: '<SCRIPT_PATH>',
+      cwd: '<CWD>',
+      argv: [
+        '--spec-folder',
+        'specs/cassette-fanout-native',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        '<BASE_ARTIFACT_DIR>',
+      ],
+      exitCode: 0,
+      signal: null,
+      timedOut: false,
+    });
+    expect(payload).toEqual({
+      status: 'ok',
+      message: 'no CLI lineages to spawn',
+      run_id: '<RUN_ID>',
+      results: [],
+      summary: {
+        total: 0,
+        succeeded: 0,
+        failed: 0,
+        all_failed: false,
+        gauges: { lag: 0, pending: 0, failed: 0 },
+        convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
+      },
+    });
+
+    const replayed = await replayScriptRun(cassetteId, fanoutRunScript, args, options);
+    expect(replayed.matches, replayed.diff.join('\n')).toBe(true);
+    expect(JSON.parse(replayed.normalized.stdout)).toEqual(payload);
   });
 
   it('exits 3 (INPUT_VALIDATION) when fanout-config-json is not valid JSON', async () => {

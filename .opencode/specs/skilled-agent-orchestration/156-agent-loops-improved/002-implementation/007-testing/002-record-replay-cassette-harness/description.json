@@ -15,11 +15,10 @@
     "way",
     "veri"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.442Z",
+  "lastUpdated": "2026-06-28T20:20:49.533Z",
   "specId": "002",
   "folderSlug": "record-replay-cassette-harness",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "007-testing"
