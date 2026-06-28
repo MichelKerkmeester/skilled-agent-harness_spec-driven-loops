@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
-import { mkdir, open, readFile, rename, unlink } from 'node:fs/promises';
+import { appendFile, mkdir, open, readFile, rename, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,7 +27,14 @@ const DEFAULT_MAX_INJECTION_CHARS = 2400;
 const DEFAULT_MAX_REASON_CHARS = 280;
 const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
 const DEFAULT_MAX_AUTO_TURNS = 8;
+const DEFAULT_CONTINUATION_COOLDOWN_MS = 1500;
+const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
+const AUTONOMY_ENV = 'MK_GOAL_AUTONOMY';
+const DEBUG_ENV = 'MK_GOAL_DEBUG';
+const CONTINUATION_LOG_FILENAME = '.continuation.log';
+const GOAL_EVENTS_LOG_FILENAME = '.goal-events.log';
+const AUTONOMY_ACTIVE_MODES = new Set(['active', 'smoke']);
 const VALID_STATUSES = new Set([
   'active',
   'paused',
@@ -260,6 +267,52 @@ function extractEventGoalID(event) {
   ).replace(/\s+/g, '-');
 }
 
+function extractEventSessionStatus(event) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  const status = payload?.status || properties.status || properties.info?.status || null;
+  return sanitizeInlineText(status?.type || status || '', 80).toLowerCase() || null;
+}
+
+function autonomyModeFromEnv() {
+  return sanitizeInlineText(process.env[AUTONOMY_ENV] || '', 40).toLowerCase();
+}
+
+function disabledAutonomyReason(mode) {
+  return mode === 'passive' ? 'autonomy_passive' : 'autonomy_disabled';
+}
+
+function normalizeAutoTurns(value) {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(DEFAULT_MAX_AUTO_TURNS, Math.trunc(value)));
+}
+
+async function appendGoalJsonl(filename, payload, rawOptions = {}) {
+  try {
+    const stateDir = await ensureGoalStateDir(rawOptions);
+    await appendFile(join(stateDir, filename), `${JSON.stringify(payload)}\n`, 'utf8');
+  } catch {
+    return;
+  }
+}
+
+async function logContinuationDecision(sessionID, decision, reason, autoTurnsUsed, rawOptions = {}) {
+  await appendGoalJsonl(CONTINUATION_LOG_FILENAME, {
+    sid: sessionID || null,
+    decision,
+    reason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS) || 'unknown',
+    autoTurnsUsed: normalizeAutoTurns(autoTurnsUsed),
+  }, rawOptions);
+}
+
+async function logDebugEvent(eventType, sessionID, rawOptions = {}) {
+  if (process.env[DEBUG_ENV] !== '1') return;
+  await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+    type: sanitizeInlineText(eventType || 'unknown', 80),
+    sid: sessionID || null,
+  }, rawOptions);
+}
+
 function numericField(source, keys) {
   if (!source || typeof source !== 'object') return null;
   for (const key of keys) {
@@ -416,13 +469,27 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     createdAt: typeof rawGoal.createdAt === 'string' ? rawGoal.createdAt : isoFromMs(createdAtMs),
     updatedAt: typeof rawGoal.updatedAt === 'string' ? rawGoal.updatedAt : isoFromMs(updatedAtMs),
     continuationSuppressed: rawGoal.continuationSuppressed === true,
-    autoTurnsUsed: Number.isFinite(rawGoal.autoTurnsUsed) ? Math.max(0, Math.trunc(rawGoal.autoTurnsUsed)) : 0,
-    maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns) ? Math.max(0, Math.trunc(rawGoal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS,
+    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed),
+    maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns)
+      ? Math.max(0, Math.min(DEFAULT_MAX_AUTO_TURNS, Math.trunc(rawGoal.maxAutoTurns)))
+      : DEFAULT_MAX_AUTO_TURNS,
     startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
     lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
     lastActivityMessageID: rawGoal.lastActivityMessageID === null || rawGoal.lastActivityMessageID === undefined
       ? null
       : sanitizeInlineText(rawGoal.lastActivityMessageID, 160),
+    lastContinuationAtMs: Number.isFinite(rawGoal.lastContinuationAtMs)
+      ? Math.max(0, Math.trunc(rawGoal.lastContinuationAtMs))
+      : 0,
+    lastContinuationMessageId: rawGoal.lastContinuationMessageId === null || rawGoal.lastContinuationMessageId === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.lastContinuationMessageId, 160),
+    lastContinuationError: rawGoal.lastContinuationError === null || rawGoal.lastContinuationError === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.lastContinuationError, DEFAULT_MAX_REASON_CHARS),
+    continuationSuppressedReason: rawGoal.continuationSuppressedReason === null || rawGoal.continuationSuppressedReason === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.continuationSuppressedReason, DEFAULT_MAX_REASON_CHARS),
     blockedByPrompt: rawGoal.blockedByPrompt === true,
     iterations: Number.isFinite(rawGoal.iterations) ? Math.max(0, Math.trunc(rawGoal.iterations)) : 0,
     lastVerifierVerdict: sanitizeInlineText(rawGoal.lastVerifierVerdict || 'not_evaluated', 80),
@@ -879,6 +946,223 @@ export async function maybeVerifyGoal(sessionID, rawOptions = {}) {
   return result;
 }
 
+function renderContinuationPrompt(goal, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const objective = sanitizeInlineText(goal?.objective, options.maxObjectiveChars);
+  const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
+  return clampText([
+    '[active_goal_continuation]',
+    `objective: ${objective}`,
+    `last_check: ${goal?.lastVerifierVerdict || 'not_evaluated'} ; reason: ${reason}`,
+    'instruction: Continue the active goal from the current session context. Do not ask for confirmation unless blocked by missing permission or user input. End only when the verifier can prove completion or the work is blocked.',
+    '[/active_goal_continuation]',
+  ].join('\n'), options.maxInjectionChars);
+}
+
+function continuationRuntimeStatus(runtimeState, sessionID) {
+  const rawStatus = runtimeState?.sessionStatuses?.get?.(sessionID) || null;
+  return sanitizeInlineText(rawStatus?.type || rawStatus || '', 80).toLowerCase() || null;
+}
+
+function continuationCapReason(goal, timestamp) {
+  const maxAutoTurns = Math.min(goal.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, DEFAULT_MAX_AUTO_TURNS);
+  if (goal.autoTurnsUsed >= maxAutoTurns) return 'auto_turn_cap_reached';
+  if (timestamp - goal.startedAtMs >= DEFAULT_MAX_WALL_MS) return 'wall_clock_cap_reached';
+  return null;
+}
+
+function continuationBudgetReason(goal) {
+  if (Number.isFinite(goal.tokenBudget) && goal.tokenBudget > 0 && goal.tokensUsed >= goal.tokenBudget) {
+    return 'budget_exhausted';
+  }
+  return null;
+}
+
+async function recordContinuationReason(sessionID, goalID, reason, rawOptions = {}, suppress = false, errorText = null) {
+  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
+  if (!normalizedGoalID) return null;
+  return mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== normalizedGoalID) return current;
+    const timestamp = nowMs(rawOptions);
+    return {
+      ...current,
+      continuationSuppressed: suppress ? true : current.continuationSuppressed,
+      continuationSuppressedReason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS),
+      lastContinuationError: errorText
+        ? sanitizeInlineText(errorText, DEFAULT_MAX_REASON_CHARS)
+        : current.lastContinuationError,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, rawOptions);
+}
+
+async function recordContinuationBudgetStop(sessionID, goalID, rawOptions = {}) {
+  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
+  if (!normalizedGoalID) return null;
+  return mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== normalizedGoalID) return current;
+    const timestamp = nowMs(rawOptions);
+    return {
+      ...current,
+      status: 'budget_limited',
+      continuationSuppressed: true,
+      continuationSuppressedReason: 'budget_exhausted',
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, rawOptions);
+}
+
+async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
+  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
+  const messageID = `goal-continuation-${randomUUID()}`;
+  let didReserve = false;
+  const goal = await mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return current;
+    const maxAutoTurns = Math.min(current.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, DEFAULT_MAX_AUTO_TURNS);
+    if (current.autoTurnsUsed >= maxAutoTurns) return current;
+    const timestamp = nowMs(rawOptions);
+    didReserve = true;
+    return {
+      ...current,
+      autoTurnsUsed: current.autoTurnsUsed + 1,
+      lastContinuationAtMs: timestamp,
+      lastContinuationMessageId: messageID,
+      lastContinuationError: null,
+      continuationSuppressedReason: null,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, rawOptions);
+
+  return { didReserve, goal, messageID };
+}
+
+function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
+  const directory = sanitizeInlineText(rawOptions.directory || '', 1000);
+  return {
+    path: { id: sessionID },
+    query: directory ? { directory } : undefined,
+    body: {
+      messageID,
+      parts: [{
+        type: 'text',
+        text: renderContinuationPrompt(goal, rawOptions),
+      }],
+    },
+  };
+}
+
+/**
+ * Continue an active goal once all autonomy gates pass.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {Object} [rawOptions] - Continuation options
+ * @returns {Promise<Object>} Decision envelope
+ */
+export async function maybeContinueGoal(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const runtimeState = rawOptions.runtimeState || {};
+  const normalizedSessionID = normalizeSessionID(sessionID);
+
+  async function decision(decisionType, reason, autoTurnsUsed = 0) {
+    await logContinuationDecision(normalizedSessionID, decisionType, reason, autoTurnsUsed, options);
+    return {
+      decision: decisionType,
+      reason,
+      autoTurnsUsed: normalizeAutoTurns(autoTurnsUsed),
+    };
+  }
+
+  if (!options.enabled) return decision('suppressed', 'plugin_disabled');
+
+  const autonomyMode = autonomyModeFromEnv();
+  if (!AUTONOMY_ACTIVE_MODES.has(autonomyMode)) {
+    return decision('suppressed', disabledAutonomyReason(autonomyMode));
+  }
+
+  if (!normalizedSessionID) return decision('suppressed', 'missing_session_id');
+
+  const goal = await readGoal(normalizedSessionID, options);
+  const autoTurnsUsed = goal?.autoTurnsUsed || 0;
+  if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
+
+  if (goal.continuationSuppressed) {
+    return decision('suppressed', goal.continuationSuppressedReason || 'continuation_suppressed', autoTurnsUsed);
+  }
+
+  const continuationLocks = runtimeState.inFlightContinuations;
+  if (continuationLocks?.has?.(normalizedSessionID)) {
+    return decision('suppressed', 'continuation_in_flight', autoTurnsUsed);
+  }
+
+  if (goal.blockedByPrompt || runtimeState.blockedByPromptSessions?.has?.(normalizedSessionID)) {
+    await recordContinuationReason(normalizedSessionID, goal.goalId, 'permission_or_question_block', options);
+    return decision('suppressed', 'permission_or_question_block', autoTurnsUsed);
+  }
+
+  const runtimeStatus = continuationRuntimeStatus(runtimeState, normalizedSessionID);
+  if (runtimeStatus === 'busy' || runtimeStatus === 'retry') {
+    const reason = `session_${runtimeStatus}`;
+    await recordContinuationReason(normalizedSessionID, goal.goalId, reason, options);
+    return decision('suppressed', reason, autoTurnsUsed);
+  }
+
+  const timestamp = nowMs(options);
+  if (goal.lastContinuationAtMs > 0 && timestamp - goal.lastContinuationAtMs < DEFAULT_CONTINUATION_COOLDOWN_MS) {
+    await recordContinuationReason(normalizedSessionID, goal.goalId, 'cooldown', options);
+    return decision('suppressed', 'cooldown', autoTurnsUsed);
+  }
+
+  const capReason = continuationCapReason(goal, timestamp);
+  if (capReason) {
+    await recordContinuationReason(normalizedSessionID, goal.goalId, capReason, options, true);
+    return decision('suppressed', capReason, autoTurnsUsed);
+  }
+
+  const budgetReason = continuationBudgetReason(goal);
+  if (budgetReason) {
+    await recordContinuationBudgetStop(normalizedSessionID, goal.goalId, options);
+    return decision('suppressed', budgetReason, autoTurnsUsed);
+  }
+
+  if (autonomyMode === 'smoke') return decision('would_fire', 'smoke_mode', autoTurnsUsed);
+
+  const promptAsync = rawOptions.client?.session?.promptAsync;
+  if (typeof promptAsync !== 'function') {
+    await recordContinuationReason(normalizedSessionID, goal.goalId, 'prompt_async_unavailable', options, true);
+    return decision('suppressed', 'prompt_async_unavailable', autoTurnsUsed);
+  }
+
+  continuationLocks?.add?.(normalizedSessionID);
+  const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
+  if (!reserved.didReserve) {
+    continuationLocks?.delete?.(normalizedSessionID);
+    return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
+  }
+
+  try {
+    await promptAsync.call(
+      rawOptions.client.session,
+      buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
+    );
+    return decision('fired', 'prompt_async_sent', reserved.goal.autoTurnsUsed);
+  } catch (error) {
+    await recordContinuationReason(
+      normalizedSessionID,
+      reserved.goal.goalId,
+      'prompt_async_failed',
+      options,
+      true,
+      error?.message || 'promptAsync failed',
+    );
+    return decision('suppressed', 'prompt_async_failed', reserved.goal.autoTurnsUsed);
+  } finally {
+    continuationLocks?.delete?.(normalizedSessionID);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. INJECTION
 // ─────────────────────────────────────────────────────────────────────────────
@@ -967,6 +1251,8 @@ function goalStateLines(action, goal, rawOptions = {}) {
     `verifier_last_evidence=${quoteValue(redactEvidence(goal.lastEvidence || '', normalizeOptions(rawOptions).maxEvidenceChars))}`,
     `blocked_by_prompt=${goal.blockedByPrompt === true}`,
     `continuation_suppressed=${goal.continuationSuppressed === true}`,
+    `continuation_attempts=${goal.autoTurnsUsed}`,
+    `continuation_suppressed_reason=${quoteValue(goal.continuationSuppressedReason || '')}`,
     `injection_preview=${JSON.stringify(injectionPreview)}`,
   ].join('\n');
 }
@@ -1043,24 +1329,30 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const runtimeState = {
     inFlightVerifications: new Set(),
+    inFlightContinuations: new Set(),
     blockedByPromptSessions: new Set(),
+    sessionStatuses: new Map(),
   };
-  void ctx;
 
   function flushVolatileLocks(sessionID = null) {
     if (sessionID) {
       runtimeState.inFlightVerifications.delete(sessionID);
+      runtimeState.inFlightContinuations.delete(sessionID);
       runtimeState.blockedByPromptSessions.delete(sessionID);
+      runtimeState.sessionStatuses.delete(sessionID);
       return;
     }
     runtimeState.inFlightVerifications.clear();
+    runtimeState.inFlightContinuations.clear();
     runtimeState.blockedByPromptSessions.clear();
+    runtimeState.sessionStatuses.clear();
   }
 
   async function handleEvent(event) {
     const eventType = eventTypeFrom(event);
     const sessionID = extractEventSessionID(event);
     if (!eventType) return;
+    await logDebugEvent(eventType, sessionID, options);
 
     if (eventType === 'session.created') {
       if (sessionID) await restoreActiveGoal(sessionID, options);
@@ -1072,6 +1364,12 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       return;
     }
 
+    if (eventType === 'session.status') {
+      const status = extractEventSessionStatus(event);
+      if (sessionID && status) runtimeState.sessionStatuses.set(sessionID, status);
+      return;
+    }
+
     if (eventType === 'permission.asked' || eventType === 'question.asked') {
       if (sessionID) {
         runtimeState.blockedByPromptSessions.add(sessionID);
@@ -1080,14 +1378,38 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       return;
     }
 
+    if (eventType === 'permission.replied' || eventType === 'question.replied' || eventType === 'question.rejected') {
+      if (sessionID) {
+        runtimeState.blockedByPromptSessions.delete(sessionID);
+        await setBlockedByPrompt(sessionID, false, options);
+      }
+      return;
+    }
+
     if (eventType === 'session.idle') {
-      if (!sessionID || runtimeState.inFlightVerifications.has(sessionID)) return;
+      if (!sessionID) {
+        await maybeContinueGoal(sessionID, {
+          ...options,
+          client: ctx?.client,
+          directory: ctx?.directory,
+          runtimeState,
+        });
+        return;
+      }
+      runtimeState.sessionStatuses.set(sessionID, 'idle');
+      if (runtimeState.inFlightVerifications.has(sessionID)) return;
       runtimeState.inFlightVerifications.add(sessionID);
       try {
         await maybeVerifyGoal(sessionID, options);
       } finally {
         runtimeState.inFlightVerifications.delete(sessionID);
       }
+      await maybeContinueGoal(sessionID, {
+        ...options,
+        client: ctx?.client,
+        directory: ctx?.directory,
+        runtimeState,
+      });
       return;
     }
 
@@ -1156,6 +1478,7 @@ export const __test = Object.freeze({
   executeGoalAction,
   executeGoalStatus,
   goalPathForSession,
+  maybeContinueGoal,
   maybeVerifyGoal,
   readGoal,
   renderGoalInjection,
