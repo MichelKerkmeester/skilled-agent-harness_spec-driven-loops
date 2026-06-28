@@ -24,6 +24,8 @@
 // 1. IMPORTS/REQUIRES
 // ─────────────────────────────────────────────────────────────────────────────
 
+const fs = require('fs');
+const path = require('path');
 const { scoreD1Inter, scoreModePrecision } = require('./advisor-probe.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,6 +39,21 @@ const D1_INTRA_INTENT_WEIGHT = 0.4;
 const D1_INTRA_RESOURCE_WEIGHT = 0.6;
 const SURFACE_MISMATCH_D1_CAP = 0.25;
 const KNOWN_ROUTE_GAP_STATUS = 'known silent-default gap';
+const MUTATING_TOOLS = new Set(['write', 'edit', 'bash']);
+const MODE_REGISTRY_CACHE = new Map();
+const FAILING_STAGE_ORDER = new Map([
+  ['activated-inter', 1],
+  ['router-unparseable', 2],
+  ['surface-mismatch', 3],
+  ['silent-default', 4],
+  ['wrong-mode', 4],
+  ['bundle-mismatch', 4],
+  ['backend-tool-policy', 5],
+  ['backend-kind-mismatch', 5],
+  ['bash-allowlist', 5],
+  ['routed-intra', 6],
+  ['discovered', 7],
+]);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -73,6 +90,7 @@ function normalizeExpectedRouteGold(expected, scenario, arg) {
   copyIfPresent(out, scenarioExpected, 'forbiddenWorkflowModes');
   copyIfPresent(out, scenarioExpected, 'minimalPairGroup');
   copyIfPresent(out, scenarioExpected, 'knownRouteGap');
+  copyIfPresent(out, scenarioExpected, 'toolSurface');
   if (out.knownRouteGap !== true && !hasRouteGold(out)) {
     out.knownRouteGap = routeGapFromNotes(scenario && scenario.notes)
       || routeGapFromNotes(arg && arg.notes)
@@ -103,6 +121,7 @@ function expectedFromScenario(scenario, obs, arg) {
     forbiddenWorkflowModes: scenarioExpected.forbiddenWorkflowModes,
     minimalPairGroup: scenarioExpected.minimalPairGroup,
     knownRouteGap: scenarioExpected.knownRouteGap === true,
+    toolSurface: scenarioExpected.toolSurface,
   };
 }
 
@@ -237,6 +256,75 @@ function normalizeRouteModes(value) {
   return uniqueArray(Array.isArray(value) ? value : [value]);
 }
 
+function loadModeRegistry(skillRoot) {
+  if (!skillRoot) return null;
+  const registryPath = path.join(skillRoot, 'mode-registry.json');
+  if (MODE_REGISTRY_CACHE.has(registryPath)) return MODE_REGISTRY_CACHE.get(registryPath);
+  let registry = null;
+  try {
+    registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  } catch (_) {
+    registry = null;
+  }
+  MODE_REGISTRY_CACHE.set(registryPath, registry);
+  return registry;
+}
+
+function toolSurfaceFromRegistry({ skillRoot, workflowMode }) {
+  const modes = normalizeRouteModes(workflowMode);
+  if (modes.length !== 1) return null;
+  const registry = loadModeRegistry(skillRoot);
+  const entries = registry && Array.isArray(registry.modes) ? registry.modes : [];
+  const mode = entries.find((entry) => entry && entry.workflowMode === modes[0]);
+  return mode && mode.toolSurface ? mode.toolSurface : null;
+}
+
+function resolveToolSurface({ expected, skillRoot }) {
+  if (expected && expected.toolSurface) return expected.toolSurface;
+  if (!expected || expected.workflowMode == null) return null;
+  return toolSurfaceFromRegistry({ skillRoot, workflowMode: expected.workflowMode });
+}
+
+function toolCallsFromLiveEvidence(row) {
+  const toolCalls = row && row.liveEvidence && Array.isArray(row.liveEvidence.toolCalls)
+    ? row.liveEvidence.toolCalls : [];
+  return toolCalls.map((tool) => ({ tool }));
+}
+
+function workflowModeFromScoredRow(row) {
+  if (row && row.expectedWorkflowMode != null) return row.expectedWorkflowMode;
+  const expected = row && row.dims && row.dims.hubRoute && row.dims.hubRoute.expected;
+  return Array.isArray(expected) && expected.length === 1 ? expected[0] : null;
+}
+
+function earlierFailingStage(current, next) {
+  if (!next) return current || null;
+  if (!current) return next;
+  const currentOrder = FAILING_STAGE_ORDER.get(current) || Number.POSITIVE_INFINITY;
+  const nextOrder = FAILING_STAGE_ORDER.get(next) || Number.POSITIVE_INFINITY;
+  return nextOrder < currentOrder ? next : current;
+}
+
+function applyAggregateToolSurface(row, skillRoot) {
+  const current = row && row.dims && row.dims.toolSurface;
+  if (!row || (current && current.applicable) || !skillRoot) return row;
+  const workflowMode = workflowModeFromScoredRow(row);
+  const toolCalls = toolCallsFromLiveEvidence(row);
+  if (workflowMode == null || toolCalls.length === 0) return row;
+
+  const toolSurface = resolveToolSurface({ expected: { workflowMode }, skillRoot });
+  const resolved = scoreToolSurface({ toolSurface, toolCalls });
+  if (!resolved.applicable) return row;
+
+  return {
+    ...row,
+    dims: { ...row.dims, toolSurface: resolved },
+    firstFailingStage: resolved.pass
+      ? row.firstFailingStage
+      : earlierFailingStage(row.firstFailingStage, resolved.firstFailingStage),
+  };
+}
+
 function metricRate(numerator, denominator, counts = {}) {
   return {
     rate: denominator > 0 ? numerator / denominator : null,
@@ -358,11 +446,137 @@ function scoreHubRoute({ expected, routerResult }) {
   };
 }
 
+function normalizeToolName(tool) {
+  return String(tool || '').trim().toLowerCase();
+}
+
+function displayToolName(tool) {
+  const normalized = normalizeToolName(tool);
+  return normalized ? normalized.charAt(0).toUpperCase() + normalized.slice(1) : '';
+}
+
+function normalizedToolSet(values) {
+  return new Set((Array.isArray(values) ? values : [])
+    .map(normalizeToolName)
+    .filter(Boolean));
+}
+
+function commandTextFromInput(input) {
+  if (typeof input === 'string') return input.trim();
+  if (!input || typeof input !== 'object') return '';
+  for (const key of ['command', 'cmd', 'script']) {
+    if (typeof input[key] === 'string' && input[key].trim()) return input[key].trim();
+  }
+  if (Array.isArray(input.args) && input.args.length) {
+    return input.args.map((arg) => String(arg)).join(' ').trim();
+  }
+  return '';
+}
+
+function bashCommandAllowed(command, allowlist) {
+  if (!command) return true;
+  return allowlist.some((entry) => command === entry || command.startsWith(`${entry} `));
+}
+
+function scoreToolSurface({ toolSurface, toolCalls }) {
+  if (!toolSurface || !Array.isArray(toolCalls) || toolCalls.length === 0) {
+    return { applicable: false, pass: true, firstFailingStage: null, violations: [] };
+  }
+
+  const allowed = normalizedToolSet(toolSurface.allowed);
+  const forbidden = normalizedToolSet(toolSurface.forbidden);
+  const observed = toolCalls
+    .map((call) => ({
+      tool: normalizeToolName(call && call.tool),
+      displayTool: displayToolName(call && call.tool),
+      input: call && call.input,
+    }))
+    .filter((call) => call.tool);
+  if (observed.length === 0) {
+    return { applicable: false, pass: true, firstFailingStage: null, violations: [] };
+  }
+
+  const policyViolations = observed
+    .filter((call) => forbidden.has(call.tool) || (allowed.size > 0 && !allowed.has(call.tool)))
+    .map((call) => ({
+      class: 'backend-tool-policy',
+      tool: call.displayTool,
+      reason: forbidden.has(call.tool) ? 'forbidden tool used' : 'tool outside allowed surface',
+    }));
+  if (policyViolations.length) {
+    return {
+      applicable: true,
+      pass: false,
+      firstFailingStage: 'backend-tool-policy',
+      violations: policyViolations,
+    };
+  }
+
+  const kindViolations = observed
+    .filter((call) => toolSurface.mutatesWorkspace === false && MUTATING_TOOLS.has(call.tool))
+    .map((call) => ({
+      class: 'backend-kind-mismatch',
+      tool: call.displayTool,
+      reason: 'non-mutating backend used a mutating tool',
+    }));
+  if (kindViolations.length) {
+    return {
+      applicable: true,
+      pass: false,
+      firstFailingStage: 'backend-kind-mismatch',
+      violations: kindViolations,
+    };
+  }
+
+  const bashAllowlist = (Array.isArray(toolSurface.bashAllowlist) ? toolSurface.bashAllowlist : [])
+    .map((entry) => String(entry).trim())
+    .filter(Boolean);
+  const skippedBashAllowlistChecks = [];
+  const bashViolations = [];
+  if (bashAllowlist.length > 0) {
+    observed
+      .filter((call) => call.tool === 'bash')
+      .forEach((call) => {
+        const command = commandTextFromInput(call.input);
+        if (!command) {
+          skippedBashAllowlistChecks.push({ tool: call.displayTool, reason: 'missing command text' });
+          return;
+        }
+        if (!bashCommandAllowed(command, bashAllowlist)) {
+          bashViolations.push({
+            class: 'bash-allowlist',
+            tool: call.displayTool,
+            command,
+            reason: 'bash command outside allowlist',
+          });
+        }
+      });
+  }
+  if (bashViolations.length) {
+    return {
+      applicable: true,
+      pass: false,
+      firstFailingStage: 'bash-allowlist',
+      violations: bashViolations,
+      skippedBashAllowlistChecks,
+    };
+  }
+
+  return {
+    applicable: true,
+    pass: true,
+    firstFailingStage: null,
+    violations: [],
+    skippedBashAllowlistChecks,
+  };
+}
+
 function firstFailingStage({ dims, routerResult, surfaceMatch }) {
   if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) return 'activated-inter';
   if (!routerResult.parseable) return 'router-unparseable';
   if (surfaceMatch === false) return 'surface-mismatch';
   if (dims.hubRoute && dims.hubRoute.applicable && !dims.hubRoute.pass) return dims.hubRoute.firstFailingStage;
+  if (dims.toolSurface && dims.toolSurface.applicable && !dims.toolSurface.pass) return dims.toolSurface.firstFailingStage;
   if (dims.d1intra.score < 0.5) return 'routed-intra';
   if (dims.d2.score < 0.5) return 'discovered';
   return null;
@@ -461,8 +675,12 @@ function scoreScenario(arg) {
 
   // Hard route-gold lane: fail closed only when route gold is present.
   dims.hubRoute = scoreHubRoute({ expected, routerResult });
+  dims.toolSurface = scoreToolSurface({
+    toolSurface: resolveToolSurface({ expected, skillRoot: arg.skillRoot }),
+    toolCalls: obs && obs.raw && obs.raw.toolCalls,
+  });
 
-  // First failing stage (funnel): advisor activate -> router parse -> surface -> route gold -> intra -> discovery.
+  // First failing stage (funnel): advisor activate -> router parse -> surface -> route gold -> tool surface -> intra -> discovery.
   const failingStage = firstFailingStage({ dims, routerResult, surfaceMatch });
 
   // Mode A scenario score: weight the measured dims, normalize over their weights.
@@ -476,6 +694,7 @@ function scoreScenario(arg) {
   return {
     scenarioId, tier, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true,
     classKind: scenario ? scenario.classKind : undefined,
+    expectedWorkflowMode: expected && expected.workflowMode,
     expectedSurface, observedSurface, surfaceMatch,
     traceMode: arg.traceMode || (obs ? obs.mode : undefined),
     liveEvidence,
@@ -520,7 +739,7 @@ function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
  * @returns {Object} Skill-benchmark report object.
  */
 function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings, divergence }) {
-  const rows = scenarioRows.filter(Boolean);
+  const rows = scenarioRows.filter(Boolean).map((row) => applyAggregateToolSurface(row, skillRoot));
   const avg = (sel) => {
     const vals = rows.map(sel).filter((v) => typeof v === 'number');
     return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
@@ -555,6 +774,15 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     knownGaps: hubRouteKnownGaps,
     reason: hubRouteRegressions > 0 ? 'route-gold regression' : null,
   };
+  const toolSurfaceFailures = rows
+    .filter((r) => r.dims && r.dims.toolSurface && r.dims.toolSurface.applicable && !r.dims.toolSurface.pass);
+  const toolSurfaceViolations = toolSurfaceFailures.flatMap((r) => (r.dims.toolSurface.violations || [])
+    .map((violation) => ({ scenarioId: r.scenarioId, ...violation })));
+  const toolSurfaceGate = {
+    failed: toolSurfaceViolations.length > 0,
+    violations: toolSurfaceViolations,
+    reason: toolSurfaceViolations.length > 0 ? 'tool-surface violation' : null,
+  };
 
   const d5 = connectivity.score;
   const aggregateScore = avg((r) => r.modeAScore);
@@ -579,6 +807,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
   else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
+  else if (toolSurfaceGate.failed) verdict = 'BLOCKED-BY-TOOL-SURFACE';
   else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
   else if (aggregateScore >= 80) verdict = 'PASS';
   else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
@@ -612,6 +841,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       gateFailed,
       reason: gateFailed ? 'D5 structural hard-gate failure' : null,
       hubRoute: hubRouteGate,
+      toolSurface: toolSurfaceGate,
     },
     dimensionScores: {
       D1inter: d1interAvg === null
@@ -657,4 +887,4 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { scoreScenario, aggregate, computeDivergence, reduceRouteTelemetry, WEIGHTS };
+module.exports = { scoreScenario, aggregate, computeDivergence, reduceRouteTelemetry, scoreToolSurface, WEIGHTS };

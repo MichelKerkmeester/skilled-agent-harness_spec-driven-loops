@@ -15,6 +15,12 @@
     {
       "workflowMode": "interface",
       "backendKind": "reference-base",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
       "packet": "design-interface",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
@@ -27,6 +33,12 @@
     {
       "workflowMode": "foundations",
       "backendKind": "reference-base",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
       "packet": "design-foundations",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
@@ -39,6 +51,12 @@
     {
       "workflowMode": "motion",
       "backendKind": "reference-base",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
       "packet": "design-motion",
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
@@ -51,6 +69,12 @@
     {
       "workflowMode": "audit",
       "backendKind": "reference-base",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
       "packet": "design-audit",
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
@@ -63,6 +87,12 @@
     {
       "workflowMode": "md-generator",
       "backendKind": "playwright-extract",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep", "Write", "Edit", "Bash"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "design-md-generator",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,

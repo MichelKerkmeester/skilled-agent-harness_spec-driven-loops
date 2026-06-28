@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "d3-r9 toolsurface lock",
-      "backendkind tool surface design build"
+      "backendkind tool surface design build",
+      "scoretoolsurface gate",
+      "d3-r9 toolsurface plan",
+      "backendkind tool surface lock plan",
+      "mode tool surface scorer gate",
+      "d3-r9 toolsurface tasks",
+      "backendkind tool surface lock tasks",
+      "d3-r9 toolsurface checklist",
+      "backendkind tool surface lock checklist",
+      "backendkind toolsurface lock implementation summary",
+      "scoretoolsurface gate build record"
     ],
     "key_topics": [
       "d3-r9",
@@ -23,22 +33,57 @@
       "surface",
       "design",
       "build",
-      "add",
-      "per-mode",
-      "allowed",
-      "forbidden"
+      "scoretoolsurface",
+      "gate",
+      "plan",
+      "mode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -48,53 +93,127 @@
         "source": "derived"
       },
       {
-        "name": "captured",
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification",
         "kind": "key_phrase",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "evidence",
         "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHY",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a per-mode toolSurface (allowed/forbidden/mutatesWorkspace/bashAllowlist) to sk-design and gate backend-kind/tool-policy mismatch using captured raw.toolCalls.",
+    "causal_summary": "A mode's `backendKind` constrains nothing about which tools its runtime may call",
     "created_at": "2026-06-28T12:39:57.835Z",
-    "last_save_at": "2026-06-28T12:39:57.835Z",
+    "last_save_at": "2026-06-28T18:54:44.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7809cabb23c169343904d02497879d92372ab7756edc0b5cb4def3a34b8f1eb8",
+    "source_fingerprint": "sha256:a4a98ea4ccc1517ad1b07dfaa1e10e83683b72cfd82e1dec8f14de8924407ae1",
     "source_doc_hashes": {
-      "spec.md": "637031eff5fae9a29f6fde6acdf76384e3067400dbb9711378c0bbea0a4f91b3"
+      "spec.md": "ebbc15b8217fdfb28f439ecdf018347f41234ff6662a31b7a297e4d014d3cc40",
+      "plan.md": "27b39a96dbb3dc3f63dd2da8925a29d5cb884c9bf4ebe78268e288b8a716f25e",
+      "tasks.md": "5ba5528b529bb9c2aae1f2f8604b91659f50d50046f444f48316bdd07849663d",
+      "checklist.md": "83e0797e4bf61c713064f1ef096517efe525703955ef66f09222242c59779504",
+      "implementation-summary.md": "6ecbcf30f6bd7313ed482dc29a897960903cd8ba34464dd63c9230bade11b6f0"
     },
     "last_active_child_id": null,
     "last_active_at": null
