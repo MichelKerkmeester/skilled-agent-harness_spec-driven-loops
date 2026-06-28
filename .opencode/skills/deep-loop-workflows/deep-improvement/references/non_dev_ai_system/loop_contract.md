@@ -174,7 +174,20 @@ Loop logic stays packaging-owned so it can evolve without touching deep-improvem
 
 ---
 
-## 11. RELATED RESOURCES
+## 11. SELF-TARGET PACKAGING PROFILE
+
+A self-target run adds one profile-controlled guard before the adapter invokes the packaging-owned loop host. The profile must define:
+
+- **`frozenSurfaces[]`** — repo-relative scorer, harness, lock, state or contract paths that the candidate may not edit.
+- **`editableTechDocs[]`** — repo-relative technique docs that are safe mutation targets.
+- **`allowedDiffRelpaths[]`** — the complete candidate diff allow-list. Every editable technique doc must appear here, and every frozen surface must be absent.
+- **`excludedSessionPrefixes[]`** — session-title prefixes ignored by polling and scoring so the loop does not re-ingest its own scorer, merge or diagnostic sessions.
+
+The command-level `--self-target <profile>` guard resolves the profile, validates the JSON, checks the allow-list boundary, defaults to dry-run, requires a clean tree before `--live`, acquires the single-writer lock for live runs, and uses one serial candidate unless the user explicitly passes `--parallel`.
+
+---
+
+## 12. RELATED RESOURCES
 
 - [operator_guide.md](./operator_guide.md) — invocation, guardrails, conformance checklist, pilot notes
 - [guardrails_teachings.md](./guardrails_teachings.md) — the twelve pilot teachings and their guardrail encodings

@@ -23,6 +23,10 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional editor hint for configs that want to point back to this schema."
+    },
     "packaging_root": {
       "type": "string",
       "description": "Default absolute path to the packaging root (overridable by CW_ROOT env)."
@@ -428,6 +432,102 @@
     "packaging_root_env": {
       "type": "string",
       "description": "Environment variable name for packaging root override. Defaults to 'CW_ROOT'."
+    },
+    "frozenSurfaces": {
+      "type": "array",
+      "description": "Repo-relative scorer, harness and contract surfaces that self-target runs must not edit.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "relpath",
+          "surfaceType"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable human-readable identifier for this frozen surface."
+          },
+          "relpath": {
+            "type": "string",
+            "description": "Repo-relative path to the frozen surface.",
+            "minLength": 1,
+            "not": {
+              "pattern": "^(?:/|.*(?:^|/)\\.\\.(?:/|$))"
+            }
+          },
+          "surfaceType": {
+            "type": "string",
+            "enum": [
+              "scorer",
+              "harness",
+              "contract",
+              "lock",
+              "state",
+              "test",
+              "command"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why this surface must remain frozen during a self-target run."
+          }
+        }
+      }
+    },
+    "editableTechDocs": {
+      "type": "array",
+      "description": "Repo-relative technique docs that a self-target run may improve.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "relpath"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "pattern": "^[A-Z]$"
+          },
+          "relpath": {
+            "type": "string",
+            "description": "Repo-relative editable technique-doc path.",
+            "minLength": 1,
+            "not": {
+              "pattern": "^(?:/|.*(?:^|/)\\.\\.(?:/|$))"
+            }
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why this doc is safe and useful for technique-only edits."
+          }
+        }
+      }
+    },
+    "allowedDiffRelpaths": {
+      "type": "array",
+      "description": "Repo-relative allow-list for self-target candidate diffs.",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "not": {
+          "pattern": "^(?:/|.*(?:^|/)\\.\\.(?:/|$))"
+        }
+      }
+    },
+    "excludedSessionPrefixes": {
+      "type": "array",
+      "description": "Session-title prefixes ignored by self-target polling and analysis.",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "kit_version": {
       "type": "string",

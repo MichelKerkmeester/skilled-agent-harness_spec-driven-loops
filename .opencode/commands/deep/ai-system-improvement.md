@@ -1,5 +1,5 @@
 ---
-description: "Benchmark an AI-system packaging with an independent grader and auto-refine its technique docs behind hard guardrails (Lane D). Dry-run default; --live runs the guarded loop. Modes :auto, :confirm."
+description: "Benchmark an AI-system packaging with an independent grader and auto-refine its technique docs behind hard guardrails (Lane D). Dry-run default; --live runs the guarded loop. Use --self-target <profile> for guarded self-improvement setup. Modes :auto, :confirm."
 skill: deep-loop-workflows
 ---
 
@@ -64,12 +64,28 @@ SELF-CHECK: Are you operating as the @general agent?
 
 Resolve:
 - **packaging root** (required) — must implement the `_loop/loop.py` contract (see the operator guide's Contract Conformance Checklist; pilot: `…/AI_Systems/Barter/Copywriter`).
+- **self target** (optional) — `--self-target <profile>` is a router-owned setup shortcut. A bare profile ID resolves under `.opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/`; a path resolves directly. The profile JSON must validate against `.opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json` and must define `frozenSurfaces`, `editableTechDocs`, `allowedDiffRelpaths`, and `excludedSessionPrefixes`.
 - **live** — default FALSE (dry-run: gates + grader-family guard + gap analysis, zero dispatches). `--live` dispatches models and may promote into an isolated worktree branch; it requires a clean tree (the loop refuses uncommitted knowledge-base or shared-global-doc changes).
 - **max iters** — live-loop ceiling (default 1 for a first run).
 - **fixtures / variants / held-out / samples** — optional overrides of the packaging's defaults; held-out fixtures must be non-interactive (deliverable-producing) and the proposer never sees them.
 - **proposer / grader models** — optional; the grader MUST be a different model family than the proposer (the loop kill-switches otherwise).
 
 Pre-flight before any `--live` run: verify no other loop run is active (single-writer lock), and probe provider auth before the batch (an expired credential fails the whole batch — pilot teaching T11).
+
+### Self-Target Fork
+
+When `--self-target <profile>` is present, setup forks before the normal Run step:
+
+1. Resolve and parse the profile JSON, then validate it against the Lane D packaging schema.
+2. Confirm every `editableTechDocs[].relpath` is present in `allowedDiffRelpaths`.
+3. Confirm no `frozenSurfaces[].relpath` is present in `allowedDiffRelpaths`.
+4. Exclude sessions whose title starts with any `excludedSessionPrefixes[]` value from scoring, polling, or candidate analysis.
+5. Require a clean tree for `--live`; dry-run remains the default and runs without dispatches or mutations.
+6. Acquire the single-writer loop lock before live execution.
+7. Present the resolved profile, packaging root, frozen surfaces, and allowed diff paths for confirmation unless running `:auto` with all checks green.
+8. Run one candidate serially by default. Multi-candidate execution is blocked unless the user explicitly passes `--parallel`.
+
+The self-target flag is not forwarded to `loop-host.cjs`. It compiles to the existing `--mode=non-dev-ai-system-refine --packaging-root <resolved-root>` invocation after the guard passes, preserving the adapter's current argv contract.
 
 ---
 
@@ -81,6 +97,12 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-h
   --packaging-root <path> \
   [--live] [--max-iters <n>] [--fixtures <a,b>] [--variants <a,b>] \
   [--held-out <a,b>] [--samples <n>] [--proposer-model <id>] [--grader-model <id>]
+```
+
+Router-only self-target setup:
+
+```bash
+/deep:ai-system-improvement --self-target deep-loop-runtime [--live] [--parallel]
 ```
 
 The adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) validates the contract and spawns the packaging-owned loop host; all guarded-loop logic (frozen scoring surface, kill-switches, worktree promote-N, resume) lives with the packaging.

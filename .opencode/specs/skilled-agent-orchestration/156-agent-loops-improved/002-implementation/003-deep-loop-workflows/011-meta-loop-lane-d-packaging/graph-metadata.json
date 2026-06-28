@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "011-meta-loop-lane-d-packaging summary"
     ],
     "key_topics": [
       "meta",
@@ -39,11 +39,14 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
-      ".opencode/commands/deep/ai-system-improvement.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
       ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
+      ".opencode/commands/deep/ai-system-improvement.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,9 +54,21 @@
     ],
     "entities": [
       {
-        "name": "loop.py.template",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
+        "name": "packaging_config.schema.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
         "source": "derived"
       },
       {
@@ -63,9 +78,15 @@
         "source": "derived"
       },
       {
-        "name": "loop_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
+        "name": "meta-loop-lane-d-packaging.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop.py.template",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
     "created_at": "2026-06-28T14:02:14Z",
-    "last_save_at": "2026-06-28T14:27:36.991Z",
+    "last_save_at": "2026-06-28T20:20:40.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dbd9a41d0d8a5c95cd119231e4c875cdf01c13798880579e831ee19e06983e3",
+    "source_fingerprint": "sha256:371d925238cf55bb6b6e60c9bdde025211565002fe3fa36429f4ad403d9a4a5c",
     "source_doc_hashes": {
-      "spec.md": "2327a9681e82e1f5b54104fd2889817cae34c9d0b9fbaf4a61f1163ada6450c8",
+      "spec.md": "7688874049fb8936d0ed05619cc3abd1845f9060509c38f796fc51933d25cc0d",
       "plan.md": "56f3491355529708581511ae394639e59972d985cad2b7feae9220e11a7f4b4c",
       "tasks.md": "f8876ff89f59135c70de090a61703c5121a897d04e0649c3845f4c9c689d1f5a",
-      "implementation-summary.md": "72af8051993661fbdcfe74ff3f51c10ac9f890f973632afdaffded73da65e52a"
+      "implementation-summary.md": "084821c5581399a51304551a92f32e9c4711e11c747dcf13471c751670ec5e3d"
     },
     "last_active_child_id": null,
     "last_active_at": null
