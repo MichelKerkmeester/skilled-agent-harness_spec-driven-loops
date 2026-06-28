@@ -10,9 +10,14 @@ Thin root router for the session goal plugin.
 
 ## 0. ARGUMENT RESOLUTION
 
-!`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; first="${1:-}"; rest="${*:2}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\nFIRST=\"%s\"\nREST=\"%s\"\n" "$q" "$first" "$rest"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\nFIRST=\"\"\nREST=\"\"\n"; fi' -- '$ARGUMENTS'`
+Resolve routing inputs from the command arguments `$ARGUMENTS`:
 
-Bind routing to the emitted `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` values.
+- `QUERY` = the full `$ARGUMENTS` string, trimmed.
+- `ARGS_PRESENT` = true when `QUERY` is non-empty.
+- `FIRST` = the first whitespace-delimited token of `QUERY`, lowercased.
+- `REST` = `QUERY` with the leading `FIRST` token removed, trimmed.
+
+Bind routing to these resolved `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` values.
 
 ## 1. ROUTER CONTRACT
 
@@ -25,6 +30,8 @@ This command is state-free. It never reads or writes `.opencode/skills/.goal-sta
 - Unsupported verbs emit `STATUS=FAIL ERROR="unknown action: <verb>"`.
 
 ## 2. EXECUTION ORDER
+
+Your FIRST and ONLY action is the single tool call selected below. Do NOT read files, glob, grep, or explore the repository — the `mk_goal` / `mk_goal_status` tools own all goal state and session resolution. Make the call immediately, then print its result verbatim.
 
 1. If `ARGS_PRESENT=false`, call `mk_goal_status({})` and print its result exactly.
 2. If `FIRST` is `show`, call `mk_goal_status({})` and print its result exactly.
