@@ -177,6 +177,17 @@ function isFiniteNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+function finiteNumberOrNull(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === 'string' && value.trim()) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
 function sortObjectKeys(value) {
   return Object.fromEntries(
     Object.entries(value).sort((left, right) => left[0].localeCompare(right[0]))
@@ -611,6 +622,7 @@ function createProfileBucket(profileId, family) {
     infraFailures: [],
     promptRecommendations: [],
     benchmarkRecommendations: [],
+    benchmarkDeltaSummary: createBenchmarkDeltaSummary(),
     failureModes: {},
     metrics: {
       totalRecords: 0,
@@ -673,6 +685,64 @@ function maybeSetBestBenchmark(bucket, record) {
   }
 }
 
+function createBenchmarkDeltaSummary() {
+  return {
+    runsWithOutcomeDelta: 0,
+    missingOutcomeDeltaRuns: 0,
+    outcomeScoreDeltaSum: 0,
+    latestOutcomeScoreDelta: null,
+    bestOutcomeScoreDelta: null,
+    helpedFixtures: 0,
+    hurtFixtures: 0,
+    unchangedFixtures: 0,
+    missingBaselineFixtures: 0,
+    totalFixtures: 0,
+  };
+}
+
+function recordHasBenchmarkDeltaContract(record) {
+  return Object.prototype.hasOwnProperty.call(record, 'outcomeScoreDelta')
+    || Object.prototype.hasOwnProperty.call(record?.totals || {}, 'outcomeScoreDelta')
+    || Array.isArray(record.fixtureDeltas);
+}
+
+function addFixtureDeltaCounts(summary, fixtureDeltas) {
+  if (!Array.isArray(fixtureDeltas)) {
+    return;
+  }
+  for (const entry of fixtureDeltas) {
+    summary.totalFixtures += 1;
+    const delta = finiteNumberOrNull(entry?.delta);
+    if (delta === null) {
+      summary.missingBaselineFixtures += 1;
+    } else if (delta > 0) {
+      summary.helpedFixtures += 1;
+    } else if (delta < 0) {
+      summary.hurtFixtures += 1;
+    } else {
+      summary.unchangedFixtures += 1;
+    }
+  }
+}
+
+function addBenchmarkDeltaRecord(summary, record) {
+  const outcomeScoreDelta = finiteNumberOrNull(record.outcomeScoreDelta ?? record.totals?.outcomeScoreDelta);
+  if (outcomeScoreDelta === null) {
+    if (recordHasBenchmarkDeltaContract(record)) {
+      summary.missingOutcomeDeltaRuns += 1;
+    }
+  } else {
+    summary.runsWithOutcomeDelta += 1;
+    summary.outcomeScoreDeltaSum += outcomeScoreDelta;
+    summary.latestOutcomeScoreDelta = outcomeScoreDelta;
+    summary.bestOutcomeScoreDelta = summary.bestOutcomeScoreDelta === null
+      ? outcomeScoreDelta
+      : Math.max(summary.bestOutcomeScoreDelta, outcomeScoreDelta);
+  }
+
+  addFixtureDeltaCounts(summary, record.fixtureDeltas);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. REGISTRY BUILDER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -685,6 +755,7 @@ function buildRegistry(records) {
     'agent-improvement': 0,
     'model-benchmark': 0,
   };
+  const benchmarkDeltaSummary = createBenchmarkDeltaSummary();
   const globalMetrics = {
     totalRecords: records.length,
     targetProfiles: 0,
@@ -736,6 +807,8 @@ function buildRegistry(records) {
       bucket.benchmarkRuns.push(record);
       bucket.benchmarkRecommendations.push(record.recommendation || 'unknown');
       maybeSetBestBenchmark(bucket, record);
+      addBenchmarkDeltaRecord(bucket.benchmarkDeltaSummary, record);
+      addBenchmarkDeltaRecord(benchmarkDeltaSummary, record);
       if (record.recommendation === 'benchmark-pass') {
         bucket.metrics.benchmarkPassCount += 1;
         globalMetrics.benchmarkPassCount += 1;
@@ -806,6 +879,7 @@ function buildRegistry(records) {
   return {
     globalMetrics,
     modes: globalModes,
+    benchmarkDeltaSummary,
     insufficientDataIterations,
     insufficientSampleIterations,
     mirrorSync: {
@@ -982,6 +1056,25 @@ function formatLaneModeMix(modes) {
   return `agent-improvement ${agentImprovement} / model-benchmark ${modelBenchmark}`;
 }
 
+function formatBenchmarkDeltaSummary(summary) {
+  if (!summary) {
+    return 'n/a';
+  }
+  const average = summary.runsWithOutcomeDelta > 0
+    ? summary.outcomeScoreDeltaSum / summary.runsWithOutcomeDelta
+    : null;
+  return [
+    `runsWithDelta ${summary.runsWithOutcomeDelta}`,
+    `missingDelta ${summary.missingOutcomeDeltaRuns}`,
+    `latest ${formatDashboardValue(summary.latestOutcomeScoreDelta)}`,
+    `avg ${formatDashboardValue(average)}`,
+    `helped ${summary.helpedFixtures}`,
+    `hurt ${summary.hurtFixtures}`,
+    `unchanged ${summary.unchangedFixtures}`,
+    `missingBaseline ${summary.missingBaselineFixtures}`,
+  ].join(' / ');
+}
+
 function formatDashboardValue(value) {
   if (value === null || value === undefined) {
     return 'n/a';
@@ -1061,6 +1154,7 @@ function renderProfileSection(bucket) {
 - Best prompt score: ${bestPrompt ? Number(bestPrompt.score ?? bestPrompt.totals?.candidate ?? 0) : 'n/a'}
 - Best benchmark score: ${bestBenchmark ? Number(bestBenchmark.aggregateScore ?? 0) : 'n/a'}
 - Lane (mode) mix: ${formatLaneModeMix(bucket.modes)}
+- Benchmark delta summary: ${formatBenchmarkDeltaSummary(bucket.benchmarkDeltaSummary)}
 - Latest recommendation: ${latest?.recommendation || 'n/a'}
 
 ### Repeated Failure Modes
@@ -1248,6 +1342,7 @@ function renderDashboard(registry, sampleQuality) {
 | Benchmark fails | ${registry.globalMetrics.benchmarkFailCount} |
 | Infra failures | ${registry.globalMetrics.infraFailureCount} |
 | Lane (mode) mix | ${formatLaneModeMix(registry.modes)} |
+| Benchmark delta summary | ${formatBenchmarkDeltaSummary(registry.benchmarkDeltaSummary)} |
 
 ${renderSampleQualitySection(sampleQuality)}
 

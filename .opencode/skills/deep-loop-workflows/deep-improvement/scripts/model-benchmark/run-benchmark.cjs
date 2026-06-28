@@ -316,6 +316,116 @@ function aggregateFailureModes(fixtures) {
     .map(([mode]) => mode);
 }
 
+function finiteNumberOrNull(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === 'string' && value.trim()) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function scoreFromBaselineValue(value) {
+  const direct = finiteNumberOrNull(value);
+  if (direct !== null) {
+    return direct;
+  }
+  if (value && typeof value === 'object') {
+    return finiteNumberOrNull(
+      value.score
+      ?? value.baselineScore
+      ?? value.baseline_score
+      ?? value.beforeScore
+      ?? value.before_score
+    );
+  }
+  return null;
+}
+
+function baselineScoreForFixture(profile, fixture) {
+  const direct = scoreFromBaselineValue(
+    fixture.baselineScore
+    ?? fixture.baseline_score
+    ?? fixture.beforeScore
+    ?? fixture.before_score
+  );
+  if (direct !== null) {
+    return direct;
+  }
+
+  const maps = [
+    profile.baselineScores,
+    profile.baseline_scores,
+    profile.baseline?.fixtureScores,
+    profile.baseline?.fixture_scores,
+  ];
+  for (const map of maps) {
+    if (map && typeof map === 'object' && Object.prototype.hasOwnProperty.call(map, fixture.id)) {
+      const mapped = scoreFromBaselineValue(map[fixture.id]);
+      if (mapped !== null) {
+        return mapped;
+      }
+    }
+  }
+  return null;
+}
+
+function roundDelta(value) {
+  return Math.round(value * 10000) / 10000;
+}
+
+function summarizeFixtureDeltas(fixtureDeltas) {
+  const summary = {
+    total: fixtureDeltas.length,
+    helped: 0,
+    hurt: 0,
+    unchanged: 0,
+    missingBaseline: 0,
+  };
+  for (const entry of fixtureDeltas) {
+    if (!Number.isFinite(entry.delta)) {
+      summary.missingBaseline += 1;
+    } else if (entry.delta > 0) {
+      summary.helped += 1;
+    } else if (entry.delta < 0) {
+      summary.hurt += 1;
+    } else {
+      summary.unchanged += 1;
+    }
+  }
+  return summary;
+}
+
+function buildBenchmarkDeltas(profile, fixtures, results) {
+  const fixtureById = new Map(fixtures.map((fixture) => [fixture.id, fixture]));
+  const fixtureDeltas = results.map((result) => {
+    const fixture = fixtureById.get(result.id) || {};
+    const beforeScore = baselineScoreForFixture(profile, fixture);
+    const afterScore = finiteNumberOrNull(result.score);
+    const delta = beforeScore !== null && afterScore !== null
+      ? roundDelta(afterScore - beforeScore)
+      : null;
+    return {
+      id: result.id,
+      beforeScore,
+      afterScore,
+      delta,
+      helped: delta !== null && delta > 0,
+      hurt: delta !== null && delta < 0,
+    };
+  });
+  const summary = summarizeFixtureDeltas(fixtureDeltas);
+  const outcomeScoreDelta = fixtureDeltas.length > 0 && summary.missingBaseline === 0
+    ? roundDelta(
+        fixtureDeltas.reduce((sum, entry) => sum + entry.afterScore, 0) / fixtureDeltas.length
+        - fixtureDeltas.reduce((sum, entry) => sum + entry.beforeScore, 0) / fixtureDeltas.length
+      )
+    : null;
+  return { outcomeScoreDelta, fixtureDeltas, fixtureDeltaSummary: summary };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3b. 5-DIM SCORING (opt-in, --scorer=5dim)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -540,6 +650,8 @@ async function main() {
       );
     }
 
+    const benchmarkDeltas = buildBenchmarkDeltas(profile, fixtures, results);
+
     // When the profile declares how the system under test SELF-reports a score,
     // record self-vs-independent per fixture and warn when the mean ratio gap
     // exceeds the profile threshold.
@@ -625,9 +737,14 @@ async function main() {
       provenance,
       aggregateScore,
       maxScore: 100,
+      outcomeScoreDelta: benchmarkDeltas.outcomeScoreDelta,
+      fixtureDeltas: benchmarkDeltas.fixtureDeltas,
+      fixtureDeltaSummary: benchmarkDeltas.fixtureDeltaSummary,
       totals: {
         score: aggregateScore,
         delta,
+        outcomeScoreDelta: benchmarkDeltas.outcomeScoreDelta,
+        fixtureDeltaSummary: benchmarkDeltas.fixtureDeltaSummary,
         pass_rate: passRate,
         fixtures: results.length,
         passed: passCount,
@@ -677,6 +794,9 @@ async function main() {
         reportSnapshot: snapshotPath,
         provenance,
         aggregateScore,
+        outcomeScoreDelta: benchmarkDeltas.outcomeScoreDelta,
+        fixtureDeltas: benchmarkDeltas.fixtureDeltas,
+        fixtureDeltaSummary: benchmarkDeltas.fixtureDeltaSummary,
         totals: report.totals,
         rows: results,
         recommendation,

@@ -158,3 +158,73 @@ describe('reduce-state benchmark aggregate plateau stop (F-P1-5)', () => {
     expect(registry.stopStatus.reasons.join('; ')).not.toContain('benchmark aggregate plateaued');
   });
 });
+
+describe('reduce-state benchmark score-delta summary', () => {
+  it('summarizes outcome deltas and helped/hurt fixture counts in the registry and dashboard', () => {
+    const runtimeRoot = path.join(tmpDir, 'improvement');
+    fs.mkdirSync(runtimeRoot, { recursive: true });
+
+    const records = [
+      {
+        type: 'benchmark_run',
+        profileId: 'dynamic',
+        family: 'derived',
+        mode: 'model-benchmark',
+        aggregateScore: 92,
+        recommendation: 'benchmark-pass',
+        outcomeScoreDelta: 12.5,
+        fixtureDeltas: [
+          { id: 'helped', beforeScore: 70, afterScore: 100, delta: 30, helped: true, hurt: false },
+          { id: 'hurt', beforeScore: 70, afterScore: 65, delta: -5, helped: false, hurt: true },
+        ],
+      },
+      {
+        type: 'benchmark_run',
+        profileId: 'dynamic',
+        family: 'derived',
+        mode: 'model-benchmark',
+        aggregateScore: 88,
+        recommendation: 'benchmark-pass',
+        outcomeScoreDelta: null,
+        fixtureDeltas: [
+          { id: 'unchanged', beforeScore: 88, afterScore: 88, delta: 0, helped: false, hurt: false },
+          { id: 'missing', beforeScore: null, afterScore: 90, delta: null, helped: false, hurt: false },
+        ],
+      },
+    ];
+
+    fs.writeFileSync(
+      path.join(runtimeRoot, 'agent-improvement-state.jsonl'),
+      `${records.map((record) => JSON.stringify(record)).join('\n')}\n`,
+      'utf8',
+    );
+
+    execFileSync('node', [REDUCE_SCRIPT, runtimeRoot], {
+      cwd: WORKSPACE_ROOT,
+      encoding: 'utf8',
+    });
+
+    const registry = JSON.parse(
+      fs.readFileSync(path.join(runtimeRoot, 'experiment-registry.json'), 'utf8'),
+    );
+    expect(registry.benchmarkDeltaSummary).toEqual({
+      runsWithOutcomeDelta: 1,
+      missingOutcomeDeltaRuns: 1,
+      outcomeScoreDeltaSum: 12.5,
+      latestOutcomeScoreDelta: 12.5,
+      bestOutcomeScoreDelta: 12.5,
+      helpedFixtures: 1,
+      hurtFixtures: 1,
+      unchangedFixtures: 1,
+      missingBaselineFixtures: 1,
+      totalFixtures: 4,
+    });
+    expect(registry.profiles.dynamic.benchmarkDeltaSummary).toEqual(registry.benchmarkDeltaSummary);
+
+    const dashboard = fs.readFileSync(
+      path.join(runtimeRoot, 'agent-improvement-dashboard.md'),
+      'utf8',
+    );
+    expect(dashboard).toContain('helped 1 / hurt 1 / unchanged 1 / missingBaseline 1');
+  });
+});

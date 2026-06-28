@@ -15,11 +15,10 @@
     "candidate",
     "better"
   ],
-  "lastUpdated": "2026-06-28T14:26:02.731Z",
+  "lastUpdated": "2026-06-28T20:20:36.073Z",
   "specId": "009",
   "folderSlug": "loop-quality-benchmark",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

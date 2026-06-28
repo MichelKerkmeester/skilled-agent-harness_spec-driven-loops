@@ -28,7 +28,7 @@ function writeJson(filePath: string, value: unknown) {
 // A target that is NOT an agent-definition file (not under .opencode/agents/),
 // so the 4-runtime mirror-sync gate is skipped and the test stays focused on the
 // Lane B promotion gates.
-function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: number }) {
+function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: number; reportExtras?: Record<string, unknown> }) {
   const candidate = path.join(work, 'candidate.txt');
   const target = path.join(work, 'canonical-target.txt');
   const benchmarkReport = path.join(work, 'benchmark-outputs/report.json');
@@ -52,6 +52,7 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
     maxScore: 100,
     totals: { score: opts.aggregateScore, delta: 0.05, pass_rate: 1, fixtures: 2, passed: 2 },
     recommendation: opts.recommendation,
+    ...(opts.reportExtras || {}),
   });
 
   writeJson(repeatability, { profileId: 'demo-profile', passed: true });
@@ -130,5 +131,68 @@ describe('F017-P1-04 promote-candidate benchmark mode', () => {
     expect(result.status).toBe(1);
     expect(result.stderr).toMatch(/benchmark aggregate 50 below gate/);
     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('refuses a benchmark report with a negative outcomeScoreDelta', () => {
+    const p = buildBenchmarkPacket({
+      recommendation: 'benchmark-pass',
+      aggregateScore: 92,
+      reportExtras: {
+        outcomeScoreDelta: -0.25,
+        fixtureDeltas: [
+          { id: 'regressed', beforeScore: 93, afterScore: 92, delta: -1, helped: false, hurt: true },
+        ],
+      },
+    });
+    const result = runPromote(p, ['--allow-hurt-fixtures']);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toMatch(/regression: outcomeScoreDelta < 0/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('refuses a missing benchmark baseline unless explicitly overridden', () => {
+    const p = buildBenchmarkPacket({
+      recommendation: 'benchmark-pass',
+      aggregateScore: 92,
+      reportExtras: {
+        outcomeScoreDelta: null,
+        fixtureDeltas: [
+          { id: 'no-baseline', beforeScore: null, afterScore: 92, delta: null, helped: false, hurt: false },
+        ],
+      },
+    });
+    const result = runPromote(p);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toMatch(/outcomeScoreDelta is undefined/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('requires --allow-hurt-fixtures for positive aggregate deltas with hurt fixtures', () => {
+    const p = buildBenchmarkPacket({
+      recommendation: 'benchmark-pass',
+      aggregateScore: 92,
+      reportExtras: {
+        outcomeScoreDelta: 2,
+        fixtureDeltaSummary: { total: 2, helped: 1, hurt: 1, unchanged: 0, missingBaseline: 0 },
+        fixtureDeltas: [
+          { id: 'helped', beforeScore: 80, afterScore: 90, delta: 10, helped: true, hurt: false },
+          { id: 'hurt', beforeScore: 95, afterScore: 90, delta: -5, helped: false, hurt: true },
+        ],
+      },
+    });
+
+    const blocked = runPromote(p);
+    expect(blocked.status).toBe(1);
+    expect(blocked.stderr).toMatch(/hurt fixtures detected \(hurt\)/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+
+    const allowed = runPromote(p, ['--allow-hurt-fixtures']);
+    expect(allowed.status, allowed.stderr).toBe(0);
+    const out = JSON.parse(allowed.stdout);
+    expect(out.outcomeScoreDelta).toBe(2);
+    expect(out.fixtureDeltaSummary.hurt).toBe(1);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('CANDIDATE BODY\n');
   });
 });

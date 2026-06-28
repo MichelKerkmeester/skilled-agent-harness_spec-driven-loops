@@ -77,6 +77,37 @@ function readScoreDelta(score) {
   return score ? score.delta : null;
 }
 
+function finiteNumberOrNull(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === 'string' && value.trim()) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function hasBenchmarkDeltaContract(report) {
+  return Object.prototype.hasOwnProperty.call(report, 'outcomeScoreDelta')
+    || Object.prototype.hasOwnProperty.call(report?.totals || {}, 'outcomeScoreDelta')
+    || Array.isArray(report.fixtureDeltas);
+}
+
+function readOutcomeScoreDelta(report) {
+  return finiteNumberOrNull(report.outcomeScoreDelta ?? report.totals?.outcomeScoreDelta);
+}
+
+function hurtFixtureDeltas(report) {
+  if (!Array.isArray(report.fixtureDeltas)) {
+    return [];
+  }
+  return report.fixtureDeltas.filter((entry) => {
+    const delta = finiteNumberOrNull(entry?.delta);
+    return entry?.hurt === true || (delta !== null && delta < 0);
+  });
+}
+
 function isAgentDefinitionTarget(target) {
   const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
     .split(path.sep)
@@ -152,6 +183,8 @@ function main() {
   const manifestPath = args.manifest;
   const archiveDir = args['archive-dir'];
   const approve = args.approve === true || args.approve === 'true';
+  const allowHurtFixtures = args['allow-hurt-fixtures'] === true || args['allow-hurt-fixtures'] === 'true';
+  const noBaselineOk = args['no-baseline-ok'] === true || args['no-baseline-ok'] === 'true';
 
   // Lane B (model-benchmark) produces report.json with
   // status=benchmark-complete and never a scored agent file. Promotion mode is
@@ -166,8 +199,8 @@ function main() {
   const benchmarkMode = !scorePath;
 
   if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approve) {
-    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve\n');
-    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve\n');
+    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--allow-hurt-fixtures] [--no-baseline-ok]\n');
+    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--allow-hurt-fixtures] [--no-baseline-ok]\n');
     process.exit(2);
   }
 
@@ -223,6 +256,25 @@ function main() {
 
   if (Number(benchmarkReport.aggregateScore || 0) < BENCHMARK_AGGREGATE_GATE) {
     process.stderr.write(`Cannot promote: benchmark aggregate ${benchmarkReport.aggregateScore} below gate ${BENCHMARK_AGGREGATE_GATE}\n`);
+    process.exit(1);
+  }
+
+  const benchmarkHasDeltaContract = hasBenchmarkDeltaContract(benchmarkReport);
+  const outcomeScoreDelta = readOutcomeScoreDelta(benchmarkReport);
+  if (benchmarkHasDeltaContract && outcomeScoreDelta === null && !noBaselineOk) {
+    process.stderr.write('Cannot promote: outcomeScoreDelta is undefined because a baseline score is missing; pass --no-baseline-ok only when this is explicitly reviewed\n');
+    process.exit(1);
+  }
+
+  if (outcomeScoreDelta !== null && outcomeScoreDelta < 0) {
+    process.stderr.write(`Cannot promote: regression: outcomeScoreDelta < 0 (${outcomeScoreDelta})\n`);
+    process.exit(1);
+  }
+
+  const hurtFixtures = hurtFixtureDeltas(benchmarkReport);
+  if (hurtFixtures.length > 0 && !allowHurtFixtures) {
+    const fixtureIds = hurtFixtures.map((entry) => entry.id || 'unknown').join(', ');
+    process.stderr.write(`Cannot promote: hurt fixtures detected (${fixtureIds}); pass --allow-hurt-fixtures only when this trade-off is explicitly reviewed\n`);
     process.exit(1);
   }
 
@@ -366,6 +418,8 @@ function main() {
         mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
         aggregateScore: benchmarkReport.aggregateScore,
         benchmarkDelta: benchmarkReport.totals?.delta ?? null,
+        outcomeScoreDelta: benchmarkHasDeltaContract ? outcomeScoreDelta : null,
+        fixtureDeltaSummary: benchmarkReport.fixtureDeltaSummary || benchmarkReport.totals?.fixtureDeltaSummary || null,
         recommendation: benchmarkReport.recommendation,
         timestamp: new Date().toISOString(),
       }

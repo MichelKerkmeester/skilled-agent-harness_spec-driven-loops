@@ -170,6 +170,66 @@ describe('F-P1-7 + P2 provenance', () => {
   });
 });
 
+describe('benchmark score deltas', () => {
+  it('emits outcomeScoreDelta and per-fixture helped/hurt deltas when baselines are present', () => {
+    const fixtureDir = path.join(work, 'fixtures');
+    const profilePath = path.join(work, 'profile.json');
+    const outDir = path.join(work, 'outputs');
+    const report = path.join(outDir, 'report.json');
+    const stateLog = path.join(work, 'state.jsonl');
+
+    writeJson(path.join(fixtureDir, 'helped.json'), {
+      id: 'helped',
+      title: 'helped',
+      requiredHeadings: ['# Done'],
+      requiredPatterns: ['needle'],
+      forbiddenPatterns: [],
+      baselineScore: 70,
+    });
+    writeJson(path.join(fixtureDir, 'hurt.json'), {
+      id: 'hurt',
+      title: 'hurt',
+      requiredHeadings: ['# Done'],
+      requiredPatterns: ['needle'],
+      forbiddenPatterns: [],
+      baselineScore: 70,
+    });
+    writeJson(profilePath, {
+      profileId: 'score-delta',
+      family: 'test',
+      targetPath: 'n/a',
+      fixtureDir,
+      fixtures: ['helped', 'hurt'],
+      thresholdDelta: 0,
+      benchmark: { requiredAggregateScore: 0, minimumFixtureScore: 0 },
+    });
+    fs.mkdirSync(outDir, { recursive: true });
+    fs.writeFileSync(path.join(outDir, 'helped.md'), '# Done\nneedle\n', 'utf8');
+    fs.writeFileSync(path.join(outDir, 'hurt.md'), '# Done\n', 'utf8');
+
+    const r = runBenchmark(profilePath, outDir, report, ['--state-log', stateLog]);
+
+    expect(r.status).toBe(0);
+    const data = JSON.parse(fs.readFileSync(report, 'utf8'));
+    expect(data.outcomeScoreDelta).toBe(12.5);
+    expect(data.fixtureDeltaSummary).toEqual({
+      total: 2,
+      helped: 1,
+      hurt: 1,
+      unchanged: 0,
+      missingBaseline: 0,
+    });
+    expect(data.fixtureDeltas).toEqual([
+      { id: 'helped', beforeScore: 70, afterScore: 100, delta: 30, helped: true, hurt: false },
+      { id: 'hurt', beforeScore: 70, afterScore: 65, delta: -5, helped: false, hurt: true },
+    ]);
+
+    const ledgerRow = JSON.parse(fs.readFileSync(stateLog, 'utf8').trim());
+    expect(ledgerRow.outcomeScoreDelta).toBe(12.5);
+    expect(ledgerRow.fixtureDeltaSummary.hurt).toBe(1);
+  });
+});
+
 describe('P2 regex DoS guard', () => {
   it('rejects an over-length authored pattern instead of compiling it', () => {
     const fixtureDir = path.join(work, 'fixtures');
