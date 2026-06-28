@@ -1,23 +1,22 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/004-d4-open-design-pairing/005-od-cli-bash-lane",
-  "description": "Tokenize Bash to bind daemon-cli.mjs/$OD_BIN plus the write verb in the same segment and require a same-command gate file.",
+  "description": "Open Design is driven not only through MCP tools but also through the `od` CLI, which the agent runs as a Bash command",
   "keywords": [
-    "tokenize",
+    "open",
+    "design",
+    "driven",
+    "only",
+    "mcp",
+    "tools",
+    "also",
+    "cli",
+    "agent",
+    "runs",
     "bash",
-    "bind",
-    "daemon-cli",
-    "mjs",
-    "plus",
-    "write",
-    "verb",
-    "same",
-    "segment",
-    "require",
-    "same-command",
-    "gate",
-    "file"
+    "command"
   ],
-  "lastUpdated": "2026-06-28T12:39:55.828Z",
+  "lastUpdated": "2026-06-28T20:23:17.805Z",
   "specId": "005",
   "folderSlug": "od-cli-bash-lane",
   "parentChain": [
@@ -29,6 +28,5 @@
     "004-d4-open-design-pairing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

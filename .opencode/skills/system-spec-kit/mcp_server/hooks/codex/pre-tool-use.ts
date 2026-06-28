@@ -43,6 +43,7 @@ export interface BashDenylistEntry {
 
 export interface OpenDesignPreconditions {
   readonly guardedTools?: readonly string[];
+  readonly guardedOdCommands?: readonly string[];
 }
 
 export interface CodexPolicyFile {
@@ -50,6 +51,7 @@ export interface CodexPolicyFile {
   readonly notes?: string;
   readonly bashDenylist?: readonly (string | BashDenylistEntry)[];
   readonly bash_denylist?: readonly (string | BashDenylistEntry)[];
+  readonly guardedOdCommands?: readonly string[];
   readonly openDesignPreconditions?: OpenDesignPreconditions;
   readonly toolPreconditions?: {
     readonly openDesignPreconditions?: OpenDesignPreconditions;
@@ -247,6 +249,38 @@ function resolveGuardedOpenDesignTools(
   ];
 }
 
+function normalizeGuardedOdCommand(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const trimmed = value.trim().replace(/\s+/g, ' ').toLowerCase();
+  if (trimmed.length === 0) {
+    return null;
+  }
+  return trimmed.startsWith('od ') ? trimmed : `od ${trimmed}`;
+}
+
+function guardedOdCommandEntries(commands: readonly string[] | undefined): readonly string[] {
+  if (!Array.isArray(commands)) {
+    return [];
+  }
+  return commands
+    .map(normalizeGuardedOdCommand)
+    .filter((command): command is string => command !== null);
+}
+
+function resolveGuardedOdCommands(
+  dependencies: CodexPreToolUseDependencies,
+): readonly string[] {
+  const policy = dependencies.readPolicy?.()
+    ?? readPolicyQuiet(dependencies.policyPath ?? defaultCodexPolicyPath());
+  return [
+    ...guardedOdCommandEntries(policy.guardedOdCommands),
+    ...guardedOdCommandEntries(policy.openDesignPreconditions?.guardedOdCommands),
+    ...guardedOdCommandEntries(policy.toolPreconditions?.openDesignPreconditions?.guardedOdCommands),
+  ];
+}
+
 function fieldFromRecord(record: unknown, key: string): unknown {
   return isRecord(record) ? record[key] : undefined;
 }
@@ -321,6 +355,298 @@ function isStructurallyValidDesignProofToken(token: unknown): boolean {
     && isNonEmptyString(token.boundSurface);
 }
 
+const READ_ONLY_OD_COMMANDS = new Set<string>([
+  'od automation list',
+  'od automation show',
+  'od automation view',
+  'od daemon status',
+  'od design-systems list',
+  'od doctor',
+  'od files list',
+  'od files read',
+  'od get',
+  'od info',
+  'od list',
+  'od memory tree list',
+  'od memory tree show',
+  'od memory tree view',
+  'od run get',
+  'od run info',
+  'od run list',
+  'od run watch',
+  'od skills list',
+  'od status',
+  'od tools design-systems read',
+  'od ui list',
+  'od ui show',
+  'od watch',
+]);
+
+function splitShellSegments(command: string): readonly string[] {
+  const segments: string[] = [];
+  let current = '';
+  let quote: '"' | "'" | null = null;
+  let escaped = false;
+
+  for (let index = 0; index < command.length; index += 1) {
+    const char = command[index];
+    if (escaped) {
+      current += char;
+      escaped = false;
+      continue;
+    }
+    if (char === '\\') {
+      current += char;
+      escaped = true;
+      continue;
+    }
+    if (quote) {
+      if (char === quote) {
+        quote = null;
+      }
+      current += char;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quote = char;
+      current += char;
+      continue;
+    }
+    const next = command[index + 1];
+    const previous = command[index - 1];
+    const isSeparator = char === '\n'
+      || char === ';'
+      || (char === '|' && next !== '&')
+      || (char === '&' && previous !== '>' && previous !== '<');
+    if (isSeparator) {
+      if (current.trim().length > 0) {
+        segments.push(current.trim());
+      }
+      current = '';
+      if ((char === '&' && next === '&') || (char === '|' && next === '|')) {
+        index += 1;
+      }
+      continue;
+    }
+    current += char;
+  }
+
+  if (current.trim().length > 0) {
+    segments.push(current.trim());
+  }
+  return segments;
+}
+
+function tokenizeShellSegment(segment: string): readonly string[] {
+  const tokens: string[] = [];
+  let current = '';
+  let quote: '"' | "'" | null = null;
+  let escaped = false;
+
+  for (let index = 0; index < segment.length; index += 1) {
+    const char = segment[index];
+    if (escaped) {
+      current += char;
+      escaped = false;
+      continue;
+    }
+    if (char === '\\') {
+      escaped = true;
+      continue;
+    }
+    if (quote) {
+      if (char === quote) {
+        quote = null;
+      } else {
+        current += char;
+      }
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quote = char;
+      continue;
+    }
+    if (/\s/.test(char)) {
+      if (current.length > 0) {
+        tokens.push(current);
+        current = '';
+      }
+      continue;
+    }
+    current += char;
+  }
+
+  if (current.length > 0) {
+    tokens.push(current);
+  }
+  return tokens;
+}
+
+function isEnvAssignment(token: string): boolean {
+  return /^[A-Za-z_][A-Za-z0-9_]*=.*/.test(token);
+}
+
+function isOdExecutableToken(token: string): boolean {
+  return token === 'od'
+    || token === '$OD_BIN'
+    || token === '${OD_BIN}'
+    || token === '$OD_DAEMON_CLI_PATH'
+    || token === '${OD_DAEMON_CLI_PATH}'
+    || token === 'daemon-cli.mjs'
+    || token.endsWith('/daemon-cli.mjs');
+}
+
+function isNodeExecutableToken(token: string): boolean {
+  return token === 'node' || token.endsWith('/node');
+}
+
+function firstCommandTokenIndex(tokens: readonly string[]): number {
+  let index = 0;
+  while (index < tokens.length && isEnvAssignment(tokens[index])) {
+    index += 1;
+  }
+  return index;
+}
+
+function segmentHasElectronNodeEnv(tokens: readonly string[]): boolean {
+  return tokens.some((token) => token === 'ELECTRON_RUN_AS_NODE=1');
+}
+
+function odExecutableIndex(tokens: readonly string[]): number | null {
+  const commandIndex = firstCommandTokenIndex(tokens);
+  if (commandIndex >= tokens.length) {
+    return null;
+  }
+  if (isOdExecutableToken(tokens[commandIndex])) {
+    return commandIndex;
+  }
+  if (isNodeExecutableToken(tokens[commandIndex]) && isOdExecutableToken(tokens[commandIndex + 1] ?? '')) {
+    return commandIndex + 1;
+  }
+  if (segmentHasElectronNodeEnv(tokens)
+    && commandIndex + 1 < tokens.length
+    && isOdExecutableToken(tokens[commandIndex + 1])) {
+    return commandIndex + 1;
+  }
+  return null;
+}
+
+function odCommandCandidates(tokens: readonly string[], executableIndex: number): readonly string[] {
+  const commandTokens: string[] = [];
+  let skipLeadingOptionValue = false;
+  let collectingCommand = false;
+
+  for (let index = executableIndex + 1; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (!collectingCommand && skipLeadingOptionValue) {
+      skipLeadingOptionValue = false;
+      continue;
+    }
+    if (token.startsWith('-')) {
+      if (collectingCommand) {
+        break;
+      }
+      skipLeadingOptionValue = !token.includes('=');
+      continue;
+    }
+    if (isEnvAssignment(token)) {
+      continue;
+    }
+    commandTokens.push(token.toLowerCase());
+    collectingCommand = true;
+    if (commandTokens.length === 4) {
+      break;
+    }
+  }
+
+  const candidates: string[] = [];
+  for (let count = commandTokens.length; count > 0; count -= 1) {
+    candidates.push(`od ${commandTokens.slice(0, count).join(' ')}`);
+  }
+  return candidates;
+}
+
+function extractDesignProofFilePath(tokens: readonly string[]): string | null {
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (token === '--design-proof') {
+      const value = tokens[index + 1];
+      return value && !value.startsWith('-') ? value : null;
+    }
+    if (token.startsWith('--design-proof=')) {
+      const value = token.slice('--design-proof='.length);
+      return value.length > 0 ? value : null;
+    }
+    if (token.startsWith('OD_DESIGN_PROOF_FILE=')) {
+      const value = token.slice('OD_DESIGN_PROOF_FILE='.length);
+      return value.length > 0 ? value : null;
+    }
+  }
+  return null;
+}
+
+function hasValidDesignProofGateFile(
+  tokens: readonly string[],
+  input: CodexPreToolUseInput,
+  dependencies: CodexPreToolUseDependencies,
+): boolean {
+  const proofPath = extractDesignProofFilePath(tokens);
+  if (!proofPath) {
+    return false;
+  }
+  try {
+    const token = JSON.parse(readFileSync(proofPath, 'utf8')) as unknown;
+    return dependencies.validateOpenDesignToken
+      ? dependencies.validateOpenDesignToken(token, input)
+      : isStructurallyValidDesignProofToken(token);
+  } catch {
+    return false;
+  }
+}
+
+function evaluateOdCliPrecondition(
+  input: CodexPreToolUseInput,
+  dependencies: CodexPreToolUseDependencies,
+): CodexPreToolUseOutput | null {
+  let guardedCommands: readonly string[];
+  try {
+    if (toolNameFor(input) !== 'Bash') {
+      return null;
+    }
+    const command = bashCommandFor(input);
+    if (command === null) {
+      return null;
+    }
+    guardedCommands = resolveGuardedOdCommands(dependencies);
+    if (guardedCommands.length === 0) {
+      return null;
+    }
+
+    const guardedCommandSet = new Set(guardedCommands);
+    for (const segment of splitShellSegments(command)) {
+      const tokens = tokenizeShellSegment(segment);
+      const executableIndex = odExecutableIndex(tokens);
+      if (executableIndex === null) {
+        continue;
+      }
+      const candidates = odCommandCandidates(tokens, executableIndex);
+      const guarded = candidates.find((candidate) => guardedCommandSet.has(candidate));
+      if (!guarded || candidates.some((candidate) => READ_ONLY_OD_COMMANDS.has(candidate))) {
+        continue;
+      }
+      if (!hasValidDesignProofGateFile(tokens, input, dependencies)) {
+        return {
+          decision: 'deny',
+          reason: 'Guarded Open Design CLI command denied: missing or invalid design proof token',
+        };
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 function evaluateOpenDesignPrecondition(
   input: CodexPreToolUseInput,
   dependencies: CodexPreToolUseDependencies,
@@ -378,6 +704,11 @@ export function handleCodexPreToolUse(
     const openDesignDecision = evaluateOpenDesignPrecondition(input, dependencies);
     if (openDesignDecision !== null) {
       return openDesignDecision;
+    }
+
+    const odCliDecision = evaluateOdCliPrecondition(input, dependencies);
+    if (odCliDecision !== null) {
+      return odCliDecision;
     }
 
     if (toolNameFor(input) !== 'Bash') {
