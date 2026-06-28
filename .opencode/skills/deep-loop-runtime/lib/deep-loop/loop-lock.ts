@@ -7,6 +7,7 @@ import { dirname } from 'node:path';
 
 import type { ExecutorKind } from './executor-config.js';
 
+/** Metadata persisted in the advisory loop lock file. */
 export interface LoopLockData {
   ownerPid: number;
   startedAtIso: string;
@@ -14,11 +15,34 @@ export interface LoopLockData {
   lastHeartbeatIso: string;
   packetId: string;
   runtimeKind: ExecutorKind | 'main';
+  phase?: string;
+  lastActivityIso?: string;
+}
+
+/** Owner identity used by the heartbeat driver. */
+export interface LoopLockOwnerToken {
+  lockPath: string;
+  ownerPid: number;
+  phase?: string;
+}
+
+/** Optional metadata applied while refreshing the lock heartbeat. */
+export interface RefreshLoopLockOptions {
+  phase?: string;
+  lastActivityIso?: string;
 }
 
 export type LoopLockAcquireResult =
   | { acquired: true; lock: LoopLockData; reclaimed?: LoopLockData }
   | { acquired: false; holder: LoopLockData };
+
+// ───── CONSTANTS ─────
+
+export const DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS = 15_000;
+
+const DEFAULT_LOOP_LOCK_PHASE = 'running';
+
+let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
 
 // ───── DOMAIN ERRORS ─────
 
@@ -41,7 +65,24 @@ type SerializedLoopLockData = {
   last_heartbeat_iso: string;
   packet_id: string;
   runtime_kind: ExecutorKind | 'main';
+  phase?: string;
+  last_activity_iso?: string;
 };
+
+function normalizeLoopLockData(data: LoopLockData): LoopLockData {
+  const phase = typeof data.phase === 'string' && data.phase.length > 0
+    ? data.phase
+    : DEFAULT_LOOP_LOCK_PHASE;
+  const lastActivityIso = typeof data.lastActivityIso === 'string' && data.lastActivityIso.length > 0
+    ? data.lastActivityIso
+    : data.lastHeartbeatIso;
+
+  return {
+    ...data,
+    phase,
+    lastActivityIso,
+  };
+}
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;
@@ -60,13 +101,16 @@ function makeTempPath(targetPath: string): string {
 }
 
 function serializeLock(data: LoopLockData): SerializedLoopLockData {
+  const normalized = normalizeLoopLockData(data);
   return {
-    owner_pid: data.ownerPid,
-    started_at_iso: data.startedAtIso,
-    ttl_ms: data.ttlMs,
-    last_heartbeat_iso: data.lastHeartbeatIso,
-    packet_id: data.packetId,
-    runtime_kind: data.runtimeKind,
+    owner_pid: normalized.ownerPid,
+    started_at_iso: normalized.startedAtIso,
+    ttl_ms: normalized.ttlMs,
+    last_heartbeat_iso: normalized.lastHeartbeatIso,
+    packet_id: normalized.packetId,
+    runtime_kind: normalized.runtimeKind,
+    phase: normalized.phase,
+    last_activity_iso: normalized.lastActivityIso,
   };
 }
 
@@ -82,7 +126,9 @@ function deserializeLock(raw: unknown): LoopLockData | null {
     !Number.isInteger(candidate.ttl_ms) ||
     typeof candidate.last_heartbeat_iso !== 'string' ||
     typeof candidate.packet_id !== 'string' ||
-    typeof candidate.runtime_kind !== 'string'
+    typeof candidate.runtime_kind !== 'string' ||
+    (candidate.phase !== undefined && typeof candidate.phase !== 'string') ||
+    (candidate.last_activity_iso !== undefined && typeof candidate.last_activity_iso !== 'string')
   ) {
     return null;
   }
@@ -90,14 +136,16 @@ function deserializeLock(raw: unknown): LoopLockData | null {
   const ownerPid = candidate.owner_pid as number;
   const ttlMs = candidate.ttl_ms as number;
 
-  return {
+  return normalizeLoopLockData({
     ownerPid,
     startedAtIso: candidate.started_at_iso,
     ttlMs,
     lastHeartbeatIso: candidate.last_heartbeat_iso,
     packetId: candidate.packet_id,
     runtimeKind: candidate.runtime_kind as ExecutorKind | 'main',
-  };
+    phase: candidate.phase,
+    lastActivityIso: candidate.last_activity_iso,
+  });
 }
 
 function readLoopLock(lockPath: string): LoopLockData | null {
@@ -232,21 +280,22 @@ export function isStaleLoopLock(data: LoopLockData, now: Date = new Date()): boo
  * @returns Result indicating whether the lock was acquired and by whom.
  */
 export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockAcquireResult {
+  const lock = normalizeLoopLockData(data);
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (holder && !isStaleLoopLock(holder)) {
     return { acquired: false, holder };
   }
 
   if (!holder) {
-    if (writeLoopLockExclusive(lockPath, data)) {
-      return { acquired: true, lock: data };
+    if (writeLoopLockExclusive(lockPath, lock)) {
+      return { acquired: true, lock };
     }
     const current = readLoopLock(lockPath);
-    return { acquired: false, holder: current ?? data };
+    return { acquired: false, holder: current ?? lock };
   }
 
-  if (tryReclaimStaleLoopLock(lockPath, data)) {
-    return { acquired: true, lock: data, reclaimed: holder };
+  if (tryReclaimStaleLoopLock(lockPath, lock)) {
+    return { acquired: true, lock, reclaimed: holder };
   }
   const current = readLoopLock(lockPath);
   return { acquired: false, holder: current ?? holder };
@@ -258,19 +307,77 @@ export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockA
  * @param lockPath - File path for the lock file.
  * @param ownerPid - PID of the owning process (must match current owner).
  * @param now - Reference timestamp (defaults to now).
+ * @param options - Metadata to store alongside the heartbeat.
  * @returns True if the heartbeat was successfully refreshed.
  */
-export function refreshLoopLock(lockPath: string, ownerPid: number, now: Date = new Date()): boolean {
+export function refreshLoopLock(
+  lockPath: string,
+  ownerPid: number,
+  now: Date = new Date(),
+  options: RefreshLoopLockOptions = {},
+): boolean {
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (!holder || holder.ownerPid !== ownerPid) {
     return false;
   }
 
+  const heartbeatIso = now.toISOString();
   writeLoopLockAtomic(lockPath, {
     ...holder,
-    lastHeartbeatIso: now.toISOString(),
+    lastHeartbeatIso: heartbeatIso,
+    phase: options.phase ?? holder.phase,
+    lastActivityIso: options.lastActivityIso ?? heartbeatIso,
   });
   return true;
+}
+
+/**
+ * Start refreshing the current owner's lock on a fixed cadence.
+ *
+ * @param ownerToken - Lock path and owning process identity.
+ * @param intervalMs - Refresh cadence in milliseconds.
+ */
+export function startHeartbeat(
+  ownerToken: LoopLockOwnerToken,
+  intervalMs: number = DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS,
+): void {
+  if (ownerToken === null || typeof ownerToken !== 'object') {
+    throw new TypeError('Heartbeat owner token must be an object');
+  }
+  if (typeof ownerToken.lockPath !== 'string' || ownerToken.lockPath.length === 0) {
+    throw new TypeError('Heartbeat owner token requires a lockPath');
+  }
+  if (!Number.isInteger(ownerToken.ownerPid) || ownerToken.ownerPid <= 0) {
+    throw new TypeError('Heartbeat owner token requires a positive ownerPid');
+  }
+  if (!Number.isFinite(intervalMs) || intervalMs <= 0) {
+    throw new TypeError('Heartbeat interval must be a positive finite number');
+  }
+
+  stopHeartbeat();
+  heartbeatTimer = setInterval(() => {
+    try {
+      const refreshed = refreshLoopLock(ownerToken.lockPath, ownerToken.ownerPid, new Date(), {
+        phase: ownerToken.phase ?? DEFAULT_LOOP_LOCK_PHASE,
+      });
+      if (!refreshed) {
+        stopHeartbeat();
+      }
+    } catch (error: unknown) {
+      console.error(`Failed to refresh deep-loop lock heartbeat for ${ownerToken.lockPath}`, error);
+    }
+  }, intervalMs);
+  heartbeatTimer.unref?.();
+}
+
+/** Stop the active lock heartbeat, if one is running. */
+export function stopHeartbeat(): void {
+  if (heartbeatTimer === null) {
+    return;
+  }
+
+  clearInterval(heartbeatTimer);
+  heartbeatTimer = null;
 }
 
 /**

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawn } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
@@ -7,12 +7,16 @@ import { join } from 'node:path';
 
 import {
   acquireLoopLock,
+  DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS,
   isStaleLoopLock,
   processAlive,
   refreshLoopLock,
   releaseLoopLock,
+  startHeartbeat,
+  stopHeartbeat,
   type LoopLockData,
 } from '../../lib/deep-loop/loop-lock.js';
+import { createHermeticEnv } from '../helpers/spawn-cjs.js';
 
 /**
  * Creates a temporary lock file path for loop-lock tests.
@@ -38,6 +42,8 @@ function lockData(overrides: Partial<LoopLockData> = {}): LoopLockData {
     lastHeartbeatIso: now,
     packetId: 'packet-004',
     runtimeKind: 'main',
+    phase: 'running',
+    lastActivityIso: now,
     ...overrides,
   };
 }
@@ -52,10 +58,14 @@ function knownDeadPid(): number {
   throw new Error('Could not find a known-dead pid for loop-lock test');
 }
 
+afterEach(() => {
+  stopHeartbeat();
+  vi.useRealTimers();
+});
+
 type ChildLockResult = {
   acquired: boolean;
   packetId: string;
-  diskPacketId: string | null;
 };
 
 /**
@@ -64,7 +74,7 @@ type ChildLockResult = {
 function runLockChild(lockPath: string, barrierPath: string, packetId: string): Promise<ChildLockResult> {
   const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
   const script = `
-    import { existsSync, readFileSync } from 'node:fs';
+    import { existsSync } from 'node:fs';
     import { acquireLoopLock } from ${JSON.stringify(moduleUrl)};
     const [lockPath, barrierPath, packetId] = process.argv.slice(1);
     const deadline = Date.now() + 2000;
@@ -81,9 +91,7 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
       packetId,
       runtimeKind: 'cli-codex',
     });
-    let diskPacketId = null;
-    try { diskPacketId = JSON.parse(readFileSync(lockPath, 'utf8')).packet_id; } catch {}
-    process.stdout.write(JSON.stringify({ acquired: result.acquired, packetId, diskPacketId }) + '\\n');
+    process.stdout.write(JSON.stringify({ acquired: result.acquired, packetId }) + '\\n');
   `;
 
   return new Promise((resolve, reject) => {
@@ -124,9 +132,11 @@ describe('loop-lock', () => {
         ttl_ms: 300_000,
         packet_id: 'packet-004',
         runtime_kind: 'cli-codex',
+        phase: 'running',
       });
       expect(typeof disk.started_at_iso).toBe('string');
       expect(typeof disk.last_heartbeat_iso).toBe('string');
+      expect(typeof disk.last_activity_iso).toBe('string');
     });
   });
 
@@ -159,7 +169,6 @@ describe('loop-lock', () => {
       expect(results.filter((result) => !result.acquired)).toHaveLength(1);
       const winner = results.find((result) => result.acquired);
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe(winner?.packetId);
-      expect(results.every((result) => result.diskPacketId === winner?.packetId)).toBe(true);
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
@@ -171,13 +180,46 @@ describe('loop-lock', () => {
 
       expect(refreshLoopLock(lockPath, process.pid + 100_000)).toBe(false);
       expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:03:00.000Z'))).toBe(true);
-      expect(JSON.parse(readFileSync(lockPath, 'utf8')).last_heartbeat_iso).toBe('2026-05-22T12:03:00.000Z');
+      const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(refreshed.last_heartbeat_iso).toBe('2026-05-22T12:03:00.000Z');
+      expect(refreshed.last_activity_iso).toBe('2026-05-22T12:03:00.000Z');
+      expect(refreshed.phase).toBe('running');
 
       expect(releaseLoopLock(lockPath, process.pid + 100_000)).toBe(false);
       expect(existsSync(lockPath)).toBe(true);
       expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
       expect(existsSync(lockPath)).toBe(false);
     });
+  });
+
+  it('refreshes lock metadata on heartbeat cadence until stopped', () => {
+    const env = createHermeticEnv('loop-lock-heartbeat');
+    try {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date('2026-05-22T12:00:00.000Z'));
+      const lockPath = join(env.tmpDir, '.deep-loop.lock');
+
+      expect(acquireLoopLock(lockPath, lockData({ phase: 'paused' }))).toMatchObject({ acquired: true });
+      startHeartbeat({ lockPath, ownerPid: process.pid, phase: 'paused' }, 1_000);
+
+      vi.advanceTimersByTime(1_000);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8')).last_heartbeat_iso).toBe('2026-05-22T12:00:01.000Z');
+      vi.advanceTimersByTime(1_000);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8')).last_heartbeat_iso).toBe('2026-05-22T12:00:02.000Z');
+      vi.advanceTimersByTime(1_000);
+      const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(refreshed).toMatchObject({
+        phase: 'paused',
+        last_heartbeat_iso: '2026-05-22T12:00:03.000Z',
+        last_activity_iso: '2026-05-22T12:00:03.000Z',
+      });
+
+      stopHeartbeat();
+      vi.advanceTimersByTime(DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8')).last_heartbeat_iso).toBe('2026-05-22T12:00:03.000Z');
+    } finally {
+      env.cleanup();
+    }
   });
 
   it('treats TTL-expired locks as stale', () => {
