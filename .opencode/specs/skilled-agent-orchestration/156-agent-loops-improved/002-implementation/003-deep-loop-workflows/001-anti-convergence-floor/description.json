@@ -17,11 +17,10 @@
     "floor",
     "enforced"
   ],
-  "lastUpdated": "2026-06-28T14:26:01.666Z",
+  "lastUpdated": "2026-06-28T20:06:36.266Z",
   "specId": "001",
   "folderSlug": "anti-convergence-floor",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "003-deep-loop-workflows"

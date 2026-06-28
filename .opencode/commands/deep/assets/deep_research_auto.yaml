@@ -289,8 +289,10 @@ workflow:
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
+          minIterations: 3
           # Semantic: newInfoRatio with negative-knowledge emphasis. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
+          convergenceMode: "default"
           stuckThreshold: 3
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
@@ -315,7 +317,7 @@ workflow:
         action: "Initialize JSONL state log with config record"
         # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"convergenceMode":"default","resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -484,6 +486,14 @@ workflow:
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
           - nextRunAt: "Extract nullable nextRunAt from deep-research-config.json, default null"
           - remainingDelayMs: "Extract nullable remainingDelayMs from deep-research-config.json, default null"
+          - min_iterations_present: "Boolean true when deep-research-config.json has a numeric minIterations field"
+          - min_iterations_missing_warning: "Boolean true when minIterations is missing; use no floor and log a warning so older configs keep prior stop behavior"
+          - min_iterations_raw: "Extract numeric minIterations from deep-research-config.json when present, default 0"
+          - effective_min_iterations: "Clamp min_iterations_raw to the inclusive range 0..max_iterations; if min_iterations_raw exceeds max_iterations, use max_iterations"
+          - min_iterations_clamped: "Boolean true when min_iterations_raw > max_iterations"
+          - min_iterations_guard_already_passed: "Boolean true when state_log already contains event == 'min_iterations_guard_pass'"
+          - convergence_mode: "Extract convergenceMode when it is 'default' or 'off'; default to 'default'"
+          - convergence_mode_warning: "Boolean true when convergenceMode is present with an unsupported value; use 'default'"
 
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
@@ -557,6 +567,18 @@ workflow:
         if_not_exists:
           proceed: true
 
+      step_validate_convergence_config:
+        action: "Validate convergence floor settings when loading config"
+        if_min_iterations_missing:
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","fallback":0,"message":"minIterations missing; using no convergence floor for backward compatibility.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "minIterations missing; using no convergence floor for backward compatibility."
+        if_min_iterations_clamped:
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","configured":{min_iterations_raw},"effective":{effective_min_iterations},"maxIterations":{max_iterations},"message":"minIterations exceeds maxIterations; clamping to the hard cap.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "minIterations exceeds maxIterations; clamping to the hard cap."
+        if_convergence_mode_invalid:
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Unsupported convergenceMode; using default convergence behavior."
+
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
         bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"'
@@ -574,9 +596,10 @@ workflow:
         action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
         algorithm: |
           1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses quality-guard overrides; record failed guards/blockers as synthesis evidence instead of continuing.
-          2. if remaining_questions == 0: STOP (all_questions_answered)
-          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
-          4. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
+          2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          3. if convergence_mode == "off": skip convergence stop candidates and continue unless a terminal cap, pause sentinel, or recovery halt has already fired.
+          4. if remaining_questions == 0: STOP (all_questions_answered)
+          5. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
                step_graph_convergence already recorded graph_decision, graph_signals_json, graph_blockers_json, and graph_convergence_score for this run.
                The existing inline 3-signal vote still computes the inline STOP candidate and is not replaced.
                signals = []
@@ -610,8 +633,15 @@ workflow:
                  decision = "STOP"
                  reason = "composite_converged"
                  stop_blocked = false
-          5. else: CONTINUE
-          6. if decision == "STOP" and reason != "maxIterationsReached":
+          6. else: CONTINUE
+          7. if decision == "STOP" and reason != "maxIterationsReached" and effective_min_iterations > 1 and iteration_count < effective_min_iterations:
+               decision = "CONTINUE"
+               reason = "minIterationsNotReached"
+               min_iterations_guard_blocked = true
+               min_iterations_guard_pass = false
+          8. if effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false:
+               min_iterations_guard_pass = true
+          9. if decision == "STOP" and reason != "maxIterationsReached":
                guardResult = checkQualityGuards(state, strategy)
                if not guardResult.passed:
                  log: "Quality guard failed: {guardResult.violations}. Overriding STOP to CONTINUE."
@@ -631,6 +661,14 @@ workflow:
           - gate_evidence_density_sources: "Source-diversity count or equivalent evidence-depth proxy"
           - gate_hotspot_saturation_pass: "Research placeholder gate; true unless an explicit blocker sets otherwise"
           - recovery_strategy: "One-line hint describing the next research action when decision == BLOCKED or STUCK_RECOVERY"
+          - min_iterations_guard_pass: "Boolean true when the configured convergence floor has cleared for the first time"
+          - min_iterations_guard_blocked: "Boolean true when the configured convergence floor overrides a STOP candidate to CONTINUE"
+
+      step_emit_min_iterations_guard_pass:
+        action: "Persist a first-class event when the convergence floor clears"
+        if_pass:
+          append_to_jsonl: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Minimum iteration floor cleared for convergence stopping."
 
       step_emit_blocked_stop:
         action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"

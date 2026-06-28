@@ -1,7 +1,9 @@
 {
   "topic": "",
   "maxIterations": 10,
+  "minIterations": 3,
   "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
   "stuckThreshold": 3,
   "maxDurationMinutes": 120,
   "maxToolCallsPerIteration": 12,
