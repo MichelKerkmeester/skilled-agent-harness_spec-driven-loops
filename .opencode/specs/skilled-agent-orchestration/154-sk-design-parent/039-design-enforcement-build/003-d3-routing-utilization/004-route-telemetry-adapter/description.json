@@ -1,22 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/154-sk-design-parent/039-design-enforcement-build/003-d3-routing-utilization/004-route-telemetry-adapter",
-  "description": "Extend router-replay.cjs output with routeTelemetry and add reducer miss-rate metrics that separate unobserved from observed-wrong routes.",
+  "description": "Hub routing was structurally scorable (the D1 hub-router projection and the D2 gated `hubRoute` stage already landed) but it was unobserved: `routeSki",
   "keywords": [
-    "extend",
-    "router-replay",
-    "cjs",
-    "output",
-    "routetelemetry",
-    "add",
-    "reducer",
-    "miss-rate",
-    "metrics",
-    "separate",
+    "hub",
+    "routing",
+    "structurally",
+    "scorable",
+    "hub-router",
+    "projection",
+    "gated",
+    "hubroute",
+    "stage",
+    "already",
+    "landed",
     "unobserved",
-    "observed-wrong",
-    "routes"
+    "routeski"
   ],
-  "lastUpdated": "2026-06-28T12:39:59.035Z",
+  "lastUpdated": "2026-06-28T17:29:06.080Z",
   "specId": "004",
   "folderSlug": "route-telemetry-adapter",
   "parentChain": [
@@ -28,6 +29,5 @@
     "003-d3-routing-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

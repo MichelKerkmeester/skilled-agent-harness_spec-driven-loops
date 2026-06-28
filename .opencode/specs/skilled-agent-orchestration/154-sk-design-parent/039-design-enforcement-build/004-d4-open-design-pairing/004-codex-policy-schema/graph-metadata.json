@@ -11,28 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "d4-r4 codex policy schema",
-      "guarded tools policy design build"
+      "d4-r4 codex policy guardedtools",
+      "activate open design pretooluse branch",
+      "guarded tools policy design build",
+      "codex policy guardedtools plan",
+      "codex policy guardedtools tasks",
+      "codex policy guardedtools checklist",
+      "codex policy guardedtools implementation summary",
+      "activate open design pretooluse branch summary",
+      "guarded tools policy design build record"
     ],
     "key_topics": [
       "d4-r4",
       "codex",
       "policy",
-      "schema",
+      "guardedtools",
+      "activate",
+      "open",
+      "design",
+      "pretooluse",
+      "branch",
       "guarded",
       "tools",
-      "design",
-      "build",
-      "add",
-      "toolpreconditions",
-      "opendesignpreconditions",
-      "codexpolicyfile"
+      "build"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".codex/policy.json",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "dist/hooks/codex/pre-tool-use.js",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts"
     ],
     "entities": [
       {
@@ -48,53 +61,157 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-tool-use.js",
+        "kind": "code",
+        "path": "dist/hooks/codex/pre-tool-use.js",
+        "source": "derived"
+      },
+      {
+        "name": "pre-tool-use.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts",
+        "source": "derived"
+      },
+      {
         "name": "Open Design",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OBJECTIVE",
-        "kind": "heading",
+        "name": "Problem Statement The Codex",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. WHY",
-        "kind": "heading",
+        "name": "Purpose Populate",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. TARGET & CLASS",
-        "kind": "heading",
+        "name": "Code Mode",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. BUILD OUTLINE",
-        "kind": "heading",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "5. ACCEPTANCE",
-        "kind": "heading",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guarded Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add toolPreconditions/openDesignPreconditions to CodexPolicyFile plus the 7 mutating tools and namespace variants in pre-tool-use.ts and .codex/policy.json.",
+    "causal_summary": "The Codex PreToolUse hook already carries the executable Open Design precondition branch and its policy types, but the branch is inert",
     "created_at": "2026-06-28T12:39:54.940Z",
-    "last_save_at": "2026-06-28T12:39:54.940Z",
+    "last_save_at": "2026-06-28T17:16:05.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c28db63645d51134b05cded67691b2549724b8928eeecf7b561016b50c1eb633",
+    "source_fingerprint": "sha256:677e230ec974bb7c5383e3a6eaadd55356f4ca756fe21e26eb64a83193df7887",
     "source_doc_hashes": {
-      "spec.md": "772c7e6d5d29d5b8137d611ad6baae6162e5ae3a2dae7e9872321e5439defed7"
+      "spec.md": "54e6aed2b80271a98c1dfdc944136f7ab61f020902166bbcac385f69ed24d7c8",
+      "plan.md": "18eae1f55912991c0ebe8997ac1628c56613f66699c94f450d2ed9c652ac1d2c",
+      "tasks.md": "2b59d66d8480933b2390e8049cba92b53458cb0ad0ced01774b573aece1f4331",
+      "checklist.md": "3c2a3705c163c3afa288f74a1a60ff2a9892ccf0f3b865311634d7a2aff47891",
+      "implementation-summary.md": "1e34cb2fdf077f5a07b6fb2ebdabe4527fc104ba4c01af151244fba252d30dd7"
     },
     "last_active_child_id": null,
     "last_active_at": null

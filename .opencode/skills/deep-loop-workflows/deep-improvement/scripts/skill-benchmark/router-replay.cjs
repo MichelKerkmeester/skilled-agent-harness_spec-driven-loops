@@ -145,6 +145,71 @@ function projectHubRouter(filePath) {
   };
 }
 
+function readJsonObject(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) return null;
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return data && typeof data === 'object' ? data : null;
+  } catch {
+    return null;
+  }
+}
+
+function buildRegistryIndex(skillRoot) {
+  const registry = readJsonObject(path.join(skillRoot, 'mode-registry.json'));
+  const modes = registry && Array.isArray(registry.modes) ? registry.modes : [];
+  const byMode = {};
+  for (const mode of modes) {
+    if (!mode || typeof mode !== 'object' || !mode.workflowMode) continue;
+    byMode[String(mode.workflowMode)] = mode;
+  }
+  return byMode;
+}
+
+function buildHubRouteTelemetry({ skillRoot, intents, router, taskLower }) {
+  if (!router || router.routerSource !== 'hub-router.json') {
+    return { observed: false, reason: 'no-hub-router' };
+  }
+
+  const hub = readJsonObject(path.join(skillRoot, 'hub-router.json')) || {};
+  const policy = hub.routerPolicy && typeof hub.routerPolicy === 'object' ? hub.routerPolicy : {};
+  const selectedModes = Array.isArray(intents) ? intents : [];
+  const matchedAliases = [];
+
+  for (const mode of selectedModes) {
+    const signal = router.intentSignals && router.intentSignals[mode] ? router.intentSignals[mode] : {};
+    for (const keyword of Array.isArray(signal.keywords) ? signal.keywords : []) {
+      if (keyword && taskLower.includes(keyword)) matchedAliases.push(keyword);
+    }
+  }
+
+  const registry = buildRegistryIndex(skillRoot);
+  const backendKind = [];
+  const packet = [];
+  for (const mode of selectedModes) {
+    const entry = registry[mode];
+    if (!entry) continue;
+    if (entry.backendKind) backendKind.push(entry.backendKind);
+    if (entry.packet) packet.push(entry.packet);
+  }
+
+  const defaultApplied = selectedModes.length === 0 && policy.defaultMode != null;
+  const deferReason = selectedModes.length === 0
+    ? 'no-mode-scored'
+    : (selectedModes.length > 1 ? 'ambiguous-multi-axis' : null);
+
+  return {
+    observed: true,
+    source: 'hub-router',
+    workflowMode: selectedModes.length ? selectedModes : null,
+    matchedAliases: [...new Set(matchedAliases)],
+    defaultApplied,
+    deferReason,
+    backendKind,
+    packet,
+  };
+}
+
 // Some skills keep the authoritative router in a referenced doc (e.g.
 // references/smart_routing.md) rather than inlining it in SKILL.md. When the
 // inline dictionaries are absent we follow that pointer and parse the same
@@ -306,11 +371,19 @@ function routeSkillResources({ skillRoot, taskText }) {
   const skillMd = readSkillMd(skillRoot);
   const router = parseRouter(skillMd, skillRoot);
   if (!router.parseable) {
-    return { parseable: false, intents: [], resources: [], missingResources: [], scores: [] };
+    return {
+      parseable: false,
+      intents: [],
+      resources: [],
+      missingResources: [],
+      scores: [],
+      routeTelemetry: { observed: false, reason: 'router-unparseable' },
+    };
   }
   const taskLower = String(taskText || '').toLowerCase();
   const scores = scoreIntents(taskLower, router.intentSignals);
   const intents = selectIntents(scores);
+  const routeTelemetry = buildHubRouteTelemetry({ skillRoot, intents, router, taskLower });
   const resourceSet = new Set();
   for (const r of router.defaultResource || []) resourceSet.add(r);
   for (const intent of intents) {
@@ -348,18 +421,18 @@ function routeSkillResources({ skillRoot, taskText }) {
       return true;
     });
     const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
-    return { parseable: true, intents, resources, missingResources, scores, surface };
+    return { parseable: true, intents, resources, missingResources, scores, surface, routeTelemetry };
   }
 
   const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
-  return { parseable: true, intents, resources, missingResources, scores };
+  return { parseable: true, intents, resources, missingResources, scores, routeTelemetry };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents };
+module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents, buildHubRouteTelemetry };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

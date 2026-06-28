@@ -40,5 +40,31 @@
     "chown -R root:root /",
     "dd if=/dev/zero of=/dev/",
     "mkfs.ext4 /dev/"
-  ]
+  ],
+  "openDesignPreconditions": {
+    "description": "Design-feeding/mutating Open Design write tools that require a valid design proof token before execution. Read and transport tools are intentionally absent so legitimate transport is never blocked. Each write tool is listed in its wired forms (bare, native-MCP, and Code-Mode UTCP) because the hook matches the tool name by exact membership.",
+    "guardedTools": [
+      "create_artifact",
+      "write_file",
+      "create_project",
+      "start_run",
+      "cancel_run",
+      "delete_file",
+      "delete_project",
+      "mcp__open-design__create_artifact",
+      "mcp__open-design__write_file",
+      "mcp__open-design__create_project",
+      "mcp__open-design__start_run",
+      "mcp__open-design__cancel_run",
+      "mcp__open-design__delete_file",
+      "mcp__open-design__delete_project",
+      "open_design.open_design_create_artifact",
+      "open_design.open_design_write_file",
+      "open_design.open_design_create_project",
+      "open_design.open_design_start_run",
+      "open_design.open_design_cancel_run",
+      "open_design.open_design_delete_file",
+      "open_design.open_design_delete_project"
+    ]
+  }
 }

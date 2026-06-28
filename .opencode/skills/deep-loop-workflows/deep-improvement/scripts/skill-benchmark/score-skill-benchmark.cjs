@@ -112,6 +112,7 @@ function routerResultFromObservation(obs) {
     intents: obs.observedIntents || [],
     resources: obs.observedResources || [],
     missingResources: obs.missingResources || [],
+    routeTelemetry: (obs.raw && obs.raw.routeTelemetry) || null,
   };
 }
 
@@ -229,6 +230,68 @@ function sameSet(actual, expected) {
   if (actual.length !== expected.length) return false;
   const have = new Set(actual);
   return expected.every((item) => have.has(item));
+}
+
+function normalizeRouteModes(value) {
+  if (value == null) return [];
+  return uniqueArray(Array.isArray(value) ? value : [value]);
+}
+
+function metricRate(numerator, denominator, counts = {}) {
+  return {
+    rate: denominator > 0 ? numerator / denominator : null,
+    ...counts,
+    numerator,
+    denominator,
+  };
+}
+
+function reduceRouteTelemetry(rows) {
+  const routeRows = rows.filter((r) => r && r.dims && r.dims.hubRoute && r.dims.hubRoute.applicable);
+  const total = routeRows.length;
+  let unobserved = 0;
+  let observed = 0;
+  let observedWrong = 0;
+  let aliasMisses = 0;
+  let unobservedBundles = 0;
+  let observedBundles = 0;
+  let bundleMisses = 0;
+
+  for (const row of routeRows) {
+    const expectedModes = normalizeRouteModes(row.dims.hubRoute.expected);
+    const telemetry = row.routeTelemetry;
+    if (!telemetry || telemetry.observed === false) {
+      unobserved += 1;
+      if (expectedModes.length > 1) unobservedBundles += 1;
+      continue;
+    }
+
+    observed += 1;
+    const actualModes = normalizeRouteModes(telemetry.workflowMode);
+    const routeMatches = sameSet(actualModes, expectedModes);
+    if (!routeMatches) observedWrong += 1;
+
+    const aliases = Array.isArray(telemetry.matchedAliases) ? telemetry.matchedAliases : [];
+    if (expectedModes.length > 0 && aliases.length === 0) aliasMisses += 1;
+
+    if (expectedModes.length > 1) {
+      observedBundles += 1;
+      if (!routeMatches) bundleMisses += 1;
+    }
+  }
+
+  const counts = { unobserved, observed, observedWrong };
+  return {
+    telemetryMissingRate: metricRate(unobserved, total, counts),
+    routeMissRate: metricRate(observedWrong, observed, counts),
+    aliasMissRate: metricRate(aliasMisses, observed, counts),
+    bundleMissRate: metricRate(bundleMisses, observedBundles, {
+      unobserved: unobservedBundles,
+      observed: observedBundles,
+      observedWrong: bundleMisses,
+    }),
+    routeGoldRows: total,
+  };
 }
 
 function scoreHubRoute({ expected, routerResult }) {
@@ -416,6 +479,7 @@ function scoreScenario(arg) {
     expectedSurface, observedSurface, surfaceMatch,
     traceMode: arg.traceMode || (obs ? obs.mode : undefined),
     liveEvidence,
+    routeTelemetry: routerResult.routeTelemetry || null,
   };
 }
 
@@ -510,6 +574,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   // matched the fixture's expected.mode. Never folded into aggregateScore.
   const modePrecisionAvg = avg((r) => (r.dims && r.dims.modePrecision && typeof r.dims.modePrecision.score === 'number'
     ? Math.round(r.dims.modePrecision.score * 100) : null));
+  const routeTelemetry = reduceRouteTelemetry(rows);
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
@@ -569,6 +634,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       modePrecision: modePrecisionAvg === null
         ? { score: null, status: 'unscored (no mode-routing probe or no expected.mode)', note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' }
         : { score: modePrecisionAvg, note: 'advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id' },
+      routeTelemetry,
     },
     funnel,
     headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,
@@ -581,6 +647,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       scenarioCount: rows.length,
       traceMode: traceMode || 'router',
       hubRouteKnownGaps,
+      routeTelemetry,
       note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
     },
   };
@@ -590,4 +657,4 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { scoreScenario, aggregate, computeDivergence, WEIGHTS };
+module.exports = { scoreScenario, aggregate, computeDivergence, reduceRouteTelemetry, WEIGHTS };
