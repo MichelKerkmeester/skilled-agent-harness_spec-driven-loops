@@ -15,11 +15,10 @@
     "fan-out",
     "runs"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.411Z",
+  "lastUpdated": "2026-06-28T17:09:26.466Z",
   "specId": "002",
   "folderSlug": "single-loop-telemetry-heartbeat",
   "parentChain": [
-    "skilled-agent-orchestration",
     "156-agent-loops-improved",
     "002-implementation",
     "006-ux-observability-automation"

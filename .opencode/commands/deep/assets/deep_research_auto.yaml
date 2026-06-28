@@ -98,6 +98,7 @@ state_paths:
   packet_dir: "{artifact_dir}"
   config: "{artifact_dir}/deep-research-config.json"
   state_log: "{artifact_dir}/deep-research-state.jsonl"
+  status_ledger: "{artifact_dir}/orchestration-status.log"
   strategy: "{artifact_dir}/deep-research-strategy.md"
   registry: "{artifact_dir}/deep-research-findings-registry.json"
   dashboard: "{artifact_dir}/deep-research-dashboard.md"
@@ -406,6 +407,40 @@ workflow:
         condition: "validate_spec_doc"
         command: "SPECKIT_RULES=FRONTMATTER_VALID,LEVEL_DECLARED,TEMPLATE_SOURCE,TEMPLATE_HEADERS,PLACEHOLDER_FILLED,SECTIONS_PRESENT,ANCHORS_VALID,SPEC_DOC_INTEGRITY,TOC_POLICY bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh {spec_folder} --strict"
         note: "This enforces the authored-spec markdown structural contract without applying full-packet required-file or completeness checks to workflow-owned research artifacts. It uses the Node validation orchestrator, whose strict path was measured at about 108ms for a fresh Level 3 packet on the local harness."
+
+      step_telemetry_heartbeat_started:
+        action: "Emit a single-loop started row in the orchestration status ledger"
+        skip_when: "config.fanout is present"
+        canonical_lifecycle_event: "iteration_start"
+        command: |
+          node --experimental-strip-types --input-type=module <<'EOF'
+          import { readFileSync } from 'node:fs';
+
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+
+          const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
+          const timestamp = '{ISO_8601_NOW}';
+          const sessionId = String(config.lineage?.sessionId ?? '{AUTO_SESSION_ID}');
+          const generation = Number(config.lineage?.generation ?? 1);
+          const row = {
+            event: 'started',
+            label: 'single',
+            at: timestamp,
+            duration_ms: 0,
+            loop_type: 'research',
+            sessionId,
+            generation,
+            gauges: { iterations: 0, elapsed_ms: 0, score: 0 },
+          };
+
+          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+            diffData: { event: row.event, label: row.label, sessionId, generation, gauges: { iterations: 0, score: 0 } },
+            diffField: 'state_hash',
+          });
+          EOF
+        working_directory: "{repo_root}"
+        outputs:
+          - status_ledger_started: "A fan-out-shaped status row with label single and event started"
 
       step_init_complete:
         log: "Initialization complete. Config, state, and strategy files created."
@@ -936,6 +971,68 @@ workflow:
           # so the reducer can persist the failure without dropping the iteration. Schema source: state_format.md §Iteration Records.
           append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
+      step_telemetry_heartbeat_progress:
+        action: "Emit a single-loop progress row when iteration state changes"
+        skip_when: "config.fanout is present"
+        command: |
+          node --experimental-strip-types --input-type=module <<'EOF'
+          import { existsSync, readFileSync } from 'node:fs';
+
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+
+          const stateLogPath = '{state_paths.state_log}';
+          const timestamp = '{ISO_8601_NOW}';
+          const sessionId = '{config.lineage.sessionId}';
+          const generation = Number('{config.lineage.generation}');
+
+          function readRecords(path) {
+            if (!existsSync(path)) return [];
+            return readFileSync(path, 'utf8')
+              .split(/\r?\n/)
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .map((line) => JSON.parse(line));
+          }
+
+          function elapsedSince(value) {
+            const startedAtMs = Date.parse(String(value ?? ''));
+            const nowMs = Date.parse(timestamp);
+            if (!Number.isFinite(startedAtMs) || !Number.isFinite(nowMs)) return 0;
+            return Math.max(0, nowMs - startedAtMs);
+          }
+
+          const records = readRecords(stateLogPath);
+          const iterations = records.filter((record) => record.type === 'iteration');
+          const latest = iterations.at(-1) ?? {};
+          const startedAt = records.find((record) => typeof record.createdAt === 'string')?.createdAt
+            ?? records.find((record) => typeof record.timestamp === 'string')?.timestamp
+            ?? timestamp;
+          const elapsedMs = elapsedSince(startedAt);
+          const score = Number.isFinite(Number(latest.newInfoRatio)) ? Number(latest.newInfoRatio) : 0;
+          const run = Number.isFinite(Number(latest.run)) ? Number(latest.run) : Number('{current_iteration}');
+          const status = typeof latest.status === 'string' ? latest.status : 'unknown';
+          const row = {
+            event: 'progress',
+            label: 'single',
+            at: timestamp,
+            duration_ms: elapsedMs,
+            loop_type: 'research',
+            sessionId,
+            generation,
+            run,
+            status,
+            gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
+          };
+
+          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+            diffData: { event: row.event, label: row.label, sessionId, generation, run, status, gauges: { iterations: iterations.length, score } },
+            diffField: 'state_hash',
+          });
+          EOF
+        working_directory: "{repo_root}"
+        outputs:
+          - status_ledger_progress: "A fan-out-shaped status row with label single and event progress"
+
       step_generate_dashboard:
         action: "Generate or refresh the human-readable dashboard"
         read:
@@ -1072,6 +1169,76 @@ workflow:
         action: "Mark config as complete"
         edit: "{state_paths.config}"
         set_field: { status: "complete" }
+
+      step_telemetry_heartbeat_terminal:
+        action: "Emit a single-loop terminal row in the orchestration status ledger"
+        skip_when: "config.fanout is present"
+        terminal_events: [completed, failed, stopped]
+        command: |
+          node --experimental-strip-types --input-type=module <<'EOF'
+          import { existsSync, readFileSync } from 'node:fs';
+
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
+
+          const stateLogPath = '{state_paths.state_log}';
+          const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
+          const timestamp = '{ISO_8601_NOW}';
+          const sessionId = String(config.lineage?.sessionId ?? '{config.lineage.sessionId}');
+          const generation = Number(config.lineage?.generation ?? '{config.lineage.generation}');
+          const reason = '{reason}';
+
+          function readRecords(path) {
+            if (!existsSync(path)) return [];
+            return readFileSync(path, 'utf8')
+              .split(/\r?\n/)
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .map((line) => JSON.parse(line));
+          }
+
+          function elapsedSince(value) {
+            const startedAtMs = Date.parse(String(value ?? ''));
+            const nowMs = Date.parse(timestamp);
+            if (!Number.isFinite(startedAtMs) || !Number.isFinite(nowMs)) return 0;
+            return Math.max(0, nowMs - startedAtMs);
+          }
+
+          function terminalEvent(stopReason) {
+            if (stopReason === 'manualStop' || stopReason === 'userPaused') return 'stopped';
+            if (stopReason === 'error') return 'failed';
+            return 'completed';
+          }
+
+          const records = readRecords(stateLogPath);
+          const iterations = records.filter((record) => record.type === 'iteration');
+          const latest = iterations.at(-1) ?? {};
+          const startedAt = records.find((record) => typeof record.createdAt === 'string')?.createdAt
+            ?? records.find((record) => typeof record.timestamp === 'string')?.timestamp
+            ?? timestamp;
+          const elapsedMs = elapsedSince(startedAt);
+          const score = Number.isFinite(Number(latest.newInfoRatio)) ? Number(latest.newInfoRatio) : 0;
+          const event = terminalEvent(reason);
+          const row = {
+            event,
+            label: 'single',
+            terminal: true,
+            reason,
+            at: timestamp,
+            duration_ms: elapsedMs,
+            loop_type: 'research',
+            sessionId,
+            generation,
+            gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
+          };
+
+          appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
+            diffData: { event, label: row.label, reason, sessionId, generation, gauges: { iterations: iterations.length, score } },
+            diffField: 'state_hash',
+          });
+          EOF
+        working_directory: "{repo_root}"
+        outputs:
+          - status_ledger_terminal: "A fan-out-shaped status row with label single and event completed, failed, or stopped"
 
       step_stage_artifact_dir:
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"

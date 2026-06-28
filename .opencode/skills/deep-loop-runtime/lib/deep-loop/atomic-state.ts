@@ -3,7 +3,17 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
-import { closeSync, existsSync, fsyncSync, openSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  closeSync,
+  existsSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 // ───────────────────────────────────────────────────────────────────
@@ -15,6 +25,13 @@ export interface DeferredAtomicWriterOptions {
   readonly debounceMs?: number;
 }
 
+/** Options for diff-gated JSONL appends. */
+export interface AppendJsonlIfChangedAtomicOptions {
+  readonly cache?: Map<string, string>;
+  readonly diffData?: unknown;
+  readonly diffField?: string;
+}
+
 /** Debounced writer for replace-style JSON state snapshots. */
 export interface DeferredAtomicWriter {
   write(data: unknown): void;
@@ -23,12 +40,14 @@ export interface DeferredAtomicWriter {
 }
 
 const DEFAULT_DEFERRED_WRITE_DEBOUNCE_MS = 50;
+const DIFF_FIELD_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*$/u;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
 const serializedStateCache = new Map<string, string>();
+const serializedJsonlAppendCache = new Map<string, string>();
 
 function canonicalizeJson(value: unknown, isRoot = false): unknown {
   if (Array.isArray(value)) {
@@ -51,6 +70,10 @@ function canonicalizeJson(value: unknown, isRoot = false): unknown {
   }
 
   return sorted;
+}
+
+function isJsonRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function fsyncPath(path: string): void {
@@ -83,6 +106,63 @@ function serializePrettyState(data: unknown): string {
     throw new TypeError('State data must serialize to JSON.');
   }
   return `${serialized}\n`;
+}
+
+function readLastJsonlLine(path: string): string | null {
+  if (!existsSync(path)) {
+    return null;
+  }
+
+  const lines = readFileSync(path, 'utf8').split(/\r?\n/u);
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    const line = lines[index].trim();
+    if (line !== '') {
+      return line;
+    }
+  }
+  return null;
+}
+
+function readLastDiffFingerprint(path: string, diffField: string | undefined): string | null {
+  const line = readLastJsonlLine(path);
+  if (line === null) {
+    return null;
+  }
+
+  if (diffField === undefined) {
+    return line;
+  }
+
+  try {
+    const parsed = JSON.parse(line) as unknown;
+    if (isJsonRecord(parsed) && typeof parsed[diffField] === 'string') {
+      return parsed[diffField];
+    }
+  } catch {
+  }
+
+  return null;
+}
+
+function computeSerializedHash(serialized: string): string {
+  const digest = createHash('sha256').update(serialized).digest('hex');
+  return `sha256:${digest}`;
+}
+
+function attachDiffField(data: unknown, diffField: string | undefined, fingerprint: string): unknown {
+  if (diffField === undefined) {
+    return data;
+  }
+
+  if (!DIFF_FIELD_PATTERN.test(diffField)) {
+    throw new TypeError('Diff field must be a valid JSON object key.');
+  }
+
+  if (!isJsonRecord(data)) {
+    throw new TypeError('Diff field requires JSON object row data.');
+  }
+
+  return { ...data, [diffField]: fingerprint };
 }
 
 function serializeIntegrityPayload(data: unknown): string {
@@ -201,6 +281,52 @@ export function writeStateIfChangedAtomic(
 
   writeStateAtomic(targetPath, data);
   cache.set(targetPath, serialized);
+  return true;
+}
+
+/**
+ * Append a JSONL row only when a stable serialized diff has changed.
+ *
+ * The optional diff field persists the fingerprint on the row so short-lived
+ * command processes can compare against the last ledger write without sharing
+ * in-memory cache state.
+ *
+ * @param path - Target JSONL path.
+ * @param data - Serializable row data to append.
+ * @param options - Optional cache, diff payload, and persisted diff field.
+ * @returns True when a row was appended; false when unchanged state was skipped.
+ * @throws If serialization, read, write, fsync, or rename fails.
+ */
+export function appendJsonlIfChangedAtomic(
+  path: string,
+  data: unknown,
+  options: AppendJsonlIfChangedAtomicOptions = {},
+): boolean {
+  const targetPath = resolve(path);
+  const cache = options.cache ?? serializedJsonlAppendCache;
+  const cacheKey = `${targetPath}\0${options.diffField ?? ''}`;
+  const diffSerialized = serializeState(options.diffData ?? data);
+  const diffFingerprint = options.diffField === undefined
+    ? diffSerialized
+    : computeSerializedHash(diffSerialized);
+
+  if (cache.get(cacheKey) === diffFingerprint) {
+    return false;
+  }
+
+  if (readLastDiffFingerprint(targetPath, options.diffField) === diffFingerprint) {
+    cache.set(cacheKey, diffFingerprint);
+    return false;
+  }
+
+  const row = attachDiffField(data, options.diffField, diffFingerprint);
+  const serializedRow = serializeState(row);
+  const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
+  const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
+
+  mkdirSync(dirname(targetPath), { recursive: true });
+  writeTextAtomic(targetPath, `${currentContent}${separator}${serializedRow}\n`);
+  cache.set(cacheKey, diffFingerprint);
   return true;
 }
 

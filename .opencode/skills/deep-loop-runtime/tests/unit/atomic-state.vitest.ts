@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node
 import { basename, dirname, join } from 'node:path';
 
 import {
+  appendJsonlIfChangedAtomic,
   computeIntegrityHash,
   createDeferredAtomicWriter,
   stampIntegrity,
@@ -27,6 +28,34 @@ function withHermeticState<T>(testId: string, run: (statePath: string, tempDir: 
 function tempSiblings(path: string): string[] {
   const prefix = `${basename(path)}.tmp.`;
   return readdirSync(dirname(path)).filter((entry) => entry.startsWith(prefix));
+}
+
+interface StatusLedgerRow {
+  event: string;
+  label: string;
+  gauges: Record<string, unknown>;
+  duration_ms?: number;
+}
+
+function isJsonRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function parseStatusLedgerRow(line: string): StatusLedgerRow {
+  const parsed = JSON.parse(line) as unknown;
+  if (!isJsonRecord(parsed)) {
+    throw new TypeError('Status ledger row must be an object.');
+  }
+  if (typeof parsed.event !== 'string' || typeof parsed.label !== 'string') {
+    throw new TypeError('Status ledger row must include event and label.');
+  }
+  if (!isJsonRecord(parsed.gauges)) {
+    throw new TypeError('Status ledger row must include gauges.');
+  }
+  if (parsed.duration_ms !== undefined && typeof parsed.duration_ms !== 'number') {
+    throw new TypeError('Status ledger row duration must be numeric.');
+  }
+  return parsed as unknown as StatusLedgerRow;
 }
 
 afterEach(() => {
@@ -90,6 +119,84 @@ describe('atomic-state', () => {
       expect(thirdWrite).toBe(true);
       expect(JSON.parse(readFileSync(statePath, 'utf8'))).toEqual({ status: 'finished', iteration: 2 });
       expect(tempSiblings(statePath)).toEqual([]);
+    });
+  });
+
+  it('writes single-loop telemetry rows through the shared ledger shape and skips unchanged state', () => {
+    withHermeticState('telemetry-if-changed', (_statePath, tempDir) => {
+      const ledgerPath = join(tempDir, 'orchestration-status.log');
+      const diffData = {
+        event: 'progress',
+        label: 'single',
+        sessionId: 'session-1',
+        run: 1,
+        status: 'insight',
+        gauges: { iterations: 1, score: 0.5 },
+      };
+      const firstRow = {
+        ...diffData,
+        at: '2026-06-28T00:00:00.000Z',
+        duration_ms: 100,
+        gauges: { iterations: 1, elapsed_ms: 100, score: 0.5 },
+      };
+      const secondRow = {
+        ...firstRow,
+        at: '2026-06-28T00:00:05.000Z',
+        duration_ms: 5_100,
+        gauges: { iterations: 1, elapsed_ms: 5_100, score: 0.5 },
+      };
+      const changedRow = {
+        ...secondRow,
+        run: 2,
+        duration_ms: 6_000,
+        gauges: { iterations: 2, elapsed_ms: 6_000, score: 0.65 },
+      };
+
+      expect(appendJsonlIfChangedAtomic(ledgerPath, firstRow, {
+        diffData,
+        diffField: 'state_hash',
+        cache: new Map<string, string>(),
+      })).toBe(true);
+      expect(appendJsonlIfChangedAtomic(ledgerPath, secondRow, {
+        diffData,
+        diffField: 'state_hash',
+        cache: new Map<string, string>(),
+      })).toBe(false);
+      expect(appendJsonlIfChangedAtomic(ledgerPath, changedRow, {
+        diffData: {
+          ...diffData,
+          run: 2,
+          gauges: { iterations: 2, score: 0.65 },
+        },
+        diffField: 'state_hash',
+        cache: new Map<string, string>(),
+      })).toBe(true);
+
+      const lines = readFileSync(ledgerPath, 'utf8').trim().split('\n');
+      const singleRows = lines.map(parseStatusLedgerRow);
+      const fanoutRow = parseStatusLedgerRow(JSON.stringify({
+        event: 'progress',
+        label: 'slow',
+        duration_ms: 250,
+        gauges: { lag: 1, pending: 0, failed: 0 },
+      }));
+
+      expect(lines).toHaveLength(2);
+      expect(singleRows[0]).toMatchObject({
+        event: 'progress',
+        label: 'single',
+        duration_ms: 100,
+        gauges: { iterations: 1, elapsed_ms: 100, score: 0.5 },
+      });
+      expect(JSON.parse(lines[0]) as Record<string, unknown>).toEqual(expect.objectContaining({
+        state_hash: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      }));
+      expect(fanoutRow).toMatchObject({
+        event: 'progress',
+        label: 'slow',
+        gauges: { lag: 1, pending: 0, failed: 0 },
+      });
+      expect(tempSiblings(ledgerPath)).toEqual([]);
     });
   });
 
