@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/155-parent-skill-native-invocability"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase map reconciled; 001 done and 002 R1-R5 complete with optional live-loop e2e not run"
+    recent_action: "Phase map reconciled; 001 scope done; 002 required gates closed"
     next_safe_action: "Optional: run a full live deep-loop e2e; refresh metadata separately"
     blockers: []
     key_files:
@@ -28,8 +28,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "001 ADR-001 accepted Option E invokable-hub routing."
-      - "002 R1-R5 are done: static hub routing, deep-ai-council rename, keep-all feature catalogs, merged-identity keep, and required R5 gates are closed."
-      - "NFR-S01 is documented as a hub union-grant pattern; WebFetch stays on the hub."
+      - "002 R1-R5 required gates are closed: static hub routing, deep-ai-council rename, keep-all feature catalogs, merged-identity keep, and required R5 evidence are recorded."
+      - "NFR-S01 is resolved in 002 (ADR-004): per-mode allowed-tools is the authoritative contract; accepted."
       - "002 reachability is confirmed by runtime registration; /deep:* commands and the ai-council agent are registered/available; full live-loop e2e remains optional and was not run."
 ---
 # Feature Specification: Parent-skill native invocability
@@ -50,8 +50,8 @@ Make a parent skill's nested mode packets natively reachable without breaking th
 
 | Phase | Purpose | Level | Status |
 |-------|---------|-------|--------|
-| **001-invocability-mechanism** | The invocability gap and the chosen mechanism: Option E, invokable-hub routing. `Skill(<parent>)` loads the hub (the one top-level identity), and the hub router loads the matching nested mode packet. | 3 | Decision complete: ADR-001 Accepted; no source build in 001; NFR-S01 carried to 002 |
-| **002-deep-loop-alignment** | Align the deep-loop parent-skill family (`deep-loop-workflows` + `deep-loop-runtime`) with the accepted mechanism: invokable-hub routing, `deep-ai-council` folder/name identity, feature-catalog hygiene, runtime reconciliation, and validation. | 3 | Complete: R1-R5 done; all required gates green; live-loop e2e optional/not run |
+| **001-invocability-mechanism** | The invocability gap and the chosen mechanism: Option E, invokable-hub routing. `Skill(<parent>)` loads the hub (the one top-level identity), and the hub router loads the matching nested mode packet. | 3 | Decision-complete / phase scope done: ADR-001 Accepted; no source build in 001; NFR-S01 resolved in 002 |
+| **002-deep-loop-alignment** | Align the deep-loop parent-skill family (`deep-loop-workflows` + `deep-loop-runtime`) with the accepted mechanism: invokable-hub routing, `deep-ai-council` folder/name identity, feature-catalog hygiene, runtime reconciliation, and validation. | 3 | Required-scope complete: R1-R5 required gates green; packet remains in progress pending optional live-loop e2e |
 
 ---
 
