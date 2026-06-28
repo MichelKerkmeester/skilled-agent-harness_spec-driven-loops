@@ -18,6 +18,12 @@ import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
 const tempDirs: string[] = [];
 const hermeticEnvs: HermeticEnv[] = [];
 
+type WaitCheckpointFixture = {
+  status?: string;
+  nextRunAt?: string | null;
+  remainingDelayMs?: number | null;
+};
+
 function makeTempDir(prefix: string): string {
   const dir = mkdtempSync(join(tmpdir(), prefix));
   tempDirs.push(dir);
@@ -134,6 +140,10 @@ function writeMarkerSleepingStubBinary(binDir: string, name: string, seconds: nu
   return stubPath;
 }
 
+function parseJsonFile<T>(filePath: string): T {
+  return JSON.parse(readFileSync(filePath, 'utf8')) as T;
+}
+
 function waitForFile(filePath: string, timeoutMs = 5_000): Promise<void> {
   const startedAt = Date.now();
   return new Promise((resolvePromise, reject) => {
@@ -149,6 +159,20 @@ function waitForFile(filePath: string, timeoutMs = 5_000): Promise<void> {
       setTimeout(poll, 25);
     };
     poll();
+  });
+}
+
+function waitForChild(
+  child: ReturnType<typeof spawn>,
+): Promise<{ exitCode: number | null; signal: NodeJS.Signals | null; stdout: string; stderr: string }> {
+  let stdout = '';
+  let stderr = '';
+  child.stdout?.setEncoding('utf8');
+  child.stderr?.setEncoding('utf8');
+  child.stdout?.on('data', (chunk) => { stdout += chunk; });
+  child.stderr?.on('data', (chunk) => { stderr += chunk; });
+  return new Promise((resolvePromise) => {
+    child.on('close', (exitCode, signal) => resolvePromise({ exitCode, signal, stdout, stderr }));
   });
 }
 
@@ -656,6 +680,151 @@ describe('fanout-run.cjs — graceful self-stop', () => {
     expect(summary.status).toBe('partial');
     expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
     expect(summary.gauges).toMatchObject({ failed: 0 });
+  });
+});
+
+describe('fanout-run.cjs — persisted wait checkpoint', () => {
+  function spawnWaitingFanout(args: {
+    testId: string;
+    binDir: string;
+    baseDir: string;
+    waitMs?: number;
+  }): ReturnType<typeof spawn> {
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'delayed', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+    });
+    const hermetic = useHermeticEnv(args.testId);
+    const commandArgs = [
+      fanoutRunScript,
+      '--spec-folder',
+      `specs/${args.testId}`,
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      args.baseDir,
+    ];
+    if (args.waitMs !== undefined) {
+      commandArgs.push('--pre-dispatch-wait-ms', String(args.waitMs));
+    }
+    return spawn(process.execPath, commandArgs, {
+      cwd: hermetic.tmpDir,
+      env: envWithBin(hermetic, args.binDir),
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  }
+
+  it('persists a pre-dispatch checkpoint and delays lineage launch until it expires', async () => {
+    const binDir = makeTempDir('fanout-run-wait-bin-');
+    const baseDir = makeTempDir('fanout-run-wait-base-');
+    const markerPath = join(baseDir, 'lineage-launched.marker');
+    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+
+    const child = spawnWaitingFanout({
+      testId: 'pre-dispatch-wait',
+      binDir,
+      baseDir,
+      waitMs: 350,
+    });
+    const closed = waitForChild(child);
+    const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
+
+    await waitForFile(checkpointPath);
+
+    const checkpoint = parseJsonFile<WaitCheckpointFixture>(checkpointPath);
+    expect(checkpoint.status).toBe('waiting');
+    expect(checkpoint.nextRunAt).toEqual(expect.any(String));
+    expect(Number(checkpoint.remainingDelayMs)).toBeGreaterThan(0);
+    expect(existsSync(markerPath)).toBe(false);
+
+    const result = await closed;
+
+    expect(result.exitCode).toBe(0);
+    expect(existsSync(markerPath)).toBe(true);
+    const finalCheckpoint = parseJsonFile<WaitCheckpointFixture>(checkpointPath);
+    expect(finalCheckpoint).toMatchObject({ status: 'idle', nextRunAt: null, remainingDelayMs: null });
+
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerEvents.map((event) => event.event)).toEqual(expect.arrayContaining([
+      'wait_checkpoint_persisted',
+      'wait_checkpoint_cleared',
+      'started',
+    ]));
+  });
+
+  it('resumes a future checkpoint before dispatching lineages', async () => {
+    const binDir = makeTempDir('fanout-run-resume-wait-bin-');
+    const baseDir = makeTempDir('fanout-run-resume-wait-base-');
+    const markerPath = join(baseDir, 'lineage-launched.marker');
+    const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
+    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+    writeFileSync(
+      checkpointPath,
+      `${JSON.stringify({
+        schemaVersion: 1,
+        status: 'waiting',
+        nextRunAt: new Date(Date.now() + 800).toISOString(),
+        remainingDelayMs: 800,
+        updatedAt: new Date().toISOString(),
+      })}\n`,
+      'utf8',
+    );
+
+    const child = spawnWaitingFanout({
+      testId: 'resume-waiting',
+      binDir,
+      baseDir,
+    });
+    const closed = waitForChild(child);
+
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 150));
+    expect(existsSync(markerPath)).toBe(false);
+
+    const result = await closed;
+
+    expect(result.exitCode).toBe(0);
+    expect(existsSync(markerPath)).toBe(true);
+    const finalCheckpoint = parseJsonFile<WaitCheckpointFixture>(checkpointPath);
+    expect(finalCheckpoint).toMatchObject({ status: 'idle', nextRunAt: null, remainingDelayMs: null });
+
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const resumeIndex = ledgerEvents.findIndex((event) => event.event === 'resume_waiting');
+    const startedIndex = ledgerEvents.findIndex((event) => event.event === 'started');
+    expect(resumeIndex).toBeGreaterThanOrEqual(0);
+    expect(startedIndex).toBeGreaterThan(resumeIndex);
+  });
+
+  it('migrates legacy checkpoints without wait fields to the null state', async () => {
+    const binDir = makeTempDir('fanout-run-legacy-wait-bin-');
+    const baseDir = makeTempDir('fanout-run-legacy-wait-base-');
+    const markerPath = join(baseDir, 'lineage-launched.marker');
+    const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
+    writeMarkerSleepingStubBinary(binDir, 'codex', 0, markerPath);
+    writeFileSync(
+      checkpointPath,
+      `${JSON.stringify({ schemaVersion: 1, status: 'waiting', updatedAt: new Date().toISOString() })}\n`,
+      'utf8',
+    );
+
+    const child = spawnWaitingFanout({
+      testId: 'legacy-wait-checkpoint',
+      binDir,
+      baseDir,
+    });
+    const result = await waitForChild(child);
+
+    expect(result.exitCode).toBe(0);
+    expect(existsSync(markerPath)).toBe(true);
+    const finalCheckpoint = parseJsonFile<WaitCheckpointFixture>(checkpointPath);
+    expect(finalCheckpoint).toMatchObject({ status: 'idle', nextRunAt: null, remainingDelayMs: null });
   });
 });
 

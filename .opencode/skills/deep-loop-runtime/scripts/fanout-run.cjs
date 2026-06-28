@@ -212,6 +212,9 @@ const SPECKIT_STATE_ENV_BY_KIND = {
 };
 
 const activeLineageProcesses = new Set();
+const WAIT_CHECKPOINT_FILENAME = 'orchestration-wait-checkpoint.json';
+const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
+const WAIT_SLEEP_CHUNK_MS = 200;
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
@@ -227,6 +230,211 @@ function expandHomeDir(inputPath) {
     return path.join(os.homedir(), inputPath.slice(2));
   }
   return inputPath;
+}
+
+function isRecord(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizeNonNegativeDelayMs(value) {
+  if (value === undefined || value === null) return null;
+  const n = Number(value);
+  if (!Number.isFinite(n) || n < 0) return null;
+  return Math.floor(n);
+}
+
+function normalizeWaitDurationMs(value) {
+  return normalizeNonNegativeDelayMs(value) ?? 0;
+}
+
+function waitCheckpointPath(baseArtifactDir) {
+  return path.join(baseArtifactDir, WAIT_CHECKPOINT_FILENAME);
+}
+
+function atomicWriteJson(filePath, payload) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  fs.writeFileSync(tmpPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  fs.renameSync(tmpPath, filePath);
+}
+
+function buildWaitCheckpoint({ waitMs, runId, loopType, specFolder, nowMs = Date.now() }) {
+  const durationMs = normalizeWaitDurationMs(waitMs);
+  const updatedAt = new Date(nowMs).toISOString();
+  if (durationMs <= 0) {
+    return {
+      schemaVersion: WAIT_CHECKPOINT_SCHEMA_VERSION,
+      status: 'idle',
+      nextRunAt: null,
+      remainingDelayMs: null,
+      updatedAt,
+      runId,
+      loopType,
+      specFolder,
+    };
+  }
+
+  return {
+    schemaVersion: WAIT_CHECKPOINT_SCHEMA_VERSION,
+    status: 'waiting',
+    nextRunAt: new Date(nowMs + durationMs).toISOString(),
+    remainingDelayMs: durationMs,
+    updatedAt,
+    runId,
+    loopType,
+    specFolder,
+  };
+}
+
+function normalizeWaitCheckpoint(raw, context) {
+  if (!isRecord(raw)) {
+    throw inputError('wait checkpoint must be a JSON object');
+  }
+
+  const nowMs = Number.isFinite(Number(context.nowMs)) ? Number(context.nowMs) : Date.now();
+  const hasNextRunAt = Object.prototype.hasOwnProperty.call(raw, 'nextRunAt');
+  const hasRemainingDelayMs = Object.prototype.hasOwnProperty.call(raw, 'remainingDelayMs');
+  const nextRunAt = typeof raw.nextRunAt === 'string' && raw.nextRunAt.trim() !== ''
+    ? raw.nextRunAt
+    : null;
+  const nextRunAtMs = nextRunAt === null ? NaN : Date.parse(nextRunAt);
+  const waiting = Number.isFinite(nextRunAtMs) && nextRunAtMs > nowMs;
+  const remainingDelayMs = waiting ? Math.max(0, Math.ceil(nextRunAtMs - nowMs)) : null;
+  const base = {
+    runId: typeof raw.runId === 'string' && raw.runId ? raw.runId : context.runId,
+    loopType: typeof raw.loopType === 'string' && raw.loopType ? raw.loopType : context.loopType,
+    specFolder: typeof raw.specFolder === 'string' && raw.specFolder ? raw.specFolder : context.specFolder,
+  };
+
+  const checkpoint = waiting
+    ? {
+        schemaVersion: WAIT_CHECKPOINT_SCHEMA_VERSION,
+        status: 'waiting',
+        nextRunAt,
+        remainingDelayMs,
+        updatedAt: new Date(nowMs).toISOString(),
+        ...base,
+      }
+    : buildWaitCheckpoint({ waitMs: 0, nowMs, ...base });
+  const staleWaitingFields = !waiting
+    && (raw.nextRunAt !== null || raw.remainingDelayMs !== null || raw.status === 'waiting');
+  const staleRemainingDelay = waiting && Number(raw.remainingDelayMs) !== remainingDelayMs;
+
+  return {
+    checkpoint,
+    migrated: !hasNextRunAt || !hasRemainingDelayMs || staleWaitingFields || staleRemainingDelay,
+  };
+}
+
+function readWaitCheckpoint(checkpointPath, context) {
+  if (!fs.existsSync(checkpointPath)) {
+    return { exists: false, checkpoint: null, migrated: false };
+  }
+
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(checkpointPath, 'utf8'));
+  } catch (error) {
+    throw inputError(
+      `wait checkpoint is not valid JSON: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+
+  const normalized = normalizeWaitCheckpoint(raw, context);
+  if (normalized.migrated) {
+    atomicWriteJson(checkpointPath, normalized.checkpoint);
+  }
+  return { exists: true, ...normalized };
+}
+
+function sleepWaitChunk(ms) {
+  return new Promise((resolvePromise) => setTimeout(resolvePromise, ms));
+}
+
+async function waitUntilCheckpointExpires({ checkpointPath, checkpoint, context, sleep = sleepWaitChunk }) {
+  const nextRunAtMs = Date.parse(checkpoint.nextRunAt);
+  let remainingDelayMs = Math.max(0, Math.ceil(nextRunAtMs - Date.now()));
+
+  while (remainingDelayMs > 0) {
+    atomicWriteJson(checkpointPath, {
+      ...checkpoint,
+      remainingDelayMs,
+      updatedAt: new Date().toISOString(),
+    });
+    await sleep(Math.min(remainingDelayMs, WAIT_SLEEP_CHUNK_MS));
+    remainingDelayMs = Math.max(0, Math.ceil(nextRunAtMs - Date.now()));
+  }
+
+  atomicWriteJson(checkpointPath, buildWaitCheckpoint({ waitMs: 0, ...context }));
+}
+
+async function resumeWaitingCheckpoint({ checkpointPath, ledgerPath, runId, loopType, specFolder }) {
+  const context = { runId, loopType, specFolder, nowMs: Date.now() };
+  const loaded = readWaitCheckpoint(checkpointPath, context);
+  if (!loaded.checkpoint || loaded.checkpoint.status !== 'waiting') {
+    return { didWait: false, migrated: loaded.migrated };
+  }
+
+  appendStatusLedger(ledgerPath, {
+    event: 'resume_waiting',
+    at: new Date().toISOString(),
+    run_id: runId,
+    loop_type: loopType,
+    spec_folder: specFolder,
+    nextRunAt: loaded.checkpoint.nextRunAt,
+    remainingDelayMs: loaded.checkpoint.remainingDelayMs,
+  });
+
+  await waitUntilCheckpointExpires({
+    checkpointPath,
+    checkpoint: loaded.checkpoint,
+    context: { runId, loopType, specFolder },
+  });
+
+  appendStatusLedger(ledgerPath, {
+    event: 'resume_waiting_complete',
+    at: new Date().toISOString(),
+    run_id: runId,
+    loop_type: loopType,
+    spec_folder: specFolder,
+  });
+
+  return { didWait: true, migrated: loaded.migrated };
+}
+
+async function persistPreDispatchWait({ checkpointPath, ledgerPath, runId, loopType, specFolder, waitMs }) {
+  const durationMs = normalizeWaitDurationMs(waitMs);
+  if (durationMs <= 0) {
+    return { didWait: false };
+  }
+
+  const checkpoint = buildWaitCheckpoint({ waitMs: durationMs, runId, loopType, specFolder });
+  atomicWriteJson(checkpointPath, checkpoint);
+  appendStatusLedger(ledgerPath, {
+    event: 'wait_checkpoint_persisted',
+    at: checkpoint.updatedAt,
+    run_id: runId,
+    loop_type: loopType,
+    spec_folder: specFolder,
+    nextRunAt: checkpoint.nextRunAt,
+    remainingDelayMs: checkpoint.remainingDelayMs,
+  });
+
+  await waitUntilCheckpointExpires({
+    checkpointPath,
+    checkpoint,
+    context: { runId, loopType, specFolder },
+  });
+
+  appendStatusLedger(ledgerPath, {
+    event: 'wait_checkpoint_cleared',
+    at: new Date().toISOString(),
+    run_id: runId,
+    loop_type: loopType,
+    spec_folder: specFolder,
+  });
+
+  return { didWait: true };
 }
 
 /**
@@ -555,6 +763,24 @@ async function main() {
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  const checkpointPath = waitCheckpointPath(baseArtifactDir);
+  const resumeWaiting = await resumeWaitingCheckpoint({
+    checkpointPath,
+    ledgerPath,
+    runId,
+    loopType,
+    specFolder,
+  });
+  if (!resumeWaiting.didWait) {
+    await persistPreDispatchWait({
+      checkpointPath,
+      ledgerPath,
+      runId,
+      loopType,
+      specFolder,
+      waitMs: args.preDispatchWaitMs,
+    });
+  }
 
   if (cliLineages.length === 0) {
     const summary = {

@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "018-persisted-wait-crash-resume summary"
     ],
     "key_topics": [
       "persisted-wait",
@@ -39,10 +39,11 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -59,6 +60,12 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed lineages cannot distinguish \"killed mid-wait\" from \"killed mid-dispatch.\" This causes duplicate dispatch and incorrect lineage attribution on restart",
     "created_at": "2026-06-28T14:02:05Z",
-    "last_save_at": "2026-06-28T14:29:36.080Z",
+    "last_save_at": "2026-06-28T19:51:33.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f59b2b7a49d7a48f5a1179ec4f9fc0f232e6f1d824ce1732642bd2111bc64676",
+    "source_fingerprint": "sha256:b4ed83c5e3d5adb525c08ebebd68cafa0d50f73145e64c127ee7e232a7b8aec8",
     "source_doc_hashes": {
-      "spec.md": "28328ddb1615c2b7d36f4f6f8187b61753957697fe01875f9220c12e13685ff0",
+      "spec.md": "6e1159b1f19192f11e85663ce9935b0450eafabebbe8569b6b3cbf38c6bcf314",
       "plan.md": "0bc415ca269666ceee26ef1a669a5bc27dfe339fea9290caaf6070a0c1d8afbf",
       "tasks.md": "4a32aa8a29733ec5ba8753c28ff84d4af9bb257171f74f14186cdb4dd2266ecd",
-      "implementation-summary.md": "4deff02517cec4193f0870f711be68cd7ed2da99617a48bb628a3900a9de98e5"
+      "implementation-summary.md": "91920f630da7af7fdd1dfc2ddc29f416086712efdcd3b847a074f719f42d9bee"
     },
     "last_active_child_id": null,
     "last_active_at": null

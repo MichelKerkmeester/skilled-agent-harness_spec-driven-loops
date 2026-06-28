@@ -250,7 +250,7 @@ workflow:
           - "{state_paths.strategy}"
         classify:
           fresh: "None of the three state artifacts exist"
-          resume: "Config, JSONL, and strategy all exist and agree on topic/spec folder"
+          resume: "Config, JSONL, and strategy all exist and agree on topic/spec folder; missing wait-checkpoint fields are read as nextRunAt:null and remainingDelayMs:null"
           completed-session: "Resume artifacts exist and config.status == 'complete'"
           invalid-state: "Any partial, missing, or contradictory combination"
         outputs:
@@ -307,13 +307,15 @@ workflow:
           lineage.lineageMode: "new"
           lineage.generation: 1
           lineage.continuedFromRun: null
+          nextRunAt: null
+          remainingDelayMs: null
         output: "{state_paths.config}"
 
       step_create_state_log:
         action: "Initialize JSONL state log with config record"
         # <!-- F-010-B5-04 -->
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -480,6 +482,8 @@ workflow:
           - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
+          - nextRunAt: "Extract nullable nextRunAt from deep-research-config.json, default null"
+          - remainingDelayMs: "Extract nullable remainingDelayMs from deep-research-config.json, default null"
 
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
