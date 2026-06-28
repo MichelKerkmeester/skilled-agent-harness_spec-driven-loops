@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary"
+      "014-coverage-graph-fuzzy-merge summary"
     ],
     "key_topics": [
       "coverage-graph",
@@ -39,9 +39,10 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "coverage-graph-query.ts",
         "kind": "code",
         "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-query.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts coverage and under-reports actual convergence",
     "created_at": "2026-06-28T14:02:02Z",
-    "last_save_at": "2026-06-28T14:29:34.608Z",
+    "last_save_at": "2026-06-28T19:29:06.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ab662e62e14c484a6fcece15527537779ef6deab5b5a5ebf29015218ed7a38a",
+    "source_fingerprint": "sha256:7cd1ac05e4fdb579da645d8b3562d0d04c012fa0bbd175baa34a25a57b9ea4b2",
     "source_doc_hashes": {
-      "spec.md": "58bb59e7fad5e79b094b4e5f5c5b8a70b483f506abab33943d2f953b2ee037c8",
+      "spec.md": "a90ac0edf83beb369693e999798f588bccf2bc5668f964b01ef4b6200a0f6717",
       "plan.md": "6b2a1b562557e2422f99f583391c49a45a6deed1d57b1410d4934ed902938e33",
       "tasks.md": "5e11e6b9e78e67f8508799fab321ecda7f98d2cdfe93b36954c5c6e150e544fb",
-      "implementation-summary.md": "4a8a742b7da858e35d5578c86ce984c29ea5bb8c742f36697c01a150a4e01f8b"
+      "implementation-summary.md": "745853f00d90a14ddea0935a12f9abe3f14967933e2c2bb9e22e41fc8cb72d6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

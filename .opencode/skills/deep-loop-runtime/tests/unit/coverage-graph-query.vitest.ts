@@ -1,7 +1,6 @@
-// MODULE: Deep-Loop Coverage Graph Query — Unit Tests
-//
-// Adds unit coverage for lib/coverage-graph/coverage-graph-query.ts.
-// Smoke-tests the 5 public query functions against an empty + populated namespace.
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop Coverage Graph Query Unit Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -22,6 +21,13 @@ const namespace = {
   loopType: 'research',
   sessionId: 'coverage-graph-query-fixture',
 } as const;
+
+function graphSnapshot(): Record<string, unknown> {
+  return {
+    nodes: dbModule.getNodes(namespace).sort((first, second) => first.id.localeCompare(second.id)),
+    edges: dbModule.getEdges(namespace).sort((first, second) => first.id.localeCompare(second.id)),
+  };
+}
 
 beforeEach(async () => {
   originalDbDir = process.env.SPEC_KIT_DB_DIR;
@@ -87,6 +93,81 @@ describe('coverage-graph-query', () => {
     const chain = queryModule.findProvenanceChain(namespace, 'non-existent', 5);
     expect(Array.isArray(chain)).toBe(true);
     expect(chain.length).toBeLessThanOrEqual(5);
+  });
+
+  it('findSimilarNodes does not return identical names from other kinds', () => {
+    dbModule.batchUpsert(
+      [
+        { ...namespace, id: 'finding-shared', kind: 'FINDING', name: 'Shared duplicate wording' },
+        { ...namespace, id: 'question-shared', kind: 'QUESTION', name: 'Shared duplicate wording' },
+      ],
+      [],
+    );
+
+    const similarClaims = queryModule.findSimilarNodes(namespace, {
+      kind: 'CLAIM',
+      name: 'Shared duplicate wording',
+      threshold: 0.85,
+    });
+
+    expect(similarClaims).toEqual([]);
+  });
+
+  it('findConsolidationCandidates clusters near duplicates without mutating graph rows', () => {
+    dbModule.batchUpsert(
+      [
+        {
+          ...namespace,
+          id: 'finding-retry',
+          kind: 'FINDING',
+          name: 'missing retry guard on network timeout',
+        },
+        {
+          ...namespace,
+          id: 'finding-retry-alias',
+          kind: 'FINDING',
+          name: 'missing retry guard on network timeout handling',
+        },
+        {
+          ...namespace,
+          id: 'question-retry',
+          kind: 'QUESTION',
+          name: 'missing retry guard on network timeout',
+        },
+        {
+          ...namespace,
+          id: 'finding-parser',
+          kind: 'FINDING',
+          name: 'parser error path is undocumented',
+        },
+      ],
+      [],
+    );
+    const before = graphSnapshot();
+
+    const similarFindings = queryModule.findSimilarNodes(namespace, {
+      kind: 'FINDING',
+      name: 'missing retry guard on network timeout',
+      threshold: 0.85,
+    });
+    const candidates = queryModule.findConsolidationCandidates(namespace, { threshold: 0.85 });
+    const after = graphSnapshot();
+
+    expect(after).toEqual(before);
+    expect(similarFindings.map(node => node.nodeId)).toEqual([
+      'finding-retry',
+      'finding-retry-alias',
+    ]);
+    expect(candidates.clusters).toHaveLength(1);
+    expect(candidates.clusters[0]).toMatchObject({ kind: 'FINDING' });
+    expect(candidates.clusters[0].nodes.map(node => node.nodeId)).toEqual([
+      'finding-retry',
+      'finding-retry-alias',
+    ]);
+    expect(candidates.leftovers.map(node => node.nodeId).sort()).toEqual([
+      'finding-parser',
+      'question-retry',
+    ]);
   });
 
   it('findCoverageGaps surfaces uncovered QUESTION nodes when graph is populated', () => {

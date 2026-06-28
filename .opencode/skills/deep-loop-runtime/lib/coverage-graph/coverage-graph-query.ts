@@ -1,13 +1,18 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Query Helpers
+// ───────────────────────────────────────────────────────────────────
 
 import {
   getDb,
   type Namespace,
   type CoverageNode,
   type CoverageEdge,
+  type NodeKind,
 } from './coverage-graph-db.js';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface CoverageGap {
   nodeId: string;
@@ -44,14 +49,72 @@ export interface HotNode {
   score: number;
 }
 
-// ───── CONSTANTS ─────
+/** Query options for deterministic same-kind node similarity. */
+export interface SimilarNodeQuery {
+  kind: NodeKind;
+  name: string;
+  threshold?: number;
+}
+
+/** Similar node result with a normalized score in the range [0, 1]. */
+export interface SimilarNode {
+  nodeId: string;
+  kind: NodeKind;
+  name: string;
+  score: number;
+}
+
+/** Same-kind node group that callers may choose to consolidate. */
+export interface ConsolidationCluster {
+  kind: NodeKind;
+  canonical: SimilarNode;
+  nodes: SimilarNode[];
+}
+
+/** Options for namespace-wide consolidation candidate discovery. */
+export interface ConsolidationCandidatesOptions {
+  threshold?: number;
+}
+
+/** Consolidation discovery result split into clusters and singleton leftovers. */
+export interface ConsolidationCandidates {
+  clusters: ConsolidationCluster[];
+  leftovers: SimilarNode[];
+}
 
 interface SqlFragment {
   clause: string;
   params: unknown[];
 }
 
-// ───── HELPERS ─────
+interface CandidateNode {
+  id: string;
+  kind: NodeKind;
+  name: string;
+}
+
+interface MutableConsolidationCluster {
+  kind: NodeKind;
+  canonical: SimilarNode;
+  nodes: SimilarNode[];
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+const DEFAULT_SIMILARITY_THRESHOLD = 0.85;
+const SUBSTRING_SIMILARITY_SCORE = 0.85;
+const EXACT_WORD_OVERLAP_THRESHOLD = 0.7;
+const WORD_SIMILARITY_THRESHOLD = 0.8;
+const MIN_FUZZY_WORD_LENGTH = 3;
+const MAX_ALIAS_MEMO_ENTRIES = 2_000;
+
+const namespaceAliasMemo = new Map<string, number>();
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function buildNamespacePredicate(alias: string, ns: Namespace): SqlFragment {
   const prefix = alias ? `${alias}.` : '';
@@ -116,7 +179,266 @@ function getEdgesFromNode(sourceId: string, ns: Namespace): CoverageEdge[] {
   }));
 }
 
-// ───── CORE LOGIC ─────
+function normalizeThreshold(threshold: number | undefined): number {
+  if (threshold === undefined) return DEFAULT_SIMILARITY_THRESHOLD;
+  if (!Number.isFinite(threshold)) return DEFAULT_SIMILARITY_THRESHOLD;
+  return Math.max(0, Math.min(1, threshold));
+}
+
+function normalizeNodeName(name: string): string {
+  return name.toLowerCase().trim().replace(/\s+/g, ' ');
+}
+
+function tokenizeName(name: string, minLength: number = 0): string[] {
+  return normalizeNodeName(name)
+    .split(/\s+/)
+    .filter(word => word.length >= minLength);
+}
+
+function buildNamespaceMemoKey(ns: Namespace): string {
+  return `${ns.specFolder}\u0000${ns.loopType}\u0000${ns.sessionId ?? '*'}`;
+}
+
+function buildAliasMemoKey(ns: Namespace, kind: NodeKind, firstName: string, secondName: string): string {
+  const normalized = [normalizeNodeName(firstName), normalizeNodeName(secondName)].sort();
+  return `${buildNamespaceMemoKey(ns)}\u0000${kind}\u0000${normalized[0]}\u0000${normalized[1]}`;
+}
+
+function rememberAliasScore(key: string, score: number): number {
+  if (namespaceAliasMemo.has(key)) {
+    namespaceAliasMemo.delete(key);
+  } else if (namespaceAliasMemo.size >= MAX_ALIAS_MEMO_ENTRIES) {
+    const oldestKey = namespaceAliasMemo.keys().next().value as string | undefined;
+    if (oldestKey) namespaceAliasMemo.delete(oldestKey);
+  }
+
+  namespaceAliasMemo.set(key, score);
+  return score;
+}
+
+function levenshteinWordSimilarity(first: string, second: string): number {
+  const maxLength = Math.max(first.length, second.length);
+  if (maxLength === 0) return 1;
+
+  const distances = new Array<number>(second.length + 1);
+  for (let index = 0; index <= second.length; index += 1) {
+    distances[index] = index;
+  }
+
+  for (let firstIndex = 1; firstIndex <= first.length; firstIndex += 1) {
+    let previousDistance = distances[0];
+    distances[0] = firstIndex;
+
+    for (let secondIndex = 1; secondIndex <= second.length; secondIndex += 1) {
+      const currentDistance = distances[secondIndex];
+      distances[secondIndex] = first[firstIndex - 1] === second[secondIndex - 1]
+        ? previousDistance
+        : 1 + Math.min(distances[secondIndex], distances[secondIndex - 1], previousDistance);
+      previousDistance = currentDistance;
+    }
+  }
+
+  return 1 - distances[second.length] / maxLength;
+}
+
+function calculateNameSimilarity(firstName: string, secondName: string): number {
+  const first = normalizeNodeName(firstName);
+  const second = normalizeNodeName(secondName);
+  if (first === second) return 1;
+  if (!first || !second) return 0;
+  if (first.includes(second) || second.includes(first)) return SUBSTRING_SIMILARITY_SCORE;
+
+  const firstWords = tokenizeName(firstName);
+  const secondWords = tokenizeName(secondName);
+  const firstWordSet = new Set(firstWords);
+  const secondWordSet = new Set(secondWords);
+  const sharedWordCount = [...firstWordSet].filter(word => secondWordSet.has(word)).length;
+  const wordUnionSize = firstWordSet.size + secondWordSet.size - sharedWordCount;
+  const exactOverlapScore = wordUnionSize > 0 ? sharedWordCount / wordUnionSize : 0;
+  if (exactOverlapScore >= EXACT_WORD_OVERLAP_THRESHOLD) return exactOverlapScore;
+
+  const firstFuzzyWords = tokenizeName(firstName, MIN_FUZZY_WORD_LENGTH);
+  const secondFuzzyWords = tokenizeName(secondName, MIN_FUZZY_WORD_LENGTH);
+  if (firstFuzzyWords.length === 0 || secondFuzzyWords.length === 0) return 0;
+
+  const firstFuzzySet = new Set(firstFuzzyWords);
+  const secondFuzzySet = new Set(secondFuzzyWords);
+  const unmatchedSecondWords = [...secondFuzzySet].filter(word => !firstFuzzySet.has(word));
+  let exactFuzzyOverlap = 0;
+  let fuzzyOverlap = 0;
+
+  for (const firstWord of firstFuzzySet) {
+    if (secondFuzzySet.has(firstWord)) {
+      exactFuzzyOverlap += 1;
+      continue;
+    }
+
+    for (let index = 0; index < unmatchedSecondWords.length; index += 1) {
+      const secondWord = unmatchedSecondWords[index];
+      if (
+        secondWord
+        && levenshteinWordSimilarity(firstWord, secondWord) >= WORD_SIMILARITY_THRESHOLD
+      ) {
+        fuzzyOverlap += 1;
+        unmatchedSecondWords[index] = '';
+        break;
+      }
+    }
+  }
+
+  const totalOverlap = exactFuzzyOverlap + fuzzyOverlap;
+  const fuzzyUnionSize = firstFuzzySet.size + secondFuzzySet.size - exactFuzzyOverlap;
+  return fuzzyUnionSize > 0 ? totalOverlap / fuzzyUnionSize : 0;
+}
+
+function getMemoizedSimilarity(ns: Namespace, kind: NodeKind, firstName: string, secondName: string): number {
+  const memoKey = buildAliasMemoKey(ns, kind, firstName, secondName);
+  const cachedScore = namespaceAliasMemo.get(memoKey);
+  if (cachedScore !== undefined) return cachedScore;
+  return rememberAliasScore(memoKey, calculateNameSimilarity(firstName, secondName));
+}
+
+function getCandidateNodes(ns: Namespace, kind?: NodeKind): CandidateNode[] {
+  const d = getDb();
+  const nodeNamespace = buildNamespacePredicate('', ns);
+  const rows = d.prepare(`
+    SELECT id, kind, name
+    FROM coverage_nodes
+    WHERE ${nodeNamespace.clause}
+      ${kind ? 'AND kind = ?' : ''}
+    ORDER BY kind ASC, name ASC, id ASC
+  `).all(
+    ...nodeNamespace.params,
+    ...(kind ? [kind] : []),
+  ) as Array<{ id: string; kind: string; name: string }>;
+
+  return rows.map(row => ({
+    id: row.id,
+    kind: row.kind as NodeKind,
+    name: row.name,
+  }));
+}
+
+function toSimilarNode(node: CandidateNode, score: number): SimilarNode {
+  return {
+    nodeId: node.id,
+    kind: node.kind,
+    name: node.name,
+    score,
+  };
+}
+
+function compareSimilarNodes(first: SimilarNode, second: SimilarNode): number {
+  return second.score - first.score
+    || first.kind.localeCompare(second.kind)
+    || first.name.localeCompare(second.name)
+    || first.nodeId.localeCompare(second.nodeId);
+}
+
+function compareClusters(first: ConsolidationCluster, second: ConsolidationCluster): number {
+  return first.kind.localeCompare(second.kind)
+    || first.canonical.name.localeCompare(second.canonical.name)
+    || first.canonical.nodeId.localeCompare(second.canonical.nodeId);
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Find same-kind nodes whose names are deterministically similar to a query name.
+ *
+ * The node kind is treated as the category boundary, so rows from another kind
+ * are filtered before any name scoring happens.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @param query - Similarity query with node kind, name, and optional threshold.
+ * @returns Same-kind nodes ordered by descending similarity.
+ */
+export function findSimilarNodes(ns: Namespace, query: SimilarNodeQuery): SimilarNode[] {
+  const threshold = normalizeThreshold(query.threshold);
+  const nodes = getCandidateNodes(ns, query.kind);
+  const matches: SimilarNode[] = [];
+
+  for (const node of nodes) {
+    if (node.kind !== query.kind) continue;
+    const score = getMemoizedSimilarity(ns, query.kind, query.name, node.name);
+    if (score >= threshold) {
+      matches.push(toSimilarNode(node, score));
+    }
+  }
+
+  return matches.sort(compareSimilarNodes);
+}
+
+/**
+ * Discover same-kind consolidation clusters without mutating graph rows.
+ *
+ * Nodes are read once, assigned deterministically to the strongest matching
+ * same-kind cluster, and returned as clusters plus singleton leftovers.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @param options - Optional similarity threshold.
+ * @returns Consolidation clusters and nodes that did not match any cluster.
+ */
+export function findConsolidationCandidates(
+  ns: Namespace,
+  options: ConsolidationCandidatesOptions = {},
+): ConsolidationCandidates {
+  const threshold = normalizeThreshold(options.threshold);
+  const candidateNodes = getCandidateNodes(ns);
+  const workingClusters: MutableConsolidationCluster[] = [];
+
+  for (const candidate of candidateNodes) {
+    let bestCluster: MutableConsolidationCluster | null = null;
+    let bestScore = 0;
+
+    for (const cluster of workingClusters) {
+      if (cluster.kind !== candidate.kind) continue;
+
+      for (const clusterNode of cluster.nodes) {
+        if (clusterNode.kind !== candidate.kind) continue;
+        const score = getMemoizedSimilarity(ns, candidate.kind, candidate.name, clusterNode.name);
+        if (score >= threshold && score > bestScore) {
+          bestCluster = cluster;
+          bestScore = score;
+        }
+      }
+    }
+
+    if (bestCluster) {
+      bestCluster.nodes.push(toSimilarNode(candidate, bestScore));
+      bestCluster.nodes.sort(compareSimilarNodes);
+    } else {
+      const canonical = toSimilarNode(candidate, 1);
+      workingClusters.push({
+        kind: candidate.kind,
+        canonical,
+        nodes: [canonical],
+      });
+    }
+  }
+
+  const clusters: ConsolidationCluster[] = [];
+  const leftovers: SimilarNode[] = [];
+
+  for (const cluster of workingClusters) {
+    if (cluster.nodes.length > 1) {
+      clusters.push({
+        kind: cluster.kind,
+        canonical: cluster.canonical,
+        nodes: cluster.nodes,
+      });
+    } else {
+      leftovers.push(cluster.nodes[0]);
+    }
+  }
+
+  return {
+    clusters: clusters.sort(compareClusters),
+    leftovers: leftovers.sort(compareSimilarNodes),
+  };
+}
 
 /**
  * Find nodes with coverage gaps.
