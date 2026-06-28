@@ -33,6 +33,42 @@ operating_mode:
     - :with-research - Run research phase before planning
     Checkpoints still pause for confirmation after optional workflows complete.
 
+unattended_autopilot:
+  enabled: true
+  default_enabled: false
+  activation_flags: [":autopilot", ":unattended", "--unattended"]
+  execution_mode_value: autopilot
+  compatibility:
+    auto_unchanged: true
+    autopilot_is_not_auto_alias: true
+    no_existing_callers_changed: true
+  terminal_result:
+    output_prefix: SPECKIT_AUTOPILOT_RESULT
+    schema:
+      required_fields: [mode, ok, reason, branch, merged, verification]
+      success_reason: null
+      failure_reason_field: reason
+    terminal_reason_codes:
+      - no_eligible_tasks
+      - retry_exhausted
+      - verification_failed
+      - uncertainty_blocked
+  lifecycle_sequence:
+    - branch_first
+    - propose_unattended
+    - apply_unattended
+    - archive_in_place
+    - verify_clean
+    - merge_on_clean
+  branch_preserved_failure:
+    preserve_branch: true
+    merge: false
+    branch_preserved: true
+    emit_terminal_result: true
+  task_metadata_contract:
+    required_fields: [agent, deps, touched-files]
+    missing_or_uncertain_field_reason: uncertainty_blocked
+
 development_philosophy:
   principle: "Quality first, velocity second"
   approach: "Complete lifecycle with validated checkpoints"
@@ -457,6 +493,36 @@ context_loading:
 # WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 workflow:
+  step_0_autopilot_envelope:
+    purpose: Activate the unattended branch-preserved envelope before any spec or implementation writes
+    activation:
+      when:
+        field: execution_mode
+        op: "=="
+        value: autopilot
+      when_legacy_literal: "execution_mode == autopilot"
+    sequence:
+      - branch_first
+      - propose_unattended
+      - apply_unattended
+      - archive_in_place
+      - verify_clean
+      - merge_on_clean
+    activities:
+      - "Treat :autopilot, :unattended, and --unattended as execution_mode=autopilot; do not route them through the plain :auto contract."
+      - "Before Step 0.5, create or switch to an autopilot branch and record branch/base branch names for the terminal result."
+      - "Suppress every human approval prompt after startup parsing; use terminal reason codes instead."
+      - "Require generated tasks to expose agent, deps, and touched-files metadata before implementation eligibility is evaluated."
+      - "If no executable task is eligible, stop with reason no_eligible_tasks and leave the branch unmerged."
+      - "If a task or wave exhausts its permitted retry path, stop with reason retry_exhausted and leave the branch unmerged."
+      - "If verification, validation, lint, build, or required tests fail at the merge gate, stop with reason verification_failed and leave the branch unmerged."
+      - "If uncertainty prevents safe unattended progress, stop with reason uncertainty_blocked and leave the branch unmerged."
+    terminal_output:
+      prefix: SPECKIT_AUTOPILOT_RESULT
+      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
+      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
+    validation: autopilot_envelope_bound
+
   step_0.5_intake_branch:
     purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
@@ -1019,6 +1085,35 @@ workflow:
         VERIFY: implementation-summary.md exists with all required sections → IF packet-local changelog applies, write it via nested-changelog.js → THEN mark complete
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
       failure_action: "Create implementation-summary.md before proceeding"
+
+  step_12_5_autopilot_archive_verify_merge:
+    purpose: Close unattended runs by archiving in place, verifying, and merging only when clean
+    activation:
+      when:
+        field: execution_mode
+        op: "=="
+        value: autopilot
+      when_legacy_literal: "execution_mode == autopilot"
+    sequence:
+      - archive_in_place
+      - verify_clean
+      - merge_on_clean
+    activities:
+      - "Archive or finalize generated SpecKit artifacts on the autopilot branch; do not open a PR-only archive path."
+      - "Run the required validation, lint, build, and test gates for the changed surface."
+      - "Confirm the worktree is clean after verification and before merge."
+      - "Merge the autopilot branch only when verification passed and the worktree is clean."
+      - "On merge conflict, failed verification, dirty tree, retry exhaustion, no eligible tasks, or unresolved uncertainty, stop without merge and preserve the branch."
+    failure_policy:
+      no_eligible_tasks: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      retry_exhausted: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      verification_failed: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      uncertainty_blocked: { branch_preserved: true, merge: false, emit_terminal_result: true }
+    terminal_output:
+      prefix: SPECKIT_AUTOPILOT_RESULT
+      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
+      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
+    validation: autopilot_merge_gate_complete
 
   step_13_save_context:
     purpose: Save conversation context for documentation and team sharing
