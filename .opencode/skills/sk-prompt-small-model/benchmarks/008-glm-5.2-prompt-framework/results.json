@@ -1,0 +1,5998 @@
+{
+  "profile": {
+    "id": "glm-5.2-frameworks",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  },
+  "rows": [
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-ipv4",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 107,
+      "output_chars": 535,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 19599,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-ipv4",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 78,
+      "output_chars": 437,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6374,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-ipv4",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 93,
+      "output_chars": 571,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6712,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-date",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": false,
+      "format_reason": "prose outside code",
+      "output_words": 118,
+      "output_chars": 594,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 22782,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-date",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 97,
+      "output_chars": 482,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 9554,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-date",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 85,
+      "output_chars": 411,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 36096,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-semver",
+      "sample": 0,
+      "correctness_pass_rate": 0.7857142857142857,
+      "assertions_passed": 22,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 76,
+      "output_chars": 432,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": false,
+          "got": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": false,
+          "got": false
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": false,
+          "got": false
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": false,
+          "got": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": false,
+          "got": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": false,
+          "got": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 22815,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-semver",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 6,
+      "output_chars": 229,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 35040,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::rcaf::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "validate-semver",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 272,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 32911,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-ipv4",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 131,
+      "output_chars": 753,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 11946,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-ipv4",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 119,
+      "output_chars": 618,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 7608,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-ipv4",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 93,
+      "output_chars": 501,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6949,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-date",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 94,
+      "output_chars": 461,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 7374,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-date",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 99,
+      "output_chars": 534,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 19144,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-date",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 102,
+      "output_chars": 517,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 20420,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-semver",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 15,
+      "output_chars": 269,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 29647,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-semver",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 84,
+      "output_chars": 482,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8631,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::race::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "validate-semver",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 15,
+      "output_chars": 280,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 19711,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-ipv4",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 127,
+      "output_chars": 682,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 20101,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-ipv4",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 89,
+      "output_chars": 486,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6645,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-ipv4",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 103,
+      "output_chars": 537,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 9437,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-date",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 173,
+      "output_chars": 856,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8278,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-date",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 99,
+      "output_chars": 486,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6551,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-date",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 94,
+      "output_chars": 505,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 26316,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-semver",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 17,
+      "output_chars": 287,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 31170,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-semver",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 276,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8133,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::cidi::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "validate-semver",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 272,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 46825,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-ipv4",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 84,
+      "output_chars": 509,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6361,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-ipv4",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 38,
+      "output_chars": 224,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 49255,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-ipv4",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 6,
+      "output_chars": 256,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 30710,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-date",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 94,
+      "output_chars": 461,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8571,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-date",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 112,
+      "output_chars": 499,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 9456,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-date",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 99,
+      "output_chars": 481,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 32394,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-semver",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 272,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 28393,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-semver",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 11,
+      "output_chars": 254,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 53806,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::tidd-ec::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "validate-semver",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 20,
+      "output_chars": 280,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 51238,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-ipv4",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 206,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 27134,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-ipv4",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 172,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 81780,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-ipv4",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-ipv4",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 27,
+      "assertions_total": 27,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 134,
+      "output_chars": 744,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid all-zero",
+          "ok": true
+        },
+        {
+          "name": "valid simple",
+          "ok": true
+        },
+        {
+          "name": "valid all-max-255",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-few-octets",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-c",
+          "ok": true
+        },
+        {
+          "name": "valid private-class-a",
+          "ok": true
+        },
+        {
+          "name": "valid loopback",
+          "ok": true
+        },
+        {
+          "name": "valid public-dns",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-first",
+          "ok": true
+        },
+        {
+          "name": "invalid first-octet-256",
+          "ok": true
+        },
+        {
+          "name": "invalid too-many-octets",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot",
+          "ok": true
+        },
+        {
+          "name": "invalid consecutive-dots",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-letter",
+          "ok": true
+        },
+        {
+          "name": "invalid double-zero-octet",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-plus",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-newline",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid octet-999",
+          "ok": true
+        },
+        {
+          "name": "invalid all-999",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-trailing-dot",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 7659,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-date",
+      "sample": 0,
+      "correctness_pass_rate": null,
+      "assertions_passed": null,
+      "assertions_total": 26,
+      "format_adherent": null,
+      "format_reason": "dispatch_failed",
+      "output_words": 0,
+      "output_chars": 0,
+      "extracted": false,
+      "extract_reason": "dispatch_failed",
+      "per_test": [],
+      "dispatch_ok": false,
+      "exit_code": -1,
+      "latency_ms": 22838,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-date",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 106,
+      "output_chars": 573,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 26910,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-date",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-date",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 26,
+      "assertions_total": 26,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 90,
+      "output_chars": 449,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid leap-2020-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid jan-31",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2000-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-non-leap",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-2100",
+          "ok": true
+        },
+        {
+          "name": "invalid month-00",
+          "ok": true
+        },
+        {
+          "name": "valid dec-31",
+          "ok": true
+        },
+        {
+          "name": "valid min-year-0001",
+          "ok": true
+        },
+        {
+          "name": "valid leap-2024-feb29",
+          "ok": true
+        },
+        {
+          "name": "valid leap-1996-feb29",
+          "ok": true
+        },
+        {
+          "name": "invalid feb29-century-1900",
+          "ok": true
+        },
+        {
+          "name": "invalid month-13",
+          "ok": true
+        },
+        {
+          "name": "invalid apr-31",
+          "ok": true
+        },
+        {
+          "name": "invalid jun-31",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month-day",
+          "ok": true
+        },
+        {
+          "name": "invalid slash-separator",
+          "ok": true
+        },
+        {
+          "name": "invalid feb-30",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-feb",
+          "ok": true
+        },
+        {
+          "name": "invalid two-digit-year",
+          "ok": true
+        },
+        {
+          "name": "invalid day-32",
+          "ok": true
+        },
+        {
+          "name": "invalid day-00",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-day-dec",
+          "ok": true
+        },
+        {
+          "name": "invalid unpadded-month",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-space",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 13911,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-semver",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 6,
+      "output_chars": 229,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 41418,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-semver",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 6,
+      "output_chars": 238,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 161231,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::glm-5.2::default::costar::validate-semver",
+      "mode": "framework-bakeoff",
+      "model": "glm-5.2",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "validate-semver",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 28,
+      "assertions_total": 28,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 13,
+      "output_chars": 272,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "valid core-only",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha",
+          "ok": true
+        },
+        {
+          "name": "valid all-zero-core",
+          "ok": true
+        },
+        {
+          "name": "invalid missing-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-major",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-patch",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-alpha-num",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-numeric-ids",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-mixed",
+          "ok": true
+        },
+        {
+          "name": "valid build-meta",
+          "ok": true
+        },
+        {
+          "name": "valid prerelease-and-build",
+          "ok": true
+        },
+        {
+          "name": "valid rc-prerelease",
+          "ok": true
+        },
+        {
+          "name": "valid hyphen-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid extra-core-field",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-zero-minor",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid numeric-prerelease-leading-zero",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-dot-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-build",
+          "ok": true
+        },
+        {
+          "name": "invalid double-dot-build",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-v",
+          "ok": true
+        },
+        {
+          "name": "invalid trailing-space",
+          "ok": true
+        },
+        {
+          "name": "invalid negative-patch",
+          "ok": true
+        },
+        {
+          "name": "invalid non-ascii-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid empty-string",
+          "ok": true
+        },
+        {
+          "name": "invalid underscore-in-prerelease",
+          "ok": true
+        },
+        {
+          "name": "invalid leading-dot-prerelease",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 16868,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    }
+  ],
+  "meta": {
+    "axes": {
+      "models": 1,
+      "variants": 1,
+      "frameworks": 5,
+      "fixtures": 3,
+      "samples": 3
+    },
+    "cellCount": 15,
+    "sampleCount": 45,
+    "mock": false,
+    "generated_at": "2026-06-28T12:55:05.375Z"
+  }
+}

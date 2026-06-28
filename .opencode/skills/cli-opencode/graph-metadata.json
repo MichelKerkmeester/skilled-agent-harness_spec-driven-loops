@@ -103,9 +103,13 @@
       "qwen3.6",
       "qwen",
       "qwen dispatch",
-      "glm-5.1",
+      "glm-5.2",
       "glm",
-      "glm dispatch"
+      "glm dispatch",
+      "zai-coding-plan",
+      "z.ai coding plan",
+      "glm coding plan",
+      "zai-coding-plan/glm-5.2"
     ],
     "key_topics": [
       "cli",
@@ -133,7 +137,8 @@
       "kimi-for-coding",
       "kimi-k2.6",
       "qwen3.6",
-      "glm-5.1"
+      "glm-5.2",
+      "zai-coding-plan"
     ],
     "intent_signals": [
       "delegate to opencode",

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/158-sk-prompt-models-rename/005-specs-history-sweep",
+  "spec_folder": "skilled-agent-orchestration/158-sk-prompt-models-rename/005-specs-history-sweep",
+  "parent_id": "skilled-agent-orchestration/158-sk-prompt-models-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt-models specs sweep",
+      "rename everything bulk replace",
+      "history-care changelog carve-out",
+      "sk-prompt-models specs sweep plan",
+      "guarded bulk replace plan",
+      "tasks",
+      "sk-prompt-models specs sweep tasks"
+    ],
+    "key_topics": [
+      "sk-prompt-models",
+      "specs",
+      "sweep",
+      "rename",
+      "everything",
+      "bulk",
+      "replace",
+      "history-care",
+      "changelog",
+      "carve-out",
+      "plan",
+      "guarded"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guarded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The user chose to rewrite ALL references, including historical spec docs, logs, and changelogs (~700 files)",
+    "created_at": "2026-06-28T13:47:22.113Z",
+    "last_save_at": "2026-06-28T13:47:22.113Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:35e93e5a96e17628a6a7d5d28e76549d5615dc3c27c468da2081b7272a0c43e4",
+    "source_doc_hashes": {
+      "spec.md": "0fa0b16f1f22416ee679ff51705357f33d9c64c3a55f9e06c4e94ca92a3d0642",
+      "plan.md": "5431ed4854c6880cacc19b97c19148b4b4aa7681753bca5f65fc84557b3a9b31",
+      "tasks.md": "fa88212a78f33fdaaa14a703ed2c33defb1c32d65d42894cd9c1b38696e26d14"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

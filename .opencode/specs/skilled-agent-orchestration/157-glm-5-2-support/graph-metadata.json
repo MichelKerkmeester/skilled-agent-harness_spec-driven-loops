@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/157-glm-5-2-support",
+  "spec_folder": "skilled-agent-orchestration/157-glm-5-2-support",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/157-glm-5-2-support/001-model-registration",
+    "skilled-agent-orchestration/157-glm-5-2-support/002-framework-bakeoff",
+    "skilled-agent-orchestration/157-glm-5-2-support/003-promote-results",
+    "skilled-agent-orchestration/157-glm-5-2-support/004-discriminating-bakeoff",
+    "skilled-agent-orchestration/157-glm-5-2-support/005-operational-caveats"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "157-glm-5-2-support",
+      "phase parent",
+      "glm-5.2",
+      "z.ai coding plan",
+      "glm coding plan"
+    ],
+    "key_topics": [
+      "157-glm-5-2-support",
+      "phase",
+      "parent",
+      "glm-5",
+      "coding",
+      "plan",
+      "glm",
+      "small-model",
+      "rotation",
+      "needs",
+      "zhipu",
+      "coding-plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt-small-model/references/pattern_index.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "pattern_index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/pattern_index.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coding Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the Z.AI GLM Coding Plan provider — shown in opencode's auth list as \"Z.AI Coding Plan (api)\") available as a first-class small model in the `cli-opencode` and `sk-prompt-small-model` surfaces",
+    "created_at": "2026-06-28T10:15:07.801Z",
+    "last_save_at": "2026-06-28T13:04:40.258Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5314cc6ac4279aabdfb42a9d1ee7b7c2a655dc85ce67ef7b795eb1c051e17118",
+    "source_doc_hashes": {
+      "spec.md": "7ce04e7174abf15b7b553f2630d7a6bf4c6ec8f0625b2411519d012daaa2a206"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

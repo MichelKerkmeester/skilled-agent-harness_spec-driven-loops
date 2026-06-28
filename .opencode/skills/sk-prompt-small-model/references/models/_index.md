@@ -27,6 +27,7 @@ These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its promp
 | `mimo-v2.5-pro` | [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) | COSTAR; RACE fallback (avoid TIDD-EC, CIDI) | lean | empirical (benchmark 004, confidence high) |
 | `deepseek-v4-pro` | [`deepseek-v4-pro.md`](./deepseek-v4-pro.md) | RCAF; no fallback | medium | default-unverified |
 | `kimi-k2.7-code` | [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) | COSTAR; TIDD-EC fallback (avoid rcaf) | lean | empirical (benchmark 007; perfect tier tied, rcaf weakest) |
+| `glm-5.2` | [`glm-5.2.md`](./glm-5.2.md) | COSTAR; TIDD-EC fallback (avoid RCAF) | lean | empirical (benchmark 008; perfect tier tied, rcaf weakest) |
 
 ### Historical
 

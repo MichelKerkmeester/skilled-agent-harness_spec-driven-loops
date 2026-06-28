@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/158-sk-prompt-models-rename/005-specs-history-sweep",
+  "description": "The user chose to rewrite ALL references, including historical spec docs, logs, and changelogs (~700 files)",
+  "keywords": [
+    "user",
+    "chose",
+    "rewrite",
+    "references",
+    "including",
+    "historical",
+    "spec",
+    "docs",
+    "logs",
+    "changelogs",
+    "700",
+    "files"
+  ],
+  "lastUpdated": "2026-06-28T13:47:21.985Z",
+  "specId": "005",
+  "folderSlug": "specs-history-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "158-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

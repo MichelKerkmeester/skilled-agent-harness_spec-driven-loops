@@ -1,6 +1,6 @@
 {
   "version": "1.5",
-  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`). Optional unverified separate-pool stub: Claude Haiku.",
+  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`), GLM-5.2 (Z.AI GLM Coding Plan via provider `zai-coding-plan`). Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
     {
       "id": "deepseek-v4-pro",
@@ -230,6 +230,68 @@
           "confidence": "high"
         },
         "profile_ref": "sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+        "status": "empirical"
+      }
+    },
+    {
+      "id": "glm-5.2",
+      "context_length": 1000000,
+      "tool_calling": "native",
+      "chat_template": "default",
+      "executors": [
+        {
+          "executor": "cli-opencode",
+          "provider": "zai-coding-plan",
+          "quota_pool": "zai-coding-plan",
+          "status": "active",
+          "notes": "Z.AI GLM Coding Plan (subscription) via opencode provider `zai-coding-plan` (auth credential 'Z.AI Coding Plan'). Live slug `zai-coding-plan/glm-5.2`; confirmed present via `opencode models zai-coding-plan` 2026-06-28 → glm-4.5-air/glm-4.7/glm-5-turbo/glm-5.1/glm-5.2/glm-5v-turbo. Flagship long-horizon coding model (supersedes the gateway-only glm-5.1 removed in cli-opencode v1.3.15.0). context_length 1,000,000 / 131,072 output per Z.AI docs — opencode `models` did not expose limits, re-verify. Omit `--agent` at top level. GLM has native `reasoning_effort` (high/max); whether opencode `--variant` forwards to it is unverified — smoke-test before relying on it. Thinking is on by default and the Coding Plan endpoint preserves thinking. Re-verify the live slug before automation — Z.AI ids drift (provider also serves glm-4.7 / glm-5.1 / glm-5-turbo)."
+        }
+      ],
+      "primary_quota_pool": "zai-coding-plan",
+      "fallback_target": null,
+      "free_tier": false,
+      "capability": {
+        "model_slug": "zai-coding-plan/glm-5.2",
+        "default_variant": "high",
+        "variant_flag": "--variant",
+        "agent_policy": "omit-general",
+        "format_mode": "json",
+        "quota_pool": "zai-coding-plan",
+        "variant_status": "accepted-unverified",
+        "notes": "Live slug `zai-coding-plan/glm-5.2` confirmed present 2026-06-28 (`opencode models zai-coding-plan`). agent_policy omit-general: do not pass `--agent` at the top level. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high + variant_status accepted-unverified: GLM's native `reasoning_effort` has high/max, but whether opencode `--variant high/max` forwards to it is not confirmed — smoke-test, do not depend on it. Subscription billing: confirm dispatch cost via smoke test. GLM dispatch quirks (Z.AI docs): thinking on by default + preserved thinking on the Coding Plan endpoint; function-calling `tool_choice` only `auto`; streaming tool calls need `tool_stream=true`. Re-verify slug before dispatch (Z.AI ids drift)."
+      },
+      "strengths": [
+        "dedicated Z.AI GLM Coding Plan subscription pool (`zai-coding-plan`), independent of kimi / minimax / xiaomi pools",
+        "flagship long-horizon coding model (Z.AI docs: Terminal-Bench 2.1 81.0, SWE-bench Pro 62.1 — both above GLM-5.1)",
+        "1,000,000-token context for long-file and multi-repo work (128K max output)",
+        "subscription billing via the Z.AI Coding Plan",
+        "native reasoning_effort (high/max) + thinking-by-default for complex multi-constraint coding"
+      ],
+      "weaknesses": [
+        "single executor path (no fallback if the zai-coding-plan pool is exhausted)",
+        "context_length / max-output recorded from Z.AI docs (1,000,000 / 131,072) — opencode `models` did not expose limits; re-verify on the install",
+        "--variant ↔ reasoning_effort mapping unverified (GLM has native high/max; opencode forwarding not confirmed)",
+        "best prompt framework is a TIE among the perfect tier (costar=tidd-ec=cidi=race at correctness 1.0); costar is best-of-tied (tersest + cross-model corroborated), not a decisive single winner — benchmark 008",
+        "thinking-on-by-default drives high latency variance — 6-161s observed over benchmark 008's 45 small code-gen cells (avg ~26s, ~27x spread); budget generous timeouts, a tight timeout kills the slow tail",
+        "~1/45 dispatches was a transient infra failure (exit -1, dispatch_failed) in benchmark 008 — expect occasional transient dispatch failures at scale; retry the cell rather than treating it as a model error"
+      ],
+      "avg_iter_wall_clock_min": null,
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "costar",
+        "fallback": "tidd-ec",
+        "avoid": [
+          "rcaf"
+        ],
+        "preplanning_density": "lean",
+        "evidence": {
+          "benchmark": "008-glm-5.2-prompt-framework",
+          "primary_score": 1.0,
+          "fallback_score": 1.0,
+          "sample": "5-framework bakeoff on invalid-dominant STRICT VALIDATORS (validate-ipv4 + validate-date + validate-semver), 3 samples/cell, real zai-coding-plan/glm-5.2 dispatches graded by the deterministic hidden-test oracle (grader noop, no LLM-judge bias). Run status SEPARABLE: per-framework correctness costar 1.0 = tidd-ec 1.0 = cidi 1.0 = race 1.0 (perfect tier) > rcaf 0.976 (the ONLY sub-perfect framework; also worst format adherence 0.889). Trust verdict TIE on correctness among the perfect tier (top-pair costar vs tidd-ec, margin 0, 90% CI [0,0]). costar is primary as best-of-tied: perfect correctness + tersest output (13 median words vs tidd-ec 38, cidi/race 94) + cross-model corroboration (also the empirical winner for kimi benchmark 007 and mimo benchmark 004). tidd-ec fallback (perfect, 2nd-tersest). rcaf avoided (only correctness misses + worst format). NOTE: CRAFT (the phase-1 doc-guided default) is NOT in the harness framework registry [rcaf,race,cidi,tidd-ec,costar] so it could not be benchmarked; the empirical winner among the 5 supported frameworks replaces it. 1/45 dispatches was a transient infra failure (exit -1, excluded from scoring).",
+          "confidence": "medium"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/glm-5.2.md",
         "status": "empirical"
       }
     },

@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/158-sk-prompt-models-rename/002-core-rename",
+  "description": "After `git mv`, the skill's own internal references still name the old folder: `references/models/.md` link `../../../sk-prompt-small-model/...` (now",
+  "keywords": [
+    "git",
+    "skill",
+    "own",
+    "internal",
+    "references",
+    "still",
+    "name",
+    "old",
+    "folder",
+    "models",
+    "link",
+    "sk-prompt-small-model",
+    "now"
+  ],
+  "lastUpdated": "2026-06-28T13:47:21.159Z",
+  "specId": "002",
+  "folderSlug": "core-rename",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "158-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

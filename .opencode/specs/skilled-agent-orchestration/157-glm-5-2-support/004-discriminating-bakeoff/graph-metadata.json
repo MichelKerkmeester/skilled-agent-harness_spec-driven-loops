@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/157-glm-5-2-support/004-discriminating-bakeoff",
+  "spec_folder": "skilled-agent-orchestration/157-glm-5-2-support/004-discriminating-bakeoff",
+  "parent_id": "skilled-agent-orchestration/157-glm-5-2-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "glm-5.2 discriminating bakeoff",
+      "glm-5.2 strict validator rerun",
+      "framework bakeoff contingency",
+      "glm-5.2 discriminating bakeoff plan",
+      "tasks",
+      "glm-5.2 discriminating bakeoff tasks",
+      "glm-5.2 discriminating bakeoff not triggered",
+      "glm-5.2 phase 4 contingency"
+    ],
+    "key_topics": [
+      "glm-5",
+      "discriminating",
+      "bakeoff",
+      "strict",
+      "validator",
+      "rerun",
+      "framework",
+      "contingency",
+      "plan",
+      "tasks",
+      "triggered",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Triggered",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Condition",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Clone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "If phase 2 saturates, the registry holds a TIE-driven `default-unverified` placeholder and dispatch guidance is still a guess",
+    "created_at": "2026-06-28T10:15:17.987Z",
+    "last_save_at": "2026-06-28T13:04:39.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75bac25485406be7a4c06e2cabe891d353754ccfa91233fe6ff6a388f9e094e9",
+    "source_doc_hashes": {
+      "spec.md": "f434bf23b85d487f073d6c0239a30f114215d2aff1efb0c8d502d54ccee173cd",
+      "plan.md": "85d06c84969aa8f7735f4add9ff61e56683da23af6033f599bda23fc767561ea",
+      "tasks.md": "61aef04dd5fc1e19201416746e4cd087cdfe16cd002394c11216670114aaf603",
+      "implementation-summary.md": "12456137b2f99d7968d8abd1cc2348561079de294acb3d93f0e95e02dc66abdb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

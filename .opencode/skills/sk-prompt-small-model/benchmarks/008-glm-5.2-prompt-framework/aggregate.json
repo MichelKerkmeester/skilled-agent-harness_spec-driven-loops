@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "groupBy": "framework",
+  "gate_threshold": 0,
+  "ranking_key": "correctness",
+  "correctness_saturated": false,
+  "groups": [
+    {
+      "group": "costar",
+      "n": 9,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 13,
+      "eligible": true,
+      "rank": 1
+    },
+    {
+      "group": "tidd-ec",
+      "n": 9,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 38,
+      "eligible": true,
+      "rank": 2
+    },
+    {
+      "group": "cidi",
+      "n": 9,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 94,
+      "eligible": true,
+      "rank": 3
+    },
+    {
+      "group": "race",
+      "n": 9,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 94,
+      "eligible": true,
+      "rank": 4
+    },
+    {
+      "group": "rcaf",
+      "n": 9,
+      "correctness_mean": 0.976190476190476,
+      "format_adherent_rate": 0.8888888888888888,
+      "output_words_median": 85,
+      "eligible": true,
+      "rank": 5
+    }
+  ],
+  "saturation": {
+    "status": "separable",
+    "action": null,
+    "detail": "correctness still separates the eligible groups.",
+    "fixtures": [
+      {
+        "fixture": "validate-ipv4",
+        "cells": 15,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "validate-date",
+        "cells": 15,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "validate-semver",
+        "cells": 15,
+        "correctness_mean": 0.9857142857142857,
+        "saturated": false,
+        "action": "keep"
+      }
+    ]
+  },
+  "verdict": {
+    "verdict": "TIE",
+    "reason": "inside_noise_floor",
+    "ranking_key": "correctness",
+    "n_samples": 3,
+    "margin": 0,
+    "noise_floor": 0,
+    "ci": {
+      "point": 0,
+      "lo": 0,
+      "hi": 0,
+      "confidence": 0.9
+    },
+    "top_pair": [
+      "costar",
+      "tidd-ec"
+    ]
+  },
+  "profile": {
+    "id": "glm-5.2-frameworks",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  }
+}

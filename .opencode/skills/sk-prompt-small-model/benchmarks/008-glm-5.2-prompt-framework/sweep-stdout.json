@@ -1,0 +1,44 @@
+{
+  "profile": {
+    "id": "glm-5.2-frameworks",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  },
+  "meta": {
+    "axes": {
+      "models": 1,
+      "variants": 1,
+      "frameworks": 5,
+      "fixtures": 3,
+      "samples": 3
+    },
+    "cellCount": 15,
+    "sampleCount": 45,
+    "mock": false,
+    "generated_at": "2026-06-28T12:55:05.375Z",
+    "resultsPath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/results.json",
+    "aggregatePath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/aggregate.json",
+    "synthesisPath": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework/synthesis.md"
+  },
+  "rowCount": 45,
+  "verdict": {
+    "verdict": "TIE",
+    "reason": "inside_noise_floor",
+    "ranking_key": "correctness",
+    "n_samples": 3,
+    "margin": 0,
+    "noise_floor": 0,
+    "ci": {
+      "point": 0,
+      "lo": 0,
+      "hi": 0,
+      "confidence": 0.9
+    },
+    "top_pair": [
+      "costar",
+      "tidd-ec"
+    ]
+  },
+  "correctness_saturated": false,
+  "ranking_key": "correctness"
+}

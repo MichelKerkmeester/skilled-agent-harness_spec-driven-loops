@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/158-sk-prompt-models-rename/003-cross-skill-and-code-refs",
+  "spec_folder": "skilled-agent-orchestration/158-sk-prompt-models-rename/003-cross-skill-and-code-refs",
+  "parent_id": "skilled-agent-orchestration/158-sk-prompt-models-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt-models cross-skill refs",
+      "card-sync guard path rename",
+      "hardcoded sk-prompt-small-model paths",
+      "sk-prompt-models cross-skill plan",
+      "card-sync guard path update",
+      "tasks",
+      "sk-prompt-models cross-skill tasks"
+    ],
+    "key_topics": [
+      "sk-prompt-models",
+      "cross-skill",
+      "refs",
+      "card-sync",
+      "guard",
+      "path",
+      "rename",
+      "hardcoded",
+      "sk-prompt-small-model",
+      "paths",
+      "plan",
+      "update"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/secret-scrubber.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "reviewer-regression.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/secret-scrubber.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Update",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The card-sync guard hardcodes `H = f\"{ROOT}/.opencode/skills/sk-prompt-small-model\"` — after the folder moves, that gate fails immediately",
+    "created_at": "2026-06-28T13:47:21.604Z",
+    "last_save_at": "2026-06-28T13:47:21.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:6c3f3545492c79a3cf9507c518f65ec0b12eba7bdb172177213334d98fa7f0b2",
+    "source_doc_hashes": {
+      "spec.md": "a0b4e020b3a89b9766bdbc79c8e78a15f144f3bdb17e5dad0c1f8fe33b706089",
+      "plan.md": "50e5e248b2a93726d4a562c67996414fd94e64f7491b6a851dc80332baabe8c9",
+      "tasks.md": "899070b6599ce33a4fd1adbc25fcbadfeca9e2092cec7348cdddd417ae688c97"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

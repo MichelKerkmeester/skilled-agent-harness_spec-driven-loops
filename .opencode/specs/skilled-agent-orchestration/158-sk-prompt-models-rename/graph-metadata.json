@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/158-sk-prompt-models-rename",
+  "spec_folder": "skilled-agent-orchestration/158-sk-prompt-models-rename",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/001-reference-inventory",
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/002-core-rename",
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/003-cross-skill-and-code-refs",
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/004-commands-scripts-data",
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/005-specs-history-sweep",
+    "skilled-agent-orchestration/158-sk-prompt-models-rename/006-regenerate-verify"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "158-sk-prompt-models-rename",
+      "phase parent",
+      "sk-prompt-models rename",
+      "rename sk-prompt-small-model"
+    ],
+    "key_topics": [
+      "158-sk-prompt-models-rename",
+      "phase",
+      "parent",
+      "sk-prompt-models",
+      "rename",
+      "sk-prompt-small-model",
+      "skill",
+      "per-model",
+      "prompt-craft",
+      "hub",
+      "non-frontier",
+      "models"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill `sk-prompt-small-model` is the per-model prompt-craft hub for the non-frontier models dispatched out via the cli- executors (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2)",
+    "created_at": "2026-06-28T13:47:20.752Z",
+    "last_save_at": "2026-06-28T13:47:20.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:09c3bb40922a27718d1aabbd84c5ca7e7426bd5e7c6f50b2f791060abe5539ba",
+    "source_doc_hashes": {
+      "spec.md": "48b2a7221beb948ea7af11ffc78ea66f6934668d9de86f2a899e6d12b61abf0f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

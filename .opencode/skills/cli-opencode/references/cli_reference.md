@@ -221,6 +221,9 @@ opencode auth login          # → provider xiaomi-token-plan-ams (Xiaomi Token 
 
 # Xiaomi Direct API — pay-per-token alternative
 opencode providers login xiaomi
+
+# Z.AI GLM Coding Plan — GLM coding subscription. Interactive: pick "Z.AI Coding Plan".
+opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
 ```
 
 > Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. The Xiaomi endpoint is provider-managed (no documented base URL — do not invent one); confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
@@ -238,6 +241,7 @@ OpenCode resolves models through configured providers. The cli-opencode skill su
 | `deepseek` (DEFAULT) | `deepseek/deepseek-v4-pro` | Default — deep reasoning at low cost via direct DeepSeek API |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
 | `kimi-for-coding` | `kimi-for-coding/k2p7` | Long-context Kimi K2.7 Code (256k; subscription plan) |
+| `zai-coding-plan` | `zai-coding-plan/glm-5.2` | Z.AI GLM Coding Plan — GLM-5.2 flagship long-horizon coding (1M context; subscription); omit `--agent`; verify with `opencode models zai-coding-plan` |
 | `minimax-coding-plan` (DEFAULT MiniMax) | `minimax-coding-plan/MiniMax-M3` | MiniMax Token Plan (subscription) — default MiniMax dispatch; omit `--agent`; verify with `opencode models minimax-coding-plan` |
 | `minimax` | `minimax/MiniMax-M3` | MiniMax Direct API — pay-per-token alternative; needs `MINIMAX_API_KEY`; confirm the live id via `opencode models minimax` |
 | `xiaomi-token-plan-ams` | `xiaomi-token-plan-ams/mimo-v2.5-pro` | Xiaomi Token Plan (Europe) — MiMo-V2.5-Pro: 1M-token context, strongly agentic (1000+ tool calls), token-efficient; omit `--agent`; verify with `opencode models xiaomi-token-plan-ams` |
@@ -255,6 +259,7 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 | `deepseek` (`deepseek-v4-flash`) | non-reasoning — `--variant` ignored |
 | `minimax-coding-plan` / `minimax` (MiniMax-M3) | `--variant` behavior unverified — omitted by default; confirm against the MiniMax API before relying on it |
 | `xiaomi-token-plan-ams` (mimo-v2.5-pro) | `--variant` maps to MiMo reasoning effort (low/medium/high); **always use `--variant high`** (confirmed accepted on opencode 1.15.13) |
+| `zai-coding-plan` (glm-5.2) | GLM has native `reasoning_effort` (high/max); whether opencode `--variant` forwards to it is unverified — smoke-test before relying on it |
 
 Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
 

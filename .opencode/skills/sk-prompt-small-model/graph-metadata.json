@@ -9,7 +9,7 @@
       {
         "target": "cli-opencode",
         "weight": 0.8,
-        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
+        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan + GLM-5.2 via the Z.AI GLM Coding Plan"
       }
     ],
     "siblings": [],
@@ -37,6 +37,8 @@
     "kimi-for-coding",
     "minimax-m3",
     "mimo-v2.5-pro",
+    "glm-5.2",
+    "zai-coding-plan",
     "opencode-go",
     "deepseek-api",
     "context budget",
@@ -79,7 +81,14 @@
       "xiaomi-token-plan-ams",
       "xiaomi-api",
       "xiaomi api",
-      "xiaomi direct"
+      "xiaomi direct",
+      "glm",
+      "glm-5.2",
+      "glm dispatch",
+      "zai",
+      "zai-coding-plan",
+      "z.ai coding plan",
+      "glm coding plan"
     ],
     "key_topics": [
       "prompt-craft hub",

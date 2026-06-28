@@ -1,0 +1,12 @@
+{
+  "runLabel": "008-glm-5.2-prompt-framework",
+  "profile": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json",
+  "outputsDir": ".opencode/skills/sk-prompt-small-model/benchmarks/008-glm-5.2-prompt-framework",
+  "engine": "scripts/model-benchmark/sweep-benchmark.cjs",
+  "model": "zai-coding-plan/glm-5.2",
+  "grader": "noop (deterministic hidden-test oracle)",
+  "cells": 45,
+  "dispatch_ok": 44,
+  "verdict": "TIE on correctness among the perfect tier (costar=tidd-ec=cidi=race); rcaf weakest 0.976; run separable",
+  "promoted": "costar primary, tidd-ec fallback, avoid rcaf, status empirical"
+}
